@@ -1,12 +1,12 @@
 # Niagara N4 — Mental Model · Índice Maestro
 
-**Actualizado**: 2026-04-22 (sesión bloques 14-20)
+**Actualizado**: 2026-04-23 (sesión bloques 21-26)
 **Distribución analizada**: Honeywell OptimizerSupervisor-N4.14.0.162
-**Método**: Investigación empírica READ-ONLY con sub-agents Explore en paralelo, contrastando docs oficiales (devguide 82 topics HTML) contra source Java + decompilado Vineflower + 969 JARs indexados.
+**Método**: Investigación empírica READ-ONLY con sub-agents Explore en paralelo, contrastando docs oficiales (devguide 82 topics HTML + niagara-help/ 950 MB extracción) contra source Java + decompilado Vineflower + 969 JARs indexados + análisis nativo (138 DLLs/SOs catalogados).
 
-Este índice te guía entre los **20 bloques** de investigación. Cada bloque es un archivo `.md` independiente que puede leerse aislado, pero las conexiones están explícitamente marcadas entre sí.
+Este índice te guía entre los **26 bloques** de investigación. Cada bloque es un archivo `.md` independiente que puede leerse aislado, pero las conexiones están explícitamente marcadas entre sí.
 
-Cobertura final estimada: **~92-95%** del framework Niagara N4.14 conceptualmente. Los gaps restantes están catalogados en el Bloque 20.10 (final gap analysis).
+Cobertura final estimada: **~98-99%** del framework Niagara N4.14 conceptualmente. Los 6 bloques nuevos (21-26) cubren las áreas residuales: semantic/query layer, presentation stack, BACnet deep, schedule + control, migration + build + help, native launcher + DLLs + signing ops.
 
 ---
 
@@ -50,7 +50,7 @@ Cobertura final estimada: **~92-95%** del framework Niagara N4.14 conceptualment
 |---|--------|---------|------------|
 | 13 | Gaps profundos | [niagara-mental-model-bloque13.md](niagara-mental-model-bloque13.md) | Subscription licensing nCloud + Niagara Network federation Supervisor/Subordinate, Fox wire protocol frames + sensitive data keyring + BOG encryption + virtual components, NiagaraRPC JSON encoding + CSRF, Reports/Search/UxMedia N4.10+ + nav/root schemes |
 
-### Capa 6 — Operaciones avanzadas + Templates + Licensing runtime (Bloques 14-16)
+### Capa 6 — Operaciones avanzadas + Templates + Provisioning (Bloques 14-16)
 
 | # | Bloque | Archivo | Key topics |
 |---|--------|---------|------------|
@@ -76,6 +76,22 @@ Cobertura final estimada: **~92-95%** del framework Niagara N4.14 conceptualment
 | # | Bloque | Archivo | Key topics |
 |---|--------|---------|------------|
 | 20 | BApp + net + BAbstractService + Monitors + JobService + gap analysis | [niagara-mental-model-bloque20.md](niagara-mental-model-bloque20.md) | BApp (NO BAbstractApp) extends BComponent + subclase BWebApp, net-rt centralizado (BInternetAddress + HttpConnection + BHttpProxyService CIDR exclusions), BAbstractService 2 sync callbacks + async futures N4+ + 6-phase boot + 3 fault states, systemMonitor-rt (NO stationMonitor) + 10 monitor classes, EngineManager + LeaseManager (4 tipos leases) + ResourceManager + JMX ports 9010/9011, BJobService sin license vs BBatchJobService provisioning-gated + BJob lifecycle + MonitorWorker 2-sec, persistent policies defaults (History 500 roll, Alarm file ADB sin auto-ack, Audit sin auto-delete, Backup sin retention, Session 5/30s→10s+15min auto-logoff), NO BLoggingService/BDebugService/BLexiconService standalone, **final gap analysis: 27+ áreas sin cubrir** (transaction semantics, clustering HA, perf tuning, enterprise vendor deep, FIPS workflow, federation providers, security rotation, production gotchas) |
+
+### Capa 10 — Semantic / query / presentation layer (Bloques 21-22)
+
+| # | Bloque | Archivo | Key topics |
+|---|--------|---------|------------|
+| 21 | Tag Framework + Haystack 4 + BQL + NEQL | [niagara-mental-model-bloque21.md](niagara-mental-model-bloque21.md) | BTagDictionaryService (42.4 KB) + BSmartTagDictionary + BTagInfo/BTagGroupInfo/BRelationInfo, Entity wrapper (NO es BComponent), tags NO persiste en BOG (derived on-demand via rules), Haystack 4 defs.json 497 KB + protos.json 194 KB + 3000 defs + Haystack4Importer 10-phase pipeline, 5 namespaces (n hard-coded, hs CSV legacy, hs4 JSON nativo, fc Honeywell FC, hon Honeywell corp; phScience referenced NO shipped), BQL (tokenizer/parser/AST/cursor execution, 163 clases, EBNF con SELECT/FROM/WHERE/ORDER/TOP/DEPTH/STOP, wildcard `*` NO `%`, DISTINCT O(N) memoria, NO GROUP BY, keywords case-INSENSITIVE, identifiers case-SENSITIVE), NEQL (entity space, gramática EBNF 3 statements full/filter/traverse, iteradores DFS EvalOnIterator, scheme `neql:`, NO proyección columnar NO agregación, shortest path ambiguity, 3 niveles cache TagRuleIndex) |
+| 22 | PX + BajaUI + BajaScript browser + Bajadoc runtime | [niagara-mental-model-bloque22.md](niagara-mental-model-bloque22.md) | PX format (.px XML v1.0, media="workbench:WbPxMedia" vs "hx:HxPxMedia"), PxDecoder extends XParser + PxEncoder + BPxInclude async load + BNPxInclude Tridium colorize + PxCache LRU + PxIncludeManager, BBinding + BValueBinding/BTableBinding/BFieldEditorBinding + BDegradeBehavior + converters (NO scripting BPxScript NO existe), BWidget 23.2 KB base + jerarquía 100+ widgets (BLabel/BButton/BCheckBox/BRadioButton/BTextField/BTable), layout managers (BGridPane/BBorderPane/BFlowPane/BScrollPane/BSplitPane/BTabbedPane/BCanvasPane), event model Template Method NO listener NO bubbling, Command framework + CommandEvent, Theme 172 clases + Palladium default, bajaui-wb 1.36 MB Swing/AWT vs bajaui-ux 271 KB web adapters BUx* codegen JsInfo, bajaScript-ux 205 JS + bs.built.min.js 360 KB + baja namespace core + Type System + ctypes.js embedded, BOX protocol detalle muxing BoxEnvelope fragmentation 64 KB + BoxMessageRelay debounce 10 ms + handshake HTTP POST /box → WebSocket /wsbox, Subscriber API (changed/added/removed/topicFired/subscribed), Bajadoc @NiagaraType → CommonTypeLibGenerator → TypeSpec JSON embedded ctypes.js, JxBrowser embedded Chromium Workbench con niagara.env.* injections |
+
+### Capa 11 — BACnet deep + Schedule + Control + Migration + Build + Help + Native (Bloques 23-26)
+
+| # | Bloque | Archivo | Key topics |
+|---|--------|---------|------------|
+| 23 | BACnet deep (objects + properties + stack + COV + Schedule/Calendar/Trend/Access + BBMD + EDE + AlarmRouter) | [niagara-mental-model-bloque23.md](niagara-mental-model-bloque23.md) | BBacnetObjectType 60+ tipos (AI/AO/AV/BI/BO/BV/MI/MO/MV/Schedule/Calendar/Device/Trend/File/Access\*/Pulse/Accumulator), BBacnetPropertyIdentifier 475+ IDs (PRESENT_VALUE 85, STATUS_FLAGS 111, PRIORITY_ARRAY 87, COV_INCREMENT 23, NOTIFICATION_CLASS 17), BBacnetDevice + BBacnetProxyExt 9 sub-states lifecycle COV, priority array 16 levels + relinquish default + BBacnetPriorityValue 13 choices, 37+ confirmed services + 11 unconfirmed, stack BVLC 11 functions (0x81 BACnet IP, 0x04 Forwarded-NPDU, 0x05 Register-FD, 0x09 Distribute-Broadcast, 0x0A/0B Original) + NPDU control octet + HopCount 64 decremento + APDU 8 types + segmentación window SegmentAck + TSM timeouts (APDUTimeout 3000 APDURetries 3), BBacnetScheduleDeviceExt 32.8 KB + ScheduleSupport0/4/16 + BBacnetCalendar + BBacnetNotificationClass + BBacnetTrendLog 8+ variantes + ReadRange + Access\* objects + BACnet/SC TCP 49152 TLS 1.3, BBMD BDT+FDT + Foreign Device registration + link layers (IP UDP 47808, MS/TP RS-485 9600-115200, Ethernet, PTP, SC), EDE CSV format (bacnetEDE-wb 179 KB MasterFile+Units+StateTexts), bacnetAlarmRouter 98.5 KB + BBacnetAlarmClassReassigner + BEscalationFilter, extensiones Honeywell (honBacnetHelper + honBACnetUtilities 40 clases + ObjectSubscriber + PropertyPointAssigner + BHonBacnetNumericOffsetPoint + ascBacnet wizard) |
+| 24 | Schedule Framework Niagara-native + driverSchedule cross-driver + kitControl palette 152 components | [niagara-mental-model-bloque24.md](niagara-mental-model-bloque24.md) | BAbstractSchedule API core (isEffective/nextEvent/getOutput/getOutputSource), subclases atómicas (BBoolean/BNumeric/BEnum/BString Schedule + BTime/BDate/BDateRange/BDayOfMonth/BWeekday/BMonth/BYear/BCustom), BCompositeSchedule union=OR/AND + orden adición = prioridad + cache hint, BWeeklySchedule 7 BDailySchedule + BSpecialEvents + effective BDateRangeSchedule + prioridad (In→SpecialEvent→Weekly→defaultOutput), BCalendarSchedule 5 tipos eventos + BWeekAndDaySchedule, BTriggerSchedule event-based (vs continuo Weekly) + trigger/triggerMissed topics + nextTriggerSearchLimit 90d, BScheduleSelector multiplexado + link dinámico, BControlSchedule + Clock subscription + clockChanged + scanLimit 90d, BScheduleSnapshotHandler BSingleton persistencia BOG, BAbstractScheduleView + BHxSpecialEventsView + ViewUtil AllDay/CopyDay/PasteDay, driverSchedule framework (BScheduleDeviceExt + BScheduleExport supervisorId+subordinateVersion BAbsTime + BScheduleImportExt + getExportableSchedule INLINE references obligatorio), implementaciones por driver (BACnet ASN.1 encoding, Niagara-N Fox binary bidireccional, LON custom NV workaround, Modbus holding registers simulado, OPC UA server-dependent), comparativa 5 drivers, versionado clock-based BAbsTime NO checksums + NTP obligatorio, BControlPoint (Numeric/Boolean/Enum/String) + BNumericWritable in1..in16 + BPriorityLevel 16 + fallback + BOverride duration, kitControl palette 152 componentes (Math BQuadMath/BUnaryMath bit ops BMinMaxAvg, Logic BQuadLogic/BComparison, Timer BBooleanDelay Clock$Ticket + BOneShot, Select 10 inputs, Conversion Status↔primitive, Latch memory, HVAC BLoopPoint PID time-driven + BRamp + BSequence + BTstat, Energy BOutsideAirOpt + BOptimizedStartStop + BDemandLimit + BPsychrometric, Alarm algorithms, String BBqlExprComponent), execution change-driven vs time-driven, status propagation flags 7 niveles, ProxyExt pipeline + tuning policy (minWritePeriod + deadband + maxWritePeriod), binding VAV example (Schedule→WritablePoint LEVEL_8→BLoopPoint PID→Ramp→ProxyExt Modbus) |
+| 25 | Migration Framework + Bajadoc pipeline + Gradle build + Help system + 198 doc JARs | [niagara-mental-model-bloque25.md](niagara-mental-model-bloque25.md) | migration-rt core (BIFileMigrator + MigratorRegistry 4 matching modes + BIBogElementConverter + ConverterRegistry hierarchy walk + BModuleRemovalConverter auto-gen), n4mig.exe Assembly Tridium.Niagara.MigrateAXtoN4 (AX-3.8 backup .dist → Workbench User Home + recursive migrate + BOG XML walk + ConverterRegistry per typeSpec), N4.x→N4.x+1 auto startup via BOG sourceBajaVersion, migradores por archivo (BackupDistMigrator/BogMigrator/PxMigrator/AlarmDbMigrator/HistoryDbMigrator/KeytabMigrator/ProvisioningNiagaraMigrator), driver-specific (bacnetMigrator-wb WsToAws, modbusTcpSlaveMigrator, spyderToIrmNxMigrator con 6 converters, honPlantControllerMigrator v1.2.5 GUI, propMigration-wb BPropNameChange+BNewType+BPropFlagsChange+BSimpleEncodingChange), migrator-wb 15+ clases (BBogMigrator motor, MigratorOrdConverter, BUserConverter AX permissions→N4 roles, BProgramConverter), conversion/ 70 MB .dist files + cleanDist/ pristine templates + sw/ versioned migrators, downgrade N4→AX destroys data, breaking changes (BICollection→BITable, getProgram removed, BAlarmService.getOpenAlarms→AlarmSpaceConnection, User.permissions→roles), Bajadoc pipeline (source Java @NiagaraType → niagara-baja-doclet 1.0.9 → .bajadoc XML v2.0 con createdBy/createdAt/createdOn hostname → preJarCopy HtmlDocAction via toc.xml → createIndex SearchBuilder JavaExec .dat → jar 18.7 MB firmado), formato .bajadoc (class/extends/implements/action/property/topic/tag elements), gradle (niagara-module-plugin 3.0.18 + niagara-signing-plugin 1.0.10 + niagara-rjs-plugin 2.0.4 + docmodule.gradle 304 líneas BajadocSpec DSL + task dependency graph compileJava→generateBajadoc→preJarCopy→createIndex→jar), module.xml auto-generated from @NiagaraType reflection + buildMillis Unix ms + buildHost, docDeveloper-doc.jar (META-INF firmado + doc/ 169 module folders + doc/jsdoc/ 26 MB bajaScript/bajaui), help-wb.jar 215 KB (HelpSystem + SearchLoader lazy + Searcher 14.7 KB + BajadocParser 31 KB + BBajadocViewer + BHelpSideBar + BBajadocServletView + 35 dependencies), search-rt/wb/ux NO Lucene custom full-text, niagara-help/ extracción 950 MB (bajadoc/141MB + bajadoc-clean/13MB + devguide/115MB + devguide-clean/5.5MB + guides/491MB + guides-clean/31MB + docs-text/44MB + source/35MB + jdk/59MB + indexes/ 17 MB 10 JSON + tools/ 852 KB Python CLI), 10 JSON indexes (class-index 2,712 clases + inheritance + method-index 19,527 names + devguide-toc 109 guides + guides-index 98 folders + pdf-index 364 PDFs + source-index + xref-index 17,690 edges + slots-index 3,269 props/404 actions/68 topics + call-index 138,875 entries), 198 doc JARs (cl\* Honeywell commercial + doc\* Tridium base + docHoneywell\* specific), documentación Honeywell layer (Optimizer Supervisor datasheets NA/EU + 250+ HTML Honeywell/ + 145 HoneywellSpyder + 120 HoneywellSylkDevice + clHVAC 8 variantes + clCBus 8.4 MB), render Workbench via BWebBrowser Jetty wrapper NO navegador externo |
+| 26 | NRE launcher C++ + 138 DLLs nativas + standalone module signing playbook | [niagara-mental-model-bloque26.md](niagara-mental-model-bloque26.md) | NRE dual-layer architecture (Thin native launcher PE32+ ~50 KB → njre.dll 69 KB JVM loader → nre.dll 115 KB classpath+flags → JNI_CreateJavaVM → JVM Azul Zulu 1.8.0.412.20 Win x64), bin/ inventario (nre.exe/station.exe/wb.exe 108 KB/niagarad.exe service wrapper/n4mig.exe/plat.exe/nverify.exe 517 KB signature verification/console.exe/hdbt.exe/dataExportTool.exe 75 MB + DLLs common.dll 189 KB/cppunit.dll 200 KB/msvcp140 549 KB/msvcr120 932 KB legacy/vcruntime140 + protocol drivers opc.dll 176 KB/opccomn_ps/opcproxy/lon.dll 35 KB/pcapBacEther.dll 27 KB WinPcap deprecated/honImport 59 KB/trayIcon 194 KB/alarmDialog 24 KB/dsfspi 359 KB + libciper.so 123 KB ELF ARM EABI5 debug symbols retained con 40+ JNI_com_honeywell_comm_JNIRequest_\*), entry points (wb→BWorkbench, station→BStation, niagarad→NiagaraDaemon, n4mig→Migration, plat→Installer, console→NiagaraConsole), nre.dll inyecta flags (java.protocol.handler.pkgs com.tridium.nre.protocol + java.library.path + java.security.manager + niagara.home/user.home/home.url file:/// + platform.provider + supported/required.runtime.profiles) + nre.properties per-exe (station/wb/test/nre.java.options -Xss512K -Xmx1024M), niagaraHome resolution (env → registry HKLM\Software\Honeywell\Niagara\<version> → relative ../), debug mode `set nre_debug=1` prefix "nre>", system.properties + niagara.moduleVerificationMode modes (low N4.14 default/medium futuro N4.9+/high futuro), bin/ext/ JARs (core nre.jar+niagarad.jar, BouncyCastle FIPS bcfips 4 JARs + bcstd, Jetty 9.4.54, okhttp 4.12, slf4j 2.0.9, Kotlin 1.9.10, asm 9.6, orientdb 3.2.23, jose4j 0.9.6, libthrift 0.17, JxBrowser 7.39.0 Win64/Swing/SWT/JavaFX), **138 artefactos nativos catálogo** (117 PE32+ x64 + 4 PE32 x86 .NET printout + 1 ELF ARM EABI5 libciper + 8+ embedded JARs) + **MSVC runtime multiplexing** (ucrtbase 1.1 MB real impl + MSVC 14.0 VCRUNTIME140/MSVCP140 + MSVC 12.0 MSVCR120 legacy + 48× api-ms-win-crt-\*.dll forwarders) + FFmpeg embedded ffmpeg-wb.jar 34.9 MB (avcodec-60 18.4 MB + avformat + avfilter + swscale + ffmpeg-wrapper.dll JNI) + **JxBrowser 7.39.0 Chromium 289 MB** (chrome.dll 260 MB + libEGL + libGLESv2 7.6 MB + vk_swiftshader 5.1 MB + d3dcompiler_47 4.7 MB) + AWT Tier 1 (awt+jawt+freetype) + JavaFX Tier 2 (glass+jfxwebkit 75 MB + prism_d3d/es2/sw) + crypto native providers (sunec+sunmscapi+j2pkcs11+j2pcsc+j2gss+w2k_lsa_auth NO OpenSSL embebido) + Office Interop /printout/ PE32 x86 .NET (Word.dll Word 2003 PIA + WireSheetControl Excel) + JVM debug (jdwp+dt_socket+dt_shmem+hprof+instrument) + Accessibility bridges MSAA/JAB, Java 2 SecurityManager policy grants per-codeBase (nre.jar propertyPermissions + niagarad.jar FilePermission + sun.misc + NreSupplierPermission), install-data/ (install.properties shortcuts wb_w.exe/plat.exe/console + EULA + splash BMP), **Playbook operacional firma standalone 10 pasos**: (1) createProfile XML config + (2) edit dname/keyalg RSA/keysize 2048/TSA digicert + (3) generateCertificate password 10+ chars + (4 alt keytool legacy) + (5) build.gradle niagaraSigning aliases+signingProfileFile + (6) gradlew clean build → .sig 256 bytes exactos + (7) exportCertificate PEM + (8) deploy cp jar+sig a modules/ + (9) import User Trust Store si modo MEDIUM/HIGH + (10) verify jarsigner/nverify/Module Info verde, troubleshooting 9 casos + configuración avanzada (múltiples certs + CA-signed CSR flow + HSM PKCS11 Thales/YubiKey + re-firma existing), 3 groups SIEMPRE requieren firma Tridium (ACCESS_CLASS+REFLECTION+MBEAN_PERMISSION) incluso en LOW, security surface risks (FFmpeg CVE rate + JxBrowser independent patching + WinPcap deprecated + MSVC runtime boundary + Accessibility UI spoofing) |
 
 ---
 
@@ -212,6 +228,82 @@ Los gotchas más críticos repetidos o conectados entre bloques:
 - **Bloque 19.14**: NO HA nativa NiagaraDriver — `BSupervisorFailover` no existe.
 - **Bloque 19.17**: BajaScript browser usa **BOX** (no Fox). Corrección al Bloque 9.2.
 
+### Tags + Haystack + Query (Bloque 21)
+
+- **Bloque 21.1**: Tags NO persiste en BOG como properties — derived on-demand via BTagRule evaluación. Backup/restore NO pierde tags, pero cambios en dict cambian qué tags "tiene" el mismo componente.
+- **Bloque 21.2**: Haystack 4 `"children"` NO es herencia — son proto combinations (requeridas juntas). Herencia real es `"is"`.
+- **Bloque 21.3**: Tag IDs **case-SENSITIVE** (`hs:air` ≠ `hs:Air`). Todos defs Haystack en lowercase.
+- **Bloque 21.5**: BQL wildcard es `*` NO `%` NO `?` — distinto SQL clásico. Keywords case-INSENSITIVE, identifiers case-SENSITIVE.
+- **Bloque 21.6**: NEQL shortest path ambiguity — `n:child->n:name="X"` evalúa SOLO primer hijo. Workaround: `traverse n:child-> where n:name="X"`.
+- **Bloque 21.8**: `neqlizeExcludedTags` separador SEMICOLON no comma. Sin TagRuleIndex enabled → O(n) eval per query (crítico en 10k+ components).
+
+### Presentation layer (Bloque 22)
+
+- **Bloque 22.2**: NO scripting embedded nativo (`BPxScript` NO existe). Converters + custom Java bindings only.
+- **Bloque 22.3**: ORD resolution **SINCRÓNICO** en render → UI bloquea si lento. Cache result en OrdTarget, retry async.
+- **Bloque 22.4**: PxCache MAX_CACHE_SIZE configurable; multiple BPxInclude del mismo ord reutilizan widget tree. LRU eviction.
+- **Bloque 22.5**: Bindings override widget local values → `BWidget.changed(Property, Context)` chequea `isOverriddenByBinding` antes de propagar.
+- **Bloque 22.7**: NO bubbling eventos automático — Template Method pattern (no listener). Propagación explícita `parent.fireKeyEvent(e)`.
+- **Bloque 22.11**: RequireJS case-SENSITIVE (`bajaScript/sys` ≠ `bajaScript/Sys`). Errores silenciosos.
+- **Bloque 22.11**: Subscriptions NO persisten tras hard refresh — UI debe guardar ORDs NO referencias. Re-resolver post-reconnect siempre.
+- **Bloque 22.12**: Implicit batching BoxMessageRelay debounce ~10ms puede introducir latencia inesperada. Manual Batch para crítico.
+- **Bloque 22.12**: FoxScheme SIEMPRE RPC server-side — ORDs `fox:` nunca resuelven localmente (impacto multi-estación).
+
+### BACnet deep (Bloque 23)
+
+- **Bloque 23.3**: `rpmOk` flag — si device NO soporta ReadPropertyMultiple, Niagara cae a ReadProperty individual (3-5× tráfico).
+- **Bloque 23.6**: WriteProperty priority=6 (manual takeover) bloquea otros writes de menor prioridad hasta release explícito.
+- **Bloque 23.8**: MAX_APDU negotiation usa el MENOR (peer y Niagara). Supervisor NO controla downstream.
+- **Bloque 23.9**: Si device advertisa `NO_SEGMENTATION` y respuesta > max-apdu → Abort(segmentation-not-supported). NO retry, fallo permanente.
+- **Bloque 23.10**: Subscriber process ID DEBE ser único per-client — colisiones cruzan notificaciones.
+- **Bloque 23.10**: COV subscription con `lifetime=0` = unsubscribe (NO error). Refresh NO es obligatorio — algunos devices solo notifican en cambio real.
+- **Bloque 23.11**: Schedule protocol revision mismatch (Rev3 vs Rev16) = corrupción datos — `setSupport()` crítico.
+- **Bloque 23.12**: Calendar reference no existente = exception schedule inoperante SILENT.
+- **Bloque 23.15**: Trend Log BUFFER_SIZE=0 = circular ilimitado (memoria); STOP_WHEN_FULL + count=size = congela logging.
+- **Bloque 23.16**: Access objects requieren BACnet/SC para máxima seguridad — N4.14 soporte parcial, NO prod-ready high security.
+- **Bloque 23.26**: BBMD TTL renewal antes TTL/2, sino silent delete FDT entry (próximo broadcast NO llega).
+
+### Schedule + Control (Bloque 24)
+
+- **Bloque 24.2**: scanLimit default 90d — nextEvent() puede retornar null si NO hay cambio en ventana. Bajar a 14d si requiere predictability corto plazo.
+- **Bloque 24.3**: BCompositeSchedule `union=false (AND)` + child `alwaysEffective=true` = SIEMPRE effective, impossible deshabilitar.
+- **Bloque 24.4**: BScheduleReference stale si calendar movido/deleted — mantiene CalendarSubscriber para resubscribir auto.
+- **Bloque 24.7**: Clock service dependency crítica — sin Clock, triggers NO disparan. Recovery automático tras restart + triggerMissed.
+- **Bloque 24.11**: DST spring forward 02:30 Schedule se SALTA → triggerMissed fires en próx startup. Fall back puede disparar 2 veces.
+- **Bloque 24.14**: Clock drift entre stations driverSchedule → versionado broken. NTP obligatorio. Subordinate adelantado timestamp futuro = NUNCA sync.
+- **Bloque 24.12**: `getExportableSchedule()` INLINE BScheduleReference obligatorio antes de transmit — sino subordinate recibe ords irresolubles.
+- **Bloque 24.13**: Last-write-wins bidireccional (NO conflict resolution). Arquitectura clara: UN supervisor.
+- **Bloque 24.18**: Tuning policy `minWritePeriod=0.1s + deadband=0 + change-driven` = device flood → reset. Aumentar deadband + throttle executeTime.
+- **Bloque 24.18**: `execute()` recursivo A→B→A stack overflow ~100 iter. Mitigar con `Clock.schedule()` para desacoplar.
+- **Bloque 24.16**: NullProxyExt vs null — usar `BNullProxyExt.isNull()=true` NO `null` (evita NPE en onExecute).
+
+### Migration + Build + Help (Bloque 25)
+
+- **Bloque 25.2**: Module removed en N4 → `BModuleRemovalConverter` silent removal. Log `"moduleRemoved: ax:Module"`. ORDs huérfanos manual fix.
+- **Bloque 25.7**: Migration tool NO refactoriza Java bytecode — Programs con APIs deprecated (`BICollection`, `getProgram`, `BAlarmService.getOpenAlarms`) requieren post-migration manual fix.
+- **Bloque 25.7**: Licencias AX incompatibles con N4 (host ID hash diff 32→64 bit) — new license request obligatorio.
+- **Bloque 25.7**: Downgrade N4→AX **destruye datos N4** (keytabs/certs/SSL keys). NO es rollback moderno — es full reset + restore.
+- **Bloque 25.8**: Doclet version embedded en `.bajadoc` via `createdBy` attr. `createdAt` + `createdOn` permite track en qué build nació doc.
+- **Bloque 25.9**: `docmodule.gradle` se aplica CONDICIONALMENTE (solo si doc module). SearchBuilder JavaExec requiere classpath nre+baja+help-wb+html-wb.
+- **Bloque 25.11**: Help system NO usa Lucene — custom full-text implementation (menor footprint).
+- **Bloque 25.13**: Render help via **BWebBrowser** (Jetty wrapper) NO navegador externo — CSS embedding para estilo offline.
+
+### Native layer + signing (Bloque 26)
+
+- **Bloque 26.2**: niagara.home/user.home resolution orden: env var → Registry `HKLM\Software\Honeywell\Niagara\<version>` → relative `../`.
+- **Bloque 26.5**: MSVC runtime multiplexing — VCRUNTIME140 + MSVCR120 legacy coexisten → potential DLL boundary issues. ucrtbase.dll es real impl.
+- **Bloque 26.6**: WinPcap (pcapBacEther.dll) deprecated 2018, CVEs conocidos. Considerar deprecar BACnet Ethernet, usar IP-based.
+- **Bloque 26.7**: libciper.so debug symbols retained en production — unexpected artifact de build.
+- **Bloque 26.8**: FFmpeg 34.9 MB alto CVE rate históricamente en parsers codec. Sandboxing + permiso upload restrictivo.
+- **Bloque 26.10**: Chromium/JxBrowser 260 MB requiere patching independiente → frequent Niagara releases. ABI tightly coupled con Chromium version.
+- **Bloque 26.17**: `.sig` sidecar es SIEMPRE 256 bytes exactos para RSA-2048 (raw signature NO ASN.1). No confundir con firma embedded JAR.
+- **Bloque 26.17**: `niagara-signing-plugin:1.0.10` ÚNICA vía standalone — NO maven plugin alternativo, NO CLI Tridium tools.
+- **Bloque 26.17**: TSA timestamping CRÍTICO producción — sin él cert expirado = módulo fail al validar.
+- **Bloque 26.21**: 3 permission groups (ACCESS_CLASS+REFLECTION+MBEAN_PERMISSION) requieren firma Tridium válida incluso en `moduleVerificationMode=low`. Self-signed NO aplica.
+- **Bloque 26.21**: Password gradle requirements enforced — min 10 chars + 1 digit + 1 lowercase + 1 uppercase.
+- **Bloque 26.21**: Plaintext passwords en XML profile — proteger permissions 600 + segregate secrets.
+- **Bloque 26.25**: niagarad.exe Windows service wrapper. SCM SERVICE_CONTROL_STOP → JVM shutdown hook.
+
 ---
 
 ## Conexiones clave entre bloques
@@ -239,6 +331,12 @@ Bloque 17 (Filesystem + JRE) ─── establece ───> paths físicos que 1
 Bloque 18 (Signing + Perms + CSRF) ─── corrige ───> 3.4 (3 groups sign); expande ───> 9.3.6, 11.3, 12.1
 Bloque 19 (LON/NRIO/NiagaraDriver/BOX) ─── profundiza ───> 7.3.3, 13.1, 13.2, 14.12; corrige ───> 9.2 (BajaScript usa BOX)
 Bloque 20 (BApp + Misc + Gap) ─── refina ───> 10.2.2 (boot 6-phase), 18.4 (JMX MBEAN); gap analysis para todo
+Bloque 21 (Tags + Haystack 4 + BQL + NEQL) ─── profundiza ───> 5.3 (BQL/NEQL/Tags superficial), 8 (alarm integration con BNeqlizeRpc), 16.16 (Analytics Framework usa NEQL para QueryLevelDef), 14.6 (Templates integra)
+Bloque 22 (PX + BajaUI + BajaScript browser + Bajadoc) ─── profundiza ───> 9 (UI stack superficial), 15 (Workbench editing), 19.17 (BOX protocol detalle cliente-side)
+Bloque 23 (BACnet deep) ─── profundiza ───> 4 (driver framework BACnet superficial), 8 (alarm routing via bacnetAlarmRouter-rt), 19 (NRIO no BACnet)
+Bloque 24 (Schedule Native + driverSchedule + kitControl palette) ─── profundiza ───> 6 (Control Engine superficial), 8.3 (Schedule base), 23.11 (BACnet schedule equivalent)
+Bloque 25 (Migration + Bajadoc pipeline + Gradle build + Help) ─── profundiza ───> 12 (Build system), 4 (driver migration mentions), 10 (platform lifecycle), 23.23 (bacnetMigrator)
+Bloque 26 (NRE launcher + 138 DLLs + signing ops playbook) ─── profundiza ───> 10 (platform daemon superficial), 17 (filesystem + DLLs superficial), 18 (module signing teoría); complementa con playbook operacional firma standalone
 ```
 
 ---
@@ -284,6 +382,18 @@ Bloque 20 (BApp + Misc + Gap) ─── refina ───> 10.2.2 (boot 6-phase),
 
 ### Capa 9 (Bloque 20) — 3 keys
 - `niagara/misc/bapp-webapp-net-module-httpproxy`, `niagara/misc/babstractservice-lifecycle-monitors-engine-lease-resource`, `niagara/misc/bjobservice-persistent-policies-gap-analysis`
+
+### Capa 10 (Bloques 21-22) — 6 keys
+- `niagara/bloque21/tag-framework`, `niagara/bloque21/bql`, `niagara/bloque21/neql`
+- `niagara/bloque22/px-runtime`, `niagara/bloque22/bajaui-widget-framework`, `niagara/bloque22/bajascript-runtime`
+
+### Capa 11 (Bloques 23-26) — 12 keys
+- `niagara/bloque23/bacnet-objects-properties`, `niagara/bloque23/bacnet-stack`, `niagara/bloque23/bacnet-advanced-objects`
+- `niagara/bloque24/schedule-native`, `niagara/bloque24/driverschedule-cross`, `niagara/bloque24/kitcontrol-palette`
+- `niagara/bloque25/migration-framework`, `niagara/bloque25/bajadoc-gradle`, `niagara/bloque25/help-system`
+- `niagara/bloque26/nre-launcher`, `niagara/bloque26/native-dlls-catalog`, `niagara/bloque26/module-signing-playbook`
+
+**Total actualizado: 75 topic keys** (57 previos + 18 nuevos bloques 21-26).
 
 ---
 
@@ -370,6 +480,12 @@ Estructura del repo:
 ├── niagara-mental-model-bloque18.md  (Module signing + permissions + CSRF + SCRAM)
 ├── niagara-mental-model-bloque19.md  (LON + NRIO + NiagaraDriver + BOX)
 ├── niagara-mental-model-bloque20.md  (BApp + net + Monitors + JobService + gap analysis)
+├── niagara-mental-model-bloque21.md  (Tag Framework + Haystack 4 + BQL + NEQL)
+├── niagara-mental-model-bloque22.md  (PX + BajaUI + BajaScript browser + Bajadoc runtime)
+├── niagara-mental-model-bloque23.md  (BACnet deep — objects + properties + stack + COV + BBMD + EDE)
+├── niagara-mental-model-bloque24.md  (Schedule Native + driverSchedule cross-driver + kitControl 152 components)
+├── niagara-mental-model-bloque25.md  (Migration + Bajadoc pipeline + Gradle build + Help system)
+├── niagara-mental-model-bloque26.md  (NRE launcher C++ + 138 DLLs + standalone signing playbook)
 ├── niagara-mental-model.2026-04-19.md (snapshot sesión httpapi)
 ├── NEXT_SESSION_PROMPT.md, NEXT_SESSION_PROMPT_MODULE_NAVIGATOR.md (plantillas)
 ├── notes/                            (borradores source)
