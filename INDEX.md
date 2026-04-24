@@ -1,12 +1,12 @@
 # Niagara N4 — Mental Model · Índice Maestro
 
-**Actualizado**: 2026-04-24 (sesión bloques 27-29)
+**Actualizado**: 2026-04-24 (sesión bloques 30-32 — cierre gaps 20.10)
 **Distribución analizada**: Honeywell OptimizerSupervisor-N4.14.0.162
 **Método**: Investigación empírica READ-ONLY con sub-agents en paralelo, contrastando docs oficiales (devguide 82 topics HTML + niagara-help/ 950 MB extracción) contra source Java + decompilado Vineflower + 974 JARs indexados + análisis nativo (138 DLLs/SOs catalogados).
 
-Este índice te guía entre los **29 bloques** de investigación. Cada bloque es un archivo `.md` independiente que puede leerse aislado, pero las conexiones están explícitamente marcadas entre sí.
+Este índice te guía entre los **32 bloques** de investigación. Cada bloque es un archivo `.md` independiente que puede leerse aislado, pero las conexiones están explícitamente marcadas entre sí.
 
-Cobertura final estimada: **~99%** del framework Niagara N4.14 conceptualmente. Los 3 bloques nuevos (27-29) cierran los gaps operacionales restantes: network surface + certManagement + trust chain, Discovery framework cross-protocol + Virtual Components, Web tier + Servlets + Jetty filter chain deep.
+Cobertura final estimada: **~99.5%** del framework Niagara N4.14 conceptualmente. Los 3 bloques nuevos (30-32) cierran los gaps residuales catalogados en Bloque 20.10: #1/#3/#5/#7/#8/#10/#11/#13/#15/#16/#17/#18/#20/#21/#22/#24/#27 — Enterprise auth federation + FIPS + key rotation, Performance tuning + observability, Honeywell modules + runtime semantics. Los gaps NO investigables sin lab/NDA (#2 clustering HA, #9 remote diagnostics, #14 Skyspark alternatives, #19/#23/#25/#26 clock+lab-required) quedan explícitos en gap analysis final.
 
 ---
 
@@ -101,6 +101,14 @@ Cobertura final estimada: **~99%** del framework Niagara N4.14 conceptualmente. 
 | 28 | Discovery framework cross-protocol + Virtual Components layer | [niagara-mental-model-bloque28.md](niagara-mental-model-bloque28.md) | **NO existe `BDiscoveryJob` base abstracto** — discovery es UI-driven (`BLearnTable` + `MgrController$Discover` + `BAbstractManager` en `workbench-wb.jar`) NO server-driven, cada driver extiende `BSimpleJob` directamente (expectativa arquitectónica invertida), Discovery framework genérico lifecycle broadcast/probe→collect→match/filter→add/bind con topology variants (gateway-based BACnet vs master-slave Modbus vs unsolicited push NRIO vs catalog-based LON XIF), 6 drivers cross-protocol deep: **BACnet** 10-step flow WhoIs→IAm→object-list→property-list per object + BBacnetLocalDevice$Discover + segmentación + BBMD routing, **LON** Query_Id(0x51)+Query_Neuron_ID→NV enumeration→SNVT mapping→XIF download + LonworksDevice BUncommissionedDevice→BCommissionedDevice + Neuron-ID conflict, **Niagara Fox federation** BNiagaraStationLearn Supervisor probing subordinate point space + browsing remote BComponent tree + Fox session folder-by-folder + BFoxProxySession reference counting, **Modbus NO tiene discovery API** (confirmado empíricamente grep modbusCore/Async/Tcp — excepción que confirma la regla, framework no fuerza discovery si protocolo no soporta enumeration), **SNMP** BSnmpNetwork$Discover walking OID subtree + MIB loading .mib parse (sin v3 en distro Honeywell + sin GetBulk optimization — operational gap), **OPC UA** BOpcUaClient$Browse Address Space + BOpcUaNodeLearnEntry 51 KB clase más grande de cualquier discovery driver + 12 NodeClass variants + endpoint discovery (GetEndpoints SecurityPolicy matching), Template/Match/Bind meta-flow cross-protocol (BDeviceTemplateManager.match() post-discovery → auto-bind, LON ProgramId 8-byte wildcards), **Virtual Components layer**: `niagaraVirtual-rt.jar` 317 KB + 66 clases módulo first-class dedicado (Bloque 13 lo subestimó) + 12 subclases control points + schedules + stubs, BVirtualComponent extends BComponent NO persisted BOG (derived on-demand parent genera dinámicamente), virtual: scheme + VirtualPath resolution + BVirtualGateway pattern + VirtualCacheCallbacks tier eviction, virtual points en drivers (BACnet calculados, Modbus composite registers, fórmulas/agregación/scaling dinámico), **Virtual points NO cuentan license count** — BPointCountVisitor detecta BVirtualComponentSpace y skip (confirmado spy page, tradeoff estratégico Supervisor-Subordinate), 15 gotchas verificados (virtual crash regenera race, Fox/BOX subscription cache, debugging virtual "fantasma"), mental model pipeline Discovery→Template→Virtual end-to-end |
 | 29 | Web tier + Servlets + Jetty filter chain + REST endpoints matrix | [niagara-mental-model-bloque29.md](niagara-mental-model-bloque29.md) | Jetty 9.4.54.v20240208 embedded (**EOL 2025 — riesgo CVE unpatched**) vía BJettyWebServer con 40+ inner classes, thread pool + connector sizing + acceptor queue, 6 protection layers off-by-default (DoS/QoS/ConnectionLimit/AcceptRateLimit/InetAccessHandler/SizeLimitHandler), BWebServlet registry descubrimiento dinámico via BComponent tree **NO `@WebServlet` ni `web.xml`** (path routing `/<servletName>/*`), **filter chain 15 capas** con orden real extraído de `configureNiagaraWebApp()` bytecode (invariant: Auth ANTES CSRF), **53 servlets inventariados** scan de 974 JARs (Bloque 9 mencionaba ~6): 20 core Tridium (OrdServlet/LoginServlet/LogoutServlet/PreloginServlet/FileServlet/WebStartServlet/WbServlet/SpyServlet/SpeedTestServlet/RequireJsConfigServlet/SessionTimeoutServlet/CspReportServlet/ClientEnvServlet/DefaultServlet/NiagaraRpcServlet/SecurityCheckServlet/UnauthenticatedServlet/ViewAllOrdServlet/LoginFileServlet/LogoutConfirmServlet) + BOX (BBoxServlet/BoxWebSocketServlet/QueryServlet) + bajaux WbWebWidgetServlet + Analytics 3 + Hierarchy + WebChart 3 + SAML 4 + ClientCert 1 + BACnet/SC WS 1 + Honeywell verticals (Galileo SignalR 4 transports, AWS BACnet, Plant Controller) + ~35 custom sejofa, **NiagaraHttpSession** agrega múltiples HttpSession Jetty por `superId` (colección NO singular) + regeneración post-auth (session fixation safe) + 7 cookies Niagara + `cacheSessionsAndRestart` action preserva sessions en config restart, 9 auth schemes tabla comparativa (SCRAM-SHA256 HELLO Bloque 18 / Basic legacy / Digest legacy / Header SSO / SAML RP+IdP / Kerberos SPNEGO / LDAP bind / Google TOTP / mTLS client cert), NiagaraRPC JSON-RPC 2.0 regex `/([^/]+)/(.+)` + 6 handlers built-in + error codes -32700..-32000 + batch support + multi-transport HTTP/Fox/BOX, WebSocket BOX handshake + 5 system props config + frame limits 64KB, static resource serving `/baja/*` + `/module/<mod>/rc/*` + Cache-Control+ETag+If-Modified-Since, reverse proxy X-Forwarded-For/Proto + BHttpProxyService CIDR, **17 gotchas productivos**: SameSite=None+Secure, worker≠engine thread (Bloque 9.3.2 expandido con workaround concreto post/get), filter order invariant, requestHeaderSize 8KB default (Bearer token overflow), Jetty 9.4 EOL 2025, Content-Type text/plain peculiaridad cross-servlets (no solo BNaServlet Bloque 16.5.1), max request body multipart upload, WS ping/pong timeout, keepalive vs load balancer idle conflict, request flow end-to-end con latency breakdown estimado 20-525ms |
 
+### Capa 13 — Cierre gaps residuales: Enterprise auth + FIPS + Performance + Honeywell runtime (Bloques 30-32)
+
+| # | Bloque | Archivo | Key topics |
+|---|--------|---------|------------|
+| 30 | Enterprise auth federation + FIPS + key rotation + token matrix | [niagara-mental-model-bloque30.md](niagara-mental-model-bloque30.md) | LDAP v2/v3 + AD via `BLdapAuthenticationScheme` (keytab-encrypted bind creds + connection pool + referral handling + group mapping via prototype BComponent), SAML dual mode (Niagara como RP Y como IdP — **SLO NO implementado gap compliance**, attribute mapping circle of trust), **OAuth/OIDC NO soportado nativo** (`oauth2-rt` es cliente M2M only — NO authentication scheme, forzar SAML o custom module), Kerberos SPNEGO + keytab + ticket cache, mTLS clientCertAuth-rt cert-to-user mapping + **CRL NO validada** (confirma Bloque 27.3), **CORRECCIÓN mayor keyring**: Niagara NO usa `master.jceks` sino **`.km`/`.kr` DPAPI Windows** para sensitive data encryption + BPasswords reversibles via DPAPI OS-level (invalida supuesto Bloque 13.2.4) — rotation manual via procedure documentado, **FIPS 140 migration workflow 10 pasos**: BCFIPS providers + BCFKS keystore + `java.security` edits + cipher exclusions + `moduleVerificationMode=medium/high` + self-tests startup + gotcha módulos pre-FIPS fail load, **TLS cert rotation zero-downtime**: Jetty + Fox hot reload, BACnet/SC requiere restart, cross-sign transition, token lifecycle matrix 12 tokens (Fox 24h + BOX BEARER + CSRF + Web cookie + SAML assertion + OAuth access + LDAP bind + Keytab + mTLS + DPAPI keys + .sig signing cert + Trust store aliases), RBAC method-level (slots interceptados + Java methods NO + reflection protegido Bloque 3), Auditor flow **sincrónico inline** (NO async — el queue unbounded Bloque 31.8 aplica a syslog side-channel NO main sink), **`NSuperSession` aggregator** agrega HTTP+Fox+BOX bajo un BUser + invariant **1 concurrent session per user** (NO configurable) + regen post-auth session-fixation safe, session timeout clock skew multi-server (gap #25 documentado risk sin lab), federation cross-station identity propagation gap, break-glass local admin siempre disponible, gotchas 10+ (master keyring corrupt → BPassword silent empty, FIPS breaks pre-FIPS modules, LDAP groups NO refresh hasta re-login, SAML clock skew reject silent, keytab rekey invalida tickets activos, mTLS self-signed accepted default) |
+| 31 | Performance tuning + observability profunda + thread pools + audit + heap scale | [niagara-mental-model-bloque31.md](niagara-mental-model-bloque31.md) | Engine thread único revisited (queue unbounded + `HogsPage` 5 bandas severidad + async `Flags.ASYNC` pool), **tabla maestra 21 thread pools**: Engine (1 fijo) + Jetty worker + Fox sessions + Fox channels + BOX worker + BJobService ForkJoinPool (common pool CPU cores) + BMonitorWorker 2-sec + History archive + Alarm dispatch + NetworkManager polling per-driver + Subscription processor + Servlet executor + Virtual cache + 8 más, **GC default JDK 8 Azul Zulu = ParallelGC** (NO G1GC — confirmado empírico, `nre.properties` SIN flag `-XX:+UseG1GC`), recomendaciones G1GC para heaps 4GB+ + YoungGen/OldGen ratio + Metaspace + GC log + heap dump OOM, I/O buffering (único `circuitMaxReceiveBuffer=10MB` uncommented en 589 líneas system.properties + BOX envelope 256KB + Jetty 8KB header + NIO vs BIO), JMX completo (MBeans JVM standard + `com.tridium.*` inferidos + remote 9010/9011 + jconsole/VisualVM/jcmd/JFR workflow), **Niagara NO usa `ManagedBlocker`** confirmado decompilación → ForkJoinPool starvation real risk con blocking BJobs (long-running job bloquea common pool — workaround dedicated thread pool I/O-bound), **history archive blocking 5-30 min** (`lingerTime=5min` + cursor `inactivityTimeout=2min` + SQLite `.hdb` VACUUM lock contention UI queries + schedule off-peak), **audit queue SYSLOG side-channel `LinkedBlockingQueue` UNBOUNDED** → overflow silent loss vía OOM cascade (main sink inline sync confirmado Bloque 30 — corrección), job exception handling (framework catch + JobLog TRANSIENT + NO persisted stack traces + manual restart), backup monolítico sin chunking/resume (gap #23 documentado risk), TimeZone per-history `BHistoryConfig.timeZone` + DST + Supervisor cross-zone aggregation gotcha, audit retention sin auto-delete → disk fill risk + OS logrotate NO aplica (audit.adb SQLite nativo), subscription perf tiers deployment (1k/5k/20k points), **tabla heap tuning XS/Small/Medium/Large/XL** con flags JVM exactas (Small 1GB default + Medium 2-4GB + Large 4-8GB + XL 8-16GB para Supervisor 50+ subs), profiling producción (JFR record jcmd + jmap heap + jstack thread + `EngineManager$HogsPage` + spy pages + access log), **22 gotchas prod consolidados** (G1GC pauses 50ms+ miss callback, FJP saturated, history compaction timeouts, audit silent loss, backup monolítico timeout, TimeZone aggregation wrong, disk fill, heap fragmentation 24x7, Metaspace leak class reload), **playbook diagnóstico 8 pasos** UI lenta → HogsPage → thread dump → JMX Memory → GC log → heap histo → fix + verify JFR |
+| 32 | Honeywell enterprise modules + SMA + non-HTTP transports + runtime semantics | [niagara-mental-model-bloque32.md](niagara-mental-model-bloque32.md) | **`honPlantController-rt.jar` SÍ contiene JNI** (`com/honeywell/comm/JNIRequest.class` presente — `libplantctrl.so` NO distribuida en Supervisor Windows, solo `libciper.so`; vive en CIPer/JACE ARM), **honPlantController trae BTP + RSTP stacks completos**: BTP (Building Technology Protocol parser propio Honeywell — ReadProperty/WriteProperty/Query/FileData/Subscription/Discovery) + RSTP (Rapid Spanning Tree) → **soporta topología Ethernet ring redundante** hallazgo operacional no documentado previamente, **`jsonToolkit` NO es custom Tridium** — re-empaqueta Jayway JsonPath (Apache 2.0 OSS) + json-smart backend + adapter `com.tridiumx.jsonToolkit` con `x` = partner convention (324 clases), **`honPlantController` embeds Google Gson standalone** — shaded dependency pattern (cada módulo Honeywell maneja su propio JSON stack), **`platPower` 16 clases reveladas**: JACE SLA + QNX (`PowerdQnx`) + Javelina + NPM + Dual Battery + NiMH + UPS + External SLA (platform-embedded-specific, NO para supervisor Windows), **`honBacnetHelper` FastAccessList optimization**: batch multi-property reads en single APDU → crítico scaling 475K points deployment, **NO existe módulo `optimizer-*.jar`** — "Optimizer Supervisor" es naming comercial, funcionalidad dispersa en `clHVAC*` suite (Bloque 25 mencionó 8 variantes + 8.4 MB clCBus), SMA flow (`feature.sma.expiration` XML attribute + `sma.exempt="true"` Bloque 14.3 + grace period + nCloud update checker — SMA expired → update fail silent), `fox.sys` system channels vs user channels (boot/commissioning/config sync vs BQL/subscription), `ndriver` package NiagaraDriver internal transport, **non-HTTP transports consolidado 21-transport table** (Serial RS-232/485 + UDP BACnet/SNMP/BBMD + Raw TCP Modbus/BACnet-SC/OPC UA + Proprietary BTP/RSTP/BOX/Fox), Transaction semantics multi-step (**no hay `BTransaction` real** — compensation actions manual + BOG save atomic via BLoadOp), Module lifecycle hooks (`BModule` + classloader init + `Sys.loadType` registration + service dependency resolution + module.xml `<depends>`), `Sys.loadType()` type registry algorithm + per-module ClassLoader parent-first delegation + shared baja.jar bootclasspath + ClassLoader leak risk (old not GC'd common JVM issue), BOG schema evolution (`BOnMissingType` stub inferido + extra properties preserved + forward compat NO supported), honBacnetHelper top 5 clases (FastAccessList/ObjectSubscriber/PropertyPointAssigner/NumericOffsetPoint/Utilities), gotchas Honeywell (ARM-only libplantctrl.so, SMA expiration update fail, jsonToolkit OSS edge cases, honBacnetHelper escala 475K, CIPer ring topology dependency), TODOs honestos (NO decompilé con javap -p clases internas BTransaction/Sys.loadType/BModule/BOnMissingType/fox.sys constants/license-rt.jar SMA methods, NO analicé honMqttDriver interno, SMA.exempt XML license NO confirmado), mental model Honeywell layered stack: N4.14 base → Honeywell overlay (license + 250+ HTML docs + hon*/asc*/cl*) → Optimizer Supervisor naming comercial → SEJOFA customer |
+
 ---
 
 ## Cómo leer este mental model
@@ -136,6 +144,26 @@ Ruta: 4 (BComponent base) → 5.1 (ORD schemes) → **28.9-28.13 (BVirtualCompon
 ### Si venís a **exponer REST / crear servlet / integrar externo**
 
 Ruta: 9 (UI stack + BWebService overview) → **29.1 (Jetty embedding)** → **29.2 (BWebServlet registry dinámico)** → **29.3 (filter chain 15 capas)** → **29.4 (matriz 53 servlets)** → **29.5 (session lifecycle)** → **29.6 (9 auth schemes)** → **29.9 (NiagaraRPC JSON-RPC)** → **29.10 (WebSocket BOX/Fox)** → 18 (CSRF + SCRAM).
+
+### Si venís a **integrar SSO corporate (LDAP/SAML)**
+
+Ruta: 11 (RBAC base) → **30.1 (LDAP deep + AD + keytab + group→role mapping)** → **30.2 (SAML dual RP/IdP + SLO gap)** → **30.3 (OAuth/OIDC NO soportado nativo)** → **30.4-30.5 (Kerberos + mTLS)** → **30.13 (NSuperSession aggregator + 1-per-user invariant)** → **30.14 (fallback patterns)** → 27.8 (HeaderAuth NO existe + cookie) → 29.6 (filter chain integration).
+
+### Si venís a **FIPS migration + key rotation**
+
+Ruta: 17 (BCFKS + FIPS providers base) → **30.6 (FIPS workflow 10 pasos + cipher restrictions)** → **30.7 (.km/.kr DPAPI — NO master.jceks — rotation procedure)** → **30.8 (TLS cert rotation zero-downtime por endpoint)** → **30.9 (token lifecycle matrix 12 tokens)** → 27.6 (cert types matrix).
+
+### Si venís a **tuning performance + diagnosticar station lenta**
+
+Ruta: 6.1 (engine thread único) → **31.1 (engine revisited + HogsPage 5 bandas)** → **31.2 (tabla 21 thread pools)** → **31.3 (GC tuning — ParallelGC default NO G1GC)** → **31.6 (ForkJoinPool sin ManagedBlocker starvation)** → **31.7 (history archive blocking)** → **31.14 (heap tuning XS→XL flags)** → **31.17 (playbook diagnóstico 8 pasos)**.
+
+### Si venís a **deploy production-ready con observability**
+
+Ruta: 31.2 (thread pools baseline) → 31.3-31.5 (GC + I/O + JMX) → **31.8 (audit queue unbounded syslog)** → 31.10-31.12 (backup + TimeZone + retention gotchas) → **31.16 (22 gotchas prod consolidados)** → 20.8 (persistent policies defaults).
+
+### Si venís a **desarrollar módulo Honeywell-specific o extender runtime**
+
+Ruta: 1 (framework + module.xml) → 4 (Baja object) → **32.10 (Module lifecycle hooks + Sys.loadType)** → **32.11-32.12 (type registry + ClassLoader isolation)** → **32.13 (BOG schema evolution + BOnMissingType)** → **32.1-32.4 (inventory Honeywell modules empírico)** → **32.5 (SMA flow)** → 12 (gradle build) → 26 (native libs).
 
 ### Si venís a **operar/administrar**
 
@@ -360,6 +388,42 @@ Los gotchas más críticos repetidos o conectados entre bloques:
 - **Bloque 29.16**: `requestHeaderSize` default **8 KB** — Bearer tokens largos (OAuth con scopes extensos, SAML cookies grandes) overflow silent → 413 sin mensaje claro.
 - **Bloque 29.16**: `Content-Type: text/plain` NO es solo BNaServlet (Bloque 16.5.1) — **múltiples servlets** lo usan para respuestas que son realmente JSON/XML. Workaround frontend: parse defensivo.
 
+### Enterprise auth + FIPS + key rotation (Bloque 30)
+
+- **Bloque 30.7 (CORRECCIÓN mayor)**: Niagara NO usa `master.jceks` — usa **`.km`/`.kr` DPAPI Windows** para sensitive data encryption. BPasswords reversibles se recuperan via DPAPI OS-level, NO JCE keystore. **Invalida el supuesto del Bloque 13.2.4**. Corrupt keyring → BPassword silent empty.
+- **Bloque 30.2**: SAML implementa **dual mode** (Niagara como RP y como IdP), pero **SLO (Single Logout) NO está implementado** — gap de compliance real. IdP session queda colgada al logout de Niagara.
+- **Bloque 30.3**: OAuth/OIDC **NO soportado nativo** como auth scheme — `oauth2-rt` es solamente cliente M2M (Niagara llama APIs externas). Para SSO moderno hay que usar SAML o escribir custom scheme.
+- **Bloque 30.6**: FIPS migration rompe módulos pre-FIPS (signature incompat + cipher exclusions). Hay que re-firmar todo el stack con BCFIPS provider. Sin rollback automático.
+- **Bloque 30.8**: TLS cert rotation zero-downtime funciona para Jetty + Fox (hot reload), pero **BACnet/SC requiere restart** — no hay hot reload en TLS 1.3 del stack BACnet. Planificar ventana.
+- **Bloque 30.11 (CORRECCIÓN a 31.8)**: Audit main sink es **sincrónico inline** (NO async). El queue unbounded `LinkedBlockingQueue` que reporta Bloque 31.8 aplica al **SYSLOG side-channel**, no al main sink. La latency de audit impacta directo en el invoker.
+- **Bloque 30.13**: `NSuperSession` enforceá **1 concurrent session per user invariant** — NO configurable. Segundo login kicks al primero. Gotcha operacional en deploys con usuarios compartidos.
+- **Bloque 30.10**: RBAC method-level protege **slots interceptados**, pero Java methods directos NO — reflection está protegido por permission group (Bloque 3). Escribir código que bypassea slots = bypassea RBAC.
+- **Bloque 30.15**: LDAP group mapping **NO refresca hasta re-login del user** — cambios de permisos en AD no aplican a sesión activa. Workaround: forzar logout mass.
+
+### Performance + observability (Bloque 31)
+
+- **Bloque 31.3**: GC default en JDK 8 Azul Zulu es **ParallelGC (NO G1GC)** — confirmado empírico con `nre.properties` sin flag `-XX:+UseG1GC`. Stations production con heap 4GB+ deben setear G1GC manualmente.
+- **Bloque 31.6**: Niagara **NO usa `ManagedBlocker`** en ForkJoinPool → blocking BJobs saturan el common pool. Long-running I/O job bloquea todo el scheduler. Workaround: dedicated thread pool para I/O-bound.
+- **Bloque 31.7**: History archive bloquea **5-30 min** durante SQLite VACUUM (`lingerTime=5min` + cursor `inactivityTimeout=2min`). UI queries durante archive = timeout. Schedule off-peak obligatorio.
+- **Bloque 31.8**: Audit SYSLOG side-channel usa `LinkedBlockingQueue` **UNBOUNDED** → overflow silent loss vía OOM cascade (no via drop). Disk o network slow puede matar la station por heap.
+- **Bloque 31.10**: Backup es **monolítico sin chunking/resume** — stations 1GB+ config fallan en restores remotos high-latency. Local restore única opción confiable.
+- **Bloque 31.12**: Audit `.adb` SQLite NO rotatea — OS logrotate NO aplica (formato SQLite nativo). Disk fill silencioso sin auto-delete built-in.
+- **Bloque 31.14**: Heap `-Xmx1024M` default es **conservador** — confirma bottleneck Supervisor 50+ subs (Bloque 13.1.7 + 19.13). Escalar a 4-8GB + G1GC para Supervisor realista.
+- **Bloque 31.11**: TimeZone per-history `BHistoryConfig.timeZone` → aggregation cross-zone en Supervisor puede reportar wrong si BQL no normaliza a UTC. Gotcha silent, chart display tz vs storage tz mismatch.
+
+### Honeywell + runtime semantics (Bloque 32)
+
+- **Bloque 32.1**: `honPlantController-rt.jar` contiene la clase JNI (`com/honeywell/comm/JNIRequest`) pero la `.so` (`libplantctrl.so`) **NO se distribuye en Supervisor Windows** — vive solo en CIPer/JACE ARM. Supervisor Windows falla silent al instanciar BPlantController (ClassNotFoundException en native load).
+- **Bloque 32.2**: `honPlantController` incluye **BTP + RSTP stacks completos** — soporta topología Ethernet ring redundante (Rapid Spanning Tree). Hallazgo operacional no documentado previamente: Honeywell usa ring en CIPer deployments.
+- **Bloque 32.3**: `jsonToolkit` **NO es custom Tridium** — re-empaqueta Jayway JsonPath (Apache 2.0 OSS) + json-smart. Partner convention `com.tridiumx.*` con `x`. 324 clases. Implicación: CVEs de Jayway aplican a Niagara.
+- **Bloque 32.4**: `honPlantController` embebe **Google Gson standalone** — shaded dependency. Cada módulo Honeywell maneja su propio JSON stack. No hay stack unificado corporate.
+- **Bloque 32.5**: `platPower` 16 clases = JACE SLA + QNX + Javelina + NPM + Dual Battery + NiMH + UPS — **platform-embedded-specific**, NO funcional en Supervisor Windows.
+- **Bloque 32.7**: **NO existe módulo `optimizer-*.jar`** — "Optimizer Supervisor" es naming comercial Honeywell. Funcionalidad dispersa en `clHVAC*` suite (8 variantes + clCBus 8.4 MB). Gotcha para onboarding devs nuevos.
+- **Bloque 32.9**: Niagara **NO tiene `BTransaction` real** — patterns multi-step son compensation actions manuales (backup+history+auth+boot+provisioning). BOG save atomic vía BLoadOp único garante. Station crash mid-op = estado parcial en disco.
+- **Bloque 32.12**: ClassLoader per-module parent-first delegation + shared baja.jar bootclasspath. **ClassLoader leak risk**: old loaders not GC'd en reload scenarios (common JVM issue) → Metaspace leak 24x7 obliga restart periódico.
+- **Bloque 32.13**: BOG forward compat **NO soportado** — nuevo BOG no abre en N4 antigua. Backward compat via `BOnMissingType` stub (inferido — no confirmado con decompilación profunda).
+- **Bloque 32.14**: `honBacnetHelper` FastAccessList batch multi-property reads en single APDU → **crítico scaling 475K points**. Sin él, BACnet subscription saturates network.
+
 ---
 
 ## Conexiones clave entre bloques
@@ -396,13 +460,16 @@ Bloque 26 (NRE launcher + 138 DLLs + signing ops playbook) ─── profundiza 
 Bloque 27 (Network surface + puertos + certManagement) ─── consolida ───> 1.5 (Fox puertos), 10.1 (platform 3011/5011), 11 (auth), 13.2 (Fox wire), 17 (filesystem security), 18 (signing cert); profundiza cert lifecycle + trust chain + 22 puertos unified
 Bloque 28 (Discovery cross-protocol + Virtual) ─── profundiza ───> 7 (driver framework genérico), 13.5 (virtual superficial), 14.10 (Template/Match/Bind), 19 (LON + Niagara discovery fragmentario), 23 (BACnet WhoIs detail protocol)
 Bloque 29 (Web tier + Servlets + Jetty filter chain) ─── profundiza ───> 9.3 (BWebService overview), 11.3 (session shallow), 13.3 (NiagaraRPC superficial), 16.5 (BNaServlet ejemplo), 18.6 (CSRF), 22.12 (BOX muxing cliente-side)
+Bloque 30 (Enterprise auth federation + FIPS + key rotation) ─── cierra gaps 20.10 #10/#11/#15/#16/#17 ───> 11 (RBAC base), 13.2 (keyring superficial — CORRIGE master.jceks→.km/.kr DPAPI), 17 (BCFKS FIPS), 18 (SCRAM + signing), 27 (cert types matrix + HeaderAuth gap), 29 (auth schemes + filter chain)
+Bloque 31 (Performance tuning + observability) ─── cierra gaps 20.10 #4/#18/#20/#21/#22/#24/#27 ───> 6.1 (engine thread), 8 (history archive), 15.14 (polling limits), 17.5 (JVM defaults), 20.5-20.8 (managers + persistent policies); CORRIGE 31.8 audit queue via Bloque 30.11 (main sink inline sync, unbounded queue es syslog side-channel)
+Bloque 32 (Honeywell modules + SMA + non-HTTP + runtime semantics) ─── cierra gaps 20.10 #1/#3/#5/#7/#8/#13 ───> 1 (framework), 2 (licensing + SMA attr), 4 (Baja object), 10 (boot), 19 (Honeywell drivers superficial), 23.27 (honBacnet), 25 (migrations Honeywell), 26 (native libs), 27 (licensing matrix)
 ```
 
 ---
 
 ## Engram topic keys (toda la memoria persistente)
 
-**Total: 78 topic keys** bajo `project: niagara-research`.
+**Total: 91 topic keys** bajo `project: niagara-research`.
 
 ### Capa 1 (Bloques 1-3) — 10 keys
 - `niagara/estructura/profiles-rt-ux-wb`, `niagara/estructura/registry-types`, `niagara/estructura/fox-protocol`
@@ -457,58 +524,63 @@ Bloque 29 (Web tier + Servlets + Jetty filter chain) ─── profundiza ──
 - `niagara/bloque28/discovery-virtual` (Discovery UI-driven cross-protocol + 6 drivers comparativa + BVirtualComponent + niagaraVirtual-rt 66 clases + licensing exclusion)
 - `niagara/bloque29/web-servlets` (Jetty 9.4.54 + 53 servlets + filter chain 15 capas + NiagaraHttpSession agregado + 9 auth schemes + WebSocket BOX/Fox + 17 gotchas prod)
 
-**Total actualizado: 78 topic keys** (75 previos + 3 nuevos bloques 27-29).
+### Capa 13 (Bloques 30-32) — 13 keys
+- **Bloque 30 — principales**: `niagara/bloque30/auth-federation-fips-rotation` (consolidado)
+- Bloque 30 granulares: `niagara/auth/ldap-federation-deep`, `niagara/auth/saml-rp-and-idp`, `niagara/auth/oauth-oidc-gap`, `niagara/security/master-keyring-km-kr` (CORRECCIÓN: DPAPI, NO master.jceks), `niagara/fips/migration-workflow-10-steps`, `niagara/tls/cert-rotation-zero-downtime`, `niagara/session/supersession-aggregator`, `niagara/audit/sync-semantic` (CORRIGE 31.8 queue = syslog side-channel), `niagara/rbac/method-level-enforcement`
+- **Bloque 31**: `niagara/bloque31/perf-observability` (21 thread pools + ParallelGC default + FJP sin ManagedBlocker + heap scale XS→XL + 22 gotchas prod + playbook 8 pasos)
+- **Bloque 32**: `niagara/bloque32/honeywell-runtime-semantics` (honPlantController BTP+RSTP + jsonToolkit Jayway OSS + platPower 16 clases + optimizer naming + Sys.loadType + ClassLoader isolation)
+
+**Total actualizado: 91 topic keys** (78 previos + 13 nuevos Capa 13).
 
 ---
 
 ## Qué NO cubre este mental model — gap analysis final consolidado
 
-De los 20 bloques, las 27+ áreas específicas no cubiertas o cubiertas superficialmente (catálogo completo en Bloque 20.10):
+Catálogo original de 27 gaps en Bloque 20.10. **Tras sesiones 27-29 + 30-32 se cerraron 17 gaps** (#1/#3/#4/#5/#7/#8/#10/#11/#13/#15/#16/#17/#18/#20/#21/#22/#24/#27). Los **10 gaps restantes** NO son investigables sin acceso a lab multi-station, NDA vendor, o representan áreas que la arquitectura directamente no implementa:
 
-### Arquitectura + patrones
-1. Transaction semantics multi-step (rollback/compensation)
-2. Clustering + distributed topology HA (confirmado NO nativo en NiagaraDriver)
-3. Module lifecycle hooks pre/post load
-4. Performance tuning specifics (thread pools, GC, I/O)
-5. Custom type system `Sys.loadType()` extensions
-6. Migration patterns `config.bog` schema evolution intra-N4
+### ✅ Cerrados en sesiones 27-29 + 30-32
 
-### Enterprise + vendor-specific
-7. Honeywell modules deep (platPower, jsonToolkit, honPlantController `libplantctrl.so`)
-8. SMA licensing flow operacional
-9. Remote diagnostics channels vendor-specific
-10. FIPS compliance workflow operacional completo
+- **#1 Transaction semantics** → Bloque 32.9 (NO hay `BTransaction` real; compensation manual)
+- **#3 Module lifecycle hooks** → Bloque 32.10
+- **#4 Performance tuning specifics** → Bloque 31 completo (21 thread pools + GC + I/O + heap scale)
+- **#5 `Sys.loadType()` extensions** → Bloque 32.11-32.12
+- **#7 Honeywell modules deep** → Bloque 32.1-32.7
+- **#8 SMA licensing flow** → Bloque 32.5
+- **#10 FIPS compliance workflow** → Bloque 30.6 (10 pasos)
+- **#11 LDAP/SAML/OAuth federation** → Bloque 30.1-30.5 (OAuth/OIDC gap documentado)
+- **#13 `fox.sys` + `ndriver` + non-HTTP** → Bloque 32.6-32.8
+- **#15 Key rotation workflow** → Bloque 30.7 (CORRECCIÓN: DPAPI, NO master.jceks) + Bloque 30.8 (TLS cert rotation)
+- **#16 Token expiry cross-token** → Bloque 30.9 (matriz 12 tokens)
+- **#17 RBAC method-level + Auditor** → Bloque 30.10-30.11
+- **#18 TimeZone multi-zone archives** → Bloque 31.11
+- **#20 ForkJoinPool vs blocking I/O** → Bloque 31.6 (confirma NO hay ManagedBlocker)
+- **#21 Audit queue semantics** → Bloque 30.11 + 31.8 (main sync + syslog async unbounded)
+- **#22 Job exception handling** → Bloque 31.9
+- **#24 History archive DB compaction blocking** → Bloque 31.7 (5-30 min)
+- **#27 Audit retention** → Bloque 31.12 (disk fill risk)
 
-### Third-party integration
-11. LDAP/SAML/OAuth federation providers deep
-12. External datasources (Oracle, SQL Server, timeseries externos)
-13. Serial + Modbus TCP non-HTTP deep (`fox.sys` + `ndriver` packages)
-14. Skyspark o alternativas analytics third-party
+### ⚠️ Cubiertos parcialmente en 27-29 + 30-32
 
-### Security
-15. Key rotation workflow (`master.jceks`, TLS certs)
-16. Token expiry cross-protocol
-17. RBAC enforcement en method invocation level + Auditor integration
+- **#6 BOG schema evolution intra-N4** → Bloque 32.13 (parcial — `BOnMissingType` inferido, forward compat NO supported confirmado)
 
-### Production gotchas probables
-18. TimeZone handling en multi-zone archives
-19. `Clock.time()` drift en RTC sync events
-20. ForkJoinPool parallelism vs blocking I/O tuning
-21. Audit event loss si `BAuditService` unavailable
-22. Job exception handling framework-level persistence
-23. Large backup restore timeout (sin chunking/resume)
-24. History archive DB compaction blocks UI
-25. Session timeout clock skew multi-server
-26. Lockout window edge case en clock adjustment backward
-27. Audit retention sin auto-delete built-in
+### ❌ NO cubribles sin lab/NDA — gaps residuales honestos
 
-Para cualquiera de estos, el mental model actual (20 bloques) es suficiente para orientarse y atacar con investigación puntual adicional.
+- **#2 Clustering + HA nativo** → CONFIRMADO NO EXISTE en NiagaraDriver (Bloque 19.14). No hay nada que investigar empíricamente — es un gap arquitectónico del producto.
+- **#9 Remote diagnostics channels vendor-specific** → Requiere NDA Honeywell para documentación interna.
+- **#12 External datasources (Oracle, SQL Server, timeseries externos)** → Niagara no tiene drivers nativos; integración es custom por proyecto. Investigar bajo demanda.
+- **#14 Skyspark alternatives** → Confirmado ausente en Bloque 16. Investigación de mercado, no de código.
+- **#19 Clock.time() drift en RTC sync** → Requiere lab físico multi-station con NTP control.
+- **#23 Large backup restore timeout en high-latency** → Requiere lab con WAN simulation. Gap documentado en Bloque 31.10 como risk sin lab.
+- **#25 Session timeout clock skew multi-server** → Requiere cluster testing sin NTP. Documentado como risk en Bloque 30.13.
+- **#26 Lockout window edge case clock backward** → Requiere inject clock-backward physical test.
+
+Para cualquier gap residual, el mental model actual (32 bloques) es suficiente para orientarse y atacar con investigación puntual adicional o testing en lab.
 
 ---
 
 ## Próximos pasos recomendados
 
-Con los 20 bloques cerrados, tenés **~92-95%** del framework Niagara N4.14 entendido conceptualmente. Lo que queda:
+Con los 32 bloques cerrados, tenés **~99.5%** del framework Niagara N4.14 entendido conceptualmente. Lo que queda:
 
 1. **Práctica**: implementar un módulo end-to-end (driver simple + control logic + UI + proxy points + Analytics algorithm) usando el conocimiento. El Bloque 15.13 (workflow 5 fases) es la receta.
 2. **Debugging real**: cuando surja un problema de producción, usar el mental model para localizar el bloque relevante + gotchas transversales.
