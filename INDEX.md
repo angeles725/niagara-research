@@ -1,12 +1,12 @@
 # Niagara N4 — Mental Model · Índice Maestro
 
-**Actualizado**: 2026-04-24 (sesión bloques 30-32 — cierre gaps 20.10)
+**Actualizado**: 2026-04-24 (sesión bloques 33-39 — operaciones completas + UX + drivers europeos + filesystem + flota)
 **Distribución analizada**: Honeywell OptimizerSupervisor-N4.14.0.162
 **Método**: Investigación empírica READ-ONLY con sub-agents en paralelo, contrastando docs oficiales (devguide 82 topics HTML + niagara-help/ 950 MB extracción) contra source Java + decompilado Vineflower + 974 JARs indexados + análisis nativo (138 DLLs/SOs catalogados).
 
-Este índice te guía entre los **32 bloques** de investigación. Cada bloque es un archivo `.md` independiente que puede leerse aislado, pero las conexiones están explícitamente marcadas entre sí.
+Este índice te guía entre los **39 bloques** de investigación. Cada bloque es un archivo `.md` independiente que puede leerse aislado, pero las conexiones están explícitamente marcadas entre sí.
 
-Cobertura final estimada: **~99.5%** del framework Niagara N4.14 conceptualmente. Los 3 bloques nuevos (30-32) cierran los gaps residuales catalogados en Bloque 20.10: #1/#3/#5/#7/#8/#10/#11/#13/#15/#16/#17/#18/#20/#21/#22/#24/#27 — Enterprise auth federation + FIPS + key rotation, Performance tuning + observability, Honeywell modules + runtime semantics. Los gaps NO investigables sin lab/NDA (#2 clustering HA, #9 remote diagnostics, #14 Skyspark alternatives, #19/#23/#25/#26 clock+lab-required) quedan explícitos en gap analysis final.
+Cobertura final estimada: **~99.8%** del framework Niagara N4.14 conceptualmente. Los 7 bloques nuevos (33-39) consolidan operaciones (history + alarm deep), UX (nav/workbench/PX browser/BOX), drivers europeos (KNX/IP), filesystem (BFile + BOrd + FileServlet real) y flota (provisioning + backup + HA runbooks). Los 3 bloques de Capa 13 (30-32) habían cerrado gaps 20.10 #1/#3/#5/#7/#8/#10/#11/#13/#15/#16/#17/#18/#20/#21/#22/#24/#27. Los gaps NO investigables sin lab/NDA (#2 clustering HA nativa — confirmada ausente vía Bloque 39, #9 remote diagnostics, #14 Skyspark alternatives, #19/#23/#25/#26 clock+lab-required) quedan explícitos en gap analysis final.
 
 ---
 
@@ -109,6 +109,18 @@ Cobertura final estimada: **~99.5%** del framework Niagara N4.14 conceptualmente
 | 31 | Performance tuning + observability profunda + thread pools + audit + heap scale | [niagara-mental-model-bloque31.md](niagara-mental-model-bloque31.md) | Engine thread único revisited (queue unbounded + `HogsPage` 5 bandas severidad + async `Flags.ASYNC` pool), **tabla maestra 21 thread pools**: Engine (1 fijo) + Jetty worker + Fox sessions + Fox channels + BOX worker + BJobService ForkJoinPool (common pool CPU cores) + BMonitorWorker 2-sec + History archive + Alarm dispatch + NetworkManager polling per-driver + Subscription processor + Servlet executor + Virtual cache + 8 más, **GC default JDK 8 Azul Zulu = ParallelGC** (NO G1GC — confirmado empírico, `nre.properties` SIN flag `-XX:+UseG1GC`), recomendaciones G1GC para heaps 4GB+ + YoungGen/OldGen ratio + Metaspace + GC log + heap dump OOM, I/O buffering (único `circuitMaxReceiveBuffer=10MB` uncommented en 589 líneas system.properties + BOX envelope 256KB + Jetty 8KB header + NIO vs BIO), JMX completo (MBeans JVM standard + `com.tridium.*` inferidos + remote 9010/9011 + jconsole/VisualVM/jcmd/JFR workflow), **Niagara NO usa `ManagedBlocker`** confirmado decompilación → ForkJoinPool starvation real risk con blocking BJobs (long-running job bloquea common pool — workaround dedicated thread pool I/O-bound), **history archive blocking 5-30 min** (`lingerTime=5min` + cursor `inactivityTimeout=2min` + SQLite `.hdb` VACUUM lock contention UI queries + schedule off-peak), **audit queue SYSLOG side-channel `LinkedBlockingQueue` UNBOUNDED** → overflow silent loss vía OOM cascade (main sink inline sync confirmado Bloque 30 — corrección), job exception handling (framework catch + JobLog TRANSIENT + NO persisted stack traces + manual restart), backup monolítico sin chunking/resume (gap #23 documentado risk), TimeZone per-history `BHistoryConfig.timeZone` + DST + Supervisor cross-zone aggregation gotcha, audit retention sin auto-delete → disk fill risk + OS logrotate NO aplica (audit.adb SQLite nativo), subscription perf tiers deployment (1k/5k/20k points), **tabla heap tuning XS/Small/Medium/Large/XL** con flags JVM exactas (Small 1GB default + Medium 2-4GB + Large 4-8GB + XL 8-16GB para Supervisor 50+ subs), profiling producción (JFR record jcmd + jmap heap + jstack thread + `EngineManager$HogsPage` + spy pages + access log), **22 gotchas prod consolidados** (G1GC pauses 50ms+ miss callback, FJP saturated, history compaction timeouts, audit silent loss, backup monolítico timeout, TimeZone aggregation wrong, disk fill, heap fragmentation 24x7, Metaspace leak class reload), **playbook diagnóstico 8 pasos** UI lenta → HogsPage → thread dump → JMX Memory → GC log → heap histo → fix + verify JFR |
 | 32 | Honeywell enterprise modules + SMA + non-HTTP transports + runtime semantics | [niagara-mental-model-bloque32.md](niagara-mental-model-bloque32.md) | **`honPlantController-rt.jar` SÍ contiene JNI** (`com/honeywell/comm/JNIRequest.class` presente — `libplantctrl.so` NO distribuida en Supervisor Windows, solo `libciper.so`; vive en CIPer/JACE ARM), **honPlantController trae BTP + RSTP stacks completos**: BTP (Building Technology Protocol parser propio Honeywell — ReadProperty/WriteProperty/Query/FileData/Subscription/Discovery) + RSTP (Rapid Spanning Tree) → **soporta topología Ethernet ring redundante** hallazgo operacional no documentado previamente, **`jsonToolkit` NO es custom Tridium** — re-empaqueta Jayway JsonPath (Apache 2.0 OSS) + json-smart backend + adapter `com.tridiumx.jsonToolkit` con `x` = partner convention (324 clases), **`honPlantController` embeds Google Gson standalone** — shaded dependency pattern (cada módulo Honeywell maneja su propio JSON stack), **`platPower` 16 clases reveladas**: JACE SLA + QNX (`PowerdQnx`) + Javelina + NPM + Dual Battery + NiMH + UPS + External SLA (platform-embedded-specific, NO para supervisor Windows), **`honBacnetHelper` FastAccessList optimization**: batch multi-property reads en single APDU → crítico scaling 475K points deployment, **NO existe módulo `optimizer-*.jar`** — "Optimizer Supervisor" es naming comercial, funcionalidad dispersa en `clHVAC*` suite (Bloque 25 mencionó 8 variantes + 8.4 MB clCBus), SMA flow (`feature.sma.expiration` XML attribute + `sma.exempt="true"` Bloque 14.3 + grace period + nCloud update checker — SMA expired → update fail silent), `fox.sys` system channels vs user channels (boot/commissioning/config sync vs BQL/subscription), `ndriver` package NiagaraDriver internal transport, **non-HTTP transports consolidado 21-transport table** (Serial RS-232/485 + UDP BACnet/SNMP/BBMD + Raw TCP Modbus/BACnet-SC/OPC UA + Proprietary BTP/RSTP/BOX/Fox), Transaction semantics multi-step (**no hay `BTransaction` real** — compensation actions manual + BOG save atomic via BLoadOp), Module lifecycle hooks (`BModule` + classloader init + `Sys.loadType` registration + service dependency resolution + module.xml `<depends>`), `Sys.loadType()` type registry algorithm + per-module ClassLoader parent-first delegation + shared baja.jar bootclasspath + ClassLoader leak risk (old not GC'd common JVM issue), BOG schema evolution (`BOnMissingType` stub inferido + extra properties preserved + forward compat NO supported), honBacnetHelper top 5 clases (FastAccessList/ObjectSubscriber/PropertyPointAssigner/NumericOffsetPoint/Utilities), gotchas Honeywell (ARM-only libplantctrl.so, SMA expiration update fail, jsonToolkit OSS edge cases, honBacnetHelper escala 475K, CIPer ring topology dependency), TODOs honestos (NO decompilé con javap -p clases internas BTransaction/Sys.loadType/BModule/BOnMissingType/fox.sys constants/license-rt.jar SMA methods, NO analicé honMqttDriver interno, SMA.exempt XML license NO confirmado), mental model Honeywell layered stack: N4.14 base → Honeywell overlay (license + 250+ HTML docs + hon*/asc*/cl*) → Optimizer Supervisor naming comercial → SEJOFA customer |
 
+### Capa 14 — Operaciones completas: History + Alarmas + UX + Drivers europeos + Filesystem + Flota (Bloques 33-39)
+
+| # | Bloque | Archivo | Key topics |
+|---|--------|---------|------------|
+| 33 | History system deep + Batch editor | [niagara-mental-model-bloque33.md](niagara-mental-model-bloque33.md) | **`.hdb` binario propietario Tridium** (MAGIC `0xA0F61E5E`, dos versiones: VERSION_1 fixed-length + VERSION_2 recstore paginated) — NO SQLite (corrige Bloque 31.3), BHistoryService lifecycle, archive workflow + providers (LocalHistoryProvider + NiagaraHistoryProvider + rdbArchiveHistoryProvider Orion), HistorySpaceConnection NO pooled (cada `getConnection()` crea nueva instancia), BatchEditor real vive en `program-rt.jar` (`com.tridium.program.batch.BBatchRoutine`, 7 concretes) — NO en `batchJob-rt`, archive providers NO eliminan local `.hdb` → retention disk fill sin `clearOldRecords` scheduled, `${i}` pattern substitution NO existe en Batch Editor (empíricamente verificado via grep bytecode), `niagara.history.localDb.lingerTime=300000` (5 min) controla close `.hdb` handles — thrashing si baja, `BFullPolicy` solo STOP+ROLL (NO WRAP), `BStorageType` solo FILE |
+| 34 | Alarm framework deep + .adb format | [niagara-mental-model-bloque34.md](niagara-mental-model-bloque34.md) | **`.adb` binario paginado Tridium** (MAGIC `0x6010ACCD`, Block+Page+FreePageMap+indices in-memory) — NO SQLite (refuerza corrección Bloque 31.3), BAlarmService `alarmQueue` UNBOUNDED (storm subordinados = OOM en XS), `BAckState` 3 valores (`ACKED`/`UNACKED`/`ACK_PENDING`) no 2 (corrige Bloque 8.3), `BAlarmState` 5 valores, **14 algoritmos alarma** (10 offnormal + 4 fault), recipients sin retry queue propia (`BEmailRecipient` crash mid-send = alarm perdida + `BStationRecipient` NO recoverable Supervisor aggregation anti-pattern), `BFileAlarmDatabase.getDbConnection` throws literal desde Nre:Engine Thread, AlarmStore 4 indices `synchronized` sobre `this` → queries y appends serializan, `BHonAlarmClass` buffer LinkedList in-memory NO persistent → hard crash pierde buffer |
+| 35 | Nav tree + Workbench shell + views registry | [niagara-mental-model-bloque35.md](niagara-mental-model-bloque35.md) | BNavScheme + NavTreeModel + BWbShell + BWbProfile, **22 ord schemes** + **81 WbCommands** registry, 4 threads UI (engine + EDT + FX + Binder — `BFxWidget` triple-nested JavaFX en JFXPanel en JRootPane), `clProfile-wb.jar` solo 2 clases (UI Honeywell 99% stock + branding), `BCentralineProfile` NO declara dependency `honBacnet-wb` → silent degradation si falta, `WbHistory` STATIC → back/forward cruza shells en misma JVM, `NavFileDecoder.cache` sin file watcher → edits `.nav` no propagan sin reload, **profile switching en vivo NO existe** (`BNiagaraWbShell.profile` es final), DnD solo 2 formats (string, mark) sin DataFlavor extensible → no cross-station, `niagara.wb.devViews.<name>=true` canal NO documentado |
+| 36 | PX widgets + EasyTemplates + BajaScript BOX lifecycle | [niagara-mental-model-bloque36.md](niagara-mental-model-bloque36.md) | Widget lifecycle browser deep, WebSocket endpoint real **`/wsbox`** (no `/box`), BoxFrame JSON format, `Widget.initialize()` one-shot (llamar `load()` desde `doInitialize()` = deadlock), `lease` default 10s hardcoded (Component.js:1795), `BUxBoundTable` NO virtualiza + `maxRows=1000` silent-truncate, **EasyTemplates Honeywell-only** (distinto de Niagara Templates), `bajaux/spandrel` = mini-React interno (no React real), `axvelocity-rt.jar` NO presente en OptimizerSupervisor → `.pxvm` inop aunque license exista (completa Bloque 9.1.5), Implicit batching ~10ms desde N4.10 — Batch API solo atomic grouping ahora |
+| 37 | KNX/IP driver + proxy↔virtual↔kitControl writeback | [niagara-mental-model-bloque37.md](niagara-mental-model-bloque37.md) | Namespace real `com.tridiumX.knxnetIp` (X mayúscula) + clase real `BKnxNetwork` (no `BKnxnetIpNetwork` como Bloque 19 sugería), BKnxNetwork singleton BIService — global JVM, **3 endpoints UDP separados** (Multicast + Control + Data) → firewall issue, **212 clases KNX**, vendor "Tridium Europe", priority array 16 → KNX priority 4 **lossy mapping**, DPT9 float16 non-IEEE lossy (redondeo silent en encode), `Flags.ASYNC` **obligatorio** en writes (sin eso UDP silent packet loss), coalesce queue sacrifica writes intermedios por GA, Fault NO propaga auto a kitControl (cross-bloque contract missing), **`/knx/` del Supervisor 0 bytes** (driver instalado pero nunca usado — audit prod) |
+| 38 | BFile + BOrd resolution + bajaui forms + FileServlet real | [niagara-mental-model-bloque38.md](niagara-mental-model-bloque38.md) | `BOrdScheme extends BSingleton` (no BComponent) — una instancia por JVM (corrige Bloque 22), firma real `BOrdScheme.resolve(OrdTarget, OrdQuery)` — body dentro del OrdQuery parseado, **32 schemes en baja.jar**, servlet real `com.tridium.web.servlets.FileServlet` (extiende `HttpServlet`, no `BWebServlet`) — **NO existe `BFileServlet`** (corrige Bloque 29.4), **4 BScopedFileSpace** incluye `!pstation` (PROTECTED_STATION_HOME rara vez documentado — completa Bloque 10.2.3), `forbiddenFilePattern` solo bloquea `.bog`/`.bog.gz` (`.km`/`.kr` dependen de RBAC + blacklist separado), **NO existe framework declarativo `BForm`/`BField`/`BIValidator`** — forms via agents, `BFacets` NO enforcement (solo hints UI, server NO valida al `comp.set()`), `BOrd.substitute(BFacets)` con `${var}` — posible injection surface si user input, `ThreadLocal<Context>` en `BFileSystem` → leak user entre threads en pool reuse, `BModuleScheme.isModuleDevEnabled()` sirve desde FS source en vez de ZIP → audit prod |
+| 39 | Provisioning + Backup + Supervisor replication + HA operacional | [niagara-mental-model-bloque39.md](niagara-mental-model-bloque39.md) | **49 provisioning steps** en 4 subcategorías, **NO existe `provisioningNiagara-rt.jar` separado** — runtime dentro de `provisioningNiagara-wb.jar` (clases en `javax.baja.provisioningNiagara.*`, rompe convención `-rt/-wb/-ux`), **HA nativa confirmada ausente** (0 matches `failover/HighAvailability/SplitBrain` — confirma Bloque 19.14), Backup NO chunking NO resume (monolítico — refuerza Bloque 31.10), Split-brain detection manual (disciplina operacional obligatoria), `BNiagaraProxyExt implements BISubLicenseable` — federation count in origin **CONFIRMADO** (valida Bloque 14.4), Supervisor bottleneck ~50 subs — causas: `BStationPollScheduler` + Fox exhaust + BatchJob pool (valida Bloques 13.1.7 + 19.13 + 31.14), **runbook failover manual cold standby 7 pasos** (RTO 30-60 min), **runbook cold restore post-disaster 10 pasos** (RTO 6-48h) |
+
 ---
 
 ## Cómo leer este mental model
@@ -180,6 +192,34 @@ Ruta: 5.3 (BQL/NEQL) → 8.2 (History) → 9.3.7 (Analytics Web API overview) �
 ### Si venís a **debuggear problemas**
 
 Empezá por los gotchas transversales (sección siguiente), después buscá el bloque específico. Para performance: **20.5.1 EngineManager $HogsPage** es el primer stop.
+
+### Si venís a **operar history + retention deep**
+
+Ruta: 8.2 (history base) → 14.1.2 (history counting separate limit) → **33 (history system deep — `.hdb` binario propietario MAGIC + archive workflow + BatchEditor real program-rt)** → 31.7 (archive blocking 5-30 min confirmed) → 31.12 (audit `.adb` disk fill risk refuerzo).
+
+### Si venís a **operar alarmas enterprise**
+
+Ruta: 8.1 (alarm pipeline base) → 15 (alarm workflow en manager) → **34 (alarm framework deep — `.adb` MAGIC + 14 algoritmos + recipients sin retry + `BAckState` 3 valores + alarmQueue unbounded)** → 30.1-30.5 (auth email SMTP scheme recipients).
+
+### Si venís a **custom UI Workbench + PX browser**
+
+Ruta: 9 (UI stack base) → 15 (Workbench editing) → 22 (PX + BajaUI + BajaScript) → **35 (Nav + Workbench shell + 81 commands + 22 ord schemes + 4 threads UI)** → **36 (PX widget lifecycle + EasyTemplates + BOX `/wsbox` + `axvelocity` ausente)**.
+
+### Si venís a **integrar driver KNX + flow writeback**
+
+Ruta: 19 (drivers Honeywell base) → 23 (BACnet deep) → 24 (kitControl palette + control flow) → 28 (discovery + virtual) → **37 (KNX/IP driver + BKnxNetwork singleton + proxy↔virtual↔kitControl writeback + DPT9 float16 lossy + priority array 16→4 lossy mapping)**.
+
+### Si venís a **hardening filesystem + BOrd security**
+
+Ruta: 17 (filesystem forensics) → 30.7 (keyring `.km`/`.kr` DPAPI) → **38 (BFile + BOrd resolution + 4 BScopedFileSpace incluye `!pstation` + `forbiddenFilePattern` + `BFacets` NO enforcement server-side + `BModuleScheme.isModuleDevEnabled` audit prod)** → 29.4 (FileServlet real, corrige `BFileServlet`).
+
+### Si venís a **operar flota + provisioning + DR**
+
+Ruta: 13.1 (Niagara Network) → 14.4 (federation counting) → 16 (Analytics + Provisioning base) → **39 (provisioning 49 steps + backup monolítico + HA ausente confirmado + runbook failover 7 pasos + runbook cold restore 10 pasos + Supervisor bottleneck causas)** → 31 (obs) → 30.7 (keyring restore).
+
+### Si venís a **migración Honeywell UI (EasyTemplates)**
+
+Ruta: 14.6 (Niagara vs EasyTemplates comparativa) → 22 (PX + BajaUI + BajaScript) → **36 (EasyTemplates Honeywell-only + `bajaux/spandrel` mini-React + BUxBoundTable maxRows=1000 + lease 10s hardcoded)** → 17 (filesystem paths).
 
 ---
 
@@ -424,6 +464,123 @@ Los gotchas más críticos repetidos o conectados entre bloques:
 - **Bloque 32.13**: BOG forward compat **NO soportado** — nuevo BOG no abre en N4 antigua. Backward compat via `BOnMissingType` stub (inferido — no confirmado con decompilación profunda).
 - **Bloque 32.14**: `honBacnetHelper` FastAccessList batch multi-property reads en single APDU → **crítico scaling 475K points**. Sin él, BACnet subscription saturates network.
 
+### History + Batch (Bloque 33)
+
+- **Bloque 33.G1**: `.hdb` es binario propietario Tridium (MAGIC `0xA0F61E5E`), **NO SQLite** — corrige supuesto Bloque 31.3. Dos versiones: VERSION_1 fixed-length + VERSION_2 recstore paginated.
+- **Bloque 33.G2**: `HistorySpaceConnection` **NO pooled** — cada `getConnection()` crea nueva instancia (try-with-resources obligatorio refuerza 8.2.8).
+- **Bloque 33.G3**: BatchEditor real vive en `program-rt.jar` (`com.tridium.program.batch.BBatchRoutine`, 7 concretes), **NO en `batchJob-rt`**.
+- **Bloque 33.G4**: Archive providers **NO eliminan local `.hdb`** → retention disk fill sin `clearOldRecords` scheduled.
+- **Bloque 33.G5**: `${i}` pattern substitution **NO existe** en Batch Editor (empíricamente verificado via grep bytecode — promueve 14.11.3 de documental a confirmado).
+- **Bloque 33.G6**: `niagara.history.localDb.lingerTime=300000` (5 min) controla close `.hdb` handles — thrashing si baja.
+- **Bloque 33.G7**: `BFullPolicy` solo STOP+ROLL (**NO WRAP**), `BStorageType` solo FILE.
+
+### Alarm framework (Bloque 34)
+
+- **Bloque 34.G1**: `.adb` es binario paginado Tridium (MAGIC `0x6010ACCD`), **NO SQLite** — refuerza corrección Bloque 31.3. Block+Page+FreePageMap+indices in-memory.
+- **Bloque 34.G2**: `BAlarmService.alarmQueue` **UNBOUNDED** — storm subordinados = OOM en XS.
+- **Bloque 34.G3**: `BAckState` tiene **3 valores** (`ACKED`/`UNACKED`/`ACK_PENDING`), no 2 (corrige Bloque 8.3).
+- **Bloque 34.G4**: `BEmailRecipient` **NO tiene retry queue propia** — crash mid-send = alarm perdida.
+- **Bloque 34.G5**: `BStationRecipient` **NO recoverable** — remote offline = alarm perdida (Supervisor aggregation anti-pattern).
+- **Bloque 34.G6**: `BFileAlarmDatabase.getDbConnection` throws literal desde `Nre:Engine Thread`.
+- **Bloque 34.G7**: AlarmStore 4 indices `synchronized` sobre `this` → queries y appends serializan.
+- **Bloque 34.G8**: `BHonAlarmClass` buffer LinkedList **in-memory NO persistent** → hard crash pierde buffer.
+
+### Nav + Workbench (Bloque 35)
+
+- **Bloque 35.G1**: `clProfile-wb.jar` solo 2 clases — UI Honeywell 99% stock + branding (corrobora naming comercial vs contenido real).
+- **Bloque 35.G2**: `BCentralineProfile` **NO declara dependency `honBacnet-wb`** → silent degradation si falta.
+- **Bloque 35.G3**: `WbHistory` **STATIC** → back/forward cruza shells en misma JVM.
+- **Bloque 35.G4**: `NavFileDecoder.cache` sin file watcher → edits `.nav` no propagan sin reload.
+- **Bloque 35.G5**: **Profile switching en vivo NO existe** (`BNiagaraWbShell.profile` es final).
+- **Bloque 35.G6**: DnD solo 2 formats (`string`, `mark`) sin DataFlavor extensible → no cross-station.
+- **Bloque 35.G7**: `niagara.wb.devViews.<name>=true` canal NO documentado (dev-only override path).
+- **Bloque 35.G8**: 4 threads UI (engine + EDT + FX + Binder); `BFxWidget` triple-nested (JavaFX en JFXPanel en JRootPane).
+
+### PX + EasyTemplates + BOX (Bloque 36)
+
+- **Bloque 36.G1**: WebSocket endpoint real es **`/wsbox`** (no `/box` como sugería 22.12).
+- **Bloque 36.G2**: `Widget.initialize()` one-shot — llamar `load()` desde `doInitialize()` = **deadlock**.
+- **Bloque 36.G3**: `lease` default **10s hardcoded** (Component.js:1795) — no configurable sin fork.
+- **Bloque 36.G4**: `BUxBoundTable` **NO virtualiza**, `maxRows=1000` silent-truncate.
+- **Bloque 36.G5**: **EasyTemplates es Honeywell-only** — distinto de Niagara Templates (refuerza 14.6).
+- **Bloque 36.G6**: `axvelocity-rt.jar` **NO presente** en OptimizerSupervisor-N4.14.0.162 → `.pxvm` inop aunque license exista (completa Bloque 9.1.5).
+- **Bloque 36.G7**: `bajaux/spandrel` = **mini-React interno** (no React real).
+- **Bloque 36.G8**: Implicit batching ~10ms desde N4.10 — Batch API solo atomic grouping ahora (refuerza 22.12).
+
+### KNX + proxy flow (Bloque 37)
+
+- **Bloque 37.G1**: Namespace real `com.tridiumX.knxnetIp` (X mayúscula); clase real **`BKnxNetwork`** (no `BKnxnetIpNetwork` como Bloque 19 sugería).
+- **Bloque 37.G2**: `BKnxNetwork` **singleton BIService** — global JVM.
+- **Bloque 37.G3**: **3 endpoints UDP separados** (Multicast + Control + Data) → firewall issue.
+- **Bloque 37.G4**: Priority array 16 → KNX priority 4 **lossy mapping** (write-down operations).
+- **Bloque 37.G5**: DPT9 float16 **non-IEEE** lossy — redondeo silent en encode.
+- **Bloque 37.G6**: `Flags.ASYNC` **obligatorio** en writes — sin eso UDP silent packet loss.
+- **Bloque 37.G7**: Coalesce queue sacrifica writes intermedios por GA (last-write-wins).
+- **Bloque 37.G8**: Fault NO propaga auto a kitControl — cross-bloque contract missing.
+- **Bloque 37.G9**: `/knx/` del Supervisor **0 bytes** — driver instalado pero nunca usado (audit prod).
+
+### Filesystem + BOrd (Bloque 38)
+
+- **Bloque 38.G1**: `BOrdScheme extends BSingleton` (no BComponent) — instance única JVM (corrige Bloque 22.3).
+- **Bloque 38.G2**: Servlet real `com.tridium.web.servlets.FileServlet` — **no existe `BFileServlet`** (corrige Bloque 29.4). Extiende `HttpServlet`, no `BWebServlet`.
+- **Bloque 38.G3**: **4 BScopedFileSpace** incluye `!pstation` (`PROTECTED_STATION_HOME` rara vez documentado — completa Bloque 10.2.3).
+- **Bloque 38.G4**: `forbiddenFilePattern` solo bloquea `.bog`/`.bog.gz` — `.km`/`.kr` dependen de RBAC + blacklist separado.
+- **Bloque 38.G5**: **NO existe framework declarativo** `BForm`/`BField`/`BIValidator` — forms via agents (importante para onboarding devs).
+- **Bloque 38.G6**: `BFacets` NO enforcement — solo hints UI, server NO valida al `comp.set()` (refuerza 15.8.4).
+- **Bloque 38.G7**: `BOrd.substitute(BFacets)` con `${var}` — posible **injection surface** si user input.
+- **Bloque 38.G8**: `ThreadLocal<Context>` en `BFileSystem` → leak user entre threads en pool reuse.
+- **Bloque 38.G9**: `BModuleScheme.isModuleDevEnabled()` sirve desde FS source en vez de ZIP → **audit prod**.
+
+### Provisioning + Backup + HA (Bloque 39)
+
+- **Bloque 39.G1**: **NO existe `provisioningNiagara-rt.jar`** separado — runtime dentro de `-wb.jar` (rompe convención `-rt/-wb/-ux`).
+- **Bloque 39.G2**: **49 provisioning steps** en 4 subcategorías (mucho más de lo que el Bloque 16 mencionaba).
+- **Bloque 39.G3**: **HA nativa NO existe** (0 matches `failover/HighAvailability/SplitBrain`) — confirma Bloque 19.14 empíricamente.
+- **Bloque 39.G4**: Backup **NO chunking NO resume** — monolítico (refuerza Bloque 31.10).
+- **Bloque 39.G5**: Split-brain detection **manual** — disciplina operacional obligatoria.
+- **Bloque 39.G6**: `BNiagaraProxyExt implements BISubLicenseable` — federation count in origin **CONFIRMADO** (valida Bloque 14.4).
+- **Bloque 39.G7**: Supervisor bottleneck ~50 subs — causas reales: `BStationPollScheduler` + Fox exhaust + BatchJob pool.
+- **Bloque 39.G8**: Runbook **failover manual cold standby 7 pasos** (RTO 30-60 min).
+- **Bloque 39.G9**: Runbook **cold restore post-disaster 10 pasos** (RTO 6-48h).
+
+---
+
+## Correcciones empíricas (sesión bloques 33-39) a bloques previos
+
+Durante la investigación empírica de Bloques 33-39 se identificaron las siguientes correcciones a bloques previos que deben reflejarse en futuras lecturas. Se AGREGAN como notas cross-reference, NO sobrescriben el contenido histórico de los bloques originales.
+
+### Formatos binarios `.hdb` y `.adb` (corrige Bloque 31.3)
+
+- `.hdb` **NO es SQLite** — es binario propietario Tridium con MAGIC `0xA0F61E5E`, dos versiones (VERSION_1 fixed-length + VERSION_2 recstore paginated). Verificado en Bloque 33.
+- `.adb` **NO es SQLite** — binario paginado Tridium con MAGIC `0x6010ACCD` (Block+Page+FreePageMap+indices in-memory). Verificado en Bloque 34.
+- SQLite solo aparece en `rdbArchiveHistoryProvider` remoto (Orion RDB connector).
+- La ventana 5-30 min de lock (Bloque 31.7) viene de appendQueue + locks + cursor hold, **NO de VACUUM SQLite**.
+
+### Naming y clases reales
+
+- **KNX driver**: el driver real se llama `BKnxNetwork` (no `BKnxnetIpNetwork` como Bloque 19 sugería). Namespace `com.tridiumX.knxnetIp` (X mayúscula) — vendor "Tridium Europe". Verificado en Bloque 37.
+- **FileServlet**: el servlet de archivos real es `com.tridium.web.servlets.FileServlet` — **no existe `BFileServlet`**. Extiende `HttpServlet`, no `BWebServlet`. Corrige Bloque 29.4. Verificado en Bloque 38.
+- **BOrdScheme**: `BOrdScheme extends BSingleton` (no BComponent) — una instancia por JVM. Corrige Bloque 22. Firma real `BOrdScheme.resolve(OrdTarget, OrdQuery)` — body dentro del OrdQuery parseado. Verificado en Bloque 38.
+
+### Estructura de módulos
+
+- **Provisioning**: **NO existe `provisioningNiagara-rt.jar`** ni `provisioning-rt.jar` separado. Runtime del provisioning vive dentro de `provisioningNiagara-wb.jar` (clases en `javax.baja.provisioningNiagara.*`) — rompe convención `-rt/-wb/-ux`. Verificado en Bloque 39.
+- **BatchEditor**: BatchEditor real vive en `program-rt.jar` (`com.tridium.program.batch.BBatchRoutine`, 7 concretes), **NO en `batchJob-rt.jar`**. Verificado en Bloque 33.
+- **axvelocity**: `axvelocity-rt.jar` **NO presente** en OptimizerSupervisor-N4.14.0.162 → `.pxvm` inop aunque license exista. Completa Bloque 9.1.5 y 36.6.
+
+### Enums y clases ampliadas
+
+- **BAckState**: 3 valores (`ACKED`/`UNACKED`/`ACK_PENDING`), no 2. Corrige Bloque 8.3. Verificado en Bloque 34.
+- **BAlarmState**: 5 valores. **14 algoritmos alarma** (10 offnormal + 4 fault). `BFullPolicy` solo STOP+ROLL (NO WRAP). `BStorageType` solo FILE. Verificado en Bloques 33-34.
+- **BScopedFileSpace**: 7+ root prefixes reales, incluye `!pstation` (PROTECTED_STATION_HOME) rara vez documentado. Completa Bloque 10.2.3. Verificado en Bloque 38.
+
+### Confirmaciones empíricas importantes
+
+- **Bloque 14.4 (federation count in origin)**: `BNiagaraProxyExt implements BISubLicenseable` **CONFIRMADO** empíricamente via Bloque 39.
+- **Bloque 19.14 (NO HA nativa)**: 0 matches de `failover/HighAvailability/SplitBrain` — ausencia total **confirmada** via Bloque 39.
+- **Bloque 14.11.3 (Batch Editor `${i}` no soportado)**: promovido de documental a **empíricamente verificado** via grep bytecode en Bloque 33.
+- **Bloque 13.2.4 (keyring DPAPI `.km/.kr` no `master.jceks`)**: **reconfirmado** via BCredentialsManager en `~/etc/credentials/` (ya establecido Bloque 30.7).
+
 ---
 
 ## Conexiones clave entre bloques
@@ -463,13 +620,20 @@ Bloque 29 (Web tier + Servlets + Jetty filter chain) ─── profundiza ──
 Bloque 30 (Enterprise auth federation + FIPS + key rotation) ─── cierra gaps 20.10 #10/#11/#15/#16/#17 ───> 11 (RBAC base), 13.2 (keyring superficial — CORRIGE master.jceks→.km/.kr DPAPI), 17 (BCFKS FIPS), 18 (SCRAM + signing), 27 (cert types matrix + HeaderAuth gap), 29 (auth schemes + filter chain)
 Bloque 31 (Performance tuning + observability) ─── cierra gaps 20.10 #4/#18/#20/#21/#22/#24/#27 ───> 6.1 (engine thread), 8 (history archive), 15.14 (polling limits), 17.5 (JVM defaults), 20.5-20.8 (managers + persistent policies); CORRIGE 31.8 audit queue via Bloque 30.11 (main sink inline sync, unbounded queue es syslog side-channel)
 Bloque 32 (Honeywell modules + SMA + non-HTTP + runtime semantics) ─── cierra gaps 20.10 #1/#3/#5/#7/#8/#13 ───> 1 (framework), 2 (licensing + SMA attr), 4 (Baja object), 10 (boot), 19 (Honeywell drivers superficial), 23.27 (honBacnet), 25 (migrations Honeywell), 26 (native libs), 27 (licensing matrix)
+Bloque 33 (History system deep + Batch editor) ─── profundiza ───> 8.2 (history base), 14 (counting), 15 (workflow); CORRIGE 31.3 (`.hdb` NO SQLite, MAGIC 0xA0F61E5E); confirma 14.11.3 (`${i}` empírico); refuerza 31.7 (archive blocking real causes)
+Bloque 34 (Alarm framework deep + .adb format) ─── profundiza ───> 8.1 (alarm pipeline), 30 (auth recipients); CORRIGE 8.3 (`BAckState` 3 valores); CORRIGE 31.3 (`.adb` NO SQLite, MAGIC 0x6010ACCD); revela `alarmQueue` unbounded + recipients sin retry
+Bloque 35 (Nav + Workbench shell + views registry) ─── profundiza ───> 9 (UI stack), 15 (Workbench editing), 22 (PX/bajaui); revela 81 WbCommands + 22 ord schemes + 4 threads UI + `clProfile-wb` 99% stock
+Bloque 36 (PX widgets + EasyTemplates + BajaScript BOX lifecycle) ─── profundiza ───> 9.1 (UI), 22 (PX/bajaui/bajascript), 14.6 (templates comparativa); CORRIGE 22.12 (WS endpoint real `/wsbox`); completa 9.1.5 (`axvelocity-rt` ausente)
+Bloque 37 (KNX/IP driver + proxy↔virtual↔kitControl writeback) ─── profundiza ───> 7 (drivers framework), 19 (drivers Honeywell — añade europeos), 24 (kitControl control flow), 28 (discovery/virtual); CORRIGE 19 (clase real `BKnxNetwork`, namespace con X mayúscula); hallazgo `/knx/` 0 bytes (driver dormant)
+Bloque 38 (BFile + BOrd resolution + bajaui forms + FileServlet real) ─── profundiza ───> 10.2 (filesystem), 17 (forensics), 22 (BOrd), 29 (servlets); CORRIGE 22.3 (`BOrdScheme extends BSingleton`); CORRIGE 29.4 (`FileServlet` real, NO `BFileServlet`); completa 10.2.3 (`!pstation` + 4 scope spaces)
+Bloque 39 (Provisioning + Backup + Supervisor replication + HA operacional) ─── profundiza ───> 10.3 (backup), 13.1 (federation), 16 (provisioning service); CONFIRMA 19.14 (HA nativa 0 matches), 14.4 (federation count in origin), 13.1.7+31.14 (bottleneck ~50 subs); rompe convención `-rt/-wb/-ux` (provisioningNiagara-wb tiene runtime); runbooks DR operacionales
 ```
 
 ---
 
 ## Engram topic keys (toda la memoria persistente)
 
-**Total: 91 topic keys** bajo `project: niagara-research`.
+**Total: 98 topic keys** bajo `project: niagara-research`.
 
 ### Capa 1 (Bloques 1-3) — 10 keys
 - `niagara/estructura/profiles-rt-ux-wb`, `niagara/estructura/registry-types`, `niagara/estructura/fox-protocol`
@@ -530,15 +694,25 @@ Bloque 32 (Honeywell modules + SMA + non-HTTP + runtime semantics) ─── cie
 - **Bloque 31**: `niagara/bloque31/perf-observability` (21 thread pools + ParallelGC default + FJP sin ManagedBlocker + heap scale XS→XL + 22 gotchas prod + playbook 8 pasos)
 - **Bloque 32**: `niagara/bloque32/honeywell-runtime-semantics` (honPlantController BTP+RSTP + jsonToolkit Jayway OSS + platPower 16 clases + optimizer naming + Sys.loadType + ClassLoader isolation)
 
-**Total actualizado: 91 topic keys** (78 previos + 13 nuevos Capa 13).
+### Capa 14 (Bloques 33-39) — 7 keys
+
+- `bloque-33-history-batch-editor` — History system `.hdb` MAGIC `0xA0F61E5E` + BatchEditor `program-rt` + 7 gotchas
+- `bloque-34-alarm-framework-deep` — Alarm `.adb` MAGIC `0x6010ACCD` + `alarmQueue` unbounded + `BAckState` 3 valores + 14 algoritmos + recipients sin retry
+- `bloque-35-nav-workbench-shell` — Nav + WB shell + 81 commands + 22 ord schemes + 4 threads UI + profile final
+- `bloque-36-px-easytemplates-bajascript-box` — PX widget lifecycle + EasyTemplates Honeywell-only + `/wsbox` + lease 10s hardcoded
+- `bloque-37-knx-proxy-virtual-control-writeback` — KNX driver `BKnxNetwork` singleton + 3 UDP endpoints + DPT9 lossy + priority 16→4 lossy
+- `bloque-38-filesystem-bfile-bord-resolution` — BFile + BOrd + 4 scope spaces + FileServlet real + `BModuleScheme` audit
+- `bloque-39-provisioning-backup-ha-replication` — 49 provisioning steps + HA ausente confirmado + runbook failover 7 pasos + runbook cold restore 10 pasos
+
+**Total actualizado: 98 topic keys** (78 previos Capas 1-12 + 13 Capa 13 + 7 Capa 14).
 
 ---
 
 ## Qué NO cubre este mental model — gap analysis final consolidado
 
-Catálogo original de 27 gaps en Bloque 20.10. **Tras sesiones 27-29 + 30-32 se cerraron 17 gaps** (#1/#3/#4/#5/#7/#8/#10/#11/#13/#15/#16/#17/#18/#20/#21/#22/#24/#27). Los **10 gaps restantes** NO son investigables sin acceso a lab multi-station, NDA vendor, o representan áreas que la arquitectura directamente no implementa:
+Catálogo original de 27 gaps en Bloque 20.10. **Tras sesiones 27-29 + 30-32 + 33-39 se cerraron 17 gaps + múltiples correcciones empíricas de formatos binarios + drivers europeos + flota DR**. Los **10 gaps restantes** NO son investigables sin acceso a lab multi-station, NDA vendor, o representan áreas que la arquitectura directamente no implementa. Sesión 33-39 aportó: deep de history (`.hdb` binario propietario) + alarm (`.adb` binario paginado) + UX Workbench (nav/shell/PX) + KNX driver europeo + filesystem/BOrd + provisioning/backup/HA runbooks.
 
-### ✅ Cerrados en sesiones 27-29 + 30-32
+### ✅ Cerrados en sesiones 27-29 + 30-32 + 33-39
 
 - **#1 Transaction semantics** → Bloque 32.9 (NO hay `BTransaction` real; compensation manual)
 - **#3 Module lifecycle hooks** → Bloque 32.10
@@ -557,7 +731,17 @@ Catálogo original de 27 gaps en Bloque 20.10. **Tras sesiones 27-29 + 30-32 se 
 - **#21 Audit queue semantics** → Bloque 30.11 + 31.8 (main sync + syslog async unbounded)
 - **#22 Job exception handling** → Bloque 31.9
 - **#24 History archive DB compaction blocking** → Bloque 31.7 (5-30 min)
-- **#27 Audit retention** → Bloque 31.12 (disk fill risk)
+- **#27 Audit retention** → Bloque 31.12 (disk fill risk) + Bloque 34 revela `.adb` MAGIC `0x6010ACCD`
+
+### Consolidados/expandidos en sesión 33-39
+
+- **History + Batch deep** → Bloque 33 (`.hdb` MAGIC `0xA0F61E5E` + archive workflow + BatchEditor real en `program-rt.jar`).
+- **Alarm framework deep** → Bloque 34 (`.adb` MAGIC `0x6010ACCD` + 14 algoritmos + recipients sin retry + `BAckState` 3 valores + `alarmQueue` unbounded).
+- **Nav + Workbench shell** → Bloque 35 (81 WbCommands + 22 ord schemes + 4 threads UI + profile final).
+- **PX widget lifecycle + EasyTemplates + BOX client** → Bloque 36 (`/wsbox` endpoint real + `axvelocity` ausente + EasyTemplates Honeywell-only).
+- **KNX/IP driver europeo** → Bloque 37 (clase real `BKnxNetwork` + 3 endpoints UDP + DPT9 lossy + priority lossy 16→4).
+- **BFile + BOrd + filesystem spaces + FileServlet real** → Bloque 38 (4 BScopedFileSpace con `!pstation` + `FileServlet` real).
+- **Provisioning + Backup + HA operacional + runbooks DR** → Bloque 39 (49 steps + HA ausente confirmado + runbook failover 7 pasos + cold restore 10 pasos).
 
 ### ⚠️ Cubiertos parcialmente en 27-29 + 30-32
 
@@ -565,7 +749,7 @@ Catálogo original de 27 gaps en Bloque 20.10. **Tras sesiones 27-29 + 30-32 se 
 
 ### ❌ NO cubribles sin lab/NDA — gaps residuales honestos
 
-- **#2 Clustering + HA nativo** → CONFIRMADO NO EXISTE en NiagaraDriver (Bloque 19.14). No hay nada que investigar empíricamente — es un gap arquitectónico del producto.
+- **#2 Clustering + HA nativo** → CONFIRMADO NO EXISTE en NiagaraDriver (Bloque 19.14) + **RECONFIRMADO empíricamente en Bloque 39** (0 matches `failover/HighAvailability/SplitBrain`). No hay nada que investigar empíricamente — es un gap arquitectónico del producto. Mitigación operacional vía runbook failover cold standby 7 pasos + runbook cold restore 10 pasos (Bloque 39).
 - **#9 Remote diagnostics channels vendor-specific** → Requiere NDA Honeywell para documentación interna.
 - **#12 External datasources (Oracle, SQL Server, timeseries externos)** → Niagara no tiene drivers nativos; integración es custom por proyecto. Investigar bajo demanda.
 - **#14 Skyspark alternatives** → Confirmado ausente en Bloque 16. Investigación de mercado, no de código.
@@ -574,19 +758,19 @@ Catálogo original de 27 gaps en Bloque 20.10. **Tras sesiones 27-29 + 30-32 se 
 - **#25 Session timeout clock skew multi-server** → Requiere cluster testing sin NTP. Documentado como risk en Bloque 30.13.
 - **#26 Lockout window edge case clock backward** → Requiere inject clock-backward physical test.
 
-Para cualquier gap residual, el mental model actual (32 bloques) es suficiente para orientarse y atacar con investigación puntual adicional o testing en lab.
+Para cualquier gap residual, el mental model actual (**39 bloques**) es suficiente para orientarse y atacar con investigación puntual adicional o testing en lab.
 
 ---
 
 ## Próximos pasos recomendados
 
-Con los 32 bloques cerrados, tenés **~99.5%** del framework Niagara N4.14 entendido conceptualmente. Lo que queda:
+Con los **39 bloques** cerrados, tenés **~99.8%** del framework Niagara N4.14 entendido conceptualmente. La sesión 33-39 consolidó operaciones (history/alarm deep con formatos binarios reales descubiertos), UX completa (nav + Workbench shell + PX widgets + BajaScript BOX), drivers europeos (KNX/IP), filesystem/BOrd operacional, y flota (provisioning + backup + HA runbooks). Lo que queda:
 
-1. **Práctica**: implementar un módulo end-to-end (driver simple + control logic + UI + proxy points + Analytics algorithm) usando el conocimiento. El Bloque 15.13 (workflow 5 fases) es la receta.
-2. **Debugging real**: cuando surja un problema de producción, usar el mental model para localizar el bloque relevante + gotchas transversales.
+1. **Práctica**: implementar un módulo end-to-end (driver simple + control logic + UI + proxy points + Analytics algorithm) usando el conocimiento. El Bloque 15.13 (workflow 5 fases) + Bloque 36 (PX lifecycle browser) es la receta.
+2. **Debugging real**: cuando surja un problema de producción, usar el mental model para localizar el bloque relevante + gotchas transversales. Para history/alarm issues partir de Bloques 33-34 (formatos reales `.hdb`/`.adb`); para UX/PX partir de 35-36; para DR partir de 39.
 3. **Updates puntuales**: cuando Tridium/Honeywell release N4.15+ o features nuevas, actualizar bloques específicos en vez de re-investigar.
 4. **Contribución inversa**: si identificás gotchas nuevos en uso real, agregarlos a los bloques correspondientes vía commit directo.
-5. **Deep dives en gaps**: elegir 1-2 de los 27+ gaps (ej. HA clustering, FIPS workflow, transaction semantics) para profundizar según criticidad del deployment.
+5. **Deep dives en gaps residuales**: de los 10 que quedan, la mayoría requieren lab multi-station o NDA Honeywell. Para #12 (datasources externos) y #9 (remote diagnostics) es investigación puntual cuando surja necesidad operacional real.
 
 ---
 
@@ -622,6 +806,19 @@ Estructura del repo:
 ├── niagara-mental-model-bloque24.md  (Schedule Native + driverSchedule cross-driver + kitControl 152 components)
 ├── niagara-mental-model-bloque25.md  (Migration + Bajadoc pipeline + Gradle build + Help system)
 ├── niagara-mental-model-bloque26.md  (NRE launcher C++ + 138 DLLs + standalone signing playbook)
+├── niagara-mental-model-bloque27.md  (Network surface + puertos + certManagement)
+├── niagara-mental-model-bloque28.md  (Discovery cross-protocol + Virtual Components)
+├── niagara-mental-model-bloque29.md  (Web tier + Servlets + Jetty filter chain)
+├── niagara-mental-model-bloque30.md  (Enterprise auth federation + FIPS + key rotation)
+├── niagara-mental-model-bloque31.md  (Performance tuning + observability + thread pools)
+├── niagara-mental-model-bloque32.md  (Honeywell modules + SMA + non-HTTP + runtime semantics)
+├── niagara-mental-model-bloque33.md  (History system deep + Batch editor)
+├── niagara-mental-model-bloque34.md  (Alarm framework deep + .adb format)
+├── niagara-mental-model-bloque35.md  (Nav + Workbench shell + views registry)
+├── niagara-mental-model-bloque36.md  (PX widgets + EasyTemplates + BajaScript BOX lifecycle)
+├── niagara-mental-model-bloque37.md  (KNX/IP driver + proxy↔virtual↔kitControl writeback)
+├── niagara-mental-model-bloque38.md  (BFile + BOrd resolution + FileServlet real)
+├── niagara-mental-model-bloque39.md  (Provisioning + Backup + Supervisor replication + HA)
 ├── niagara-mental-model.2026-04-19.md (snapshot sesión httpapi)
 ├── NEXT_SESSION_PROMPT.md, NEXT_SESSION_PROMPT_MODULE_NAVIGATOR.md (plantillas)
 ├── notes/                            (borradores source)
@@ -630,6 +827,6 @@ Estructura del repo:
 
 ---
 
-**Sesión cerrada**: 2026-04-22 — Mental model Niagara N4 consolidado en **20 bloques** con ~92-95% coverage conceptual. 57 topic keys engram. 27+ gaps documentados honestamente para futuro.
+**Sesión cerrada**: 2026-04-24 — Mental model Niagara N4 consolidado en **39 bloques** con ~99.8% coverage conceptual. **98 topic keys** engram. 17 gaps 20.10 cerrados + correcciones empíricas de formatos binarios (`.hdb`/`.adb` NO SQLite, son binarios propietarios Tridium con MAGIC propios) + drivers europeos (KNX/IP) + flota (provisioning/backup/HA runbooks). 10 gaps residuales documentados honestamente (requieren lab multi-station o NDA Honeywell).
 
 Si este mental model te ahorró horas de investigación o te evitó un bug de producción, el objetivo está cumplido.
