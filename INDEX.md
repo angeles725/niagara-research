@@ -1,12 +1,12 @@
 # Niagara N4 — Mental Model · Índice Maestro
 
-**Actualizado**: 2026-04-24 (sesión bloques 33-39 — operaciones completas + UX + drivers europeos + filesystem + flota)
+**Actualizado**: 2026-04-25 (sesión bloques 40-41 — operational Honeywell artifacts + runtime decompile profundo)
 **Distribución analizada**: Honeywell OptimizerSupervisor-N4.14.0.162
-**Método**: Investigación empírica READ-ONLY con sub-agents en paralelo, contrastando docs oficiales (devguide 82 topics HTML + niagara-help/ 950 MB extracción) contra source Java + decompilado Vineflower + 974 JARs indexados + análisis nativo (138 DLLs/SOs catalogados).
+**Método**: Investigación empírica READ-ONLY con sub-agents en paralelo, contrastando docs oficiales (devguide 82 topics HTML + niagara-help/ 950 MB extracción) contra source Java + decompilado Vineflower + 974 JARs indexados + análisis nativo (138 DLLs/SOs catalogados) + decompile `javap -p -c` empírico de runtime classes.
 
-Este índice te guía entre los **39 bloques** de investigación. Cada bloque es un archivo `.md` independiente que puede leerse aislado, pero las conexiones están explícitamente marcadas entre sí.
+Este índice te guía entre los **41 bloques** de investigación. Cada bloque es un archivo `.md` independiente que puede leerse aislado, pero las conexiones están explícitamente marcadas entre sí.
 
-Cobertura final estimada: **~99.8%** del framework Niagara N4.14 conceptualmente. Los 7 bloques nuevos (33-39) consolidan operaciones (history + alarm deep), UX (nav/workbench/PX browser/BOX), drivers europeos (KNX/IP), filesystem (BFile + BOrd + FileServlet real) y flota (provisioning + backup + HA runbooks). Los 3 bloques de Capa 13 (30-32) habían cerrado gaps 20.10 #1/#3/#5/#7/#8/#10/#11/#13/#15/#16/#17/#18/#20/#21/#22/#24/#27. Los gaps NO investigables sin lab/NDA (#2 clustering HA nativa — confirmada ausente vía Bloque 39, #9 remote diagnostics, #14 Skyspark alternatives, #19/#23/#25/#26 clock+lab-required) quedan explícitos en gap analysis final.
+Cobertura final estimada: **~99.9%** del framework Niagara N4.14 conceptualmente. Los 2 bloques nuevos (40-41) cierran (a) operacional Honeywell — paquetes pre-armados Spyder/CIPer/TC/TR/BACnetFFT, biblioteca spyderApps Ver28, flow Office Interop printout (Word Bookmarks NO MailMerge), `/lib/` doclet versionado + `truststore.jks` SEJOFA + patrón `db/<hostId>/` alias, Webs.license asimétrica Win/Qnx — y (b) runtime decompile profundo cerrando los 7 TODOs honestos del Bloque 32 (Transaction existe sin B prefix pero NO es ACID, BModule final sin hooks, Sys.loadType bottleneck synchronized, fox.sys son 6 channels named NO constants, honMqttDriver Netvox Paho 1.2.5, license en baja.jar, BOnMissingType REFUTADO con data loss silencioso). Los 7 bloques (33-39) consolidaron operaciones, UX, drivers europeos, filesystem, flota. Los 3 bloques (30-32) cerraron gaps 20.10 enterprise auth + FIPS + perf + Honeywell runtime. Los gaps NO investigables sin lab/NDA (#2 clustering HA — confirmada ausente Bloque 39, #9 remote diagnostics, #14 Skyspark, #19/#23/#25/#26 clock+lab-required) quedan explícitos en gap analysis final.
 
 ---
 
@@ -121,6 +121,13 @@ Cobertura final estimada: **~99.8%** del framework Niagara N4.14 conceptualmente
 | 38 | BFile + BOrd resolution + bajaui forms + FileServlet real | [niagara-mental-model-bloque38.md](niagara-mental-model-bloque38.md) | `BOrdScheme extends BSingleton` (no BComponent) — una instancia por JVM (corrige Bloque 22), firma real `BOrdScheme.resolve(OrdTarget, OrdQuery)` — body dentro del OrdQuery parseado, **32 schemes en baja.jar**, servlet real `com.tridium.web.servlets.FileServlet` (extiende `HttpServlet`, no `BWebServlet`) — **NO existe `BFileServlet`** (corrige Bloque 29.4), **4 BScopedFileSpace** incluye `!pstation` (PROTECTED_STATION_HOME rara vez documentado — completa Bloque 10.2.3), `forbiddenFilePattern` solo bloquea `.bog`/`.bog.gz` (`.km`/`.kr` dependen de RBAC + blacklist separado), **NO existe framework declarativo `BForm`/`BField`/`BIValidator`** — forms via agents, `BFacets` NO enforcement (solo hints UI, server NO valida al `comp.set()`), `BOrd.substitute(BFacets)` con `${var}` — posible injection surface si user input, `ThreadLocal<Context>` en `BFileSystem` → leak user entre threads en pool reuse, `BModuleScheme.isModuleDevEnabled()` sirve desde FS source en vez de ZIP → audit prod |
 | 39 | Provisioning + Backup + Supervisor replication + HA operacional | [niagara-mental-model-bloque39.md](niagara-mental-model-bloque39.md) | **49 provisioning steps** en 4 subcategorías, **NO existe `provisioningNiagara-rt.jar` separado** — runtime dentro de `provisioningNiagara-wb.jar` (clases en `javax.baja.provisioningNiagara.*`, rompe convención `-rt/-wb/-ux`), **HA nativa confirmada ausente** (0 matches `failover/HighAvailability/SplitBrain` — confirma Bloque 19.14), Backup NO chunking NO resume (monolítico — refuerza Bloque 31.10), Split-brain detection manual (disciplina operacional obligatoria), `BNiagaraProxyExt implements BISubLicenseable` — federation count in origin **CONFIRMADO** (valida Bloque 14.4), Supervisor bottleneck ~50 subs — causas: `BStationPollScheduler` + Fox exhaust + BatchJob pool (valida Bloques 13.1.7 + 19.13 + 31.14), **runbook failover manual cold standby 7 pasos** (RTO 30-60 min), **runbook cold restore post-disaster 10 pasos** (RTO 6-48h) |
 
+### Capa 15 — Operational Honeywell artifacts + runtime decompile profundo (Bloques 40-41)
+
+| # | Bloque | Archivo | Key topics |
+|---|--------|---------|------------|
+| 40 | Operational Honeywell artifacts (palettes/spyderApps/printout/lib+install-security) | [niagara-mental-model-bloque40.md](niagara-mental-model-bloque40.md) | **`Palettes_and_Misc/` 13 subdirs**: 3 palettes (`HoneywellSubmeter` + `hvfd` + **`XL15C` NO ZIP** formato proprietary legacy — corrige Bloque 12.4), CIPer Model 30 Stations preconfigurate (`config.bog` + `honeywellAXPlatinum` theme persiste de AX), Spyder Model 5/7 firmware `.bin`/`.ufw` + templates `.ntpl` (Honeywell signed `signature="<8hex>"` proprietary + `state="10"` deployed + `vendor="Honeywell"` + `buildVersion="4.10.0.154"`), TC300/TC500/TR100 thermostat + wall module firmware (TC500 IoT con doble cloud Pelion+Azure), Niagara_IO_SensorTables 4 NTC curves XML (10K-2/3 + 20K) para BConversionLink — extiende Bloque 24, BurnerInterface 2006 anchor histórico AX-era, Optimizer Unitary `NC_Unitary_V2.1.1.40.ufw`, BACnetFFT_N4_Reflash tool. **`spyderApps/Ver28/` 19 categorías 136 archivos**: `.libbog` es XML `<bajaObjectGraph v="4.0">` (NO binario), 19 categorías (Alarms/Control/CVAHU/Decode/Econo/General/Logic/Math/Metering/Psych/Sched/Time/Tstat/UnitVent/UnitsConv/VAV_AHU/WallModConv/ZoneTerminal), ToolVersion 3.7.44.5.206 (Spyder Model 5/7 era 2008-2012), **doble UUID por app `lonUUID`+`bacnetUUID`** Honeywell multi-stack, **ProgramId `90 00 0c 52 00 03 04 38`** Spyder family (extiende Bloque 19.4 — Honeywell tiene **múltiples sub-namespaces** mfg prefix), SNVTs referenciados (temp_p 64, hvac_mode 93, hvac_status 73, lev_percent 107, time_stamp 84), UserDefined `.libbog` ejecutables vs CommonObjects `.doc` reference, equivalencia exacta con kitControl Bloque 24 (mismo concept distinto target runtime). **`/printout/` flow Office Interop**: clPrintout.exe 954 KB PE32 .NET WinForms + 3 JARs Java (`clPrintout-{rt,wb,doc}.jar`) + Word.dll/Office.dll PIAs + WireSheetControl.dll **NO Excel renderer** sino .NET UserControl Honeywell CARE legacy reciclado para bitmap render (corrige Bloque 26.12) + Interop.Shell32, flow `BPrintoutDialog → Exporter XWriter → !printout/printout.xml temp file → Runtime.exec(clPrintout.exe) → COM Word.Application.Documents.Add(WordTemplate.dot) → Document.Bookmarks["AI_Bookmark"/"BI_Bookmark"/...].Range.Text` (NO MailMerge — Bookmarks; los WdMailMerge* del PIA son ruido), 8 templates `.dot` Word 97-2003 OLE (Word desktop only NO Office 365 web), Swivel labels Centraline IRM/MIO etiquetas físicas adhesivas únicas Honeywell, PDB embedded revela proyecto NiagaraDotNetReport build user h446496, `clPrintout.vshost.exe` residuo Visual Studio dev NO entry point, Linux/Mac Workbench fail silente, `Runtime.exec`+`waitFor` bloquea EDT si Word modal dialog, online printout vía Fox session BOnlinePrintoutDialog. **`/lib/` install kit**: doclet `1.0.8 + 1.0.9 COEXISTEN` no deprecation lineal (3 clases difieren: Bajadoclet+XElem+XParser — corrige Bloque 25), `lexicon.properties` 47 idiomas installer Win32 (NO runtime — corrige Bloque 12.2.7), `tools.jar 17.5MB Azul Zulu OpenJDK 1.8.0_282 stock` (fija techo Java 8), `readmeLicenses.txt` 2019 OSS aggregadas declaradas (OrientDB 5 artifacts + mstp-lib OSS + jose4j JWT + gradle-js-plugin fork Tridium + NO Bouncy Castle declarado = vendored), Honeywell EULA.pdf rebrand-only-filename (texto Tridium estándar). **Honeywell install `/security/`**: `truststore.jks` default password `changeit` + **REEMPLAZADO por SEJOFA** (alias `niagaramoduledev` CN=Security Audit O=SEJOFA Mexico CDMX RSA-2048 self-signed válido 2026-01-15→2027-01-15) — NO es 5to trust store sino seed install-time del user trust runtime, 3 `.certificate` Honeywell+HoneywellCentraLine+Tridium XML custom DSA-1024 typo `algorthm` `expiration="never"` self-signed (HoneywellCentraLine NO sub-CA Honeywell — vendor separado 2014), **patrón `licenses/db/<hostId>/`**: root `licenses/*.license` son ALIAS bit-exact del host actual (`Win-6E6E-10AC-D1DD-8276`), fuente canónica es `db/<hostId>/` que soporta multi-host distros (supervisor Win + JACE Qnx-TITAN coexisten — supervisor distribuye/sincroniza Qnx licenses durante provisioning), **Webs.license asimétrica**: Win 16KB 150 features con `developer skipModuleValidation` PRESENTE + `<feature about owner="Syscom" project="00 HW - DEMO LICENSES">` integrador trazabilidad legal vs Qnx 6KB 55 features SIN skipModuleValidation (refina Bloque 18.3.2 — threat model: dev=Win abierto, field=Qnx lockdown estricto), `jre8J8000Azul` feature Qnx confirma JACE corre Azul JDK 8, `maintenanceExpiration="2026-02-01"` Qnx CADUCADO al snapshot (operación sigue por `expiration="never"` pero updates post-fecha NO autorizados), DSA-1024 obsoleto crypto-compliance (NIST deprecation 2010 prohibition 2030) |
+| 41 | Runtime decompile profundo (cierre TODOs Bloque 32) | [niagara-mental-model-bloque41.md](niagara-mental-model-bloque41.md) | **`javax.baja.sync.Transaction` EXISTE pero NO ACID** — sin prefix B (no es BComponent, es Context wrapper), abstracta extiende `SyncBuffer`, **`abortCommit(Exception){return;}` literalmente VACÍO** = no rollback (refina Bloque 32.9 parcial — clase sí existe semántica weak confirmada empíricamente), patrón `Transaction.start(BComponent,Context)→Context` + `end()`, ops 1..N-1 ya aplicadas si commit falla en N. **`BModule` es `final` SIN start/stop/init** (Bloque 32 asumió hooks ahí — REFUTADO), lifecycle real en (a) `ModuleManager.registerOnLoadCallback(Consumer<NModule[]>)` único hook user-side + `loadModule/loadDependency/unloadModule/postInit` synchronized + (b) `BComponent.started()/descendantsStarted()/stationStarted()/atSteadyState()` hooks per-component (BHonMqttNetwork override empíricamente verificado). **`Sys.loadType(Class)` one-liner delegate** a `Nre.getSchemaManager().load(Class)` synchronized global = bottleneck boot estaciones 1000+ módulos (síntoma JVM contention en `SchemaManager$$Lock` — extiende Bloque 31). **`fox.sys` REFUTADO como constants** — son **6 channels named** registrados string-based en `BFoxChannelRegistry`: `sys` BSysChannel (summary/stationCall/niagaraRpc/listLocalSpaces) + `file` BFileChannel (head/list/delete/makeFile/makeDir) + `user` BUserChannel (fetchPrefs/setAuthenticator/sessionTimeout) + **`broker` BBrokerChannel (loadRoot/syncFromMaster/sub/unsub/transfer/invoke = engine real Supervisor↔Subordinate sync — extiende Bloque 13.1)** + **`data` BDataChannel (resolve/resolveEntities/exportEntities = endpoint Fox de BQL queries — extiende Bloque 21)** + `spy` BSpyChannel, `prototype` field estático inmutable = **NO se pueden registrar channels custom runtime sin parchear baja.jar**. **`honMqttDriver` 100% Netvox LoRa** — extiende `BAbstractMqttDriverNetwork` (Tridium en `abstractMqttDriver-rt.jar`), 7 sensores hardcoded R718A/CT/G/PE+R720E+RA715/716, stack base **Eclipse Paho MQTTv3 1.2.5** (NO MQTT 5.0 — sin properties/reason codes/shared subs) + AWS IoT SDK + authenticators AWS/Azure SAS/GCP JWT/Generic, TLS 1.0/1.1/1.2/1.3 + QoS 0/1/2, license `Honeywell:honLoRaMqtt`, topics dinámicos desde `module://honMqttDriver/res/SensorDetails.json`, Gson 2.x bundleado. **License NO en `license-rt.jar`** (jar separado NO existe — corrige Bloque 32) sino en `baja.jar` bajo `com/tridium/sys/license/`, `Feature.getb("sma.exempt", false)` string-based **typo-prone silencioso** (typo retorna default sin error), `LicenseUtil.verify(bytes,sig,version)` con dual public key (master legacy + version2), `INVALID_LICENSE_TIME_MILLIS_FLOOR` anti-clock-rollback, **subscription = `EntitlementApi`** en `com.tridium.nre.subscription` con LRT (License Refresh Token) + periodic key rotation + entitlement check ScheduledExecutorService THIRTY_MINUTES + 3 directorios separados (subscription/certificate/license) + `regenerateNreId()` post-VM-clone + `CLONED_FILE` flag bloquea startup en NRE-id collision. **`BOnMissingType` REFUTADO** — NO existe en 969 jars (corrige Bloque 32.13 inferencia incorrecta), forward-compat real es `ValueDocDecoder$BogTypeResolver.newInstance()` con (a) si typespec null y prop frozen → `Property.getDefaultValue()`, (b) si no → `IDecoderPlugin.warningAndSkip("Missing frozen property:...")` retorna null, **DATA LOSS silencioso en round-trip cross-version** (NO equivalente a EMF eUnknownFeature preservation), 4 errores estructurales del Bloque 32 corregidos |
+
 ---
 
 ## Cómo leer este mental model
@@ -220,6 +227,26 @@ Ruta: 13.1 (Niagara Network) → 14.4 (federation counting) → 16 (Analytics + 
 ### Si venís a **migración Honeywell UI (EasyTemplates)**
 
 Ruta: 14.6 (Niagara vs EasyTemplates comparativa) → 22 (PX + BajaUI + BajaScript) → **36 (EasyTemplates Honeywell-only + `bajaux/spandrel` mini-React + BUxBoundTable maxRows=1000 + lease 10s hardcoded)** → 17 (filesystem paths).
+
+### Si venís a **deploy real con paquetes operacionales Honeywell pre-armados**
+
+Ruta: 1 (estructura) → 2 (licensing) → 14 (Templates + Counting) → 19 (drivers Honeywell) → **40.1 (Palettes_and_Misc 13 subdirs — Spyder/CIPer/TC/TR firmware + .ntpl + sizing tools)** → **40.2 (spyderApps Ver28 19 categorías + ProgramId 90 00 0c + double UUID lon+bacnet)** → **40.4.8 (patrón db/<hostId>/ multi-host distros + Webs.license asimétrica Win/Qnx)** → 25.2 (spyderToIrmNxMigrator si migración legacy) → 15.13 (workflow editing) → 36 (PX UI build).
+
+### Si venís a **firmar módulos custom standalone sin Workbench**
+
+Ruta: 18 (signing teoría + permission groups) → **26 (NRE launcher + 138 DLLs + signing playbook 10 pasos completo)** → **40.4.6 (truststore.jks SEJOFA reemplazó vanilla — restaurar antes de provisionar)** → **40.4.9 (Webs.license skipModuleValidation Win-supervisor only — NO Qnx)** → 27.7 (Signing Service enterprise centralizado).
+
+### Si venís a **runtime semantics deep / extender framework custom**
+
+Ruta: 4 (BObject base) → 32 (Honeywell modules + runtime semantics inicial) → **41.1 (Transaction NO ACID semántica weak — `abortCommit` vacío)** → **41.2 (BModule final + lifecycle hooks reales en BComponent + ModuleManager registry callback)** → **41.3 (Sys.loadType bottleneck SchemaManager synchronized)** → **41.4 (fox.sys son 6 channels named NO constants — broker=Supervisor sync, data=BQL queries)** → **41.6 (license en baja.jar string-based attrs typo-prone + EntitlementApi LRT)** → **41.7 (BOnMissingType REFUTADO — BogTypeResolver warning+skip data loss silencioso cross-version)** → 26 (signing playbook si custom módulos).
+
+### Si venís a **flow Office Interop printout (Word reporting desde Workbench)**
+
+Ruta: 9 (UI stack) → 26.6 (DLLs printout overview) → **40.3 (clPrintout.exe flow end-to-end + Word Bookmarks NO MailMerge + WireSheetControl es Honeywell CARE legacy NO Excel + Linux/Mac fail silente + Office 365 web NO compatible + 8 templates .dot + Swivel labels Centraline IRM/MIO)** → 18 (security implications XXE/macros).
+
+### Si venís a **integrar honMqttDriver Netvox LoRa**
+
+Ruta: 32 (Honeywell modules base) → **41.5 (honMqttDriver = 100% Netvox + Paho MQTTv3 1.2.5 NO MQTT 5.0 + AWS IoT SDK + TLS 1.0-1.3 + QoS 0/1/2 + license honLoRaMqtt + Gson + topics dinámicos SensorDetails.json)** → 27 (TLS hardening) → 40.4.9 (Webs.license `mqtt` feature Qnx).
 
 ---
 
@@ -531,6 +558,48 @@ Los gotchas más críticos repetidos o conectados entre bloques:
 - **Bloque 38.G8**: `ThreadLocal<Context>` en `BFileSystem` → leak user entre threads en pool reuse.
 - **Bloque 38.G9**: `BModuleScheme.isModuleDevEnabled()` sirve desde FS source en vez de ZIP → **audit prod**.
 
+### Operational Honeywell artifacts (Bloque 40)
+
+- **Bloque 40.1.2 — `XL15C.palette` NO ZIP**: formato proprietary Honeywell legacy. Parsers genéricos `.palette` que asumen ZIP fallan. **CONTRADICE Bloque 12.4**.
+- **Bloque 40.1.3 — `.ntpl` Honeywell signed**: signature attribute `<8hex>` proprietary (NO RSA-2048). Modificar XML invalida silently — pierde flag verified vendor.
+- **Bloque 40.1.3 — `state="10"` en `.ntpl`**: state machine de templates Honeywell deployed/active no documentada en Bloque 14.
+- **Bloque 40.1.6 — TC500 IoT thermostat**: doble cloud Pelion+Azure. Filename codifica TODOS los flags (cambio rompe identificación).
+- **Bloque 40.1.7 — NTC SensorTables**: 4 XMLs pre-canned NO auto-discovered. Importar manualmente al BConversionLink.
+- **Bloque 40.2.4 — ProgramId Spyder `90 00 0c`**: Honeywell tiene **múltiples sub-namespaces** mfg prefix LON. Bloque 19.4 mencionaba solo `80 00 0c`.
+- **Bloque 40.2.6 — ToolVersion 3.7.44**: Spyder Tool ~2008-2012. Spyder Model 8+ requiere ToolVersion más reciente — Ver28 NO compatible Model 8.
+- **Bloque 40.3.2 — `WireSheetControl.dll` NO Excel renderer**: es .NET UserControl Honeywell CARE legacy reciclado para bitmap render. **CORRIGE Bloque 26.12**.
+- **Bloque 40.3.3 — `Runtime.exec(_pathPrintoutExe) + waitFor` bloquea Workbench EDT**: si Word lanza modal dialog, thread atascado hasta timeout. UI freeze.
+- **Bloque 40.3.6 — `.dot` Word 97-2003 NO funciona Office 365 web**: solo Office desktop con COM Automation. Linux/Mac Workbench fail silente.
+- **Bloque 40.3.7 — Word Bookmarks NO MailMerge**: `WdMailMerge*` en Word.dll PIA es ruido — el código usa `Document.Bookmarks[X].Range.Text`.
+- **Bloque 40.3.10 — `printout.xml` leak post-mortem**: temp puede contener passwords cifrados, schedule, alarm config, IPs. Persiste si Workbench cierra abruptamente.
+- **Bloque 40.4.1 — `truststore.jks` default password `changeit`**: Niagara NO endurece by default. Hardening checklist debe verificar empíricamente.
+- **Bloque 40.4.2 — Truststore SEJOFA reemplazó vanilla Honeywell**: install no es vanilla. Reproducir bootstrap nueva station = runtime stores SIN Tridium/Honeywell roots = rompe validación módulos OEM. Restaurar truststore vanilla antes de provisionar.
+- **Bloque 40.4.1 — Doclet 1.0.8 NO deprecated**: coexiste con 1.0.9. Rebuild legacy con 1.0.9 regenera `*-doc.jar` y puede invalidar firmas. **CORRIGE Bloque 25**.
+- **Bloque 40.4.3 — `tools.jar` Java 8 fija techo runtime**: upgrade JDK 9+ requiere reescribir doclet contra `jdk.javadoc.doclet`, regenerar todos los `*-doc.jar`, re-firmar.
+- **Bloque 40.4.7 — `readmeLicenses.txt` 2019 desactualizado**: NO confiable como SBOM definitivo para auditoría OSS N4.14.
+- **Bloque 40.4.8 — Root `licenses/*.license` es ALIAS no source**: `db/<hostId>/` es fuente canónica. Si hostId cambia (NIC swap/VM clone) alias deja de matchear. **REFINA Bloque 02-licensing**.
+- **Bloque 40.4.9 — `db/Qnx-TITAN-*/Webs.license` SIN `skipModuleValidation`**: JACE NO puede ejecutar módulos sin firma OEM. Threat model asimétrico: dev=Win abierto, field=Qnx lockdown. **REFINA Bloque 18.3.2**.
+- **Bloque 40.4.10 — `<feature about owner="Syscom" project="00 HW - DEMO LICENSES">`**: install marcada explícitamente DEMO. Producción real debería tener owner cliente final.
+- **Bloque 40.4.11 — `maintenanceExpiration="2026-02-01"` Qnx CADUCADO**: operación sigue por `expiration="never"`, pero updates firmware/módulos JACE post-fecha NO autorizados.
+- **Bloque 40.4.12 — DSA-1024 obsoleto**: NIST deprecation 2010, prohibition 2030. FIPS 140-3/OWASP scan marca HALLAZGO. Migración ECDSA-P256 rompería compat hacia atrás.
+- **Bloque 40.4.13 — Typo `algorthm` en `<publicKey>`**: parser custom debe aceptar. Corregirlo upstream rompería todo.
+
+### Runtime decompile profundo (Bloque 41)
+
+- **Bloque 41.1 — `Transaction` no es ACID**: `SyncBuffer.abortCommit(Exception)` está literalmente vacío. Si commit falla en op N de M, ops 1..N-1 ya aplicadas. Estado inconsistente. **REFINA Bloque 32.9** (clase EXISTE como `javax.baja.sync.Transaction` sin B prefix). Mitigación: validar TODO antes de SyncOps.
+- **Bloque 41.2 — BModule es `final` SIN hooks**: lifecycle real en `ModuleManager.registerOnLoadCallback()` + `BComponent.started()/atSteadyState()`. **REFUTA Bloque 32** asunción de lifecycle hooks en BModule.
+- **Bloque 41.3 — SchemaManager.load synchronized**: bottleneck de boot con 1000+ módulos custom. JVM contention en `SchemaManager$$Lock`. **EXTIENDE Bloque 31** thread pools.
+- **Bloque 41.4 — fox.sys son 6 channels named (NO constants)**: sys/file/user/broker/data/spy. **REFUTA Bloque 32.6** especulación. `prototype` field estático e inmutable = NO se pueden registrar custom channels runtime sin parchear `baja.jar`. `broker` channel = Supervisor↔Subordinate sync engine. `data` channel = endpoint Fox de BQL queries.
+- **Bloque 41.5 — honMqttDriver SOLO Netvox LoRa**: 7 sensores hardcoded en `lora/sensors/`. Para genéricos LoRa usar `abstractMqttDriver-rt.jar` directamente.
+- **Bloque 41.5 — Eclipse Paho 1.2.5 es MQTTv3 ONLY**: sin MQTT 5.0 properties, reason codes, shared subscriptions. Driver custom requerido para 5.0.
+- **Bloque 41.6 — `feature.getb("sma.exempt", false)` typo-prone**: typo retorna default false silently. Auditar manualmente — typo bugs no se reportan.
+- **Bloque 41.6 — license NO en `license-rt.jar`**: vive en `baja.jar` bajo `com/tridium/sys/license/`. **CORRIGE Bloque 32** asunción jar separado.
+- **Bloque 41.6 — Subscription = EntitlementApi + LRT**: 3 directorios separados (subscription/certificate/license). Backups parciales que omitan alguno corrompen subscription state.
+- **Bloque 41.6 — `regenerateNreId()` post-VM-clone**: si station se clona vía VM snapshot, NRE-id duplicado bloquea startup. `CLONED_FILE` flag detect.
+- **Bloque 41.6 — `INVALID_LICENSE_TIME_MILLIS_FLOOR`**: anti-clock-rollback protection.
+- **Bloque 41.7 — BOnMissingType REFUTADO**: NO existe en 969 jars. Forward-compat real es `BogTypeResolver.warningAndSkip()` + return null. **DATA LOSS silencioso en round-trip cross-version** — NO equivalente a EMF eUnknownFeature. Save back de `.bog` con types desconocidos pierde slots permanentemente. **REFUTA Bloque 32.13** inferencia.
+- **Bloque 41 — ModuleManager.loadModule synchronized global**: combined con SchemaManager → boot order nondeterminism amplified bajo carga.
+
 ### Provisioning + Backup + HA (Bloque 39)
 
 - **Bloque 39.G1**: **NO existe `provisioningNiagara-rt.jar`** separado — runtime dentro de `-wb.jar` (rompe convención `-rt/-wb/-ux`).
@@ -627,6 +696,8 @@ Bloque 36 (PX widgets + EasyTemplates + BajaScript BOX lifecycle) ─── prof
 Bloque 37 (KNX/IP driver + proxy↔virtual↔kitControl writeback) ─── profundiza ───> 7 (drivers framework), 19 (drivers Honeywell — añade europeos), 24 (kitControl control flow), 28 (discovery/virtual); CORRIGE 19 (clase real `BKnxNetwork`, namespace con X mayúscula); hallazgo `/knx/` 0 bytes (driver dormant)
 Bloque 38 (BFile + BOrd resolution + bajaui forms + FileServlet real) ─── profundiza ───> 10.2 (filesystem), 17 (forensics), 22 (BOrd), 29 (servlets); CORRIGE 22.3 (`BOrdScheme extends BSingleton`); CORRIGE 29.4 (`FileServlet` real, NO `BFileServlet`); completa 10.2.3 (`!pstation` + 4 scope spaces)
 Bloque 39 (Provisioning + Backup + Supervisor replication + HA operacional) ─── profundiza ───> 10.3 (backup), 13.1 (federation), 16 (provisioning service); CONFIRMA 19.14 (HA nativa 0 matches), 14.4 (federation count in origin), 13.1.7+31.14 (bottleneck ~50 subs); rompe convención `-rt/-wb/-ux` (provisioningNiagara-wb tiene runtime); runbooks DR operacionales
+Bloque 40 (Operational Honeywell artifacts: palettes/spyderApps/printout/lib+install-security) ─── extiende ───> 12.4 (palette ZIP — CORRIGE: XL15C NO ZIP), 14.6 (Niagara templates — extiende `.ntpl` Honeywell signed `state="10"` deployed), 19.4 (LON ProgramId — extiende a múltiples sub-namespaces 80 00 0c + 90 00 0c Spyder), 24 (kitControl — extiende NTC SensorTables curves pre-canned), 25 (doclet 1.0.9 — CORRIGE coexistencia con 1.0.8), 26.12 (DLLs printout — CORRIGE WireSheetControl NO Excel renderer + agrega clPrintout.exe entry point), 27.4 (4 trust stores runtime — REFINA truststore.jks install-time es seed NO 5to store), 27.11 (XML cert format — CONFIRMA empíricamente typo `algorthm` + DSA-1024 + 3 vendors separados), 18.3.2 + 27.6 (skipModuleValidation — REFINA asimetría Win supervisor presente vs Qnx JACE ausente threat model), 02-licensing (CORRIGE root licenses son ALIAS del host actual, fuente canónica db/<hostId>/), 12.2.7 (lexicon — REFINA install picker NO runtime), 32 (Honeywell modules — extiende capa operational artifacts), 15.13 (workflow editing — extiende paso 0 import pre-canned)
+Bloque 41 (Runtime decompile profundo) ─── cierra TODOs Bloque 32 ───> Transaction existe sin B prefix CORRIGE 32.9 parcial pero confirma semántica weak; BModule final REFUTA hooks ahí, hooks reales en ModuleManager + BComponent (extiende 31 thread pools); Sys.loadType delegate SchemaManager synchronized bottleneck (extiende 31); fox.sys son 6 channels named REFUTA 32.6 constants — broker=Supervisor sync engine extiende 13.1, data=BQL endpoint Fox extiende 21; honMqttDriver Netvox + Paho 1.2.5 + AWS IoT SDK CIERRA TODO 32; license en baja.jar CORRIGE 32 -rt jar separado, feature.getb string typo-prone, EntitlementApi LRT 3 dirs (extiende 30.7); BOnMissingType REFUTADO REFUTA 32.13 inferencia, BogTypeResolver warning+skip data loss silencioso round-trip cross-version
 ```
 
 ---
@@ -704,13 +775,30 @@ Bloque 39 (Provisioning + Backup + Supervisor replication + HA operacional) ─�
 - `bloque-38-filesystem-bfile-bord-resolution` — BFile + BOrd + 4 scope spaces + FileServlet real + `BModuleScheme` audit
 - `bloque-39-provisioning-backup-ha-replication` — 49 provisioning steps + HA ausente confirmado + runbook failover 7 pasos + runbook cold restore 10 pasos
 
-**Total actualizado: 98 topic keys** (78 previos Capas 1-12 + 13 Capa 13 + 7 Capa 14).
+### Capa 15 (Bloques 40-41) — 11 keys
+
+**Bloque 40 — operational Honeywell artifacts** (4 keys):
+- `niagara/bloque40/palettes-and-misc-inventory` — 13 subdirs paquetes operacionales pre-canned (Spyder M5/M7 firmware + .ntpl Honeywell signed + CIPer30 stations + TC300/TC500/TR100 + NTC SensorTables + BurnerInterface anchor + XL15C.palette NO ZIP)
+- `niagara/bloque40/spyderapps-ver28-catalog` — 19 categorías + 136 archivos + .libbog XML + ToolVersion 3.7.44.5.206 + ProgramId 90 00 0c Spyder family + double UUID lon+bacnet
+- `niagara/bloque40/printout-office-interop-flow` — clPrintout.exe + 3 JARs Java + Word Bookmarks (NO MailMerge) + WireSheetControl Honeywell CARE legacy + Linux/Mac fail silente + Office 365 web NO compat + Swivel labels Centraline IRM/MIO
+- `niagara/bloque40/lib-and-install-security` — doclet 1.0.8/1.0.9 coexisten + tools.jar Azul JDK 8u282 + truststore SEJOFA reemplazó vanilla + db/<hostId>/ alias pattern + Webs.license asimétrica Win supervisor `skipModuleValidation` vs Qnx JACE lockdown + DSA-1024 obsoleto
+
+**Bloque 41 — runtime decompile profundo** (7 keys):
+- `niagara/bloque41/transaction-sync-buffer-weak` — `javax.baja.sync.Transaction` existe sin B prefix, abortCommit vacío NO ACID, SyncBuffer base
+- `niagara/bloque41/bmodule-final-lifecycle-real` — BModule es final, hooks reales en ModuleManager.registerOnLoadCallback + BComponent.started/atSteadyState
+- `niagara/bloque41/sys-loadtype-schema-bottleneck` — Sys.loadType one-liner delegate, SchemaManager.load synchronized global = bottleneck boot
+- `niagara/bloque41/fox-six-channels-named` — sys/file/user/broker/data/spy + prototype inmutable + broker=Supervisor sync + data=BQL endpoint Fox
+- `niagara/bloque41/honmqtt-netvox-paho-mqttv3` — Netvox LoRa hardcoded + Eclipse Paho 1.2.5 MQTTv3 + AWS IoT SDK + TLS 1.0-1.3 + QoS 0/1/2 + license honLoRaMqtt + Gson
+- `niagara/bloque41/license-baja-jar-string-attrs` — license en baja.jar (NO -rt separado), feature.getb string typo-prone, dual public key, EntitlementApi LRT 3 dirs separados, regenerateNreId post-VM-clone, CLONED_FILE flag, INVALID_LICENSE_TIME_MILLIS_FLOOR anti-clock-rollback
+- `niagara/bloque41/bog-forward-compat-data-loss` — BOnMissingType REFUTADO, BogTypeResolver warning+skip, round-trip cross-version pierde slots silently, NO EMF eUnknownFeature equivalent
+
+**Total actualizado: 109 topic keys** (78 previos Capas 1-12 + 13 Capa 13 + 7 Capa 14 + 11 Capa 15).
 
 ---
 
 ## Qué NO cubre este mental model — gap analysis final consolidado
 
-Catálogo original de 27 gaps en Bloque 20.10. **Tras sesiones 27-29 + 30-32 + 33-39 se cerraron 17 gaps + múltiples correcciones empíricas de formatos binarios + drivers europeos + flota DR**. Los **10 gaps restantes** NO son investigables sin acceso a lab multi-station, NDA vendor, o representan áreas que la arquitectura directamente no implementa. Sesión 33-39 aportó: deep de history (`.hdb` binario propietario) + alarm (`.adb` binario paginado) + UX Workbench (nav/shell/PX) + KNX driver europeo + filesystem/BOrd + provisioning/backup/HA runbooks.
+Catálogo original de 27 gaps en Bloque 20.10. **Tras sesiones 27-29 + 30-32 + 33-39 + 40-41 se cerraron 17 gaps explícitos + 7 TODOs honestos del Bloque 32 + múltiples correcciones empíricas estructurales**. Los **10 gaps restantes** NO son investigables sin acceso a lab multi-station, NDA vendor, o representan áreas que la arquitectura directamente no implementa. Sesión 40-41 aportó: deep operacional Honeywell (Palettes_and_Misc + spyderApps Ver28 + printout Office Interop + lib install-time + install /security/ truststore SEJOFA + db/<hostId>/ alias pattern + Webs.license asimétrica) + cierre 7 TODOs Bloque 32 (Transaction existe NO ACID + BModule final + Sys.loadType bottleneck + fox.sys son 6 channels + honMqttDriver Netvox Paho 1.2.5 + license en baja.jar + BOnMissingType REFUTADO con data loss).
 
 ### ✅ Cerrados en sesiones 27-29 + 30-32 + 33-39
 
@@ -743,6 +831,17 @@ Catálogo original de 27 gaps en Bloque 20.10. **Tras sesiones 27-29 + 30-32 + 3
 - **BFile + BOrd + filesystem spaces + FileServlet real** → Bloque 38 (4 BScopedFileSpace con `!pstation` + `FileServlet` real).
 - **Provisioning + Backup + HA operacional + runbooks DR** → Bloque 39 (49 steps + HA ausente confirmado + runbook failover 7 pasos + cold restore 10 pasos).
 
+### Cerrados/expandidos en sesión 40-41
+
+- **Operational artifacts Honeywell completos** → Bloque 40.1-40.4 (Palettes_and_Misc 13 subdirs paquetes pre-canned Spyder/CIPer/TC/TR/BACnetFFT + spyderApps Ver28 19 categorías 136 archivos + printout Office Interop end-to-end + `/lib/` install kit + Honeywell `/security/` install-time)
+- **TODO honesto Bloque 32: Transaction internals** → Bloque 41.1 (existe `javax.baja.sync.Transaction` sin B prefix, semántica weak `abortCommit` vacío NO ACID confirmado empíricamente)
+- **TODO honesto Bloque 32: BModule lifecycle** → Bloque 41.2 (BModule final SIN hooks, lifecycle real en ModuleManager + BComponent.started/atSteadyState)
+- **TODO honesto Bloque 32: Sys.loadType internals** → Bloque 41.3 (one-liner delegate SchemaManager.load synchronized = bottleneck boot)
+- **TODO honesto Bloque 32: fox.sys constants** → Bloque 41.4 (REFUTADO especulación, son 6 channels named: sys/file/user/broker/data/spy + prototype inmutable)
+- **TODO honesto Bloque 32: license-rt.jar SMA** → Bloque 41.6 (jar separado NO existe, vive en baja.jar, feature.getb string typo-prone, EntitlementApi LRT)
+- **TODO honesto Bloque 32: honMqttDriver internal** → Bloque 41.5 (100% Netvox LoRa + Paho 1.2.5 + AWS IoT SDK + TLS 1.0-1.3 + QoS 0/1/2)
+- **TODO honesto Bloque 32: BOnMissingType** → Bloque 41.7 (REFUTADO clase no existe en 969 jars, BogTypeResolver warning+skip + data loss silencioso round-trip cross-version — hallazgo crítico)
+
 ### ⚠️ Cubiertos parcialmente en 27-29 + 30-32
 
 - **#6 BOG schema evolution intra-N4** → Bloque 32.13 (parcial — `BOnMissingType` inferido, forward compat NO supported confirmado)
@@ -758,19 +857,20 @@ Catálogo original de 27 gaps en Bloque 20.10. **Tras sesiones 27-29 + 30-32 + 3
 - **#25 Session timeout clock skew multi-server** → Requiere cluster testing sin NTP. Documentado como risk en Bloque 30.13.
 - **#26 Lockout window edge case clock backward** → Requiere inject clock-backward physical test.
 
-Para cualquier gap residual, el mental model actual (**39 bloques**) es suficiente para orientarse y atacar con investigación puntual adicional o testing en lab.
+Para cualquier gap residual, el mental model actual (**41 bloques**) es suficiente para orientarse y atacar con investigación puntual adicional o testing en lab.
 
 ---
 
 ## Próximos pasos recomendados
 
-Con los **39 bloques** cerrados, tenés **~99.8%** del framework Niagara N4.14 entendido conceptualmente. La sesión 33-39 consolidó operaciones (history/alarm deep con formatos binarios reales descubiertos), UX completa (nav + Workbench shell + PX widgets + BajaScript BOX), drivers europeos (KNX/IP), filesystem/BOrd operacional, y flota (provisioning + backup + HA runbooks). Lo que queda:
+Con los **41 bloques** cerrados, tenés **~99.9%** del framework Niagara N4.14 entendido conceptualmente. La sesión 40-41 cerró operacional Honeywell completo (paquetes pre-canned + spyderApps + printout flow + install-time security) y los 7 TODOs honestos del Bloque 32 (Transaction NO ACID, BModule final, fox.sys 6 channels, honMqttDriver Netvox, license en baja.jar, BOnMissingType REFUTADO con data loss). Lo que queda:
 
-1. **Práctica**: implementar un módulo end-to-end (driver simple + control logic + UI + proxy points + Analytics algorithm) usando el conocimiento. El Bloque 15.13 (workflow 5 fases) + Bloque 36 (PX lifecycle browser) es la receta.
-2. **Debugging real**: cuando surja un problema de producción, usar el mental model para localizar el bloque relevante + gotchas transversales. Para history/alarm issues partir de Bloques 33-34 (formatos reales `.hdb`/`.adb`); para UX/PX partir de 35-36; para DR partir de 39.
+1. **Práctica**: implementar un módulo end-to-end (driver simple + control logic + UI + proxy points + Analytics algorithm) usando el conocimiento. El Bloque 15.13 (workflow 5 fases) + Bloque 36 (PX lifecycle browser) + Bloque 40.1.9 (workflow Honeywell con paquetes pre-canned) es la receta.
+2. **Debugging real**: cuando surja un problema de producción, usar el mental model para localizar el bloque relevante + gotchas transversales. Para history/alarm issues partir de Bloques 33-34 (formatos reales `.hdb`/`.adb`); para UX/PX partir de 35-36; para DR partir de 39; para deploy real Honeywell partir de Bloque 40; para runtime semantics deep partir de Bloque 41.
 3. **Updates puntuales**: cuando Tridium/Honeywell release N4.15+ o features nuevas, actualizar bloques específicos en vez de re-investigar.
 4. **Contribución inversa**: si identificás gotchas nuevos en uso real, agregarlos a los bloques correspondientes vía commit directo.
 5. **Deep dives en gaps residuales**: de los 10 que quedan, la mayoría requieren lab multi-station o NDA Honeywell. Para #12 (datasources externos) y #9 (remote diagnostics) es investigación puntual cuando surja necesidad operacional real.
+6. **Auditoría operacional**: usar Bloque 40 + Bloque 41 como checklist para audits Honeywell deployments — patrón `db/<hostId>/`, asimetría `skipModuleValidation` Win/Qnx, truststore SEJOFA reemplazo, DSA-1024 obsoleto, `maintenanceExpiration` caducado, SOPs Office Interop printout Linux/Mac fail silente.
 
 ---
 
@@ -819,6 +919,8 @@ Estructura del repo:
 ├── niagara-mental-model-bloque37.md  (KNX/IP driver + proxy↔virtual↔kitControl writeback)
 ├── niagara-mental-model-bloque38.md  (BFile + BOrd resolution + FileServlet real)
 ├── niagara-mental-model-bloque39.md  (Provisioning + Backup + Supervisor replication + HA)
+├── niagara-mental-model-bloque40.md  (Operational Honeywell artifacts: palettes/spyderApps/printout/lib+install-security)
+├── niagara-mental-model-bloque41.md  (Runtime decompile profundo: Transaction/BModule/fox.sys/honMqtt/license/BOnMissingType)
 ├── niagara-mental-model.2026-04-19.md (snapshot sesión httpapi)
 ├── NEXT_SESSION_PROMPT.md, NEXT_SESSION_PROMPT_MODULE_NAVIGATOR.md (plantillas)
 ├── notes/                            (borradores source)
@@ -827,6 +929,6 @@ Estructura del repo:
 
 ---
 
-**Sesión cerrada**: 2026-04-24 — Mental model Niagara N4 consolidado en **39 bloques** con ~99.8% coverage conceptual. **98 topic keys** engram. 17 gaps 20.10 cerrados + correcciones empíricas de formatos binarios (`.hdb`/`.adb` NO SQLite, son binarios propietarios Tridium con MAGIC propios) + drivers europeos (KNX/IP) + flota (provisioning/backup/HA runbooks). 10 gaps residuales documentados honestamente (requieren lab multi-station o NDA Honeywell).
+**Sesión cerrada**: 2026-04-25 — Mental model Niagara N4 consolidado en **41 bloques** con ~99.9% coverage conceptual. **109 topic keys** engram. 17 gaps 20.10 cerrados + 7 TODOs honestos Bloque 32 cerrados empíricamente + correcciones empíricas estructurales (`Transaction` existe sin B prefix NO ACID, `BModule` final SIN hooks, fox.sys son 6 channels named NO constants, license en `baja.jar` NO jar separado, `BOnMissingType` REFUTADO clase no existe — data loss silencioso en round-trip cross-version) + operacional Honeywell completo (Palettes_and_Misc 13 subdirs + spyderApps Ver28 19 categorías 136 archivos + printout Office Interop Word Bookmarks NO MailMerge + truststore SEJOFA reemplazó vanilla + db/<hostId>/ alias pattern + Webs.license asimétrica Win/Qnx threat model). 10 gaps residuales documentados honestamente (requieren lab multi-station o NDA Honeywell).
 
 Si este mental model te ahorró horas de investigación o te evitó un bug de producción, el objetivo está cumplido.
