@@ -648,6 +648,93 @@ Las llamadas BOX asumen que `window.top.niagara` existe. Si la SPA se abre direc
 
 ---
 
+## 50.8 Corrigendum 2026-05-06 (re-audit Tier 5)
+
+**Origen**: re-audit empírico del Bloque 50 con metodología multiline-aware (engram topic_key `niagara-mental-model/bloque50-reaudit-2026-05-06`). El codebase Reflow-Clean-177 drifteó entre 2026-05-04 (fecha original del bloque) y 2026-05-06. Los puntos abajo son CORRECCIONES — el resto del bloque sigue vigente.
+
+### 50.8.1 AP-10 — OUTDATED-FIXED + EXTENDED
+
+**Status original**: "Backup operations via GET (no POST). Riesgo bajo en producción Niagara."
+
+**Status actual** (verificado 2026-05-06):
+- Server: `BaseServlet.java:235-310` — backups POST-only con `CsrfGuard.validate(req)` en línea 236. GET retorna HTTP 405 con header `Allow: POST` (líneas 138-147). Comentario inline cita "harden-backup-csrf, AP-10".
+- Frontend: `plugins/http.js` — shared axios instance con CSRF interceptor (request adjuncta `x-niagara-csrfToken`, response retry-once on 403 csrf body). Usado por `rest.js:180,194,205,217,230` para los 5 endpoints de backup.
+
+**Cross-bloque**: el patrón completo CSRF cross-frame está documentado en Bloque 52.
+
+### 50.8.2 AP-3 — OUTDATED-DRIFTED (ya NO es 100% stubs)
+
+**Status original**: "Stubs en el 100% del API layer".
+
+**Status actual** (recuento empírico 2026-05-06):
+
+| Archivo | Promise.resolve stubs | axios real | % drifted a real |
+|---------|----------------------|------------|------------------|
+| `src/api/rest.js` | 22 | 5 (backup endpoints) | ~18% |
+| `src/api/box.js` | 26 | 0 | 0% |
+| `src/api/bajascript.js` | 6 | 0 | 0% |
+| `src/api/websocket.js` | 11 | 0 | 0% |
+| `src/api/external.js` | 5 | 0 | 0% |
+| **Total** | **70** | **5** | **~7%** |
+
+El API sigue mayoritariamente stub (~93%), pero los 5 endpoints de backup post-AP-10 son producción real. La afirmación original "100%" es ahora **PARTIAL**.
+
+### 50.8.3 AP-2 — CONFIRMED (sigue siendo gap real)
+
+**Verificación 2026-05-06**: 0 declaraciones de `window.injectBaja`, `window.injectConfig`, `window.destroyApp` en `reflow-frontend/src/`. Solo 3 referencias en COMMENTS:
+- `src/plugins/workbench.js:4` — comment de doc
+- `src/plugins/baja.js:3` — comment de doc
+- `src/lib/bajaHeartbeat.js:89` — Phase D wiring esperado
+
+`bajaHeartbeat.js` infraestructura (`start/stop/add`) existe pero "Phase D" todavía no wired. AP-2 sigue siendo bug bloqueante para producción.
+
+### 50.8.4 Hallazgo nuevo — CSRF infrastructure frontend completa
+
+**Fuente**: no documentada en Bloque 50 original (no existía 2026-05-04).
+
+**Componentes** (verificados 2026-05-06):
+- `src/plugins/http.js` — shared axios instance con request interceptor (attach `x-niagara-csrfToken` en non-GET) + response interceptor (refresh + retry-once on 403 csrf body). 51 líneas.
+- `src/lib/csrf.js` — `getToken()` + `refresh()` (no auditado en detalle).
+- Pairs con `CsrfGuard.validate()` server-side en `BaseServlet.java`.
+
+**Cobertura cross-bloque**: el patrón canónico CSRF en SPA-in-iframe está en Bloque 52 (cross-frame token injection). Este Bloque 50 corrigendum solo registra que la infrastructure HOY existe — los detalles arquitecturales viven en 52.
+
+### 50.8.5 Síntesis veredictos por antipattern
+
+| AP | Bloque 50 original | Re-audit 2026-05-06 |
+|----|---------------------|---------------------|
+| AP-1 (socket.io vs Jetty puro) | Riesgo Alto | CONFIRMED + NEEDS_RUNTIME |
+| AP-2 (injectBaja/destroyApp) | Riesgo Crítico | CONFIRMED (sigue) |
+| AP-3 (stubs 100%) | Riesgo Bloqueante | OUTDATED-DRIFTED (~93% stubs, no 100%) |
+| AP-4 (FileResponse:42-43 doble close) | Riesgo Bajo | CONFIRMED |
+| AP-5 (500 → HTML) | Riesgo Medio | CONFIRMED + matiz (1/8 path retorna JSON, mezcla) |
+| AP-6 (sin Cache-Control) | Riesgo Bajo | CONFIRMED |
+| AP-7 (CSP sin validación) | Riesgo Medio | PARTIAL (atenuado por `default-src 'self'`) |
+| AP-8 (unsubscribe no-op) | Riesgo Medio | CONFIRMED |
+| AP-9 (canAcknowledgeAlarms BBoolean) | Riesgo Medio | CONFIRMED |
+| AP-10 (backups GET) | Riesgo Bajo | **OUTDATED-FIXED + EXTENDED** (POST + CSRF cliente+servidor) |
+| AP-11 (alarm: hardcoded) | Riesgo Bajo | CONFIRMED |
+| AP-12 (window.top.niagara.box sin fallback) | Riesgo Alto | CONFIRMED + ejemplo concreto en `OrdEmbed.vue:191` |
+
+### 50.8.6 Lección metodológica del re-audit
+
+**Sub-agents pueden replicar el blind spot del audit original**. El sub-agent inicial reportó "AP-3 CONFIRMED 100% stubs" sin contar las 5 `axios.post()` reales en `rest.js:180,194,205,217,230` — leyó el comentario header del archivo "Stubs returning Promise.resolve()" y se quedó ahí. Verificación independiente del orchestrator con `grep -c "Promise\.resolve"` y `grep -nE "axios\.(get|post)"` detectó la drift.
+
+**Refuerzo de la lección Bloque 51 #11**: incluso un re-audit explícitamente diseñado para detectar bugs missed por el audit anterior puede tener su propio blind spot. La triangulación (orchestrator + sub-agent independientes con scope similar) es defensa contra esto.
+
+### 50.8.7 TODOs honestos del Bloque 50 — status actual
+
+- TODO-1 (socket.io engine.IO adapter en -rt) → NEEDS_RUNTIME, sigue
+- TODO-2 (AlarmRecord shape) → no auditado en re-audit
+- TODO-3 (HistoryData shape) → no auditado en re-audit
+- TODO-4 (`app-readable.js` deobfuscado) → **archivo confirmado existe** (`nmodsreflow-rt/src/rc/js/app-readable.js`, 5.8 MB) — pendiente auditar en bloque futuro
+- TODO-5 (BReflowSyncService) → ya cubierto parcialmente por engram #941 finding #12 (race condition AP-17)
+- TODO-6 (BReflowScheme.resolve performance) → no auditado
+- TODO-7 (auth headers en REST) → resuelto cualitativamente: same-origin + CSRF interceptor
+- TODO-8 (auditar `app-readable.js`) → mismo que TODO-4
+
+---
+
 *Archivo producido: `/home/cristian/niagara-research/niagara-mental-model-bloque50.md`*
 *Fuentes principales auditadas*:
 - `reflow-frontend/package.json`, `vite.config.js`, `index.html`, `src/main.js`, `src/App.vue`
