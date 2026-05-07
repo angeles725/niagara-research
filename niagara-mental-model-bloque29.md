@@ -277,6 +277,10 @@ Strings de error (`csrf.token.missing.error`, `csrf.token.invalid.error`, `csrf.
 
 **Exempt paths**: `/logout` y `/logoutConfirm` NO validan CSRF (strings confirmados en bytecode).
 
+**GOTCHA G29-CSRF-CROSS-FRAME (NUEVO 2026-05-06, ver Bloque 52)**: El token CSRF es legible cross-frame si un iframe es same-origin con el shell ancestor que lo hosta. Niagara inyecta `<input id="csrfToken">` en CADA HTML renderizado, incluyendo el shell que monta iframes de módulos custom. Esto NO es un bug — es feature implícita del modelo (server-side storage + delivery por HTML inline) que permite SPAs custom obtener el token sin endpoint dedicado vía `window.top.document.querySelector('input#csrfToken').value`. El defensor contra abuso es `X-Frame-Options: SAMEORIGIN`/`Content-Security-Policy: frame-ancestors`, NO el modelo CSRF en sí. Si el deploy desactiva XFO o lo cambia a `ALLOW-FROM`, el token queda expuesto a robo vía iframe embedding.
+
+**Empírico 2026-05-06**: `GET /login` con `JSESSIONID` válido retorna **302 redirect, body vacío** — la extracción regex del token desde `/login` (asumida en Bloque 18.5.1 + Bloque 47.4.1) NO funciona post-auth. Esto canonizó el patrón **Plan E (DOM ancestor) primario, Plan A (`/login` fetch) fallback** documentado en Bloque 52.
+
 ### 29.3.4 TridiumSecurityFilter — boundary SecurityManager
 
 `com.tridium.web.filters.TridiumSecurityFilter` — activa contexto de `SecurityManager` (Java 2 policy) para el thread actual antes de invocar el chain. Wraps `ServletResponse` en `TridiumSecurityServletResponse` que intercepta `sendError`/`sendRedirect` para aplicar policy.

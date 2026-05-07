@@ -424,6 +424,8 @@ Implicación: un driver declarado con `AWTPermission` en `type="all"` fallaría 
 value=['"]([^"']*)['"]                      → captura
 ```
 
+**ADICIÓN 2026-05-06 — cross-frame delivery (CONFIRMADO empíricamente, ver Bloque 52)**: Niagara inyecta el mismo `<input id="csrfToken">` en CADA HTML que renderiza, no solo en `/login`. El shell del Workbench que hosta iframes de módulos custom también lo lleva. SPAs embebidas en iframe same-origin pueden leerlo cross-frame vía `window.top.document.querySelector('input#csrfToken').value` — sin endpoint dedicado, sin round-trip HTTP. Patrón canónico (Plan E + Plan A fallback) documentado en Bloque 52. **Riesgo de seguridad implícito**: si el deploy desactiva `X-Frame-Options: SAMEORIGIN` (Bloque 47.2.5), el token queda expuesto a leak vía iframe embedding malicioso same-origin. El defensor primario contra esto es XFO/CSP frame-ancestors, NO el modelo CSRF en sí.
+
 **Re-entrega en request**:
 - Header: `x-niagara-csrfToken: <token>` (method preferred)
 - Query param: `?csrfToken=<token>` (GET logout)
