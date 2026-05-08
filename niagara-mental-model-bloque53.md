@@ -1357,7 +1357,7 @@ implements BIServerSideCallHandler {
 - **NavNodeSerializer custom**: serializer Jackson con `validateTypes` (whitelist). Sin auditar en este pase — probable filter sobre type spec strings.
 - **`BString.make(response.toString())`**: el método retorna BString con el JSON serializado. El cliente (`yi.string` → `yi.json`) parsea. Es un JSON-string-en-BString — overhead doble (Jackson serialize + Niagara wrap + cliente unwrap + JSON.parse). MX60 → BComponent estructurada nativa.
 
-### 53.5.16.7 Tabla síntesis — Reflow Java vs MX60 Java
+### 53.5.16.7 Tabla síntesis — Reflow Java vs MX60 Java (BQL Commands)
 
 | Aspecto | Reflow `BReflowBQLCommands.query` | MX60 `BMx60BqlCommands.query` |
 |---------|-----------------------------------|-------------------------------|
@@ -1374,6 +1374,173 @@ implements BIServerSideCallHandler {
 | Custom NavNodeSerializer | ✅ patrón válido | KEEP |
 | Limit cap server-side | ❌ ausente | NEW → MAX_LIMIT constant |
 | Error responses estructurados | ❌ ausente (`BString.make("[]")`) | NEW → response.error slot |
+
+---
+
+## 53.5.17 Cross-reference Java side — `BReflowUserCommands.java` (validación template)
+
+### 53.5.17.1 Forma exterior (idéntica a BQL Commands)
+
+**Archivo**: `/home/cristian/modules/Prototipos/Reflow-Clean-177/nmodsreflow/nmodsreflow-rt/src/com/niagaramods/nmodsreflow/commands/BReflowUserCommands.java` (62 líneas, 2 métodos públicos).
+
+```java
+@NiagaraType(agent={
+    @AgentOn(types={"nmodsreflow:ReflowService"}, requiredPermissions="r")
+})
+public class BReflowUserCommands
+extends BComponent
+implements BIServerSideCallHandler {
+
+    public BValue getRoles(BComponent comp, BValue arg, Context cx) throws Exception { ... }
+    public BValue getAllRoles(BComponent comp, BValue arg, Context cx) throws Exception { ... }
+}
+```
+
+**Decoración idéntica a BReflowBQLCommands** (sección 53.5.16.1). Confirma que el patrón class-level es uniforme entre todos los Commands del módulo.
+
+### 53.5.17.2 `getRoles()` — patrón self-introspection
+
+```java
+public BValue getRoles(BComponent comp, BValue arg, Context cx) throws Exception {
+    BUser user = cx.getUser();
+    return BString.make(user.getRoles());
+}
+```
+
+**Análisis**:
+- Línea 51: `cx.getUser()` — pregunta al Context quién es el usuario llamador.
+- Línea 52: `user.getRoles()` — retorna roles **del propio usuario que invoca**, NO de un usuario arbitrario.
+- **No info disclosure cross-user posible** — el Context bound al user actual NO expone roles de otros.
+- Es el método que invoca `injectBaja` (sección 53.3 línea 121429) para hidratar `Vue.prototype.$bajaUserRoles`.
+
+**Patrón**: **self-introspection** — métodos que retornan info del caller sobre sí mismo. Permission level `r` (class-level) es suficiente porque no expone nada que el user no debería conocer de su propia sesión.
+
+### 53.5.17.3 `getAllRoles()` — patrón elevation
+
+Versión **POST-FIX** (commit `701ccfc` aplicado en sesión 2026-05-07, TODO 48-5 RESUELTO):
+
+```java
+public BValue getAllRoles(BComponent comp, BValue arg, Context cx) throws Exception {
+    // ── ELEVATION CHECK ──
+    if (!cx.getUser().getPermissionsFor(comp).hasOperatorWrite()) {
+        throw new SecurityException("getAllRoles requires write permission on ReflowService");
+    }
+
+    // ── EJECUCIÓN ──
+    BRoleService service = (BRoleService) Sys.getService(BRoleService.TYPE);
+    return BString.make(String.join(",", service.getEnabledRoleIds()));
+}
+```
+
+**Análisis del fix**:
+- Línea 56: body check explícito `cx.getUser().getPermissionsFor(comp).hasOperatorWrite()`.
+- Línea 57: `throw new SecurityException` con mensaje descriptivo (FAIL HARD, no return null/empty).
+- Línea 59: `Sys.getService(BRoleService.TYPE)` — accede al singleton service Niagara `BRoleService` station-wide.
+- Línea 60: `service.getEnabledRoleIds()` retorna lista de role IDs habilitados en la station completa.
+- Response: CSV via `String.join(",", ...)` envuelto en `BString.make(...)`.
+
+**Patrón**: **elevation** — el método requiere MÁS permission que el class-level (`r`). Body check + `throw SecurityException` enforces la regla. El fix usa ESTE patrón porque el método retorna info sensible (lista completa de roles configurables → modelo de permisos completo de la station) que SOLO admins (con write) deberían ver.
+
+### 53.5.17.4 Asimetría class-level vs method-level permissions
+
+| Permission gate | Aplicación |
+|-----------------|------------|
+| `@AgentOn(requiredPermissions="r")` (class) | **Mínimo** para invocar CUALQUIER método de la clase. Niagara enforce antes del invocation. |
+| `cx.getUser().getPermissionsFor(comp).hasOperatorWrite()` (body) | **Elevation** específica del método. Programador enforce explícitamente. |
+
+**Regla MX60 (nueva)**:
+
+> Si un método retorna info que el class-level permission no debería ver, agregá body check + `throw SecurityException` ANTES de cualquier acceso a recursos.
+
+Patrón canónico:
+
+```java
+public BValue privilegedMethod(BComponent comp, BValue arg, Context cx) throws Exception {
+    if (!cx.getUser().getPermissionsFor(comp).hasOperatorWrite()) {  // o hasOperatorInvoke según semantics
+        throw new SecurityException("<method> requires <permission> on <component>");
+    }
+    // ... resto de la lógica
+}
+```
+
+### 53.5.17.5 Variaciones legítimas del template MX60
+
+El template original (sección 53.5.16.5) tiene 8 reglas. Validándolo contra `BReflowUserCommands.java`:
+
+| # | Regla template | Aplica a `getRoles`? | Aplica a `getAllRoles`? | Tipo |
+|---|----------------|----------------------|--------------------------|------|
+| 1 | `cx` propagation | ✅ `cx.getUser()` | ✅ `cx.getUser()` + `getPermissionsFor` | OBLIGATORIO |
+| 2 | Strict arg typing | ⚪ N/A — método sin params (arg unused legítimo) | ⚪ N/A — sin params | **Variación legítima** |
+| 3 | MAX_LIMIT cap | ⚪ N/A — sin paginación | ⚪ N/A — sin paginación | **Variación legítima** |
+| 4 | BqlBuilder con escape | ⚪ N/A — sin BQL | ⚪ N/A — sin BQL | **Variación legítima** |
+| 5 | Cursor offset/limit | ⚪ N/A — sin cursor | ⚪ N/A — sin cursor | **Variación legítima** |
+| 6 | PageCount math | ⚪ N/A | ⚪ N/A | **Variación legítima** |
+| 7 | Response BComponent estructurada | ⚠️ retorna `BString.make(csv)` | ⚠️ retorna `BString.make(csv)` | **Variación legítima** para responses simples |
+| 8 | validateTypes whitelist | ⚪ N/A | ⚪ N/A | **Variación legítima** |
+
+**Conclusión**: 5 de 8 reglas son N/A para Commands sin queries/paginación. El template debe tener una **versión simplificada** para Commands "small" (self-introspection, scalar/list reads, simple writes).
+
+### 53.5.17.6 Reglas NUEVAS del template post-User audit
+
+**Regla 9 — Elevation pattern explícito** (descubierta en `getAllRoles`):
+
+> Para métodos que requieren permission level MAYOR que el class-level `@AgentOn`, agregá body check con `cx.getUser().getPermissionsFor(comp).has<Operator>(Read|Write|Invoke)` + `throw new SecurityException(<mensaje descriptivo>)` antes de cualquier acceso a recursos.
+
+**Regla 10 — Response simple aceptable**:
+
+> Para métodos que retornan tipos primitivos o listas de strings (CSV), `BString.make(value)` o `BString.make(String.join(",", list))` es aceptable. La estructura BComponent (regla 7) es para responses con **múltiples campos heterogéneos**, no para todos los métodos.
+
+### 53.5.17.7 Acceso a station services Niagara — pattern `Sys.getService`
+
+```java
+BRoleService service = (BRoleService) Sys.getService(BRoleService.TYPE);
+```
+
+**Pattern Niagara estándar** para acceder singleton services station-wide. Otros services accesibles por el mismo pattern:
+- `BUserService` — gestión de users
+- `BCategoryService` — RBAC categories (Bloque 48)
+- `BAlarmService` — alarm console
+- `BHistoryService` — history database
+- `BJobService` — long-running jobs
+
+**MX60 implication**: pattern obligatorio para Commands que necesitan recursos station-wide (no solo del agent target). NO inventar acceso alternativo, NO cachear referencias a services (los services pueden cambiar de instancia en runtime).
+
+### 53.5.17.8 Tabla síntesis — User Commands vs template MX60
+
+| Aspecto | `BReflowUserCommands.getRoles` | `BReflowUserCommands.getAllRoles` (post-fix) | MX60 standard |
+|---------|-------------------------------|----------------------------------------------|---------------|
+| `@AgentOn` decoration | ✅ heredada | ✅ heredada | KEEP |
+| `BIServerSideCallHandler` | ✅ | ✅ | KEEP |
+| `cx` propagation | ✅ | ✅ | KEEP — disciplina obligatoria |
+| Self-introspection (no info disclosure) | ✅ | N/A | KEEP pattern |
+| Body permission elevation | N/A (no needed) | ✅ post-fix | **NEW Regla 9** |
+| Response BString CSV | ✅ aceptable | ✅ aceptable | **NEW Regla 10** (variación válida) |
+| `Sys.getService` para station-wide resources | N/A | ✅ `BRoleService` | KEEP pattern |
+| Audit logging | ❌ ausente | ❌ ausente | **NEW** (MX60 — elevation methods deberían loguear quién accede) |
+
+### 53.5.17.9 Lo que falta — audit logging (descubrimiento)
+
+**Observation**: `getAllRoles` exitosamente protege contra info disclosure por permission, pero **NO loguea** quién invoca el método. Si un admin con write permission llama `getAllRoles` 10,000 veces (enumeration attempt automation), nada se registra.
+
+**MX60 implication**: para Commands con elevation (regla 9), agregar audit logging:
+
+```java
+public BValue privilegedMethod(BComponent comp, BValue arg, Context cx) throws Exception {
+    if (!cx.getUser().getPermissionsFor(comp).hasOperatorWrite()) {
+        // Optionally log denied attempts too
+        throw new SecurityException("...");
+    }
+
+    // Log success
+    log.info("{} invoked privilegedMethod from {}",
+             cx.getUser().getName(),
+             cx.getRequestSource());  // si existe esta API
+
+    // ... ejecutar
+}
+```
+
+Reflow no lo hace en `getAllRoles` — gap identificado, NO antipattern formal pero hueco a llenar en MX60.
 
 ---
 
@@ -1635,15 +1802,21 @@ Curiosamente este `$build` se inyecta SOLO en `injectConfig` (modo Config view),
 | 49 | `BString.make("[]")` en error case | **IMPROVE** | Cliente no distingue "0 results" de "error". MX60 → response.error slot con código + message. |
 | 50 | `MAX_LIMIT` cap server-side ausente | **NEW** | Patrón nuevo en MX60: constante por command, defense-in-depth contra cliente que pide 100K rows. |
 | 51 | `BqlBuilder` server-side con escape automático | **NEW** | Patrón nuevo en MX60: builder que produce ords seguros, NUNCA `BOrd.make(userString)` directamente. Cubre AP-21 + AP-26 + sanitization general. |
+| 52 | Elevation pattern: body check `getPermissionsFor(comp).has<Op>` + `throw SecurityException` para métodos que requieren más permission que class-level | **KEEP** + **REGLA 9 obligatoria** | Validado en `BReflowUserCommands.getAllRoles` post-fix (commit 701ccfc). MX60 → patrón canónico para cualquier método con info sensible o write. FAIL HARD, no return null. |
+| 53 | Self-introspection methods retornan info DEL CALLER (`cx.getUser().getRoles()`) | **KEEP** | Patrón seguro by-design — el Context bound al user actual NO expone otros. `getRoles` es el caso. MX60 → métodos `getMy*` siguen este pattern. |
+| 54 | Response `BString.make(csv)` o `BString.make(scalar)` para tipos simples | **KEEP** + **REGLA 10** | Validación legítima de la regla 7 (BComponent estructurada): para responses con UN solo campo (string/list/scalar), BString es aceptable. Estructura solo para responses heterogéneas. |
+| 55 | `Sys.getService(SERVICE.TYPE)` para station-wide singletons | **KEEP** | Pattern Niagara estándar (BRoleService, BUserService, BCategoryService, BAlarmService, BHistoryService, BJobService). MX60 → uso obligatorio, NO cachear refs (instances pueden cambiar). |
+| 56 | Audit logging en métodos con elevation | ❌ ausente Reflow | **NEW** | Reflow NO loguea invocaciones a `getAllRoles` ni quién las hace. MX60 → logging obligatorio para elevation methods (defense-in-depth contra automation enumeration). |
+| 57 | Variación template para Commands sin paginación/query | — | **NEW (template simplificado)** | Reglas 3-6 (MAX_LIMIT, BqlBuilder, cursor, pageCount) son N/A para métodos self-introspection o admin-list. MX60 template debe tener versión "simple Commands" (3 reglas: cx + elevation si aplica + response simple). |
 
-### Resumen agregado (actualizado post-Java audit)
+### Resumen agregado (actualizado post-Java audit + User Commands validation)
 
-- **22 KEEP** (patrones a heredar literal): Vue prototype injection, serverSideCall, lease, observable service, singleton subscriber + wrapper, ref counting, debounced unsubscribe (250ms subs + 100ms resolve), race handling, mixin lifecycle (migrado a composable), HIDDEN flag filter, in-place updates, slot-aware re-parse, BatchResolve, `$niagara.ord` URL helpers, `$niagara` namespace pattern, `yi` RPC wrapper trinity, typeSpec naming convention, `valueFromObject` BComponent params, BQL via ord URL, **`@AgentOn` decoration**, **`BIServerSideCallHandler` interface**, **`cx` propagation discipline**.
-- **22 IMPROVE** (heredar el qué, mejorar el cómo): UUID, injectBaja descomposición, sequencing sin setTimeout hack, bfcache real, destroyApp safety net, hooks → composables explícitos, ords arg explícito, cross-frame router con marker propio, build info consistente, `resolve` siempre batched, `_changed` indexed lookup, lease como param explícito, BQL builder con escape (cliente), `yi` errors propagated, `sa.query` bugs eliminados, `wrappedValue` no-lossy serialization, **strict arg typing (vs AP-26)**, **cursor offset/limit nativo (vs AP-24)**, **pageCount math correcto (vs AP-25)**, **response BComponent estructurada**, **validateTypes whitelist server**, **error response estructurado**.
-- **2 NEW** (MX60-only patterns no presentes en Reflow): **`MAX_LIMIT` server-side cap**, **`BqlBuilder` con escape**.
+- **26 KEEP** (patrones a heredar literal): Vue prototype injection, serverSideCall, lease, observable service, singleton subscriber + wrapper, ref counting, debounced unsubscribe (250ms subs + 100ms resolve), race handling, mixin lifecycle (migrado a composable), HIDDEN flag filter, in-place updates, slot-aware re-parse, BatchResolve, `$niagara.ord` URL helpers, `$niagara` namespace pattern, `yi` RPC wrapper trinity, typeSpec naming convention, `valueFromObject` BComponent params, BQL via ord URL, `@AgentOn` decoration, `BIServerSideCallHandler` interface, `cx` propagation discipline, **elevation pattern** (regla 9), **self-introspection pattern**, **response simple aceptable** (regla 10), **`Sys.getService` pattern**.
+- **22 IMPROVE** (heredar el qué, mejorar el cómo): UUID, injectBaja descomposición, sequencing sin setTimeout hack, bfcache real, destroyApp safety net, hooks → composables explícitos, ords arg explícito, cross-frame router con marker propio, build info consistente, `resolve` siempre batched, `_changed` indexed lookup, lease como param explícito, BQL builder con escape (cliente), `yi` errors propagated, `sa.query` bugs eliminados, `wrappedValue` no-lossy serialization, strict arg typing (vs AP-26), cursor offset/limit nativo (vs AP-24), pageCount math correcto (vs AP-25), response BComponent estructurada, validateTypes whitelist server, error response estructurado.
+- **4 NEW** (MX60-only patterns no presentes en Reflow): `MAX_LIMIT` server-side cap, `BqlBuilder` con escape, **audit logging para elevation methods**, **template Commands simplificado** (variación 3-reglas para self-introspection/scalar reads).
 - **5 SKIP** (no replicar): VueDevTools hack, regenerator-runtime, iView, bajaHeartbeat custom, "Phase" nomenclature.
 
-**51 entries totales** — backlog de diseño concreto y accionable para MX60 desde día 1, ahora con cobertura **client + server + Java decorations**.
+**57 entries totales** — backlog de diseño concreto y accionable para MX60 desde día 1, con cobertura **client + server + Java decorations + permission patterns + variaciones legítimas del template**.
 
 ---
 
@@ -1688,6 +1861,7 @@ Este bloque consolida **dos lecciones duras** del audit anterior y las extiende:
 - ✅ BQL injection en search component — vulnerabilidad MEDIUM-HIGH documentada en sección 53.5.13. AP-21 nuevo.
 - ✅ Antipatterns nuevos AP-21, AP-22, AP-23 en sección 53.5.14.
 - ✅ Cross-reference Java side `BReflowBQLCommands.query()` — auditado en sección 53.5.16. **Confirma RBAC nativo Niagara aplica** vía `cx` propagation, **AP-21 refinado a LOW-MEDIUM** (UX bypass, no info disclosure). 3 nuevos antipatterns server-side AP-24/25/26 + template MX60 Java Commands con 8 reglas obligatorias.
+- ✅ Cross-reference Java side `BReflowUserCommands` (`getRoles` + `getAllRoles` post-fix TODO 48-5) — auditado en sección 53.5.17. **Validación parcial del template**: 5 de 8 reglas son N/A para Commands sin queries/paginación. Descubrimiento de **Regla 9 (elevation pattern)** y **Regla 10 (response simple aceptable)**. Self-introspection vs elevation patterns documentados. `Sys.getService` pattern. Gap de audit logging identificado.
 
 ### Hilos abiertos para sesiones futuras
 
