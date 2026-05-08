@@ -660,7 +660,7 @@ var aQ = {
     encode: niagaraEncode,    // helpers de encoding
     decode: niagaraDecode,
     uncamel: uncamel,
-    ord: pe,                  // ver 53.5.10
+    ord: pe,                  // ver 53.5.15
     alarm: Na,                // alarm helpers
     bql: sa,                  // BQL helpers
     history: Sa,              // history helpers
@@ -683,7 +683,388 @@ Este `aQ` se inyecta como `Vue.prototype.$niagara` (en algún lugar no auditado 
 
 **14 sub-namespaces** — esto es una helper library propietaria de Reflow montada sobre BajaScript. **Cada uno** es candidato a auditar para MX60: muchos de los patrones probablemente son trasladables.
 
-### 53.5.10 `$niagara.ord` (`pe`) — ord manipulation helpers (líneas 3705-...)
+## 53.5.11 `$niagara.bql` (`sa`) — BQL query helpers (líneas 11414-11510)
+
+**Hallazgo metodológico previo**: el grep inicial reportó **0 callsites de `$niagara.bql`** (con escape correcto: 1 callsite). Pero `sa` (la implementación interna) se invoca:
+- `sa.query`: 1 callsite directo (`la = schedule.list`)
+- `sa.remoteQuery`: 0 callsites directos (pero invocado vía `$niagara.bql.remoteQuery` 1 vez en search component)
+- `sa.resolveQuery`: 0 callsites externos (usado solo internamente por `sa.query`)
+
+**Total: 2 callsites en TODO el bundle de 123,301 líneas.** El namespace existe pero está casi sin uso. La mayoría de queries Niagara en Reflow van por **otro path** que descubrí inmediatamente después y documento en sección 53.5.11.
+
+#### API completa de `sa`
+
+```js
+sa = {
+    get $baja() { return Vue.prototype.$baja; },
+
+    // Path 1: WebSocket-style via yi.spec.BQL (sección 53.5.11)
+    remoteQuery: function(opts = {}) {
+        var params = Object.assign({
+            validateTypes: null,
+            limit: 25,
+            page: 1
+        }, opts);
+        return params.query
+            ? yi.json(yi.spec.BQL, "query", params)  // ← serverSideCall a ReflowBQLCommands
+            : [];
+    },
+
+    // Path 2: Ord-based BQL canonical
+    query: async function(bqlOrd, resolveFlag = true, pageSize = 25) {
+        var totalCount = 0;
+
+        // Step 1: COUNT(*) probe via regex replace
+        var countQuery = bqlOrd.replace(/(.*select )(.*)( from .*)/, "$1COUNT(*)$3");
+        try {
+            var countComp = await this.$baja.Ord.make(countQuery).get();
+            await countComp.cursor({
+                each: function() {
+                    totalCount = this.get().get(niagaraEncode("COUNT(toString)"));
+                }
+            });
+        } catch (err) {
+            console.log("BQL Error", err);  // ← swallow
+        }
+
+        // Step 2: paginated cursor over result set
+        var rows = [];
+        if (totalCount != null && totalCount > 0) {
+            var dataComp = await this.$baja.Ord.make(bqlOrd).get();
+            var offset = 0;
+            while (offset <= totalCount) {  // ← off-by-one (<=)
+                await dataComp.cursor({
+                    offset: offset,
+                    limit: pageSize,
+                    each: function() { rows.push(this.get()); }
+                });
+                offset += pageSize;
+            }
+        }
+
+        // Step 3: optional resolve to leased reactive components
+        if (!resolveFlag) return rows;
+        return await this.resolveQuery(rows);
+    },
+
+    // Helper: convert BQL rows to leased reactive components
+    resolveQuery: async function(rows) {
+        var ords = rows.map(row => "station:|" + row.get("slotPath"));
+        var batch = new this.$baja.BatchResolve(ords);
+        var components = [];
+        await batch.resolve({
+            lease: true,  // ← TODOS los rows leased
+            each: function() {
+                components.push(Vue.observable(this));  // ← reactive wrap
+            }
+        });
+        return components;
+    }
+};
+```
+
+#### Bugs y code smells en `sa.query`
+
+1. **Regex COUNT(*) probe FRÁGIL**: `/(.*select )(.*)( from .*)/` greedy + case-sensitive + single-line.
+   - Falla con subqueries (`(select ...) from`).
+   - Falla con `SELECT` mayúsculas.
+   - Falla con BQL multi-línea.
+   - Si falla, `totalCount` queda `0` por silent error → no se itera ningún row.
+
+2. **Pagination loop off-by-one**: `while (offset <= totalCount)` con `<=` genera UNA iteración extra cuando `totalCount % pageSize === 0`. La cursor podría retornar 0 rows (OK) o duplicar rows (depende de implementación BajaScript).
+
+3. **No early exit**: si la cursor devuelve menos rows que `pageSize`, igual avanza `offset += pageSize` y reintenta. Wasted round-trips.
+
+4. **Silent error swallow**: `console.log("BQL Error", err)` — no throw, no callback de error, no return code. La UI no sabe que falló — interpreta "0 results" como "no hay" en lugar de "error de query".
+
+5. **`resolveQuery` lease ALL rows**: para una BQL que devuelve 10,000 rows, eso es 10K leases simultáneos. Memory + server load issue.
+
+#### Patrón canonical confirmed: BQL via ord URL
+
+```
+station:|slot:/|bql:select * from baja:Component where name = 'pump1'
+```
+
+Esto es **BajaScript canónico**, no invención de Reflow. La query es **parte del ord**. `Ord.make(ord).get()` resuelve el query string incluido. **MX60 hereda este pattern obligatoriamente** — N4 no soporta otro modelo desde el cliente para queries arbitrarias.
+
+---
+
+## 53.5.12 `yi` — RPC wrapper sobre `serverSideCall` (líneas 5089-5180+)
+
+### 53.5.12.1 Lo que parecía WebSocket es en realidad serverSideCall
+
+Hallazgo principal del audit BQL: el namespace local `yi` (que veía en `yi.json(yi.spec.BQL, "query", ...)`) **NO es un WebSocket RPC layer**. Es un **wrapper alrededor de `$component.serverSideCall(...)`** del singleton ReflowService.
+
+#### Definición de `yi`
+
+```js
+yi = {
+    get $component() {
+        return Vue.prototype.$component;  // ReflowService observable singleton
+    },
+
+    spec: {
+        NAV:     "nmodsreflow:ReflowNavCommands",
+        FILE:    "nmodsreflow:ReflowFileCommands",
+        CSV:     "nmodsreflow:ReflowCSVCommands",
+        HISTORY: "nmodsreflow:ReflowHistoryCommands",
+        ALARM:   "nmodsreflow:ReflowAlarmCommands",
+        USER:    "nmodsreflow:ReflowUserCommands",
+        BQL:     "nmodsreflow:ReflowBQLCommands"
+    },
+
+    valueFromObject: function(obj) {
+        // Convierte JS object → BComponent dinámico con un slot por key
+        var component = new this.$baja.Component;
+        Object.keys(obj).forEach(key => {
+            if (obj[key] != null) {
+                component.add({
+                    slot: key,
+                    value: this.wrappedValue(obj[key])
+                });
+            }
+        });
+        return component;
+    },
+
+    wrappedValue: function(t) {
+        switch (typeof t) {
+            case "string":
+            case "number":
+            case "boolean":
+                return t;
+            case "object":
+                if (Array.isArray(t)) return t.join(",");  // ← arrays → CSV string
+                if (t === null) return null;
+                return this.valueFromObject(t);  // recursive
+            default:
+                return null;  // ← swallow default
+        }
+    },
+
+    call: async function(typeSpec, methodName, value=null) {
+        try {
+            var wrapped = this.wrappedValue(value);
+            var result = await this.$component.serverSideCall({
+                typeSpec: typeSpec,
+                methodName: methodName,
+                value: wrapped || undefined
+            });
+            return result;
+        } catch (err) {
+            console.error("RPC Error: Server Side Call", typeSpec, methodName, value, err);
+            return null;  // ← swallow → null
+        }
+    },
+
+    string: async function(typeSpec, methodName, value=null) {
+        var raw = await this.call(typeSpec, methodName, value);
+        return String(raw);
+    },
+
+    json: async function(typeSpec, methodName, value=null) {
+        var str = await this.string(typeSpec, methodName, value);
+        // ... JSON.parse(str) — read truncated, asumido por el naming
+    }
+};
+```
+
+### 53.5.12.2 Mapping a clases Java backend
+
+Cada `yi.spec.X` apunta a una clase Java `B<X>Commands` en el módulo `nmodsreflow-rt`. Las 7 typeSpecs:
+
+| Spec | Java class (probable) | Methods invocados (vistos en grep) |
+|------|----------------------|-------------------------------------|
+| NAV | `BReflowNavCommands` | `getNavChildren` |
+| FILE | `BReflowFileCommands` | `listFiles` |
+| CSV | `BReflowCSVCommands` | (no vistos en este audit) |
+| HISTORY | `BReflowHistoryCommands` | `getDeviceTree`, `getDevices`, `makeHistories`, `getData` |
+| ALARM | `BReflowAlarmCommands` | `getClasses`, `querySources`, `getUuidsForSources`, `canAcknowledgeAlarms` (Bloque 48) |
+| USER | `BReflowUserCommands` | `getRoles` (Bloque 48 + injectBaja sección 53.3), `getAllRoles` (TODO 48-5) |
+| BQL | `BReflowBQLCommands` | `query` |
+
+**Conexión cruzada con bloques previos**:
+- Bloque 48 (`canAcknowledgeAlarms` BBoolean) → es invocado vía `yi.call(yi.spec.ALARM, "canAcknowledgeAlarms")`.
+- Bloque 48 (`getRoles` ReflowUserCommands en injectBaja sección 53.3) → mismo pattern.
+- TODO 48-5 (`getAllRoles` info disclosure RESUELTO) → vive aquí.
+
+### 53.5.12.3 Patrón completo confirmed: serverSideCall + BComponent params
+
+```
+yi.json(yi.spec.BQL, "query", { query: "select * from ...", limit: 50 })
+   ↓ (yi.json → yi.string → yi.call)
+yi.wrappedValue({...}) → new BComponent + slots {query, limit}
+   ↓
+$component.serverSideCall({typeSpec: "nmodsreflow:ReflowBQLCommands", methodName: "query", value: BComponent})
+   ↓ (BajaScript proxy → server)
+BReflowBQLCommands.query(BComponent) → ejecuta BQL real → retorna BComponent o BString
+   ↓ (server → cliente)
+yi.string() → String(result)
+yi.json() → JSON.parse(string)
+```
+
+**CONFIRMA empíricamente**: la HTTP de Reflow al backend es **TODA via `serverSideCall`** (BajaScript proxy). No hay REST endpoints custom desde el SPA — todo va por:
+1. `Ord.make(...).get()` → resuelve componentes (Bloque 53.3)
+2. `serverSideCall(...)` → invoca métodos sobre clases Java backend (Bloque 53.5.11)
+3. BQL via ord URL (`station:|slot:/|bql:select ...`) → para queries arbitrarias
+
+**NO HAY** REST/fetch/axios/XHR. Todo BajaScript canónico.
+
+### 53.5.12.4 Code smells en `yi`
+
+1. **Silent error → null** (`yi.call` catch): UI no detecta fallos de RPC. Si server crashea, retorna null que la UI puede confundir con "no data".
+
+2. **`wrappedValue` array → CSV string**: pierde información para arrays de objetos complejos (cae al `default: return null`). Si quisieras pasar `[{a:1}, {b:2}]` falla silenciosamente.
+
+3. **`wrappedValue` recursive object**: cada nivel del object se hace BComponent con slots. Para objetos profundos = BComponents anidados = overhead. No hay límite de recursión = stack overflow potencial.
+
+4. **`null` value handling inconsistente**: `if (obj[key] != null)` skip nulls, pero el caller de `yi.call` puede pasar `value=null` y el wrapping produce `value: undefined` en serverSideCall. Asimetría.
+
+5. **`yi.string` siempre `String(raw)`**: si raw es `null` (caso error), `String(null) === "null"`. Después `yi.json` haría `JSON.parse("null") === null`. Funciona accidentalmente, pero es frágil.
+
+---
+
+## 53.5.13 BQL injection vulnerability — search component (línea 39440-39466)
+
+### 53.5.13.1 Donde vive el bug
+
+Hay un componente Vue (probablemente "Search" / "Component finder") que arma una BQL query dinámicamente con input del usuario y la ejecuta vía `$niagara.bql.remoteQuery`. Schema simplificado:
+
+```js
+async function search(opts) {
+    // opts.text/n/name → name search
+    // opts.s/slot/path/slotpath → slotPath search
+    // opts.p/parent → parent search
+    // opts.d/display → displayName search
+    // opts.only/o/type → type filter
+
+    // Encoder helper (parcial — se aplica solo a name/slot/parent)
+    var v = (t) => t.split("/")
+        .map(s => encode(encode(decode(s))).toLowerCase())
+        .join("/");
+
+    var clauses = ["1=1"];
+
+    // Name → encoded
+    var names = (opts.text || []).concat(opts.n || []).concat(opts.name || []);
+    if (names.length > 0) {
+        clauses.push(names.map(v).map(t =>
+            "name.toLowerCase LIKE '%" + t + "%'"
+        ).join(" OR "));
+    }
+
+    // Slot → encoded
+    var slots = (opts.s || []).concat(opts.slot || []).concat(opts.path || []).concat(opts.slotpath || []);
+    if (slots.length > 0) {
+        clauses.push(slots.map(v).map(t =>
+            "slotPath.toString.toLowerCase LIKE '%" + t + "%'"
+        ).join(" OR "));
+    }
+
+    // Parent → encoded
+    var parents = (opts.p || []).concat(opts.parent || []);
+    if (parents.length > 0) {
+        clauses.push(parents.map(v).map(t =>
+            "parent.name.toLowerCase LIKE '%" + t + "%'"
+        ).join(" OR "));
+    }
+
+    // ⚠️ DisplayName → SOLO toLowerCase, SIN encoder v
+    var displays = (opts.d || []).concat(opts.display || []);
+    if (displays.length > 0) {
+        clauses.push(displays.map(t =>
+            "displayName.toLowerCase LIKE '%" + t.toLowerCase() + "%'"
+        ).join(" OR "));
+    }
+
+    // Type filter — SIN encoder
+    var types = "baja:Component";
+    if (opts.types && opts.types.length > 0) {
+        types = opts.types.join(",");
+    }
+
+    var where = "(" + clauses.join(") AND (") + ")";
+    var bqlOrd = "station:|slot:/|bql:select * from " + types + " where " + where;
+
+    return await $niagara.bql.remoteQuery({
+        query: bqlOrd,
+        validateTypes: this.internalTypeFilter,
+        limit: opts.limit || 50,
+        page: opts.page || 1
+    });
+}
+```
+
+### 53.5.13.2 La vulnerabilidad concreta
+
+**Branch displayName (`opts.d`/`opts.display`)** SOLO aplica `.toLowerCase()`. Las otras tres (name/slot/parent) sí pasan por el encoder `v` que hace `encode(encode(decode(t)))` — defensa indirecta contra inyección porque el carácter `'` se encodea a `%27`.
+
+**Test mental**: si un usuario ingresa el siguiente displayName en el search box:
+
+```
+') OR 1=1 OR ('1
+```
+
+→ `.toLowerCase()` → `') or 1=1 or ('1`
+→ Concatenado en la cláusula: `displayName.toLowerCase LIKE '%') or 1=1 or ('1%'`
+→ La `clauses.join(") AND (")` envuelve en paréntesis adicionales.
+→ BQL final contains: `... AND (displayName.toLowerCase LIKE '%') or 1=1 or ('1%') AND ...`
+
+**Resultado**: la cláusula se rompe, `or 1=1` matchea TODO, retorna todos los componentes — incluyendo aquellos que el usuario no debería ver (gating sería por ACLs server-side, pero la query hace bypass de filtros UX).
+
+### 53.5.13.3 Severidad y blast radius
+
+**Severidad**: **MEDIUM-HIGH** dependiendo de:
+- ¿El RBAC server-side filtra los resultados de `BReflowBQLCommands.query()`? Si SÍ → BQL injection es UX bypass (puede ver Components que no debería pero no escala a writes). Si NO → information disclosure de toda la station.
+- ¿Hay path desde input externo no autenticado al displayName param? Si MX60 expone el search a usuarios authenticated only, blast radius limitado.
+
+**Blast radius worst-case**: enumeración de toda la station con BQL `select * from baja:Component where displayName.toLowerCase LIKE '%') or 1=1 or ('1%'`. Información sensible: nombres de equipos, slot paths, jerarquía completa de organización física.
+
+### 53.5.13.4 Por qué el bug existe
+
+**Asimetría descuidada**: el encoder `v` parece haber sido pensado para paths Niagara (porque hace split por `/`). Por eso se aplica a name, slot, parent — todos pueden ser paths. Pero displayName **NO ES un path** — es un string libre. El programador quiso preservar el string crudo para que el LIKE haga match natural, y se olvidó de escapar.
+
+### 53.5.13.5 Cómo lo hace MX60
+
+**MX60 implication directa**: implementar un **BQL builder con escape obligatorio**:
+
+```js
+// Pseudo-API objetivo
+const bql = new BqlBuilder()
+    .from("baja:Component")
+    .where("displayName.toLowerCase", "LIKE", `%${displayName}%`)  // builder escapa internamente
+    .orderBy("name")
+    .limit(50)
+    .build();
+
+await niagara.bql.query(bql);  // builder produce ord seguro
+```
+
+Reglas:
+1. **NUNCA concatenar strings de usuario en BQL crudo.** El builder escapa `'` → `''` (BQL standard) automáticamente.
+2. **Validar typespec** en una whitelist conocida — no aceptar `opts.types` arbitrario.
+3. **Limit obligatorio** server-side (defense in depth) — no confiar solo en `opts.limit` cliente.
+4. **Server-side audit log** de queries grandes / paginadas profundas para detectar enumeration.
+
+---
+
+## 53.5.14 Asignación de antipatterns nuevos
+
+Tres antipatterns identificados en este audit, propuestos como continuación de la numeración Bloque 51 AP-13..AP-20:
+
+| AP # | Patrón | Severidad | Sección |
+|------|--------|-----------|---------|
+| **AP-21** | BQL injection en displayName branch del search component | **MEDIUM-HIGH** | 53.5.13 |
+| **AP-22** | `sa.query` regex COUNT(*) probe + pagination off-by-one + silent error swallow | **MEDIUM** | 53.5.11 |
+| **AP-23** | `yi.call` silent error → `null` returns (UI no detecta fallos RPC) | **LOW-MEDIUM** | 53.5.12.4 |
+
+Estos antipatterns son **MX60 backlog "no heredar"** — están en el lado código fuente Reflow legacy y MX60 debe diseñar el equivalente sin replicarlos.
+
+---
+
+## 53.5.15 `$niagara.ord` (`pe`) — ord manipulation helpers (líneas 3705-...)
+
+> **Nota orden**: este sub-namespace fue auditado ANTES que `bql` (53.5.11), `yi` (53.5.12), y la BQL injection (53.5.13). Se mantiene aquí para preservar el flujo conceptual del audit final — `pe.clean()` lo usa el helper `v` del search component (sección 53.5.13.1) para encoding defensivo de paths.
 
 Métodos auditados:
 
@@ -945,14 +1326,22 @@ Curiosamente este `$build` se inyecta SOLO en `injectConfig` (modo Config view),
 | 30 | `$niagara` namespace 14 sub-libs (ord, alarm, bql, history, schedule, nav, matrix, backups, points, subscriber, util.*) | **KEEP** (pattern) + **AUDIT PENDING** (cada sub-lib) | Patrón "helper library propietaria sobre BajaScript" es excelente. Cada sub-lib individual (alarm/bql/history/etc) requiere audit propio para decidir KEEP/IMPROVE/SKIP por método. |
 | 31 | `$niagara.ord.clean/cleanCompare/parent/resolveRelative/relativize/absolute/image/sound` | **KEEP** | URL conventions Niagara → web. Trasladable directo a MX60 sin cambios significativos (N4.14 = N4.12 = 1.7.5 en este aspecto). |
 | 32 | `resolve(single)` SIN lease vs `resolve(array)` CON lease — asimetría implícita | **IMPROVE** | API inconsistente. MX60 → lease como parámetro explícito (`resolve(t, {lease: true/false})`), default explícito documentado. |
+| 33 | `yi` RPC wrapper sobre `$component.serverSideCall` (`call`/`string`/`json`) | **KEEP** | Patrón excelente: encapsula serverSideCall + type marshalling + parsing de response. MX60 → composable `useReflowCommands()` o similar con la misma trinity. |
+| 34 | Naming convention typeSpecs: `<module>:<Module>Commands` (NAV/FILE/CSV/HISTORY/ALARM/USER/BQL) | **KEEP** | Organización limpia. MX60 → `mx60:Mx60<X>Commands` por capa de funcionalidad. |
+| 35 | `valueFromObject` JS object → BComponent dinámico con slots | **KEEP** | Magic glue para parámetros estructurados a métodos Java. MX60 hereda este pattern (no hay alternativa cleaner en BajaScript). |
+| 36 | BQL via ord URL `station:|slot:/|bql:select * from ... where ...` | **KEEP** | Canonical BajaScript, no es invento de Reflow. MX60 forzado a usarlo. |
+| 37 | BQL string concatenation directa (search component línea 39461) | **IMPROVE** | **AP-21 vulnerability**. MX60 → BQL builder con escape obligatorio (`'` → `''`), validation de typespecs en whitelist, limit server-side defense-in-depth. |
+| 38 | `yi.call` silent error → `null` return + console.error solo | **IMPROVE** | UI no detecta fallos RPC. MX60 → propagar error o exponer estado (loading/error/data triple). |
+| 39 | `sa.query` regex COUNT + pagination off-by-one + silent error | **IMPROVE** | 3 bugs concurrentes. MX60 → no usar regex probe (BajaScript cursor expone `total`); pagination con while early-exit; errors propagados. |
+| 40 | `wrappedValue` array → join(",") + objects complejos → null | **IMPROVE** | Lossy para arrays de objetos. MX60 → JSON serialization explícita o BList/BVector estructurado. |
 
 ### Resumen agregado (actualizado)
 
-- **15 KEEP** (patrones a heredar literal): Vue prototype injection, serverSideCall, lease, observable service, singleton subscriber + wrapper, ref counting, debounced unsubscribe (250ms subs + 100ms resolve), race handling, mixin lifecycle (migrado a composable), HIDDEN flag filter, in-place updates, slot-aware re-parse, BatchResolve, `$niagara.ord` URL helpers, `$niagara` namespace pattern.
-- **12 IMPROVE** (heredar el qué, mejorar el cómo): UUID, injectBaja descomposición, sequencing sin setTimeout hack, bfcache real, destroyApp safety net, hooks → composables explícitos, ords arg explícito, cross-frame router con marker propio, build info consistente, `resolve` siempre batched, `_changed` indexed lookup, lease como param explícito.
+- **19 KEEP** (patrones a heredar literal): Vue prototype injection, serverSideCall, lease, observable service, singleton subscriber + wrapper, ref counting, debounced unsubscribe (250ms subs + 100ms resolve), race handling, mixin lifecycle (migrado a composable), HIDDEN flag filter, in-place updates, slot-aware re-parse, BatchResolve, `$niagara.ord` URL helpers, `$niagara` namespace pattern, **`yi` RPC wrapper trinity**, **typeSpec naming convention**, **`valueFromObject` BComponent params**, **BQL via ord URL**.
+- **16 IMPROVE** (heredar el qué, mejorar el cómo): UUID, injectBaja descomposición, sequencing sin setTimeout hack, bfcache real, destroyApp safety net, hooks → composables explícitos, ords arg explícito, cross-frame router con marker propio, build info consistente, `resolve` siempre batched, `_changed` indexed lookup, lease como param explícito, **BQL builder con escape (vs AP-21 injection)**, **`yi` errors propagated**, **`sa.query` bugs eliminados**, **`wrappedValue` no-lossy serialization**.
 - **5 SKIP** (no replicar): VueDevTools hack, regenerator-runtime, iView, bajaHeartbeat custom, "Phase" nomenclature.
 
-**32 entries totales** — backlog de diseño concreto y accionable para MX60 desde día 1.
+**40 entries totales** — backlog de diseño concreto y accionable para MX60 desde día 1.
 
 ---
 
@@ -991,7 +1380,11 @@ Este bloque consolida **dos lecciones duras** del audit anterior y las extiende:
 - ✅ `_changed(component, prop)` — auditado en sección 53.5.7. Linear scan O(n) por event. MX60 → indexed lookup.
 - ✅ API completa del wrapper `me` cerrada — 8 métodos/getters totales (sección 53.5.8).
 - ✅ `$niagara` namespace structure mapeado — 14 sub-libs (sección 53.5.9).
-- ✅ `$niagara.ord` (`pe`) — URL helpers auditados (sección 53.5.10).
+- ✅ `$niagara.ord` (`pe`) — URL helpers auditados (sección 53.5.15).
+- ✅ `$niagara.bql` (`sa`) — auditado en sección 53.5.11. 2 callsites en TODO el bundle. 3 bugs identificados (regex COUNT fragil, pagination off-by-one, silent errors).
+- ✅ `yi` RPC wrapper — auditado en sección 53.5.12. **Hallazgo masivo**: NO es WebSocket — es wrapper sobre `$component.serverSideCall(...)`. 7 typeSpecs Reflow Commands (NAV/FILE/CSV/HISTORY/ALARM/USER/BQL).
+- ✅ BQL injection en search component — vulnerabilidad MEDIUM-HIGH documentada en sección 53.5.13. AP-21 nuevo.
+- ✅ Antipatterns nuevos AP-21, AP-22, AP-23 en sección 53.5.14.
 
 ### Hilos abiertos para sesiones futuras
 
