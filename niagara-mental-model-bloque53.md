@@ -511,6 +511,199 @@ unsubscribe: function(owner, components, force) {
 
 6. **Debug flag `he`**: 5 console.log gateados por `he`. En producción está `false`, en dev se puede flipear para tracing detallado. Patrón razonable.
 
+### 53.5.5 `resolve(t)` — ord → component (líneas 3619-3665)
+
+```js
+resolve: function(t) {
+    var self = this;
+    return (async function() {
+        var results, i, comp, single;
+
+        if (!Array.isArray(t)) {
+            // SINGLE ord branch — NO lease
+            single = await self.$baja.Ord.make(t).get();
+            return single;
+        }
+
+        // ARRAY branch — sequential resolution + lease per item
+        results = [];
+        i = 0;
+        while (i < t.length) {
+            try {
+                comp = await self.$baja.Ord.make(t[i]).get();
+                await comp.lease();              // ← LEASE per item
+                results.push(comp);
+            } catch (err) {
+                results.push({ ord: t[i], error: err });  // placeholder on failure
+            }
+            i += 1;
+        }
+        return results;
+    })();
+}
+```
+
+**Asimetría crítica entre branches**:
+
+| Branch | Lease | Timing | Use case |
+|--------|-------|--------|----------|
+| Array | ✅ Por cada componente | **Sequential** (await each) | Subscribed bulk resolves (mixin Tt) |
+| Single | ❌ Sin lease | One-shot | Lookups puntuales |
+
+**Performance gotcha**: el branch Array es **O(n) round-trips secuenciales**. Para 50 ords subscribed por un componente Vue → 50 await awaits seriales = ~50× latencia ord-to-component. El mixin `Tt` invoca este path en cada `mounted()`. Componentes con muchos ords pagan tiempo de carga lineal visible.
+
+### 53.5.6 `resolveBetter(ord, callback)` + `resolveBatched()` — el path rápido subutilizado (líneas 3666-3700)
+
+```js
+// Variables de módulo:
+//   se = pending resolve queue [{ord, callback}]
+//   le = current debounce timer
+
+resolveBetter: function(ord, callback) {
+    clearTimeout(le);
+    se.push({ ord: ord, callback: callback });
+    le = setTimeout(() => this.resolveBatched(), 100);  // 100ms debounce
+},
+
+resolveBatched: function() {
+    var self = this;
+    return (async function() {
+        var ords = se.map(t => t.ord);
+        var callbacks = se.map(t => t.callback);
+        var batch = new self.$baja.BatchResolve(ords);
+
+        batch.resolve({ subscriber: self.subscriber })
+            .then(() => {
+                ords.forEach((ord, idx) => callbacks[idx](batch.get(idx)));
+            })
+            .catch(() => {
+                // Partial success handling: try each individually
+                ords.forEach((ord, idx) => {
+                    var result;
+                    try {
+                        result = batch.get(idx);
+                    } catch (e) {
+                        callbacks[idx](null);
+                    } finally {
+                        if (result) callbacks[idx](result);
+                    }
+                });
+            });
+
+        se = [];
+        clearTimeout(le);
+        le = null;
+    })();
+}
+```
+
+**Ventajas sobre `resolve(array)`**:
+
+- **Una sola llamada server-side** (`BatchResolve`) en lugar de N round-trips.
+- **Debounce 100ms**: si múltiples componentes Vue solicitan ords cerca en el tiempo, se agregan en un batch. Reduce calls server.
+- **Partial success**: si el batch falla parcialmente, intenta extraer los items que sí resolvieron.
+- **Conecta con subscriber**: `batch.resolve({subscriber: this.subscriber})` — los componentes resueltos quedan ya enganchados al Subscriber singleton. Listos para `.subscribe()` directo.
+
+**Anomalía**: el mixin `Tt` (sección 53.6) **NO usa este path**. Llama `resolve(subscribedOrds)` (path lento). El path rápido existe pero subutilizado en el bundle.
+
+**Hipótesis**: el path lento podría ser legacy (versión antigua del wrapper) y `resolveBetter`/`resolveBatched` la versión "mejorada" que nunca completó la migración. Reforzaría la lectura de Bloque 51 sobre Reflow en migración WIP.
+
+### 53.5.7 `_changed(component, prop)` — runtime fanout dispatcher (líneas 3686-3700)
+
+```js
+_changed: function(component, prop) {
+    if (he) console.log("[subscriber][changed]",
+        "prop: ", prop.getName(), prop,
+        "component: ", component.getName(), component,
+        "subscriptions: ", re.filter(sub => sub.component.$handle === component.$handle));
+
+    re
+        .filter(sub => sub.component.$handle === component.$handle)
+        .forEach(sub => sub.callback(component, prop));
+}
+```
+
+**Función**: invocada por el `attach("changed", ...)` del singleton Subscriber. Cada cambio en cualquier componente observado dispara este callback con `(component, prop)`.
+
+**Algoritmo**:
+1. Filtra `re[]` por `component.$handle` → todas las subscriptions interesadas en este componente
+2. Para cada subscription matched, invoca `sub.callback(component, prop)`
+
+**Observación crítica de performance**:
+
+> **Linear scan O(n) por cada `changed` event.** Si Reflow tiene 100 subscriptions activas y 50 componentes cambian por segundo → 5,000 filtros lineales/seg. Aceptable para n=100, pero crece con la complejidad del SPA.
+
+**MX60 implication**: indexar `re[]` por `$handle` en un `Map<handle, Subscription[]>` paralelo. Cada `_changed` event es O(1) lookup + iteración solo sobre las subscriptions de ese handle. Mantenimiento: insertar en ambas estructuras en `subscribe`, eliminar en `unsubscribe`.
+
+### 53.5.8 API completa del wrapper `me` (cierre)
+
+| Método | Tipo | Descripción | Auditado en |
+|--------|------|-------------|-------------|
+| `get $baja()` | getter | Acceso a `Vue.prototype.$baja` | 53.5.1 |
+| `get subscriber()` | getter | Lazy-init singleton `oe` + attach `changed` → `_changed` | 53.5.1 |
+| `subscribe(owner, comps, cb)` | async | Registra subscription en `re[]` + invoca `subscriber.subscribe()` | 53.5.2 |
+| `unsubscribe(owner, comps, force)` | sync | Decrementa `re[]` + debounced 250ms cleanup | 53.5.3 |
+| `resolve(t)` | async | Array (sequential + lease) o single (no lease) | 53.5.5 |
+| `resolveBetter(ord, cb)` | async | Encola en `se[]`, debounce 100ms | 53.5.6 |
+| `resolveBatched()` | async | Ejecuta `BatchResolve` sobre `se[]` queue | 53.5.6 |
+| `_changed(comp, prop)` | sync | Dispatcher: filtra `re[]` por `$handle`, invoca callbacks | 53.5.7 |
+
+**8 entradas totales**. Wrapper compacto y bien delimitado.
+
+### 53.5.9 `$niagara` namespace — helper library completa
+
+El subscriber wrapper `me` es solo UN sub-namespace del `$niagara` global. La estructura completa del namespace (líneas ~118160-118185):
+
+```js
+var aQ = {
+    get $baja() { return Vue.prototype.$baja; },
+    encode: niagaraEncode,    // helpers de encoding
+    decode: niagaraDecode,
+    uncamel: uncamel,
+    ord: pe,                  // ver 53.5.10
+    alarm: Na,                // alarm helpers
+    bql: sa,                  // BQL helpers
+    history: Sa,              // history helpers
+    schedule: la,             // schedule helpers
+    nav: Ci,                  // navigation helpers
+    matrix: vi,               // matrix view helpers
+    backups: Se,              // backup operations
+    points: Ti,               // point helpers
+    subscriber: me,           // ← lo auditado en 53.5
+    util: {
+        timerange: ka,
+        facets: nQ
+    }
+};
+
+Vue.prototype.$niagara = aQ;
+```
+
+Este `aQ` se inyecta como `Vue.prototype.$niagara` (en algún lugar no auditado todavía — probablemente en un Vue plugin install). Cada componente Vue puede acceder a `this.$niagara.ord.clean()`, `this.$niagara.alarm.<...>`, `this.$niagara.subscriber.subscribe()`, etc.
+
+**14 sub-namespaces** — esto es una helper library propietaria de Reflow montada sobre BajaScript. **Cada uno** es candidato a auditar para MX60: muchos de los patrones probablemente son trasladables.
+
+### 53.5.10 `$niagara.ord` (`pe`) — ord manipulation helpers (líneas 3705-...)
+
+Métodos auditados:
+
+| Método | Función |
+|--------|---------|
+| `clean(t)` | Strip `local:|`, `foxs:|`, trailing `/` |
+| `cleanCompare(t)` | Strip más prefixes (`history:|`, `station:|`, `file:` paths) + normalize image-library |
+| `parent(t)` | Get parent ord (split by `/`, drop last) |
+| `resolveRelative(t, e)` | Resolver `../` paths con base ord |
+| `relativize(t, e)` | Hacer ord relativo respecto de base |
+| `isRelativeTo(t, e)` | Boolean: ¿`e` está dentro de `t`? |
+| `absolute(t, e)` | Hacer ord absoluto (joining paths) |
+| `image(t)` | Convertir ord a image URL: `module://` → `/module/`, `file:` → `/ord/` |
+| `sound(t)` | Idéntico a `image` (mismo conversion) |
+| `has(t, e)` | (parcial — read truncado) check si path exists en componente |
+
+**Pattern observado**: separar URL conventions Niagara (`local:|station:|`, `module://`, `file:`) de URL conventions web (`/module/`, `/ord/`). Cada hostname/scheme Niagara mapea a un path web.
+
+**MX60 implication**: este helper completo es **trasladable directo**. Las URL conventions de N4.14 son las mismas que en N4.12 que en Reflow 1.7.5 — cambia muy poco.
+
 ---
 
 ## 53.6 Vue mixin pattern (líneas 2880-3010)
@@ -746,12 +939,20 @@ Curiosamente este `$build` se inyecta SOLO en `injectConfig` (modo Config view),
 | 24 | Build info baked SOLO en `injectConfig` (no en main SPA) | **IMPROVE** | MX60: build info en ambos paths, expuesto consistente via `app.config.globalProperties.$build`. |
 | 25 | `bajaHeartbeat` custom heartbeat | **SKIP** | Lease nativo BajaScript es suficiente — el módulo desarrollo nunca llegó a producción por buena razón. |
 | 26 | "Phase 1-5/D" lifecycle naming | **SKIP** | No existe en runtime real, era nomenclatura de audit fuente. |
+| 27 | `resolve(array)` sequential await + lease per item | **IMPROVE** | Performance bug subutilizado: el mixin `Tt` invoca este path lento en lugar del `resolveBatched` rápido. MX60 → unificar en una sola API que SIEMPRE batche internamente. |
+| 28 | `resolveBetter` + `resolveBatched` BatchResolve con debounce 100ms | **KEEP** | El path correcto. Trasladar la idea: queue + debounce + `BatchResolve.resolve({subscriber})`. |
+| 29 | `_changed(comp, prop)` linear scan O(n) por event | **IMPROVE** | Para n grande es O(n) por event. MX60 → indexar por `$handle` con `Map<handle, Subscription[]>` paralelo a `re[]`. Lookup O(1). |
+| 30 | `$niagara` namespace 14 sub-libs (ord, alarm, bql, history, schedule, nav, matrix, backups, points, subscriber, util.*) | **KEEP** (pattern) + **AUDIT PENDING** (cada sub-lib) | Patrón "helper library propietaria sobre BajaScript" es excelente. Cada sub-lib individual (alarm/bql/history/etc) requiere audit propio para decidir KEEP/IMPROVE/SKIP por método. |
+| 31 | `$niagara.ord.clean/cleanCompare/parent/resolveRelative/relativize/absolute/image/sound` | **KEEP** | URL conventions Niagara → web. Trasladable directo a MX60 sin cambios significativos (N4.14 = N4.12 = 1.7.5 en este aspecto). |
+| 32 | `resolve(single)` SIN lease vs `resolve(array)` CON lease — asimetría implícita | **IMPROVE** | API inconsistente. MX60 → lease como parámetro explícito (`resolve(t, {lease: true/false})`), default explícito documentado. |
 
-### Resumen agregado
+### Resumen agregado (actualizado)
 
-- **13 KEEP** (patrones a heredar literal): Vue prototype injection, serverSideCall, lease, observable service, singleton subscriber + wrapper, ref counting, debounced unsubscribe, race handling, mixin lifecycle (migrado a composable), HIDDEN flag filter, in-place updates, slot-aware re-parse, BatchResolve.
-- **9 IMPROVE** (heredar el qué, mejorar el cómo): UUID, injectBaja descomposición, sequencing sin setTimeout hack, bfcache real, destroyApp safety net, hooks → composables explícitos, ords arg explícito, cross-frame router con marker propio, build info consistente.
+- **15 KEEP** (patrones a heredar literal): Vue prototype injection, serverSideCall, lease, observable service, singleton subscriber + wrapper, ref counting, debounced unsubscribe (250ms subs + 100ms resolve), race handling, mixin lifecycle (migrado a composable), HIDDEN flag filter, in-place updates, slot-aware re-parse, BatchResolve, `$niagara.ord` URL helpers, `$niagara` namespace pattern.
+- **12 IMPROVE** (heredar el qué, mejorar el cómo): UUID, injectBaja descomposición, sequencing sin setTimeout hack, bfcache real, destroyApp safety net, hooks → composables explícitos, ords arg explícito, cross-frame router con marker propio, build info consistente, `resolve` siempre batched, `_changed` indexed lookup, lease como param explícito.
 - **5 SKIP** (no replicar): VueDevTools hack, regenerator-runtime, iView, bajaHeartbeat custom, "Phase" nomenclature.
+
+**32 entries totales** — backlog de diseño concreto y accionable para MX60 desde día 1.
 
 ---
 
@@ -783,8 +984,37 @@ Este bloque consolida **dos lecciones duras** del audit anterior y las extiende:
 
 ## 53.11 Próximos hilos sugeridos
 
-- `me.resolve(t)` (sección 53.5.1, definición cortada por scope del audit) — leer regiones extras para completar el contrato del wrapper. Probablemente involve `BatchResolve`.
-- El `_changed(this, e)` callback del Subscriber attach (sección 53.5.1) — cómo distribuye el evento "changed" a los callbacks registrados en `re[]`.
-- Sample 5-8 callsites de `.subscribe(` específicos en componentes Vue concretos para validar que la convención del mixin se cumple uniformemente (o detectar excepciones).
-- `$build` solo en injectConfig — investigar por qué la SPA principal no expone version (¿historical accident? ¿feature flag?).
-- Cross-reference con el **módulo Java server-side** (`nmodsreflow-rt/src/com/nmods/.../ReflowService.java`) — confirmar que `getRoles`, `demoMode`, `ga`, `getMultiUserConfig`, `getSocketTimeout` son slots/actions reales del BComponent server-side.
+### Hilos cerrados en este bloque (extension 2026-05-07)
+
+- ✅ `me.resolve(t)` — auditado en sección 53.5.5. Asimetría Array (sequential + lease) vs Single (no lease) documentada.
+- ✅ `me.resolveBetter` + `resolveBatched` — auditado en sección 53.5.6. Path rápido con BatchResolve + debounce 100ms (subutilizado por el mixin Tt).
+- ✅ `_changed(component, prop)` — auditado en sección 53.5.7. Linear scan O(n) por event. MX60 → indexed lookup.
+- ✅ API completa del wrapper `me` cerrada — 8 métodos/getters totales (sección 53.5.8).
+- ✅ `$niagara` namespace structure mapeado — 14 sub-libs (sección 53.5.9).
+- ✅ `$niagara.ord` (`pe`) — URL helpers auditados (sección 53.5.10).
+
+### Hilos abiertos para sesiones futuras
+
+**HIGH value para MX60 (cada uno = potencial Bloque dedicado o sub-corrigendum)**:
+
+- `$niagara.alarm` (`Na`) — alarm helpers. Reflow tiene gestión propia de alarms; sub-lib probable trasladable directo a MX60.
+- `$niagara.bql` (`sa`) — BQL query helpers. **CRÍTICO** — toda query Niagara en MX60 va a usar BQL.
+- `$niagara.history` (`Sa`) — history retrieval. Necesario si MX60 muestra trends/charts.
+- `$niagara.schedule` (`la`) — Niagara BSchedule helpers. Common BAS feature.
+- `$niagara.nav` (`Ci`) — navigation tree helpers. Probable wrapper sobre BajaScript nav.
+- `$niagara.points` (`Ti`) — point read/write helpers. Hot path en cualquier dashboard.
+- `$niagara.util.timerange` (`ka`) — time range helpers. Audited from `Bloque 49` parcialmente.
+- `$niagara.util.facets` (`nQ`) — facets helpers. Bloque 49 cubre el server-side; resta cliente.
+
+**MEDIUM value**:
+
+- `$niagara.matrix` (`vi`) — matrix view helpers (probable Reflow-specific, evaluar si MX60 lo necesita).
+- `$niagara.backups` (`Se`) — backup operations (cubierto en Bloque 50 AP-10 + Bloque 52; este sub-namespace es el cliente).
+- Sample 5-8 callsites de `.subscribe(` específicos en componentes Vue concretos para validar mixin compliance (¿hay excepciones que bypasean el mixin?).
+- Cross-reference con módulo Java server-side (`nmodsreflow-rt/src/com/nmods/.../ReflowService.java`) — confirmar slots/actions: `getRoles`, `demoMode`, `ga`, `getMultiUserConfig`, `getSocketTimeout`.
+
+**LOW priority / curiosity**:
+
+- `$build` solo en injectConfig anomalía — investigar por qué la SPA principal no expone version.
+- `vt.generate()` definition — qué algoritmo usa para subscription IDs (nanoid? UUID? counter custom?).
+- `niagaraEncode` / `niagaraDecode` / `uncamel` helpers superficiales del namespace.
