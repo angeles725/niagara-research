@@ -1012,13 +1012,23 @@ async function search(opts) {
 
 **Resultado**: la cláusula se rompe, `or 1=1` matchea TODO, retorna todos los componentes — incluyendo aquellos que el usuario no debería ver (gating sería por ACLs server-side, pero la query hace bypass de filtros UX).
 
-### 53.5.13.3 Severidad y blast radius
+### 53.5.13.3 Severidad y blast radius — REFINADO post-audit Java
 
-**Severidad**: **MEDIUM-HIGH** dependiendo de:
-- ¿El RBAC server-side filtra los resultados de `BReflowBQLCommands.query()`? Si SÍ → BQL injection es UX bypass (puede ver Components que no debería pero no escala a writes). Si NO → information disclosure de toda la station.
-- ¿Hay path desde input externo no autenticado al displayName param? Si MX60 expone el search a usuarios authenticated only, blast radius limitado.
+**Severidad inicial declarada**: MEDIUM-HIGH (audit cliente solo).
 
-**Blast radius worst-case**: enumeración de toda la station con BQL `select * from baja:Component where displayName.toLowerCase LIKE '%') or 1=1 or ('1%'`. Información sensible: nombres de equipos, slot paths, jerarquía completa de organización física.
+**Severidad confirmada post-audit Java side** (sección 53.6 nueva): **LOW-MEDIUM**.
+
+**Razón del refinamiento**: el audit del lado Java (`BReflowBQLCommands.query()` línea 92) confirma que la query se ejecuta como `ord.get(cx)` con el `Context cx` del usuario llamador. Niagara aplica **RBAC nativo slot-por-slot** en la resolución del ord — el atacante NO puede ver componentes restringidos por ACL aunque inyecte BQL.
+
+**Blast radius real**:
+- ❌ NO permite info disclosure de componentes restringidos (RBAC nativo Niagara los filtra automáticamente).
+- ❌ NO permite writes ni invocaciones (es solo SELECT BQL).
+- ✅ SÍ permite **enumeración cruda** de componentes que el atacante ya tiene permiso de leer — bypass de filtros UX que la SPA aplicaría client-side.
+- ✅ SÍ permite **manipular `validateTypes`** en el filter — atacante podría especificar typespecs custom que el desarrollador no quiso exponer en el dropdown UI (pero igual filtrados por RBAC).
+
+**Conclusión**: AP-21 es **UX bypass**, no escalación de privilegios. Sigue siendo bug a fix, pero sin pánico — el RBAC nativo es el verdadero defensor.
+
+**Caveat residual**: si MX60 implementa Commands custom **sin** delegar a `ord.get(cx)` (por ejemplo, ejecutando BQL con un Context elevado o sistema), AP-21 escalaría a HIGH. Disciplina obligatoria: **TODO ord lookup en métodos Commands DEBE usar el `cx` recibido como parámetro, NUNCA un Context construido ad-hoc**.
 
 ### 53.5.13.4 Por qué el bug existe
 
@@ -1054,9 +1064,12 @@ Tres antipatterns identificados en este audit, propuestos como continuación de 
 
 | AP # | Patrón | Severidad | Sección |
 |------|--------|-----------|---------|
-| **AP-21** | BQL injection en displayName branch del search component | **MEDIUM-HIGH** | 53.5.13 |
+| **AP-21** | BQL injection en displayName branch del search component | ~~MEDIUM-HIGH~~ → **LOW-MEDIUM** (refinado post-Java audit, RBAC cubre) | 53.5.13 |
 | **AP-22** | `sa.query` regex COUNT(*) probe + pagination off-by-one + silent error swallow | **MEDIUM** | 53.5.11 |
 | **AP-23** | `yi.call` silent error → `null` returns (UI no detecta fallos RPC) | **LOW-MEDIUM** | 53.5.12.4 |
+| **AP-24** | `BReflowBQLCommands.query` server-side pagination ITERA TODA LA CURSOR (skip+take in-memory en lugar de cursor.offset/limit nativo) | **MEDIUM-HIGH** (DoS amplification con queries sin where) | 53.5.16.4 |
+| **AP-25** | `Math.ceil(int/int)` integer division — pageCount underreports (siempre floor) | **LOW** | 53.5.16.4 |
+| **AP-26** | Magic acceptance del arg via `toString()` fallback — defeated typing | **LOW-MEDIUM** | 53.5.16.4 |
 
 Estos antipatterns son **MX60 backlog "no heredar"** — están en el lado código fuente Reflow legacy y MX60 debe diseñar el equivalente sin replicarlos.
 
@@ -1084,6 +1097,283 @@ Métodos auditados:
 **Pattern observado**: separar URL conventions Niagara (`local:|station:|`, `module://`, `file:`) de URL conventions web (`/module/`, `/ord/`). Cada hostname/scheme Niagara mapea a un path web.
 
 **MX60 implication**: este helper completo es **trasladable directo**. Las URL conventions de N4.14 son las mismas que en N4.12 que en Reflow 1.7.5 — cambia muy poco.
+
+---
+
+## 53.5.16 Cross-reference Java side — `BReflowBQLCommands.query()` audit
+
+### 53.5.16.1 Forma exterior de la clase
+
+**Archivo**: `/home/cristian/modules/Prototipos/Reflow-Clean-177/nmodsreflow/nmodsreflow-rt/src/com/niagaramods/nmodsreflow/commands/BReflowBQLCommands.java` (120 líneas, 4.7 KB).
+
+```java
+@NiagaraType(agent={
+    @AgentOn(types={"nmodsreflow:ReflowService"}, requiredPermissions="r")
+})
+public class BReflowBQLCommands
+extends BComponent
+implements BIServerSideCallHandler {
+
+    private static final int DEFAULT_QUERY_LIMIT = 25;
+
+    public BValue query(BComponent caller, BValue arg, Context cx) throws Exception {
+        // ... ver 53.5.16.2
+    }
+}
+```
+
+**Anotaciones críticas**:
+
+| Decoración | Significado |
+|------------|-------------|
+| `@AgentOn(types={"nmodsreflow:ReflowService"}, ...)` | Esta clase se attachea como **agent** al `BReflowService`. Cuando el cliente invoca `serverSideCall({typeSpec: "nmodsreflow:ReflowBQLCommands", ...})`, BajaScript routea a esta clase porque es agent del service del cliente. |
+| `requiredPermissions="r"` | El usuario que invoca **debe tener READ permission** al `ReflowService`. Niagara enforce esto antes de invocar el método. |
+| `extends BComponent` | Es un BComponent — sigue las reglas Niagara (slots, lifecycle, ACLs por slot). |
+| `implements BIServerSideCallHandler` | Marker interface que declara "yo soy invocable desde BajaScript proxy via `serverSideCall`". |
+
+### 53.5.16.2 Análisis del método `query`
+
+```java
+public BValue query(BComponent caller, BValue arg, Context cx) throws Exception {
+    BObject obj;
+    BOrd ord = null;
+    String[] validateTypes = null;
+    NumberFormat format = NumberFormat.getInstance(Locale.getDefault());
+    int limit = DEFAULT_QUERY_LIMIT;
+    int page = 1;
+
+    // ── BRANCH 1: arg es ya un BOrd ──
+    if (arg.getType().is(BOrd.TYPE)) {
+        ord = (BOrd) arg;
+    }
+    // ── BRANCH 2: arg es BComponent (caso normal: yi.valueFromObject) ──
+    else if (arg.getType().equals(BComponent.TYPE)) {
+        BComponent comps = (BComponent) arg;
+        if (comps.get("query") != null) {
+            ord = BOrd.make(comps.get("query").toString());  // ← USER STRING TO BOrd
+            if (comps.get("validateTypes") != null) {
+                validateTypes = comps.get("validateTypes").toString().split(",");
+            }
+            if (comps.get("page") != null) {
+                page = format.parse(comps.get("page").toString()).intValue();
+            }
+            if (comps.get("limit") != null) {
+                limit = format.parse(comps.get("limit").toString()).intValue();
+            }
+        }
+    }
+    // ── BRANCH 3: arg es cualquier otra cosa, toString() y treat como ord URL ──
+    else {
+        ord = BOrd.make(arg.toString());
+    }
+
+    // ── EJECUCIÓN ──
+    if (ord != null && ord != BOrd.NULL && (obj = ord.get(cx)).getType().is(BITable.TYPE)) {
+        BITable table = (BITable) obj;
+        TableCursor c = table.cursor();
+        ObjectMapper mapper = new ObjectMapper();
+        SimpleModule module = new SimpleModule();
+        module.addSerializer(BINavNode.class, new NavNodeSerializer(validateTypes));
+        mapper.registerModule(module);
+        ObjectNode response = mapper.createObjectNode();
+        ArrayNode results = mapper.createArrayNode();
+        int count = 0;
+
+        // ── PAGINATION LOOP ── ⚠️ ITERA TODA LA CURSOR
+        while (c.next()) {
+            BObject row;
+            if (count < page * limit
+                && count >= (page - 1) * limit
+                && (row = (BObject) c.get()).getType().is(BINavNode.TYPE)) {
+                BINavNode navNode = (BINavNode) row;
+                Object node = mapper.valueToTree(navNode);
+                results.add((JsonNode) node);
+            }
+            ++count;
+        }
+
+        response.set("items", results);
+        response.put("limit", limit);
+        response.put("page", page);
+        response.put("pageCount", (int) Math.ceil(count / limit));  // ⚠️ INTEGER DIVISION
+        response.put("total", count);
+        return BString.make(response.toString());
+    }
+
+    return BString.make("[]");
+}
+```
+
+### 53.5.16.3 Hallazgo clave — RBAC funciona, AP-21 es UX bypass
+
+Línea 92: `(obj = ord.get(cx)).getType()...`
+
+**El método usa `cx` (el Context recibido como parámetro) para resolver el ord.** Eso significa que Niagara aplica RBAC nativo automáticamente:
+- Slot pruning (Bloque 22.1140 + 35.478): el server omite slots sin OPERATOR_READ del Component que llega al cliente.
+- BSpace.canRead/canWrite/canInvoke evaluado contra el user del Context.
+- HIDDEN flag filtering (Bloque 48).
+
+**Confirmación**: el `cx` aquí es el caller's authenticated Context, propagado desde el BajaScript proxy. Si el atacante con BQL injection trata de leer un Component que NO tiene permiso, el resultado de `ord.get(cx)` lo excluirá automáticamente.
+
+**Refinamiento de severidad AP-21**: bajada de **MEDIUM-HIGH** → **LOW-MEDIUM** (sección 53.5.13.3 actualizada).
+
+**Caveat para MX60 (DISCIPLINA OBLIGATORIA)**:
+
+> **TODO método Commands DEBE usar el `cx` recibido como parámetro para CUALQUIER ord/component lookup.**
+
+Si MX60 implementa un Commands con `ord.get(null)` o un Context construido ad-hoc (`Sys.makeContext(...)`), el RBAC se rompe y AP-21-equivalent escala a info disclosure HIGH. Esta es **la lección operacional más importante** del audit Java.
+
+### 53.5.16.4 Bugs server-side adicionales descubiertos
+
+**AP-24 (NUEVO)** — **Pagination ITERA TODA LA CURSOR**:
+
+```java
+while (c.next()) {
+    if (count < page * limit && count >= (page - 1) * limit && ...) {
+        results.add(...);  // skip + take manual
+    }
+    ++count;
+}
+```
+
+La cursor itera **TODOS los rows** del result set para determinar `total` y filtrar la página solicitada. Para una BQL que retorna 100,000 rows con `page=1, limit=25`, el server itera 100K rows en memoria ANTES de devolver 25.
+
+**Severidad**: **MEDIUM-HIGH** (DoS amplification — un cliente con `query=select * from baja:Component` sin where clause puede tumbar el server). N4.14 BQL cursor SÍ soporta `offset`/`limit` nativos — este código NO los usa.
+
+**AP-25 (NUEVO)** — **`Math.ceil(int/int)` integer division bug**:
+
+```java
+response.put("pageCount", (int) Math.ceil(count / limit));
+```
+
+Java integer division: `count / limit` ya es int (truncado). `Math.ceil` de un int siempre es ese int (no hace ceiling después de la pérdida de precisión).
+
+**Caso patológico**: 26 results con limit=25 → `26/25 = 1` (integer) → `Math.ceil(1) = 1` → cliente cree que hay 1 page (debería ser 2).
+
+**Fix correcto**: `(count + limit - 1) / limit` o `(int) Math.ceil((double) count / limit)`.
+
+**Severidad**: **LOW** — bug funcional, no de seguridad. Cliente paginará incorrectamente.
+
+**AP-26 (NUEVO)** — **Magic acceptance del arg via `toString()`**:
+
+Branch 3 del método (líneas 89-91):
+```java
+} else {
+    ord = BOrd.make(arg.toString());
+}
+```
+
+Si el cliente manda CUALQUIER tipo no-BOrd, no-BComponent (e.g., un BString, BInteger, BList), el método hace `toString()` y trata el resultado como ord URL. Es **defeated typing** — pierde la información de tipo del arg, asume que es serializable a un ord válido.
+
+**Risk concreto**: si un atacante manda un BList con `[BString.make("station:|slot:/|bql:..."), ...]`, el `toString()` del BList podría dar algo como `"[station:|slot:/|bql:...]"` que SÍ se parsearía como ord (con prefix garbage). Comportamiento undefined.
+
+**Mejor**: rechazar explícitamente todo arg que no sea BOrd o BComponent con `query` slot. Throw exception. **Failsafe defaults**.
+
+### 53.5.16.5 Pattern para MX60 — template Java Commands
+
+Extrayendo el patrón canónico (estilo de Reflow + correcciones):
+
+```java
+@NiagaraType(agent={
+    @AgentOn(types={"<module>:<MainService>"}, requiredPermissions="r")
+})
+public class BMx60<X>Commands
+extends BComponent
+implements BIServerSideCallHandler {
+
+    private static final int DEFAULT_LIMIT = 25;
+    private static final int MAX_LIMIT = 1000;  // ← server-side cap defense-in-depth
+
+    public BValue <method>(BComponent caller, BValue arg, Context cx) throws Exception {
+        // 1. Validate arg STRICTLY (no toString fallback)
+        if (!(arg.getType().equals(BComponent.TYPE))) {
+            throw new IllegalArgumentException("Expected BComponent params, got " + arg.getType());
+        }
+
+        BComponent params = (BComponent) arg;
+
+        // 2. Extract typed params with defaults + validation
+        int limit = Math.min(getIntSlot(params, "limit", DEFAULT_LIMIT), MAX_LIMIT);
+        int page  = Math.max(getIntSlot(params, "page", 1), 1);
+
+        // 3. Build query SAFELY — no string concat with user input
+        BqlBuilder bql = new BqlBuilder()
+            .from(getValidatedType(params))   // whitelist check
+            .where(buildSafeWhereClause(params))  // builder escapes user input
+            .limit(limit)
+            .offset((page - 1) * limit);
+        BOrd queryOrd = bql.toOrd();
+
+        // 4. Execute con cx — RBAC delegado
+        BObject obj = queryOrd.get(cx);
+        if (!obj.getType().is(BITable.TYPE)) return BString.make("{\"items\":[]}");
+
+        // 5. Cursor con offset/limit nativos (N4.14 supported)
+        BITable table = (BITable) obj;
+        TableCursor c = table.cursor();
+        c.offset(bql.getOffset());
+        c.limit(bql.getLimit());
+
+        // 6. Iterate y construir response
+        ArrayNode results = ...;  // Jackson
+        while (c.next()) {
+            BObject row = (BObject) c.get();
+            // serialize via custom serializer with validation
+            results.add(...);
+        }
+
+        // 7. PageCount correcto
+        int totalCount = (int) table.size();  // BITable.size() if available
+        int pageCount = (totalCount + limit - 1) / limit;
+
+        // 8. Response estructurada (no JSON string blob — usar BComponent slots)
+        BComponent response = new BComponent();
+        response.add("items", BString.make(results.toString()));
+        response.add("page", BInteger.make(page));
+        response.add("limit", BInteger.make(limit));
+        response.add("pageCount", BInteger.make(pageCount));
+        response.add("total", BInteger.make(totalCount));
+        return response;
+    }
+}
+```
+
+**Reglas obligatorias** (decisión arquitectónica MX60):
+
+1. **`cx` propagation**: TODO ord lookup usa el `cx` recibido. **NUNCA `Sys.makeContext` ad-hoc**.
+2. **Strict typing del arg**: rechazar arg no esperado con exception explícita. NO `toString()` fallback.
+3. **Cap de limit server-side**: `MAX_LIMIT` constante. Cliente no puede pedir 100K results.
+4. **BqlBuilder server-side**: queries armadas con builder que escapa user input. NUNCA `BOrd.make(userString)`.
+5. **Cursor offset/limit nativos**: usar las APIs de TableCursor, no skip+take manual.
+6. **PageCount correcto**: aritmética integer ceiling `(n + d - 1) / d` o doble cast.
+7. **Response BComponent estructurada**: slots tipados, no JSON string blob.
+8. **Validate types whitelist**: `validateTypes` no llega del cliente — viene de constantes server-side o config validada.
+
+### 53.5.16.6 Detalles secundarios del audit Java
+
+- **Slot-o-Matic auto-generated TYPE region**: convención Niagara estándar (Bloque 35). El comment "Generated Sun Mar 15 18:02:51 CST 2026" es del re-compile local — el .class fue compilado de un source más viejo (consistente con bundle Reflow 1.7.5 Jul 2024).
+- **CFR 0.152 decompiled**: header indica que esta versión es decompilación de bytecode. El source original probablemente está perdido. Los comentarios (si había) están borrados.
+- **`format.parse(...).intValue()`**: parsea page/limit con `NumberFormat.getInstance(Locale.getDefault())`. Si el cliente manda un string no-numérico, throws `ParseException` → sube por `throws Exception` → `yi.call` lo agarra y devuelve null. Manejo silencioso, mensaje genérico.
+- **NavNodeSerializer custom**: serializer Jackson con `validateTypes` (whitelist). Sin auditar en este pase — probable filter sobre type spec strings.
+- **`BString.make(response.toString())`**: el método retorna BString con el JSON serializado. El cliente (`yi.string` → `yi.json`) parsea. Es un JSON-string-en-BString — overhead doble (Jackson serialize + Niagara wrap + cliente unwrap + JSON.parse). MX60 → BComponent estructurada nativa.
+
+### 53.5.16.7 Tabla síntesis — Reflow Java vs MX60 Java
+
+| Aspecto | Reflow `BReflowBQLCommands.query` | MX60 `BMx60BqlCommands.query` |
+|---------|-----------------------------------|-------------------------------|
+| `@NiagaraType` agent | ✅ correcto | KEEP |
+| `requiredPermissions="r"` | ✅ correcto | KEEP |
+| `BIServerSideCallHandler` | ✅ correcto | KEEP |
+| `cx` propagation a `ord.get(cx)` | ✅ correcto (post-fix Reflow-Clean-177) | KEEP — disciplina obligatoria |
+| Triple-branch arg acceptance | ⚠️ AP-26 magic | IMPROVE → strict typing |
+| BQL string from user | 🚨 AP-21 vector | IMPROVE → BqlBuilder |
+| Pagination skip+take | 🚨 AP-24 O(n) | IMPROVE → cursor offset/limit |
+| `Math.ceil(int/int)` | 🚨 AP-25 bug | IMPROVE → `(n+d-1)/d` |
+| Response como JSON string | ⚠️ overhead | IMPROVE → BComponent slots |
+| `validateTypes` desde cliente | ⚠️ user-controlled | IMPROVE → whitelist server-side |
+| Custom NavNodeSerializer | ✅ patrón válido | KEEP |
+| Limit cap server-side | ❌ ausente | NEW → MAX_LIMIT constant |
+| Error responses estructurados | ❌ ausente (`BString.make("[]")`) | NEW → response.error slot |
 
 ---
 
@@ -1334,14 +1624,26 @@ Curiosamente este `$build` se inyecta SOLO en `injectConfig` (modo Config view),
 | 38 | `yi.call` silent error → `null` return + console.error solo | **IMPROVE** | UI no detecta fallos RPC. MX60 → propagar error o exponer estado (loading/error/data triple). |
 | 39 | `sa.query` regex COUNT + pagination off-by-one + silent error | **IMPROVE** | 3 bugs concurrentes. MX60 → no usar regex probe (BajaScript cursor expone `total`); pagination con while early-exit; errors propagados. |
 | 40 | `wrappedValue` array → join(",") + objects complejos → null | **IMPROVE** | Lossy para arrays de objetos. MX60 → JSON serialization explícita o BList/BVector estructurado. |
+| 41 | `@AgentOn(types=..., requiredPermissions="r")` Java decoration | **KEEP** | Pattern correcto Niagara. Permite RBAC enforcement automático antes de invocar el método. MX60 → adoptar literal con permission level adecuado por command. |
+| 42 | `BIServerSideCallHandler` interface + `query(BComponent caller, BValue arg, Context cx)` signature | **KEEP** | Convención Niagara estándar. MX60 → mismo signature exacto, no inventar custom interfaces. |
+| 43 | `cx` propagation a TODO `ord.get(cx)` server-side (RBAC delegation) | **KEEP** + **disciplina obligatoria** | Pieza más crítica. MX60 → policy: ningún Commands method puede usar `ord.get(null)` ni `Sys.makeContext`. ESLint-equivalent o pre-commit Java rule. |
+| 44 | Triple-branch arg acceptance (BOrd / BComponent / `toString()` fallback) | **IMPROVE** | AP-26. MX60 → strict typing: throw IllegalArgumentException si arg no es BComponent con slots esperados. |
+| 45 | Pagination skip+take iterando toda la cursor | **IMPROVE** | AP-24. MX60 → `c.offset(n)` + `c.limit(m)` nativos N4.14. Cap server-side `MAX_LIMIT`. |
+| 46 | `Math.ceil(int/int)` integer division | **IMPROVE** | AP-25. MX60 → `(count + limit - 1) / limit` o `Math.ceil((double) count / limit)`. |
+| 47 | Response como `BString.make(jsonString)` (JSON serialized to BString) | **IMPROVE** | Overhead doble. MX60 → `BComponent` estructurado con slots tipados, deserialización nativa cliente. |
+| 48 | `validateTypes` desde cliente (string array)  | **IMPROVE** | User-controlled types pueden bypassar UI filters. MX60 → whitelist server-side de typespecs permitidos. |
+| 49 | `BString.make("[]")` en error case | **IMPROVE** | Cliente no distingue "0 results" de "error". MX60 → response.error slot con código + message. |
+| 50 | `MAX_LIMIT` cap server-side ausente | **NEW** | Patrón nuevo en MX60: constante por command, defense-in-depth contra cliente que pide 100K rows. |
+| 51 | `BqlBuilder` server-side con escape automático | **NEW** | Patrón nuevo en MX60: builder que produce ords seguros, NUNCA `BOrd.make(userString)` directamente. Cubre AP-21 + AP-26 + sanitization general. |
 
-### Resumen agregado (actualizado)
+### Resumen agregado (actualizado post-Java audit)
 
-- **19 KEEP** (patrones a heredar literal): Vue prototype injection, serverSideCall, lease, observable service, singleton subscriber + wrapper, ref counting, debounced unsubscribe (250ms subs + 100ms resolve), race handling, mixin lifecycle (migrado a composable), HIDDEN flag filter, in-place updates, slot-aware re-parse, BatchResolve, `$niagara.ord` URL helpers, `$niagara` namespace pattern, **`yi` RPC wrapper trinity**, **typeSpec naming convention**, **`valueFromObject` BComponent params**, **BQL via ord URL**.
-- **16 IMPROVE** (heredar el qué, mejorar el cómo): UUID, injectBaja descomposición, sequencing sin setTimeout hack, bfcache real, destroyApp safety net, hooks → composables explícitos, ords arg explícito, cross-frame router con marker propio, build info consistente, `resolve` siempre batched, `_changed` indexed lookup, lease como param explícito, **BQL builder con escape (vs AP-21 injection)**, **`yi` errors propagated**, **`sa.query` bugs eliminados**, **`wrappedValue` no-lossy serialization**.
+- **22 KEEP** (patrones a heredar literal): Vue prototype injection, serverSideCall, lease, observable service, singleton subscriber + wrapper, ref counting, debounced unsubscribe (250ms subs + 100ms resolve), race handling, mixin lifecycle (migrado a composable), HIDDEN flag filter, in-place updates, slot-aware re-parse, BatchResolve, `$niagara.ord` URL helpers, `$niagara` namespace pattern, `yi` RPC wrapper trinity, typeSpec naming convention, `valueFromObject` BComponent params, BQL via ord URL, **`@AgentOn` decoration**, **`BIServerSideCallHandler` interface**, **`cx` propagation discipline**.
+- **22 IMPROVE** (heredar el qué, mejorar el cómo): UUID, injectBaja descomposición, sequencing sin setTimeout hack, bfcache real, destroyApp safety net, hooks → composables explícitos, ords arg explícito, cross-frame router con marker propio, build info consistente, `resolve` siempre batched, `_changed` indexed lookup, lease como param explícito, BQL builder con escape (cliente), `yi` errors propagated, `sa.query` bugs eliminados, `wrappedValue` no-lossy serialization, **strict arg typing (vs AP-26)**, **cursor offset/limit nativo (vs AP-24)**, **pageCount math correcto (vs AP-25)**, **response BComponent estructurada**, **validateTypes whitelist server**, **error response estructurado**.
+- **2 NEW** (MX60-only patterns no presentes en Reflow): **`MAX_LIMIT` server-side cap**, **`BqlBuilder` con escape**.
 - **5 SKIP** (no replicar): VueDevTools hack, regenerator-runtime, iView, bajaHeartbeat custom, "Phase" nomenclature.
 
-**40 entries totales** — backlog de diseño concreto y accionable para MX60 desde día 1.
+**51 entries totales** — backlog de diseño concreto y accionable para MX60 desde día 1, ahora con cobertura **client + server + Java decorations**.
 
 ---
 
@@ -1385,6 +1687,7 @@ Este bloque consolida **dos lecciones duras** del audit anterior y las extiende:
 - ✅ `yi` RPC wrapper — auditado en sección 53.5.12. **Hallazgo masivo**: NO es WebSocket — es wrapper sobre `$component.serverSideCall(...)`. 7 typeSpecs Reflow Commands (NAV/FILE/CSV/HISTORY/ALARM/USER/BQL).
 - ✅ BQL injection en search component — vulnerabilidad MEDIUM-HIGH documentada en sección 53.5.13. AP-21 nuevo.
 - ✅ Antipatterns nuevos AP-21, AP-22, AP-23 en sección 53.5.14.
+- ✅ Cross-reference Java side `BReflowBQLCommands.query()` — auditado en sección 53.5.16. **Confirma RBAC nativo Niagara aplica** vía `cx` propagation, **AP-21 refinado a LOW-MEDIUM** (UX bypass, no info disclosure). 3 nuevos antipatterns server-side AP-24/25/26 + template MX60 Java Commands con 8 reglas obligatorias.
 
 ### Hilos abiertos para sesiones futuras
 
