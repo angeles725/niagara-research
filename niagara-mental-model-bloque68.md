@@ -163,11 +163,13 @@ history/json/
 
 **#230**: **`HistoryObjectMapper` es el registry único** — toda la serialización Jackson pasa por ahí. En MX60 idem: un solo punto de configuración. No fragmentar serializers en múltiples object mappers.
 
-### 68.1.5 `HistoryGhostSubscriber` — pattern obligatorio Niagara
+### 68.1.5 `HistoryGhostSubscriber` — subscriber detección one-shot (corrección bloque #69)
 
-Crea suscripción "ghost" (vacía) sobre `BHistoryDatabase` para mantener viva la sesión de history en el station durante queries pesados. Sin esto, el station cierra la sesión por timeout antes de que la respuesta esté lista.
+**Corrección de descripción (audit empírico bloque #69 §69.5 + §69.6)**: el código real (26 LOC) **NO es keepalive**. Es **subscriber de detección one-shot con auto-unsuscribe al primer evento** (líneas 19-21: `event() → unsubscribe(this, this.subscriberCtx)`). Dispara una sola vez ante el primer evento de history y se desuscribe.
 
-xref.json marca `usage_count: 0` — falso negativo. Es instanciado dinámicamente o vía slot. **Replicar tal cual en MX60**, no eliminar pensando que es dead code.
+**Nota — el verdadero keepalive es otro componente**: `lib/bajaHeartbeat.js` (`LEASE_MS=30s` + `RENEWAL_MS=20s`) es el módulo encargado de mantener vivas las subscriptions BajaScript. Está **DORMANT en clean-room** — `start(baja)` nunca es llamado en `main.js`. MX60 debe activar `bajaHeartbeat.start(baja)` desde sprint 1 (sino tabs en background pierden subscriptions silenciosamente — implication #249).
+
+xref.json marca `usage_count: 0` — falso negativo. Es instanciado dinámicamente o vía slot. **Replicar tal cual en MX60** el componente Java (26L), no eliminar pensando que es dead code; pero entendiendo su rol real (one-shot detection) y combinándolo con `bajaHeartbeat.start(baja)` activo desde sprint 1.
 
 ### 68.1.6 Polish pre-transplante — SOLO en la copia MX60
 
