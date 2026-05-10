@@ -1,0 +1,2317 @@
+{
+  "schema_version": "1.0",
+  "module": "mx60-chihuahua",
+  "extensions": [
+    "backend",
+    "frontend_iife"
+  ],
+  "source_repo": "/home/cristian/modulos_niagara_n4/Cliente/Honeywell/MX60/chihuahua/chihuahua",
+  "generated_at": "2026-05-10T03:02:59Z",
+  "generator": "sdd-apply mapping-mx60 v1",
+  "entries": [
+    {
+      "id": "chihuahua-rt/chihuahua-rt.gradle.kts",
+      "path": "chihuahua-rt/chihuahua-rt.gradle.kts",
+      "kind": "config",
+      "domain": "build-config",
+      "purpose": "Gradle Kotlin build script for chihuahua-rt module; declares Niagara RT module dependencies, Java source sets, and slotomatic configuration.",
+      "loc": 65,
+      "status": "source",
+      "source_doc": null,
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-rt/module-include.xml",
+      "path": "chihuahua-rt/module-include.xml",
+      "kind": "module-descriptor",
+      "domain": "module-descriptor",
+      "purpose": "RT sub-module include descriptor; declares module name, vendor, and dependency versions for chihuahua-rt Niagara module.",
+      "loc": 10,
+      "status": "source",
+      "source_doc": null,
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-rt/module-permissions.xml",
+      "path": "chihuahua-rt/module-permissions.xml",
+      "kind": "module-descriptor",
+      "domain": "module-descriptor",
+      "purpose": "RT module permissions; declares Niagara permission categories for chihuahua-rt components.",
+      "loc": 19,
+      "status": "source",
+      "source_doc": null,
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-rt/module.lexicon",
+      "path": "chihuahua-rt/module.lexicon",
+      "kind": "module-descriptor",
+      "domain": "module-descriptor",
+      "purpose": "RT module lexicon; provides i18n display names for chihuahua-rt BComponent types.",
+      "loc": 3,
+      "status": "source",
+      "source_doc": null,
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-rt/module.palette",
+      "path": "chihuahua-rt/module.palette",
+      "kind": "module-descriptor",
+      "domain": "module-descriptor",
+      "purpose": "RT palette descriptor; declares BChiDashboardService and equipment BComponents for Niagara Workbench palette discovery.",
+      "loc": 18,
+      "status": "source",
+      "source_doc": null,
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-rt/src/com/angeles/chihuahua/components/BChiCarcamo.java",
+      "path": "chihuahua-rt/src/com/angeles/chihuahua/components/BChiCarcamo.java",
+      "kind": "java-class",
+      "domain": "equipment-backend",
+      "purpose": "8-slot BComponent for Cárcamo (sump/collection pit) equipment: label, position, planta, nivelCm, state, umbralAdvertencia, umbralCritico.",
+      "loc": 309,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "3. Domain decomposition"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": {
+        "package": "com.angeles.chihuahua.components",
+        "bcomponent_type": "BComponent",
+        "slots": 8,
+        "actions": [],
+        "rest_endpoints": [],
+        "box_methods": [],
+        "decompiled": false,
+        "profile": "rt"
+      },
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-rt/src/com/angeles/chihuahua/components/BChiCarcamoMonitor.java",
+      "path": "chihuahua-rt/src/com/angeles/chihuahua/components/BChiCarcamoMonitor.java",
+      "kind": "java-class",
+      "domain": "equipment-backend",
+      "purpose": "Cárcamo equipment monitor BComponent; auto-creates BChiCarcamo children for parent BPlanta on started(); seeds from CARCAMO_DATA table.",
+      "loc": 155,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "3. Domain decomposition"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": {
+        "package": "com.angeles.chihuahua.components",
+        "bcomponent_type": "BComponent",
+        "slots": 0,
+        "actions": [],
+        "rest_endpoints": [],
+        "box_methods": [],
+        "decompiled": false,
+        "profile": "rt"
+      },
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-rt/src/com/angeles/chihuahua/components/BChiDashboardService.java",
+      "path": "chihuahua-rt/src/com/angeles/chihuahua/components/BChiDashboardService.java",
+      "kind": "java-class",
+      "domain": "service-container",
+      "purpose": "Root service BComponent; ensures 6 BPlanta containers; schedules controlTick 10s for protection evaluation (inferred from mapping).",
+      "loc": 685,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "3. Domain decomposition"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": {
+        "package": "com.angeles.chihuahua.components",
+        "bcomponent_type": "BAbstractService",
+        "slots": 1,
+        "actions": [],
+        "rest_endpoints": [],
+        "box_methods": [],
+        "decompiled": false,
+        "profile": "rt"
+      },
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-rt/src/com/angeles/chihuahua/components/BChiDatalogger.java",
+      "path": "chihuahua-rt/src/com/angeles/chihuahua/components/BChiDatalogger.java",
+      "kind": "java-class",
+      "domain": "equipment-backend",
+      "purpose": "9-slot BComponent for Datalogger (pressure sensor): label, position, planta, pressurePsi, pressureBar, state, umbralAdvertencia, umbralCritico.",
+      "loc": 338,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "3. Domain decomposition"
+      },
+      "verified_at": null,
+      "backend": {
+        "package": "com.angeles.chihuahua.components",
+        "bcomponent_type": "BComponent",
+        "slots": 9,
+        "actions": [],
+        "rest_endpoints": [],
+        "box_methods": [],
+        "decompiled": false,
+        "profile": "rt"
+      },
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-rt/src/com/angeles/chihuahua/components/BChiDataloggerMonitor.java",
+      "path": "chihuahua-rt/src/com/angeles/chihuahua/components/BChiDataloggerMonitor.java",
+      "kind": "java-class",
+      "domain": "equipment-backend",
+      "purpose": "Datalogger equipment monitor BComponent; auto-creates BChiDatalogger children for parent BPlanta on started(); seeds from datalogger table.",
+      "loc": 154,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "3. Domain decomposition"
+      },
+      "verified_at": null,
+      "backend": {
+        "package": "com.angeles.chihuahua.components",
+        "bcomponent_type": "BComponent",
+        "slots": 0,
+        "actions": [],
+        "rest_endpoints": [],
+        "box_methods": [],
+        "decompiled": false,
+        "profile": "rt"
+      },
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-rt/src/com/angeles/chihuahua/components/BChiUp.java",
+      "path": "chihuahua-rt/src/com/angeles/chihuahua/components/BChiUp.java",
+      "kind": "java-class",
+      "domain": "equipment-backend",
+      "purpose": "37-slot BComponent for UP (Unidad Paquete) equipment: 1 label, 2 position, 15 numeric feedback, 7 boolean feedback, 5 writable commands, 7 thresholds.",
+      "loc": 1941,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "3. Domain decomposition"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": {
+        "package": "com.angeles.chihuahua.components",
+        "bcomponent_type": "BComponent",
+        "slots": 37,
+        "actions": [],
+        "rest_endpoints": [],
+        "box_methods": [],
+        "decompiled": false,
+        "profile": "rt"
+      },
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-rt/src/com/angeles/chihuahua/components/BChiUpMonitor.java",
+      "path": "chihuahua-rt/src/com/angeles/chihuahua/components/BChiUpMonitor.java",
+      "kind": "java-class",
+      "domain": "equipment-backend",
+      "purpose": "UP equipment monitor BComponent; auto-creates BChiUp children for parent BPlanta on started(); seeds from embedded table.",
+      "loc": 257,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "3. Domain decomposition"
+      },
+      "verified_at": null,
+      "backend": {
+        "package": "com.angeles.chihuahua.components",
+        "bcomponent_type": "BComponent",
+        "slots": 0,
+        "actions": [],
+        "rest_endpoints": [],
+        "box_methods": [],
+        "decompiled": false,
+        "profile": "rt"
+      },
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-rt/src/com/angeles/chihuahua/components/BPlanta.java",
+      "path": "chihuahua-rt/src/com/angeles/chihuahua/components/BPlanta.java",
+      "kind": "java-class",
+      "domain": "service-container",
+      "purpose": "Planta container BComponent (1..6); auto-creates UpMonitor, CarcamoMonitor, DataloggerMonitor on started(); filters by planta index.",
+      "loc": 165,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "3. Domain decomposition"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": {
+        "package": "com.angeles.chihuahua.components",
+        "bcomponent_type": "BComponent",
+        "slots": 2,
+        "actions": [],
+        "rest_endpoints": [],
+        "box_methods": [],
+        "decompiled": false,
+        "profile": "rt"
+      },
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/chihuahua-ux.gradle.kts",
+      "path": "chihuahua-ux/chihuahua-ux.gradle.kts",
+      "kind": "config",
+      "domain": "build-config",
+      "purpose": "Gradle Kotlin build script for chihuahua-ux module; declares Niagara UX module dependencies, resource packaging, and slotomatic configuration.",
+      "loc": 73,
+      "status": "source",
+      "source_doc": null,
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/module-include.xml",
+      "path": "chihuahua-ux/module-include.xml",
+      "kind": "module-descriptor",
+      "domain": "module-descriptor",
+      "purpose": "UX sub-module include descriptor; declares module name, vendor, and dependency versions for chihuahua-ux Niagara module.",
+      "loc": 3,
+      "status": "source",
+      "source_doc": null,
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/module-permissions.xml",
+      "path": "chihuahua-ux/module-permissions.xml",
+      "kind": "module-descriptor",
+      "domain": "module-descriptor",
+      "purpose": "UX module permissions; declares Niagara permission categories for chihuahua-ux servlet access.",
+      "loc": 19,
+      "status": "source",
+      "source_doc": null,
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/module.lexicon",
+      "path": "chihuahua-ux/module.lexicon",
+      "kind": "module-descriptor",
+      "domain": "module-descriptor",
+      "purpose": "UX module lexicon; provides i18n display names for chihuahua-ux servlet and UX types.",
+      "loc": 3,
+      "status": "source",
+      "source_doc": null,
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/module.palette",
+      "path": "chihuahua-ux/module.palette",
+      "kind": "module-descriptor",
+      "domain": "module-descriptor",
+      "purpose": "UX palette descriptor; declares BChiServlet for Niagara Workbench palette discovery and servlet registration.",
+      "loc": 9,
+      "status": "source",
+      "source_doc": null,
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/com/angeles/chihuahua/ux/BChiServlet.java",
+      "path": "chihuahua-ux/src/com/angeles/chihuahua/ux/BChiServlet.java",
+      "kind": "java-class",
+      "domain": "http-rest",
+      "purpose": "BWebServlet routing all /mx60/* requests; delegates to ChiServletDispatch.route(); serves 17 API endpoints + static assets under /mx60/.",
+      "loc": 1743,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": {
+        "package": "com.angeles.chihuahua.ux",
+        "bcomponent_type": "BWebServlet",
+        "slots": 0,
+        "actions": [],
+        "rest_endpoints": [
+          "GET /mx60/",
+          "GET /mx60/index.html",
+          "GET /mx60/css/*",
+          "GET /mx60/js/*",
+          "GET /mx60/img/*",
+          "GET /mx60/fonts/*",
+          "GET /mx60/ext/*",
+          "GET /mx60/api/config",
+          "GET /mx60/api/equipment",
+          "GET /mx60/api/alarms",
+          "GET /mx60/api/alarmCounts",
+          "GET /mx60/api/historyList",
+          "GET /mx60/api/historyData",
+          "GET /mx60/api/equipment-histories",
+          "GET /mx60/api/schedules",
+          "GET /mx60/api/csrf-probe",
+          "GET /mx60/api/up/{ord}/thresholds",
+          "GET /mx60/api/carcamo/{ord}/thresholds",
+          "GET /mx60/api/datalogger/{ord}/thresholds",
+          "GET /mx60/api/alarms/sources",
+          "GET /mx60/api/alarms/notes/{uuid}",
+          "GET /mx60/api/alarms/source",
+          "GET /mx60/api/alarms/hyperlink",
+          "POST /mx60/api/setpoint",
+          "POST /mx60/api/alarms/latch",
+          "POST /mx60/api/alarms/unlatch",
+          "POST /mx60/api/alarms/ack",
+          "POST /mx60/api/up/{ord}/threshold",
+          "POST /mx60/api/carcamo/{ord}/threshold",
+          "POST /mx60/api/datalogger/{ord}/threshold",
+          "POST /mx60/api/alarms/notes"
+        ],
+        "box_methods": [],
+        "decompiled": false,
+        "profile": "ux"
+      },
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/com/angeles/chihuahua/ux/ChiAlarmHelper.java",
+      "path": "chihuahua-ux/src/com/angeles/chihuahua/ux/ChiAlarmHelper.java",
+      "kind": "java-class",
+      "domain": "alarms-backend",
+      "purpose": "Queries BAlarmDatabase; handles alarm latch/unlatch/ack on BChiUp slots; serves /api/alarms, /api/alarmCounts, /api/alarms/notes.",
+      "loc": 2041,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "3. Domain decomposition"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": {
+        "package": "com.angeles.chihuahua.ux",
+        "bcomponent_type": null,
+        "slots": null,
+        "actions": [],
+        "rest_endpoints": [],
+        "box_methods": [],
+        "decompiled": false,
+        "profile": "ux"
+      },
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/com/angeles/chihuahua/ux/ChiAlarmQueryHelper.java",
+      "path": "chihuahua-ux/src/com/angeles/chihuahua/ux/ChiAlarmQueryHelper.java",
+      "kind": "java-class",
+      "domain": "alarms-backend",
+      "purpose": "Queries BAlarmDatabase grouped by source ORD; serves /api/alarms/sources and /api/alarms/source endpoints for Reflow alarms UX (ADR-2).",
+      "loc": 379,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "3. Domain decomposition"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": {
+        "package": "com.angeles.chihuahua.ux",
+        "bcomponent_type": null,
+        "slots": null,
+        "actions": [],
+        "rest_endpoints": [],
+        "box_methods": [],
+        "decompiled": false,
+        "profile": "ux"
+      },
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/com/angeles/chihuahua/ux/ChiEquipmentReader.java",
+      "path": "chihuahua-ux/src/com/angeles/chihuahua/ux/ChiEquipmentReader.java",
+      "kind": "java-class",
+      "domain": "equipment-reader",
+      "purpose": "Walks BChiDashboardService station hierarchy; serializes UP, Cárcamo, Datalogger equipment slots to JSON for /api/equipment response.",
+      "loc": 865,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "3. Domain decomposition"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": {
+        "package": "com.angeles.chihuahua.ux",
+        "bcomponent_type": null,
+        "slots": null,
+        "actions": [],
+        "rest_endpoints": [],
+        "box_methods": [],
+        "decompiled": false,
+        "profile": "ux"
+      },
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/com/angeles/chihuahua/ux/ChiHistoryHelper.java",
+      "path": "chihuahua-ux/src/com/angeles/chihuahua/ux/ChiHistoryHelper.java",
+      "kind": "java-class",
+      "domain": "history-backend",
+      "purpose": "Queries BHistoryDatabase for MX60 dashboard; ported from SnlsHistoryHelper.java (L21); serves /api/historyList and /api/historyData endpoints.",
+      "loc": 619,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "3. Domain decomposition"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": {
+        "package": "com.angeles.chihuahua.ux",
+        "bcomponent_type": null,
+        "slots": null,
+        "actions": [],
+        "rest_endpoints": [],
+        "box_methods": [],
+        "decompiled": false,
+        "profile": "ux"
+      },
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/com/angeles/chihuahua/ux/ChiJsonUtil.java",
+      "path": "chihuahua-ux/src/com/angeles/chihuahua/ux/ChiJsonUtil.java",
+      "kind": "java-class",
+      "domain": "util-backend",
+      "purpose": "Stateless JSON utility; escapeJson() for safe string embedding; date/number formatting helpers shared across all ux helper classes.",
+      "loc": 270,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "3. Domain decomposition"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": {
+        "package": "com.angeles.chihuahua.ux",
+        "bcomponent_type": null,
+        "slots": null,
+        "actions": [],
+        "rest_endpoints": [],
+        "box_methods": [],
+        "decompiled": false,
+        "profile": "ux"
+      },
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/com/angeles/chihuahua/ux/ChiScheduleHelper.java",
+      "path": "chihuahua-ux/src/com/angeles/chihuahua/ux/ChiScheduleHelper.java",
+      "kind": "java-class",
+      "domain": "schedules-backend",
+      "purpose": "Enumerates BNumericSchedule instances from station via BOrd walk; serializes schedule data to JSON for /api/schedules response.",
+      "loc": 254,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "3. Domain decomposition"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": {
+        "package": "com.angeles.chihuahua.ux",
+        "bcomponent_type": null,
+        "slots": null,
+        "actions": [],
+        "rest_endpoints": [],
+        "box_methods": [],
+        "decompiled": false,
+        "profile": "ux"
+      },
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/com/angeles/chihuahua/ux/ChiServletDispatch.java",
+      "path": "chihuahua-ux/src/com/angeles/chihuahua/ux/ChiServletDispatch.java",
+      "kind": "java-class",
+      "domain": "http-rest",
+      "purpose": "Pure routing logic; package-private final class; all routing decisions in route() — pure-Java, WSL-testable without Niagara WebOp dependency.",
+      "loc": 594,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": {
+        "package": "com.angeles.chihuahua.ux",
+        "bcomponent_type": null,
+        "slots": null,
+        "actions": [],
+        "rest_endpoints": [],
+        "box_methods": [],
+        "decompiled": false,
+        "profile": "ux"
+      },
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/com/angeles/chihuahua/ux/ChiThresholdHelper.java",
+      "path": "chihuahua-ux/src/com/angeles/chihuahua/ux/ChiThresholdHelper.java",
+      "kind": "java-class",
+      "domain": "equipment-reader",
+      "purpose": "Reads and writes threshold slots on BChiUp, BChiCarcamo, BChiDatalogger via BOrd walk; serves GET/POST /api/{type}/{ord}/threshold* endpoints.",
+      "loc": 261,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "3. Domain decomposition"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": {
+        "package": "com.angeles.chihuahua.ux",
+        "bcomponent_type": null,
+        "slots": null,
+        "actions": [],
+        "rest_endpoints": [],
+        "box_methods": [],
+        "decompiled": false,
+        "profile": "ux"
+      },
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/css/components.css",
+      "path": "chihuahua-ux/src/rc/css/components.css",
+      "kind": "resource",
+      "domain": "static-resources",
+      "purpose": "Component-level CSS; equipment cards, alarm tables, modal dialogs, threshold forms, schedule UI styles for MX60 dashboard.",
+      "loc": 5644,
+      "status": "source",
+      "source_doc": null,
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/css/main.css",
+      "path": "chihuahua-ux/src/rc/css/main.css",
+      "kind": "resource",
+      "domain": "static-resources",
+      "purpose": "Main application CSS; layout, header, nav-bar, page sections, footer styles for MX60 dashboard SPA.",
+      "loc": 582,
+      "status": "source",
+      "source_doc": null,
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/ext/chartjs/chart.umd.min.js",
+      "path": "chihuahua-ux/src/rc/ext/chartjs/chart.umd.min.js",
+      "kind": "compiled-bundle",
+      "domain": "static-resources",
+      "purpose": "Chart.js v4 UMD precompiled bundle; must load before RequireJS to register window.Chart global without AMD conflict.",
+      "loc": 14,
+      "status": "resource",
+      "source_doc": null,
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/ext/chartjs/chartjs-adapter-date-fns.bundle.min.js",
+      "path": "chihuahua-ux/src/rc/ext/chartjs/chartjs-adapter-date-fns.bundle.min.js",
+      "kind": "compiled-bundle",
+      "domain": "static-resources",
+      "purpose": "Chart.js date-fns adapter bundle; provides date/time scale support for Chart.js; must load before RequireJS.",
+      "loc": 7,
+      "status": "resource",
+      "source_doc": null,
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/ext/threejs/addons/controls/OrbitControls.js",
+      "path": "chihuahua-ux/src/rc/ext/threejs/addons/controls/OrbitControls.js",
+      "kind": "compiled-bundle",
+      "domain": "static-resources",
+      "purpose": "Three.js OrbitControls addon; served via importmap as 'three/addons/controls/OrbitControls'; enables 3D orbit interaction in UpDetail.",
+      "loc": 1417,
+      "status": "resource",
+      "source_doc": null,
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/ext/threejs/addons/environments/RoomEnvironment.js",
+      "path": "chihuahua-ux/src/rc/ext/threejs/addons/environments/RoomEnvironment.js",
+      "kind": "compiled-bundle",
+      "domain": "static-resources",
+      "purpose": "Three.js RoomEnvironment addon; provides indoor lighting environment for 3D equipment scenes in UpDetail.",
+      "loc": 148,
+      "status": "resource",
+      "source_doc": null,
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/ext/threejs/three.module.js",
+      "path": "chihuahua-ux/src/rc/ext/threejs/three.module.js",
+      "kind": "compiled-bundle",
+      "domain": "static-resources",
+      "purpose": "Three.js r160 ES module bundle; served via importmap as 'three'; loaded by UpDetail.js and CarcamoDetail.js for 3D equipment visualization.",
+      "loc": 53044,
+      "status": "resource",
+      "source_doc": null,
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/fonts/inter-latin-ext.woff2",
+      "path": "chihuahua-ux/src/rc/fonts/inter-latin-ext.woff2",
+      "kind": "resource",
+      "domain": "static-resources",
+      "purpose": "Inter font — Latin Extended subset, woff2 format; used in MX60 dashboard UI typography.",
+      "loc": 0,
+      "status": "resource",
+      "source_doc": null,
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/fonts/inter-latin.woff2",
+      "path": "chihuahua-ux/src/rc/fonts/inter-latin.woff2",
+      "kind": "resource",
+      "domain": "static-resources",
+      "purpose": "Inter font — Latin subset, woff2 format; primary body and UI text font for MX60 dashboard.",
+      "loc": 0,
+      "status": "resource",
+      "source_doc": null,
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/fonts/jetbrains-mono-400.woff2",
+      "path": "chihuahua-ux/src/rc/fonts/jetbrains-mono-400.woff2",
+      "kind": "resource",
+      "domain": "static-resources",
+      "purpose": "JetBrains Mono 400 weight — monospace font for data values, alarm codes, and JSON display in MX60 dashboard.",
+      "loc": 0,
+      "status": "resource",
+      "source_doc": null,
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/fonts/jetbrains-mono-500.woff2",
+      "path": "chihuahua-ux/src/rc/fonts/jetbrains-mono-500.woff2",
+      "kind": "resource",
+      "domain": "static-resources",
+      "purpose": "JetBrains Mono 500 weight — medium weight monospace for emphasis in data display in MX60 dashboard.",
+      "loc": 0,
+      "status": "resource",
+      "source_doc": null,
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/fonts/jetbrains-mono-600.woff2",
+      "path": "chihuahua-ux/src/rc/fonts/jetbrains-mono-600.woff2",
+      "kind": "resource",
+      "domain": "static-resources",
+      "purpose": "JetBrains Mono 600 weight — semibold monospace for headers and alarm severity labels in MX60 dashboard.",
+      "loc": 0,
+      "status": "resource",
+      "source_doc": null,
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/img/MAQUILA_COMPLETA.jpeg",
+      "path": "chihuahua-ux/src/rc/img/MAQUILA_COMPLETA.jpeg",
+      "kind": "resource-image",
+      "domain": "static-resources",
+      "purpose": "Full maquila site image; used as background or reference image in MX60 dashboard HomeMap view.",
+      "loc": 0,
+      "status": "resource",
+      "source_doc": null,
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/img/cbre-logo.png",
+      "path": "chihuahua-ux/src/rc/img/cbre-logo.png",
+      "kind": "resource-image",
+      "domain": "static-resources",
+      "purpose": "CBRE logo PNG; displayed in MX60 dashboard header or footer branding area.",
+      "loc": 0,
+      "status": "resource",
+      "source_doc": null,
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/img/dataloggers/DT-P1-HP-NARANJA.jpg",
+      "path": "chihuahua-ux/src/rc/img/dataloggers/DT-P1-HP-NARANJA.jpg",
+      "kind": "resource-image",
+      "domain": "static-resources",
+      "purpose": "Datalogger equipment image — DT-P1-HP state: warning (naranja/orange); used in equipment card UI.",
+      "loc": 0,
+      "status": "resource",
+      "source_doc": null,
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/img/dataloggers/DT-P1-HP-ROJO.jpg",
+      "path": "chihuahua-ux/src/rc/img/dataloggers/DT-P1-HP-ROJO.jpg",
+      "kind": "resource-image",
+      "domain": "static-resources",
+      "purpose": "Datalogger equipment image — DT-P1-HP state: alarm (rojo/red); used in equipment card UI.",
+      "loc": 0,
+      "status": "resource",
+      "source_doc": null,
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/img/dataloggers/DT-P1-HP-VERDE.jpg",
+      "path": "chihuahua-ux/src/rc/img/dataloggers/DT-P1-HP-VERDE.jpg",
+      "kind": "resource-image",
+      "domain": "static-resources",
+      "purpose": "Datalogger equipment image — DT-P1-HP state: normal (verde/green); used in equipment card UI.",
+      "loc": 0,
+      "status": "resource",
+      "source_doc": null,
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/img/dataloggers/DT-P1-NARANJA.jpg",
+      "path": "chihuahua-ux/src/rc/img/dataloggers/DT-P1-NARANJA.jpg",
+      "kind": "resource-image",
+      "domain": "static-resources",
+      "purpose": "Datalogger equipment image — DT-P1 state: warning (naranja/orange); used in equipment card UI.",
+      "loc": 0,
+      "status": "resource",
+      "source_doc": null,
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/img/dataloggers/DT-P1-ROJO.jpg",
+      "path": "chihuahua-ux/src/rc/img/dataloggers/DT-P1-ROJO.jpg",
+      "kind": "resource-image",
+      "domain": "static-resources",
+      "purpose": "Datalogger equipment image — DT-P1 state: alarm (rojo/red); used in equipment card UI.",
+      "loc": 0,
+      "status": "resource",
+      "source_doc": null,
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/img/dataloggers/DT-P1-VERDE.jpg",
+      "path": "chihuahua-ux/src/rc/img/dataloggers/DT-P1-VERDE.jpg",
+      "kind": "resource-image",
+      "domain": "static-resources",
+      "purpose": "Datalogger equipment image — DT-P1 state: normal (verde/green); used in equipment card UI.",
+      "loc": 0,
+      "status": "resource",
+      "source_doc": null,
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/img/dataloggers/DT-P2-NARANJA.jpg",
+      "path": "chihuahua-ux/src/rc/img/dataloggers/DT-P2-NARANJA.jpg",
+      "kind": "resource-image",
+      "domain": "static-resources",
+      "purpose": "Datalogger equipment image — DT-P2 state: warning (naranja/orange); used in equipment card UI.",
+      "loc": 0,
+      "status": "resource",
+      "source_doc": null,
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/img/dataloggers/DT-P2-ROJO.jpg",
+      "path": "chihuahua-ux/src/rc/img/dataloggers/DT-P2-ROJO.jpg",
+      "kind": "resource-image",
+      "domain": "static-resources",
+      "purpose": "Datalogger equipment image — DT-P2 state: alarm (rojo/red); used in equipment card UI.",
+      "loc": 0,
+      "status": "resource",
+      "source_doc": null,
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/img/dataloggers/DT-P2-VERDE.jpg",
+      "path": "chihuahua-ux/src/rc/img/dataloggers/DT-P2-VERDE.jpg",
+      "kind": "resource-image",
+      "domain": "static-resources",
+      "purpose": "Datalogger equipment image — DT-P2 state: normal (verde/green); used in equipment card UI.",
+      "loc": 0,
+      "status": "resource",
+      "source_doc": null,
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/img/dataloggers/DT-P3-NARANJA.jpg",
+      "path": "chihuahua-ux/src/rc/img/dataloggers/DT-P3-NARANJA.jpg",
+      "kind": "resource-image",
+      "domain": "static-resources",
+      "purpose": "Datalogger equipment image — DT-P3 state: warning (naranja/orange); used in equipment card UI.",
+      "loc": 0,
+      "status": "resource",
+      "source_doc": null,
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/img/dataloggers/DT-P3-ROJO.jpg",
+      "path": "chihuahua-ux/src/rc/img/dataloggers/DT-P3-ROJO.jpg",
+      "kind": "resource-image",
+      "domain": "static-resources",
+      "purpose": "Datalogger equipment image — DT-P3 state: alarm (rojo/red); used in equipment card UI.",
+      "loc": 0,
+      "status": "resource",
+      "source_doc": null,
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/img/dataloggers/DT-P3-VERDE.jpg",
+      "path": "chihuahua-ux/src/rc/img/dataloggers/DT-P3-VERDE.jpg",
+      "kind": "resource-image",
+      "domain": "static-resources",
+      "purpose": "Datalogger equipment image — DT-P3 state: normal (verde/green); used in equipment card UI.",
+      "loc": 0,
+      "status": "resource",
+      "source_doc": null,
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/img/dataloggers/DT-P5-NARANJA.jpg",
+      "path": "chihuahua-ux/src/rc/img/dataloggers/DT-P5-NARANJA.jpg",
+      "kind": "resource-image",
+      "domain": "static-resources",
+      "purpose": "Datalogger equipment image — DT-P5 state: warning (naranja/orange); used in equipment card UI.",
+      "loc": 0,
+      "status": "resource",
+      "source_doc": null,
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/img/dataloggers/DT-P5-ROJO.jpg",
+      "path": "chihuahua-ux/src/rc/img/dataloggers/DT-P5-ROJO.jpg",
+      "kind": "resource-image",
+      "domain": "static-resources",
+      "purpose": "Datalogger equipment image — DT-P5 state: alarm (rojo/red); used in equipment card UI.",
+      "loc": 0,
+      "status": "resource",
+      "source_doc": null,
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/img/dataloggers/DT-P5-VERDE.jpg",
+      "path": "chihuahua-ux/src/rc/img/dataloggers/DT-P5-VERDE.jpg",
+      "kind": "resource-image",
+      "domain": "static-resources",
+      "purpose": "Datalogger equipment image — DT-P5 state: normal (verde/green); used in equipment card UI.",
+      "loc": 0,
+      "status": "resource",
+      "source_doc": null,
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/img/honeywell-h.png",
+      "path": "chihuahua-ux/src/rc/img/honeywell-h.png",
+      "kind": "resource-image",
+      "domain": "static-resources",
+      "purpose": "Honeywell H icon PNG; used as browser favicon per index.html link rel=icon.",
+      "loc": 0,
+      "status": "resource",
+      "source_doc": null,
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/img/honeywell-logo.png",
+      "path": "chihuahua-ux/src/rc/img/honeywell-logo.png",
+      "kind": "resource-image",
+      "domain": "static-resources",
+      "purpose": "Honeywell full logo PNG; displayed in dashboard header per index.html img src.",
+      "loc": 0,
+      "status": "resource",
+      "source_doc": null,
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/index.html",
+      "path": "chihuahua-ux/src/rc/index.html",
+      "kind": "iife-entry",
+      "domain": "static-resources",
+      "purpose": "SPA entry point; loads IIFE scripts in dependency order; bootstraps MX60.DashboardApp.init() and ParticleAnimation; includes Three.js importmap.",
+      "loc": 240,
+      "status": "source",
+      "source_doc": null,
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [],
+        "globals_read": [
+          "MX60.DashboardApp",
+          "MX60.ParticleAnimation",
+          "MX60.LiveHistoryBuffer"
+        ],
+        "iife_pattern": "iife-other",
+        "load_order_hint": null,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/AlarmCards.js",
+      "path": "chihuahua-ux/src/rc/js/app/AlarmCards.js",
+      "kind": "iife-lib",
+      "domain": "alarms-frontend",
+      "purpose": "Full-screen alarm detail modal with 3 tabs (Summary, Table, Notes); footer actions: Acknowledge + Hyperlink + Close; §68.4 ANÁLOGO candidate.",
+      "loc": 368,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/proposal.md",
+        "section": "6. Bloque #68"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.AlarmCards"
+        ],
+        "globals_read": [
+          "MX60.AlarmDetailsTable",
+          "MX60.AlarmNotesModal"
+        ],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 14,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/AlarmDetailPage.js",
+      "path": "chihuahua-ux/src/rc/js/app/AlarmDetailPage.js",
+      "kind": "iife-app",
+      "domain": "alarms-frontend",
+      "purpose": "Dedicated alarm-source page (#alarms/<encodedOrd>): shows alarm drill-down table for a single source ORD; registered as page 'alarm-detail'.",
+      "loc": 481,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.AlarmDetailPage"
+        ],
+        "globals_read": [
+          "MX60.AlarmsManager",
+          "MX60.AlarmDetailsTable",
+          "MX60.DashboardApp"
+        ],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 22,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/AlarmDetailsTable.js",
+      "path": "chihuahua-ux/src/rc/js/app/AlarmDetailsTable.js",
+      "kind": "iife-lib",
+      "domain": "alarms-frontend",
+      "purpose": "Alarm details drill-down table: row-action listeners, selection listeners, sortable columns; used as a tab inside AlarmCards.",
+      "loc": 386,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.AlarmDetailsTable"
+        ],
+        "globals_read": [
+          "MX60.util.RelativeTime"
+        ],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 13,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/AlarmLatchStore.js",
+      "path": "chihuahua-ux/src/rc/js/app/AlarmLatchStore.js",
+      "kind": "iife-store",
+      "domain": "alarms-frontend",
+      "purpose": "Client-side latch store per (equipId, alarmKey): sticky until reset, seeded from equipment fetch, write-through POST to /api/alarms/latch|unlatch.",
+      "loc": 268,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.AlarmLatchStore"
+        ],
+        "globals_read": [],
+        "iife_pattern": "iife-self",
+        "load_order_hint": 6,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/AlarmModalActions.js",
+      "path": "chihuahua-ux/src/rc/js/app/AlarmModalActions.js",
+      "kind": "iife-lib",
+      "domain": "alarms-frontend",
+      "purpose": "Poptip with 5 action buttons per alarm record (ack, notes, link, etc.); §68.4 ANÁLOGO candidate for ack flow transplant analysis.",
+      "loc": 240,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/proposal.md",
+        "section": "6. Bloque #68"
+      },
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.AlarmModalActions"
+        ],
+        "globals_read": [
+          "MX60.util.Popover",
+          "MX60.AlarmsManager"
+        ],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 16,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/AlarmNotesModal.js",
+      "path": "chihuahua-ux/src/rc/js/app/AlarmNotesModal.js",
+      "kind": "iife-lib",
+      "domain": "alarms-frontend",
+      "purpose": "Full-screen notes modal: GET + POST to /api/alarms/notes; §68.4 ANÁLOGO candidate for note-gate ack flow; open()/close() API.",
+      "loc": 251,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/proposal.md",
+        "section": "6. Bloque #68"
+      },
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.AlarmNotesModal"
+        ],
+        "globals_read": [
+          "MX60.Toast"
+        ],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 14,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/AlarmsManager.js",
+      "path": "chihuahua-ux/src/rc/js/app/AlarmsManager.js",
+      "kind": "iife-lib",
+      "domain": "alarms-frontend",
+      "purpose": "In-memory alarm store + fetch layer: caches up to MAX_ALARMS entries, listener-pattern for data changes; ack mutations via /api/alarms.",
+      "loc": 326,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.AlarmsManager"
+        ],
+        "globals_read": [
+          "MX60.ConfigManager",
+          "MX60.AlarmLatchStore",
+          "MX60.Toast"
+        ],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 15,
+        "subscriber_role": "producer"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/AlarmsPage.js",
+      "path": "chihuahua-ux/src/rc/js/app/AlarmsPage.js",
+      "kind": "iife-app",
+      "domain": "alarms-frontend",
+      "purpose": "Alarms page (#alarms): planta-tabs + state-tabs toolbar, 12-card pagination grid, bulk select, CSV export; 20s polling interval via AlarmsManager.",
+      "loc": 824,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.AlarmsPage"
+        ],
+        "globals_read": [
+          "MX60.AlarmsManager",
+          "MX60.AlarmCards",
+          "MX60.BulkActionBar",
+          "MX60.AlarmLatchStore",
+          "MX60.util.CsvExport",
+          "MX60.TimeRangePicker",
+          "MX60.DashboardApp"
+        ],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 22,
+        "subscriber_role": "consumer"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/BulkActionBar.js",
+      "path": "chihuahua-ux/src/rc/js/app/BulkActionBar.js",
+      "kind": "iife-lib",
+      "domain": "alarms-frontend",
+      "purpose": "Reusable sticky bulk action bar for selectable lists; displays count of selected items with bulk ack and export actions.",
+      "loc": 110,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.BulkActionBar"
+        ],
+        "globals_read": [],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 13,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/CarcamoDetail.js",
+      "path": "chihuahua-ux/src/rc/js/app/CarcamoDetail.js",
+      "kind": "iife-app",
+      "domain": "equipment-detail",
+      "purpose": "Cárcamo 3D detail renderer: cutaway pit with animated water surface, level bar, sensor LED; color-threshold logic green/orange/red at 45/69%.",
+      "loc": 1040,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.CarcamoDetail"
+        ],
+        "globals_read": [
+          "MX60.EquipmentDetail",
+          "MX60.EquipmentData",
+          "MX60.CarcamoThresholdStore"
+        ],
+        "iife_pattern": "iife-other",
+        "load_order_hint": 30,
+        "subscriber_role": "consumer"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/CarcamoThresholdStore.js",
+      "path": "chihuahua-ux/src/rc/js/app/CarcamoThresholdStore.js",
+      "kind": "iife-store",
+      "domain": "threshold-stores",
+      "purpose": "Read-through cache + write-through for cárcamo level thresholds; Niagara slots are single source of truth; includes colorForReading() helper.",
+      "loc": 216,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.CarcamoThresholdStore"
+        ],
+        "globals_read": [],
+        "iife_pattern": "iife-self",
+        "load_order_hint": 7,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/ConfigManager.js",
+      "path": "chihuahua-ux/src/rc/js/app/ConfigManager.js",
+      "kind": "iife-app",
+      "domain": "app-shell",
+      "purpose": "Fetches and caches /api/config; deduplicated concurrent loads with callbacks; provides reload() and fallback MX60-specific config.",
+      "loc": 141,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.ConfigManager"
+        ],
+        "globals_read": [],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 5,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/Configuracion.js",
+      "path": "chihuahua-ux/src/rc/js/app/Configuracion.js",
+      "kind": "iife-app",
+      "domain": "equipment-detail",
+      "purpose": "Configuración matrix page: all UPs with modoOperacion chips (MANUAL/SETPOINT/SCHEDULE); click-to-change with 5s undo toast; ModoOverrideStore-backed.",
+      "loc": 535,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.ConfiguracionPage"
+        ],
+        "globals_read": [
+          "MX60.EquipmentData",
+          "MX60.ModoOverrideStore",
+          "MX60.writePoint",
+          "MX60.Toast",
+          "MX60.DashboardApp"
+        ],
+        "iife_pattern": "iife-named",
+        "load_order_hint": 25,
+        "subscriber_role": "consumer"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/Confirm.js",
+      "path": "chihuahua-ux/src/rc/js/app/Confirm.js",
+      "kind": "iife-lib",
+      "domain": "ui-lib",
+      "purpose": "Blocking confirmation dialog: single instance, keyboard Enter/Escape support, neutral/danger tone variants.",
+      "loc": 116,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.Confirm"
+        ],
+        "globals_read": [],
+        "iife_pattern": "iife-self",
+        "load_order_hint": 3,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/DashboardApp.js",
+      "path": "chihuahua-ux/src/rc/js/app/DashboardApp.js",
+      "kind": "iife-app",
+      "domain": "app-shell",
+      "purpose": "Root orchestrator: boots ConfigManager and Router, manages page lifecycle (mount/destroy on nav), registers all page modules.",
+      "loc": 309,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.DashboardApp",
+          "MX60.PageStub"
+        ],
+        "globals_read": [
+          "MX60.ConfigManager",
+          "MX60.Router"
+        ],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 25,
+        "subscriber_role": "consumer"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/DataloggerDetail.js",
+      "path": "chihuahua-ux/src/rc/js/app/DataloggerDetail.js",
+      "kind": "iife-app",
+      "domain": "equipment-detail",
+      "purpose": "Datalogger detail renderer: hero image by pressure state (VERDE/NARANJA/ROJO), reading panel, threshold form backed by DataloggerThresholdStore.",
+      "loc": 700,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.DataloggerDetail"
+        ],
+        "globals_read": [
+          "MX60.EquipmentDetail",
+          "MX60.EquipmentData",
+          "MX60.DataloggerThresholdStore",
+          "MX60.Toast",
+          "MX60.writePoint"
+        ],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 28,
+        "subscriber_role": "consumer"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/DataloggerThresholdStore.js",
+      "path": "chihuahua-ux/src/rc/js/app/DataloggerThresholdStore.js",
+      "kind": "iife-store",
+      "domain": "threshold-stores",
+      "purpose": "Read-through cache + write-through for datalogger pressure thresholds (inverted: lectura < umbral = degraded); Niagara slots single source of truth.",
+      "loc": 205,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.DataloggerThresholdStore"
+        ],
+        "globals_read": [],
+        "iife_pattern": "iife-self",
+        "load_order_hint": 7,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/EquipmentCard.js",
+      "path": "chihuahua-ux/src/rc/js/app/EquipmentCard.js",
+      "kind": "iife-app",
+      "domain": "equipment-frontend",
+      "purpose": "Equipment page: planta-tab toolbar + 12-card pagination grid; groups by planta then type (UP → Cárcamo → Datalogger); destroy() cleans listeners.",
+      "loc": 645,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.EquipmentPage"
+        ],
+        "globals_read": [
+          "MX60.EquipmentData",
+          "MX60.DashboardApp",
+          "MX60.Router",
+          "MX60.StatusResolver",
+          "MX60.UpThresholdStore",
+          "MX60.CarcamoThresholdStore",
+          "MX60.DataloggerThresholdStore"
+        ],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 20,
+        "subscriber_role": "consumer"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/EquipmentData.js",
+      "path": "chihuahua-ux/src/rc/js/app/EquipmentData.js",
+      "kind": "iife-lib",
+      "domain": "equipment-frontend",
+      "purpose": "Single source of truth for equipment list: BajaScript subscription primary, REST 5s polling fallback; listener pattern for UI consumers.",
+      "loc": 406,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.EquipmentData"
+        ],
+        "globals_read": [
+          "MX60.SubscriptionPool",
+          "MX60.ConfigManager",
+          "MX60.Toast",
+          "MX60.UpThresholdStore",
+          "MX60.CarcamoThresholdStore",
+          "MX60.DataloggerThresholdStore",
+          "MX60.AlarmLatchStore"
+        ],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 15,
+        "subscriber_role": "consumer"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/EquipmentDetail.js",
+      "path": "chihuahua-ux/src/rc/js/app/EquipmentDetail.js",
+      "kind": "iife-app",
+      "domain": "equipment-detail",
+      "purpose": "Dispatch-by-type orchestrator: reads route equipId from EquipmentData, routes to registered detail renderer; supports registerRenderer(type, fn) API.",
+      "loc": 191,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.DetailPage",
+          "MX60.EquipmentDetail"
+        ],
+        "globals_read": [
+          "MX60.EquipmentData",
+          "MX60.DashboardApp",
+          "MX60.Router"
+        ],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 18,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/EquipmentSnapshotStore.js",
+      "path": "chihuahua-ux/src/rc/js/app/EquipmentSnapshotStore.js",
+      "kind": "iife-store",
+      "domain": "equipment-frontend",
+      "purpose": "Aggregator between EquipmentData and UI: coalesces BajaScript pushes into 1 throttled flush via rAF + 500ms cap; ring buffer per equipId.",
+      "loc": 339,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.EquipmentSnapshotStore"
+        ],
+        "globals_read": [
+          "MX60.EquipmentData"
+        ],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 16,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/HomeMap.js",
+      "path": "chihuahua-ux/src/rc/js/app/HomeMap.js",
+      "kind": "iife-app",
+      "domain": "equipment-frontend",
+      "purpose": "Home map page: clickable SVG plant zones over MAQUILA photo; sidebar with planta on/standby/alarm counts; popover with equipment list on zone click.",
+      "loc": 889,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.HomePage"
+        ],
+        "globals_read": [
+          "MX60.EquipmentData",
+          "MX60.DashboardApp",
+          "MX60.Router",
+          "MX60.util.Popover"
+        ],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 22,
+        "subscriber_role": "consumer"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/LiveHistoryBuffer.js",
+      "path": "chihuahua-ux/src/rc/js/app/LiveHistoryBuffer.js",
+      "kind": "iife-lib",
+      "domain": "equipment-detail",
+      "purpose": "In-memory ring buffer (120 pts/equipId) for live equipment snapshots; data layer only, no rendering; ported from SanLuis HistoryChart ring-buffer.",
+      "loc": 212,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.LiveHistoryBuffer"
+        ],
+        "globals_read": [],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 12,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/ModoOverrideStore.js",
+      "path": "chihuahua-ux/src/rc/js/app/ModoOverrideStore.js",
+      "kind": "iife-store",
+      "domain": "threshold-stores",
+      "purpose": "Optimistic override for modoOperacion per UP while writePoint propagates to Niagara; in-memory only; publish-subscribe pattern for cross-tab sync.",
+      "loc": 65,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.ModoOverrideStore"
+        ],
+        "globals_read": [],
+        "iife_pattern": "iife-self",
+        "load_order_hint": 6,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/OutputOverrideStore.js",
+      "path": "chihuahua-ux/src/rc/js/app/OutputOverrideStore.js",
+      "kind": "iife-store",
+      "domain": "threshold-stores",
+      "purpose": "Optimistic override for device commands (fan, comp1, comp2) per UP in MANUAL mode; cleared on MANUAL exit; mirrors ModoOverrideStore pattern.",
+      "loc": 93,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.OutputOverrideStore"
+        ],
+        "globals_read": [],
+        "iife_pattern": "iife-self",
+        "load_order_hint": 6,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/ParticleAnimation.js",
+      "path": "chihuahua-ux/src/rc/js/app/ParticleAnimation.js",
+      "kind": "iife-lib",
+      "domain": "app-shell",
+      "purpose": "Header canvas particle animation: network-style RAF loop; exposes destroy() + pause()/resume() for lifecycle cleanup.",
+      "loc": 169,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.ParticleAnimation"
+        ],
+        "globals_read": [],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 8,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/Router.js",
+      "path": "chihuahua-ux/src/rc/js/app/Router.js",
+      "kind": "iife-app",
+      "domain": "app-shell",
+      "purpose": "Hash-based router: parses #page/params, dispatches onNavigate callback, manages hashchange listener lifecycle.",
+      "loc": 170,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.Router"
+        ],
+        "globals_read": [],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 20,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/ScheduleView.js",
+      "path": "chihuahua-ux/src/rc/js/app/ScheduleView.js",
+      "kind": "iife-app",
+      "domain": "schedules-frontend",
+      "purpose": "Schedules page (#schedules): auto-discovers BWeeklySchedule objects via /api/schedules; iframe-modal slot editor (inferred from mapping).",
+      "loc": 550,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.ScheduleView"
+        ],
+        "globals_read": [
+          "MX60.ConfigManager",
+          "MX60.DashboardApp"
+        ],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 22,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/SharedEnv.js",
+      "path": "chihuahua-ux/src/rc/js/app/SharedEnv.js",
+      "kind": "iife-lib",
+      "domain": "baja-integration",
+      "purpose": "Shared PMREM environment texture for all 3D detail scenes; off-screen renderer kept alive to share GPU texture across short-lived scene renderers.",
+      "loc": 45,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [],
+        "globals_read": [],
+        "iife_pattern": "iife-other",
+        "load_order_hint": 2,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/StatusResolver.js",
+      "path": "chihuahua-ux/src/rc/js/app/StatusResolver.js",
+      "kind": "iife-lib",
+      "domain": "ui-lib",
+      "purpose": "Single source of truth for effective equipment status: overrides underlying status with alarm when AlarmLatchStore.hasAnyLatched(id) is true.",
+      "loc": 48,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.StatusResolver"
+        ],
+        "globals_read": [
+          "MX60.AlarmLatchStore"
+        ],
+        "iife_pattern": "iife-self",
+        "load_order_hint": 12,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/SubscriptionPool.js",
+      "path": "chihuahua-ux/src/rc/js/app/SubscriptionPool.js",
+      "kind": "iife-lib",
+      "domain": "baja-integration",
+      "purpose": "BajaScript subscription pool: registers point subscribers, watchdog reconnect on silence, teardown on cleanup() (inferred from mapping).",
+      "loc": 587,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.SubscriptionPool"
+        ],
+        "globals_read": [
+          "MX60.ConfigManager",
+          "MX60.Toast"
+        ],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 10,
+        "subscriber_role": "producer"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/TimeRangePicker.js",
+      "path": "chihuahua-ux/src/rc/js/app/TimeRangePicker.js",
+      "kind": "iife-lib",
+      "domain": "equipment-detail",
+      "purpose": "15-preset time-range dropdown; selection persists to localStorage; uses MX60.util.Dropdown for iSMA 4.13.2 embedded-browser styling compat.",
+      "loc": 161,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.TimeRangePicker"
+        ],
+        "globals_read": [
+          "MX60.util.Dropdown"
+        ],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 13,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/Toast.js",
+      "path": "chihuahua-ux/src/rc/js/app/Toast.js",
+      "kind": "iife-lib",
+      "domain": "ui-lib",
+      "purpose": "Bottom-right toast queue with optional undo window; Gmail-style commit/undo pattern; single active toast at a time.",
+      "loc": 117,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.Toast"
+        ],
+        "globals_read": [],
+        "iife_pattern": "iife-self",
+        "load_order_hint": 3,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/UpDetail.js",
+      "path": "chihuahua-ux/src/rc/js/app/UpDetail.js",
+      "kind": "iife-app",
+      "domain": "equipment-detail",
+      "purpose": "MX60 UP detail page: 37-slot panel with MANUAL/SETPOINT/SCHEDULE modes, threshold UI, history chart, write logic, BajaScript subscription lifecycle.",
+      "loc": 3841,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.UpDetail"
+        ],
+        "globals_read": [
+          "MX60.EquipmentDetail",
+          "MX60.EquipmentData",
+          "MX60.Router",
+          "MX60.Toast",
+          "MX60.Confirm",
+          "MX60.ModoOverrideStore",
+          "MX60.OutputOverrideStore",
+          "MX60.UpThresholdStore",
+          "MX60.LiveHistoryBuffer",
+          "MX60.writePoint"
+        ],
+        "iife_pattern": "iife-other",
+        "load_order_hint": 30,
+        "subscriber_role": "consumer"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/UpThresholdStore.js",
+      "path": "chihuahua-ux/src/rc/js/app/UpThresholdStore.js",
+      "kind": "iife-store",
+      "domain": "threshold-stores",
+      "purpose": "Read-through cache + write-through for UP protection thresholds; Niagara slots are single source of truth; seedFromEquipment seeds from REST load.",
+      "loc": 198,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.UpThresholdStore"
+        ],
+        "globals_read": [],
+        "iife_pattern": "iife-self",
+        "load_order_hint": 7,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/lib/WritePoint.js",
+      "path": "chihuahua-ux/src/rc/js/lib/WritePoint.js",
+      "kind": "iife-lib",
+      "domain": "baja-integration",
+      "purpose": "Canonical write helper: BajaScript p.set() primary path, REST POST /api/setpoint fallback; _bajaSetBroken dual-path selection (inferred from mapping).",
+      "loc": 154,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.writePoint"
+        ],
+        "globals_read": [
+          "MX60.Toast"
+        ],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 8,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/util/CsvExport.js",
+      "path": "chihuahua-ux/src/rc/js/util/CsvExport.js",
+      "kind": "iife-lib",
+      "domain": "ui-lib",
+      "purpose": "RFC 4180 CSV download utility: columnsDef with getValue lambdas, pure browser Blob + URL.createObjectURL; no external dependencies.",
+      "loc": 92,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.util.CsvExport"
+        ],
+        "globals_read": [],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 4,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/util/Dropdown.js",
+      "path": "chihuahua-ux/src/rc/js/util/Dropdown.js",
+      "kind": "iife-lib",
+      "domain": "ui-lib",
+      "purpose": "Generic custom dropdown factory replacing native select for theming in iSMA 4.13.2 embedded browser; single-active enforcement.",
+      "loc": 223,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.util.Dropdown"
+        ],
+        "globals_read": [],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 4,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/util/Popover.js",
+      "path": "chihuahua-ux/src/rc/js/util/Popover.js",
+      "kind": "iife-lib",
+      "domain": "ui-lib",
+      "purpose": "Single shared body-level popover: click-outside, ESC, scroll to close; attach factory returns open()/close()/destroy() instance.",
+      "loc": 151,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.util.Popover"
+        ],
+        "globals_read": [],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 4,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/util/RelativeTime.js",
+      "path": "chihuahua-ux/src/rc/js/util/RelativeTime.js",
+      "kind": "iife-lib",
+      "domain": "ui-lib",
+      "purpose": "Spanish relative-time formatter: buckets from seconds to weeks; format() for relative, absolute() for full locale date. No dependencies.",
+      "loc": 73,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.util.RelativeTime"
+        ],
+        "globals_read": [],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 2,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "niagara-module.xml",
+      "path": "niagara-module.xml",
+      "kind": "module-descriptor",
+      "domain": "module-descriptor",
+      "purpose": "Root Niagara module descriptor; declares module identity, vendor, and sub-module references for chihuahua-rt and chihuahua-ux.",
+      "loc": 2,
+      "status": "source",
+      "source_doc": null,
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": null,
+      "dependencies": []
+    }
+  ],
+  "exclusions": [
+    {
+      "path": ".gradle/",
+      "reason": "Gradle cache directory — not project source."
+    },
+    {
+      "path": ".idea/",
+      "reason": "IDE metadata directory — not project source."
+    },
+    {
+      "path": "chihuahua-rt/build/",
+      "reason": "Compiled output directory — not editable source."
+    },
+    {
+      "path": "chihuahua-rt/srcTest/test/com/angeles/chihuahua/components/BChiCarcamoHistoryTest.java",
+      "reason": "Test files excluded per mapping convention."
+    },
+    {
+      "path": "chihuahua-rt/srcTest/test/com/angeles/chihuahua/components/BChiDashboardServiceTest.java",
+      "reason": "Test files excluded per mapping convention."
+    },
+    {
+      "path": "chihuahua-rt/srcTest/test/com/angeles/chihuahua/components/BChiDataLoggerHistoryTest.java",
+      "reason": "Test files excluded per mapping convention."
+    },
+    {
+      "path": "chihuahua-rt/srcTest/test/com/angeles/chihuahua/components/BChiUpProtectionSlotsTest.java",
+      "reason": "Test files excluded per mapping convention."
+    },
+    {
+      "path": "chihuahua-rt/srcTest/test/com/angeles/chihuahua/components/BChiUpSlotTest.java",
+      "reason": "Test files excluded per mapping convention."
+    },
+    {
+      "path": "chihuahua-rt/srcTest/test/com/angeles/chihuahua/components/BTestRunnerProbe.java",
+      "reason": "Test files excluded per mapping convention."
+    },
+    {
+      "path": "chihuahua-ux/build/",
+      "reason": "Compiled output directory — not editable source."
+    },
+    {
+      "path": "chihuahua-ux/srcTest/test/com/angeles/chihuahua/ux/BChiServletIntegrationTest.java",
+      "reason": "Test files excluded per mapping convention."
+    },
+    {
+      "path": "chihuahua-ux/srcTest/test/com/angeles/chihuahua/ux/BChiServletTest.java",
+      "reason": "Test files excluded per mapping convention."
+    },
+    {
+      "path": "chihuahua-ux/srcTest/test/com/angeles/chihuahua/ux/BChiServletThresholdTest.java",
+      "reason": "Test files excluded per mapping convention."
+    },
+    {
+      "path": "chihuahua-ux/srcTest/test/com/angeles/chihuahua/ux/ChiAlarmHelperTest.java",
+      "reason": "Test files excluded per mapping convention."
+    },
+    {
+      "path": "chihuahua-ux/srcTest/test/com/angeles/chihuahua/ux/ChiAlarmQueryHelperTest.java",
+      "reason": "Test files excluded per mapping convention."
+    },
+    {
+      "path": "chihuahua-ux/srcTest/test/com/angeles/chihuahua/ux/ChiEquipmentReaderTest.java",
+      "reason": "Test files excluded per mapping convention."
+    },
+    {
+      "path": "chihuahua-ux/srcTest/test/com/angeles/chihuahua/ux/ChiHistoryHelperTest.java",
+      "reason": "Test files excluded per mapping convention."
+    },
+    {
+      "path": "chihuahua-ux/srcTest/test/com/angeles/chihuahua/ux/ChiJsonUtilTest.java",
+      "reason": "Test files excluded per mapping convention."
+    },
+    {
+      "path": "chihuahua-ux/srcTest/test/com/angeles/chihuahua/ux/ChiScheduleHelperTest.java",
+      "reason": "Test files excluded per mapping convention."
+    },
+    {
+      "path": "chihuahua-ux/srcTest/test/com/angeles/chihuahua/ux/ChiThresholdHelperTest.java",
+      "reason": "Test files excluded per mapping convention."
+    }
+  ]
+}

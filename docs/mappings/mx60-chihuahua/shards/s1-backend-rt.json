@@ -1,0 +1,227 @@
+{
+  "schema_version": "1.0",
+  "module": "mx60-chihuahua",
+  "extensions": [
+    "backend",
+    "frontend_iife"
+  ],
+  "source_repo": "/home/cristian/modulos_niagara_n4/Cliente/Honeywell/MX60/chihuahua/chihuahua",
+  "generated_at": "2026-05-09T00:00:00Z",
+  "generator": "sdd-apply mapping-mx60 v1",
+  "shard": "s1-backend-rt",
+  "domains": [
+    "service-container",
+    "equipment-backend"
+  ],
+  "entries": [
+    {
+      "id": "chihuahua-rt/src/com/angeles/chihuahua/components/BChiDashboardService.java",
+      "path": "chihuahua-rt/src/com/angeles/chihuahua/components/BChiDashboardService.java",
+      "kind": "java-class",
+      "domain": "service-container",
+      "purpose": "Root service BComponent; ensures 6 BPlanta containers; schedules controlTick 10s for protection evaluation (inferred from mapping).",
+      "loc": 685,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "3. Domain decomposition"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": {
+        "package": "com.angeles.chihuahua.components",
+        "bcomponent_type": "BAbstractService",
+        "slots": 1,
+        "actions": [],
+        "rest_endpoints": [],
+        "box_methods": [],
+        "decompiled": false,
+        "profile": "rt"
+      },
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-rt/src/com/angeles/chihuahua/components/BPlanta.java",
+      "path": "chihuahua-rt/src/com/angeles/chihuahua/components/BPlanta.java",
+      "kind": "java-class",
+      "domain": "service-container",
+      "purpose": "Planta container BComponent (1..6); auto-creates UpMonitor, CarcamoMonitor, DataloggerMonitor on started(); filters by planta index.",
+      "loc": 165,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "3. Domain decomposition"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": {
+        "package": "com.angeles.chihuahua.components",
+        "bcomponent_type": "BComponent",
+        "slots": 2,
+        "actions": [],
+        "rest_endpoints": [],
+        "box_methods": [],
+        "decompiled": false,
+        "profile": "rt"
+      },
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-rt/src/com/angeles/chihuahua/components/BChiUp.java",
+      "path": "chihuahua-rt/src/com/angeles/chihuahua/components/BChiUp.java",
+      "kind": "java-class",
+      "domain": "equipment-backend",
+      "purpose": "37-slot BComponent for UP (Unidad Paquete) equipment: 1 label, 2 position, 15 numeric feedback, 7 boolean feedback, 5 writable commands, 7 thresholds.",
+      "loc": 1941,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "3. Domain decomposition"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": {
+        "package": "com.angeles.chihuahua.components",
+        "bcomponent_type": "BComponent",
+        "slots": 37,
+        "actions": [],
+        "rest_endpoints": [],
+        "box_methods": [],
+        "decompiled": false,
+        "profile": "rt"
+      },
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-rt/src/com/angeles/chihuahua/components/BChiCarcamo.java",
+      "path": "chihuahua-rt/src/com/angeles/chihuahua/components/BChiCarcamo.java",
+      "kind": "java-class",
+      "domain": "equipment-backend",
+      "purpose": "8-slot BComponent for Cárcamo (sump/collection pit) equipment: label, position, planta, nivelCm, state, umbralAdvertencia, umbralCritico.",
+      "loc": 309,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "3. Domain decomposition"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": {
+        "package": "com.angeles.chihuahua.components",
+        "bcomponent_type": "BComponent",
+        "slots": 8,
+        "actions": [],
+        "rest_endpoints": [],
+        "box_methods": [],
+        "decompiled": false,
+        "profile": "rt"
+      },
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-rt/src/com/angeles/chihuahua/components/BChiDatalogger.java",
+      "path": "chihuahua-rt/src/com/angeles/chihuahua/components/BChiDatalogger.java",
+      "kind": "java-class",
+      "domain": "equipment-backend",
+      "purpose": "9-slot BComponent for Datalogger (pressure sensor): label, position, planta, pressurePsi, pressureBar, state, umbralAdvertencia, umbralCritico.",
+      "loc": 338,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "3. Domain decomposition"
+      },
+      "verified_at": null,
+      "backend": {
+        "package": "com.angeles.chihuahua.components",
+        "bcomponent_type": "BComponent",
+        "slots": 9,
+        "actions": [],
+        "rest_endpoints": [],
+        "box_methods": [],
+        "decompiled": false,
+        "profile": "rt"
+      },
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-rt/src/com/angeles/chihuahua/components/BChiUpMonitor.java",
+      "path": "chihuahua-rt/src/com/angeles/chihuahua/components/BChiUpMonitor.java",
+      "kind": "java-class",
+      "domain": "equipment-backend",
+      "purpose": "UP equipment monitor BComponent; auto-creates BChiUp children for parent BPlanta on started(); seeds from embedded table.",
+      "loc": 257,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "3. Domain decomposition"
+      },
+      "verified_at": null,
+      "backend": {
+        "package": "com.angeles.chihuahua.components",
+        "bcomponent_type": "BComponent",
+        "slots": 0,
+        "actions": [],
+        "rest_endpoints": [],
+        "box_methods": [],
+        "decompiled": false,
+        "profile": "rt"
+      },
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-rt/src/com/angeles/chihuahua/components/BChiCarcamoMonitor.java",
+      "path": "chihuahua-rt/src/com/angeles/chihuahua/components/BChiCarcamoMonitor.java",
+      "kind": "java-class",
+      "domain": "equipment-backend",
+      "purpose": "Cárcamo equipment monitor BComponent; auto-creates BChiCarcamo children for parent BPlanta on started(); seeds from CARCAMO_DATA table.",
+      "loc": 155,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "3. Domain decomposition"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": {
+        "package": "com.angeles.chihuahua.components",
+        "bcomponent_type": "BComponent",
+        "slots": 0,
+        "actions": [],
+        "rest_endpoints": [],
+        "box_methods": [],
+        "decompiled": false,
+        "profile": "rt"
+      },
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-rt/src/com/angeles/chihuahua/components/BChiDataloggerMonitor.java",
+      "path": "chihuahua-rt/src/com/angeles/chihuahua/components/BChiDataloggerMonitor.java",
+      "kind": "java-class",
+      "domain": "equipment-backend",
+      "purpose": "Datalogger equipment monitor BComponent; auto-creates BChiDatalogger children for parent BPlanta on started(); seeds from datalogger table.",
+      "loc": 154,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "3. Domain decomposition"
+      },
+      "verified_at": null,
+      "backend": {
+        "package": "com.angeles.chihuahua.components",
+        "bcomponent_type": "BComponent",
+        "slots": 0,
+        "actions": [],
+        "rest_endpoints": [],
+        "box_methods": [],
+        "decompiled": false,
+        "profile": "rt"
+      },
+      "frontend_iife": null,
+      "dependencies": []
+    }
+  ],
+  "exclusions": []
+}

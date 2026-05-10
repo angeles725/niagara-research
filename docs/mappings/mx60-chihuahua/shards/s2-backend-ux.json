@@ -1,0 +1,289 @@
+{
+  "schema_version": "1.0",
+  "module": "mx60-chihuahua",
+  "extensions": [
+    "backend",
+    "frontend_iife"
+  ],
+  "source_repo": "/home/cristian/modulos_niagara_n4/Cliente/Honeywell/MX60/chihuahua/chihuahua",
+  "generated_at": "2026-05-09T00:00:00Z",
+  "generator": "sdd-apply mapping-mx60 v1",
+  "shard": "s2-backend-ux",
+  "domains": [
+    "http-rest",
+    "equipment-reader",
+    "alarms-backend",
+    "history-backend",
+    "schedules-backend",
+    "util-backend"
+  ],
+  "entries": [
+    {
+      "id": "chihuahua-ux/src/com/angeles/chihuahua/ux/BChiServlet.java",
+      "path": "chihuahua-ux/src/com/angeles/chihuahua/ux/BChiServlet.java",
+      "kind": "java-class",
+      "domain": "http-rest",
+      "purpose": "BWebServlet routing all /mx60/* requests; delegates to ChiServletDispatch.route(); serves 17 API endpoints + static assets under /mx60/.",
+      "loc": 1743,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": {
+        "package": "com.angeles.chihuahua.ux",
+        "bcomponent_type": "BWebServlet",
+        "slots": 0,
+        "actions": [],
+        "rest_endpoints": [
+          "GET /mx60/",
+          "GET /mx60/index.html",
+          "GET /mx60/css/*",
+          "GET /mx60/js/*",
+          "GET /mx60/img/*",
+          "GET /mx60/fonts/*",
+          "GET /mx60/ext/*",
+          "GET /mx60/api/config",
+          "GET /mx60/api/equipment",
+          "GET /mx60/api/alarms",
+          "GET /mx60/api/alarmCounts",
+          "GET /mx60/api/historyList",
+          "GET /mx60/api/historyData",
+          "GET /mx60/api/equipment-histories",
+          "GET /mx60/api/schedules",
+          "GET /mx60/api/csrf-probe",
+          "GET /mx60/api/up/{ord}/thresholds",
+          "GET /mx60/api/carcamo/{ord}/thresholds",
+          "GET /mx60/api/datalogger/{ord}/thresholds",
+          "GET /mx60/api/alarms/sources",
+          "GET /mx60/api/alarms/notes/{uuid}",
+          "GET /mx60/api/alarms/source",
+          "GET /mx60/api/alarms/hyperlink",
+          "POST /mx60/api/setpoint",
+          "POST /mx60/api/alarms/latch",
+          "POST /mx60/api/alarms/unlatch",
+          "POST /mx60/api/alarms/ack",
+          "POST /mx60/api/up/{ord}/threshold",
+          "POST /mx60/api/carcamo/{ord}/threshold",
+          "POST /mx60/api/datalogger/{ord}/threshold",
+          "POST /mx60/api/alarms/notes"
+        ],
+        "box_methods": [],
+        "decompiled": false,
+        "profile": "ux"
+      },
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/com/angeles/chihuahua/ux/ChiServletDispatch.java",
+      "path": "chihuahua-ux/src/com/angeles/chihuahua/ux/ChiServletDispatch.java",
+      "kind": "java-class",
+      "domain": "http-rest",
+      "purpose": "Pure routing logic; package-private final class; all routing decisions in route() — pure-Java, WSL-testable without Niagara WebOp dependency.",
+      "loc": 594,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": {
+        "package": "com.angeles.chihuahua.ux",
+        "bcomponent_type": null,
+        "slots": null,
+        "actions": [],
+        "rest_endpoints": [],
+        "box_methods": [],
+        "decompiled": false,
+        "profile": "ux"
+      },
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/com/angeles/chihuahua/ux/ChiEquipmentReader.java",
+      "path": "chihuahua-ux/src/com/angeles/chihuahua/ux/ChiEquipmentReader.java",
+      "kind": "java-class",
+      "domain": "equipment-reader",
+      "purpose": "Walks BChiDashboardService station hierarchy; serializes UP, Cárcamo, Datalogger equipment slots to JSON for /api/equipment response.",
+      "loc": 865,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "3. Domain decomposition"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": {
+        "package": "com.angeles.chihuahua.ux",
+        "bcomponent_type": null,
+        "slots": null,
+        "actions": [],
+        "rest_endpoints": [],
+        "box_methods": [],
+        "decompiled": false,
+        "profile": "ux"
+      },
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/com/angeles/chihuahua/ux/ChiThresholdHelper.java",
+      "path": "chihuahua-ux/src/com/angeles/chihuahua/ux/ChiThresholdHelper.java",
+      "kind": "java-class",
+      "domain": "equipment-reader",
+      "purpose": "Reads and writes threshold slots on BChiUp, BChiCarcamo, BChiDatalogger via BOrd walk; serves GET/POST /api/{type}/{ord}/threshold* endpoints.",
+      "loc": 261,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "3. Domain decomposition"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": {
+        "package": "com.angeles.chihuahua.ux",
+        "bcomponent_type": null,
+        "slots": null,
+        "actions": [],
+        "rest_endpoints": [],
+        "box_methods": [],
+        "decompiled": false,
+        "profile": "ux"
+      },
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/com/angeles/chihuahua/ux/ChiAlarmHelper.java",
+      "path": "chihuahua-ux/src/com/angeles/chihuahua/ux/ChiAlarmHelper.java",
+      "kind": "java-class",
+      "domain": "alarms-backend",
+      "purpose": "Queries BAlarmDatabase; handles alarm latch/unlatch/ack on BChiUp slots; serves /api/alarms, /api/alarmCounts, /api/alarms/notes.",
+      "loc": 2041,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "3. Domain decomposition"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": {
+        "package": "com.angeles.chihuahua.ux",
+        "bcomponent_type": null,
+        "slots": null,
+        "actions": [],
+        "rest_endpoints": [],
+        "box_methods": [],
+        "decompiled": false,
+        "profile": "ux"
+      },
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/com/angeles/chihuahua/ux/ChiAlarmQueryHelper.java",
+      "path": "chihuahua-ux/src/com/angeles/chihuahua/ux/ChiAlarmQueryHelper.java",
+      "kind": "java-class",
+      "domain": "alarms-backend",
+      "purpose": "Queries BAlarmDatabase grouped by source ORD; serves /api/alarms/sources and /api/alarms/source endpoints for Reflow alarms UX (ADR-2).",
+      "loc": 379,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "3. Domain decomposition"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": {
+        "package": "com.angeles.chihuahua.ux",
+        "bcomponent_type": null,
+        "slots": null,
+        "actions": [],
+        "rest_endpoints": [],
+        "box_methods": [],
+        "decompiled": false,
+        "profile": "ux"
+      },
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/com/angeles/chihuahua/ux/ChiHistoryHelper.java",
+      "path": "chihuahua-ux/src/com/angeles/chihuahua/ux/ChiHistoryHelper.java",
+      "kind": "java-class",
+      "domain": "history-backend",
+      "purpose": "Queries BHistoryDatabase for MX60 dashboard; ported from SnlsHistoryHelper.java (L21); serves /api/historyList and /api/historyData endpoints.",
+      "loc": 619,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "3. Domain decomposition"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": {
+        "package": "com.angeles.chihuahua.ux",
+        "bcomponent_type": null,
+        "slots": null,
+        "actions": [],
+        "rest_endpoints": [],
+        "box_methods": [],
+        "decompiled": false,
+        "profile": "ux"
+      },
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/com/angeles/chihuahua/ux/ChiScheduleHelper.java",
+      "path": "chihuahua-ux/src/com/angeles/chihuahua/ux/ChiScheduleHelper.java",
+      "kind": "java-class",
+      "domain": "schedules-backend",
+      "purpose": "Enumerates BNumericSchedule instances from station via BOrd walk; serializes schedule data to JSON for /api/schedules response.",
+      "loc": 254,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "3. Domain decomposition"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": {
+        "package": "com.angeles.chihuahua.ux",
+        "bcomponent_type": null,
+        "slots": null,
+        "actions": [],
+        "rest_endpoints": [],
+        "box_methods": [],
+        "decompiled": false,
+        "profile": "ux"
+      },
+      "frontend_iife": null,
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/com/angeles/chihuahua/ux/ChiJsonUtil.java",
+      "path": "chihuahua-ux/src/com/angeles/chihuahua/ux/ChiJsonUtil.java",
+      "kind": "java-class",
+      "domain": "util-backend",
+      "purpose": "Stateless JSON utility; escapeJson() for safe string embedding; date/number formatting helpers shared across all ux helper classes.",
+      "loc": 270,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "3. Domain decomposition"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": {
+        "package": "com.angeles.chihuahua.ux",
+        "bcomponent_type": null,
+        "slots": null,
+        "actions": [],
+        "rest_endpoints": [],
+        "box_methods": [],
+        "decompiled": false,
+        "profile": "ux"
+      },
+      "frontend_iife": null,
+      "dependencies": []
+    }
+  ],
+  "exclusions": []
+}

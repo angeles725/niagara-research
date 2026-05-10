@@ -1,0 +1,393 @@
+{
+  "schema_version": "1.0",
+  "module": "mx60-chihuahua",
+  "extensions": [
+    "backend",
+    "frontend_iife"
+  ],
+  "source_repo": "/home/cristian/modulos_niagara_n4/Cliente/Honeywell/MX60/chihuahua/chihuahua",
+  "generated_at": "2026-05-09T00:00:00Z",
+  "generator": "sdd-apply mapping-mx60 v1",
+  "shard": "s3-frontend-core",
+  "domains": [
+    "app-shell",
+    "baja-integration",
+    "ui-lib"
+  ],
+  "entries": [
+    {
+      "id": "chihuahua-ux/src/rc/js/app/DashboardApp.js",
+      "path": "chihuahua-ux/src/rc/js/app/DashboardApp.js",
+      "kind": "iife-app",
+      "domain": "app-shell",
+      "purpose": "Root orchestrator: boots ConfigManager and Router, manages page lifecycle (mount/destroy on nav), registers all page modules.",
+      "loc": 309,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.DashboardApp",
+          "MX60.PageStub"
+        ],
+        "globals_read": [
+          "MX60.ConfigManager",
+          "MX60.Router"
+        ],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 25,
+        "subscriber_role": "consumer"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/Router.js",
+      "path": "chihuahua-ux/src/rc/js/app/Router.js",
+      "kind": "iife-app",
+      "domain": "app-shell",
+      "purpose": "Hash-based router: parses #page/params, dispatches onNavigate callback, manages hashchange listener lifecycle.",
+      "loc": 170,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.Router"
+        ],
+        "globals_read": [],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 20,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/ConfigManager.js",
+      "path": "chihuahua-ux/src/rc/js/app/ConfigManager.js",
+      "kind": "iife-app",
+      "domain": "app-shell",
+      "purpose": "Fetches and caches /api/config; deduplicated concurrent loads with callbacks; provides reload() and fallback MX60-specific config.",
+      "loc": 141,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.ConfigManager"
+        ],
+        "globals_read": [],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 5,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/ParticleAnimation.js",
+      "path": "chihuahua-ux/src/rc/js/app/ParticleAnimation.js",
+      "kind": "iife-lib",
+      "domain": "app-shell",
+      "purpose": "Header canvas particle animation: network-style RAF loop; exposes destroy() + pause()/resume() for lifecycle cleanup.",
+      "loc": 169,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.ParticleAnimation"
+        ],
+        "globals_read": [],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 8,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/SharedEnv.js",
+      "path": "chihuahua-ux/src/rc/js/app/SharedEnv.js",
+      "kind": "iife-lib",
+      "domain": "baja-integration",
+      "purpose": "Shared PMREM environment texture for all 3D detail scenes; off-screen renderer kept alive to share GPU texture across short-lived scene renderers.",
+      "loc": 45,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [],
+        "globals_read": [],
+        "iife_pattern": "iife-other",
+        "load_order_hint": 2,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/SubscriptionPool.js",
+      "path": "chihuahua-ux/src/rc/js/app/SubscriptionPool.js",
+      "kind": "iife-lib",
+      "domain": "baja-integration",
+      "purpose": "BajaScript subscription pool: registers point subscribers, watchdog reconnect on silence, teardown on cleanup() (inferred from mapping).",
+      "loc": 587,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.SubscriptionPool"
+        ],
+        "globals_read": [
+          "MX60.ConfigManager",
+          "MX60.Toast"
+        ],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 10,
+        "subscriber_role": "producer"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/lib/WritePoint.js",
+      "path": "chihuahua-ux/src/rc/js/lib/WritePoint.js",
+      "kind": "iife-lib",
+      "domain": "baja-integration",
+      "purpose": "Canonical write helper: BajaScript p.set() primary path, REST POST /api/setpoint fallback; _bajaSetBroken dual-path selection (inferred from mapping).",
+      "loc": 154,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.writePoint"
+        ],
+        "globals_read": [
+          "MX60.Toast"
+        ],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 8,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/Toast.js",
+      "path": "chihuahua-ux/src/rc/js/app/Toast.js",
+      "kind": "iife-lib",
+      "domain": "ui-lib",
+      "purpose": "Bottom-right toast queue with optional undo window; Gmail-style commit/undo pattern; single active toast at a time.",
+      "loc": 117,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.Toast"
+        ],
+        "globals_read": [],
+        "iife_pattern": "iife-self",
+        "load_order_hint": 3,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/Confirm.js",
+      "path": "chihuahua-ux/src/rc/js/app/Confirm.js",
+      "kind": "iife-lib",
+      "domain": "ui-lib",
+      "purpose": "Blocking confirmation dialog: single instance, keyboard Enter/Escape support, neutral/danger tone variants.",
+      "loc": 116,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.Confirm"
+        ],
+        "globals_read": [],
+        "iife_pattern": "iife-self",
+        "load_order_hint": 3,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/StatusResolver.js",
+      "path": "chihuahua-ux/src/rc/js/app/StatusResolver.js",
+      "kind": "iife-lib",
+      "domain": "ui-lib",
+      "purpose": "Single source of truth for effective equipment status: overrides underlying status with alarm when AlarmLatchStore.hasAnyLatched(id) is true.",
+      "loc": 48,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.StatusResolver"
+        ],
+        "globals_read": [
+          "MX60.AlarmLatchStore"
+        ],
+        "iife_pattern": "iife-self",
+        "load_order_hint": 12,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/util/Dropdown.js",
+      "path": "chihuahua-ux/src/rc/js/util/Dropdown.js",
+      "kind": "iife-lib",
+      "domain": "ui-lib",
+      "purpose": "Generic custom dropdown factory replacing native select for theming in iSMA 4.13.2 embedded browser; single-active enforcement.",
+      "loc": 223,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.util.Dropdown"
+        ],
+        "globals_read": [],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 4,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/util/Popover.js",
+      "path": "chihuahua-ux/src/rc/js/util/Popover.js",
+      "kind": "iife-lib",
+      "domain": "ui-lib",
+      "purpose": "Single shared body-level popover: click-outside, ESC, scroll to close; attach factory returns open()/close()/destroy() instance.",
+      "loc": 151,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.util.Popover"
+        ],
+        "globals_read": [],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 4,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/util/RelativeTime.js",
+      "path": "chihuahua-ux/src/rc/js/util/RelativeTime.js",
+      "kind": "iife-lib",
+      "domain": "ui-lib",
+      "purpose": "Spanish relative-time formatter: buckets from seconds to weeks; format() for relative, absolute() for full locale date. No dependencies.",
+      "loc": 73,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.util.RelativeTime"
+        ],
+        "globals_read": [],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 2,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/util/CsvExport.js",
+      "path": "chihuahua-ux/src/rc/js/util/CsvExport.js",
+      "kind": "iife-lib",
+      "domain": "ui-lib",
+      "purpose": "RFC 4180 CSV download utility: columnsDef with getValue lambdas, pure browser Blob + URL.createObjectURL; no external dependencies.",
+      "loc": 92,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.util.CsvExport"
+        ],
+        "globals_read": [],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 4,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    }
+  ],
+  "exclusions": []
+}

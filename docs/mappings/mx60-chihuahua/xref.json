@@ -1,0 +1,530 @@
+[
+  {
+    "from_id": "chihuahua-ux/src/rc/index.html",
+    "to_id": "chihuahua-ux/src/rc/js/app/DashboardApp.js",
+    "usage_kind": "reads-global",
+    "evidence": "index.html:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/index.html",
+    "to_id": "chihuahua-ux/src/rc/js/app/ParticleAnimation.js",
+    "usage_kind": "reads-global",
+    "evidence": "index.html:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/index.html",
+    "to_id": "chihuahua-ux/src/rc/js/app/LiveHistoryBuffer.js",
+    "usage_kind": "reads-global",
+    "evidence": "index.html:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/AlarmCards.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/AlarmDetailsTable.js",
+    "usage_kind": "reads-global",
+    "evidence": "AlarmCards.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/AlarmCards.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/AlarmNotesModal.js",
+    "usage_kind": "reads-global",
+    "evidence": "AlarmCards.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/AlarmDetailPage.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/AlarmsManager.js",
+    "usage_kind": "reads-global",
+    "evidence": "AlarmDetailPage.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/AlarmDetailPage.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/AlarmDetailsTable.js",
+    "usage_kind": "reads-global",
+    "evidence": "AlarmDetailPage.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/AlarmDetailPage.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/DashboardApp.js",
+    "usage_kind": "reads-global",
+    "evidence": "AlarmDetailPage.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/AlarmDetailsTable.js",
+    "to_id": "chihuahua-ux/src/rc/js/util/RelativeTime.js",
+    "usage_kind": "reads-global",
+    "evidence": "AlarmDetailsTable.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/AlarmModalActions.js",
+    "to_id": "chihuahua-ux/src/rc/js/util/Popover.js",
+    "usage_kind": "reads-global",
+    "evidence": "AlarmModalActions.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/AlarmModalActions.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/AlarmsManager.js",
+    "usage_kind": "reads-global",
+    "evidence": "AlarmModalActions.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/AlarmNotesModal.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/Toast.js",
+    "usage_kind": "reads-global",
+    "evidence": "AlarmNotesModal.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/AlarmsManager.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/ConfigManager.js",
+    "usage_kind": "reads-global",
+    "evidence": "AlarmsManager.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/AlarmsManager.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/AlarmLatchStore.js",
+    "usage_kind": "reads-global",
+    "evidence": "AlarmsManager.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/AlarmsManager.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/Toast.js",
+    "usage_kind": "reads-global",
+    "evidence": "AlarmsManager.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/AlarmsPage.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/AlarmsManager.js",
+    "usage_kind": "reads-global",
+    "evidence": "AlarmsPage.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/AlarmsPage.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/AlarmCards.js",
+    "usage_kind": "reads-global",
+    "evidence": "AlarmsPage.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/AlarmsPage.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/BulkActionBar.js",
+    "usage_kind": "reads-global",
+    "evidence": "AlarmsPage.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/AlarmsPage.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/AlarmLatchStore.js",
+    "usage_kind": "reads-global",
+    "evidence": "AlarmsPage.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/AlarmsPage.js",
+    "to_id": "chihuahua-ux/src/rc/js/util/CsvExport.js",
+    "usage_kind": "reads-global",
+    "evidence": "AlarmsPage.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/AlarmsPage.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/TimeRangePicker.js",
+    "usage_kind": "reads-global",
+    "evidence": "AlarmsPage.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/AlarmsPage.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/DashboardApp.js",
+    "usage_kind": "reads-global",
+    "evidence": "AlarmsPage.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/CarcamoDetail.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/EquipmentDetail.js",
+    "usage_kind": "reads-global",
+    "evidence": "CarcamoDetail.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/CarcamoDetail.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/EquipmentData.js",
+    "usage_kind": "reads-global",
+    "evidence": "CarcamoDetail.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/CarcamoDetail.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/CarcamoThresholdStore.js",
+    "usage_kind": "reads-global",
+    "evidence": "CarcamoDetail.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/Configuracion.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/EquipmentData.js",
+    "usage_kind": "reads-global",
+    "evidence": "Configuracion.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/Configuracion.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/ModoOverrideStore.js",
+    "usage_kind": "reads-global",
+    "evidence": "Configuracion.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/Configuracion.js",
+    "to_id": "chihuahua-ux/src/rc/js/lib/WritePoint.js",
+    "usage_kind": "reads-global",
+    "evidence": "Configuracion.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/Configuracion.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/Toast.js",
+    "usage_kind": "reads-global",
+    "evidence": "Configuracion.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/Configuracion.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/DashboardApp.js",
+    "usage_kind": "reads-global",
+    "evidence": "Configuracion.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/DashboardApp.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/ConfigManager.js",
+    "usage_kind": "reads-global",
+    "evidence": "DashboardApp.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/DashboardApp.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/Router.js",
+    "usage_kind": "reads-global",
+    "evidence": "DashboardApp.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/DataloggerDetail.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/EquipmentDetail.js",
+    "usage_kind": "reads-global",
+    "evidence": "DataloggerDetail.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/DataloggerDetail.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/EquipmentData.js",
+    "usage_kind": "reads-global",
+    "evidence": "DataloggerDetail.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/DataloggerDetail.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/DataloggerThresholdStore.js",
+    "usage_kind": "reads-global",
+    "evidence": "DataloggerDetail.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/DataloggerDetail.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/Toast.js",
+    "usage_kind": "reads-global",
+    "evidence": "DataloggerDetail.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/DataloggerDetail.js",
+    "to_id": "chihuahua-ux/src/rc/js/lib/WritePoint.js",
+    "usage_kind": "reads-global",
+    "evidence": "DataloggerDetail.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/EquipmentCard.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/EquipmentData.js",
+    "usage_kind": "reads-global",
+    "evidence": "EquipmentCard.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/EquipmentCard.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/DashboardApp.js",
+    "usage_kind": "reads-global",
+    "evidence": "EquipmentCard.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/EquipmentCard.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/Router.js",
+    "usage_kind": "reads-global",
+    "evidence": "EquipmentCard.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/EquipmentCard.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/StatusResolver.js",
+    "usage_kind": "reads-global",
+    "evidence": "EquipmentCard.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/EquipmentCard.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/UpThresholdStore.js",
+    "usage_kind": "reads-global",
+    "evidence": "EquipmentCard.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/EquipmentCard.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/CarcamoThresholdStore.js",
+    "usage_kind": "reads-global",
+    "evidence": "EquipmentCard.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/EquipmentCard.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/DataloggerThresholdStore.js",
+    "usage_kind": "reads-global",
+    "evidence": "EquipmentCard.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/EquipmentData.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/SubscriptionPool.js",
+    "usage_kind": "reads-global",
+    "evidence": "EquipmentData.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/EquipmentData.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/ConfigManager.js",
+    "usage_kind": "reads-global",
+    "evidence": "EquipmentData.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/EquipmentData.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/Toast.js",
+    "usage_kind": "reads-global",
+    "evidence": "EquipmentData.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/EquipmentData.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/UpThresholdStore.js",
+    "usage_kind": "reads-global",
+    "evidence": "EquipmentData.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/EquipmentData.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/CarcamoThresholdStore.js",
+    "usage_kind": "reads-global",
+    "evidence": "EquipmentData.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/EquipmentData.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/DataloggerThresholdStore.js",
+    "usage_kind": "reads-global",
+    "evidence": "EquipmentData.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/EquipmentData.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/AlarmLatchStore.js",
+    "usage_kind": "reads-global",
+    "evidence": "EquipmentData.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/EquipmentDetail.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/EquipmentData.js",
+    "usage_kind": "reads-global",
+    "evidence": "EquipmentDetail.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/EquipmentDetail.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/DashboardApp.js",
+    "usage_kind": "reads-global",
+    "evidence": "EquipmentDetail.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/EquipmentDetail.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/Router.js",
+    "usage_kind": "reads-global",
+    "evidence": "EquipmentDetail.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/EquipmentSnapshotStore.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/EquipmentData.js",
+    "usage_kind": "reads-global",
+    "evidence": "EquipmentSnapshotStore.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/HomeMap.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/EquipmentData.js",
+    "usage_kind": "reads-global",
+    "evidence": "HomeMap.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/HomeMap.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/DashboardApp.js",
+    "usage_kind": "reads-global",
+    "evidence": "HomeMap.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/HomeMap.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/Router.js",
+    "usage_kind": "reads-global",
+    "evidence": "HomeMap.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/HomeMap.js",
+    "to_id": "chihuahua-ux/src/rc/js/util/Popover.js",
+    "usage_kind": "reads-global",
+    "evidence": "HomeMap.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/ScheduleView.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/ConfigManager.js",
+    "usage_kind": "reads-global",
+    "evidence": "ScheduleView.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/ScheduleView.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/DashboardApp.js",
+    "usage_kind": "reads-global",
+    "evidence": "ScheduleView.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/StatusResolver.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/AlarmLatchStore.js",
+    "usage_kind": "reads-global",
+    "evidence": "StatusResolver.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/SubscriptionPool.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/ConfigManager.js",
+    "usage_kind": "reads-global",
+    "evidence": "SubscriptionPool.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/SubscriptionPool.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/Toast.js",
+    "usage_kind": "reads-global",
+    "evidence": "SubscriptionPool.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/TimeRangePicker.js",
+    "to_id": "chihuahua-ux/src/rc/js/util/Dropdown.js",
+    "usage_kind": "reads-global",
+    "evidence": "TimeRangePicker.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/UpDetail.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/EquipmentDetail.js",
+    "usage_kind": "reads-global",
+    "evidence": "UpDetail.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/UpDetail.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/EquipmentData.js",
+    "usage_kind": "reads-global",
+    "evidence": "UpDetail.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/UpDetail.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/Router.js",
+    "usage_kind": "reads-global",
+    "evidence": "UpDetail.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/UpDetail.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/Toast.js",
+    "usage_kind": "reads-global",
+    "evidence": "UpDetail.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/UpDetail.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/Confirm.js",
+    "usage_kind": "reads-global",
+    "evidence": "UpDetail.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/UpDetail.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/ModoOverrideStore.js",
+    "usage_kind": "reads-global",
+    "evidence": "UpDetail.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/UpDetail.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/OutputOverrideStore.js",
+    "usage_kind": "reads-global",
+    "evidence": "UpDetail.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/UpDetail.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/UpThresholdStore.js",
+    "usage_kind": "reads-global",
+    "evidence": "UpDetail.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/UpDetail.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/LiveHistoryBuffer.js",
+    "usage_kind": "reads-global",
+    "evidence": "UpDetail.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/app/UpDetail.js",
+    "to_id": "chihuahua-ux/src/rc/js/lib/WritePoint.js",
+    "usage_kind": "reads-global",
+    "evidence": "UpDetail.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/rc/js/lib/WritePoint.js",
+    "to_id": "chihuahua-ux/src/rc/js/app/Toast.js",
+    "usage_kind": "reads-global",
+    "evidence": "WritePoint.js:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/com/angeles/chihuahua/ux/ChiScheduleHelper.java",
+    "to_id": "chihuahua-rt/src/com/angeles/chihuahua/components/BChiUp.java",
+    "usage_kind": "invokes-java",
+    "evidence": "ChiScheduleHelper.java:3"
+  },
+  {
+    "from_id": "chihuahua-ux/src/com/angeles/chihuahua/ux/BChiServlet.java",
+    "to_id": "chihuahua-rt/src/com/angeles/chihuahua/components/BChiDashboardService.java",
+    "usage_kind": "invokes-java",
+    "evidence": "BChiServlet.java:739"
+  },
+  {
+    "from_id": "chihuahua-ux/src/com/angeles/chihuahua/ux/BChiServlet.java",
+    "to_id": "chihuahua-rt/src/com/angeles/chihuahua/components/BChiUp.java",
+    "usage_kind": "invokes-java",
+    "evidence": "BChiServlet.java:1055"
+  },
+  {
+    "from_id": "chihuahua-ux/src/com/angeles/chihuahua/ux/BChiServlet.java",
+    "to_id": "chihuahua-rt/src/com/angeles/chihuahua/components/BChiCarcamo.java",
+    "usage_kind": "invokes-java",
+    "evidence": "BChiServlet.java:1324"
+  },
+  {
+    "from_id": "chihuahua-ux/src/com/angeles/chihuahua/ux/ChiEquipmentReader.java",
+    "to_id": "chihuahua-rt/src/com/angeles/chihuahua/components/BChiUp.java",
+    "usage_kind": "invokes-java",
+    "evidence": "ChiEquipmentReader.java:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/com/angeles/chihuahua/ux/ChiEquipmentReader.java",
+    "to_id": "chihuahua-rt/src/com/angeles/chihuahua/components/BChiCarcamo.java",
+    "usage_kind": "invokes-java",
+    "evidence": "ChiEquipmentReader.java:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/com/angeles/chihuahua/ux/ChiEquipmentReader.java",
+    "to_id": "chihuahua-rt/src/com/angeles/chihuahua/components/BChiDatalogger.java",
+    "usage_kind": "invokes-java",
+    "evidence": "ChiEquipmentReader.java:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/com/angeles/chihuahua/ux/ChiThresholdHelper.java",
+    "to_id": "chihuahua-rt/src/com/angeles/chihuahua/components/BChiUp.java",
+    "usage_kind": "invokes-java",
+    "evidence": "ChiThresholdHelper.java:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/com/angeles/chihuahua/ux/ChiThresholdHelper.java",
+    "to_id": "chihuahua-rt/src/com/angeles/chihuahua/components/BChiCarcamo.java",
+    "usage_kind": "invokes-java",
+    "evidence": "ChiThresholdHelper.java:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/com/angeles/chihuahua/ux/ChiThresholdHelper.java",
+    "to_id": "chihuahua-rt/src/com/angeles/chihuahua/components/BChiDatalogger.java",
+    "usage_kind": "invokes-java",
+    "evidence": "ChiThresholdHelper.java:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/com/angeles/chihuahua/ux/ChiAlarmHelper.java",
+    "to_id": "chihuahua-rt/src/com/angeles/chihuahua/components/BChiUp.java",
+    "usage_kind": "invokes-java",
+    "evidence": "ChiAlarmHelper.java:1"
+  },
+  {
+    "from_id": "chihuahua-ux/src/com/angeles/chihuahua/ux/ChiServletDispatch.java",
+    "to_id": "chihuahua-rt/src/com/angeles/chihuahua/components/BChiDashboardService.java",
+    "usage_kind": "invokes-java",
+    "evidence": "ChiServletDispatch.java:1"
+  }
+]

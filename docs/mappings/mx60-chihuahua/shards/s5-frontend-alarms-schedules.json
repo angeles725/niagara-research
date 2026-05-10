@@ -1,0 +1,308 @@
+{
+  "schema_version": "1.0",
+  "module": "mx60-chihuahua",
+  "extensions": [
+    "backend",
+    "frontend_iife"
+  ],
+  "source_repo": "/home/cristian/modulos_niagara_n4/Cliente/Honeywell/MX60/chihuahua/chihuahua",
+  "generated_at": "2026-05-09T00:00:00Z",
+  "generator": "sdd-apply mapping-mx60 v1",
+  "shard": "s5-frontend-alarms-schedules",
+  "domains": [
+    "alarms-frontend",
+    "schedules-frontend"
+  ],
+  "entries": [
+    {
+      "id": "chihuahua-ux/src/rc/js/app/AlarmsManager.js",
+      "path": "chihuahua-ux/src/rc/js/app/AlarmsManager.js",
+      "kind": "iife-lib",
+      "domain": "alarms-frontend",
+      "purpose": "In-memory alarm store + fetch layer: caches up to MAX_ALARMS entries, listener-pattern for data changes; ack mutations via /api/alarms.",
+      "loc": 326,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.AlarmsManager"
+        ],
+        "globals_read": [
+          "MX60.ConfigManager",
+          "MX60.AlarmLatchStore",
+          "MX60.Toast"
+        ],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 15,
+        "subscriber_role": "producer"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/AlarmsPage.js",
+      "path": "chihuahua-ux/src/rc/js/app/AlarmsPage.js",
+      "kind": "iife-app",
+      "domain": "alarms-frontend",
+      "purpose": "Alarms page (#alarms): planta-tabs + state-tabs toolbar, 12-card pagination grid, bulk select, CSV export; 20s polling interval via AlarmsManager.",
+      "loc": 824,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.AlarmsPage"
+        ],
+        "globals_read": [
+          "MX60.AlarmsManager",
+          "MX60.AlarmCards",
+          "MX60.BulkActionBar",
+          "MX60.AlarmLatchStore",
+          "MX60.util.CsvExport",
+          "MX60.TimeRangePicker",
+          "MX60.DashboardApp"
+        ],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 22,
+        "subscriber_role": "consumer"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/AlarmCards.js",
+      "path": "chihuahua-ux/src/rc/js/app/AlarmCards.js",
+      "kind": "iife-lib",
+      "domain": "alarms-frontend",
+      "purpose": "Full-screen alarm detail modal with 3 tabs (Summary, Table, Notes); footer actions: Acknowledge + Hyperlink + Close; §68.4 ANÁLOGO candidate.",
+      "loc": 368,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/proposal.md",
+        "section": "6. Bloque #68"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.AlarmCards"
+        ],
+        "globals_read": [
+          "MX60.AlarmDetailsTable",
+          "MX60.AlarmNotesModal"
+        ],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 14,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/AlarmDetailsTable.js",
+      "path": "chihuahua-ux/src/rc/js/app/AlarmDetailsTable.js",
+      "kind": "iife-lib",
+      "domain": "alarms-frontend",
+      "purpose": "Alarm details drill-down table: row-action listeners, selection listeners, sortable columns; used as a tab inside AlarmCards.",
+      "loc": 386,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.AlarmDetailsTable"
+        ],
+        "globals_read": [
+          "MX60.util.RelativeTime"
+        ],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 13,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/AlarmDetailPage.js",
+      "path": "chihuahua-ux/src/rc/js/app/AlarmDetailPage.js",
+      "kind": "iife-app",
+      "domain": "alarms-frontend",
+      "purpose": "Dedicated alarm-source page (#alarms/<encodedOrd>): shows alarm drill-down table for a single source ORD; registered as page 'alarm-detail'.",
+      "loc": 481,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.AlarmDetailPage"
+        ],
+        "globals_read": [
+          "MX60.AlarmsManager",
+          "MX60.AlarmDetailsTable",
+          "MX60.DashboardApp"
+        ],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 22,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/AlarmLatchStore.js",
+      "path": "chihuahua-ux/src/rc/js/app/AlarmLatchStore.js",
+      "kind": "iife-store",
+      "domain": "alarms-frontend",
+      "purpose": "Client-side latch store per (equipId, alarmKey): sticky until reset, seeded from equipment fetch, write-through POST to /api/alarms/latch|unlatch.",
+      "loc": 268,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.AlarmLatchStore"
+        ],
+        "globals_read": [],
+        "iife_pattern": "iife-self",
+        "load_order_hint": 6,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/AlarmModalActions.js",
+      "path": "chihuahua-ux/src/rc/js/app/AlarmModalActions.js",
+      "kind": "iife-lib",
+      "domain": "alarms-frontend",
+      "purpose": "Poptip with 5 action buttons per alarm record (ack, notes, link, etc.); §68.4 ANÁLOGO candidate for ack flow transplant analysis.",
+      "loc": 240,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/proposal.md",
+        "section": "6. Bloque #68"
+      },
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.AlarmModalActions"
+        ],
+        "globals_read": [
+          "MX60.util.Popover",
+          "MX60.AlarmsManager"
+        ],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 16,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/AlarmNotesModal.js",
+      "path": "chihuahua-ux/src/rc/js/app/AlarmNotesModal.js",
+      "kind": "iife-lib",
+      "domain": "alarms-frontend",
+      "purpose": "Full-screen notes modal: GET + POST to /api/alarms/notes; §68.4 ANÁLOGO candidate for note-gate ack flow; open()/close() API.",
+      "loc": 251,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/proposal.md",
+        "section": "6. Bloque #68"
+      },
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.AlarmNotesModal"
+        ],
+        "globals_read": [
+          "MX60.Toast"
+        ],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 14,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/BulkActionBar.js",
+      "path": "chihuahua-ux/src/rc/js/app/BulkActionBar.js",
+      "kind": "iife-lib",
+      "domain": "alarms-frontend",
+      "purpose": "Reusable sticky bulk action bar for selectable lists; displays count of selected items with bulk ack and export actions.",
+      "loc": 110,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.BulkActionBar"
+        ],
+        "globals_read": [],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 13,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/ScheduleView.js",
+      "path": "chihuahua-ux/src/rc/js/app/ScheduleView.js",
+      "kind": "iife-app",
+      "domain": "schedules-frontend",
+      "purpose": "Schedules page (#schedules): auto-discovers BWeeklySchedule objects via /api/schedules; iframe-modal slot editor (inferred from mapping).",
+      "loc": 550,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.ScheduleView"
+        ],
+        "globals_read": [
+          "MX60.ConfigManager",
+          "MX60.DashboardApp"
+        ],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 22,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    }
+  ],
+  "exclusions": []
+}

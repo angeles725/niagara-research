@@ -1,0 +1,493 @@
+{
+  "schema_version": "1.0",
+  "module": "mx60-chihuahua",
+  "extensions": [
+    "backend",
+    "frontend_iife"
+  ],
+  "source_repo": "/home/cristian/modulos_niagara_n4/Cliente/Honeywell/MX60/chihuahua/chihuahua",
+  "generated_at": "2026-05-09T00:00:00Z",
+  "generator": "sdd-apply mapping-mx60 v1",
+  "shard": "s4-frontend-equipment",
+  "domains": [
+    "equipment-frontend",
+    "equipment-detail",
+    "threshold-stores"
+  ],
+  "entries": [
+    {
+      "id": "chihuahua-ux/src/rc/js/app/EquipmentData.js",
+      "path": "chihuahua-ux/src/rc/js/app/EquipmentData.js",
+      "kind": "iife-lib",
+      "domain": "equipment-frontend",
+      "purpose": "Single source of truth for equipment list: BajaScript subscription primary, REST 5s polling fallback; listener pattern for UI consumers.",
+      "loc": 406,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.EquipmentData"
+        ],
+        "globals_read": [
+          "MX60.SubscriptionPool",
+          "MX60.ConfigManager",
+          "MX60.Toast",
+          "MX60.UpThresholdStore",
+          "MX60.CarcamoThresholdStore",
+          "MX60.DataloggerThresholdStore",
+          "MX60.AlarmLatchStore"
+        ],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 15,
+        "subscriber_role": "consumer"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/EquipmentCard.js",
+      "path": "chihuahua-ux/src/rc/js/app/EquipmentCard.js",
+      "kind": "iife-app",
+      "domain": "equipment-frontend",
+      "purpose": "Equipment page: planta-tab toolbar + 12-card pagination grid; groups by planta then type (UP → Cárcamo → Datalogger); destroy() cleans listeners.",
+      "loc": 645,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.EquipmentPage"
+        ],
+        "globals_read": [
+          "MX60.EquipmentData",
+          "MX60.DashboardApp",
+          "MX60.Router",
+          "MX60.StatusResolver",
+          "MX60.UpThresholdStore",
+          "MX60.CarcamoThresholdStore",
+          "MX60.DataloggerThresholdStore"
+        ],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 20,
+        "subscriber_role": "consumer"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/EquipmentDetail.js",
+      "path": "chihuahua-ux/src/rc/js/app/EquipmentDetail.js",
+      "kind": "iife-app",
+      "domain": "equipment-detail",
+      "purpose": "Dispatch-by-type orchestrator: reads route equipId from EquipmentData, routes to registered detail renderer; supports registerRenderer(type, fn) API.",
+      "loc": 191,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.DetailPage",
+          "MX60.EquipmentDetail"
+        ],
+        "globals_read": [
+          "MX60.EquipmentData",
+          "MX60.DashboardApp",
+          "MX60.Router"
+        ],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 18,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/EquipmentSnapshotStore.js",
+      "path": "chihuahua-ux/src/rc/js/app/EquipmentSnapshotStore.js",
+      "kind": "iife-store",
+      "domain": "equipment-frontend",
+      "purpose": "Aggregator between EquipmentData and UI: coalesces BajaScript pushes into 1 throttled flush via rAF + 500ms cap; ring buffer per equipId.",
+      "loc": 339,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.EquipmentSnapshotStore"
+        ],
+        "globals_read": [
+          "MX60.EquipmentData"
+        ],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 16,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/HomeMap.js",
+      "path": "chihuahua-ux/src/rc/js/app/HomeMap.js",
+      "kind": "iife-app",
+      "domain": "equipment-frontend",
+      "purpose": "Home map page: clickable SVG plant zones over MAQUILA photo; sidebar with planta on/standby/alarm counts; popover with equipment list on zone click.",
+      "loc": 889,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.HomePage"
+        ],
+        "globals_read": [
+          "MX60.EquipmentData",
+          "MX60.DashboardApp",
+          "MX60.Router",
+          "MX60.util.Popover"
+        ],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 22,
+        "subscriber_role": "consumer"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/UpDetail.js",
+      "path": "chihuahua-ux/src/rc/js/app/UpDetail.js",
+      "kind": "iife-app",
+      "domain": "equipment-detail",
+      "purpose": "MX60 UP detail page: 37-slot panel with MANUAL/SETPOINT/SCHEDULE modes, threshold UI, history chart, write logic, BajaScript subscription lifecycle.",
+      "loc": 3841,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.UpDetail"
+        ],
+        "globals_read": [
+          "MX60.EquipmentDetail",
+          "MX60.EquipmentData",
+          "MX60.Router",
+          "MX60.Toast",
+          "MX60.Confirm",
+          "MX60.ModoOverrideStore",
+          "MX60.OutputOverrideStore",
+          "MX60.UpThresholdStore",
+          "MX60.LiveHistoryBuffer",
+          "MX60.writePoint"
+        ],
+        "iife_pattern": "iife-other",
+        "load_order_hint": 30,
+        "subscriber_role": "consumer"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/CarcamoDetail.js",
+      "path": "chihuahua-ux/src/rc/js/app/CarcamoDetail.js",
+      "kind": "iife-app",
+      "domain": "equipment-detail",
+      "purpose": "Cárcamo 3D detail renderer: cutaway pit with animated water surface, level bar, sensor LED; color-threshold logic green/orange/red at 45/69%.",
+      "loc": 1040,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.CarcamoDetail"
+        ],
+        "globals_read": [
+          "MX60.EquipmentDetail",
+          "MX60.EquipmentData",
+          "MX60.CarcamoThresholdStore"
+        ],
+        "iife_pattern": "iife-other",
+        "load_order_hint": 30,
+        "subscriber_role": "consumer"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/DataloggerDetail.js",
+      "path": "chihuahua-ux/src/rc/js/app/DataloggerDetail.js",
+      "kind": "iife-app",
+      "domain": "equipment-detail",
+      "purpose": "Datalogger detail renderer: hero image by pressure state (VERDE/NARANJA/ROJO), reading panel, threshold form backed by DataloggerThresholdStore.",
+      "loc": 700,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.DataloggerDetail"
+        ],
+        "globals_read": [
+          "MX60.EquipmentDetail",
+          "MX60.EquipmentData",
+          "MX60.DataloggerThresholdStore",
+          "MX60.Toast",
+          "MX60.writePoint"
+        ],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 28,
+        "subscriber_role": "consumer"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/Configuracion.js",
+      "path": "chihuahua-ux/src/rc/js/app/Configuracion.js",
+      "kind": "iife-app",
+      "domain": "equipment-detail",
+      "purpose": "Configuración matrix page: all UPs with modoOperacion chips (MANUAL/SETPOINT/SCHEDULE); click-to-change with 5s undo toast; ModoOverrideStore-backed.",
+      "loc": 535,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.ConfiguracionPage"
+        ],
+        "globals_read": [
+          "MX60.EquipmentData",
+          "MX60.ModoOverrideStore",
+          "MX60.writePoint",
+          "MX60.Toast",
+          "MX60.DashboardApp"
+        ],
+        "iife_pattern": "iife-named",
+        "load_order_hint": 25,
+        "subscriber_role": "consumer"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/LiveHistoryBuffer.js",
+      "path": "chihuahua-ux/src/rc/js/app/LiveHistoryBuffer.js",
+      "kind": "iife-lib",
+      "domain": "equipment-detail",
+      "purpose": "In-memory ring buffer (120 pts/equipId) for live equipment snapshots; data layer only, no rendering; ported from SanLuis HistoryChart ring-buffer.",
+      "loc": 212,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.LiveHistoryBuffer"
+        ],
+        "globals_read": [],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 12,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/TimeRangePicker.js",
+      "path": "chihuahua-ux/src/rc/js/app/TimeRangePicker.js",
+      "kind": "iife-lib",
+      "domain": "equipment-detail",
+      "purpose": "15-preset time-range dropdown; selection persists to localStorage; uses MX60.util.Dropdown for iSMA 4.13.2 embedded-browser styling compat.",
+      "loc": 161,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.TimeRangePicker"
+        ],
+        "globals_read": [
+          "MX60.util.Dropdown"
+        ],
+        "iife_pattern": "iife-window",
+        "load_order_hint": 13,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/ModoOverrideStore.js",
+      "path": "chihuahua-ux/src/rc/js/app/ModoOverrideStore.js",
+      "kind": "iife-store",
+      "domain": "threshold-stores",
+      "purpose": "Optimistic override for modoOperacion per UP while writePoint propagates to Niagara; in-memory only; publish-subscribe pattern for cross-tab sync.",
+      "loc": 65,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.ModoOverrideStore"
+        ],
+        "globals_read": [],
+        "iife_pattern": "iife-self",
+        "load_order_hint": 6,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/OutputOverrideStore.js",
+      "path": "chihuahua-ux/src/rc/js/app/OutputOverrideStore.js",
+      "kind": "iife-store",
+      "domain": "threshold-stores",
+      "purpose": "Optimistic override for device commands (fan, comp1, comp2) per UP in MANUAL mode; cleared on MANUAL exit; mirrors ModoOverrideStore pattern.",
+      "loc": 93,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.OutputOverrideStore"
+        ],
+        "globals_read": [],
+        "iife_pattern": "iife-self",
+        "load_order_hint": 6,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/UpThresholdStore.js",
+      "path": "chihuahua-ux/src/rc/js/app/UpThresholdStore.js",
+      "kind": "iife-store",
+      "domain": "threshold-stores",
+      "purpose": "Read-through cache + write-through for UP protection thresholds; Niagara slots are single source of truth; seedFromEquipment seeds from REST load.",
+      "loc": 198,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": null,
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.UpThresholdStore"
+        ],
+        "globals_read": [],
+        "iife_pattern": "iife-self",
+        "load_order_hint": 7,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/CarcamoThresholdStore.js",
+      "path": "chihuahua-ux/src/rc/js/app/CarcamoThresholdStore.js",
+      "kind": "iife-store",
+      "domain": "threshold-stores",
+      "purpose": "Read-through cache + write-through for cárcamo level thresholds; Niagara slots are single source of truth; includes colorForReading() helper.",
+      "loc": 216,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.CarcamoThresholdStore"
+        ],
+        "globals_read": [],
+        "iife_pattern": "iife-self",
+        "load_order_hint": 7,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "chihuahua-ux/src/rc/js/app/DataloggerThresholdStore.js",
+      "path": "chihuahua-ux/src/rc/js/app/DataloggerThresholdStore.js",
+      "kind": "iife-store",
+      "domain": "threshold-stores",
+      "purpose": "Read-through cache + write-through for datalogger pressure thresholds (inverted: lectura < umbral = degraded); Niagara slots single source of truth.",
+      "loc": 205,
+      "status": "source",
+      "source_doc": {
+        "file": "openspec/changes/mapping-mx60/explore.md",
+        "section": "2. Stack confirmation"
+      },
+      "verified_at": "2026-05-09T00:00:00Z",
+      "backend": null,
+      "frontend_iife": {
+        "namespace": "MX60",
+        "globals_written": [
+          "MX60.DataloggerThresholdStore"
+        ],
+        "globals_read": [],
+        "iife_pattern": "iife-self",
+        "load_order_hint": 7,
+        "subscriber_role": "none"
+      },
+      "dependencies": []
+    }
+  ],
+  "exclusions": []
+}
