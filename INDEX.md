@@ -1153,6 +1153,7 @@ Estructura del repo:
 ├── niagara-mental-model-bloque72.md  (Alarms domain TIER-1 triple-source — 3 veredictos + 14 implications #285..#298 + SDD scope decision latch+ack-as-concept)
 ├── niagara-mental-model-bloque73.md  (History+Data domain TIER-1 triple-source — ROOT CAUSE MX60 1-hour limit vocabulary mismatch + 14 implications #299..#312 + TIER 1/2/3 recommendations)
 ├── niagara-mental-model-bloque74.md  (Mini-corrigendum a #72 ack alarmas: frontend silencia HTTP 200+ackedCount=0 — 3 XHR paths simétricos + 5 failure modes F1-F5 + 1 implication #299* colisión + SDD recommendation Opción B)
+├── niagara-mental-model-bloque75-security-incident.md  (Incidente seguridad: módulo NO firmado abre 443 + borra audit — threat model cadena confirmada file:line + REFUTA "firma protege red" + enforcement moduleVerificationMode=low default + plan hardening P0/P1/P2 + 3 hallazgos críticos Sys.setAuditor sin permiso)
 ├── niagara-mental-model-bloque-test-infrastructure.md  (Test Infrastructure: 3 tipos + TIER-2 + 94 tests empíricos WSL + 5 implications)
 ├── niagara-mental-model.2026-04-19.md (snapshot sesión httpapi)
 ├── NEXT_SESSION_PROMPT.md, NEXT_SESSION_PROMPT_MODULE_NAVIGATOR.md (plantillas)
