@@ -1,0 +1,87 @@
+<!-- AUTOGENERADO por tools/gen-catalog.py — NO EDITAR A MANO. Regenerar: python3 tools/gen-catalog.py -->
+
+# Catálogo de bloques
+
+Total: **73 bloques**
+
+| Bloque | Archivo | Título |
+|--------|---------|--------|
+| 1-3 | [niagara-mental-model.md](niagara-mental-model.md) | Niagara N4 — Mental Model Consolidado |
+| 4 | [niagara-mental-model-bloque4.md](niagara-mental-model-bloque4.md) | Baja Object Model |
+| 5 | [niagara-mental-model-bloque5.md](niagara-mental-model-bloque5.md) | ORD + BOG + Queries (BQL/NEQL) + Hierarchy + Tags |
+| 6 | [niagara-mental-model-bloque6.md](niagara-mental-model-bloque6.md) | Control Engine (Execution + Links + kitControl) |
+| 7 | [niagara-mental-model-bloque7.md](niagara-mental-model-bloque7.md) | Drivers Framework |
+| 8 | [niagara-mental-model-bloque8.md](niagara-mental-model-bloque8.md) | Alarm + History + Schedule |
+| 9 | [niagara-mental-model-bloque9.md](niagara-mental-model-bloque9.md) | UI Stack (Workbench + Px + BajaScript + hx + Servlets) |
+| 10 | [niagara-mental-model-bloque10.md](niagara-mental-model-bloque10.md) | Platform & Station Lifecycle |
+| 11 | [niagara-mental-model-bloque11.md](niagara-mental-model-bloque11.md) | Auth / RBAC runtime |
+| 12 | [niagara-mental-model-bloque12.md](niagara-mental-model-bloque12.md) | Build System + Module Development Lifecycle |
+| 13 | [niagara-mental-model-bloque13.md](niagara-mental-model-bloque13.md) | Gaps profundos |
+| 14 | [niagara-mental-model-bloque14.md](niagara-mental-model-bloque14.md) | Point counting + License limits + Templates + Batch Editor + EasyTemplates |
+| 15 | [niagara-mental-model-bloque15.md](niagara-mental-model-bloque15.md) | Workbench editing deep (wiresheet + property sheet + nav + point/device manager) |
+| 16 | [niagara-mental-model-bloque16.md](niagara-mental-model-bloque16.md) | Analytics Framework + Provisioning Service |
+| 17 | [niagara-mental-model-bloque17.md](niagara-mental-model-bloque17.md) | Filesystem forensics completo + native binaries + JRE embebido |
+| 18 | [niagara-mental-model-bloque18.md](niagara-mental-model-bloque18.md) | Module signing standalone + module-permissions + CSRF + Header Auth |
+| 19 | [niagara-mental-model-bloque19.md](niagara-mental-model-bloque19.md) | LON deep + NRIO + NiagaraDriver + BOX protocol |
+| 20 | [niagara-mental-model-bloque20.md](niagara-mental-model-bloque20.md) | BApp + net module + BAbstractService + Monitors + JobService + gap analysis |
+| 21 | [niagara-mental-model-bloque21.md](niagara-mental-model-bloque21.md) | Tag Framework + Haystack 4 + BQL + NEQL |
+| 22 | [niagara-mental-model-bloque22.md](niagara-mental-model-bloque22.md) | PX views + BajaUI widget runtime + BajaScript browser + Bajadoc |
+| 23 | [niagara-mental-model-bloque23.md](niagara-mental-model-bloque23.md) | BACnet deep (objetos + properties + COV + priority + networking stack + schedule/calendar/trend) |
+| 24 | [niagara-mental-model-bloque24.md](niagara-mental-model-bloque24.md) | Schedule Framework Niagara-native + driverSchedule cross-driver + Control palette (kitControl) |
+| 25 | [niagara-mental-model-bloque25.md](niagara-mental-model-bloque25.md) | Migration Framework + Bajadoc generation + Gradle build + Help system |
+| 26 | [niagara-mental-model-bloque26.md](niagara-mental-model-bloque26.md) | NRE launcher C++ + DLLs nativas + standalone module signing ops |
+| 27 | [niagara-mental-model-bloque27.md](niagara-mental-model-bloque27.md) | Network surface + puertos + certManagement |
+| 28 | [niagara-mental-model-bloque28.md](niagara-mental-model-bloque28.md) | Discovery cross-protocol + Virtual Components |
+| 29 | [niagara-mental-model-bloque29.md](niagara-mental-model-bloque29.md) | Web tier + Servlets + Jetty filter chain |
+| 30 | [niagara-mental-model-bloque30.md](niagara-mental-model-bloque30.md) | Enterprise auth federation + FIPS + key rotation |
+| 31 | [niagara-mental-model-bloque31.md](niagara-mental-model-bloque31.md) | Performance tuning + observability + thread pools |
+| 32 | [niagara-mental-model-bloque32.md](niagara-mental-model-bloque32.md) | Honeywell modules + SMA + non-HTTP + runtime semantics |
+| 33 | [niagara-mental-model-bloque33.md](niagara-mental-model-bloque33.md) | History system deep + Batch editor |
+| 34 | [niagara-mental-model-bloque34.md](niagara-mental-model-bloque34.md) | Alarm framework deep + .adb format |
+| 35 | [niagara-mental-model-bloque35.md](niagara-mental-model-bloque35.md) | Nav + Workbench shell + views registry |
+| 36 | [niagara-mental-model-bloque36.md](niagara-mental-model-bloque36.md) | PX widgets deep + EasyTemplates + BajaScript BOX wire + browser lifecycle |
+| 37 | [niagara-mental-model-bloque37.md](niagara-mental-model-bloque37.md) | KNX/IP driver deep + proxy ↔ virtual ↔ kitControl ↔ writeback end-to-end |
+| 38 | [niagara-mental-model-bloque38.md](niagara-mental-model-bloque38.md) | File system + BFile + BOrd resolution end-to-end + bajaui forms |
+| 39 | [niagara-mental-model-bloque39.md](niagara-mental-model-bloque39.md) | Provisioning + Backup + Supervisor Replication + HA Operacional + Flota Management |
+| 40 | [niagara-mental-model-bloque40.md](niagara-mental-model-bloque40.md) | Operational Honeywell Artifacts |
+| 41 | [niagara-mental-model-bloque41.md](niagara-mental-model-bloque41.md) | Runtime decompile profundo (cierre TODOs Bloque 32) |
+| 42 | [niagara-mental-model-bloque42.md](niagara-mental-model-bloque42.md) | bajaScript Subscriber lifecycle end-to-end desde SPA externa |
+| 44 | [niagara-mental-model-bloque44.md](niagara-mental-model-bloque44.md) | Alarm Console pipeline frontend (SPA externa) |
+| 45 | [niagara-mental-model-bloque45.md](niagara-mental-model-bloque45.md) | History/Trend chart consumption |
+| 46 | [niagara-mental-model-bloque46.md](niagara-mental-model-bloque46.md) | Writes con priority array desde SPA externa |
+| 47 | [niagara-mental-model-bloque47.md](niagara-mental-model-bloque47.md) | Bootstrap headless: SPA externa 100% custom ↔ Niagara N4 station |
+| 48 | [niagara-mental-model-bloque48.md](niagara-mental-model-bloque48.md) | RBAC visibility en frontend: server is truth, client gating es UX |
+| 49 | [niagara-mental-model-bloque49.md](niagara-mental-model-bloque49.md) | Facets + i18n + formatting en cliente: el rendering pipeline desde SPA externa |
+| 50 | [niagara-mental-model-bloque50.md](niagara-mental-model-bloque50.md) | Reflow-Clean-177 audit cross-stack (Par A: reflow-frontend ↔ nmodsreflow-ux) |
+| 51 | [niagara-mental-model-bloque51.md](niagara-mental-model-bloque51.md) | Reflow-Clean-177 audit cross-stack PARTE 2 (Par A real: frontend ↔ -rt + app-readable.js) |
+| 52 | [niagara-mental-model-bloque52.md](niagara-mental-model-bloque52.md) | CSRF cross-frame token injection en SPA-in-iframe Niagara |
+| 53 | [niagara-mental-model-bloque53.md](niagara-mental-model-bloque53.md) | `app-readable.js` audit: SPA-Niagara bridge real en bundle producción Reflow 1.7.5 |
+| 54 | [niagara-mental-model-bloque54.md](niagara-mental-model-bloque54.md) | Alarm domain audit cliente↔server + corrigendum HTTP REST endpoints + AP-27 RBAC bypass crítico |
+| 55 | [niagara-mental-model-bloque55.md](niagara-mental-model-bloque55.md) | History domain audit cliente↔server + AP-27 confirmado sistémico + pattern fetchMethod switch |
+| 56 | [niagara-mental-model-bloque56.md](niagara-mental-model-bloque56.md) | Points domain audit + ausencia de Java backend = decisión arquitectónica positiva |
+| 57 | [niagara-mental-model-bloque57.md](niagara-mental-model-bloque57.md) | Schedule + Nav + File + CSV domains audit + AP-33 file system disclosure |
+| 58 | [niagara-mental-model-bloque58.md](niagara-mental-model-bloque58.md) | HTTP infrastructure deep dive: BaseServlet routing + 34 Response classes + CsrfGuard server-side + sync/backup AP-27 sites + 8 nuevos antipatterns AP-34..41 |
+| 59 | [niagara-mental-model-bloque59.md](niagara-mental-model-bloque59.md) | WebSocket layer audit: SocketServlet + BReflowChannelService + BReflowWebSocketAcceptor + frontend Vue components + 14 nuevos antipatterns AP-42..55 + 5 reglas template MX60 (13-17) |
+| 60 | [niagara-mental-model-bloque60.md](niagara-mental-model-bloque60.md) | Sync engine deep dive + Response classes complejas + BackupManager business logic + 7 nuevos antipatterns AP-56..62 + 2 reglas template MX60 (18-19) + AP-60 HIGH favorites traversal |
+| 61 | [niagara-mental-model-bloque61.md](niagara-mental-model-bloque61.md) | Catálogo completo librerías + APIs Reflow `-rt` y `-ux` + reemplazos modernos MX60 + stack recomendado greenfield |
+| 62 | [niagara-mental-model-bloque62.md](niagara-mental-model-bloque62.md) | Alarmas Reflow dedicado: backend + frontend + integración Niagara N4 Alarm Console + 22 componentes Vue + 11 sound assets + 7 antipatterns AP-72..78 + 3 reglas template MX60 (20-22) |
+| 63 | [niagara-mental-model-bloque63.md](niagara-mental-model-bloque63.md) | Frontend Reflow Vue 2.7 audit completo: main.js + App.vue + Router 32 routes + Vuex 29 módulos + 17 mixins + 13 plugins + 10 lib helpers + 12 views + 378 componentes mapeados + 8 antipatterns AP-79..86 + 9 reglas template MX60 (23-31) |
+| 64 | [niagara-mental-model-bloque64.md](niagara-mental-model-bloque64.md) | `-ux` modules + `-rt` remanentes: BReflow/BReflowConfig/BReflowRedirect stubs + BReflowService 468L pieza central + BReflowScheme + 8 util/ helpers + 5 history/ + 6 history/json/ serializers + 3 antipatterns AP-87..89 + 7 reglas template MX60 (32-38) |
+| 65 | [niagara-mental-model-bloque65.md](niagara-mental-model-bloque65.md) | Cierre Reflow + síntesis backlog MX60 final: 89 antipatterns + 38 reglas template + 200 implications + 7 decisiones arquitectónicas + stack MX60 + roadmap 10-16 sprints |
+| 66 | [niagara-mental-model-bloque66.md](niagara-mental-model-bloque66.md) | Pivote Analytics module Niagara N4: exploración inicial 424 archivos Java + arquitectura BAnalyticService 1881L + Algorithm DAG 64 blocks + AON encoding + BIAlarmSource integration + ThreadPool pattern + comparación vs Reflow |
+| 67 | [niagara-mental-model-bloque67.md](niagara-mental-model-bloque67.md) | Analytics deep dive para construir módulo MX60: librerías + 56 algorithm blocks + 17 combiners + 22 trend wrappers + Psychrometric HVAC + Degree-Day + veredictos PID/ML/Forecasting/Anomaly + roadmap MX60-Analytics-inspired |
+| 68 | [niagara-mental-model-bloque68.md](niagara-mental-model-bloque68.md) | Transplante alarmas + history+charts Reflow → MX60: contrato backend copiable + lecciones S50-S56 + patrones frontend Vue 3 + Pinia + 16 implications #228..#243 |
+| 69 | [niagara-mental-model-bloque69.md](niagara-mental-model-bloque69.md) | Audit empírico patrones live-update en Reflow-Clean-177: cierre flag #241 + tabla universal patrón-por-dominio + 10 implications #244..#253 |
+| 70 | [niagara-mental-model-bloque70.md](niagara-mental-model-bloque70.md) | Audit empírico TIER-1: HistoryData split + Ack flow + historyCache shape |
+| 71 | [niagara-mental-model-bloque71.md](niagara-mental-model-bloque71.md) | Equipment domain TIER-1 audit triple-source: Reflow + MX60 + Bloques 1-70 guidance |
+| 72 | [niagara-mental-model-bloque72.md](niagara-mental-model-bloque72.md) | Alarms domain TIER-1 audit triple-source (Reflow + MX60 + bloques) |
+| 73 | [niagara-mental-model-bloque73.md](niagara-mental-model-bloque73.md) | History + Data domain TIER-1 audit triple-source: Reflow + MX60 + Bloques 1-71 guidance |
+| 74 | [niagara-mental-model-bloque74.md](niagara-mental-model-bloque74.md) | Mini-corrigendum a Bloque #72: ack alarmas MX60 frontend |
+| 75 | [niagara-mental-model-bloque75-security-incident.md](niagara-mental-model-bloque75-security-incident.md) | Incidente de seguridad: módulo no firmado abre 443 + borra audit (threat model + hardening) |
+| TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
+
+## Snapshots
+
+Archivos de snapshot histórico (excluidos del catálogo activo):
+
+- [niagara-mental-model.2026-04-19.md](niagara-mental-model.2026-04-19.md) — snapshot sesión httpapi (2026-04-19)
