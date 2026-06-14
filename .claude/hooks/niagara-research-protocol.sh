@@ -23,9 +23,26 @@ cualquier pregunta de investigación seguí SIEMPRE este orden:
    - module-navigator -> /home/cristian/Honeywell/OptimizerSupervisor-N4.14.0.162/module-navigator/tools/module_nav.py
        (código decompilado real: 51K clases com.tridium.*, callers, tokens, source)
 
-3. Corpus extra de módulos de prototipos (jars, distinto del set base 4.14):
-   - /home/cristian/modules/Prototipos/modulos
-     (Centraline, Sylk, Reflow, etc. — usar cuando la investigación toca esos módulos)
+3. Corpus extra de módulos de prototipos (distinto del set base 4.14):
+   - /home/cristian/modules/Prototipos/modulos        (los .jar crudos)
+   - /home/cristian/modules/Prototipos/modulos/organized   <- FUENTE PRIORITARIA YA EXTRAÍDA
+     (Centraline, Sylk, Reflow y ~todos los módulos. NO re-decompilar: ya está hecho.)
+
+   PRIORIDAD DE CONSULTA dentro de organized/ (de mayor a menor fidelidad):
+   a) FUENTE ORIGINAL DE TRIDIUM (NO decompilada, con javadoc real) — usar SIEMPRE primero:
+        organized/docSource/docSource-doc/extracted/<modulo-jar>/<paquete>/Clase.java
+        ej: organized/docSource/docSource-doc/extracted/workbench-wb/javax/baja/workbench/BWbEditor.java
+        (~5200 .java de fuente real: javax.baja.*, jerarquías BWidget/BWbEditor/BWbPlugin, etc.)
+   b) Decompilados por módulo (cuando docSource no cubre esa clase):
+        organized/<grupo>/<artefacto>/vineflower/<paquete>/Clase.java   (preferido)
+        organized/<grupo>/<artefacto>/{decompiled,pipeline/procyon}/...  (alternativos)
+        (~51000 .java decompilados — com.tridium.* y módulos de terceros)
+   c) Bytecode para javap -p (firmas/flags exactos):
+        organized/<grupo>/<artefacto>/extracted/<paquete>/Clase.class
+   d) Bajadoc oficial: organized/docDeveloper/docDeveloper-doc/...*.bajadoc
+
+   REGLA: para clases del framework (javax.baja.*) la fuente original de (a) gana sobre
+   cualquier decompilado y sobre re-correr module-navigator. Verificá (a) ANTES de decompilar.
 
 ACCIÓN OBLIGATORIA AL INICIO DE LA SESIÓN:
 Antes de arrancar la investigación, decile al usuario que primero vas a revisar los
