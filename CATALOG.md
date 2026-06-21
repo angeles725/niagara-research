@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **104 bloques**
+Total: **105 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -109,6 +109,7 @@ Total: **104 bloques**
 | 104 | [niagara-mental-model-bloque104.md](niagara-mental-model-bloque104.md) | `honIOBase`: la base común de I/O Honeywell (puntos + config + 56 tipos AI) y de los Smart Edge Devices (sensores TR50), deofuscada |
 | 105 | [niagara-mental-model-bloque105.md](niagara-mental-model-bloque105.md) | `honIrmControl`: la librería de control (kitControl) del controlador BEATS/IRM — ~163 function blocks sobre el motor **IRM Nano**, deofuscada |
 | 106 | [niagara-mental-model-bloque106.md](niagara-mental-model-bloque106.md) | `honeywellSpyderTool` / `XL10NextGen`: la herramienta de programación del Spyder (3er motor de Function Blocks Honeywell — modelo **compilar→binario→descargar**), deofuscada |
+| 107 | [niagara-mental-model-bloque107.md](niagara-mental-model-bloque107.md) | `ascCommon`/`ascBacnet`/`ascLon` (ASCOT): la herramienta de configuración del controlador **Stryker** (application-specific por wizard) — **corrigendum al Bloque 32**, deofuscada |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
