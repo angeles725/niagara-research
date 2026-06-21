@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **94 bloques**
+Total: **96 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -99,6 +99,8 @@ Total: **94 bloques**
 | 94 | [niagara-mental-model-bloque94.md](niagara-mental-model-bloque94.md) | Familia Honeywell Device Manager (core agnóstico + BACnet + Modbus): firmware OTA a dispositivos de campo Honeywell, deofuscado |
 | 95 | [niagara-mental-model-bloque95.md](niagara-mental-model-bloque95.md) | Honeywell Smart Edge Devices: sensores IAQ serie TR50 (BACnet + Modbus) + wall modules TR100 BACnet, sobre `honIOBase`, deofuscado |
 | 96 | [niagara-mental-model-bloque96.md](niagara-mental-model-bloque96.md) | Familia "Venom": herramienta de Air Balancing (TAB) de cajas VAV para controladores Spyder/Stryker sobre BACnet y LON, deofuscada |
+| 97 | [niagara-mental-model-bloque97.md](niagara-mental-model-bloque97.md) | `honeywellTB3026BWizard`: wizard Workbench de configuración BACnet del termostato comercial TB3026B (19 aplicaciones HVAC), deofuscado |
+| 98 | [niagara-mental-model-bloque98.md](niagara-mental-model-bloque98.md) | `honeywellTCThermostatWizard`: wizard de termostatos serie TC300/TC500 (config BACnet + firmware OTA vía Device Manager + matriz de features + frontend BajaScript), deofuscado |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
