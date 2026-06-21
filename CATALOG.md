@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **87 bloques**
+Total: **89 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -92,6 +92,8 @@ Total: **87 bloques**
 | 87 | [niagara-mental-model-bloque87.md](niagara-mental-model-bloque87.md) | Librería de control HVAC Centraline ("Eagle control primitives"): function blocks propios + know-how HVAC codificado (clHVAC + dominios) deofuscados |
 | 88 | [niagara-mental-model-bloque88.md](niagara-mental-model-bloque88.md) | Capa de dispositivos de sala/terminal Honeywell: wall modules Sylk + config tool de PUC "BEATS" (protocolo Nano sobre BACnet) deofuscados |
 | 89 | [niagara-mental-model-bloque89.md](niagara-mental-model-bloque89.md) | Stack MQTT/IoT: framework MQTT multi-cloud de Tridium (AWS/GCP/Azure/genérico) + driver Netvox LoRaWAN de Honeywell deofuscados |
+| 90 | [niagara-mental-model-bloque90.md](niagara-mental-model-bloque90.md) | Familia honPlantController (núcleo): BTP IPC local + managed switch RSTP/switchport + JNI `plantctrl` + migradores EagleHawk→PanelBus, deofuscados |
+| 91 | [niagara-mental-model-bloque91.md](niagara-mental-model-bloque91.md) | `honPlantControllerHMI` / `platHMI`: stack BACnet/MSTP propietario al panel HMI físico (JNI `hminpsdk`) + protocolo de aplicación sobre ConfirmedPrivateTransfer + crypto rota, deofuscado |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
