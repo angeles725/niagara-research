@@ -213,8 +213,8 @@ resolveImportArtifacts()        carga defs.json, protos.json
 | `n` | BNiagaraTagDictionary (14.2 KB) | tagdictionary-rt.jar | Built-in Niagara, HARD-CODED, frozen | ~50 |
 | `hs` | BHsTagDictionary (18.6 KB) | haystack-rt.jar | Compat Haystack 3 vía CSV | ~1800 |
 | `hs4` | BHaystack4TagDictionary (13.3 KB) | haystack-rt.jar | Haystack 4 nativo vía JSON | ~3000 |
-| `fc` | BFcTagDictionary (0.5 KB) | fcTagDict-rt.jar | Honeywell Facility Commander extensions | ~30 |
-| `hon` | BHonTagDictionary (0.3 KB) | honTagDictionary-rt.jar | Honeywell corporativo | ~40 |
+| ~~`fc`~~ → `hon` | BFcTagDictionary (0.5 KB) | fcTagDict-rt.jar | **CORRIGENDUM [Bloque 82]**: NO es namespace `fc` ni "Facility Commander". Es **"Forge Connect Tag Dictionary"** (vendor **Tridium**, symbol `ftd`); `BFcTagDictionary` hace `@NiagaraProperty(namespace, defaultValue="hon", override=true)` → emite **`hon:`**. NO existe namespace `fc:`. | ~30 |
+| `hon` | BHonTagDictionary (0.3 KB) | honTagDictionary-rt.jar | Honeywell corporativo — "HBT Ontology" (vendor Honeywell, symbol `ht`). Verificado deofuscado [Bloque 82]. **Dos módulos producen `hon:`** (este + fcTagDict). | ~60 |
 | `phScience` | (NO shipped) | — | Referencia externa a Project Haystack, no incluido en OptimizerSupervisor | — |
 
 ### BNiagaraTagDictionary

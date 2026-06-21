@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **73 bloques**
+Total: **80 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -78,6 +78,13 @@ Total: **73 bloques**
 | 73 | [niagara-mental-model-bloque73.md](niagara-mental-model-bloque73.md) | History + Data domain TIER-1 audit triple-source: Reflow + MX60 + Bloques 1-71 guidance |
 | 74 | [niagara-mental-model-bloque74.md](niagara-mental-model-bloque74.md) | Mini-corrigendum a Bloque #72: ack alarmas MX60 frontend |
 | 75 | [niagara-mental-model-bloque75-security-incident.md](niagara-mental-model-bloque75-security-incident.md) | Incidente de seguridad: módulo no firmado abre 443 + borra audit (threat model + hardening) |
+| 76 | [niagara-mental-model-bloque76.md](niagara-mental-model-bloque76.md) | chihuahua-rt port: com.tridium.json, BControlPoint.getOutStatusValue, module deps, oBIX export de BComponent custom |
+| 77 | [niagara-mental-model-bloque77.md](niagara-mental-model-bloque77.md) | Drivers Honeywell Spyder (BACnet + LON): arquitectura interna deofuscada |
+| 78 | [niagara-mental-model-bloque78.md](niagara-mental-model-bloque78.md) | Drivers de bus de campo Centraline: C-Bus (Clipsal) + EnOcean (wireless), deofuscados |
+| 79 | [niagara-mental-model-bloque79.md](niagara-mental-model-bloque79.md) | Utilidades Honeywell: suite BACnet (honBACnetUtilities) + config wireless host WiFi/BLE (honAdvWirelessCfg) |
+| 80 | [niagara-mental-model-bloque80.md](niagara-mental-model-bloque80.md) | Stack Galileo: visualización web realtime sobre Niagara vía SignalR 1.4 (deofuscado) |
+| 81 | [niagara-mental-model-bloque81.md](niagara-mental-model-bloque81.md) | Familia `easy*` Honeywell/Galileo: herramientas de productividad (Templating PX, Binding masivo, Healthy Building, Database cleanup) deofuscadas |
+| 82 | [niagara-mental-model-bloque82.md](niagara-mental-model-bloque82.md) | Diccionarios de tags OEM Honeywell deofuscados: `honTagDictionary` (HBT Ontology) + `fcTagDict` (Forge Connect) — y corrigendum al Bloque 21 |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
