@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **93 bloques**
+Total: **94 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -98,6 +98,7 @@ Total: **93 bloques**
 | 93 | [niagara-mental-model-bloque93.md](niagara-mental-model-bloque93.md) | `knxnetIp` (vendor tridiumX): driver KNXnet/IP completo (tunneling/routing/management) + import de proyectos ETS `.knxproj` + modelado DPT, deofuscado |
 | 94 | [niagara-mental-model-bloque94.md](niagara-mental-model-bloque94.md) | Familia Honeywell Device Manager (core agnóstico + BACnet + Modbus): firmware OTA a dispositivos de campo Honeywell, deofuscado |
 | 95 | [niagara-mental-model-bloque95.md](niagara-mental-model-bloque95.md) | Honeywell Smart Edge Devices: sensores IAQ serie TR50 (BACnet + Modbus) + wall modules TR100 BACnet, sobre `honIOBase`, deofuscado |
+| 96 | [niagara-mental-model-bloque96.md](niagara-mental-model-bloque96.md) | Familia "Venom": herramienta de Air Balancing (TAB) de cajas VAV para controladores Spyder/Stryker sobre BACnet y LON, deofuscada |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
