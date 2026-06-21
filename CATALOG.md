@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **100 bloques**
+Total: **102 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -105,6 +105,8 @@ Total: **100 bloques**
 | 100 | [niagara-mental-model-bloque100.md](niagara-mental-model-bloque100.md) | `ipcMigrator`: migrador de aplicaciones Spyder XL10 Next Gen → stack IPC 3036 (function blocks + I/O + Sylk), deofuscado |
 | 101 | [niagara-mental-model-bloque101.md](niagara-mental-model-bloque101.md) | Ecosistema de Air Balancing Honeywell (II): `airFlowBalancer` (VAV genérico LON+BACnet) + `kitCat` (VAV IP del IPC/CIPer, multi-estación), deofuscados |
 | 102 | [niagara-mental-model-bloque102.md](niagara-mental-model-bloque102.md) | `genericUIFramework`: dos frameworks UI Honeywell empaquetados (motor MVC tipo Struts + `BajaUICreator` cargador de widgets PX), base de los wizards, deofuscado |
+| 103 | [niagara-mental-model-bloque103.md](niagara-mental-model-bloque103.md) | `honeywellFunctionBlocks`: el motor de control DDC propietario de Honeywell (kitControl propietario) — `BFunctionBlock` + datatypes Negatable + 32 converters, deofuscado |
+| 104 | [niagara-mental-model-bloque104.md](niagara-mental-model-bloque104.md) | `honIOBase`: la base común de I/O Honeywell (puntos + config + 56 tipos AI) y de los Smart Edge Devices (sensores TR50), deofuscada |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
