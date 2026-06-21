@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **91 bloques**
+Total: **93 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -96,6 +96,8 @@ Total: **91 bloques**
 | 91 | [niagara-mental-model-bloque91.md](niagara-mental-model-bloque91.md) | `honPlantControllerHMI` / `platHMI`: stack BACnet/MSTP propietario al panel HMI físico (JNI `hminpsdk`) + protocolo de aplicación sobre ConfirmedPrivateTransfer + crypto rota, deofuscado |
 | 92 | [niagara-mental-model-bloque92.md](niagara-mental-model-bloque92.md) | `lonhoneywellAXWizards`: suite de wizards Workbench para dispositivos LON Honeywell Excel 10 / XL15C / T7350, sobre el driver `lonworks` estándar de Tridium, deofuscado |
 | 93 | [niagara-mental-model-bloque93.md](niagara-mental-model-bloque93.md) | `knxnetIp` (vendor tridiumX): driver KNXnet/IP completo (tunneling/routing/management) + import de proyectos ETS `.knxproj` + modelado DPT, deofuscado |
+| 94 | [niagara-mental-model-bloque94.md](niagara-mental-model-bloque94.md) | Familia Honeywell Device Manager (core agnóstico + BACnet + Modbus): firmware OTA a dispositivos de campo Honeywell, deofuscado |
+| 95 | [niagara-mental-model-bloque95.md](niagara-mental-model-bloque95.md) | Honeywell Smart Edge Devices: sensores IAQ serie TR50 (BACnet + Modbus) + wall modules TR100 BACnet, sobre `honIOBase`, deofuscado |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
