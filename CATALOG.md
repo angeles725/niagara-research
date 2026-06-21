@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **102 bloques**
+Total: **103 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -107,6 +107,7 @@ Total: **102 bloques**
 | 102 | [niagara-mental-model-bloque102.md](niagara-mental-model-bloque102.md) | `genericUIFramework`: dos frameworks UI Honeywell empaquetados (motor MVC tipo Struts + `BajaUICreator` cargador de widgets PX), base de los wizards, deofuscado |
 | 103 | [niagara-mental-model-bloque103.md](niagara-mental-model-bloque103.md) | `honeywellFunctionBlocks`: el motor de control DDC propietario de Honeywell (kitControl propietario) — `BFunctionBlock` + datatypes Negatable + 32 converters, deofuscado |
 | 104 | [niagara-mental-model-bloque104.md](niagara-mental-model-bloque104.md) | `honIOBase`: la base común de I/O Honeywell (puntos + config + 56 tipos AI) y de los Smart Edge Devices (sensores TR50), deofuscada |
+| 105 | [niagara-mental-model-bloque105.md](niagara-mental-model-bloque105.md) | `honIrmControl`: la librería de control (kitControl) del controlador BEATS/IRM — ~163 function blocks sobre el motor **IRM Nano**, deofuscada |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
