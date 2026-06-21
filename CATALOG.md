@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **84 bloques**
+Total: **85 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -89,6 +89,7 @@ Total: **84 bloques**
 | 84 | [niagara-mental-model-bloque84.md](niagara-mental-model-bloque84.md) | Auxiliares del stack cloud Honeywell: onboarding one-shot, backup cifrado y cert pinning — con hallazgo de credencial hardcodeada |
 | 85 | [niagara-mental-model-bloque85.md](niagara-mental-model-bloque85.md) | Model Sync: cómo el modelo semántico `hon:` de la station sube al cloud (JSON-LD → Azure Blob), canal asimétrico — `SentienceModelSync` + `fcModelSync` |
 | 86 | [niagara-mental-model-bloque86.md](niagara-mental-model-bloque86.md) | Drivers de I/O de campo Centraline/Honeywell: PanelBus (RS-485 CLIO/Snap-on) + OnboardIO (Eagle Hawk JNI) + IOcreation (framework UI) deofuscados |
+| 87 | [niagara-mental-model-bloque87.md](niagara-mental-model-bloque87.md) | Librería de control HVAC Centraline ("Eagle control primitives"): function blocks propios + know-how HVAC codificado (clHVAC + dominios) deofuscados |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
