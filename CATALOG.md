@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **108 bloques**
+Total: **109 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -113,6 +113,7 @@ Total: **108 bloques**
 | 108 | [niagara-mental-model-bloque108.md](niagara-mental-model-bloque108.md) | `clCBus`: el driver del **CentraLine Controller Bus** (controladores XL vía adaptador BNA por TCP, protocolo SUSI + XCnap) — **2º corrigendum al Bloque 32**, deofuscado |
 | 109 | [niagara-mental-model-bloque109.md](niagara-mental-model-bloque109.md) | `honImporter` (CARE → N4 vía formato **NIDEX**) + `honProjectExport` (N4 → Honeywell Cloud, JSON): los dos puentes de ingeniería de la station, deofuscados |
 | 110 | [niagara-mental-model-bloque110.md](niagara-mental-model-bloque110.md) | `honRemoteConfig` + `honRemoteConfigBacnet`: el **receptor C2D** de comandos remotos del cloud Honeywell — cierra el arco abierto por los Bloques 83/84/85, deofuscado |
+| 111 | [niagara-mental-model-bloque111.md](niagara-mental-model-bloque111.md) | `honEagleHawkHMI`: el **HMI local embebido** de los controladores físicos EAGLE/HAWK — la plataforma de panel de operador que el migrador del [Bloque 90] **retira** al subir a BEATS ADV, deofuscado |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
