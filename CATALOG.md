@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **105 bloques**
+Total: **106 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -110,6 +110,7 @@ Total: **105 bloques**
 | 105 | [niagara-mental-model-bloque105.md](niagara-mental-model-bloque105.md) | `honIrmControl`: la librería de control (kitControl) del controlador BEATS/IRM — ~163 function blocks sobre el motor **IRM Nano**, deofuscada |
 | 106 | [niagara-mental-model-bloque106.md](niagara-mental-model-bloque106.md) | `honeywellSpyderTool` / `XL10NextGen`: la herramienta de programación del Spyder (3er motor de Function Blocks Honeywell — modelo **compilar→binario→descargar**), deofuscada |
 | 107 | [niagara-mental-model-bloque107.md](niagara-mental-model-bloque107.md) | `ascCommon`/`ascBacnet`/`ascLon` (ASCOT): la herramienta de configuración del controlador **Stryker** (application-specific por wizard) — **corrigendum al Bloque 32**, deofuscada |
+| 108 | [niagara-mental-model-bloque108.md](niagara-mental-model-bloque108.md) | `clCBus`: el driver del **CentraLine Controller Bus** (controladores XL vía adaptador BNA por TCP, protocolo SUSI + XCnap) — **2º corrigendum al Bloque 32**, deofuscado |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
