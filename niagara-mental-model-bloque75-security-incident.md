@@ -91,7 +91,7 @@ Conclusión precisa: con `low`, un módulo no firmado que pide `REFLECTION`/`ACC
 
 - **Syslog offload a SIEM externo**: `BSyslogSettings.enabled=true` + `serverHost` (hoy `false`). El `publish` es **síncrono dentro de `audit()`, antes** del borrado local (`BAuditHistoryService.java:98-103`, `SyslogAuditHandler.java:18-55`). Si hubiera estado activo, la evidencia completa estaría fuera de la station. **Audit a prueba de borrado local.**
 - **Platform daemon log**: vive a nivel OS, independiente del audit de la station (`platformLogEnabled=true` default). Un atacante que solo compromete la station no lo borra.
-- **Alertar** sobre warnings logger `sys.module` "No code signers" (`ModuleClassLoader.java:396`) y `program.notSigned` (`BCode.java:214`).
+- **Alertar** sobre warnings logger `loader` "No code signers for entry %s in module %s" (constante `ModuleClassLoader.java:73`, logger `Logger.getLogger("loader")` en `:600`, emitido `~:400`) y `program.notSigned` (`BCode.java:214`). [Corregido v2: el logger es `loader`, no `sys.module`; verificado en corpus contra B112.]
 
 ---
 
