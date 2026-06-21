@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **107 bloques**
+Total: **108 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -112,6 +112,7 @@ Total: **107 bloques**
 | 107 | [niagara-mental-model-bloque107.md](niagara-mental-model-bloque107.md) | `ascCommon`/`ascBacnet`/`ascLon` (ASCOT): la herramienta de configuración del controlador **Stryker** (application-specific por wizard) — **corrigendum al Bloque 32**, deofuscada |
 | 108 | [niagara-mental-model-bloque108.md](niagara-mental-model-bloque108.md) | `clCBus`: el driver del **CentraLine Controller Bus** (controladores XL vía adaptador BNA por TCP, protocolo SUSI + XCnap) — **2º corrigendum al Bloque 32**, deofuscado |
 | 109 | [niagara-mental-model-bloque109.md](niagara-mental-model-bloque109.md) | `honImporter` (CARE → N4 vía formato **NIDEX**) + `honProjectExport` (N4 → Honeywell Cloud, JSON): los dos puentes de ingeniería de la station, deofuscados |
+| 110 | [niagara-mental-model-bloque110.md](niagara-mental-model-bloque110.md) | `honRemoteConfig` + `honRemoteConfigBacnet`: el **receptor C2D** de comandos remotos del cloud Honeywell — cierra el arco abierto por los Bloques 83/84/85, deofuscado |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
