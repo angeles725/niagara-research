@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **86 bloques**
+Total: **87 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -91,6 +91,7 @@ Total: **86 bloques**
 | 86 | [niagara-mental-model-bloque86.md](niagara-mental-model-bloque86.md) | Drivers de I/O de campo Centraline/Honeywell: PanelBus (RS-485 CLIO/Snap-on) + OnboardIO (Eagle Hawk JNI) + IOcreation (framework UI) deofuscados |
 | 87 | [niagara-mental-model-bloque87.md](niagara-mental-model-bloque87.md) | Librería de control HVAC Centraline ("Eagle control primitives"): function blocks propios + know-how HVAC codificado (clHVAC + dominios) deofuscados |
 | 88 | [niagara-mental-model-bloque88.md](niagara-mental-model-bloque88.md) | Capa de dispositivos de sala/terminal Honeywell: wall modules Sylk + config tool de PUC "BEATS" (protocolo Nano sobre BACnet) deofuscados |
+| 89 | [niagara-mental-model-bloque89.md](niagara-mental-model-bloque89.md) | Stack MQTT/IoT: framework MQTT multi-cloud de Tridium (AWS/GCP/Azure/genérico) + driver Netvox LoRaWAN de Honeywell deofuscados |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
