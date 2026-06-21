@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **98 bloques**
+Total: **99 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -103,6 +103,7 @@ Total: **98 bloques**
 | 98 | [niagara-mental-model-bloque98.md](niagara-mental-model-bloque98.md) | `honeywellTCThermostatWizard`: wizard de termostatos serie TC300/TC500 (config BACnet + firmware OTA vía Device Manager + matriz de features + frontend BajaScript), deofuscado |
 | 99 | [niagara-mental-model-bloque99.md](niagara-mental-model-bloque99.md) | Driver IPC/CIPer Honeywell (controlador IPC 3036): `ipcCommBus` (N-driver embebido) + `ipcBaseDriver` (capa JNI `libciper.so`), deofuscado |
 | 100 | [niagara-mental-model-bloque100.md](niagara-mental-model-bloque100.md) | `ipcMigrator`: migrador de aplicaciones Spyder XL10 Next Gen → stack IPC 3036 (function blocks + I/O + Sylk), deofuscado |
+| 101 | [niagara-mental-model-bloque101.md](niagara-mental-model-bloque101.md) | Ecosistema de Air Balancing Honeywell (II): `airFlowBalancer` (VAV genérico LON+BACnet) + `kitCat` (VAV IP del IPC/CIPer, multi-estación), deofuscados |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
