@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **80 bloques**
+Total: **81 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -85,6 +85,7 @@ Total: **80 bloques**
 | 80 | [niagara-mental-model-bloque80.md](niagara-mental-model-bloque80.md) | Stack Galileo: visualización web realtime sobre Niagara vía SignalR 1.4 (deofuscado) |
 | 81 | [niagara-mental-model-bloque81.md](niagara-mental-model-bloque81.md) | Familia `easy*` Honeywell/Galileo: herramientas de productividad (Templating PX, Binding masivo, Healthy Building, Database cleanup) deofuscadas |
 | 82 | [niagara-mental-model-bloque82.md](niagara-mental-model-bloque82.md) | Diccionarios de tags OEM Honeywell deofuscados: `honTagDictionary` (HBT Ontology) + `fcTagDict` (Forge Connect) — y corrigendum al Bloque 21 |
+| 83 | [niagara-mental-model-bloque83.md](niagara-mental-model-bloque83.md) | Stack de conectividad cloud Honeywell: Niagara N4 → Sentience/Forge vía Azure IoT Hub (AMQP) deofuscado |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
