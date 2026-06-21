@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **99 bloques**
+Total: **100 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -104,6 +104,7 @@ Total: **99 bloques**
 | 99 | [niagara-mental-model-bloque99.md](niagara-mental-model-bloque99.md) | Driver IPC/CIPer Honeywell (controlador IPC 3036): `ipcCommBus` (N-driver embebido) + `ipcBaseDriver` (capa JNI `libciper.so`), deofuscado |
 | 100 | [niagara-mental-model-bloque100.md](niagara-mental-model-bloque100.md) | `ipcMigrator`: migrador de aplicaciones Spyder XL10 Next Gen → stack IPC 3036 (function blocks + I/O + Sylk), deofuscado |
 | 101 | [niagara-mental-model-bloque101.md](niagara-mental-model-bloque101.md) | Ecosistema de Air Balancing Honeywell (II): `airFlowBalancer` (VAV genérico LON+BACnet) + `kitCat` (VAV IP del IPC/CIPer, multi-estación), deofuscados |
+| 102 | [niagara-mental-model-bloque102.md](niagara-mental-model-bloque102.md) | `genericUIFramework`: dos frameworks UI Honeywell empaquetados (motor MVC tipo Struts + `BajaUICreator` cargador de widgets PX), base de los wizards, deofuscado |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
