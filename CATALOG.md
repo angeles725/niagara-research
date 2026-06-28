@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **110 bloques**
+Total: **111 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -115,6 +115,7 @@ Total: **110 bloques**
 | 110 | [niagara-mental-model-bloque110.md](niagara-mental-model-bloque110.md) | `honRemoteConfig` + `honRemoteConfigBacnet`: el **receptor C2D** de comandos remotos del cloud Honeywell — cierra el arco abierto por los Bloques 83/84/85, deofuscado |
 | 111 | [niagara-mental-model-bloque111.md](niagara-mental-model-bloque111.md) | `honEagleHawkHMI`: el **HMI local embebido** de los controladores físicos EAGLE/HAWK — la plataforma de panel de operador que el migrador del [Bloque 90] **retira** al subir a BEATS ADV, deofuscado |
 | 112 | [niagara-mental-model-bloque112.md](niagara-mental-model-bloque112.md) | Detección y forense post-incidente del vector del [Bloque 75]: **nss SecurityDashboard** + **daemon `console.log`** + **PolicySpy** — la contracara DEFENSIVA |
+| 113 | [niagara-mental-model-bloque113.md](niagara-mental-model-bloque113.md) | Hardening del **module signing**: las 3 palancas estructurales (`skipModuleValidation` · truststore/trust anchor *Angeles* · clave **RSA-1024**) — la capa de PREVENCIÓN profunda del [Bloque 75] |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
