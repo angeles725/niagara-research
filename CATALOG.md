@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **111 bloques**
+Total: **112 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -116,6 +116,7 @@ Total: **111 bloques**
 | 111 | [niagara-mental-model-bloque111.md](niagara-mental-model-bloque111.md) | `honEagleHawkHMI`: el **HMI local embebido** de los controladores físicos EAGLE/HAWK — la plataforma de panel de operador que el migrador del [Bloque 90] **retira** al subir a BEATS ADV, deofuscado |
 | 112 | [niagara-mental-model-bloque112.md](niagara-mental-model-bloque112.md) | Detección y forense post-incidente del vector del [Bloque 75]: **nss SecurityDashboard** + **daemon `console.log`** + **PolicySpy** — la contracara DEFENSIVA |
 | 113 | [niagara-mental-model-bloque113.md](niagara-mental-model-bloque113.md) | Hardening del **module signing**: las 3 palancas estructurales (`skipModuleValidation` · truststore/trust anchor *Angeles* · clave **RSA-1024**) — la capa de PREVENCIÓN profunda del [Bloque 75] |
+| 114 | [niagara-mental-model-bloque114.md](niagara-mental-model-bloque114.md) | Cifrado de configuración y de secretos: el **BOG encryption pipeline** (`EncryptionKeySource` none/external/**keyring**) + el **KeyRing** (almacén de secrets) — la capa de PROTECCIÓN DE DATOS EN REPOSO del arco [Bloque 75] |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
