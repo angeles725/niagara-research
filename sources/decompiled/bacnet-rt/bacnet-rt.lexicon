@@ -1,0 +1,963 @@
+#
+# Lexicon for the bacnet module.
+#
+# @author    Craig Gemmill
+# @creation  01 Mar 02
+#
+
+help.guide.base=module://docBacnet/doc
+
+###########################################################
+# Views
+###########################################################
+
+# Common lexicon entries
+learn.objectName=Object Name
+learn.objectId=Object ID
+
+# BacnetDeviceManager
+BacnetDeviceManager.displayName=AX Bacnet Device Manager
+BacnetDeviceUxManager.displayName=Bacnet Device Manager
+BacnetDeviceUxManager.icon=module://icons/x16/views/view.png
+
+deviceManager.name=Device Name
+deviceManager.deviceId=Device ID
+deviceManager.network=Netwk
+deviceManager.mac=MAC Addr
+deviceManager.maxApdu=Max APDU
+deviceManager.segmentation=Segmentation
+deviceManager.services=Services
+deviceManager.vId=Vendor ID
+deviceManager.size=Objects
+deviceManager.charSet=Encoding
+deviceManager.vendorName=Vendor
+deviceManager.modelName=Model
+deviceManager.protocolRev=Protocol Rev
+deviceManager.fwRev=Firmware Rev
+deviceManager.appSwVer=App SW Version
+deviceManager.maxDevPoll=maxDevicePollSize
+deviceManager.dup=Duplicate?
+deviceManager.unknown=???
+deviceManager.begin=Finding BACnet Devices...
+deviceManager.params.local=Who-Is: Local Broadcast,
+deviceManager.params.global=Who-Is: Global Broadcast,
+deviceManager.params.all= All Devices
+deviceManager.params.range= Device Range {0} to {1}
+deviceManager.cancel=Job Canceled!
+deviceManager.end=Device discovery complete.
+deviceManager.found=Found BACnet device (objectId {0}) at address {1}...
+deviceManager.duplicate=Duplicate BACnet device (objectId {0}) reported at address {1}...
+deviceManager.replaced=Address {0} for BACnet device (objectId {1}) replaced with {2}...
+deviceManager.failed=Device discovery failed!
+deviceManager.finishing=Finishing reading device parameters...
+
+deviceManager.discover.description=Configure Device Discovery
+
+whoIs.label=Who Is
+whoIs.icon=module://bacnet/com/tridium/bacnet/ui/icons/network.png
+whoIs.description=Search for devices
+whoIs.fail=Who Is failed!
+whoIs.success=Who Is succeeded!
+whoHas.label=Who Has
+whoHas.icon=module://icons/x16/view.png
+whoHas.description=Search for objects by name or id
+whoHas.fail=Who Has failed!
+whoHas.found={0} received from {1}: {2} {3}
+whoHas.success=Who Has succeeded!
+
+timeSynch.label=TSynch
+timeSynch.confirm=Send current time to network?
+timeSynch.title=Synchronize Time
+timeSynch.icon=module://icons/x16/clock.png
+timeSynch.description=Send Time Synchronization request to the network.
+timeSynch.fail=Time Synchronization failed: {0}
+timeSynch.success=Time Synchronization successfully sent to the network!
+
+changeId.label=DeviceID
+changeId.confirm=Write the Device ObjectIDs to remote devices?
+changeId.title=Change Device ID
+changeId.icon=module://icons/x16/delta.png
+changeId.description=Change the Device Object Object_Identifier in the remote device.
+changeId.fail=Change Device ID failed:\n{0}
+changeId.success=Successfully changed remote device ObjectID!
+
+# BacnetPointManager
+BacnetPointManager.displayName=AX Bacnet Point Manager
+BacnetPointUxManager.displayName=Bacnet Point Manager
+BacnetPointUxManager.icon=module://icons/x16/views/view.png
+
+# BacnetHistoryImportManager
+BacnetHistoryImportManager.displayName=AX Bacnet History Import Manager
+BacnetHistoryImportUxManager.displayName=Bacnet History Import Manager
+BacnetHistoryImportUxManager.icon=module://icons/x16/views/view.png
+
+# BacnetScheduleImportManager
+BacnetScheduleImportManager.displayName=AX Bacnet Schedule Import Manager
+BacnetScheduleImportUxManager.displayName=Bacnet Schedule Import Manager
+BacnetScheduleImportUxManager.icon=module://icons/x16/views/view.png
+
+# BacnetScheduleExportManager
+BacnetScheduleExportManager.displayName=AX Bacnet Schedule Export Manager
+BacnetScheduleExportUxManager.displayName=Bacnet Schedule Export Manager
+BacnetScheduleExportUxManager.icon=module://icons/x16/views/view.png
+
+# BacnetExportManager
+BacnetExportManager.displayName=AX Bacnet Export Manager
+BacnetExportUxManager.displayName=Bacnet Export Manager
+BacnetExportUxManager.icon=module://icons/x16/views/view.png
+
+pointManager.value=Value
+pointManager.description=Description
+pointManager.property=Property ID
+pointManager.index=Index
+pointManager.dataType=Data Type
+pointManager.read=Read
+pointManager.write=Write
+#pointManager.useCov=Use Cov?
+pointManager.cov=COV Status
+pointManager.priority=Write Priority
+pointManager.error=ERROR
+
+# BacnetScheduleImportManager/BacnetScheduleExportManager
+scheduleManager.schedType=Schedule Type
+scheduleManager.dataType=Data Type
+scheduleManager.description=Description
+scheduleManager.useDevice.label=Device
+scheduleManager.useDevice.icon=module://icons/x16/device.png
+scheduleManager.useDevice.description=Initialize with schedule data from remote BACnet device.
+scheduleManager.useNiagara.label=Niagara
+scheduleManager.useNiagara.icon=module://icons/x16/workbench.png
+scheduleManager.useNiagara.description=Use schedule data in existing Niagara supervisor schedule.
+scheduleManager.export.invalidOrd=Invalid supervisorOrd ({0}) for schedule export: {1}!
+
+export.command.changeType.label=Change Type
+export.command.changeType.icon=module://icons/x16/build.png
+export.command.changeType.description=Change schedule type
+export.configurationFault=Configuration fault
+export.configurationFault.postiveIntergerValue.minValue=Configuration fault. The Point min value must not be lesser than {0} or greater than {1} for export to BACnet.
+export.configurationFault.postiveIntergerValue.maxValue=Configuration fault. The Point max value must not be lesser than {0} or greater than {1} for export to BACnet.
+
+changeType.title=Manage Schedule Type
+changeType.type=Schedule Type
+changeType.objPropRef=Object Property Ref
+changeType.scheduleDefault=Schedule Default
+changeType.supervisorOrd=Supervisor Ord
+changeType.weeklySchedule=Weekly Schedule
+changeType.exceptionSchedule=Exception Schedule
+
+changeType.objectPropertReferenceErr=One or more object properties refer to an incorrect type
+changeType.scheduleDefaultErr=Schedule default is an incorrect type
+changeType.supervisorOrdErr=Supervisor ord references schedule of incorrect type
+changeType.scheduleErr=Some schedule entries are an incorrect type
+
+changeType.button.apply=Apply
+changeType.button.cancel=Cancel
+changeType.button.save=Save
+
+export.rpc.bqlDiscover.error=Problem resolving BQL query:\n{0}
+
+# BacnetHistoryImportManager
+historyManager.type=History Type
+historyManager.description=Description
+#historyImport.noRecords=Trend Log contains no records.
+historyType.unknown=Unknown
+
+# BacnetConfigManager
+configManager.value=Value
+configManager.objectName=Object Name
+configManager.description=Description
+BacnetConfigManager.displayName=AX Bacnet Device Manager
+BacnetConfigUxManager.displayName=Bacnet Device Manager
+BacnetConfigUxManager.icon=module://icons/x16/views/view.png
+
+# Discovery log entries
+discover.begin=Beginning object discovery...
+discover.fail=Object discovery failed!
+discover.finishedList=Object list size: {0}
+discover.cancel=Object discovery canceled!
+discover.end=Object discovery complete.
+discover.stats=Learn statistics: {0} objects in {1} sec.
+discover.stats.1obj=Learn statistics: {0} object in {1} sec.
+discover.canceled=Discovery Canceled!
+
+# BacnetExportManager
+exportManager.local=Local Objects
+exportManager.exportedObjects=Exported Objects
+exportManager.targetName=Target Name
+exportManager.objectName=Object Name
+exportManager.objectType=Object Type
+exportManager.instanceNumber=Inst Num
+exportManager.out=Value
+exportManager.exportOrd=Export Ord
+exportManager.exportStatus=Export
+exportManager.faultCause=Fault Cause
+exportManager.description=Description
+exportManager.writable=BACnet Writable
+exportManager.invalidOrd=Invalid Ord!
+exportManager.newFolder.type=Type to Add
+exportManager.newFolder.name=Folder Name
+exportManager.newFolder.instance=Instance Number
+exportManager.newFolder.description=Description
+exportManager.newFolder.nodeType=Node Type
+exportManager.newFolder.nodeSubtype=Node Subtype
+
+# BacnetFileExportManager
+fileExportManager.local=Local Files
+fileExportManager.name=Filename
+fileExportManager.type=Type
+fileExportManager.size=Size
+fileExportManager.lastModified=Modified
+
+# BacnetNiagaraLogExportManager
+BacnetNiagaraLogExportManager.displayName=AX Bacnet Niagara Log Export Manager
+BacnetNiagaraLogExportUxManager.displayName=Bacnet Niagara Log Export Manager
+BacnetNiagaraLogExportUxManager.icon=module://icons/x16/views/view.png
+logExportManager.historyId=History ID
+logExportManager.local=Local Histories
+logExportManager.logType=History Type
+logExportManager.updateStationName.title=Change History Device Name
+logExportManager.updateStationName.label=New History Device Name
+logExportManager.updateStationName.message=The Object_Name for histories exported with default Object_Name will also be updated.
+updateStationName.label=Change History Device Name
+updateStationName.icon=module://icons/x16/rename.png
+updateStationName.description=Update History Station Name
+updateStationName.displayName={lexicon:updateStationName.label}
+
+# BacnetWbService
+BacnetWbService.displayName=BACnet Service
+BacnetWbService.icon=module://bacnet/com/tridium/bacnet/ui/icons/bacObject.png
+
+# BdtManager
+bdtManager.bipAddr=BACnet/IP Address
+bdtManager.bdMask=Broadcast Distribution Mask
+bdtManager.new.label=New
+bdtManager.new.icon=module://icons/x16/newFile.png
+bdtManager.new.description=Add a new BDT entry
+bdtManager.edit.label=Edit
+bdtManager.edit.icon=module://icons/x16/edit.png
+bdtManager.edit.description=Edit a BDT entry
+bdtManager.delete.label=Delete
+bdtManager.delete.icon=module://icons/x16/delete.png
+bdtManager.delete.description=Remove a BDT entry
+
+# BdtManager/FdtManager
+bdtfdt.bipAddr=BACnet/IP Address
+bdtfdt.bdMask=Broadcast Distribution Mask
+bdtfdt.timeToLive=Time To Live
+bdtfdt.purgeTime=Purge Time
+bdtfdt.new.label=New
+bdtfdt.new.icon=module://icons/x16/newFile.png
+bdtfdt.new.description=Add a new entry
+bdtfdt.error.invalidAddress=Invalid BACnet/IP Address!
+bdtfdt.error.invalidMask=Invalid Distribution Mask!
+bdtfdt.edit.label=Edit
+bdtfdt.edit.icon=module://icons/x16/edit.png
+bdtfdt.edit.description=Edit an entry
+bdtfdt.delete.label=Delete
+bdtfdt.delete.icon=module://icons/x16/delete.png
+bdtfdt.delete.description=Remove an entry
+
+# SVO Subordinate Manager
+svoSubMgr.table.automatic=Automatic Subordinates
+svoSubMgr.table.manual=Manually Configured Subordinates
+svoSubMgr.manual=Manual
+svoSubMgr.col.deviceInst=Device Instance
+svoSubMgr.col.objectId=Object ID
+svoSubMgr.col.annotation=Subordinate Annotation
+svoSubMgr.cell.automatic=Automatic
+svoSubMgr.cell.local=Local
+svoSubMgr.new.label=New
+svoSubMgr.new.icon=module://icons/x16/add.png
+svoSubMgr.new.description=Create a new entry in the Subordinate_List.
+svoSubMgr.edit.label=Edit
+svoSubMgr.edit.icon=module://icons/x16/edit.png
+svoSubMgr.edit.description=Edit an entry in the Subordinate_List.
+svoSubMgr.delete.label=Delete
+svoSubMgr.delete.icon=module://icons/x16/delete.png
+svoSubMgr.delete.description=Remove an entry from the Subordinate_List.
+svoSubMgr.editAuto.label=EditAuto
+svoSubMgr.editAuto.icon=module://icons/x16/edit.png
+svoSubMgr.editAuto.description=Edit an automatically generated entry in the Subordinate_List.
+
+
+
+###########################################################
+# Messages
+###########################################################
+
+networkNumberMismatch=Possible network number mismatch: received network-number-is: "{0}", on port whose network number is "{1}"
+
+wrongClientScheduleType=Possible schedule type mismatch: client schedule type is "{0}", remote schedule type is "{1}"
+
+# Backup & Restore Error messages
+RestoreBackup.error.unmetDeps=Platform does not meet backup dependencies: {0}
+RestoreBackup.error.backupNotLocal=Backup File is not local to the JACE!
+RestoreBackup.error.noSurrogate=No Station Surrogate!
+RestoreBackup.error.noManifest=Backup File does not contain a manifest entry!
+RestoreBackup.error.invalidName=Installable Name is invalid!
+RestoreBackup.error.noDaemonSession=No Platform Daemon Session is available!
+
+###########################################################
+# Exceptions
+###########################################################
+
+# Localizable strings for standard exceptions
+IllegalArgumentException.niagaraTrendLog.invalidScheme=Invalid ord scheme for BacnetNiagaraHistoryDescriptor!
+IllegalArgumentException.notBacnetPollable=Only BacnetPollables can be added to the Bacnet poll service!
+UnsupportedOperationException.localDevice.setObjectName=Cannot change object name on local Bacnet device!
+UnsupportedOperationException.localDevice.setObjectOrd=Cannot change object ord on local Bacnet device!
+UnsupportedOperationException.trendLogExt.setObjectOrd=Cannot change object ord on Bacnet Server Trend Log Extension!
+#UnsupportedOperationException.niagaraTrendLog.setObjectOrd=Cannot change object ord on Bacnet Server Niagara Trend Log!
+UnsupportedOperationException.structuredView.setObjectOrd=Cannot change object ord on Bacnet Export Folder!
+Cancel.SetFlags.TrendLog.Interval.Amev=Do not apply the Facets in the Interval History in Generic Trend Log for AMEV.
+
+# BACnet exceptions
+AbortException.abort=ABORT
+RejectException.reject=REJECT
+AsnException.asn=ASN
+
+
+###########################################################
+# Errors
+###########################################################
+
+serviceNotSupported.atomicReadFile=AtomicReadFile service not supported by remote device
+serviceNotSupported.atomicWriteFile=AtomicWriteFile service not supported by remote device
+serviceNotSupported.addListElement=AddListElement service not supported by remote device
+serviceNotSupported.removeListElement=RemoveListElement service not supported by remote device
+serviceNotSupported.readPropertyMultiple=ReadPropertyMultiple service not supported by remote device
+serviceNotSupported.readRange=ReadRange service not supported by remote device
+serviceNotSupported.writeProperty=WriteProperty service not supported by remote device
+
+###########################################################
+# Field Editors
+###########################################################
+
+bacnetAddress.networkNumber=Network Number:
+bacnetAddress.macAddress=MAC Address:
+bacnetAddress.macStyle=MAC Address Style:
+bacnetAddress.macType.Unknown=Unknown
+bacnetAddress.macType.Ethernet=Ethernet
+bacnetAddress.macType.IP=IP
+bacnetAddress.macType.MSTP=MSTP/Other
+bacnetAddress.macType.SC=SC
+bacnetAddress.macType.IP.invalid.message=Invalid BACnet/IP MAC address!
+bacnetAddress.macType.Ethernet.invalid.message=Invalid Ethernet MAC address!
+bacnetAddress.macType.MSTP.invalid.message=Invalid BACnet/IP MSTP address!
+bacnetAddress.macType.SC.invalid.message=Invalid BACnet/SC MAC address!
+
+bacnetAny.BacnetNull=NULL
+bacnetAny.Boolean=BOOLEAN
+bacnetAny.BacnetUnsigned=Unsigned
+bacnetAny.Integer=INTEGER
+bacnetAny.Float=REAL
+bacnetAny.Double=Double
+bacnetAny.BacnetOctetString=OCTET STRING
+bacnetAny.String=CharacterString
+bacnetAny.BacnetBitString=BIT STRING
+bacnetAny.DynamicEnum=ENUMERATED
+bacnetAny.BacnetDate=Date
+bacnetAny.BacnetTime=Time
+bacnetAny.BacnetObjectIdentifier=BacnetObjectIdentifier
+
+bacnetCalendarEntry.date=Date
+bacnetCalendarEntry.dateRange=Date Range
+bacnetCalendarEntry.weekNDay=Week and Day
+
+#Note: these values must be 3 or fewer characters.
+bacnetDate.month.odd=Odd
+bacnetDate.month.even=Evn
+#Note: these values must be 2 or fewer characters.
+bacnetDate.dayOfMonth.last=LD
+bacnetDate.dayOfMonth.odd=OD
+bacnetDate.dayOfMonth.even=ED
+
+bacnetObjectIdentifier.invalidInstanceNumber=Invalid instance number!  Instance must be between 0 and 4194302.
+
+bacnetRecipient.device=Device
+bacnetRecipient.address=Address
+
+bacnetScale.float=Float
+bacnetScale.int=Integer
+
+bacnetTimeStamp.time=Time
+bacnetTimeStamp.sequenceNumber=SeqNum
+bacnetTimeStamp.dateTime=DateTime
+
+discoveryNetworks.global=Send Global?
+discoveryNetworks.selectAll=Select All
+discoveryNetworks.clearAll=Clear All
+
+writableFE.clearAll=clr
+writableFE.selectAll=all
+
+timeSynchType.title=Time Synch Type
+timeSynchType.utc=UTC Time
+timeSynchType.local=Local Time
+timeSynchRange.title=Address Range
+timeSynchRange.local=Local Networks Only
+timeSynchRange.global=All Connected Networks
+
+###########################################################
+# Miscellaneous localizations
+###########################################################
+
+# WhoHasConfig
+whoHas.useObjectId=objectId
+whoHas.useObjectName=objectName
+
+# Server writable flags
+server.notWritable=no
+
+# BacnetLinkLayer
+adapter.cannotStart=Cannot Start Adapter:
+
+# BacnetEthernetLinkLayer
+ethernet.adapter.none=none
+
+# BacnetIpLinkLayer
+ip.adapter.none=none
+ip.unknownHost=Unknown Host:
+ip.cannotBind=Cannot bind datagram socket on port {0}
+ip.cannotOpen=Cannot open datagram socket
+ip.adapter.disabled=[DISABLED]
+ip.adapter.noAddress=[DISCONNECTED]
+
+# BacnetDevice
+BacnetDevice.ping.nonOperational=BACnet Device not operational
+BacnetDevice.ping.null=UNEXPECTED ERROR:Encoded System_Status is null!!
+BacnetDevice.ping.nullMac=MAC Address not configured
+bacnetDevice.subscribeCov.failure=SubscribeCov request failed.
+bacnetDevice.subscribeCovProperty.failure=SubscribeCovProperty request failed.
+bacnetDevice.unsubscribeCov.failure=UnsubscribeCov request failed.
+bacnetDevice.unsubscribeCovProperty.failure=UnsubscribeCovProperty request failed.
+
+# BacnetProxyExt
+point.cov=COV
+point.covp=COV Property
+point.covPending=Pending COV
+point.covpPending=Pending COV Property
+point.polled=Polled
+point.covFailed=Failed COV
+point.unsubscribed=Unsubscribed
+point.writable=Writable
+point.readonly=Read Only
+point.ok=OK
+point.writeFail=Post Write Failed
+
+# Enumeration prefixes
+enum.proprietary=proprietary
+enum.ashrae=ashrae
+
+# ASN Types
+asn.null=NULL
+asn.boolean=BOOLEAN
+asn.unsigned=Unsigned
+asn.integer=INTEGER
+asn.real=REAL
+asn.double=Double
+asn.octetString=OCTET STRING
+asn.characterString=Character String
+asn.bitString=BIT STRING
+asn.enumerated=ENUMERATED
+asn.date=Date
+asn.time=Time
+asn.objectId=Object Identifier
+asn.reserved13=ASHRAE Reserved Type 13
+asn.reserved14=ASHRAE Reserved Type 14
+asn.reserved15=ASHRAE Reserved Type 15
+asn.constructed=Constructed Data
+asn.array=ARRAY
+asn.list=List
+asn.any=Any
+asn.choice=CHOICE
+asn.unknown=Unknown
+
+# BacnetLogRecord
+BacnetLogRecord.status=Log-Status
+BacnetLogRecord.failure=Failure
+BacnetLogRecord.timeChange=Time-Change
+BacnetLogRecord.event=Event
+BacnetLogRecord.invalid=Invalid
+BacnetLogRecord.unknown=Unknown
+BacnetLogRecord.enabled=Enabled
+BacnetLogRecord.disabled=Disabled
+BacnetLogRecord.purged=Buffer-Purged
+BacnetLogRecord.interrupted=Log-Interrupted
+BacnetLogRecord.seconds=seconds
+
+BacnetPoll.onlyOnePollOrderingPerPollService=Only one BacnetPollOrder can be added to a poll service.
+
+###########################################################
+# Bacnet Bit Strings
+###########################################################
+
+#BacnetGenericBitString
+BacnetGenericBitString.numBits=0
+# BacnetDaysOfWeek
+BacnetDaysOfWeek.numBits=7
+BacnetDaysOfWeek.bit0=monday
+BacnetDaysOfWeek.bit1=tuesday
+BacnetDaysOfWeek.bit2=wednesday
+BacnetDaysOfWeek.bit3=thursday
+BacnetDaysOfWeek.bit4=friday
+BacnetDaysOfWeek.bit5=saturday
+BacnetDaysOfWeek.bit6=sunday
+
+# BacnetEventTransitionBits
+BacnetEventTransitionBits.numBits=3
+BacnetEventTransitionBits.bit0=toOffnormal
+BacnetEventTransitionBits.bit1=toFault
+BacnetEventTransitionBits.bit2=toNormal
+
+# BacnetLimitEnable
+BacnetLimitEnable.numBits=2
+BacnetLimitEnable.bit0=lowLimitEnable
+BacnetLimitEnable.bit1=highLimitEnable
+
+# BacnetLogStatus
+BacnetLogStatus.numBits=3
+BacnetLogStatus.bit0=logDisabled
+BacnetLogStatus.bit1=bufferPurged
+BacnetLogStatus.bit2=logInterrupted
+
+# BacnetObjectTypesSupported
+BacnetObjectTypesSupported.numBits=56
+BacnetObjectTypesSupported.bit0=analogInput
+BacnetObjectTypesSupported.bit1=analogOutput
+BacnetObjectTypesSupported.bit2=analogValue
+BacnetObjectTypesSupported.bit3=binaryInput
+BacnetObjectTypesSupported.bit4=binaryOutput
+BacnetObjectTypesSupported.bit5=binaryValue
+BacnetObjectTypesSupported.bit6=calendar
+BacnetObjectTypesSupported.bit7=command
+BacnetObjectTypesSupported.bit8=device
+BacnetObjectTypesSupported.bit9=eventEnrollment
+BacnetObjectTypesSupported.bit10=file
+BacnetObjectTypesSupported.bit11=group
+BacnetObjectTypesSupported.bit12=loop
+BacnetObjectTypesSupported.bit13=multiStateInput
+BacnetObjectTypesSupported.bit14=multiStateOutput
+BacnetObjectTypesSupported.bit15=notificationClass
+BacnetObjectTypesSupported.bit16=program
+BacnetObjectTypesSupported.bit17=schedule
+BacnetObjectTypesSupported.bit18=averaging
+BacnetObjectTypesSupported.bit19=multiStateValue
+BacnetObjectTypesSupported.bit20=trendLog
+BacnetObjectTypesSupported.bit21=lifeSafetyPoint
+BacnetObjectTypesSupported.bit22=lifeSafetyZone
+BacnetObjectTypesSupported.bit23=accumulator
+BacnetObjectTypesSupported.bit24=pulseConverter
+BacnetObjectTypesSupported.bit25=eventLog
+BacnetObjectTypesSupported.bit26=globalGroup
+BacnetObjectTypesSupported.bit27=trendLogMultiple
+BacnetObjectTypesSupported.bit28=loadControl
+BacnetObjectTypesSupported.bit29=structuredView
+BacnetObjectTypesSupported.bit30=accessDoor
+BacnetObjectTypesSupported.bit31=unassigned31
+BacnetObjectTypesSupported.bit32=accessCredential
+BacnetObjectTypesSupported.bit33=accessPoint
+BacnetObjectTypesSupported.bit34=accessRights
+BacnetObjectTypesSupported.bit35=accessUser
+BacnetObjectTypesSupported.bit36=accessZone
+BacnetObjectTypesSupported.bit37=credentialDataInput
+BacnetObjectTypesSupported.bit38=networkSecurity
+BacnetObjectTypesSupported.bit39=bitstringValue
+BacnetObjectTypesSupported.bit40=characterStringValue
+BacnetObjectTypesSupported.bit41=datePatternValue
+BacnetObjectTypesSupported.bit42=dateValue
+BacnetObjectTypesSupported.bit43=dateTimePatternValue
+BacnetObjectTypesSupported.bit44=dateTimeValue
+BacnetObjectTypesSupported.bit45=integerValue
+BacnetObjectTypesSupported.bit46=largeAnalogValue
+BacnetObjectTypesSupported.bit47=octetStringValue
+BacnetObjectTypesSupported.bit48=positiveIntegerValue
+BacnetObjectTypesSupported.bit49=timePatternValue
+BacnetObjectTypesSupported.bit50=timeValue
+BacnetObjectTypesSupported.bit51=notificationForwarder
+BacnetObjectTypesSupported.bit52=alertEnrollment
+BacnetObjectTypesSupported.bit53=channel
+BacnetObjectTypesSupported.bit54=lightingOutput
+BacnetObjectTypesSupported.bit55=binaryLightingOutput
+
+
+# BacnetResultFlags
+BacnetResultFlags.numBits=3
+BacnetResultFlags.bit0=firstItem
+BacnetResultFlags.bit1=lastItem
+BacnetResultFlags.bit2=moreItems
+
+# BacnetServicesSupported
+BacnetServicesSupported.numBits=41
+BacnetServicesSupported.bit0=acknowledgeAlarm
+BacnetServicesSupported.bit1=confirmedCovNotification
+BacnetServicesSupported.bit2=confirmedEventNotification
+BacnetServicesSupported.bit3=getAlarmSummary
+BacnetServicesSupported.bit4=getEnrollmentSummary
+BacnetServicesSupported.bit5=subscribeCov
+BacnetServicesSupported.bit6=atomicReadFile
+BacnetServicesSupported.bit7=atomicWriteFile
+BacnetServicesSupported.bit8=addListElement
+BacnetServicesSupported.bit9=removeListElement
+BacnetServicesSupported.bit10=createObject
+BacnetServicesSupported.bit11=deleteObject
+BacnetServicesSupported.bit12=readProperty
+BacnetServicesSupported.bit13=readPropertyConditional
+BacnetServicesSupported.bit14=readPropertyMultiple
+BacnetServicesSupported.bit15=writeProperty
+BacnetServicesSupported.bit16=writePropertyMultiple
+BacnetServicesSupported.bit17=deviceCommunicationControl
+BacnetServicesSupported.bit18=confirmedPrivateTransfer
+BacnetServicesSupported.bit19=confirmedTextMessage
+BacnetServicesSupported.bit20=reinitializeDevice
+BacnetServicesSupported.bit21=vtOpen
+BacnetServicesSupported.bit22=vtClose
+BacnetServicesSupported.bit23=vtData
+BacnetServicesSupported.bit24=authenticate
+BacnetServicesSupported.bit25=requestKey
+BacnetServicesSupported.bit26=iAm
+BacnetServicesSupported.bit27=iHave
+BacnetServicesSupported.bit28=unconfirmedCovNotification
+BacnetServicesSupported.bit29=unconfirmedEventNotification
+BacnetServicesSupported.bit30=unconfirmedPrivateTransfer
+BacnetServicesSupported.bit31=unconfirmedTextMessage
+BacnetServicesSupported.bit32=timeSynchronization
+BacnetServicesSupported.bit33=whoHas
+BacnetServicesSupported.bit34=whoIs
+BacnetServicesSupported.bit35=readRange
+BacnetServicesSupported.bit36=utcTimeSynchronization
+BacnetServicesSupported.bit37=lifeSafetyOperation
+BacnetServicesSupported.bit38=subscribeCovProperty
+BacnetServicesSupported.bit39=getEventInformation
+BacnetServicesSupported.bit40=writeGroup
+
+# BacnetStatusFlags
+BacnetStatusFlags.numBits=4
+BacnetStatusFlags.bit0=inAlarm
+BacnetStatusFlags.bit1=fault
+BacnetStatusFlags.bit2=overridden
+BacnetStatusFlags.bit3=outOfService
+
+
+###########################################################
+# Bacnet Octet Strings
+###########################################################
+
+weekNDay.b0.1=January
+weekNDay.b0.2=February
+weekNDay.b0.3=March
+weekNDay.b0.4=April
+weekNDay.b0.5=May
+weekNDay.b0.6=June
+weekNDay.b0.7=July
+weekNDay.b0.8=August
+weekNDay.b0.9=September
+weekNDay.b0.10=October
+weekNDay.b0.11=November
+weekNDay.b0.12=December
+weekNDay.b0.13=Odd Months
+weekNDay.b0.14=Even Months
+weekNDay.b0.-1=Any Month
+
+weekNDay.b1.1=Days 1-7
+weekNDay.b1.2=Days 8-14
+weekNDay.b1.3=Days 15-21
+weekNDay.b1.4=Days 22-28
+weekNDay.b1.5=Days 29-31
+weekNDay.b1.6=Last 7 Days
+weekNDay.b1.-1=Any Week
+
+weekNDay.b2.1=Monday
+weekNDay.b2.2=Tuesday
+weekNDay.b2.3=Wednesday
+weekNDay.b2.4=Thursday
+weekNDay.b2.5=Friday
+weekNDay.b2.6=Saturday
+weekNDay.b2.7=Sunday
+weekNDay.b2.-1=Any Day
+
+
+###########################################################
+# Datatypes
+###########################################################
+
+
+###########################################################
+# Enums
+###########################################################
+BacnetBooleanScheduleDescriptor.boolean=BOOLEAN
+BacnetBooleanScheduleDescriptor.enumerated=BinaryPV
+
+###########################################################
+# Choices
+###########################################################
+
+BacnetPropertyStates.booleanValue=Boolean Value:
+BacnetPropertyStates.binaryValue=Binary Value:
+BacnetPropertyStates.eventType=Event Type:
+BacnetPropertyStates.polarity=Polarity:
+BacnetPropertyStates.programChange=Program Change:
+BacnetPropertyStates.programState=Program State:
+BacnetPropertyStates.reasonForHalt=Reason For Halt:
+BacnetPropertyStates.reliability=Reliability:
+BacnetPropertyStates.state=State:
+BacnetPropertyStates.systemStatus=System Status:
+BacnetPropertyStates.units=Units:
+BacnetPropertyStates.unsignedValue=Unsigned Value:
+BacnetPropertyStates.lifeSafetyMode=Life Safety Mode:
+BacnetPropertyStates.lifeSafetyState=Life Safety State:
+BacnetPropertyStates.restartReason=Restart Reason:
+BacnetPropertyStates.doorAlarmState=Door Alarm State:
+BacnetPropertyStates.action=Action:
+BacnetPropertyStates.doorSecuredStatus=Door Secured Status:
+BacnetPropertyStates.doorStatus=Door Status:
+BacnetPropertyStates.doorValue=Door Value:
+BacnetPropertyStates.fileAccessMethod=File Access Method:
+BacnetPropertyStates.lockStatus=Lock Status:
+BacnetPropertyStates.lifeSafetyOperation=Life Safety Operation:
+BacnetPropertyStates.maintenance=Maintenance:
+BacnetPropertyStates.nodeType=Node Type:
+BacnetPropertyStates.notifyType=Notify Type:
+BacnetPropertyStates.securityLevel=Security Level:
+BacnetPropertyStates.shedState=Shed State:
+BacnetPropertyStates.silencedState=Silenced State:
+BacnetPropertyStates.reserved29=Reserved29:
+BacnetPropertyStates.accessEvent=Access Event:
+BacnetPropertyStates.zoneOccupancyState=Zone Occupancy State:
+BacnetPropertyStates.accessCredentialDisableReason=Access Credentials Disable Reason:
+BacnetPropertyStates.accessCredentialDisable=Access Credentials Disable:
+BacnetPropertyStates.authenticationStatus=Authentication Status:
+BacnetPropertyStates.integerValue=Integer Value:
+BacnetPropertyStates.ashrae=ASHRAE Reserved:
+BacnetPropertyStates.proprietary=Proprietary Value:
+BacnetPropertyStates.invalid=INVALID Value:
+
+
+###########################################################
+# Virtual
+###########################################################
+
+BacnetVirtualProperty.set=set
+
+###########################################################
+# Error uploading required or optional properties
+###########################################################
+object.upload.required.error=Error reading required properties
+object.upload.optional.error=Error reading optional properties
+object.upload.unknown.error=Error reading unknown property
+
+##########################################################
+# Field editors
+##########################################################
+BacnetObjectIdentifier.invalid.objectType=Not a valid object type
+
+BacnetEd.asteriskCommand.description=Reset Time to Default
+BacnetEd.asteriskCommand.icon=module://icons/x16/asterisk.png
+
+BacnetEd.calCommand.description=Pick a date
+BacnetEd.calCommand.icon=module://icons/x16/calendar.png
+
+BacnetDate.invalid.year=BacnetDate: invalid year (Range 1900 - 2154): {0}
+BacnetDate.invalid.month=BacnetDate: invalid month: {0}
+BacnetDate.invalid.dom=BacnetDate: invalid day of month: {0}
+BacnetDate.invalid.dow=BacnetDate: invalid day of week (Mon-Fri)
+
+BacnetTS.commands.toggle.seqNum.displayName=Seq Num
+BacnetTS.commands.toggle.time.displayName=Time
+BacnetTS.commands.toggle.dateTime.displayName=Date Time
+BacnetTS.editor.label.time=Time
+BacnetTS.editor.label.seqNumber=Sequence Number
+BacnetTS.editor.label.dateTime=Date Time
+
+BacnetCE.commands.toggle.date.displayName=Date
+BacnetCE.commands.toggle.dateRange.displayName=Date Range
+BacnetCE.commands.toggle.weekNDay.displayName=Week and Day
+BacnetCE.editor.label.date=Date
+BacnetCE.editor.label.startDate=Start Date
+BacnetCE.editor.label.endDate=End Date
+
+BacnetTV.editor.label.time=Time
+BacnetTV.editor.label.value=Value
+
+BacnetRecipientEditor.commands.toggle.address.displayName=Address
+BacnetRecipientEditor.commands.toggle.device.displayName=Device
+
+BacnetMstpUsageTimeout.ms_20=Fast 20 ms
+BacnetMstpUsageTimeout.ms_35=Normal 35 ms
+BacnetMstpUsageTimeout.ms_85=Legacy 85 ms
+bacnet.trendlog.log.enable.display.name=Enable
+bacnet.trendlog.log.buffer.display.name=Log Buffer
+
+## warning message for schedule descriptor
+BacnetSchedule.typechange.warning=Attempting to change schedule type from {0} to {1}. This is currently not supported
+
+##########################################################
+# Config Actions
+##########################################################
+
+illegal.create.object.initiation=Create Object Service cannot be initiated from {0} Network.
+
+##########################################################
+# BACnet Secure Connect (BACnet/SC)
+##########################################################
+
+DuplicateRestrictedComponent=Illegal duplicate instance of type "{1}" detected as a child of "{0}".\nType "{1}" is restricted to one instance of its type allowed under a "{0}".
+
+localBacnetDevice.changeDeviceUuid.newValueNull=Must specify a UUID value other than '{00000000-0000-0000-0000-000000000000}'
+localBacnetDevice.changeDeviceUuid.scPortEnabled=BACnet Local Device UUID cannot be changed while any Secure Connect Network Ports are enabled.
+
+scLinkLayer.noOperationalCertificateSelected=No link layer operational certificate selected
+scLinkLayer.changeVmacAddress.portEnabled=VMAC Address cannot be changed when the Network Port is enabled.
+scLinkLayer.portDisabled=The Network Port is disabled.
+scLinkLayer.userAlreadyExists=A BACnet/SC user is already associated with this link layer.
+scLinkLayer.userHasMultipleLinkLayers=Could not remove BACnet/SC user associated with this link layer because the user is also associated with another link layer. Association with this link layer has been removed.
+scLinkLayer.toString=Secure Connect [{0}]
+
+abstractConnectionManager.notLicensed=No connections are licensed
+abstractConnectionManager.noAssociatedScUser=No BACnet/SC user associated with this link layer
+abstractConnectionManager.duplicateIssuerCerts=BACnet/SC users have overlapping issuer certificates
+abstractConnectionManager.missingScScheme=Missing the BACnet/SC authentication scheme
+
+changeVmacAddress.invalidVmac=Must specify a 6-byte VMAC address value other than [00-00-00-00-00-00] or [FF-FF-FF-FF-FF-FF]
+
+hubConnector.status.normal=Primary Connected
+hubConnector.status.offnormal=Primary Disconnected
+hubConnector.status.fault=Primary and Failover Disconnected
+hubConnector.forceConnect.improperState=Please try again. Re-connection could not be attempted due to the state of the Hub Connector: {0}.
+hubConnector.forceConnect.bothConnectionsDisabled=Re-connection could not be attempted because both the primary and failover hub connections are disabled.
+hubConnector.connectionName.primary=Primary
+hubConnector.connectionName.failover=Failover
+hubConnector.forceConnect.scLinkLayerStopped=Re-connection could not be attempted because the SC link layer has not been started.
+
+nodeSwitch.bothEnabled=Both Enabled
+nodeSwitch.acceptEnabled=Accept Enabled
+nodeSwitch.initiateEnabled=Initiate Enabled
+nodeSwitch.disabled=Disabled
+nodeSwitch.disabled.connectionsNotSupported=Node Switch is disabled and cannot initiate or accept direct connections.
+nodeSwitch.connectionLimitReached=BACnet/SC license feature connection limit reached for Node Switch.
+
+hubFunction.configureLocalHubConnector.noWebService=Configuration failed because the Web Service could not be found.
+
+webSocketAcceptor.couldNotResolveWebService=Cannot resolve ord to a web service
+webSocketAcceptor.webServiceMissingWebServer=Web service does not contain a web server
+webSocketAcceptor.couldNotRegister=Failed to register web socket acceptor
+webSocketAcceptor.disallowedOrdScheme=The web socket acceptor's web service ord contains an ord query scheme not in allowed list: {0}
+
+sc.connection.errorDetails.sendMessageFailed=Failed to send message; function: {0}
+sc.connection.errorDetails.sendMessageBytesFailed=Failed to send message bytes
+sc.connection.errorDetails.sendReadErrorNakFailed=Failed to send BVLC-Result-NAK for read message error
+# {0} - message function, {1} - BVLC-Result-NAK error details
+sc.connection.errorDetails.requestFailed=BVLC-Result-NAK received for {0}: {1}
+sc.connection.errorDetails.waitTimeoutExpired=Wait timeout expired; state: {0}
+sc.connection.errorDetails.heartbeatTimeoutExpired=No message received after sending Heartbeat-Request
+sc.connection.errorDetails.heartbeatTimeoutSendDisconnectRequestFailed=Failed to send Disconnect-Request when no-message-received timeout expired
+sc.connection.errorDetails.disconnectingSendDisconnectRequestFailed=Failed to send Disconnect-Request when attempting to disconnect
+sc.connection.errorDetails.disconnectingBeforeConnected=Disconnected prior to becoming connected; state: {0}
+sc.connection.errorDetails.killedConnection=Connection was killed
+sc.connection.errorDetails.duplicateVmac=Duplicate VMAC address
+# {0} - message function
+sc.connection.errorDetails.errorHandlingConnectMessage=Error encountered handling {0}
+# {0} - exception message
+sc.connection.errorDetails.initiateWebSocketFailed=Failed to initiate web socket: {0}
+# {0} - error details
+sc.connection.errorDetails.webSocketFailed=Web socket failed: {0}
+
+acceptingConnection.disconnect.improperState=Please try again. Disconnect could not be attempted due to the state of the Accepting Connection: idle.
+
+initiatingConnection.illegalCharInQuery=wss scheme does not support '[' or ']' characters in the query
+initiatingConnection.disconnect.improperState=Please try again. Disconnect could not be attempted due to the state of the Initiating Connection: idle.
+
+directInitiatingConnection.sendInfoMessage.invalidVmac=The Peer VMAC property is not valid for sending a message: [{0}].
+directInitiatingConnection.sendInfoMessage.noConnection=Cannot send a message because there are no direct connections for the VMAC and no connections to a hub: [{0}].
+directInitiatingConnection.sendInfoMessage.failed=Failed to send a message to VMAC [{0}].
+
+directInitiatingConnection.sendInfoMessageStatus.notAttempted=Not attempted
+directInitiatingConnection.sendInfoMessageStatus.inProgress=In progress...
+directInitiatingConnection.sendInfoMessageStatus.success=Success
+directInitiatingConnection.sendInfoMessageStatus.doesNotAcceptDirect=Does not accept direct connections
+# {0} - error code, {1} - error code title
+directInitiatingConnection.sendInfoMessageStatus.failed=Failed; error code: {0} ({1})
+directInitiatingConnection.sendInfoMessageStatus.timedOut=Timed-out
+
+directInitiatingConnection.changePeerVmac.improperState=Please try again. The change to the peer VMAC could not be attempted due to the state of the connection: {0}.
+directInitiatingConnection.connect.improperState=Please try again. Connect could not be attempted due to the state of the Initiating Connection: {0}.
+
+AddDirectInitiatingConnectionParams.displayName=Direct Initiating Connection Peer
+initiateConnection=Connect
+forceDisconnect=Disconnect
+operationalCertificateAliasAndPassword=Operational Certificate
+
+###########################################################
+# Authentication
+###########################################################
+
+issuerCertEditor.warningText=Changing the issuer certificate will cause initiated connections to disconnect immediately and accepted connections to disconnect when the WebService is restarted momentarily.
+useCrlDistributionPointInIssuer=Use CRL Distribution Point In Issuer
+crlDistributionPointUrls=CRL Distribution Point URLs
+crlDescriptor=CRL Descriptor
+crlIssuer=CRL Issuer
+generateAlarmOnCrlExpiration=Generate Alarm On CRL Expiration
+
+authFailure.noTls=Cannot perform BACnet/SC authentication over non-TLS.
+authFailure.tlsVersion=Incorrect TLS version for BACnet/SC authentication. TLS 1.3 or higher is required.
+authFailure.noClientCert=No client certificate provided.
+authFailure.noUser=Could not find a user matching provided client certificate.
+
+crlDescriptor.execute.unparented=CRL Descriptor has no parent
+crlDescriptor.execute.urlsEmpty=Issuer Cert And CRL has no distributions points configured
+crlDescriptor.execute.noFilename=Issuer Cert and CRL could not generate a CRL filename
+crlDescriptor.execute.getFailed=Could not acquire CRL from distribution points in the parent Issuer Cert and CRL
+crlDescriptor.execute.saveFailed=Could not save CRL
+
+crlDescriptor.fault.notUnderPort=CRL Descriptor is not under a BACnet network port
+crlDescriptor.fault.couldNotCreateCrlDir=Could not create the CRL directory
+
+issuerCertAndCrl.crlExpired=CRL is expired
+issuerCertAndCrl.crlNotExpired=A new non-expired CRL has been acquired
+
+#############################
+# Security Dashboard
+#############################
+
+securityDashboard.scLinkLayer.sectionHeader=BACnet/SC in network port {0}
+
+securityDashboard.scLinkLayer.crl.description=A certificate revocation list (CRL) is a list of X.509 certificates that have been revoked. The CRL acts as a blocked list of certificates that are no longer trusted in order to protect this device from bad actors.
+securityDashboard.scLinkLayer.crl.notInUse=CRLs are not in use on any BACnet/SC link layers
+securityDashboard.scLinkLayer.crl.notConfigured=Issuer certificate #{0} is not configured to use a CRL but CRLs are in use on other BACnet/SC link layers
+securityDashboard.scLinkLayer.crl.fileLocationError=Could not create a directory for CRLs and/or a CRL file name for issuer certificate #{0}
+securityDashboard.scLinkLayer.crl.missing=CRL is missing for issuer certificate #{0}
+securityDashboard.scLinkLayer.crl.unableToRetrieve=Unable to retrieve the CRL for issuer certificate #{0}
+securityDashboard.scLinkLayer.crl.aboutToExpire=CRL for issuer certificate #{0} expires on: {1}
+securityDashboard.scLinkLayer.crl.expired=CRL for issuer certificate #{0} has expired
+securityDashboard.scLinkLayer.crl.ok=CRL for issuer certificate #{0} is up-to-date
+
+securityDashboard.scLinkLayer.certificateValidity.description=Certificates that are expired or not yet valid may cause warnings or failures when attempting to make a TLS connections. It is recommended to use valid certificates, for which the current date is between the certificate "Not Before" and "Not After" dates.
+securityDashboard.scLinkLayer.certificateValid.summary=Certificate is in validity period: {0}.
+securityDashboard.scLinkLayer.certificateExpired.summary=Certificate is expired: {0}.
+securityDashboard.scLinkLayer.certificateNotYetValidException.summary={0} is not valid before: {1}.
+securityDashboard.scLinkLayer.certificateNearExpiry.summary={0} expires on: {1}.
+
+securityDashboard.scLinkLayer.certificateSigned.description=A self-signed certificate will not be accepted by BACnet/SC servers or clients, and will cause BACnet/SC connections to fail. Operational certificates must be signed by a root or intermediate issuer.
+securityDashboard.scLinkLayer.certificateSelfSigned.summary=Certificate is self-signed: {0}.
+securityDashboard.scLinkLayer.certificateNotSelfSigned.summary=Certificate is signed: {0}.
+
+securityDashboard.scLinkLayer.certificateNotAvailable.description=The Sc Link Layer is unable to obtain the selected Operational Certificate from the User Key Store: {0}.
+securityDashboard.scLinkLayer.certificateNotAvailable.summary=Unable to obtain Operational Certificate.
+
+securityDashboard.scAuthScheme.noUsers.description=The BACnet/SC Authentication Scheme should only be added to the Authentication Service when in use by users in the User Service.
+securityDashboard.scAuthScheme.noUsers.summary=No users have been assigned the BACnet/SC Authentication Scheme.
+
+securityDashboard.scAuthScheme.users.description=BACnet/SC users should not be granted any permissions within the station.
+securityDashboard.scAuthScheme.users.noPermissions.summary=The following BACnet/SC useres have been properly configured with no permissions within the station: {0}
+securityDashboard.scAuthScheme.users.withPermissions.summary=The following BACnet/SC users have been improperly granted permissions within the station: {0}
+
+
+###########################################################
+# Misc
+###########################################################
+
+disabled=Disabled
+enabled=Enabled
+faulted=Faulted
+addElement=Add Element
+removeElement=Remove Element

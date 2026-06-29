@@ -1,0 +1,1359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- vendors.xml -->
+<!--
+  This file contains a list of the ASHRAE-approved BACnet Vendor IDs.
+  Names with illegal characters are commented for now, until the vendor util
+  is modified to handle them.
+  -->
+<vendorList>
+  <vendor id="0" n="ASHRAE"/>
+  <vendor id="1" n="NIST"/>
+  <vendor id="2" n="The Trane Company"/>
+  <vendor id="3" n="McQuay International"/>
+  <vendor id="4" n="PolarSoft"/>
+  <vendor id="5" n="Johnson Controls, Inc."/>
+  <vendor id="6" n="American Auto-Matrix"/>
+  <vendor id="7" n="Siemens Schweiz AG (Formerly: Landis &amp; Staefa Division Europe)"/>
+  <vendor id="8" n="Delta Controls"/>
+  <vendor id="9" n="Siemens Schweiz AG"/>
+  <vendor id="10" n="Schneider Electric"/>
+  <vendor id="11" n="TAC"/>
+  <vendor id="12" n="Orion Analysis Corporation"/>
+  <vendor id="13" n="Teletrol Systems Inc."/>
+  <vendor id="14" n="Cimetrics Technology"/>
+  <vendor id="15" n="Cornell University"/>
+  <vendor id="16" n="United Technologies Carrier"/>
+  <vendor id="17" n="Honeywell Inc."/>
+  <vendor id="18" n="Alerton / Honeywell"/>
+  <vendor id="19" n="TAC AB"/>
+  <vendor id="20" n="Hewlett-Packard Company"/>
+  <vendor id="21" n="Dorsette's Inc."/>
+  <vendor id="22" n="Siemens Schweiz AG (Formerly: Cerberus AG)"/>
+  <vendor id="23" n="York Controls Group"/>
+  <vendor id="24" n="Automated Logic Corporation"/>
+  <vendor id="25" n="CSI Control Systems International"/>
+  <vendor id="26" n="Phoenix Controls Corporation"/>
+  <vendor id="27" n="Innovex Technologies, Inc."/>
+  <vendor id="28" n="KMC Controls, Inc."/>
+  <vendor id="29" n="Xn Technologies, Inc."/>
+  <vendor id="30" n="Hyundai Information Technology Co., Ltd."/>
+  <vendor id="31" n="Tokimec Inc."/>
+  <vendor id="32" n="Simplex"/>
+  <vendor id="33" n="North Building Technologies Limited"/>
+  <vendor id="34" n="Notifier"/>
+  <vendor id="35" n="Reliable Controls Corporation"/>
+  <vendor id="36" n="Tridium Inc."/>
+  <vendor id="37" n="Sierra Monitor Corporation"/>
+  <vendor id="38" n="Silicon Energy"/>
+  <vendor id="39" n="Kieback &amp; Peter GmbH &amp; Co KG"/>
+  <vendor id="40" n="Anacon Systems, Inc."/>
+  <vendor id="41" n="Systems Controls &amp; Instruments, LLC"/>
+  <vendor id="42" n="Acuity Brands Lighting, Inc."/>
+  <vendor id="43" n="Micropower Manufacturing"/>
+  <vendor id="44" n="Matrix Controls"/>
+  <vendor id="45" n="METALAIRE"/>
+  <vendor id="46" n="ESS Engineering"/>
+  <vendor id="47" n="Sphere Systems Pty Ltd."/>
+  <vendor id="48" n="Walker Technologies Corporation"/>
+  <vendor id="49" n="H I Solutions, Inc."/>
+  <vendor id="50" n="MBS GmbH"/>
+  <vendor id="51" n="SAMSON AG"/>
+  <vendor id="52" n="Badger Meter Inc."/>
+  <vendor id="53" n="DAIKIN Industries Ltd."/>
+  <vendor id="54" n="NARA Controls Inc."/>
+  <vendor id="55" n="Mammoth Inc."/>
+  <vendor id="56" n="Liebert Corporation"/>
+  <vendor id="57" n="SEMCO Incorporated"/>
+  <vendor id="58" n="Air Monitor Corporation"/>
+  <vendor id="59" n="TRIATEK, LLC"/>
+  <vendor id="60" n="NexLight"/>
+  <vendor id="61" n="Multistack"/>
+  <vendor id="62" n="TSI Incorporated"/>
+  <vendor id="63" n="Weather-Rite, Inc."/>
+  <vendor id="64" n="Dunham-Bush"/>
+  <vendor id="65" n="Reliance Electric"/>
+  <vendor id="66" n="LCS Inc."/>
+  <vendor id="67" n="Regulator Australia PTY Ltd."/>
+  <vendor id="68" n="Touch-Plate Lighting Controls"/>
+  <vendor id="69" n="Amann GmbH"/>
+  <vendor id="70" n="RLE Technologies"/>
+  <vendor id="71" n="Cardkey Systems"/>
+  <vendor id="72" n="SECOM Co., Ltd."/>
+  <vendor id="73" n="ABB Gebäudetechnik AG Bereich NetServ"/>
+  <vendor id="74" n="KNX Association cvba"/>
+  <vendor id="75" n="Institute of Electrical Installation Engineers of Japan (IEIEJ)"/>
+  <vendor id="76" n="Nohmi Bosai, Ltd."/>
+  <vendor id="77" n="Carel S.p.A."/>
+  <vendor id="78" n="UTC Fire &amp; Security España, S.L."/>
+  <vendor id="79" n="Hochiki Corporation"/>
+  <vendor id="80" n="Fr. Sauter AG"/>
+  <vendor id="81" n="Matsushita Electric Works, Ltd."/>
+  <vendor id="82" n="Mitsubishi Electric Corporation, Inazawa Works"/>
+  <vendor id="83" n="Mitsubishi Heavy Industries, Ltd."/>
+  <vendor id="84" n="Xylem, Inc."/>
+  <vendor id="85" n="Yamatake Building Systems Co., Ltd."/>
+  <vendor id="86" n="The Watt Stopper, Inc."/>
+  <vendor id="87" n="Aichi Tokei Denki Co., Ltd."/>
+  <vendor id="88" n="Activation Technologies, LLC"/>
+  <vendor id="89" n="Saia-Burgess Controls, Ltd."/>
+  <vendor id="90" n="Hitachi, Ltd."/>
+  <vendor id="91" n="Novar Corp./Trend Control Systems Ltd."/>
+  <vendor id="92" n="Mitsubishi Electric Lighting Corporation"/>
+  <vendor id="93" n="Argus Control Systems, Ltd."/>
+  <vendor id="94" n="Kyuki Corporation"/>
+  <vendor id="95" n="Richards-Zeta Building Intelligence, Inc."/>
+  <vendor id="96" n="Scientech R&amp;D, Inc."/>
+  <vendor id="97" n="VCI Controls, Inc."/>
+  <vendor id="98" n="Toshiba Corporation"/>
+  <vendor id="99" n="Mitsubishi Electric Corporation Air Conditioning &amp; Refrigeration Systems Works"/>
+  <vendor id="100" n="Custom Mechanical Equipment, LLC"/>
+  <vendor id="101" n="ClimateMaster"/>
+  <vendor id="102" n="ICP Panel-Tec, Inc."/>
+  <vendor id="103" n="D-Tek Controls"/>
+  <vendor id="104" n="NEC Engineering, Ltd."/>
+  <vendor id="105" n="PRIVA BV"/>
+  <vendor id="106" n="Meidensha Corporation"/>
+  <vendor id="107" n="JCI Systems Integration Services"/>
+  <vendor id="108" n="Freedom Corporation"/>
+  <vendor id="109" n="Neuberger Gebäudeautomation GmbH"/>
+  <vendor id="110" n="eZi Controls"/>
+  <vendor id="111" n="Leviton Manufacturing"/>
+  <vendor id="112" n="Fujitsu Limited"/>
+  <vendor id="113" n="Vertiv (Formerly Emerson Network Power)"/>
+  <vendor id="114" n="S. A. Armstrong, Ltd."/>
+  <vendor id="115" n="Visonet AG"/>
+  <vendor id="116" n="M&amp;M Systems, Inc."/>
+  <vendor id="117" n="Custom Software Engineering"/>
+  <vendor id="118" n="Nittan Company, Limited"/>
+  <vendor id="119" n="Elutions Inc. (Wizcon Systems SAS)"/>
+  <vendor id="120" n="Pacom Systems Pty., Ltd."/>
+  <vendor id="121" n="Unico, Inc."/>
+  <vendor id="122" n="Ebtron, Inc."/>
+  <vendor id="123" n="Scada Engine"/>
+  <vendor id="124" n="Lenze Americas (Formerly: AC Technology Corporation)"/>
+  <vendor id="125" n="Eagle Technology"/>
+  <vendor id="126" n="Data Aire, Inc."/>
+  <vendor id="127" n="ABB, Inc."/>
+  <vendor id="128" n="Transbit Sp. z o. o."/>
+  <vendor id="129" n="Toshiba Carrier Corporation"/>
+  <vendor id="130" n="Shenzhen Junzhi Hi-Tech Co., Ltd."/>
+  <vendor id="131" n="Tokai Soft"/>
+  <vendor id="132" n="Blue Ridge Technologies"/>
+  <vendor id="133" n="Veris Industries"/>
+  <vendor id="134" n="Centaurus Prime"/>
+  <vendor id="135" n="Sand Network Systems"/>
+  <vendor id="136" n="Regulvar, Inc."/>
+  <vendor id="137" n="AFDtek Division of Fastek International Inc."/>
+  <vendor id="138" n="PowerCold Comfort Air Solutions, Inc."/>
+  <vendor id="139" n="I Controls"/>
+  <vendor id="140" n="Viconics Electronics, Inc."/>
+  <vendor id="141" n="Yaskawa America, Inc."/>
+  <vendor id="142" n="DEOS control systems GmbH"/>
+  <vendor id="143" n="Digitale Mess- und Steuersysteme AG"/>
+  <vendor id="144" n="Fujitsu General Limited"/>
+  <vendor id="145" n="Project Engineering S.r.l."/>
+  <vendor id="146" n="Sanyo Electric Co., Ltd."/>
+  <vendor id="147" n="Integrated Information Systems, Inc."/>
+  <vendor id="148" n="Temco Controls, Ltd."/>
+  <vendor id="149" n="Airtek International Inc."/>
+  <vendor id="150" n="Advantech Corporation"/>
+  <vendor id="151" n="Titan Products, Ltd."/>
+  <vendor id="152" n="Regel Partners"/>
+  <vendor id="153" n="National Environmental Product"/>
+  <vendor id="154" n="Unitec Corporation"/>
+  <vendor id="155" n="Kanden Engineering Company"/>
+  <vendor id="156" n="Messner Gebäudetechnik GmbH"/>
+  <vendor id="157" n="Integrated.CH"/>
+  <vendor id="158" n="Price Industries"/>
+  <vendor id="159" n="SE-Elektronic GmbH"/>
+  <vendor id="160" n="Rockwell Automation"/>
+  <vendor id="161" n="Enflex Corp."/>
+  <vendor id="162" n="ASI Controls"/>
+  <vendor id="163" n="SysMik GmbH Dresden"/>
+  <vendor id="164" n="HSC Regelungstechnik GmbH"/>
+  <vendor id="165" n="Smart Temp Australia Pty. Ltd."/>
+  <vendor id="166" n="Cooper Controls"/>
+  <vendor id="167" n="Duksan Mecasys Co., Ltd."/>
+  <vendor id="168" n="Fuji IT Co., Ltd."/>
+  <vendor id="169" n="Vacon Plc"/>
+  <vendor id="170" n="Leader Controls"/>
+  <vendor id="171" n="Cylon Controls, Ltd."/>
+  <vendor id="172" n="Compas"/>
+  <vendor id="173" n="Mitsubishi Electric Building Techno-Service Co., Ltd."/>
+  <vendor id="174" n="Building Control Integrators"/>
+  <vendor id="175" n="ITG Worldwide (M) Sdn Bhd"/>
+  <vendor id="176" n="Lutron Electronics Co., Inc."/>
+  <vendor id="177" n="Cooper-Atkins Corporation"/>
+  <vendor id="178" n="LOYTEC Electronics GmbH"/>
+  <vendor id="179" n="ProLon"/>
+  <vendor id="180" n="Mega Controls Limited"/>
+  <vendor id="181" n="Micro Control Systems, Inc."/>
+  <vendor id="182" n="Kiyon, Inc."/>
+  <vendor id="183" n="Dust Networks"/>
+  <vendor id="184" n="Advanced Building Automation Systems"/>
+  <vendor id="185" n="Hermos AG"/>
+  <vendor id="186" n="CEZIM"/>
+  <vendor id="187" n="Softing"/>
+  <vendor id="188" n="Lynxspring, Inc."/>
+  <vendor id="189" n="Schneider Toshiba Inverter Europe"/>
+  <vendor id="190" n="Danfoss Drives A/S"/>
+  <vendor id="191" n="Eaton Corporation"/>
+  <vendor id="192" n="Matyca S.A."/>
+  <vendor id="193" n="Botech AB"/>
+  <vendor id="194" n="Noveo, Inc."/>
+  <vendor id="195" n="AMEV"/>
+  <vendor id="196" n="Yokogawa Electric Corporation"/>
+  <vendor id="197" n="Bosch Building Automation GmbH"/>
+  <vendor id="198" n="Exact Logic"/>
+  <vendor id="199" n="Mass Electronics Pty Ltd dba Innotech Control Systems Australia"/>
+  <vendor id="200" n="Kandenko Co., Ltd."/>
+  <vendor id="201" n="DTF, Daten-Technik Fries"/>
+  <vendor id="202" n="Klimasoft, Ltd."/>
+  <vendor id="203" n="Toshiba Schneider Inverter Corporation"/>
+  <vendor id="204" n="Control Applications, Ltd."/>
+  <vendor id="205" n="CIMON CO., Ltd."/>
+  <vendor id="206" n="Onicon Incorporated"/>
+  <vendor id="207" n="Automation Displays, Inc."/>
+  <vendor id="208" n="Control Solutions, Inc."/>
+  <vendor id="209" n="Remsdaq Limited"/>
+  <vendor id="210" n="NTT Facilities, Inc."/>
+  <vendor id="211" n="VIPA GmbH"/>
+  <vendor id="212" n="TSC21 Association of Japan"/>
+  <vendor id="213" n="Strato Automation"/>
+  <vendor id="214" n="HRW Limited"/>
+  <vendor id="215" n="Lighting Control &amp; Design, Inc."/>
+  <vendor id="216" n="Mercy Electronic and Electrical Industries"/>
+  <vendor id="217" n="Samsung SDS Co., Ltd"/>
+  <vendor id="218" n="Impact Facility Solutions, Inc."/>
+  <vendor id="219" n="Aircuity"/>
+  <vendor id="220" n="Control Techniques, Ltd."/>
+  <vendor id="221" n="OpenGeneral Pty., Ltd."/>
+  <vendor id="222" n="WAGO Kontakttechnik GmbH &amp; Co. KG"/>
+  <vendor id="223" n="Cerus Industrial"/>
+  <vendor id="224" n="Chloride Power Protection Company"/>
+  <vendor id="225" n="Computrols, Inc."/>
+  <vendor id="226" n="Phoenix Contact GmbH &amp; Co. KG"/>
+  <vendor id="227" n="Grundfos Management A/S"/>
+  <vendor id="228" n="Ridder Drive Systems"/>
+  <vendor id="229" n="Soft Device SDN BHD"/>
+  <vendor id="230" n="Integrated Control Technology Limited"/>
+  <vendor id="231" n="AIRxpert Systems, Inc."/>
+  <vendor id="232" n="Microtrol Limited"/>
+  <vendor id="233" n="Red Lion Controls"/>
+  <vendor id="234" n="Digital Electronics Corporation"/>
+  <vendor id="235" n="Ennovatis GmbH"/>
+  <vendor id="236" n="Serotonin Software Technologies, Inc."/>
+  <vendor id="237" n="LS Industrial Systems Co., Ltd."/>
+  <vendor id="238" n="Square D Company"/>
+  <vendor id="239" n="S Squared Innovations, Inc."/>
+  <vendor id="240" n="Aricent Ltd."/>
+  <vendor id="241" n="EtherMetrics, LLC"/>
+  <vendor id="242" n="Industrial Control Communications, Inc."/>
+  <vendor id="243" n="Paragon Controls, Inc."/>
+  <vendor id="244" n="A. O. Smith Corporation"/>
+  <vendor id="245" n="Contemporary Control Systems, Inc."/>
+  <vendor id="246" n="Intesis Software SLU"/>
+  <vendor id="247" n="Ingenieurgesellschaft N. Hartleb mbH"/>
+  <vendor id="248" n="Heat-Timer Corporation"/>
+  <vendor id="249" n="Ingrasys Technology, Inc."/>
+  <vendor id="250" n="Costerm Building Automation"/>
+  <vendor id="251" n="WILO SE"/>
+  <vendor id="252" n="Embedia Technologies Corp."/>
+  <vendor id="253" n="Technilog"/>
+  <vendor id="254" n="HR Controls Ltd. &amp; Co. KG"/>
+  <vendor id="255" n="Lennox International, Inc."/>
+  <vendor id="256" n="RK-Tec Rauchklappen-Steuerungssysteme GmbH &amp; Co. KG"/>
+  <vendor id="257" n="Thermomax, Ltd."/>
+  <vendor id="258" n="ELCON Electronic Control, Ltd."/>
+  <vendor id="259" n="Larmia Control AB"/>
+  <vendor id="260" n="BACnet Stack at SourceForge"/>
+  <vendor id="261" n="G4S Security Services A/S"/>
+  <vendor id="262" n="Exor International S.p.A."/>
+  <vendor id="263" n="Cristal Controles"/>
+  <vendor id="264" n="Regin AB"/>
+  <vendor id="265" n="Dimension Software, Inc."/>
+  <vendor id="266" n="SynapSense Corporation"/>
+  <vendor id="267" n="Beijing Nantree Electronic Co., Ltd."/>
+  <vendor id="268" n="Camus Hydronics Ltd."/>
+  <vendor id="269" n="Kawasaki Heavy Industries, Ltd."/>
+  <vendor id="270" n="Critical Environment Technologies"/>
+  <vendor id="271" n="ILSHIN IBS Co., Ltd."/>
+  <vendor id="272" n="ELESTA Energy Control AG"/>
+  <vendor id="273" n="KROPMAN Installatietechniek"/>
+  <vendor id="274" n="Baldor Electric Company"/>
+  <vendor id="275" n="INGA mbH"/>
+  <vendor id="276" n="GE Consumer &amp; Industrial"/>
+  <vendor id="277" n="Functional Devices, Inc."/>
+  <vendor id="278" n="StudioSC"/>
+  <vendor id="279" n="M-System Co., Ltd."/>
+  <vendor id="280" n="Yokota Co., Ltd."/>
+  <vendor id="281" n="Hitranse Technology Co., LTD"/>
+  <vendor id="282" n="Vigilent Corporation"/>
+  <vendor id="283" n="Kele, Inc."/>
+  <vendor id="284" n="Opera Electronics, Inc."/>
+  <vendor id="285" n="Gentec"/>
+  <vendor id="286" n="Embedded Science Labs, LLC"/>
+  <vendor id="287" n="Parker Hannifin Corporation"/>
+  <vendor id="288" n="MaCaPS International Limited"/>
+  <vendor id="289" n="Link4 Corporation"/>
+  <vendor id="290" n="Romutec Steuer-u. Regelsysteme GmbH"/>
+  <vendor id="291" n="Pribusin, Inc."/>
+  <vendor id="292" n="Advantage Controls"/>
+  <vendor id="293" n="Critical Room Control"/>
+  <vendor id="294" n="LEGRAND"/>
+  <vendor id="295" n="Tongdy Control Technology Co., Ltd."/>
+  <vendor id="296" n="ISSARO Integrierte Systemtechnik"/>
+  <vendor id="297" n="Pro-Dev Industries"/>
+  <vendor id="298" n="DRI-STEEM"/>
+  <vendor id="299" n="Creative Electronic GmbH"/>
+  <vendor id="300" n="Swegon AB"/>
+  <vendor id="301" n="FIRVENA s.r.o."/>
+  <vendor id="302" n="Hitachi Appliances, Inc."/>
+  <vendor id="303" n="Real Time Automation, Inc."/>
+  <vendor id="304" n="ITEC Hankyu-Hanshin Co."/>
+  <vendor id="305" n="Cyrus E&amp;M Engineering Co., Ltd."/>
+  <vendor id="306" n="Badger Meter"/>
+  <vendor id="307" n="Cirrascale Corporation"/>
+  <vendor id="308" n="Elesta GmbH Building Automation"/>
+  <vendor id="309" n="Securiton"/>
+  <vendor id="310" n="OSlsoft, Inc."/>
+  <vendor id="311" n="Hanazeder Electronic GmbH"/>
+  <vendor id="312" n="Honeywell Security Deutschland, Novar GmbH"/>
+  <vendor id="313" n="Siemens Industry, Inc."/>
+  <vendor id="314" n="ETM Professional Control GmbH"/>
+  <vendor id="315" n="Meitav-tec, Ltd."/>
+  <vendor id="316" n="Janitza Electronics GmbH"/>
+  <vendor id="317" n="MKS Nordhausen"/>
+  <vendor id="318" n="De Gier Drive Systems B.V."/>
+  <vendor id="319" n="Cypress Envirosystems"/>
+  <vendor id="320" n="SMARTron s.r.o."/>
+  <vendor id="321" n="Verari Systems, Inc."/>
+  <vendor id="322" n="K-W Electronic Service, Inc."/>
+  <vendor id="323" n="ALFA-SMART Energy Management"/>
+  <vendor id="324" n="Telkonet, Inc."/>
+  <vendor id="325" n="Securiton GmbH"/>
+  <vendor id="326" n="Cemtrex, Inc."/>
+  <vendor id="327" n="Performance Technologies, Inc."/>
+  <vendor id="328" n="Xtralis (Aust) Pty Ltd"/>
+  <vendor id="329" n="TROX GmbH"/>
+  <vendor id="330" n="Beijing Hysine Technology Co., Ltd"/>
+  <vendor id="331" n="RCK Controls, Inc."/>
+  <vendor id="332" n="Distech Controls SAS"/>
+  <vendor id="333" n="Novar/Honeywell"/>
+  <vendor id="334" n="The S4 Group, Inc."/>
+  <vendor id="335" n="Schneider Electric"/>
+  <vendor id="336" n="LHA Systems"/>
+  <vendor id="337" n="GHM engineering Group, Inc."/>
+  <vendor id="338" n="Cllimalux S.A."/>
+  <vendor id="339" n="VAISALA Oyj"/>
+  <vendor id="340" n="COMPLEX (Beijing) Technology, Co., LTD."/>
+  <vendor id="341" n="SCADAmetrics"/>
+  <vendor id="342" n="POWERPEG NSI Limited"/>
+  <vendor id="343" n="BACnet Interoperability Testing Services, Inc."/>
+  <vendor id="344" n="Teco a.s."/>
+  <vendor id="345" n="Plexus Technology, Inc."/>
+  <vendor id="346" n="Energy Focus, Inc."/>
+  <vendor id="347" n="Powersmiths International Corp."/>
+  <vendor id="348" n="Nichibei Co., Ltd."/>
+  <vendor id="349" n="HKC Technology Ltd."/>
+  <vendor id="350" n="Ovation Networks, Inc."/>
+  <vendor id="351" n="Setra Systems"/>
+  <vendor id="352" n="AVG Automation"/>
+  <vendor id="353" n="ZXC Ltd."/>
+  <vendor id="354" n="Byte Sphere"/>
+  <vendor id="355" n="Generiton Co., Ltd."/>
+  <vendor id="356" n="Holter Regelarmaturen GmbH &amp; Co. KG"/>
+  <vendor id="357" n="Bedford Instruments, LLC"/>
+  <vendor id="358" n="Standair Inc."/>
+  <vendor id="359" n="WEG Automation - R&amp;D"/>
+  <vendor id="360" n="Prolon Control Systems ApS"/>
+  <vendor id="361" n="Inneasoft"/>
+  <vendor id="362" n="ConneXSoft GmbH"/>
+  <vendor id="363" n="CEAG Notlichtsysteme GmbH"/>
+  <vendor id="364" n="Distech Controls Inc."/>
+  <vendor id="365" n="Industrial Technology Research Institute"/>
+  <vendor id="366" n="ICONICS, Inc."/>
+  <vendor id="367" n="IQ Controls s.c."/>
+  <vendor id="368" n="OJ Electronics A/S"/>
+  <vendor id="369" n="Rolbit Ltd."/>
+  <vendor id="370" n="Synapsys Solutions Ltd."/>
+  <vendor id="371" n="ACME Engineering Prod. Ltd."/>
+  <vendor id="372" n="Zener Electric Pty, Ltd."/>
+  <vendor id="373" n="Selectronix, Inc."/>
+  <vendor id="374" n="Gorbet &amp; Banerjee, LLC."/>
+  <vendor id="375" n="IME"/>
+  <vendor id="376" n="Stephen H. Dawson Computer Service"/>
+  <vendor id="377" n="Accutrol, LLC"/>
+  <vendor id="378" n="Schneider Elektronik GmbH"/>
+  <vendor id="379" n="Alpha-Inno Tec GmbH"/>
+  <vendor id="380" n="ADMMicro, Inc."/>
+  <vendor id="381" n="Greystone Energy Systems, Inc."/>
+  <vendor id="382" n="CAP Technologie"/>
+  <vendor id="383" n="KeRo Systems"/>
+  <vendor id="384" n="Domat Control System s.r.o."/>
+  <vendor id="385" n="Efektronics Pty. Ltd."/>
+  <vendor id="386" n="Hekatron Vertriebs GmbH"/>
+  <vendor id="387" n="Securiton AG"/>
+  <vendor id="388" n="Carlo Gavazzi Controls SpA"/>
+  <vendor id="389" n="Chipkin Automation Systems"/>
+  <vendor id="390" n="Savant Systems, LLC"/>
+  <vendor id="391" n="Simmtronic Lighting Controls"/>
+  <vendor id="392" n="Abelko Innovation AB"/>
+  <vendor id="393" n="Seresco Technologies Inc."/>
+  <vendor id="394" n="IT Watchdogs"/>
+  <vendor id="395" n="Automation Assist Japan Corp."/>
+  <vendor id="396" n="Thermokon Sensortechnik GmbH"/>
+  <vendor id="397" n="EGauge Systems, LLC"/>
+  <vendor id="398" n="Quantum Automation (ASIA) PTE, Ltd."/>
+  <vendor id="399" n="Toshiba Lighting &amp; Technology Corp."/>
+  <vendor id="400" n="SPIN Engenharia de Automação Ltda."/>
+  <vendor id="401" n="Logistics Systems &amp; Software Services India PVT. Ltd."/>
+  <vendor id="402" n="Delta Controls Integration Products"/>
+  <vendor id="403" n="Focus Media"/>
+  <vendor id="404" n="LUMEnergi Inc."/>
+  <vendor id="405" n="Kara Systems"/>
+  <vendor id="406" n="RF Code, Inc."/>
+  <vendor id="407" n="Fatek Automation Corp."/>
+  <vendor id="408" n="JANDA Software Company, LLC"/>
+  <vendor id="409" n="Open System Solutions Limited"/>
+  <vendor id="410" n="Intelec Systems PTY Ltd."/>
+  <vendor id="411" n="Ecolodgix, LLC"/>
+  <vendor id="412" n="Douglas Lighting Controls"/>
+  <vendor id="413" n="iSAtech GmbH"/>
+  <vendor id="414" n="AREAL"/>
+  <vendor id="415" n="Beckhoff Automation"/>
+  <vendor id="416" n="IPAS GmbH"/>
+  <vendor id="417" n="KE2 Therm Solutions"/>
+  <vendor id="418" n="Base2Products"/>
+  <vendor id="419" n="DTL Controls, LLC"/>
+  <vendor id="420" n="INNCOM International, Inc."/>
+  <vendor id="421" n="METZ CONNECT GmbH"/>
+  <vendor id="422" n="Greentrol Automation, Inc"/>
+  <vendor id="423" n="BELIMO Automation AG"/>
+  <vendor id="424" n="Samsung Heavy Industries Co, Ltd"/>
+  <vendor id="425" n="Triacta Power Technologies, Inc."/>
+  <vendor id="426" n="Globestar Systems"/>
+  <vendor id="427" n="MLB Advanced Media, LP"/>
+  <vendor id="428" n="SWG Stuckmann Wirtschaftliche Gebäudesysteme GmbH"/>
+  <vendor id="429" n="SensorSwitch"/>
+  <vendor id="430" n="Multitek Power Limited"/>
+  <vendor id="431" n="Aquametro AG"/>
+  <vendor id="432" n="LG Electronics Inc."/>
+  <vendor id="433" n="Electronic Theatre Controls, Inc."/>
+  <vendor id="434" n="Mitsubishi Electric Corporation Nagoya Works"/>
+  <vendor id="435" n="Delta Electronics, Inc."/>
+  <vendor id="436" n="Elma Kurtalj, Ltd."/>
+  <vendor id="437" n="Tyco Fire &amp; Security GmbH"/>
+  <vendor id="438" n="Nedap Security Management"/>
+  <vendor id="439" n="ESC Automation Inc."/>
+  <vendor id="440" n="DSP4YOU Ltd."/>
+  <vendor id="441" n="GE Sensing and Inspection Technologies"/>
+  <vendor id="442" n="Embedded Systems SIA"/>
+  <vendor id="443" n="BEFEGA GmbH"/>
+  <vendor id="444" n="Baseline Inc."/>
+  <vendor id="445" n="Key2Act"/>
+  <vendor id="446" n="OEMCtrl"/>
+  <vendor id="447" n="Clarkson Controls Limited"/>
+  <vendor id="448" n="Rogerwell Control System Limited"/>
+  <vendor id="449" n="SCL Elements"/>
+  <vendor id="450" n="Hitachi Ltd."/>
+  <vendor id="451" n="Newron System SA"/>
+  <vendor id="452" n="BEVECO Gebouwautomatisering BV"/>
+  <vendor id="453" n="Streamside Solutions"/>
+  <vendor id="454" n="Yellowstone Soft"/>
+  <vendor id="455" n="Oztech Intelligent Systems Pty Ltd."/>
+  <vendor id="456" n="Novelan GmbH"/>
+  <vendor id="457" n="Flexim Americas Corporation"/>
+  <vendor id="458" n="ICP DAS Co., Ltd."/>
+  <vendor id="459" n="CARMA Industries Inc."/>
+  <vendor id="460" n="Log-One Ltd."/>
+  <vendor id="461" n="TECO Electric &amp; Machinery Co., Ltd."/>
+  <vendor id="462" n="ConnectEx, Inc."/>
+  <vendor id="463" n="Turbo DDC Südwest"/>
+  <vendor id="464" n="Quatrosense Environmental Ltd."/>
+  <vendor id="465" n="Fifth Light Technology Ltd."/>
+  <vendor id="466" n="Scientific Solutions, Ltd."/>
+  <vendor id="467" n="Controller Area Network Solutions (M) Sdn Bhd"/>
+  <vendor id="468" n="RESOL - Elektronische Regelungen GmbH"/>
+  <vendor id="469" n="RPBUS LLC"/>
+  <vendor id="470" n="BRS Sistemas Eletronicos"/>
+  <vendor id="471" n="WindowMaster A/S"/>
+  <vendor id="472" n="Sunlux Technologies Ltd."/>
+  <vendor id="473" n="Measurlogic"/>
+  <vendor id="474" n="Frimat GmbH"/>
+  <vendor id="475" n="Spirax Sarco"/>
+  <vendor id="476" n="Luxtron"/>
+  <vendor id="477" n="Raypak Inc"/>
+  <vendor id="478" n="Air Monitor Corporation"/>
+  <vendor id="479" n="Regler Och Webbteknik Sverige (ROWS)"/>
+  <vendor id="480" n="Intelligent Lighting Controls Inc."/>
+  <vendor id="481" n="Sanyo Electric Industry Co., Ltd"/>
+  <vendor id="482" n="E-Mon Energy Monitoring Products"/>
+  <vendor id="483" n="Digital Control Systems"/>
+  <vendor id="484" n="ATI Airtest Technologies, Inc."/>
+  <vendor id="485" n="SCS SA"/>
+  <vendor id="486" n="HMS Industrial Networks AB"/>
+  <vendor id="487" n="Shenzhen Universal Intellisys Co Ltd"/>
+  <vendor id="488" n="EK Intellisys Sdn Bhd"/>
+  <vendor id="489" n="SysCom"/>
+  <vendor id="490" n="Firecom, Inc."/>
+  <vendor id="491" n="ESA Elektroschaltanlagen Grimma GmbH"/>
+  <vendor id="492" n="Kumahira Co Ltd"/>
+  <vendor id="493" n="Hotraco"/>
+  <vendor id="494" n="SABO Elektronik GmbH"/>
+  <vendor id="495" n="Equip'Trans"/>
+  <vendor id="496" n="Temperature Control Specialities Co., Inc (TCS)"/>
+  <vendor id="497" n="FlowCon International A/S"/>
+  <vendor id="498" n="ThyssenKrupp Elevator Americas"/>
+  <vendor id="499" n="Abatement Technologies"/>
+  <vendor id="500" n="Continental Control Systems, LLC"/>
+  <vendor id="501" n="WISAG Automatisierungstechnik GmbH &amp; Co KG"/>
+  <vendor id="502" n="EasyIO"/>
+  <vendor id="503" n="EAP-Electric GmbH"/>
+  <vendor id="504" n="Hardmeier"/>
+  <vendor id="505" n="Mircom Group of Companies"/>
+  <vendor id="506" n="Quest Controls"/>
+  <vendor id="507" n="Mestek, Inc"/>
+  <vendor id="508" n="Pulse Energy"/>
+  <vendor id="509" n="Tachikawa Corporation"/>
+  <vendor id="510" n="University of Nebraska-Lincoln"/>
+  <vendor id="511" n="Redwood Systems"/>
+  <vendor id="512" n="PASStec Industrie-Elektronik GmbH"/>
+  <vendor id="513" n="NgEK, Inc."/>
+  <vendor id="514" n="t-mac Technologies"/>
+  <vendor id="515" n="Jireh Energy Tech Co., Ltd."/>
+  <vendor id="516" n="Enlighted Inc."/>
+  <vendor id="517" n="El-Piast Sp. Z o.o"/>
+  <vendor id="518" n="NetxAutomation Software GmbH"/>
+  <vendor id="519" n="Invertek Drives"/>
+  <vendor id="520" n="Deutschmann Automation GmbH &amp; Co. KG"/>
+  <vendor id="521" n="EMU Electronic AG"/>
+  <vendor id="522" n="Phaedrus Limited" />
+  <vendor id="523" n="Sigmatek GmbH &amp; Co KG" />
+  <vendor id="524" n="Marlin Controls"/>
+  <vendor id="525" n="Circutor, SA"/>
+  <vendor id="526" n="UTC Fire &amp; Security"/>
+  <vendor id="527" n="DENT Instruments, Inc."/>
+  <vendor id="528" n="FHP Manufacturing Company - Bosch Group"/>
+  <vendor id="529" n="GE Intelligent Platforms"/>
+  <vendor id="530" n="Inner Range Pty Ltd"/>
+  <vendor id="531" n="GLAS Energy Technology"/>
+  <vendor id="532" n="MSR-Electronic-GmbH"/>
+  <vendor id="533" n="Energy Control Systems, Inc."/>
+  <vendor id="534" n="EMT Controls"/>
+  <vendor id="535" n="Daintree Networks Inc."/>
+  <vendor id="536" n="EURO ICC d.o.o"/>
+  <vendor id="537" n="TE Connectivity Energy"/>
+  <vendor id="538" n="GEZE GmbH"/>
+  <vendor id="539" n="NEC Corporation"/>
+  <vendor id="540" n="Ho Cheung International Company Limited"/>
+  <vendor id="541" n="Sharp Manufacturing Systems Corporation"/>
+  <vendor id="542" n="DOT CONTROLS a.s."/>
+  <vendor id="543" n="BeaconMedæs"/>
+  <vendor id="544" n="Midea Commercial Aircon"/>
+  <vendor id="545" n="WattMaster Controls"/>
+  <vendor id="546" n="Kamstrup A/S"/>
+  <vendor id="547" n="CA Computer Automation GmbH"/>
+  <vendor id="548" n="Laars Heating Systems Company"/>
+  <vendor id="549" n="Hitachi Systems, Ltd."/>
+  <vendor id="550" n="Fushan AKE Electronic Engineering Co., Ltd."/>
+  <vendor id="551" n="Toshiba International Corporation"/>
+  <vendor id="552" n="Starman Systems, LLC"/>
+  <vendor id="553" n="Samsung Techwin Co., Ltd."/>
+  <vendor id="554" n="ISAS-Integrated Switchgear and Systems P/L"/>
+  <vendor id="556" n="Obvius"/>
+  <vendor id="557" n="Marek Guzik"/>
+  <vendor id="558" n="Vortek Instruments, LLC"/>
+  <vendor id="559" n="Universal Lighting Technologies"/>
+  <vendor id="560" n="Myers Power Products, Inc."/>
+  <vendor id="561" n="Vector Controls GmbH"/>
+  <vendor id="562" n="Crestron Electronics, Inc."/>
+  <vendor id="563" n="A&amp;E Controls Limited"/>
+  <vendor id="564" n="Projektomontaza A.D."/>
+  <vendor id="565" n="Freeaire Refrigeration"/>
+  <vendor id="566" n="Aqua Cooler Pty Limited"/>
+  <vendor id="567" n="Basic Controls"/>
+  <vendor id="568" n="GE Measurement and Control Solutions Advanced Sensors"/>
+  <vendor id="569" n="EQUAL Networks"/>
+  <vendor id="570" n="Millennial Net"/>
+  <vendor id="571" n="APLI Ltd"/>
+  <vendor id="572" n="Electro Industries/GaugeTech"/>
+  <vendor id="573" n="SangMyung University"/>
+  <vendor id="574" n="Coppertree Analytics, Inc."/>
+  <vendor id="575" n="CoreNetiX GmbH"/>
+  <vendor id="576" n="Acutherm"/>
+  <vendor id="577" n="Dr. Riedel Automatisierungstechnik GmbH"/>
+  <vendor id="578" n="Shina System Co., Ltd"/>
+  <vendor id="579" n="Iqapertus"/>
+  <vendor id="580" n="PSE Technology"/>
+  <vendor id="581" n="BA Systems"/>
+  <vendor id="582" n="BTICINO"/>
+  <vendor id="583" n="Monico, Inc."/>
+  <vendor id="584" n="iCue"/>
+  <vendor id="585" n="tekmar Control Systems Ltd."/>
+  <vendor id="586" n="Control Technology Corporation"/>
+  <vendor id="587" n="GFAE GmbH"/>
+  <vendor id="588" n="BeKa Software GmbH"/>
+  <vendor id="589" n="Isoil Industria SpA"/>
+  <vendor id="590" n="Home Systems Consulting SpA"/>
+  <vendor id="591" n="Socomec"/>
+  <vendor id="592" n="Everex Communications, Inc."/>
+  <vendor id="593" n="Ceiec Electric Technology"/>
+  <vendor id="594" n="Atrila GmbH"/>
+  <vendor id="595" n="WingTechs"/>
+  <vendor id="596" n="Shenzhen Mek Intellisys Pte Ltd."/>
+  <vendor id="597" n="Nestfield Co., Ltd."/>
+  <vendor id="598" n="Swissphone Telecom AG"/>
+  <vendor id="599" n="PNTECH JSC"/>
+  <vendor id="600" n="Horner APG, LLC"/>
+  <vendor id="601" n="PVI Industries, LLC"/>
+  <vendor id="602" n="Ela-compil"/>
+  <vendor id="603" n="Pegasus Automation International LLC"/>
+  <vendor id="604" n="Wight Electronic Services Ltd."/>
+  <vendor id="605" n="Marcom"/>
+  <vendor id="606" n="Exhausto A/S"/>
+  <vendor id="607" n="Dwyer Instruments, Inc."/>
+  <vendor id="608" n="Link GmbH"/>
+  <vendor id="609" n="Oppermann Regelgerate GmbH"/>
+  <vendor id="610" n="NuAire, Inc."/>
+  <vendor id="611" n="Nortec Humidity, Inc."/>
+  <vendor id="612" n="Bigwood Systems, Inc."/>
+  <vendor id="613" n="Enbala Power Networks"/>
+  <vendor id="614" n="Inter Energy Co., Ltd."/>
+  <vendor id="615" n="ETC"/>
+  <vendor id="616" n="COMELEC S.A.R.L"/>
+  <vendor id="617" n="Pythia Technologies"/>
+  <vendor id="618" n="TrendPoint Systems, Inc."/>
+  <vendor id="619" n="AWEX"/>
+  <vendor id="620" n="Eurevia"/>
+  <vendor id="621" n="Kongsberg E-lon AS"/>
+  <vendor id="622" n="FlaktWoods"/>
+  <vendor id="623" n="E + E Elektronik GES M.B.H."/>
+  <vendor id="624" n="ARC Informatique"/>
+  <vendor id="625" n="SKIDATA AG"/>
+  <vendor id="626" n="WSW Solutions"/>
+  <vendor id="627" n="Trefon Electronic GmbH"/>
+  <vendor id="628" n="Dongseo System"/>
+  <vendor id="629" n="Kanontec Intelligence Technology Co., Ltd."/>
+  <vendor id="630" n="EVCO S.p.A."/>
+  <vendor id="631" n="Accuenergy (Canada) Inc."/>
+  <vendor id="632" n="SoftDEL"/>
+  <vendor id="633" n="Orion Energy Systems, Inc."/>
+  <vendor id="634" n="Roboticsware"/>
+  <vendor id="635" n="DOMIQ Sp. z o.o."/>
+  <vendor id="636" n="Solidyne"/>
+  <vendor id="637" n="Elecsys Corporation"/>
+  <vendor id="638" n="Conditionaire International Pty. Limited"/>
+  <vendor id="639" n="Quebec, Inc."/>
+  <vendor id="640" n="Homerun Holdings"/>
+  <vendor id="641" n="Murata Americas"/>
+  <vendor id="642" n="Comptek"/>
+  <vendor id="643" n="Westco Systems, Inc."/>
+  <vendor id="644" n="Advancis Software &amp; Services GmbH"/>
+  <vendor id="645" n="Intergrid, LLC"/>
+  <vendor id="646" n="Markerr Controls, Inc."/>
+  <vendor id="647" n="Toshiba Elevator and Building Systems Corporation"/>
+  <vendor id="648" n="Spectrum Controls, Inc."/>
+  <vendor id="649" n="Mkservice"/>
+  <vendor id="650" n="Fox Thermal Instruments"/>
+  <vendor id="651" n="SyxthSense Ltd"/>
+  <vendor id="652" n="DUHA System S R.O."/>
+  <vendor id="653" n="NIBE"/>
+  <vendor id="654" n="Melink Corporation"/>
+  <vendor id="655" n="Fritz-Haber-Institut"/>
+  <vendor id="656" n="MTU Onsite Energy GmbH, Gas Power Systems"/>
+  <vendor id="657" n="Omega Engineering, Inc."/>
+  <vendor id="658" n="Avelon"/>
+  <vendor id="659" n="Ywire Technologies, Inc."/>
+  <vendor id="660" n="M.R. Engineering Co., Ltd."/>
+  <vendor id="661" n="Lochinvar, LLC"/>
+  <vendor id="662" n="Sontay Limited"/>
+  <vendor id="663" n="GRUPA Slawomir Chelminski"/>
+  <vendor id="664" n="Arch Meter Corporation"/>
+  <vendor id="665" n="Senva, Inc."/>
+  <vendor id="667" n="FM-Tec"/>
+  <vendor id="668" n="Systems Specialists, Inc."/>
+  <vendor id="669" n="SenseAir"/>
+  <vendor id="670" n="AB IndustrieTechnik Srl"/>
+  <vendor id="671" n="Cortland Research, LLC"/>
+  <vendor id="672" n="MediaView"/>
+  <vendor id="673" n="VDA Elettronica"/>
+  <vendor id="674" n="CSS, Inc."/>
+  <vendor id="675" n="Tek-Air Systems, Inc."/>
+  <vendor id="676" n="ICDT"/>
+  <vendor id="677" n="The Armstrong Monitoring Corporation"/>
+  <vendor id="678" n="DIXELL S.r.l"/>
+  <vendor id="679" n="Lead System, Inc."/>
+  <vendor id="680" n="ISM EuroCenter S.A."/>
+  <vendor id="681" n="TDIS"/>
+  <vendor id="682" n="Trade FIDES"/>
+  <vendor id="683" n="Knürr GmbH (Emerson Network Power)"/>
+  <vendor id="684" n="Resource Data Management"/>
+  <vendor id="685" n="Abies Technology, Inc."/>
+  <vendor id="686" n="UAB Komfovent"/>
+  <vendor id="687" n="MIRAE Electrical Mfg. Co., Ltd."/>
+  <vendor id="688" n="HunterDouglas Architectural Projects Scandinavia ApS"/>
+  <vendor id="689" n="RUNPAQ Group Co., Ltd"/>
+  <vendor id="690" n="Unicard SA"/>
+  <vendor id="691" n="IE Technologies"/>
+  <vendor id="692" n="Ruskin Manufacturing"/>
+  <vendor id="693" n="Calon Associates Limited"/>
+  <vendor id="694" n="Contec Co., Ltd."/>
+  <vendor id="695" n="iT GmbH"/>
+  <vendor id="696" n="Autani Corporation"/>
+  <vendor id="697" n="Christian Fortin"/>
+  <vendor id="698" n="HDL"/>
+  <vendor id="699" n="IPID Sp. Z.O.O Limited"/>
+  <vendor id="700" n="Fuji Electric Co., Ltd"/>
+  <vendor id="701" n="View, Inc."/>
+  <vendor id="702" n="Samsung S1 Corporation"/>
+  <vendor id="703" n="New Lift"/>
+  <vendor id="704" n="VRT Systems"/>
+  <vendor id="705" n="Motion Control Engineering, Inc."/>
+  <vendor id="706" n="Weiss Klimatechnik GmbH"/>
+  <vendor id="707" n="Elkon"/>
+  <vendor id="708" n="Eliwell Controls S.r.l."/>
+  <vendor id="709" n="Japan Computer Technos Corp"/>
+  <vendor id="710" n="Rational Network ehf"/>
+  <vendor id="711" n="Magnum Energy Solutions, LLC"/>
+  <vendor id="712" n="MelRok"/>
+  <vendor id="713" n="VAE Group"/>
+  <vendor id="714" n="LGCNS"/>
+  <vendor id="715" n="Berghof Automationstechnik GmbH"/>
+  <vendor id="716" n="Quark Communications, Inc."/>
+  <vendor id="717" n="Sontex"/>
+  <vendor id="718" n="mivune AG"/>
+  <vendor id="719" n="Panduit"/>
+  <vendor id="720" n="Smart Controls, LLC"/>
+  <vendor id="721" n="Compu-Aire, Inc."/>
+  <vendor id="722" n="Sierra"/>
+  <vendor id="723" n="ProtoSense Technologies"/>
+  <vendor id="724" n="Eltrac Technologies Pvt Ltd"/>
+  <vendor id="725" n="Bektas Invisible Controls GmbH"/>
+  <vendor id="726" n="Entelec"/>
+  <vendor id="727" n="INNEXIV"/>
+  <vendor id="728" n="Covenant"/>
+  <vendor id="729" n="Davitor AB"/>
+  <vendor id="730" n="TongFang Technovator"/>
+  <vendor id="731" n="Building Robotics, Inc."/>
+  <vendor id="732" n="HSS-MSR UG"/>
+  <vendor id="733" n="FramTack LLC"/>
+  <vendor id="734" n="B. L. Acoustics, Ltd."/>
+  <vendor id="735" n="Traxxon Rock Drills, Ltd"/>
+  <vendor id="736" n="Franke"/>
+  <vendor id="737" n="Wurm GmbH &amp; Co"/>
+  <vendor id="738" n="AddENERGIE"/>
+  <vendor id="739" n="Mirle Automation Corporation"/>
+  <vendor id="740" n="Ibis Networks"/>
+  <vendor id="741" n="ID-KARTA s.r.o."/>
+  <vendor id="742" n="Anaren, Inc."/>
+  <vendor id="743" n="Span, Incorporated"/>
+  <vendor id="744" n="Bosch Thermotechnology Corp"/>
+  <vendor id="745" n="DRC Technology S.A."/>
+  <vendor id="746" n="Shanghai Energy Building Technology Co, Ltd"/>
+  <vendor id="747" n="Fraport AG"/>
+  <vendor id="748" n="Flowgroup"/>
+  <vendor id="749" n="Skytron Energy, GmbH"/>
+  <vendor id="750" n="ALTEL Wicha, Golda Sp. J."/>
+  <vendor id="751" n="Drupal"/>
+  <vendor id="752" n="Axiomatic Technology, Ltd"/>
+  <vendor id="753" n="Bohnke + Partner"/>
+  <vendor id="754" n="Function1"/>
+  <vendor id="755" n="Optergy Pty, Ltd"/>
+  <vendor id="756" n="LSI Virticus"/>
+  <vendor id="757" n="Konzeptpark GmbH"/>
+  <vendor id="758" n="Hubbell Building Automation, Inc."/>
+  <vendor id="759" n="eCurv, Inc."/>
+  <vendor id="760" n="Agnosys GmbH"/>
+  <vendor id="761" n="Shanghai Sunfull Automation Co., LTD"/>
+  <vendor id="762" n="Kurz Instruments, Inc."/>
+  <vendor id="763" n="Cias Elettronica S.r.l."/>
+  <vendor id="764" n="Multiaqua, Inc."/>
+  <vendor id="765" n="BlueBox"/>
+  <vendor id="766" n="Sensidyne"/>
+  <vendor id="767" n="Viessmann Elektronik GmbH"/>
+  <vendor id="768" n="ADFweb.com srl"/>
+  <vendor id="769" n="Gaylord Industries"/>
+  <vendor id="770" n="Majur Ltd."/>
+  <vendor id="771" n="Shanghai Huilin Technology Co., Ltd."/>
+  <vendor id="772" n="Exotronic"/>
+  <vendor id="773" n="SAFECONTROL s.r.o."/>
+  <vendor id="774" n="Amatis"/>
+  <vendor id="775" n="Universal Electric Corporation"/>
+  <vendor id="776" n="iBACnet"/>
+  <vendor id="778" n="Smartrise Engineering, Inc."/>
+  <vendor id="779" n="Miratron, Inc."/>
+  <vendor id="780" n="SmartEdge"/>
+  <vendor id="781" n="Mitsubishi Electric Australia Pty Ltd"/>
+  <vendor id="782" n="Triangle Research International Ptd Ltd"/>
+  <vendor id="783" n="Produal Oy"/>
+  <vendor id="784" n="Milestone Systems A/S"/>
+  <vendor id="785" n="Trustbridge"/>
+  <vendor id="786" n="Feedback Solutions"/>
+  <vendor id="787" n="IES"/>
+  <vendor id="788" n="ABB Power Protection SA"/>
+  <vendor id="789" n="Riptide IO"/>
+  <vendor id="790" n="Messerschmitt Systems AG"/>
+  <vendor id="791" n="Dezem Energy Controlling"/>
+  <vendor id="792" n="MechoSystems"/>
+  <vendor id="793" n="evon GmbH"/>
+  <vendor id="794" n="CS Lab GmbH"/>
+  <vendor id="795" n="8760 Enterprises, Inc."/>
+  <vendor id="796" n="Touche Controls"/>
+  <vendor id="797" n="Ontrol Teknik Malzeme San. ve Tic. A.S."/>
+  <vendor id="798" n="Uni Control System Sp. Z o.o."/>
+  <vendor id="799" n="Weihai Ploumeter Co., Ltd"/>
+  <vendor id="800" n="Elcom International Pvt. Ltd"/>
+  <vendor id="801" n="Signify"/>
+  <vendor id="802" n="AutomationDirect"/>
+  <vendor id="803" n="Paragon Robotics"/>
+  <vendor id="804" n="SMT System &amp; Modules Technology AG"/>
+  <vendor id="805" n="Radix IoT LLC"/>
+  <vendor id="806" n="CMR Controls Ltd"/>
+  <vendor id="807" n="Innovari, Inc."/>
+  <vendor id="808" n="ABB Control Products"/>
+  <vendor id="809" n="Gesellschaft fur Gebäudeautomation mbH"/>
+  <vendor id="810" n="RODI Systems Corp."/>
+  <vendor id="811" n="Nextek Power Systems"/>
+  <vendor id="812" n="Creative Lighting"/>
+  <vendor id="813" n="WaterFurnace International"/>
+  <vendor id="814" n="Mercury Security"/>
+  <vendor id="815" n="Hisense (Shandong) Air-Conditioning Co., Ltd."/>
+  <vendor id="816" n="Layered Solutions, Inc."/>
+  <vendor id="817" n="Leegood Automatic System, Inc."/>
+  <vendor id="818" n="Shanghai Restar Technology Co., Ltd."/>
+  <vendor id="819" n="Reimann Ingenieurbüro"/>
+  <vendor id="820" n="LynTec"/>
+  <vendor id="821" n="HTP"/>
+  <vendor id="822" n="Elkor Technologies, Inc."/>
+  <vendor id="823" n="Bentrol Pty Ltd"/>
+  <vendor id="824" n="Team-Control Oy"/>
+  <vendor id="825" n="NextDevice, LLC"/>
+  <vendor id="826" n="iSMA CONTROLLI S.p.a."/>
+  <vendor id="827" n="King I Electronics Co., Ltd"/>
+  <vendor id="828" n="SAMDAV"/>
+  <vendor id="829" n="Next Gen Industries Pvt. Ltd."/>
+  <vendor id="830" n="Entic LLC"/>
+  <vendor id="831" n="ETAP"/>
+  <vendor id="832" n="Moralle Electronics Limited"/>
+  <vendor id="833" n="Leicom AG"/>
+  <vendor id="834" n="Watts Regulator Company"/>
+  <vendor id="835" n="S.C. Orbtronics S.R.L."/>
+  <vendor id="836" n="Gaussan Technologies"/>
+  <vendor id="837" n="WEBfactory GmbH"/>
+  <vendor id="838" n="Ocean Controls"/>
+  <vendor id="839" n="Messana Air-Ray Conditioning s.r.l."/>
+  <vendor id="840" n="Hangzhou BATOWN Technology Co. Ltd."/>
+  <vendor id="841" n="Reasonable Controls"/>
+  <vendor id="842" n="Servisys, Inc."/>
+  <vendor id="843" n="halstrup-walcher GmbH"/>
+  <vendor id="844" n="SWG Automation Fuzhou Limited"/>
+  <vendor id="845" n="KSB Aktiengesellschaft"/>
+  <vendor id="846" n="Hybryd Sp. z o.o."/>
+  <vendor id="847" n="Helvatron AG"/>
+  <vendor id="848" n="Oderon Sp. Z.O.O."/>
+  <vendor id="849" n="mikolab"/>
+  <vendor id="850" n="Exodraft"/>
+  <vendor id="851" n="Hochhuth GmbH"/>
+  <vendor id="852" n="Integrated System Technologies Ltd."/>
+  <vendor id="853" n="Shanghai Cellcons Controls Co., Ltd"/>
+  <vendor id="854" n="Emme Controls, LLC"/>
+  <vendor id="855" n="Field Diagnostic Services, Inc."/>
+  <vendor id="856" n="Ges Teknik A.S."/>
+  <vendor id="857" n="Global Power Products, Inc."/>
+  <vendor id="858" n="Option NV"/>
+  <vendor id="859" n="BV-Control AG"/>
+  <vendor id="860" n="Sigren Engineering AG"/>
+  <vendor id="861" n="Shanghai Jaltone Technology Co., Ltd."/>
+  <vendor id="862" n="MaxLine Solutions Ltd"/>
+  <vendor id="863" n="Kron Instrumentos Elétricos Ltda"/>
+  <vendor id="864" n="Thermo Matrix"/>
+  <vendor id="865" n="Infinite Automation Systems, Inc."/>
+  <vendor id="866" n="Vantage"/>
+  <vendor id="867" n="Elecon Measurements Pvt Ltd"/>
+  <vendor id="868" n="TBA"/>
+  <vendor id="869" n="Carnes Company"/>
+  <vendor id="870" n="Harman Professional"/>
+  <vendor id="871" n="Nenutec Asia Pacific Pte Ltd"/>
+  <vendor id="872" n="Gia NV"/>
+  <vendor id="873" n="Kepware Tehnologies"/>
+  <vendor id="874" n="Temperature Electronics Ltd"/>
+  <vendor id="875" n="Packet Power"/>
+  <vendor id="876" n="Project Haystack Corporation"/>
+  <vendor id="877" n="DEOS Controls Americas Inc."/>
+  <vendor id="878" n="Senseware Inc"/>
+  <vendor id="879" n="MST Systemtechnik AG"/>
+  <vendor id="880" n="Lonix Ltd"/>
+  <vendor id="881" n="Gossen Metrawatt GmbH"/>
+  <vendor id="882" n="Aviosys International Inc."/>
+  <vendor id="883" n="Efficient Building Automation Corp."/>
+  <vendor id="884" n="Accutron Instruments Inc."/>
+  <vendor id="885" n="Vermont Energy Control Systems LLC"/>
+  <vendor id="886" n="DCC Dynamics"/>
+  <vendor id="887" n="B.E.G. Brück Electronic GmbH"/>
+  <vendor id="889" n="NGBS Hungary Ltd."/>
+  <vendor id="890" n="ILLUM Technology, LLC"/>
+  <vendor id="891" n="Delta Controls Germany Limited"/>
+  <vendor id="892" n="S+T Service &amp; Technique S.A."/>
+  <vendor id="893" n="SimpleSoft"/>
+  <vendor id="894" n="Altair Engineering"/>
+  <vendor id="895" n="EZEN Solution Inc."/>
+  <vendor id="896" n="Fujitec Co. Ltd."/>
+  <vendor id="897" n="Terralux"/>
+  <vendor id="898" n="Annicom"/>
+  <vendor id="899" n="Bihl+Wiedemann GmbH"/>
+  <vendor id="900" n="Draper, Inc."/>
+  <vendor id="901" n="Schüco International KG"/>
+  <vendor id="902" n="Otis Elevator Company"/>
+  <vendor id="903" n="Fidelix Oy"/>
+  <vendor id="904" n="RAM GmbH Mess- und Regeltechnik"/>
+  <vendor id="905" n="WEMS"/>
+  <vendor id="906" n="Ravel Electronics Pvt Ltd"/>
+  <vendor id="907" n="OmniMagni"/>
+  <vendor id="908" n="Echelon"/>
+  <vendor id="909" n="Intellimeter Canada, Inc."/>
+  <vendor id="910" n="Bithouse Oy"/>
+  <vendor id="912" n="BuildPulse"/>
+  <vendor id="913" n="Shenzhen 1000 Building Automation Co. Ltd"/>
+  <vendor id="914" n="AED Engineering GmbH"/>
+  <vendor id="915" n="Güntner GmbH &amp; Co. KG"/>
+  <vendor id="916" n="KNXlogic"/>
+  <vendor id="917" n="CIM Environmental Group"/>
+  <vendor id="918" n="Flow Control"/>
+  <vendor id="919" n="Lumen Cache, Inc."/>
+  <vendor id="920" n="Ecosystem"/>
+  <vendor id="921" n="Potter Electric Signal Company, LLC"/>
+  <vendor id="922" n="Tyco Fire &amp; Security S.p.A."/>
+  <vendor id="923" n="Watanabe Electric Industry Co., Ltd."/>
+  <vendor id="924" n="Causam Energy"/>
+  <vendor id="925" n="W-tec AG"/>
+  <vendor id="926" n="IMI Hydronic Engineering International SA"/>
+  <vendor id="927" n="ARIGO Software"/>
+  <vendor id="928" n="MSA Safety"/>
+  <vendor id="929" n="Smart Solucoes Ltda - MERCATO"/>
+  <vendor id="930" n="PIATRA Engineering"/>
+  <vendor id="931" n="ODIN Automation Systems, LLC"/>
+  <vendor id="932" n="Belparts NV"/>
+  <vendor id="933" n="UAB, SALDA"/>
+  <vendor id="934" n="Alre-IT Regeltechnik GmbH"/>
+  <vendor id="935" n="Ingenieurbüro H. Lertes GmbH &amp; Co. KG"/>
+  <vendor id="936" n="Breathing Buildings"/>
+  <vendor id="937" n="eWON SA"/>
+  <vendor id="938" n="Cav. Uff. Giacomo Cimberio S.p.A"/>
+  <vendor id="939" n="PKE Electronics AG"/>
+  <vendor id="940" n="Allen"/>
+  <vendor id="941" n="Kastle Systems"/>
+  <vendor id="942" n="Logical Electro-Mechanical (EM) Systems, Inc."/>
+  <vendor id="943" n="ppKinetics Instruments, LLC"/>
+  <vendor id="944" n="Cathexis Technologies"/>
+  <vendor id="945" n="Sylop sp. Z o.o. sp.k"/>
+  <vendor id="946" n="Brauns Control GmbH"/>
+  <vendor id="947" n="OMRON SOCIAL SOLUTIONS CO., LTD."/>
+  <vendor id="948" n="Wildeboer Bauteile Gmbh"/>
+  <vendor id="949" n="Shanghai Biens Technologies Ltd"/>
+  <vendor id="950" n="Beijing HZHY Technology Co., Ltd"/>
+  <vendor id="951" n="Building Clouds"/>
+  <vendor id="952" n="The University of Sheffield-Department of Electronic and Electrical Engineering"/>
+  <vendor id="953" n="Fabtronics Australia Pty Ltd"/>
+  <vendor id="954" n="SLAT"/>
+  <vendor id="955" n="Software Motor Corporation"/>
+  <vendor id="956" n="Armstrong International Inc."/>
+  <vendor id="957" n="Steril-Aire, Inc."/>
+  <vendor id="958" n="Infinique"/>
+  <vendor id="959" n="Arcom"/>
+  <vendor id="960" n="Argo Performance, Ltd"/>
+  <vendor id="961" n="Dialight"/>
+  <vendor id="962" n="Ideal Technical Solutions"/>
+  <vendor id="963" n="Neurobat AG"/>
+  <vendor id="964" n="Neyer Software Consulting LLC"/>
+  <vendor id="965" n="SCADA Technology Development Co., Ltd."/>
+  <vendor id="966" n="Demand Logic Limited"/>
+  <vendor id="967" n="GWA Group Limited"/>
+  <vendor id="968" n="Occitaline"/>
+  <vendor id="969" n="NAO Digital Co., Ltd."/>
+  <vendor id="970" n="Shenzhen Chanslink Network Technology Co., Ltd."/>
+  <vendor id="971" n="Samsung Electronics Co., Ltd."/>
+  <vendor id="972" n="Mesa Laboratories, Inc."/>
+  <vendor id="973" n="Fischer"/>
+  <vendor id="974" n="OpSys Solutions Ltd."/>
+  <vendor id="975" n="Advanced Devices Limited"/>
+  <vendor id="976" n="Condair"/>
+  <vendor id="977" n="INELCOM Ingenieria Electronica Comercial S.A."/>
+  <vendor id="978" n="GridPoint, Inc."/>
+  <vendor id="979" n="ADF Technologies Sdn Bhd"/>
+  <vendor id="980" n="EPM, Inc."/>
+  <vendor id="981" n="Lighting Controls Ltd"/>
+  <vendor id="982" n="Perix Controls Ltd."/>
+  <vendor id="983" n="AERCO International, Inc."/>
+  <vendor id="984" n="KONE Inc."/>
+  <vendor id="985" n="Ziehl-Abegg SE"/>
+  <vendor id="986" n="Robot, S.A."/>
+  <vendor id="987" n="Optigo Networks, Inc."/>
+  <vendor id="988" n="Openmotics BVBA"/>
+  <vendor id="989" n="Metropolitan Industries, Inc."/>
+  <vendor id="990" n="Huawei Technologies Co., Ltd."/>
+  <vendor id="991" n="Digital Lumens, Inc."/>
+  <vendor id="992" n="Vanti"/>
+  <vendor id="993" n="Cree Lighting"/>
+  <vendor id="994" n="Richmond Heights SDN BHD"/>
+  <vendor id="995" n="Payne-Sparkman Lighting Mangement"/>
+  <vendor id="996" n="Ashcroft"/>
+  <vendor id="997" n="Jet Controls Corp"/>
+  <vendor id="998" n="Zumtobel Lighting GmbH"/>
+  <vendor id="1000" n="Ekon GmbH"/>
+  <vendor id="1001" n="Molex"/>
+  <vendor id="1002" n="Maco Lighting Pty Ltd."/>
+  <vendor id="1003" n="Axecon Corp."/>
+  <vendor id="1004" n="Tensor plc"/>
+  <vendor id="1005" n="Kaseman Environmental Control Equipment (Shanghai) Limited"/>
+  <vendor id="1006" n="AB Axis Industries"/>
+  <vendor id="1007" n="Netix Controls"/>
+  <vendor id="1008" n="Eldridge Products, Inc."/>
+  <vendor id="1009" n="Micronics"/>
+  <vendor id="1010" n="Fortecho Solutions Ltd"/>
+  <vendor id="1011" n="Sellers Manufacturing Company"/>
+  <vendor id="1012" n="Rite-Hite Doors, Inc."/>
+  <vendor id="1013" n="Violet Defense LLC"/>
+  <vendor id="1014" n="Simna"/>
+  <vendor id="1015" n="Multi-Énergie Best Inc."/>
+  <vendor id="1016" n="Mega System Technologies, Inc."/>
+  <vendor id="1017" n="Rheem"/>
+  <vendor id="1018" n="Ing. Punzenberger COPA-DATA GmbH"/>
+  <vendor id="1019" n="MEC Electronics GmbH"/>
+  <vendor id="1020" n="Taco Comfort Solutions"/>
+  <vendor id="1021" n="Alexander Maier GmbH"/>
+  <vendor id="1022" n="Ecorithm, Inc."/>
+  <vendor id="1023" n="Accurro Ltd"/>
+  <vendor id="1024" n="ROMTECK Australia Pty Ltd"/>
+  <vendor id="1025" n="Splash Monitoring Limited"/>
+  <vendor id="1026" n="Light Application"/>
+  <vendor id="1027" n="Logical Building Automation"/>
+  <vendor id="1028" n="Exilight Oy"/>
+  <vendor id="1029" n="Hager Electro SAS"/>
+  <vendor id="1030" n="KLIF Co., LTD"/>
+  <vendor id="1031" n="HygroMatik"/>
+  <vendor id="1032" n="Daniel Mousseau Programmation &amp; Electronique"/>
+  <vendor id="1033" n="Aerionics Inc."/>
+  <vendor id="1034" n="M2S Electronique Ltee"/>
+  <vendor id="1035" n="Automation Components, Inc."/>
+  <vendor id="1036" n="Niobrara Research &amp; Development Corporation"/>
+  <vendor id="1037" n="Netcom Sicherheitstechnik GmbH"/>
+  <vendor id="1038" n="Lumel S.A."/>
+  <vendor id="1039" n="Great Plains Industries, Inc."/>
+  <vendor id="1040" n="Domotica Labs S.R.L"/>
+  <vendor id="1041" n="Energy Cloud, Inc."/>
+  <vendor id="1042" n="Vomatec"/>
+  <vendor id="1043" n="Demma Companies"/>
+  <vendor id="1044" n="Valsena"/>
+  <vendor id="1045" n="Comsys Bärtsch AG"/>
+  <vendor id="1046" n="bGrid"/>
+  <vendor id="1047" n="MDJ Software Pty Ltd"/>
+  <vendor id="1048" n="Dimonoff, Inc."/>
+  <vendor id="1049" n="Edomo Systems, GmbH"/>
+  <vendor id="1050" n="Effektiv, LLC"/>
+  <vendor id="1051" n="SteamOVap"/>
+  <vendor id="1052" n="grandcentrix GmbH"/>
+  <vendor id="1053" n="Weintek Labs, Inc."/>
+  <vendor id="1054" n="Intefox GmbH"/>
+  <vendor id="1055" n="Radius22 Automation Company"/>
+  <vendor id="1056" n="Ringdale, Inc."/>
+  <vendor id="1057" n="Iwaki America"/>
+  <vendor id="1058" n="Bractlet"/>
+  <vendor id="1059" n="STULZ Air Technology Systems, Inc."/>
+  <vendor id="1060" n="Climate Ready Engineering Pty Ltd"/>
+  <vendor id="1061" n="Genea Energy Partners"/>
+  <vendor id="1062" n="IoTall Chile"/>
+  <vendor id="1063" n="IKS Co., Ltd."/>
+  <vendor id="1064" n="Yodiwo AB"/>
+  <vendor id="1065" n="TITAN electronic GmbH"/>
+  <vendor id="1066" n="IDEC Corporation"/>
+  <vendor id="1067" n="SIFRI SL"/>
+  <vendor id="1068" n="Thermal Gas Systems Inc."/>
+  <vendor id="1069" n="Building Automation Products, Inc."/>
+  <vendor id="1070" n="Asset Mapping"/>
+  <vendor id="1071" n="Smarteh Company"/>
+  <vendor id="1072" n="Datapod Australia Pty Ltd."/>
+  <vendor id="1073" n="Buildings Alive Pty Ltd"/>
+  <vendor id="1074" n="Digital Elektronik"/>
+  <vendor id="1075" n="Talent Automação e Tecnologia Ltda"/>
+  <vendor id="1076" n="Norposh Limited"/>
+  <vendor id="1077" n="Merkur Funksysteme AG"/>
+  <vendor id="1078" n="Faster CZ spol. S.r.o"/>
+  <vendor id="1079" n="Eco-Adapt"/>
+  <vendor id="1080" n="Energocentrum Plus, s.r.o"/>
+  <vendor id="1081" n="amBX UK Ltd"/>
+  <vendor id="1082" n="Western Reserve Controls, Inc."/>
+  <vendor id="1083" n="LayerZero Power Systems, Inc."/>
+  <vendor id="1084" n="CIC Jan Hřebec s.r.o."/>
+  <vendor id="1085" n="Sigrov BV"/>
+  <vendor id="1086" n="ISYS-Intelligent Systems"/>
+  <vendor id="1087" n="Gas Detection (Australia) Pty Ltd"/>
+  <vendor id="1088" n="Kinco Automation (Shanghai) Ltd."/>
+  <vendor id="1089" n="Lars Energy, LLC"/>
+  <vendor id="1090" n="Flamefast (UK) Ltd."/>
+  <vendor id="1091" n="Royal Service Air Conditioning"/>
+  <vendor id="1092" n="Ampio Sp. Z o.o."/>
+  <vendor id="1093" n="Inovonics Wireless Corporation"/>
+  <vendor id="1094" n="Nvent Thermal Management"/>
+  <vendor id="1095" n="Sinowell Control System Ltd"/>
+  <vendor id="1096" n="Moxa Inc."/>
+  <vendor id="1097" n="Matrix iControl SDN BHD"/>
+  <vendor id="1098" n="PurpleSwift"/>
+  <vendor id="1099" n="OTIM Technologies"/>
+  <vendor id="1100" n="FlowMate Limited"/>
+  <vendor id="1101" n="Degree Controls, Inc."/>
+  <vendor id="1102" n="Fei Xing (Shanghai) Software Technologies Co., Ltd."/>
+  <vendor id="1103" n="Berg GmbH"/>
+  <vendor id="1104" n="ARENZ.IT"/>
+  <vendor id="1105" n="Edelstrom Electronic Devices &amp; Designing LLC"/>
+  <vendor id="1106" n="Drive Connect, LLC"/>
+  <vendor id="1107" n="DevelopNow"/>
+  <vendor id="1108" n="Poort"/>
+  <vendor id="1109" n="VMEIL Information (Shanghai) Ltd"/>
+  <vendor id="1110" n="Rayleigh Instruments"/>
+  <vendor id="1112" n="CODESYS Development"/>
+  <vendor id="1113" n="Smartware Technologies Group, LLC"/>
+  <vendor id="1114" n="Polar Bear Solutions"/>
+  <vendor id="1115" n="Codra"/>
+  <vendor id="1116" n="Pharos Architectural Controls Ltd"/>
+  <vendor id="1117" n="EngiNear Ltd."/>
+  <vendor id="1118" n="Ad Hoc Electronics"/>
+  <vendor id="1119" n="Unified Microsystems"/>
+  <vendor id="1120" n="Industrieelektronik Brandenburg GmbH"/>
+  <vendor id="1121" n="Hartmann GmbH"/>
+  <vendor id="1122" n="Piscada"/>
+  <vendor id="1123" n="KMB systems, s.r.o."/>
+  <vendor id="1124" n="PowerTech Engineering AS"/>
+  <vendor id="1125" n="Telefonbau Arthur Schwabe GmbH &amp; Co. KG"/>
+  <vendor id="1126" n="Wuxi Fistwelove Technology Co., Ltd."/>
+  <vendor id="1127" n="Prysm"/>
+  <vendor id="1128" n="STEINEL GmbH"/>
+  <vendor id="1129" n="Georg Fischer JRG AG"/>
+  <vendor id="1130" n="Make Develop SL"/>
+  <vendor id="1131" n="Monnit Corporation"/>
+  <vendor id="1132" n="Mirror Life Corporation"/>
+  <vendor id="1133" n="Secure Meters Limited"/>
+  <vendor id="1134" n="PECO"/>
+  <vendor id="1135" n=".CCTECH, Inc."/>
+  <vendor id="1136" n="LightFi Limited"/>
+  <vendor id="1137" n="Nice Spa"/>
+  <vendor id="1138" n="Fiber SenSys, Inc."/>
+  <vendor id="1139" n="B&amp;D Buchta und Degeorgi"/>
+  <vendor id="1140" n="Ventacity Systems, Inc."/>
+  <vendor id="1141" n="Hitachi-Johnson Controls Air Conditioning, Inc."/>
+  <vendor id="1142" n="Sage Metering, Inc."/>
+  <vendor id="1143" n="Andel Limited"/>
+  <vendor id="1144" n="ECOSmart Technologies"/>
+  <vendor id="1145" n="S.E.T."/>
+  <vendor id="1146" n="Protec Fire Detection Spain SL"/>
+  <vendor id="1147" n="AGRAMER UG"/>
+  <vendor id="1148" n="Anylink Electronic GmbH"/>
+  <vendor id="1149" n="Schindler, Ltd"/>
+  <vendor id="1150" n="Jibreel Abdeen Est."/>
+  <vendor id="1151" n="Fluidyne Control Systems Pvt. Ltd"/>
+  <vendor id="1152" n="Prism Systems, Inc."/>
+  <vendor id="1153" n="Enertiv"/>
+  <vendor id="1154" n="Mirasoft GmbH &amp; Co. KG"/>
+  <vendor id="1155" n="DUALTECH IT"/>
+  <vendor id="1156" n="Countlogic, LLC"/>
+  <vendor id="1157" n="Kohler"/>
+  <vendor id="1158" n="Chen Sen Controls Co., Ltd."/>
+  <vendor id="1159" n="Greenheck"/>
+  <vendor id="1160" n="Intwine Connect, LLC"/>
+  <vendor id="1161" n="Karlborgs Elkontroll"/>
+  <vendor id="1162" n="Datakom"/>
+  <vendor id="1163" n="Hoga Control AS"/>
+  <vendor id="1164" n="Cool Automation"/>
+  <vendor id="1165" n="Inter Search Co., Ltd"/>
+  <vendor id="1166" n="DABBEL-Automation Intelligence GmbH"/>
+  <vendor id="1167" n="Gadgeon Engineering Smartness"/>
+  <vendor id="1168" n="Coster Group S.r.l."/>
+  <vendor id="1169" n="Walter Müller AG"/>
+  <vendor id="1170" n="Fluke"/>
+  <vendor id="1171" n="Quintex Systems Ltd"/>
+  <vendor id="1172" n="Senfficient SDN BHD"/>
+  <vendor id="1173" n="Nube iO Operations Pty Ltd"/>
+  <vendor id="1174" n="DAS Integrator Pte Ltd"/>
+  <vendor id="1175" n="CREVIS Co., Ltd"/>
+  <vendor id="1176" n="iSquared software inc."/>
+  <vendor id="1177" n="KTG GmbH"/>
+  <vendor id="1178" n="POK Group Oy"/>
+  <vendor id="1179" n="Adiscom"/>
+  <vendor id="1180" n="Incusense"/>
+  <vendor id="1181" n="75F"/>
+  <vendor id="1182" n="Anord Mardix, Inc."/>
+  <vendor id="1183" n="HOSCH Gebäudeautomation Neue Produkte GmbH"/>
+  <vendor id="1184" n="Bosch.IO GmbH"/>
+  <vendor id="1185" n="Royal Boon Edam International B.V."/>
+  <vendor id="1186" n="Clack Corporation"/>
+  <vendor id="1187" n="Unitex Controls LLC"/>
+  <vendor id="1188" n="KTC Göteborg AB"/>
+  <vendor id="1189" n="Interzon AB"/>
+  <vendor id="1190" n="ISDE ING SL"/>
+  <vendor id="1191" n="ABM automation building messaging GmbH"/>
+  <vendor id="1192" n="Kentec Electronics Ltd"/>
+  <vendor id="1193" n="Emerson Commercial and Residential Solutions"/>
+  <vendor id="1194" n="Powerside"/>
+  <vendor id="1195" n="SMC Group"/>
+  <vendor id="1196" n="EOS Weather Instruments"/>
+  <vendor id="1197" n="Zonex Systems"/>
+  <vendor id="1198" n="Generex Systems Computervertriebsgesellschaft mbH"/>
+  <vendor id="1199" n="Energy Wall LLC"/>
+  <vendor id="1200" n="Thermofin"/>
+  <vendor id="1201" n="SDATAWAY SA"/>
+  <vendor id="1202" n="Biddle Air Systems Limited"/>
+  <vendor id="1203" n="Kessler Ellis Products"/>
+  <vendor id="1204" n="Thermoscreens"/>
+  <vendor id="1205" n="Modio"/>
+  <vendor id="1206" n="Newron Solutions"/>
+  <vendor id="1207" n="Unitronics"/>
+  <vendor id="1208" n="TRILUX GmbH &amp; Co. KG"/>
+  <vendor id="1209" n="Kollmorgen Steuerungstechnik GmbH"/>
+  <vendor id="1210" n="Bosch Rexroth AG"/>
+  <vendor id="1211" n="Alarko Carrier"/>
+  <vendor id="1212" n="Verdigris Technologies"/>
+  <vendor id="1213" n="Shanghai SIIC-Longchuang Smartech So., Ltd."/>
+  <vendor id="1214" n="Quinda Co."/>
+  <vendor id="1215" n="GRUNER AG"/>
+  <vendor id="1216" n="BACMOVE"/>
+  <vendor id="1217" n="PSIDAC AB"/>
+  <vendor id="1218" n="ISICON-Control Automation"/>
+  <vendor id="1219" n="Big Ass Fans"/>
+  <vendor id="1220" n="din - Dietmar Nocker Facility Management GmbH"/>
+  <vendor id="1221" n="Teldio"/>
+  <vendor id="1222" n="MIKROKLIMA s.r.o."/>
+  <vendor id="1223" n="Density"/>
+  <vendor id="1224" n="ICONAG-Leittechnik GmbH"/>
+  <vendor id="1225" n="Awair"/>
+  <vendor id="1226" n="T&amp;D Engineering, Ltd"/>
+  <vendor id="1227" n="Sistemas Digitales"/>
+  <vendor id="1228" n="Loxone Electronics GmbH"/>
+  <vendor id="1229" n="ActronAir"/>
+  <vendor id="1230" n="Inductive Automation"/>
+  <vendor id="1231" n="Thor Engineering GmbH"/>
+  <vendor id="1232" n="Berner International, LLC"/>
+  <vendor id="1233" n="Potsdam Sensors LLC"/>
+  <vendor id="1234" n="Kohler Mira Ltd"/>
+  <vendor id="1235" n="Tecomon GmbH"/>
+  <vendor id="1236" n="Two Dimensional Instruments, LLC"/>
+  <vendor id="1237" n="LEFA Technologies Pte. Ltd."/>
+  <vendor id="1238" n="EATON CEAG Notlichtsysteme GmbH"/>
+  <vendor id="1239" n="Commbox Tecnologia"/>
+  <vendor id="1240" n="IPVideo Corporation"/>
+  <vendor id="1241" n="Bender GmbH &amp; Co. KG"/>
+  <vendor id="1242" n="Rhymebus Corporation"/>
+  <vendor id="1243" n="Axon Systems Ltd"/>
+  <vendor id="1244" n="Engineered Air"/>
+  <vendor id="1245" n="Elipse Software Ltda"/>
+  <vendor id="1246" n="Simatix Building Technologies Pvt. Ltd."/>
+  <vendor id="1247" n="W.A. Benjamin Electric Co."/>
+  <vendor id="1248" n="TROX Air Conditioning Components (Suzhou) Co. Ltd."/>
+  <vendor id="1249" n="SC Medical Pty Ltd."/>
+  <vendor id="1250" n="Elcanic A/S"/>
+  <vendor id="1251" n="Obeo AS"/>
+  <vendor id="1252" n="Tapa, Inc."/>
+  <vendor id="1253" n="ASE Smart Energy, Inc."/>
+  <vendor id="1254" n="Performance Services, Inc."/>
+  <vendor id="1255" n="Veridify Security"/>
+  <vendor id="1256" n="CD Innovation LTD"/>
+  <vendor id="1257" n="Ben Peoples Industries, LLC"/>
+  <vendor id="1258" n="UNICOMM Sp. z o.o"/>
+  <vendor id="1259" n="Thing Technologies GmbH"/>
+  <vendor id="1260" n="Beijing HaiLin Energy Saving Technology, Inc."/>
+  <vendor id="1261" n="Digital Realty"/>
+  <vendor id="1262" n="Agrowtek Inc."/>
+  <vendor id="1263" n="DSP Innovation BV"/>
+  <vendor id="1264" n="STV Electronic GmbH"/>
+  <vendor id="1265" n="Elmeasure India Pvt Ltd."/>
+  <vendor id="1266" n="Pineshore Energy LLC"/>
+  <vendor id="1267" n="Brasch Environmental Technologies, LLC"/>
+  <vendor id="1268" n="Lion Controls Co., LTD"/>
+  <vendor id="1269" n="Sinux"/>
+  <vendor id="1270" n="Avnet Inc."/>
+  <vendor id="1271" n="Somfy Activites SA"/>
+  <vendor id="1272" n="Amico"/>
+  <vendor id="1273" n="SageGlass"/>
+  <vendor id="1274" n="AuVerte"/>
+  <vendor id="1275" n="Agile Connects Pvt. Ltd."/>
+  <vendor id="1276" n="Locimation Pty Ltd"/>
+  <vendor id="1277" n="Envio Systems GmbH"/>
+  <vendor id="1278" n="Voytech Systems Limited"/>
+  <vendor id="1279" n="Davidsmeyer und Paul GmbH"/>
+  <vendor id="1280" n="Lusher Engineering Services"/>
+  <vendor id="1281" n="CHNT Nanjing Techsel Intelligent Company LTD"/>
+  <vendor id="1282" n="Threetronics Pty Ltd"/>
+  <vendor id="1283" n="SkyFoundry, LLC"/>
+  <vendor id="1284" n="HanilProTech"/>
+  <vendor id="1285" n="Sensorscall"/>
+  <vendor id="1286" n="Shanghai Jingpu Information Technology, Co., Ltd."/>
+  <vendor id="1287" n="Lichtmanufaktur Berlin GmbH"/>
+  <vendor id="1288" n="Eco Parking Technologies"/>
+  <vendor id="1289" n="Envision Digital International Pte Ltd"/>
+  <vendor id="1290" n="Antony Developpement Electronique"/>
+  <vendor id="1291" n="i2systems"/>
+  <vendor id="1292" n="Thureon International Limited"/>
+  <vendor id="1293" n="Pulsafeeder"/>
+  <vendor id="1294" n="MegaChips Corporation"/>
+  <vendor id="1295" n="TES Controls"/>
+  <vendor id="1296" n="Cermate"/>
+  <vendor id="1297" n="Grand Valley State University"/>
+  <vendor id="1298" n="Symcon Gmbh"/>
+  <vendor id="1299" n="The Chicago Faucet Company"/>
+  <vendor id="1300" n="Geberit AG"/>
+  <vendor id="1301" n="Rex Controls"/>
+  <vendor id="1302" n="IVMS GmbH"/>
+  <vendor id="1303" n="MNPP Saturn Ltd."/>
+  <vendor id="1304" n="Regal Beloit"/>
+  <vendor id="1305" n="ACS-Air Conditioning Solutions"/>
+  <vendor id="1306" n="GBX Technology, LLC"/>
+  <vendor id="1307" n="Kaiterra"/>
+  <vendor id="1308" n="ThinKuan loT Technology (Shanghai) Co., Ltd"/>
+  <vendor id="1309" n="HoCoSto B.V."/>
+  <vendor id="1310" n="Shenzhen AS-AI Technology Co., Ltd."/>
+  <vendor id="1311" n="RPS S.p.a."/>
+  <vendor id="1312" n="Esmé solutions"/>
+  <vendor id="1313" n="IOTech Systems Limited"/>
+  <vendor id="1314" n="i-AutoLogic Co., Ltd."/>
+  <vendor id="1315" n="New Age Micro, LLC"/>
+  <vendor id="1316" n="Guardian Glass"/>
+  <vendor id="1317" n="Guangzhou Zhaoyu Information Technology"/>
+  <vendor id="1318" n="ACE IoT Solutions LLC"/>
+  <vendor id="1319" n="Poris Electronics Co., Ltd."/>
+  <vendor id="1320" n="Terminus Technologies Group"/>
+  <vendor id="1321" n="Intech 21, Inc."/>
+  <vendor id="1322" n="Accurate Electronics"/>
+  <vendor id="1323" n="Fluence Bioengineering"/>
+  <vendor id="1324" n="Mun Hean Singapore Pte Ltd"/>
+  <vendor id="1325" n="Katronic AG &amp; Co. KG"/>
+  <vendor id="1326" n="Suzhou XinAo Information Technology Co. Ltd"/>
+  <vendor id="1327" n="Linktekk Technology, JSC."/>
+  <vendor id="1328" n="Stirling Ultracold"/>
+  <vendor id="1329" n="UV Partners, Inc."/>
+  <vendor id="1330" n="ProMinent GmbH"/>
+  <vendor id="1331" n="Multi-Tech Systems, Inc."/>
+  <vendor id="1332" n="JUMO GmbH &amp; Co. KG"/>
+  <vendor id="1333" n="Qingdao Huarui Technology Co. Ltd.,"/>
+  <vendor id="1334" n="Cairn Systemes"/>
+  <vendor id="1335" n="NeuroLogic Research Corp."/>
+  <vendor id="1336" n="Transition Technologies Advanced Solutions Sp. z o.o"/>
+  <vendor id="1337" n="Xxter bv"/>
+  <vendor id="1338" n="PassiveLogic"/>
+  <vendor id="1339" n="EnSmart Controls"/>
+  <vendor id="1340" n="Watts Heating and Hot Water Solutions, dba Lync"/>
+  <vendor id="1341" n="Troposphaira Technologies LLP"/>
+  <vendor id="1342" n="Network Thermostat"/>
+  <vendor id="1343" n="Titanium Intelligent Solutions, LLC"/>
+  <vendor id="1344" n="Numa Products, LLC"/>
+  <vendor id="1345" n="WAREMA Renkhoff SE"/>
+  <vendor id="1346" n="Frese A/S"/>
+  <vendor id="1347" n="Mapped"/>
+  <vendor id="1348" n="ELEKTRODESIGN ventilatory s.r.o"/>
+  <vendor id="1349" n="AirCare Automation, Inc."/>
+  <vendor id="1350" n="Antrum"/>
+  <vendor id="1351" n="Bao Linh Connect Technology"/>
+  <vendor id="1352" n="Virginia Controls, LLC"/>
+  <vendor id="1353" n="Duosys SDN BHD"/>
+  <vendor id="1354" n="Onsen SAS"/>
+  <vendor id="1355" n="Vaughn Thermal Corporation"/>
+</vendorList>

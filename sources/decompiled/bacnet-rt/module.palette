@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bajaObjectGraph version="1.0">
+<p m="b=baja" t="b:UnrestrictedFolder">
+
+<!-- Containers -->
+<p n="BacnetNetwork" m="bac=bacnet" t="bac:BacnetNetwork"/>
+<p n="BacnetDeviceFolder"           t="bac:BacnetDeviceFolder"/>
+<p n="BacnetDevice"                 t="bac:BacnetDevice"/>
+<p n="BacnetTuningPolicy"           t="bac:BacnetTuningPolicy"/>
+
+<!-- Comm Stack -->
+<p n="NetworkPorts"   t="b:UnrestrictedFolder">
+ <p n="IpPort"        t="bac:NetworkPort">
+  <p n="link"         t="bac:BacnetIpLinkLayer"/>
+  <p n="portInfo"     v="Annex J IP"/>
+ </p>
+ <p n="EthernetPort"  t="bac:NetworkPort">
+  <p n="link"         t="bac:BacnetEthernetLinkLayer"/>
+  <p n="portInfo"     v="Ethernet"/>
+ </p>
+ <p n="MstpPort"      t="bac:NetworkPort">
+  <p n="link"         t="bac:BacnetMstpLinkLayer"/>
+  <p n="portInfo"     v="MS/TP"/>
+ </p>
+ <p n="ScPort"        t="bac:NetworkPort">
+  <p n="link"         t="bac:ScLinkLayer"/>
+  <p n="portInfo"     v="Secure Connect"/>
+ </p>
+ <p n="ScHubPort"     t="bac:NetworkPort">
+  <p n="link"         t="bac:ScLinkLayer">
+   <p n="hubConnector">
+    <p n="primaryConnection">
+     <p n="hubUriAddress" v="localhost"/>
+     <p n="hubUriPath" v="hub"/>
+    </p>
+   </p>
+   <p n="HubFunction" t="bac:HubFunction">
+    <p n="webSocketAcceptor">
+     <p n="servletName" v="hub"/>
+    </p>
+   </p>
+  </p>
+  <p n="portInfo"     v="Secure Connect"/>
+ </p>
+</p>
+
+<!-- SecureConnect -->
+<p n="SecureConnect" t="b:UnrestrictedFolder">
+ <p n="HubFunction" t="bac:HubFunction"/>
+ <p n="InitiatingConnection1" t="bac:DirectInitiatingConnection"/>
+ <p n="BACnetScScheme" t="bac:BacnetScAuthenticationScheme"/>
+</p>
+
+<!-- Points -->
+<p n="Points" t="b:UnrestrictedFolder">
+ <p n="BacnetPointFolder" t="bac:BacnetPointFolder"/>
+ <!-- Boolean Points -->
+ <p n="BacnetBooleanPoint" m="c=control" t="c:BooleanPoint">
+  <p n="proxyExt" t="bac:BacnetBooleanProxyExt"/>
+ </p>
+ <p n="BacnetBooleanWritable" t="c:BooleanWritable">
+  <p n="proxyExt" t="bac:BacnetBooleanProxyExt"/>
+ </p>
+ <!-- Numeric Points -->
+ <p n="BacnetNumericPoint" t="c:NumericPoint">
+  <p n="proxyExt" t="bac:BacnetNumericProxyExt"/>
+ </p>
+ <p n="BacnetNumericWritable" t="c:NumericWritable">
+  <p n="proxyExt" t="bac:BacnetNumericProxyExt"/>
+ </p>
+ <!-- Enum Points -->
+ <p n="BacnetEnumPoint" t="c:EnumPoint">
+  <p n="proxyExt" t="bac:BacnetEnumProxyExt"/>
+ </p>
+ <p n="BacnetEnumWritable" t="c:EnumWritable">
+  <p n="proxyExt" t="bac:BacnetEnumProxyExt"/>
+ </p>
+ <!-- String Points -->
+ <p n="BacnetStringPoint" t="c:StringPoint">
+  <p n="proxyExt" t="bac:BacnetStringProxyExt"/>
+ </p>
+ <p n="BacnetStringWritable" t="c:StringWritable">
+  <p n="proxyExt" t="bac:BacnetStringProxyExt"/>
+ </p>
+</p>
+
+<!-- Alarming -->
+<p n="Alarming" t="b:UnrestrictedFolder">
+ <p n="BacnetDestination" t="bac:BacnetDestination"/>
+ <p n="ChangeOfDiscreteValueAlarmExt" m="a=alarm" t="a:AlarmSourceExt">
+  <p n="offnormalAlgorithm" t="bac:BacnetChangeOfDiscreteValueAlgorithm"/>
+ </p>
+</p>
+
+<!-- Scheduling -->
+<p n="Scheduling" t="b:UnrestrictedFolder">
+ <p n="BacnetScheduleImportExt" t="bac:BacnetScheduleImportExt"/>
+ <p n="BacnetScheduleExport"    t="bac:BacnetScheduleExport"/>
+</p>
+
+<!-- Trending -->
+<p n="Trending"               t="b:UnrestrictedFolder">
+ <p n="ClientTrending"          t="b:UnrestrictedFolder">
+  <p n="BacnetHistoryImport"          t="bac:BacnetHistoryImport"/>
+  <p n="BacnetTrendLogMultipleImport" t="bac:BacnetTrendLogMultipleImport"/>
+ </p>
+ <p n="BACnetLogExtensions"     t="b:UnrestrictedFolder">
+  <p n="BacnetNumericCovTrendLogExt"      t="bac:BacnetNumericCovTrendLogExt"/>
+  <p n="BacnetNumericIntervalTrendLogExt" t="bac:BacnetNumericIntervalTrendLogExt"/>
+  <p n="BacnetNumericTrendLogExt"         t="bac:BacnetNumericTrendLogExt"/>
+  <p n="BacnetBooleanCovTrendLogExt"      t="bac:BacnetBooleanCovTrendLogExt"/>
+  <p n="BacnetBooleanIntervalTrendLogExt" t="bac:BacnetBooleanIntervalTrendLogExt"/>
+  <p n="BacnetBooleanTrendLogExt"         t="bac:BacnetBooleanTrendLogExt"/>
+  <p n="BacnetEnumCovTrendLogExt"         t="bac:BacnetEnumCovTrendLogExt"/>
+  <p n="BacnetEnumIntervalTrendLogExt"    t="bac:BacnetEnumIntervalTrendLogExt"/>
+  <p n="BacnetEnumTrendLogExt"            t="bac:BacnetEnumTrendLogExt"/>
+  <p n="BacnetStringCovTrendLogExt"       t="bac:BacnetStringCovTrendLogExt"/>
+  <p n="BacnetStringIntervalTrendLogExt"  t="bac:BacnetStringIntervalTrendLogExt"/>
+  <p n="BacnetStringTrendLogExt"          t="bac:BacnetStringTrendLogExt"/>
+  <p n="BacnetTrendAlarmSourceExt"        t="bac:BacnetTrendLogAlarmSourceExt"/>
+  <p n="BacnetBitStringTrendLogExt"       t="bac:BacnetBitStringTrendLogExt"/>
+ </p>
+</p>
+
+<!-- Config Objects -->
+<p n="Config"           t="b:UnrestrictedFolder">
+ <p n="ConfigFolder"    t="bac:BacnetConfigFolder"/>
+ <p n="BacnetObject"    t="bac:BacnetObject"/>
+ <p n="AI"              t="bac:BacnetAnalogInput"/>
+ <p n="AO"              t="bac:BacnetAnalogOutput"/>
+ <p n="AV"              t="bac:BacnetAnalogValue"/>
+ <p n="BI"              t="bac:BacnetBinaryInput"/>
+ <p n="BO"              t="bac:BacnetBinaryOutput"/>
+ <p n="BV"              t="bac:BacnetBinaryValue"/>
+ <p n="Cal"             t="bac:BacnetCalendar"/>
+ <p n="EE"              t="bac:BacnetEventEnrollment"/>
+ <p n="File"            t="bac:BacnetFile"/>
+ <p n="Grp"             t="bac:BacnetGroup"/>
+ <p n="Loop"            t="bac:BacnetLoop"/>
+ <p n="MSI"             t="bac:BacnetMultistateInput"/>
+ <p n="MSO"             t="bac:BacnetMultistateOutput"/>
+ <p n="MSV"             t="bac:BacnetMultistateValue"/>
+ <p n="NC"              t="bac:BacnetNotificationClass"/>
+ <p n="Prog"            t="bac:BacnetProgram"/>
+ <p n="Sched"           t="bac:BacnetSchedule"/>
+ <p n="TLog"            t="bac:BacnetTrendLog"/>
+ <p n="TLM"             t="bac:BacnetTrendLogMultiple"/>
+ <p n="ELog"            t="bac:BacnetEventLog"/>
+ <p n="Door"            t="bac:BacnetAccessDoor"/>
+ <p n="ACC"             t="bac:BacnetAccumulator"/>
+ <p n="CMD"             t="bac:BacnetCommand"/>
+ <p n="LCO"             t="bac:BacnetLoadControl"/>
+ <p n="PC"              t="bac:BacnetPulseConverter"/>
+ <p n="SVO"             t="bac:BacnetStructuredView"/>
+ <p n="Avg"             t="bac:BacnetAveraging"/>
+ <p n="BLO"             t="bac:BacnetBinaryLightingOutput"/>
+</p>
+
+ <!-- Server -->
+<p n="Server" t="b:UnrestrictedFolder">
+ <p n="ExportFolder"              t="bac:BacnetExportFolder"/>
+ <p n="ServerAIDesc"              t="bac:BacnetAnalogInputDescriptor"/>
+ <p n="ServerAODesc"              t="bac:BacnetAnalogOutputDescriptor"/>
+ <p n="ServerAVDesc"              t="bac:BacnetAnalogValueDescriptor"/>
+ <p n="ServerAVPDesc"             t="bac:BacnetAnalogValuePrioritizedDescriptor"/>
+ <p n="ServerBIDesc"              t="bac:BacnetBinaryInputDescriptor"/>
+ <p n="ServerBODesc"              t="bac:BacnetBinaryOutputDescriptor"/>
+ <p n="ServerBVDesc"              t="bac:BacnetBinaryValueDescriptor"/>
+ <p n="ServerBVPDesc"             t="bac:BacnetBinaryValuePrioritizedDescriptor"/>
+ <p n="ServerCalendarDesc"        t="bac:BacnetCalendarDescriptor"/>
+ <p n="ServerFileDesc"            t="bac:BacnetFileDescriptor"/>
+ <p n="ServerLoopDesc"            t="bac:BacnetLoopDescriptor"/>
+ <p n="ServerMSIDesc"             t="bac:BacnetMultiStateInputDescriptor"/>
+ <p n="ServerMSODesc"             t="bac:BacnetMultiStateOutputDescriptor"/>
+ <p n="ServerMSVDesc"             t="bac:BacnetMultiStateValueDescriptor"/>
+ <p n="ServerMSVPDesc"            t="bac:BacnetMultiStateValuePrioritizedDescriptor"/>
+ <p n="ServerNCDesc"              t="bac:BacnetNotificationClassDescriptor"/>
+ <p n="ServerBoolSchedDesc"       t="bac:BacnetBooleanScheduleDescriptor"/>
+ <p n="ServerNumSchedDesc"        t="bac:BacnetNumericScheduleDescriptor"/>
+ <p n="ServerEnumSchedDesc"       t="bac:BacnetEnumScheduleDescriptor"/>
+ <p n="ServerStringSchedDesc"     t="bac:BacnetStringScheduleDescriptor"/>
+ <p n="ServerNiagaraHistoryDesc"  t="bac:BacnetNiagaraHistoryDescriptor"/>
+</p>
+
+ <!-- Worker Pools -->
+<p n="WorkerPools"         t="b:UnrestrictedFolder">
+ <p n="WorkerPool"          t="bac:BacnetWorkerPool"/>
+</p>
+
+</p>
+</bajaObjectGraph>

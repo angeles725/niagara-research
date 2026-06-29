@@ -13,3 +13,5 @@ Decompiled Java sources live under `sources/decompiled/<jar-name>/`.
 | sources/decompiled/opcUaClient-rt/ | decompiled jar (Vineflower) | .../modules/opcUaClient-rt.jar | 2026-06-29 | 601aa85b74b8345a1b0e19c9844deb42caf362b0b713b25ec959c74acc73fd27 | B132 |
 | sources/decompiled/opcUaServer-rt/ | decompiled jar (Vineflower) | .../modules/opcUaServer-rt.jar | 2026-06-29 | e4ce3517c1680f63171f7f01b9c6ab002b55f1e0775a68b5cd64a78b4a9cdb4c | B132 |
 | sources/decompiled/opc-rt/ | decompiled jar (Vineflower) — legacy OPC DA COM/JNI client | .../modules/opc-rt.jar | 2026-06-29 | 6db1abda08ff2cd7c33531c7d5912de0f3ea309001e55f9d641cc5ed2b4d21a8 | B132 |
+| sources/decompiled/bacnet-rt/ | decompiled jar (Vineflower) — BACnet APDU/ASN.1 codec, transport segmentation, NPDU + BVLC | /mnt/c/Honeywell/OptimizerSupervisor-N4.14.0.162/modules/bacnet-rt.jar | 2026-06-29 | 25df8182f10faf360c315f74704892734c7b10514aa2f9ddc326b4b8358be888 | B133 |
+| sources/decompiled/bacnetUtil-rt/ | decompiled jar (Vineflower) — BACnet shared utilities (no wire codec) | .../modules/bacnetUtil-rt.jar | 2026-06-29 | 09fe5bee549ba77ac8c7799dcc5153d966710e112ad44a2cdf07c96bab94d21c | B133 |

@@ -1,0 +1,8 @@
+#
+# Lexicon for the bacnetUtil module.
+#
+# @author    Eric Anderson
+# @creation  22-May-2024
+#
+
+help.guide.base=module://docEngNotes/doc

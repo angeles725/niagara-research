@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="bacnetUtil-rt" bajaVersion="0" vendor="Tridium" vendorVersion="4.14.0.162" description="Niagara BACnet Utilities" preferredSymbol="bu" nre="true" autoload="true" installable="true" buildMillis="1718363083372" buildHost="ee033fd13409" moduleName="bacnetUtil" runtimeProfile="rt" releaseDate="2024-05-28">
+ <dependencies>
+  <dependency name="alarm-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="backup-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="bacnet-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="baja" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="box-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="bql-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="chart-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="control-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="driver-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="entityIo-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="file-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="fox-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="gx-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="history-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="jetty-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="net-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="platBacnet-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="platMstp-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="platSerial-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="platform-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="query-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="schedule-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="serial-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="web-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+ </dependencies>
+ <dirs/>
+ <installation/>
+ <types>
+  <type name="DeviceOverride" class="com.tridium.bacnet.util.device.overrides.BDeviceOverride"/>
+  <type name="ServiceOverride" class="com.tridium.bacnet.util.device.overrides.BServiceOverride"/>
+  <type name="ApduSizeOverride" class="com.tridium.bacnet.util.device.overrides.BApduSizeOverride"/>
+  <type name="ServicesSupportedOverride" class="com.tridium.bacnet.util.device.overrides.BServicesSupportedOverride"/>
+  <type name="RpmOverride" class="com.tridium.bacnet.util.device.overrides.BRpmOverride"/>
+  <type name="SegmentationOverride" class="com.tridium.bacnet.util.device.overrides.BSegmentationOverride"/>
+  <type name="PeriodicNumericPoint" class="com.tridium.bacnet.util.point.BPeriodicNumericPoint"/>
+  <type name="PooledWorkerPoint" class="com.tridium.bacnet.util.point.BPooledWorkerPoint"/>
+  <type name="ReceivedBytes" class="com.tridium.bacnet.util.metrics.bytes.BReceivedBytes"/>
+  <type name="SentBytes" class="com.tridium.bacnet.util.metrics.bytes.BSentBytes"/>
+  <type name="ReceivedMessages" class="com.tridium.bacnet.util.metrics.messages.BReceivedMessages"/>
+  <type name="SentMessages" class="com.tridium.bacnet.util.metrics.messages.BSentMessages"/>
+  <type name="AverageLatency" class="com.tridium.bacnet.util.metrics.latency.BAverageLatency"/>
+  <type name="Tokens" class="com.tridium.bacnet.util.metrics.mstp.BTokens"/>
+  <type name="ForwardingWiretap" class="com.tridium.bacnet.util.tap.BForwardingWiretap"/>
+  <type name="ForwardedMessageSink" class="com.tridium.bacnet.util.tap.BForwardedMessageSink"/>
+ </types>
+ <permissions>
+  <java-permissions type="station">
+   <java-permission action="read" class="java.io.FilePermission" name="${/}dev${/}mstp1"/>
+   <java-permission action="read" class="java.io.FilePermission" name="${/}dev${/}mstp2"/>
+   <java-permission action="read" class="java.io.FilePermission" name="${/}dev${/}mstp3"/>
+   <java-permission action="read" class="java.io.FilePermission" name="${/}dev${/}mstp4"/>
+   <java-permission action="read" class="java.io.FilePermission" name="${/}dev${/}mstp5"/>
+   <java-permission action="read" class="java.io.FilePermission" name="${/}dev${/}mstp6"/>
+   <java-permission action="read,write" class="java.io.FilePermission" name="${niagara.user.home}${/}logging"/>
+   <java-permission action="read,write" class="java.io.FilePermission" name="${niagara.user.home}${/}logging${/}-"/>
+   <java-permission action="accept,connect,listen,resolve" class="com.tridium.nre.security.NiagaraSocketPermission" name="*:1-100000"/>
+   <java-permission class="java.lang.RuntimePermission" name="setIO"/>
+   <java-permission class="java.lang.RuntimePermission" name="modifyThread"/>
+   <java-permission class="java.lang.RuntimePermission" name="modifyThreadGroup"/>
+   <java-permission class="java.lang.RuntimePermission" name="shutdownHooks"/>
+  </java-permissions>
+  <java-permissions type="all">
+   <java-permission action="read" class="java.util.PropertyPermission" name="*"/>
+   <java-permission class="java.util.logging.LoggingPermission" name="control"/>
+  </java-permissions>
+  <java-permissions type="workbench">
+   <java-permission class="java.lang.RuntimePermission" name="getenv.*"/>
+   <java-permission class="java.lang.RuntimePermission" name="exitVM.*"/>
+   <java-permission class="java.lang.RuntimePermission" name="accessClassInPackage.sun.util.logging.resources"/>
+   <java-permission action="connect,resolve" class="com.tridium.nre.security.NiagaraSocketPermission" name="*:1-100000"/>
+   <java-permission class="java.awt.AWTPermission" name="accessClipboard"/>
+   <java-permission class="java.awt.AWTPermission" name="showWindowWithoutWarningBanner"/>
+  </java-permissions>
+ </permissions>
+</module>

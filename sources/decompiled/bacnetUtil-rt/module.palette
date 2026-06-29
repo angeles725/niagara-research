@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bajaObjectGraph version="1.0">
+<p m="b=baja" t="b:UnrestrictedFolder">
+
+<!-- Device Overrides -->
+<p n="DeviceOverrides" m="bu=bacnetUtil" t="b:UnrestrictedFolder">
+  <p n="RpmOverride"                   t="bu:RpmOverride"/>
+  <p n="ApduSizeOverride"              t="bu:ApduSizeOverride"/>
+  <p n="SegmentationOverride"          t="bu:SegmentationOverride"/>
+  <p n="ServicesOverride"              t="bu:ServicesSupportedOverride"/>
+</p>
+
+<!-- Metrics -->
+<p n="Metrics" t="b:UnrestrictedFolder">
+  <p n="Tokens"   t="bu:Tokens"/>
+  
+  <p n="SentMessages"                t="bu:SentMessages"/>
+  <p n="ReceivedMessages"            t="bu:ReceivedMessages"/>
+
+  <p n="SentBytes"                   t="bu:SentBytes"/>
+  <p n="ReceivedBytes"               t="bu:ReceivedBytes"/>
+  
+  <p n="AverageLatency"              t="bu:AverageLatency"/>
+</p>
+
+<p n="Point" t="b:UnrestrictedFolder">
+  <p n="PriorityArrayDetector"  m="bac=bacnet" t="bac:PriorityArrayDetector"/>
+</p>
+
+<p n="Wiretaps" t="b:UnrestrictedFolder">
+  <p n="ForwardingWiretap"             t="bu:ForwardingWiretap"/>
+  <p n="ForwardedMessageSink"          t="bu:ForwardedMessageSink"/>
+</p>
+
+</p>
+</bajaObjectGraph>

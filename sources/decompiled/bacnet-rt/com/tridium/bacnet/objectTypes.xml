@@ -1,0 +1,1658 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- objectTypes.xml -->
+<!--
+  This file contains property information about standard BACnet object types.
+  The information is intended to be current with ANSI/ASHRAE 135-2012, which
+  is Protocol_Version 1, Protocol_Revision 14, and addenda to 135-2012 for
+  Protocol_Revision 16.
+
+  The object type information is presented in the form of a list of possible
+  object types that may exist within this device, listed with the possible
+  properties for this object type.  The metadata for each property is in the
+  form of XML attributes.
+
+  The identifiers for each property are:
+  id  Flag name        Optional Description
+  n   Name                n     used for creating the Niagara Property object.
+  i   Property Identifier n     see BBacnetPropertyIdentifier.java.
+  a   Asn Type            n     see BacnetConst.java for negative values.
+  r   Required flag       y     true if this is a Required property.
+  e   Extensible flag     y     true if this is an extensible enumeration
+  t   Type                y     class name for constructed data types.
+  b   BitString name      y     name of the bit string - see BacnetBitStringUtil.java.
+  s   Size                y     the fixed size of this array.
+  f   Facet               y     true if this property configures a facet for display
+  c   Facet-controlled    y     configures facet control of property display
+  pr  Protocol Revision   y     when was the property added? Reduces upload time of older devices
+
+  ASN Primitive Data Types
+  ========================
+  NULL                     = 0
+  BOOLEAN                  = 1
+  Unsigned                 = 2
+  INTEGER                  = 3
+  REAL                     = 4
+  Double                   = 5
+  OCTET_STRING             = 6
+  CharacterString          = 7
+  BIT_STRING               = 8
+  ENUMERATED               = 9
+  Date                     = 10
+  Time                     = 11
+  BACnetObjectIdentifier   = 12
+  ASHRAE_RESERVED_13       = 13
+  ASHRAE_RESERVED_14       = 14
+  ASHRAE_RESERVED_15       = 15
+
+  Niagara-defined codes for special data types
+  ============================================
+  ASN_CONSTRUCTED_DATA     = -1
+  ASN_BACNET_ARRAY         = -2
+  ASN_BACNET_LIST          = -3
+  ASN_ANY                  = -4
+  ASN_CHOICE               = -5
+  ASN_UNKNOWN_PROPRIETARY  = -6
+
+-->
+
+<objectTypes>
+ <object n="AnalogInput" t="0">
+  <property n="objectIdentifier"                  i="75"  a="12" r="true"/>
+  <property n="objectName"                        i="77"  a="7" r="true"/>
+  <property n="objectType"                        i="79"  a="9" r="true" e="true" t="bacnet:BacnetObjectType"/>
+  <property n="presentValue"                      i="85"  a="4" r="true" c="all"/>
+  <property n="description"                       i="28"  a="7"/>
+  <property n="deviceType"                        i="31"  a="7"/>
+  <property n="statusFlags"                       i="111" a="8" r="true" b="BacnetStatusFlags"/>
+  <property n="eventState"                        i="36"  a="9" r="true" e="true" t="bacnet:BacnetEventState"/>
+  <property n="reliability"                       i="103" a="9" e="true" t="bacnet:BacnetReliability"/>
+  <property n="outOfService"                      i="81"  a="1" r="true"/>
+  <property n="updateInterval"                    i="118" a="2"/>
+  <property n="units"                             i="117" a="9" r="true" f="true" e="true" t="bacnet:BacnetEngineeringUnits"/>
+  <property n="minPresValue"                      i="69"  a="4" f="true" c="units"/>
+  <property n="maxPresValue"                      i="65"  a="4" f="true" c="units"/>
+  <property n="resolution"                        i="106" a="4" f="true" c="units"/>
+  <property n="covIncrement"                      i="22"  a="4" c="units"/>
+  <property n="timeDelay"                         i="113" a="2"/>
+  <property n="notificationClass"                 i="17"  a="2"/>
+  <property n="highLimit"                         i="45"  a="4" c="units"/>
+  <property n="lowLimit"                          i="59"  a="4" c="units"/>
+  <property n="deadband"                          i="25"  a="4" c="units"/>
+  <property n="limitEnable"                       i="52"  a="8" b="BacnetLimitEnable"/>
+  <property n="eventEnable"                       i="35"  a="8" b="BacnetEventTransitionBits"/>
+  <property n="ackedTransitions"                  i="0"   a="8" b="BacnetEventTransitionBits"/>
+  <property n="notifyType"                        i="72"  a="9" t="bacnet:BacnetNotifyType"/>
+  <property n="eventTimeStamps"                   i="130" a="-2" s="3" t="bacnet:BacnetTimeStamp" pr="1"/>
+
+  <property n="eventMessageTexts"                 i="351" a="-2" s="3" t="baja:String" pr="11"/>
+
+  <property n="eventMessageTextsConfig"           i="352" a="-2" s="3" t="baja:String" pr="13"/>
+  <property n="eventDetectionEnable"              i="353" a="1" pr="13"/>
+  <property n="eventAlgorithmInhibitRef"          i="355" a="-1" t="bacnet:BacnetObjectPropertyReference" pr="13"/>
+  <property n="eventAlgorithmInhibit"             i="354" a="1" pr="13"/>
+  <property n="timeDelayNormal"                   i="356" a="2" pr="13"/>
+  <property n="reliabilityEvaluationInhibit"      i="357" a="1" pr="13"/>
+
+  <property n="propertyList"                      i="371" a="-2" r="true" t="bacnet:BacnetPropertyIdentifier"  pr="14"/>
+
+  <property n="faultHighLimit"                    i="388" a="4" c="units" pr="16"/>
+  <property n="faultLowLimit"                     i="389" a="4" c="units" pr="16"/>
+  <property n="interfaceValue"                    i="387" a="-5" t="bacnet:BacnetOptionalReal" c="units" pr="16"/>
+
+  <property n="profileName"                       i="168" a="7" pr="2"/>
+ </object>
+ <object n="AnalogOutput" t="1">
+  <property n="objectIdentifier"                  i="75"  a="12" r="true"/>
+  <property n="objectName"                        i="77"  a="7" r="true"/>
+  <property n="objectType"                        i="79"  a="9" r="true" e="true" t="bacnet:BacnetObjectType"/>
+  <property n="presentValue"                      i="85"  a="4" r="true" c="all"/>
+  <property n="description"                       i="28"  a="7"/>
+  <property n="deviceType"                        i="31"  a="7"/>
+  <property n="statusFlags"                       i="111" a="8" r="true" b="BacnetStatusFlags"/>
+  <property n="eventState"                        i="36"  a="9" r="true" e="true" t="bacnet:BacnetEventState"/>
+  <property n="reliability"                       i="103" a="9" e="true" t="bacnet:BacnetReliability"/>
+  <property n="outOfService"                      i="81"  a="1" r="true"/>
+  <property n="units"                             i="117" a="9" r="true" f="true" e="true" t="bacnet:BacnetEngineeringUnits"/>
+  <property n="minPresValue"                      i="69"  a="4" f="true" c="units"/>
+  <property n="maxPresValue"                      i="65"  a="4" f="true" c="units"/>
+  <property n="resolution"                        i="106" a="4" f="true" c="units"/>
+  <property n="priorityArray"                     i="87"  a="-2" s="16" r="true" t="bacnet:BacnetPriorityValue" c="all"/>
+  <property n="relinquishDefault"                 i="104" a="4" r="true" c="units"/>
+  <property n="covIncrement"                      i="22"  a="4" c="units"/>
+  <property n="timeDelay"                         i="113" a="2"/>
+  <property n="notificationClass"                 i="17"  a="2"/>
+  <property n="highLimit"                         i="45"  a="4" c="units"/>
+  <property n="lowLimit"                          i="59"  a="4" c="units"/>
+  <property n="deadband"                          i="25"  a="4" c="units"/>
+  <property n="limitEnable"                       i="52"  a="8" b="BacnetLimitEnable"/>
+  <property n="eventEnable"                       i="35"  a="8" b="BacnetEventTransitionBits"/>
+  <property n="ackedTransitions"                  i="0"   a="8" b="BacnetEventTransitionBits"/>
+  <property n="notifyType"                        i="72"  a="9" t="bacnet:BacnetNotifyType"/>
+  <property n="eventTimeStamps"                   i="130" a="-2" s="3" t="bacnet:BacnetTimeStamp" pr="1"/>
+
+  <property n="eventMessageTexts"                 i="351" a="-2" s="3" t="baja:String" pr="11"/>
+
+  <property n="eventMessageTextsConfig"           i="352" a="-2" s="3" t="baja:String" pr="13"/>
+  <property n="eventDetectionEnable"              i="353" a="1" pr="13"/>
+  <property n="eventAlgorithmInhibitRef"          i="355" a="-1" t="bacnet:BacnetObjectPropertyReference" pr="13"/>
+  <property n="eventAlgorithmInhibit"             i="354" a="1" pr="13"/>
+  <property n="timeDelayNormal"                   i="356" a="2" pr="13"/>
+  <property n="reliabilityEvaluationInhibit"      i="357" a="1" pr="13"/>
+
+  <property n="propertyList"                      i="371" a="-2" r="true" t="bacnet:BacnetPropertyIdentifier" pr="14"/>
+
+  <property n="interfaceValue"                    i="387" a="-5" t="bacnet:BacnetOptionalReal" c="units" pr="16"/>
+
+  <property n="profileName"                       i="168" a="7" pr="2"/>
+ </object>
+ <object n="AnalogValue" t="2">
+  <property n="objectIdentifier"                  i="75"  a="12" r="true"/>
+  <property n="objectName"                        i="77"  a="7" r="true"/>
+  <property n="objectType"                        i="79"  a="9" r="true" e="true" t="bacnet:BacnetObjectType"/>
+  <property n="presentValue"                      i="85"  a="4" r="true" c="all"/>
+  <property n="description"                       i="28"  a="7"/>
+  <property n="statusFlags"                       i="111" a="8" r="true" b="BacnetStatusFlags"/>
+  <property n="eventState"                        i="36"  a="9" r="true" e="true" t="bacnet:BacnetEventState"/>
+  <property n="reliability"                       i="103" a="9" e="true" t="bacnet:BacnetReliability"/>
+  <property n="outOfService"                      i="81"  a="1" r="true"/>
+  <property n="units"                             i="117" a="9" r="true" f="true" e="true" t="bacnet:BacnetEngineeringUnits"/>
+  <property n="priorityArray"                     i="87"  a="-2" s="16" t="bacnet:BacnetPriorityValue" c="all"/>
+  <property n="relinquishDefault"                 i="104" a="4" c="units"/>
+  <property n="covIncrement"                      i="22"  a="4" c="units"/>
+  <property n="timeDelay"                         i="113" a="2"/>
+  <property n="notificationClass"                 i="17"  a="2"/>
+  <property n="highLimit"                         i="45"  a="4" c="units"/>
+  <property n="lowLimit"                          i="59"  a="4" c="units"/>
+  <property n="deadband"                          i="25"  a="4" c="units"/>
+  <property n="limitEnable"                       i="52"  a="8" b="BacnetLimitEnable"/>
+  <property n="eventEnable"                       i="35"  a="8" b="BacnetEventTransitionBits"/>
+  <property n="ackedTransitions"                  i="0"   a="8" b="BacnetEventTransitionBits"/>
+  <property n="notifyType"                        i="72"  a="9" t="bacnet:BacnetNotifyType"/>
+  <property n="eventTimeStamps"                   i="130" a="-2" s="3" t="bacnet:BacnetTimeStamp" pr="1"/>
+
+  <property n="eventMessageTexts"                 i="351" a="-2" s="3" t="baja:String" pr="11"/>
+
+  <property n="eventMessageTextsConfig"           i="352" a="-2" s="3" t="baja:String" pr="13"/>
+  <property n="eventDetectionEnable"              i="353" a="1" pr="13"/>
+  <property n="eventAlgorithmInhibitRef"          i="355" a="-1" t="bacnet:BacnetObjectPropertyReference" pr="13"/>
+  <property n="eventAlgorithmInhibit"             i="354" a="1" pr="13"/>
+  <property n="timeDelayNormal"                   i="356" a="2" pr="13"/>
+  <property n="reliabilityEvaluationInhibit"      i="357" a="1" pr="13"/>
+
+  <property n="minPresValue"                      i="69"  a="4" f="true" c="units" pr="14"/>
+  <property n="maxPresValue"                      i="65"  a="4" f="true" c="units" pr="14"/>
+  <property n="resolution"                        i="106" a="4" f="true" c="units" pr="14"/>
+  <property n="propertyList"                      i="371" a="-2" r="true" t="bacnet:BacnetPropertyIdentifier" pr="14"/>
+
+  <property n="faultHighLimit"                    i="388" a="4"  c="units" pr="16"/>
+  <property n="faultLowLimit"                     i="389" a="4"  c="units" pr="16"/>
+
+  <property n="profileName"                       i="168" a="7" pr="2"/>
+ </object>
+ <object n="Averaging" t="18" pr="1">
+  <property n="objectIdentifier"                  i="75"  a="12" r="true"/>
+  <property n="objectName"                        i="77"  a="7" r="true"/>
+  <property n="objectType"                        i="79"  a="9" r="true" e="true" t="bacnet:BacnetObjectType"/>
+  <property n="minimumValue"                      i="136" a="4" r="true"/>
+  <property n="minimumValueTimestamp"             i="150" a="-1" t="bacnet:BacnetDateTime"/>
+  <property n="averageValue"                      i="125" a="4" r="true"/>
+  <property n="varianceValue"                     i="151" a="4"/>
+  <property n="maximumValue"                      i="135" a="4" r="true"/>
+  <property n="maximumValueTimestamp"             i="149" a="-1" t="bacnet:BacnetDateTime"/>
+  <property n="description"                       i="28"  a="7"/>
+  <property n="attemptedSamples"                  i="124" a="2"/>
+  <property n="validSamples"                      i="146" a="2" r="true"/>
+  <property n="objectPropertyReference"           i="78"  a="-1" r="true" t="bacnet:BacnetDeviceObjectPropertyReference"/>
+  <property n="windowInterval"                    i="147" a="2"/>
+  <property n="windowSamples"                     i="148" a="2"/>
+
+  <property n="propertyList"                      i="371" a="-2" r="true" t="bacnet:BacnetPropertyIdentifier" pr="14"/>
+
+  <property n="profileName"                       i="168" a="7" pr="2"/>
+ </object>
+ <object n="BinaryInput" t="3">
+  <property n="objectIdentifier"                  i="75"  a="12" r="true"/>
+  <property n="objectName"                        i="77"  a="7" r="true"/>
+  <property n="objectType"                        i="79"  a="9" r="true" e="true" t="bacnet:BacnetObjectType"/>
+  <property n="presentValue"                      i="85"  a="9" r="true" t="bacnet:BacnetBinaryPv" c="all"/>
+  <property n="description"                       i="28"  a="7"/>
+  <property n="deviceType"                        i="31"  a="7"/>
+  <property n="statusFlags"                       i="111" a="8" r="true" b="BacnetStatusFlags"/>
+  <property n="eventState"                        i="36"  a="9" r="true" e="true" t="bacnet:BacnetEventState"/>
+  <property n="reliability"                       i="103" a="9" e="true" t="bacnet:BacnetReliability"/>
+  <property n="outOfService"                      i="81"  a="1" r="true"/>
+  <property n="polarity"                          i="84"  a="9" r="true" t="bacnet:BacnetPolarity"/>
+  <property n="inactiveText"                      i="46"  a="7" f="true"/>
+  <property n="activeText"                        i="4"   a="7" f="true"/>
+  <property n="changeOfStateTime"                 i="16"  a="-1" t="bacnet:BacnetDateTime"/>
+  <property n="changeOfStateCount"                i="15"  a="2"/>
+  <property n="timeOfStateCountReset"             i="115" a="-1" t="bacnet:BacnetDateTime"/>
+  <property n="elapsedActiveTime"                 i="33"  a="2"/>
+  <property n="timeOfActiveTimeReset"             i="114" a="-1" t="bacnet:BacnetDateTime"/>
+  <property n="timeDelay"                         i="113" a="2"/>
+  <property n="notificationClass"                 i="17"  a="2"/>
+  <property n="alarmValue"                        i="6"   a="9" t="bacnet:BacnetBinaryPv" c="all"/>
+  <property n="eventEnable"                       i="35"  a="8" b="BacnetEventTransitionBits"/>
+  <property n="ackedTransitions"                  i="0"   a="8" b="BacnetEventTransitionBits"/>
+  <property n="notifyType"                        i="72"  a="9" t="bacnet:BacnetNotifyType"/>
+  <property n="eventTimeStamps"                   i="130" a="-2" s="3" t="bacnet:BacnetTimeStamp" pr="1"/>
+
+  <property n="eventMessageTexts"                 i="351" a="-2" s="3" t="baja:String" pr="11"/>
+
+  <property n="eventMessageTextsConfig"           i="352" a="-2" s="3" t="baja:String" pr="13"/>
+  <property n="eventDetectionEnable"              i="353" a="1" pr="13"/>
+  <property n="eventAlgorithmInhibitRef"          i="355" a="-1" t="bacnet:BacnetObjectPropertyReference" pr="13"/>
+  <property n="eventAlgorithmInhibit"             i="354" a="1" pr="13"/>
+  <property n="timeDelayNormal"                   i="356" a="2" pr="13"/>
+  <property n="reliabilityEvaluationInhibit"      i="357" a="1" pr="13"/>
+
+  <property n="propertyList"                      i="371" a="-2" r="true" t="bacnet:BacnetPropertyIdentifier" pr="14"/>
+
+  <property n="interfaceValue"                    i="387" a="-5" t="bacnet:BacnetOptionalBinaryPv" c="all" pr="16"/>
+
+  <property n="profileName"                       i="168" a="7" pr="2"/>
+ </object>
+ <object n="BinaryOutput" t="4">
+  <property n="objectIdentifier"                  i="75"  a="12" r="true"/>
+  <property n="objectName"                        i="77"  a="7" r="true"/>
+  <property n="objectType"                        i="79"  a="9" r="true" e="true" t="bacnet:BacnetObjectType"/>
+  <property n="presentValue"                      i="85"  a="9" r="true" t="bacnet:BacnetBinaryPv" c="all"/>
+  <property n="description"                       i="28"  a="7"/>
+  <property n="deviceType"                        i="31"  a="7"/>
+  <property n="statusFlags"                       i="111" a="8" r="true" b="BacnetStatusFlags"/>
+  <property n="eventState"                        i="36"  a="9" r="true" e="true" t="bacnet:BacnetEventState"/>
+  <property n="reliability"                       i="103" a="9" e="true" t="bacnet:BacnetReliability"/>
+  <property n="outOfService"                      i="81"  a="1" r="true"/>
+  <property n="polarity"                          i="84"  a="9" r="true" t="bacnet:BacnetPolarity"/>
+  <property n="inactiveText"                      i="46"  a="7" f="true"/>
+  <property n="activeText"                        i="4"   a="7" f="true"/>
+  <property n="changeOfStateTime"                 i="16"  a="-1" t="bacnet:BacnetDateTime"/>
+  <property n="changeOfStateCount"                i="15"  a="2"/>
+  <property n="timeOfStateCountReset"             i="115" a="-1" t="bacnet:BacnetDateTime"/>
+  <property n="elapsedActiveTime"                 i="33"  a="2"/>
+  <property n="timeOfActiveTimeReset"             i="114" a="-1" t="bacnet:BacnetDateTime"/>
+  <property n="minimumOffTime"                    i="66"  a="2"/>
+  <property n="minimumOnTime"                     i="67"  a="2"/>
+  <property n="priorityArray"                     i="87"  a="-2" s="16" r="true" t="bacnet:BacnetPriorityValue" c="all"/>
+  <property n="relinquishDefault"                 i="104" a="9" r="true" t="bacnet:BacnetBinaryPv" c="all"/>
+  <property n="timeDelay"                         i="113" a="2"/>
+  <property n="notificationClass"                 i="17"  a="2"/>
+  <property n="feedbackValue"                     i="40"  a="9" t="bacnet:BacnetBinaryPv" c="all"/>
+  <property n="eventEnable"                       i="35"  a="8" b="BacnetEventTransitionBits"/>
+  <property n="ackedTransitions"                  i="0"   a="8" b="BacnetEventTransitionBits"/>
+  <property n="notifyType"                        i="72"  a="9" t="bacnet:BacnetNotifyType"/>
+  <property n="eventTimeStamps"                   i="130" a="-2" s="3" t="bacnet:BacnetTimeStamp" pr="1"/>
+
+  <property n="eventMessageTexts"                 i="351" a="-2" s="3" t="baja:String" pr="11"/>
+
+  <property n="eventMessageTextsConfig"           i="352" a="-2" s="3" t="baja:String" pr="13"/>
+  <property n="eventDetectionEnable"              i="353" a="1" pr="13"/>
+  <property n="eventAlgorithmInhibitRef"          i="355" a="-1" t="bacnet:BacnetObjectPropertyReference" pr="13"/>
+  <property n="eventAlgorithmInhibit"             i="354" a="1" pr="13"/>
+  <property n="timeDelayNormal"                   i="356" a="2" pr="13"/>
+  <property n="reliabilityEvaluationInhibit"      i="357" a="1" pr="13"/>
+
+  <property n="propertyList"                      i="371" a="-2" r="true" t="bacnet:BacnetPropertyIdentifier" pr="14"/>
+
+  <property n="interfaceValue"                    i="387" a="-5" t="bacnet:BacnetOptionalBinaryPv" c="all" pr="16"/>
+
+  <property n="profileName"                       i="168" a="7" pr="2"/>
+ </object>
+ <object n="BinaryValue" t="5">
+  <property n="objectIdentifier"                  i="75"  a="12" r="true"/>
+  <property n="objectName"                        i="77"  a="7" r="true"/>
+  <property n="objectType"                        i="79"  a="9" r="true" e="true" t="bacnet:BacnetObjectType"/>
+  <property n="presentValue"                      i="85"  a="9" r="true" t="bacnet:BacnetBinaryPv" c="all"/>
+  <property n="description"                       i="28"  a="7"/>
+  <property n="statusFlags"                       i="111" a="8" r="true" b="BacnetStatusFlags"/>
+  <property n="eventState"                        i="36"  a="9" r="true" e="true" t="bacnet:BacnetEventState"/>
+  <property n="reliability"                       i="103" a="9" e="true" t="bacnet:BacnetReliability"/>
+  <property n="outOfService"                      i="81"  a="1" r="true"/>
+  <property n="inactiveText"                      i="46"  a="7" f="true"/>
+  <property n="activeText"                        i="4"   a="7" f="true"/>
+  <property n="changeOfStateTime"                 i="16"  a="-1" t="bacnet:BacnetDateTime"/>
+  <property n="changeOfStateCount"                i="15"  a="2"/>
+  <property n="timeOfStateCountReset"             i="115" a="-1" t="bacnet:BacnetDateTime"/>
+  <property n="elapsedActiveTime"                 i="33"  a="2"/>
+  <property n="timeOfActiveTimeReset"             i="114" a="-1" t="bacnet:BacnetDateTime"/>
+  <property n="minimumOffTime"                    i="66"  a="2"/>
+  <property n="minimumOnTime"                     i="67"  a="2"/>
+  <property n="priorityArray"                     i="87"  a="-2" s="16" t="bacnet:BacnetPriorityValue" c="all"/>
+  <property n="relinquishDefault"                 i="104" a="9" t="bacnet:BacnetBinaryPv" c="all"/>
+  <property n="timeDelay"                         i="113" a="2"/>
+  <property n="notificationClass"                 i="17"  a="2"/>
+  <property n="alarmValue"                        i="6"   a="9" t="bacnet:BacnetBinaryPv" c="all"/>
+  <property n="eventEnable"                       i="35"  a="8" b="BacnetEventTransitionBits"/>
+  <property n="ackedTransitions"                  i="0"   a="8" b="BacnetEventTransitionBits"/>
+  <property n="notifyType"                        i="72"  a="9" t="bacnet:BacnetNotifyType"/>
+  <property n="eventTimeStamps"                   i="130" a="-2" s="3" t="bacnet:BacnetTimeStamp" pr="1"/>
+
+  <property n="eventMessageTexts"                 i="351" a="-2" s="3" t="baja:String" pr="11"/>
+
+  <property n="eventMessageTextsConfig"           i="352" a="-2" s="3" t="baja:String" pr="13"/>
+  <property n="eventDetectionEnable"              i="353" a="1" pr="13"/>
+  <property n="eventAlgorithmInhibitRef"          i="355" a="-1" t="bacnet:BacnetObjectPropertyReference" pr="13"/>
+  <property n="eventAlgorithmInhibit"             i="354" a="1" pr="13"/>
+  <property n="timeDelayNormal"                   i="356" a="2" pr="13"/>
+  <property n="reliabilityEvaluationInhibit"      i="357" a="1" pr="13"/>
+
+  <property n="propertyList"                      i="371" a="-2" r="true" t="bacnet:BacnetPropertyIdentifier" pr="14"/>
+
+  <property n="profileName"                       i="168" a="7" pr="2"/>
+ </object>
+ <object n="Calendar" t="6">
+  <property n="objectIdentifier"                  i="75"  a="12" r="true"/>
+  <property n="objectName"                        i="77"  a="7" r="true"/>
+  <property n="objectType"                        i="79"  a="9" r="true" e="true" t="bacnet:BacnetObjectType"/>
+  <property n="description"                       i="28"  a="7"/>
+  <property n="presentValue"                      i="85"  a="1" r="true"/>
+  <property n="dateList"                          i="23"  a="-3" r="true" t="bacnet:BacnetCalendarEntry"/>
+
+  <property n="propertyList"                      i="371" a="-2" r="true" t="bacnet:BacnetPropertyIdentifier" pr="14"/>
+
+  <property n="profileName"                       i="168" a="7" pr="2"/>
+ </object>
+ <object n="Command" t="7">
+  <property n="objectIdentifier"                  i="75"  a="12" r="true"/>
+  <property n="objectName"                        i="77"  a="7" r="true"/>
+  <property n="objectType"                        i="79"  a="9" r="true" e="true" t="bacnet:BacnetObjectType"/>
+  <property n="description"                       i="28"  a="7"/>
+  <property n="presentValue"                      i="85"  a="2" r="true"/>
+  <property n="inProcess"                         i="47"  a="1" r="true"/>
+  <property n="allWritesSuccessful"               i="9"   a="1" r="true"/>
+  <property n="action"                            i="2"   a="-2" r="true" t="bacnet:BacnetActionList"/>
+  <property n="actionText"                        i="3"   a="-2" t="baja:String"/>
+
+  <property n="propertyList"                      i="371" a="-2" r="true" t="bacnet:BacnetPropertyIdentifier" pr="14"/>
+
+  <property n="statusFlags"                       i="111" a="8"  b="BacnetStatusFlags" pr="16"/>
+  <property n="eventState"                        i="36"  a="9"  e="true" t="bacnet:BacnetEventState" pr="16"/>
+  <property n="reliability"                       i="103" a="9"  e="true" t="bacnet:BacnetReliability" pr="16"/>
+  <property n="eventDetectionEnable"              i="353" a="1"  pr="16"/>
+  <property n="notificationClass"                 i="17"  a="2"  pr="16"/>
+  <property n="eventEnable"                       i="35"  a="8"  b="BacnetEventTransitionBits" pr="16"/>
+  <property n="ackedTransitions"                  i="0"   a="8"  b="BacnetEventTransitionBits" pr="16"/>
+  <property n="notifyType"                        i="72"  a="9"  t="bacnet:BacnetNotifyType" pr="16"/>
+  <property n="eventTimeStamps"                   i="130" a="-2" s="3" t="bacnet:BacnetTimeStamp" pr="16"/>
+  <property n="eventMessageTexts"                 i="351" a="-2" s="3" t="baja:String" pr="16"/>
+  <property n="eventMessageTextsConfig"           i="352" a="-2" s="3" t="baja:String" pr="16"/>
+  <property n="reliabilityEvaluationInhibit"      i="357" a="1"  pr="16"/>
+
+  <property n="profileName"                       i="168" a="7" pr="2"/>
+ </object>
+ <object n="Device" t="8">
+  <property n="objectIdentifier"                  i="75"  a="12" r="true"/>
+  <property n="objectName"                        i="77"  a="7" r="true"/>
+  <property n="objectType"                        i="79"  a="9" r="true" e="true" t="bacnet:BacnetObjectType"/>
+  <property n="systemStatus"                      i="112" a="9" r="true" e="true" t="bacnet:BacnetDeviceStatus"/>
+  <property n="vendorName"                        i="121" a="7" r="true"/>
+  <property n="vendorIdentifier"                  i="120" a="2" r="true"/>
+  <property n="modelName"                         i="70"  a="7" r="true"/>
+  <property n="firmwareRevision"                  i="44"  a="7" r="true"/>
+  <property n="applicationSoftwareVersion"        i="12"  a="7" r="true"/>
+  <property n="location"                          i="58"  a="7"/>
+  <property n="description"                       i="28"  a="7"/>
+  <property n="protocolVersion"                   i="98"  a="2" r="true"/>
+  <property n="protocolRevision"                  i="139" a="2" r="true" pr="1"/>
+  <property n="protocolServicesSupported"         i="97"  a="8" r="true" b="BacnetServicesSupported"/>
+  <property n="protocolObjectTypesSupported"      i="96"  a="8" r="true" b="BacnetObjectTypesSupported"/>
+  <property n="objectList"                        i="76"  a="-2" r="true" t="bacnet:BacnetObjectIdentifier"/>
+  <property n="structuredObjectList"              i="209" a="-2" t="bacnet:BacnetObjectIdentifier" pr="5"/>
+  <property n="maxApduLengthAccepted"             i="62"  a="2" r="true"/>
+  <property n="segmentationSupported"             i="107" a="9" r="true" t="bacnet:BacnetSegmentation"/>
+  <property n="maxSegmentsAccepted"               i="167" a="2" pr="2"/>
+  <property n="vtClassesSupported"                i="122" a="-3" t="bacnet:BacnetVtClass"/>
+  <property n="activeVtSessions"                  i="5"   a="-3" t="bacnet:BacnetVtSession"/>
+  <property n="localTime"                         i="57"  a="11"/>
+  <property n="localDate"                         i="56"  a="10"/>
+  <property n="utcOffset"                         i="119" a="3"/>
+  <property n="daylightSavingsStatus"             i="24"  a="1"/>
+  <property n="apduSegmentTimeout"                i="10"  a="2"/>
+  <property n="apduTimeout"                       i="11"  a="2" r="true"/>
+  <property n="numberOfApduRetries"               i="73"  a="2" r="true"/>
+  <property n="timeSynchronizationRecipients"     i="116" a="-3" t="bacnet:BacnetRecipient"/>
+  <property n="maxMaster"                         i="64"  a="2"/>
+  <property n="maxInfoFrames"                     i="63"  a="2"/>
+  <property n="deviceAddressBinding"              i="30"  a="-3" r="true" t="bacnet:BacnetAddressBinding"/>
+  <property n="databaseRevision"                  i="155" a="2" r="true" pr="2"/>
+  <property n="configurationFiles"                i="154" a="-2" t="bacnet:BacnetObjectIdentifier" pr="2"/>
+  <property n="lastRestoreTime"                   i="157" a="-5" t="bacnet:BacnetTimeStamp" pr="2"/>
+  <property n="backupFailureTimeout"              i="153" a="2" pr="2"/>
+  <property n="backupPreparationTime"             i="339" a="2" pr="10"/>
+  <property n="restoreCompletionTime"             i="340" a="2" pr="10"/>
+  <property n="restorePreparationTime"            i="341" a="2" pr="10"/>
+  <property n="backupAndRestoreState"             i="338" a="9" t="bacnet:BacnetBackupState" pr="10"/>
+  <property n="activeCovSubscriptions"            i="152" a="-3" t="bacnet:BacnetCovSubscription" pr="2"/>
+  <property n="slaveProxyEnable"                  i="172" a="-2" t="baja:Boolean" pr="4"/>
+  <property n="manualSlaveAddressBinding"         i="170" a="-3" t="bacnet:BacnetAddressBinding" pr="4"/>
+  <property n="autoSlaveDiscovery"                i="169" a="-2" t="baja:Boolean" pr="4"/>
+  <property n="slaveAddressBinding"               i="171" a="-3" t="bacnet:BacnetAddressBinding" pr="4"/>
+  <property n="lastRestartReason"                 i="196" a="9" e="true" t="bacnet:BacnetRestartReason" pr="7"/>
+  <property n="timeOfDeviceRestart"               i="203" a="-5" t="bacnet:BacnetTimeStamp" pr="7"/>
+  <property n="restartNotificationRecipients"     i="202" a="-3" t="bacnet:BacnetRecipient" pr="7"/>
+  <property n="utcTimeSynchronizationRecipients"  i="206" a="-3" t="bacnet:BacnetRecipient" pr="7"/>
+  <property n="timeSynchronizationInterval"       i="204" a="2" pr="7"/>
+  <property n="alignIntervals"                    i="193" a="1" pr="7"/>
+  <property n="intervalOffset"                    i="195" a="2" pr="7"/>
+
+  <property n="serialNumber"                      i="372" a="7" pr="14"/>
+  <property n="propertyList"                      i="371" a="-2" r="true" t="bacnet:BacnetPropertyIdentifier" pr="14"/>
+
+  <property n="statusFlags"                       i="111" a="8"  b="BacnetStatusFlags" pr="16"/>
+  <property n="eventState"                        i="36"  a="9"  e="true" t="bacnet:BacnetEventState" pr="16"/>
+  <property n="reliability"                       i="103" a="9"  e="true" t="bacnet:BacnetReliability" pr="16"/>
+  <property n="eventDetectionEnable"              i="353" a="1"  pr="16"/>
+  <property n="notificationClass"                 i="17"  a="2"  pr="16"/>
+  <property n="eventEnable"                       i="35"  a="8"  b="BacnetEventTransitionBits" pr="16"/>
+  <property n="ackedTransitions"                  i="0"   a="8"  b="BacnetEventTransitionBits" pr="16"/>
+  <property n="notifyType"                        i="72"  a="9"  t="bacnet:BacnetNotifyType" pr="16"/>
+  <property n="eventTimeStamps"                   i="130" a="-2" s="3" t="bacnet:BacnetTimeStamp" pr="16"/>
+  <property n="eventMessageTexts"                 i="351" a="-2" s="3" t="baja:String" pr="16"/>
+  <property n="eventMessageTextsConfig"           i="352" a="-2" s="3" t="baja:String" pr="16"/>
+  <property n="reliabilityEvaluationInhibit"      i="357" a="1"  pr="16"/>
+
+  <property n="profileName"                       i="168" a="7" pr="2"/>
+ </object>
+ <object n="EventEnrollment" t="9">
+  <property n="objectIdentifier"                  i="75"  a="12" r="true"/>
+  <property n="objectName"                        i="77"  a="7" r="true"/>
+  <property n="objectType"                        i="79"  a="9" r="true" e="true" t="bacnet:BacnetObjectType"/>
+  <property n="description"                       i="28"  a="7"/>
+  <property n="eventType"                         i="37"  a="9" r="true" e="true" t="bacnet:BacnetEventType"/>
+  <property n="notifyType"                        i="72"  a="9" r="true" t="bacnet:BacnetNotifyType"/>
+  <property n="eventParameters"                   i="83"  a="-5" r="true" t="bacnet:BacnetEventParameter"/>
+  <property n="objectPropertyReference"           i="78"  a="-1" r="true" t="bacnet:BacnetDeviceObjectPropertyReference"/>
+  <property n="eventState"                        i="36"  a="9" r="true" e="true" t="bacnet:BacnetEventState"/>
+  <property n="eventEnable"                       i="35"  a="8" r="true" b="BacnetEventTransitionBits"/>
+  <property n="ackedTransitions"                  i="0"   a="8" r="true" b="BacnetEventTransitionBits"/>
+  <property n="notificationClass"                 i="17"  a="2" r="true"/>
+  <property n="eventTimeStamps"                   i="130" a="-2" r="true" t="bacnet:BacnetTimeStamp" s="3" pr="1"/>
+
+  <property n="eventMessageTexts"                 i="351" a="-2" t="baja:String" s="3" pr="11"/>
+
+  <property n="eventMessageTextsConfig"           i="352" a="-2" s="3" t="baja:String" pr="13"/>
+  <property n="eventDetectionEnable"              i="353" a="1" r="true" pr="13"/>
+  <property n="eventAlgorithmInhibitRef"          i="355" a="-1" t="bacnet:BacnetObjectPropertyReference" pr="13"/>
+  <property n="eventAlgorithmInhibit"             i="354" a="1" pr="13"/>
+  <property n="timeDelayNormal"                   i="356" a="2" pr="13"/>
+  <property n="statusFlags"                       i="111" a="8" r="true" b="BacnetStatusFlags" pr="13"/>
+  <property n="reliability"                       i="103" a="9" r="true" e="true" t="bacnet:BacnetReliability" pr="13"/>
+  <property n="faultType"                         i="359" a="9" t="bacnet:BacnetFaultType" pr="13"/>
+  <property n="faultParameters"                   i="358" a="-5" t="bacnet:BacnetFaultParameter" pr="13"/>
+  <property n="reliabilityEvaluationInhibit"      i="357" a="1" pr="13"/>
+
+  <property n="propertyList"                      i="371" a="-2" r="true" t="bacnet:BacnetPropertyIdentifier" pr="14"/>
+
+  <property n="profileName"                       i="168" a="7" pr="2"/>
+ </object>
+ <object n="File" t="10">
+  <property n="objectIdentifier"                i="75" a="12" r="true"/>
+  <property n="objectName"                      i="77" a="7" r="true"/>
+  <property n="objectType"                      i="79" a="9" r="true" e="true" t="bacnet:BacnetObjectType"/>
+  <property n="description"                     i="28" a="7"/>
+  <property n="fileType"                        i="43" a="7" r="true"/>
+  <property n="fileSize"                        i="42" a="2" r="true"/>
+  <property n="modificationDate"                i="71" a="-1" r="true" t="bacnet:BacnetDateTime"/>
+  <property n="archive"                         i="13" a="1" r="true"/>
+  <property n="readOnly"                        i="99" a="1" r="true"/>
+  <property n="fileAccessMethod"                i="41" a="9" r="true" t="bacnet:BacnetFileAccessMethod"/>
+  <property n="recordCount"                     i="141" a="2" pr="1"/>
+
+  <property n="propertyList"                    i="371" a="-2" r="true" t="bacnet:BacnetPropertyIdentifier" pr="14"/>
+
+  <property n="profileName"                     i="168" a="7" pr="2"/>
+ </object>
+ <object n="Group" t="11">
+  <property n="objectIdentifier"                i="75" a="12" r="true"/>
+  <property n="objectName"                      i="77" a="7" r="true"/>
+  <property n="objectType"                      i="79" a="9" r="true" e="true" t="bacnet:BacnetObjectType"/>
+  <property n="description"                     i="28" a="7"/>
+  <property n="listOfGroupMembers"              i="53" a="-3" r="true" t="bacnet:ReadAccessSpecification"/>
+  <property n="presentValue"                    i="85" a="-3" r="true" t="bacnet:ReadAccessResult"/>
+
+  <property n="propertyList"                    i="371" a="-2" r="true" t="bacnet:BacnetPropertyIdentifier" pr="14"/>
+
+  <property n="profileName"                     i="168" a="7" pr="2"/>
+ </object>
+ <object n="LifeSafetyPoint" t="21" pr="2">
+  <property n="objectIdentifier"                i="75" a="12" r="true"/>
+  <property n="objectName"                      i="77" a="7" r="true"/>
+  <property n="objectType"                      i="79" a="9" r="true" e="true" t="bacnet:BacnetObjectType"/>
+  <property n="presentValue"                    i="85" a="9" r="true" e="true" t="bacnet:BacnetLifeSafetyState"/>
+  <property n="trackingValue"                   i="164" a="9" r="true" e="true" t="bacnet:BacnetLifeSafetyState"/>
+  <property n="description"                     i="28" a="7"/>
+  <property n="deviceType"                      i="31" a="7"/>
+  <property n="statusFlags"                     i="111" a="8" r="true" b="BacnetStatusFlags"/>
+  <property n="eventState"                      i="36" a="9" r="true" e="true" t="bacnet:BacnetEventState"/>
+  <property n="reliability"                     i="103" a="9" r="true" e="true" t="bacnet:BacnetReliability"/>
+  <property n="outOfService"                    i="81" a="1" r="true"/>
+  <property n="mode"                            i="160" a="9" r="true" e="true" t="bacnet:BacnetLifeSafetyMode"/>
+  <property n="acceptedModes"                   i="175" a="-3" r="true" t="bacnet:BacnetLifeSafetyMode" pr="4"/>
+  <property n="timeDelay"                       i="113" a="2"/>
+  <property n="notificationClass"               i="17" a="2"/>
+  <property n="lifeSafetyAlarmValues"           i="166" a="-3" t="bacnet:BacnetLifeSafetyState"/>
+  <property n="alarmValues"                     i="7" a="-3" t="bacnet:BacnetLifeSafetyState"/>
+  <property n="faultValues"                     i="39" a="-3" t="bacnet:BacnetLifeSafetyState"/>
+  <property n="eventEnable"                     i="35" a="8" b="BacnetEventTransitionBits"/>
+  <property n="ackedTransitions"                i="0" a="8" b="BacnetEventTransitionBits"/>
+  <property n="notifyType"                      i="72" a="9" t="bacnet:BacnetNotifyType"/>
+  <property n="eventTimeStamps"                 i="130" a="-2" t="bacnet:BacnetTimeStamp" s="3"/>
+
+  <property n="eventMessageTexts"               i="351" a="-2" t="baja:String" s="3" pr="11"/>
+
+  <property n="eventMessageTextsConfig"         i="352" a="-2" t="baja:String" s="3" pr="13"/>
+  <property n="eventDetectionEnable"            i="353" a="1" pr="13"/>
+  <property n="eventAlgorithmInhibitRef"        i="355" a="-1" t="bacnet:BacnetObjectPropertyReference" pr="13"/>
+  <property n="eventAlgorithmInhibit"           i="354" a="1" pr="13"/>
+  <property n="timeDelayNormal"                 i="356" a="2" pr="13"/>
+  <property n="reliabilityEvaluationInhibit"    i="357" a="1" pr="13"/>
+
+  <property n="silenced"                        i="163" a="9" r="true" e="true" t="bacnet:BacnetSilencedState"/>
+  <property n="operationExpected"               i="161" a="9" r="true" e="true" t="bacnet:BacnetLifeSafetyOperation"/>
+  <property n="maintenanceRequired"             i="158" a="9" e="true" t="bacnet:BacnetMaintenance"/>
+  <property n="setting"                         i="162" a="2"/>
+  <property n="directReading"                   i="156" a="4"/>
+  <property n="units"                           i="117" a="9" f="true" e="true" t="bacnet:BacnetEngineeringUnits"/>
+  <property n="memberOf"                        i="159" a="-3" t="bacnet:BacnetDeviceObjectReference"/>
+
+  <property n="propertyList"                    i="371" a="-2" r="true" t="bacnet:BacnetPropertyIdentifier" pr="14"/>
+
+  <property n="profileName"                     i="168" a="7"/>
+ </object>
+ <object n="LifeSafetyZone" t="22" pr="2">
+  <property n="objectIdentifier"                i="75"  a="12" r="true"/>
+  <property n="objectName"                      i="77"  a="7"  r="true"/>
+  <property n="objectType"                      i="79"  a="9"  r="true" e="true" t="bacnet:BacnetObjectType"/>
+  <property n="presentValue"                    i="85"  a="9"  r="true" e="true" t="bacnet:BacnetLifeSafetyState"/>
+  <property n="trackingValue"                   i="164" a="9"  r="true" e="true" t="bacnet:BacnetLifeSafetyState"/>
+  <property n="description"                     i="28"  a="7"/>
+  <property n="deviceType"                      i="31"  a="7"/>
+  <property n="statusFlags"                     i="111" a="8"  r="true" b="BacnetStatusFlags"/>
+  <property n="eventState"                      i="36"  a="9"  r="true" e="true" t="bacnet:BacnetEventState"/>
+  <property n="reliability"                     i="103" a="9"  r="true" e="true" t="bacnet:BacnetReliability"/>
+  <property n="outOfService"                    i="81"  a="1"  r="true"/>
+  <property n="mode"                            i="160" a="9"  r="true" e="true" t="bacnet:BacnetLifeSafetyMode"/>
+  <property n="acceptedModes"                   i="175" a="-3" r="true" t="bacnet:BacnetLifeSafetyMode" pr="4"/>
+  <property n="timeDelay"                       i="113" a="2"/>
+  <property n="notificationClass"               i="17"  a="2"/>
+  <property n="lifeSafetyAlarmValues"           i="166" a="-3" t="bacnet:BacnetLifeSafetyState"/>
+  <property n="alarmValues"                     i="7"   a="-3" t="bacnet:BacnetLifeSafetyState"/>
+  <property n="faultValues"                     i="39"  a="-3" t="bacnet:BacnetLifeSafetyState"/>
+  <property n="eventEnable"                     i="35"  a="8"  b="BacnetEventTransitionBits"/>
+  <property n="ackedTransitions"                i="0"   a="8"  b="BacnetEventTransitionBits"/>
+  <property n="notifyType"                      i="72"  a="9"  t="bacnet:BacnetNotifyType"/>
+  <property n="eventTimeStamps"                 i="130" a="-2" t="bacnet:BacnetTimeStamp" s="3"/>
+
+  <property n="eventMessageTexts"               i="351" a="-2" t="baja:String" s="3" pr="11"/>
+
+  <property n="eventMessageTextsConfig"         i="352" a="-2" t="baja:String" s="3" pr="13"/>
+  <property n="eventDetectionEnable"            i="353" a="1"  pr="13"/>
+  <property n="eventAlgorithmInhibitRef"        i="355" a="-1" t="bacnet:BacnetObjectPropertyReference" pr="13"/>
+  <property n="eventAlgorithmInhibit"           i="354" a="1"  pr="13"/>
+  <property n="timeDelayNormal"                 i="356" a="2"  pr="13"/>
+  <property n="reliabilityEvaluationInhibit"    i="357" a="1"  pr="13"/>
+
+  <property n="silenced"                        i="163" a="9"  r="true" e="true" t="bacnet:BacnetSilencedState"/>
+  <property n="operationExpected"               i="161" a="9"  r="true" e="true" t="bacnet:BacnetLifeSafetyOperation"/>
+  <property n="maintenanceRequired"             i="158" a="1"/>
+  <property n="zoneMembers"                     i="165" a="-3" r="true" t="bacnet:BacnetDeviceObjectReference"/>
+  <property n="memberOf"                        i="159" a="-3" t="bacnet:BacnetDeviceObjectReference"/>
+
+  <property n="propertyList"                    i="371" a="-2" r="true" t="bacnet:BacnetPropertyIdentifier" pr="14"/>
+
+  <property n="profileName"                     i="168" a="7"/>
+ </object>
+ <object n="Loop" t="12">
+  <property n="objectIdentifier"                i="75"  a="12" r="true"/>
+  <property n="objectName"                      i="77"  a="7"  r="true"/>
+  <property n="objectType"                      i="79"  a="9"  r="true" e="true" t="bacnet:BacnetObjectType"/>
+  <property n="presentValue"                    i="85"  a="4"  r="true" c="all"/>
+  <property n="description"                     i="28"  a="7"/>
+  <property n="statusFlags"                     i="111" a="8"  r="true" b="BacnetStatusFlags"/>
+  <property n="eventState"                      i="36"  a="9"  r="true" e="true" t="bacnet:BacnetEventState"/>
+  <property n="reliability"                     i="103" a="9"  e="true" t="bacnet:BacnetReliability"/>
+  <property n="outOfService"                    i="81"  a="1"  r="true"/>
+  <property n="updateInterval"                  i="118" a="2"/>
+  <property n="outputUnits"                     i="82"  a="9"  r="true" f="true" e="true" t="bacnet:BacnetEngineeringUnits"/>
+  <property n="manipulatedVariableReference"    i="60"  a="-1" r="true" t="bacnet:BacnetObjectPropertyReference"/>
+  <property n="controlledVariableReference"     i="19"  a="-1" r="true" t="bacnet:BacnetObjectPropertyReference"/>
+  <property n="controlledVariableValue"         i="21"  a="4"  r="true"/>
+  <property n="controlledVariableUnits"         i="20"  a="9"  r="true" e="true" t="bacnet:BacnetEngineeringUnits"/>
+  <property n="setpointReference"               i="109" a="-1" r="true" t="bacnet:BacnetSetpointReference"/>
+  <property n="setpoint"                        i="108" a="4"  r="true"/>
+  <property n="action"                          i="2"   a="9"  r="true" t="bacnet:BacnetAction"/>
+  <property n="proportionalConstant"            i="93"  a="4"  c="units"/>
+  <property n="proportionalConstantUnits"       i="94"  a="9"  e="true" t="bacnet:BacnetEngineeringUnits"/>
+  <property n="integralConstant"                i="49"  a="4"  c="units"/>
+  <property n="integralConstantUnits"           i="50"  a="9"  e="true" t="bacnet:BacnetEngineeringUnits"/>
+  <property n="derivativeConstant"              i="26"  a="4"  c="units"/>
+  <property n="derivativeConstantUnits"         i="27"  a="9"  e="true" t="bacnet:BacnetEngineeringUnits"/>
+  <property n="bias"                            i="14"  a="4"/>
+  <property n="maximumOutput"                   i="61"  a="4"/>
+  <property n="minimumOutput"                   i="68"  a="4"/>
+  <property n="priorityForWriting"              i="88"  a="2"  r="true"/>
+  <property n="covIncrement"                    i="22"  a="4"  c="units"/>
+  <property n="timeDelay"                       i="113" a="2"/>
+  <property n="notificationClass"               i="17"  a="2"/>
+  <property n="errorLimit"                      i="34"  a="4"  c="units"/>
+  <property n="deadband"                        i="25"  a="4" pr="7"/>
+  <property n="eventEnable"                     i="35"  a="8"  b="BacnetEventTransitionBits"/>
+  <property n="ackedTransitions"                i="0"   a="8"  b="BacnetEventTransitionBits"/>
+  <property n="notifyType"                      i="72"  a="9"  t="bacnet:BacnetNotifyType"/>
+  <property n="eventTimeStamps"                 i="130" a="-2" s="3" t="bacnet:BacnetTimeStamp" pr="1"/>
+
+  <property n="eventMessageTexts"               i="351" a="-2" s="3" t="baja:String" pr="11"/>
+
+  <property n="eventMessageTextsConfig"         i="352" a="-2" t="baja:String" s="3" pr="13"/>
+  <property n="eventDetectionEnable"            i="353" a="1"  pr="13"/>
+  <property n="eventAlgorithmInhibitRef"        i="355" a="-1" t="bacnet:BacnetObjectPropertyReference" pr="13"/>
+  <property n="eventAlgorithmInhibit"           i="354" a="1"  pr="13"/>
+  <property n="timeDelayNormal"                 i="356" a="2"  pr="13"/>
+  <property n="reliabilityEvaluationInhibit"    i="357" a="1"  pr="13"/>
+
+  <property n="propertyList"                    i="371" a="-2" r="true" t="bacnet:BacnetPropertyIdentifier" pr="14"/>
+
+  <property n="lowDiffLimit"                    i="390" a="-5" c="units" t="bacnet:BacnetOptionalReal" pr="16"/>
+
+  <property n="profileName"                     i="168" a="7" pr="2"/>
+ </object>
+ <object n="MultiStateInput" t="13">
+  <property n="objectIdentifier"                i="75"  a="12" r="true"/>
+  <property n="objectName"                      i="77"  a="7"  r="true"/>
+  <property n="objectType"                      i="79"  a="9"  r="true" e="true" t="bacnet:BacnetObjectType"/>
+  <property n="presentValue"                    i="85"  a="2"  r="true" c="all"/>
+  <property n="description"                     i="28"  a="7"/>
+  <property n="deviceType"                      i="31"  a="7"/>
+  <property n="statusFlags"                     i="111" a="8"  r="true" b="BacnetStatusFlags"/>
+  <property n="eventState"                      i="36"  a="9"  r="true" e="true" t="bacnet:BacnetEventState"/>
+  <property n="reliability"                     i="103" a="9"  e="true" t="bacnet:BacnetReliability"/>
+  <property n="outOfService"                    i="81"  a="1"  r="true"/>
+  <property n="numberOfStates"                  i="74"  a="2"  r="true"/>
+  <property n="stateText"                       i="110" a="-2" f="true" t="baja:String"/>
+  <property n="timeDelay"                       i="113" a="2"/>
+  <property n="notificationClass"               i="17"  a="2"/>
+  <property n="alarmValues"                     i="7"   a="-3" t="bacnet:BacnetUnsigned" c="all"/>
+  <property n="faultValues"                     i="39"  a="-3" t="bacnet:BacnetUnsigned" c="all"/>
+  <property n="eventEnable"                     i="35"  a="8"  b="BacnetEventTransitionBits"/>
+  <property n="ackedTransitions"                i="0"   a="8"  b="BacnetEventTransitionBits"/>
+  <property n="notifyType"                      i="72"  a="9"  t="bacnet:BacnetNotifyType"/>
+  <property n="eventTimeStamps"                 i="130" a="-2" s="3" t="bacnet:BacnetTimeStamp" pr="1"/>
+
+  <property n="eventMessageTexts"               i="351" a="-2" s="3" t="baja:String" pr="11"/>
+
+  <property n="eventMessageTextsConfig"         i="352" a="-2" t="baja:String" s="3" pr="13"/>
+  <property n="eventDetectionEnable"            i="353" a="1"  pr="13"/>
+  <property n="eventAlgorithmInhibitRef"        i="355" a="-1" t="bacnet:BacnetObjectPropertyReference" pr="13"/>
+  <property n="eventAlgorithmInhibit"           i="354" a="1"  pr="13"/>
+  <property n="timeDelayNormal"                 i="356" a="2"  pr="13"/>
+  <property n="reliabilityEvaluationInhibit"    i="357" a="1"  pr="13"/>
+
+  <property n="propertyList"                    i="371" a="-2" r="true" t="bacnet:BacnetPropertyIdentifier" pr="14"/>
+
+  <property n="interfaceValue"                  i="387" a="-5" t="bacnet:BacnetOptionalUnsigned" c="all" pr="16"/>
+
+  <property n="profileName"                     i="168" a="7" pr="2"/>
+ </object>
+ <object n="MultiStateOutput" t="14">
+  <property n="objectIdentifier"                i="75"  a="12" r="true"/>
+  <property n="objectName"                      i="77"  a="7"  r="true"/>
+  <property n="objectType"                      i="79"  a="9"  r="true" e="true" t="bacnet:BacnetObjectType"/>
+  <property n="presentValue"                    i="85"  a="2"  r="true" c="all"/>
+  <property n="description"                     i="28"  a="7"/>
+  <property n="deviceType"                      i="31"  a="7"/>
+  <property n="statusFlags"                     i="111" a="8"  r="true" b="BacnetStatusFlags"/>
+  <property n="eventState"                      i="36"  a="9"  r="true" e="true" t="bacnet:BacnetEventState"/>
+  <property n="reliability"                     i="103" a="9"  e="true" t="bacnet:BacnetReliability"/>
+  <property n="outOfService"                    i="81"  a="1"  r="true"/>
+  <property n="numberOfStates"                  i="74"  a="2"  r="true"/>
+  <property n="stateText"                       i="110" a="-2" f="true" t="baja:String"/>
+  <property n="priorityArray"                   i="87"  a="-2" s="16" r="true" t="bacnet:BacnetPriorityValue" c="all"/>
+  <property n="relinquishDefault"               i="104" a="2"  r="true" c="all"/>
+  <property n="timeDelay"                       i="113" a="2"/>
+  <property n="notificationClass"               i="17"  a="2"/>
+  <property n="feedbackValue"                   i="40"  a="2"  c="all"/>
+  <property n="eventEnable"                     i="35"  a="8"  b="BacnetEventTransitionBits"/>
+  <property n="ackedTransitions"                i="0"   a="8"  b="BacnetEventTransitionBits"/>
+  <property n="notifyType"                      i="72"  a="9"  t="bacnet:BacnetNotifyType"/>
+  <property n="eventTimeStamps"                 i="130" a="-2" s="3" t="bacnet:BacnetTimeStamp" pr="1"/>
+
+  <property n="eventMessageTexts"               i="351" a="-2" s="3" t="baja:String" pr="11"/>
+
+  <property n="eventMessageTextsConfig"         i="352" a="-2" t="baja:String" s="3" pr="13"/>
+  <property n="eventDetectionEnable"            i="353" a="1"  pr="13"/>
+  <property n="eventAlgorithmInhibitRef"        i="355" a="-1" t="bacnet:BacnetObjectPropertyReference" pr="13"/>
+  <property n="eventAlgorithmInhibit"           i="354" a="1"  pr="13"/>
+  <property n="timeDelayNormal"                 i="356" a="2"  pr="13"/>
+  <property n="reliabilityEvaluationInhibit"    i="357" a="1"  pr="13"/>
+
+  <property n="propertyList"                    i="371" a="-2" r="true" t="bacnet:BacnetPropertyIdentifier" pr="14"/>
+
+  <property n="interfaceValue"                  i="387" a="-5" t="bacnet:BacnetOptionalUnsigned" c="all" pr="16"/>
+
+  <property n="profileName"                     i="168" a="7" pr="2"/>
+ </object>
+ <object n="MultiStateValue" t="19" pr="1">
+  <property n="objectIdentifier"                i="75"  a="12" r="true"/>
+  <property n="objectName"                      i="77"  a="7"  r="true"/>
+  <property n="objectType"                      i="79"  a="9"  r="true" e="true" t="bacnet:BacnetObjectType"/>
+  <property n="presentValue"                    i="85"  a="2"  r="true" c="all"/>
+  <property n="description"                     i="28"  a="7"/>
+  <property n="statusFlags"                     i="111" a="8"  r="true" b="BacnetStatusFlags"/>
+  <property n="eventState"                      i="36"  a="9"  r="true" e="true" t="bacnet:BacnetEventState"/>
+  <property n="reliability"                     i="103" a="9"  e="true" t="bacnet:BacnetReliability"/>
+  <property n="outOfService"                    i="81"  a="1"  r="true"/>
+  <property n="numberOfStates"                  i="74"  a="2"  r="true"/>
+  <property n="stateText"                       i="110" a="-2" f="true" t="baja:String"/>
+  <property n="priorityArray"                   i="87"  a="-2" s="16" t="bacnet:BacnetPriorityValue" c="all"/>
+  <property n="relinquishDefault"               i="104" a="2"  c="all"/>
+  <property n="timeDelay"                       i="113" a="2"/>
+  <property n="notificationClass"               i="17"  a="2"/>
+  <property n="alarmValues"                     i="7"   a="-3" t="bacnet:BacnetUnsigned" c="all"/>
+  <property n="faultValues"                     i="39"  a="-3" t="bacnet:BacnetUnsigned" c="all"/>
+  <property n="eventEnable"                     i="35"  a="8"  b="BacnetEventTransitionBits"/>
+  <property n="ackedTransitions"                i="0"   a="8"  b="BacnetEventTransitionBits"/>
+  <property n="notifyType"                      i="72"  a="9"  t="bacnet:BacnetNotifyType"/>
+  <property n="eventTimeStamps"                 i="130" a="-2" s="3" t="bacnet:BacnetTimeStamp"/>
+
+  <property n="eventMessageTexts"               i="351" a="-2" s="3" t="baja:String" pr="11"/>
+
+  <property n="eventMessageTextsConfig"         i="352" a="-2" t="baja:String" s="3" pr="13"/>
+  <property n="eventDetectionEnable"            i="353" a="1"  pr="13"/>
+  <property n="eventAlgorithmInhibitRef"        i="355" a="-1" t="bacnet:BacnetObjectPropertyReference" pr="13"/>
+  <property n="eventAlgorithmInhibit"           i="354" a="1"  pr="13"/>
+  <property n="timeDelayNormal"                 i="356" a="2"  pr="13"/>
+  <property n="reliabilityEvaluationInhibit"    i="357" a="1"  pr="13"/>
+
+  <property n="propertyList"                    i="371" a="-2" r="true" t="bacnet:BacnetPropertyIdentifier" pr="14"/>
+
+  <property n="profileName"                     i="168" a="7" pr="2"/>
+ </object>
+ <object n="NotificationClass" t="15">
+  <property n="objectIdentifier"                i="75"  a="12" r="true"/>
+  <property n="objectName"                      i="77"  a="7"  r="true"/>
+  <property n="objectType"                      i="79"  a="9"  r="true" e="true" t="bacnet:BacnetObjectType"/>
+  <property n="description"                     i="28"  a="7"/>
+  <property n="notificationClass"               i="17"  a="2"  r="true"/>
+  <property n="priority"                        i="86"  a="-2" r="true" s="3" t="bacnet:BacnetUnsigned"/>
+  <property n="ackRequired"                     i="1"   a="8"  r="true" b="BacnetEventTransitionBits"/>
+  <property n="recipientList"                   i="102" a="-3" r="true" t="bacnet:BacnetDestination"/>
+
+  <property n="propertyList"                    i="371" a="-2" r="true" t="bacnet:BacnetPropertyIdentifier" pr="14"/>
+
+  <property n="statusFlags"                     i="111" a="8"  b="BacnetStatusFlags" pr="16"/>
+  <property n="eventState"                      i="36"  a="9"  e="true" t="bacnet:BacnetEventState" pr="16"/>
+  <property n="reliability"                     i="103" a="9"  e="true" t="bacnet:BacnetReliability" pr="16"/>
+  <property n="eventDetectionEnable"            i="353" a="1"  pr="16"/>
+  <property n="eventEnable"                     i="35"  a="8"  b="BacnetEventTransitionBits" pr="16"/>
+  <property n="ackedTransitions"                i="0"   a="8"  b="BacnetEventTransitionBits" pr="16"/>
+  <property n="notifyType"                      i="72"  a="9"  t="bacnet:BacnetNotifyType" pr="16"/>
+  <property n="eventTimeStamps"                 i="130" a="-2" s="3" t="bacnet:BacnetTimeStamp" pr="16"/>
+  <property n="eventMessageTexts"               i="351" a="-2" s="3" t="baja:String" pr="16"/>
+  <property n="eventMessageTextsConfig"         i="352" a="-2" s="3" t="baja:String" pr="16"/>
+  <property n="reliabilityEvaluationInhibit"    i="357" a="1"  pr="16"/>
+
+  <property n="profileName"                     i="168" a="7" pr="2"/>
+ </object>
+ <object n="Program" t="16">
+  <property n="objectIdentifier"                i="75"  a="12" r="true"/>
+  <property n="objectName"                      i="77"  a="7"  r="true"/>
+  <property n="objectType"                      i="79"  a="9"  r="true" e="true" t="bacnet:BacnetObjectType"/>
+  <property n="programState"                    i="92"  a="9"  r="true" t="bacnet:BacnetProgramState"/>
+  <property n="programChange"                   i="90"  a="9"  r="true" t="bacnet:BacnetProgramRequest"/>
+  <property n="reasonForHalt"                   i="100" a="9"  e="true" t="bacnet:BacnetProgramError"/>
+  <property n="descriptionOfHalt"               i="29"  a="7"/>
+  <property n="programLocation"                 i="91"  a="7"/>
+  <property n="description"                     i="28"  a="7"/>
+  <property n="instanceOf"                      i="48"  a="7"/>
+  <property n="statusFlags"                     i="111" a="8"  r="true" b="BacnetStatusFlags"/>
+  <property n="reliability"                     i="103" a="9"  e="true" t="bacnet:BacnetReliability"/>
+  <property n="outOfService"                    i="81"  a="1"  r="true"/>
+
+  <property n="eventDetectionEnable"            i="353" a="1"  pr="13"/>
+  <property n="notificationClass"               i="17"  a="2"  pr="13"/>
+  <property n="eventEnable"                     i="35"  a="8"  b="BacnetEventTransitionBits" pr="13"/>
+  <property n="eventState"                      i="36"  a="9"  e="true" t="bacnet:BacnetEventState" pr="13"/>
+  <property n="ackedTransitions"                i="0"   a="8"  b="BacnetEventTransitionBits" pr="13"/>
+  <property n="notifyType"                      i="72"  a="9"  t="bacnet:BacnetNotifyType" pr="13"/>
+  <property n="eventTimeStamps"                 i="130" a="-2" t="bacnet:BacnetTimeStamp" s="3" pr="13"/>
+  <property n="eventMessageTexts"               i="351" a="-2" t="baja:String" s="3" pr="13"/>
+  <property n="eventMessageTextsConfig"         i="352" a="-2" t="baja:String" s="3" pr="13"/>
+  <property n="reliabilityEvaluationInhibit"    i="357" a="1"  pr="13"/>
+
+  <property n="propertyList"                    i="371" a="-2" r="true" t="bacnet:BacnetPropertyIdentifier" pr="14"/>
+
+  <property n="profileName"                     i="168" a="7" pr="2"/>
+ </object>
+ <object n="PulseConverter" t="24" pr="4">
+  <property n="objectIdentifier"                i="75"  a="12" r="true"/>
+  <property n="objectName"                      i="77"  a="7"  r="true"/>
+  <property n="objectType"                      i="79"  a="9"  r="true" e="true" t="bacnet:BacnetObjectType"/>
+  <property n="description"                     i="28"  a="7"/>
+  <property n="presentValue"                    i="85"  a="4"  r="true" c="all"/>
+  <property n="inputReference"                  i="181" a="-1" t="bacnet:BacnetObjectPropertyReference"/>
+  <property n="statusFlags"                     i="111" a="8"  r="true" b="BacnetStatusFlags"/>
+  <property n="eventState"                      i="36"  a="9"  r="true" e="true" t="bacnet:BacnetEventState"/>
+  <property n="reliability"                     i="103" a="9"  e="true" t="bacnet:BacnetReliability"/>
+  <property n="outOfService"                    i="81"  a="1"  r="true"/>
+  <property n="units"                           i="117" a="9"  r="true" f="true" e="true" t="bacnet:BacnetEngineeringUnits"/>
+  <property n="scaleFactor"                     i="188" a="4"  r="true" c="units"/>
+  <property n="adjustValue"                     i="176" a="4"  r="true" c="units"/>
+  <property n="count"                           i="177" a="2"  r="true" c="units"/>
+  <property n="updateTime"                      i="189" a="-1" r="true" t="bacnet:BacnetDateTime"/>
+  <property n="countChangeTime"                 i="179" a="-1" r="true" t="bacnet:BacnetDateTime"/>
+  <property n="countBeforeChange"               i="178" a="2"  r="true"/>
+  <property n="covIncrement"                    i="22"  a="4"  c="units"/>
+  <property n="covPeriod"                       i="180" a="2"  c="units"/>
+  <property n="notificationClass"               i="17"  a="2"/>
+  <property n="timeDelay"                       i="113" a="2"/>
+  <property n="highLimit"                       i="45"  a="4"  c="units"/>
+  <property n="lowLimit"                        i="59"  a="4"  c="units"/>
+  <property n="deadband"                        i="25"  a="4"  c="units"/>
+  <property n="limitEnable"                     i="52"  a="8"  b="BacnetLimitEnable"/>
+  <property n="eventEnable"                     i="35"  a="8"  b="BacnetEventTransitionBits"/>
+  <property n="ackedTransitions"                i="0"   a="8"  b="BacnetEventTransitionBits"/>
+  <property n="notifyType"                      i="72"  a="9"  t="bacnet:BacnetNotifyType"/>
+  <property n="eventTimeStamps"                 i="130" a="-2" s="3" t="bacnet:BacnetTimeStamp"/>
+
+  <property n="eventMessageTexts"               i="351" a="-2" t="baja:String" s="3" pr="11"/>
+
+  <property n="eventMessageTextsConfig"         i="352" a="-2" t="baja:String" s="3" pr="13"/>
+  <property n="eventDetectionEnable"            i="353" a="1"  pr="13"/>
+  <property n="eventAlgorithmInhibitRef"        i="355" a="-1" t="bacnet:BacnetObjectPropertyReference" pr="13"/>
+  <property n="eventAlgorithmInhibit"           i="354" a="1"  pr="13"/>
+  <property n="timeDelayNormal"                 i="356" a="2"  pr="13"/>
+  <property n="reliabilityEvaluationInhibit"    i="357" a="1"  pr="13"/>
+
+  <property n="propertyList"                    i="371" a="-2" r="true" t="bacnet:BacnetPropertyIdentifier" pr="14"/>
+
+  <property n="profileName"                     i="168" a="7"/>
+ </object>
+ <object n="Schedule" t="17">
+  <property n="objectIdentifier"                i="75"  a="12" r="true"/>
+  <property n="objectName"                      i="77"  a="7"  r="true"/>
+  <property n="objectType"                      i="79"  a="9"  r="true" e="true" t="bacnet:BacnetObjectType"/>
+  <property n="presentValue"                    i="85"  a="-4" r="true"/>
+  <property n="description"                     i="28"  a="7"/>
+  <property n="effectivePeriod"                 i="32"  a="-1" r="true" t="bacnet:BacnetDateRange"/>
+  <property n="weeklySchedule"                  i="123" a="-2" s="7" t="bacnet:BacnetDailySchedule"/>
+  <property n="exceptionSchedule"               i="38"  a="-2" t="bacnet:BacnetSpecialEvent"/>
+  <property n="scheduleDefault"                 i="174" a="-4" r="true" pr="4"/>
+  <property n="listOfObjectPropertyReferences"  i="54"  a="-3" r="true" t="bacnet:BacnetDeviceObjectPropertyReference"/>
+  <property n="priorityForWriting"              i="88"  a="2"  r="true"/>
+  <property n="statusFlags"                     i="111" a="8"  r="true" b="BacnetStatusFlags" pr="4"/>
+  <property n="reliability"                     i="103" a="9"  r="true" e="true" t="bacnet:BacnetReliability" pr="4"/>
+  <property n="outOfService"                    i="81"  a="1"  r="true" pr="4"/>
+
+  <property n="eventDetectionEnable"            i="353" a="1"  pr="13"/>
+  <property n="notificationClass"               i="17"  a="2" pr="13"/>
+  <property n="eventEnable"                     i="35"  a="8"  b="BacnetEventTransitionBits" pr="13"/>
+  <property n="eventState"                      i="36"  a="9"  e="true" t="bacnet:BacnetEventState" pr="13"/>
+  <property n="ackedTransitions"                i="0"   a="8"  b="BacnetEventTransitionBits" pr="13"/>
+  <property n="notifyType"                      i="72"  a="9"  t="bacnet:BacnetNotifyType" pr="13"/>
+  <property n="eventTimeStamps"                 i="130" a="-2" t="bacnet:BacnetTimeStamp" s="3" pr="13"/>
+  <property n="eventMessageTexts"               i="351" a="-2" t="baja:String" s="3" pr="13"/>
+  <property n="eventMessageTextsConfig"         i="352" a="-2" t="baja:String" s="3" pr="13"/>
+  <property n="reliabilityEvaluationInhibit"    i="357" a="1"  pr="13"/>
+
+  <property n="propertyList"                    i="371" a="-2" r="true" t="bacnet:BacnetPropertyIdentifier" pr="14"/>
+
+  <property n="profileName"                     i="168" a="7" pr="2"/>
+ </object>
+ <object n="TrendLog" t="20" pr="1">
+  <property n="objectIdentifier"                i="75" a="12" r="true"/>
+  <property n="objectName"                      i="77" a="7" r="true"/>
+  <property n="objectType"                      i="79" a="9" r="true" e="true" t="bacnet:BacnetObjectType"/>
+  <property n="description"                     i="28" a="7"/>
+  <!-- Prior to PR7 this property was called logEnable.
+       Keep the logEnable option as well. Put logEnable first
+       so that enable will be the one stored in the hashtable. -->
+  <!--property n="logEnable" i="133" a="1" r="true"/-->
+  <property n="enable"                           i="133" a="1" r="true"/>
+  <property n="startTime"                        i="142" a="-1" t="bacnet:BacnetDateTime"/>
+  <property n="stopTime"                         i="143" a="-1" t="bacnet:BacnetDateTime"/>
+  <property n="logDeviceObjectProperty"          i="132" a="-1" t="bacnet:BacnetDeviceObjectPropertyReference"/>
+  <property n="logInterval"                      i="134" a="2"/>
+  <property n="covResubscriptionInterval"        i="128" a="2"/>
+  <property n="clientCovIncrement"               i="127" a="-5" t="bacnet:BacnetClientCov"/>
+  <property n="stopWhenFull"                     i="144" a="1" r="true"/>
+  <property n="bufferSize"                       i="126" a="2" r="true"/>
+  <!-- Log_Buffer is inaccessible through ordinary ReadProperty/ReadPropertyMultiple requests. -->
+  <!--  <property n="logBuffer" i="" a="-1" t="bacnet:BacnetListOf"/> -->
+  <property n="recordCount"                      i="141" a="2"  r="true"/>
+  <property n="totalRecordCount"                 i="145" a="2"  r="true"/>
+
+  <property n="loggingType"                      i="197" a="9" r="true" e="true" t="bacnet:BacnetLoggingType" pr="7"/>
+  <property n="alignIntervals"                   i="193" a="1" pr="7"/>
+  <property n="intervalOffset"                   i="195" a="2" pr="7"/>
+  <property n="trigger"                          i="205" a="1" pr="7"/>
+  <property n="statusFlags"                      i="111" a="8" r="true" b="BacnetStatusFlags" pr="7"/>
+  <property n="reliability"                      i="103" a="9" e="true" t="bacnet:BacnetReliability" pr="7"/>
+
+  <property n="notificationThreshold"            i="137" a="2"/>
+  <property n="recordsSinceNotification"         i="140" a="2"/>
+  <property n="lastNotifyRecord"                 i="173" a="2" pr="3"/>
+  <property n="eventState"                       i="36"  a="9"  r="true" e="true" t="bacnet:BacnetEventState"/>
+  <property n="notificationClass"                i="17"  a="2"/>
+  <property n="eventEnable"                      i="35"  a="8"  b="BacnetEventTransitionBits"/>
+  <property n="ackedTransitions"                 i="0"   a="8"  b="BacnetEventTransitionBits"/>
+  <property n="notifyType"                       i="72"  a="9"  t="bacnet:BacnetNotifyType"/>
+  <property n="eventTimeStamps"                  i="130" a="-2" s="3" t="bacnet:BacnetTimeStamp"/>
+
+  <property n="eventMessageTexts"                i="351" a="-2" s="3" t="baja:String" pr="11"/>
+
+  <property n="eventMessageTextsConfig"          i="352" a="-2" t="baja:String" s="3" pr="13"/>
+  <property n="eventDetectionEnable"             i="353" a="1"  pr="13"/>
+  <property n="eventAlgorithmInhibitRef"         i="355" a="-1" t="bacnet:BacnetObjectPropertyReference" pr="13"/>
+  <property n="eventAlgorithmInhibit"            i="354" a="1"  pr="13"/>
+  <property n="reliabilityEvaluationInhibit"     i="357" a="1"  pr="13"/>
+
+  <property n="propertyList"                     i="371" a="-2" r="true" t="bacnet:BacnetPropertyIdentifier" pr="14"/>
+
+  <property n="profileName"                      i="168" a="7" pr="2"/>
+ </object>
+ <object n="AccessDoor" t="30" pr="6">
+  <property n="objectIdentifier"                  i="75"  a="12" r="true"/>
+  <property n="objectName"                        i="77"  a="7" r="true"/>
+  <property n="objectType"                        i="79"  a="9" r="true" e="true" t="bacnet:BacnetObjectType"/>
+  <property n="presentValue"                      i="85"  a="9" r="true" t="bacnet:BacnetDoorValue"/>
+  <property n="description"                       i="28"  a="7"/>
+  <property n="statusFlags"                       i="111" a="8" r="true" b="BacnetStatusFlags"/>
+  <property n="eventState"                        i="36"  a="9" r="true" e="true" t="bacnet:BacnetEventState"/>
+  <property n="reliability"                       i="103" a="9" e="true" t="bacnet:BacnetReliability"/>
+  <property n="outOfService"                      i="81"  a="1" r="true"/>
+  <property n="priorityArray"                     i="87"  a="-2" s="16" r="true" t="bacnet:BacnetPriorityValue" c="all"/>
+  <property n="relinquishDefault"                 i="104" a="9"  r="true" t="bacnet:BacnetDoorValue"/>
+  <property n="doorStatus"                        i="231" a="9" e="true" t="bacnet:BacnetDoorStatus"/>
+  <property n="lockStatus"                        i="233" a="9" t="bacnet:BacnetLockStatus"/>
+  <property n="securedStatus"                     i="235" a="9" t="bacnet:BacnetDoorSecuredStatus"/>
+  <property n="doorMembers"                       i="228" a="-2" t="bacnet:BacnetDeviceObjectReference"/>
+  <property n="doorPulseTime"                     i="230" a="2" r="true"/>
+  <property n="doorExtendedPulseTime"             i="227" a="2" r="true"/>
+  <property n="doorUnlockDelayTime"               i="232" a="2"/>
+  <property n="doorOpenTooLongTime"               i="229" a="2" r="true"/>
+  <property n="doorAlarmState"                    i="226" a="9" e="true" t="bacnet:BacnetDoorAlarmState"/>
+  <property n="maskedAlarmValues"                 i="234" a="-3" t="bacnet:BacnetDoorAlarmState"/>
+  <property n="maintenanceRequired"               i="158" a="9" e="true" t="bacnet:BacnetMaintenance"/>
+  <property n="timeDelay"                         i="113" a="2"/>
+  <property n="notificationClass"                 i="17"  a="2"/>
+  <property n="alarmValues"                       i="7"   a="-3" t="bacnet:BacnetDoorAlarmState"/>
+  <property n="faultValues"                       i="39"  a="-3" t="bacnet:BacnetDoorAlarmState"/>
+  <property n="eventEnable"                       i="35"  a="8" b="BacnetEventTransitionBits"/>
+  <property n="ackedTransitions"                  i="0"   a="8" b="BacnetEventTransitionBits"/>
+  <property n="notifyType"                        i="72"  a="9" t="bacnet:BacnetNotifyType"/>
+  <property n="eventTimeStamps"                   i="130" a="-2" s="3" t="bacnet:BacnetTimeStamp"/>
+
+  <property n="eventMessageTexts"                 i="351" a="-2" s="3" t="baja:String" pr="11"/>
+
+  <property n="eventMessageTextsConfig"           i="352" a="-2" s="3" t="baja:String" pr="13"/>
+  <property n="eventDetectionEnable"              i="353" a="1" pr="13"/>
+  <property n="eventAlgorithmInhibitRef"          i="355" a="-1" t="bacnet:BacnetObjectPropertyReference" pr="13"/>
+  <property n="eventAlgorithmInhibit"             i="354" a="1" pr="13"/>
+  <property n="timeDelayNormal"                   i="356" a="2" pr="13"/>
+  <property n="reliabilityEvaluationInhibit"      i="357" a="1" pr="13"/>
+
+  <property n="propertyList"                      i="371" a="-2" r="true" t="bacnet:BacnetPropertyIdentifier"  pr="14"/>
+
+  <property n="profileName"                       i="168" a="7"/>
+ </object>
+ <object n="EventLog" t="25" pr="7">
+  <property n="objectIdentifier"                i="75"  a="12" r="true"/>
+  <property n="objectName"                      i="77"  a="7" r="true"/>
+  <property n="objectType"                      i="79"  a="9" r="true" e="true" t="bacnet:BacnetObjectType"/>
+  <property n="propertyList"                    i="371" a="-2" r="true" t="bacnet:BacnetPropertyIdentifier" pr="14"/>
+  <property n="description"                     i="28"  a="7"/>
+  <property n="statusFlags"                     i="111" a="8"  r="true" b="BacnetStatusFlags"/>
+  <property n="eventState"                      i="36"  a="9"  r="true" e="true" t="bacnet:BacnetEventState"/>
+  <property n="reliability"                     i="103" a="9"           e="true" t="bacnet:BacnetReliability"/>
+  <property n="enable"                          i="133" a="1"  r="true"/>
+  <property n="startTime"                       i="142" a="-1" t="bacnet:BacnetDateTime"/>
+  <property n="stopTime"                        i="143" a="-1" t="bacnet:BacnetDateTime"/>
+  <property n="stopWhenFull"                    i="144" a="1" r="true"/>
+  <property n="bufferSize"                      i="126" a="2" r="true"/>
+  <!-- Log_Buffer is inaccessible through ordinary ReadProperty/ReadPropertyMultiple requests. -->
+  <!-- <property n="logBuffer"                   i="" a="-1" t="bacnet:BacnetListOf"/> -->
+  <property n="recordCount"                     i="141" a="2" r="true"/>
+  <property n="totalRecordCount"                i="145" a="2" r="true"/>
+  <property n="notificationThreshold"           i="137" a="2"/>
+  <property n="recordsSinceNotification"        i="140" a="2"/>
+  <property n="lastNotifyRecord"                i="173" a="2"/>
+  <property n="notificationClass"               i="17"  a="2"/>
+  <property n="eventEnable"                     i="35"  a="8" b="BacnetEventTransitionBits"/>
+  <property n="ackedTransitions"                i="0"   a="8" b="BacnetEventTransitionBits"/>
+  <property n="notifyType"                      i="72"  a="9" t="bacnet:BacnetNotifyType"/>
+  <property n="eventTimeStamps"                 i="130" a="-2" s="3" t="bacnet:BacnetTimeStamp"/>
+
+  <property n="eventMessageTexts"               i="351" a="-2" s="3" t="baja:String" pr="11"/>
+
+  <property n="eventMessageTextsConfig"         i="352" a="-2" t="baja:String" s="3" pr="13"/>
+  <property n="eventDetectionEnable"            i="353" a="1" pr="13"/>
+  <property n="eventAlgorithmInhibitRef"        i="355" a="-1" t="bacnet:BacnetObjectPropertyReference" pr="13"/>
+  <property n="eventAlgorithmInhibit"           i="354" a="1" pr="13"/>
+  <property n="reliabilityEvaluationInhibit"    i="357" a="1" pr="13"/>
+
+  <property n="profileName"                     i="168" a="7"/>
+ </object>
+ <object n="LoadControl" t="28" pr="6">
+  <property n="objectIdentifier"                i="75"  a="12" r="true"/>
+  <property n="objectName"                      i="77"  a="7"  r="true"/>
+  <property n="objectType"                      i="79"  a="9"  r="true" e="true" t="bacnet:BacnetObjectType"/>
+  <property n="description"                     i="28"  a="7"/>
+  <property n="presentValue"                    i="85"  a="9"  r="true" t="bacnet:BacnetShedState"/>
+  <property n="stateDescription"                i="222" a="7"/>
+  <property n="statusFlags"                     i="111" a="8"  r="true" b="BacnetStatusFlags"/>
+  <property n="eventState"                      i="36"  a="9"  r="true" e="true" t="bacnet:BacnetEventState"/>
+  <property n="reliability"                     i="103" a="9"  e="true" t="bacnet:BacnetReliability"/>
+  <property n="requestedShedLevel"              i="218" a="-5" r="true" t="bacnet:BacnetShedLevel"/>
+  <property n="startTime"                       i="142" a="-1" r="true" t="bacnet:BacnetDateTime"/>
+  <property n="shedDuration"                    i="219" a="2"  r="true"/>
+  <property n="dutyWindow"                      i="213" a="2"  r="true"/>
+  <property n="enable"                          i="133" a="1"  r="true"/>
+  <property n="fullDutyBaseline"                i="215" a="4"/>
+  <property n="expectedShedLevel"               i="214" a="-5" r="true" t="bacnet:BacnetShedLevel"/>
+  <property n="actualShedLevel"                 i="212" a="-5" r="true" t="bacnet:BacnetShedLevel"/>
+  <property n="shedLevels"                      i="221" a="-2" t="bacnet:BacnetUnsigned"/>
+  <property n="shedLevelDescriptions"           i="220" a="-2" r="true" t="baja:String"/>
+  <property n="notificationClass"               i="17"  a="2"/>
+  <property n="timeDelay"                       i="113" a="2"/>
+  <property n="eventEnable"                     i="35"  a="8"  b="BacnetEventTransitionBits"/>
+  <property n="ackedTransitions"                i="0"   a="8"  b="BacnetEventTransitionBits"/>
+  <property n="notifyType"                      i="72"  a="9"  t="bacnet:BacnetNotifyType"/>
+  <property n="eventTimeStamps"                 i="130" a="-2" t="bacnet:BacnetTimeStamp" s="3"/>
+
+  <property n="eventMessageTexts"               i="351" a="-2" s="3" t="baja:String" pr="11"/>
+
+  <property n="eventMessageTextsConfig"         i="352" a="-2" t="baja:String" s="3" pr="13"/>
+  <property n="eventDetectionEnable"            i="353" a="1"  pr="13"/>
+  <property n="eventAlgorithmInhibitRef"        i="355" a="-1" t="bacnet:BacnetObjectPropertyReference" pr="13"/>
+  <property n="eventAlgorithmInhibit"           i="354" a="1"  pr="13"/>
+  <property n="timeDelayNormal"                 i="356" a="2"  pr="13"/>
+  <property n="reliabilityEvaluationInhibit"    i="357" a="1"  pr="13"/>
+
+  <property n="propertyList"                    i="371" a="-2" r="true" t="bacnet:BacnetPropertyIdentifier" pr="14"/>
+
+  <property n="profileName"                     i="168" a="7"/>
+ </object>
+ <object n="StructuredView" t="29" pr="5">
+  <property n="objectIdentifier"                i="75" a="12" r="true"/>
+  <property n="objectName"                      i="77" a="7" r="true"/>
+  <property n="objectType"                      i="79" a="9" r="true" e="true" t="bacnet:BacnetObjectType"/>
+  <property n="description"                     i="28" a="7"/>
+  <property n="nodeType"                        i="208" a="9" r="true" t="bacnet:BacnetNodeType"/>
+  <property n="nodeSubtype"                     i="207" a="7"/>
+  <property n="subordinateList"                 i="211" a="-2" r="true" t="bacnet:BacnetDeviceObjectReference"/>
+  <property n="subordinateAnnotations"          i="210" a="-2" t="baja:String"/>
+
+  <property n="propertyList"                    i="371" a="-2" r="true" t="bacnet:BacnetPropertyIdentifier" pr="14"/>
+
+  <property n="profileName"                     i="168" a="7"/>
+ </object>
+ <object n="TrendLogMultiple" t="27" pr="7">
+  <property n="objectIdentifier"                 i="75" a="12" r="true"/>
+  <property n="objectName"                       i="77" a="7" r="true"/>
+  <property n="objectType"                       i="79" a="9" r="true" e="true" t="bacnet:BacnetObjectType"/>
+  <property n="description"                      i="28" a="7"/>
+  <property n="statusFlags"                      i="111" a="8" r="true" b="BacnetStatusFlags"/>
+  <property n="eventState"                       i="36" a="9" r="true" e="true" t="bacnet:BacnetEventState"/>
+  <property n="reliability"                      i="103" a="9" e="true" t="bacnet:BacnetReliability"/>
+  <property n="enable"                           i="133" a="1" r="true"/>
+  <property n="startTime"                        i="142" a="-1" t="bacnet:BacnetDateTime"/>
+  <property n="stopTime"                         i="143" a="-1" t="bacnet:BacnetDateTime"/>
+  <property n="logDeviceObjectProperty"          i="132" a="-2" r="true" t="bacnet:BacnetDeviceObjectPropertyReference"/>
+  <property n="loggingType"                      i="197" a="9" r="true" e="true" t="bacnet:BacnetLoggingType"/>
+  <property n="logInterval"                      i="134" a="2" r="true"/>
+  <property n="alignIntervals"                   i="193" a="1"/>
+  <property n="intervalOffset"                   i="195" a="2"/>
+  <property n="trigger"                          i="205" a="1"/>
+  <property n="stopWhenFull"                     i="144" a="1" r="true"/>
+  <property n="bufferSize"                       i="126" a="2" r="true"/>
+  <!-- Log_Buffer is inaccessible through ordinary ReadProperty/ReadPropertyMultiple requests. -->
+  <!--  <property n="logBuffer" i="" a="-1" t="bacnet:BacnetListOf"/> -->
+  <property n="recordCount"                      i="141" a="2" r="true"/>
+  <property n="totalRecordCount"                 i="145" a="2" r="true"/>
+  <property n="notificationThreshold"            i="137" a="2"/>
+  <property n="recordsSinceNotification"         i="140" a="2"/>
+  <property n="lastNotifyRecord"                 i="173" a="2"/>
+  <property n="notificationClass"                i="17" a="2"/>
+  <property n="eventEnable"                      i="35" a="8" b="BacnetEventTransitionBits"/>
+  <property n="ackedTransitions"                 i="0" a="8" b="BacnetEventTransitionBits"/>
+  <property n="notifyType"                       i="72" a="9" t="bacnet:BacnetNotifyType"/>
+  <property n="eventTimeStamps"                  i="130" a="-2" s="3" t="bacnet:BacnetTimeStamp"/>
+
+  <property n="eventMessageTexts"                i="351" a="-2" s="3" t="baja:String" pr="11"/>
+
+  <property n="eventMessageTextsConfig"          i="352" a="-2" t="baja:String" s="3" pr="13"/>
+  <property n="eventDetectionEnable"             i="353" a="1" pr="13"/>
+  <property n="eventAlgorithmInhibitRef"         i="355" a="-1" t="bacnet:BacnetObjectPropertyReference" pr="13"/>
+  <property n="eventAlgorithmInhibit"            i="354" a="1" pr="13"/>
+  <property n="reliabilityEvaluationInhibit"     i="357" a="1" pr="13"/>
+
+  <property n="propertyList"                     i="371" a="-2" r="true" t="bacnet:BacnetPropertyIdentifier" pr="14"/>
+
+  <property n="profileName"                      i="168" a="7"/>
+ </object>
+ <object n="CharacterStringValue" t="40" pr="10">
+  <property n="objectIdentifier"                 i="75"  a="12" r="true"/>
+  <property n="objectName"                       i="77"  a="7"  r="true"/>
+  <property n="objectType"                       i="79"  a="9"  r="true" e="true" t="bacnet:BacnetObjectType"/>
+  <property n="description"                      i="28"  a="7"/>
+  <property n="presentValue"                     i="85"  a="7"  r="true" c="all"/>
+  <property n="statusFlags"                      i="111" a="8"  r="true" b="BacnetStatusFlags"/>
+  <property n="eventState"                       i="36"  a="9"  e="true" t="bacnet:BacnetEventState"/>
+  <property n="reliability"                      i="103" a="9"  e="true" t="bacnet:BacnetReliability"/>
+  <property n="outOfService"                     i="81"  a="1"/>
+  <property n="priorityArray"                    i="87"  a="-2" s="16" t="bacnet:BacnetPriorityValue" c="all"/>
+  <property n="relinquishDefault"                i="104" a="7"  c="all"/>
+  <property n="timeDelay"                        i="113" a="2"/>
+  <property n="notificationClass"                i="17"  a="2"/>
+  <property n="alarmValues"                      i="7"   a="-2" t="bacnet:BacnetOptionalCharacterString"/>
+  <property n="faultValues"                      i="39"  a="-2" t="bacnet:BacnetOptionalCharacterString"/>
+  <property n="eventEnable"                      i="35"  a="8"  b="BacnetEventTransitionBits"/>
+  <property n="ackedTransitions"                 i="0"   a="8"  b="BacnetEventTransitionBits"/>
+  <property n="notifyType"                       i="72"  a="9"  t="bacnet:BacnetNotifyType"/>
+  <property n="eventTimeStamps"                  i="130" a="-2" s="3" t="bacnet:BacnetTimeStamp"/>
+
+  <property n="eventMessageTexts"                i="351" a="-2" t="baja:String" s="3" pr="11"/>
+
+  <property n="eventMessageTextsConfig"          i="352" a="-2" t="baja:String" s="3" pr="13"/>
+  <property n="eventDetectionEnable"             i="353" a="1"  pr="13"/>
+  <property n="eventAlgorithmInhibitRef"         i="355" a="-1" t="bacnet:BacnetObjectPropertyReference" pr="13"/>
+  <property n="eventAlgorithmInhibit"            i="354" a="1"  pr="13"/>
+  <property n="timeDelayNormal"                  i="356" a="2"  pr="13"/>
+  <property n="reliabilityEvaluationInhibit"     i="357" a="1"  pr="13"/>
+
+  <property n="propertyList"                     i="371" a="-2" r="true" t="bacnet:BacnetPropertyIdentifier" pr="14"/>
+
+  <property n="profileName"                      i="168" a="7"/>
+ </object>
+ <object n="DateTimeValue" t="44" pr="10">
+  <property n="objectIdentifier"                 i="75"  a="12" r="true"/>
+  <property n="objectName"                       i="77"  a="7"  r="true"/>
+  <property n="objectType"                       i="79"  a="9"  r="true" e="true" t="bacnet:BacnetObjectType"/>
+  <property n="description"                      i="28"  a="7"/>
+  <property n="presentValue"                     i="85"  a="-1" r="true" t="bacnet:BacnetDateTime"/>
+  <property n="statusFlags"                      i="111" a="8"  r="true" b="BacnetStatusFlags"/>
+  <property n="eventState"                       i="36"  a="9"  e="true" t="bacnet:BacnetEventState"/>
+  <property n="reliability"                      i="103" a="9"  e="true" t="bacnet:BacnetReliability"/>
+  <property n="outOfService"                     i="81"  a="1"/>
+  <property n="priorityArray"                    i="87"  a="-2" s="16" r="true" t="bacnet:BacnetPriorityValue" c="all"/>
+  <property n="relinquishDefault"                i="104" a="-1" t="bacnet:BacnetDateTime"/>
+  <property n="isUtc"                            i="344" a="1"/>
+
+  <property n="reliabilityEvaluationInhibit"     i="357" a="1" pr="13"/>
+  <property n="propertyList"                     i="371" a="-2" r="true" t="bacnet:BacnetPropertyIdentifier" pr="14"/>
+
+  <property n="eventDetectionEnable"             i="353" a="1"  pr="16"/>
+  <property n="notificationClass"                i="17"  a="2"  pr="16"/>
+  <property n="eventEnable"                      i="35"  a="8"  b="BacnetEventTransitionBits" pr="16"/>
+  <property n="ackedTransitions"                 i="0"   a="8"  b="BacnetEventTransitionBits" pr="16"/>
+  <property n="notifyType"                       i="72"  a="9"  t="bacnet:BacnetNotifyType" pr="16"/>
+  <property n="eventTimeStamps"                  i="130" a="-2" s="3" t="bacnet:BacnetTimeStamp" pr="16"/>
+  <property n="eventMessageTexts"                i="351" a="-2" s="3" t="baja:String" pr="16"/>
+  <property n="eventMessageTextsConfig"          i="352" a="-2" s="3" t="baja:String" pr="16"/>
+
+  <property n="profileName"                      i="168" a="7"/>
+ </object>
+ <object n="LargeAnalogValue" t="46" pr="10">
+  <property n="objectIdentifier"                  i="75"  a="12" r="true"/>
+  <property n="objectName"                        i="77"  a="7" r="true"/>
+  <property n="objectType"                        i="79"  a="9" r="true" e="true" t="bacnet:BacnetObjectType"/>
+  <property n="description"                       i="28"  a="7"/>
+  <property n="presentValue"                      i="85"  a="5" r="true" c="all"/>
+  <property n="statusFlags"                       i="111" a="8" r="true" b="BacnetStatusFlags"/>
+  <property n="eventState"                        i="36"  a="9" e="true" t="bacnet:BacnetEventState"/>
+  <property n="reliability"                       i="103" a="9" e="true" t="bacnet:BacnetReliability"/>
+  <property n="outOfService"                      i="81"  a="1"/>
+  <property n="units"                             i="117" a="9" r="true" f="true" e="true" t="bacnet:BacnetEngineeringUnits"/>
+  <property n="priorityArray"                     i="87"  a="-2" s="16" t="bacnet:BacnetPriorityValue" c="all"/>
+  <property n="relinquishDefault"                 i="104" a="5" c="units"/>
+  <property n="covIncrement"                      i="22"  a="5" c="units"/>
+  <property n="timeDelay"                         i="113" a="2"/>
+  <property n="notificationClass"                 i="17"  a="2"/>
+  <property n="highLimit"                         i="45"  a="5" c="units"/>
+  <property n="lowLimit"                          i="59"  a="5" c="units"/>
+  <property n="deadband"                          i="25"  a="5" c="units"/>
+  <property n="limitEnable"                       i="52"  a="8" b="BacnetLimitEnable"/>
+  <property n="eventEnable"                       i="35"  a="8" b="BacnetEventTransitionBits"/>
+  <property n="ackedTransitions"                  i="0"   a="8" b="BacnetEventTransitionBits"/>
+  <property n="notifyType"                        i="72"  a="9" t="bacnet:BacnetNotifyType"/>
+  <property n="eventTimeStamps"                   i="130" a="-2" s="3" t="bacnet:BacnetTimeStamp"/>
+
+  <property n="eventMessageTexts"                 i="351" a="-2" s="3" t="baja:String" pr="11"/>
+
+  <property n="eventMessageTextsConfig"           i="352" a="-2" s="3" t="baja:String" pr="13"/>
+  <property n="eventDetectionEnable"              i="353" a="1" pr="13"/>
+  <property n="eventAlgorithmInhibitRef"          i="355" a="-1" t="bacnet:BacnetObjectPropertyReference" pr="13"/>
+  <property n="eventAlgorithmInhibit"             i="354" a="1" pr="13"/>
+  <property n="timeDelayNormal"                   i="356" a="2" t="baja:BacnetUnsigned" pr="13"/>
+  <property n="reliabilityEvaluationInhibit"      i="357" a="1" pr="13"/>
+
+  <property n="minPresValue"                      i="69"  a="5" f="true" c="units" pr="14"/>
+  <property n="maxPresValue"                      i="65"  a="5" f="true" c="units" pr="14"/>
+  <property n="resolution"                        i="106" a="5" f="true" c="units" pr="14"/>
+  <property n="propertyList"                      i="371" a="-2" r="true" t="bacnet:BacnetPropertyIdentifier" pr="14"/>
+
+  <property n="faultHighLimit"                    i="388" a="5" c="units" pr="16"/>
+  <property n="faultLowLimit"                     i="389" a="5" c="units" pr="16"/>
+
+  <property n="profileName"                       i="168" a="7"/>
+ </object>
+ <object n="BitStringValue" t="39" pr="10">
+  <property n="objectIdentifier"                   i="75"  a="12" r="true"/>
+  <property n="objectName"                         i="77"  a="7"  r="true"/>
+  <property n="objectType"                         i="79"  a="9"  r="true" e="true" t="bacnet:BacnetObjectType"/>
+  <property n="description"                        i="28"  a="7"/>
+  <property n="presentValue"                       i="85"  a="8"  r="true" b="BacnetGenericBitString"/>
+  <property n="bitText"                            i="343" a="-2" t="baja:String"/>
+  <property n="statusFlags"                        i="111" a="8"  r="true" b="BacnetStatusFlags"/>
+  <property n="eventState"                         i="36"  a="9"  e="true" t="bacnet:BacnetEventState"/>
+  <property n="reliability"                        i="103" a="9"  e="true" t="bacnet:BacnetReliability"/>
+  <property n="outOfService"                       i="81"  a="1"/>
+  <property n="priorityArray"                      i="87"  a="-2" s="16" r="true" t="bacnet:BacnetPriorityValue" c="all"/>
+  <property n="relinquishDefault"                  i="104" a="8"  b="BacnetGenericBitString"/>
+  <property n="timeDelay"                          i="113" a="2"/>
+  <property n="notificationClass"                  i="17"  a="2"/>
+  <property n="alarmValues"                        i="7"   a="-2" t="bacnet:BacnetBitString"/>
+  <property n="bitMask"                            i="342" a="8"  b="BacnetGenericBitString"/>
+  <property n="eventEnable"                        i="35"  a="8"  b="BacnetEventTransitionBits"/>
+  <property n="ackedTransitions"                   i="0"   a="8"  b="BacnetEventTransitionBits"/>
+  <property n="notifyType"                         i="72"  a="9"  t="bacnet:BacnetNotifyType"/>
+  <property n="eventTimeStamps"                    i="130" a="-2" t="bacnet:BacnetTimeStamp" s="3"/>
+
+  <property n="eventMessageTexts"                  i="351" a="-2" t="baja:String" s="3" pr="11"/>
+
+  <property n="eventMessageTextsConfig"            i="352" a="-2" t="baja:String" s="3" pr="13"/>
+  <property n="eventDetectionEnable"               i="353" a="1" pr="13"/>
+  <property n="eventAlgorithmInhibitRef"           i="355" a="-1" t="bacnet:BacnetObjectPropertyReference" pr="13"/>
+  <property n="eventAlgorithmInhibit"              i="354" a="1" pr="13"/>
+  <property n="timeDelayNormal"                    i="356" a="2" pr="13"/>
+  <property n="reliabilityEvaluationInhibit"       i="357" a="1" pr="13"/>
+
+  <property n="propertyList"                       i="371" a="-2" r="true" t="bacnet:BacnetPropertyIdentifier" pr="14"/>
+  <property n="profileName"                        i="168" a="7"/>
+ </object>
+ <object n="OctetStringValue" t="47" pr="10">
+  <property n="objectIdentifier"                 i="75"  a="12" r="true"/>
+  <property n="objectName"                       i="77"  a="7"  r="true"/>
+  <property n="objectType"                       i="79"  a="9"  r="true" e="true" t="bacnet:BacnetObjectType"/>
+  <property n="description"                      i="28"  a="7"/>
+  <property n="presentValue"                     i="85"  a="6"  r="true"/>
+  <property n="statusFlags"                      i="111" a="8"  r="true" b="BacnetStatusFlags"/>
+  <property n="eventState"                       i="36"  a="9"  e="true" t="bacnet:BacnetEventState"/>
+  <property n="reliability"                      i="103" a="9"  e="true" t="bacnet:BacnetReliability"/>
+  <property n="outOfService"                     i="81"  a="1"/>
+  <property n="priorityArray"                    i="87"  a="-2" s="16" r="true" t="bacnet:BacnetPriorityValue" c="all"/>
+  <property n="relinquishDefault"                i="104" a="6"/>
+
+  <property n="reliabilityEvaluationInhibit"     i="357" a="1" pr="13"/>
+  <property n="propertyList"                     i="371" a="-2" r="true" t="bacnet:BacnetPropertyIdentifier" pr="14"/>
+
+  <property n="profileName"                      i="168" a="7"/>
+ </object>
+ <object n="TimeValue" t="50" pr="10">
+  <property n="objectIdentifier"                 i="75"  a="12" r="true"/>
+  <property n="objectName"                       i="77"  a="7"  r="true"/>
+  <property n="objectType"                       i="79"  a="9"  r="true" e="true" t="bacnet:BacnetObjectType"/>
+  <property n="description"                      i="28"  a="7"/>
+  <property n="presentValue"                     i="85"  a="11" r="true" t="bacnet:BacnetTime"/>
+  <property n="statusFlags"                      i="111" a="8"  r="true" b="BacnetStatusFlags"/>
+  <property n="eventState"                       i="36"  a="9"  e="true" t="bacnet:BacnetEventState"/>
+  <property n="reliability"                      i="103" a="9"  e="true" t="bacnet:BacnetReliability"/>
+  <property n="outOfService"                     i="81"  a="1"/>
+  <property n="priorityArray"                    i="87"  a="-2" s="16" r="true" t="bacnet:BacnetPriorityValue" c="all"/>
+  <property n="relinquishDefault"                i="104" a="11" t="bacnet:BacnetTime"/>
+
+  <property n="reliabilityEvaluationInhibit"     i="357" a="1" pr="13"/>
+  <property n="propertyList"                     i="371" a="-2" r="true" t="bacnet:BacnetPropertyIdentifier" pr="14"/>
+
+  <property n="eventDetectionEnable"             i="353" a="1"  pr="16"/>
+  <property n="notificationClass"                i="17"  a="2"  pr="16"/>
+  <property n="eventEnable"                      i="35"  a="8"  b="BacnetEventTransitionBits" pr="16"/>
+  <property n="ackedTransitions"                 i="0"   a="8"  b="BacnetEventTransitionBits" pr="16"/>
+  <property n="notifyType"                       i="72"  a="9"  t="bacnet:BacnetNotifyType" pr="16"/>
+  <property n="eventTimeStamps"                  i="130" a="-2" s="3" t="bacnet:BacnetTimeStamp" pr="16"/>
+  <property n="eventMessageTexts"                i="351" a="-2" s="3" t="baja:String" pr="16"/>
+  <property n="eventMessageTextsConfig"          i="352" a="-2" s="3" t="baja:String" pr="16"/>
+
+  <property n="profileName"                      i="168" a="7"/>
+ </object>
+ <object n="IntegerValue" t="45" pr="10">
+  <property n="objectIdentifier"                 i="75"  a="12" r="true"/>
+  <property n="objectName"                       i="77"  a="7"  r="true"/>
+  <property n="objectType"                       i="79"  a="9"  r="true" e="true" t="bacnet:BacnetObjectType"/>
+  <property n="description"                      i="28"  a="7"/>
+  <property n="presentValue"                     i="85"  a="3"  r="true"/>
+  <property n="statusFlags"                      i="111" a="8"  r="true" b="BacnetStatusFlags"/>
+  <property n="eventState"                       i="36"  a="9"  e="true" t="bacnet:BacnetEventState"/>
+  <property n="reliability"                      i="103" a="9"  e="true" t="bacnet:BacnetReliability"/>
+  <property n="outOfService"                     i="81"  a="1"/>
+  <property n="units"                            i="117" a="9"  r="true" e="true" t="bacnet:BacnetEngineeringUnits"/>
+  <property n="priorityArray"                    i="87"  a="-2" s="16" r="true" t="bacnet:BacnetPriorityValue" c="all"/>
+  <property n="relinquishDefault"                i="104" a="3"/>
+  <property n="covIncrement"                     i="22"  a="2"/>
+  <property n="timeDelay"                        i="113" a="2"/>
+  <property n="notificationClass"                i="17"  a="2"/>
+  <property n="highLimit"                        i="45"  a="3"/>
+  <property n="lowLimit"                         i="59"  a="3"/>
+  <property n="deadband"                         i="25"  a="2"/>
+  <property n="limitEnable"                      i="52"  a="8"  b="BacnetLimitEnable"/>
+  <property n="eventEnable"                      i="35"  a="8"  b="BacnetEventTransitionBits"/>
+  <property n="ackedTransitions"                 i="0"   a="8"  b="BacnetEventTransitionBits"/>
+  <property n="notifyType"                       i="72"  a="9"  t="bacnet:BacnetNotifyType"/>
+  <property n="eventTimeStamps"                  i="130" a="-2" t="bacnet:BacnetTimeStamp" s="3"/>
+
+  <property n="eventMessageTexts"                i="351" a="-2" t="baja:String" s="3" pr="11"/>
+
+  <property n="eventMessageTextsConfig"          i="352" a="-2" t="baja:String" s="3" pr="13"/>
+  <property n="eventDetectionEnable"             i="353" a="1" pr="13"/>
+  <property n="eventAlgorithmInhibitRef"         i="355" a="-1" t="bacnet:BacnetObjectPropertyReference" pr="13"/>
+  <property n="eventAlgorithmInhibit"            i="354" a="1" pr="13"/>
+  <property n="timeDelayNormal"                  i="356" a="2" pr="13"/>
+  <property n="reliabilityEvaluationInhibit"     i="357" a="1" pr="13"/>
+
+  <property n="minPresValue"                     i="69"  a="3" pr="14"/>
+  <property n="maxPresValue"                     i="65"  a="3" pr="14"/>
+  <property n="resolution"                       i="106" a="3" pr="14"/>
+  <property n="propertyList"                     i="371" a="-2" r="true" t="bacnet:BacnetPropertyIdentifier" pr="14"/>
+
+  <property n="faultHighLimit"                   i="388" a="3" pr="16"/>
+  <property n="faultLowLimit"                    i="389" a="3" pr="16"/>
+
+  <property n="profileName"                      i="168" a="7"/>
+ </object>
+ <object n="PositiveIntegerValue" t="48" pr="10">
+  <property n="objectIdentifier"                 i="75"  a="12" r="true"/>
+  <property n="objectName"                       i="77"  a="7"  r="true"/>
+  <property n="objectType"                       i="79"  a="9"  r="true" e="true" t="bacnet:BacnetObjectType"/>
+  <property n="description"                      i="28"  a="7"/>
+  <property n="presentValue"                     i="85"  a="2"  r="true"/>
+  <property n="statusFlags"                      i="111" a="8"  r="true" b="BacnetStatusFlags"/>
+  <property n="eventState"                       i="36"  a="9"  e="true" t="bacnet:BacnetEventState"/>
+  <property n="reliability"                      i="103" a="9"  e="true" t="bacnet:BacnetReliability"/>
+  <property n="outOfService"                     i="81"  a="1"/>
+  <property n="units"                            i="117" a="9"  r="true" e="true" t="bacnet:BacnetEngineeringUnits"/>
+  <property n="priorityArray"                    i="87"  a="-2" s="16" r="true" t="bacnet:BacnetPriorityValue" c="all"/>
+  <property n="relinquishDefault"                i="104" a="2"/>
+  <property n="covIncrement"                     i="22"  a="2"/>
+  <property n="timeDelay"                        i="113" a="2"/>
+  <property n="notificationClass"                i="17"  a="2"/>
+  <property n="highLimit"                        i="45"  a="2"/>
+  <property n="lowLimit"                         i="59"  a="2"/>
+  <property n="deadband"                         i="25"  a="2"/>
+  <property n="limitEnable"                      i="52"  a="8"  b="BacnetLimitEnable"/>
+  <property n="eventEnable"                      i="35"  a="8"  b="BacnetEventTransitionBits"/>
+  <property n="ackedTransitions"                 i="0"   a="8"  b="BacnetEventTransitionBits"/>
+  <property n="notifyType"                       i="72"  a="9"  t="bacnet:BacnetNotifyType"/>
+  <property n="eventTimeStamps"                  i="130" a="-2" t="bacnet:BacnetTimeStamp" s="3"/>
+
+  <property n="eventMessageTexts"                i="351" a="-2" t="baja:String" s="3" pr="11"/>
+
+  <property n="eventMessageTextsConfig"          i="352" a="-2" t="baja:String" s="3" pr="13"/>
+  <property n="eventDetectionEnable"             i="353" a="1" pr="13"/>
+  <property n="eventAlgorithmInhibitRef"         i="355" a="-1" t="bacnet:BacnetObjectPropertyReference" pr="13"/>
+  <property n="eventAlgorithmInhibit"            i="354" a="1" pr="13"/>
+  <property n="timeDelayNormal"                  i="356" a="2" pr="13"/>
+  <property n="reliabilityEvaluationInhibit"     i="357" a="1" pr="13"/>
+
+  <property n="minPresValue"                     i="69"  a="2" pr="14"/>
+  <property n="maxPresValue"                     i="65"  a="2" pr="14"/>
+  <property n="resolution"                       i="106" a="2" pr="14"/>
+  <property n="propertyList"                     i="371" a="-2" r="true" t="bacnet:BacnetPropertyIdentifier" pr="14"/>
+
+  <property n="faultHighLimit"                   i="388" a="2"  pr="16"/>
+  <property n="faultLowLimit"                    i="389" a="2"  pr="16"/>
+
+  <property n="profileName"                      i="168" a="7"/>
+ </object>
+ <object n="DateValue" t="42" pr="10">
+  <property n="objectIdentifier"                 i="75"  a="12" r="true"/>
+  <property n="objectName"                       i="77"  a="7"  r="true"/>
+  <property n="objectType"                       i="79"  a="9"  r="true" e="true" t="bacnet:BacnetObjectType"/>
+  <property n="description"                      i="28"  a="7"/>
+  <property n="presentValue"                     i="85"  a="10" r="true" t="bacnet:BacnetDate"/>
+  <property n="statusFlags"                      i="111" a="8"  r="true" b="BacnetStatusFlags"/>
+  <property n="eventState"                       i="36"  a="9"  e="true" t="bacnet:BacnetEventState"/>
+  <property n="reliability"                      i="103" a="9"  e="true" t="bacnet:BacnetReliability"/>
+  <property n="outOfService"                     i="81"  a="1"/>
+  <property n="priorityArray"                    i="87"  a="-2" s="16" r="true" t="bacnet:BacnetPriorityValue" c="all"/>
+  <property n="relinquishDefault"                i="104" a="10" t="bacnet:BacnetDate"/>
+
+  <property n="reliabilityEvaluationInhibit"     i="357" a="1" pr="13"/>
+  <property n="propertyList"                     i="371" a="-2" r="true" t="bacnet:BacnetPropertyIdentifier" pr="14"/>
+
+  <property n="eventDetectionEnable"             i="353" a="1"  pr="16"/>
+  <property n="notificationClass"                i="17"  a="2"  pr="16"/>
+  <property n="eventEnable"                      i="35"  a="8"  b="BacnetEventTransitionBits" pr="16"/>
+  <property n="ackedTransitions"                 i="0"   a="8"  b="BacnetEventTransitionBits" pr="16"/>
+  <property n="notifyType"                       i="72"  a="9"  t="bacnet:BacnetNotifyType" pr="16"/>
+  <property n="eventTimeStamps"                  i="130" a="-2" s="3" t="bacnet:BacnetTimeStamp" pr="16"/>
+  <property n="eventMessageTexts"                i="351" a="-2" s="3" t="baja:String" pr="16"/>
+  <property n="eventMessageTextsConfig"          i="352" a="-2" s="3" t="baja:String" pr="16"/>
+
+  <property n="profileName"                      i="168" a="7"/>
+ </object>
+ <object n="DateTimePatternValue" t="43" pr="10">
+  <property n="objectIdentifier"                 i="75"  a="12" r="true"/>
+  <property n="objectName"                       i="77"  a="7"  r="true"/>
+  <property n="objectType"                       i="79"  a="9"  r="true" e="true" t="bacnet:BacnetObjectType"/>
+  <property n="description"                      i="28"  a="7"/>
+  <property n="presentValue"                     i="85"  a="-1" r="true" t="bacnet:BacnetDateTime"/>
+  <property n="statusFlags"                      i="111" a="8"  r="true" b="BacnetStatusFlags"/>
+  <property n="eventState"                       i="36"  a="9"  e="true" t="bacnet:BacnetEventState"/>
+  <property n="reliability"                      i="103" a="9"  e="true" t="bacnet:BacnetReliability"/>
+  <property n="outOfService"                     i="81"  a="1"/>
+  <property n="priorityArray"                    i="87"  a="-2" r="true" s="16" t="bacnet:BacnetPriorityValue" c="all"/>
+  <property n="relinquishDefault"                i="104" a="-1" t="bacnet:BacnetDateTime"/>
+  <property n="isUtc"                            i="344" a="1"/>
+
+  <property n="reliabilityEvaluationInhibit"     i="357" a="1" pr="13"/>
+  <property n="propertyList"                     i="371" a="-2" r="true" t="bacnet:BacnetPropertyIdentifier" pr="14"/>
+
+  <property n="eventDetectionEnable"             i="353" a="1"  pr="16"/>
+  <property n="notificationClass"                i="17"  a="2"  pr="16"/>
+  <property n="eventEnable"                      i="35"  a="8"  b="BacnetEventTransitionBits" pr="16"/>
+  <property n="ackedTransitions"                 i="0"   a="8"  b="BacnetEventTransitionBits" pr="16"/>
+  <property n="notifyType"                       i="72"  a="9"  t="bacnet:BacnetNotifyType" pr="16"/>
+  <property n="eventTimeStamps"                  i="130" a="-2" s="3" t="bacnet:BacnetTimeStamp" pr="16"/>
+  <property n="eventMessageTexts"                i="351" a="-2" s="3" t="baja:String" pr="16"/>
+  <property n="eventMessageTextsConfig"          i="352" a="-2" s="3" t="baja:String" pr="16"/>
+
+  <property n="profileName"                      i="168" a="7"/>
+ </object>
+ <object n="TimePatternValue" t="49" pr="10">
+  <property n="objectIdentifier"                 i="75"  a="12" r="true"/>
+  <property n="objectName"                       i="77"  a="7"  r="true"/>
+  <property n="objectType"                       i="79"  a="9"  r="true" e="true" t="bacnet:BacnetObjectType"/>
+  <property n="description"                      i="28"  a="7"/>
+  <property n="presentValue"                     i="85"  a="11" r="true"/>
+  <property n="statusFlags"                      i="111" a="8"  r="true" b="BacnetStatusFlags"/>
+  <property n="eventState"                       i="36"  a="9"  e="true" t="bacnet:BacnetEventState"/>
+  <property n="reliability"                      i="103" a="9"  e="true" t="bacnet:BacnetReliability"/>
+  <property n="outOfService"                     i="81"  a="1"/>
+  <property n="priorityArray"                    i="87"  a="-2" s="16" r="true" t="bacnet:BacnetPriorityValue" c="all"/>
+  <property n="relinquishDefault"                i="104" a="11"/>
+
+  <property n="reliabilityEvaluationInhibit"     i="357" a="1" pr="13"/>
+  <property n="propertyList"                     i="371" a="-2" r="true" t="bacnet:BacnetPropertyIdentifier" pr="14"/>
+
+  <property n="eventDetectionEnable"             i="353" a="1"  pr="16"/>
+  <property n="notificationClass"                i="17"  a="2"  pr="16"/>
+  <property n="eventEnable"                      i="35"  a="8"  b="BacnetEventTransitionBits" pr="16"/>
+  <property n="ackedTransitions"                 i="0"   a="8"  b="BacnetEventTransitionBits" pr="16"/>
+  <property n="notifyType"                       i="72"  a="9"  t="bacnet:BacnetNotifyType" pr="16"/>
+  <property n="eventTimeStamps"                  i="130" a="-2" s="3" t="bacnet:BacnetTimeStamp" pr="16"/>
+  <property n="eventMessageTexts"                i="351" a="-2" s="3" t="baja:String" pr="16"/>
+  <property n="eventMessageTextsConfig"          i="352" a="-2" s="3" t="baja:String" pr="16"/>
+
+  <property n="profileName"                      i="168" a="7"/>
+ </object>
+ <object n="DatePatternValue" t="41" pr="10">
+  <property n="objectIdentifier"                 i="75"  a="12" r="true"/>
+  <property n="objectName"                       i="77"  a="7"  r="true"/>
+  <property n="objectType"                       i="79"  a="9"  r="true" e="true" t="bacnet:BacnetObjectType"/>
+  <property n="description"                      i="28"  a="7"/>
+  <property n="presentValue"                     i="85"  a="10" r="true" t="bacnet:BacnetDate"/>
+  <property n="statusFlags"                      i="111" a="8"  r="true" b="BacnetStatusFlags"/>
+  <property n="eventState"                       i="36"  a="9"  e="true" t="bacnet:BacnetEventState"/>
+  <property n="reliability"                      i="103" a="9"  e="true" t="bacnet:BacnetReliability"/>
+  <property n="outOfService"                     i="81"  a="1"/>
+  <property n="priorityArray"                    i="87"  a="-2" s="16" r="true" t="bacnet:BacnetPriorityValue" c="all"/>
+  <property n="relinquishDefault"                i="104" a="10" t="bacnet:BacnetDate"/>
+
+  <property n="reliabilityEvaluationInhibit"     i="357" a="1" pr="13"/>
+  <property n="propertyList"                     i="371" a="-2" r="true" t="bacnet:BacnetPropertyIdentifier" pr="14"/>
+
+  <property n="eventDetectionEnable"             i="353" a="1"  pr="16"/>
+  <property n="notificationClass"                i="17"  a="2"  pr="16"/>
+  <property n="eventEnable"                      i="35"  a="8"  b="BacnetEventTransitionBits" pr="16"/>
+  <property n="ackedTransitions"                 i="0"   a="8"  b="BacnetEventTransitionBits" pr="16"/>
+  <property n="notifyType"                       i="72"  a="9"  t="bacnet:BacnetNotifyType" pr="16"/>
+  <property n="eventTimeStamps"                  i="130" a="-2" s="3" t="bacnet:BacnetTimeStamp" pr="16"/>
+  <property n="eventMessageTexts"                i="351" a="-2" s="3" t="baja:String" pr="16"/>
+  <property n="eventMessageTextsConfig"          i="352" a="-2" s="3" t="baja:String" pr="16"/>
+
+  <property n="profileName"                      i="168" a="7"/>
+ </object>
+ <object n="Channel" t="53" pr="14">
+  <property n="objectIdentifier"                 i="75"  a="12" r="true"/>
+  <property n="objectName"                       i="77"  a="7"  r="true"/>
+  <property n="objectType"                       i="79"  a="9"  r="true" e="true" t="bacnet:BacnetObjectType"/>
+  <property n="description"                      i="28"  a="7"/>
+  <property n="presentValue"                     i="85"  a="-5" r="true" t="bacnet:BacnetChannelValue"/>
+  <property n="lastPriority"                     i="369" a="2"  r="true"/>
+  <property n="writeStatus"                      i="370" a="9"  r="true" t="bacnet:BacnetWriteStatus"/>
+  <property n="statusFlags"                      i="111" a="8"  r="true" b="BacnetStatusFlags"/>
+  <property n="reliability"                      i="103" a="9"  e="true" t="bacnet:BacnetReliability"/>
+  <property n="outOfService"                     i="81"  a="1"  r="true"/>
+  <property n="listOfObjectPropertyReferences"   i="54"  a="-2" r="true" t="bacnet:BacnetDeviceObjectPropertyReference"/>
+  <property n="executionDelay"                   i="368" a="-2" t="bacnet:BacnetUnsigned"/>
+  <property n="allowGroupDelayInhibit"           i="365" a="1"/>
+  <property n="channelNumber"                    i="366" a="2"  r="true"/>
+  <property n="controlGroups"                    i="367" a="-2" r="true" t="bacnet:BacnetUnsigned"/>
+  <property n="eventDetectionEnable"             i="353" a="1"/>
+  <property n="notificationClass"                i="17"  a="2"/>
+  <property n="eventEnable"                      i="35"  a="8"  b="BacnetEventTransitionBits"/>
+  <property n="eventState"                       i="36"  a="9"  e="true" t="bacnet:BacnetEventState"/>
+  <property n="ackedTransitions"                 i="0"   a="8"  b="BacnetEventTransitionBits"/>
+  <property n="notifyType"                       i="72"  a="9"  t="bacnet:BacnetNotifyType"/>
+  <property n="eventTimeStamps"                  i="130" a="-2" t="bacnet:BacnetTimeStamp" s="3"/>
+  <property n="eventMessageTexts"                i="351" a="-2" t="baja:String" s="3"/>
+  <property n="eventMessageTextsConfig"          i="352" a="-2" t="baja:String" s="3"/>
+  <property n="reliabilityEvaluationInhibit"     i="357" a="1"/>
+  <property n="propertyList"                     i="371" a="-2" r="true" t="bacnet:BacnetPropertyIdentifier"/>
+  <property n="profileName"                      i="168" a="7"/>
+ </object>
+ <object n="LightingOutput" t="54" pr="14">
+  <property n="objectIdentifier"                 i="75"  a="12" r="true"/>
+  <property n="objectName"                       i="77"  a="7"  r="true"/>
+  <property n="objectType"                       i="79"  a="9"  r="true" e="true" t="bacnet:BacnetObjectType"/>
+  <property n="presentValue"                     i="85"  a="4"  r="true"/>
+  <property n="trackingValue"                    i="164" a="4"  r="true"/>
+  <property n="lightingCommand"                  i="380" a="-1" r="true" t="bacnet:BacnetLightingCommand"/>
+  <property n="inProgress"                       i="378" a="9"  r="true" t="bacnet:BacnetLightingInProgress"/>
+  <property n="description"                      i="28"  a="7"/>
+  <property n="statusFlags"                      i="111" a="8"  r="true" b="BacnetStatusFlags"/>
+  <property n="reliability"                      i="103" a="9"  e="true" t="bacnet:BacnetReliability"/>
+  <property n="outOfService"                     i="81"  a="1"  r="true"/>
+  <property n="blinkWarnEnable"                  i="373" a="1"  r="true"/>
+  <property n="egressTime"                       i="377" a="2"  r="true"/>
+  <property n="egressActive"                     i="386" a="1"  r="true"/>
+  <property n="defaultFadetime"                  i="374" a="2"  r="true"/>
+  <property n="defaultRamprate"                  i="375" a="4"  r="true"/>
+  <property n="defaultStepIncrement"             i="376" a="4"  r="true"/>
+  <property n="transition"                       i="385" a="9"  e="true" t="bacnet:BacnetLightingTransition"/>
+  <property n="feedbackValue"                    i="40"  a="4"/>
+  <property n="priorityArray"                    i="87"  a="-2" s="16" r="true" t="bacnet:BacnetPriorityValue" c="all"/>
+  <property n="relinquishDefault"                i="104" a="4"  r="true"/>
+  <property n="power"                            i="384" a="4"/>
+  <property n="instantaneousPower"               i="379" a="4"/>
+  <property n="minActualValue"                   i="383" a="4"/>
+  <property n="maxActualValue"                   i="382" a="4"/>
+  <property n="lightingCommandDefaultPriority"   i="381" a="2"  r="true"/>
+  <property n="covIncrement"                     i="22"  a="4"/>
+  <property n="reliabilityEvaluationInhibit"     i="357" a="1"/>
+  <property n="propertyList"                     i="371" a="-2" r="true" t="bacnet:BacnetPropertyIdentifier"/>
+  <property n="profileName"                      i="168" a="7"/>
+ </object>
+ <object n="BinaryLightingOutput" t="55" pr="16">
+  <property n="objectIdentifier"                 i="75"  a="12" r="true"/>
+  <property n="objectName"                       i="77"  a="7"  r="true"/>
+  <property n="objectType"                       i="79"  a="9"  r="true" e="true" t="bacnet:BacnetObjectType"/>
+  <property n="presentValue"                     i="85"  a="9"  r="true" e="true" t="bacnet:BacnetBinaryLightingPv"/>
+  <property n="description"                      i="28"  a="7"/>
+  <property n="statusFlags"                      i="111" a="8"  r="true" b="BacnetStatusFlags"/>
+  <property n="reliability"                      i="103" a="9"  e="true" t="bacnet:BacnetReliability"/>
+  <property n="outOfService"                     i="81"  a="1"  r="true"/>
+  <property n="blinkWarnEnable"                  i="373" a="1"  r="true"/>
+  <property n="egressTime"                       i="377" a="2"  r="true"/>
+  <property n="egressActive"                     i="386" a="1"  r="true"/>
+  <property n="feedbackValue"                    i="40"  a="9"  e="true" t="bacnet:BacnetBinaryLightingPv"/>
+  <property n="priorityArray"                    i="87"  a="-2" s="16" r="true" t="bacnet:BacnetPriorityValue" c="all"/>
+  <property n="relinquishDefault"                i="104" a="9"  r="true" e="true" t="bacnet:BacnetBinaryLightingPv"/>
+  <property n="power"                            i="384" a="4"/>
+  <property n="polarity"                         i="84"  a="9" t="bacnet:BacnetPolarity"/>
+  <property n="elapsedActiveTime"                i="33"  a="2"/>
+  <property n="timeOfActiveTimeReset"            i="114" a="-1" t="bacnet:BacnetDateTime"/>
+  <property n="strikeCount"                      i="391" a="2"/>
+  <property n="timeOfStrikeCountReset"           i="392" a="-1" t="bacnet:BacnetDateTime"/>
+  <property n="eventDetectionEnable"             i="353" a="1"/>
+  <property n="notificationClass"                i="17"  a="2"/>
+  <property n="eventEnable"                      i="35"  a="8"  b="BacnetEventTransitionBits"/>
+  <property n="ackedTransitions"                 i="0"   a="8"  b="BacnetEventTransitionBits"/>
+  <property n="notifyType"                       i="72"  a="9"  t="bacnet:BacnetNotifyType"/>
+  <property n="eventTimeStamps"                  i="130" a="-2" s="3" t="bacnet:BacnetTimeStamp"/>
+  <property n="eventMessageTexts"                i="351" a="-2" s="3" t="baja:String"/>
+  <property n="eventMessageTextsConfig"          i="352" a="-2" s="3" t="baja:String"/>
+  <property n="reliabilityEvaluationInhibit"     i="357" a="1"/>
+  <property n="propertyList"                     i="371" a="-2" r="true" t="bacnet:BacnetPropertyIdentifier"/>
+  <property n="profileName"                      i="168" a="7"/>
+ </object>
+ <object n="Accumulator" t="23" pr="4">
+  <property n="objectIdentifier"                  i="75"  a="12" r="true"/>
+  <property n="objectName"                        i="77"  a="7" r="true"/>
+  <property n="objectType"                        i="79"  a="9" r="true" e="true" t="bacnet:BacnetObjectType"/>
+  <property n="presentValue"                      i="85"  a="2" r="true"/>
+  <property n="description"                       i="28"  a="7"/>
+  <property n="deviceType"                        i="31"  a="7"/>
+  <property n="statusFlags"                       i="111" a="8" r="true" b="BacnetStatusFlags"/>
+  <property n="eventState"                        i="36"  a="9" r="true" e="true" t="bacnet:BacnetEventState"/>
+  <property n="reliability"                       i="103" a="9" e="true" t="bacnet:BacnetReliability"/>
+  <property n="outOfService"                      i="81"  a="1" r="true"/>
+  <property n="scale"                             i="187" a="-5" r="true" t="bacnet:BacnetScale"/>
+  <property n="units"                             i="117" a="9" r="true" f="true" e="true" t="bacnet:BacnetEngineeringUnits"/>
+  <property n="prescale"                          i="185" a="-1" t="bacnet:BacnetPrescale"/>
+  <property n="maxPresValue"                      i="65"  a="2" r="true" f="true"/>
+  <property n="valueChangeTime"                   i="192" a="-1" t="bacnet:BacnetDateTime"/>
+  <property n="valueBeforeChange"                 i="190" a="2"/>
+  <property n="valueSet"                          i="191" a="2"/>
+  <property n="loggingRecord"                     i="184" a="-1" t="bacnet:BacnetAccumulatorRecord"/>
+  <property n="loggingObject"                     i="183" a="12"/>
+  <property n="pulseRate"                         i="186" a="2"/>
+  <property n="highLimit"                         i="45"  a="2"/>
+  <property n="lowLimit"                          i="59"  a="2"/>
+  <property n="limitMonitoringInterval"           i="182" a="2"/>
+  <property n="notificationClass"                 i="17"  a="2"/>
+  <property n="timeDelay"                         i="113" a="2"/>
+  <property n="limitEnable"                       i="52"  a="8" b="BacnetLimitEnable"/>
+  <property n="eventEnable"                       i="35"  a="8" b="BacnetEventTransitionBits"/>
+  <property n="ackedTransitions"                  i="0"   a="8" b="BacnetEventTransitionBits"/>
+  <property n="notifyType"                        i="72"  a="9" t="bacnet:BacnetNotifyType"/>
+  <property n="eventTimeStamps"                   i="130" a="-2" s="3" t="bacnet:BacnetTimeStamp"/>
+
+  <property n="eventMessageTexts"                 i="351" a="-2" s="3" t="baja:String" pr="11"/>
+
+  <property n="eventMessageTextsConfig"           i="352" a="-2" s="3" t="baja:String" pr="13"/>
+  <property n="eventDetectionEnable"              i="353" a="1" pr="13"/>
+  <property n="eventAlgorithmInhibit"             i="354" a="1" pr="13"/>
+  <property n="eventAlgorithmInhibitRef"          i="355" a="-1" t="bacnet:BacnetObjectPropertyReference" pr="13"/>
+  <property n="timeDelayNormal"                   i="356" a="2" pr="13"/>
+  <property n="reliabilityEvaluationInhibit"      i="357" a="1" pr="13"/>
+
+  <property n="propertyList"                      i="371" a="-2" r="true" t="bacnet:BacnetPropertyIdentifier" pr="14"/>
+
+  <property n="faultHighLimit"                    i="388" a="2"  pr="16"/>
+  <property n="faultLowLimit"                     i="389" a="2"  pr="16"/>
+
+  <property n="profileName"                       i="168" a="7"/>
+ </object>
+</objectTypes>

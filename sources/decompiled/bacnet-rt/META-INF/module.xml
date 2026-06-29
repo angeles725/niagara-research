@@ -1,0 +1,610 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="bacnet-rt" bajaVersion="0" vendor="Tridium" vendorVersion="4.14.0.162" description="Niagara BACnet Driver" preferredSymbol="bac" nre="true" autoload="true" installable="true" buildMillis="1718363052502" buildHost="ee033fd13409" moduleName="bacnet" runtimeProfile="rt" releaseDate="2024-05-28">
+ <dependencies>
+  <dependency name="alarm-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="backup-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="baja" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="box-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="bql-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="chart-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="control-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="driver-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="entityIo-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="file-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="fox-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="gx-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="history-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="jetty-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="net-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="platBacnet-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="platMstp-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="platSerial-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="platform-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="query-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="schedule-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="serial-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="web-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+ </dependencies>
+ <dirs/>
+ <installation/>
+ <types>
+  <type class="com.tridium.bacnet.alarm.BBacnetChangeOfDiscreteValueAlgorithm" name="BacnetChangeOfDiscreteValueAlgorithm"/>
+  <type class="com.tridium.bacnet.datatypes.BAddArrayElementAction" name="AddArrayElementAction"/>
+  <type class="com.tridium.bacnet.datatypes.BAddListElementAction" name="AddListElementAction"/>
+  <type class="com.tridium.bacnet.datatypes.BRequestConfig" name="RequestConfig"/>
+  <type class="com.tridium.bacnet.datatypes.BChangeDeviceIdConfig" name="ChangeDeviceIdConfig"/>
+  <type class="com.tridium.bacnet.datatypes.BDeviceDiscoveryConfig" name="DeviceDiscoveryConfig"/>
+  <type class="com.tridium.bacnet.datatypes.BDiscoveryNetworks" name="DiscoveryNetworks"/>
+  <type class="com.tridium.bacnet.datatypes.BEventSaver" name="EventSaver"/>
+  <type class="com.tridium.bacnet.datatypes.BNcRecipientList" name="NcRecipientList"/>
+  <type class="com.tridium.bacnet.datatypes.BNextInstArgs" name="NextInstArgs"/>
+  <type class="com.tridium.bacnet.datatypes.BPriorityFilter" name="PriorityFilter"/>
+  <type class="com.tridium.bacnet.datatypes.BReadFileConfig" name="ReadFileConfig"/>
+  <type class="com.tridium.bacnet.datatypes.BRemoveArrayElementAction" name="RemoveArrayElementAction"/>
+  <type class="com.tridium.bacnet.datatypes.BRemoveListElementAction" name="RemoveListElementAction"/>
+  <type class="com.tridium.bacnet.datatypes.BSvoSubordinate" name="SvoSubordinate"/>
+  <type class="com.tridium.bacnet.datatypes.BTrendEvent" name="TrendEvent"/>
+  <type class="com.tridium.bacnet.datatypes.BTimeSynchConfig" name="TimeSynchConfig"/>
+  <type class="com.tridium.bacnet.datatypes.BWhoHasConfig" name="WhoHasConfig"/>
+  <type class="com.tridium.bacnet.datatypes.BWriteFileConfig" name="WriteFileConfig"/>
+  <type class="com.tridium.bacnet.datatypes.BBacnetEventNotification" name="BacnetEventNotification"/>
+  <type class="com.tridium.bacnet.enums.BAcknowledgmentFilter" name="AcknowledgmentFilter"/>
+  <type class="com.tridium.bacnet.enums.BBacnetMstpBaudRate" name="BacnetMstpBaudRate"/>
+  <type class="com.tridium.bacnet.enums.BEventStateFilter" name="EventStateFilter"/>
+  <type class="com.tridium.bacnet.enums.BIpDeviceType" name="IpDeviceType"/>
+  <type class="com.tridium.bacnet.enums.BBacnetMstpUsageTimeout" name="BacnetMstpUsageTimeout"/>
+  <type class="com.tridium.bacnet.history.BIBacnetTrendLogExt" name="IBacnetTrendLogExt"/>
+  <type class="com.tridium.bacnet.history.BBacnetHistoryDeviceExt" name="BacnetHistoryDeviceExt"/>
+  <type class="com.tridium.bacnet.history.BAbstractBacnetHistory" name="AbstractBacnetHistory"/>
+  <type class="com.tridium.bacnet.history.BBacnetHistoryImport" name="BacnetHistoryImport"/>
+  <type class="com.tridium.bacnet.history.BBacnetBooleanCovTrendLogExt" name="BacnetBooleanCovTrendLogExt"/>
+  <type class="com.tridium.bacnet.history.BBacnetBooleanIntervalTrendLogExt" name="BacnetBooleanIntervalTrendLogExt"/>
+  <type class="com.tridium.bacnet.history.BBacnetBooleanTrendRecord" name="BacnetBooleanTrendRecord"/>
+  <type class="com.tridium.bacnet.history.BBacnetNumericCovTrendLogExt" name="BacnetNumericCovTrendLogExt"/>
+  <type class="com.tridium.bacnet.history.BBacnetNumericIntervalTrendLogExt" name="BacnetNumericIntervalTrendLogExt"/>
+  <type class="com.tridium.bacnet.history.BBacnetNumericTrendRecord" name="BacnetNumericTrendRecord"/>
+  <type class="com.tridium.bacnet.history.BBacnetEnumCovTrendLogExt" name="BacnetEnumCovTrendLogExt"/>
+  <type class="com.tridium.bacnet.history.BBacnetEnumIntervalTrendLogExt" name="BacnetEnumIntervalTrendLogExt"/>
+  <type class="com.tridium.bacnet.history.BBacnetEnumTrendRecord" name="BacnetEnumTrendRecord"/>
+  <type class="com.tridium.bacnet.history.BBacnetStringCovTrendLogExt" name="BacnetStringCovTrendLogExt"/>
+  <type class="com.tridium.bacnet.history.BBacnetStringIntervalTrendLogExt" name="BacnetStringIntervalTrendLogExt"/>
+  <type class="com.tridium.bacnet.history.BBacnetStringTrendRecord" name="BacnetStringTrendRecord"/>
+  <type class="com.tridium.bacnet.history.BBacnetTrendLogAlarmSourceExt" name="BacnetTrendLogAlarmSourceExt"/>
+  <type class="com.tridium.bacnet.history.BBacnetTrendRecord" name="BacnetTrendRecord"/>
+  <type class="com.tridium.bacnet.history.BBacnetActivePeriod" name="BacnetActivePeriod"/>
+  <type class="com.tridium.bacnet.history.BBacnetTrendLogMultipleImport" name="BacnetTrendLogMultipleImport"/>
+  <type class="com.tridium.bacnet.history.BBacnetNumericTrendLogExt" name="BacnetNumericTrendLogExt"/>
+  <type class="com.tridium.bacnet.history.BBacnetStringTrendLogExt" name="BacnetStringTrendLogExt"/>
+  <type class="com.tridium.bacnet.history.BBacnetBooleanTrendLogExt" name="BacnetBooleanTrendLogExt"/>
+  <type class="com.tridium.bacnet.history.BBacnetEnumTrendLogExt" name="BacnetEnumTrendLogExt"/>
+  <type class="com.tridium.bacnet.history.BBacnetNumericTrendLogRemoteExt" name="BacnetNumericTrendLogRemoteExt"/>
+  <type class="com.tridium.bacnet.history.BBacnetTrendLogRemoteExt" name="BacnetTrendLogRemoteExt"/>
+  <type class="com.tridium.bacnet.history.BBacnetStringTrendLogRemoteExt" name="BacnetStringTrendLogRemoteExt"/>
+  <type class="com.tridium.bacnet.history.BBacnetBooleanTrendLogRemoteExt" name="BacnetBooleanTrendLogRemoteExt"/>
+  <type class="com.tridium.bacnet.history.BBacnetEnumTrendLogRemoteExt" name="BacnetEnumTrendLogRemoteExt"/>
+  <type class="com.tridium.bacnet.history.BBacnetBitStringTrendLogExt" name="BacnetBitStringTrendLogExt"/>
+  <type class="com.tridium.bacnet.history.BBacnetBitStringTrendRecord" name="BacnetBitStringTrendRecord"/>
+  <type class="com.tridium.bacnet.history.BBacnetBitStringTrendLogRemoteExt" name="BacnetBitStringTrendLogRemoteExt"/>
+  <type class="com.tridium.bacnet.job.BBacnetDiscoverJob" name="BacnetDiscoverJob"/>
+  <type class="com.tridium.bacnet.job.BBacnetDiscoverConfigJob" name="BacnetDiscoverConfigJob"/>
+  <type class="com.tridium.bacnet.job.BBacnetDiscoverDevicesJob" name="BacnetDiscoverDevicesJob"/>
+  <type class="com.tridium.bacnet.job.BBacnetDiscoverPointsJob" name="BacnetDiscoverPointsJob"/>
+  <type class="com.tridium.bacnet.job.BBacnetDiscoverSchedulesJob" name="BacnetDiscoverSchedulesJob"/>
+  <type class="com.tridium.bacnet.job.BBacnetDiscoverTrendLogsJob" name="BacnetDiscoverTrendLogsJob"/>
+  <type class="com.tridium.bacnet.job.BBacnetScheduleTypeChangeJob" name="BacnetScheduleTypeChangeJob"/>
+  <type class="com.tridium.bacnet.job.BChangeDeviceIdJob" name="ChangeDeviceIdJob"/>
+  <type class="com.tridium.bacnet.job.BDeviceManagerJob" name="DeviceManagerJob"/>
+  <type class="com.tridium.bacnet.job.BDiscoveryConfig" name="DiscoveryConfig"/>
+  <type class="com.tridium.bacnet.job.BDiscoveryDevice" name="DiscoveryDevice"/>
+  <type class="com.tridium.bacnet.job.BDiscoveryLog" name="DiscoveryLog"/>
+  <type class="com.tridium.bacnet.job.BDiscoveryPoint" name="DiscoveryPoint"/>
+  <type class="com.tridium.bacnet.job.BDiscoveryPointTable" name="DiscoveryPointTable"/>
+  <type class="com.tridium.bacnet.job.BDiscoverySchedule" name="DiscoverySchedule"/>
+  <type class="com.tridium.bacnet.job.BTimeSynchJob" name="TimeSynchJob"/>
+  <type class="com.tridium.bacnet.job.BWhoHasJob" name="WhoHasJob"/>
+  <type class="com.tridium.bacnet.schedule.BBacnetScheduleDeviceExt" name="BacnetScheduleDeviceExt"/>
+  <type class="com.tridium.bacnet.schedule.BBacnetScheduleExport" name="BacnetScheduleExport"/>
+  <type class="com.tridium.bacnet.schedule.BBacnetScheduleImportExt" name="BacnetScheduleImportExt"/>
+  <type class="com.tridium.bacnet.schedule.BBacnetChangeTypeParm" name="BacnetChangeTypeParm"/>
+  <type class="com.tridium.bacnet.stack.client.BBacnetClientLayer" name="BacnetClientLayer"/>
+  <type class="com.tridium.bacnet.stack.client.BClientDebugListener" name="ClientDebugListener"/>
+  <type class="com.tridium.bacnet.stack.link.ethernet.BBacnetEthernetLinkLayer" name="BacnetEthernetLinkLayer"/>
+  <type class="com.tridium.bacnet.stack.link.ip.BBacnetIpLinkLayer" name="BacnetIpLinkLayer"/>
+  <type class="com.tridium.bacnet.stack.link.ip.BBdtEntry" name="BdtEntry"/>
+  <type class="com.tridium.bacnet.stack.link.ip.BBroadcastDistributionTable" name="BroadcastDistributionTable"/>
+  <type class="com.tridium.bacnet.stack.link.ip.BFdtEntry" name="FdtEntry"/>
+  <type class="com.tridium.bacnet.stack.link.ip.BForeignDeviceTable" name="ForeignDeviceTable"/>
+  <type class="com.tridium.bacnet.stack.link.ip.BForeignDeviceRegistration" name="ForeignDeviceRegistration"/>
+  <type class="com.tridium.bacnet.stack.link.mstp.BBacnetMstpLinkLayer" name="BacnetMstpLinkLayer"/>
+  <type class="com.tridium.bacnet.stack.link.BBacnetLinkLayer" name="BacnetLinkLayer"/>
+  <type class="com.tridium.bacnet.stack.link.BLinkLayerChoice" name="LinkLayerChoice"/>
+  <type class="com.tridium.bacnet.stack.network.BBacnetNetworkLayer" name="BacnetNetworkLayer"/>
+  <type class="com.tridium.bacnet.stack.network.BBacnetRouterEntry" name="BacnetRouterEntry"/>
+  <type class="com.tridium.bacnet.stack.network.BBacnetRouterTable" name="BacnetRouterTable"/>
+  <type class="com.tridium.bacnet.stack.network.BNetworkPort" name="NetworkPort"/>
+  <type class="com.tridium.bacnet.stack.network.BNetworkPriority" name="NetworkPriority"/>
+  <type class="com.tridium.bacnet.stack.network.BRouterStatus" name="RouterStatus"/>
+  <type class="com.tridium.bacnet.stack.server.BBacnetServerLayer" name="BacnetServerLayer"/>
+  <type class="com.tridium.bacnet.stack.server.BEventHandler" name="EventHandler"/>
+  <type class="com.tridium.bacnet.stack.server.BBacnetExportFolder" name="BacnetExportFolder"/>
+  <type class="com.tridium.bacnet.stack.server.BBacnetExportTable" name="BacnetExportTable"/>
+  <type class="com.tridium.bacnet.stack.server.BHashedEventBuffer" name="HashedEventBuffer"/>
+  <type class="com.tridium.bacnet.stack.server.BIBacnetExportFolder" name="IBacnetExportFolder"/>
+  <type class="com.tridium.bacnet.stack.server.BOverrideMode" name="OverrideMode"/>
+  <type class="com.tridium.bacnet.stack.transport.BBacnetTransportLayer" name="BacnetTransportLayer"/>
+  <type class="com.tridium.bacnet.stack.BBacnetMultiPoll" name="BacnetMultiPoll"/>
+  <type class="com.tridium.bacnet.stack.BBacnetPoll" name="BacnetPoll"/>
+  <type class="com.tridium.bacnet.stack.BBacnetStack" name="BacnetStack"/>
+  <type class="com.tridium.bacnet.stack.BBacnetPollOrder" name="BacnetPollOrder"/>
+  <type class="com.tridium.bacnet.BBacnetOrdScheme" name="BacnetOrdScheme" ordScheme="bac"/>
+  <type class="javax.baja.bacnet.alarm.BBacnetAlarmDeviceExt" name="BacnetAlarmDeviceExt"/>
+  <type class="javax.baja.bacnet.alarm.BBacnetEventProcessor" name="BacnetEventProcessor"/>
+  <type class="javax.baja.bacnet.config.BIBacnetConfigFolder" name="IBacnetConfigFolder"/>
+  <type class="javax.baja.bacnet.config.BBacnetConfigDeviceExt" name="BacnetConfigDeviceExt"/>
+  <type class="javax.baja.bacnet.config.BBacnetConfigFolder" name="BacnetConfigFolder"/>
+  <type class="javax.baja.bacnet.config.BBacnetDeviceObject" name="BacnetDeviceObject"/>
+  <type class="javax.baja.bacnet.config.BBacnetAnalog" name="BacnetAnalog"/>
+  <type class="javax.baja.bacnet.config.BBacnetAnalogInput" name="BacnetAnalogInput"/>
+  <type class="javax.baja.bacnet.config.BBacnetAnalogOutput" name="BacnetAnalogOutput"/>
+  <type class="javax.baja.bacnet.config.BBacnetAnalogValue" name="BacnetAnalogValue"/>
+  <type class="javax.baja.bacnet.config.BBacnetAveraging" name="BacnetAveraging"/>
+  <type class="javax.baja.bacnet.config.BBacnetBinary" name="BacnetBinary"/>
+  <type class="javax.baja.bacnet.config.BBacnetBinaryInput" name="BacnetBinaryInput"/>
+  <type class="javax.baja.bacnet.config.BBacnetBinaryOutput" name="BacnetBinaryOutput"/>
+  <type class="javax.baja.bacnet.config.BBacnetBinaryValue" name="BacnetBinaryValue"/>
+  <type class="javax.baja.bacnet.config.BBacnetCalendar" name="BacnetCalendar"/>
+  <type class="javax.baja.bacnet.config.BBacnetEventEnrollment" name="BacnetEventEnrollment"/>
+  <type class="javax.baja.bacnet.config.BBacnetFile" name="BacnetFile"/>
+  <type class="javax.baja.bacnet.config.BBacnetGroup" name="BacnetGroup"/>
+  <type class="javax.baja.bacnet.config.BBacnetLoop" name="BacnetLoop"/>
+  <type class="javax.baja.bacnet.config.BBacnetMultistate" name="BacnetMultistate"/>
+  <type class="javax.baja.bacnet.config.BBacnetMultistateInput" name="BacnetMultistateInput"/>
+  <type class="javax.baja.bacnet.config.BBacnetMultistateOutput" name="BacnetMultistateOutput"/>
+  <type class="javax.baja.bacnet.config.BBacnetMultistateValue" name="BacnetMultistateValue"/>
+  <type class="javax.baja.bacnet.config.BBacnetNotificationClass" name="BacnetNotificationClass"/>
+  <type class="javax.baja.bacnet.config.BBacnetProgram" name="BacnetProgram"/>
+  <type class="javax.baja.bacnet.config.BBacnetSchedule" name="BacnetSchedule"/>
+  <type class="javax.baja.bacnet.config.BBacnetTrendLog" name="BacnetTrendLog"/>
+  <type class="javax.baja.bacnet.config.BBacnetTrendLogMultiple" name="BacnetTrendLogMultiple"/>
+  <type class="javax.baja.bacnet.config.BBacnetCreatableObject" name="BacnetCreatableObject"/>
+  <type class="javax.baja.bacnet.config.BBacnetAccessDoor" name="BacnetAccessDoor"/>
+  <type class="javax.baja.bacnet.config.BBacnetAccumulator" name="BacnetAccumulator"/>
+  <type class="javax.baja.bacnet.config.BBacnetCommand" name="BacnetCommand"/>
+  <type class="javax.baja.bacnet.config.BBacnetEventLog" name="BacnetEventLog"/>
+  <type class="javax.baja.bacnet.config.BBacnetLoadControl" name="BacnetLoadControl"/>
+  <type class="javax.baja.bacnet.config.BBacnetPulseConverter" name="BacnetPulseConverter"/>
+  <type class="javax.baja.bacnet.config.BBacnetStructuredView" name="BacnetStructuredView"/>
+  <type class="javax.baja.bacnet.config.BBacnetBinaryLightingOutput" name="BacnetBinaryLightingOutput"/>
+  <type class="javax.baja.bacnet.datatypes.BIBacnetDataType" name="IBacnetDataType"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetBitString" name="BacnetBitString"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetDate" name="BacnetDate"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetNull" name="BacnetNull"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetObjectIdentifier" name="BacnetObjectIdentifier"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetOctetString" name="BacnetOctetString"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetTime" name="BacnetTime"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetUnsigned" name="BacnetUnsigned"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetAddress" name="BacnetAddress"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetAddressBinding" name="BacnetAddressBinding"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetArray" name="BacnetArray"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetClientCov" name="BacnetClientCov"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetCovSubscription" name="BacnetCovSubscription"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetDailySchedule" name="BacnetDailySchedule"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetDateRange" name="BacnetDateRange"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetDateTime" name="BacnetDateTime"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetDestination" name="BacnetDestination"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetDeviceObjectPropertyReference" name="BacnetDeviceObjectPropertyReference"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetDeviceObjectReference" name="BacnetDeviceObjectReference"/>
+  <type class="javax.baja.bacnet.datatypes.BErrorType" name="ErrorType"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetListOf" name="BacnetListOf"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetLogMultipleRecord" name="BacnetLogMultipleRecord"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetLogRecord" name="BacnetLogRecord"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetObjectPropertyReference" name="BacnetObjectPropertyReference"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetPrescale" name="BacnetPrescale"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetPropertyReference" name="BacnetPropertyReference"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetPropertyValue" name="BacnetPropertyValue"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetRecipientProcess" name="BacnetRecipientProcess"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetSetpointReference" name="BacnetSetpointReference"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetSpecialEvent" name="BacnetSpecialEvent"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetTimeValue" name="BacnetTimeValue"/>
+  <type class="javax.baja.bacnet.datatypes.BReadAccessResult" name="ReadAccessResult"/>
+  <type class="javax.baja.bacnet.datatypes.BReadAccessSpecification" name="ReadAccessSpecification"/>
+  <type class="javax.baja.bacnet.datatypes.BReadPropertyResult" name="ReadPropertyResult"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetGroupChannelValue" name="BacnetGroupChannelValue"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetLightingCommand" name="BacnetLightingCommand"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetAny" name="BacnetAny"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetCalendarEntry" name="BacnetCalendarEntry"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetEventParameter" name="BacnetEventParameter"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetPriorityValue" name="BacnetPriorityValue"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetPropertyStates" name="BacnetPropertyStates"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetRecipient" name="BacnetRecipient"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetScale" name="BacnetScale"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetTimeStamp" name="BacnetTimeStamp"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetOptionalCharacterString" name="BacnetOptionalCharacterString"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetChannelValue" name="BacnetChannelValue"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetFaultParameter" name="BacnetFaultParameter"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetPropertyAccessResult" name="BacnetPropertyAccessResult"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetOptionalReal" name="BacnetOptionalReal"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetActionCommand" name="BacnetActionCommand"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetActionList" name="BacnetActionList"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetOptionalBinaryPv" name="BacnetOptionalBinaryPv"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetOptionalUnsigned" name="BacnetOptionalUnsigned"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetVtSession" name="BacnetVtSession"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetAccumulatorRecord" name="BacnetAccumulatorRecord"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetShedLevel" name="BacnetShedLevel"/>
+  <type class="javax.baja.bacnet.datatypes.BBacnetEventLogRecord" name="BacnetEventLogRecord"/>
+  <type class="javax.baja.bacnet.enums.BExtensibleEnumList" name="ExtensibleEnumList"/>
+  <type class="javax.baja.bacnet.enums.BBacnetAction" name="BacnetAction"/>
+  <type class="javax.baja.bacnet.enums.BBacnetBackupState" name="BacnetBackupState"/>
+  <type class="javax.baja.bacnet.enums.BBacnetBinaryPv" name="BacnetBinaryPv"/>
+  <type class="javax.baja.bacnet.enums.BBacnetFileAccessMethod" name="BacnetFileAccessMethod"/>
+  <type class="javax.baja.bacnet.enums.BBacnetNodeType" name="BacnetNodeType"/>
+  <type class="javax.baja.bacnet.enums.BBacnetNotifyType" name="BacnetNotifyType"/>
+  <type class="javax.baja.bacnet.enums.BBacnetPolarity" name="BacnetPolarity"/>
+  <type class="javax.baja.bacnet.enums.BBacnetSegmentation" name="BacnetSegmentation"/>
+  <type class="javax.baja.bacnet.enums.BBacnetFaultType" name="BacnetFaultType"/>
+  <type class="javax.baja.bacnet.enums.BBacnetAbortReason" name="BacnetAbortReason"/>
+  <type class="javax.baja.bacnet.enums.BBacnetDeviceStatus" name="BacnetDeviceStatus"/>
+  <type class="javax.baja.bacnet.enums.BBacnetEngineeringUnits" name="BacnetEngineeringUnits"/>
+  <type class="javax.baja.bacnet.enums.BBacnetErrorClass" name="BacnetErrorClass"/>
+  <type class="javax.baja.bacnet.enums.BBacnetErrorCode" name="BacnetErrorCode"/>
+  <type class="javax.baja.bacnet.enums.BBacnetEventState" name="BacnetEventState"/>
+  <type class="javax.baja.bacnet.enums.BBacnetEventType" name="BacnetEventType"/>
+  <type class="javax.baja.bacnet.enums.BBacnetLifeSafetyMode" name="BacnetLifeSafetyMode"/>
+  <type class="javax.baja.bacnet.enums.BBacnetLifeSafetyOperation" name="BacnetLifeSafetyOperation"/>
+  <type class="javax.baja.bacnet.enums.BBacnetLifeSafetyState" name="BacnetLifeSafetyState"/>
+  <type class="javax.baja.bacnet.enums.BBacnetLoggingType" name="BacnetLoggingType"/>
+  <type class="javax.baja.bacnet.enums.BBacnetMaintenance" name="BacnetMaintenance"/>
+  <type class="javax.baja.bacnet.enums.BBacnetObjectType" name="BacnetObjectType"/>
+  <type class="javax.baja.bacnet.enums.BBacnetProgramState" name="BacnetProgramState"/>
+  <type class="javax.baja.bacnet.enums.BBacnetProgramError" name="BacnetProgramError"/>
+  <type class="javax.baja.bacnet.enums.BBacnetProgramRequest" name="BacnetProgramRequest"/>
+  <type class="javax.baja.bacnet.enums.BBacnetPropertyIdentifier" name="BacnetPropertyIdentifier"/>
+  <type class="javax.baja.bacnet.enums.BBacnetRejectReason" name="BacnetRejectReason"/>
+  <type class="javax.baja.bacnet.enums.BBacnetReliability" name="BacnetReliability"/>
+  <type class="javax.baja.bacnet.enums.BBacnetRestartReason" name="BacnetRestartReason"/>
+  <type class="javax.baja.bacnet.enums.BBacnetSilencedState" name="BacnetSilencedState"/>
+  <type class="javax.baja.bacnet.enums.BBacnetVtClass" name="BacnetVtClass"/>
+  <type class="javax.baja.bacnet.enums.BBacnetWriteStatus" name="BacnetWriteStatus"/>
+  <type class="javax.baja.bacnet.enums.BBacnetAccumulatorStatus" name="BacnetAccumulatorStatus"/>
+  <type class="javax.baja.bacnet.enums.BBacnetCommControl" name="BacnetCommControl"/>
+  <type class="javax.baja.bacnet.enums.BBacnetReinitializedDeviceState" name="BacnetReinitializedDeviceState"/>
+  <type class="javax.baja.bacnet.enums.BCharacterSetEncoding" name="CharacterSetEncoding"/>
+  <type class="javax.baja.bacnet.enums.BBacnetShedState" name="BacnetShedState"/>
+  <type class="javax.baja.bacnet.enums.BBacnetServicesSupported" name="BacnetServicesSupported"/>
+  <type class="javax.baja.bacnet.enums.lighting.BBacnetLightingInProgress" name="BacnetLightingInProgress"/>
+  <type class="javax.baja.bacnet.enums.lighting.BBacnetLightingOperation" name="BacnetLightingOperation"/>
+  <type class="javax.baja.bacnet.enums.lighting.BBacnetLightingTransition" name="BacnetLightingTransition"/>
+  <type class="javax.baja.bacnet.enums.lighting.BBacnetBinaryLightingPv" name="BacnetBinaryLightingPv"/>
+  <type class="javax.baja.bacnet.export.BLocalBacnetDevice" name="LocalBacnetDevice"/>
+  <type class="javax.baja.bacnet.export.BIBacnetExportObject" name="IBacnetExportObject"/>
+  <type class="javax.baja.bacnet.export.BIBacnetCovSource" name="IBacnetCovSource"/>
+  <type class="javax.baja.bacnet.export.BBacnetEventSource" name="BacnetEventSource"/>
+  <type class="javax.baja.bacnet.export.BBacnetPointDescriptor" name="BacnetPointDescriptor"/>
+  <type class="javax.baja.bacnet.export.BBacnetAnalogPointDescriptor" name="BacnetAnalogPointDescriptor"/>
+  <type class="javax.baja.bacnet.export.BBacnetAnalogWritableDescriptor" name="BacnetAnalogWritableDescriptor"/>
+  <type class="javax.baja.bacnet.export.BBacnetBinaryPointDescriptor" name="BacnetBinaryPointDescriptor"/>
+  <type class="javax.baja.bacnet.export.BBacnetBinaryWritableDescriptor" name="BacnetBinaryWritableDescriptor"/>
+  <type class="javax.baja.bacnet.export.BBacnetMultiStatePointDescriptor" name="BacnetMultiStatePointDescriptor"/>
+  <type class="javax.baja.bacnet.export.BBacnetMultiStateWritableDescriptor" name="BacnetMultiStateWritableDescriptor"/>
+  <type class="javax.baja.bacnet.export.BBacnetScheduleDescriptor" name="BacnetScheduleDescriptor"/>
+  <type class="javax.baja.bacnet.export.BOutOfServiceExt" name="OutOfServiceExt"/>
+  <type class="javax.baja.bacnet.export.extensions.BBacnetRemoteUnsignedPropertyExt" name="BacnetRemoteUnsignedPropertyExt"/>
+  <type class="javax.baja.bacnet.export.extensions.BBacnetUnsignedPropertyExt" name="BacnetUnsignedPropertyExt"/>
+  <type class="javax.baja.bacnet.export.BBacnetIntegerValueDescriptor" name="BacnetIntegerValueDescriptor">
+   <agent>
+    <on type="control:NumericPoint"/>
+   </agent>
+  </type>
+  <type class="javax.baja.bacnet.export.BBacnetIntegerValuePrioritizedDescriptor" name="BacnetIntegerValuePrioritizedDescriptor">
+   <agent>
+    <on type="control:NumericWritable"/>
+   </agent>
+  </type>
+  <type class="javax.baja.bacnet.export.BBacnetPositiveIntegerValueDescriptor" name="BacnetPositiveIntegerValueDescriptor">
+   <agent>
+    <on type="control:NumericPoint"/>
+   </agent>
+  </type>
+  <type class="javax.baja.bacnet.export.BBacnetPositiveIntegerValuePrioritizedDescriptor" name="BacnetPositiveIntegerValuePrioritizedDescriptor">
+   <agent>
+    <on type="control:NumericWritable"/>
+   </agent>
+  </type>
+  <type class="javax.baja.bacnet.export.BBacnetCharacterStringDescriptor" name="BacnetCharacterStringDescriptor">
+   <agent>
+    <on type="control:StringWritable"/>
+   </agent>
+  </type>
+  <type class="javax.baja.bacnet.export.BBacnetAnalogInputDescriptor" name="BacnetAnalogInputDescriptor">
+   <agent>
+    <on type="control:NumericPoint"/>
+   </agent>
+  </type>
+  <type class="javax.baja.bacnet.export.BBacnetAnalogOutputDescriptor" name="BacnetAnalogOutputDescriptor">
+   <agent>
+    <on type="control:NumericWritable"/>
+   </agent>
+  </type>
+  <type class="javax.baja.bacnet.export.BBacnetAnalogValueDescriptor" name="BacnetAnalogValueDescriptor">
+   <agent>
+    <on type="control:NumericPoint"/>
+   </agent>
+  </type>
+  <type class="javax.baja.bacnet.export.BBacnetAnalogValuePrioritizedDescriptor" name="BacnetAnalogValuePrioritizedDescriptor">
+   <agent>
+    <on type="control:NumericWritable"/>
+   </agent>
+  </type>
+  <type class="javax.baja.bacnet.export.BBacnetLargeAnalogValueDescriptor" name="BacnetLargeAnalogValueDescriptor">
+   <agent>
+    <on type="control:NumericPoint"/>
+   </agent>
+  </type>
+  <type class="javax.baja.bacnet.export.BBacnetLargeAnalogValuePrioritizedDescriptor" name="BacnetLargeAnalogValuePrioritizedDescriptor">
+   <agent>
+    <on type="control:NumericWritable"/>
+   </agent>
+  </type>
+  <type class="javax.baja.bacnet.export.BBacnetBinaryInputDescriptor" name="BacnetBinaryInputDescriptor">
+   <agent>
+    <on type="control:BooleanPoint"/>
+   </agent>
+  </type>
+  <type class="javax.baja.bacnet.export.BBacnetBinaryOutputDescriptor" name="BacnetBinaryOutputDescriptor">
+   <agent>
+    <on type="control:BooleanWritable"/>
+   </agent>
+  </type>
+  <type class="javax.baja.bacnet.export.BBacnetBinaryValueDescriptor" name="BacnetBinaryValueDescriptor">
+   <agent>
+    <on type="control:BooleanPoint"/>
+   </agent>
+  </type>
+  <type class="javax.baja.bacnet.export.BBacnetBinaryValuePrioritizedDescriptor" name="BacnetBinaryValuePrioritizedDescriptor">
+   <agent>
+    <on type="control:BooleanWritable"/>
+   </agent>
+  </type>
+  <type class="javax.baja.bacnet.export.BBacnetLoopDescriptor" name="BacnetLoopDescriptor">
+   <agent>
+    <on type="kitControl:LoopPoint"/>
+   </agent>
+  </type>
+  <type class="javax.baja.bacnet.export.BBacnetMultiStateInputDescriptor" name="BacnetMultiStateInputDescriptor">
+   <agent>
+    <on type="control:EnumPoint"/>
+   </agent>
+  </type>
+  <type class="javax.baja.bacnet.export.BBacnetMultiStateOutputDescriptor" name="BacnetMultiStateOutputDescriptor">
+   <agent>
+    <on type="control:EnumWritable"/>
+   </agent>
+  </type>
+  <type class="javax.baja.bacnet.export.BBacnetMultiStateValueDescriptor" name="BacnetMultiStateValueDescriptor">
+   <agent>
+    <on type="control:EnumPoint"/>
+   </agent>
+  </type>
+  <type class="javax.baja.bacnet.export.BBacnetMultiStateValuePrioritizedDescriptor" name="BacnetMultiStateValuePrioritizedDescriptor">
+   <agent>
+    <on type="control:EnumWritable"/>
+   </agent>
+  </type>
+  <type class="javax.baja.bacnet.export.BBacnetNotificationClassDescriptor" name="BacnetNotificationClassDescriptor">
+   <agent>
+    <on type="alarm:AlarmClass"/>
+   </agent>
+  </type>
+  <type class="javax.baja.bacnet.export.BBacnetFileDescriptor" name="BacnetFileDescriptor">
+   <agent>
+    <on type="baja:AbstractFile"/>
+   </agent>
+  </type>
+  <type class="javax.baja.bacnet.export.BBacnetCalendarDescriptor" name="BacnetCalendarDescriptor">
+   <agent>
+    <on type="schedule:CalendarSchedule"/>
+   </agent>
+  </type>
+  <type class="javax.baja.bacnet.export.BBacnetBooleanScheduleDescriptor" name="BacnetBooleanScheduleDescriptor">
+   <agent>
+    <on type="schedule:BooleanSchedule"/>
+   </agent>
+  </type>
+  <type class="javax.baja.bacnet.export.BBacnetNumericScheduleDescriptor" name="BacnetNumericScheduleDescriptor">
+   <agent>
+    <on type="schedule:NumericSchedule"/>
+   </agent>
+  </type>
+  <type class="javax.baja.bacnet.export.BBacnetEnumScheduleDescriptor" name="BacnetEnumScheduleDescriptor">
+   <agent>
+    <on type="schedule:EnumSchedule"/>
+   </agent>
+  </type>
+  <type class="javax.baja.bacnet.export.BBacnetStringScheduleDescriptor" name="BacnetStringScheduleDescriptor">
+   <agent>
+    <on type="schedule:StringSchedule"/>
+   </agent>
+  </type>
+  <type class="javax.baja.bacnet.export.BBacnetNiagaraHistoryDescriptor" name="BacnetNiagaraHistoryDescriptor">
+   <agent>
+    <on type="history:IHistory"/>
+   </agent>
+  </type>
+  <type class="javax.baja.bacnet.export.BBacnetTrendLogDescriptor" name="BacnetTrendLogDescriptor">
+   <agent>
+    <on type="bacnet:IBacnetTrendLogExt"/>
+   </agent>
+  </type>
+  <type class="javax.baja.bacnet.export.BBacnetEventEnrollmentDescriptor" name="BacnetEventEnrollmentDescriptor"/>
+  <type class="javax.baja.bacnet.io.BBacnetComm" name="BacnetComm"/>
+  <type class="javax.baja.bacnet.point.BBacnetProxyExt" name="BacnetProxyExt"/>
+  <type class="javax.baja.bacnet.point.BBacnetPointDeviceExt" name="BacnetPointDeviceExt"/>
+  <type class="javax.baja.bacnet.point.BBacnetPointFolder" name="BacnetPointFolder"/>
+  <type class="javax.baja.bacnet.point.BBacnetBooleanProxyExt" name="BacnetBooleanProxyExt"/>
+  <type class="javax.baja.bacnet.point.BBacnetNumericProxyExt" name="BacnetNumericProxyExt"/>
+  <type class="javax.baja.bacnet.point.BBacnetEnumProxyExt" name="BacnetEnumProxyExt"/>
+  <type class="javax.baja.bacnet.point.BBacnetStringProxyExt" name="BacnetStringProxyExt"/>
+  <type class="javax.baja.bacnet.point.BBacnetTuningPolicy" name="BacnetTuningPolicy"/>
+  <type class="javax.baja.bacnet.point.BBacnetTuningPolicyMap" name="BacnetTuningPolicyMap"/>
+  <type class="javax.baja.bacnet.util.BIBacnetPollable" name="IBacnetPollable"/>
+  <type class="javax.baja.bacnet.util.BBacnetWorker" name="BacnetWorker"/>
+  <type class="javax.baja.bacnet.util.worker.BBacnetWorkerPool" name="BacnetWorkerPool"/>
+  <type class="javax.baja.bacnet.util.worker.BBacnetAddressWorkerPool" name="BacnetAddressWorkerPool"/>
+  <type class="com.tridium.bacnet.stack.server.cov.BBacnetCovWorker" name="BacnetCovWorker"/>
+  <type class="javax.baja.bacnet.util.BPriorityArrayDetector" name="PriorityArrayDetector"/>
+  <type class="javax.baja.bacnet.virtual.BBacnetVirtualArray" name="BacnetVirtualArray"/>
+  <type class="javax.baja.bacnet.virtual.BBacnetVirtualComponent" name="BacnetVirtualComponent"/>
+  <type class="javax.baja.bacnet.virtual.BBacnetVirtualGateway" name="BacnetVirtualGateway"/>
+  <type class="javax.baja.bacnet.virtual.BBacnetVirtualObject" name="BacnetVirtualObject"/>
+  <type class="javax.baja.bacnet.virtual.BBacnetVirtualProperty" name="BacnetVirtualProperty"/>
+  <type class="javax.baja.bacnet.virtual.BLocalBacnetVirtualGateway" name="LocalBacnetVirtualGateway"/>
+  <type class="javax.baja.bacnet.virtual.BLocalBacnetVirtualObject" name="LocalBacnetVirtualObject"/>
+  <type class="javax.baja.bacnet.virtual.BLocalBacnetVirtualProperty" name="LocalBacnetVirtualProperty"/>
+  <type class="javax.baja.bacnet.virtual.BVirtualPropertyWrite" name="VirtualPropertyWrite"/>
+  <type class="javax.baja.bacnet.BBacnetObject" name="BacnetObject"/>
+  <type class="javax.baja.bacnet.BBacnetDevice" name="BacnetDevice"/>
+  <type class="javax.baja.bacnet.BBacnetDeviceFolder" name="BacnetDeviceFolder"/>
+  <type class="javax.baja.bacnet.BBacnetNetwork" name="BacnetNetwork"/>
+  <type class="javax.baja.bacnet.BIBacnetObjectContainer" name="IBacnetObjectContainer"/>
+  <type class="com.tridium.bacnet.stack.poll.BBacnetBalancedPollOrder" name="BacnetBalancedPollOrder"/>
+  <type class="com.tridium.bacnet.stack.poll.BBacnetRandomPollOrder" name="BacnetRandomPollOrder"/>
+  <type class="com.tridium.bacnet.stack.server.object.BBacnetObjectCreator" name="BacnetObjectCreator"/>
+  <type class="com.tridium.bacnet.stack.server.object.BBacnetObjectDeletor" name="BacnetObjectDeletor"/>
+  <type class="com.tridium.bacnet.stack.server.object.BCalendarCreator" name="CalendarCreator"/>
+  <type class="com.tridium.bacnet.stack.server.object.BCalendarDeletor" name="CalendarDeletor"/>
+  <type class="com.tridium.bacnet.stack.server.object.BObjectHandler" name="ObjectHandler"/>
+  <type class="com.tridium.bacnet.stack.server.object.BEventEnrollmentCreator" name="EventEnrollmentCreator"/>
+  <type class="com.tridium.bacnet.stack.server.object.BScheduleCreator" name="ScheduleCreator"/>
+  <type class="com.tridium.bacnet.stack.server.object.BScheduleDeletor" name="ScheduleDeletor"/>
+  <type class="javax.baja.bacnet.export.BBacnetDynamicScheduleDescriptor" name="BacnetDynamicScheduleDescriptor"/>
+  <type class="javax.baja.bacnet.export.BReliabilityAlarmSourceExt" name="ReliabilityAlarmSourceExt"/>
+  <type class="javax.baja.bacnet.alarm.BBacnetStatusAlgorithm" name="BacnetStatusAlgorithm"/>
+  <type class="com.tridium.bacnet.stack.server.object.BNotificationClassCreator" name="NotificationClassCreator"/>
+  <type class="com.tridium.bacnet.stack.server.object.BNotificationClassDeletor" name="NotificationClassDeletor"/>
+  <type class="com.tridium.bacnet.stack.server.object.BTrendLogCreator" name="TrendLogCreator"/>
+  <type class="com.tridium.bacnet.stack.server.object.BEventEnrollmentDeletor" name="EventEnrollmentDeletor"/>
+  <type class="com.tridium.bacnet.stack.server.object.BTrendLogDeletor" name="TrendLogDeletor"/>
+  <type class="com.tridium.bacnet.stack.link.sc.BHubConnector" name="HubConnector"/>
+  <type class="com.tridium.bacnet.stack.link.sc.BHubFunction" name="HubFunction"/>
+  <type class="com.tridium.bacnet.stack.link.sc.BNodeSwitch" name="NodeSwitch"/>
+  <type class="com.tridium.bacnet.stack.link.sc.BScLinkLayer" name="ScLinkLayer"/>
+  <type class="com.tridium.bacnet.stack.link.sc.BHubConnectorSubState" name="HubConnectorSubState"/>
+  <type class="com.tridium.bacnet.stack.link.sc.BHubConnectorHealth" name="HubConnectorHealth"/>
+  <type class="com.tridium.bacnet.stack.link.sc.BHubFunctionConnections" name="HubFunctionConnections"/>
+  <type class="com.tridium.bacnet.stack.link.sc.BNodeSwitchConnections" name="NodeSwitchConnections"/>
+  <type class="com.tridium.bacnet.stack.link.sc.BAbstractConnectionManager" name="AbstractConnectionManager"/>
+  <type class="com.tridium.bacnet.stack.link.sc.BConnectionContainer" name="ConnectionContainer"/>
+  <type class="com.tridium.bacnet.stack.link.sc.BScDashboardProvider" name="ScDashboardProvider">
+   <agent>
+    <on type="bacnet:ScLinkLayer"/>
+   </agent>
+  </type>
+  <type class="com.tridium.bacnet.stack.link.sc.BScCredentials" name="ScCredentials"/>
+  <type class="com.tridium.bacnet.stack.link.sc.BScHubConnectorState" name="ScHubConnectorState"/>
+  <type class="com.tridium.bacnet.stack.link.sc.BScConfiguration" name="ScConfiguration"/>
+  <type class="com.tridium.bacnet.stack.link.sc.connection.BAbstractConnection" name="AbstractConnection"/>
+  <type class="com.tridium.bacnet.stack.link.sc.connection.BAbstractScWebSocketAcceptor" name="AbstractScWebSocketAcceptor"/>
+  <type class="com.tridium.bacnet.stack.link.sc.connection.BAbstractScWebSocketInitiator" name="AbstractScWebSocketInitiator"/>
+  <type class="com.tridium.bacnet.stack.link.sc.connection.BAcceptingConnection" name="AcceptingConnection"/>
+  <type class="com.tridium.bacnet.stack.link.sc.connection.BAcceptingConnectionState" name="AcceptingConnectionState"/>
+  <type class="com.tridium.bacnet.stack.link.sc.connection.BAddDirectInitiatingConnectionParams" name="AddDirectInitiatingConnectionParams"/>
+  <type class="com.tridium.bacnet.stack.link.sc.connection.BDirectAcceptingConnection" name="DirectAcceptingConnection"/>
+  <type class="com.tridium.bacnet.stack.link.sc.connection.BDirectInitiatingConnection" name="DirectInitiatingConnection"/>
+  <type class="com.tridium.bacnet.stack.link.sc.connection.BHubAcceptingConnection" name="HubAcceptingConnection"/>
+  <type class="com.tridium.bacnet.stack.link.sc.connection.BHubInitiatingConnection" name="HubInitiatingConnection"/>
+  <type class="com.tridium.bacnet.stack.link.sc.connection.BInitiatingConnection" name="InitiatingConnection"/>
+  <type class="com.tridium.bacnet.stack.link.sc.connection.BInitiatingConnectionState" name="InitiatingConnectionState"/>
+  <type class="com.tridium.bacnet.stack.link.sc.connection.BScNodeInfo" name="ScNodeInfo"/>
+  <type class="com.tridium.bacnet.stack.link.sc.connection.BBacnetScConnectionState" name="BacnetScConnectionState"/>
+  <type class="com.tridium.bacnet.stack.link.sc.connection.jetty.BJettyScWebSocketAcceptor" name="JettyScWebSocketAcceptor"/>
+  <type class="com.tridium.bacnet.stack.link.sc.connection.jetty.BJettyScWebSocketInitiator" name="JettyScWebSocketInitiator"/>
+  <type class="com.tridium.bacnet.stack.link.sc.authentication.BBacnetScAuthenticationScheme" name="BacnetScAuthenticationScheme"/>
+  <type class="com.tridium.bacnet.stack.link.sc.authentication.BBacnetScAuthenticator" name="BacnetScAuthenticator"/>
+  <type class="com.tridium.bacnet.stack.link.sc.authentication.BBacnetScWebCallbackHandler" name="BacnetScWebCallbackHandler">
+   <agent>
+    <on type="bacnet:BacnetScAuthenticationScheme"/>
+   </agent>
+  </type>
+  <type class="com.tridium.bacnet.stack.link.sc.authentication.BCrlDescriptor" name="CrlDescriptor"/>
+  <type class="com.tridium.bacnet.stack.link.sc.authentication.BIssuerCertAndCrl" name="IssuerCertAndCrl"/>
+  <type class="com.tridium.bacnet.stack.link.sc.authentication.BScSchemeSecurityDashboardItemProvider" name="ScSchemeSecurityDashboardItemProvider">
+   <agent>
+    <on type="baja:AuthenticationServiceSecurityDashboardProviderAgent"/>
+   </agent>
+  </type>
+  <type class="javax.baja.bacnet.enums.security.BBacnetSecurityPolicy" name="BacnetSecurityPolicy"/>
+  <type class="javax.baja.bacnet.enums.security.BBacnetSecurityLevel" name="BacnetSecurityLevel"/>
+  <type class="javax.baja.bacnet.datatypes.security.BBacnetKeyIdentifier" name="BacnetKeyIdentifier"/>
+  <type class="javax.baja.bacnet.datatypes.security.BBacnetNetworkSecurityKeySet" name="BacnetNetworkSecurityKeySet"/>
+  <type class="javax.baja.bacnet.datatypes.security.BBacnetNetworkSecurityPolicy" name="BacnetNetworkSecurityPolicy"/>
+  <type class="javax.baja.bacnet.datatypes.access.BBacnetAssignedAccessRights" name="BacnetAssignedAccessRights"/>
+  <type class="javax.baja.bacnet.datatypes.access.BBacnetAccessRule" name="BacnetAccessRule"/>
+  <type class="javax.baja.bacnet.datatypes.access.BBacnetAccessThreatLevel" name="BacnetAccessThreatLevel"/>
+  <type class="javax.baja.bacnet.datatypes.access.BBacnetAuthenticationPolicyEntry" name="BacnetAuthenticationPolicyEntry"/>
+  <type class="javax.baja.bacnet.datatypes.access.BBacnetAuthenticationPolicy" name="BacnetAuthenticationPolicy"/>
+  <type class="javax.baja.bacnet.datatypes.access.BBacnetAuthenticationFactor" name="BacnetAuthenticationFactor"/>
+  <type class="javax.baja.bacnet.datatypes.access.BBacnetAuthenticationFactorFormat" name="BacnetAuthenticationFactorFormat"/>
+  <type class="javax.baja.bacnet.datatypes.access.BBacnetCredentialAuthenticationFactor" name="BacnetCredentialAuthenticationFactor"/>
+  <type class="javax.baja.bacnet.enums.access.BBacnetAuthenticationFactorType" name="BacnetAuthenticationFactorType"/>
+  <type class="javax.baja.bacnet.enums.access.BBacnetAccessAuthenticationFactorDisable" name="BacnetAccessAuthenticationFactorDisable"/>
+  <type class="javax.baja.bacnet.enums.access.BBacnetDoorSecuredStatus" name="BacnetDoorSecuredStatus"/>
+  <type class="javax.baja.bacnet.enums.access.BBacnetAuthorizationMode" name="BacnetAuthorizationMode"/>
+  <type class="javax.baja.bacnet.enums.access.BBacnetDoorStatus" name="BacnetDoorStatus"/>
+  <type class="javax.baja.bacnet.enums.access.BBacnetAuthenticationStatus" name="BacnetAuthenticationStatus"/>
+  <type class="javax.baja.bacnet.enums.access.BBacnetDoorAlarmState" name="BacnetDoorAlarmState"/>
+  <type class="javax.baja.bacnet.enums.access.BBacnetDoorValue" name="BacnetDoorValue"/>
+  <type class="javax.baja.bacnet.enums.access.BBacnetAccessCredentialDisable" name="BacnetAccessCredentialDisable"/>
+  <type class="javax.baja.bacnet.enums.access.BBacnetAccessUserType" name="BacnetAccessUserType"/>
+  <type class="javax.baja.bacnet.enums.access.BBacnetAccessZoneOccupancyState" name="BacnetAccessZoneOccupancyState"/>
+  <type class="javax.baja.bacnet.enums.access.BBacnetAccessPassbackMode" name="BacnetAccessPassbackMode"/>
+  <type class="javax.baja.bacnet.enums.access.BBacnetAccessEvent" name="BacnetAccessEvent"/>
+  <type class="javax.baja.bacnet.enums.access.BBacnetLockStatus" name="BacnetLockStatus"/>
+  <type class="javax.baja.bacnet.enums.access.BBacnetAccessCredentialDisableReason" name="BacnetAccessCredentialDisableReason"/>
+  <type class="javax.baja.bacnet.enums.access.BBacnetAuthorizationExemption" name="BacnetAuthorizationExemption"/>
+ </types>
+ <permissions>
+  <java-permissions type="station">
+   <java-permission action="read" class="java.io.FilePermission" name="${niagara.home}${/}defaults"/>
+   <java-permission action="read,write" class="java.io.FilePermission" name="${niagara.home}${/}defaults${/}bacnetObjectTypes.xml"/>
+   <java-permission action="read" class="java.io.FilePermission" name="${niagara.home}${/}etc${/}brand.properties"/>
+   <java-permission action="read" class="java.io.FilePermission" name="${niagara.user.home}${/}"/>
+   <java-permission action="read,write,delete" class="java.io.FilePermission" name="${niagara.user.home}${/}backups"/>
+   <java-permission action="read,write,delete" class="java.io.FilePermission" name="${niagara.user.home}${/}backups${/}-"/>
+   <java-permission class="com.tridium.nre.security.NiagaraBasicPermission" name="GET_PLATFORM_PROVIDER"/>
+   <java-permission class="com.tridium.nre.security.NiagaraBasicPermission" name="RESTORE_BACKUP"/>
+   <java-permission class="com.tridium.nre.security.NiagaraBasicPermission" name="SET_TIME"/>
+   <java-permission class="java.net.NetPermission" name="getNetworkInformation"/>
+   <java-permission class="java.lang.RuntimePermission" name="accessDeclaredMembers"/>
+   <java-permission class="java.lang.reflect.ReflectPermission" name="suppressAccessChecks"/>
+   <java-permission action="read,write" class="java.io.FilePermission" name="${niagara.user.home}${/}logging"/>
+   <java-permission action="read,write" class="java.io.FilePermission" name="${niagara.user.home}${/}logging${/}-"/>
+   <java-permission action="read,write" class="java.io.FilePermission" name="${protected.station.home}${/}bacnet"/>
+   <java-permission action="read,write,delete" class="java.io.FilePermission" name="${protected.station.home}${/}bacnet${/}-"/>
+   <java-permission action="accept,connect,listen,resolve" class="com.tridium.nre.security.NiagaraSocketPermission" name="*:1-100000"/>
+   <java-permission class="java.lang.RuntimePermission" name="setContextClassLoader"/>
+   <java-permission class="java.lang.RuntimePermission" name="setIO"/>
+   <java-permission class="java.lang.RuntimePermission" name="modifyThread"/>
+   <java-permission class="java.lang.RuntimePermission" name="modifyThreadGroup"/>
+   <java-permission class="java.lang.RuntimePermission" name="shutdownHooks"/>
+   <java-permission class="com.tridium.nre.security.NiagaraBasicPermission" name="MANAGE_SERVER_TRUST_ANCHORS"/>
+   <java-permission class="com.tridium.nre.security.KeyStorePermission" name="userKeyStore" action="read"/>
+   <java-permission class="java.lang.RuntimePermission" name="getenv.JETTY_AVAILABLE_PROCESSORS"/>
+  </java-permissions>
+  <java-permissions type="all">
+   <java-permission action="read" class="java.util.PropertyPermission" name="*"/>
+   <java-permission class="java.util.logging.LoggingPermission" name="control"/>
+  </java-permissions>
+  <java-permissions type="workbench">
+   <java-permission class="java.lang.RuntimePermission" name="getenv.*"/>
+   <java-permission class="java.lang.RuntimePermission" name="exitVM.*"/>
+   <java-permission class="java.lang.RuntimePermission" name="accessClassInPackage.sun.util.logging.resources"/>
+   <java-permission action="connect,resolve" class="com.tridium.nre.security.NiagaraSocketPermission" name="*:1-100000"/>
+   <java-permission class="java.awt.AWTPermission" name="accessClipboard"/>
+   <java-permission class="java.awt.AWTPermission" name="showWindowWithoutWarningBanner"/>
+  </java-permissions>
+ </permissions>
+ <moduleParts>
+  <modulePart name="bacnet-ux" runtimeProfile="ux"/>
+  <modulePart name="bacnet-wb" runtimeProfile="wb"/>
+ </moduleParts>
+</module>
