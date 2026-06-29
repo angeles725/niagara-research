@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **126 bloques**
+Total: **127 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -131,6 +131,7 @@ Total: **126 bloques**
 | 126 | [niagara-mental-model-bloque126.md](niagara-mental-model-bloque126.md) | Block 126 — Native licensing, signature verification & the DSF crypto provider (`dsfspi.dll` Mocana JCE · `nverify.exe` · `LicenseUtil` · the four signing schemes) |
 | 127 | [niagara-mental-model-bloque127.md](niagara-mental-model-bloque127.md) | Block 127 — Native driver DLLs: how the Java drivers reach the wire (`lon.dll` · `opc.dll`+`opcproxy`/`opccomn_ps` · `pcapBacEther.dll`) |
 | 128 | [niagara-mental-model-bloque128.md](niagara-mental-model-bloque128.md) | Block 128 — Workbench native shell (wb.exe / wb_w.exe + trayIcon.dll, alarmDialog.dll) |
+| 129 | [niagara-mental-model-bloque129.md](niagara-mental-model-bloque129.md) | Block 129 — The platform daemon (static): `plat.exe` command launcher, the SCM service model, and why the 3011/5011 wire is Java |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
