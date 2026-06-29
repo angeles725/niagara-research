@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **128 bloques**
+Total: **129 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -133,6 +133,7 @@ Total: **128 bloques**
 | 128 | [niagara-mental-model-bloque128.md](niagara-mental-model-bloque128.md) | Block 128 — Workbench native shell (wb.exe / wb_w.exe + trayIcon.dll, alarmDialog.dll) |
 | 129 | [niagara-mental-model-bloque129.md](niagara-mental-model-bloque129.md) | Block 129 — The platform daemon (static): `plat.exe` command launcher, the SCM service model, and why the 3011/5011 wire is Java |
 | 130 | [niagara-mental-model-bloque130.md](niagara-mental-model-bloque130.md) | Block 130 — Migration & platform tools: which `bin/*.exe` are thin Java launchers vs standalone native, and the one outlier |
+| 131 | [niagara-mental-model-bloque131.md](niagara-mental-model-bloque131.md) | Block 131 — Modbus wire-level encoding (MBAP / PDU / RTU-CRC / ASCII-LRC / addressing & byte-order) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

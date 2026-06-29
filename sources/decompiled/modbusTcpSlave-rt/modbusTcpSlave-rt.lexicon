@@ -1,0 +1,15 @@
+#
+# Lexicon for the modbusTcpSlave module.
+#
+# @author    Scott Hoye
+# @creation  26 Sep 02
+# @version   $Revision: 1$ $Date: 11/12/02 9:03:04 AM$
+#
+
+# ModbusTcpSlaveDeviceManager
+ModbusTcpSlaveDeviceManager.displayName=AX Modbus Tcp Client Device Manager
+ModbusTcpClientDeviceUxManager.displayName=Modbus Tcp Client Device Manager
+ModbusTcpClientDeviceUxManager.icon=module://icons/x16/views/view.png
+ModbusTcpSlaveDevice.displayName=Modbus Tcp Client Device
+
+help.guide.base=module://docModbus/doc

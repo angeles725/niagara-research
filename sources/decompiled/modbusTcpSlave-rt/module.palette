@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bajaObjectGraph version="1.0">
+<p m="b=baja" t="b:UnrestrictedFolder">
+
+<p n="ModbusTcpSlaveNetwork" m="ms=modbusTcpSlave" t="ms:ModbusTcpSlaveNetwork"/>
+<p n="ModbusTcpSlaveDevice" t="ms:ModbusTcpSlaveDevice"/>
+<p n="ModbusTcpSlaveDeviceFolder" t="ms:ModbusTcpSlaveDeviceFolder"/>
+<p n="ModbusServerPointFolder" m="mc=modbusCore" t="mc:ModbusServerPointFolder"/>
+
+<!-- ModbusServer File Record Components -->
+<p n="Modbus$20File$20Records" t="b:UnrestrictedFolder">
+  <p n="ModbusServerStringRecord" t="mc:ModbusServerStringRecord"/>
+</p>
+
+<!-- Server Points -->
+<p n="Server$20Points" t="b:UnrestrictedFolder">
+  <!-- Boolean Points -->
+  <p n="ModbusServerBooleanPoint" m="c=control" t="c:BooleanPoint">
+    <p n="proxyExt" t="mc:ModbusServerBooleanProxyExt"/>
+  </p>
+  <p n="ModbusServerBooleanWritable" t="c:BooleanWritable">
+    <p n="proxyExt" t="mc:ModbusServerBooleanProxyExt"/>
+  </p>
+  <!-- Numeric Points -->
+  <p n="ModbusServerNumericPoint" t="c:NumericPoint">
+    <p n="proxyExt" t="mc:ModbusServerNumericProxyExt"/>
+  </p>
+  <p n="ModbusServerNumericWritable" t="c:NumericWritable">
+    <p n="proxyExt" t="mc:ModbusServerNumericProxyExt"/>
+  </p>
+  <!-- Register Bit Points -->
+  <p n="ModbusServerRegisterBitPoint" t="c:BooleanPoint">
+    <p n="proxyExt" t="mc:ModbusServerRegisterBitProxyExt"/>
+  </p>
+  <p n="ModbusServerRegisterBitWritable" t="c:BooleanWritable">
+    <p n="proxyExt" t="mc:ModbusServerRegisterBitProxyExt"/>
+  </p>
+</p>
+
+<!-- Modbus Register Setup -->
+<p n="Modbus$20Register$20Setup" t="b:UnrestrictedFolder">
+  <p n="ModbusRegisterRangeEntry" t="mc:ModbusRegisterRangeEntry"/>
+</p>
+
+</p>
+</bajaObjectGraph>

@@ -1,0 +1,32 @@
+Manifest-Version: 1.0
+Implementation-Vendor: Tridium
+Implementation-Version: 4.14.0.162
+Sealed: true
+
+Name: com/tridium/modbusAsync/comm/ModbusAsyncSerialComm.class
+SHA-256-Digest: IqDVT9EI4v6nKoGK5Yea3xW8oJe3R0IFNhHw+zPRdXw=
+
+Name: com/tridium/modbusAsync/BModbusAsyncDevice.class
+SHA-256-Digest: Hf5KemCe+PniH0zkpM607lQfXoswB7IMwGza+QPdvPg=
+
+Name: module.palette
+SHA-256-Digest: KDcS+llTtO25vEtiLMN+3RDo0r19NeL5Y3K1Ch0A2v0=
+
+Name: com/tridium/modbusAsync/comm/ModbusAsyncTxDriver.class
+SHA-256-Digest: uIvVa80OcMpDhJ/7yycqbmrSCHUE7/IbCDqiRh8sZy8=
+
+Name: com/tridium/modbusAsync/BModbusAsyncDeviceFolder.class
+SHA-256-Digest: O/WvB6iWFKA6FjkV72rHFLYnSeCgi7ndRKLE/93bTUU=
+
+Name: com/tridium/modbusAsync/comm/ModbusAsyncRxDriver.class
+SHA-256-Digest: Ux4YijRT9R2DnSMNgVieLLP8jLjA5VsFHvV/Q06X9Yk=
+
+Name: com/tridium/modbusAsync/BModbusAsyncNetwork.class
+SHA-256-Digest: 807U0LCCUolOW+HDesx+XUxmevWvTfsl8keUu4rzKpI=
+
+Name: META-INF/module.xml
+SHA-256-Digest: chIoWX221mUoN3HeXMqAgvvamHv63o1OkW7+V4a3504=
+
+Name: modbusAsync-rt.lexicon
+SHA-256-Digest: w4JBZn92Ertg2I3Qm9V6+JDeMonodtZBmLt/KJQu6LA=
+

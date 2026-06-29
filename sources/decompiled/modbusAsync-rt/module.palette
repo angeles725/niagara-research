@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bajaObjectGraph version="1.0">
+<p m="b=baja" t="b:UnrestrictedFolder">
+
+<p n="ModbusAsyncNetwork" m="ma=modbusAsync" t="ma:ModbusAsyncNetwork"/>
+<p n="ModbusAsyncDevice" t="ma:ModbusAsyncDevice"/>
+<p n="ModbusAsyncDeviceFolder" t="ma:ModbusAsyncDeviceFolder"/>
+<p n="ModbusClientPointFolder" m="mc=modbusCore" t="mc:ModbusClientPointFolder"/>
+<p n="ModbusClientExceptionStatus" t="mc:ModbusClientExceptionStatus"/>
+
+<!-- ModbusClient Preset Components -->
+<p n="Presets" t="b:UnrestrictedFolder">
+  <p n="ModbusClientPresetRegisters" t="mc:ModbusClientPresetRegisters">
+    <p n="ModbusClientPresetRegister" t="mc:ModbusClientPresetRegister"/>
+  </p>
+  <p n="ModbusClientPresetRegister" t="mc:ModbusClientPresetRegister"/>
+  <p n="ModbusClientPresetCoils" t="mc:ModbusClientPresetCoils">
+    <p n="ModbusClientPresetCoil" t="mc:ModbusClientPresetCoil"/>
+  </p>
+  <p n="ModbusClientPresetCoil" t="mc:ModbusClientPresetCoil"/>
+</p>
+
+<!-- ModbusClient File Record Components -->
+<p n="Modbus$20File$20Records" t="b:UnrestrictedFolder">
+  <p n="ModbusClientStringRecord" t="mc:ModbusClientStringRecord"/>
+</p>
+
+<!-- Client Points -->
+<p n="Client$20Points" t="b:UnrestrictedFolder">
+  <!-- Boolean Points -->
+  <p n="ModbusClientBooleanPoint" m="c=control" t="c:BooleanPoint">
+    <p n="proxyExt" t="mc:ModbusClientBooleanProxyExt"/>
+  </p>
+  <p n="ModbusClientBooleanWritable" t="c:BooleanWritable">
+    <p n="proxyExt" t="mc:ModbusClientBooleanProxyExt"/>
+  </p>
+  <!-- Enum Bits Points -->
+  <p n="ModbusClientEnumBitsPoint" m="c=control" t="c:EnumPoint">
+    <p n="proxyExt" t="mc:ModbusClientEnumBitsProxyExt"/>
+  </p>
+  <p n="ModbusClientEnumBitsWritable" t="c:EnumWritable">
+    <p n="proxyExt" t="mc:ModbusClientEnumBitsProxyExt"/>
+  </p>
+  <!-- Numeric Points -->
+  <p n="ModbusClientNumericPoint" t="c:NumericPoint">
+    <p n="proxyExt" t="mc:ModbusClientNumericProxyExt"/>
+  </p>
+  <p n="ModbusClientNumericWritable" t="c:NumericWritable">
+    <p n="proxyExt" t="mc:ModbusClientNumericProxyExt"/>
+  </p>
+  <!-- Numeric Bits Points -->
+  <p n="ModbusClientNumericBitsPoint" t="c:NumericPoint">
+    <p n="proxyExt" t="mc:ModbusClientNumericBitsProxyExt"/>
+  </p>
+  <p n="ModbusClientNumericBitsWritable" t="c:NumericWritable">
+    <p n="proxyExt" t="mc:ModbusClientNumericBitsProxyExt"/>
+  </p>
+  <!-- Register Bit Points -->
+  <p n="ModbusClientRegisterBitPoint" t="c:BooleanPoint">
+    <p n="proxyExt" t="mc:ModbusClientRegisterBitProxyExt"/>
+  </p>
+  <p n="ModbusClientRegisterBitWritable" t="c:BooleanWritable">
+    <p n="proxyExt" t="mc:ModbusClientRegisterBitProxyExt"/>
+  </p>
+  <!-- String Points -->
+  <p n="ModbusClientStringPoint" t="c:StringPoint">
+    <p n="proxyExt" t="mc:ModbusClientStringProxyExt"/>
+  </p>
+</p>
+
+<!-- Device Level Polling -->
+<p n="Device$20Level$20Polling" t="b:UnrestrictedFolder">
+  <p n="DevicePollConfigEntry" t="mc:DevicePollConfigEntry"/>
+</p>
+
+</p>
+</bajaObjectGraph>

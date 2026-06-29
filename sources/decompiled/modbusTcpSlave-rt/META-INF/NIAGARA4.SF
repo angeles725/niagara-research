@@ -1,0 +1,40 @@
+Signature-Version: 1.0
+Created-By: 21.0.3 (Azul Systems, Inc.)
+SHA-256-Digest-Manifest: Wmf0MEInZ42AOHOBK9G8fYRa3iAOOCfqL6vIr/XULa8=
+SHA-256-Digest-Manifest-Main-Attributes: ar8VEqdMTyCJ9h3TAl5BTu0svU3e9mv
+ rvoBoztxHJ3E=
+
+Name: com/tridium/modbusTcpSlave/comm/ModbusTcpSlaveSession.class
+SHA-256-Digest: 8B8xnuGTul+o/GauWFUFCYjggbQ/sBkI6yHbCRjyLos=
+
+Name: modbusTcpSlave-rt.lexicon
+SHA-256-Digest: lJkZKwCcQp/ps4XgRgUmp4fqSrmnkwI336uvVu9a8oI=
+
+Name: com/tridium/modbusTcpSlave/comm/ModbusTcpSlaveSession$ReceiveDrive
+ r.class
+SHA-256-Digest: Ykwj0oeADAXYwao5MG1VnkqWrBWcs/a9sbzyqEXG/v8=
+
+Name: module.palette
+SHA-256-Digest: 2GtWkCXgzVHXgfn2COOvypp2PetB3mHqMvkUyRuVx70=
+
+Name: com/tridium/modbusTcpSlave/BModbusTcpSlaveDeviceFolder.class
+SHA-256-Digest: RSQiU7rdrC41zjPRDAwwwI2fheZqtGocj5SXcsA2YTU=
+
+Name: com/tridium/modbusTcpSlave/comm/UnsolicitedMessageElement.class
+SHA-256-Digest: LaZZafwmWNrPPMC0NU72alnUd0RtEzqFCsHUERSnEUw=
+
+Name: com/tridium/modbusTcpSlave/BModbusTcpSlaveDevice.class
+SHA-256-Digest: jMvzU7vrhav12FtBNwReE6G3C8lxcNfUa3y/uLDCIiw=
+
+Name: com/tridium/modbusTcpSlave/comm/ModbusTcpServer.class
+SHA-256-Digest: 53MYpIrAxhFTbp+x/osOTAzGNxSXyNkOONBPZhAvDpk=
+
+Name: META-INF/module.xml
+SHA-256-Digest: 0LmVIduELEW0CNkOjj1u/qL94mH0gBHwRQ6jYVj53JI=
+
+Name: com/tridium/modbusTcpSlave/comm/ModbusUnsolicitedReceive.class
+SHA-256-Digest: ixSYsKksRlOMY6FvKKU/uxPH0c/iZNSXecB0uwFHcQw=
+
+Name: com/tridium/modbusTcpSlave/BModbusTcpSlaveNetwork.class
+SHA-256-Digest: KwJK+xSzJ+Of/QJ9hBjgTPJzRoYZ9r7vOwcUH9r0QW8=
+

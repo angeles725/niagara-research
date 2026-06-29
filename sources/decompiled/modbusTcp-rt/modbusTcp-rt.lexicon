@@ -1,0 +1,19 @@
+#
+# Lexicon for the modbusTcp module.
+#
+# @author    Scott Hoye
+# @creation  26 Sep 02
+# @version   $Revision: 1$ $Date: 09/26/02 9:03:04 AM$
+#
+
+# ModbusTcpDeviceManager
+ModbusTcpDeviceManager.displayName=AX Modbus Tcp Device Manager
+ModbusTcpDeviceUxManager.displayName=Modbus Tcp Device Manager
+ModbusTcpDeviceUxManager.icon=module://icons/x16/views/view.png
+
+# ModbusTcpGatewayDeviceManager
+ModbusTcpGatewayDeviceManager.displayName=AX Modbus Tcp Gateway Device Manager
+ModbusTcpGatewayDeviceUxManager.displayName=Modbus Tcp Gateway Device Manager
+ModbusTcpGatewayDeviceUxManager.icon=module://icons/x16/views/view.png
+
+help.guide.base=module://docModbus/doc

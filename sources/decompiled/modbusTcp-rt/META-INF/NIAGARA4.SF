@@ -1,0 +1,48 @@
+Signature-Version: 1.0
+Created-By: 21.0.3 (Azul Systems, Inc.)
+SHA-256-Digest-Manifest: yxTFMQ/xLSFvopKQ4DOd2Y0P2bkfVfvEpp9qtcHu0lM=
+SHA-256-Digest-Manifest-Main-Attributes: ar8VEqdMTyCJ9h3TAl5BTu0svU3e9mv
+ rvoBoztxHJ3E=
+
+Name: com/tridium/modbusTcp/BModbusTcpGateway.class
+SHA-256-Digest: CEKBNIcUBMtf+V+Mec2Ey16ndCBwTye6XU0xEmHt5Ks=
+
+Name: com/tridium/modbusTcp/BModbusTcpDeviceFolder.class
+SHA-256-Digest: +KqV+fJE4IpUvj43mApWHfRZDhhJW55l9oNhC9YEl88=
+
+Name: com/tridium/modbusTcp/BSocketStatusEnum.class
+SHA-256-Digest: BgaKfZqEv2CFHoQsh5wXu3Kc06NdUOwSvRc8dzpIQb0=
+
+Name: com/tridium/modbusTcp/BModbusTcpGatewayDeviceFolder.class
+SHA-256-Digest: V+rAnXV+TzWRSUV1OcSa7m2jlleV9QkSQt9wkSvLO4E=
+
+Name: module.palette
+SHA-256-Digest: +yz2vx/9dkRnhERgRubHxw+38oEoq4GJgaxBCkELTsw=
+
+Name: com/tridium/modbusTcp/BModbusTcpDevice.class
+SHA-256-Digest: y5QCVfhNzMStg4tp6t+JiZ/DwBw2utafmq6f0ScuNJk=
+
+Name: modbusTcp-rt.lexicon
+SHA-256-Digest: 2QxJDDJz3l8HNloq0buoU+uBimO80S86X2RTEw6MiV4=
+
+Name: com/tridium/modbusTcp/comm/ModbusTcpComm.class
+SHA-256-Digest: mM+E8915wNMBgf/w7YEoW35T/Tyz1Zj8FuSYv1lla6k=
+
+Name: com/tridium/modbusTcp/comm/ModbusTcpRxDriver.class
+SHA-256-Digest: 4HJP2Y7WYFSYrxT09EVeDGmH+OZtnmahDdEtrW/cFjk=
+
+Name: com/tridium/modbusTcp/BModbusTcpGatewayDevice.class
+SHA-256-Digest: FzJQM26zi7bIY1XMiLtHbkAoLIOPb665KK+adFFy7QQ=
+
+Name: com/tridium/modbusTcp/BModbusTcpNetwork.class
+SHA-256-Digest: onquqMmlsGgSUiEFUMd38dvm8JMlkq22IMSowoPEA58=
+
+Name: com/tridium/modbusTcp/comm/ModbusTcpTxDriver.class
+SHA-256-Digest: tjDrhGV9O3ZKP8HCQLJ4bgNBuL9jyh5OagxNoWL7q4s=
+
+Name: META-INF/module.xml
+SHA-256-Digest: /dh1hxbgT6T8fMpyw0Om/8sx4wwMuncuKOQ1spSNTBo=
+
+Name: com/tridium/modbusTcp/comm/ModbusTcpSendRequest.class
+SHA-256-Digest: wWmC+zYLIobLMxmWMz8lUmjjXtKH5JnOkyugyIJaS4w=
+

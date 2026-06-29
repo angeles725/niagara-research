@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="modbusCore-rt" bajaVersion="0" vendor="Tridium" vendorVersion="4.14.0.162" description="Modbus Core Driver" preferredSymbol="mc" nre="true" autoload="true" installable="true" buildMillis="1718363284813" buildHost="ee033fd13409" moduleName="modbusCore" runtimeProfile="rt" releaseDate="2024-05-28">
+ <dependencies>
+  <dependency name="alarm-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="baja" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="basicDriver-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="bql-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="chart-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="control-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="driver-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="entityIo-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="file-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="fox-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="gx-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="history-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="net-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="platform-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="query-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="schedule-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="serial-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="web-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+ </dependencies>
+ <dirs/>
+ <installation/>
+ <types>
+  <type class="com.tridium.modbusCore.BModbusDevice" name="ModbusDevice"/>
+  <type class="com.tridium.modbusCore.BModbusNetwork" name="ModbusNetwork"/>
+  <type class="com.tridium.modbusCore.datatypes.BFlexAddress" name="FlexAddress"/>
+  <type class="com.tridium.modbusCore.datatypes.BModbusConfig" name="ModbusConfig"/>
+  <type class="com.tridium.modbusCore.datatypes.BModbusFileRecord" name="ModbusFileRecord"/>
+  <type class="com.tridium.modbusCore.datatypes.BModbusStringRecord" name="ModbusStringRecord"/>
+  <type class="com.tridium.modbusCore.enums.BAddressFormatEnum" name="AddressFormatEnum"/>
+  <type class="com.tridium.modbusCore.enums.BDataByteOrderEnum" name="DataByteOrderEnum"/>
+  <type class="com.tridium.modbusCore.enums.BDataSourceEnum" name="DataSourceEnum"/>
+  <type class="com.tridium.modbusCore.enums.BDataTypeEnum" name="DataTypeEnum"/>
+  <type class="com.tridium.modbusCore.enums.BDeviceDataModeEnum" name="DeviceDataModeEnum"/>
+  <type class="com.tridium.modbusCore.enums.BModbusDataModeEnum" name="ModbusDataModeEnum"/>
+  <type class="com.tridium.modbusCore.enums.BRegisterTypeEnum" name="RegisterTypeEnum"/>
+  <type class="com.tridium.modbusCore.enums.BRegisterTypesEnum" name="RegisterTypesEnum"/>
+  <type class="com.tridium.modbusCore.enums.BStatusTypeEnum" name="StatusTypeEnum"/>
+  <type class="com.tridium.modbusCore.enums.BDataByteOrder64BitEnum" name="DataByteOrder64BitEnum"/>
+  <type class="com.tridium.modbusCore.point.BEnumBitsPoint" name="EnumBitsPoint"/>
+  <type class="com.tridium.modbusCore.point.BEnumBitsWritable" name="EnumBitsWritable"/>
+  <type class="com.tridium.modbusCore.point.BIModbusBooleanProxyExt" name="IModbusBooleanProxyExt"/>
+  <type class="com.tridium.modbusCore.point.BIModbusEnumBitsProxyExt" name="IModbusEnumBitsProxyExt"/>
+  <type class="com.tridium.modbusCore.point.BIModbusNumericBitsProxyExt" name="IModbusNumericBitsProxyExt"/>
+  <type class="com.tridium.modbusCore.point.BIModbusNumericProxyExt" name="IModbusNumericProxyExt"/>
+  <type class="com.tridium.modbusCore.point.BIModbusReadProxyExt" name="IModbusReadProxyExt"/>
+  <type class="com.tridium.modbusCore.point.BIModbusRegisterBitProxyExt" name="IModbusRegisterBitProxyExt"/>
+  <type class="com.tridium.modbusCore.point.BIModbusStringProxyExt" name="IModbusStringProxyExt"/>
+  <type class="com.tridium.modbusCore.point.BModbusProxyExt" name="ModbusProxyExt"/>
+  <type class="com.tridium.modbusCore.point.BNumericBitsPoint" name="NumericBitsPoint"/>
+  <type class="com.tridium.modbusCore.point.BNumericBitsWritable" name="NumericBitsWritable"/>
+  <type class="com.tridium.modbusCore.point.BRegisterBitPoint" name="RegisterBitPoint"/>
+  <type class="com.tridium.modbusCore.point.BRegisterBitWritable" name="RegisterBitWritable"/>
+  <type class="com.tridium.modbusCore.client.BModbusClientDevice" name="ModbusClientDevice"/>
+  <type class="com.tridium.modbusCore.client.BModbusClientNetwork" name="ModbusClientNetwork"/>
+  <type class="com.tridium.modbusCore.client.datatypes.BCommStatus" name="CommStatus"/>
+  <type class="com.tridium.modbusCore.client.datatypes.BDevicePollConfigEntry" name="DevicePollConfigEntry"/>
+  <type class="com.tridium.modbusCore.client.datatypes.BDevicePollConfigTable" name="DevicePollConfigTable"/>
+  <type class="com.tridium.modbusCore.client.datatypes.BModbusClientExceptionStatus" name="ModbusClientExceptionStatus"/>
+  <type class="com.tridium.modbusCore.client.datatypes.BModbusClientPresetComponent" name="ModbusClientPresetComponent"/>
+  <type class="com.tridium.modbusCore.client.datatypes.BModbusClientPresetRegisters" name="ModbusClientPresetRegisters"/>
+  <type class="com.tridium.modbusCore.client.datatypes.BModbusClientPresetRegister" name="ModbusClientPresetRegister"/>
+  <type class="com.tridium.modbusCore.client.datatypes.BModbusClientPresetCoils" name="ModbusClientPresetCoils"/>
+  <type class="com.tridium.modbusCore.client.datatypes.BModbusClientPresetCoil" name="ModbusClientPresetCoil"/>
+  <type class="com.tridium.modbusCore.client.datatypes.BModbusClientConfig" name="ModbusClientConfig"/>
+  <type class="com.tridium.modbusCore.client.datatypes.BModbusClientStringRecord" name="ModbusClientStringRecord"/>
+  <type class="com.tridium.modbusCore.client.enums.BCommStatusEnum" name="CommStatusEnum"/>
+  <type class="com.tridium.modbusCore.client.enums.BReplaceExistingEnum" name="ReplaceExistingEnum"/>
+  <type class="com.tridium.modbusCore.client.point.BModbusClientProxyExt" name="ModbusClientProxyExt"/>
+  <type class="com.tridium.modbusCore.client.point.BModbusClientBooleanProxyExt" name="ModbusClientBooleanProxyExt"/>
+  <type class="com.tridium.modbusCore.client.point.BModbusClientEnumBitsProxyExt" name="ModbusClientEnumBitsProxyExt"/>
+  <type class="com.tridium.modbusCore.client.point.BModbusClientNumericBitsProxyExt" name="ModbusClientNumericBitsProxyExt"/>
+  <type class="com.tridium.modbusCore.client.point.BModbusClientNumericProxyExt" name="ModbusClientNumericProxyExt"/>
+  <type class="com.tridium.modbusCore.client.point.BModbusClientRegisterBitProxyExt" name="ModbusClientRegisterBitProxyExt"/>
+  <type class="com.tridium.modbusCore.client.point.BModbusClientStringProxyExt" name="ModbusClientStringProxyExt"/>
+  <type class="com.tridium.modbusCore.client.point.BModbusClientPointDeviceExt" name="ModbusClientPointDeviceExt"/>
+  <type class="com.tridium.modbusCore.client.point.BModbusClientPointFolder" name="ModbusClientPointFolder"/>
+  <type class="com.tridium.modbusCore.client.point.BModbusClientPollGroup" name="ModbusClientPollGroup"/>
+  <type class="com.tridium.modbusCore.server.BModbusServerDevice" name="ModbusServerDevice"/>
+  <type class="com.tridium.modbusCore.server.BModbusServerNetwork" name="ModbusServerNetwork"/>
+  <type class="com.tridium.modbusCore.server.datatypes.BModbusRegisterRangeEntry" name="ModbusRegisterRangeEntry"/>
+  <type class="com.tridium.modbusCore.server.datatypes.BModbusRegisterRangeTable" name="ModbusRegisterRangeTable"/>
+  <type class="com.tridium.modbusCore.server.datatypes.BModbusServerStringRecord" name="ModbusServerStringRecord"/>
+  <type class="com.tridium.modbusCore.server.point.BModbusServerProxyExt" name="ModbusServerProxyExt"/>
+  <type class="com.tridium.modbusCore.server.point.BModbusServerBooleanProxyExt" name="ModbusServerBooleanProxyExt"/>
+  <type class="com.tridium.modbusCore.server.point.BModbusServerNumericProxyExt" name="ModbusServerNumericProxyExt"/>
+  <type class="com.tridium.modbusCore.server.point.BModbusServerRegisterBitProxyExt" name="ModbusServerRegisterBitProxyExt"/>
+  <type class="com.tridium.modbusCore.server.point.BModbusServerPointDeviceExt" name="ModbusServerPointDeviceExt"/>
+  <type class="com.tridium.modbusCore.server.point.BModbusServerPointFolder" name="ModbusServerPointFolder"/>
+ </types>
+ <permissions>
+  <java-permissions type="station">
+   <java-permission action="read,write" class="java.io.FilePermission" name="${niagara.user.home}${/}logging"/>
+   <java-permission action="read,write" class="java.io.FilePermission" name="${niagara.user.home}${/}logging${/}-"/>
+   <java-permission action="accept,connect,listen,resolve" class="com.tridium.nre.security.NiagaraSocketPermission" name="*:1-100000"/>
+   <java-permission class="java.lang.RuntimePermission" name="setIO"/>
+   <java-permission class="java.lang.RuntimePermission" name="modifyThread"/>
+   <java-permission class="java.lang.RuntimePermission" name="modifyThreadGroup"/>
+   <java-permission class="java.lang.RuntimePermission" name="shutdownHooks"/>
+  </java-permissions>
+  <java-permissions type="all">
+   <java-permission action="read" class="java.util.PropertyPermission" name="*"/>
+   <java-permission class="java.util.logging.LoggingPermission" name="control"/>
+  </java-permissions>
+  <java-permissions type="workbench">
+   <java-permission class="java.lang.RuntimePermission" name="getenv.*"/>
+   <java-permission class="java.lang.RuntimePermission" name="exitVM.*"/>
+   <java-permission class="java.lang.RuntimePermission" name="accessClassInPackage.sun.util.logging.resources"/>
+   <java-permission action="connect,resolve" class="com.tridium.nre.security.NiagaraSocketPermission" name="*:1-100000"/>
+   <java-permission class="java.awt.AWTPermission" name="accessClipboard"/>
+   <java-permission class="java.awt.AWTPermission" name="showWindowWithoutWarningBanner"/>
+  </java-permissions>
+ </permissions>
+ <moduleParts>
+  <modulePart name="modbusCore-ux" runtimeProfile="ux"/>
+  <modulePart name="modbusCore-wb" runtimeProfile="wb"/>
+ </moduleParts>
+</module>

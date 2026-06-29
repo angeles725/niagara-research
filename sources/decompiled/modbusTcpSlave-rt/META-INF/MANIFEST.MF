@@ -1,0 +1,39 @@
+Manifest-Version: 1.0
+Implementation-Vendor: Tridium
+Implementation-Version: 4.14.0.162
+Sealed: true
+
+Name: com/tridium/modbusTcpSlave/comm/ModbusTcpSlaveSession.class
+SHA-256-Digest: O0D3O/4NboBWWrucmmBWMUrMuSk8Qib6qF8UIjaYob4=
+
+Name: modbusTcpSlave-rt.lexicon
+SHA-256-Digest: gaSNxVoiouok5xXb/BC1XtIiXJ5oIqZxFbamcV5EUBQ=
+
+Name: com/tridium/modbusTcpSlave/comm/ModbusTcpSlaveSession$ReceiveDrive
+ r.class
+SHA-256-Digest: Ohgy4A7SMdzdFh23IqgjIoCY3V25ZYPGEqX5vzRamKQ=
+
+Name: module.palette
+SHA-256-Digest: CYgQRf8wJZeOmZqwrqHurrp3u8eUQeWKF/KNPcax7sg=
+
+Name: com/tridium/modbusTcpSlave/BModbusTcpSlaveDeviceFolder.class
+SHA-256-Digest: evvsEavN6wXYJqPrG9aWZO3Cg+/eVnBd1TsOrt/8tyY=
+
+Name: com/tridium/modbusTcpSlave/comm/UnsolicitedMessageElement.class
+SHA-256-Digest: lqb9VaWXb8C+TOHjOzHPdoBIN2KxIEz0fvcjo7B3C4U=
+
+Name: com/tridium/modbusTcpSlave/BModbusTcpSlaveDevice.class
+SHA-256-Digest: Mh+a6cp3scxOI45Jz+V+0sQE7VeGSi3Y2Md8N1R0t74=
+
+Name: com/tridium/modbusTcpSlave/comm/ModbusTcpServer.class
+SHA-256-Digest: GGYBX0nopRpS7CwNK9RA9HjQWVxhiJT1ndp4hB++Vfg=
+
+Name: META-INF/module.xml
+SHA-256-Digest: KU+hcxv9+x3bJOva4y7crK6DaNUrRihYHJfLiH6U2w4=
+
+Name: com/tridium/modbusTcpSlave/comm/ModbusUnsolicitedReceive.class
+SHA-256-Digest: Fat6m3oL/9gAhOIbc//pXrzOJtajPc/Xwm+aDcx/eKI=
+
+Name: com/tridium/modbusTcpSlave/BModbusTcpSlaveNetwork.class
+SHA-256-Digest: aajA3LHqGWemxUmUo01G5VkzeroZ+eCVAWincVU8X9Q=
+

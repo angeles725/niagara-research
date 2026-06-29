@@ -1,0 +1,144 @@
+#
+# Lexicon for the Niagara implementation of modbusCore.
+#
+# @author    Scott Hoye       
+# @creation  18 Nov 02
+# @version   $Revision: 110$ $Date: 11/18/2002 4:08:02 PM$
+# @since     Niagara 3.0 modbusCore 1.0
+#
+
+help.guide.base=module://docModbus/doc
+
+###########################################################
+# BModbusClientDevice
+###########################################################
+pingFail=No response
+
+###########################################################
+# BModbusServerDevice
+###########################################################
+device.strings.defaultRange=Default
+
+###########################################################
+# BDevicePollConfigEntry
+###########################################################
+
+devicePoll.strings.enabled=enabled
+devicePoll.strings.disabled=disabled
+
+###########################################################
+# BModbusRegisterRangeEntry
+###########################################################
+
+regRange.strings.enabled=Range Enabled
+regRange.strings.disabled=Range Disabled
+
+###########################################################
+# BModbusDeviceManager
+###########################################################
+
+devManager.add.start.base=Starting Address
+devManager.add.start={lexicon:devManager.add.start.base} (1 - {0})
+devManager.error.invalidCount=The Number to Add cannot exceed {0}.
+
+###########################################################
+# BModbusPointManager
+###########################################################
+
+pointManager.add.startAddress=Starting Address
+pointManager.add.dataType=Data Type (if applicable)
+pointManager.bit=_Bit
+table.columnTitle.value=Value
+table.columnTitle.regType=Reg Type
+table.columnTitle.dataType=Data Type
+table.columnTitle.scale=Scale
+table.columnTitle.statusType=Status Type
+table.columnTitle.polarity=Polarity
+table.columnTitle.bitNumber=Bit Number
+table.columnTitle.absAddress=Absolute Address
+table.columnTitle.dataSource=Data Source
+table.columnTitle.readStatus=Read Status
+table.columnTitle.writeStatus=Write Status
+table.columnTitle.numRegisters=Number Registers
+table.columnTitle.beginningBit=Beginning Bit
+table.columnTitle.numberOfBits=Number of Bits
+pointManager.addressError.notAnalog=For the point type selected, the starting Modbus address entered must be a holding or input register address type.\nA valid range is between 30000 and 49999.
+pointManager.addressError.notHolding=For the point type selected, the starting Modbus address entered must be a holding address type.\nA valid range is between 40001 and 49999.
+pointManager.addressError.notDigital=For the point type selected, the starting Modbus address entered must be a coil or input status address type.\nA valid range is between 0 and 29999.
+pointManager.addressError.notCoil=For the point type selected, the starting Modbus address entered must be a coil address type.\nA valid range is between 0 and 9999.
+pointManager.addressError.unknown=Unknown error.
+
+
+###########################################################
+# BModbusDataPointManager
+###########################################################
+
+menu.modbusDevice.label=ModbusDataPointManager
+
+commands.addListEntry.label=Add Inventory Item
+commands.addListEntry.description=Used to add a new data item entry to the inventory.
+
+commands.updateListEntry.label=Update Inventory Item
+commands.updateListEntry.description=Used to update the selected entry in the inventory.
+
+commands.deleteListEntry.label=Delete Inventory Item
+commands.deleteListEntry.description=Deletes the selected entry (or entries) from the inventory.
+
+commands.clearListEntry.label=Clear Inventory
+commands.clearListEntry.description=Clears all of the entries from the inventory.
+
+commands.createProxy.label=Create From Inventory
+commands.createProxy.icon=module://icons/x16/arrowDown.png
+commands.createProxy.description=Creates proxy points for the selected entry or entries in the inventory and adds them to the database.
+
+commands.addListEntryFromPrototype.label=Add Inventory Item From Prototype
+commands.addListEntryFromPrototype.description=Used to add a new data item entry to the inventory using a selectable prototype.
+
+table.columnTitle.templateName=Name
+table.columnTitle.direction=Direction
+table.columnTitle.registerType=Register Type
+table.columnTitle.address=Address
+
+table.columnTitle.facets=Facets
+
+popup.create.consecutive=Additional Consecutive Points to Create: 
+popup.create.writableType=Writable Type (for outputs only): 
+popup.create.title=Create Proxy Point
+
+popup.newTemplate.name=Inventory Item Name: 
+popup.newTemplate.direction=Direction: 
+popup.newTemplate.registerType=Register Type: 
+popup.newTemplate.address=Address: 
+popup.newTemplate.dataType=Data Type: 
+popup.newTemplate.facets=Facets: 
+popup.newTemplate.title=Add New Inventory Item
+
+popup.fromPrototype.prototype=Prototype: 
+popup.fromPrototype.none=None
+popup.fromPrototype.title=Add New Inventory Item From Prototype
+
+popup.deleteEntries.title=Confirm Delete Selected Inventory Entries
+popup.deleteEntries.confirm=Are you sure you want to delete the selected entries from the inventory? (Proxy points created for these entries will not be deleted)
+
+popup.clearAllEntries.title=Confirm Clear Inventory
+popup.clearAllEntries.confirm=Are you sure you want to clear all entries from the inventory? (Proxy points created for these entries will not be deleted)
+
+popup.update.title=Update Inventory Item - 
+
+errors.load.manager=Cannot load ModbusDataPointManager
+
+ModbusClientPointManager.displayName=AX Modbus Client Point Manager
+ModbusClientPointUxManager.displayName=Modbus Client Point Manager
+ModbusClientPointUxManager.icon=module://icons/x16/views/view.png
+
+ModbusServerPointManager.displayName=AX Modbus Server Point Manager
+ModbusServerPointUxManager.displayName=Modbus Server Point Manager
+ModbusServerPointUxManager.icon=module://icons/x16/views/view.png
+
+flexAddress.toString={0}:{1}
+
+double64BitByteOrder=Double 64-bit Byte Order
+long64BitByteOrder=Long 64-bit Byte Order
+signed64BitLongType=Signed 64-bit Long Type
+unsigned64BitLongType=Unsigned 64-bit Long Type
+

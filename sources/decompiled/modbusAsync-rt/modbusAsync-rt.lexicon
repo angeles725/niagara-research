@@ -1,0 +1,14 @@
+#
+# Lexicon for the modbusAsync module.
+#
+# @author    Scott Hoye
+# @creation  26 Sep 02
+# @version   $Revision: 1$ $Date: 09/26/02 9:03:04 AM$
+#
+
+# ModbusAsyncDeviceManager
+ModbusAsyncDeviceManager.displayName=AX Modbus Async Device Manager
+ModbusAsyncDeviceUxManager.displayName=Modbus Async Device Manager
+ModbusAsyncDeviceUxManager.icon=module://icons/x16/views/view.png
+
+help.guide.base=module://docModbus/doc

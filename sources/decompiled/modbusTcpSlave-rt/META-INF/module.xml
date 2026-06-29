@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="modbusTcpSlave-rt" bajaVersion="0" vendor="Tridium" vendorVersion="4.14.0.162" description="ModbusTcp Slave Driver" preferredSymbol="modTcpSlave" nre="true" autoload="true" installable="true" buildMillis="1718363299517" buildHost="ee033fd13409" moduleName="modbusTcpSlave" runtimeProfile="rt" releaseDate="2024-05-28">
+ <dependencies>
+  <dependency name="alarm-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="baja" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="basicDriver-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="bql-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="chart-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="control-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="driver-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="entityIo-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="file-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="fox-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="gx-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="history-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="modbusCore-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="net-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="platform-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="query-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="schedule-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="serial-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="web-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+ </dependencies>
+ <dirs/>
+ <installation/>
+ <types>
+  <type name="ModbusTcpSlaveDevice" class="com.tridium.modbusTcpSlave.BModbusTcpSlaveDevice"/>
+  <type name="ModbusTcpSlaveDeviceFolder" class="com.tridium.modbusTcpSlave.BModbusTcpSlaveDeviceFolder"/>
+  <type name="ModbusTcpSlaveNetwork" class="com.tridium.modbusTcpSlave.BModbusTcpSlaveNetwork"/>
+ </types>
+ <permissions>
+  <java-permissions type="station">
+   <java-permission action="read,write" class="java.io.FilePermission" name="${niagara.user.home}${/}logging"/>
+   <java-permission action="read,write" class="java.io.FilePermission" name="${niagara.user.home}${/}logging${/}-"/>
+   <java-permission action="accept,connect,listen,resolve" class="com.tridium.nre.security.NiagaraSocketPermission" name="*:1-100000"/>
+   <java-permission class="java.lang.RuntimePermission" name="setIO"/>
+   <java-permission class="java.lang.RuntimePermission" name="modifyThread"/>
+   <java-permission class="java.lang.RuntimePermission" name="modifyThreadGroup"/>
+   <java-permission class="java.lang.RuntimePermission" name="shutdownHooks"/>
+  </java-permissions>
+  <java-permissions type="all">
+   <java-permission action="read" class="java.util.PropertyPermission" name="*"/>
+   <java-permission class="java.util.logging.LoggingPermission" name="control"/>
+  </java-permissions>
+  <java-permissions type="workbench">
+   <java-permission class="java.lang.RuntimePermission" name="getenv.*"/>
+   <java-permission class="java.lang.RuntimePermission" name="exitVM.*"/>
+   <java-permission class="java.lang.RuntimePermission" name="accessClassInPackage.sun.util.logging.resources"/>
+   <java-permission action="connect,resolve" class="com.tridium.nre.security.NiagaraSocketPermission" name="*:1-100000"/>
+   <java-permission class="java.awt.AWTPermission" name="accessClipboard"/>
+   <java-permission class="java.awt.AWTPermission" name="showWindowWithoutWarningBanner"/>
+  </java-permissions>
+ </permissions>
+ <moduleParts>
+  <modulePart name="modbusTcpSlave-ux" runtimeProfile="ux"/>
+  <modulePart name="modbusTcpSlave-wb" runtimeProfile="wb"/>
+ </moduleParts>
+</module>

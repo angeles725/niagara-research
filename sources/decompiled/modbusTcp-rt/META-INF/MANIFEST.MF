@@ -1,0 +1,47 @@
+Manifest-Version: 1.0
+Implementation-Vendor: Tridium
+Implementation-Version: 4.14.0.162
+Sealed: true
+
+Name: com/tridium/modbusTcp/BModbusTcpGateway.class
+SHA-256-Digest: bMmRjPJB/7c9CTNz3F/nO4RL8dhv2fUqd7+CgoMhe+Q=
+
+Name: com/tridium/modbusTcp/BModbusTcpDeviceFolder.class
+SHA-256-Digest: oLbQzgW+vbfOrT83QKYAEAMvskoCGAwj8J+7usZKl9k=
+
+Name: com/tridium/modbusTcp/BSocketStatusEnum.class
+SHA-256-Digest: TWO7ZMaabSObIEObNxKbcU0jcbwEtwrMRqVc5NJMe+k=
+
+Name: com/tridium/modbusTcp/BModbusTcpGatewayDeviceFolder.class
+SHA-256-Digest: Zt99Sw0InsvtLmXfXVVpnbTV8MLOnomsHZh6ScePzgA=
+
+Name: module.palette
+SHA-256-Digest: 6z22DAEjzLeoviiqn4eGdloxII9Zo1LWN1ObE3zbg9U=
+
+Name: com/tridium/modbusTcp/BModbusTcpDevice.class
+SHA-256-Digest: 53FYOBxNyKfUBQ+kjplm2ewpv0xUt4/CAo+g2YwyyJA=
+
+Name: modbusTcp-rt.lexicon
+SHA-256-Digest: QDdoVsguVVcXMpYTJxtfu+O4VLPpI01ggHRFIuOenRE=
+
+Name: com/tridium/modbusTcp/comm/ModbusTcpComm.class
+SHA-256-Digest: +NLB+cIkY/+mqKrV4qhZftcey/z1HH1Ypjd2WIJfenY=
+
+Name: com/tridium/modbusTcp/comm/ModbusTcpRxDriver.class
+SHA-256-Digest: m/xL2AZrmmcWOqSd5lkii6uMtET6TP2AcK0gJnspBTE=
+
+Name: com/tridium/modbusTcp/BModbusTcpGatewayDevice.class
+SHA-256-Digest: EBjwIoMOGQfkDhzrCZ8Ji/fpKV3K8EX8I7G6u87eLik=
+
+Name: com/tridium/modbusTcp/BModbusTcpNetwork.class
+SHA-256-Digest: 5AmYpGWRSzm2yWFJUdZw5FcjJ+6NLOpAb5OHRDzBlXU=
+
+Name: com/tridium/modbusTcp/comm/ModbusTcpTxDriver.class
+SHA-256-Digest: eY3lHmkgEU41YpH25ci2hqCoRjnon5qbX+m1pUtpIgg=
+
+Name: META-INF/module.xml
+SHA-256-Digest: tVE+7g6EI6Fm5daGMhVUFZa9IV7UG0MKgtZqnQ2d7qI=
+
+Name: com/tridium/modbusTcp/comm/ModbusTcpSendRequest.class
+SHA-256-Digest: Mqd9QqWzzkrawYkiKLvp6799sVOcssjMNEbd2sBaxa4=
+

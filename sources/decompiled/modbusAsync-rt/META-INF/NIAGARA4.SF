@@ -1,0 +1,33 @@
+Signature-Version: 1.0
+Created-By: 21.0.3 (Azul Systems, Inc.)
+SHA-256-Digest-Manifest: PYDqgp8Ap2nDJKQs2mFJ9WLZeaTU4vOr8RGXpJuxvKo=
+SHA-256-Digest-Manifest-Main-Attributes: ar8VEqdMTyCJ9h3TAl5BTu0svU3e9mv
+ rvoBoztxHJ3E=
+
+Name: com/tridium/modbusAsync/comm/ModbusAsyncSerialComm.class
+SHA-256-Digest: eVKDpwj4q4hg+q1hmyWUGPjURetY9WJ4Zr2Kse2vTMA=
+
+Name: com/tridium/modbusAsync/BModbusAsyncDevice.class
+SHA-256-Digest: f50q/AZZ+ml9j0tFXv6sQgMf5Hi2349eRRTzQx0WG1c=
+
+Name: module.palette
+SHA-256-Digest: nwo/k9AUEtZu80Z/TqHB2tGQMrKsrg9wwEWK0TjvaMM=
+
+Name: com/tridium/modbusAsync/comm/ModbusAsyncTxDriver.class
+SHA-256-Digest: ikt6nEVu26HnVjzVulPN7k0JAbjlN3zdPcCCXj7tJJQ=
+
+Name: com/tridium/modbusAsync/BModbusAsyncDeviceFolder.class
+SHA-256-Digest: pVO931K3vho7tUTAsu7F2TLKgpAmVdB/UyaPiHP/Lb0=
+
+Name: com/tridium/modbusAsync/comm/ModbusAsyncRxDriver.class
+SHA-256-Digest: MYMGMH1gNaJQUyf+Z44apXIoWnayXqaxn+Xif7prRko=
+
+Name: com/tridium/modbusAsync/BModbusAsyncNetwork.class
+SHA-256-Digest: GtpIVZlfK8hXTN6GcGrLXuMeQISifqkKQnub33DF6cg=
+
+Name: META-INF/module.xml
+SHA-256-Digest: hScE+z6qNmSHjT965+csEz2z4bWrlomceZ4wLuWVW5s=
+
+Name: modbusAsync-rt.lexicon
+SHA-256-Digest: R8llBYRSqdasRg0XgdhdWncoTh0AwKXvUhZN1ezXaNY=
+

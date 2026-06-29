@@ -1,0 +1,341 @@
+Manifest-Version: 1.0
+Implementation-Vendor: Tridium
+Implementation-Version: 4.14.0.162
+Sealed: true
+
+Name: com/tridium/modbusCore/datatypes/BFlexAddress.class
+SHA-256-Digest: K7TX8t8sfRoFNQ3UfKwJbqbs5Ir2xhTRiIyDJ4c8rlE=
+
+Name: com/tridium/modbusCore/client/point/BModbusClientRegisterBitProxyE
+ xt.class
+SHA-256-Digest: iUF83fVrhITZpIKymhU/O3dFmwRCAGIpJPzdJcE4khk=
+
+Name: com/tridium/modbusCore/server/util/TLinkedListManager$Enumerator.c
+ lass
+SHA-256-Digest: zH1SFxLTivSmctghM5JHnmbkCYV8Jr5tVAfcxRxC5Aw=
+
+Name: com/tridium/modbusCore/server/point/BModbusServerRegisterBitProxyE
+ xt.class
+SHA-256-Digest: NrPLYyqJHkeUYhK1sLwuIRH1GlT0CGmp/MTFIty5nfM=
+
+Name: com/tridium/modbusCore/messages/ModbusFC23Request.class
+SHA-256-Digest: bH8I7xfgsZu6wLYheHwHLSC2z291fiYtAS5mtLLQkf8=
+
+Name: com/tridium/modbusCore/point/BModbusProxyExt.class
+SHA-256-Digest: YC0Ir3eyS5eoCvderSUoSXu3w+H3CRFlb6CfV7RqV6g=
+
+Name: com/tridium/modbusCore/client/BModbusClientDevice.class
+SHA-256-Digest: ybfFoGd1RVMVfFXexOGX/Bl0dILSJYRnHK6H5Q0DZsY=
+
+Name: com/tridium/modbusCore/messages/ModbusResponse.class
+SHA-256-Digest: BOzrbpUuAYy+4lsaCNAUVuRJSmJ3KXihA0+OscXtC2Q=
+
+Name: com/tridium/modbusCore/point/BModbusProxyExt$1.class
+SHA-256-Digest: UdvGXS1AdDC73P8cUpcghtMJrzc54RgUB9Jq1Rl1GxI=
+
+Name: com/tridium/modbusCore/messages/ModbusReadFileRequest.class
+SHA-256-Digest: X2iF1/67YqsFKBiYbo88XomT3QmniRYs82qRJ7gke9M=
+
+Name: com/tridium/modbusCore/enums/BRegisterTypeEnum.class
+SHA-256-Digest: ZYww8MAio+3y3r8Zv7uyY3TZOE+OfyWPH7IT4YqF+9M=
+
+Name: com/tridium/modbusCore/server/datatypes/BModbusRegisterRangeEntry.
+ class
+SHA-256-Digest: QMuKCBEJuFHaAaOagVTHFVWKsDrFC7pC9Qt+eDsxMZc=
+
+Name: com/tridium/modbusCore/server/messages/ModbusServerWriteReadReques
+ t.class
+SHA-256-Digest: bX8MiCDKv4t9bms/j7xKxdnnJV2bNhKmzJi9fTz9Y3w=
+
+Name: com/tridium/modbusCore/client/point/BModbusClientNumericProxyExt.c
+ lass
+SHA-256-Digest: wTM8nbywwNd/X2xoaOh/IU1G8vrlClri/dHH78R76OI=
+
+Name: com/tridium/modbusCore/server/point/BModbusServerPointFolder.class
+SHA-256-Digest: X6CUXj/wpVhy4yBlTQeJliJED1hi2OghvKQXR2X0sac=
+
+Name: com/tridium/modbusCore/server/util/TLinkedListElement.class
+SHA-256-Digest: TDiRcVzRwMKOzHpGq6VkrPlqpEY9l92K00yltoZIbyY=
+
+Name: com/tridium/modbusCore/point/BIModbusNumericProxyExt.class
+SHA-256-Digest: 0fgxOQYf9H4klI4RKcuipsGdOBIt0Y/ynLoQvpC+CWg=
+
+Name: com/tridium/modbusCore/enums/BDataTypeEnum.class
+SHA-256-Digest: r806qJiznd4KI/Wh0272ncY8xl2jZVxbFkwzbFKEaqc=
+
+Name: com/tridium/modbusCore/client/datatypes/BModbusClientPresetCompone
+ nt.class
+SHA-256-Digest: QR14lojmHtLVi8pHHfOSBXMIKbtjBRIDW6WYwC5Fe1I=
+
+Name: com/tridium/modbusCore/client/datatypes/BCommStatus.class
+SHA-256-Digest: 2nJMhesXN5JOdWHna2XlcpaMHxp1c+oyqCbiI2KBQRw=
+
+Name: com/tridium/modbusCore/client/point/BModbusClientPointDeviceExt.cl
+ ass
+SHA-256-Digest: AZqgcqZcr0r57GPRORjv7fwI+7B+CkQjCnuus05FxT4=
+
+Name: com/tridium/modbusCore/messages/ModbusReadRequest.class
+SHA-256-Digest: IQitoAH+PdYsYG6BI6Nabm8EDH8jS96GFg48gqEi7m8=
+
+Name: com/tridium/modbusCore/client/point/BModbusClientNumericBitsProxyE
+ xt.class
+SHA-256-Digest: GKZWdnpgHL9ob6DrWdmU7c1FNmz5ALq1tMNaf+vwIqw=
+
+Name: com/tridium/modbusCore/server/messages/ModbusServerWriteFileRespon
+ se.class
+SHA-256-Digest: ZWnIuEDFRCHiz42E6+0QiPOkSilFBq6rc4x6FkOp+ZU=
+
+Name: com/tridium/modbusCore/server/messages/ModbusServerWriteRequest.cl
+ ass
+SHA-256-Digest: 5bR9H5rB4VUY1HSQvzA7oemz8iT1+iEAL7+w+R62bRo=
+
+Name: com/tridium/modbusCore/client/point/BModbusClientEnumBitsProxyExt.
+ class
+SHA-256-Digest: ZvqLRPQbhzzpGk9Bl8m+NjRqbGSBk12KHmeJyCeYvVo=
+
+Name: com/tridium/modbusCore/datatypes/BModbusStringRecord.class
+SHA-256-Digest: dkIfPQ+fPNOfYd3C1ui5O7nVDNRSSBDOrXAF8kLZ9g0=
+
+Name: com/tridium/modbusCore/server/datatypes/BModbusRegisterRangeTable.
+ class
+SHA-256-Digest: DkftwbUIAW6pMhbo9hDg13zxbbV2w4Hyj0/8woDeNXs=
+
+Name: com/tridium/modbusCore/client/datatypes/BModbusClientPresetRegiste
+ rs$ModbusWriteFloatRequest.class
+SHA-256-Digest: XerNUC2fLyakfiAKRA1Ct+FTqec7LAWoe0wYJBCaVgM=
+
+Name: com/tridium/modbusCore/messages/ModbusWriteFileRequest.class
+SHA-256-Digest: zOrjHpAhIsg6VSWwXrxf+RbjRln9G1cKfVfDwuBTrRY=
+
+Name: com/tridium/modbusCore/client/point/BModbusClientStringProxyExt.cl
+ ass
+SHA-256-Digest: QrMKOhvthJXuIiIwAb/Dc0/vQ000WGujiUQ+FUuY/T4=
+
+Name: com/tridium/modbusCore/client/datatypes/BModbusClientPresetRegiste
+ r.class
+SHA-256-Digest: 3qTpSumkJLpLoecp2w7ekP6amHNlJw4RVVdx0uUhBME=
+
+Name: com/tridium/modbusCore/client/datatypes/BModbusClientPresetCompone
+ nt$BaseAddressSubscriber.class
+SHA-256-Digest: /TkzjhccnECcmW/ViaUpTky+AGjaWXe1BMMClEAxhoY=
+
+Name: com/tridium/modbusCore/point/BIModbusRegisterBitProxyExt.class
+SHA-256-Digest: I2+bVmtRH6hzLXmj309UFNJVpgNPvYgcGYvOCKtBGqI=
+
+Name: com/tridium/modbusCore/client/datatypes/BModbusClientExceptionStat
+ us.class
+SHA-256-Digest: IfHIwO5KSAwa+7njcrRlAO7SosGqsboOF4Lrecfrpkg=
+
+Name: com/tridium/modbusCore/point/BIModbusNumericBitsProxyExt.class
+SHA-256-Digest: fWbpGin+MxMrCQg680XFqCnibctMCMHKxhwl6ZJTYXI=
+
+Name: com/tridium/modbusCore/client/point/BModbusClientBooleanProxyExt.c
+ lass
+SHA-256-Digest: e6pyC4ZHKmiE57QkDztiKMIdK7mLhmxSl6X6JF7RGJc=
+
+Name: com/tridium/modbusCore/client/enums/BCommStatusEnum.class
+SHA-256-Digest: /rDko4bDC72WCh4yREpMud+wC/QljU5M2mN2ijvY47w=
+
+Name: com/tridium/modbusCore/client/point/BModbusClientPointFolder.class
+SHA-256-Digest: P2yyNWJJi6j4+7fe1agS7pqWjBa2Y057zIqdpD+6ZZU=
+
+Name: com/tridium/modbusCore/point/BIModbusEnumBitsProxyExt.class
+SHA-256-Digest: cnLjACnCyMWc+msh1yE1ykBhQ7CxNQlQQ8I3cjP2Kus=
+
+Name: com/tridium/modbusCore/point/BIModbusBooleanProxyExt.class
+SHA-256-Digest: FcNK516nWPUz/4NOwqpvutmDwyDKH+lyFWwxEXY41ME=
+
+Name: com/tridium/modbusCore/messages/ModbusReadExceptionStatusRequest.c
+ lass
+SHA-256-Digest: b+oxfvkNt2wPqDv2sMbIK4IrVGWsxfxLeM+QevAyWoI=
+
+Name: com/tridium/modbusCore/messages/ModbusMessage.class
+SHA-256-Digest: MU84LXRgoJnKos8MHuaPkIqCh501kGT/fbuYSr9Ju9Y=
+
+Name: com/tridium/modbusCore/point/BEnumBitsPoint.class
+SHA-256-Digest: RYELf/iEDAq7LtM57yZoaT/JnflXWQe9qGGAK+jCXyo=
+
+Name: com/tridium/modbusCore/server/messages/ModbusServerReadRequest.cla
+ ss
+SHA-256-Digest: kbJNjS6Eru2XHItqXVN7H3xPHkZRpvy7VehTkEr6Sz8=
+
+Name: com/tridium/modbusCore/enums/BDataSourceEnum.class
+SHA-256-Digest: FZjlnvQmU4I3RmFyPy68Eyx4e/+q/G61sU7Nh7o3KkY=
+
+Name: com/tridium/modbusCore/point/BRegisterBitPoint.class
+SHA-256-Digest: LQaYxjt9Iv2xqK3UeSfVuglWbDxvRSVovjCQJiNuiWw=
+
+Name: com/tridium/modbusCore/server/point/BModbusServerProxyExt.class
+SHA-256-Digest: 4slY9bjj9xjANLs7Qs433UkIvvtP2Ml/OK7582A1SKg=
+
+Name: com/tridium/modbusCore/messages/ModbusReceivedMessage.class
+SHA-256-Digest: TLTJBw1XiAIdD/ijp1oTJCWZ0phc+C8o2wRq+rHibrI=
+
+Name: com/tridium/modbusCore/server/util/TLinkedListManager.class
+SHA-256-Digest: gbwFsty0l+Hv/HiVEdzb/6OixZ96HDlrtj3+PWgngr8=
+
+Name: com/tridium/modbusCore/server/messages/ModbusServerReadFileRespons
+ e.class
+SHA-256-Digest: XE+HrEIJAQvmBE6G+1njcLh8GPg2JgAHaYFvKLmPUdI=
+
+Name: com/tridium/modbusCore/datatypes/BModbusConfig.class
+SHA-256-Digest: HmgDJfXbG1N2IPFRfVQbL+bTrwinDZpNPj/fceuek4g=
+
+Name: com/tridium/modbusCore/point/BIModbusStringProxyExt.class
+SHA-256-Digest: 2Et3j6d+1rU28lyqNrk/JQUMv1zyJdWbrBVFtz8L7B0=
+
+Name: com/tridium/modbusCore/util/DataTypeUtil.class
+SHA-256-Digest: kSGFX7Fe4W61Dl1SyO+wB3u/gmdXv3yHlH6rTDfmNLg=
+
+Name: com/tridium/modbusCore/client/datatypes/BDevicePollConfigEntry.cla
+ ss
+SHA-256-Digest: A72taIyGkBNhyAVQS0Io+tWzA/NOt6DZpHUnzti34os=
+
+Name: com/tridium/modbusCore/messages/ModbusMessageConst.class
+SHA-256-Digest: tKQJ3kJYpgjwcMCkp05IhGn5KQgYOKK5wpmvw9zEfQM=
+
+Name: com/tridium/modbusCore/server/BModbusServerDevice.class
+SHA-256-Digest: K/bOG87AuTGOjQV1v4vRS1wUww97EJIB7FvQ3cNXuqI=
+
+Name: com/tridium/modbusCore/datatypes/BModbusFileRecord.class
+SHA-256-Digest: E/eCQbsvZInsQjsnsUIec0gCEHZCkmRKv9H6tXC0txY=
+
+Name: com/tridium/modbusCore/point/BNumericBitsPoint.class
+SHA-256-Digest: J/MtqcHn3xnJGVl3vN2+PdGniPECKtIShgvKXFV7B8Q=
+
+Name: com/tridium/modbusCore/client/datatypes/BModbusClientPresetCoil.cl
+ ass
+SHA-256-Digest: VxCebz9k9lUiSvHDK1fEkFcj3IU1JDDpbR7+OjQ3Yq8=
+
+Name: com/tridium/modbusCore/client/datatypes/BModbusClientPresetCompone
+ nt$ModbusClientWriteRequest.class
+SHA-256-Digest: A7n4aV75V03xwEgPBtI0q3ZYt2Gn4Xe4Lyz9Lwlr5Cw=
+
+Name: com/tridium/modbusCore/client/point/BModbusClientProxyExt.class
+SHA-256-Digest: ZAgCbOOIQIx+wERVgbl989VWBYaAzWyJ6xxGE/b2Sx0=
+
+Name: com/tridium/modbusCore/ModbusException.class
+SHA-256-Digest: eBZQFVzZ/Y3jNrVgL5Clhqm3mZ7znc6tKU4j8RAguA8=
+
+Name: com/tridium/modbusCore/point/BEnumBitsWritable.class
+SHA-256-Digest: tM7ZmctoY3FGtJziWpbjK9UfKzfgs2d1HK6ondIqrX8=
+
+Name: com/tridium/modbusCore/server/point/BModbusServerBooleanProxyExt.c
+ lass
+SHA-256-Digest: MVz3wg0pJs0Qg+0EiNUTtcWE1Kp1LYBEGZGm7gRJ/T0=
+
+Name: com/tridium/modbusCore/messages/ModbusOutputStream.class
+SHA-256-Digest: /8r2ZPBHCBaWi0W/lViBJ6yOM7+p3uupX5f8gLgrMyU=
+
+Name: com/tridium/modbusCore/enums/BDataByteOrderEnum.class
+SHA-256-Digest: gCXoynzUQrgogz1ee7enc0EdCCgBzl1VFWHXBdBQ+CI=
+
+Name: com/tridium/modbusCore/messages/ModbusReadExceptionStatusResponse.
+ class
+SHA-256-Digest: CvfIftirNo4kba6MWDvicsk+6bRpr5YYkV+hOhYFIhc=
+
+Name: com/tridium/modbusCore/client/enums/BReplaceExistingEnum.class
+SHA-256-Digest: FXCP6wiUwWOZutTerNnvMc1ZSqmx0/NCNO2h6udfEfE=
+
+Name: com/tridium/modbusCore/point/BIModbusReadProxyExt.class
+SHA-256-Digest: z/g6sCAe44jxCljT24WuTMyoxGaLdUKYDiDbsdIIx3g=
+
+Name: modbusCore-rt.lexicon
+SHA-256-Digest: DDpYmbqo0cX0UFNdV3hp6rydaw2kxhBiMu8zJmQxpD4=
+
+Name: com/tridium/modbusCore/enums/BAddressFormatEnum.class
+SHA-256-Digest: YCKpfJNAa16eVD/EaaVJE8bOd/ZHiqSlDB81iOw3CD0=
+
+Name: com/tridium/modbusCore/client/datatypes/BModbusClientPresetRegiste
+ rs.class
+SHA-256-Digest: MwLKNKrUXriOpDpfkd56/V19VOhvFayKX30wHTMCMpQ=
+
+Name: com/tridium/modbusCore/client/BModbusClientNetwork.class
+SHA-256-Digest: MIVq8GA6ESJNUWUigA8qqg59C/3zn+volCpLPA4+YpM=
+
+Name: com/tridium/modbusCore/messages/ModbusInputStream.class
+SHA-256-Digest: QAw/KfrvHnCNRsV3NMMY3q8fTg/mwgt9OV6mGqoLg70=
+
+Name: com/tridium/modbusCore/client/point/BModbusClientPollGroup.class
+SHA-256-Digest: z7CvxqQrzV2V05pYCWOI/ct3y3rlmutNi74xLNLbLpU=
+
+Name: com/tridium/modbusCore/point/BRegisterBitWritable.class
+SHA-256-Digest: JYBHZRoqI89mfcd8uB54+A7UfDsRubAiCgTDBDirJl8=
+
+Name: com/tridium/modbusCore/server/point/BModbusServerPointDeviceExt.cl
+ ass
+SHA-256-Digest: H9ZJXfrELTDoPuZ0mdRJz2v7Vsv5Zq3u/HgKJ/1Ekgg=
+
+Name: com/tridium/modbusCore/point/BNumericBitsWritable.class
+SHA-256-Digest: FkrAMI13he2GLuwkFNzgNNvAhmGK4xtjoTmXGR0JjC8=
+
+Name: com/tridium/modbusCore/enums/BStatusTypeEnum.class
+SHA-256-Digest: vB9xrPymDTGCpmE7goEXPVToXTS8LElN9/YAPEtngjQ=
+
+Name: com/tridium/modbusCore/client/datatypes/BModbusClientStringRecord.
+ class
+SHA-256-Digest: W6PJmjsL0Cx2pkU8nHJlxQrK851TmyohDoiajv20z0E=
+
+Name: com/tridium/modbusCore/server/point/BModbusServerNumericProxyExt.c
+ lass
+SHA-256-Digest: GqdO/zRbRXixn5R697WvHliGeCRDYiAhZseJ/M/KFR0=
+
+Name: com/tridium/modbusCore/client/datatypes/BDevicePollConfigTable.cla
+ ss
+SHA-256-Digest: 36uMUAS8bKaFuNZ6cn346YHQ1QCttkHaIMwBu0rBffY=
+
+Name: com/tridium/modbusCore/server/datatypes/BModbusServerStringRecord.
+ class
+SHA-256-Digest: SYsFFOjI87cQVljgqQ42SYQkXgUei4A6RKlelycSoQ4=
+
+Name: com/tridium/modbusCore/server/BModbusServerNetwork.class
+SHA-256-Digest: AVnzHX6sF8m89zaLNPAF6zuedqCiRBhy25OdXYK8YH8=
+
+Name: com/tridium/modbusCore/client/datatypes/BModbusClientConfig.class
+SHA-256-Digest: d6eN4WU5E8MvmVb8kpclTTfW5N9G+zJmlrpTMalCuxo=
+
+Name: com/tridium/modbusCore/client/datatypes/BModbusClientPresetCoils.c
+ lass
+SHA-256-Digest: aNpEwmStRNnkpOgGnB0wvfL+D4EhLAcSa/btv/s5iYM=
+
+Name: com/tridium/modbusCore/server/messages/ModbusServerWriteFileReques
+ t.class
+SHA-256-Digest: 4HzGMnnoQ7bnlfUoqKxWW6OGvrL1j6PkuJEDXD3SyoA=
+
+Name: com/tridium/modbusCore/util/ByteConverterUtil.class
+SHA-256-Digest: ns4mm9NLdsxW82qG82WJRI28jEKce2EGo7dHJaKN1Sc=
+
+Name: META-INF/module.xml
+SHA-256-Digest: if19KVJp5PvC45DO3zvH567YFRcTF/BV8lmHLzp/8So=
+
+Name: com/tridium/modbusCore/server/messages/ModbusServerReadFileRequest
+ .class
+SHA-256-Digest: YKDlKoDA1hhIzGj1dzHC+T4O2vG+Irv2ylIsbleHKdo=
+
+Name: com/tridium/modbusCore/enums/BDataByteOrder64BitEnum.class
+SHA-256-Digest: cQxEogbVBrNEmaFOfdowWv70hYhAoEWRIVLx98DQwsI=
+
+Name: com/tridium/modbusCore/BModbusDevice.class
+SHA-256-Digest: ZRveP8LdlhKbXVrP3KcMA7xJmr9uW25J7Kk409go8lQ=
+
+Name: com/tridium/modbusCore/BModbusNetwork.class
+SHA-256-Digest: b0ySlqrbEYfNiX5mvefbwCx14o3Wk8UVwspHnmplMuE=
+
+Name: com/tridium/modbusCore/BModbusNetwork$NameSubscriber.class
+SHA-256-Digest: cUzWFhgMgr0zwaPyWQYtoD+yZqnbUc1oBkFEQKWfK1M=
+
+Name: com/tridium/modbusCore/ModbusErrorCodes.class
+SHA-256-Digest: zYBoUdpOGfLDDjndTsNE07MDK8XHgObjRRiC+e7PjYI=
+
+Name: com/tridium/modbusCore/enums/BDeviceDataModeEnum.class
+SHA-256-Digest: x5TawHcV4IhBvJbcz2jyxFGOd8Ygbletthw2+goMq78=
+
+Name: com/tridium/modbusCore/messages/ModbusWriteRequest.class
+SHA-256-Digest: SLCwtk+kxArGTSnLl9svhV7pCPC/rZaMP+igeSw1Btw=
+
+Name: com/tridium/modbusCore/enums/BModbusDataModeEnum.class
+SHA-256-Digest: 1ZZJ1RfXJDLAhV7/woMi/arYdE5OHYg03d3Isb1aK7w=
+
+Name: com/tridium/modbusCore/enums/BRegisterTypesEnum.class
+SHA-256-Digest: eNVppu2pl+ml3rV65YMgw6drf+BUb7S7s9QkZpffug0=
+
