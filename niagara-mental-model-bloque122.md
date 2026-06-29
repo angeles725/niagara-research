@@ -78,7 +78,7 @@ The `lonXL10NextGenFixedIo` XML that `IOFixedIOInfo.load` parses ([Block 118] §
 
 **Model registry confirmed** `[CERT]` `BacnetSpyder.xml`: `model_id="8"` = the **Micro BACnet family**, five devices — `ModelMicroBACnet1..5` = **PVB4024NS** (hw_id 51, `:2164`), **PVB4022AS** (52, `:1464`), **PUB4024S** (53, `:760`), **PUB1012S** (54, `:929`), **PVB0000AS** (55, `:1632`). Full-size = `model_id` 4/13/15 (`ModelBACnet1..4` = PVB6436AS/PVB6438NS/PUB6438S/PUB6438SR). **MATCH** with B120 §120.6 (which had the part-number list right).
 
-**The store CAPACITIES are NOT smaller — they are essentially IDENTICAL to full-size** `[CERT]`. Compare PUB6438S (full, `model_id=4`, FileVariables at `BacnetSpyder.xml:182-216`) vs PUB4024S (Micro, `model_id=8`, `:815-855`):
+**The store CAPACITIES are NOT smaller — they are essentially IDENTICAL to full-size** `[CERT]`. Compare PUB6438S (full, `model_id=4`, FileVariables at `BacnetSpyder.xml:239-278`) vs PUB4024S (Micro, `model_id=8`, `:814-856`):
 
 | Config store | Full PUB6438S cap / size / offset | Micro PUB4024S cap / size / offset |
 |---|---|---|
@@ -94,7 +94,7 @@ The `lonXL10NextGenFixedIo` XML that `IOFixedIOInfo.load` parses ([Block 118] §
 | `DigitalOutput` | 11 / 28 / 13926 | 11 / 28 / 13934 |
 | `FloatingMotor` | 4 / **14** / 14238 | 4 / **18** / 14246 |
 
-`[CERT]` (full `:189-200`; Micro `:817-826`). The config-section **capacities match exactly across the entire Micro family** (verified PUB4024S, PUB1012S `:990-1011`, PVB0000AS, PVB4024NS, all `model_id=8`). What actually differs:
+`[CERT]` (full config section `:241-263`, NvConfig `:243`/ControlLoop `:244`; Micro `:816-826`, NvConfig `:818`). The config-section **capacities match exactly across the entire Micro family** (verified PUB4024S, PUB1012S, PVB0000AS, PVB4024NS, all `model_id=8`). What actually differs:
 
 1. **Store SIZES** (record widths) differ for a few stores: `DigitalInput` 20→**22**, `FloatingMotor` 14→**18** in Micro — which cascades the byte **offsets** of every store after them.
 2. **The param-file byte LAYOUT is completely reordered** `[CERT]`. Full PUB6438S: `ControlNonVolatile`@**0**, …, `ApplVerNew`@**2059**, `DeviceName`@**2236**, `AlarmDisable`@**2258** (`:265,269,273,274`). Micro PUB4024S: `ApplVerNew`@**0**, `DeviceName`@**35**, `AlarmDisable`@**57**, `ControlNonVolatile`@**92** (`:840-843`). Same stores, same capacities, **totally different offsets**.
@@ -133,7 +133,7 @@ This makes the LON ShortStack-store claim of [Block 120] §120.7 (previously `[C
 | PVL6436AS = pressure + actuator; PVL6438NS = pressure only | `[CERT-doc]` (B116/B118 §118.7 "UNVERIFIABLE code-side") | **`[CERT]`** | `FixedIo_model1/2.xml`; `LonSpyder.xml:1569,1597 / 2740,2767` |
 | Per-model fixed-pin assignments (full + Micro) | `[CERT-doc]` | **`[CERT]`** | `IO_Model*.xml`, `IO_Micro_Model*.xml` |
 | Model 8 = Micro BACnet family (PVB/PUB 40xx/10xx/0000) | `[CERT]` (B120 §120.6) | **`[CERT]`** (re-confirmed) | `BacnetSpyder.xml` ModelMicroBACnet1-5 |
-| Model 8 has **smaller store capacities** | `[INFER]` (B120 §120.6) | **CORRECTED → `[CERT]`**: capacities IDENTICAL; what differs = byte OFFSETS/layout + a few record sizes + a FileOffset store + physical wiring count | `BacnetSpyder.xml` full `:189-216` vs Micro `:817-855` |
+| Model 8 has **smaller store capacities** | `[INFER]` (B120 §120.6) | **CORRECTED → `[CERT]`**: capacities IDENTICAL; what differs = byte OFFSETS/layout + a few record sizes + a FileOffset store + physical wiring count | `BacnetSpyder.xml` full `:239-278` vs Micro `:814-856` |
 | Micro physical I/O is smaller | implied | **`[CERT]`**: 15–25 pins vs 42; AI 1–5 vs 8 | `<Wiring>` counts both files |
 | LON ShortStack stores 33/34 capacities | `[CERT-a]` (B120 §120.7) | **`[CERT]`**: LonSiData/LonAppInitData per-model caps | `LonSpyder.xml` PUL4024S |
 
@@ -149,7 +149,7 @@ This makes the LON ShortStack-store claim of [Block 120] §120.7 (previously `[C
 5. FixedIo Model2 pressure-only — `FixedIo_model2.xml:16` ✓
 6. PVL6436AS→IO_Model1.xml (actuator) / PVL6438NS→IO_Model2.xml (no actuator) — `LonSpyder.xml:1597,2767` ✓
 7. Model8 = ModelMicroBACnet1-5 PVB4024NS/PVB4022AS/PUB4024S/PUB1012S/PVB0000AS — `BacnetSpyder.xml:2164,1464,760,929,1632` ✓
-8. Micro NvConfig cap **500** = full NvConfig cap 500 (NOT smaller) — `BacnetSpyder.xml:818` vs full `:191` ✓
+8. Micro NvConfig cap **500** = full NvConfig cap 500 (NOT smaller) — `BacnetSpyder.xml:818` vs full `:243` ✓
 9. Micro param-file reordered: ApplVerNew@0 / ControlNonVolatile@92 (vs full ControlNonVolatile@0 / ApplVerNew@2059) — `BacnetSpyder.xml:840,843` vs `:265,269` ✓
 10. Micro physical wiring 25 pins AI5 vs full 42 pins AI8 + LON LonSiData cap 5548 — `BacnetSpyder.xml:860`; `LonSpyder.xml` PUL4024S ✓
 
