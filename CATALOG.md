@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **123 bloques**
+Total: **124 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -128,6 +128,7 @@ Total: **123 bloques**
 | 123 | [niagara-mental-model-bloque123.md](niagara-mental-model-bloque123.md) | Block 123 — OptimizerSupervisor: what the REAL live station controls (station config.bog decode) |
 | 124 | [niagara-mental-model-bloque124.md](niagara-mental-model-bloque124.md) | Block 124 — Native runtime-core boot path (nre.exe / station.exe / niagarad.exe → njre.dll/nre.dll → JVM) |
 | 125 | [niagara-mental-model-bloque125.md](niagara-mental-model-bloque125.md) | Block 125 — The native↔Java JNI bridge (njre/nre embed the JVM · NativePlatformProvider natives · common.dll marshalling) |
+| 126 | [niagara-mental-model-bloque126.md](niagara-mental-model-bloque126.md) | Block 126 — Native licensing, signature verification & the DSF crypto provider (`dsfspi.dll` Mocana JCE · `nverify.exe` · `LicenseUtil` · the four signing schemes) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
