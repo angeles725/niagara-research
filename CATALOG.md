@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **127 bloques**
+Total: **128 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -132,6 +132,7 @@ Total: **127 bloques**
 | 127 | [niagara-mental-model-bloque127.md](niagara-mental-model-bloque127.md) | Block 127 — Native driver DLLs: how the Java drivers reach the wire (`lon.dll` · `opc.dll`+`opcproxy`/`opccomn_ps` · `pcapBacEther.dll`) |
 | 128 | [niagara-mental-model-bloque128.md](niagara-mental-model-bloque128.md) | Block 128 — Workbench native shell (wb.exe / wb_w.exe + trayIcon.dll, alarmDialog.dll) |
 | 129 | [niagara-mental-model-bloque129.md](niagara-mental-model-bloque129.md) | Block 129 — The platform daemon (static): `plat.exe` command launcher, the SCM service model, and why the 3011/5011 wire is Java |
+| 130 | [niagara-mental-model-bloque130.md](niagara-mental-model-bloque130.md) | Block 130 — Migration & platform tools: which `bin/*.exe` are thin Java launchers vs standalone native, and the one outlier |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
