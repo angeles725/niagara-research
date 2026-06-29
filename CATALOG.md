@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **122 bloques**
+Total: **123 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -127,6 +127,7 @@ Total: **122 bloques**
 | 122 | [niagara-mental-model-bloque122.md](niagara-mental-model-bloque122.md) | Block 122 — Spyder bundled **XML resource extract**: per-model fixed-IO + sensor catalog (G4b) and per-model store offsets/capacities (G6b) — the two read-only micro-gaps closed, STATIC loop CLOSED |
 | 123 | [niagara-mental-model-bloque123.md](niagara-mental-model-bloque123.md) | Block 123 — OptimizerSupervisor: what the REAL live station controls (station config.bog decode) |
 | 124 | [niagara-mental-model-bloque124.md](niagara-mental-model-bloque124.md) | Block 124 — Native runtime-core boot path (nre.exe / station.exe / niagarad.exe → njre.dll/nre.dll → JVM) |
+| 125 | [niagara-mental-model-bloque125.md](niagara-mental-model-bloque125.md) | Block 125 — The native↔Java JNI bridge (njre/nre embed the JVM · NativePlatformProvider natives · common.dll marshalling) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
