@@ -248,15 +248,25 @@ order0123(2)}` `[CERT]` `enums/BDataByteOrderEnum.java:10-21`. Encode (`to4ByteF
 |---|---|---|
 | `order3210` | `B3 B2 B1 B0` | full big-endian (ABCD) |
 | `order0123` | `B0 B1 B2 B3` | full little-endian (DCBA) |
-| `order1032` (**DEFAULT**) | `B1 B0 B3 B2` | **byte-swapped within each register, register order preserved** (BADC = "word swap") |
+| `order1032` (**enum DEFAULT constant**) | `B1 B0 B3 B2` | **byte-swapped within each register, register order preserved** (BADC = "word swap") |
 
-> **GOTCHA [CERT]**: the driver default is `order1032` (BADC), NOT plain big-endian. A 32-bit float/long
-> read from a device that publishes big-endian (`order3210`) will be **mis-decoded** unless the point's
-> byte order is changed — this is the on-the-wire root of the integration-level "word swap" symptom in
+> **GOTCHA [CERT]** — *corrected by [Block 137], see correction note below*: a 32-bit float/long read
+> from a device that publishes big-endian (`order3210`) will be **mis-decoded** if the point's byte order
+> is set to `order1032` — this is the on-the-wire root of the integration-level "word swap" symptom in
 > B94. Decode and encode are symmetric (same three branches), so misconfiguration corrupts both reads
 > and writes. `getRegister(index, size)` with no explicit order defaults to `order3210` at that helper,
-> but the proxy layer supplies the point's configured `BDataByteOrderEnum` `[CERT]`
+> and the proxy layer supplies the point's configured `BDataByteOrderEnum` `[CERT]`
 > `ModbusResponse.java:125-133`.
+>
+> **[CORRECTION → B137] `[CERT]`**: an earlier version of this section stated "the driver default is
+> `order1032`". That conflated the **enum's** `DEFAULT` constant (`order1032`, ordinal 0) with the
+> **effective property default**. The actual `BModbusNetwork` / `BModbusDevice` / `BModbusConfig`
+> properties override the enum default and ship `order3210` (full big-endian ABCD): `floatByteOrder` and
+> `longByteOrder` are `newProperty(..., BDataByteOrderEnum.order3210, ...)` `[CERT]`
+> `BModbusNetwork.java:41-42` + `datatypes/BModbusConfig.java:38-39` (64-bit → `order76543210`, also
+> big-endian). So a freshly-created Modbus point is **big-endian by default**, not BADC; `order1032` is
+> the fallback you select only if a word-swap symptom actually appears. This is why B137 concludes the
+> LOGO!8 (big-endian) and Niagara interoperate with **no byte-order override needed**.
 
 **64-bit byte order** has **eight** permutations `BDataByteOrder64BitEnum {order76543210, order67452301,
 order54761032, order45670123, order01234567, order10325476, order23016745, order32107654}` `[CERT]`
