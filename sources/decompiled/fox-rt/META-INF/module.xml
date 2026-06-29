@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="fox-rt" bajaVersion="0" vendor="Tridium" vendorVersion="4.14.0.162" description="Fox Protocol" preferredSymbol="f" nre="true" autoload="true" installable="true" buildMillis="1718362674091" buildHost="ee033fd13409" moduleName="fox" runtimeProfile="rt" releaseDate="2024-05-28">
+ <dependencies>
+  <dependency name="baja" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="entityIo-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="net-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+ </dependencies>
+ <dirs/>
+ <installation>
+  <dependencies>
+   <nre name="nre-core-*" version="4.14.0.162" desc="NRE core" solvers="commissioning"/>
+  </dependencies>
+ </installation>
+ <types>
+  <type class="javax.baja.fox.BFoxProxySession" name="FoxProxySession"/>
+  <type class="com.tridium.fox.sys.BIFoxProxySpace" name="IFoxProxySpace"/>
+  <type class="com.tridium.fox.sys.BFoxChannel" name="FoxChannel"/>
+  <type class="com.tridium.fox.sys.BFoxChannelRegistry" name="FoxChannelRegistry"/>
+  <type class="com.tridium.fox.sys.BFoxConnection" name="FoxConnection"/>
+  <type class="com.tridium.fox.sys.BFoxClientConnection" name="FoxClientConnection"/>
+  <type class="com.tridium.fox.sys.BFoxScheme" name="FoxScheme" ordScheme="fox"/>
+  <type class="com.tridium.fox.sys.BFoxsScheme" name="FoxsScheme" ordScheme="foxs"/>
+  <type class="com.tridium.fox.sys.BFoxService" name="FoxService"/>
+  <type class="com.tridium.fox.sys.BFoxServerConnection" name="FoxServerConnection"/>
+  <type class="com.tridium.fox.sys.BFoxSession" name="FoxSession"/>
+  <type class="com.tridium.fox.sys.BServerConnections" name="ServerConnections"/>
+  <type class="com.tridium.fox.sys.BSysChannel" name="SysChannel"/>
+  <type class="com.tridium.fox.sys.BLearnStation" name="LearnStation"/>
+  <type class="com.tridium.fox.sys.BIFoxGatewayProxyFactory" name="IFoxGatewayProxyFactory"/>
+  <type class="com.tridium.fox.sys.broker.BBrokerChannel" name="BrokerChannel"/>
+  <type class="com.tridium.fox.sys.broker.BFoxComponentSpace" name="FoxComponentSpace"/>
+  <type class="com.tridium.fox.sys.broker.BFoxStationSpace" name="FoxStationSpace"/>
+  <type class="com.tridium.fox.sys.broker.BFoxVirtualSpace" name="FoxVirtualSpace"/>
+  <type class="com.tridium.fox.sys.broker.BFoxGatewaySpace" name="FoxGatewaySpace"/>
+  <type class="com.tridium.fox.sys.data.BDataChannel" name="DataChannel"/>
+  <type class="com.tridium.fox.sys.data.BFoxQueryHandler" name="FoxQueryHandler"/>
+  <type class="com.tridium.fox.sys.data.BIPreQueryValidator" name="IPreQueryValidator"/>
+  <type class="com.tridium.fox.sys.data.BIPostQueryFilter" name="IPostQueryFilter"/>
+  <type class="com.tridium.fox.sys.data.BTranslateOrdPostQueryFilter" name="TranslateOrdPostQueryFilter"/>
+  <type class="com.tridium.fox.sys.file.BFileChannel" name="FileChannel"/>
+  <type class="com.tridium.fox.sys.file.BFoxFileSpace" name="FoxFileSpace">
+   <agent>
+    <on type="fox:FoxSession"/>
+   </agent>
+  </type>
+  <type class="com.tridium.fox.sys.file.BFoxFileStore" name="FoxFileStore"/>
+  <type class="com.tridium.fox.sys.spy.BFoxSpySpace" name="FoxSpySpace">
+   <agent>
+    <on type="fox:FoxSession"/>
+   </agent>
+  </type>
+  <type class="com.tridium.fox.sys.spy.BSpyChannel" name="SpyChannel"/>
+  <type class="com.tridium.fox.sys.user.BUserChannel" name="UserChannel"/>
+  <type class="javax.baja.fox.authn.BFoxCallbackHandler" name="FoxCallbackHandler"/>
+  <type class="com.tridium.fox.authn.BFoxUsernamePasswordCallbackHandler" name="FoxUsernamePasswordCallbackHandler"/>
+  <type class="com.tridium.fox.authn.BFoxDigestCallbackHandler" name="FoxDigestCallbackHandler">
+   <agent>
+    <on type="baja:DigestAuthenticationScheme"/>
+    <on type="baja:LegacyDigestAuthenticationScheme"/>
+   </agent>
+  </type>
+  <type class="com.tridium.fox.authn.BFoxSessionIdCallbackHandler" name="FoxSessionIdCallbackHandler">
+   <agent>
+    <on type="baja:SessionIdAuthenticationScheme"/>
+   </agent>
+  </type>
+  <type class="javax.baja.fox.authn.BFoxClientAuthnHandler" name="FoxClientAuthnHandler"/>
+  <type class="com.tridium.fox.authn.BFoxUsernamePasswordClientAuthnHandler" name="FoxUsernamePasswordClientAuthnHandler">
+   <agent>
+    <on type="baja:LegacyBasicAuthenticationScheme"/>
+   </agent>
+  </type>
+  <type class="com.tridium.fox.authn.BFoxDigestClientAuthnHandler" name="FoxDigestClientAuthnHandler">
+   <agent>
+    <on type="baja:DigestAuthenticationScheme"/>
+    <on type="baja:LegacyDigestAuthenticationScheme"/>
+   </agent>
+  </type>
+  <type class="com.tridium.fox.authn.BFoxSessionIdClientAuthnHandler" name="FoxSessionIdClientAuthnHandler">
+   <agent>
+    <on type="baja:SessionIdAuthenticationScheme"/>
+   </agent>
+  </type>
+  <type class="com.tridium.fox.dashboard.BFoxServiceSecurityDashboardProviderAgent" name="FoxServiceSecurityDashboardProviderAgent">
+   <agent>
+    <on type="fox:FoxService"/>
+   </agent>
+  </type>
+ </types>
+ <permissions>
+  <java-permissions type="workbench">
+   <java-permission class="com.tridium.nre.security.NiagaraBasicPermission" name="GET_PLATFORM_PROVIDER"/>
+   <java-permission class="com.tridium.nre.security.NiagaraBasicPermission" name="FIND_MAIN_THREAD_GROUP"/>
+   <java-permission class="com.tridium.nre.security.NiagaraBasicPermission" name="MODIFY_SESSION_IDS"/>
+   <java-permission class="com.tridium.nre.security.NiagaraBasicPermission" name="SET_CONTEXT_KEY"/>
+   <java-permission class="com.tridium.nre.security.NiagaraBasicPermission" name="SET_FOX_SESSION_KEY"/>
+   <java-permission class="com.tridium.nre.security.NiagaraBasicPermission" name="CHANNEL_MARSHAL"/>
+   <java-permission action="listen,resolve,connect,accept" class="com.tridium.nre.security.NiagaraSocketPermission" name="*:1-100000"/>
+   <java-permission class="java.lang.RuntimePermission" name="createClassLoader"/>
+   <java-permission class="java.lang.RuntimePermission" name="getenv.*"/>
+   <java-permission class="java.lang.RuntimePermission" name="exitVM.*"/>
+   <java-permission class="java.lang.RuntimePermission" name="accessClassInPackage.sun.util.logging.resources"/>
+   <java-permission action="connect,resolve" class="com.tridium.nre.security.NiagaraSocketPermission" name="*:1-100000"/>
+   <java-permission class="java.awt.AWTPermission" name="accessClipboard"/>
+   <java-permission class="java.awt.AWTPermission" name="showWindowWithoutWarningBanner"/>
+   <java-permission class="com.tridium.nre.security.NiagaraBasicPermission" name="GET_MANAGER"/>
+  </java-permissions>
+  <java-permissions type="station">
+   <java-permission class="com.tridium.nre.security.NiagaraBasicPermission" name="GET_PLATFORM_PROVIDER"/>
+   <java-permission class="com.tridium.nre.security.NiagaraBasicPermission" name="GET_SECURITY_INFO_PROVIDER"/>
+   <java-permission class="com.tridium.nre.security.NiagaraBasicPermission" name="FIND_MAIN_THREAD_GROUP"/>
+   <java-permission class="com.tridium.nre.security.NiagaraBasicPermission" name="PLAT_GET_PROPS"/>
+   <java-permission class="com.tridium.nre.security.NiagaraBasicPermission" name="PLAT_GET_LOCAL_SESSION"/>
+   <java-permission class="com.tridium.nre.security.NiagaraBasicPermission" name="MODIFY_SESSION_IDS"/>
+   <java-permission class="com.tridium.nre.security.NiagaraBasicPermission" name="SET_CONTEXT_KEY"/>
+   <java-permission class="com.tridium.nre.security.NiagaraBasicPermission" name="SET_FOX_SESSION_KEY"/>
+   <java-permission class="com.tridium.nre.security.NiagaraBasicPermission" name="CHANNEL_MARSHAL"/>
+   <java-permission action="read" class="java.io.FilePermission" name="${protected.station.home}"/>
+   <java-permission action="read,write,delete" class="java.io.FilePermission" name="${protected.station.home}${/}-"/>
+   <java-permission class="com.tridium.nre.security.SigningPasswordPermission" name="fox"/>
+   <java-permission class="java.lang.RuntimePermission" name="setContextClassLoader"/>
+   <java-permission class="javax.security.auth.AuthPermission" name="doAs"/>
+   <java-permission class="com.tridium.nre.security.NiagaraBasicPermission" name="GET_AUTHENTICATED_USER"/>
+   <java-permission action="read,write" class="java.io.FilePermission" name="${niagara.user.home}${/}logging"/>
+   <java-permission action="read,write" class="java.io.FilePermission" name="${niagara.user.home}${/}logging${/}-"/>
+   <java-permission action="accept,connect,listen,resolve" class="com.tridium.nre.security.NiagaraSocketPermission" name="*:1-100000"/>
+   <java-permission class="java.lang.RuntimePermission" name="setIO"/>
+   <java-permission class="java.lang.RuntimePermission" name="modifyThreadGroup"/>
+   <java-permission class="java.lang.RuntimePermission" name="shutdownHooks"/>
+   <java-permission class="com.tridium.nre.security.NiagaraBasicPermission" name="GET_MANAGER"/>
+   <java-permission class="com.tridium.nre.security.NiagaraBasicPermission" name="ENTITLEMENT_WORKFLOW"/>
+   <java-permission class="com.tridium.nre.security.NiagaraBasicPermission" name="RESET_ENTITLEMENT"/>
+  </java-permissions>
+  <java-permissions type="all">
+   <java-permission action="read" class="java.util.PropertyPermission" name="*"/>
+   <java-permission class="java.util.logging.LoggingPermission" name="control"/>
+   <java-permission class="java.lang.RuntimePermission" name="modifyThread"/>
+   <java-permission class="org.bouncycastle.crypto.CryptoServicesPermission" name="exportPrivateKey" action="[exportPrivateKey]"/>
+   <java-permission class="com.tridium.nre.security.KeyRingPermission" name="*"/>
+   <java-permission class="com.tridium.nre.security.KeyStorePermission" name="*" action="all"/>
+  </java-permissions>
+ </permissions>
+ <moduleParts>
+  <modulePart name="fox-ux" runtimeProfile="ux"/>
+ </moduleParts>
+</module>

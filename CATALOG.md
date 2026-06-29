@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **131 bloques**
+Total: **132 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -136,6 +136,7 @@ Total: **131 bloques**
 | 131 | [niagara-mental-model-bloque131.md](niagara-mental-model-bloque131.md) | Block 131 — Modbus wire-level encoding (MBAP / PDU / RTU-CRC / ASCII-LRC / addressing & byte-order) |
 | 132 | [niagara-mental-model-bloque132.md](niagara-mental-model-bloque132.md) | Block 132 — OPC wire encoding: OPC-UA Binary (built-in types / NodeId / Variant) + secure-channel framing + the legacy OPC DA / COM JNI boundary |
 | 133 | [niagara-mental-model-bloque133.md](niagara-mental-model-bloque133.md) | Block 133 — BACnet APDU service-PDU encoding: PDU types + flags, ASN.1 application/context tag codec, primitive value encoding, segmentation & windowing, and the NPDU/BVLC transport it rides on |
+| 134 | [niagara-mental-model-bloque134.md](niagara-mental-model-bloque134.md) | Block 134 — Fox/Foxs protocol wire: the line-oriented frame envelope, frame opcodes, channel/circuit multiplexing, the hello/tune login state machine, and the SCRAM-SHA-256 authentication digest |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

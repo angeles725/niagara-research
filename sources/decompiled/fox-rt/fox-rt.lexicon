@@ -1,0 +1,149 @@
+#
+# Lexicon for the fox module.
+#
+# @author    Danny Wahlquist      
+# @creation  9 Apr 02
+# @version   $Revision: 12$ $Date: 10/28/09 1:21:28 PM EDT$
+# @since     Baja 1.0
+#
+
+help.guide.base=module://docDrivers/doc
+
+nav.foxSession=Station
+nav.foxSession.description=Fox session to a Niagara station
+
+nav.fileSystem=Files
+nav.fileSystem.description=File System accessed over Fox session
+nav.spy=Spy
+nav.spy.description=Diagnostics information for remote VM
+nav.platform=Platform
+nav.platform.description=Platform configuration
+
+stationName=Station Name
+address=Address
+host=Host 
+hostModel=Host Model
+hostModelVersion=Host Model Version
+version=Version
+hostId=Host ID
+osName=OS Name
+osVersion=OS Version
+vmName=VM Name
+vmVersion=VM Version
+certAliasAndPassword=Foxs Cert
+
+FatalAuthenticationException=Fatal authentication error: {0}.
+ModuleNotFoundLocalException=Missing module "{0}" on local workbench machine.
+ModuleNotFoundRemoteException=Missing module "{0}" on remote station machine.
+error.multicastDisabled=Multicast is disabled (cannot discover stations).
+error.NoPermissionForStation=User "{0}" does not have access to the station. Check permissions.
+
+ping.fail.passwordResetRequired=Password reset required for the account in this Niagara Station
+
+################################################################
+# Authentication
+################################################################
+
+fox.legacy.relaxed=FoxService legacy authentication is set to "Relaxed". "Strict" is recommended
+fox.legacy.relaxed.expiring=FoxService relaxed legacy authentication will expire on {0}
+fox.legacy.relaxed.expired=FoxService relaxed legacy authentication has expired
+fox.legacy.cannotAuth=Cannot authenticate legacy clients
+fox.authScheme.unsupported=Station requested an authentication scheme ("{0}") not supported by the client.
+
+fox.user.password.expiring=Your password expires {0}. Would you like to reset it now?
+fox.network.user.password.expiring=Your password expires {0}. However, since\nyour user account is centrally managed on another station, you\nmust log in to that station first to reset your password.
+fox.insecure.password.expiring=Your password expires {0}. However, your station\nonly allows password resets over secure connections. Please try again\nover a secure connection or contact your system administrator.
+fox.login.password.expirationTitle=Password Expiration
+fox.login.passwordResetMessage.dialog.ok=OK
+fox.login.passwordResetMessage.dialog.No=No
+fox.login.passwordResetMessage.dialog.Yes=Yes
+
+fox.illegal.network.user.passwordReset=Your station user account requires a password reset.\nHowever, since your user account is centrally managed on another station,\nplease log in to that station first and reset your password there before logging in to this station.
+fox.login.passwordReset.secureOnly=Your station user account requires a password reset.\nHowever, your station only allows password resets over secure connections.\nPlease try again over a secure connection or contact your system administrator.
+
+fox.authFailed.userLockout=User Lockout
+fox.authFailed.secureRequired=Secure Connection Required
+
+user.incompatibleAuthenticator=System error: invalid authenticator for scheme
+
+digest.authnHandler.unsupportedCredentials=Unsupported credential type for Digest Authentication: {0}
+usernamePassword.authnHandler.unsupportedCredentials=Unsupported credential type for <{0}>: {1}
+
+########################################################
+# Fox Channel
+########################################################
+
+fox.channel.unsupportedRemoteVersion=This operation cannot be performed because the remote version must be {0} or later
+fox.channel.unsupportedRemoteVersionAlongRoute=This operation cannot be performed because the remote version somewhere along the route, or at the destination itself, must be {0} or later
+
+################################################################
+# Data channel
+################################################################
+
+fox.data.unresolvedEntityConsumer=Could not resolve consumer of exported Entities: {0}
+
+################################################################
+# Fox Service
+################################################################
+
+Use$20Default$20On$20Installed$20Platform=Use Default On Installed Platform
+No$20$28Recommended$29=No (Recommended)
+Yes=Yes
+Default$3a$20Yes$20$28may$20change$20in$20future$20version$29=Default: Yes (may change in future version)
+Default$3a$20No=Default: No
+
+################################################################
+# Security Dashboard
+################################################################
+
+securityDashboard.sectionHeader=Fox Service
+
+securityDashboard.foxCertificateValid.summary=Certificate is in validity period: {0}.
+securityDashboard.foxCertificateValid.description=The Foxs Certificate is valid. The current date is between the "Not Before" and "Not After" date in the certificate.
+securityDashboard.foxCertificateExpired.summary=Certificate is expired: {0}.
+securityDashboard.foxCertificateExpired.description=An expired certificate may cause a warning when users connect through workbench or web applet and may cause Niagara Network connection to fail.
+securityDashboard.foxCertificateNotYetValidException.summary=Certificate "{0}" is not valid before: {1}.
+securityDashboard.foxCertificateNotYetValidException.description=The Foxs Certificate is not yet valid. The current date precedes the "Not Before" date in the Certificate.
+securityDashboard.foxCertificateNearExpiry.summary=Certificate "{0}" expires on: {1}.
+securityDashboard.foxCertificateNearExpiry.description=Your certificate needs to be renewed. An expired certificate may cause a warning when users connect through workbench or web applet and may cause Niagara Network connection to fail.
+securityDashboard.foxCertificateDefault.summary=Certificate is the default cert.
+securityDashboard.foxCertificateDefault.description=The default cert is auto generated and self-signed. This may cause a warning when users connect through workbench or web applet and may cause Niagara Network connections to fail.
+securityDashboard.foxCertificateSelfSigned.summary=Certificate is self-signed: {0}.
+securityDashboard.foxCertificateSelfSigned.description=A self-signed certificate may not be accepted by clients. This may cause a warning when users connect through workbench or web applet and may cause Niagara Network connection to fail.
+securityDashboard.foxCertificateNotAvailable.summary=Unable to obtain Foxs Certificate.
+securityDashboard.foxCertificateNotAvailable.description=The Fox Service is unable to obtain the selected Foxs Certificate.
+securityDashboard.foxCertificateNotSelfSigned.summary=The certificate selected for "foxsCert" is signed.
+securityDashboard.foxCertificateNotSelfSigned.description=Using a non-self signed certificate is recommended.
+securityDashboard.foxCertificateGloballyEncrypted.summary=Certificate {0} is not encrypted with a unique password.
+securityDashboard.foxCertificateUniquelyEncrypted.summary=Certificate {0} is encrypted with a unique password.
+securityDashboard.foxCertificateEncrypted.description=Encrypting the server certificate with a unique password is recommended to help prevent unauthorized access to the private key.
+
+securityDashboard.foxTlsProtocolOff.summary=Fox Enabled is set to true, while Foxs is disabled.
+securityDashboard.foxTlsProtocolOff.description=Setting Foxs Enabled to true is recommended to enable secure connections.
+securityDashboard.foxTlsProtocolOn.summary=Fox is disabled, while Foxs is set to true.
+securityDashboard.foxTlsProtocolOn.description=Setting Foxs Enabled to true is recommended to enable secure connections.
+securityDashboard.foxForwarding.summary=Fox forwarding is enabled.
+securityDashboard.foxForwarding.description=Fox connections are forwarded to Foxs connections. However, also setting Fox Enabled to false is recommended for best security.
+securityDashboard.foxNonTlsProtocol.summary=Fox Enabled is set to true, allowing non-secure connections.
+securityDashboard.foxNonTlsProtocol.description=Setting Fox Enabled to false and Foxs Enabled to true is recommended to enable secure connections.
+securityDashboard.foxTlsProtocol.summary=Foxs Min Protocol is {0}.
+securityDashboard.foxTlsProtocol.description=Using {0} or better is recommended.
+
+securityDashboard.cipherSuiteGroup.summary=Cipher Suite Group (for TLS connections) is set to: {0}.
+securityDashboard.cipherSuiteGroup.description=Setting Cipher Suite Group to "Recommended" ensures that only the strongest cipher suites are used during TLS communication.
+
+securityDashboard.foxTracePropertiesEnabled.summary=The following trace options are enabled in Fox Service: {0}.
+securityDashboard.foxTracePropertiesEnabled.description=Enabling Fox trace options can result in sensitive information being written to the application director. It is recommended to disable all the trace options.
+
+securityDashboard.legacyClients.enabled.summary=The station is configured to ALLOW connections from legacy Niagara 4 FOX clients.
+securityDashboard.legacyClients.disabled.summary=The station is configured to DENY connections from legacy Niagara 4 FOX clients.
+securityDashboard.legacyClients.defaultYes.summary=The station is configured at the default setting, which currently ALLOWS connections from legacy Niagara 4 FOX clients. This default behavior may change in future versions.
+securityDashboard.legacyClients.defaultNo.summary=The station is configured at the default setting, which DENIES connections from legacy Niagara 4 FOX clients.
+securityDashboard.legacyClients.description=It is recommended to configure the station to deny FOX connections from Niagara clients with versions of 4.7 or earlier. Allowing connections from legacy FOX clients can allow disclosure of version information. When your Niagara system is upgraded to 4.8 or later and you no longer require legacy FOX client connections, it is recommended to change the 'Support Legacy Clients' property on the FoxService to 'No'.
+
+securityDashboard.certHealth.ok=The requested certificate ''{0}'' was successfully used for the FoxService.
+securityDashboard.certHealth.badPassword=The password used to retrieve certificate ''{0}'' was invalid. Using ''{1}'' instead.
+securityDashboard.certHealth.badKey=A problem was encountered retrieving certificate ''{0}''. Using ''{1}'' instead.
+securityDashboard.certHealth.missingKey=The requested certificate ''{0}'' could not be found. Using ''{1}'' instead.
+securityDashboard.certHealth.badDefault=A problem was encountered using certificate ''{0}''. Certificate ''{1}'' was regenerated.
+securityDashboard.certHealth.description=Certificate health reflects the status of the requested certificate for the FoxService. If it fails to load, it is necessary to fallback to the default certificate in order to maintain connectivity.

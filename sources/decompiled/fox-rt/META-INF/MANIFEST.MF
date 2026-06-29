@@ -1,0 +1,576 @@
+Manifest-Version: 1.0
+Implementation-Vendor: Tridium
+Implementation-Version: 4.14.0.162
+Sealed: true
+
+Name: com/tridium/fox/session/Fox$FailsafeTimeoutThread.class
+SHA-256-Digest: kyr/Q1fS/BYILVHVRk/H8fLA2aS4uMWLz+TfFef6dH0=
+
+Name: com/tridium/fox/session/FoxResponse.class
+SHA-256-Digest: 7HH3CNWuEg5op2fLHM+G98hMDO/duqGAp8+bAIwI+X8=
+
+Name: com/tridium/fox/sys/broker/BFoxComponentSpace.class
+SHA-256-Digest: iRmmC59CHVYGPfIF7i1pq2siJXJ8sWDReR5Mg4MiYoM=
+
+Name: module.palette
+SHA-256-Digest: IQl2abAM3i7dDLzFPQES1QFEKn4lkWo4fySuM4QgFjo=
+
+Name: com/tridium/fox/session/SessionReceiver.class
+SHA-256-Digest: 3KMfNrb4VhrWs1MAtrAXtvCYKccE38PBN7Hq/R3t8HU=
+
+Name: com/tridium/fox/session/MulticastServer.class
+SHA-256-Digest: S6NmT2T1JehfJ4y8RHMhobUubJbXjVHChfX//IOGc6A=
+
+Name: com/tridium/fox/sys/file/BFileChannel$ChunkedOutputStream.class
+SHA-256-Digest: iFvQ0uWK4hplUqHGkyYtffVL3ER9WfkFZ6eQwh6iQLk=
+
+Name: com/tridium/fox/sys/NiagaraStation.class
+SHA-256-Digest: G6KQfEvDKr0J4jfcLeVFb8/E3k1YT60tJBVwC/dRK5c=
+
+Name: com/tridium/fox/sys/file/BFoxFileStore.class
+SHA-256-Digest: V8OowZ9U42KdJ2niCTcE01fDSNUZjpM20URq1+WR36g=
+
+Name: com/tridium/fox/authn/BFoxSessionIdCallbackHandler.class
+SHA-256-Digest: 865k6LOKTFO5AJ7aACztSB/H5HwTrlJdOuJstFeSAXw=
+
+Name: com/tridium/fox/session/FoxsRedirectException.class
+SHA-256-Digest: nktCjEJSX6jSOQJv+9CldUUXx/ruWFrz4kwNCKeydW4=
+
+Name: com/tridium/fox/sys/BFoxClientConnection$InterestLogItem.class
+SHA-256-Digest: atVX0c86bIdelECkAfiB/8U82Ge/cUi9RIWqxDwLzMc=
+
+Name: com/tridium/fox/session/MulticastServer$4.class
+SHA-256-Digest: MUJ6fr9Laybhsgpxcl3QGPeRn7S5fi/Aw8q21pTmKuw=
+
+Name: com/tridium/fox/session/SessionCircuits$ServiceThread.class
+SHA-256-Digest: RpdP4EWd/SfiHaNRxnP1PVwTamCTnZqJdNuNiVHTuKM=
+
+Name: com/tridium/fox/sys/BSysChannel$NiagaraRpcServerException.class
+SHA-256-Digest: xQ/tiztGqSR3Fxl3fcElg4FwWIcKjnExoQp6x6Zlc0U=
+
+Name: javax/baja/fox/authn/BFoxCallbackHandler.class
+SHA-256-Digest: AKhhiWYCsVc3msRAzZ42fhtfG6EJQCZ/3JTbtBDFf6Q=
+
+Name: com/tridium/fox/session/MulticastServer$NetworkInterfaceFilter.cla
+ ss
+SHA-256-Digest: EgWHpt0oTNmuqx2OHxzByW0rTMR93rlUtVFuSVJp9gA=
+
+Name: com/tridium/fox/session/MulticastServer$1.class
+SHA-256-Digest: b6k6FOtbX7jhH7qq8f/kbeP8Vo2QHiYx5WYwJFVA7mg=
+
+Name: com/tridium/fox/authn/BFoxUsernamePasswordClientAuthnHandler.class
+SHA-256-Digest: xLch+8at5jU7bJU/i+Q3/HtN2IKt4ZQjt2rBCToC/I0=
+
+Name: com/tridium/fox/authn/BFoxDigestCallbackHandler.class
+SHA-256-Digest: S7iKHY24/qlX4cM8aEEtlMyHCKSLjwh85mgsFTMnlig=
+
+Name: com/tridium/fox/session/FoxConnection.class
+SHA-256-Digest: D+q5ABWQlfrdyTSseHFtORRIkHts2BfYWDnjzarnBrc=
+
+Name: com/tridium/fox/session/InvalidChannelException.class
+SHA-256-Digest: 1KOfArQB/eJqHGa7KlvlzOWcawjCasWu3SvZ0CTM47Q=
+
+Name: com/tridium/fox/session/FoxFrame.class
+SHA-256-Digest: JFOQ9yGbaiDoUD0twpphLIlT2JWRs3OYJBuER5b1aY8=
+
+Name: com/tridium/fox/sys/broker/BBrokerChannel$BrokerTypeResolver.class
+SHA-256-Digest: FpbGHNXCRtGr5E3fcJ6WJq7hivozoY0aINJAE4gR73E=
+
+Name: javax/baja/fox/BFoxProxySession.class
+SHA-256-Digest: xtoRLwrW6DM7hx/fdHvr29YM0hLESkbsvJOFYYdUXbU=
+
+Name: com/tridium/fox/sys/data/BIPostQueryFilter.class
+SHA-256-Digest: egqZt58lsxEBpEX3VKh9af9W4PvQbnhq0cr5hgO4+I8=
+
+Name: com/tridium/fox/sys/broker/BBrokerChannel$RootInfo.class
+SHA-256-Digest: As42NkDYzMTJjTBVopwXiAO1X6p1Ee5FU4C3HgA7wkU=
+
+Name: com/tridium/fox/sys/BFoxClientConnection$1.class
+SHA-256-Digest: C7KTsvQzL76xtapvnlM05wmVFJUJ9s+fwdQS7Ygp700=
+
+Name: com/tridium/fox/session/FoxBusyException.class
+SHA-256-Digest: pWRnleADrHZTbUJALUUESRScg63LhXwd7RySF+7nOd0=
+
+Name: com/tridium/fox/sys/BFoxScheme$FoxQuery.class
+SHA-256-Digest: s/DGif+4V5+uqNyHPBi/pFQlA2g5UUqqNCi7hj9+fik=
+
+Name: com/tridium/fox/session/SessionDispatcher.class
+SHA-256-Digest: BrduRO/Bn21baC5EaSAMOOFyIFOlCA4A7Brv6Dm5pws=
+
+Name: com/tridium/fox/session/Tuner.class
+SHA-256-Digest: T8s6p3ZSAjVgdAoJMnF8EErphHkbfXayIaUvYjMUxug=
+
+Name: com/tridium/fox/sys/EngageTimeoutException.class
+SHA-256-Digest: KBE10Ig6v/TPviPU0vQ6ktND7yLh/n92Ib3Lgy/D+5M=
+
+Name: com/tridium/fox/session/FoxSession$IFoxSessionListener.class
+SHA-256-Digest: zu68XBF0JedrR9AGQpGo04dcAvHD5DB0TbI32uizR8k=
+
+Name: com/tridium/fox/session/IntMap.class
+SHA-256-Digest: HUj4wBWIQEb2miLe38z+m9jg6Osq5Ax7ePSbk5HmJhI=
+
+Name: com/tridium/fox/session/MulticastServer$RollcallCallback.class
+SHA-256-Digest: B2yjOMvZQcX7KgsLa3Ab/W7ID9+yeMsf3BgU+C8KoAw=
+
+Name: com/tridium/fox/sys/BSysChannel.class
+SHA-256-Digest: N4Q0HIF3o7trE6oRt7T5rwHxSfbVMEd1dEIrU5Yc2MA=
+
+Name: com/tridium/fox/session/Fox$Clock.class
+SHA-256-Digest: dq/E2ETcyM8PB1qywUFzQK0B1pCa7IxO/h6cB5Fyfb4=
+
+Name: com/tridium/fox/sys/ModuleNotFoundRemoteException.class
+SHA-256-Digest: fBAt5ZqLLw8bhv2VyQOOGvUp76xzzCeBrqaUxVyvmfk=
+
+Name: com/tridium/fox/session/MulticastUtil$1.class
+SHA-256-Digest: jyej6XRXSIedcVouD9utW/2duagMclO+FwTrS3PiK5U=
+
+Name: com/tridium/fox/sys/ActivityMonitor$1.class
+SHA-256-Digest: nYmIzRSihCLKFc79K/Q9BWYKTKYt/oo1zq0rM9hZ2YI=
+
+Name: com/tridium/fox/message/ReadLimitExceededException.class
+SHA-256-Digest: QOQrq+L3hirbERxRh+A6WDWHJXlZjEn7IUnJGbL7VoI=
+
+Name: com/tridium/fox/sys/BFoxServerConnection$FoxServerThread.class
+SHA-256-Digest: wNlORJqBd15XQL3UxkKfK9oMIIlGgEIoGrPIQcDhHNI=
+
+Name: com/tridium/fox/sys/ActivityMonitor$ResetTimeoutRunnable.class
+SHA-256-Digest: Fp81gO2iVxs3QEYdSNaRsgTaptQsSK8RwH53dEE7Y9Y=
+
+Name: com/tridium/fox/sys/data/TranslatedEntity.class
+SHA-256-Digest: g7kIGwJsnNCK+9TRq1hXcvl3FXkP9hcG8TTn/KZYKQ4=
+
+Name: fox-rt.lexicon
+SHA-256-Digest: pzj4qbVKN7571U2HKEhUQ1uZYII/vhgTK8V2MBUqT6Q=
+
+Name: com/tridium/fox/session/Fox$ExceptionTranslator.class
+SHA-256-Digest: n7KBAqHUTN6KQYqkXFlmY6Vk2bTnxqt4FrO5s+v2OZM=
+
+Name: com/tridium/fox/sys/broker/BBrokerChannel$SubscriberGcHolder.class
+SHA-256-Digest: un/WVo5l+8symFEX64NIZI/tLVySWngJzAa383KKmVo=
+
+Name: com/tridium/fox/authn/BFoxUsernamePasswordCallbackHandler.class
+SHA-256-Digest: IKdLiK75mmtaFzexEWdpGkJ3t/VZxNujMgrmTImVAvw=
+
+Name: com/tridium/fox/sys/data/BTranslateOrdPostQueryFilter.class
+SHA-256-Digest: 51v6HeJhjwfGLkXC35WzvGdMVcMa5p3/4bx4Siq7iQM=
+
+Name: com/tridium/fox/session/FoxServer.class
+SHA-256-Digest: geGHZI5zKfV0E4uaqyWbuTXVcA/RRFMUlzvHc6OAN+c=
+
+Name: com/tridium/fox/session/Fox$DefaultClock.class
+SHA-256-Digest: GR2rdaPyp824tMJkmMTW3iO/z3apMz/xTclKRMOdBQU=
+
+Name: com/tridium/fox/encoding/DecoderFactory.class
+SHA-256-Digest: dRCW99jHwVlnbg4GscBSGShIC5p/HTdxVMvLbNsz2K8=
+
+Name: com/tridium/fox/encoding/BogCodec.class
+SHA-256-Digest: ROBNaQF/sAA8QghsFSAGlVinPsPdfebPqK7Mgsw5iv4=
+
+Name: com/tridium/fox/sys/broker/BBrokerChannel$1.class
+SHA-256-Digest: mPuFXp6xXJBxNwbkowAlHBgzx+UeGgPLpmKAJfvIvbM=
+
+Name: com/tridium/fox/sys/data/BFoxQueryHandler.class
+SHA-256-Digest: j4lMHI0wm7CNiw5OFZE3ITJj0irliLhXicgM8uxbZYk=
+
+Name: com/tridium/fox/message/FoxMessage.class
+SHA-256-Digest: XMRPv2mPEIPAZ/efA2T6iWoncWQrv7/QkTaGbsumDzg=
+
+Name: com/tridium/fox/sys/BFoxChannelRegistry.class
+SHA-256-Digest: OwPcQOwi3vIfzWvxHruSFesAeLPI79pUmsl9tgXRq5o=
+
+Name: com/tridium/fox/sys/BFoxSession$ExecutorServiceHolder.class
+SHA-256-Digest: Ldf0AJzFL2hUiyvtbUCggyW//SA8ZWowwxwDJJHZivc=
+
+Name: com/tridium/fox/session/FoxSecureRequiredException.class
+SHA-256-Digest: CJ1cODqM9YPTZqXH8pRUxM+b9ZkTn3YlA99v7VEJ1fA=
+
+Name: com/tridium/fox/sys/BFoxChannel$LegacyTypeResolver.class
+SHA-256-Digest: VzNyojXdVrS1rQabjZsgx/0edmqJhaxNUUseNNPBrOg=
+
+Name: com/tridium/fox/session/FoxCircuit$CircuitInputStream.class
+SHA-256-Digest: X22lebmwpZkxN4S9cx8DJGJJ7+dehBrKUs9CVMOGgv4=
+
+Name: com/tridium/fox/kerberos/KerberosCallbackHandler.class
+SHA-256-Digest: 0GRyTOreSHuS7r+b3breKGRChyvKv8I+Sbfw9AK8ruA=
+
+Name: com/tridium/fox/sys/data/EntityExportSource.class
+SHA-256-Digest: vWFhR8Y4rFuIy7/QjaT0QsJE7rjOq5YrXhQbbJC1QFE=
+
+Name: com/tridium/fox/sys/data/BIPreQueryValidator.class
+SHA-256-Digest: xlJMdEBOdryFvJ3PmuyydEjQpF9naq/toHWlzTVxGKA=
+
+Name: com/tridium/fox/sys/file/BFileChannel.class
+SHA-256-Digest: rzkzNVCkt8fUS43vVjeo7uLf4dxw/ke++lKtA5wK5Nc=
+
+Name: com/tridium/fox/session/MulticastUtil$SocketSendPrivilegedAction.c
+ lass
+SHA-256-Digest: DvAgoUE4lUZ0oXZtkkizBoO8zc+RYE391HJZmZaWZe4=
+
+Name: com/tridium/fox/message/MessageReader.class
+SHA-256-Digest: n0zWj2ulIm/R21aB5eyFwOvjEI3vdIVWJheISnmLGRM=
+
+Name: com/tridium/fox/sys/BFoxServerConnection.class
+SHA-256-Digest: YXOQ4padPVRUWoSULMO/wI5kkML5YqxPNHc0QvEA8z4=
+
+Name: com/tridium/fox/session/SessionBedroom$Bed.class
+SHA-256-Digest: P/43VPHwK7CkyKDDz5lvg8mfBMar5ntxexCceXuhaX8=
+
+Name: com/tridium/fox/sys/broker/BFoxComponentSpace$FoxTrapCallbacks.cla
+ ss
+SHA-256-Digest: z/rI2SDcZfXhf5FFHofFV4OTG7RQH3Z0xPXkXAY5cAE=
+
+Name: com/tridium/fox/sys/data/BFoxQueryHandler$RemoteEntityIterator.cla
+ ss
+SHA-256-Digest: 71dLeCIyUZUd1NKkMz/OsNucwXUW3F2X3I5KX70EewM=
+
+Name: com/tridium/fox/sys/BFoxService$FoxServerConnectionListener.class
+SHA-256-Digest: UUsosOhP0LTmopXrbfJgmQ/oDY/QRVAEHIimE7cWACc=
+
+Name: com/tridium/fox/sys/BFoxChannel$TransferStatusPipe.class
+SHA-256-Digest: qqPMljNGz0v37Gb1l2Z/Uds49aC6Wc4rSopuy/GwQEk=
+
+Name: com/tridium/fox/encoding/BogCodec$Provider.class
+SHA-256-Digest: XlFrTE23jCPhuYuvs/KFsCtGnCW3T/WCAqPyA2BsiXo=
+
+Name: com/tridium/fox/message/FoxBlob.class
+SHA-256-Digest: mhYdshT7sgBGbjKQGVBw2V9KvE7nPQzlvV3vYNHZulU=
+
+Name: com/tridium/fox/message/FoxBoolean.class
+SHA-256-Digest: KKES71mySXccYCBIU19nYrxg70HPhqKhWqRsI5iz0no=
+
+Name: com/tridium/fox/session/FoxAsyncCallbacks.class
+SHA-256-Digest: Ub4nObFPuBMyDY1TAAbMPtamDNdGluHq4JDq23Jy3Lw=
+
+Name: com/tridium/fox/sys/BFoxService$Daemon.class
+SHA-256-Digest: bycfGqMaO9Kzc/2hyhzJEb/sukgpSfFsg5Yquu/fDTQ=
+
+Name: com/tridium/fox/sys/BFoxsScheme.class
+SHA-256-Digest: CCF5KfYprYa8TWknZjE6rIoX+k2VhTgNKAwDQjN6dFU=
+
+Name: com/tridium/fox/session/FoxCircuit.class
+SHA-256-Digest: Nf9cecx7ITh6MIPOEXMymrqVWcx1eBaEEAhShLR0hhY=
+
+Name: com/tridium/fox/sys/NiagaraNetwork.class
+SHA-256-Digest: LOpV6Jt3EV4Pgu4eDtqFwgTQ/C5oFVNHAGQbDkET3LY=
+
+Name: com/tridium/fox/sys/ActivityMonitor$NotifyTimeoutRunnable.class
+SHA-256-Digest: m4YGlH278d5iw7fQCeZLe5jkB6sBDukKCGNf9PkB+yQ=
+
+Name: com/tridium/fox/session/SessionSender.class
+SHA-256-Digest: D/IyrtT2q2P8ckRGG1W4aUWThP2IHzRuTXkpk0+ELg8=
+
+Name: com/tridium/fox/sys/spy/FoxLog.class
+SHA-256-Digest: xp1WtCTEpJ9xVQw0eyiNcqi/Nz3F9cVNiKSx/cUH4xc=
+
+Name: com/tridium/fox/sys/data/TranslatedEntity$TranslatedRelations.clas
+ s
+SHA-256-Digest: 4Yz6TBT0eLdrqGVaP//hqDC21hQU0aqyw7Tc0pSHIm4=
+
+Name: com/tridium/fox/sys/broker/BFoxVirtualSpace$FoxVirtualLoadCallback
+ s.class
+SHA-256-Digest: L6X+3RfFnY7+bmP+y8Ni1N2UG2GZm+5O1De6GNvP9QI=
+
+Name: com/tridium/fox/sys/data/BDataChannel.class
+SHA-256-Digest: SnIUKddu+qKJPnCVCStQqhMc5Je/C4zmkmVqqybXK9E=
+
+Name: com/tridium/fox/sys/broker/SyntheticTypeInfo.class
+SHA-256-Digest: I6W2DQ8PsINVrBPXlJfqyrkMwKW5ECzGlvpnQe/i/4k=
+
+Name: com/tridium/fox/sys/spy/BSpyChannel.class
+SHA-256-Digest: zMcz1slopj2ucADqAHQd7kHiQf5S/d+wzyq4O9n1LRc=
+
+Name: com/tridium/fox/sys/spy/FoxSessionSpy.class
+SHA-256-Digest: uSAgMkVX8QPd50H6kYPfuChZz6b/dasZQt0g9nwk4oI=
+
+Name: com/tridium/fox/sys/BFoxService$2.class
+SHA-256-Digest: xhYChBzAlabRX3WS3vhC9F1hjeNcfLwvUEp+Op0JmmY=
+
+Name: com/tridium/fox/sys/Learn.class
+SHA-256-Digest: pJQKZ31MjHCHExEnBzZSOmPKphbq8dbFjIk773Kw6Gk=
+
+Name: com/tridium/fox/session/FoxSession.class
+SHA-256-Digest: usab4ZuHpTr3xHvdbkL4bymu+we/kTNPf3RZGYHSEow=
+
+Name: com/tridium/fox/sys/BFoxClientConnection$StringInterest.class
+SHA-256-Digest: XLdlsTP5YNASzFoXhLWSSG14in9wwqUGaOxsoLMqGi0=
+
+Name: com/tridium/fox/sys/UnreachableStationException.class
+SHA-256-Digest: 2aOTzsNuIoXEDakoAtsis36Y5WCp/EBc6jhrCbptq9Q=
+
+Name: com/tridium/fox/session/IncompatibleVersionException.class
+SHA-256-Digest: jDz/9VIbVgQoBNrh+ANR5m4LMsJoUTNCI0Y5Y1+A5i4=
+
+Name: com/tridium/fox/sys/spy/FoxLog$Rec.class
+SHA-256-Digest: G2TmleiJQDwhZ7DWq6IT401/kI43PLMaVolY8/TORhY=
+
+Name: com/tridium/fox/message/FoxObject.class
+SHA-256-Digest: 2i0WBMlcmwgmOI+a5N+skkld77Htdyd6DXHrSFWvheU=
+
+Name: com/tridium/fox/sys/BFoxsScheme$FoxQuery.class
+SHA-256-Digest: elRkfI/IvrIKIW7+9FaCBV051FGCiSJb/T6MuVLfP14=
+
+Name: com/tridium/fox/sys/BFoxClientConnection.class
+SHA-256-Digest: 66AnLzUuZ+1VMenm4AVKjWDbOOlaH9gCm8OOnQvHGT8=
+
+Name: com/tridium/fox/sys/spy/FoxLog$Index.class
+SHA-256-Digest: VTbp5T3y7XTVYYExGNy7GB9ZZbxx9APXebTczEwTj9I=
+
+Name: com/tridium/fox/session/FoxServer$MainLoop.class
+SHA-256-Digest: WsYJcFf5x0Cn5URjGQotwzmweLQwsN+Nwsedh+Q2NH8=
+
+Name: com/tridium/fox/session/ServerException.class
+SHA-256-Digest: ABWQyMag+TLozg8UzGImH5W8o8Y0xr1U3uTAXv8UHDQ=
+
+Name: com/tridium/fox/sys/BFoxConnection.class
+SHA-256-Digest: MPhddUOFEO+bKC7wT609oZnr4mZSM9T1jiMIVgeoPA0=
+
+Name: com/tridium/fox/sys/user/BUserChannel.class
+SHA-256-Digest: QA7ZnxOfCVkiIhuFRlg24xadTjhKHhhjmdAsJQeRi3k=
+
+Name: com/tridium/fox/sys/spy/FoxIndexSpy.class
+SHA-256-Digest: e7YgdsG807yA/CXTc1dy6ytGBpamjTp5FeiLFCFpct8=
+
+Name: com/tridium/fox/sys/broker/BBrokerChannel.class
+SHA-256-Digest: 1Y7Y9UDxhBacXCvdmN7VZZ2oUkNDewmhVieTMP8rbeo=
+
+Name: com/tridium/fox/sys/file/FoxFileException.class
+SHA-256-Digest: DCjQKAuhRWuTCoZIsJXIQ+MRQlj5cIGUtgOxGSTylyI=
+
+Name: com/tridium/fox/sys/file/BFoxFileSpace.class
+SHA-256-Digest: zZajYa6Gb7IhlnHPuUl2rur0ND7uFTgcDZaROY2TXTU=
+
+Name: com/tridium/fox/session/FoxRequest.class
+SHA-256-Digest: YcBP1YPkyD4l6mZ48ZEAXjNcdcTOXDpnymIkiBxeKsM=
+
+Name: com/tridium/fox/session/FrameQueue.class
+SHA-256-Digest: V6VxF9aWU3HBufxKHQofMvPf0LmHKxWibiDSnZMCyl0=
+
+Name: com/tridium/fox/sys/broker/BFoxComponentSpace$FoxSubscribeCallback
+ s.class
+SHA-256-Digest: ROTNiE2PeVLe2TZ6nNqNADZ9b/3O8SDnbpdvpeHS6Is=
+
+Name: com/tridium/fox/session/Fox.class
+SHA-256-Digest: nHZm2Sur3RHj6kPwg6hzXul/ueVj4jgOWmBdiXgXnkA=
+
+Name: com/tridium/fox/sys/BFoxChannel$LegacyEncoder.class
+SHA-256-Digest: wLVbO1SNzR6rewmH3E8NQtGZuOm5WKIB1zZoQ/UfZ+4=
+
+Name: com/tridium/fox/sys/spy/FoxLog$Who.class
+SHA-256-Digest: wIuMd7IxKfmkBjNdGKPUl2wuedZBfRoUPssoBWdtJPQ=
+
+Name: com/tridium/fox/session/FoxAuthenticationException.class
+SHA-256-Digest: 9psFZAWR0aGONuL3e2IkPen4t6E8pGdI2jQ/Yk1sL6A=
+
+Name: com/tridium/fox/session/MulticastUtil.class
+SHA-256-Digest: QZeTT6KkfjuUmDmm01Wx2q1dhlf8nziSDKw9rSirjIY=
+
+Name: com/tridium/fox/sys/broker/BFoxGatewaySpace.class
+SHA-256-Digest: pyzOv+wn3QWsqpenRCHkp1MaGIOi3PUSbXZGxnvm75s=
+
+Name: com/tridium/fox/session/MulticastServer$5.class
+SHA-256-Digest: HBNzbd+xh8C9vnPFB6QRRDllnAtP1pNyMbJKIUj+DzY=
+
+Name: com/tridium/fox/session/SessionBedroom.class
+SHA-256-Digest: MH+l0EcVZd1mpWwZHR5Coa9vraSEgrdou1lBH0QCNtY=
+
+Name: javax/baja/fox/BFoxProxySession$NotifyListener.class
+SHA-256-Digest: IfHkyzBcEWlpn6k5iPmKbpNG5by6X5GFz6sxHf3KewA=
+
+Name: com/tridium/fox/sys/FoxConnectionTarget.class
+SHA-256-Digest: AL4ufMObuYA7xI/9GhzUGgOPel+FkKew60TTfrW73+M=
+
+Name: com/tridium/fox/sys/data/EntityExportConsumer.class
+SHA-256-Digest: 3EwYVWTVxgxdy8ShytUFTCeb14NbByK6/8MEJ3A8XLw=
+
+Name: com/tridium/fox/util/FoxRpcUtil.class
+SHA-256-Digest: 2/Ixb6+HR6aDixYKubX3X3zjnbGL62y8FmOHE+Zb0dY=
+
+Name: com/tridium/fox/session/InvalidCommandException.class
+SHA-256-Digest: wdXFqCvbEppKOOBXd44EohNlQSiIU8cAGXoNrLn4rRo=
+
+Name: com/tridium/fox/sys/BIFoxProxySpace.class
+SHA-256-Digest: QE56aE9/v1qw1oXoPDyoY7YbTd12WNTq0kMPNH1CkH0=
+
+Name: com/tridium/fox/sys/broker/BFoxStationSpace.class
+SHA-256-Digest: FOg2aY6fcK5O7Sx6Lq3aCak/08XXKLAmGtOBvq1XdTo=
+
+Name: com/tridium/fox/session/SessionCircuits.class
+SHA-256-Digest: /bw1kP7NtUSZe6B2AllzrFteBAS1ELAOYALjEj4Ryeg=
+
+Name: com/tridium/fox/sys/broker/BFoxComponentSpace$FoxLoadCallbacks.cla
+ ss
+SHA-256-Digest: GKfdrQGe/lAV4n2ZDNuq2IQSr+IbWKcSid4eQH1AK3I=
+
+Name: com/tridium/fox/sys/BFoxClientConnection$Interest.class
+SHA-256-Digest: 3Xi7PpcxYFxZo+16m26UEyUKfck7Z/Fw15dVyVnghD0=
+
+Name: com/tridium/fox/session/FoxCircuit$CircuitOutputStream.class
+SHA-256-Digest: xkKlwGyB6dtw10vL5rcLr1h6uhPaXOxuKd4oHlv0HIg=
+
+Name: com/tridium/fox/session/FoxAuthenticationUtil.class
+SHA-256-Digest: omZQd3x3sOP+U+djWwPTTpqsSAtx5hPuBoaSwBAk4CA=
+
+Name: com/tridium/fox/session/Fox$1.class
+SHA-256-Digest: 8IJE9Yiz5sz5DkdGMkDCmXKReqG9+VxeS5MVz92Pgx8=
+
+Name: com/tridium/fox/sys/data/TranslatedEntity$TranslatedTags.class
+SHA-256-Digest: hkzc5vWgnwHyqo4gsukHhi8nVGZWWVNLvIEwcLBpt3A=
+
+Name: com/tridium/fox/session/MulticastServer$2.class
+SHA-256-Digest: MPAGhaNJCPbD7hsUDdSudoO1/QR2sIGZoXdn14rtnAE=
+
+Name: com/tridium/fox/sys/broker/BBrokerChannel$1$1.class
+SHA-256-Digest: FqXqlFF1zoq9h1EJ3nC1IMrnjzF7feXZgdG2+RQjz10=
+
+Name: com/tridium/fox/sys/BFoxService.class
+SHA-256-Digest: RsCiPxhGDGzBH4+uLlGGUXgMS1ObYvH+o78kCVID+Vo=
+
+Name: com/tridium/fox/sys/BFoxClientConnection$ConnectPrivilegedAction.c
+ lass
+SHA-256-Digest: kfQcSL5ZTmDCK7Bh5y6JuKb7DPbFjVq49uUDgHl6DbE=
+
+Name: com/tridium/fox/sys/BFoxChannel.class
+SHA-256-Digest: keOFAY5pMxNXca3PhbrcPRqZWLTAfkH74m82xGrTOvg=
+
+Name: com/tridium/fox/sys/data/TranslatedEntity$TranslatedRelation.class
+SHA-256-Digest: DIVW135uJI3lR7PefbleIYV4fqW5OHiI7Sa4kiYDkio=
+
+Name: javax/baja/fox/authn/BFoxClientAuthnHandler.class
+SHA-256-Digest: U+n1m/F/uG2igpdharjzHuw2zahfbGjYxYff+iqUd30=
+
+Name: com/tridium/fox/sys/Acceptor.class
+SHA-256-Digest: uh4QmR4Kn91LNVlJ/53W2FhyktTZ12pEFanTYtnexWg=
+
+Name: com/tridium/fox/sys/BIFoxGatewayProxyFactory.class
+SHA-256-Digest: jdY211Mq8pzhdrRtkr2CJ5nV2Glpld7dTuD60s0/9ME=
+
+Name: com/tridium/fox/session/FoxSession$IFoxSessionListenerFactory.clas
+ s
+SHA-256-Digest: DNgR7Rwyd9KCmvb7uo6TKYv2SGV0MpM3rLCfXdEWR/g=
+
+Name: com/tridium/fox/sys/spy/BFoxSpySpace.class
+SHA-256-Digest: MdZmXVBDBxDQcR1zouZPbuIx0sFlt4D6MbGFHo6aIdE=
+
+Name: com/tridium/fox/sys/LocalizableExceptionTranslator.class
+SHA-256-Digest: ZIkn6b4h4NuHloN9ZCx4nrhBst9EUT+rEV3/C4kMJto=
+
+Name: com/tridium/fox/sys/BFoxChannel$FoxSyncEncoder.class
+SHA-256-Digest: K9j0eQTc1Ij7SLm78WOSMYukwWA7tPtbtugCo8GXFXk=
+
+Name: com/tridium/fox/message/FoxTuple.class
+SHA-256-Digest: UGOgN8TaeMbR9eupCc82X5fhXu7PYgPN83hCxGWs9rA=
+
+Name: com/tridium/fox/session/IntMap$Entry.class
+SHA-256-Digest: dv1+PUK1Wx2Vhqvu94hZR50gJO3kralDu3She0cQRic=
+
+Name: com/tridium/fox/sys/FatalAuthenticationException.class
+SHA-256-Digest: 36W6gQsFcGwGheblHPVxkpEvFVHmaZIr+VYz8RCN75Y=
+
+Name: com/tridium/fox/kerberos/KerberosConfig.class
+SHA-256-Digest: k7qifESzWnOoYUWfRXtkjav7lR1wIIaaJjrhIZ1b4Cg=
+
+Name: com/tridium/fox/sys/BServerConnections.class
+SHA-256-Digest: QE2YNNWLGjX5GZAy6TZc2jURkkXa1c4BtuUzCJbfZXY=
+
+Name: com/tridium/fox/message/FoxFloat.class
+SHA-256-Digest: oYM6oHbO669WdH7vF5ecE6VeU6s5DYTB7zJijGfPVRU=
+
+Name: com/tridium/fox/sys/MismatchedStationNamesException.class
+SHA-256-Digest: /9F9hFfrayii48CuuxviVK9t7uYKeXGiRp7xGtKAiUU=
+
+Name: com/tridium/fox/encoding/DecoderFactory$Provider.class
+SHA-256-Digest: r3bO847YjS2CWsehRDYnLsyN+MX4slYcBUaBzBizPIE=
+
+Name: META-INF/module.xml
+SHA-256-Digest: hfysxlq3Y8C4aNGiOh910UBVb0qPuhm5Q/ugxzyUL2E=
+
+Name: com/tridium/fox/sys/broker/BFoxVirtualSpace$FoxVirtualSubscribeCal
+ lbacks.class
+SHA-256-Digest: eii/UjKLUpz74Tp/ZiRN6BMhZa+E/6q82SdVt2MdQsY=
+
+Name: com/tridium/fox/session/FoxUserLockoutException.class
+SHA-256-Digest: AdjTJUcytJHQc+9B0D1cKdVJo74a6MchLTEMVsGFVNE=
+
+Name: com/tridium/fox/sys/broker/BFoxComponentSpace$AutoCommitSyncBuffer
+ .class
+SHA-256-Digest: nu41Jiu0YG+XQL5CdFTZsCIdpXm9jYmjqXC/iNAZIMU=
+
+Name: com/tridium/fox/sys/spy/FoxLog$SpyRecs.class
+SHA-256-Digest: bBVtUZM3NmDG+YbwxqEPQyDsfvrNe4MzARbTpzlOk10=
+
+Name: com/tridium/fox/sys/spy/FoxSpy.class
+SHA-256-Digest: s9+bCjogNpWMhR3sfx6cY7EBZTtudaG/vj4FSpTLNyE=
+
+Name: com/tridium/fox/authn/BFoxDigestClientAuthnHandler.class
+SHA-256-Digest: U6NVd2FhxKkoxHB4htlt7FlomH1NHbQTl+R2ToaPX/k=
+
+Name: com/tridium/fox/authn/BFoxSessionIdClientAuthnHandler.class
+SHA-256-Digest: 15apuTCuzjCJJf9550vGwbGpxEupISHxllYrybZpzXk=
+
+Name: com/tridium/fox/sys/broker/TransferCodec.class
+SHA-256-Digest: 1ez9Ir3/1UEdOoG+3aoElLzsdq4vfoBz43Y5j38o8ro=
+
+Name: com/tridium/fox/message/FoxInteger.class
+SHA-256-Digest: 740j9ofc52UHn1z5lApf62f3zTlcY/txtvsAQJJqO5k=
+
+Name: com/tridium/fox/util/FoxScramShaUtil.class
+SHA-256-Digest: EzYytUtufASxVRIELlM1k6BHZ2KLA5Y+C9uCgxZ1UDQ=
+
+Name: com/tridium/fox/dashboard/BFoxServiceSecurityDashboardProviderAgen
+ t.class
+SHA-256-Digest: JK4U5Jb5SpxAmpP4djgoNqNbYHfF0mYF5JF8rVE1pr0=
+
+Name: com/tridium/fox/sys/ActivityMonitor.class
+SHA-256-Digest: 6wM0ZNjpALEp+xDzCSLKgLZRZ3fEy8CcVvr6smk1sbY=
+
+Name: com/tridium/fox/session/MulticastServer$3.class
+SHA-256-Digest: rgsHoP5UqhuVuvF9PgeKhEaIGBrCnbB4OSe4cafyNaw=
+
+Name: com/tridium/fox/message/FoxString.class
+SHA-256-Digest: aqopbf1DGYifmeS3b51bHykg0R0uRcPVVpIA6SEmgyc=
+
+Name: com/tridium/fox/sys/LocalizableServerException.class
+SHA-256-Digest: NtkstfS/5EVdPHd+zd/BTPOpcKo9tKQHnd344D6OucA=
+
+Name: com/tridium/fox/sys/BFoxService$1.class
+SHA-256-Digest: /Db1B2Al1vuj65plzjSpMRhH+tL/OjqQMCKzVRSUD8c=
+
+Name: com/tridium/fox/sys/broker/BBrokerChannel$ClientSyncThread.class
+SHA-256-Digest: JGYzN+oCDN9PHrc0r0sePX/uabT+82RaIZBQ9ME1hwo=
+
+Name: com/tridium/fox/session/FoxCircuit$BufferEntry.class
+SHA-256-Digest: hIpVE+EVSjFhItl8zR0RO02Go8botzxi7+tMIZg1IJc=
+
+Name: com/tridium/fox/sys/broker/BBrokerChannel$FoxProxyBroker.class
+SHA-256-Digest: PRQIeVXt4jOkvJwxi8UPF+n+ukRTo3agyBW8bB7EVAc=
+
+Name: com/tridium/fox/sys/broker/BFoxComponentSpace$1.class
+SHA-256-Digest: 84O9Ez4N4qAEi8A98mI57XtPHzaRRITX+nxDMkb9ZFA=
+
+Name: com/tridium/fox/message/MessageWriter.class
+SHA-256-Digest: 8ed+qzI7oNuY1AfaQpSRI6woJ3zzTb/LVsdGiCLppWQ=
+
+Name: com/tridium/fox/sys/BFoxSession.class
+SHA-256-Digest: qGCT1o9fZlqvIQwiZ0NMzTUYPEZLCNOut3HUQPTkDiE=
+
+Name: com/tridium/fox/message/FoxTime.class
+SHA-256-Digest: 5x7UDwH3ZvOmnNLF99OLq0aXd/rmwnP4r5HGIrC3onE=
+
+Name: com/tridium/fox/sys/data/BDataChannel$1.class
+SHA-256-Digest: EviVL/vOPayOtbjbvjLaPL+Mk5H+arzwXt19Ozuv/L8=
+
+Name: com/tridium/fox/sys/BFoxSession$ExecutorServiceHolder$1.class
+SHA-256-Digest: 8qTUIRJ64FFqM08yxUmP3zb7YY6hnaI5CuQGfCjeq6Y=
+
+Name: com/tridium/fox/sys/BLearnStation.class
+SHA-256-Digest: z3OHh2rXGNAgzCnPfEbEtRLIacTcZYIlKUUYmySJPZo=
+
+Name: com/tridium/fox/sys/ModuleNotFoundLocalException.class
+SHA-256-Digest: b8lypGTVFMfkk5445hSo4TB/yI9f5MHMC6OiXHQHZOs=
+
+Name: com/tridium/fox/sys/BFoxScheme.class
+SHA-256-Digest: nN+OjMNGI3SLdyMtzpbGPXZH4gYpVkFbHg/FpQATtow=
+
+Name: com/tridium/fox/sys/broker/BFoxVirtualSpace.class
+SHA-256-Digest: eO4Lvewbvpd7g+ZkG19WuAgJ0Z9aOJdv4EAqsciMeYA=
+

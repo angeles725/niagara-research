@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bajaObjectGraph version="1.0">
+<p m="b=baja" t="b:UnrestrictedFolder">
+  <p n="FoxService" m="f=fox" t="f:FoxService">
+    <p n="foxEnabled" v="false"/>
+    <p n="foxsEnabled" v="true"/>
+    <p n="foxsOnly" v="true"/>
+    <p n="foxsMinProtocol" t="b:SslTlsEnum" v="tlsv1_3"/>
+    <p n="foxsCert" f="rh1" v="default"/>
+    <p n="certAliasAndPassword" f="1"/>
+    <p n="serverCertificateHealth" f="rt"/>
+  </p>
+</p>
+</bajaObjectGraph>
