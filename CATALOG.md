@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **118 bloques**
+Total: **119 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -123,6 +123,7 @@ Total: **118 bloques**
 | 118 | [niagara-mental-model-bloque118.md](niagara-mental-model-bloque118.md) | Block 118 — `honeywellSpyderTool` / XL10NextGen: the detailed I/O layer (`io/`) — physical points, sensor model, terminal assignment & model-gating, CODE-SIDE |
 | 119 | [niagara-mental-model-bloque119.md](niagara-mental-model-bloque119.md) | Block 119 — `honeywellSpyderTool` / XL10NextGen: the UI / wizard / application-generation layer, CODE-SIDE |
 | 120 | [niagara-mental-model-bloque120.md](niagara-mental-model-bloque120.md) | Block 120 — Spyder driver download/upload **WIRE protocol** (BACnet AtomicWriteFile vs LON file-transfer): deep-dive vs B77 |
+| 121 | [niagara-mental-model-bloque121.md](niagara-mental-model-bloque121.md) | Block 121 — `honeywellSpyderTool` / Kingfisher: the TR wall-module tool-side (Sylk/S-Bus model, the compiler chain, the LCD/HMI state machine), CODE-SIDE |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
