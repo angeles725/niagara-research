@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **114 bloques**
+Total: **115 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -119,6 +119,7 @@ Total: **114 bloques**
 | 114 | [niagara-mental-model-bloque114.md](niagara-mental-model-bloque114.md) | Cifrado de configuración y de secretos: el **BOG encryption pipeline** (`EncryptionKeySource` none/external/**keyring**) + el **KeyRing** (almacén de secrets) — la capa de PROTECCIÓN DE DATOS EN REPOSO del arco [Bloque 75] |
 | 115 | [niagara-mental-model-bloque115.md](niagara-mental-model-bloque115.md) | Block 115 — `spyderToIrmNxMigrator`: the offline Spyder XL10 → IRM Nx application migrator (BOG-to-BOG, the FB transpiler that bridges [Block 106] → [Block 105]), deobfuscated |
 | 116 | [niagara-mental-model-bloque116.md](niagara-mental-model-bloque116.md) | Block 116 — `docHoneywellSpyder`: the bundled SpyderTool help module — the OFFICIAL operator + Function-Block I/O reference (the `[CERT-doc]` source that closes B106's FB-catalog/I-O pendings), deobfuscated |
+| 117 | [niagara-mental-model-bloque117.md](niagara-mental-model-bloque117.md) | Block 117 — XL10NextGen Function-Block catalog, CODE-SIDE: every FB cross-verified descriptor + algorithm against the B116 vendor docs (closes [Block 106] pending #1), deobfuscated |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
