@@ -1,0 +1,153 @@
+Signature-Version: 1.0
+Created-By: 21.0.3 (Azul Systems, Inc.)
+SHA-256-Digest-Manifest: 2+8JtakC7gfPjvCfWDSnZgjOBscy5xaY0/3kFFaZOHE=
+SHA-256-Digest-Manifest-Main-Attributes: ar8VEqdMTyCJ9h3TAl5BTu0svU3e9mv
+ rvoBoztxHJ3E=
+
+Name: com/tridium/opcUaServer/point/BOpcUaServerPointDiscoveryJob.class
+SHA-256-Digest: 7Qf41QPNBsC/dGZ3C6LMs0VgUkmqfSmzhVX7cMY57QE=
+
+Name: com/tridium/opcUaServer/history/ValueHistory$1.class
+SHA-256-Digest: VEWgYQGsWFl92j0DsRShhcRMMuUwbGfvqNuqF5GyE8Y=
+
+Name: com/tridium/opcUaServer/node/OpcUaMethodManagerListener.class
+SHA-256-Digest: p3dbJf6yfI82HbdBUzSFzmsIYZKwO7bMsljjHpcVkps=
+
+Name: module.palette
+SHA-256-Digest: gWRvwL3Hib+2vHPqzpVaBPAF37OSjONeAeVfiT/F8D0=
+
+Name: com/tridium/opcUaServer/BOpcUaServerSessions.class
+SHA-256-Digest: 9fuEQrdscgqWmJXKqhG6EkC+rYtWmOFtOte2Qg181Ow=
+
+Name: com/tridium/opcUaServer/BOpcUaServerDeviceFolder.class
+SHA-256-Digest: d4mGkwU/jRWBbf1rsKDaYKKJUWydPv6qUN1KwV4ydsQ=
+
+Name: com/tridium/opcUaServer/util/OpcUaUserValidator.class
+SHA-256-Digest: woH3/+X4P2IvyD62WXkah7mlP5hgutRpuK+30VH2wg4=
+
+Name: com/tridium/opcUaServer/util/OpcUaUserValidator$SessionData.class
+SHA-256-Digest: L5AwNnkNvXgcjqbU5v6x7S0C3ZriKUexZjtOeQx8qc8=
+
+Name: com/tridium/opcUaServer/BHttpsEndpoint.class
+SHA-256-Digest: sECAIKiM0HdyamBblT9OEP6W0LHbGiipcpHit89kN5I=
+
+Name: com/tridium/opcUaServer/util/OpcUaServerUtil.class
+SHA-256-Digest: CPyJPtymB1X/6iOeK40zLIQIgF0AC49MvWeSCBzP8d4=
+
+Name: com/tridium/opcUaServer/BOpcTcpEndpoint.class
+SHA-256-Digest: T3p5jwx82lZIDz9/aWO+/zziImzsjCqvrTPBGV7fHVk=
+
+Name: com/tridium/opcUaServer/authn/BOpcUaAuthenticationScheme.class
+SHA-256-Digest: B8pnW9hLujdA2hPQ2Q2EqG14Lw+7qjdfd2BWc/V/xlI=
+
+Name: opcUaServer-rt.lexicon
+SHA-256-Digest: u640YZR2vniJOAnJn4AUVhk8H1KK/GkByLjScBdi9Og=
+
+Name: com/tridium/opcUaServer/learn/BOpcUaServerLearnDeviceEntry.class
+SHA-256-Digest: H9a9f5nU5boDO/QeMayQPteBDhUrXGFFZG+x45cV5FE=
+
+Name: com/tridium/opcUaServer/point/BOpcUaServerProxyExt.class
+SHA-256-Digest: 2Nk05nbLa5mWaKHEks+1YR5U3shQvuuYeUSiCex/ea0=
+
+Name: com/tridium/opcUaServer/event/BOpcUaServerAlarmDeviceExt.class
+SHA-256-Digest: kZiRSGRiYM+gfUKPhx8MQv89L43KAcQdjgv+X2G5Dfo=
+
+Name: com/tridium/opcUaServer/point/BOpcUaServerPointDeviceExt.class
+SHA-256-Digest: IeP06Eora1l2jTytRS7CjR1oR55vu/IHYCl+z438B8o=
+
+Name: com/tridium/opcUaServer/BOpcUaNamespace.class
+SHA-256-Digest: XoEdYs0cog8m8RShKxxYVai4vWjUIes23O2A5eYHiaU=
+
+Name: com/tridium/opcUaServer/export/BBooleanExport.class
+SHA-256-Digest: /PaJZux6scttjBg4MXU1gkp9QaScBSBCJtifepcs//w=
+
+Name: com/tridium/opcUaServer/BOpcUaBuildInfo.class
+SHA-256-Digest: tibZDBcX8UunGX69SUB7m0C4IKaExN//LwckLuwqRZY=
+
+Name: com/tridium/opcUaServer/event/BOpcUaAlarmClass.class
+SHA-256-Digest: pfzBrzohnxFO2c/USiitC6fSnsAOHRiOQXfCPqxH6ww=
+
+Name: com/tridium/opcUaServer/point/BIOpcUaServerPointFolder.class
+SHA-256-Digest: Mdoo16FRI+VU/RMXSznKmWRwkmuLbsckcAy1N1yY3Os=
+
+Name: META-INF/module.xml
+SHA-256-Digest: /jX8DKTYe9jyyFW7dwlQ58GYiPY4HE0cdgRCrmXy2ww=
+
+Name: com/tridium/opcUaServer/node/OpcUaNodeManagerListener.class
+SHA-256-Digest: mUkeas0sCyiC5ONTtuUF2q7D12+BiLrmlOAQRMaUQ5U=
+
+Name: com/tridium/opcUaServer/node/OpcUaIoManagerListener.class
+SHA-256-Digest: BfEBqVaRZR90/qF5M3KhHzubGZrakYAJ2qgEHHfDMCI=
+
+Name: com/tridium/opcUaServer/event/EventHistory.class
+SHA-256-Digest: OoTcZ4v3X372h5YEWJdXYam8sXW2S9seiztqmRQ4ZaU=
+
+Name: com/tridium/opcUaServer/node/INodeManagerListener.class
+SHA-256-Digest: FLK3o0q5C5LuFkp5SOEyCHMpTkHhCkdqyQ9FtwuG+DQ=
+
+Name: com/tridium/opcUaServer/point/BOpcUaServerPointFolder.class
+SHA-256-Digest: DhUhrj/3tU2/xCngxgUCAUJcuQU0Xft2QLuhE5D1E8w=
+
+Name: com/tridium/opcUaServer/event/BOpcUaAlarmSource.class
+SHA-256-Digest: 7LbEQAci7cC7E/fuFLQiCvKu8M9F47fWvmsvjaIZgRs=
+
+Name: com/tridium/opcUaServer/BOpcUaServerSession.class
+SHA-256-Digest: wtjv2Ys8cv+zUJ/Fe9LE4NsdKyf1z4UyMWhLTDXGRhw=
+
+Name: com/tridium/opcUaServer/authn/OpcUaLoginModule.class
+SHA-256-Digest: dAQBrUcQsAPs1IvylWf4qaAq0iLziypwqMxNbOcHMRM=
+
+Name: com/tridium/opcUaServer/history/OpcUaHistorian.class
+SHA-256-Digest: y3+eeR3uPVkKh6PBeAeCZDbvR617BVJak7sHov+K4Js=
+
+Name: com/tridium/opcUaServer/export/BNumericExport.class
+SHA-256-Digest: QBEJt8vpQto4I4E9zgmhOvV3pio9CcLWNUgm6SMygaQ=
+
+Name: com/tridium/opcUaServer/event/EventHistory$1.class
+SHA-256-Digest: Eay8vczeYRhrUzTdrD9f1Hz0clrobXC/CZmdwhlkbu4=
+
+Name: com/tridium/opcUaServer/util/OpcUaServerCertificateValidator$1.cla
+ ss
+SHA-256-Digest: r6huS9yvYThoC5KIvNU7mnlTIroAKi7hUOgO8V9NqZo=
+
+Name: com/tridium/opcUaServer/export/BEnumExport.class
+SHA-256-Digest: PO6zCDsUcI2Rdw1TWUKn2biA+JvxwyRgwztUtMUq2cM=
+
+Name: com/tridium/opcUaServer/BOpcUaServer.class
+SHA-256-Digest: h2gwVAbQYDOuMd9c7YDW1fJQmokinJU2EPW89fytyzU=
+
+Name: com/tridium/opcUaServer/history/ValueHistory.class
+SHA-256-Digest: 2bXl2QW6f6CC7/KkaATUt+zd/3Y96QTB4wlYYBu5Llo=
+
+Name: com/tridium/opcUaServer/event/BOpcUaAlarmRecipient.class
+SHA-256-Digest: RX/GaJMRL/3AvsCyElExAX6bFN8NgSd8/PmQSBkoEvE=
+
+Name: com/tridium/opcUaServer/learn/BOpcUaServerLearnDevicesJob.class
+SHA-256-Digest: 6GQP0GSaQajifmOe81ePdXP4JPS9DAJrTqvQWBGrsEQ=
+
+Name: com/tridium/opcUaServer/point/BOpcUaServerPointDiscoveryPreference
+ s.class
+SHA-256-Digest: Wb0qAHAl8Ffx3AHNiworbcrdGhqzTmxpiEm3cgMJ9uU=
+
+Name: com/tridium/opcUaServer/enums/BImportExport.class
+SHA-256-Digest: xsN9nYVvGj6qaqJ6uQydNiOsosLUYAqOehLRkt//Dt0=
+
+Name: com/tridium/opcUaServer/export/BStringExport.class
+SHA-256-Digest: uQKaPkpsQtPmkIHx9xe30mAo6vybAxh25/pfIU0Xkho=
+
+Name: com/tridium/opcUaServer/point/BOpcUaServerPointDiscoveryJob$OpcUaP
+ tDiscJobThread.class
+SHA-256-Digest: cjiejDNfK4jCNIzaUWe/HJzgeu1gXnmJT741CcCLfLo=
+
+Name: com/tridium/opcUaServer/authn/BOpcUaCallbackHandler.class
+SHA-256-Digest: 6WVW2K6kzyhQyHUj4t/sodzeCVgjdroTrYRArFEJGcQ=
+
+Name: com/tridium/opcUaServer/export/BIOpcExport.class
+SHA-256-Digest: F8vL9PW/YuSLpTwakkZn8sXT3b4XFvfzcUSpZ3ToCfk=
+
+Name: com/tridium/opcUaServer/point/BOpcUaServerLearnPointEntry.class
+SHA-256-Digest: LLurG5AOXF/kwz32HB32k9tRvVdJw1i/7kvY0pObEWs=
+
+Name: com/tridium/opcUaServer/util/OpcUaServerCertificateValidator.class
+SHA-256-Digest: z7A3QDpznl8UX3i9dB0wChQnIpNvsk8vBhddR006SEI=
+

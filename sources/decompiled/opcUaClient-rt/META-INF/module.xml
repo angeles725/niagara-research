@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="opcUaClient-rt" bajaVersion="0" vendor="Tridium" vendorVersion="4.14.0.162" description="OpcUa Client module" preferredSymbol="uaClient" nre="true" autoload="true" installable="true" buildMillis="1718363349342" buildHost="ee033fd13409" moduleName="opcUaClient" runtimeProfile="rt" releaseDate="2024-05-28">
+ <dependencies>
+  <dependency name="alarm-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="baja" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="bql-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="chart-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="control-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="driver-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="entityIo-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="file-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="fox-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="gx-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="history-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="ndriver-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="net-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="opcUaCore-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="platform-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="query-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="schedule-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="serial-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="web-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+ </dependencies>
+ <dirs/>
+ <installation/>
+ <types>
+  <type class="com.tridium.opcUaClient.BOpcUaNetwork" name="OpcUaNetwork"/>
+  <type class="com.tridium.opcUaClient.BOpcUaDevice" name="OpcUaDevice"/>
+  <type class="com.tridium.opcUaClient.BOpcUaDeviceFolder" name="OpcUaDeviceFolder"/>
+  <type class="com.tridium.opcUaClient.BOpcUaBuildInfo" name="OpcUaBuildInfo"/>
+  <type class="com.tridium.opcUaClient.learn.BOpcUaClientLearnDeviceEntry" name="OpcUaClientLearnDeviceEntry"/>
+  <type class="com.tridium.opcUaClient.learn.BOpcUaClientLearnDevicesJob" name="OpcUaClientLearnDevicesJob"/>
+  <type class="com.tridium.opcUaClient.learn.BOpcUaClientDeviceDiscoveryPreferences" name="OpcUaClientDeviceDiscoveryPreferences"/>
+  <type class="com.tridium.opcUaClient.point.BOpcUaClientPointDeviceExt" name="OpcUaClientPointDeviceExt"/>
+  <type class="com.tridium.opcUaClient.point.BOpcUaClientPointFolder" name="OpcUaClientPointFolder"/>
+  <type class="com.tridium.opcUaClient.point.BOpcUaClientProxyExt" name="OpcUaClientProxyExt"/>
+  <type class="com.tridium.opcUaClient.point.BOpcUaClientPointDiscoveryPreferences" name="OpcUaClientPointDiscoveryPreferences"/>
+  <type class="com.tridium.opcUaClient.point.BOpcUaLearnBase" name="OpcUaLearnBase"/>
+  <type class="com.tridium.opcUaClient.point.BOpcUaNodeLearnEntry" name="OpcUaNodeLearnEntry"/>
+  <type class="com.tridium.opcUaClient.point.BOpcUaObject" name="OpcUaObject"/>
+  <type class="com.tridium.opcUaClient.point.BOpcUaMethod" name="OpcUaMethod"/>
+  <type class="com.tridium.opcUaClient.point.BOpcUaMethodProxyExt" name="OpcUaMethodProxyExt"/>
+  <type class="com.tridium.opcUaClient.point.BIOpcUaObject" name="IOpcUaObject"/>
+  <type class="com.tridium.opcUaClient.history.BOpcUaClientDiscoverHistoriesJob" name="OpcUaClientDiscoverHistoriesJob"/>
+  <type class="com.tridium.opcUaClient.history.BOpcUaClientHistoryDeviceExt" name="OpcUaClientHistoryDeviceExt"/>
+  <type class="com.tridium.opcUaClient.history.BOpcUaClientHistoryImport" name="OpcUaClientHistoryImport"/>
+  <type class="com.tridium.opcUaClient.history.BOpcUaClientHistoryDiscoveryPreferences" name="OpcUaClientHistoryDiscoveryPreferences"/>
+  <type class="com.tridium.opcUaClient.history.BImportHistoryExt" name="ImportHistoryExt"/>
+  <type class="com.tridium.opcUaClient.history.BNumericImportHistoryExt" name="NumericImportHistoryExt"/>
+  <type class="com.tridium.opcUaClient.alarm.BOpcUaClientAlarmDeviceExt" name="OpcUaClientAlarmDeviceExt"/>
+  <type class="com.tridium.opcUaClient.alarm.BOpcUaClientAlarmEntry" name="OpcUaClientAlarmEntry"/>
+  <type class="com.tridium.opcUaClient.alarm.BOpcUaClientAlarmSource" name="OpcUaClientAlarmSource"/>
+  <type class="com.tridium.opcUaClient.alarm.BOpcUaClientDiscoverAlarmsJob" name="OpcUaClientDiscoverAlarmsJob"/>
+  <type class="com.tridium.opcUaClient.BOpcUserAuthenticationMode" name="OpcUserAuthenticationMode"/>
+ </types>
+ <permissions>
+  <java-permissions type="station">
+   <java-permission class="java.lang.RuntimePermission" name="getenv.*"/>
+   <java-permission class="java.lang.RuntimePermission" name="modifyThread"/>
+   <java-permission class="java.lang.reflect.ReflectPermission" name="suppressAccessChecks"/>
+   <java-permission action="read, write" class="java.util.PropertyPermission" name="*"/>
+   <java-permission class="com.tridium.nre.security.KeyStorePermission" name="userKeyStore" action="read"/>
+   <java-permission class="com.tridium.nre.security.KeyStorePermission" name="userExemptionStore" action="read"/>
+   <java-permission class="com.tridium.nre.security.NiagaraBasicPermission" name="GET_SECURITY_INFO_PROVIDER"/>
+  </java-permissions>
+  <java-permissions type="all">
+   <java-permission action="read" class="java.util.PropertyPermission" name="*"/>
+   <java-permission class="java.util.logging.LoggingPermission" name="control"/>
+   <java-permission action="accept,connect,listen,resolve" class="com.tridium.nre.security.NiagaraSocketPermission" name="*:1-100000"/>
+  </java-permissions>
+ </permissions>
+ <moduleParts>
+  <modulePart name="opcUaClient-wb" runtimeProfile="wb"/>
+ </moduleParts>
+</module>

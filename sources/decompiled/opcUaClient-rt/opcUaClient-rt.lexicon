@@ -1,0 +1,62 @@
+# @author    Andrew Saunders
+# @creation  Mar 2016
+# @version   $Revision: $ $Date: $
+
+help.guide.base=module://docOpcUa/doc
+
+clientPointLearn.noRootObject=No object root found for Node ID: {0}
+clientPointLearn.skipRelations=Skipping {0}: {1} --> {2}.
+clientPointLearn.discoverCount=Discovered {0} UaNodes.
+clientPointLearn.processing=Processing {0}.
+clientPointLearn.pruned={0} has no addable children.
+clientPointLearn.incomplete=Discovery is incomplete. Last Node: {0}, Discovered count: {1}
+clientPointLearn.maxArrayLearn={0}: Only the first {1} entries of an arrayed variable will be discovered.
+
+privilegedEx= Privileged Exception.
+
+NodeIdDialog.nodeIdFE.label=Node ID
+NodeIdDialog.useDefaultCheckBox.label=Full Discovery
+NodeIdDialog.header.description=Discover nodes based on a root Node ID
+NodeIdDialog.title=Selective Discovery
+
+opcUaClientUserPassAuth.NoUserNoPass = Expecting valid Username and Password
+opcUaClient.device.error.incorrectCertificateKeyPassword.details=Could not retrieve certificate key with supplied password. Details: {0}
+opcUaClient.device.error.rootNodeNull=Failed to determine root node using Node ID: {0}
+
+opcUaClient.authenticationDialog = OPCUA Client Authentication
+opcUaClient.authenticationMessage = Enabling Anonymous access will allow anyone(Client) \nwithout a proper credentials to connect to the server.\nDo you want to proceed?
+opcUaClient.securityDialog = OPCUA Client Security
+opcUaClient.securityMessage = By selecting the security mode as NONE, the information exchanged \nwith Client/Server can be viewed or changed by others.\nThis option can be used only if it is an isolated network.\nDo you want to proceed?
+opcUaClient.pingFailNetworkDisabled=Network disabled
+opcUaClient.pingFailDeviceDisabled=Device disabled
+opcUaClient.pingFailCommReset=Connection reset in progress
+opcUaClient.pingFailDeviceUninitialized=Device not initialized
+opcUaClient.pingFailServerStateNotRunning.serverState=ServerState is {0}
+opcUaClient.endPoint=Client does not support the URL {0}; please provide opc.tcp supported URL for device {1}.
+
+opcUaClient.point.subscribeFailed=Subscribe failed: {0}
+opcUaClient.point.unsubscribeFailed=Unsubscribe failed: {0}
+
+opcUaClient.securityMode.displayName=Security Mode (Mode / Policy)
+opcUaClient.securityMode.text.none=None
+opcUaClient.securityMode.text.signBasic256=Sign / Basic256
+opcUaClient.securityMode.text.signBasic128Rsa15=Sign / Basic256Rsa15
+opcUaClient.securityMode.text.signBasic256Sha256=Sign / Basic256Sha256
+opcUaClient.securityMode.text.signAndEncryptBasic256=Sign & Encrypt / Basic256
+opcUaClient.securityMode.text.signAndEncryptBasic128Rsa15=Sign & Encrypt / Basic128Rsa15
+opcUaClient.securityMode.text.signAndEncryptBasic256Sha256=Sign & Encrypt / Basic256Sha256
+
+# BOpcUserAuthenticationMode
+anonymous=Anonymous
+userNameAndPassword=Username and Password
+certificate=Certificate
+
+userName=Username
+certAliasAndPassword=Security Certificate
+
+opcUaDevice.manager.securityCertificateAlias=Security Certificate Alias
+opcUaDevice.manager.securityCertificatePassword=Security Certificate Password
+opcUaDevice.manager.userAuthCertificateAlias=User Authentication Certificate Alias
+opcUaDevice.manager.userAuthCertificatePassword=User Authentication Certificate Password
+
+opcUaDevice.pointManager.doAdd.addFolderDialog.msg.folderName=Add Child Points from "{0}"?

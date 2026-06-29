@@ -1,0 +1,152 @@
+Manifest-Version: 1.0
+Implementation-Vendor: Tridium
+Implementation-Version: 4.14.0.162
+Sealed: true
+
+Name: com/tridium/opcUaServer/point/BOpcUaServerPointDiscoveryJob.class
+SHA-256-Digest: BkNKWklzLHbtblR6+k6gbns0NYf9jH1jm5uEiCo0gTk=
+
+Name: com/tridium/opcUaServer/node/OpcUaMethodManagerListener.class
+SHA-256-Digest: XQpdSe5okYntWZXc9E+GCeFSrc902RualeV19MPNAqw=
+
+Name: com/tridium/opcUaServer/history/ValueHistory$1.class
+SHA-256-Digest: GItHvkDGDsTOtbsAWKzmqd6y8FfwX9mVZt1tpWIDre0=
+
+Name: module.palette
+SHA-256-Digest: QcyzqC2GD6wS63KLS6ghNsEDD3AccKROPv4t/JlAtFw=
+
+Name: com/tridium/opcUaServer/BOpcUaServerSessions.class
+SHA-256-Digest: TtFe9wqYW7q9UC1ahRVOG/HWi0gmUS3z88N6GAk69rA=
+
+Name: com/tridium/opcUaServer/BOpcUaServerDeviceFolder.class
+SHA-256-Digest: t+Ai4UM6IpHwOQL7DOs9Vu7tUm0kepNQNrjTflgFG/M=
+
+Name: com/tridium/opcUaServer/util/OpcUaUserValidator.class
+SHA-256-Digest: TVy6ZkRG4TffnlV9LTd8fIv/d3XUmHnQQH7OQ+NoxvM=
+
+Name: com/tridium/opcUaServer/util/OpcUaUserValidator$SessionData.class
+SHA-256-Digest: vv/AEIQUJvb/cJdHwxVWpJjO6KugAcrxRKUTuGlEKNo=
+
+Name: com/tridium/opcUaServer/BHttpsEndpoint.class
+SHA-256-Digest: WKd2c/S+4nmnTzjdoHz9xJhKZXjhvRQ3GuY0WdWvSRc=
+
+Name: com/tridium/opcUaServer/util/OpcUaServerUtil.class
+SHA-256-Digest: wqAhniR8Dx27842Bv0tLNNBb5hGo3nj2EojaqWMgqfw=
+
+Name: com/tridium/opcUaServer/BOpcTcpEndpoint.class
+SHA-256-Digest: 0BPnxhMQsDUwWgli7H2F0OOAauL1nL9k+XM79zIAOLU=
+
+Name: com/tridium/opcUaServer/authn/BOpcUaAuthenticationScheme.class
+SHA-256-Digest: WOpnhD1+PDRDPq/2nipve7/+qWVRPldcBbkGerZhrkk=
+
+Name: opcUaServer-rt.lexicon
+SHA-256-Digest: dUrgWW1LME8SJjarYP7jJD+LCMpxL/zWDI5A3Y+6yjM=
+
+Name: com/tridium/opcUaServer/learn/BOpcUaServerLearnDeviceEntry.class
+SHA-256-Digest: V4rf+TStR7Ugr7BzxxKbJivDmMff2XlXp3uFTFPhziM=
+
+Name: com/tridium/opcUaServer/event/BOpcUaServerAlarmDeviceExt.class
+SHA-256-Digest: HKUM9eGTvf3mgtEH9I7Xq3UX3aRqp2/xdcqPxAFkPUc=
+
+Name: com/tridium/opcUaServer/point/BOpcUaServerProxyExt.class
+SHA-256-Digest: uVms1LyYhlcoIHB7y6X3ELZ8ppnjIi8tsJN7WTypBa0=
+
+Name: com/tridium/opcUaServer/point/BOpcUaServerPointDeviceExt.class
+SHA-256-Digest: NPKIdKTlCdxt3pDxwSmTfS1ukaXYhGUlDaoXwgwei/E=
+
+Name: com/tridium/opcUaServer/BOpcUaNamespace.class
+SHA-256-Digest: e8fPWRhzk0znrXZPMRZNp6h2D+uWezqlwuJpmW7nNAs=
+
+Name: com/tridium/opcUaServer/export/BBooleanExport.class
+SHA-256-Digest: HVTgboJ0fqErRq/RU3usxsEvtenONPI9hkXC+5HxzB8=
+
+Name: com/tridium/opcUaServer/BOpcUaBuildInfo.class
+SHA-256-Digest: nTt5nlR0a/jOrte3A1aPJ7fe8mQSbl6qvgXwjs5da8c=
+
+Name: com/tridium/opcUaServer/event/BOpcUaAlarmClass.class
+SHA-256-Digest: wz6th2oCUwAOLcCwR/vorDnQ1p4AlZGDD/FV9XdCbaw=
+
+Name: com/tridium/opcUaServer/point/BIOpcUaServerPointFolder.class
+SHA-256-Digest: bfjXyP7ZwCS8hFJyKLXemp+K/wyKgJz4zCSaq1VE7II=
+
+Name: META-INF/module.xml
+SHA-256-Digest: /u1DTytJFekmbz1ZrJhZorpn6L8II1zl2VpYGBFnVpE=
+
+Name: com/tridium/opcUaServer/node/OpcUaNodeManagerListener.class
+SHA-256-Digest: 3LxUVtMYXbjo1ITxA2uLNR623+eRPxW856IMv/qp7LU=
+
+Name: com/tridium/opcUaServer/event/EventHistory.class
+SHA-256-Digest: Nq0ZcvSUmN8zZadYWyeqHRPXzL7oovJeUh399RXmi7E=
+
+Name: com/tridium/opcUaServer/node/OpcUaIoManagerListener.class
+SHA-256-Digest: LqJN+x/TohCpvWBVWhki8iHUbakRXXUqxUeZOOK3Shc=
+
+Name: com/tridium/opcUaServer/node/INodeManagerListener.class
+SHA-256-Digest: YInCYyuDPfTUATBIAARpArKQhQPFOD0bIa8lLzASsZA=
+
+Name: com/tridium/opcUaServer/point/BOpcUaServerPointFolder.class
+SHA-256-Digest: D5dD0ec1zxH4/aO1KT9OWL+ZKY/IYpjd3yiv5s1A5fE=
+
+Name: com/tridium/opcUaServer/event/BOpcUaAlarmSource.class
+SHA-256-Digest: Th2cgCPt/ZvaYNOSEE/XxlhYsUVxBy3k+rervrdaIFg=
+
+Name: com/tridium/opcUaServer/BOpcUaServerSession.class
+SHA-256-Digest: zTAQo9dKVfxe2yxEkzkQfo2FOHiy7TOBz0wnyDsZFwI=
+
+Name: com/tridium/opcUaServer/authn/OpcUaLoginModule.class
+SHA-256-Digest: u2WuQVDj03MkKa4UHA/7HnGTGJLGPApPHLAaAjTJZGk=
+
+Name: com/tridium/opcUaServer/history/OpcUaHistorian.class
+SHA-256-Digest: u/s4HIZeiYbWfXxZQi9VgWsPbjBiTG1oHd/omSd+gtY=
+
+Name: com/tridium/opcUaServer/export/BNumericExport.class
+SHA-256-Digest: 01h9ym5CQj61FCtSLs+06P0sqDaSHWqUTebxXdqGbzQ=
+
+Name: com/tridium/opcUaServer/event/EventHistory$1.class
+SHA-256-Digest: F5BdeFP/kn/jTapxzmoqNT7MiKY6u5WH5oDICHfDfcU=
+
+Name: com/tridium/opcUaServer/util/OpcUaServerCertificateValidator$1.cla
+ ss
+SHA-256-Digest: iZG4qhAqBj7sukwBxyka5DwkDwtejZW9/inYfByz7CU=
+
+Name: com/tridium/opcUaServer/export/BEnumExport.class
+SHA-256-Digest: ry72/yb8gF27RXDyn+rDMTNlHnR9A0VcZ347IrjJAuY=
+
+Name: com/tridium/opcUaServer/BOpcUaServer.class
+SHA-256-Digest: Bk/QDt6YKKrFATNOOZTki0q04DF19aRN3MO+IEL3z8Q=
+
+Name: com/tridium/opcUaServer/history/ValueHistory.class
+SHA-256-Digest: Kw+lDPRT9iYdIHZEzfCL2yV7dqD74Yyxk3q9ohUePis=
+
+Name: com/tridium/opcUaServer/event/BOpcUaAlarmRecipient.class
+SHA-256-Digest: +kr5OUmoO31NoNYwFSiCH4rknW4Jna65Z2frcLnUkvs=
+
+Name: com/tridium/opcUaServer/learn/BOpcUaServerLearnDevicesJob.class
+SHA-256-Digest: c5dNabrrqpG/NLjWfH0lYBJEs+0u2qiNA7jImOOkuJw=
+
+Name: com/tridium/opcUaServer/point/BOpcUaServerPointDiscoveryPreference
+ s.class
+SHA-256-Digest: 9uNb6lYlrMc9U3MFIqWYkM0ge3AEYOno/9vK8okhoHo=
+
+Name: com/tridium/opcUaServer/enums/BImportExport.class
+SHA-256-Digest: ep9klyMyGtWPjpA+dMw0/FRIVtCDDeGRaUstSYt2x+M=
+
+Name: com/tridium/opcUaServer/export/BStringExport.class
+SHA-256-Digest: 1bUKXHpvOAwzl23W5NDSZGjEfE6gPgz6Qsn8Adgf3lM=
+
+Name: com/tridium/opcUaServer/point/BOpcUaServerPointDiscoveryJob$OpcUaP
+ tDiscJobThread.class
+SHA-256-Digest: 956rXDS5CHyJ0ScOXEJh2gwXfZ+ZDg+JoNJdawR+owE=
+
+Name: com/tridium/opcUaServer/authn/BOpcUaCallbackHandler.class
+SHA-256-Digest: HQtacTBuIBOtEXAH9f+c4zjybLd/NWDj7fy7W3jSnzk=
+
+Name: com/tridium/opcUaServer/export/BIOpcExport.class
+SHA-256-Digest: hQZ3C+jhPUJx/L3SDtyiHOkHYRPWNp2VRqBt40y5JOE=
+
+Name: com/tridium/opcUaServer/util/OpcUaServerCertificateValidator.class
+SHA-256-Digest: HQoCea1mfFiLtgn8sQiBEbWhKmmAeMOA4PBEu5wH7ec=
+
+Name: com/tridium/opcUaServer/point/BOpcUaServerLearnPointEntry.class
+SHA-256-Digest: KaRQjd+9At9pd0IA4YzZyk1eGgVRBW2XKXngjYdMmwA=
+

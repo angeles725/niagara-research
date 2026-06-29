@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bajaObjectGraph version="1.0">
+<p m="b=baja" t="b:UnrestrictedFolder">
+
+ <p n="OpcUaServer" m="x=opcUaServer" t="x:OpcUaServer"/>
+ <p n="OpcUaNamespace" t="x:OpcUaNamespace"/>
+ <p n="OpcUaServerDeviceFolder" t="x:OpcUaServerDeviceFolder"/>
+
+ <p n="OpcUaServerPointFolder" t="x:OpcUaServerPointFolder"/>
+ 
+ <p n="OpcUaAlarmClass" t="x:OpcUaAlarmClass"/>
+ <p n="OpcUaAlarmRecipient" t="x:OpcUaAlarmRecipient"/>
+ 
+ <p n="OpcUaAuthenticationScheme" t= "x:OpcUaAuthenticationScheme"/>
+
+</p>
+</bajaObjectGraph>

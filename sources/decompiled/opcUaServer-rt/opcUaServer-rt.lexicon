@@ -1,0 +1,39 @@
+# @author    Andrew Saunders
+# @creation  Oct 2016
+help.guide.base=module://docOpcUa/doc
+
+alarm.returnToNormal=Return to normal, value = {0}
+alarm.levelExceeded={0} exceeded, value = {1}
+alarm.discrete={0} state, value = {1}
+namespace.error.serverNotRunning=*Error: This Server is not running.
+namespace.error.invalidPointType=*Error: Invalid point type.
+namespace.error.invalidParentPointFolder=*Error: Invalid parent point folder type.
+namespace.error=*Error: {0}
+namespace.error.exception=*Exception: {0}
+
+discoveredPoints=discoveredPoints
+point.discover.start=Starting discovery of local points for OPCUA Server
+point.discover.discovered=Local point discovery complete
+point.discover.added=Added local points to discovery table
+
+opcUaServer.authenticationDialog=OPCUA Server Authentication
+opcUaServer.authenticationMessage=Enabling Anonymous access will allow anyone(Client)\nwithout a proper credentials to connect to the Server.\nDo you want to proceed?
+opcUaServer.securityDialog=OPCUA Server Security Mode
+opcUaServer.securityMessage=By selecting the security mode as NONE, the information exchanged\nwith Client/Server can be viewed or changed by others.\nThis option can be used only if it is an isolated network.\nDo you want to proceed?
+noSecurityMode=Security Mode not selected.\nSetting default Security mode.
+noSecurityPolicy=Security Policy is not selected.\nSetting default Security Policy.
+noAuthentication=Authentication not selected.\nSetting default Authentication.
+opcUaAuthScheme=opcUaAuthScheme
+opcUaUserAuth.failure=Authentication failure for user: {0}
+opcUaUserAuth.noCallbackAgent=OPCUA callback handler agent not found for the authentication scheme: {0}
+opcUaCertAuth.failure=Authentication failure for certificate: {0}
+opcUaUser.invalid=Invalid user for OPCUA: {0}
+opcUaAuthScheme.invalid=Invalid Authentication scheme for OPCUA: {0}
+opcUaUserValidation.error=User validation failed for user identity: {0}
+opcUaAuth.callbackHandler=CallbackHandler cannot be null for username and password login
+opcuaAuth.unsupportedCallback=Provided callback handler could not handle:
+opcUaAuth.callbackError=Error handling callbacks :
+opcUaAuth.loginFail=Login failed: Invalid username or password
+opcuaAuth.userStatus=Can not login with this user
+opcUaServer.moreThanOneServer=Only one OPCUA Server allowed per station
+opcUaServer.licensed=OPCUA Server capability not licensed

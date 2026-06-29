@@ -1,0 +1,143 @@
+Manifest-Version: 1.0
+Implementation-Vendor: Tridium
+Implementation-Version: 4.14.0.162
+Sealed: true
+
+Name: com/tridium/opcUaClient/BOpcUserAuthenticationMode.class
+SHA-256-Digest: jEMH4jzby4ZbYzCkQi55RV+++iT70BCwnXbS9XHTo3w=
+
+Name: com/tridium/opcUaClient/util/OpcUaClientCertificateValidator$1.cla
+ ss
+SHA-256-Digest: WKslcswNeMu8LbLK4mhQOTX7V8Ql4XFLZ7XL2ZehhTw=
+
+Name: module.palette
+SHA-256-Digest: i2FkxDDL1hcL4Dm4974Bg+ZbVGFxMsC+DzHi9eDNRpE=
+
+Name: com/tridium/opcUaClient/point/BIOpcUaObject.class
+SHA-256-Digest: FIiJewQ7gxp+4W3y+yAiHU55A0URrjjNocshhiUEECo=
+
+Name: opcUaClient-rt.lexicon
+SHA-256-Digest: jQDYtH9corRiQeN6RLB2rUPN564lg4nnHotXFhYv/PQ=
+
+Name: com/tridium/opcUaClient/history/BOpcUaClientHistoryDiscoveryPrefer
+ ences.class
+SHA-256-Digest: J8IbGFXKECftTkHaTuh6BbiZ6dtW6S7w8Rr4z4QsX2k=
+
+Name: com/tridium/opcUaClient/util/OpcUaMonitoredDataItemUtil.class
+SHA-256-Digest: CdYKNA/EgVeN3rHrx0HzHfe27AhuwzWBdnUDX3p1H54=
+
+Name: com/tridium/opcUaClient/alarm/BOpcUaClientAlarmDeviceExt.class
+SHA-256-Digest: 4uKfjlk+F6KLBTfET+NNnRlhAMLhjORq+RW52u7IF2k=
+
+Name: com/tridium/opcUaClient/BOpcUaDevice.class
+SHA-256-Digest: 4Ldq3CP5Za5SlDlDiPwefmZINMZBe8LFKJYqLL5+o1s=
+
+Name: com/tridium/opcUaClient/alarm/BOpcUaClientDiscoverAlarmsJob.class
+SHA-256-Digest: x7CDPV2GhVeNB1GC6ziK0vFXqhTunyfdH0b/7twbaJ4=
+
+Name: com/tridium/opcUaClient/history/BOpcUaClientHistoryDeviceExt.class
+SHA-256-Digest: hDtzNfdhzROyMYe+I4WIkczyzZ4tPT35E9HSD0+FsxI=
+
+Name: com/tridium/opcUaClient/util/OpcUaClientCertificateValidator.class
+SHA-256-Digest: ZTYsfszSp9KTsvJpGH2l/ADsRuQ2K0XuuRqWWXRP6k4=
+
+Name: com/tridium/opcUaClient/point/PointUnsubscribeCmd.class
+SHA-256-Digest: 1pni7ofADyyfALFXxChFHHelhlCTvaO6ceWlAqquHNU=
+
+Name: com/tridium/opcUaClient/util/OpcUaClientListener.class
+SHA-256-Digest: cqz+VHNuBVXhZQME2BT2ep8Tw3V7/6JQ5SFjR7Oq9sw=
+
+Name: com/tridium/opcUaClient/BOpcUaBuildInfo.class
+SHA-256-Digest: a8HApjNKnXWOhEXetOxWD14gcs24/gLWj+MyPNtcYu8=
+
+Name: com/tridium/opcUaClient/alarm/BOpcUaClientAlarmSource.class
+SHA-256-Digest: 9nR8cbo6bNkOssy0o8p0Uwvt7thLtru4cKuPJ6V1Wsc=
+
+Name: com/tridium/opcUaClient/point/PointSubscribeCmd.class
+SHA-256-Digest: 7GTsG7wv3JylTa7j0rZ5oQGk4i+sEWcjo5gknoNSTxI=
+
+Name: com/tridium/opcUaClient/point/BOpcUaMethod.class
+SHA-256-Digest: z/mLizMhcXDO4euGLbePp4LyGgIBuAvtsjcQqttBc3M=
+
+Name: com/tridium/opcUaClient/util/OpcUaClientUtil.class
+SHA-256-Digest: jdtBPzVnb529x8cgVFtIgtVbVqu87cUjHim2sRdMC+c=
+
+Name: com/tridium/opcUaClient/BOpcUaNetwork.class
+SHA-256-Digest: jEnciCn65uqxuWPQqCPFQInBy07QAX/A72+llge+III=
+
+Name: META-INF/module.xml
+SHA-256-Digest: ctghQ0H0k+0gtSDB8pVTnUH9CenxXqAyPXxKp+1Pnbo=
+
+Name: com/tridium/opcUaClient/point/BOpcUaClientPointFolder.class
+SHA-256-Digest: gPzy/6CQpLKgH+rzVd6XOXsDmBRaDGohz09jCue35ak=
+
+Name: com/tridium/opcUaClient/alarm/BOpcUaClientAlarmEntry.class
+SHA-256-Digest: d2+r+1q4+H4oJ9dnV86/oOw5fkI6q0ibZ/H1C6fTaOg=
+
+Name: com/tridium/opcUaClient/util/OpcUaBulkDataItemListener.class
+SHA-256-Digest: Cqi3isUyJTeYEH+6lLG3BeoSVuAM0pMVpboW/ZeqZPE=
+
+Name: com/tridium/opcUaClient/util/OpcUaSubscriptionAliveListener.class
+SHA-256-Digest: jUJDa347tWiz6fUYxeEfcHcxR1QnBuTsane8eR+QTjk=
+
+Name: com/tridium/opcUaClient/history/BImportHistoryExt.class
+SHA-256-Digest: TJM64lQVR1+Ue9dKrUvTHCm9mOV91zwhSqlp7oXgKkQ=
+
+Name: com/tridium/opcUaClient/point/BOpcUaNodeLearnEntry.class
+SHA-256-Digest: 6S29QfCRWgiq6NXI16WbJONolpKlHHJZvRRRLcUceag=
+
+Name: com/tridium/opcUaClient/learn/BOpcUaClientLearnDevicesJob.class
+SHA-256-Digest: Kytg5X4yMSSP3C97npJnRhFeGq+a0yasPCXUqYO3egI=
+
+Name: com/tridium/opcUaClient/point/BOpcUaClientProxyExt.class
+SHA-256-Digest: MiSfAq8BeMIAkeNpM25bnXS7xwB0IM8EDtScSah4MlQ=
+
+Name: com/tridium/opcUaClient/util/MatrixUtil.class
+SHA-256-Digest: xRqELfRSddvLeZjjtUHhbfte8YU0oQhVUypDquH1G0U=
+
+Name: com/tridium/opcUaClient/util/OpcUaServerStatusListener.class
+SHA-256-Digest: 0NDaeFN76W1uggnuCrg3metfbtrL/awBMGLIqrV5H8g=
+
+Name: com/tridium/opcUaClient/point/BOpcUaObject.class
+SHA-256-Digest: p6sqG3fp2njhzJIhpDvwdXCIKfnAiCsN5GS0Uqrqleo=
+
+Name: com/tridium/opcUaClient/history/BNumericImportHistoryExt.class
+SHA-256-Digest: Eu/gaMB9p6DRwzy6Deu1pOjdmFXyDFCIaHRa6PaCgSM=
+
+Name: com/tridium/opcUaClient/message/OpcUaWriteAsyncRequest.class
+SHA-256-Digest: /GpFHtDl3YHUQ6hBKVO44n7CkvCXZ5R7cUDExSb7JMY=
+
+Name: com/tridium/opcUaClient/util/OpcUaBulkDataItemListener$DataState.c
+ lass
+SHA-256-Digest: Bs0DkrM3iF2Z24XE5EkDdR2WCTLdWoEnRNCi1c1G7xg=
+
+Name: com/tridium/opcUaClient/point/BOpcUaClientPointDiscoveryPreference
+ s.class
+SHA-256-Digest: fVW7Lrh0a4t/ie2DZAIlDdSzMS3NJ7bOvVqiX6MtkzM=
+
+Name: com/tridium/opcUaClient/point/BOpcUaClientPointDeviceExt.class
+SHA-256-Digest: 3OrHsjvaoVt+FT1HpyzFHnK8+E1LkIvcn35DKA/IMI0=
+
+Name: com/tridium/opcUaClient/point/BOpcUaLearnBase.class
+SHA-256-Digest: Q8FN5t+FAqsZ/MJljcvDLxt8khA+6fj48EuS/YFLQE0=
+
+Name: com/tridium/opcUaClient/history/BOpcUaClientHistoryImport.class
+SHA-256-Digest: pNyVyDE6Ev9Zt21h7vEHSShV6OKOUcm5FwRzoa6G1KY=
+
+Name: com/tridium/opcUaClient/learn/BOpcUaClientLearnDeviceEntry.class
+SHA-256-Digest: lhd2JMEIft3xWnJwjvGDyouZ0L1vOP+SwtqIOin5cWw=
+
+Name: com/tridium/opcUaClient/point/BOpcUaMethodProxyExt.class
+SHA-256-Digest: DdyskNK0vaF66EGQMDMaEiRRplT7UEf5/EWS31RxS3A=
+
+Name: com/tridium/opcUaClient/BOpcUaDeviceFolder.class
+SHA-256-Digest: PTxAQclyuGzUvWp/ogejjS1enZqh9yUAfcgYORFnvi0=
+
+Name: com/tridium/opcUaClient/learn/BOpcUaClientDeviceDiscoveryPreferenc
+ es.class
+SHA-256-Digest: 7NNj18a+rC9FvoaCObrp7mV5gkfcGNUSj+D0qLNmDsA=
+
+Name: com/tridium/opcUaClient/history/BOpcUaClientDiscoverHistoriesJob.c
+ lass
+SHA-256-Digest: JaqW1eRCSNBLnX3Le7RxyTDMaEtsS3r3o1XeHIXnnLU=
+

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bajaObjectGraph version="1.0">
+<p m="b=baja" t="b:UnrestrictedFolder">
+
+ <p n="OpcUaNetwork" m="x=opcUaClient" t="x:OpcUaNetwork"/>
+ <p n="OpcUaDevice" t="x:OpcUaDevice"/>
+ <p n="OpcUaDeviceFolder" t="x:OpcUaDeviceFolder"/>
+
+ <p n="OpcUaClientPointFolder" t="x:OpcUaClientPointFolder"/>
+
+</p>
+</bajaObjectGraph>
