@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<conversion>
+  <resString scp="0" ndx="8" org="Amperes" new="ampere"/>
+  <resString scp="0" ndx="9" org="milliAmperes" new="milliampere"/>
+  <resString scp="0" ndx="11" org="radians" new="radian"/>
+  <resString scp="0" ndx="13" org="radians/second" new="radians per second"/>
+  <resString scp="0" ndx="15" org="kilo-Btus" new="kilobtu"/>
+  <resString scp="0" ndx="16" org="mega-Btus" new="megabtu"/>
+  <resString scp="0" ndx="18" org="8-bit ASCII character" new=""/>
+  <resString scp="0" ndx="20" org="units" new=""/>
+  <resString scp="0" ndx="22" org="units (delta)" new=""/>
+  <resString scp="0" ndx="28" org="years" new="year"/>
+  <resString scp="0" ndx="30" org="months" new="julian month"/>
+  <resString scp="0" ndx="32" org="days" new="day"/>
+  <resString scp="0" ndx="39" org="hours" new="hour"/>
+  <resString scp="0" ndx="40" org="Minute" new="minute"/>
+  <resString scp="0" ndx="41" org="minutes" new="minute"/>
+  <resString scp="0" ndx="43" org="seconds" new="second"/>
+  <resString scp="0" ndx="45" org="kiloWatt-hours" new="kilowatt hour"/>
+  <resString scp="0" ndx="46" org="Watt-hours" new="watt hour"/>
+  <resString scp="0" ndx="48" org="liters/second" new="liters per second"/>
+  <resString scp="0" ndx="49" org="milliliters/second" new="milliliters per second"/>
+  <resString scp="0" ndx="51" org="meters" new="meter"/>
+  <resString scp="0" ndx="52" org="kilometers" new="kilometer"/>
+  <resString scp="0" ndx="53" org="micrometers (microns)" new="micrometer"/>
+  <resString scp="0" ndx="54" org="millimeters" new="millimeter"/>
+  <resString scp="0" ndx="56" org="% of full level" new="percent"/>
+  <resString scp="0" ndx="60" org="grams" new="gram"/>
+  <resString scp="0" ndx="61" org="kilograms" new="kilogram"/>
+  <resString scp="0" ndx="62" org="metric tons" new="metric ton"/>
+  <resString scp="0" ndx="63" org="milligrams" new="milligram"/>
+  <resString scp="0" ndx="65" org="Watts" new="watt"/>
+  <resString scp="0" ndx="66" org="kiloWatts" new="kilowatt"/>
+  <resString scp="0" ndx="68" org="ppm" new="parts per million"/>
+  <resString scp="0" ndx="70" org="kiloPascals" new="kilopascal"/>
+  <resString scp="0" ndx="72" org="Ohms" new="ohm"/>
+  <resString scp="0" ndx="73" org="kiloOhms" new="kilohm"/>
+  <resString scp="0" ndx="75" org="dB" new="decibel"/>
+  <resString scp="0" ndx="77" org="meters/second" new="meters per second"/>
+  <resString scp="0" ndx="85" org="code value" new=""/>
+  <resString scp="0" ndx="88" org="16-bit wide character" new=""/>
+  <resString scp="0" ndx="92" org="degrees Celsius" new="celsius"/>
+  <resString scp="0" ndx="96" org="Hours" new="hour"/>
+  <resString scp="0" ndx="97" org="Minutes" new="minute"/>
+  <resString scp="0" ndx="98" org="Seconds" new="second"/>
+  <resString scp="0" ndx="100" org="milliseconds" new="millisecond"/>
+  <resString scp="0" ndx="102" org="liters" new="liter"/>
+  <resString scp="0" ndx="103" org="kiloliters" new="kiloliter"/>
+  <resString scp="0" ndx="104" org="milliliters" new="milliliter"/>
+  <resString scp="0" ndx="106" org="Volts" new="volt"/>
+  <resString scp="0" ndx="107" org="dB microVolts" new="db microVolt"/>
+  <resString scp="0" ndx="108" org="kiloVolts" new="kilovolt"/>
+  <resString scp="0" ndx="109" org="milliVolts" new="millivolt"/>
+  <resString scp="0" ndx="110" org="% of full scale" new="percent"/>
+  <resString scp="0" ndx="112" org="Pascals" new="pascal"/>
+  <resString scp="0" ndx="113" org="dBspl" new="decibel"/>
+  <resString scp="0" ndx="115" org="Btus" new="btu"/>
+  <resString scp="0" ndx="124" org="grams/sq meter" new="grams per square meter"/>
+  <resString scp="0" ndx="129" org="file index" new=""/>
+  <resString scp="0" ndx="137" org="8-bit unsigned value" new=""/>
+  <resString scp="0" ndx="139" org="LonWorks domain index" new=""/>
+  <resString scp="0" ndx="142" org="node number" new=""/>
+  <resString scp="0" ndx="144" org="number of retries" new=""/>
+  <resString scp="0" ndx="146" org="timer code value" new=""/>
+  <resString scp="0" ndx="149" org="subnet number" new=""/>
+  <resString scp="0" ndx="153" org="boolean" new=""/>
+  <resString scp="0" ndx="156" org="LonWorks group size" new=""/>
+  <resString scp="0" ndx="169" org="count" new=""/>
+  <resString scp="0" ndx="176" org="bytes" new=""/>
+  <resString scp="0" ndx="184" org="ANSI/CEA-709.1 domain length" new=""/>
+  <resString scp="0" ndx="187" org="Hertz" new="hertz"/>
+  <resString scp="0" ndx="188" org="kiloHertz" new="kilohertz"/>
+  <resString scp="0" ndx="190" org="lux" new="lux"/>
+  <resString scp="0" ndx="195" org="hexadecimal digit" new=""/>
+  <resString scp="0" ndx="235" org="16-bit unsigned value" new=""/>
+  <resString scp="0" ndx="264" org="16-bit signed value" new=""/>
+  <resString scp="0" ndx="277" org="8-bit unsigned byte" new=""/>
+  <resString scp="0" ndx="280" org="object index" new=""/>
+  <resString scp="0" ndx="286" org="index of NV causing alarm" new=""/>
+  <resString scp="0" ndx="291" org="byte" new=""/>
+  <resString scp="0" ndx="300" org="power of 10" new=""/>
+  <resString scp="0" ndx="302" org="currency value" new=""/>
+  <resString scp="0" ndx="306" org="file byte address" new=""/>
+  <resString scp="0" ndx="308" org="number of bytes" new=""/>
+  <resString scp="0" ndx="350" org="state code" new=""/>
+  <resString scp="0" ndx="356" org="point value (float)" new=""/>
+  <resString scp="0" ndx="358" org="interpolation method code" new=""/>
+  <resString scp="0" ndx="369" org="multiplier" new=""/>
+  <resString scp="0" ndx="371" org="kilograms/cubic meter" new="kilograms per cubic meter"/>
+  <resString scp="0" ndx="372" org="revolutions/minute (RPM)" new="revolutions per minute"/>
+  <resString scp="0" ndx="375" org="degrees" new="degrees angular"/>
+  <resString scp="0" ndx="388" org="square meters" new="square meter"/>
+  <resString scp="0" ndx="393" org="Percent" new="percent"/>
+  <resString scp="0" ndx="407" org="16-bit address value" new=""/>
+  <resString scp="0" ndx="421" org="32-bit signed value" new=""/>
+  <resString scp="0" ndx="615" org="pH" new="pH"/>
+  <resString scp="0" ndx="637" org="percent obscuration" new="percent"/>
+  <resString scp="0" ndx="641" org="degrees Celsius/minute" new="degrees celsius per minute"/>
+  <resString scp="0" ndx="719" org="Numeric selector" new=""/>
+  <resString scp="0" ndx="810" org="zone number" new=""/>
+  <resString scp="0" ndx="815" org="candela" new="candela"/>
+  <resString scp="0" ndx="854" org="degrees C" new="celsius degrees"/>
+  <resString scp="0" ndx="890" org="priority value" new=""/>
+  <resString scp="0" ndx="909" org="weeks" new="week"/>
+  <resString scp="0" ndx="933" org="index" new=""/>
+  <resString scp="0" ndx="951" org="event mode number" new=""/>
+  <resString scp="0" ndx="1001" org="direction (S/N)" new=""/>
+  <resString scp="0" ndx="1004" org="direction (E/W)" new=""/>
+  <resString scp="0" ndx="1020" org="defines unit of measure" new=""/>
+  <resString scp="0" ndx="1022" org="digits to right of decimal point" new=""/>
+  <resString scp="0" ndx="1025" org="status or error during measuring period" new=""/>
+  <resString scp="0" ndx="1027" org="activation state of register" new=""/>
+  <resString scp="0" ndx="1041" org="volts AC" new="volt"/>
+  <resString scp="0" ndx="1043" org="amperes AC" new="ampere"/>
+  <resString scp="0" ndx="1055" org="nephelometric turbidity units" new="turbidity"/>
+  <resString scp="0" ndx="1097" org="ID number" new=""/>
+  <resString scp="0" ndx="1134" org="action number" new=""/>
+  <resString scp="0" ndx="1141" org="kiloJoules/kg" new="kilojoules per kilogram"/>
+  <resString scp="0" ndx="1194" org="gram/kilogram" new="grams per kilogram"/>
+  <resString scp="0" ndx="1195" org="cubic meters/hour" new="cubic meters per hour"/>
+  <resString scp="0" ndx="1201" org="location, object ID, NV member, ..." new=""/>
+  <resString scp="0" ndx="1351" org="floor number" new=""/>
+  <resString scp="0" ndx="1409" org="kJ/kg" new="kilojoule per kilogram"/>
+  <resString scp="0" ndx="2086" org="file scope" new=""/>
+  <resString scp="0" ndx="2089" org="type index" new=""/>
+  <resString scp="0" ndx="2108" org="nv index" new=""/>
+  <resString scp="0" ndx="2111" org="fblock index" new=""/>
+  <resString scp="0" ndx="2114" org="nv member number" new=""/>
+  <resString scp="0" ndx="2136" org="alarm value" new=""/>
+  <resString scp="0" ndx="3333" org="milliseconds per hour" new=""/>
+  <resString scp="0" ndx="3716" org="% of full level" new="percent"/>
+  <resString scp="0" ndx="3883" org="degrees Kelvin" new="kelvin"/>
+  <resString scp="0" ndx="3936" org="records" new=""/>
+  <resString scp="0" ndx="3939" org="bytes" new=""/>
+  <resString scp="0" ndx="3995" org="data sources" new=""/>
+  <resString scp="0" ndx="4157" org="CIE 1931 color space coordinate" new=""/>
+  <resString scp="0" ndx="5215" org="W/m2" new="watts per square meter"/>
+  <resString scp="0" ndx="5532" org="kg/h" new="kilograms per hour"/>
+</conversion>

@@ -1,0 +1,426 @@
+#
+# Lexicon for the lonworks module.
+#
+# @author    Blake M Puhak
+# @creation  06 Feb 02
+# @version   $Revision: 1$ $Date: 10/12/01 9:03:04 AM$
+#
+
+help.guide.base=module://docLonworks/doc
+distechControlsSAS=Distech Controls SAS
+
+###########################################################
+# BLocalLonDevice
+###########################################################
+nviRequest=nviRequest
+nvoStatus=nvoStatus
+
+###########################################################
+# BDynamicDevice
+###########################################################
+learnNv_=Learn Nv
+
+###########################################################
+# BLonDevicManager
+###########################################################
+
+commands.add.label=Add
+commands.add.icon=module://icons/x16/add.png
+commands.add.description=Add local Nv
+
+commands.edit.label=Edit
+commands.edit.icon=module://icons/x16/edit.png
+commands.edit.description=Edit local Nv
+
+commands.commission.label=Commission
+commands.commission.displayName={lexicon:commands.commission.label}
+commands.commission.icon=module://icons/x16/build.png
+commands.commission.description=Set all neuron config tables to default state.
+
+commands.replace.label=Replace
+commands.replace.displayName={lexicon:commands.replace.label}
+commands.replace.icon=module://icons/x16/buildSave.png
+commands.replace.description=Download all neuron config tables to a replacement device.
+
+commands.commReplace.dialog.replace.title=Replace
+commands.commReplace.dialog.commission.title=Commission
+commands.commReplace.dialog.apply=Apply
+commands.commReplace.dialog.cancel=Cancel
+commands.commReplace.dialog.servicePin=Service Pin
+commands.commReplace.dialog.summary=Neuron ID
+
+commands.learn.label=Learn
+commands.learn.description=Discover and add network devices to the database.
+
+commands.quikLearn.label=Quik Learn
+commands.quikLearn.displayName={lexicon:commands.quikLearn.label}
+commands.quikLearn.icon=module://icons/x16/apple.png\nmodule://icons/x16/badges/clock.png
+commands.quikLearn.description=Discover and add network devices and links to the database.
+
+commands.appDownLoad.label=AppDownLoad
+commands.appDownLoad.displayName={lexicon:commands.appDownLoad.label}
+commands.appDownLoad.icon=module://icons/x16/download.png
+commands.appDownLoad.description=Download application image to lon device.
+
+commands.useNetAddress.label=Use Net Subnet/Node
+commands.useNetAddress.description=Use network subnet node address for match and add operations.
+commands.useNetAddress.displayName={lexicon:commands.useNetAddress.label}
+
+commands.useDbAddress.label=Use Db Subnet/Node
+commands.useDbAddress.description=Use database subnet node address for match and add operations.
+commands.useDbAddress.displayName={lexicon:commands.useDbAddress.label}
+
+commands.clearDiscoverTable.label=Clear table
+commands.clearDiscoverTable.icon=module://icons/x16/clear.png
+commands.clearDiscoverTable.description=Clear discover table entries.
+commands.clearDiscoverTable.displayName={lexicon:commands.clearDiscoverTable.label}
+
+commands.discover.label=Discover
+commands.discover.icon=module://icons/x16/find.png
+commands.discover.description=Start the discovery process
+
+commands.execute.label=Execute
+commands.execute.icon=module://icons/x16/wrench.png
+commands.execute.description=Execute Lon Utilities Command
+
+commands.tempBridge.label=TempBridge
+commands.tempBridge.displayName={lexicon:commands.tempBridge.label}
+commands.tempBridge.icon=module://lonworks/com/tridium/lonworks/ui/icons/bridge.png
+commands.tempBridge.description=Enable or Disable routers temporary bridge mode
+
+commands.updateRouters.label=Update
+commands.updateRouters.displayName={lexicon:commands.updateRouters.label}
+commands.updateRouters.icon=module://icons/x16/wrench.png
+commands.updateRouters.description=Update router tables to match current db network configuration
+
+learnPopup=Learn
+learnPopup.unmanaged=Unmanaged Network: ignore subnet/node conflicts
+learnPopup.learnLinks=Learn Links: add links to the database
+learnPopup.upload=Upload Config: upload ncis and cps
+learnPopup.learnLinksSelected=Learn links on selected devices
+
+appDownLoad.title=Enter Download Files
+appDownLoad.appFile=Application File
+appDownLoad.xifFile=Xif File
+appDownLoad.lnmlFile=Lnml File
+appDownLoad.bind=Bind links
+appDownLoad.selectionError=You must select a file with the extension of ".{0}"
+appDownLoad.validationError=You must enter an App File.
+appDownLoad.confirmDialog.appFileMsg=This action will download {0}.
+appDownLoad.confirmDialog.xifFileMsg=This action will update device from {0}.
+appDownLoad.confirmDialog.lnmlFileMsg={lexicon:appDownLoad.confirmDialog.xifFileMsg}
+appDownLoad.confirmDialog.msg=This is an irreversible action.\nIs this the desired operation and correct file(s)?
+appDownLoad.confirmDialog.title=Confirm Application Download
+appDownload.error.mismatch.deviceType=Specified files are for different device types.
+appDownload.error.configDeviceChange.title=Confirm Manufacturer/ProgramId Change
+appDownload.error.configDeviceChange.manufacturerDifferent.text=The application is by a different Manufacturer.\nThe following devices may not be able to execute this application:\n
+appDownload.error.configDeviceChange.programIdDifferent.text=The application ProgramId is different for these devices:\n
+appDownload.error.configDeviceChange.continue=Continue operation?
+
+servicePinDialog.title=Service Pin Wait
+servicePinDialog.text=Press Service Pin
+servicePinDialog.icon=module://lonworks/com/tridium/lonworks/ui/icons/servicePin32.png
+###########################################################
+# DynamicDevice Menu
+###########################################################
+dynamicDevice.importXml.label=Import XML
+dynamicDevice.importXml.displayName={lexicon:dynamicDevice.importXml.label}
+dynamicDevice.importXml.icon=module://icons/x16/build.png
+dynamicDevice.importXml.description=Build lonDevice from lon xml file
+dynamicDevice.importXml.title=Import Xml
+
+###########################################################
+# Local Menu
+###########################################################
+localDevice.extractXif.label=ExtractXif
+localDevice.extractXif.displayName={lexicon:localDevice.extractXif.label}
+localDevice.extractXif.icon=module://icons/x16/download.png              
+localDevice.extractXif.description=Create an xif representation of the local device 
+localDevice.extractXif.title=Extract Xif                               
+                                                                     
+###########################################################
+# BLonPointManager
+###########################################################
+
+point.columnTitle.name=Name
+point.columnTitle.value=Value {Status}
+point.columnTitle.target=Target
+point.columnTitle.targetComp=Target
+point.columnTitle.targetName=Element
+point.columnTitle.enabled=Enabled   
+point.columnTitle.readValue=Read Value 
+point.columnTitle.writeValue=Write Value
+point.columnTitle.linkType=Link Type  
+point.columnTitle.faultCause=Fault Cause  
+
+learn.columnTitle.targetName=Target Name
+learn.columnTitle.elementName=Element Name
+learn.columnTitle.type=Type
+learn.columnTitle.units=Units
+
+###########################################################
+# BLonDeviceManager
+###########################################################
+device.columnTitle.name=Name
+device.columnTitle.channelId=Channel Id
+device.columnTitle.state=State
+device.columnTitle.status=Status
+device.columnTitle.subnetNode=Subnet/Node
+device.columnTitle.subnet=Subnet
+device.columnTitle.node=Node
+device.columnTitle.workDomain=Working Domain
+device.columnTitle.mfgId=Manufacturer
+device.columnTitle.programId=Program Id
+device.columnTitle.neuronId=Neuron Id
+device.columnTitle.enabled=Enabled
+device.columnTitle.faultCause=Fault Cause
+device.columnTitle.module=Module
+device.columnTitle.xmlFile=Lon Xml File
+device.columnTitle.pollFreq=Poll Freq
+
+###########################################################
+# BLonRouterManager
+###########################################################
+router.columnTitle.rtrType=Type
+router.columnTitle.rtrMode=Mode
+router.columnTitle.state=State
+router.columnTitle.nearChannelId=Near Chan
+router.columnTitle.nearAdr=Near Adr
+router.columnTitle.farChannelId=Far Chan
+router.columnTitle.farAdr=Far Adr
+router.columnTitle.neuronId=Near Neuron Id
+router.columnTitle.farNeuronId=Far Neuron Id
+
+###########################################################
+# BLonUtilitiesManager
+###########################################################
+
+menu.utilManager.label=LonUtilitiesManager
+
+lonutil.execute.label=Execute
+lonutil.execute.description=Execute the Selected Command
+
+lonutil.save.label=Save
+lonutil.save.description=Save the Displayed Text to a File.
+
+###########################################################
+# BLonLinkManager
+###########################################################
+lonlink.refresh.label=Refresh
+lonlink.refresh.displayName={lexicon:lonlink.refresh.label}
+lonlink.refresh.description=Refresh the Table.
+
+lonlink.bind.label=Bind
+lonlink.bind.displayName={lexicon:lonlink.bind.label}
+lonlink.bind.description=Bind all link(s).
+
+lonlink.selectiveBind.label=Selective Bind
+lonlink.selectiveBind.displayName={lexicon:lonlink.selectiveBind.label}
+lonlink.selectiveBind.description=Bind selected link(s).
+
+lonlink.serviceTypeText=Select Service Type
+lonlink.setServiceType.label=Set Service Type
+lonlink.setServiceType.displayName={lexicon:lonlink.setServiceType.label}
+lonlink.setServiceType.description=Set service type on selected link(s).
+
+lonlink.proxyLinkFilter.label=Hide Proxy Links
+lonlink.proxyLinkFilter.displayName={lexicon:lonlink.proxyLinkFilter.label}
+lonlink.proxyLinkFilter.description=Select to hide proxy Links
+lonlink.netLinkFilter.label=Hide Net Links
+lonlink.netLinkFilter.displayName={lexicon:lonlink.netLinkFilter.label}
+lonlink.netLinkFilter.description=Select to hide device to device links
+
+lonlink.tab.NetworkVariableLinks.name=Network Variable Links
+lonlink.tab.MessageTagLinks.name=Message Tag Links
+
+lonlink.linkTable.columns.selector=Selector
+lonlink.linkTable.columns.linkStatus=Link Status
+lonlink.linkTable.columns.hubDevice=Source Device
+lonlink.linkTable.columns.hubNv=Source Nv
+lonlink.linkTable.columns.targetDevice=Target Device
+lonlink.linkTable.columns.targetNv=Target Nv
+lonlink.linkTable.columns.linkType=Link Type
+
+lonlink.tagLinkTable.columns.linkStatus=Link Status
+lonlink.tagLinkTable.columns.outputDevice=Output Device
+lonlink.tagLinkTable.columns.outputTag=Output Tag
+lonlink.tagLinkTable.columns.inputDevice=Input Device
+lonlink.tagLinkTable.columns.inputTag=Input Tag
+lonlink.setServiceType.critical.error=Exceeded maximum targets in critical connection type.
+
+###########################################################
+# BLocalNvManager
+###########################################################
+local.nvIndex=NvIndex
+local.nvIndex.description=Index of nv in local device.
+
+local.snvtType=SnvtType
+local.snvtType.description=Standard Network Variable Type of nv
+
+local.direction=Direction
+local.direction.description=Nv direction.
+
+local.selfDoc=SelfDoc
+local.selfDoc.description=Self Doc.
+
+local.xmlFile=Lnml File
+local.xmlFile.description=Lnml File with manufacturer type definition
+
+local.xType=Type
+local.xType.description=Manufacturer type definition
+
+###########################################################
+# BChangeableNvManager
+###########################################################
+change.editNameText=Snvt name
+change.editTypeText=Snvt type
+change.editDirectionText=Snvt direction
+change.selfDocText=Nv Self Doc
+change.editType.label=Edit
+change.editType.description=Edit Nv Type
+change.updateType.label=Update
+change.updateType.description=Rewrite current NV Type to device
+
+change.update.label=Update
+change.update.description=Update device with nv type changes.
+
+changeable.columnTitle.snvt=Snvt type
+
+###########################################################
+# BLonXmlCreate
+###########################################################
+lonXmlCreate.workingDir=Working Dir
+lonXmlCreate.xifFile=Xif File
+lonXmlCreate.resDir=Resource Dir
+lonXmlCreate.zeroBased=Zero Based Arrays
+lonXmlCreate.status=Status
+lonXmlCreate.pid=Program Id
+
+lonXmlCreate.compile.label=Compile
+lonXmlCreate.compile.displayName=Compile
+lonXmlCreate.compile.icon=module://icons/x16/build.png
+
+lonXmlEngUnit.title=Engineering Unit Select
+lonXmlEngUnit.file=Resource File
+lonXmlEngUnit.scopeIndex=Scope/Index
+lonXmlEngUnit.original=Original 
+lonXmlEngUnit.newText=New Text
+lonXmlEngUnit.explain=Select desired engineering units text\nor leave blank for no units.
+
+###########################################################
+# BLonMLEditor
+###########################################################
+
+editor.type=Type
+editor.resolution=Resolution
+editor.offset=Offset
+editor.minimum=Minimum
+editor.maximum=Maximum
+editor.byteOffset=Byte Offset
+editor.bitOffset=Bit Offset
+editor.length=Length
+editor.snvtType=Snvt Type
+
+###########################################################
+# Misc
+###########################################################
+filter.clear.label=Clear Table                                            
+filter.clear.icon=module://icons/x16/eraser.png                      
+filter.clear.accelerator=C                               
+filter.clear.description=Remove all entries from the filter table
+
+lonlink.priority=Priority
+lonlink.authenticate=Authenticate
+
+addLocalDeviceError=Illegal to add second local device
+
+LonDeviceManager.displayName=Lon Device Manager
+LonPointManager.displayName=Lon Point Manager
+LonRouterManager.displayName=Lon Router Manager
+LonLinkManager.displayName=Lon Link Manager
+
+LonWbService.displayName=Lonworks Service
+LonWbService.icon=module://lonworks/com/tridium/lonworks/ui/icons/lon.png
+
+LonXmlTool.displayName=Lon Xml Tool
+LonXmlTool.icon=module://lonworks/com/tridium/lonworks/ui/icons/lnml.png
+
+manager.summary=Summary
+
+###########################################################
+# LocalizableRuntimeException text
+###########################################################
+
+learnNv.block=LearnNv blocked if XmlFile is not null.\nOperation will override imported properties.\nMust clear XmlFile and retry.
+lonComponent.notWritable=Not Writeable
+check.down=Device is down.\nCannot perform operation.
+check.disabled=Device is disabled.\nCannot perform operation.
+check.fault=Device is in fault.\nCannot perform operation.
+router.invalidConfig=Invalid channelId subnet configuration.
+
+check.add.maxNvIndex=Would exceed maximum allowed nv index.
+
+###########################################################
+# BDomainIdFE
+###########################################################
+
+DomainIdFE.length=Length:
+DomainIdFE.id=Id:
+
+###########################################################
+# BLonMfgId
+###########################################################
+LonMfgId.kaba=Kaba Benzing
+LonMfgId.andover=Schneider Electric Andover
+LonMfgId.taControl=Schneider Electric Tac Ab
+LonMfgId.groupSchneider=Schneider Electric Power
+LonMfgId.weidmuller=Schneider Elec Moeller Svea
+LonMfgId.siebe=Schneider Electric Tac Llc
+LonMfgId.jGordonDesign=Control Solutions
+LonMfgId.circon=Efficient Building Circon
+LonMfgId.staefa=Siemens Bt
+LonMfgId.homeAutomation=Eaton Electrical
+LonMfgId.hycal=Hy Cal
+LonMfgId.caradonTrend=Trend Control Systems
+LonMfgId.csi=Schneider Electric Csi
+LonMfgId.abb=Abb
+LonMfgId.electronicSystems=Johnson Controls Es Usa
+LonMfgId.svm=Abb Metering Svm
+LonMfgId.bircherGebaudeAg=Penta Control Bircher
+LonMfgId.theTraneCompany=Trane
+LonMfgId.osmonics=GeWater Technologies
+LonMfgId.kabaBenzing=Kaba Benzing52
+LonMfgId.rpRichards=Richards Zeta
+LonMfgId.honeywell37=Honeywell Inc55
+LonMfgId.magnetek=Yaskawa Electric America
+LonMfgId.tlon=IPlon
+LonMfgId.orasGroup=Oras
+LonMfgId.satronInstrumentsInc=LevecInc
+LonMfgId.reko=Warena Electronic
+LonMfgId.nodusGmbh=Ewe Tel Nodus
+LonMfgId.comtecTechnologie=Distech Controls SAS
+LonMfgId.huppeFormSonnenschutzsysteme=Huppelux Huppe Form
+LonMfgId.matsushitaElectricWorks=Panasonic Electric Works
+LonMfgId.siemensLandisStaefaKorea=Siemens BtKorea
+LonMfgId.vapacHumidityControls=Eaton Williams Vapac
+LonMfgId.australonEnterprises=Intermoco Australon
+LonMfgId.siemensLandisUsa=Siemens Bt North America
+LonMfgId.cetelab=Capelon Cetelab
+LonMfgId.schneiderElectric=Schneider Elec Lexel Merten
+LonMfgId.schneiderElectricMerten=Schneider Elec Merten Svea
+LonMfgId.zellwegerAnalytics=Honeywell Analytics
+LonMfgId.viconicsElectronics=Schneider Viconics Electronis
+
+ProgramId.invalidInput.message=Invalid input to make a ProgramId.
+SubnetNode.invalidInput.message=Invalid subnet {0} or node {1}. Valid values for subnet is 0-255 and node is 0-127.
+SubnetNode.invalidInputToDecode.message=Invalid input to decode the subnet node.
+
+NvManager.displayName=AX Nv Manager
+NvManager.icon=module://icons/x16/views/view.png
+UxNvManager.displayName=Nv Manager
+UxNvManager.icon={lexicon:NvManager.icon}
+
+NcManager.displayName=AX Nc Manager
+NcManager.icon=module://icons/x16/views/view.png
+UxNcManager.displayName=Nc Manager
+UxNcManager.icon={lexicon:NcManager.icon}

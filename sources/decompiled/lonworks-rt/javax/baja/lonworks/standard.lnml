@@ -1,0 +1,5477 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<standard type="XLonInterfaceFile">
+ <DaysOfWeekT type="XEnumDef">
+  <dayNul v="-1"/>
+  <daySun v="0"/>
+  <dayMon v="1"/>
+  <dayTue v="2"/>
+  <dayWed v="3"/>
+  <dayThu v="4"/>
+  <dayFri v="5"/>
+  <daySat v="6"/>
+ </DaysOfWeekT>
+ <DiscreteLevelsT type="XEnumDef">
+  <stOff v="0"/>
+  <stLow v="1"/>
+  <stMed v="2"/>
+  <stHigh v="3"/>
+  <stOn v="4"/>
+  <stNul v="-1"/>
+ </DiscreteLevelsT>
+ <TelcomStatesT type="XEnumDef">
+  <telNul v="-1"/>
+  <telNotinuse v="0"/>
+  <telOffhook v="1"/>
+  <telDialing v="2"/>
+  <telDialcomp v="3"/>
+  <telRingback v="4"/>
+  <telIncoming v="5"/>
+  <telRinging v="6"/>
+  <telAnswered v="7"/>
+  <telConnected v="8"/>
+  <telTalking v="9"/>
+  <telHangingup v="10"/>
+  <telHungupx v="11"/>
+  <telHold v="12"/>
+  <telUnhold v="13"/>
+  <telRelease v="14"/>
+  <telFulldup v="15"/>
+  <telBlocked v="16"/>
+  <telCwait v="17"/>
+  <telDestbusy v="18"/>
+  <telNetbusy v="19"/>
+  <telError v="20"/>
+ </TelcomStatesT>
+ <ConfigSourceT type="XEnumDef">
+  <cfgNul v="-1"/>
+  <cfgLocal v="0"/>
+  <cfgExternal v="1"/>
+ </ConfigSourceT>
+ <FileRequestT type="XEnumDef">
+  <frNul v="-1"/>
+  <frOpenToSend v="0"/>
+  <frOpenToReceive v="1"/>
+  <frCloseFile v="2"/>
+  <frCloseDeleteFile v="3"/>
+  <frDirectoryLookup v="4"/>
+  <frOpenToSendRa v="5"/>
+  <frOpenToReceiveRa v="6"/>
+ </FileRequestT>
+ <FileStatusT type="XEnumDef">
+  <fsNul v="-1"/>
+  <fsXferOk v="0"/>
+  <fsLookupOk v="1"/>
+  <fsOpenFail v="2"/>
+  <fsLookupErr v="3"/>
+  <fsXferUnderway v="4"/>
+  <fsIoErr v="5"/>
+  <fsTimeoutErr v="6"/>
+  <fsWindowErr v="7"/>
+  <fsAuthErr v="8"/>
+  <fsAccessUnavail v="9"/>
+  <fsSeekInvalid v="10"/>
+  <fsSeekWait v="11"/>
+ </FileStatusT>
+ <AlarmTypeT type="XEnumDef">
+  <alHeader v="-13"/>
+  <alFooter v="-12"/>
+  <alDebug v="-11"/>
+  <alInfo v="-10"/>
+  <alSystemInfo v="-6"/>
+  <alValueInvalid v="-5"/>
+  <alConstant v="-4"/>
+  <alOffline v="-3"/>
+  <alUnknown v="-2"/>
+  <alNul v="-1"/>
+  <alNoCondition v="0"/>
+  <alAlmCondition v="1"/>
+  <alTotSvcAlm1 v="2"/>
+  <alTotSvcAlm2 v="3"/>
+  <alTotSvcAlm3 v="4"/>
+  <alLowLmtClr1 v="5"/>
+  <alLowLmtClr2 v="6"/>
+  <alHighLmtClr1 v="7"/>
+  <alHighLmtClr2 v="8"/>
+  <alLowLmtAlm1 v="9"/>
+  <alLowLmtAlm2 v="10"/>
+  <alHighLmtAlm1 v="11"/>
+  <alHighLmtAlm2 v="12"/>
+  <alFirAlm v="13"/>
+  <alFirPreAlm v="14"/>
+  <alFirTrbl v="15"/>
+  <alFirSupv v="16"/>
+  <alFirTestAlm v="17"/>
+  <alFirTestPreAlm v="18"/>
+  <alFirEnvcompMax v="19"/>
+  <alFirMonitorCond v="20"/>
+  <alFirMaintAlert v="21"/>
+  <alFatalError v="30"/>
+  <alError v="31"/>
+  <alWarning v="32"/>
+ </AlarmTypeT>
+ <PriorityLevelT type="XEnumDef">
+  <prNul v="-1"/>
+  <prLevel0 v="0"/>
+  <prLevel1 v="1"/>
+  <prLevel2 v="2"/>
+  <prLevel3 v="3"/>
+  <pr1 v="4"/>
+  <pr2 v="5"/>
+  <pr3 v="6"/>
+  <pr4 v="7"/>
+  <pr6 v="8"/>
+  <pr8 v="9"/>
+  <pr10 v="10"/>
+  <pr16 v="11"/>
+ </PriorityLevelT>
+ <CurrencyT type="XEnumDef">
+  <cuNul v="-1"/>
+  <cuArgentinaPeso v="0"/>
+  <cuAustraliaDollar v="1"/>
+  <cuAustriaSchilling v="2"/>
+  <cuBahrainDinar v="3"/>
+  <cuBelgiumFranc v="4"/>
+  <cuBrazilCruzeiroReal v="5"/>
+  <cuBritainPound v="6"/>
+  <cuCanadaDollar v="7"/>
+  <cuCzechKoruna v="8"/>
+  <cuChilePeso v="9"/>
+  <cuChinaRenminbi v="10"/>
+  <cuColombiaPeso v="11"/>
+  <cuDenmarkKrone v="12"/>
+  <cuEcuadorSucre v="13"/>
+  <cuEuropeanCurrencyUnit v="14"/>
+  <cuFinlandMarkka v="15"/>
+  <cuFranceFranc v="16"/>
+  <cuGermanyMark v="17"/>
+  <cuGreeceDrachma v="18"/>
+  <cuHongKongDollar v="19"/>
+  <cuHungaryForint v="20"/>
+  <cuIndiaRupee v="21"/>
+  <cuIndonesiaRupiah v="22"/>
+  <cuIrelandPunt v="23"/>
+  <cuIsraelShekel v="24"/>
+  <cuItalyLira v="25"/>
+  <cuJapanYen v="26"/>
+  <cuJordanDinar v="27"/>
+  <cuKuwaitDinar v="28"/>
+  <cuLebanonPound v="29"/>
+  <cuMalaysiaRinggit v="30"/>
+  <cuMaltaLira v="31"/>
+  <cuMexicoPeso v="32"/>
+  <cuNetherlandsGuilder v="33"/>
+  <cuNewZealandDollar v="34"/>
+  <cuNorwayKrone v="35"/>
+  <cuPakistanRupee v="36"/>
+  <cuPeruNewSol v="37"/>
+  <cuPhilippinesPeso v="38"/>
+  <cuPolandZloty v="39"/>
+  <cuPortugalEscudo v="40"/>
+  <cuSaudiArabiaRiyal v="41"/>
+  <cuSingaporeDollar v="42"/>
+  <cuSlovakKoruna v="43"/>
+  <cuSouthAfricaRand v="44"/>
+  <cuSouthKoreaWon v="45"/>
+  <cuSpainPeseta v="46"/>
+  <cuSpecialDrawingRights v="47"/>
+  <cuSwedenKrona v="48"/>
+  <cuSwitzerlandFranc v="49"/>
+  <cuTaiwanDollar v="50"/>
+  <cuThailandBaht v="51"/>
+  <cuTurkeyLira v="52"/>
+  <cuUnitedArabDirham v="53"/>
+  <cuUnitedStatesDollar v="54"/>
+  <cuUruguayNewPeso v="55"/>
+  <cuVenezuelaBolivar v="56"/>
+ </CurrencyT>
+ <ObjectRequestT type="XEnumDef">
+  <rqNul v="-1"/>
+  <rqNormal v="0"/>
+  <rqDisabled v="1"/>
+  <rqUpdateStatus v="2"/>
+  <rqSelfTest v="3"/>
+  <rqUpdateAlarm v="4"/>
+  <rqReportMask v="5"/>
+  <rqOverride v="6"/>
+  <rqEnable v="7"/>
+  <rqRmvOverride v="8"/>
+  <rqClearStatus v="9"/>
+  <rqClearAlarm v="10"/>
+  <rqAlarmNotifyEnabled v="11"/>
+  <rqAlarmNotifyDisabled v="12"/>
+  <rqManualCtrl v="13"/>
+  <rqRemoteCtrl v="14"/>
+  <rqProgram v="15"/>
+  <rqClearReset v="16"/>
+  <rqReset v="17"/>
+  <rqClearLog v="18"/>
+  <rqLoadProgram v="19"/>
+  <rqRunProgram v="20"/>
+  <rqHaltProgram v="21"/>
+  <rqRestartProgram v="22"/>
+  <rqUnloadProgram v="23"/>
+  <rqStepProgram v="24"/>
+ </ObjectRequestT>
+ <LearnModeT type="XEnumDef">
+  <lnNul v="-1"/>
+  <lnRecall v="0"/>
+  <lnLearnCurrent v="1"/>
+  <lnLearnValue v="2"/>
+  <lnReportValue v="3"/>
+ </LearnModeT>
+ <OverrideT type="XEnumDef">
+  <ovNul v="-1"/>
+  <ovRetain v="0"/>
+  <ovSpecified v="1"/>
+  <ovDefault v="2"/>
+ </OverrideT>
+ <EmergT type="XEnumDef">
+  <emergNul v="-1"/>
+  <emergNormal v="0"/>
+  <emergPressurize v="1"/>
+  <emergDepressurize v="2"/>
+  <emergPurge v="3"/>
+  <emergShutdown v="4"/>
+  <emergFire v="5"/>
+ </EmergT>
+ <HvacT type="XEnumDef">
+  <hvacNul v="-1"/>
+  <hvacAuto v="0"/>
+  <hvacHeat v="1"/>
+  <hvacMrngWrmup v="2"/>
+  <hvacCool v="3"/>
+  <hvacNightPurge v="4"/>
+  <hvacPreCool v="5"/>
+  <hvacOff v="6"/>
+  <hvacTest v="7"/>
+  <hvacEmergHeat v="8"/>
+  <hvacFanOnly v="9"/>
+  <hvacFreeCool v="10"/>
+  <hvacIce v="11"/>
+  <hvacMaxHeat v="12"/>
+  <hvacEconomy v="13"/>
+  <hvacDehumid v="14"/>
+  <hvacCalibrate v="15"/>
+  <hvacEmergCool v="16"/>
+  <hvacEmergSteam v="17"/>
+  <hvacMaxCool v="18"/>
+  <hvacHvcLoad v="19"/>
+  <hvacNoLoad v="20"/>
+ </HvacT>
+ <OccupT type="XEnumDef">
+  <ocNul v="-1"/>
+  <ocOccupied v="0"/>
+  <ocUnoccupied v="1"/>
+  <ocBypass v="2"/>
+  <ocStandby v="3"/>
+ </OccupT>
+ <HvacOveridT type="XEnumDef">
+  <hvoNul v="-1"/>
+  <hvoOff v="0"/>
+  <hvoPosition v="1"/>
+  <hvoFlowValue v="2"/>
+  <hvoFlowPercent v="3"/>
+  <hvoOpen v="4"/>
+  <hvoClose v="5"/>
+  <hvoMinimum v="6"/>
+  <hvoMaximum v="7"/>
+  <hvoUnused8 v="8"/>
+  <hvoUnused9 v="9"/>
+  <hvoUnused10 v="10"/>
+  <hvoUnused11 v="11"/>
+  <hvoUnused12 v="12"/>
+  <hvoUnused13 v="13"/>
+  <hvoUnused14 v="14"/>
+  <hvoUnused15 v="15"/>
+  <hvoUnused16 v="16"/>
+  <hvoPosition1 v="17"/>
+  <hvoFlowValue1 v="18"/>
+  <hvoFlowPercent1 v="19"/>
+  <hvoOpen1 v="20"/>
+  <hvoClose1 v="21"/>
+  <hvoMinimum1 v="22"/>
+  <hvoMaximum1 v="23"/>
+  <hvoUnused24 v="24"/>
+  <hvoUnused25 v="25"/>
+  <hvoUnused26 v="26"/>
+  <hvoUnused27 v="27"/>
+  <hvoUnused28 v="28"/>
+  <hvoUnused29 v="29"/>
+  <hvoUnused30 v="30"/>
+  <hvoUnused31 v="31"/>
+  <hvoUnused32 v="32"/>
+  <hvoPosition2 v="33"/>
+  <hvoFlowValue2 v="34"/>
+  <hvoFlowPercent2 v="35"/>
+  <hvoOpen2 v="36"/>
+  <hvoClose2 v="37"/>
+  <hvoMinimum2 v="38"/>
+  <hvoMaximum2 v="39"/>
+  <hvoUnused40 v="40"/>
+  <hvoUnused41 v="41"/>
+  <hvoUnused42 v="42"/>
+  <hvoUnused43 v="43"/>
+  <hvoUnused44 v="44"/>
+  <hvoUnused45 v="45"/>
+  <hvoUnused46 v="46"/>
+  <hvoUnused47 v="47"/>
+  <hvoUnused48 v="48"/>
+ </HvacOveridT>
+ <SceneT type="XEnumDef">
+  <scNul v="-1"/>
+  <scRecall v="0"/>
+  <scLearn v="1"/>
+  <scDisplay v="2"/>
+  <scGroupOff v="3"/>
+  <scGroupOn v="4"/>
+  <scStatusOff v="5"/>
+  <scStatusOn v="6"/>
+  <scStatusMixed v="7"/>
+  <scGroupStatus v="8"/>
+  <scFlick v="9"/>
+  <scTimeout v="10"/>
+  <scTimeoutFlick v="11"/>
+  <scDelayoff v="12"/>
+  <scDelayoffFlick v="13"/>
+  <scDelayon v="14"/>
+  <scEnableGroup v="15"/>
+  <scDisableGroup v="16"/>
+  <scCleanon v="17"/>
+  <scCleanoff v="18"/>
+  <scWink v="19"/>
+  <scReset v="20"/>
+  <scMode1 v="21"/>
+  <scMode2 v="22"/>
+  <scMode3 v="23"/>
+ </SceneT>
+ <SceneConfigT type="XEnumDef">
+  <scfNul v="-1"/>
+  <scfSave v="0"/>
+  <scfClear v="1"/>
+  <scfReport v="2"/>
+  <scfSize v="3"/>
+  <scfFree v="4"/>
+ </SceneConfigT>
+ <SettingT type="XEnumDef">
+  <setNul v="-1"/>
+  <setOff v="0"/>
+  <setOn v="1"/>
+  <setDown v="2"/>
+  <setUp v="3"/>
+  <setStop v="4"/>
+  <setState v="5"/>
+ </SettingT>
+ <EvapT type="XEnumDef">
+  <evapNul v="-1"/>
+  <evapNoCooling v="0"/>
+  <evapCooling v="1"/>
+  <evapEmergCooling v="2"/>
+ </EvapT>
+ <ThermModeT type="XEnumDef">
+  <thermNul v="-1"/>
+  <thermNoControl v="0"/>
+  <thermInOut v="1"/>
+  <thermModulating v="2"/>
+ </ThermModeT>
+ <DefrostModeT type="XEnumDef">
+  <dfmNul v="-1"/>
+  <dfmModeAmbient v="0"/>
+  <dfmModeForced v="1"/>
+  <dfmModeSync v="2"/>
+ </DefrostModeT>
+ <DefrostTermT type="XEnumDef">
+  <dftNul v="-1"/>
+  <dftTermTemp v="0"/>
+  <dftTermTime v="1"/>
+  <dftTermFirst v="2"/>
+  <dftTermLast v="3"/>
+  <dftTermSensor v="4"/>
+  <dftTermDischarge v="5"/>
+  <dftTermReturn v="6"/>
+  <dftTermSwOpen v="7"/>
+  <dftTermSwClose v="8"/>
+  <dftTermManuf v="100"/>
+ </DefrostTermT>
+ <DefrostStateT type="XEnumDef">
+  <dfsNul v="-1"/>
+  <dfsStandby v="0"/>
+  <dfsPumpdown v="1"/>
+  <dfsDefrost v="2"/>
+  <dfsDraindown v="3"/>
+  <dfsInjectDly v="4"/>
+ </DefrostStateT>
+ <ChillerT type="XEnumDef">
+  <chlrNul v="-1"/>
+  <chlrOff v="0"/>
+  <chlrStart v="1"/>
+  <chlrRun v="2"/>
+  <chlrPreshutdn v="3"/>
+  <chlrService v="4"/>
+ </ChillerT>
+ <FireTestT type="XEnumDef">
+  <ftNul v="-1"/>
+  <ftNormal v="0"/>
+  <ftReset v="1"/>
+  <ftTest v="2"/>
+  <ftNotest v="3"/>
+ </FireTestT>
+ <FireInitiatorT type="XEnumDef">
+  <fiNul v="-1"/>
+  <fiUndefined v="0"/>
+  <fiThermalFixed v="1"/>
+  <fiSmokeIon v="2"/>
+  <fiMultiIonThermal v="3"/>
+  <fiSmokePhoto v="4"/>
+  <fiMultiPhotoThermal v="5"/>
+  <fiMultiPhotoIon v="6"/>
+  <fiMultiPhotoIonThermal v="7"/>
+  <fiThermalRor v="8"/>
+  <fiMultiThermalRor v="9"/>
+  <fiManualPull v="10"/>
+  <fiWaterFlow v="11"/>
+  <fiWaterFlowTamper v="12"/>
+  <fiStatusOnly v="13"/>
+  <fiManualCall v="14"/>
+  <fiFiremanCall v="15"/>
+  <fiUniversal v="16"/>
+ </FireInitiatorT>
+ <FireIndicatorT type="XEnumDef">
+  <fnNul v="-1"/>
+  <fnUndefined v="0"/>
+  <fnStrobeU v="1"/>
+  <fnStrobeS v="2"/>
+  <fnHorn v="3"/>
+  <fnChime v="4"/>
+  <fnBell v="5"/>
+  <fnSounder v="6"/>
+  <fnSpeaker v="7"/>
+  <fnUniversal v="8"/>
+ </FireIndicatorT>
+ <CalendarTypeT type="XEnumDef">
+  <calNul v="-1"/>
+  <calGreg v="0"/>
+  <calJul v="1"/>
+  <calMeu v="2"/>
+ </CalendarTypeT>
+ <RegValUnitT type="XEnumDef">
+  <rvuNul v="-1"/>
+  <rvuNone v="0"/>
+  <rvuW v="1"/>
+  <rvuKw v="2"/>
+  <rvuMw v="3"/>
+  <rvuGw v="4"/>
+  <rvuVar v="5"/>
+  <rvuKvar v="6"/>
+  <rvuMvar v="7"/>
+  <rvuGvar v="8"/>
+  <rvuWh v="9"/>
+  <rvuKwh v="10"/>
+  <rvuMwh v="11"/>
+  <rvuGwh v="12"/>
+  <rvuVarh v="13"/>
+  <rvuKvarh v="14"/>
+  <rvuMvarh v="15"/>
+  <rvuGvarh v="16"/>
+  <rvuV v="17"/>
+  <rvuA v="18"/>
+  <rvuCosf v="19"/>
+  <rvuM3 v="20"/>
+  <rvuL v="21"/>
+  <rvuMl v="22"/>
+  <rvuUsgal v="23"/>
+  <rvuGj v="24"/>
+  <rvuMj v="25"/>
+  <rvuMcal v="26"/>
+  <rvuKcal v="27"/>
+  <rvuMbtu v="28"/>
+  <rvuKbtu v="29"/>
+  <rvuMjh v="30"/>
+  <rvuMls v="31"/>
+  <rvuLs v="32"/>
+  <rvuM3S v="33"/>
+  <rvuC v="34"/>
+  <rvuLh v="35"/>
+  <rvuVa v="36"/>
+  <rvuKva v="37"/>
+  <rvuMva v="38"/>
+  <rvuGva v="39"/>
+  <rvuVah v="40"/>
+  <rvuKvah v="41"/>
+  <rvuMvah v="42"/>
+  <rvuGvah v="43"/>
+ </RegValUnitT>
+ <HvacHvtT type="XEnumDef">
+  <hvtNul v="-1"/>
+  <hvtGeneric v="0"/>
+  <hvtFanCoil v="1"/>
+  <hvtVav v="2"/>
+  <hvtHeatPump v="3"/>
+  <hvtRooftop v="4"/>
+  <hvtUnitVent v="5"/>
+  <hvtChillCeil v="6"/>
+  <hvtRadiator v="7"/>
+  <hvtAhu v="8"/>
+  <hvtSelfCont v="9"/>
+ </HvacHvtT>
+ <ControlRespT type="XEnumDef">
+  <ctrlrNul v="-1"/>
+  <ctrlrNo v="0"/>
+  <ctrlrPend v="1"/>
+  <ctrlrRel v="2"/>
+  <ctrlrQuery v="3"/>
+  <ctrlrRes v="4"/>
+  <ctrlrErr v="5"/>
+ </ControlRespT>
+ <PanDirT type="XEnumDef">
+  <panNul v="-1"/>
+  <panStop v="0"/>
+  <panRight v="1"/>
+  <panLeft v="2"/>
+ </PanDirT>
+ <TiltDirT type="XEnumDef">
+  <tiltNul v="-1"/>
+  <tiltStop v="0"/>
+  <tiltUp v="1"/>
+  <tiltDown v="2"/>
+ </TiltDirT>
+ <ZoomT type="XEnumDef">
+  <zoomNul v="-1"/>
+  <zoomStop v="0"/>
+  <zoomTele v="1"/>
+  <zoomWide v="2"/>
+ </ZoomT>
+ <PrivacyzoneT type="XEnumDef">
+  <pzNul v="-1"/>
+  <pzDisable v="0"/>
+  <pzEnable v="1"/>
+  <pzUpperLeft v="2"/>
+  <pzLowerRight v="3"/>
+  <pzEnter v="4"/>
+  <pzExit v="5"/>
+ </PrivacyzoneT>
+ <CamFuncT type="XEnumDef">
+  <cmfNul v="-1"/>
+  <cmfRel v="0"/>
+  <cmfTour v="1"/>
+  <cmfAbs v="2"/>
+ </CamFuncT>
+ <CamActT type="XEnumDef">
+  <cmaNul v="-1"/>
+  <cmaSave v="0"/>
+  <cmaCall v="1"/>
+  <cmaRead v="2"/>
+ </CamActT>
+ <GfciStatusT type="XEnumDef">
+  <gfciNul v="-1"/>
+  <gfciUnknown v="0"/>
+  <gfciNormal v="1"/>
+  <gfciTripped v="2"/>
+  <gfciTestFailed v="3"/>
+  <gfciTestPassed v="4"/>
+  <gfciTestNow v="5"/>
+ </GfciStatusT>
+ <MotorStateT type="XEnumDef">
+  <motorNul v="-1"/>
+  <motorStopped v="0"/>
+  <motorStarting v="1"/>
+  <motorAccelerating v="2"/>
+  <motorAtStandby v="3"/>
+  <motorAtNormal v="4"/>
+  <motorAtReference v="5"/>
+  <motorDecelerating v="6"/>
+  <motorStopping v="7"/>
+ </MotorStateT>
+ <BooleanT type="XEnumDef">
+  <boolNul v="-1"/>
+  <boolFalse v="0"/>
+  <boolTrue v="1"/>
+ </BooleanT>
+ <ExControlT type="XEnumDef">
+  <exControlNul v="-1"/>
+  <exControlNone v="0"/>
+  <exControlOther v="1"/>
+  <exControlThisAddr v="2"/>
+ </ExControlT>
+ <UnitTempT type="XEnumDef">
+  <tempNul v="-1"/>
+  <tempInactive v="0"/>
+  <tempAtDesired v="1"/>
+  <tempTooHot v="2"/>
+  <tempTooCold v="3"/>
+ </UnitTempT>
+ <DeviceCModeT type="XEnumDef">
+  <dcmNul v="-1"/>
+  <dcmSpeedConst v="0"/>
+  <dcmPressConst v="1"/>
+  <dcmPressComp v="2"/>
+  <dcmFlowConst v="3"/>
+  <dcmFlowComp v="4"/>
+  <dcmTempConst v="5"/>
+  <dcmTempComp v="6"/>
+  <dcmPressAuto v="7"/>
+  <dcmQuickOpen v="20"/>
+  <dcmLinear v="21"/>
+  <dcmEqualPercent v="22"/>
+  <dcmQuadratic v="23"/>
+  <dcmFreeDefined v="24"/>
+  <dcm2WayValve v="27"/>
+  <dcmMixingValve v="28"/>
+  <dcmDivertingValve v="29"/>
+  <dcmInvfncQckOpn v="30"/>
+  <dcmInvfncEqlPerc v="31"/>
+  <dcmInvfncQuad v="32"/>
+ </DeviceCModeT>
+ <ValveModeT type="XEnumDef">
+  <valveNul v="-1"/>
+  <valveNormal v="0"/>
+  <valveCooling v="1"/>
+  <valveHeating v="2"/>
+  <valveEmergency v="3"/>
+  <valveStrokeAdp v="4"/>
+  <valveStrokeSyn v="5"/>
+  <valveError v="6"/>
+  <valveOverridden v="7"/>
+ </ValveModeT>
+ <NvTypeCategoryT type="XEnumDef">
+  <nvtCatNul v="-1"/>
+  <nvtCatInitial v="0"/>
+  <nvtCatSignedChar v="1"/>
+  <nvtCatUnsignedChar v="2"/>
+  <nvtCatSignedShort v="3"/>
+  <nvtCatUnsignedShort v="4"/>
+  <nvtCatSignedLong v="5"/>
+  <nvtCatUnsignedLong v="6"/>
+  <nvtCatEnum v="7"/>
+  <nvtCatArray v="8"/>
+  <nvtCatStruct v="9"/>
+  <nvtCatUnion v="10"/>
+  <nvtCatBitfield v="11"/>
+  <nvtCatFloat v="12"/>
+  <nvtCatSignedQuad v="13"/>
+  <nvtCatReference v="14"/>
+  <nvtCatUnsignedQuad v="15"/>
+  <nvtCatDoubleFloat v="16"/>
+  <nvtCatSignedInt64 v="17"/>
+  <nvtCatUnsignedInt64 v="18"/>
+ </NvTypeCategoryT>
+ <EntOpmodeCmdT type="XEnumDef">
+  <emNul v="-1"/>
+  <emUndefined v="0"/>
+  <emAuto v="1"/>
+  <emAutoRed v="2"/>
+  <emCloseLock v="3"/>
+  <emCloseUnlock v="4"/>
+  <emExitOnly v="5"/>
+  <emOpen v="6"/>
+  <emOpenOnce v="7"/>
+  <emManual v="8"/>
+  <emFire v="9"/>
+  <emEvac v="10"/>
+  <emWeather v="11"/>
+  <emDayLocking v="12"/>
+  <emNightLocking v="13"/>
+  <emBlocked v="14"/>
+  <emService v="15"/>
+  <emEntryOnly v="16"/>
+ </EntOpmodeCmdT>
+ <EntCmdT type="XEnumDef">
+  <esNul v="-1"/>
+  <esUndefined v="0"/>
+  <esOpenPuls v="1"/>
+  <esOpen v="2"/>
+  <esClose v="3"/>
+  <esStop v="4"/>
+  <esStopResume v="5"/>
+  <esEntryReq v="6"/>
+  <esExitReq v="7"/>
+  <esKeyReq v="8"/>
+  <esSafetyExtReq v="9"/>
+  <esEmergencyReq v="10"/>
+  <esUpdateState v="11"/>
+  <esSafExtResume v="12"/>
+  <esEmergResume v="13"/>
+ </EntCmdT>
+ <FlowDirectionT type="XEnumDef">
+  <fdNul v="-1"/>
+  <fdNone v="0"/>
+  <fdOut v="1"/>
+  <fdIn v="2"/>
+  <fdAny v="3"/>
+ </FlowDirectionT>
+ <DeviceSelectT type="XEnumDef">
+  <dvNul v="-1"/>
+  <dvPumpCtrl v="0"/>
+  <dvValvePos v="1"/>
+ </DeviceSelectT>
+ <EventModeTypeT type="XEnumDef">
+  <emtNul v="-1"/>
+  <emtEndOfList v="0"/>
+  <emtScene v="1"/>
+  <emtMode v="2"/>
+  <emtLightsOn v="3"/>
+  <emtLightsOff v="4"/>
+ </EventModeTypeT>
+ <MasterSlaveT type="XEnumDef">
+  <mscNul v="-1"/>
+  <mscUnknown v="0"/>
+  <mscSlave v="1"/>
+  <mscMaster v="2"/>
+ </MasterSlaveT>
+ <FanOperationT type="XEnumDef">
+  <hvfNul v="-1"/>
+  <hvfContinuous v="0"/>
+  <hvfCycle v="1"/>
+  <hvfConCycle v="2"/>
+  <hvfCycleHeat v="3"/>
+  <hvfCycleCool v="4"/>
+ </FanOperationT>
+ <DaysOfMonthT type="XEnumDef">
+  <dmNul v="-1"/>
+  <dmEveryDay v="0"/>
+  <dmDay1 v="1"/>
+  <dmDay2 v="2"/>
+  <dmDay3 v="3"/>
+  <dmDay4 v="4"/>
+  <dmDay5 v="5"/>
+  <dmDay6 v="6"/>
+  <dmDay7 v="7"/>
+  <dmDay8 v="8"/>
+  <dmDay9 v="9"/>
+  <dmDay10 v="10"/>
+  <dmDay11 v="11"/>
+  <dmDay12 v="12"/>
+  <dmDay13 v="13"/>
+  <dmDay14 v="14"/>
+  <dmDay15 v="15"/>
+  <dmDay16 v="16"/>
+  <dmDay17 v="17"/>
+  <dmDay18 v="18"/>
+  <dmDay19 v="19"/>
+  <dmDay20 v="20"/>
+  <dmDay21 v="21"/>
+  <dmDay22 v="22"/>
+  <dmDay23 v="23"/>
+  <dmDay24 v="24"/>
+  <dmDay25 v="25"/>
+  <dmDay26 v="26"/>
+  <dmDay27 v="27"/>
+  <dmDay28 v="28"/>
+  <dmDay29 v="29"/>
+  <dmDay30 v="30"/>
+  <dmDay31 v="31"/>
+  <dmLastDayOfMonth v="32"/>
+  <dmLastSecondDay v="33"/>
+  <dmLastThirdDay v="34"/>
+  <dmLast4ThDay v="35"/>
+  <dmLast5ThDay v="36"/>
+  <dmLast6ThDay v="37"/>
+  <dmLast7ThDay v="38"/>
+  <dmLast8ThDay v="39"/>
+  <dmLast9ThDay v="40"/>
+  <dmLast10ThDay v="41"/>
+  <dmLast11ThDay v="42"/>
+  <dmLast12ThDay v="43"/>
+  <dmLast13ThDay v="44"/>
+  <dmLast14ThDay v="45"/>
+  <dmLast15ThDay v="46"/>
+  <dmLast16ThDay v="47"/>
+  <dmLast17ThDay v="48"/>
+  <dmLast18ThDay v="49"/>
+  <dmLast19ThDay v="50"/>
+  <dmLast20ThDay v="51"/>
+  <dmLast21StDay v="52"/>
+  <dmLast22NdDay v="53"/>
+  <dmLast23RdDay v="54"/>
+  <dmLast24ThDay v="55"/>
+  <dmLast25ThDay v="56"/>
+  <dmLast26ThDay v="57"/>
+  <dmLast27ThDay v="58"/>
+  <dmLast28ThDay v="59"/>
+  <dmLast29ThDay v="60"/>
+  <dmLast30ThDay v="61"/>
+  <dmFirstSun v="62"/>
+  <dmFirstMon v="63"/>
+  <dmFirstTue v="64"/>
+  <dmFirstWed v="65"/>
+  <dmFirstThu v="66"/>
+  <dmFirstFri v="67"/>
+  <dmFirstSat v="68"/>
+  <dmSecondSun v="69"/>
+  <dmSecondMon v="70"/>
+  <dmSecondTue v="71"/>
+  <dmSecondWed v="72"/>
+  <dmSecondThu v="73"/>
+  <dmSecondFri v="74"/>
+  <dmSecondSat v="75"/>
+  <dmThirdSun v="76"/>
+  <dmThirdMon v="77"/>
+  <dmThirdTue v="78"/>
+  <dmThirdWed v="79"/>
+  <dmThirdThu v="80"/>
+  <dmThirdFri v="81"/>
+  <dmThirdSat v="82"/>
+  <dmFourthSun v="83"/>
+  <dmFourthMon v="84"/>
+  <dmFourthTue v="85"/>
+  <dmFourthWed v="86"/>
+  <dmFourthThu v="87"/>
+  <dmFourthFri v="88"/>
+  <dmFourthSat v="89"/>
+  <dmFifthSun v="90"/>
+  <dmFifthMon v="91"/>
+  <dmFifthTue v="92"/>
+  <dmFifthWed v="93"/>
+  <dmFifthThu v="94"/>
+  <dmFifthFri v="95"/>
+  <dmFifthSat v="96"/>
+  <dmLastSun v="97"/>
+  <dmLastMon v="98"/>
+  <dmLastTue v="99"/>
+  <dmLastWed v="100"/>
+  <dmLastThu v="101"/>
+  <dmLastFri v="102"/>
+  <dmLastSat v="103"/>
+  <dmEverySun v="104"/>
+  <dmEveryMon v="105"/>
+  <dmEveryTue v="106"/>
+  <dmEveryWed v="107"/>
+  <dmEveryThu v="108"/>
+  <dmEveryFri v="109"/>
+  <dmEverySat v="110"/>
+  <dmEverySecondDay v="111"/>
+  <dmEveryThirdDay v="112"/>
+  <dmEveryFourthDay v="113"/>
+  <dmEveryFifthDay v="114"/>
+  <dmEverySixthDay v="115"/>
+  <dmEveryWeekday v="116"/>
+  <dmEveryWeekendDay v="117"/>
+ </DaysOfMonthT>
+ <MonthsT type="XEnumDef">
+  <mnNul v="-1"/>
+  <mnEveryMonth v="0"/>
+  <mnJan v="1"/>
+  <mnFeb v="2"/>
+  <mnMar v="3"/>
+  <mnApr v="4"/>
+  <mnMay v="5"/>
+  <mnJun v="6"/>
+  <mnJul v="7"/>
+  <mnAug v="8"/>
+  <mnSep v="9"/>
+  <mnOct v="10"/>
+  <mnNov v="11"/>
+  <mnDec v="12"/>
+  <mnEvery2Month v="13"/>
+  <mnQuarterly v="14"/>
+  <mnEvery4Month v="15"/>
+  <mnEvery5Month v="16"/>
+  <mnEvery6Month v="17"/>
+  <mnEvery7Month v="18"/>
+  <mnEvery8Month v="19"/>
+  <mnEvery9Month v="20"/>
+  <mnEvery10Month v="21"/>
+  <mnEvery11Month v="22"/>
+  <mnEveryOddMonth v="23"/>
+  <mnEveryEvenMonth v="24"/>
+ </MonthsT>
+ <!-- RAA added to support SNVT Switch -->
+ <StateT type="XEnumDef">
+  <stateOff v="0"/>
+  <stateOn v="1"/>
+  <stateNul v="-1"/>
+ </StateT>
+ <SecStatusT type="XEnumDef">
+  <sssNul v="-1"/>
+  <sssPowerUp v="0"/>
+  <sssAlarmReset v="1"/>
+  <sssAlarm v="2"/>
+  <sssTamperReset v="3"/>
+  <sssTamper v="4"/>
+  <sssMaintenance v="5"/>
+  <sssTrouble v="6"/>
+  <sssFault v="7"/>
+  <sssRecoveredSensor v="8"/>
+  <sssLostSensor v="9"/>
+  <sssPollActive v="10"/>
+  <sssPollInactive v="11"/>
+  <sssPollTamper v="12"/>
+  <sssPollOn v="13"/>
+  <sssPollOff v="14"/>
+  <sssPollInhibit v="15"/>
+  <sssPollTest v="16"/>
+  <sssConfirmOff v="17"/>
+  <sssConfirmOn v="18"/>
+  <sssConfirmInhibitReset v="19"/>
+  <sssConfirmInhibit v="20"/>
+  <sssConfirmWalkTestOff v="21"/>
+  <sssConfirmWalkTestOn v="22"/>
+  <sssConfirmTestModeOff v="23"/>
+  <sssConfirmTestModeOn v="24"/>
+  <sssConfirmUnsupported v="25"/>
+ </SecStatusT>
+ <SecStateT type="XEnumDef">
+  <sseNul v="-1"/>
+  <sseOff v="0"/>
+  <sseOn v="1"/>
+  <sseInhibitReset v="2"/>
+  <sseInhibit v="3"/>
+  <sseWalkTestOff v="4"/>
+  <sseWalkTestOn v="5"/>
+  <sseTestModeOff v="6"/>
+  <sseTestModeOn v="7"/>
+  <ssePollStatus v="8"/>
+  <ssePollState v="9"/>
+  <sseConfirmAlarmReset v="10"/>
+  <sseConfirmAlarm v="11"/>
+  <sseConfirmTamperReset v="12"/>
+  <sseConfirmTamper v="13"/>
+  <sseConfirmMaintenance v="14"/>
+  <sseConfirmTrouble v="15"/>
+  <sseConfirmFault v="16"/>
+  <sseConfirmRecoveredSensor v="17"/>
+  <sseLostSensor v="18"/>
+  <sseConfirmUnsupported v="19"/>
+ </SecStateT>
+ <IntervalOfMonthT type="XEnumDef">
+  <iomNul v="-1"/>
+  <iomMinute v="0"/>
+  <iomHour v="1"/>
+  <iomDay v="2"/>
+  <iomWeek v="3"/>
+  <iomMonth v="4"/>
+ </IntervalOfMonthT>
+ <SblndCmdSourceT type="XEnumDef">
+  <sbcsNul v="-1"/>
+  <sbcsLocal v="0"/>
+  <sbcsGroup v="1"/>
+  <sbcsWindSpeed v="2"/>
+  <sbcsSunLux v="3"/>
+  <sbcsRain v="4"/>
+  <sbcsFrost v="5"/>
+  <sbcsDawn v="6"/>
+  <sbcsDusk v="7"/>
+  <sbcsOutsideTemp v="8"/>
+  <sbcsIndoorTemp v="9"/>
+  <sbcsOutdoorRh v="10"/>
+  <sbcsIndoorRh v="11"/>
+  <sbcsIllumLevel v="12"/>
+  <sbcsScene v="13"/>
+  <sbcsGlobal v="14"/>
+  <sbcsWindowContact v="15"/>
+  <sbcsAutomodeChanged v="16"/>
+  <sbcsOverride v="17"/>
+  <sbcsEmergency v="18"/>
+  <sbcsMaintenance v="19"/>
+  <sbcsIntrusion v="20"/>
+  <sbcsTerminalLoad v="21"/>
+  <sbcsAlarm v="22"/>
+  <sbcsOccSensor v="23"/>
+  <sbcsOccManCmd v="24"/>
+  <sbcsGlare v="25"/>
+  <sbcsAlarm2 v="26"/>
+  <sbcsNotify v="27"/>
+  <sbcsElevation v="28"/>
+  <sbcsAzimuth v="29"/>
+  <sbcsSetOverride v="30"/>
+  <sbcsSetMaintenance v="31"/>
+  <sbcsTimer v="32"/>
+  <sbcsUnknown v="127"/>
+ </SblndCmdSourceT>
+ <SblndErrorT type="XEnumDef">
+  <sbeNul v="-1"/>
+  <sbeNoError v="0"/>
+  <sbeInProgress v="1"/>
+  <sbeLimits v="2"/>
+  <sbeObstacleUp v="3"/>
+  <sbeObstacleDown v="4"/>
+  <sbeOverheat v="5"/>
+  <sbePower v="6"/>
+  <sbeSensor v="7"/>
+  <sbeMotorCircuit v="8"/>
+  <sbeFuse v="9"/>
+  <sbeReferenceLost v="10"/>
+  <sbeHostComm v="11"/>
+  <sbeVoltage1 v="12"/>
+  <sbeVoltage2 v="13"/>
+  <sbeController v="14"/>
+ </SblndErrorT>
+ <RailAudioSensorTypeT type="XEnumDef">
+  <rastNul v="-1"/>
+  <rastCuType1 v="0"/>
+  <rastCuType2 v="1"/>
+  <rastCuType3 v="2"/>
+  <rastCuType4 v="3"/>
+  <rastLsLine1 v="4"/>
+  <rastLsLine2 v="5"/>
+  <rastLsLine3 v="6"/>
+  <rastLsLine4 v="7"/>
+  <rastLsLine5 v="8"/>
+  <rastLsLine6 v="9"/>
+  <rastLsLine7 v="10"/>
+  <rastLsLine8 v="11"/>
+  <rastPau v="12"/>
+  <rastCfaType1 v="13"/>
+  <rastCfaType2 v="14"/>
+  <rastCfaType3 v="15"/>
+  <rastCfaType4 v="16"/>
+  <rastDva v="17"/>
+  <rastEtType1 v="18"/>
+  <rastEtType2 v="19"/>
+  <rastUserdefType1 v="20"/>
+  <rastUserdefType2 v="21"/>
+  <rastUserdefType3 v="22"/>
+  <rastUserdefType4 v="23"/>
+ </RailAudioSensorTypeT>
+ <RailAudioTypeT type="XEnumDef">
+  <ratNul v="-1"/>
+  <ratIcReq v="0"/>
+  <ratIcJoin v="1"/>
+  <ratIcQuit v="2"/>
+  <ratIcEnd v="3"/>
+  <ratHwRadioReq v="4"/>
+  <ratHwRadioEnd v="5"/>
+  <ratHwPaReq v="6"/>
+  <ratHwPaEnd v="7"/>
+  <ratSwPaReq v="8"/>
+  <ratSwPaEnd v="9"/>
+  <ratSwPaOrReq v="10"/>
+  <ratSwPaOrEnd v="11"/>
+  <ratPauReq v="12"/>
+  <ratPauAccept v="13"/>
+  <ratPauCall v="14"/>
+  <ratPauEnd v="15"/>
+  <ratEntertReq v="16"/>
+  <ratEntertEnd v="17"/>
+ </RailAudioTypeT>
+ <ApplCwcT type="XEnumDef">
+  <cwcNul v="-1"/>
+  <cwcWash v="0"/>
+  <cwcRinse v="1"/>
+  <cwcSpin v="2"/>
+  <cwcDry v="3"/>
+ </ApplCwcT>
+ <ApplCwsT type="XEnumDef">
+  <cwsNul v="-1"/>
+  <cwsLoadSensing v="0"/>
+  <cwsWetting v="1"/>
+  <cwsDetergent v="2"/>
+  <cwsWashing v="3"/>
+  <cwsWatering v="4"/>
+  <cwsRinsing v="5"/>
+  <cwsArranging v="6"/>
+  <cwsDrain v="7"/>
+  <cwsSpinning v="8"/>
+  <cwsFinalSpinning v="9"/>
+  <cwsFluffing v="10"/>
+  <cwsDrying v="11"/>
+  <cwsCooling v="12"/>
+ </ApplCwsT>
+ <ApplCwpT type="XEnumDef">
+  <cwpNul v="-1"/>
+  <cwpGeneral v="0"/>
+  <cwpBoil v="1"/>
+  <cwpFastWash v="2"/>
+  <cwpLingerie v="3"/>
+  <cwpWool v="4"/>
+  <cwpTowel v="5"/>
+  <cwpBedLinens v="6"/>
+  <cwpCurtain v="7"/>
+  <cwpRinseSpinOnly v="8"/>
+  <cwpDelicateRinse v="9"/>
+  <cwpSpinOnly v="10"/>
+  <cwpDryOnly v="11"/>
+ </ApplCwpT>
+ <ApplRinT type="XEnumDef">
+  <rinNul v="-1"/>
+  <rinPreWash v="0"/>
+  <rinWaterPlus v="1"/>
+  <rinDetergentPlus v="2"/>
+  <rinRinseHold v="3"/>
+ </ApplRinT>
+ <AhamApplT type="XEnumDef">
+  <ahamNul v="-1"/>
+  <ahamClothesWasher v="0"/>
+  <ahamRefrigeratorFreezer v="1"/>
+  <ahamClothesDryer v="2"/>
+  <ahamDishwasher v="3"/>
+  <ahamRangeOvenCooktop v="4"/>
+  <ahamCountertopMicrowaveOven v="5"/>
+  <ahamRoomAirConditioner v="6"/>
+ </AhamApplT>
+ <ButtonActionT type="XEnumDef">
+  <btaNul v="-1"/>
+  <btaToggleState v="0"/>
+  <btaToggleScene v="1"/>
+  <btaSetStateOn v="2"/>
+  <btaRecallScene v="3"/>
+  <btaSetStateOff v="4"/>
+  <btaSetOccupied v="5"/>
+  <btaClearOccupied v="6"/>
+  <btaSetUnoccupied v="7"/>
+  <btaClearUnoccupied v="8"/>
+  <btaSetLevel v="9"/>
+  <btaSetUpDirection v="10"/>
+  <btaSetDownDirection v="11"/>
+  <btaIncrease v="12"/>
+  <btaDecrease v="13"/>
+  <btaCycle v="14"/>
+  <btaRotateOpen v="15"/>
+  <btaRotateClosed v="16"/>
+  <btaSetAngle v="17"/>
+  <btaToggleDirection v="18"/>
+  <btaToggleOccupancy v="19"/>
+  <btaLearnScene v="20"/>
+  <btaSetStandby v="21"/>
+  <btaClearStandby v="22"/>
+  <btaToggleStandby v="23"/>
+  <btaSetFanOn v="24"/>
+  <btaSetFanOff v="25"/>
+  <btaToggleFanState v="26"/>
+  <btaIncreaseFanLevel v="27"/>
+  <btaDecreaseFanLevel v="28"/>
+  <btaCycleFanLevel v="29"/>
+  <btaMoveOpen v="30"/>
+  <btaMoveClosed v="31"/>
+  <btaSetPosition v="32"/>
+  <btaStop v="33"/>
+  <btaToggleGroup v="34"/>
+  <btaEnableGroup v="35"/>
+  <btaDisableGroup v="36"/>
+  <btaIncreaseHue v="37"/>
+  <btaDecreaseHue v="38"/>
+  <btaSetDrEvent v="39"/>
+  <btaClearDrEvent v="40"/>
+  <btaToggleDrEvent v="41"/>
+ </ButtonActionT>
+ <CharEncodingT type="XEnumDef">
+  <ceNul v="-1"/>
+  <ceUtf8 v="0"/>
+  <ceUtf16 v="1"/>
+  <ceGb18030 v="2"/>
+ </CharEncodingT>
+ <SettingCategoryT type="XEnumDef">
+  <catWindows v="5"/>
+  <catNul v="-1"/>
+  <catLighting v="0"/>
+  <catAudio v="1"/>
+  <catFans v="2"/>
+  <catHvac v="3"/>
+  <catVideo v="4"/>
+ </SettingCategoryT>
+ <SwitchStateT type="XEnumDef">
+  <swNul v="-1"/>
+  <swSetOff v="0"/>
+  <swSetOn v="1"/>
+  <swReportOff v="2"/>
+  <swReportOn v="3"/>
+  <swToggleState v="4"/>
+  <swSetLevel v="5"/>
+  <swIncreaseLevel v="6"/>
+  <swDecreaseLevel v="7"/>
+  <swRecallScene v="8"/>
+  <swStoreScene v="9"/>
+  <swLearnScene v="10"/>
+  <swSetOccupied v="11"/>
+  <swSetUnoccupied v="12"/>
+  <swSetMultiplier v="13"/>
+  <swEnableGroup v="14"/>
+  <swDisableGroup v="15"/>
+  <swWink v="16"/>
+  <swReset v="17"/>
+  <swResetEnergyUsage v="18"/>
+  <swResetRuntime v="19"/>
+  <swIncreaseHue v="20"/>
+  <swDecreaseHue v="21"/>
+  <swSetButton v="22"/>
+  <swSetGroupStateLevel v="23"/>
+  <swSetFanUp v="32"/>
+  <swSetFanDown v="33"/>
+  <swToggleFanDirection v="34"/>
+  <swIncreaseFanLevel v="35"/>
+  <swDecreaseFanLevel v="36"/>
+  <swSetFanOn v="37"/>
+  <swSetFanOff v="38"/>
+  <swToggleFanState v="39"/>
+  <swMoveOpen v="48"/>
+  <swMoveClosed v="49"/>
+  <swSetAngle v="50"/>
+  <swRotateOpen v="51"/>
+  <swRotateClosed v="52"/>
+  <swStop v="53"/>
+  <swSetStandby v="54"/>
+  <swToggleStandby v="55"/>
+  <swSetPosition v="56"/>
+  <swReportPosition v="57"/>
+  <swReportFanLevel v="58"/>
+ </SwitchStateT>
+ <ColorEncodingT type="XEnumDef">
+  <colorNul v="-1"/>
+  <colorCie31Lumen v="0"/>
+  <colorCie31Percent v="1"/>
+  <colorRgb v="2"/>
+  <colorTemperature v="3"/>
+ </ColorEncodingT>
+ <LogStatusT type="XEnumDef">
+  <lsNul v="-1"/>
+  <lsEnabled v="0"/>
+  <lsDisabled v="1"/>
+  <lsFull v="2"/>
+  <lsOverflowErr v="3"/>
+  <lsInvalidLogErr v="4"/>
+  <lsAppErr v="5"/>
+ </LogStatusT>
+ <LogTypeT type="XEnumDef">
+  <ltNul v="-1"/>
+  <ltCircular v="0"/>
+  <ltHistorical v="1"/>
+  <ltSnapshot v="2"/>
+ </LogTypeT>
+ <TimestampT type="XEnumDef">
+  <tsNul v="-1"/>
+  <tsFull v="0"/>
+  <tsOffset v="1"/>
+  <tsNone v="2"/>
+ </TimestampT>
+ <LogRecordT type="XEnumDef">
+  <lrNul v="-1"/>
+  <lrData v="0"/>
+  <lrLogStatus v="1"/>
+  <lrTimeChange v="2"/>
+ </LogRecordT>
+ <PointStatusT type="XEnumDef">
+  <psNul v="-1"/>
+  <psNormal v="0"/>
+  <psInAlarm v="1"/>
+  <psFault v="2"/>
+  <psOverridden v="3"/>
+  <psOutOfService v="4"/>
+ </PointStatusT>
+ <MessageCodeT type="XEnumDef">
+  <mcNul v="-1"/>
+  <mcFirstReservedCode v="48"/>
+  <mcBroadcast v="59"/>
+  <mcDataLogAccess v="60"/>
+  <mcIsi v="61"/>
+  <mcFileTransfer v="62"/>
+ </MessageCodeT>
+ <LogAccessReqT type="XEnumDef">
+  <larNul v="-1"/>
+  <larGetFirst v="0"/>
+  <larGetNext v="1"/>
+  <larClear v="2"/>
+ </LogAccessReqT>
+ <LogResponseCodeT type="XEnumDef">
+  <lrcNul v="-1"/>
+  <lrcSuccess v="48"/>
+  <lrcEndOfLog v="49"/>
+  <lrcVerMismatch v="50"/>
+  <lrcBadRequest v="51"/>
+  <lrcBadLogIndex v="52"/>
+ </LogResponseCodeT>
+ <AddressTypeT type="XEnumDef">
+  <daNul v="-1"/>
+  <daSn v="1"/>
+  <daNi v="2"/>
+ </AddressTypeT>
+ <OlcSelectT type="XEnumDef">
+  <olcNul v="-1"/>
+  <olcDefault v="0"/>
+  <olcRelay v="1"/>
+  <olcEcoMode v="2"/>
+  <OLC1To10 v="3"/>
+  <olcDali v="4"/>
+ </OlcSelectT>
+ <ProgramStateT type="XEnumDef">
+  <prsNul v="-1"/>
+  <prsNoProgram v="0"/>
+  <prsIdle v="1"/>
+  <prsLoading v="2"/>
+  <prsRunning v="3"/>
+  <prsHalted v="4"/>
+  <prsUnloading v="5"/>
+ </ProgramStateT>
+ <FileTypeT type="XEnumDef">
+  <fileNul v="-1"/>
+  <fileValue v="1"/>
+  <fileTemplate v="2"/>
+  <fileDatalog v="3"/>
+  <fileProgram v="4"/>
+ </FileTypeT>
+ <ProgramStatusErrorT type="XEnumDef">
+  <pseNul v="-1"/>
+  <pseNoError v="0"/>
+  <pseProgramFaultNohalt v="1"/>
+  <pseInvalidOperationNohalt v="2"/>
+  <pseInvalidParameterNohalt v="3"/>
+  <pseStackOverflowNohalt v="4"/>
+  <pseStackUnderflowNohalt v="5"/>
+  <pseInsufficientMemoryNohalt v="6"/>
+  <pseWatchdogNohalt v="7"/>
+  <pseUnknownErrorNohalt v="31"/>
+  <pseLoadErrorHalt v="32"/>
+  <pseProgramFaultHalt v="33"/>
+  <pseInvalidOperationHalt v="34"/>
+  <pseInvalidParameterHalt v="35"/>
+  <pseStackOverflowHalt v="36"/>
+  <pseStackUnderflowHalt v="37"/>
+  <pseInsufficientMemoryHalt v="38"/>
+  <pseWatchdogHalt v="39"/>
+  <pseCorruptedProgramHalt v="40"/>
+  <pseUnknownErrorHalt v="63"/>
+ </ProgramStatusErrorT>
+ <TimeSourceT type="XEnumDef">
+  <tmsNul v="-1"/>
+  <tmsSchedulerNv v="0"/>
+  <tmsNodeObjectNv v="1"/>
+  <tmsSe2TimeClientNv v="2"/>
+  <tmsHardware v="3"/>
+  <tmsAlternate v="4"/>
+ </TimeSourceT>
+ <SchedulerStatusT type="XEnumDef">
+  <schNul v="-1"/>
+  <schDailySchedule v="0"/>
+  <schSchedSpecial v="1"/>
+  <schSchedException v="2"/>
+  <schLocalOccOverride v="3"/>
+  <schExceptionSchOverride v="4"/>
+  <schManualOverride v="5"/>
+  <schOther v="6"/>
+ </SchedulerStatusT>
+ <Amp type="XTypeDef">
+  <elem n="amp" qual="s16 res=0.1" engUnit="ampere"/>
+  <typeScope v="0,1"/>
+ </Amp>
+ <AmpMil type="XTypeDef">
+  <elem n="ampMil" qual="s16 res=0.1" engUnit="milliampere"/>
+  <typeScope v="0,2"/>
+ </AmpMil>
+ <Angle type="XTypeDef">
+  <elem n="angle" qual="u16 res=0.001" engUnit="radian"/>
+  <typeScope v="0,3"/>
+ </Angle>
+ <AngleVel type="XTypeDef">
+  <elem n="angleVel" qual="s16 res=0.1" engUnit="radians per second"/>
+  <typeScope v="0,4"/>
+ </AngleVel>
+ <BtuKilo type="XTypeDef">
+  <elem n="btuKilo" qual="u16" engUnit="kilobtu"/>
+  <typeScope v="0,5"/>
+ </BtuKilo>
+ <BtuMega type="XTypeDef">
+  <elem n="btuMega" qual="u16" engUnit="megabtu"/>
+  <typeScope v="0,6"/>
+ </BtuMega>
+ <CharAscii type="XTypeDef">
+  <elem n="charAscii" qual="u8"/>
+  <typeScope v="0,7"/>
+ </CharAscii>
+ <Count type="XTypeDef">
+  <elem n="count" qual="u16"/>
+  <typeScope v="0,8"/>
+ </Count>
+ <CountInc type="XTypeDef">
+  <elem n="countInc" qual="s16"/>
+  <typeScope v="0,9"/>
+ </CountInc>
+ <DateCal type="XTypeDef">
+  <elem n="year" qual="u16 max=3000.0 invld=65535.0" engUnit="year"/>
+  <elem n="month" qual="u8 max=12.0" engUnit="julian month"/>
+  <elem n="day" qual="u8 max=31.0" engUnit="day"/>
+  <typeScope v="0,10"/>
+ </DateCal>
+ <DateDay type="XTypeDef">
+  <elem n="dateDay" qual="e8" enumDef="DaysOfWeekT"/>
+  <typeScope v="0,11"/>
+ </DateDay>
+ <DateTime type="XTypeDef">
+  <elem n="hour" qual="u8 max=23.0" engUnit="hour"/>
+  <elem n="minute" qual="u8 max=59.0" engUnit="minute"/>
+  <elem n="second" qual="u8 max=59.0" engUnit="second"/>
+  <typeScope v="0,12"/>
+ </DateTime>
+ <ElecKwh type="XTypeDef">
+  <elem n="elecKwh" qual="u16" engUnit="kilowatt hour"/>
+  <typeScope v="0,13"/>
+ </ElecKwh>
+ <ElecWhr type="XTypeDef">
+  <elem n="elecWhr" qual="u16 res=0.1" engUnit="watt hour"/>
+  <typeScope v="0,14"/>
+ </ElecWhr>
+ <Flow type="XTypeDef">
+  <elem n="flow" qual="u16 invld=65535.0" engUnit="liters per second"/>
+  <typeScope v="0,15"/>
+ </Flow>
+ <FlowMil type="XTypeDef">
+  <elem n="flowMil" qual="u16" engUnit="milliliters per second"/>
+  <typeScope v="0,16"/>
+ </FlowMil>
+ <Length type="XTypeDef">
+  <elem n="length" qual="u16 res=0.1" engUnit="meter"/>
+  <typeScope v="0,17"/>
+ </Length>
+ <LengthKilo type="XTypeDef">
+  <elem n="lengthKilo" qual="u16 res=0.1" engUnit="kilometer"/>
+  <typeScope v="0,18"/>
+ </LengthKilo>
+ <LengthMicr type="XTypeDef">
+  <elem n="lengthMicr" qual="u16 res=0.1" engUnit="micrometer"/>
+  <typeScope v="0,19"/>
+ </LengthMicr>
+ <LengthMil type="XTypeDef">
+  <elem n="lengthMil" qual="u16 res=0.1" engUnit="millimeter"/>
+  <typeScope v="0,20"/>
+ </LengthMil>
+ <LevCont type="XTypeDef">
+  <elem n="levCont" qual="u8 res=0.5 max=100.0" engUnit="percent"/>
+  <typeScope v="0,21"/>
+ </LevCont>
+ <LevDisc type="XTypeDef">
+  <elem n="levDisc" qual="e8" enumDef="DiscreteLevelsT"/>
+  <typeScope v="0,22"/>
+ </LevDisc>
+ <Mass type="XTypeDef">
+  <elem n="mass" qual="u16 res=0.1" engUnit="gram"/>
+  <typeScope v="0,23"/>
+ </Mass>
+ <MassKilo type="XTypeDef">
+  <elem n="massKilo" qual="u16 res=0.1" engUnit="kilogram"/>
+  <typeScope v="0,24"/>
+ </MassKilo>
+ <MassMega type="XTypeDef">
+  <elem n="massMega" qual="u16 res=0.1" engUnit="metric ton"/>
+  <typeScope v="0,25"/>
+ </MassMega>
+ <MassMil type="XTypeDef">
+  <elem n="massMil" qual="u16 res=0.1" engUnit="milligram"/>
+  <typeScope v="0,26"/>
+ </MassMil>
+ <Power type="XTypeDef">
+  <elem n="power" qual="u16 res=0.1" engUnit="watt"/>
+  <typeScope v="0,27"/>
+ </Power>
+ <PowerKilo type="XTypeDef">
+  <elem n="powerKilo" qual="u16 res=0.1" engUnit="kilowatt"/>
+  <typeScope v="0,28"/>
+ </PowerKilo>
+ <Ppm type="XTypeDef">
+  <elem n="ppm" qual="u16" engUnit="parts per million"/>
+  <typeScope v="0,29"/>
+ </Ppm>
+ <Press type="XTypeDef">
+  <elem n="press" qual="s16 res=0.1 invld=32767.0" engUnit="kilopascal"/>
+  <typeScope v="0,30"/>
+ </Press>
+ <Res type="XTypeDef">
+  <elem n="res" qual="u16 res=0.1" engUnit="ohm"/>
+  <typeScope v="0,31"/>
+ </Res>
+ <ResKilo type="XTypeDef">
+  <elem n="resKilo" qual="u16 res=0.1" engUnit="kilohm"/>
+  <typeScope v="0,32"/>
+ </ResKilo>
+ <SoundDb type="XTypeDef">
+  <elem n="soundDb" qual="s16 res=0.01" engUnit="decibel"/>
+  <typeScope v="0,33"/>
+ </SoundDb>
+ <Speed type="XTypeDef">
+  <elem n="speed" qual="u16 res=0.1" engUnit="meters per second"/>
+  <typeScope v="0,34"/>
+ </Speed>
+ <SpeedMil type="XTypeDef">
+  <elem n="speedMil" qual="u16 res=0.001" engUnit="meters per second"/>
+  <typeScope v="0,35"/>
+ </SpeedMil>
+ <StrAsc type="XTypeDef">
+  <elem n="ascii" qual="st len=31"/>
+  <typeScope v="0,36"/>
+ </StrAsc>
+ <StrInt type="XTypeDef">
+  <elem n="charSet" qual="u8"/>
+  <elem n="wideChar0" qual="u16"/>
+  <elem n="wideChar1" qual="u16"/>
+  <elem n="wideChar2" qual="u16"/>
+  <elem n="wideChar3" qual="u16"/>
+  <elem n="wideChar4" qual="u16"/>
+  <elem n="wideChar5" qual="u16"/>
+  <elem n="wideChar6" qual="u16"/>
+  <elem n="wideChar7" qual="u16"/>
+  <elem n="wideChar8" qual="u16"/>
+  <elem n="wideChar9" qual="u16"/>
+  <elem n="wideChar10" qual="u16"/>
+  <elem n="wideChar11" qual="u16"/>
+  <elem n="wideChar12" qual="u16"/>
+  <elem n="wideChar13" qual="u16"/>
+  <elem n="wideChar14" qual="u16"/>
+  <typeScope v="0,37"/>
+ </StrInt>
+ <Telcom type="XTypeDef">
+  <elem n="telcom" qual="e8" enumDef="TelcomStatesT"/>
+  <typeScope v="0,38"/>
+ </Telcom>
+ <Temp type="XTypeDef">
+  <elem n="temp" qual="u16 res=0.1 off=274.0 min=-274.0 max=6279.5" engUnit="celsius"/>
+  <typeScope v="0,39"/>
+ </Temp>
+ <TimePassed type="XTypeDef">
+  <elem n="hours" qual="u8" engUnit="hour"/>
+  <elem n="minutes" qual="u8 max=59.0" engUnit="minute"/>
+  <elem n="seconds" qual="u8 max=59.0" engUnit="second"/>
+  <elem n="milliseconds" qual="u8 res=10.0 max=990.0" engUnit="millisecond"/>
+  <typeScope v="0,40"/>
+ </TimePassed>
+ <Vol type="XTypeDef">
+  <elem n="vol" qual="u16 res=0.1" engUnit="liter"/>
+  <typeScope v="0,41"/>
+ </Vol>
+ <VolKilo type="XTypeDef">
+  <elem n="volKilo" qual="u16 res=0.1" engUnit="kiloliter"/>
+  <typeScope v="0,42"/>
+ </VolKilo>
+ <VolMil type="XTypeDef">
+  <elem n="volMil" qual="u16 res=0.1" engUnit="milliliter"/>
+  <typeScope v="0,43"/>
+ </VolMil>
+ <Volt type="XTypeDef">
+  <elem n="volt" qual="s16 res=0.1" engUnit="volt"/>
+  <typeScope v="0,44"/>
+ </Volt>
+ <VoltDbmv type="XTypeDef">
+  <elem n="voltDbmv" qual="s16 res=0.01" engUnit="db microVolt"/>
+  <typeScope v="0,45"/>
+ </VoltDbmv>
+ <VoltKilo type="XTypeDef">
+  <elem n="voltKilo" qual="s16 res=0.1" engUnit="kilovolt"/>
+  <typeScope v="0,46"/>
+ </VoltKilo>
+ <VoltMil type="XTypeDef">
+  <elem n="voltMil" qual="s16 res=0.1" engUnit="millivolt"/>
+  <typeScope v="0,47"/>
+ </VoltMil>
+ <AmpF type="XTypeDef">
+  <elem n="ampF" qual="f32" engUnit="ampere"/>
+  <typeScope v="0,48"/>
+ </AmpF>
+ <AngleF type="XTypeDef">
+  <elem n="angleF" qual="f32" engUnit="radian"/>
+  <typeScope v="0,49"/>
+ </AngleF>
+ <AngleVelF type="XTypeDef">
+  <elem n="angleVelF" qual="f32" engUnit="radians per second"/>
+  <typeScope v="0,50"/>
+ </AngleVelF>
+ <CountF type="XTypeDef">
+  <elem n="countF" qual="f32 min=0.0"/>
+  <typeScope v="0,51"/>
+ </CountF>
+ <CountIncF type="XTypeDef">
+  <elem n="countIncF" qual="f32"/>
+  <typeScope v="0,52"/>
+ </CountIncF>
+ <FlowF type="XTypeDef">
+  <elem n="flowF" qual="f32" engUnit="liters per second"/>
+  <typeScope v="0,53"/>
+ </FlowF>
+ <LengthF type="XTypeDef">
+  <elem n="lengthF" qual="f32 min=0.0" engUnit="meter"/>
+  <typeScope v="0,54"/>
+ </LengthF>
+ <LevContF type="XTypeDef">
+  <elem n="levContF" qual="f32 min=0.0 max=100.0" engUnit="percent"/>
+  <typeScope v="0,55"/>
+ </LevContF>
+ <MassF type="XTypeDef">
+  <elem n="massF" qual="f32 min=0.0" engUnit="gram"/>
+  <typeScope v="0,56"/>
+ </MassF>
+ <PowerF type="XTypeDef">
+  <elem n="powerF" qual="f32" engUnit="watt"/>
+  <typeScope v="0,57"/>
+ </PowerF>
+ <PpmF type="XTypeDef">
+  <elem n="ppmF" qual="f32 min=0.0" engUnit="parts per million"/>
+  <typeScope v="0,58"/>
+ </PpmF>
+ <PressF type="XTypeDef">
+  <elem n="pressF" qual="f32" engUnit="pascal"/>
+  <typeScope v="0,59"/>
+ </PressF>
+ <ResF type="XTypeDef">
+  <elem n="resF" qual="f32 min=0.0" engUnit="ohm"/>
+  <typeScope v="0,60"/>
+ </ResF>
+ <SoundDbF type="XTypeDef">
+  <elem n="soundDbF" qual="f32" engUnit="decibel"/>
+  <typeScope v="0,61"/>
+ </SoundDbF>
+ <SpeedF type="XTypeDef">
+  <elem n="speedF" qual="f32" engUnit="meters per second"/>
+  <typeScope v="0,62"/>
+ </SpeedF>
+ <TempF type="XTypeDef">
+  <elem n="tempF" qual="f32 min=-273.17" engUnit="celsius"/>
+  <typeScope v="0,63"/>
+ </TempF>
+ <TimeF type="XTypeDef">
+  <elem n="timeF" qual="f32 min=0.0" engUnit="second"/>
+  <typeScope v="0,64"/>
+ </TimeF>
+ <VolF type="XTypeDef">
+  <elem n="volF" qual="f32 min=0.0" engUnit="liter"/>
+  <typeScope v="0,65"/>
+ </VolF>
+ <VoltF type="XTypeDef">
+  <elem n="voltF" qual="f32" engUnit="volt"/>
+  <typeScope v="0,66"/>
+ </VoltF>
+ <BtuF type="XTypeDef">
+  <elem n="btuF" qual="f32 min=0.0" engUnit="btu"/>
+  <typeScope v="0,67"/>
+ </BtuF>
+ <ElecWhrF type="XTypeDef">
+  <elem n="elecWhrF" qual="f32 min=0.0" engUnit="watt hour"/>
+  <typeScope v="0,68"/>
+ </ElecWhrF>
+ <ConfigSrc type="XTypeDef">
+  <elem n="configSrc" qual="e8" enumDef="ConfigSourceT"/>
+  <typeScope v="0,69"/>
+ </ConfigSrc>
+ <Color type="XTypeDef">
+  <elem n="LStar" qual="u16 res=0.1 max=100.0"/>
+  <elem n="aStar" qual="s16 res=0.1 min=-200.0 max=200.0"/>
+  <elem n="bStar" qual="s16 res=0.1 min=-200.0 max=200.0"/>
+  <typeScope v="0,70"/>
+ </Color>
+ <Grammage type="XTypeDef">
+  <elem n="grammage" qual="u16 res=0.1" engUnit="grams per square meter"/>
+  <typeScope v="0,71"/>
+ </Grammage>
+ <GrammageF type="XTypeDef">
+  <elem n="grammageF" qual="f32 min=0.0" engUnit="grams per square meter"/>
+  <typeScope v="0,72"/>
+ </GrammageF>
+ <FileReq type="XTypeDef">
+  <typeSpec v="lonworks:LonFileReq"/>
+ <typeScope v="0,73"/>
+ </FileReq>
+ <FileStatus type="XTypeDef">
+  <typeSpec v="lonworks:LonFileStatus"/>
+  <typeScope v="0,74"/>
+ </FileStatus>
+ <FreqF type="XTypeDef">
+  <elem n="freqF" qual="f32 min=0.0" engUnit="hertz"/>
+  <typeScope v="0,75"/>
+ </FreqF>
+ <FreqHz type="XTypeDef">
+  <elem n="freqHz" qual="u16 res=0.1" engUnit="hertz"/>
+  <typeScope v="0,76"/>
+ </FreqHz>
+ <FreqKilohz type="XTypeDef">
+  <elem n="freqKilohz" qual="u16 res=0.1" engUnit="kilohertz"/>
+  <typeScope v="0,77"/>
+ </FreqKilohz>
+ <FreqMilhz type="XTypeDef">
+  <elem n="freqMilhz" qual="u16 res=1.0E-4" engUnit="hertz"/>
+  <typeScope v="0,78"/>
+ </FreqMilhz>
+ <Lux type="XTypeDef">
+  <elem n="lux" qual="u16" engUnit="lux"/>
+  <typeScope v="0,79"/>
+ </Lux>
+ <Iso7811 type="XTypeDef">
+  <elem n="digit1" qual="ub byt=0 bit=4 len=4"/>
+  <elem n="digit2" qual="ub byt=0 bit=0 len=4"/>
+  <elem n="digit3" qual="ub byt=1 bit=4 len=4"/>
+  <elem n="digit4" qual="ub byt=1 bit=0 len=4"/>
+  <elem n="digit5" qual="ub byt=2 bit=4 len=4"/>
+  <elem n="digit6" qual="ub byt=2 bit=0 len=4"/>
+  <elem n="digit7" qual="ub byt=3 bit=4 len=4"/>
+  <elem n="digit8" qual="ub byt=3 bit=0 len=4"/>
+  <elem n="digit9" qual="ub byt=4 bit=4 len=4"/>
+  <elem n="digit10" qual="ub byt=4 bit=0 len=4"/>
+  <elem n="digit11" qual="ub byt=5 bit=4 len=4"/>
+  <elem n="digit12" qual="ub byt=5 bit=0 len=4"/>
+  <elem n="digit13" qual="ub byt=6 bit=4 len=4"/>
+  <elem n="digit14" qual="ub byt=6 bit=0 len=4"/>
+  <elem n="digit15" qual="ub byt=7 bit=4 len=4"/>
+  <elem n="digit16" qual="ub byt=7 bit=0 len=4"/>
+  <elem n="digit17" qual="ub byt=8 bit=4 len=4"/>
+  <elem n="digit18" qual="ub byt=8 bit=0 len=4"/>
+  <elem n="digit19" qual="ub byt=9 bit=4 len=4"/>
+  <elem n="digit20" qual="ub byt=9 bit=0 len=4"/>
+  <elem n="digit21" qual="ub byt=10 bit=4 len=4"/>
+  <elem n="digit22" qual="ub byt=10 bit=0 len=4"/>
+  <elem n="digit23" qual="ub byt=11 bit=4 len=4"/>
+  <elem n="digit24" qual="ub byt=11 bit=0 len=4"/>
+  <elem n="digit25" qual="ub byt=12 bit=4 len=4"/>
+  <elem n="digit26" qual="ub byt=12 bit=0 len=4"/>
+  <elem n="digit27" qual="ub byt=13 bit=4 len=4"/>
+  <elem n="digit28" qual="ub byt=13 bit=0 len=4"/>
+  <elem n="digit29" qual="ub byt=14 bit=4 len=4"/>
+  <elem n="digit30" qual="ub byt=14 bit=0 len=4"/>
+  <elem n="digit31" qual="ub byt=15 bit=4 len=4"/>
+  <elem n="digit32" qual="ub byt=15 bit=0 len=4"/>
+  <elem n="digit33" qual="ub byt=16 bit=4 len=4"/>
+  <elem n="digit34" qual="ub byt=16 bit=0 len=4"/>
+  <elem n="digit35" qual="ub byt=17 bit=4 len=4"/>
+  <elem n="digit36" qual="ub byt=17 bit=0 len=4"/>
+  <elem n="digit37" qual="ub byt=18 bit=4 len=4"/>
+  <elem n="digit38" qual="ub byt=18 bit=0 len=4"/>
+  <typeScope v="0,80"/>
+ </Iso7811>
+ <LevPercent type="XTypeDef">
+  <elem n="levPercent" qual="s16 res=0.0050 min=-163.84 max=163.83 invld=32767.0" engUnit="percent"/>
+  <typeScope v="0,81"/>
+ </LevPercent>
+ <Multiplier type="XTypeDef">
+  <elem n="multiplier" qual="u16 res=5.0E-4"/>
+  <typeScope v="0,82"/>
+ </Multiplier>
+ <State type="XTypeDef">
+  <elem n="bit0" qual="bb byt=0 bit=7 len=1"/>
+  <elem n="bit1" qual="bb byt=0 bit=6 len=1"/>
+  <elem n="bit2" qual="bb byt=0 bit=5 len=1"/>
+  <elem n="bit3" qual="bb byt=0 bit=4 len=1"/>
+  <elem n="bit4" qual="bb byt=0 bit=3 len=1"/>
+  <elem n="bit5" qual="bb byt=0 bit=2 len=1"/>
+  <elem n="bit6" qual="bb byt=0 bit=1 len=1"/>
+  <elem n="bit7" qual="bb byt=0 bit=0 len=1"/>
+  <elem n="bit8" qual="bb byt=1 bit=7 len=1"/>
+  <elem n="bit9" qual="bb byt=1 bit=6 len=1"/>
+  <elem n="bit10" qual="bb byt=1 bit=5 len=1"/>
+  <elem n="bit11" qual="bb byt=1 bit=4 len=1"/>
+  <elem n="bit12" qual="bb byt=1 bit=3 len=1"/>
+  <elem n="bit13" qual="bb byt=1 bit=2 len=1"/>
+  <elem n="bit14" qual="bb byt=1 bit=1 len=1"/>
+  <elem n="bit15" qual="bb byt=1 bit=0 len=1"/>
+  <typeScope v="0,83"/>
+ </State>
+ <TimeStamp type="XTypeDef">
+  <elem n="year" qual="s16 min=-1.0 max=3000.0 invld=-1.0" engUnit="year"/>
+  <elem n="month" qual="u8 max=12.0" engUnit="julian month"/>
+  <elem n="day" qual="u8 max=31.0" engUnit="day"/>
+  <elem n="hour" qual="u8 max=23.0" engUnit="hour"/>
+  <elem n="minute" qual="u8 max=59.0" engUnit="minute"/>
+  <elem n="second" qual="u8 max=59.0" engUnit="second"/>
+  <typeScope v="0,84"/>
+ </TimeStamp>
+ <Zerospan type="XTypeDef">
+  <elem n="zero" qual="s16 res=0.005"/>
+  <elem n="span" qual="u16 res=5.0E-4"/>
+  <typeScope v="0,85"/>
+ </Zerospan>
+ <Magcard type="XTypeDef">
+  <elem n="digit1" qual="ub byt=0 bit=4 len=4 min=11.0 max=11.0"/>
+  <elem n="digit2" qual="ub byt=0 bit=0 len=4"/>
+  <elem n="digit3" qual="ub byt=1 bit=4 len=4"/>
+  <elem n="digit4" qual="ub byt=1 bit=0 len=4"/>
+  <elem n="digit5" qual="ub byt=2 bit=4 len=4"/>
+  <elem n="digit6" qual="ub byt=2 bit=0 len=4"/>
+  <elem n="digit7" qual="ub byt=3 bit=4 len=4"/>
+  <elem n="digit8" qual="ub byt=3 bit=0 len=4"/>
+  <elem n="digit9" qual="ub byt=4 bit=4 len=4"/>
+  <elem n="digit10" qual="ub byt=4 bit=0 len=4"/>
+  <elem n="digit11" qual="ub byt=5 bit=4 len=4"/>
+  <elem n="digit12" qual="ub byt=5 bit=0 len=4"/>
+  <elem n="digit13" qual="ub byt=6 bit=4 len=4"/>
+  <elem n="digit14" qual="ub byt=6 bit=0 len=4"/>
+  <elem n="digit15" qual="ub byt=7 bit=4 len=4"/>
+  <elem n="digit16" qual="ub byt=7 bit=0 len=4"/>
+  <elem n="digit17" qual="ub byt=8 bit=4 len=4"/>
+  <elem n="digit18" qual="ub byt=8 bit=0 len=4"/>
+  <elem n="digit19" qual="ub byt=9 bit=4 len=4"/>
+  <elem n="digit20" qual="ub byt=9 bit=0 len=4"/>
+  <elem n="digit21" qual="ub byt=10 bit=4 len=4"/>
+  <elem n="digit22" qual="ub byt=10 bit=0 len=4"/>
+  <elem n="digit23" qual="ub byt=11 bit=4 len=4"/>
+  <elem n="digit24" qual="ub byt=11 bit=0 len=4"/>
+  <elem n="digit25" qual="ub byt=12 bit=4 len=4"/>
+  <elem n="digit26" qual="ub byt=12 bit=0 len=4"/>
+  <elem n="digit27" qual="ub byt=13 bit=4 len=4"/>
+  <elem n="digit28" qual="ub byt=13 bit=0 len=4"/>
+  <elem n="digit29" qual="ub byt=14 bit=4 len=4"/>
+  <elem n="digit30" qual="ub byt=14 bit=0 len=4"/>
+  <elem n="digit31" qual="ub byt=15 bit=4 len=4"/>
+  <elem n="digit32" qual="ub byt=15 bit=0 len=4"/>
+  <elem n="digit33" qual="ub byt=16 bit=4 len=4"/>
+  <elem n="digit34" qual="ub byt=16 bit=0 len=4"/>
+  <elem n="digit35" qual="ub byt=17 bit=4 len=4"/>
+  <elem n="digit36" qual="ub byt=17 bit=0 len=4"/>
+  <elem n="digit37" qual="ub byt=18 bit=4 len=4"/>
+  <elem n="digit38" qual="ub byt=18 bit=0 len=4"/>
+  <elem n="digit39" qual="ub byt=19 bit=4 len=4"/>
+  <elem n="digit40" qual="ub byt=19 bit=0 len=4"/>
+  <typeScope v="0,86"/>
+ </Magcard>
+ <ElapsedTm type="XTypeDef">
+  <elem n="day" qual="u16 invld=65535.0" engUnit="day"/>
+  <elem n="hour" qual="u8 max=23.0" engUnit="hour"/>
+  <elem n="minute" qual="u8 max=59.0" engUnit="minute"/>
+  <elem n="second" qual="u8 max=59.0" engUnit="second"/>
+  <elem n="millisecond" qual="u16 max=999.0" engUnit="millisecond"/>
+  <typeScope v="0,87"/>
+ </ElapsedTm>
+ <Alarm type="XTypeDef">
+  <elem n="location" qual="st len=6"/>
+  <elem n="objectId" qual="u16"/>
+  <elem n="alarmType" qual="e8" enumDef="AlarmTypeT"/>
+  <elem n="priorityLevel" qual="e8" enumDef="PriorityLevelT"/>
+  <elem n="indexToSNVT" qual="u16"/>
+  <elem n="value" qual="na len=4"/>
+  <elem n="year" qual="u16 max=3000.0" engUnit="year"/>
+  <elem n="month" qual="u8 max=12.0" engUnit="julian month"/>
+  <elem n="day" qual="u8 max=31.0" engUnit="day"/>
+  <elem n="hour" qual="u8 max=23.0" engUnit="hour"/>
+  <elem n="minute" qual="u8 max=59.0" engUnit="minute"/>
+  <elem n="second" qual="u8 max=59.0" engUnit="second"/>
+  <elem n="millisecond" qual="u16 max=999.0" engUnit="millisecond"/>
+  <elem n="alarmLimit" qual="na len=4"/>
+  <typeScope v="0,88"/>
+ </Alarm>
+ <Currency type="XTypeDef">
+  <elem n="currency" qual="e8" enumDef="CurrencyT"/>
+  <elem n="powerOf10" qual="s8"/>
+  <elem n="value" qual="s32"/>
+  <typeScope v="0,89"/>
+ </Currency>
+ <FilePos type="XTypeDef">
+  <elem n="rwPtr" qual="s32 min=0.0"/>
+  <elem n="rwLength" qual="u16"/>
+  <typeScope v="0,90"/>
+ </FilePos>
+ <Muldiv type="XTypeDef">
+  <elem n="multiplier" qual="u16"/>
+  <elem n="divisor" qual="u16 min=1.0 invld=0.0"/>
+  <typeScope v="0,91"/>
+ </Muldiv>
+ <ObjRequest type="XTypeDef">
+  <elem n="objectId" qual="u16"/>
+  <elem n="objectRequest" qual="e8" enumDef="ObjectRequestT"/>
+  <typeScope v="0,92"/>
+ </ObjRequest>
+ <ObjStatus type="XTypeDef">
+  <elem n="objectId" qual="u16"/>
+  <elem n="invalidId" qual="bb byt=2 bit=7 len=1"/>
+  <elem n="invalidRequest" qual="bb byt=2 bit=6 len=1"/>
+  <elem n="disabled" qual="bb byt=2 bit=5 len=1"/>
+  <elem n="outOfLimits" qual="bb byt=2 bit=4 len=1"/>
+  <elem n="openCircuit" qual="bb byt=2 bit=3 len=1"/>
+  <elem n="outOfService" qual="bb byt=2 bit=2 len=1"/>
+  <elem n="mechanicalFault" qual="bb byt=2 bit=1 len=1"/>
+  <elem n="feedbackFailure" qual="bb byt=2 bit=0 len=1"/>
+  <elem n="overRange" qual="bb byt=3 bit=7 len=1"/>
+  <elem n="underRange" qual="bb byt=3 bit=6 len=1"/>
+  <elem n="electricalFault" qual="bb byt=3 bit=5 len=1"/>
+  <elem n="unableToMeasure" qual="bb byt=3 bit=4 len=1"/>
+  <elem n="commFailure" qual="bb byt=3 bit=3 len=1"/>
+  <elem n="failSelfTest" qual="bb byt=3 bit=2 len=1"/>
+  <elem n="selfTestInProgress" qual="bb byt=3 bit=1 len=1"/>
+  <elem n="lockedOut" qual="bb byt=3 bit=0 len=1"/>
+  <elem n="manualControl" qual="bb byt=4 bit=7 len=1"/>
+  <elem n="inAlarm" qual="bb byt=4 bit=6 len=1"/>
+  <elem n="inOverride" qual="bb byt=4 bit=5 len=1"/>
+  <elem n="reportMask" qual="bb byt=4 bit=4 len=1"/>
+  <elem n="programmingMode" qual="bb byt=4 bit=3 len=1"/>
+  <elem n="programmingFail" qual="bb byt=4 bit=2 len=1"/>
+  <elem n="alarmNotifyDisabled" qual="bb byt=4 bit=1 len=1"/>
+  <elem n="resetComplete" qual="bb byt=4 bit=0 len=1"/>
+  <elem n="reserved2" qual="bb byt=5 bit=0 len=8 max=0.0"/>
+  <typeScope v="0,93"/>
+ </ObjStatus>
+ <Preset type="XTypeDef">
+  <elem n="learn" qual="e8" enumDef="LearnModeT"/>
+  <elem n="selector" qual="u16"/>
+  <elem n="value" qual="na len=4"/>
+  <elem n="day" qual="u16 max=65534.0 invld=65535.0" engUnit="day"/>
+  <elem n="hour" qual="u8 max=23.0" engUnit="hour"/>
+  <elem n="minute" qual="u8 max=59.0" engUnit="minute"/>
+  <elem n="second" qual="u8 max=59.0" engUnit="second"/>
+  <elem n="millisecond" qual="u16 max=999.0" engUnit="millisecond"/>
+  <typeScope v="0,94"/>
+ </Preset>
+ <Switch type="XTypeDef">
+  <elem n="value" qual="u8 res=0.5 max=100.0" engUnit="percent"/>
+  <!-- elem n="state" qual="s8 min=0.0 max=1.0 invld=-1.0"/ 
+     Modified by RAA 11/12/04
+  -->
+  <elem n="state" qual="e8" enumDef="StateT"/>
+  <typeScope v="0,95"/>
+ </Switch>
+ <TransTable type="XTypeDef">
+  <elem n="point0" qual="f32"/>
+  <elem n="point1" qual="f32"/>
+  <elem n="point2" qual="f32"/>
+  <elem n="point3" qual="f32"/>
+  <elem n="point4" qual="f32"/>
+  <elem n="point5" qual="f32"/>
+  <elem n="point6" qual="f32"/>
+  <elem n="interpPts0To1" qual="ub byt=28 bit=6 len=2 max=1.0"/>
+  <elem n="interpPts1To2" qual="ub byt=28 bit=4 len=2 max=1.0"/>
+  <elem n="interpPts2To3" qual="ub byt=28 bit=2 len=2 max=1.0"/>
+  <elem n="interpPts3To4" qual="ub byt=28 bit=0 len=2 max=1.0"/>
+  <elem n="interpPts4To5" qual="ub byt=29 bit=6 len=2 max=1.0"/>
+  <elem n="interpPts5To6" qual="ub byt=29 bit=4 len=2 max=1.0"/>
+  <elem n="interpPts6To0" qual="ub byt=29 bit=2 len=2 max=1.0"/>
+  <typeScope v="0,96"/>
+ </TransTable>
+ <Override type="XTypeDef">
+  <elem n="override" qual="e8" enumDef="OverrideT"/>
+  <typeScope v="0,97"/>
+ </Override>
+ <PwrFact type="XTypeDef">
+  <elem n="pwrFact" qual="s16 res=5.0E-5 min=-1.0 max=1.0 invld=-32678.0"/>
+  <typeScope v="0,98"/>
+ </PwrFact>
+ <PwrFactF type="XTypeDef">
+  <elem n="pwrFactF" qual="f32 min=-1.0 max=1.0"/>
+  <typeScope v="0,99"/>
+ </PwrFactF>
+ <Density type="XTypeDef">
+  <elem n="density" qual="u16 res=0.5" engUnit="kilograms per cubic meter"/>
+  <typeScope v="0,100"/>
+ </Density>
+ <DensityF type="XTypeDef">
+  <elem n="densityF" qual="f32 min=0.0" engUnit="kilograms per cubic meter"/>
+  <typeScope v="0,101"/>
+ </DensityF>
+ <Rpm type="XTypeDef">
+  <elem n="rpm" qual="u16 invld=65535.0" engUnit="revolutions per minute"/>
+  <typeScope v="0,102"/>
+ </Rpm>
+ <HvacEmerg type="XTypeDef">
+  <elem n="hvacEmerg" qual="e8" enumDef="EmergT"/>
+  <typeScope v="0,103"/>
+ </HvacEmerg>
+ <AngleDeg type="XTypeDef">
+  <elem n="angleDeg" qual="s16 res=0.02 min=-359.97998 max=360.0 invld=32767.0" engUnit="degrees angular"/>
+  <typeScope v="0,104"/>
+ </AngleDeg>
+ <TempP type="XTypeDef">
+  <elem n="tempP" qual="s16 res=0.01 min=-273.16998 invld=32767.0" engUnit="celsius"/>
+  <typeScope v="0,105"/>
+ </TempP>
+ <TempSetpt type="XTypeDef">
+  <elem n="occupiedCool" qual="s16 res=0.01 min=-273.16998 invld=32767.0" engUnit="celsius"/>
+  <elem n="standbyCool" qual="s16 res=0.01 min=-273.16998 invld=32767.0" engUnit="celsius"/>
+  <elem n="unoccupiedCool" qual="s16 res=0.01 min=-273.16998 invld=32767.0" engUnit="celsius"/>
+  <elem n="occupiedHeat" qual="s16 res=0.01 min=-273.16998 invld=32767.0" engUnit="celsius"/>
+  <elem n="standbyHeat" qual="s16 res=0.01 min=-273.16998 invld=32767.0" engUnit="celsius"/>
+  <elem n="unoccupiedHeat" qual="s16 res=0.01 min=-273.16998 invld=32767.0" engUnit="celsius"/>
+  <typeScope v="0,106"/>
+ </TempSetpt>
+ <TimeSec type="XTypeDef">
+  <elem n="timeSec" qual="u16 res=0.1 invld=65535.0" engUnit="second"/>
+  <typeScope v="0,107"/>
+ </TimeSec>
+ <HvacMode type="XTypeDef">
+  <elem n="hvacMode" qual="e8" enumDef="HvacT"/>
+  <typeScope v="0,108"/>
+ </HvacMode>
+ <Occupancy type="XTypeDef">
+  <elem n="occupancy" qual="e8" enumDef="OccupT"/>
+  <typeScope v="0,109"/>
+ </Occupancy>
+ <Area type="XTypeDef">
+  <elem n="area" qual="u16 res=2.0E-4 invld=65535.0" engUnit="square meter"/>
+  <typeScope v="0,110"/>
+ </Area>
+ <HvacOverid type="XTypeDef">
+  <elem n="state" qual="e8" enumDef="HvacOveridT"/>
+  <elem n="percent" qual="s16 res=0.0050 min=-163.84 max=163.83 invld=32767.0" engUnit="percent"/>
+  <elem n="flow" qual="u16 max=65534.0 invld=65535.0" engUnit="liters per second"/>
+  <typeScope v="0,111"/>
+ </HvacOverid>
+ <HvacStatus type="XTypeDef">
+  <elem n="mode" qual="e8" enumDef="HvacT"/>
+  <elem n="heatOutputPrimary" qual="s16 res=0.0050 min=-163.84 max=163.83 invld=32767.0" engUnit="percent"/>
+  <elem n="heatOutputSecondary" qual="s16 res=0.0050 min=-163.84 max=163.83 invld=32767.0" engUnit="percent"/>
+  <elem n="coolOutput" qual="s16 res=0.0050 min=-163.84 max=163.83 invld=32767.0" engUnit="percent"/>
+  <elem n="econOutput" qual="s16 res=0.0050 min=-163.84 max=163.83 invld=32767.0" engUnit="percent"/>
+  <elem n="fanOutput" qual="s16 res=0.0050 min=-163.84 max=163.83 invld=32767.0" engUnit="percent"/>
+  <elem n="inAlarm" qual="u8"/>
+  <typeScope v="0,112"/>
+ </HvacStatus>
+ <PressP type="XTypeDef">
+  <elem n="pressP" qual="s16 invld=32767.0" engUnit="pascal"/>
+  <typeScope v="0,113"/>
+ </PressP>
+ <Address type="XTypeDef">
+  <elem n="address" qual="u16 min=16384.0 max=64767.0 invld=64768.0"/>
+  <typeScope v="0,114"/>
+ </Address>
+ <Scene type="XTypeDef">
+  <elem n="function" qual="e8" enumDef="SceneT"/>
+  <elem n="sceneNumber" qual="u8 min=1.0"/>
+  <typeScope v="0,115"/>
+ </Scene>
+ <SceneCfg type="XTypeDef">
+  <elem n="function" qual="e8" enumDef="SceneConfigT"/>
+  <elem n="sceneNumber" qual="u8 min=1.0"/>
+  <elem n="setting" qual="u8 res=0.5 max=100.0 invld=255.0" engUnit="percent"/>
+  <elem n="rotation" qual="s16 res=0.02 min=-359.97998 max=360.0 invld=32767.0" engUnit="degrees angular"/>
+  <elem n="fadeTime" qual="u16 res=0.1 invld=65535.0" engUnit="second"/>
+  <elem n="delayTime" qual="u16 res=0.1 invld=65535.0" engUnit="second"/>
+  <elem n="scenePriority" qual="u8"/>
+  <typeScope v="0,116"/>
+ </SceneCfg>
+ <Setting type="XTypeDef">
+  <elem n="function" qual="e8" enumDef="SettingT"/>
+  <elem n="setting" qual="u8 res=0.5 max=100.0 invld=255.0" engUnit="percent"/>
+  <elem n="rotation" qual="s16 res=0.02 min=-359.97998 max=360.0 invld=32767.0" engUnit="degrees angular"/>
+  <typeScope v="0,117"/>
+ </Setting>
+ <EvapState type="XTypeDef">
+  <elem n="evapState" qual="e8" enumDef="EvapT"/>
+  <typeScope v="0,118"/>
+ </EvapState>
+ <ThermMode type="XTypeDef">
+  <elem n="thermMode" qual="e8" enumDef="ThermModeT"/>
+  <typeScope v="0,119"/>
+ </ThermMode>
+ <DefrMode type="XTypeDef">
+  <elem n="defrMode" qual="e8" enumDef="DefrostModeT"/>
+  <typeScope v="0,120"/>
+ </DefrMode>
+ <DefrTerm type="XTypeDef">
+  <elem n="defrTerm" qual="e8" enumDef="DefrostTermT"/>
+  <typeScope v="0,121"/>
+ </DefrTerm>
+ <DefrState type="XTypeDef">
+  <elem n="defrState" qual="e8" enumDef="DefrostStateT"/>
+  <typeScope v="0,122"/>
+ </DefrState>
+ <TimeMin type="XTypeDef">
+  <elem n="timeMin" qual="u16" engUnit="minute"/>
+  <typeScope v="0,123"/>
+ </TimeMin>
+ <TimeHour type="XTypeDef">
+  <elem n="timeHour" qual="u16" engUnit="hour"/>
+  <typeScope v="0,124"/>
+ </TimeHour>
+ <Ph type="XTypeDef">
+  <elem n="ph" qual="s16 res=0.001" engUnit="pH"/>
+  <typeScope v="0,125"/>
+ </Ph>
+ <PhF type="XTypeDef">
+  <elem n="phF" qual="f32" engUnit="pH"/>
+  <typeScope v="0,126"/>
+ </PhF>
+ <ChlrStatus type="XTypeDef">
+  <elem n="chlrRunMode" qual="e8" enumDef="ChillerT"/>
+  <elem n="chlrOpMode" qual="e8" enumDef="HvacT"/>
+  <elem n="chlrStateInAlarm" qual="bb byt=2 bit=7 len=1"/>
+  <elem n="chlrStateRunEnabled" qual="bb byt=2 bit=6 len=1"/>
+  <elem n="chlrStateLocal" qual="bb byt=2 bit=5 len=1"/>
+  <elem n="chlrStateLimited" qual="bb byt=2 bit=4 len=1"/>
+  <elem n="chlrStateChwFlow" qual="bb byt=2 bit=3 len=1"/>
+  <elem n="chlrStateCondwFlow" qual="bb byt=2 bit=2 len=1"/>
+  <typeScope v="0,127"/>
+ </ChlrStatus>
+ <TodEvent type="XTypeDef">
+  <elem n="currentState" qual="e8" enumDef="OccupT"/>
+  <elem n="nextState" qual="e8" enumDef="OccupT"/>
+  <elem n="timeToNextState" qual="u16" engUnit="minute"/>
+  <typeScope v="0,128"/>
+ </TodEvent>
+ <SmoObscur type="XTypeDef">
+  <elem n="smoObscur" qual="u16 res=0.001 max=5.0 invld=65535.0" engUnit="percent"/>
+  <typeScope v="0,129"/>
+ </SmoObscur>
+ <FireTest type="XTypeDef">
+  <elem n="fireTest" qual="e8" enumDef="FireTestT"/>
+  <typeScope v="0,130"/>
+ </FireTest>
+ <TempRor type="XTypeDef">
+  <elem n="tempRor" qual="s16 res=0.5 invld=32767.0" engUnit="degrees celsius per minute"/>
+  <typeScope v="0,131"/>
+ </TempRor>
+ <FireInit type="XTypeDef">
+  <elem n="fireInit" qual="e8" enumDef="FireInitiatorT"/>
+  <typeScope v="0,132"/>
+ </FireInit>
+ <FireIndcte type="XTypeDef">
+  <elem n="fireIndcte" qual="e8" enumDef="FireIndicatorT"/>
+  <typeScope v="0,133"/>
+ </FireIndcte>
+ <TimeZone type="XTypeDef">
+  <!-- typeSpec v="lonworks:LonTimeZone"/ -->
+  <union> 
+    <branchElem v="typeOfDescription" />
+    <branch n="greg"  c="p=0" />
+    <branch n="jul"  c="p=1" />
+    <branch n="meu" c="p=-1,2" />
+  </union>
+  <elem n="secondTimeOffset" qual="s32 min=-86400.0 max=86400.0" engUnit="second"/>
+  <elem n="typeOfDescription" qual="e8" enumDef="CalendarTypeT"/>
+  <elem n="hourOfStartDST" qual="u8 max=23.0" engUnit="hour"/>
+  <elem n="minuteOfStartDST" qual="u8 max=59.0" engUnit="minute"/>
+  <elem n="secondOfStartDST" qual="u8 max=59.0" engUnit="second"/>
+  <elem u="greg" n="startDSTGDayOfStartDST" qual="u16 byt=8 max=365.0" engUnit="day"/>
+  <elem u="jul"  n="startDSTJDayOfStartDST" qual="u16 byt=8 min=1.0 max=365.0" engUnit="day"/>
+  <elem u="meu"  n="startDSTMStartDSTMonthOfStartDST" qual="ub byt=8 bit=4 len=4 min=1.0 max=12.0" engUnit="julian month"/>
+  <elem u="meu"  n="startDSTMStartDSTWeekOfStartDST" qual="ub byt=8 bit=1 len=3 min=1.0 max=5.0" engUnit="week"/>
+  <elem u="meu"  n="startDSTMStartDSTDatedayOfStartDST" qual="e8 byt=9" enumDef="DaysOfWeekT"/>
+  <elem n="hourOfEndDST" qual="u8 byt=10 max=23.0" engUnit="hour"/>
+  <elem n="minuteOfEndDST" qual="u8 byt=11 max=59.0" engUnit="minute"/>
+  <elem n="secondOfEndDST" qual="u8 byt=12 max=59.0" engUnit="second"/>
+  <elem u="greg" n="endDSTGDayOfEndDST" qual="u16 byt=13 max=365.0" engUnit="day"/>
+  <elem u="jul"  n="endDSTJDayOfEndDST" qual="u16 byt=13 min=1.0 max=365.0" engUnit="day"/>
+  <elem u="meu"  n="endDSTMEndDSTMonthOfEndDST" qual="ub byt=13 bit=4 len=4 min=1.0 max=12.0" engUnit="julian month"/>
+  <elem u="meu"  n="endDSTMEndDSTWeekOfEndDST" qual="ub byt=13 bit=1 len=3 min=1.0 max=5.0" engUnit="week"/>
+  <elem u="meu"  n="endDSTMEndDSTDatedayOfEndDST" qual="e8 byt=14" enumDef="DaysOfWeekT"/>
+  <typeScope v="0,134"/>
+ </TimeZone>
+ <EarthPos type="XTypeDef">
+  <elem n="latitudeDirection" qual="ub byt=0 bit=7 len=1"/>
+  <elem n="longitudeDirection" qual="ub byt=0 bit=6 len=1"/>
+  <elem n="latitudeDeg" qual="u8 max=90.0 invld=255.0" engUnit="degrees angular"/>
+  <elem n="latitudeMin" qual="u16 res=0.001 max=59.999004 invld=65535.0" engUnit="minute"/>
+  <elem n="longitudeDeg" qual="u8 max=180.0 invld=255.0" engUnit="degrees angular"/>
+  <elem n="longitudeMin" qual="u16 res=0.001 max=59.999004 invld=65535.0" engUnit="minute"/>
+  <elem n="heightAboveSea" qual="f32" engUnit="meter"/>
+  <typeScope v="0,135"/>
+ </EarthPos>
+ <RegVal type="XTypeDef">
+  <elem n="raw" qual="s32"/>
+  <elem n="unit" qual="e8" enumDef="RegValUnitT"/>
+  <elem n="nrDecimals" qual="ub byt=5 bit=5 len=3"/>
+  <typeScope v="0,136"/>
+ </RegVal>
+ <RegValTs type="XTypeDef">
+  <elem n="raw" qual="s32"/>
+  <elem n="unit" qual="e8" enumDef="RegValUnitT"/>
+  <elem n="nrDecimals" qual="ub byt=5 bit=5 len=3"/>
+  <elem n="status" qual="ub byt=5 bit=1 len=4"/>
+  <elem n="regState" qual="ub byt=5 bit=0 len=1"/>
+  <elem n="year" qual="s16 min=-1.0 max=3000.0 invld=-1.0" engUnit="year"/>
+  <elem n="month" qual="u8 max=12.0" engUnit="julian month"/>
+  <elem n="day" qual="u8 max=31.0" engUnit="day"/>
+  <elem n="hour" qual="u8 max=23.0" engUnit="hour"/>
+  <elem n="minute" qual="u8 max=59.0" engUnit="minute"/>
+  <elem n="second" qual="u8 max=59.0" engUnit="second"/>
+  <typeScope v="0,137"/>
+ </RegValTs>
+ <VoltAc type="XTypeDef">
+  <elem n="voltAc" qual="u16 invld=65535.0" engUnit="volt"/>
+  <typeScope v="0,138"/>
+ </VoltAc>
+ <AmpAc type="XTypeDef">
+  <elem n="ampAc" qual="u16 invld=65535.0" engUnit="ampere"/>
+  <typeScope v="0,139"/>
+ </AmpAc>
+ <Turbidity type="XTypeDef">
+  <elem n="turbidity" qual="u16 res=0.001 invld=65535.0" engUnit="nephelometric turbidity units"/>
+  <typeScope v="0,143"/>
+ </Turbidity>
+ <TurbidityF type="XTypeDef">
+  <elem n="turbidityF" qual="f32 min=0.0" engUnit="nephelometric turbidity units"/>
+  <typeScope v="0,144"/>
+ </TurbidityF>
+ <HvacType type="XTypeDef">
+  <elem n="hvacType" qual="e8" enumDef="HvacHvtT"/>
+  <typeScope v="0,145"/>
+ </HvacType>
+ <ElecKwhL type="XTypeDef">
+  <elem n="elecKwhL" qual="s32 res=0.1 invld=2.14748365E9" engUnit="kilowatt hour"/>
+  <typeScope v="0,146"/>
+ </ElecKwhL>
+ <TempDiffP type="XTypeDef">
+  <elem n="tempDiffP" qual="s16 res=0.01 invld=32767.0" engUnit="celsius degrees"/>
+  <typeScope v="0,147"/>
+ </TempDiffP>
+ <CtrlReq type="XTypeDef">
+  <elem n="receiverId" qual="u16 min=1.0 invld=0.0"/>
+  <elem n="senderId" qual="u16 min=1.0 invld=65535.0"/>
+  <elem n="senderPrio" qual="u8 max=200.0"/>
+  <typeScope v="0,148"/>
+ </CtrlReq>
+ <CtrlResp type="XTypeDef">
+  <elem n="status" qual="e8" enumDef="ControlRespT"/>
+  <elem u="id" n="senderId" qual="u16 byt=1 min=1.0 invld=65535.0"/>
+  <elem u="range" n="senderRangeLower" qual="u16 byt=1 min=1.0 invld=65535.0"/>
+  <elem u="range" n="senderRangeUpper" qual="u16 byt=3 min=1.0 invld=65535.0"/>
+  <elem n="controllerId" qual="u16 byt=5 min=1.0 invld=65535.0"/>
+  <typeScope v="0,149"/>
+  <union> 
+    <branchElem v="status" />
+    <branch n="id"  c="p=-1,0,1,2,3,5" />
+    <branch n="rng" c="p=4" />
+  </union>
+ </CtrlResp>
+ <Ptz type="XTypeDef">
+  <elem n="panDir" qual="e8" enumDef="PanDirT"/>
+  <elem n="panSpeed" qual="u8 res=0.4 max=100.0" engUnit="percent"/>
+  <elem n="tiltDir" qual="e8" enumDef="TiltDirT"/>
+  <elem n="tiltSpeed" qual="u8 res=0.4 max=100.0" engUnit="percent"/>
+  <elem n="zoom" qual="e8" enumDef="ZoomT"/>
+  <elem n="zoomSpeed" qual="u8 res=0.4 max=100.0" engUnit="percent"/>
+  <typeScope v="0,150"/>
+ </Ptz>
+ <Privacyzone type="XTypeDef">
+  <elem n="action" qual="e8" enumDef="PrivacyzoneT"/>
+  <elem n="number" qual="u8 invld=0.0"/>
+  <elem n="cameraId" qual="u16 invld=0.0"/>
+  <typeScope v="0,151"/>
+ </Privacyzone>
+ <PosCtrl type="XTypeDef">
+  <elem n="receiverId" qual="u16 invld=0.0"/>
+  <elem n="controllerId" qual="u16 invld=0.0"/>
+  <elem n="controllerPrio" qual="u8 max=100.0"/>
+  <elem n="function" qual="e8" enumDef="CamFuncT"/>
+  <elem n="action" qual="e8" enumDef="CamActT"/>
+  <elem u="number" n="valueNumber" qual="u8 byt=7 invld=0.0"/>
+  <elem u="abspos" n="valueAbsposPan" qual="ref type=AngleDeg byt=7"/>
+  <elem u="abspos" n="valueAbsposTilt" qual="ref type=AngleDeg byt=9"/>
+  <elem u="abspos" n="valueAbsposZoom" qual="ref type=LevPercent byt=11"/>
+  <typeScope v="0,152"/>
+  <!-- typeSpec v="lonworks:LonPosCtrl"/ -->
+  <union> 
+    <branchElem v="function" />
+    <branch n="abspos"  c="p=2" />
+    <branch n="number"  c="p=-1,0,1" />
+  </union>
+ </PosCtrl>
+ <Enthalpy type="XTypeDef">
+  <elem n="enthalpy" qual="s16 res=0.01 invld=32767.0" engUnit="kilojoules per kilogram"/>
+  <typeScope v="0,153"/>
+ </Enthalpy>
+ <GfciStatus type="XTypeDef">
+  <elem n="gfciStatus" qual="e8" enumDef="GfciStatusT"/>
+  <typeScope v="0,154"/>
+ </GfciStatus>
+ <MotorState type="XTypeDef">
+  <elem n="motorState" qual="e8" enumDef="MotorStateT"/>
+  <typeScope v="0,155"/>
+ </MotorState>
+ <PumpsetMn type="XTypeDef">
+  <elem n="mainPump" qual="e8" enumDef="MotorStateT"/>
+  <elem n="boosterPump" qual="e8" enumDef="MotorStateT"/>
+  <elem n="priorityLevel" qual="e8" enumDef="PriorityLevelT"/>
+  <elem n="processReady" qual="e8" enumDef="BooleanT"/>
+  <elem n="emergencyStopActivated" qual="e8" enumDef="BooleanT"/>
+  <elem n="mainPumpDriveEnabled" qual="e8" enumDef="BooleanT"/>
+  <elem n="boosterPumpDriveEnabled" qual="e8" enumDef="BooleanT"/>
+  <elem n="maintenanceRequired" qual="e8" enumDef="BooleanT"/>
+  <typeScope v="0,156"/>
+ </PumpsetMn>
+ <ExControl type="XTypeDef">
+  <elem n="controlStatus" qual="e8" enumDef="ExControlT"/>
+  <elem n="controlDeviceAddrDomainId0" qual="u8"/>
+  <elem n="controlDeviceAddrDomainId1" qual="u8"/>
+  <elem n="controlDeviceAddrDomainId2" qual="u8"/>
+  <elem n="controlDeviceAddrDomainId3" qual="u8"/>
+  <elem n="controlDeviceAddrDomainId4" qual="u8"/>
+  <elem n="controlDeviceAddrDomainId5" qual="u8"/>
+  <elem n="controlDeviceAddrDomainLength" qual="u8 max=6.0"/>
+  <elem n="controlDeviceAddrSubnet" qual="u8 invld=0.0"/>
+  <elem n="controlDeviceAddrNode" qual="u8 max=127.0 invld=0.0"/>
+  <typeScope v="0,157"/>
+ </ExControl>
+ <PumpsetSn type="XTypeDef">
+  <elem n="totalDilutionFlow" qual="ref type=FlowMil"/>
+  <elem n="exhaustTemperature" qual="ref type=Temp"/>
+  <elem n="exhaustPressure" qual="ref type=Press"/>
+  <elem n="shaftSealPurgePressure" qual="ref type=Press"/>
+  <elem n="inletVacuum" qual="ref type=PressF"/>
+  <elem n="supplyVoltage" qual="ref type=Volt"/>
+  <elem n="coolantFlow" qual="ref type=FlowMil"/>
+  <elem n="coolantFlowLow" qual="e8" enumDef="BooleanT"/>
+  <elem n="dilutionActive" qual="e8" enumDef="BooleanT"/>
+  <elem n="ballastDilutionActive" qual="e8" enumDef="BooleanT"/>
+  <elem n="inletPurgeDilutionActive" qual="e8" enumDef="BooleanT"/>
+  <elem n="exhaustDilutionActive" qual="e8" enumDef="BooleanT"/>
+  <elem n="dilutionFlowOutOfRange" qual="e8" enumDef="BooleanT"/>
+  <elem n="powerSupplyOn" qual="e8" enumDef="BooleanT"/>
+  <typeScope v="0,158"/>
+ </PumpsetSn>
+ <PumpSensor type="XTypeDef">
+  <elem n="rotationalSpeed" qual="ref type=FreqHz"/>
+  <elem n="bodyTemperature" qual="ref type=Temp"/>
+  <elem n="motorExternalTemperature" qual="ref type=Temp"/>
+  <elem n="motorInternalTemperature" qual="ref type=Temp"/>
+  <elem n="motorOverloaded" qual="e8" enumDef="BooleanT"/>
+  <elem n="oilLevelLow" qual="e8" enumDef="BooleanT"/>
+  <elem n="phaseImbalanceDetected" qual="e8" enumDef="BooleanT"/>
+  <elem n="currentUsage" qual="ref type=Amp"/>
+  <elem n="powerUsage" qual="ref type=PowerKilo"/>
+  <elem n="temperatureControl" qual="e8" enumDef="UnitTempT"/>
+  <elem n="electromagneticBrakeActive" qual="e8" enumDef="BooleanT"/>
+  <elem n="frictionBrakeActive" qual="e8" enumDef="BooleanT"/>
+  <elem n="gasBrakeActive" qual="e8" enumDef="BooleanT"/>
+  <typeScope v="0,159"/>
+ </PumpSensor>
+ <AbsHumid type="XTypeDef">
+  <elem n="absHumid" qual="u16 res=0.01 invld=65535.0" engUnit="grams per kilogram"/>
+  <typeScope v="0,160"/>
+ </AbsHumid>
+ <FlowP type="XTypeDef">
+  <elem n="flowP" qual="u16 res=0.01 invld=65535.0" engUnit="cubic meters per hour"/>
+  <typeScope v="0,161"/>
+ </FlowP>
+ <DevCMode type="XTypeDef">
+  <elem n="devCMode" qual="e8" enumDef="DeviceCModeT"/>
+  <typeScope v="0,162"/>
+ </DevCMode>
+ <ValveMode type="XTypeDef">
+  <elem n="valveMode" qual="e8" enumDef="ValveModeT"/>
+  <typeScope v="0,163"/>
+ </ValveMode>
+ <Alarm2 type="XTypeDef">
+  <elem n="alarmType" qual="e8" enumDef="AlarmTypeT"/>
+  <elem n="priorityLevel" qual="e8" enumDef="PriorityLevelT"/>
+  <elem n="alarmTime" qual="u32 invld=4294967295" engUnit="second"/>
+  <elem n="milliseconds" qual="s16 min=-1.0 max=999.0 invld=-1.0" engUnit="millisecond"/>
+  <elem n="sequenceNumber" qual="u8"/>
+  <elem n="description" qual="st len=22"/>
+  <typeScope v="0,164"/>
+ </Alarm2>
+ <State64 type="XTypeDef">
+  <elem n="bit0" qual="bb byt=0 bit=7 len=1"/>
+  <elem n="bit1" qual="bb byt=0 bit=6 len=1"/>
+  <elem n="bit2" qual="bb byt=0 bit=5 len=1"/>
+  <elem n="bit3" qual="bb byt=0 bit=4 len=1"/>
+  <elem n="bit4" qual="bb byt=0 bit=3 len=1"/>
+  <elem n="bit5" qual="bb byt=0 bit=2 len=1"/>
+  <elem n="bit6" qual="bb byt=0 bit=1 len=1"/>
+  <elem n="bit7" qual="bb byt=0 bit=0 len=1"/>
+  <elem n="bit8" qual="bb byt=1 bit=7 len=1"/>
+  <elem n="bit9" qual="bb byt=1 bit=6 len=1"/>
+  <elem n="bit10" qual="bb byt=1 bit=5 len=1"/>
+  <elem n="bit11" qual="bb byt=1 bit=4 len=1"/>
+  <elem n="bit12" qual="bb byt=1 bit=3 len=1"/>
+  <elem n="bit13" qual="bb byt=1 bit=2 len=1"/>
+  <elem n="bit14" qual="bb byt=1 bit=1 len=1"/>
+  <elem n="bit15" qual="bb byt=1 bit=0 len=1"/>
+  <elem n="bit16" qual="bb byt=2 bit=7 len=1"/>
+  <elem n="bit17" qual="bb byt=2 bit=6 len=1"/>
+  <elem n="bit18" qual="bb byt=2 bit=5 len=1"/>
+  <elem n="bit19" qual="bb byt=2 bit=4 len=1"/>
+  <elem n="bit20" qual="bb byt=2 bit=3 len=1"/>
+  <elem n="bit21" qual="bb byt=2 bit=2 len=1"/>
+  <elem n="bit22" qual="bb byt=2 bit=1 len=1"/>
+  <elem n="bit23" qual="bb byt=2 bit=0 len=1"/>
+  <elem n="bit24" qual="bb byt=3 bit=7 len=1"/>
+  <elem n="bit25" qual="bb byt=3 bit=6 len=1"/>
+  <elem n="bit26" qual="bb byt=3 bit=5 len=1"/>
+  <elem n="bit27" qual="bb byt=3 bit=4 len=1"/>
+  <elem n="bit28" qual="bb byt=3 bit=3 len=1"/>
+  <elem n="bit29" qual="bb byt=3 bit=2 len=1"/>
+  <elem n="bit30" qual="bb byt=3 bit=1 len=1"/>
+  <elem n="bit31" qual="bb byt=3 bit=0 len=1"/>
+  <elem n="bit32" qual="bb byt=4 bit=7 len=1"/>
+  <elem n="bit33" qual="bb byt=4 bit=6 len=1"/>
+  <elem n="bit34" qual="bb byt=4 bit=5 len=1"/>
+  <elem n="bit35" qual="bb byt=4 bit=4 len=1"/>
+  <elem n="bit36" qual="bb byt=4 bit=3 len=1"/>
+  <elem n="bit37" qual="bb byt=4 bit=2 len=1"/>
+  <elem n="bit38" qual="bb byt=4 bit=1 len=1"/>
+  <elem n="bit39" qual="bb byt=4 bit=0 len=1"/>
+  <elem n="bit40" qual="bb byt=5 bit=7 len=1"/>
+  <elem n="bit41" qual="bb byt=5 bit=6 len=1"/>
+  <elem n="bit42" qual="bb byt=5 bit=5 len=1"/>
+  <elem n="bit43" qual="bb byt=5 bit=4 len=1"/>
+  <elem n="bit44" qual="bb byt=5 bit=3 len=1"/>
+  <elem n="bit45" qual="bb byt=5 bit=2 len=1"/>
+  <elem n="bit46" qual="bb byt=5 bit=1 len=1"/>
+  <elem n="bit47" qual="bb byt=5 bit=0 len=1"/>
+  <elem n="bit48" qual="bb byt=6 bit=7 len=1"/>
+  <elem n="bit49" qual="bb byt=6 bit=6 len=1"/>
+  <elem n="bit50" qual="bb byt=6 bit=5 len=1"/>
+  <elem n="bit51" qual="bb byt=6 bit=4 len=1"/>
+  <elem n="bit52" qual="bb byt=6 bit=3 len=1"/>
+  <elem n="bit53" qual="bb byt=6 bit=2 len=1"/>
+  <elem n="bit54" qual="bb byt=6 bit=1 len=1"/>
+  <elem n="bit55" qual="bb byt=6 bit=0 len=1"/>
+  <elem n="bit56" qual="bb byt=7 bit=7 len=1"/>
+  <elem n="bit57" qual="bb byt=7 bit=6 len=1"/>
+  <elem n="bit58" qual="bb byt=7 bit=5 len=1"/>
+  <elem n="bit59" qual="bb byt=7 bit=4 len=1"/>
+  <elem n="bit60" qual="bb byt=7 bit=3 len=1"/>
+  <elem n="bit61" qual="bb byt=7 bit=2 len=1"/>
+  <elem n="bit62" qual="bb byt=7 bit=1 len=1"/>
+  <elem n="bit63" qual="bb byt=7 bit=0 len=1"/>
+  <typeScope v="0,165"/>
+ </State64>
+ <NvType type="XTypeDef">
+  <elem n="typeProgramID0" qual="u8"/>
+  <elem n="typeProgramID1" qual="u8"/>
+  <elem n="typeProgramID2" qual="u8"/>
+  <elem n="typeProgramID3" qual="u8"/>
+  <elem n="typeProgramID4" qual="u8"/>
+  <elem n="typeProgramID5" qual="u8"/>
+  <elem n="typeProgramID6" qual="u8"/>
+  <elem n="typeProgramID7" qual="u8"/>
+  <elem n="typeScope" qual="u8 max=6.0"/>
+  <elem n="typeIndex" qual="u16 min=1.0 invld=0.0"/>
+  <elem n="typeCategory" qual="e8" enumDef="NvTypeCategoryT"/>
+  <elem n="typeLength" qual="u8 min=1.0 max=31.0 invld=0.0"/>
+  <elem n="scalingFactorA" qual="s16 invld=32767.0"/>
+  <elem n="scalingFactorB" qual="s16 invld=32767.0"/>
+  <elem n="scalingFactorC" qual="s16 invld=32767.0"/>
+  <typeScope v="0,166"/>
+ </NvType>
+ <EntOpmode type="XTypeDef">
+  <elem n="entOpmode" qual="e8" enumDef="EntOpmodeCmdT"/>
+  <typeScope v="0,168"/>
+ </EntOpmode>
+ <EntState type="XTypeDef">
+  <elem n="entState" qual="e8" enumDef="EntCmdT"/>
+  <typeScope v="0,169"/>
+ </EntState>
+ <EntStatus type="XTypeDef">
+  <elem n="unlocked" qual="ub byt=0 bit=7 len=1"/>
+  <elem n="locked" qual="ub byt=0 bit=6 len=1"/>
+  <elem n="securityLocked" qual="ub byt=0 bit=5 len=1"/>
+  <elem n="closed" qual="ub byt=0 bit=4 len=1"/>
+  <elem n="open" qual="ub byt=0 bit=3 len=1"/>
+  <elem n="inAlarm" qual="ub byt=0 bit=2 len=1"/>
+  <elem n="inErrorCond" qual="ub byt=0 bit=1 len=1"/>
+  <elem n="openPreAlarm" qual="ub byt=0 bit=0 len=1"/>
+  <elem n="openAlarm" qual="ub byt=1 bit=7 len=1"/>
+  <elem n="serviceAlarm" qual="ub byt=1 bit=6 len=1"/>
+  <elem n="tamper" qual="ub byt=1 bit=5 len=1"/>
+  <elem n="entryReq" qual="ub byt=1 bit=4 len=1"/>
+  <elem n="exitReq" qual="ub byt=1 bit=3 len=1"/>
+  <elem n="keyReq" qual="ub byt=1 bit=2 len=1"/>
+  <elem n="safetyExtReq" qual="ub byt=1 bit=1 len=1"/>
+  <elem n="emergencyReq" qual="ub byt=1 bit=0 len=1"/>
+  <elem n="unableLock" qual="ub byt=2 bit=7 len=1"/>
+  <elem n="unableUnlock" qual="ub byt=2 bit=6 len=1"/>
+  <elem n="stuck" qual="ub byt=2 bit=5 len=1"/>
+  <elem n="forcedOpen" qual="ub byt=2 bit=4 len=1"/>
+  <elem n="forcedClose" qual="ub byt=2 bit=3 len=1"/>
+  <elem n="opening" qual="ub byt=2 bit=2 len=1"/>
+  <elem n="closing" qual="ub byt=2 bit=1 len=1"/>
+  <elem n="moving" qual="ub byt=2 bit=0 len=1"/>
+  <elem n="stopped" qual="ub byt=3 bit=7 len=1"/>
+  <elem n="safetyAlarm" qual="ub byt=3 bit=6 len=1"/>
+  <elem n="unknownState" qual="ub byt=3 bit=5 len=1"/>
+  <elem n="cmdFb" qual="e8" enumDef="EntOpmodeCmdT"/>
+  <typeScope v="0,170"/>
+ </EntStatus>
+ <FlowDir type="XTypeDef">
+  <elem n="flowDir" qual="e8" enumDef="FlowDirectionT"/>
+  <typeScope v="0,171"/>
+ </FlowDir>
+ <HvacSatsts type="XTypeDef">
+  <elem n="priHeat" qual="ub byt=0 bit=7 len=1"/>
+  <elem n="secHeat" qual="ub byt=0 bit=6 len=1"/>
+  <elem n="priCool" qual="ub byt=0 bit=5 len=1"/>
+  <elem n="secCool" qual="ub byt=0 bit=4 len=1"/>
+  <elem n="priDuctStarved" qual="ub byt=0 bit=3 len=1"/>
+  <elem n="secDuctStarved" qual="ub byt=0 bit=2 len=1"/>
+  <elem n="reserved" qual="ub byt=0 bit=0 len=2"/>
+  <elem n="reserved1" qual="ub byt=1 bit=4 len=4"/>
+  <elem n="manufacturerDefined" qual="ub byt=1 bit=0 len=4"/>
+  <typeScope v="0,172"/>
+ </HvacSatsts>
+ <DevStatus type="XTypeDef">
+  <elem n="deviceSelect" qual="e8" enumDef="DeviceSelectT"/>
+  <elem u="pump_ctrl" n="devTypePumpCtrlDeviceFault" qual="ub byt=1 bit=7 len=1"/>
+  <elem u="pump_ctrl" n="devTypePumpCtrlSupplyFault" qual="ub byt=1 bit=6 len=1"/>
+  <elem u="pump_ctrl" n="devTypePumpCtrlReserved12" qual="ub byt=1 bit=5 len=1"/>
+  <elem u="pump_ctrl" n="devTypePumpCtrlSpeedLow" qual="ub byt=1 bit=4 len=1"/>
+  <elem u="pump_ctrl" n="devTypePumpCtrlSpeedHigh" qual="ub byt=1 bit=3 len=1"/>
+  <elem u="pump_ctrl" n="devTypePumpCtrlReserved15" qual="ub byt=1 bit=2 len=1"/>
+  <elem u="pump_ctrl" n="devTypePumpCtrlSetptOutOfRange" qual="ub byt=1 bit=1 len=1"/>
+  <elem u="pump_ctrl" n="devTypePumpCtrlReserved17" qual="ub byt=1 bit=0 len=1"/>
+  <elem u="pump_ctrl" n="devTypePumpCtrlLocalControl" qual="ub byt=2 bit=7 len=1"/>
+  <elem u="pump_ctrl" n="devTypePumpCtrlReserved21" qual="ub byt=2 bit=6 len=1"/>
+  <elem u="pump_ctrl" n="devTypePumpCtrlRunning" qual="ub byt=2 bit=5 len=1"/>
+  <elem u="pump_ctrl" n="devTypePumpCtrlReserved23" qual="ub byt=2 bit=4 len=1"/>
+  <elem u="pump_ctrl" n="devTypePumpCtrlRemotePress" qual="ub byt=2 bit=3 len=1"/>
+  <elem u="pump_ctrl" n="devTypePumpCtrlRemoteFlow" qual="ub byt=2 bit=2 len=1"/>
+  <elem u="pump_ctrl" n="devTypePumpCtrlRemoteTemp" qual="ub byt=2 bit=1 len=1"/>
+  <elem u="pump_ctrl" n="devTypePumpCtrlReserved27" qual="ub byt=2 bit=0 len=1"/>
+  <elem u="pump_ctrl" n="devTypePumpCtrlReserved307" qual="ub byt=3 bit=0 len=8"/>
+  <elem u="valve_pos" n="devTypeValvePosRunning" qual="ub byt=1 bit=7 len=1"/>
+  <elem u="valve_pos" n="devTypeValvePosAdapting" qual="ub byt=1 bit=6 len=1"/>
+  <elem u="valve_pos" n="devTypeValvePosInitializing" qual="ub byt=1 bit=5 len=1"/>
+  <elem u="valve_pos" n="devTypeValvePosLocalControl" qual="ub byt=1 bit=4 len=1"/>
+  <elem u="valve_pos" n="devTypeValvePosSetptOutOfRange" qual="ub byt=1 bit=3 len=1"/>
+  <elem u="valve_pos" n="devTypeValvePosRemoteCtrlSignal" qual="ub byt=1 bit=2 len=1"/>
+  <elem u="valve_pos" n="devTypeValvePosReserved167" qual="ub byt=1 bit=0 len=2 max=1.0"/>
+  <elem u="valve_pos" n="devTypeValvePosHwEmergency" qual="ub byt=2 bit=7 len=1"/>
+  <elem u="valve_pos" n="devTypeValvePosSwEmergency" qual="ub byt=2 bit=6 len=1"/>
+  <elem u="valve_pos" n="devTypeValvePosReserved227" qual="ub byt=2 bit=0 len=6 max=1.0"/>
+  <elem u="valve_pos" n="devTypeValvePosReserved307" qual="ub byt=3 bit=0 len=8"/>
+  <typeScope v="0,173"/>
+  <union> 
+    <branchElem v="deviceSelect" />
+    <branch n="pump_ctrl"  c="p=0" />
+    <branch n="valve_pos"  c="p=-1,1" />
+  </union>
+ </DevStatus>
+ <DevFault type="XTypeDef">
+  <elem n="deviceSelect" qual="e8" enumDef="DeviceSelectT"/>
+  <elem u="pump_ctrl" n="devTypePumpCtrlSfVoltageLow" qual="ub byt=1 bit=7 len=1"/>
+  <elem u="pump_ctrl" n="devTypePumpCtrlSfVoltageHigh" qual="ub byt=1 bit=6 len=1"/>
+  <elem u="pump_ctrl" n="devTypePumpCtrlSfPhase" qual="ub byt=1 bit=5 len=1"/>
+  <elem u="pump_ctrl" n="devTypePumpCtrlSfNoFluid" qual="ub byt=1 bit=4 len=1"/>
+  <elem u="pump_ctrl" n="devTypePumpCtrlSfPressLow" qual="ub byt=1 bit=3 len=1"/>
+  <elem u="pump_ctrl" n="devTypePumpCtrlSfPressHigh" qual="ub byt=1 bit=2 len=1"/>
+  <elem u="pump_ctrl" n="devTypePumpCtrlSfGeneralFault" qual="ub byt=1 bit=1 len=1"/>
+  <elem u="pump_ctrl" n="devTypePumpCtrlSfReserved17" qual="ub byt=1 bit=0 len=1"/>
+  <elem u="pump_ctrl" n="devTypePumpCtrlDfMotorTemp" qual="ub byt=2 bit=7 len=1"/>
+  <elem u="pump_ctrl" n="devTypePumpCtrlDfMotorFailure" qual="ub byt=2 bit=6 len=1"/>
+  <elem u="pump_ctrl" n="devTypePumpCtrlDfPumpBlocked" qual="ub byt=2 bit=5 len=1"/>
+  <elem u="pump_ctrl" n="devTypePumpCtrlDfElectTemp" qual="ub byt=2 bit=4 len=1"/>
+  <elem u="pump_ctrl" n="devTypePumpCtrlDfElectFailureNf" qual="ub byt=2 bit=3 len=1"/>
+  <elem u="pump_ctrl" n="devTypePumpCtrlDfElectFailure" qual="ub byt=2 bit=2 len=1"/>
+  <elem u="pump_ctrl" n="devTypePumpCtrlDfSensorFailure" qual="ub byt=2 bit=1 len=1"/>
+  <elem u="pump_ctrl" n="devTypePumpCtrlDfGeneralFault" qual="ub byt=2 bit=0 len=1"/>
+  <elem u="pump_ctrl" n="devTypePumpCtrlReserved307" qual="ub byt=3 bit=0 len=8"/>
+  <elem u="valve_pos" n="devTypeValvePosDfValveBlocked" qual="ub byt=1 bit=7 len=1"/>
+  <elem u="valve_pos" n="devTypeValvePosDfBlockedDirectionOpen" qual="ub byt=1 bit=6 len=1"/>
+  <elem u="valve_pos" n="devTypeValvePosDfBlockedDirectionClose" qual="ub byt=1 bit=5 len=1"/>
+  <elem u="valve_pos" n="devTypeValvePosDfPositionError" qual="ub byt=1 bit=4 len=1"/>
+  <elem u="valve_pos" n="devTypeValvePosDfStrokeOutOfRange" qual="ub byt=1 bit=3 len=1"/>
+  <elem u="valve_pos" n="devTypeValvePosDfInitialization" qual="ub byt=1 bit=2 len=1"/>
+  <elem u="valve_pos" n="devTypeValvePosDfVibrationCavitation" qual="ub byt=1 bit=1 len=1"/>
+  <elem u="valve_pos" n="devTypeValvePosDfEdTooHigh" qual="ub byt=1 bit=0 len=1"/>
+  <elem u="valve_pos" n="devTypeValvePosReserved102" qual="ub byt=2 bit=5 len=3 max=1.0"/>
+  <elem u="valve_pos" n="devTypeValvePosEeOscillating" qual="ub byt=2 bit=4 len=1"/>
+  <elem u="valve_pos" n="devTypeValvePosEeValveTooLarge" qual="ub byt=2 bit=3 len=1"/>
+  <elem u="valve_pos" n="devTypeValvePosEeValveTooSmall" qual="ub byt=2 bit=2 len=1"/>
+  <elem u="valve_pos" n="devTypeValvePosReserved267" qual="ub byt=2 bit=0 len=2 max=1.0"/>
+  <elem u="valve_pos" n="devTypeValvePosReserved307" qual="ub byt=3 bit=7 len=1"/>
+  <elem u="valve_pos" n="devTypeValvePosSfVoltageOutOfRange" qual="ub byt=3 bit=6 len=1"/>
+  <elem u="valve_pos" n="devTypeValvePosSfElectronicHighTemp" qual="ub byt=3 bit=5 len=1"/>
+  <elem u="valve_pos" n="devTypeValvePosSfFrictionalResistance" qual="ub byt=3 bit=4 len=1"/>
+  <elem u="valve_pos" n="devTypeValvePosReserved446" qual="ub byt=3 bit=1 len=3 max=1.0"/>
+  <elem u="valve_pos" n="devTypeValvePosGeneralFault" qual="ub byt=3 bit=0 len=1"/>
+  <typeScope v="0,174"/>
+  <union>
+    <branchElem v="deviceSelect" />
+    <branch n="pump_ctrl"  c="p=0" />
+    <branch n="valve_pos"  c="p=-1,1" />
+  </union>
+ </DevFault>
+ <DevMaint type="XTypeDef">
+  <elem n="deviceSelect" qual="e8" enumDef="DeviceSelectT"/>
+  <elem u="pump_ctrl" n="devTypePumpCtrlServiceRequired" qual="ub byt=1 bit=7 len=1"/>
+  <elem u="pump_ctrl" n="devTypePumpCtrlBearingsChange" qual="ub byt=1 bit=6 len=1"/>
+  <elem u="pump_ctrl" n="devTypePumpCtrlBearingsLubricate" qual="ub byt=1 bit=5 len=1"/>
+  <elem u="pump_ctrl" n="devTypePumpCtrlShaftsealChange" qual="ub byt=1 bit=4 len=1"/>
+  <elem u="pump_ctrl" n="devTypePumpCtrlReserved147" qual="ub byt=1 bit=0 len=4"/>
+  <elem u="pump_ctrl" n="devTypePumpCtrlReserved207" qual="ub byt=2 bit=0 len=8"/>
+  <elem u="pump_ctrl" n="devTypePumpCtrlReserved307" qual="ub byt=3 bit=0 len=8"/>
+  <elem u="valve_pos" n="devTypeValvePosMotorMaint" qual="ub byt=1 bit=7 len=1"/>
+  <elem u="valve_pos" n="devTypeValvePosPackingChange" qual="ub byt=1 bit=6 len=1"/>
+  <elem u="valve_pos" n="devTypeValvePosElectronicsCheck" qual="ub byt=1 bit=5 len=1"/>
+  <elem u="valve_pos" n="devTypeValvePosPositioningCheck" qual="ub byt=1 bit=4 len=1"/>
+  <elem u="valve_pos" n="devTypeValvePosLubricationCheck" qual="ub byt=1 bit=3 len=1"/>
+  <elem u="valve_pos" n="devTypeValvePosReturnCheck" qual="ub byt=1 bit=2 len=1"/>
+  <elem u="valve_pos" n="devTypeValvePosBatteryCheck" qual="ub byt=1 bit=1 len=1"/>
+  <elem u="valve_pos" n="devTypeValvePosReserved17" qual="ub byt=1 bit=0 len=1"/>
+  <elem u="valve_pos" n="devTypeValvePosReserved207" qual="ub byt=2 bit=0 len=8"/>
+  <elem u="valve_pos" n="devTypeValvePosReserved306" qual="ub byt=3 bit=1 len=7"/>
+  <elem u="valve_pos" n="devTypeValvePosGeneralMaint" qual="ub byt=3 bit=0 len=1"/>
+  <typeScope v="0,175"/>
+  <union>
+    <branchElem v="deviceSelect" />
+    <branch n="pump_ctrl"  c="p=0" />
+    <branch n="valve_pos"  c="p=-1,1" />
+  </union>
+ </DevMaint>
+ <DateEvent type="XTypeDef">
+  <elem n="daysToActive" qual="s16 invld=32767.0" engUnit="day"/>
+  <elem n="daysToInactive" qual="s16 invld=-32768.0" engUnit="day"/>
+  <elem n="name" qual="st len=22"/>
+  <typeScope v="0,176"/>
+ </DateEvent>
+ <SchedVal type="XTypeDef">
+  <elem n="schedVal" qual="u8 invld=255.0"/>
+  <typeScope v="0,177"/>
+ </SchedVal>
+ <SecState type="XTypeDef">
+  <elem n="state" qual="e8" enumDef="SecStateT"/>
+  <elem n="identity" qual="u16"/>
+  <typeScope v="0,178"/>
+ </SecState>
+ <SecStatus type="XTypeDef">
+  <elem n="status" qual="e8" enumDef="SecStatusT"/>
+  <elem n="identity" qual="u16"/>
+  <typeScope v="0,179"/>
+ </SecStatus>
+ <SblndState type="XTypeDef">
+  <elem n="pos" qual="ref type=Setting"/>
+  <elem n="cmdSource" qual="e8" enumDef="SblndCmdSourceT"/>
+  <elem n="errorCode" qual="e8" enumDef="SblndErrorT"/>
+  <typeScope v="0,180"/>
+ </SblndState>
+ <RacCtrl type="XTypeDef">
+  <elem n="audioLine" qual="ub byt=0 bit=5 len=3"/>
+  <elem n="duplexFull" qual="bb byt=0 bit=4 len=1"/>
+  <elem n="destP2P" qual="bb byt=0 bit=3 len=1"/>
+  <elem n="reserved" qual="ub byt=0 bit=0 len=3"/>
+  <elem n="audioType" qual="e8" enumDef="RailAudioTypeT"/>
+  <elem n="addrInitUnitId" qual="ub byt=2 bit=4 len=4 max=8.0"/>
+  <elem n="addrInitLocation" qual="ub byt=2 bit=0 len=4"/>
+  <elem n="addrInitCarId" qual="ub byt=3 bit=3 len=5"/>
+  <elem n="addrInitReserved" qual="ub byt=3 bit=0 len=3"/>
+  <elem n="addrInitAudioSensorType" qual="e8" enumDef="RailAudioSensorTypeT"/>
+  <elem n="addrTalkUnitId" qual="ub byt=5 bit=4 len=4"/>
+  <elem n="addrTalkLocation" qual="ub byt=5 bit=0 len=4"/>
+  <elem n="addrTalkCarId" qual="ub byt=6 bit=3 len=5"/>
+  <elem n="addrTalkReserved" qual="ub byt=6 bit=0 len=3"/>
+  <elem n="addrTalkAudioSensorType" qual="e8" enumDef="RailAudioSensorTypeT"/>
+  <elem u="p2p" n="addrDestP2PUnitId" qual="ub byt=8 bit=4 len=4"/>
+  <elem u="p2p" n="addrDestP2PLocation" qual="ub byt=8 bit=0 len=4"/>
+  <elem u="p2p" n="addrDestP2PCarId" qual="ub byt=9 bit=3 len=5"/>
+  <elem u="p2p" n="addrDestP2PReserved" qual="ub byt=9 bit=0 len=3"/>
+  <elem u="p2p" n="addrDestP2PAudioSensorType" qual="e8" enumDef="RailAudioSensorTypeT"/>
+  <elem u="p2m" n="addrDestP2MMaskUnit" qual="u8 byt=8"/>
+  <elem u="p2m" n="addrDestP2MMaskCar" qual="st len=4"/>
+  <elem u="p2m" n="addrDestP2MMaskLocation" qual="st len=2"/>
+  <elem u="p2m" n="addrDestP2MMaskAudio" qual="st len=3"/>
+  <typeScope v="0,181"/>
+  <union>
+    <branchElem v="destP2P" />
+    <branch n="p2p"  c="p=1" />
+    <branch n="p2m"  c="p=0" />
+  </union>
+ </RacCtrl>
+ <RacReq type="XTypeDef">
+  <elem n="destDef" qual="bb byt=0 bit=7 len=1"/>
+  <elem n="destP2P" qual="bb byt=0 bit=6 len=1"/>
+  <elem n="reserved" qual="ub byt=0 bit=0 len=6"/>
+  <elem n="audioType" qual="e8" enumDef="RailAudioTypeT"/>
+  <elem n="addrInitUnitId" qual="ub byt=2 bit=4 len=4"/>
+  <elem n="addrInitLocation" qual="ub byt=2 bit=0 len=4"/>
+  <elem n="addrInitCarId" qual="ub byt=3 bit=3 len=5"/>
+  <elem n="addrInitReserved" qual="ub byt=3 bit=0 len=3"/>
+  <elem n="addrInitAudioSensorType" qual="e8" enumDef="RailAudioSensorTypeT"/>
+  <elem u="p2p" n="addrDestP2PUnitId" qual="ub byt=5 bit=4 len=4"/>
+  <elem u="p2p" n="addrDestP2PLocation" qual="ub byt=5 bit=0 len=4"/>
+  <elem u="p2p" n="addrDestP2PCarId" qual="ub byt=6 bit=3 len=5"/>
+  <elem u="p2p" n="addrDestP2PReserved" qual="ub byt=6 bit=0 len=3"/>
+  <elem u="p2p" n="addrDestP2PAudioSensorType" qual="e8" enumDef="RailAudioSensorTypeT"/>
+  <elem u="p2m" n="addrDestP2MMaskUnit" qual="u8 byt=5"/>
+  <elem u="p2m" n="addrDestP2MMaskCar" qual="st len=4"/>
+  <elem u="p2m" n="addrDestP2MMaskLocation" qual="st len=2"/>
+  <elem u="p2m" n="addrDestP2MMaskAudio" qual="st len=3"/>
+  <typeScope v="0,182"/>
+  <union>
+    <branchElem v="destP2P" />
+    <branch n="p2p"  c="p=1" />
+    <branch n="p2m"  c="p=0" />
+   </union>
+ </RacReq>
+ <Count32 type="XTypeDef">
+  <elem n="count32" qual="u32 invld=4294967295"/>
+  <typeScope v="0,183"/>
+ </Count32>
+ <ClothesWC type="XTypeDef">
+  <elem n="cycle" qual="e8" enumDef="ApplCwcT"/>
+  <elem n="subcycle" qual="e8" enumDef="ApplCwsT"/>
+  <elem n="rervd" qual="u8"/>
+  <elem n="actionPowerOn" qual="ub byt=3 bit=7 len=1"/>
+  <elem n="actionRunMode" qual="ub byt=3 bit=6 len=1"/>
+  <elem n="actionRsrvd27" qual="ub byt=3 bit=0 len=6"/>
+  <elem n="functionProgram" qual="e8" enumDef="ApplCwpT"/>
+  <elem n="functionWashLoadLevel" qual="e8" enumDef="DiscreteLevelsT"/>
+  <elem n="functionWashTemp" qual="u8"/>
+  <elem n="functionWashTime" qual="u8"/>
+  <elem n="functionWashPrewash" qual="e8" enumDef="BooleanT"/>
+  <elem n="functionRinseTemp" qual="u8"/>
+  <elem n="functionRinseRepeat" qual="u8 max=9.0"/>
+  <elem n="functionRinseOption" qual="e8" enumDef="ApplRinT"/>
+  <elem n="functionSpinSpeed" qual="ref type=Rpm"/>
+  <elem n="functionSpinTime" qual="u8"/>
+  <elem n="functionSpinHold" qual="e8" enumDef="BooleanT"/>
+  <elem n="functionDryTemp" qual="u8 max=1.0"/>
+  <elem n="functionDryDurationTime" qual="u8"/>
+  <elem n="functionDryDurationDryness" qual="e8" enumDef="DiscreteLevelsT"/>
+  <elem n="timeRemaining" qual="ref type=TimeMin"/>
+  <typeScope v="0,184"/>
+ </ClothesWC>
+ <ClothesWM type="XTypeDef">
+  <elem n="doorAjar" qual="ub byt=0 bit=7 len=1"/>
+  <elem n="drainOn" qual="ub byt=0 bit=6 len=1"/>
+  <elem n="reserved" qual="ub byt=0 bit=0 len=6"/>
+  <typeScope v="0,185"/>
+ </ClothesWM>
+ <ClothesWS type="XTypeDef">
+  <elem n="cycle" qual="e8" enumDef="ApplCwcT"/>
+  <elem n="subcycle" qual="e8" enumDef="ApplCwsT"/>
+  <elem n="washerCommandData" qual="ref type=ClothesWC"/>
+  <elem n="timeRemaining" qual="ref type=TimeMin"/>
+  <elem n="alarmAlarmReset" qual="ub byt=25 bit=7 len=1"/>
+  <elem n="alarmWarWaterSupply" qual="ub byt=25 bit=6 len=1"/>
+  <elem n="alarmWarDrainSlow" qual="ub byt=25 bit=5 len=1"/>
+  <elem n="alarmWarDoorOpen" qual="ub byt=25 bit=4 len=1"/>
+  <elem n="alarmWarLoadUnbalanced" qual="ub byt=25 bit=3 len=1"/>
+  <elem n="alarmWarFilterCleaning" qual="ub byt=25 bit=2 len=1"/>
+  <elem n="alarmWarHosesReversed" qual="ub byt=25 bit=1 len=1"/>
+  <elem n="alarmWarVoltageLow" qual="ub byt=25 bit=0 len=1"/>
+  <elem n="alarmWarPowerFailure" qual="ub byt=26 bit=7 len=1"/>
+  <elem n="alarmWarDrainOpen" qual="ub byt=26 bit=6 len=1"/>
+  <elem n="alarmWarExecuteFail" qual="ub byt=26 bit=5 len=1"/>
+  <elem n="alarmWarDoorLocked" qual="ub byt=26 bit=4 len=1"/>
+  <elem n="alarmWarService" qual="ub byt=26 bit=3 len=1"/>
+  <elem n="alarmWarRsrvd5" qual="ub byt=26 bit=2 len=1"/>
+  <elem n="alarmWarRsrvd6" qual="ub byt=26 bit=1 len=1"/>
+  <elem n="alarmWarRsrvd7" qual="ub byt=26 bit=0 len=1"/>
+  <elem n="alarmErrMotorStall" qual="ub byt=27 bit=7 len=1"/>
+  <elem n="alarmErrWaterTemp" qual="ub byt=27 bit=6 len=1"/>
+  <elem n="alarmErrPressure" qual="ub byt=27 bit=5 len=1"/>
+  <elem n="alarmErrOverflow" qual="ub byt=27 bit=4 len=1"/>
+  <elem n="alarmErrWaterHeat" qual="ub byt=27 bit=3 len=1"/>
+  <elem n="alarmErrWaterLeak" qual="ub byt=27 bit=2 len=1"/>
+  <elem n="alarmErrMotorSpeed" qual="ub byt=27 bit=1 len=1"/>
+  <elem n="alarmErrWashThermistor" qual="ub byt=27 bit=0 len=1"/>
+  <elem n="alarmErrDryThermistor" qual="ub byt=28 bit=7 len=1"/>
+  <elem n="alarmErrDryOverheat" qual="ub byt=28 bit=6 len=1"/>
+  <elem n="alarmErrDryHeating" qual="ub byt=28 bit=5 len=1"/>
+  <elem n="alarmErrDryFan" qual="ub byt=28 bit=4 len=1"/>
+  <elem n="alarmErrRsrvd4" qual="ub byt=28 bit=3 len=1"/>
+  <elem n="alarmErrRsrvd5" qual="ub byt=28 bit=2 len=1"/>
+  <elem n="alarmErrRsrvd6" qual="ub byt=28 bit=1 len=1"/>
+  <elem n="alarmErrRsrvd7" qual="ub byt=28 bit=0 len=1"/>
+  <elem n="alarmErrRsrvd07" qual="ub byt=29 bit=0 len=8"/>
+  <elem n="alarmManufCode" qual="u8"/>
+  <typeScope v="0,186"/>
+ </ClothesWS>
+ <ClothesWA type="XTypeDef">
+  <elem n="alarmAlarmReset" qual="ub byt=0 bit=7 len=1"/>
+  <elem n="alarmWarWaterSupply" qual="ub byt=0 bit=6 len=1"/>
+  <elem n="alarmWarDrainSlow" qual="ub byt=0 bit=5 len=1"/>
+  <elem n="alarmWarDoorOpen" qual="ub byt=0 bit=4 len=1"/>
+  <elem n="alarmWarLoadUnbalanced" qual="ub byt=0 bit=3 len=1"/>
+  <elem n="alarmWarFilterCleaning" qual="ub byt=0 bit=2 len=1"/>
+  <elem n="alarmWarHosesReversed" qual="ub byt=0 bit=1 len=1"/>
+  <elem n="alarmWarVoltageLow" qual="ub byt=0 bit=0 len=1"/>
+  <elem n="alarmWarPowerFailure" qual="ub byt=1 bit=7 len=1"/>
+  <elem n="alarmWarDrainOpen" qual="ub byt=1 bit=6 len=1"/>
+  <elem n="alarmWarExecuteFail" qual="ub byt=1 bit=5 len=1"/>
+  <elem n="alarmWarDoorLocked" qual="ub byt=1 bit=4 len=1"/>
+  <elem n="alarmWarService" qual="ub byt=1 bit=3 len=1"/>
+  <elem n="alarmRsrvd5" qual="ub byt=1 bit=2 len=1"/>
+  <elem n="alarmRsrvd6" qual="ub byt=1 bit=1 len=1"/>
+  <elem n="alarmRsrvd7" qual="ub byt=1 bit=0 len=1"/>
+  <elem n="alarmErrMotorStall" qual="ub byt=2 bit=7 len=1"/>
+  <elem n="alarmErrWaterTemp" qual="ub byt=2 bit=6 len=1"/>
+  <elem n="alarmErrPressure" qual="ub byt=2 bit=5 len=1"/>
+  <elem n="alarmErrOverflow" qual="ub byt=2 bit=4 len=1"/>
+  <elem n="alarmErrWaterHeat" qual="ub byt=2 bit=3 len=1"/>
+  <elem n="alarmErrWaterLeak" qual="ub byt=2 bit=2 len=1"/>
+  <elem n="alarmErrMotorSpeed" qual="ub byt=2 bit=1 len=1"/>
+  <elem n="alarmErrWashThermistor" qual="ub byt=2 bit=0 len=1"/>
+  <elem n="alarmErrDryThermistor" qual="ub byt=3 bit=7 len=1"/>
+  <elem n="alarmErrDryOverheat" qual="ub byt=3 bit=6 len=1"/>
+  <elem n="alarmErrDryHeating" qual="ub byt=3 bit=5 len=1"/>
+  <elem n="alarmErrDryFan" qual="ub byt=3 bit=4 len=1"/>
+  <elem n="alarmErrRsrvd4" qual="ub byt=3 bit=3 len=1"/>
+  <elem n="alarmErrRsrvd5" qual="ub byt=3 bit=2 len=1"/>
+  <elem n="alarmErrRsrvd6" qual="ub byt=3 bit=1 len=1"/>
+  <elem n="alarmErrRsrvd7" qual="ub byt=3 bit=0 len=1"/>
+  <elem n="alarmErrRsrvd07" qual="ub byt=4 bit=0 len=8 max=1.0"/>
+  <elem n="alarmManufCode" qual="u8"/>
+  <typeScope v="0,187"/>
+ </ClothesWA>
+ <MultiplierS type="XTypeDef">
+  <elem n="multiplierS" qual="u8 res=0.01 max=2.54 invld=255.0"/>
+  <typeScope v="0,188"/>
+ </MultiplierS>
+ <Switch2 type="XTypeDef">
+  <elem n="state" qual="e8" enumDef="SwitchStateT"/>
+  <elem u="value" n="settingValue" qual="u8 byt=1 res=0.5 max=100.0 invld=255.0"/>
+  <elem u="change" n="settingChange" qual="u8 byt=1 res=0.5 max=100.0 invld=255.0"/>
+  <elem u="delay" n="settingDelay" qual="u8 byt=1 max=254.0 invld=255.0" engUnit="second"/>
+  <elem u="group_number" n="settingGroupNumber" qual="u8 byt=1 max=63.0 invld=255.0"/>
+  <elem u="multiplier" n="settingMultiplier" qual="ref type=MultiplierS byt=1"/>
+  <elem u="angle" n="settingAngle" qual="s8 byt=1 res=2.0 min=-180.0 max=180.0 invld=-128.0" engUnit="degrees angular"/>
+  <elem u="fan_level" n="settingFanLevel" qual="s8 byt=1 min=-100.0 max=100.0 invld=-128.0"/>
+  <elem u="button_number" n="settingButtonNumber" qual="u8 byt=1 invld=0.0"/>
+  <elem n="sceneNumber" qual="u8 byt=2 min=1.0 invld=0.0"/>
+  <typeScope v="0,189"/>
+  <union>
+   <branchElem v="??"/>
+   <branch n="value" c="??"/>
+   <branch n="change" c="??"/>
+   <branch n="delay" c="??"/>
+   <branch n="group_number" c="??"/>
+   <branch n="multiplier" c="??"/>
+   <branch n="angle" c="??"/>
+   <branch n="fan_level" c="??"/>
+   <branch n="button_number" c="??"/>
+  </union>
+ </Switch2>
+ <Color2 type="XTypeDef">
+  <elem n="encoding" qual="e8" enumDef="ColorEncodingT"/>
+  <elem u="CIE1931_lumen" n="colorValueCIE1931LumenX" qual="u8 byt=1 res=0.005 max=0.74 invld=255.0"/>
+  <elem u="CIE1931_lumen" n="colorValueCIE1931LumenY" qual="u8 byt=2 res=0.005 max=0.84 invld=255.0"/>
+  <elem u="CIE1931_lumen" n="colorValueCIE1931LumenAbsoluteY" qual="u16 byt=3 res=10.0 max=655340.0 invld=65535.0" engUnit="lumen"/>
+  <elem u="CIE1931_percent" n="colorValueCIE1931PercentX" qual="u8 byt=1 res=0.005 max=0.74 invld=255.0"/>
+  <elem u="CIE1931_percent" n="colorValueCIE1931PercentY" qual="u8 byt=2 res=0.005 max=0.84 invld=255.0"/>
+  <elem u="CIE1931_percent" n="colorValueCIE1931PercentPercentY" qual="u16 byt=3 res=0.01 max=100.0 invld=65535.0" engUnit="percent"/>
+  <elem u="RGB" n="colorValueRgbRed" qual="u8 byt=1"/>
+  <elem u="RGB" n="colorValueRgbGreen" qual="u8 byt=2"/>
+  <elem u="RGB" n="colorValueRgbBlue" qual="u8 byt=3"/>
+  <elem u="color_temperature" n="colorValueColorTemperature" qual="u8 byt=1 res=50.0 min=2800.0 max=7500.0 invld=255.0" engUnit="kelvin"/>
+  <typeScope v="0,190"/>
+  <union>
+   <branchElem v="??"/>
+   <branch n="CIE1931_lumen" c="??"/>
+   <branch n="CIE1931_percent" c="??"/>
+   <branch n="RGB" c="??"/>
+   <branch n="color_temperature" c="??"/>
+  </union>
+ </Color2>
+ <LogStatus type="XTypeDef">
+  <elem n="status" qual="e8" enumDef="LogStatusT"/>
+  <elem n="logNumber" qual="u16 min=1.0 invld=0.0"/>
+  <elem n="level" qual="u8 res=0.5 max=100.0 invld=255.0" engUnit="percent"/>
+  <elem n="recordCount" qual="s32"/>
+  <elem n="byteCount" qual="s32"/>
+  <elem n="totalRecordCount" qual="s32"/>
+  <elem n="recordsSinceNotification" qual="s32"/>
+  <elem n="currentNotifyTime" qual="ref type=TimeStampP"/>
+  <elem n="previousNotifyTime" qual="ref type=TimeStampP"/>
+  <typeScope v="0,191"/>
+ </LogStatus>
+ <TimeStampP type="XTypeDef">
+  <elem n="second" qual="u32" engUnit="second"/>
+  <elem n="hundredths" qual="u8 res=0.01 max=0.98999995 invld=255.0" engUnit="second"/>
+  <typeScope v="0,192"/>
+ </TimeStampP>
+ <LogFxRequest type="XTypeDef">
+  <elem n="requestedLog" qual="u16 min=1.0 invld=0.0"/>
+  <elem n="recordCount" qual="u32"/>
+  <elem n="startTime" qual="ref type=TimeStampP"/>
+  <elem n="endTime" qual="ref type=TimeStampP"/>
+  <typeScope v="0,193"/>
+ </LogFxRequest>
+ <LogFxStatus type="XTypeDef">
+  <elem n="requestorSubnet" qual="u8 min=1.0 invld=0.0"/>
+  <elem n="requestorNode" qual="u8 min=1.0 invld=0.0"/>
+  <elem n="logNumber" qual="u16 min=1.0 invld=0.0"/>
+  <elem n="complete" qual="u8 res=0.5 max=100.0 invld=255.0"/>
+  <typeScope v="0,194"/>
+ </LogFxStatus>
+ <LogRequest type="XTypeDef">
+  <elem n="logRequest" qual="u16 min=1.0 invld=0.0"/>
+  <typeScope v="0,195"/>
+ </LogRequest>
+ <EnthalpyD type="XTypeDef">
+  <elem n="enthalpyD" qual="s16 res=0.01 max=327.66 invld=32767.0" engUnit="kilojoule per kilogram"/>
+  <typeScope v="0,196"/>
+ </EnthalpyD>
+ <AmpAcMil type="XTypeDef">
+  <elem n="ampAcMil" qual="u16 max=65534.0 invld=65535.0" engUnit="milliampere"/>
+  <typeScope v="0,197"/>
+ </AmpAcMil>
+ <TimeHourP type="XTypeDef">
+  <elem n="timeHourP" qual="u32 max=4.294967294E9 invld=4294967295" engUnit="hour"/>
+  <typeScope v="0,198"/>
+ </TimeHourP>
+ <LampStatus type="XTypeDef">
+  <elem n="timeActual" qual="ref type=TimeStampP"/>
+  <elem n="alarmActualLampCurrentHigh" qual="ub byt=5 bit=7 len=1"/>
+  <elem n="alarmActualLampCurrentLow" qual="ub byt=5 bit=6 len=1"/>
+  <elem n="alarmActualMainCurrentHigh" qual="ub byt=5 bit=5 len=1"/>
+  <elem n="alarmActualMainCurrentLow" qual="ub byt=5 bit=4 len=1"/>
+  <elem n="alarmActualLampVoltageHigh" qual="ub byt=5 bit=3 len=1"/>
+  <elem n="alarmActualLampVoltageLow" qual="ub byt=5 bit=2 len=1"/>
+  <elem n="alarmActualMainVoltageHigh" qual="ub byt=5 bit=1 len=1"/>
+  <elem n="alarmActualMainVoltageLow" qual="ub byt=5 bit=0 len=1"/>
+  <elem n="alarmActualPowerfactorLow" qual="ub byt=6 bit=7 len=1"/>
+  <elem n="alarmActualOLCTempHigh" qual="ub byt=6 bit=6 len=1"/>
+  <elem n="alarmActualPowerHigh" qual="ub byt=6 bit=5 len=1"/>
+  <elem n="alarmActualPowerLow" qual="ub byt=6 bit=4 len=1"/>
+  <elem n="alarmActualRelayFailure" qual="ub byt=6 bit=3 len=1"/>
+  <elem n="alarmActualCapFailure" qual="ub byt=6 bit=2 len=1"/>
+  <elem n="alarmActualLampFailure" qual="ub byt=6 bit=1 len=1"/>
+  <elem n="alarmActualBallastFailure" qual="ub byt=6 bit=0 len=1"/>
+  <elem n="alarmActualInterComFailure" qual="ub byt=7 bit=7 len=1"/>
+  <elem n="alarmActualExterComFailure" qual="ub byt=7 bit=6 len=1"/>
+  <elem n="alarmActualMainVoltBelowSpec" qual="ub byt=7 bit=5 len=1"/>
+  <elem n="alarmActualLampRestartCount" qual="ub byt=7 bit=4 len=1"/>
+  <elem n="alarmActualFadingReady" qual="ub byt=7 bit=3 len=1"/>
+  <elem n="alarmActualBallastTempHigh" qual="ub byt=7 bit=2 len=1"/>
+  <elem n="alarmActualDigiInA" qual="ub byt=7 bit=1 len=1"/>
+  <elem n="alarmActualDigiInB" qual="ub byt=7 bit=0 len=1"/>
+  <elem n="alarmActualBit25Res" qual="ub byt=8 bit=7 len=1"/>
+  <elem n="alarmActualBit26Res" qual="ub byt=8 bit=6 len=1"/>
+  <elem n="alarmActualBit27Res" qual="ub byt=8 bit=5 len=1"/>
+  <elem n="alarmActualBit28Res" qual="ub byt=8 bit=4 len=1"/>
+  <elem n="alarmActualBit29Res" qual="ub byt=8 bit=3 len=1"/>
+  <elem n="alarmActualBit30Res" qual="ub byt=8 bit=2 len=1"/>
+  <elem n="alarmActualBit31Res" qual="ub byt=8 bit=1 len=1"/>
+  <elem n="alarmActualBit32Res" qual="ub byt=8 bit=0 len=1"/>
+  <elem n="alarmActualBit33Res" qual="ub byt=9 bit=7 len=1"/>
+  <elem n="alarmActualBit34Res" qual="ub byt=9 bit=6 len=1"/>
+  <elem n="alarmActualBit35Res" qual="ub byt=9 bit=5 len=1"/>
+  <elem n="alarmActualBit36Res" qual="ub byt=9 bit=4 len=1"/>
+  <elem n="alarmActualBit37Res" qual="ub byt=9 bit=3 len=1"/>
+  <elem n="alarmActualBit38Res" qual="ub byt=9 bit=2 len=1"/>
+  <elem n="alarmActualBit39Res" qual="ub byt=9 bit=1 len=1"/>
+  <elem n="alarmActualBit40Res" qual="ub byt=9 bit=0 len=1"/>
+  <elem n="timePrevious" qual="ref type=TimeStampP"/>
+  <elem n="alarmPreviousLampCurrentHigh" qual="ub byt=15 bit=7 len=1"/>
+  <elem n="alarmPreviousLampCurrentLow" qual="ub byt=15 bit=6 len=1"/>
+  <elem n="alarmPreviousMainCurrentHigh" qual="ub byt=15 bit=5 len=1"/>
+  <elem n="alarmPreviousMainCurrentLow" qual="ub byt=15 bit=4 len=1"/>
+  <elem n="alarmPreviousLampVoltageHigh" qual="ub byt=15 bit=3 len=1"/>
+  <elem n="alarmPreviousLampVoltageLow" qual="ub byt=15 bit=2 len=1"/>
+  <elem n="alarmPreviousMainVoltageHigh" qual="ub byt=15 bit=1 len=1"/>
+  <elem n="alarmPreviousMainVoltageLow" qual="ub byt=15 bit=0 len=1"/>
+  <elem n="alarmPreviousPowerfactorLow" qual="ub byt=16 bit=7 len=1"/>
+  <elem n="alarmPreviousOLCTempHigh" qual="ub byt=16 bit=6 len=1"/>
+  <elem n="alarmPreviousPowerHigh" qual="ub byt=16 bit=5 len=1"/>
+  <elem n="alarmPreviousPowerLow" qual="ub byt=16 bit=4 len=1"/>
+  <elem n="alarmPreviousRelayFailure" qual="ub byt=16 bit=3 len=1"/>
+  <elem n="alarmPreviousCapFailure" qual="ub byt=16 bit=2 len=1"/>
+  <elem n="alarmPreviousLampFailure" qual="ub byt=16 bit=1 len=1"/>
+  <elem n="alarmPreviousBallastFailure" qual="ub byt=16 bit=0 len=1"/>
+  <elem n="alarmPreviousInterComFailure" qual="ub byt=17 bit=7 len=1"/>
+  <elem n="alarmPreviousExterComFailure" qual="ub byt=17 bit=6 len=1"/>
+  <elem n="alarmPreviousMainVoltBelowSpec" qual="ub byt=17 bit=5 len=1"/>
+  <elem n="alarmPreviousLampRestartCount" qual="ub byt=17 bit=4 len=1"/>
+  <elem n="alarmPreviousFadingReady" qual="ub byt=17 bit=3 len=1"/>
+  <elem n="alarmPreviousBallastTempHigh" qual="ub byt=17 bit=2 len=1"/>
+  <elem n="alarmPreviousDigiInA" qual="ub byt=17 bit=1 len=1"/>
+  <elem n="alarmPreviousDigiInB" qual="ub byt=17 bit=0 len=1"/>
+  <elem n="alarmPreviousBit25Res" qual="ub byt=18 bit=7 len=1"/>
+  <elem n="alarmPreviousBit26Res" qual="ub byt=18 bit=6 len=1"/>
+  <elem n="alarmPreviousBit27Res" qual="ub byt=18 bit=5 len=1"/>
+  <elem n="alarmPreviousBit28Res" qual="ub byt=18 bit=4 len=1"/>
+  <elem n="alarmPreviousBit29Res" qual="ub byt=18 bit=3 len=1"/>
+  <elem n="alarmPreviousBit30Res" qual="ub byt=18 bit=2 len=1"/>
+  <elem n="alarmPreviousBit31Res" qual="ub byt=18 bit=1 len=1"/>
+  <elem n="alarmPreviousBit32Res" qual="ub byt=18 bit=0 len=1"/>
+  <elem n="alarmPreviousBit33Res" qual="ub byt=19 bit=7 len=1"/>
+  <elem n="alarmPreviousBit34Res" qual="ub byt=19 bit=6 len=1"/>
+  <elem n="alarmPreviousBit35Res" qual="ub byt=19 bit=5 len=1"/>
+  <elem n="alarmPreviousBit36Res" qual="ub byt=19 bit=4 len=1"/>
+  <elem n="alarmPreviousBit37Res" qual="ub byt=19 bit=3 len=1"/>
+  <elem n="alarmPreviousBit38Res" qual="ub byt=19 bit=2 len=1"/>
+  <elem n="alarmPreviousBit39Res" qual="ub byt=19 bit=1 len=1"/>
+  <elem n="alarmPreviousBit40Res" qual="ub byt=19 bit=0 len=1"/>
+  <typeScope v="0,199"/>
+ </LampStatus>
+ <Environment type="XTypeDef">
+  <elem n="lampCurrent" qual="ref type=AmpAcMil"/>
+  <elem n="lampVoltage" qual="ref type=VoltAc"/>
+  <elem n="supplyVoltage" qual="ref type=VoltAc"/>
+  <elem n="supplyCurrent" qual="ref type=AmpAcMil"/>
+  <elem n="ballastTemp" qual="ref type=TempP"/>
+  <elem n="power" qual="ref type=Power"/>
+  <elem n="powerFactor" qual="ref type=PwrFact"/>
+  <elem n="runHours" qual="ref type=TimeHourP"/>
+  <elem n="energy" qual="ref type=ElecKwhL"/>
+  <typeScope v="0,200"/>
+ </Environment>
+ <GeoLoc type="XTypeDef">
+  <elem n="longitude" qual="s32 res=1.0E-7 min=-180.0 max=180.0 invld=2.14748365E9"/>
+  <elem n="latitude" qual="s32 res=1.0E-7 min=-90.0 max=90.0 invld=2.14748365E9"/>
+  <elem n="elevation" qual="f32" engUnit="meter"/>
+  <elem n="name" qual="st len=19"/>
+  <typeScope v="0,201"/>
+ </GeoLoc>
+ <ProgramStatus type="XTypeDef">
+  <elem n="state" qual="e8" enumDef="ProgramStateT"/>
+  <elem n="runtime" qual="ref type=ElapsedTm"/>
+  <elem n="lastError" qual="e8" enumDef="ProgramStatusErrorT"/>
+  <elem n="timeOfLastError" qual="ref type=TimeStamp"/>
+  <typeScope v="0,202"/>
+ </ProgramStatus>
+ <LoadOffsets type="XTypeDef">
+  <elem n="standbyOffset" qual="ref type=LevPercent"/>
+  <elem n="standbyRotation" qual="s8 res=2.0 min=-180.0 max=180.0 invld=-128.0"/>
+  <elem n="demandResponseOffset" qual="ref type=LevPercent"/>
+  <elem n="demandResponseRotation" qual="s8 res=2.0 min=-180.0 max=180.0 invld=-128.0"/>
+  <typeScope v="0,203"/>
+ </LoadOffsets>
+ <Wm2P type="XTypeDef">
+  <elem n="Wm2P" qual="u16 res=0.05 max=3276.7 invld=65535.0" engUnit="watts per square meter"/>
+  <typeScope v="0,204"/>
+ </Wm2P>
+ <Safe1 type="XTypeDef">
+  <elem n="idAHeader" qual="ub byt=0 bit=7 len=1"/>
+  <elem n="idAFormat" qual="ub byt=0 bit=5 len=2"/>
+  <elem n="idAVersion" qual="ub byt=0 bit=3 len=2"/>
+  <elem n="idALength" qual="ub byt=0 bit=0 len=3"/>
+  <elem n="addressA1" qual="u8"/>
+  <elem n="addressATimedate" qual="ub byt=2 bit=7 len=1"/>
+  <elem n="addressA2" qual="ub byt=2 bit=0 len=7"/>
+  <elem n="addressA3" qual="u8"/>
+  <elem n="timeStampMsword" qual="u16"/>
+  <elem n="dataA" qual="u8"/>
+  <elem n="crcA" qual="u8"/>
+  <elem n="idBHeader" qual="ub byt=8 bit=7 len=1"/>
+  <elem n="idBFormat" qual="ub byt=8 bit=5 len=2"/>
+  <elem n="idBVersion" qual="ub byt=8 bit=3 len=2"/>
+  <elem n="idBLength" qual="ub byt=8 bit=0 len=3"/>
+  <elem n="addressB1" qual="u8"/>
+  <elem n="addressBTimedate" qual="ub byt=10 bit=7 len=1"/>
+  <elem n="addressB2" qual="ub byt=10 bit=0 len=7"/>
+  <elem n="addressB3" qual="u8"/>
+  <elem n="timeStampLsword" qual="u16"/>
+  <elem n="dataB" qual="u8"/>
+  <elem n="crcB" qual="u8"/>
+  <typeScope v="0,205"/>
+ </Safe1>
+ <Safe2 type="XTypeDef">
+  <elem n="idAHeader" qual="ub byt=0 bit=7 len=1"/>
+  <elem n="idAFormat" qual="ub byt=0 bit=5 len=2"/>
+  <elem n="idAVersion" qual="ub byt=0 bit=3 len=2"/>
+  <elem n="idALength" qual="ub byt=0 bit=0 len=3"/>
+  <elem n="addressA1" qual="u8"/>
+  <elem n="addressATimedate" qual="ub byt=2 bit=7 len=1"/>
+  <elem n="addressA2" qual="ub byt=2 bit=0 len=7"/>
+  <elem n="addressA3" qual="u8"/>
+  <elem n="timeStampMsword" qual="u16"/>
+  <elem n="dataA0" qual="u8"/>
+  <elem n="dataA1" qual="u8"/>
+  <elem n="crcA" qual="u8"/>
+  <elem n="idBHeader" qual="ub byt=9 bit=7 len=1"/>
+  <elem n="idBFormat" qual="ub byt=9 bit=5 len=2"/>
+  <elem n="idBVersion" qual="ub byt=9 bit=3 len=2"/>
+  <elem n="idBLength" qual="ub byt=9 bit=0 len=3"/>
+  <elem n="addressB1" qual="u8 max=1.0"/>
+  <elem n="addressBTimedate" qual="ub byt=11 bit=7 len=1"/>
+  <elem n="addressB2" qual="ub byt=11 bit=0 len=7"/>
+  <elem n="addressB3" qual="u8"/>
+  <elem n="timeStampLsword" qual="u16"/>
+  <elem n="dataB0" qual="u8"/>
+  <elem n="dataB1" qual="u8"/>
+  <elem n="crcB" qual="u8"/>
+  <typeScope v="0,206"/>
+ </Safe2>
+ <Safe4 type="XTypeDef">
+  <elem n="idAHeader" qual="ub byt=0 bit=7 len=1"/>
+  <elem n="idAFormat" qual="ub byt=0 bit=5 len=2"/>
+  <elem n="idAVersion" qual="ub byt=0 bit=3 len=2"/>
+  <elem n="idALength" qual="ub byt=0 bit=0 len=3"/>
+  <elem n="addressA1" qual="u8"/>
+  <elem n="addressATimedate" qual="ub byt=2 bit=7 len=1"/>
+  <elem n="addressA2" qual="ub byt=2 bit=0 len=7"/>
+  <elem n="addressA3" qual="u8"/>
+  <elem n="timeStampMsword" qual="u16"/>
+  <elem n="dataA0" qual="u8"/>
+  <elem n="dataA1" qual="u8"/>
+  <elem n="dataA2" qual="u8"/>
+  <elem n="dataA3" qual="u8"/>
+  <elem n="crcA" qual="u8"/>
+  <elem n="idBHeader" qual="ub byt=11 bit=7 len=1"/>
+  <elem n="idBFormat" qual="ub byt=11 bit=5 len=2"/>
+  <elem n="idBVersion" qual="ub byt=11 bit=3 len=2"/>
+  <elem n="idBLength" qual="ub byt=11 bit=0 len=3"/>
+  <elem n="addressB1" qual="u8"/>
+  <elem n="addressBTimedate" qual="ub byt=13 bit=7 len=1"/>
+  <elem n="addressB2" qual="ub byt=13 bit=0 len=7"/>
+  <elem n="addressB3" qual="u8"/>
+  <elem n="timeStampLsword" qual="u16"/>
+  <elem n="dataB0" qual="u8"/>
+  <elem n="dataB1" qual="u8"/>
+  <elem n="dataB2" qual="u8"/>
+  <elem n="dataB3" qual="u8"/>
+  <elem n="crcB" qual="u8"/>
+  <typeScope v="0,207"/>
+ </Safe4>
+ <Safe8 type="XTypeDef">
+  <elem n="idAHeader" qual="ub byt=0 bit=7 len=1"/>
+  <elem n="idAFormat" qual="ub byt=0 bit=5 len=2"/>
+  <elem n="idAVersion" qual="ub byt=0 bit=3 len=2"/>
+  <elem n="idALength" qual="ub byt=0 bit=0 len=3"/>
+  <elem n="addressA1" qual="u8"/>
+  <elem n="addressATimedate" qual="ub byt=2 bit=7 len=1"/>
+  <elem n="addressA2" qual="ub byt=2 bit=0 len=7"/>
+  <elem n="addressA3" qual="u8"/>
+  <elem n="timeStampMsword" qual="u16"/>
+  <elem n="dataA0" qual="u8"/>
+  <elem n="dataA1" qual="u8"/>
+  <elem n="dataA2" qual="u8"/>
+  <elem n="dataA3" qual="u8"/>
+  <elem n="dataA4" qual="u8"/>
+  <elem n="dataA5" qual="u8"/>
+  <elem n="dataA6" qual="u8"/>
+  <elem n="dataA7" qual="u8"/>
+  <elem n="crcA" qual="u8"/>
+  <elem n="idBHeader" qual="ub byt=15 bit=7 len=1"/>
+  <elem n="idBFormat" qual="ub byt=15 bit=5 len=2"/>
+  <elem n="idBVersion" qual="ub byt=15 bit=3 len=2"/>
+  <elem n="idBLength" qual="ub byt=15 bit=0 len=3"/>
+  <elem n="addressB1" qual="u8"/>
+  <elem n="addressBTimedate" qual="ub byt=17 bit=7 len=1"/>
+  <elem n="addressB2" qual="ub byt=17 bit=0 len=7"/>
+  <elem n="addressB3" qual="u8"/>
+  <elem n="timeStampLsword" qual="u16"/>
+  <elem n="dataB0" qual="u8"/>
+  <elem n="dataB1" qual="u8"/>
+  <elem n="dataB2" qual="u8"/>
+  <elem n="dataB3" qual="u8"/>
+  <elem n="dataB4" qual="u8"/>
+  <elem n="dataB5" qual="u8"/>
+  <elem n="dataB6" qual="u8"/>
+  <elem n="dataB7" qual="u8"/>
+  <elem n="crcB" qual="u8"/>
+  <typeScope v="0,208"/>
+ </Safe8>
+ <TimeVal2 type="XTypeDef">
+  <elem n="sunriseRelativeFlag" qual="ub byt=0 bit=7 len=1"/>
+  <elem n="sunsetRelativeFlag" qual="ub byt=0 bit=6 len=1"/>
+  <elem n="negativeTimeOffsetFlag" qual="ub byt=0 bit=5 len=1"/>
+  <elem n="hour" qual="ub byt=0 bit=0 len=5" engUnit="hour"/>
+  <elem n="occValueIgnoredFlag" qual="ub byt=1 bit=7 len=1"/>
+  <elem n="gpValueIgnoredFlag" qual="ub byt=1 bit=6 len=1"/>
+  <elem n="minutes" qual="ub byt=1 bit=0 len=6 max=1.0" engUnit="minute"/>
+  <elem n="occupancy" qual="e8" enumDef="OccupT"/>
+  <elem n="gpValue" qual="u8 max=1.0"/>
+  <typeScope v="0,209"/>
+ </TimeVal2>
+ <TimeOffset type="XTypeDef">
+  <elem n="timeOffset" qual="s16 max=32766.0 invld=32767.0" engUnit="second"/>
+  <typeScope v="0,210"/>
+ </TimeOffset>
+ <SchedExc type="XTypeDef">
+  <elem n="months" qual="e8" enumDef="MonthsT"/>
+  <elem n="days" qual="e8" enumDef="DaysOfMonthT"/>
+  <elem n="startTimeValue" qual="ref type=TimeVal2"/>
+  <elem n="endTimeSunriseRelativeFlag" qual="ub byt=6 bit=7 len=1"/>
+  <elem n="endTimeSunsetRelativeFlag" qual="ub byt=6 bit=6 len=1"/>
+  <elem n="endTimeNegativeTimeOffsetFlag" qual="ub byt=6 bit=5 len=1"/>
+  <elem n="endTimeHour" qual="ub byt=6 bit=0 len=5 max=1.0" engUnit="hour"/>
+  <elem n="endTimeStartOffsetEnableFlag" qual="ub byt=7 bit=7 len=1"/>
+  <elem n="endTimeStopOffsetEnableFlag" qual="ub byt=7 bit=6 len=1"/>
+  <elem n="endTimeMinutes" qual="ub byt=7 bit=0 len=6 max=1.0" engUnit="minute"/>
+  <typeScope v="0,211"/>
+ </SchedExc>
+ <SchedStatus type="XTypeDef">
+  <elem n="schedStatus" qual="e8" enumDef="SchedulerStatusT"/>
+  <typeScope v="0,212"/>
+ </SchedStatus>
+ <MassFlow type="XTypeDef">
+  <elem n="massFlow" qual="s16 res=0.1 invld=32767.0" engUnit="kilograms per hour"/>
+  <typeScope v="0,213"/>
+ </MassFlow>
+ <MassFlowF type="XTypeDef">
+  <elem n="massFlowF" qual="f32" engUnit="kilograms per hour"/>
+  <typeScope v="0,214"/>
+ </MassFlowF>
+ <CpActFbDly type="XCpTypeDef">
+  <max v="00 00 00 00 3b 03 e7"/>
+  <init v="00 00 00 00 00 00 00"/>
+  <elem n="actFbDly" qual="ref type=ElapsedTm"/>
+  <typeScope v="0,1"/>
+ </CpActFbDly>
+ <CpAlrmClrT1 type="XCpTypeDef">
+  <max v="00 00 00 00 3b 03 e7"/>
+  <init v="00 00 00 00 00 00 00"/>
+  <elem n="alrmClrT1" qual="ref type=ElapsedTm"/>
+  <typeScope v="0,2"/>
+ </CpAlrmClrT1>
+ <CpAlrmClrT2 type="XCpTypeDef">
+  <max v="00 00 00 00 3b 03 e7"/>
+  <init v="00 00 00 00 00 00 00"/>
+  <elem n="alrmClrT2" qual="ref type=ElapsedTm"/>
+  <typeScope v="0,3"/>
+ </CpAlrmClrT2>
+ <CpAlrmIhbT type="XCpTypeDef">
+  <max v="00 00 00 00 3b 03 e7"/>
+  <init v="00 00 00 00 00 00 00"/>
+  <elem n="alrmIhbT" qual="ref type=ElapsedTm"/>
+  <typeScope v="0,4"/>
+ </CpAlrmIhbT>
+ <CpAlrmSetT1 type="XCpTypeDef">
+  <max v="00 00 00 00 3b 03 e7"/>
+  <init v="00 00 00 00 00 00 00"/>
+  <elem n="alrmSetT1" qual="ref type=ElapsedTm"/>
+  <typeScope v="0,5"/>
+ </CpAlrmSetT1>
+ <CpAlrmSetT2 type="XCpTypeDef">
+  <max v="00 00 00 00 3b 03 e7"/>
+  <init v="00 00 00 00 00 00 00"/>
+  <elem n="alrmSetT2" qual="ref type=ElapsedTm"/>
+  <typeScope v="0,6"/>
+ </CpAlrmSetT2>
+ <CpDefOutput type="XCpTypeDef">
+  <inherited v="true"/>
+  <init v="00 00 00 00"/>
+  <elem n="defOutput" qual="s32"/>
+  <typeScope v="0,7"/>
+ </CpDefOutput>
+ <CpDriveT type="XCpTypeDef">
+  <max v="00 00 11 3b 3b 03 e7"/>
+  <init v="00 00 00 00 00 00 00"/>
+  <elem n="driveT" qual="ref type=ElapsedTm"/>
+  <typeScope v="0,8"/>
+ </CpDriveT>
+ <CpHighLimit1 type="XCpTypeDef">
+  <inherited v="true"/>
+  <init v="00 00 00 00"/>
+  <elem n="highLimit1" qual="s32"/>
+  <typeScope v="0,9"/>
+ </CpHighLimit1>
+ <CpHighLimit2 type="XCpTypeDef">
+  <inherited v="true"/>
+  <init v="00 00 00 00"/>
+  <elem n="highLimit2" qual="s32"/>
+  <typeScope v="0,10"/>
+ </CpHighLimit2>
+ <CpHystHigh1 type="XCpTypeDef">
+  <inherited v="true"/>
+  <init v="00 00 00 00"/>
+  <elem n="hystHigh1" qual="s32"/>
+  <typeScope v="0,11"/>
+ </CpHystHigh1>
+ <CpHystHigh2 type="XCpTypeDef">
+  <inherited v="true"/>
+  <init v="00 00 00 00"/>
+  <elem n="hystHigh2" qual="s32"/>
+  <typeScope v="0,12"/>
+ </CpHystHigh2>
+ <CpHystLow1 type="XCpTypeDef">
+  <inherited v="true"/>
+  <init v="00 00 00 00"/>
+  <elem n="hystLow1" qual="s32"/>
+  <typeScope v="0,13"/>
+ </CpHystLow1>
+ <CpHystLow2 type="XCpTypeDef">
+  <inherited v="true"/>
+  <init v="00 00 00 00"/>
+  <elem n="hystLow2" qual="s32"/>
+  <typeScope v="0,14"/>
+ </CpHystLow2>
+ <CpInFbDly type="XCpTypeDef">
+  <max v="00 00 00 00 3b 03 e7"/>
+  <init v="00 00 00 00 00 00 00"/>
+  <elem n="inFbDly" qual="ref type=ElapsedTm"/>
+  <typeScope v="0,15"/>
+ </CpInFbDly>
+ <CpInvrtOut type="XCpTypeDef">
+  <init v="00"/>
+  <elem n="invrtOut" qual="e8" enumDef="DiscreteLevelsT"/>
+  <typeScope v="0,16"/>
+ </CpInvrtOut>
+ <CpLocation type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"/>
+  <elem n="location" qual="ref type=StrAsc"/>
+  <typeScope v="0,17"/>
+ </CpLocation>
+ <CpLowLimit1 type="XCpTypeDef">
+  <inherited v="true"/>
+  <init v="00 00 00 00"/>
+  <elem n="lowLimit1" qual="s32"/>
+  <typeScope v="0,18"/>
+ </CpLowLimit1>
+ <CpLowLimit2 type="XCpTypeDef">
+  <inherited v="true"/>
+  <init v="00 00 00 00"/>
+  <elem n="lowLimit2" qual="s32"/>
+  <typeScope v="0,19"/>
+ </CpLowLimit2>
+ <CpMaxRnge type="XCpTypeDef">
+  <inherited v="true"/>
+  <init v="00 00 00 00"/>
+  <elem n="maxRnge" qual="s32"/>
+  <typeScope v="0,20"/>
+ </CpMaxRnge>
+ <CpMaxRcvT type="XCpTypeDef">
+  <max v="00 00 11 3b 3b 03 e7"/>
+  <init v="00 00 00 00 00 00 00"/>
+  <elem n="maxRcvT" qual="ref type=ElapsedTm"/>
+  <typeScope v="0,21"/>
+ </CpMaxRcvT>
+ <CpMaxSndT type="XCpTypeDef">
+  <max v="00 00 11 3b 3b 03 e7"/>
+  <init v="00 00 00 00 00 00 00"/>
+  <elem n="maxSndT" qual="ref type=ElapsedTm"/>
+  <typeScope v="0,22"/>
+ </CpMaxSndT>
+ <CpMinRnge type="XCpTypeDef">
+  <inherited v="true"/>
+  <init v="00 00 00 00"/>
+  <elem n="minRnge" qual="s32"/>
+  <typeScope v="0,23"/>
+ </CpMinRnge>
+ <CpMinSndT type="XCpTypeDef">
+  <max v="00 00 11 3b 3b 03 e7"/>
+  <init v="00 00 00 00 0f 00 00"/>
+  <elem n="minSndT" qual="ref type=ElapsedTm"/>
+  <typeScope v="0,24"/>
+ </CpMinSndT>
+ <CpNwrkCnfg type="XCpTypeDef">
+  <init v="01"/>
+  <elem n="nwrkCnfg" qual="e8" enumDef="ConfigSourceT"/>
+  <typeScope v="0,25"/>
+ </CpNwrkCnfg>
+ <CpOffset type="XCpTypeDef">
+  <inherited v="true"/>
+  <init v="00 00 00 00"/>
+  <elem n="offset" qual="s32"/>
+  <typeScope v="0,26"/>
+ </CpOffset>
+ <CpSndDelta type="XCpTypeDef">
+  <inherited v="true"/>
+  <init v="00 00 00 00"/>
+  <elem n="sndDelta" qual="s32"/>
+  <typeScope v="0,27"/>
+ </CpSndDelta>
+ <CpTrnsTblX type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"/>
+  <elem n="trnsTblX" qual="ref type=TransTable"/>
+  <typeScope v="0,28"/>
+ </CpTrnsTblX>
+ <CpTrnsTblY type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"/>
+  <elem n="trnsTblY" qual="ref type=TransTable"/>
+  <typeScope v="0,29"/>
+ </CpTrnsTblY>
+ <CpOffDely type="XCpTypeDef">
+  <max v="00 00 11 3b 3b 03 e7"/>
+  <init v="00 00 00 00 00 00 00"/>
+  <elem n="offDely" qual="ref type=ElapsedTm"/>
+  <typeScope v="0,30"/>
+ </CpOffDely>
+ <CpGain type="XCpTypeDef">
+  <init v="00 01 00 01"/>
+  <elem n="gain" qual="ref type=Muldiv"/>
+  <typeScope v="0,31"/>
+ </CpGain>
+ <CpOvrBehave type="XCpTypeDef">
+  <init v="00"/>
+  <elem n="ovrBehave" qual="e8" enumDef="OverrideT"/>
+  <typeScope v="0,32"/>
+ </CpOvrBehave>
+ <CpOvrValue type="XCpTypeDef">
+  <inherited v="true"/>
+  <init v="00 00 00 00"/>
+  <elem n="ovrValue" qual="s32"/>
+  <typeScope v="0,33"/>
+ </CpOvrValue>
+ <CpBypassTime type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="bypassTime" qual="ref type=TimeMin"/>
+  <typeScope v="0,34"/>
+ </CpBypassTime>
+ <CpManOvrTime type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="manOvrTime" qual="ref type=TimeMin"/>
+  <typeScope v="0,35"/>
+ </CpManOvrTime>
+ <CpHumSetpt type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="humSetpt" qual="ref type=LevPercent"/>
+  <typeScope v="0,36"/>
+ </CpHumSetpt>
+ <CpMaxFlowHeat type="XCpTypeDef">
+  <init v="ff ff"/>
+  <elem n="maxFlowHeat" qual="ref type=Flow"/>
+  <typeScope v="0,37"/>
+ </CpMaxFlowHeat>
+ <CpFireInitType type="XCpTypeDef">
+  <init v="00"/>
+  <elem n="fireInitType" qual="e8" enumDef="FireInitiatorT"/>
+  <typeScope v="0,38"/>
+ </CpFireInitType>
+ <CpSmokeNomSens type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="smokeNomSens" qual="ref type=SmoObscur"/>
+  <typeScope v="0,39"/>
+ </CpSmokeNomSens>
+ <CpSmokeDayAlrmLim type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="smokeDayAlrmLim" qual="ref type=SmoObscur"/>
+  <typeScope v="0,40"/>
+ </CpSmokeDayAlrmLim>
+ <CpActuatorType type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"/>
+  <elem n="actuatorType" qual="ref type=StrAsc"/>
+  <typeScope v="0,41"/>
+ </CpActuatorType>
+ <CpLimitCO2 type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="limitCO2" qual="ref type=Ppm"/>
+  <typeScope v="0,42"/>
+ </CpLimitCO2>
+ <CpMinDeltaAngl type="XCpTypeDef">
+  <min v="00 00"/>
+  <init v="00 00"/>
+  <elem n="minDeltaAngl" qual="ref type=AngleDeg"/>
+  <typeScope v="0,43"/>
+ </CpMinDeltaAngl>
+ <CpDirection type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="direction" qual="ref type=State"/>
+  <typeScope v="0,44"/>
+ </CpDirection>
+ <CpDriveTime type="XCpTypeDef">
+  <init v="05 dc"/>
+  <elem n="driveTime" qual="ref type=TimeSec"/>
+  <typeScope v="0,45"/>
+ </CpDriveTime>
+ <CpDuctArea type="XCpTypeDef">
+  <init v="ff ff"/>
+  <elem n="ductArea" qual="ref type=Area"/>
+  <typeScope v="0,46"/>
+ </CpDuctArea>
+ <CpMinDeltaFlow type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="minDeltaFlow" qual="ref type=Flow"/>
+  <typeScope v="0,47"/>
+ </CpMinDeltaFlow>
+ <CpMaxRcvTime type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="maxRcvTime" qual="ref type=TimeSec"/>
+  <typeScope v="0,48"/>
+ </CpMaxRcvTime>
+ <CpMaxSendTime type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="maxSendTime" qual="ref type=TimeSec"/>
+  <typeScope v="0,49"/>
+ </CpMaxSendTime>
+ <CpMaxSetpoint type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="maxSetpoint" qual="ref type=LevPercent"/>
+  <typeScope v="0,50"/>
+ </CpMaxSetpoint>
+ <CpMaxFlow type="XCpTypeDef">
+  <init v="ff ff"/>
+  <elem n="maxFlow" qual="ref type=Flow"/>
+  <typeScope v="0,51"/>
+ </CpMaxFlow>
+ <CpMinSendTime type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="minSendTime" qual="ref type=TimeSec"/>
+  <typeScope v="0,52"/>
+ </CpMinSendTime>
+ <CpMinSetpoint type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="minSetpoint" qual="ref type=LevPercent"/>
+  <typeScope v="0,53"/>
+ </CpMinSetpoint>
+ <CpMinFlow type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="minFlow" qual="ref type=Flow"/>
+  <typeScope v="0,54"/>
+ </CpMinFlow>
+ <CpMinFlowHeat type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="minFlowHeat" qual="ref type=Flow"/>
+  <typeScope v="0,55"/>
+ </CpMinFlowHeat>
+ <CpMinFlowStby type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="minFlowStby" qual="ref type=Flow"/>
+  <typeScope v="0,56"/>
+ </CpMinFlowStby>
+ <CpNomAirFlow type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="nomAirFlow" qual="ref type=Flow"/>
+  <typeScope v="0,57"/>
+ </CpNomAirFlow>
+ <CpNomAngle type="XCpTypeDef">
+  <min v="00 00"/>
+  <max v="12 8e"/>
+  <init v="11 94"/>
+  <elem n="nomAngle" qual="ref type=AngleDeg"/>
+  <typeScope v="0,58"/>
+ </CpNomAngle>
+ <CpNumValves type="XCpTypeDef">
+  <min v="00 01"/>
+  <max v="00 02"/>
+  <init v="00 02"/>
+  <elem n="numValves" qual="ref type=Count"/>
+  <typeScope v="0,59"/>
+ </CpNumValves>
+ <CpSetPnts type="XCpTypeDef">
+  <min v="fc 18 fc 18 fc 18 fc 18 fc 18 fc 18"/>
+  <max v="0d ac 0d ac 0d ac 0d ac 0d ac 0d ac"/>
+  <init v="08 fc 09 c4 0a f0 08 34 07 6c 06 40"/>
+  <elem n="setPnts" qual="ref type=TempSetpt"/>
+  <typeScope v="0,60"/>
+ </CpSetPnts>
+ <CpOemType type="XCpTypeDef">
+  <min v="00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"/>
+  <max v="ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"/>
+  <init v="00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"/>
+  <elem n="oemType" qual="ref type=StrAsc"/>
+  <typeScope v="0,61"/>
+ </CpOemType>
+ <CpMinDeltaRH type="XCpTypeDef">
+  <min v="00 00"/>
+  <init v="00 c8"/>
+  <elem n="minDeltaRH" qual="ref type=LevPercent"/>
+  <typeScope v="0,62"/>
+ </CpMinDeltaRH>
+ <CpMinDeltaCO2 type="XCpTypeDef">
+  <init v="00 0a"/>
+  <elem n="minDeltaCO2" qual="ref type=Ppm"/>
+  <typeScope v="0,63"/>
+ </CpMinDeltaCO2>
+ <CpMinDeltaTemp type="XCpTypeDef">
+  <min v="00 00"/>
+  <init v="00 00"/>
+  <elem n="minDeltaTemp" qual="ref type=TempP"/>
+  <typeScope v="0,64"/>
+ </CpMinDeltaTemp>
+ <CpSensConstTmp type="XCpTypeDef">
+  <init v="07 d0"/>
+  <elem n="sensConstTmp" qual="ref type=Multiplier"/>
+  <typeScope v="0,65"/>
+ </CpSensConstTmp>
+ <CpGainVAV type="XCpTypeDef">
+  <init v="07 d0"/>
+  <elem n="gainVAV" qual="ref type=Multiplier"/>
+  <typeScope v="0,66"/>
+ </CpGainVAV>
+ <CpSensConstVAV type="XCpTypeDef">
+  <init v="07 d0"/>
+  <elem n="sensConstVAV" qual="ref type=Multiplier"/>
+  <typeScope v="0,67"/>
+ </CpSensConstVAV>
+ <CpOffsetCO2 type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="offsetCO2" qual="ref type=Ppm"/>
+  <typeScope v="0,68"/>
+ </CpOffsetCO2>
+ <CpOffsetRH type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="offsetRH" qual="ref type=LevPercent"/>
+  <typeScope v="0,69"/>
+ </CpOffsetRH>
+ <CpOffsetTemp type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="offsetTemp" qual="ref type=TempP"/>
+  <typeScope v="0,70"/>
+ </CpOffsetTemp>
+ <CpDefltBehave type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="defltBehave" qual="ref type=Switch"/>
+  <typeScope v="0,71"/>
+ </CpDefltBehave>
+ <CpPwrUpDelay type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="pwrUpDelay" qual="ref type=TimeSec"/>
+  <typeScope v="0,72"/>
+ </CpPwrUpDelay>
+ <CpPwrUpState type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="pwrUpState" qual="ref type=Switch"/>
+  <typeScope v="0,73"/>
+ </CpPwrUpState>
+ <CpHvacMode type="XCpTypeDef">
+  <init v="03"/>
+  <elem n="hvacMode" qual="e8" enumDef="HvacT"/>
+  <typeScope v="0,74"/>
+ </CpHvacMode>
+ <CpCoolSetpt type="XCpTypeDef">
+  <min v="f0 60"/>
+  <max v="13 10"/>
+  <init v="02 d0"/>
+  <elem n="coolSetpt" qual="ref type=TempP"/>
+  <typeScope v="0,75"/>
+ </CpCoolSetpt>
+ <CpCoolLowerSP type="XCpTypeDef">
+  <min v="03 e8"/>
+  <max v="0d ac"/>
+  <init v="03 e8"/>
+  <elem n="coolLowerSP" qual="ref type=TempP"/>
+  <typeScope v="0,76"/>
+ </CpCoolLowerSP>
+ <CpCoolUpperSP type="XCpTypeDef">
+  <min v="03 e8"/>
+  <max v="0d ac"/>
+  <init v="03 e8"/>
+  <elem n="coolUpperSP" qual="ref type=TempP"/>
+  <typeScope v="0,77"/>
+ </CpCoolUpperSP>
+ <CpHeatSetpt type="XCpTypeDef">
+  <min v="f0 60"/>
+  <max v="24 54"/>
+  <init v="0d ac"/>
+  <elem n="heatSetpt" qual="ref type=TempP"/>
+  <typeScope v="0,78"/>
+ </CpHeatSetpt>
+ <CpHeatLowerSP type="XCpTypeDef">
+  <min v="03 e8"/>
+  <max v="0d ac"/>
+  <init v="03 e8"/>
+  <elem n="heatLowerSP" qual="ref type=TempP"/>
+  <typeScope v="0,79"/>
+ </CpHeatLowerSP>
+ <CpHeatUpperSP type="XCpTypeDef">
+  <min v="03 e8"/>
+  <max v="0d ac"/>
+  <init v="0d ac"/>
+  <elem n="heatUpperSP" qual="ref type=TempP"/>
+  <typeScope v="0,80"/>
+ </CpHeatUpperSP>
+ <CpLimitChlrCap type="XCpTypeDef">
+  <min v="00 00"/>
+  <max v="7d 00"/>
+  <init v="4e 20"/>
+  <elem n="limitChlrCap" qual="ref type=LevPercent"/>
+  <typeScope v="0,81"/>
+ </CpLimitChlrCap>
+ <CpLuxSetpoint type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="luxSetpoint" qual="ref type=Lux"/>
+  <typeScope v="0,82"/>
+ </CpLuxSetpoint>
+ <CpStep type="XCpTypeDef">
+  <init v="00"/>
+  <elem n="step" qual="ref type=LevCont"/>
+  <typeScope v="0,83"/>
+ </CpStep>
+ <CpOnOffHysteresis type="XCpTypeDef">
+  <init v="00"/>
+  <elem n="onOffHysteresis" qual="ref type=LevCont"/>
+  <typeScope v="0,84"/>
+ </CpOnOffHysteresis>
+ <CpClOffDelay type="XCpTypeDef">
+  <init v="0b b8"/>
+  <elem n="clOffDelay" qual="ref type=TimeSec"/>
+  <typeScope v="0,85"/>
+ </CpClOffDelay>
+ <CpClOnDelay type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="clOnDelay" qual="ref type=TimeSec"/>
+  <typeScope v="0,86"/>
+ </CpClOnDelay>
+ <CpPowerupState type="XCpTypeDef">
+  <init v="00 00 00 00"/>
+  <elem n="powerupState" qual="ref type=Setting"/>
+  <typeScope v="0,87"/>
+ </CpPowerupState>
+ <CpMinDeltaLevel type="XCpTypeDef">
+  <init v="00"/>
+  <elem n="minDeltaLevel" qual="ref type=LevCont"/>
+  <typeScope v="0,88"/>
+ </CpMinDeltaLevel>
+ <CpReflection type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="reflection" qual="ref type=LevPercent"/>
+  <typeScope v="0,89"/>
+ </CpReflection>
+ <CpFieldCalib type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="fieldCalib" qual="ref type=Lux"/>
+  <typeScope v="0,90"/>
+ </CpFieldCalib>
+ <CpHoldTime type="XCpTypeDef">
+  <min v="00 0a"/>
+  <init v="01 2c"/>
+  <elem n="holdTime" qual="ref type=TimeSec"/>
+  <typeScope v="0,91"/>
+ </CpHoldTime>
+ <CpStepValue type="XCpTypeDef">
+  <init v="05"/>
+  <elem n="stepValue" qual="ref type=LevCont"/>
+  <typeScope v="0,92"/>
+ </CpStepValue>
+ <CpMaxOut type="XCpTypeDef">
+  <init v="c8"/>
+  <elem n="maxOut" qual="ref type=LevCont"/>
+  <typeScope v="0,93"/>
+ </CpMaxOut>
+ <CpSceneNmbr type="XCpTypeDef">
+  <init v="01"/>
+  <elem n="sceneNmbr" qual="u8 min=1.0 invld=0.0"/>
+  <typeScope v="0,94"/>
+ </CpSceneNmbr>
+ <CpFadeTime type="XCpTypeDef">
+  <min v="00 00"/>
+  <init v="00 0a"/>
+  <elem n="fadeTime" qual="ref type=TimeSec"/>
+  <typeScope v="0,95"/>
+ </CpFadeTime>
+ <CpDelayTime type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="delayTime" qual="ref type=TimeSec"/>
+  <typeScope v="0,96"/>
+ </CpDelayTime>
+ <CpMasterSlave type="XCpTypeDef">
+  <init v="01"/>
+  <elem n="masterSlave" qual="u8 max=1.0"/>
+  <typeScope v="0,97"/>
+ </CpMasterSlave>
+ <CpUpdateRate type="XCpTypeDef">
+  <init v="02 58"/>
+  <elem n="updateRate" qual="ref type=TimeSec"/>
+  <typeScope v="0,98"/>
+ </CpUpdateRate>
+ <CpSummerTime type="XCpTypeDef">
+  <min v="00 00 00 00 00 00 00"/>
+  <max v="00 00 0c 1f 17 00 00"/>
+  <init v="00 00 01 01 00 00 00"/>
+  <elem n="summerTime" qual="ref type=TimeStamp"/>
+  <typeScope v="0,99"/>
+ </CpSummerTime>
+ <CpWinterTime type="XCpTypeDef">
+  <min v="00 00 00 00 00 00 00"/>
+  <max v="00 00 0c 1f 17 00 00"/>
+  <init v="00 00 01 01 00 00 00"/>
+  <elem n="winterTime" qual="ref type=TimeStamp"/>
+  <typeScope v="0,100"/>
+ </CpWinterTime>
+ <CpManualAllowed type="XCpTypeDef">
+  <init v="00"/>
+  <elem n="manualAllowed" qual="u8 max=1.0"/>
+  <typeScope v="0,101"/>
+ </CpManualAllowed>
+ <CpDefWeekMask type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00 00 00 00 00 00 00 00"/>
+  <elem n="timeEventIndex0" qual="u16"/>
+  <elem n="timeEventIndex1" qual="u16"/>
+  <elem n="timeEventIndex2" qual="u16"/>
+  <elem n="timeEventIndex3" qual="u16"/>
+  <elem n="timeEventIndex4" qual="u16"/>
+  <elem n="timeEventIndex5" qual="u16"/>
+  <elem n="timeEventIndex6" qual="u16"/>
+  <typeScope v="0,102"/>
+ </CpDefWeekMask>
+ <CpDayDateIndex type="XCpTypeDef">
+  <init v="00 00 00 00 00 00"/>
+  <elem n="day1" qual="u8 min=1.0 max=31.0 invld=0.0" engUnit="day"/>
+  <elem n="month1" qual="u8 min=1.0 max=12.0 invld=0.0" engUnit="julian month"/>
+  <elem n="day2" qual="u8 max=31.0 invld=0.0" engUnit="day"/>
+  <elem n="month2" qual="u8 max=12.0 invld=0.0" engUnit="julian month"/>
+  <elem n="eventModeIndex" qual="u16 invld=0.0"/>
+  <typeScope v="0,103"/>
+ </CpDayDateIndex>
+ <CpTimeEvent type="XCpTypeDef">
+  <init v="00 00 00 00"/>
+  <elem n="recordType" qual="e8" enumDef="EventModeTypeT"/>
+  <elem n="hour" qual="u8 max=23.0" engUnit="hour"/>
+  <elem n="minute" qual="u8 max=59.0" engUnit="minute"/>
+  <elem n="eventMode" qual="u8"/>
+  <typeScope v="0,104"/>
+ </CpTimeEvent>
+ <CpModeHrtBt type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="modeHrtBt" qual="ref type=TimeSec"/>
+  <typeScope v="0,105"/>
+ </CpModeHrtBt>
+ <CpDefrostMode type="XCpTypeDef">
+  <init v="01"/>
+  <elem n="defrostMode" qual="e8" enumDef="DefrostModeT"/>
+  <typeScope v="0,106"/>
+ </CpDefrostMode>
+ <CpMaxDefrstTime type="XCpTypeDef">
+  <init v="8c a0"/>
+  <elem n="maxDefrstTime" qual="ref type=TimeSec"/>
+  <typeScope v="0,107"/>
+ </CpMaxDefrstTime>
+ <CpDrainDelay type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="drainDelay" qual="ref type=TimeSec"/>
+  <typeScope v="0,108"/>
+ </CpDrainDelay>
+ <CpInjDelay type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="injDelay" qual="ref type=TimeSec"/>
+  <typeScope v="0,109"/>
+ </CpInjDelay>
+ <CpMaxDefrstTemp type="XCpTypeDef">
+  <min v="d8 f0"/>
+  <max v="3a 98"/>
+  <init v="00 00"/>
+  <elem n="maxDefrstTemp" qual="ref type=TempP"/>
+  <typeScope v="0,110"/>
+ </CpMaxDefrstTemp>
+ <CpStrtupDelay type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="strtupDelay" qual="ref type=TimeSec"/>
+  <typeScope v="0,111"/>
+ </CpStrtupDelay>
+ <CpTermTimeTemp type="XCpTypeDef">
+  <init v="00"/>
+  <elem n="termTimeTemp" qual="e8" enumDef="DefrostTermT"/>
+  <typeScope v="0,112"/>
+ </CpTermTimeTemp>
+ <CpPumpDownDelay type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="pumpDownDelay" qual="ref type=TimeSec"/>
+  <typeScope v="0,113"/>
+ </CpPumpDownDelay>
+ <CpSuperHtRefInit type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="superHtRefInit" qual="ref type=TempP"/>
+  <typeScope v="0,114"/>
+ </CpSuperHtRefInit>
+ <CpStrtupOpen type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="strtupOpen" qual="ref type=LevPercent"/>
+  <typeScope v="0,115"/>
+ </CpStrtupOpen>
+ <CpSuperHtRefMin type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="superHtRefMin" qual="ref type=TempP"/>
+  <typeScope v="0,116"/>
+ </CpSuperHtRefMin>
+ <CpRefrigGlide type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="refrigGlide" qual="ref type=Temp"/>
+  <typeScope v="0,117"/>
+ </CpRefrigGlide>
+ <CpSuperHtRefMax type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="superHtRefMax" qual="ref type=TempP"/>
+  <typeScope v="0,118"/>
+ </CpSuperHtRefMax>
+ <CpRefrigType type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"/>
+  <elem n="refrigerant" qual="st len=6"/>
+  <elem n="a" qual="f32"/>
+  <elem n="b" qual="f32"/>
+  <elem n="c" qual="f32"/>
+  <typeScope v="0,119"/>
+ </CpRefrigType>
+ <CpThermMode type="XCpTypeDef">
+  <init v="00"/>
+  <elem n="thermMode" qual="e8" enumDef="ThermModeT"/>
+  <typeScope v="0,120"/>
+ </CpThermMode>
+ <CpDayNightCntrl type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="dayNightCntrl" qual="ref type=State"/>
+  <typeScope v="0,121"/>
+ </CpDayNightCntrl>
+ <CpDiffNight type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="diffNight" qual="ref type=TempP"/>
+  <typeScope v="0,122"/>
+ </CpDiffNight>
+ <CpHighLimTemp type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="highLimTemp" qual="ref type=TempP"/>
+  <typeScope v="0,123"/>
+ </CpHighLimTemp>
+ <CpHighLimDly type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="highLimDly" qual="ref type=TimeSec"/>
+  <typeScope v="0,124"/>
+ </CpHighLimDly>
+ <CpCutOutValue type="XCpTypeDef">
+  <init v="03 e8"/>
+  <elem n="cutOutValue" qual="ref type=TempP"/>
+  <typeScope v="0,125"/>
+ </CpCutOutValue>
+ <CpAirTemp1Day type="XCpTypeDef">
+  <min v="00 00"/>
+  <max v="4e 20"/>
+  <init v="4e 20"/>
+  <elem n="airTemp1Day" qual="ref type=LevPercent"/>
+  <typeScope v="0,126"/>
+ </CpAirTemp1Day>
+ <CpSmokeNightAlrmLim type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="smokeNightAlrmLim" qual="ref type=SmoObscur"/>
+  <typeScope v="0,127"/>
+ </CpSmokeNightAlrmLim>
+ <CpLowLimTemp type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="lowLimTemp" qual="ref type=TempP"/>
+  <typeScope v="0,128"/>
+ </CpLowLimTemp>
+ <CpLowLimDly type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="lowLimDly" qual="ref type=TimeSec"/>
+  <typeScope v="0,129"/>
+ </CpLowLimDly>
+ <CpDiffValue type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="diffValue" qual="ref type=TempP"/>
+  <typeScope v="0,130"/>
+ </CpDiffValue>
+ <CpAirTemp1Night type="XCpTypeDef">
+  <min v="00 00"/>
+  <max v="4e 20"/>
+  <init v="4e 20"/>
+  <elem n="airTemp1Night" qual="ref type=LevPercent"/>
+  <typeScope v="0,131"/>
+ </CpAirTemp1Night>
+ <CpAirTemp1Alrm type="XCpTypeDef">
+  <min v="00 00"/>
+  <max v="4e 20"/>
+  <init v="4e 20"/>
+  <elem n="airTemp1Alrm" qual="ref type=LevPercent"/>
+  <typeScope v="0,132"/>
+ </CpAirTemp1Alrm>
+ <CpHighLimDefrDly type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="highLimDefrDly" qual="ref type=TimeSec"/>
+  <typeScope v="0,133"/>
+ </CpHighLimDefrDly>
+ <CpDeltaNight type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="deltaNight" qual="ref type=TempP"/>
+  <typeScope v="0,134"/>
+ </CpDeltaNight>
+ <CpRunHrInit type="XCpTypeDef">
+  <max v="ff ff 17 00 00 00 00"/>
+  <init v="00 00 00 00 00 00 00"/>
+  <elem n="runHrInit" qual="ref type=ElapsedTm"/>
+  <typeScope v="0,135"/>
+ </CpRunHrInit>
+ <CpRunHrAlarm type="XCpTypeDef">
+  <max v="ff ff 17 00 00 00 00"/>
+  <init v="00 00 00 00 00 00 00"/>
+  <elem n="runHrAlarm" qual="ref type=ElapsedTm"/>
+  <typeScope v="0,136"/>
+ </CpRunHrAlarm>
+ <CpEnergyCntInit type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="energyCntInit" qual="ref type=ElecKwh"/>
+  <typeScope v="0,137"/>
+ </CpEnergyCntInit>
+ <CpSmokeDayPreAlrmLim type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="smokeDayPreAlrmLim" qual="ref type=SmoObscur"/>
+  <typeScope v="0,138"/>
+ </CpSmokeDayPreAlrmLim>
+ <CpDebounce type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="debounce" qual="ref type=TimeSec"/>
+  <typeScope v="0,139"/>
+ </CpDebounce>
+ <CpSmokeNightPreAlrmLim type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="smokeNightPreAlrmLim" qual="ref type=SmoObscur"/>
+  <typeScope v="0,140"/>
+ </CpSmokeNightPreAlrmLim>
+ <CpZoneNum type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="zoneNum" qual="u16 invld=65535.0"/>
+  <typeScope v="0,141"/>
+ </CpZoneNum>
+ <CpThermAlrmROR type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="thermAlrmROR" qual="ref type=TempRor"/>
+  <typeScope v="0,142"/>
+ </CpThermAlrmROR>
+ <CpVisOutput type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="visOutput" qual="u16 res=0.1 max=1000.0 invld=65535.0" engUnit="candela"/>
+  <typeScope v="0,143"/>
+ </CpVisOutput>
+ <CpAudOutput type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="audOutput" qual="ref type=SoundDb"/>
+  <typeScope v="0,144"/>
+ </CpAudOutput>
+ <CpFlashFreq type="XCpTypeDef">
+  <min v="00 01"/>
+  <max v="00 32"/>
+  <init v="00 0a"/>
+  <elem n="flashFreq" qual="ref type=FreqHz"/>
+  <typeScope v="0,145"/>
+ </CpFlashFreq>
+ <CpInstallDate type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00"/>
+  <elem n="installDate" qual="ref type=TimeStamp"/>
+  <typeScope v="0,146"/>
+ </CpInstallDate>
+ <CpMaintDate type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00"/>
+  <elem n="maintDate" qual="ref type=TimeStamp"/>
+  <typeScope v="0,147"/>
+ </CpMaintDate>
+ <CpManfDate type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00"/>
+  <elem n="manfDate" qual="ref type=TimeStamp"/>
+  <typeScope v="0,148"/>
+ </CpManfDate>
+ <CpFireTxt1 type="XCpTypeDef">
+  <min v="00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"/>
+  <max v="ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff 00"/>
+  <init v="00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"/>
+  <elem n="fireTxt1" qual="ref type=StrAsc"/>
+  <typeScope v="0,149"/>
+ </CpFireTxt1>
+ <CpFireTxt2 type="XCpTypeDef">
+  <min v="00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"/>
+  <max v="ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff 00"/>
+  <init v="00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"/>
+  <elem n="fireTxt2" qual="ref type=StrAsc"/>
+  <typeScope v="0,150"/>
+ </CpFireTxt2>
+ <CpFireTxt3 type="XCpTypeDef">
+  <min v="00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"/>
+  <max v="ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff 00"/>
+  <init v="00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"/>
+  <elem n="fireTxt3" qual="ref type=StrAsc"/>
+  <typeScope v="0,151"/>
+ </CpFireTxt3>
+ <CpThermThreshold type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="thermThreshold" qual="ref type=Temp"/>
+  <typeScope v="0,152"/>
+ </CpThermThreshold>
+ <CpFireIndicate type="XCpTypeDef">
+  <init v="00"/>
+  <elem n="fireIndicate" qual="e8" enumDef="FireIndicatorT"/>
+  <typeScope v="0,153"/>
+ </CpFireIndicate>
+ <CpTimeZone type="XCpTypeDef">
+  <init v="00 00 00 00 02 02 00 00 42 00 02 00 00 aa 00"/>
+  <elem n="timeZone" qual="ref type=TimeZone"/>
+  <typeScope v="0,154"/>
+ </CpTimeZone>
+ <CpPrimeVal type="XCpTypeDef">
+  <init v="c8 01"/>
+  <elem n="primeVal" qual="ref type=Switch"/>
+  <typeScope v="0,155"/>
+ </CpPrimeVal>
+ <CpSecondVal type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="secondVal" qual="ref type=Switch"/>
+  <typeScope v="0,156"/>
+ </CpSecondVal>
+ <CpSceneOffset type="XCpTypeDef">
+  <init v="00"/>
+  <elem n="sceneOffset" qual="u8"/>
+  <typeScope v="0,157"/>
+ </CpSceneOffset>
+ <CpNomRPM type="XCpTypeDef">
+  <init v="07 08"/>
+  <elem n="nomRPM" qual="ref type=Rpm"/>
+  <typeScope v="0,158"/>
+ </CpNomRPM>
+ <CpNomFreq type="XCpTypeDef">
+  <min v="00 00"/>
+  <max v="03 e8"/>
+  <init v="02 58"/>
+  <elem n="nomFreq" qual="ref type=FreqHz"/>
+  <typeScope v="0,159"/>
+ </CpNomFreq>
+ <CpRampUpTm type="XCpTypeDef">
+  <init v="00 64"/>
+  <elem n="rampUpTm" qual="ref type=TimeSec"/>
+  <typeScope v="0,160"/>
+ </CpRampUpTm>
+ <CpRampDownTm type="XCpTypeDef">
+  <init v="00 64"/>
+  <elem n="rampDownTm" qual="ref type=TimeSec"/>
+  <typeScope v="0,161"/>
+ </CpRampDownTm>
+ <CpDefScale type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="defScale" qual="ref type=LevPercent"/>
+  <typeScope v="0,162"/>
+ </CpDefScale>
+ <CpRegName type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"/>
+  <elem n="regName" qual="ref type=StrAsc"/>
+  <typeScope v="0,163"/>
+ </CpRegName>
+ <CpBaseValue type="XCpTypeDef">
+  <init v="00 00 00 00 00 00"/>
+  <elem n="baseValue" qual="ref type=RegVal"/>
+  <typeScope v="0,164"/>
+ </CpBaseValue>
+ <CpDevMajVer type="XCpTypeDef">
+  <init v="00"/>
+  <elem n="devMajVer" qual="u8"/>
+  <typeScope v="0,165"/>
+ </CpDevMajVer>
+ <CpDevMinVer type="XCpTypeDef">
+  <init v="00"/>
+  <elem n="devMinVer" qual="u8"/>
+  <typeScope v="0,166"/>
+ </CpDevMinVer>
+ <CpObjMajVer type="XCpTypeDef">
+  <init v="00"/>
+  <elem n="objMajVer" qual="u8"/>
+  <typeScope v="0,167"/>
+ </CpObjMajVer>
+ <CpObjMinVer type="XCpTypeDef">
+  <init v="00"/>
+  <elem n="objMinVer" qual="u8"/>
+  <typeScope v="0,168"/>
+ </CpObjMinVer>
+ <CpHvacType type="XCpTypeDef">
+  <init v="00"/>
+  <elem n="hvacType" qual="e8" enumDef="HvacHvtT"/>
+  <typeScope v="0,169"/>
+ </CpHvacType>
+ <CpTimeout type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="timeout" qual="ref type=TimeSec"/>
+  <typeScope v="0,170"/>
+ </CpTimeout>
+ <CpControlPriority type="XCpTypeDef">
+  <init v="00"/>
+  <elem n="controlPriority" qual="u8 max=200.0"/>
+  <typeScope v="0,171"/>
+ </CpControlPriority>
+ <CpDeviceGroupID type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="deviceGroupID" qual="u16 invld=0.0"/>
+  <typeScope v="0,172"/>
+ </CpDeviceGroupID>
+ <CpMaxPrivacyZones type="XCpTypeDef">
+  <init v="01"/>
+  <elem n="maxPrivacyZones" qual="u8 invld=0.0"/>
+  <typeScope v="0,173"/>
+ </CpMaxPrivacyZones>
+ <CpMaxCameraPrepositions type="XCpTypeDef">
+  <init v="00"/>
+  <elem n="maxCameraPrepositions" qual="u8"/>
+  <typeScope v="0,174"/>
+ </CpMaxCameraPrepositions>
+ <CpDefaultPanTiltZoomSpeeds type="XCpTypeDef">
+  <init v="00 fa 00 fa 00 fa"/>
+  <elem n="defaultPanTiltZoomSpeeds" qual="ref type=Ptz"/>
+  <typeScope v="0,175"/>
+ </CpDefaultPanTiltZoomSpeeds>
+ <CpDefaultAutoPanSpeed type="XCpTypeDef">
+  <init v="3f"/>
+  <elem n="defaultAutoPanSpeed" qual="u8 res=0.4 max=100.0 invld=255.0" engUnit="percent"/>
+  <typeScope v="0,176"/>
+ </CpDefaultAutoPanSpeed>
+ <CpAutoAnswer type="XCpTypeDef">
+  <init v="00"/>
+  <elem n="autoAnswer" qual="e8" enumDef="BooleanT"/>
+  <typeScope v="0,177"/>
+ </CpAutoAnswer>
+ <CpDialString type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"/>
+  <elem n="dialString" qual="ref type=StrAsc"/>
+  <typeScope v="0,178"/>
+ </CpDialString>
+ <CpSerialNumber type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"/>
+  <elem n="serialNumber" qual="ref type=StrAsc"/>
+  <typeScope v="0,179"/>
+ </CpSerialNumber>
+ <CpNormalRotationalSpeed type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="normalRotationalSpeed" qual="ref type=FreqHz"/>
+  <typeScope v="0,180"/>
+ </CpNormalRotationalSpeed>
+ <CpStandbyRotationalSpeed type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="standbyRotationalSpeed" qual="ref type=FreqHz"/>
+  <typeScope v="0,181"/>
+ </CpStandbyRotationalSpeed>
+ <CpPartNumber type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"/>
+  <elem n="partNumber" qual="ref type=StrAsc"/>
+  <typeScope v="0,182"/>
+ </CpPartNumber>
+ <CpDischargeAirCoolingSetpoint type="XCpTypeDef">
+  <init v="05 14"/>
+  <elem n="dischargeAirCoolingSetpoint" qual="ref type=TempP"/>
+  <typeScope v="0,183"/>
+ </CpDischargeAirCoolingSetpoint>
+ <CpDischargeAirHeatingSetpoint type="XCpTypeDef">
+  <init v="03 e8"/>
+  <elem n="dischargeAirHeatingSetpoint" qual="ref type=TempP"/>
+  <typeScope v="0,184"/>
+ </CpDischargeAirHeatingSetpoint>
+ <CpMaxSupplyFanCapacity type="XCpTypeDef">
+  <init v="4e 20"/>
+  <elem n="maxSupplyFanCapacity" qual="ref type=LevPercent"/>
+  <typeScope v="0,185"/>
+ </CpMaxSupplyFanCapacity>
+ <CpMinSupplyFanCapacity type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="minSupplyFanCapacity" qual="ref type=LevPercent"/>
+  <typeScope v="0,186"/>
+ </CpMinSupplyFanCapacity>
+ <CpMaxReturnExhaustFanCapacity type="XCpTypeDef">
+  <init v="4e 20"/>
+  <elem n="maxReturnExhaustFanCapacity" qual="ref type=LevPercent"/>
+  <typeScope v="0,187"/>
+ </CpMaxReturnExhaustFanCapacity>
+ <CpMinReturnExhaustFanCapacity type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="minReturnExhaustFanCapacity" qual="ref type=LevPercent"/>
+  <typeScope v="0,188"/>
+ </CpMinReturnExhaustFanCapacity>
+ <CpDuctStaticPressureSetpoint type="XCpTypeDef">
+  <init v="01 f4"/>
+  <elem n="ductStaticPressureSetpoint" qual="ref type=PressP"/>
+  <typeScope v="0,189"/>
+ </CpDuctStaticPressureSetpoint>
+ <CpMaxDuctStaticPressureSetpoint type="XCpTypeDef">
+  <init v="03 e8"/>
+  <elem n="maxDuctStaticPressureSetpoint" qual="ref type=PressP"/>
+  <typeScope v="0,190"/>
+ </CpMaxDuctStaticPressureSetpoint>
+ <CpMinDuctStaticPressureSetpoint type="XCpTypeDef">
+  <init v="00 64"/>
+  <elem n="minDuctStaticPressureSetpoint" qual="ref type=PressP"/>
+  <typeScope v="0,191"/>
+ </CpMinDuctStaticPressureSetpoint>
+ <CpDuctStaticPressureLimit type="XCpTypeDef">
+  <init v="05 dc"/>
+  <elem n="ductStaticPressureLimit" qual="ref type=PressP"/>
+  <typeScope v="0,192"/>
+ </CpDuctStaticPressureLimit>
+ <CpBuildingStaticPressureSetpoint type="XCpTypeDef">
+  <init v="00 19"/>
+  <elem n="buildingStaticPressureSetpoint" qual="ref type=PressP"/>
+  <typeScope v="0,193"/>
+ </CpBuildingStaticPressureSetpoint>
+ <CpReturnFanStaticPressureSetpoint type="XCpTypeDef">
+  <init v="00 0a"/>
+  <elem n="returnFanStaticPressureSetpoint" qual="ref type=PressP"/>
+  <typeScope v="0,194"/>
+ </CpReturnFanStaticPressureSetpoint>
+ <CpFanDifferentialSetpoint type="XCpTypeDef">
+  <init v="07 d0"/>
+  <elem n="fanDifferentialSetpoint" qual="ref type=LevPercent"/>
+  <typeScope v="0,195"/>
+ </CpFanDifferentialSetpoint>
+ <CpMixedAirLowLimitSetpoint type="XCpTypeDef">
+  <init v="02 bc"/>
+  <elem n="mixedAirLowLimitSetpoint" qual="ref type=TempP"/>
+  <typeScope v="0,196"/>
+ </CpMixedAirLowLimitSetpoint>
+ <CpMixedAirTempSetpoint type="XCpTypeDef">
+  <init v="04 4c"/>
+  <elem n="mixedAirTempSetpoint" qual="ref type=TempP"/>
+  <typeScope v="0,197"/>
+ </CpMixedAirTempSetpoint>
+ <CpMinOutdoorAirFlowSetpoint type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="minOutdoorAirFlowSetpoint" qual="ref type=Flow"/>
+  <typeScope v="0,198"/>
+ </CpMinOutdoorAirFlowSetpoint>
+ <CpOutdoorAirTempSetpoint type="XCpTypeDef">
+  <init v="03 e8"/>
+  <elem n="outdoorAirTempSetpoint" qual="ref type=TempP"/>
+  <typeScope v="0,199"/>
+ </CpOutdoorAirTempSetpoint>
+ <CpOutdoorAirEnthalpySetpoint type="XCpTypeDef">
+  <init v="0f a0"/>
+  <elem n="outdoorAirEnthalpySetpoint" qual="ref type=Enthalpy"/>
+  <typeScope v="0,200"/>
+ </CpOutdoorAirEnthalpySetpoint>
+ <CpDiffTempSetpoint type="XCpTypeDef">
+  <init v="01 f4"/>
+  <elem n="diffTempSetpoint" qual="ref type=TempDiffP"/>
+  <typeScope v="0,201"/>
+ </CpDiffTempSetpoint>
+ <CpExhaustEnablePosition type="XCpTypeDef">
+  <init v="13 88"/>
+  <elem n="exhaustEnablePosition" qual="ref type=LevPercent"/>
+  <typeScope v="0,202"/>
+ </CpExhaustEnablePosition>
+ <CpSpaceHumSetpoint type="XCpTypeDef">
+  <init v="17 70"/>
+  <elem n="spaceHumSetpoint" qual="ref type=LevPercent"/>
+  <typeScope v="0,203"/>
+ </CpSpaceHumSetpoint>
+ <CpDischargeAirDewpointSetpoint type="XCpTypeDef">
+  <init v="03 e8"/>
+  <elem n="dischargeAirDewpointSetpoint" qual="ref type=TempP"/>
+  <typeScope v="0,204"/>
+ </CpDischargeAirDewpointSetpoint>
+ <CpMaxDischargeAirCoolingSetpoint type="XCpTypeDef">
+  <init v="07 d0"/>
+  <elem n="maxDischargeAirCoolingSetpoint" qual="ref type=TempP"/>
+  <typeScope v="0,205"/>
+ </CpMaxDischargeAirCoolingSetpoint>
+ <CpMinDischargeAirCoolingSetpoint type="XCpTypeDef">
+  <init v="03 e8"/>
+  <elem n="minDischargeAirCoolingSetpoint" qual="ref type=TempP"/>
+  <typeScope v="0,206"/>
+ </CpMinDischargeAirCoolingSetpoint>
+ <CpMaxDischargeAirHeatingSetpoint type="XCpTypeDef">
+  <init v="13 88"/>
+  <elem n="maxDischargeAirHeatingSetpoint" qual="ref type=TempP"/>
+  <typeScope v="0,207"/>
+ </CpMaxDischargeAirHeatingSetpoint>
+ <CpMinDischargeAirHeatingSetpoint type="XCpTypeDef">
+  <init v="0b b8"/>
+  <elem n="minDischargeAirHeatingSetpoint" qual="ref type=TempP"/>
+  <typeScope v="0,208"/>
+ </CpMinDischargeAirHeatingSetpoint>
+ <CpCoolingLockout type="XCpTypeDef">
+  <init v="03 e8"/>
+  <elem n="coolingLockout" qual="ref type=TempP"/>
+  <typeScope v="0,209"/>
+ </CpCoolingLockout>
+ <CpHeatingLockout type="XCpTypeDef">
+  <init v="07 d0"/>
+  <elem n="heatingLockout" qual="ref type=TempP"/>
+  <typeScope v="0,210"/>
+ </CpHeatingLockout>
+ <CpCoolingResetEnable type="XCpTypeDef">
+  <init v="00"/>
+  <elem n="coolingResetEnable" qual="e8" enumDef="BooleanT"/>
+  <typeScope v="0,211"/>
+ </CpCoolingResetEnable>
+ <CpHeatingResetEnable type="XCpTypeDef">
+  <init v="00"/>
+  <elem n="heatingResetEnable" qual="e8" enumDef="BooleanT"/>
+  <typeScope v="0,212"/>
+ </CpHeatingResetEnable>
+ <CpSetpoint type="XCpTypeDef">
+  <inherited v="true"/>
+  <init v="00 00 00 00"/>
+  <elem n="setpoint" qual="s32"/>
+  <typeScope v="0,213"/>
+ </CpSetpoint>
+ <CpTemperatureHysteresis type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="temperatureHysteresis" qual="ref type=TempDiffP"/>
+  <typeScope v="0,214"/>
+ </CpTemperatureHysteresis>
+ <CpControlTemperatureWeighting type="XCpTypeDef">
+  <min v="00 00"/>
+  <init v="4e 20"/>
+  <elem n="controlTemperatureWeighting" qual="ref type=LevPercent"/>
+  <typeScope v="0,215"/>
+ </CpControlTemperatureWeighting>
+ <CpPwmPeriod type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00"/>
+  <elem n="pwmPeriod" qual="ref type=ElapsedTm"/>
+  <typeScope v="0,216"/>
+ </CpPwmPeriod>
+ <CpDefrostInternalSchedule type="XCpTypeDef">
+  <init v="00"/>
+  <elem n="defrostInternalSchedule" qual="e8" enumDef="BooleanT"/>
+  <typeScope v="0,217"/>
+ </CpDefrostInternalSchedule>
+ <CpDefrostStart type="XCpTypeDef">
+  <min v="00 00 00 00 00 00 00"/>
+  <max v="00 00 00 00 17 3b 00"/>
+  <init v="00 00 00 00 00 00 00"/>
+  <elem n="defrostStart" qual="ref type=TimeStamp"/>
+  <typeScope v="0,218"/>
+ </CpDefrostStart>
+ <CpDefrostCycles type="XCpTypeDef">
+  <init v="00"/>
+  <elem n="defrostCycles" qual="u8 invld=255.0"/>
+  <typeScope v="0,219"/>
+ </CpDefrostCycles>
+ <CpMinDefrostTime type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="minDefrostTime" qual="ref type=TimeMin"/>
+  <typeScope v="0,220"/>
+ </CpMinDefrostTime>
+ <CpMaxDefrostTime type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="maxDefrostTime" qual="ref type=TimeMin"/>
+  <typeScope v="0,221"/>
+ </CpMaxDefrostTime>
+ <CpDefrostFanDelay type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="defrostFanDelay" qual="ref type=TimeMin"/>
+  <typeScope v="0,222"/>
+ </CpDefrostFanDelay>
+ <CpDefrostRecoveryTime type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="defrostRecoveryTime" qual="ref type=TimeMin"/>
+  <typeScope v="0,223"/>
+ </CpDefrostRecoveryTime>
+ <CpDefrostHold type="XCpTypeDef">
+  <init v="00"/>
+  <elem n="defrostHold" qual="e8" enumDef="BooleanT"/>
+  <typeScope v="0,224"/>
+ </CpDefrostHold>
+ <CpDefrostDetect type="XCpTypeDef">
+  <min v="00 00"/>
+  <max v="13 88"/>
+  <init v="00 00"/>
+  <elem n="defrostDetect" qual="ref type=TempDiffP"/>
+  <typeScope v="0,225"/>
+ </CpDefrostDetect>
+ <CpScheduleInternal type="XCpTypeDef">
+  <init v="00"/>
+  <elem n="scheduleInternal" qual="e8" enumDef="BooleanT"/>
+  <typeScope v="0,226"/>
+ </CpScheduleInternal>
+ <CpTempOffset type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="tempOffset" qual="ref type=TempDiffP"/>
+  <typeScope v="0,227"/>
+ </CpTempOffset>
+ <CpAudibleLevel type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="audibleLevel" qual="ref type=Switch"/>
+  <typeScope v="0,228"/>
+ </CpAudibleLevel>
+ <CpScrollSpeed type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="scrollSpeed" qual="ref type=Switch"/>
+  <typeScope v="0,229"/>
+ </CpScrollSpeed>
+ <CpBrightness type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="brightness" qual="ref type=Switch"/>
+  <typeScope v="0,230"/>
+ </CpBrightness>
+ <CpOrientation type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="orientation" qual="ref type=AngleDeg"/>
+  <typeScope v="0,231"/>
+ </CpOrientation>
+ <CpInstalledLevel type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="installedLevel" qual="u16 invld=65535.0"/>
+  <typeScope v="0,232"/>
+ </CpInstalledLevel>
+ <CpPumpCharacteristic type="XCpTypeDef">
+  <init v="00 00 00 00 00 00"/>
+  <elem n="speedMax" qual="ref type=Rpm"/>
+  <elem n="pressMax" qual="ref type=Press"/>
+  <elem n="flowMax" qual="ref type=FlowP"/>
+  <typeScope v="0,233"/>
+ </CpPumpCharacteristic>
+ <CpMinPressureSetpoint type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="minPressureSetpoint" qual="ref type=Press"/>
+  <typeScope v="0,234"/>
+ </CpMinPressureSetpoint>
+ <CpMaxPressureSetpoint type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="maxPressureSetpoint" qual="ref type=Press"/>
+  <typeScope v="0,235"/>
+ </CpMaxPressureSetpoint>
+ <CpMinFlowSetpoint type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="minFlowSetpoint" qual="ref type=FlowP"/>
+  <typeScope v="0,236"/>
+ </CpMinFlowSetpoint>
+ <CpMaxFlowSetpoint type="XCpTypeDef">
+  <init v="03 e8"/>
+  <elem n="maxFlowSetpoint" qual="ref type=FlowP"/>
+  <typeScope v="0,237"/>
+ </CpMaxFlowSetpoint>
+ <CpDeviceControlMode type="XCpTypeDef">
+  <init v="00"/>
+  <elem n="deviceControlMode" qual="e8" enumDef="DeviceCModeT"/>
+  <typeScope v="0,238"/>
+ </CpDeviceControlMode>
+ <CpMinRemotePressureSetpoint type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="minRemotePressureSetpoint" qual="ref type=Press"/>
+  <typeScope v="0,239"/>
+ </CpMinRemotePressureSetpoint>
+ <CpMaxRemotePressureSetpoint type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="maxRemotePressureSetpoint" qual="ref type=Press"/>
+  <typeScope v="0,240"/>
+ </CpMaxRemotePressureSetpoint>
+ <CpMinRemoteFlowSetpoint type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="minRemoteFlowSetpoint" qual="ref type=FlowP"/>
+  <typeScope v="0,241"/>
+ </CpMinRemoteFlowSetpoint>
+ <CpMaxRemoteFlowSetpoint type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="maxRemoteFlowSetpoint" qual="ref type=FlowP"/>
+  <typeScope v="0,242"/>
+ </CpMaxRemoteFlowSetpoint>
+ <CpMinRemoteTempSetpoint type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="minRemoteTempSetpoint" qual="ref type=TempP"/>
+  <typeScope v="0,243"/>
+ </CpMinRemoteTempSetpoint>
+ <CpMaxRemoteTempSetpoint type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="maxRemoteTempSetpoint" qual="ref type=TempP"/>
+  <typeScope v="0,244"/>
+ </CpMaxRemoteTempSetpoint>
+ <CpControlSignal type="XCpTypeDef">
+  <min v="00 00 00 00 00 00 00 00"/>
+  <init v="00 00 00 00 00 00 00 00"/>
+  <elem n="x1Value" qual="ref type=LevPercent"/>
+  <elem n="y1Value" qual="ref type=LevPercent"/>
+  <elem n="x2Value" qual="ref type=LevPercent"/>
+  <elem n="y2Value" qual="ref type=LevPercent"/>
+  <typeScope v="0,245"/>
+ </CpControlSignal>
+ <CpNightPurgePosition type="XCpTypeDef">
+  <min v="00 00"/>
+  <init v="00 00"/>
+  <elem n="nightPurgePosition" qual="ref type=LevPercent"/>
+  <typeScope v="0,246"/>
+ </CpNightPurgePosition>
+ <CpFreeCoolPosition type="XCpTypeDef">
+  <min v="00 00"/>
+  <init v="00 00"/>
+  <elem n="freeCoolPosition" qual="ref type=LevPercent"/>
+  <typeScope v="0,247"/>
+ </CpFreeCoolPosition>
+ <CpValveFlowCharacteristic type="XCpTypeDef">
+  <min v="14"/>
+  <max v="18"/>
+  <init v="14"/>
+  <elem n="valveFlowCharacteristic" qual="e8" enumDef="DeviceCModeT"/>
+  <typeScope v="0,248"/>
+ </CpValveFlowCharacteristic>
+ <CpValveOperatingMode type="XCpTypeDef">
+  <init v="00"/>
+  <elem n="valveOperatingMode" qual="e8" enumDef="ValveModeT"/>
+  <typeScope v="0,249"/>
+ </CpValveOperatingMode>
+ <CpEmergencyPosition type="XCpTypeDef">
+  <min v="00 00"/>
+  <max v="4e 20"/>
+  <init v="4e 20"/>
+  <elem n="emergencyPosition" qual="ref type=LevPercent"/>
+  <typeScope v="0,250"/>
+ </CpEmergencyPosition>
+ <CpBlockProtectionTime type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="blockProtectionTime" qual="ref type=TimeHour"/>
+  <typeScope v="0,251"/>
+ </CpBlockProtectionTime>
+ <CpMinStroke type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="minStroke" qual="ref type=LengthMil"/>
+  <typeScope v="0,252"/>
+ </CpMinStroke>
+ <CpMaxStroke type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="maxStroke" qual="ref type=LengthMil"/>
+  <typeScope v="0,253"/>
+ </CpMaxStroke>
+ <CpNvType type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00 00 00 00 01 00 01 00 00 00 00 00 00"/>
+  <elem n="nvType" qual="ref type=NvType"/>
+  <typeScope v="0,254"/>
+ </CpNvType>
+ <CpMaxNVLength type="XCpTypeDef">
+  <init v="00"/>
+  <elem n="maxNVLength" qual="u8 min=1.0 max=31.0 invld=0.0"/>
+  <typeScope v="0,255"/>
+ </CpMaxNVLength>
+ <CpNvDynamicAssignment type="XCpTypeDef">
+  <init v="ff ff ff ff ff ff 00 00 00 00 00 00 00 00 00 00 01 00 01 00 00 00 00 00 00"/>
+  <elem n="nvIndex" qual="u16 max=4095.0 invld=65535.0"/>
+  <elem n="fblockIndex" qual="u16 max=4095.0 invld=65535.0"/>
+  <elem n="memberNumber" qual="u16 min=1.0 max=4095.0"/>
+  <elem n="nvType" qual="ref type=NvType"/>
+  <typeScope v="0,256"/>
+ </CpNvDynamicAssignment>
+ <CpSafExtCnfg type="XCpTypeDef">
+  <inherited v="true"/>
+  <init v="00 00 00 00"/>
+  <elem n="safExtCnfg" qual="s32"/>
+  <typeScope v="0,257"/>
+ </CpSafExtCnfg>
+ <CpEmergCnfg type="XCpTypeDef">
+  <inherited v="true"/>
+  <init v="00 00 00 00"/>
+  <elem n="emergCnfg" qual="s32"/>
+  <typeScope v="0,258"/>
+ </CpEmergCnfg>
+ <CpSluiceCnfg type="XCpTypeDef">
+  <init v="00"/>
+  <elem n="sluiceCnfg" qual="e8" enumDef="MasterSlaveT"/>
+  <typeScope v="0,259"/>
+ </CpSluiceCnfg>
+ <CpFanOperation type="XCpTypeDef">
+  <init v="00"/>
+  <elem n="fanOperation" qual="e8" enumDef="FanOperationT"/>
+  <typeScope v="0,260"/>
+ </CpFanOperation>
+ <CpMinFlowUnit type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="minFlowUnit" qual="ref type=Flow"/>
+  <typeScope v="0,261"/>
+ </CpMinFlowUnit>
+ <CpMaxFlowUnit type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="maxFlowUnit" qual="ref type=Flow"/>
+  <typeScope v="0,262"/>
+ </CpMaxFlowUnit>
+ <CpMinFlowHeatStby type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="minFlowHeatStby" qual="ref type=Flow"/>
+  <typeScope v="0,263"/>
+ </CpMinFlowHeatStby>
+ <CpMinFlowUnitStby type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="minFlowUnitStby" qual="ref type=Flow"/>
+  <typeScope v="0,264"/>
+ </CpMinFlowUnitStby>
+ <CpOffsetFlow type="XCpTypeDef">
+  <init v="00 00 00 00"/>
+  <elem n="offsetFlow" qual="ref type=FlowF"/>
+  <typeScope v="0,265"/>
+ </CpOffsetFlow>
+ <CpAreaDuctHeat type="XCpTypeDef">
+  <init v="ff ff"/>
+  <elem n="areaDuctHeat" qual="ref type=Area"/>
+  <typeScope v="0,266"/>
+ </CpAreaDuctHeat>
+ <CpNomAirFlowHeat type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="nomAirFlowHeat" qual="ref type=Flow"/>
+  <typeScope v="0,267"/>
+ </CpNomAirFlowHeat>
+ <CpGainVAVHeat type="XCpTypeDef">
+  <init v="07 d0"/>
+  <elem n="gainVAVHeat" qual="ref type=Multiplier"/>
+  <typeScope v="0,268"/>
+ </CpGainVAVHeat>
+ <CpNumDampers type="XCpTypeDef">
+  <min v="00 01"/>
+  <max v="00 02"/>
+  <init v="00 01"/>
+  <elem n="numDampers" qual="ref type=Count"/>
+  <typeScope v="0,269"/>
+ </CpNumDampers>
+ <CpMinFlowUnitHeat type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="minFlowUnitHeat" qual="ref type=Flow"/>
+  <typeScope v="0,270"/>
+ </CpMinFlowUnitHeat>
+ <CpSaturationDelay type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="saturationDelay" qual="ref type=TimeMin"/>
+  <typeScope v="0,271"/>
+ </CpSaturationDelay>
+ <CpEffectivePeriod type="XCpTypeDef">
+  <init v="ff ff 01 01 ff ff 01 01"/>
+  <elem n="startYear" qual="s16 min=-1.0 max=3000.0 invld=-1.0"/>
+  <elem n="startMonth" qual="u8 min=1.0 max=12.0"/>
+  <elem n="startDay" qual="u8 min=1.0 max=31.0"/>
+  <elem n="endYear" qual="s16 min=-1.0 max=3000.0 invld=-1.0"/>
+  <elem n="endMonth" qual="u8 min=1.0 max=12.0"/>
+  <elem n="endDay" qual="u8 min=1.0 max=31.0"/>
+  <typeScope v="0,272"/>
+ </CpEffectivePeriod>
+ <CpScheduleDates type="XCpTypeDef">
+  <init v="ff ff 00 00 ff ff 00 00 00 00 ff ff"/>
+  <elem n="startYear" qual="s16 min=-1.0 max=3000.0 invld=-1.0"/>
+  <elem n="startMonth" qual="u8 max=12.0"/>
+  <elem n="startDay" qual="e8" enumDef="DaysOfMonthT"/>
+  <elem n="endYear" qual="s16 min=-1.0 max=3000.0 invld=-1.0"/>
+  <elem n="endTemporary" qual="ub byt=6 bit=7 len=1"/>
+  <elem n="endMonth" qual="ub byt=6 bit=0 len=7 max=12.0"/>
+  <elem n="endDay" qual="e8" enumDef="DaysOfMonthT"/>
+  <elem n="qualifierMonths" qual="e8" enumDef="MonthsT"/>
+  <elem n="qualifierDays" qual="e8" enumDef="DaysOfMonthT"/>
+  <elem n="scheduleIndex" qual="u16 invld=65535.0"/>
+  <typeScope v="0,273"/>
+ </CpScheduleDates>
+ <CpSchedule type="XCpTypeDef">
+  <init v="7f ff ff"/>
+  <elem n="temporary" qual="ub byt=0 bit=7 len=1"/>
+  <elem n="schedulePriority" qual="ub byt=0 bit=0 len=7"/>
+  <elem n="timeValueIndex" qual="u16 invld=65535.0"/>
+  <typeScope v="0,274"/>
+ </CpSchedule>
+ <CpScheduleTimeValue type="XCpTypeDef">
+  <init v="80 00 ff"/>
+  <elem n="invalid" qual="ub byt=0 bit=7 len=1"/>
+  <elem n="terminator" qual="ub byt=0 bit=6 len=1"/>
+  <elem n="hour" qual="ub byt=0 bit=0 len=6 max=47.0"/>
+  <elem n="minute" qual="u8 max=59.0"/>
+  <elem n="value" qual="ref type=SchedVal"/>
+  <typeScope v="0,275"/>
+ </CpScheduleTimeValue>
+ <CpValueDefinition type="XCpTypeDef">
+  <inherited v="true"/>
+  <init v="00 00 00 00"/>
+  <elem n="valueDefinition" qual="s32"/>
+  <typeScope v="0,276"/>
+ </CpValueDefinition>
+ <CpValueName type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"/>
+  <elem n="name" qual="st len=22"/>
+  <typeScope v="0,277"/>
+ </CpValueName>
+ <CpWeeklySchedule type="XCpTypeDef">
+  <init v="ff ff ff ff ff ff ff ff ff ff ff ff ff ff"/>
+  <elem n="scheduleIndex0" qual="u16 invld=65535.0"/>
+  <elem n="scheduleIndex1" qual="u16 invld=65535.0"/>
+  <elem n="scheduleIndex2" qual="u16 invld=65535.0"/>
+  <elem n="scheduleIndex3" qual="u16 invld=65535.0"/>
+  <elem n="scheduleIndex4" qual="u16 invld=65535.0"/>
+  <elem n="scheduleIndex5" qual="u16 invld=65535.0"/>
+  <elem n="scheduleIndex6" qual="u16 invld=65535.0"/>
+  <typeScope v="0,278"/>
+ </CpWeeklySchedule>
+ <CpScheduleName type="XCpTypeDef">
+  <max v="7e 7e 7e 7e 7e 7e 7e 7e 7e 7e 7e 7e 7e 7e 7e 7e 7e 7e 7e 7e 7e 7e"/>
+  <init v="00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"/>
+  <elem n="name" qual="st len=22"/>
+  <typeScope v="0,279"/>
+ </CpScheduleName>
+ <CpValveStroke type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="valveStroke" qual="ref type=LengthMil"/>
+  <typeScope v="0,280"/>
+ </CpValveStroke>
+ <CpValveNominalSize type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="valveNominalSize" qual="ref type=LengthMil"/>
+  <typeScope v="0,281"/>
+ </CpValveNominalSize>
+ <CpValveKvs type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="valveKvs" qual="ref type=FlowP"/>
+  <typeScope v="0,282"/>
+ </CpValveKvs>
+ <CpValveType type="XCpTypeDef">
+  <min v="1e"/>
+  <max v="20"/>
+  <init v="00"/>
+  <elem n="valveType" qual="e8" enumDef="DeviceCModeT"/>
+  <typeScope v="0,283"/>
+ </CpValveType>
+ <CpActuatorCharacteristic type="XCpTypeDef">
+  <init v="00"/>
+  <elem n="actuatorCharacteristic" qual="e8" enumDef="DeviceCModeT"/>
+  <typeScope v="0,284"/>
+ </CpActuatorCharacteristic>
+ <CpTrnsTblX2 type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"/>
+  <elem n="trnsTblX2" qual="ref type=TransTable"/>
+  <typeScope v="0,285"/>
+ </CpTrnsTblX2>
+ <CpTrnsTblY2 type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"/>
+  <elem n="trnsTblY2" qual="ref type=TransTable"/>
+  <typeScope v="0,286"/>
+ </CpTrnsTblY2>
+ <CpCombFlowCharacteristic type="XCpTypeDef">
+  <init v="00"/>
+  <elem n="combFlowCharacteristic" qual="e8" enumDef="DeviceCModeT"/>
+  <typeScope v="0,287"/>
+ </CpCombFlowCharacteristic>
+ <CpTrnsTblX3 type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"/>
+  <elem n="trnsTblX3" qual="ref type=TransTable"/>
+  <typeScope v="0,288"/>
+ </CpTrnsTblX3>
+ <CpTrnsTblY3 type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"/>
+  <elem n="trnsTblY3" qual="ref type=TransTable"/>
+  <typeScope v="0,289"/>
+ </CpTrnsTblY3>
+ <CpRunTimeAlarm type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00"/>
+  <elem n="runTimeAlarm" qual="ref type=ElapsedTm"/>
+  <typeScope v="0,290"/>
+ </CpRunTimeAlarm>
+ <CpTimePeriod type="XCpTypeDef">
+  <init v="00 00"/>
+  <typeSpec v="lonworks:LonCpTimePeriod"/>
+  <typeScope v="0,291"/>
+ </CpTimePeriod>
+ <CpPulseValue type="XCpTypeDef">
+  <init v="00 00 00 00"/>
+  <elem n="pulseValue" qual="ref type=Muldiv"/>
+  <typeScope v="0,292"/>
+ </CpPulseValue>
+ <CpNumDigits type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="numDigits" qual="ref type=Count"/>
+  <typeScope v="0,293"/>
+ </CpNumDigits>
+ <CpIdentity type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="identity" qual="u16"/>
+  <typeScope v="0,294"/>
+ </CpIdentity>
+ <CpDefaultState type="XCpTypeDef">
+  <init v="00 00 00"/>
+  <elem n="defaultState" qual="ref type=SecState"/>
+  <typeScope v="0,295"/>
+ </CpDefaultState>
+ <CpNvPriority type="XCpTypeDef">
+  <init v="00"/>
+  <elem n="userFlag" qual="ub byt=0 bit=7 len=1"/>
+  <elem n="nv" qual="ub byt=0 bit=0 len=7"/>
+  <typeScope v="0,296"/>
+ </CpNvPriority>
+ <CpDefaultSetting type="XCpTypeDef">
+  <init v="00 00 00 00"/>
+  <elem n="defaultSetting" qual="ref type=Setting"/>
+  <typeScope v="0,297"/>
+ </CpDefaultSetting>
+ <CpLowLimit1Enable type="XCpTypeDef">
+  <init v="00"/>
+  <elem n="lowLimit1Enable" qual="e8" enumDef="BooleanT"/>
+  <typeScope v="0,298"/>
+ </CpLowLimit1Enable>
+ <CpLowLimit2Enable type="XCpTypeDef">
+  <init v="00"/>
+  <elem n="lowLimit2Enable" qual="e8" enumDef="BooleanT"/>
+  <typeScope v="0,299"/>
+ </CpLowLimit2Enable>
+ <CpClockCalibration type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="clockCalibration" qual="s16"/>
+  <typeScope v="0,300"/>
+ </CpClockCalibration>
+ <CpNeuronId type="XCpTypeDef">
+  <init v="00 00 00 00 00 00"/>
+  <elem n="id" qual="st len=6"/>
+  <typeScope v="0,301"/>
+ </CpNeuronId>
+ <CpHighLimit1Enable type="XCpTypeDef">
+  <init v="00"/>
+  <elem n="highLimit1Enable" qual="e8" enumDef="BooleanT"/>
+  <typeScope v="0,302"/>
+ </CpHighLimit1Enable>
+ <CpHighLimit2Enable type="XCpTypeDef">
+  <init v="00"/>
+  <elem n="highLimit2Enable" qual="e8" enumDef="BooleanT"/>
+  <typeScope v="0,303"/>
+ </CpHighLimit2Enable>
+ <CpAhamApplianceModel type="XCpTypeDef">
+  <init v="00"/>
+  <elem n="ahamApplianceModel" qual="e8" enumDef="AhamApplT"/>
+  <typeScope v="0,304"/>
+ </CpAhamApplianceModel>
+ <CpDefInput type="XCpTypeDef">
+  <inherited v="true"/>
+  <init v="00 00 00 00"/>
+  <elem n="defInput" qual="s32"/>
+  <typeScope v="0,305"/>
+ </CpDefInput>
+ <CpName1 type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00 00 00 00 00 00 00"/>
+  <elem n="encoding" qual="e8" enumDef="CharEncodingT"/>
+  <elem n="name" qual="st len=12"/>
+  <typeScope v="0,306"/>
+ </CpName1>
+ <CpScene type="XCpTypeDef">
+  <init v="00 00 00 00"/>
+  <elem n="sceneNumber" qual="u8 min=1.0 invld=0.0"/>
+  <elem n="setting" qual="u8 res=0.5 max=100.0 invld=255.0" engUnit="percent"/>
+  <elem n="rotation" qual="s8 res=2.0 min=-180.0 max=180.0 invld=-128.0" engUnit="degrees angular"/>
+  <elem n="unoccupiedScene" qual="u8 min=1.0 invld=0.0"/>
+  <typeScope v="0,307"/>
+ </CpScene>
+ <CpSceneTiming type="XCpTypeDef">
+  <init v="00 00 00 00"/>
+  <elem n="fadeTime" qual="u16 res=0.1" engUnit="second"/>
+  <elem n="delayTime" qual="u16 res=0.1" engUnit="second"/>
+  <typeScope v="0,308"/>
+ </CpSceneTiming>
+ <CpName2 type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00 00 00 00 00 00"/>
+  <elem n="name" qual="st len=12"/>
+  <typeScope v="0,309"/>
+ </CpName2>
+ <CpName3 type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00 00 00 00 00 00"/>
+  <elem n="name" qual="st len=12"/>
+  <typeScope v="0,310"/>
+ </CpName3>
+ <CpButtonPressAction type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="action" qual="e8" enumDef="ButtonActionT"/>
+  <!-- Specified scene number for the toggle and set scene actions.  -->
+  <elem u="scene_number" n="settingSceneNumber" qual="u8 byt=1 min=1.0 invld=0.0"/>
+  <!-- Specified group number for the toggle, enable, and disable group actions.  -->
+  <elem u="group_number" n="settingGroupNumber" qual="u8 byt=1 max=64.0 invld=255.0"/>
+  <!-- Setting level. 
+       Specifies an absoloute level for the Set Level action. 
+       Specifies a relative level for the Increase, Decrease, Move Open, Move Closed, Rotate Open, 
+       and Rotate Closed actions.  -->
+  <elem u="value" n="settingValue" qual="u8 byt=1 res=0.5 max=100.0 invld=255.0"/>
+  <!-- nothing specified -->
+  <elem u="angle" n="settingAngle" qual="s8 byt=1 min=-90.0 max=90.0 invld=127.0" engUnit="degrees angular"/>
+  <typeScope v="0,311"/>
+  <union>
+   <branchElem v="action"/>
+   <!-- <btaToggleScene v="1"/>
+        <btaRecallScene v="3"/>
+        <btaLearnScene v="20"/> -->
+   <branch n="scene_number" c="1,3,20"/>
+   <!-- <btaToggleGroup v="34"/>
+        <btaEnableGroup v="35"/>
+        <btaDisableGroup v="36"/> -->
+   <branch n="group_number" c="34,35,36"/>
+   <!-- <btaSetLevel v="9"/>
+        <btaIncrease v="12"/>
+        <btaDecrease v="13"/>
+        <btaRotateOpen v="15"/>
+        <btaRotateClosed v="16"/> 
+        <btaMoveOpen v="30"/>
+        <btaMoveClosed v="31"/>  -->
+   <branch n="value" c="9,12,13,15,16,30,31"/>
+   <!-- <btaSetAngle v="17"/>   -->
+   <branch n="angle" c="17"/>
+  </union>
+ </CpButtonPressAction>
+ <CpButtonColor type="XCpTypeDef">
+  <init v="00 00 00 00 00 00"/>
+  <elem n="onColorRed" qual="u8"/>
+  <elem n="onColorGreen" qual="u8"/>
+  <elem n="onColorBlue" qual="u8"/>
+  <elem n="offColorRed" qual="u8"/>
+  <elem n="offColorGreen" qual="u8"/>
+  <elem n="offColorBlue" qual="u8"/>
+  <typeScope v="0,312"/>
+ </CpButtonColor>
+ <CpButtonRepeatInterval type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="buttonRepeatInterval" qual="u16 max=65534.0 invld=65535.0" engUnit="millisecond"/>
+  <typeScope v="0,313"/>
+ </CpButtonRepeatInterval>
+ <CpButtonHoldAction type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="action" qual="e8" enumDef="ButtonActionT"/>
+  <elem u="scene_number" n="settingSceneNumber" qual="u8 byt=1 min=1.0 invld=0.0"/>
+  <elem u="group_number" n="settingGroupNumber" qual="u8 byt=1 max=64.0 invld=255.0"/>
+  <elem u="value" n="settingValue" qual="u8 byt=1 res=0.5 max=100.0 invld=255.0"/>
+  <elem u="angle" n="settingAngle" qual="u8 byt=1 res=2.0 max=360.0 invld=255.0" engUnit="degrees angular"/>
+  <typeScope v="0,314"/>
+  <union>
+   <branchElem v="??"/>
+   <branch n="scene_number" c="??"/>
+   <branch n="group_number" c="??"/>
+   <branch n="value" c="??"/>
+   <branch n="angle" c="??"/>
+  </union>
+ </CpButtonHoldAction>
+ <CpPwrSendOnDelta type="XCpTypeDef">
+  <init v="00 05"/>
+  <elem n="pwrSendOnDelta" qual="ref type=Power"/>
+  <typeScope v="0,315"/>
+ </CpPwrSendOnDelta>
+ <CpSceneName type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00 00 00 00 00 00 00"/>
+  <elem n="encoding" qual="e8" enumDef="CharEncodingT"/>
+  <elem n="name0" qual="u8"/>
+  <elem n="name1" qual="u8"/>
+  <elem n="name2" qual="u8"/>
+  <elem n="name3" qual="u8"/>
+  <elem n="name4" qual="u8"/>
+  <elem n="name5" qual="u8"/>
+  <elem n="name6" qual="u8"/>
+  <elem n="name7" qual="u8"/>
+  <elem n="name8" qual="u8"/>
+  <elem n="name9" qual="u8"/>
+  <elem n="name10" qual="u8"/>
+  <elem n="name11" qual="u8"/>
+  <typeScope v="0,316"/>
+ </CpSceneName>
+ <CpMaxPower type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="maxPower" qual="ref type=Power"/>
+  <typeScope v="0,317"/>
+ </CpMaxPower>
+ <CpIfaceDesc type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"/>
+  <elem n="ifaceDesc" qual="ref type=StrAsc"/>
+  <typeScope v="0,318"/>
+ </CpIfaceDesc>
+ <CpMonInterval type="XCpTypeDef">
+  <min v="00 00 00 00 01 00 00"/>
+  <max v="00 00 11 3b 3b 03 e7"/>
+  <init v="00 00 00 00 05 00 00"/>
+  <elem n="monInterval" qual="ref type=ElapsedTm"/>
+  <typeScope v="0,319"/>
+ </CpMonInterval>
+ <CpLinkPowerDetectEnable type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="linkPowerDetectEnable" qual="ref type=Switch"/>
+  <typeScope v="0,320"/>
+ </CpLinkPowerDetectEnable>
+ <CpScanTime type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00"/>
+  <elem n="scanTime" qual="ref type=ElapsedTm"/>
+  <typeScope v="0,321"/>
+ </CpScanTime>
+ <CpDevListDesc type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"/>
+  <elem n="devListDesc" qual="ref type=StrAsc"/>
+  <typeScope v="0,322"/>
+ </CpDevListDesc>
+ <CpDevListEntry type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00"/>
+  <elem u="address_type" n="devListEntryAddressType" qual="e8" enumDef="AddressTypeT"/>
+  <elem u="sn" n="devListEntrySnSubnet" qual="u8 byt=0 min=1.0"/>
+  <elem u="sn" n="devListEntrySnUnused" qual="ub byt=1 bit=7 len=1"/>
+  <elem u="sn" n="devListEntrySnNode" qual="ub byt=1 bit=0 len=7 min=1.0"/>
+  <elem u="ni" n="devListEntryNiSubnet" qual="u8 byt=0"/>
+  <elem u="ni" n="devListEntryNiNid" qual="st len=6"/>
+  <typeScope v="0,323"/>
+  <union>
+   <branchElem v="??"/>
+   <branch n="address_type" c="??"/>
+   <branch n="sn" c="??"/>
+   <branch n="ni" c="??"/>
+  </union>
+ </CpDevListEntry>
+ <CpLogCapacity type="XCpTypeDef">
+  <init v="00 00 00 00"/>
+  <elem n="logCapacity" qual="u32 min=1.0 invld=0.0"/>
+  <typeScope v="0,324"/>
+ </CpLogCapacity>
+ <CpLogNotificationThreshold type="XCpTypeDef">
+  <init v="5a"/>
+  <elem n="logNotificationThreshold" qual="u8 res=0.5 max=100.0 invld=255.0" engUnit="percent"/>
+  <typeScope v="0,325"/>
+ </CpLogNotificationThreshold>
+ <CpLogSize type="XCpTypeDef">
+  <init v="00 00 00 00"/>
+  <elem n="logSize" qual="u32 max=4.294967294E9 invld=4294967295"/>
+  <typeScope v="0,326"/>
+ </CpLogSize>
+ <CpLogType type="XCpTypeDef">
+  <min v="00"/>
+  <max v="03"/>
+  <init v="00"/>
+  <elem n="logType" qual="e8" enumDef="LogTypeT"/>
+  <typeScope v="0,327"/>
+ </CpLogType>
+ <CpFanInEnable type="XCpTypeDef">
+  <init v="00"/>
+  <elem n="fanInEnable" qual="u8 max=1.0 invld=255.0"/>
+  <typeScope v="0,328"/>
+ </CpFanInEnable>
+ <CpLogTimestampEnable type="XCpTypeDef">
+  <init v="01"/>
+  <elem n="logTimestampEnable" qual="u8 max=1.0 invld=255.0"/>
+  <typeScope v="0,329"/>
+ </CpLogTimestampEnable>
+ <CpLogHighLimit type="XCpTypeDef">
+  <inherited v="true"/>
+  <init v="00 00 00 00"/>
+  <elem n="logHighLimit" qual="s32"/>
+  <typeScope v="0,330"/>
+ </CpLogHighLimit>
+ <CpLogLowLimit type="XCpTypeDef">
+  <inherited v="true"/>
+  <init v="00 00 00 00"/>
+  <elem n="logLowLimit" qual="s32"/>
+  <typeScope v="0,331"/>
+ </CpLogLowLimit>
+ <CpMaxFanIn type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="maxFanIn" qual="u16 max=65534.0 invld=65535.0"/>
+  <typeScope v="0,332"/>
+ </CpMaxFanIn>
+ <CpLogMinDeltaTime type="XCpTypeDef">
+  <init v="00 00 00 00"/>
+  <elem n="logMinDeltaTime" qual="u32 max=4.294967294E9 invld=4294967295"/>
+  <typeScope v="0,333"/>
+ </CpLogMinDeltaTime>
+ <CpLogMinDeltaValue type="XCpTypeDef">
+  <inherited v="true"/>
+  <init v="00 00 00 00"/>
+  <elem n="logMinDeltaValue" qual="s32"/>
+  <typeScope v="0,334"/>
+ </CpLogMinDeltaValue>
+ <CpPollRate type="XCpTypeDef">
+  <init v="00 00 00 00"/>
+  <elem n="pollRate" qual="s32 res=0.1 min=0.0 max=2.14748368E8 invld=2.14748365E9" engUnit="second"/>
+  <typeScope v="0,335"/>
+ </CpPollRate>
+ <CpSourceAddress type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="subnet" qual="u8 min=1.0 invld=0.0"/>
+  <elem n="reserved" qual="ub byt=1 bit=7 len=1 max=0.0"/>
+  <elem n="node" qual="ub byt=1 bit=0 len=7"/>
+  <typeScope v="0,336"/>
+ </CpSourceAddress>
+ <CpLogRecord type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"/>
+  <!-- Specifies whether or not a timestamp is included, and if it is included,
+       specifies the format of the timestamp. Contents defined by timestampT. -->
+  <elem n="timestampType" qual="ub byt=0 bit=6 len=2"/>
+  <elem n="recordType" qual="ub byt=0 bit=3 len=3 max=3.0"/>
+  <elem n="multipleInput" qual="ub byt=0 bit=2 len=1"/>
+  <elem n="fanIn" qual="ub byt=0 bit=1 len=1"/>
+  <elem n="pointStatus" qual="ub byt=0 bit=0 len=1"/>
+  <elem n="dataLength" qual="u8"/>
+  <!-- Full timestamp. Only present if timestamp_type is TS_FULL. -->
+  <elem u="timestamp" n="timeTimestamp" qual="ref type=TimeStampP byt=2"/>
+  <!-- Offset since last full timestamp. Only present if timestamp_type is TS_OFFSET. -->
+  <elem u="offset_stamp" n="timeOffsetStamp" qual="u16 byt=2 res=0.01 max=655.33997 invld=65535.0" engUnit="second"/>
+  <elem n="memberIndex" qual="u8 byt=7 min=1.0 invld=0.0"/>
+  <elem n="dataSourceIndex" qual="s16 byt=8 min=0.0 invld=-1.0"/>
+  <elem u="log_status" n="dataLogStatus" qual="e8" enumDef="LogStatusT"/>
+  <elem u="value" n="dataValue" qual="s32 byt=10 invld=0.0"/>
+  <elem u="old_time" n="dataOldTime" qual="ref type=TimeStampP byt=10"/>
+  <elem n="pointStatusValue" qual="e8" enumDef="PointStatusT"/>
+  <typeScope v="0,337"/>
+   <!--
+  <union>
+   <branchElem v="timestampType"/>
+     <tsFull v="0"/>
+     <tsOffset v="1"/>
+     <tsNone v="2"/>
+   <branch n="timestamp" c="0"/>
+   <branch n="offset_stamp" c="1"/>
+   
+   <branch n="log_status" c="??"/>
+   <branch n="value" c="??"/>
+   <branch n="old_time" c="??"/>
+  </union>
+    -->
+ </CpLogRecord> 
+ <CpLogFileHeader type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"/>
+  <elem n="fileType" qual="u16 min=2049.0 max=2049.0"/>
+  <elem n="majorVersionNumber" qual="u8 min=1.0 max=1.0"/>
+  <elem n="minorVersionNumber" qual="u8 max=0.0"/>
+  <elem n="logNumber" qual="u16 max=65534.0 invld=65535.0"/>
+  <elem n="recordCount" qual="s32 min=0.0 max=2.147483646E9 invld=2147483647" engUnit="second"/>
+  <elem n="startTime" qual="ref type=TimeStampP"/>
+  <elem n="endTime" qual="ref type=TimeStampP"/>
+  <typeScope v="0,338"/>
+ </CpLogFileHeader>
+ <CpLogAlarmThreshold type="XCpTypeDef">
+  <init v="bf"/>
+  <elem n="logAlarmThreshold" qual="u8 res=0.5 max=100.0 invld=255.0" engUnit="percent"/>
+  <typeScope v="0,339"/>
+ </CpLogAlarmThreshold>
+ <CpLogRequest type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00 00"/>
+  <elem n="dlapVersion" qual="u8 min=1.0 invld=0.0"/>
+  <elem n="requestedLog" qual="u16 min=1.0 invld=0.0"/>
+  <elem n="lastTime" qual="ref type=TimeStampP"/>
+  <typeScope v="0,340"/>
+ </CpLogRequest>
+ <CpLogResponse type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"/>
+  <elem u="log_record" n="responseLogRecord0" qual="u8 byt=0"/>
+  <elem u="log_record" n="responseLogRecord1" qual="u8 byt=1"/>
+  <elem u="log_record" n="responseLogRecord2" qual="u8 byt=2"/>
+  <elem u="log_record" n="responseLogRecord3" qual="u8 byt=3"/>
+  <elem u="log_record" n="responseLogRecord4" qual="u8 byt=4"/>
+  <elem u="log_record" n="responseLogRecord5" qual="u8 byt=5"/>
+  <elem u="log_record" n="responseLogRecord6" qual="u8 byt=6"/>
+  <elem u="log_record" n="responseLogRecord7" qual="u8 byt=7"/>
+  <elem u="log_record" n="responseLogRecord8" qual="u8 byt=8"/>
+  <elem u="log_record" n="responseLogRecord9" qual="u8 byt=9"/>
+  <elem u="log_record" n="responseLogRecord10" qual="u8 byt=10"/>
+  <elem u="log_record" n="responseLogRecord11" qual="u8 byt=11"/>
+  <elem u="log_record" n="responseLogRecord12" qual="u8 byt=12"/>
+  <elem u="log_record" n="responseLogRecord13" qual="u8 byt=13"/>
+  <elem u="log_record" n="responseLogRecord14" qual="u8 byt=14"/>
+  <elem u="log_record" n="responseLogRecord15" qual="u8 byt=15"/>
+  <elem u="closest_version" n="responseClosestVersion" qual="u8 byt=0"/>
+  <elem u="number_of_logs" n="responseNumberOfLogs" qual="u16 byt=0 min=1.0 invld=0.0"/>
+  <typeScope v="0,341"/>
+  <union>
+   <branchElem v="??"/>
+   <branch n="log_record" c="??"/>
+   <branch n="closest_version" c="??"/>
+   <branch n="number_of_logs" c="??"/>
+  </union>
+ </CpLogResponse>
+ <CpLightingGroupEnable type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00 00"/>
+  <elem n="flags0" qual="u8"/>
+  <elem n="flags1" qual="u8"/>
+  <elem n="flags2" qual="u8"/>
+  <elem n="flags3" qual="u8"/>
+  <elem n="flags4" qual="u8"/>
+  <elem n="flags5" qual="u8"/>
+  <elem n="flags6" qual="u8"/>
+  <elem n="flags7" qual="u8"/>
+  <typeScope v="0,342"/>
+ </CpLightingGroupEnable>
+ <CpSceneColor type="XCpTypeDef">
+  <init v="00 00 00 00 00"/>
+  <elem n="sceneColor" qual="ref type=Color2"/>
+  <typeScope v="0,343"/>
+ </CpSceneColor>
+ <CpBkupSchedule type="XCpTypeDef">
+  <init v="00 00 00 00"/>
+  <elem n="hourOn" qual="u8 max=23.0 invld=255.0" engUnit="hour"/>
+  <elem n="minuteOn" qual="u8 max=59.0" engUnit="minute"/>
+  <elem n="hourOff" qual="u8 max=23.0 invld=255.0" engUnit="hour"/>
+  <elem n="minuteOff" qual="u8 max=59.0" engUnit="minute"/>
+  <typeScope v="0,344"/>
+ </CpBkupSchedule>
+ <CpOLCLimits type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"/>
+  <elem n="lampCurrentHigh" qual="ref type=AmpAcMil"/>
+  <elem n="lampCurrentLow" qual="ref type=AmpAcMil"/>
+  <elem n="mainCurrentHigh" qual="ref type=AmpAcMil"/>
+  <elem n="mainCurrentLow" qual="ref type=AmpAcMil"/>
+  <elem n="lampVoltageHigh" qual="ref type=VoltAc"/>
+  <elem n="lampVoltageLow" qual="ref type=VoltAc"/>
+  <elem n="mainVoltageHigh" qual="ref type=VoltAc"/>
+  <elem n="mainVoltageLow" qual="ref type=VoltAc"/>
+  <elem n="powerFactorLow" qual="ref type=PwrFact"/>
+  <elem n="powerHigh" qual="ref type=Power"/>
+  <elem n="powerLow" qual="ref type=Power"/>
+  <typeScope v="0,345"/>
+ </CpOLCLimits>
+ <CpLampPower type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="lampPower" qual="ref type=Power"/>
+  <typeScope v="0,346"/>
+ </CpLampPower>
+ <CpDeviceOutSelection type="XCpTypeDef">
+  <init v="00"/>
+  <elem n="deviceOutSelection" qual="e8" enumDef="OlcSelectT"/>
+  <typeScope v="0,347"/>
+ </CpDeviceOutSelection>
+ <CpEnableStatusMsg type="XCpTypeDef">
+  <init v="00 00 00 00 00"/>
+  <elem n="lampCurrentHigh" qual="ub byt=0 bit=7 len=1"/>
+  <elem n="lampCurrentLow" qual="ub byt=0 bit=6 len=1"/>
+  <elem n="mainCurrentHigh" qual="ub byt=0 bit=5 len=1"/>
+  <elem n="mainCurrentLow" qual="ub byt=0 bit=4 len=1"/>
+  <elem n="lampVoltageHigh" qual="ub byt=0 bit=3 len=1"/>
+  <elem n="lampVoltageLow" qual="ub byt=0 bit=2 len=1"/>
+  <elem n="mainVoltageHigh" qual="ub byt=0 bit=1 len=1"/>
+  <elem n="mainVoltageLow" qual="ub byt=0 bit=0 len=1"/>
+  <elem n="powerFactorLow" qual="ub byt=1 bit=7 len=1"/>
+  <elem n="OLCTempHigh" qual="ub byt=1 bit=6 len=1"/>
+  <elem n="powerHigh" qual="ub byt=1 bit=5 len=1"/>
+  <elem n="powerLow" qual="ub byt=1 bit=4 len=1"/>
+  <elem n="relayFailure" qual="ub byt=1 bit=3 len=1"/>
+  <elem n="capFailure" qual="ub byt=1 bit=2 len=1"/>
+  <elem n="lampFailure" qual="ub byt=1 bit=1 len=1"/>
+  <elem n="ballastFailure" qual="ub byt=1 bit=0 len=1"/>
+  <elem n="interComFailure" qual="ub byt=2 bit=7 len=1"/>
+  <elem n="exterComFailure" qual="ub byt=2 bit=6 len=1"/>
+  <elem n="mainVoltBelowSpec" qual="ub byt=2 bit=5 len=1"/>
+  <elem n="lampRestartCount" qual="ub byt=2 bit=4 len=1"/>
+  <elem n="fadingReady" qual="ub byt=2 bit=3 len=1"/>
+  <elem n="ballastTempHigh" qual="ub byt=2 bit=2 len=1"/>
+  <elem n="digiInA" qual="ub byt=2 bit=1 len=1"/>
+  <elem n="digiInB" qual="ub byt=2 bit=0 len=1"/>
+  <elem n="bit25Res" qual="ub byt=3 bit=7 len=1"/>
+  <elem n="bit26Res" qual="ub byt=3 bit=6 len=1"/>
+  <elem n="bit27Res" qual="ub byt=3 bit=5 len=1"/>
+  <elem n="bit28Res" qual="ub byt=3 bit=4 len=1"/>
+  <elem n="bit29Res" qual="ub byt=3 bit=3 len=1"/>
+  <elem n="bit30Res" qual="ub byt=3 bit=2 len=1"/>
+  <elem n="bit31Res" qual="ub byt=3 bit=1 len=1"/>
+  <elem n="bit32Res" qual="ub byt=3 bit=0 len=1"/>
+  <elem n="bit33Res" qual="ub byt=4 bit=7 len=1"/>
+  <elem n="bit34Res" qual="ub byt=4 bit=6 len=1"/>
+  <elem n="bit35Res" qual="ub byt=4 bit=5 len=1"/>
+  <elem n="bit36Res" qual="ub byt=4 bit=4 len=1"/>
+  <elem n="bit37Res" qual="ub byt=4 bit=3 len=1"/>
+  <elem n="bit38Res" qual="ub byt=4 bit=2 len=1"/>
+  <elem n="bit39Res" qual="ub byt=4 bit=1 len=1"/>
+  <elem n="bit40Res" qual="ub byt=4 bit=0 len=1"/>
+  <typeScope v="0,348"/>
+ </CpEnableStatusMsg>
+ <CpMaxLevelVolt type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="maxLevelVolt" qual="ref type=Volt"/>
+  <typeScope v="0,349"/>
+ </CpMaxLevelVolt>
+ <CpGeoLocation type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"/>
+  <elem n="geoLocation" qual="ref type=GeoLoc"/>
+  <typeScope v="0,350"/>
+ </CpGeoLocation>
+ <CpProgName type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"/>
+  <elem n="progName" qual="ref type=StrAsc"/>
+  <typeScope v="0,351"/>
+ </CpProgName>
+ <CpProgRevision type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00 00 00 00 00"/>
+  <elem n="majorVersion" qual="u8"/>
+  <elem n="minorVersion" qual="u8"/>
+  <elem n="buildNumber" qual="u16"/>
+  <elem n="buildDate" qual="ref type=TimeStamp"/>
+  <typeScope v="0,352"/>
+ </CpProgRevision>
+ <CpProgSelect type="XCpTypeDef">
+  <init v="00"/>
+  <elem n="progSelect" qual="u8"/>
+  <typeScope v="0,353"/>
+ </CpProgSelect>
+ <CpProgSourceLocation type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"/>
+  <elem n="location" qual="st len=255"/>
+  <typeScope v="0,354"/>
+ </CpProgSourceLocation>
+ <CpProgFileIndexes type="XCpTypeDef">
+  <init v="03 03"/>
+  <elem n="firstFileIndex" qual="u8 min=3.0"/>
+  <elem n="lastFileIndex" qual="u8 min=3.0"/>
+  <typeScope v="0,355"/>
+ </CpProgFileIndexes>
+ <CpProgCmdHistory type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"/>
+  <elem n="timestamp" qual="ref type=TimeStamp"/>
+  <elem n="command" qual="e8" enumDef="ObjectRequestT"/>
+  <elem n="description" qual="st len=80"/>
+  <typeScope v="0,356"/>
+ </CpProgCmdHistory>
+ <CpProgStateHistory type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00 00"/>
+  <elem n="timeOfStateChange" qual="ref type=TimeStamp"/>
+  <elem n="state" qual="e8" enumDef="ProgramStateT"/>
+  <typeScope v="0,357"/>
+ </CpProgStateHistory>
+ <CpNsdsFbIndex type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="nsdsFbIndex" qual="u16"/>
+  <typeScope v="0,358"/>
+ </CpNsdsFbIndex>
+ <CpCurrentSenseEnable type="XCpTypeDef">
+  <init v="00"/>
+  <elem n="currentSenseEnable" qual="e8" enumDef="BooleanT"/>
+  <typeScope v="0,359"/>
+ </CpCurrentSenseEnable>
+ <CpMeasurementInterval type="XCpTypeDef">
+  <init v="00 00"/>
+  <elem n="measurementInterval" qual="ref type=TimeSec"/>
+  <typeScope v="0,360"/>
+ </CpMeasurementInterval>
+ <CpLightingGroupMembership type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00 00"/>
+  <elem n="flags0" qual="u8"/>
+  <elem n="flags1" qual="u8"/>
+  <elem n="flags2" qual="u8"/>
+  <elem n="flags3" qual="u8"/>
+  <elem n="flags4" qual="u8"/>
+  <elem n="flags5" qual="u8"/>
+  <elem n="flags6" qual="u8"/>
+  <elem n="flags7" qual="u8"/>
+  <typeScope v="0,361"/>
+ </CpLightingGroupMembership>
+ <CpLoadControlOffset type="XCpTypeDef">
+  <init v="00 00 00 00 00 00"/>
+  <elem n="loadControlOffset" qual="ref type=LoadOffsets"/>
+  <typeScope v="0,362"/>
+ </CpLoadControlOffset>
+ <CpProgErrorHistory type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00 00"/>
+  <elem n="timeOfError" qual="ref type=TimeStamp"/>
+  <elem n="error" qual="e8" enumDef="ProgramStatusErrorT"/>
+  <typeScope v="0,363"/>
+ </CpProgErrorHistory>
+ <CpNvUsage type="XCpTypeDef">
+  <init v="00"/>
+  <elem n="inUse" qual="ub byt=0 bit=7 len=1"/>
+  <elem n="mfg" qual="ub byt=0 bit=0 len=7 max=1.0"/>
+  <typeScope v="0,364"/>
+ </CpNvUsage>
+ <CpScheduleSunday type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"/>
+  <elem n="timeValue0" qual="ref type=TimeVal2"/>
+  <elem n="timeValue1" qual="ref type=TimeVal2"/>
+  <elem n="timeValue2" qual="ref type=TimeVal2"/>
+  <elem n="timeValue3" qual="ref type=TimeVal2"/>
+  <elem n="timeValue4" qual="ref type=TimeVal2"/>
+  <elem n="timeValue5" qual="ref type=TimeVal2"/>
+  <elem n="timeValue6" qual="ref type=TimeVal2"/>
+  <typeScope v="0,365"/>
+ </CpScheduleSunday>
+ <CpScheduleMonday type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"/>
+  <elem n="timeValue0" qual="ref type=TimeVal2"/>
+  <elem n="timeValue1" qual="ref type=TimeVal2"/>
+  <elem n="timeValue2" qual="ref type=TimeVal2"/>
+  <elem n="timeValue3" qual="ref type=TimeVal2"/>
+  <elem n="timeValue4" qual="ref type=TimeVal2"/>
+  <elem n="timeValue5" qual="ref type=TimeVal2"/>
+  <elem n="timeValue6" qual="ref type=TimeVal2"/>
+  <typeScope v="0,366"/>
+ </CpScheduleMonday>
+ <CpScheduleTuesday type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"/>
+  <elem n="timeValue0" qual="ref type=TimeVal2"/>
+  <elem n="timeValue1" qual="ref type=TimeVal2"/>
+  <elem n="timeValue2" qual="ref type=TimeVal2"/>
+  <elem n="timeValue3" qual="ref type=TimeVal2"/>
+  <elem n="timeValue4" qual="ref type=TimeVal2"/>
+  <elem n="timeValue5" qual="ref type=TimeVal2"/>
+  <elem n="timeValue6" qual="ref type=TimeVal2"/>
+  <typeScope v="0,367"/>
+ </CpScheduleTuesday>
+ <CpScheduleWednesday type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"/>
+  <elem n="timeValue0" qual="ref type=TimeVal2"/>
+  <elem n="timeValue1" qual="ref type=TimeVal2"/>
+  <elem n="timeValue2" qual="ref type=TimeVal2"/>
+  <elem n="timeValue3" qual="ref type=TimeVal2"/>
+  <elem n="timeValue4" qual="ref type=TimeVal2"/>
+  <elem n="timeValue5" qual="ref type=TimeVal2"/>
+  <elem n="timeValue6" qual="ref type=TimeVal2"/>
+  <typeScope v="0,368"/>
+ </CpScheduleWednesday>
+ <CpScheduleThursday type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"/>
+  <elem n="timeValue0" qual="ref type=TimeVal2"/>
+  <elem n="timeValue1" qual="ref type=TimeVal2"/>
+  <elem n="timeValue2" qual="ref type=TimeVal2"/>
+  <elem n="timeValue3" qual="ref type=TimeVal2"/>
+  <elem n="timeValue4" qual="ref type=TimeVal2"/>
+  <elem n="timeValue5" qual="ref type=TimeVal2"/>
+  <elem n="timeValue6" qual="ref type=TimeVal2"/>
+  <typeScope v="0,369"/>
+ </CpScheduleThursday>
+ <CpScheduleFriday type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"/>
+  <elem n="timeValue0" qual="ref type=TimeVal2"/>
+  <elem n="timeValue1" qual="ref type=TimeVal2"/>
+  <elem n="timeValue2" qual="ref type=TimeVal2"/>
+  <elem n="timeValue3" qual="ref type=TimeVal2"/>
+  <elem n="timeValue4" qual="ref type=TimeVal2"/>
+  <elem n="timeValue5" qual="ref type=TimeVal2"/>
+  <elem n="timeValue6" qual="ref type=TimeVal2"/>
+  <typeScope v="0,370"/>
+ </CpScheduleFriday>
+ <CpScheduleSaturday type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"/>
+  <elem n="timeValue0" qual="ref type=TimeVal2"/>
+  <elem n="timeValue1" qual="ref type=TimeVal2"/>
+  <elem n="timeValue2" qual="ref type=TimeVal2"/>
+  <elem n="timeValue3" qual="ref type=TimeVal2"/>
+  <elem n="timeValue4" qual="ref type=TimeVal2"/>
+  <elem n="timeValue5" qual="ref type=TimeVal2"/>
+  <elem n="timeValue6" qual="ref type=TimeVal2"/>
+  <typeScope v="0,371"/>
+ </CpScheduleSaturday>
+ <CpOccupancyBehavior type="XCpTypeDef">
+  <init v="00 00 00 00 00"/>
+  <elem n="obNulValue" qual="e8" enumDef="OccupT"/>
+  <elem n="obOccupiedValue" qual="e8" enumDef="OccupT"/>
+  <elem n="obUnoccupiedValue" qual="e8" enumDef="OccupT"/>
+  <elem n="obBypassValue" qual="e8" enumDef="OccupT"/>
+  <elem n="obStandbyValue" qual="e8" enumDef="OccupT"/>
+  <typeScope v="0,372"/>
+ </CpOccupancyBehavior>
+ <CpTimeSource type="XCpTypeDef">
+  <init v="00"/>
+  <elem n="timeSource" qual="e8" enumDef="TimeSourceT"/>
+  <typeScope v="0,373"/>
+ </CpTimeSource>
+ <CpScheduleException type="XCpTypeDef">
+  <init v="ff 00 00 00 00 00 00 00"/>
+  <elem n="scheduleException" qual="ref type=SchedExc"/>
+  <typeScope v="0,374"/>
+ </CpScheduleException>
+ <CpScheduleHoliday type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00 00"/>
+  <elem n="scheduleHoliday" qual="ref type=SchedExc"/>
+  <typeScope v="0,375"/>
+ </CpScheduleHoliday>
+ <CpRandomizationInterval type="XCpTypeDef">
+  <init v="00 00 00 00"/>
+  <elem n="earliestTimeOffset" qual="ref type=TimeSec"/>
+  <elem n="latestTimeOffset" qual="ref type=TimeSec"/>
+  <typeScope v="0,376"/>
+ </CpRandomizationInterval>
+ <CpSunriseTime type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00"/>
+  <elem n="sunriseTime" qual="ref type=TimeStamp"/>
+  <typeScope v="0,377"/>
+ </CpSunriseTime>
+ <CpSunsetTime type="XCpTypeDef">
+  <init v="00 00 00 00 00 00 00"/>
+  <elem n="sunsetTime" qual="ref type=TimeStamp"/>
+  <typeScope v="0,378"/>
+ </CpSunsetTime>
+ <CpSchedulerOptions type="XCpTypeDef">
+  <init v="00"/>
+  <elem n="reserved" qual="ub byt=0 bit=3 len=5 max=1.0"/>
+  <elem n="alternateTimeSource" qual="ub byt=0 bit=2 len=1"/>
+  <elem n="generalPurposeOutput" qual="ub byt=0 bit=1 len=1"/>
+  <elem n="sunriseSunsetRelative" qual="ub byt=0 bit=0 len=1"/>
+  <typeScope v="0,379"/>
+ </CpSchedulerOptions>
+ <CpOccupancyThresholds type="XCpTypeDef">
+  <init v="00 00 00"/>
+  <elem n="occupied" qual="u8 max=50.0 invld=255.0"/>
+  <elem n="standbyToOccupied" qual="u8 max=50.0 invld=255.0"/>
+  <elem n="unoccupiedToOccupied" qual="u8 max=50.0 invld=255.0"/>
+  <typeScope v="0,380"/>
+ </CpOccupancyThresholds>
+</standard>

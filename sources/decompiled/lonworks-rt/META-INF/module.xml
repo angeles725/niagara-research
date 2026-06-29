@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="lonworks-rt" bajaVersion="0" vendor="Tridium" vendorVersion="4.14.0.162" description="Niagara Lonworks Module" preferredSymbol="l" nre="true" autoload="true" installable="true" buildMillis="1718363220441" buildHost="ee033fd13409" moduleName="lonworks" runtimeProfile="rt" releaseDate="2024-05-28">
+ <dependencies>
+  <dependency name="alarm-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="baja" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="bql-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="chart-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="control-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="driver-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="entityIo-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="file-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="fox-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="gx-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="history-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="net-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="platLon-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="platform-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="query-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="schedule-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="web-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+ </dependencies>
+ <dirs/>
+ <installation/>
+ <types>
+  <type class="javax.baja.lonworks.tuning.BLonTuningPolicyMap" name="LonTuningPolicyMap"/>
+  <type class="javax.baja.lonworks.tuning.BLonTuningPolicy" name="LonTuningPolicy"/>
+  <type class="com.tridium.lonworks.BLonRouter" name="LonRouter"/>
+  <type class="com.tridium.lonworks.datatypes.BAppDownloadParameter" name="AppDownloadParameter"/>
+  <type class="com.tridium.lonworks.datatypes.BChangeNvTypeParameter" name="ChangeNvTypeParameter"/>
+  <type class="com.tridium.lonworks.datatypes.BCommandStatus" name="CommandStatus"/>
+  <type class="com.tridium.lonworks.datatypes.BCommissionParameter" name="CommissionParameter"/>
+  <type class="com.tridium.lonworks.datatypes.BDescriptorTable" name="DescriptorTable"/>
+  <type class="com.tridium.lonworks.datatypes.BDeviceEntry" name="DeviceEntry"/>
+  <type class="com.tridium.lonworks.datatypes.BDeviceEntryTable" name="DeviceEntryTable"/>
+  <type class="com.tridium.lonworks.datatypes.BDiscoverParameter" name="DiscoverParameter"/>
+  <type class="com.tridium.lonworks.datatypes.BEditEntryParameter" name="EditEntryParameter"/>
+  <type class="com.tridium.lonworks.datatypes.BEditRouterEntryParameter" name="EditRouterEntryParameter"/>
+  <type class="com.tridium.lonworks.datatypes.BLearnParameter" name="LearnParameter"/>
+  <type class="com.tridium.lonworks.datatypes.BLinkDescriptor" name="LinkDescriptor"/>
+  <type class="com.tridium.lonworks.datatypes.BLinkEntry" name="LinkEntry"/>
+  <type class="com.tridium.lonworks.datatypes.BLinkEntryTable" name="LinkEntryTable"/>
+  <type class="com.tridium.lonworks.datatypes.BLinkFilterEntry" name="LinkFilterEntry"/>
+  <type class="com.tridium.lonworks.datatypes.BLinkFilterTable" name="LinkFilterTable"/>
+  <type class="com.tridium.lonworks.datatypes.BLonRouteTable" name="LonRouteTable"/>
+  <type class="com.tridium.lonworks.datatypes.BMatchParameter" name="MatchParameter"/>
+  <type class="com.tridium.lonworks.datatypes.BRouterEntry" name="RouterEntry"/>
+  <type class="com.tridium.lonworks.datatypes.BRouterEntryTable" name="RouterEntryTable"/>
+  <type class="com.tridium.lonworks.datatypes.BServicePinData" name="ServicePinData"/>
+  <type class="com.tridium.lonworks.datatypes.BSetServiceTypeParameter" name="SetServiceTypeParameter"/>
+  <type class="com.tridium.lonworks.datatypes.BTagLinkEntry" name="TagLinkEntry"/>
+  <type class="com.tridium.lonworks.datatypes.BTagLinkEntryTable" name="TagLinkEntryTable"/>
+  <type class="com.tridium.lonworks.datatypes.BUtilCmdJob" name="UtilCmdJob"/>
+  <type class="com.tridium.lonworks.datatypes.BUtilitiesCommand" name="UtilitiesCommand"/>
+  <type class="com.tridium.lonworks.device.BDownloadJob" name="DownloadJob"/>
+  <type class="com.tridium.lonworks.device.BLonLearnNvJob" name="LonLearnNvJob"/>
+  <type class="com.tridium.lonworks.device.BUploadJob" name="UploadJob"/>
+  <type class="com.tridium.lonworks.discover.BLonCreationEntry" name="LonCreationEntry"/>
+  <type class="com.tridium.lonworks.enums.BDiscoverMode" name="DiscoverMode"/>
+  <type class="com.tridium.lonworks.enums.BLonCompletionCode" name="LonCompletionCode"/>
+  <type class="com.tridium.lonworks.enums.BLonLinkStatus" name="LonLinkStatus"/>
+  <type class="com.tridium.lonworks.enums.BLonRouterMode" name="LonRouterMode"/>
+  <type class="com.tridium.lonworks.enums.BLonRouterType" name="LonRouterType"/>
+  <type class="com.tridium.lonworks.enums.BNetmgmtState" name="NetmgmtState"/>
+  <type class="com.tridium.lonworks.enums.BServicePinState" name="ServicePinState"/>
+  <type class="com.tridium.lonworks.enums.BUtilCommandEnum" name="UtilCommandEnum"/>
+  <type class="com.tridium.lonworks.local.BLocalNci" name="LocalNci"/>
+  <type class="com.tridium.lonworks.local.BLocalNv" name="LocalNv"/>
+  <type class="com.tridium.lonworks.local.BPseudoNV" name="PseudoNV"/>
+  <type class="com.tridium.lonworks.local.BPseudoNvContainer" name="PseudoNvContainer"/>
+  <type class="com.tridium.lonworks.loncomm.BLinkFilter" name="LinkFilter"/>
+  <type class="com.tridium.lonworks.netmgmt.BChangeNvTypeAction" name="ChangeNvTypeAction"/>
+  <type class="com.tridium.lonworks.netmgmt.BLonAppDownloadJob" name="LonAppDownloadJob"/>
+  <type class="com.tridium.lonworks.netmgmt.BLonBindJob" name="LonBindJob"/>
+  <type class="com.tridium.lonworks.netmgmt.BLonChangeNvTypeJob" name="LonChangeNvTypeJob"/>
+  <type class="com.tridium.lonworks.netmgmt.BLonCommissionJob" name="LonCommissionJob"/>
+  <type class="com.tridium.lonworks.netmgmt.BLonCommissionRouterJob" name="LonCommissionRouterJob"/>
+  <type class="com.tridium.lonworks.netmgmt.BLonDiscoverJob" name="LonDiscoverJob"/>
+  <type class="com.tridium.lonworks.netmgmt.BLonLearnJob" name="LonLearnJob"/>
+  <type class="com.tridium.lonworks.netmgmt.BLonLearnLinksJob" name="LonLearnLinksJob"/>
+  <type class="com.tridium.lonworks.netmgmt.BLonNetmgmt" name="LonNetmgmt"/>
+  <type class="com.tridium.lonworks.netmgmt.BLonNetmgmtJob" name="LonNetmgmtJob"/>
+  <type class="com.tridium.lonworks.netmgmt.BLonReplaceJob" name="LonReplaceJob"/>
+  <type class="com.tridium.lonworks.netmgmt.BLonServicePinJob" name="LonServicePinJob"/>
+  <type class="com.tridium.lonworks.netmgmt.BLonSetServiceTypeJob" name="LonSetServiceTypeJob"/>
+  <type class="com.tridium.lonworks.netmgmt.BLonUpdateRoutersJob" name="LonUpdateRoutersJob"/>
+  <type class="com.tridium.lonworks.xml.BILnmlFile" name="ILnmlFile"/>
+  <type class="com.tridium.lonworks.xml.BLnmlFile" name="LnmlFile">
+   <file>
+    <ext name="lnml"/>
+   </file>
+  </type>
+  <type class="javax.baja.lonworks.BConfigParameter" name="ConfigParameter"/>
+  <type class="javax.baja.lonworks.BDynamicDevice" name="DynamicDevice"/>
+  <type class="javax.baja.lonworks.BILonLoadable" name="ILonLoadable"/>
+  <type class="javax.baja.lonworks.BINetworkVariable" name="INetworkVariable"/>
+  <type class="javax.baja.lonworks.BINvContainer" name="INvContainer"/>
+  <type class="javax.baja.lonworks.BLocalLonDevice" name="LocalLonDevice"/>
+  <type class="javax.baja.lonworks.BLonComponent" name="LonComponent"/>
+  <type class="javax.baja.lonworks.BLonDevice" name="LonDevice"/>
+  <type class="javax.baja.lonworks.BLonDeviceFolder" name="LonDeviceFolder"/>
+  <type class="javax.baja.lonworks.BLonLink" name="LonLink"/>
+  <type class="javax.baja.lonworks.BLonNetwork" name="LonNetwork"/>
+  <type class="javax.baja.lonworks.BLonObject" name="LonObject"/>
+  <type class="javax.baja.lonworks.BLonObjectFolder" name="LonObjectFolder"/>
+  <type class="javax.baja.lonworks.BMessageTag" name="MessageTag"/>
+  <type class="javax.baja.lonworks.BNetworkConfig" name="NetworkConfig"/>
+  <type class="javax.baja.lonworks.BNetworkVariable" name="NetworkVariable"/>
+  <type class="javax.baja.lonworks.datatypes.BAddressEntry" name="AddressEntry"/>
+  <type class="javax.baja.lonworks.datatypes.BAddressTable" name="AddressTable"/>
+  <type class="javax.baja.lonworks.datatypes.BAliasConfigData" name="AliasConfigData"/>
+  <type class="javax.baja.lonworks.datatypes.BAliasTable" name="AliasTable"/>
+  <type class="javax.baja.lonworks.datatypes.BAuthenticationKey" name="AuthenticationKey"/>
+  <type class="javax.baja.lonworks.datatypes.BBroadcast" name="Broadcast"/>
+  <type class="javax.baja.lonworks.datatypes.BConfigProps" name="ConfigProps"/>
+  <type class="javax.baja.lonworks.datatypes.BDeviceData" name="DeviceData"/>
+  <type class="javax.baja.lonworks.datatypes.BDomainId" name="DomainId"/>
+  <type class="javax.baja.lonworks.datatypes.BExtAddressEntry" name="ExtAddressEntry"/>
+  <type class="javax.baja.lonworks.datatypes.BExtAddressTable" name="ExtAddressTable"/>
+  <type class="javax.baja.lonworks.datatypes.BExtDeviceData" name="ExtDeviceData"/>
+  <type class="javax.baja.lonworks.datatypes.BIAddressEntry" name="IAddressEntry"/>
+  <type class="javax.baja.lonworks.datatypes.BImplicit" name="Implicit"/>
+  <type class="javax.baja.lonworks.datatypes.BImportParameters" name="ImportParameters"/>
+  <type class="javax.baja.lonworks.datatypes.BLearnNvParameters" name="LearnNvParameters"/>
+  <type class="javax.baja.lonworks.datatypes.BLocal" name="Local"/>
+  <type class="javax.baja.lonworks.datatypes.BLocalExtractXifParameter" name="LocalExtractXifParameter"/>
+  <type class="javax.baja.lonworks.datatypes.BLocalImportXmlParameter" name="LocalImportXmlParameter"/>
+  <type class="javax.baja.lonworks.datatypes.BLonCommConfig" name="LonCommConfig"/>
+  <type class="javax.baja.lonworks.datatypes.BModifyFlags" name="ModifyFlags"/>
+  <type class="javax.baja.lonworks.datatypes.BNcProps" name="NcProps"/>
+  <type class="javax.baja.lonworks.datatypes.BNeuronId" name="NeuronId"/>
+  <type class="javax.baja.lonworks.datatypes.BNvConfigData" name="NvConfigData"/>
+  <type class="javax.baja.lonworks.datatypes.BNvProps" name="NvProps"/>
+  <type class="javax.baja.lonworks.datatypes.BProgramId" name="ProgramId"/>
+  <type class="javax.baja.lonworks.datatypes.BSubnetNode" name="SubnetNode"/>
+  <type class="javax.baja.lonworks.datatypes.BUnionQualifier" name="UnionQualifier"/>
+  <type class="javax.baja.lonworks.datatypes.BUnionQualifiers" name="UnionQualifiers"/>
+  <type class="javax.baja.lonworks.enums.BAddressType" name="AddressType"/>
+  <type class="javax.baja.lonworks.enums.BBufferCountEnum" name="BufferCountEnum"/>
+  <type class="javax.baja.lonworks.enums.BBufferSizeEnum" name="BufferSizeEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonAlarmTypeEnum" name="LonAlarmTypeEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonBooleanEnum" name="LonBooleanEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonCalendarTypeEnum" name="LonCalendarTypeEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonCamActEnum" name="LonCamActEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonCamFuncEnum" name="LonCamFuncEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonChillerEnum" name="LonChillerEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonConfigScope" name="LonConfigScope"/>
+  <type class="javax.baja.lonworks.enums.BLonConfigSourceEnum" name="LonConfigSourceEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonControlRespEnum" name="LonControlRespEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonCurrencyEnum" name="LonCurrencyEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonDaysOfWeekEnum" name="LonDaysOfWeekEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonDefrostModeEnum" name="LonDefrostModeEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonDefrostStateEnum" name="LonDefrostStateEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonDefrostTermEnum" name="LonDefrostTermEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonDeviceSelectEnum" name="LonDeviceSelectEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonDiscreteLevelsEnum" name="LonDiscreteLevelsEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonElementType" name="LonElementType"/>
+  <type class="javax.baja.lonworks.enums.BLonEmergEnum" name="LonEmergEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonEvapEnum" name="LonEvapEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonEventModeEnum" name="LonEventModeEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonExControlEnum" name="LonExControlEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonFileRequestEnum" name="LonFileRequestEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonFileStatusEnum" name="LonFileStatusEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonFireIndicatorEnum" name="LonFireIndicatorEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonFireInitEnum" name="LonFireInitEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonFireTestEnum" name="LonFireTestEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonGfciStatusEnum" name="LonGfciStatusEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonGroupRestrictionEnum" name="LonGroupRestrictionEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonHvacEnum" name="LonHvacEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonHvacOveridEnum" name="LonHvacOveridEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonHvacTypeEnum" name="LonHvacTypeEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonInterpEnum" name="LonInterpEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonIntervalOfMonthEnum" name="LonIntervalOfMonthEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonLearnModeEnum" name="LonLearnModeEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonLinkType" name="LonLinkType"/>
+  <type class="javax.baja.lonworks.enums.BLonMfgId" name="LonMfgId"/>
+  <type class="javax.baja.lonworks.enums.BLonMotorStateEnum" name="LonMotorStateEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonNilEnum" name="LonNilEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonNodeState" name="LonNodeState"/>
+  <type class="javax.baja.lonworks.enums.BLonNvDirection" name="LonNvDirection"/>
+  <type class="javax.baja.lonworks.enums.BLonNvTypeCategoryEnum" name="LonNvTypeCategoryEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonObjectRequestEnum" name="LonObjectRequestEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonOccupancyEnum" name="LonOccupancyEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonOverrideEnum" name="LonOverrideEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonPriorityLevelEnum" name="LonPriorityLevelEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonRailAudioSensorTypeEnum" name="LonRailAudioSensorTypeEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonRailAudioTypeEnum" name="LonRailAudioTypeEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonReceiveTimer" name="LonReceiveTimer"/>
+  <type class="javax.baja.lonworks.enums.BLonRegValUnitEnum" name="LonRegValUnitEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonRepeatTimer" name="LonRepeatTimer"/>
+  <type class="javax.baja.lonworks.enums.BLonSceneConfigEnum" name="LonSceneConfigEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonSceneEnum" name="LonSceneEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonScptType" name="LonScptType"/>
+  <type class="javax.baja.lonworks.enums.BLonServiceType" name="LonServiceType"/>
+  <type class="javax.baja.lonworks.enums.BLonSettingEnum" name="LonSettingEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonSnvtType" name="LonSnvtType"/>
+  <type class="javax.baja.lonworks.enums.BLonStateEnum" name="LonStateEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonTelcomStatesEnum" name="LonTelcomStatesEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonThermModeEnum" name="LonThermModeEnum"/>
+  <type class="javax.baja.lonworks.enums.BLonValveModeEnum" name="LonValveModeEnum"/>
+  <type class="javax.baja.lonworks.ext.BLonPollService" name="LonPollService"/>
+  <type class="javax.baja.lonworks.londata.BILonNetworkSimple" name="ILonNetworkSimple"/>
+  <type class="javax.baja.lonworks.londata.BLonBigInteger" name="LonBigInteger"/>
+  <type class="javax.baja.lonworks.londata.BLonBoolean" name="LonBoolean"/>
+  <type class="javax.baja.lonworks.londata.BLonByteArray" name="LonByteArray"/>
+  <type class="javax.baja.lonworks.londata.BLonCpTimePeriod" name="LonCpTimePeriod"/>
+  <type class="javax.baja.lonworks.londata.BLonCtrlResp" name="LonCtrlResp"/>
+  <type class="javax.baja.lonworks.londata.BLonData" name="LonData"/>
+  <type class="javax.baja.lonworks.londata.BLonDataUnion" name="LonDataUnion"/>
+  <type class="javax.baja.lonworks.londata.BLonDevFault" name="LonDevFault"/>
+  <type class="javax.baja.lonworks.londata.BLonDevMaint" name="LonDevMaint"/>
+  <type class="javax.baja.lonworks.londata.BLonDevStatus" name="LonDevStatus"/>
+  <type class="javax.baja.lonworks.londata.BLonDouble" name="LonDouble"/>
+  <type class="javax.baja.lonworks.londata.BLonElementQualifiers" name="LonElementQualifiers"/>
+  <type class="javax.baja.lonworks.londata.BLonEnum" name="LonEnum"/>
+  <type class="javax.baja.lonworks.londata.BLonFilePos" name="LonFilePos"/>
+  <type class="javax.baja.lonworks.londata.BLonFileReq" name="LonFileReq"/>
+  <type class="javax.baja.lonworks.londata.BLonFileStatus" name="LonFileStatus"/>
+  <type class="javax.baja.lonworks.londata.BLonFloat" name="LonFloat"/>
+  <type class="javax.baja.lonworks.londata.BLonInteger" name="LonInteger"/>
+  <type class="javax.baja.lonworks.londata.BLonLong" name="LonLong"/>
+  <type class="javax.baja.lonworks.londata.BLonPosCtrl" name="LonPosCtrl"/>
+  <type class="javax.baja.lonworks.londata.BLonPrimitive" name="LonPrimitive"/>
+  <type class="javax.baja.lonworks.londata.BLonRacCtrl" name="LonRacCtrl"/>
+  <type class="javax.baja.lonworks.londata.BLonRacReq" name="LonRacReq"/>
+  <type class="javax.baja.lonworks.londata.BLonSimple" name="LonSimple"/>
+  <type class="javax.baja.lonworks.londata.BLonString" name="LonString"/>
+  <type class="javax.baja.lonworks.londata.BLonTimeZone" name="LonTimeZone"/>
+  <type class="javax.baja.lonworks.proxy.BLonBooleanProxyExt" name="LonBooleanProxyExt"/>
+  <type class="javax.baja.lonworks.proxy.BLonEnumProxyExt" name="LonEnumProxyExt"/>
+  <type class="javax.baja.lonworks.proxy.BLonFloatProxyExt" name="LonFloatProxyExt"/>
+  <type class="javax.baja.lonworks.proxy.BLonPointDeviceExt" name="LonPointDeviceExt"/>
+  <type class="javax.baja.lonworks.proxy.BLonPointFolder" name="LonPointFolder"/>
+  <type class="javax.baja.lonworks.proxy.BLonProxyExt" name="LonProxyExt"/>
+  <type class="javax.baja.lonworks.proxy.BLonStringProxyExt" name="LonStringProxyExt"/>
+ </types>
+ <permissions>
+  <java-permissions type="station">
+   <java-permission action="read" class="java.io.FilePermission" name="${niagara.home}${/}defaults${/}lonStandardConversion.xml"/>
+   <java-permission action="read,write" class="java.io.FilePermission" name="${niagara.user.home}${/}etc${/}"/>
+   <java-permission action="read,write" class="java.io.FilePermission" name="${niagara.user.home}${/}etc${/}lonStandardConversion.xml"/>
+   <java-permission action="read,write" class="java.io.FilePermission" name="${niagara.user.home}${/}logging"/>
+   <java-permission action="read,write" class="java.io.FilePermission" name="${niagara.user.home}${/}logging${/}-"/>
+   <java-permission action="accept,connect,listen,resolve" class="com.tridium.nre.security.NiagaraSocketPermission" name="*:1-100000"/>
+   <java-permission class="java.lang.RuntimePermission" name="setIO"/>
+   <java-permission class="java.lang.RuntimePermission" name="modifyThread"/>
+   <java-permission class="java.lang.RuntimePermission" name="modifyThreadGroup"/>
+   <java-permission class="java.lang.RuntimePermission" name="shutdownHooks"/>
+  </java-permissions>
+  <java-permissions type="all">
+   <java-permission action="read" class="java.util.PropertyPermission" name="*"/>
+   <java-permission class="java.util.logging.LoggingPermission" name="control"/>
+  </java-permissions>
+  <java-permissions type="workbench">
+   <java-permission class="java.lang.RuntimePermission" name="getenv.*"/>
+   <java-permission class="java.lang.RuntimePermission" name="exitVM.*"/>
+   <java-permission class="java.lang.RuntimePermission" name="accessClassInPackage.sun.util.logging.resources"/>
+   <java-permission action="connect,resolve" class="com.tridium.nre.security.NiagaraSocketPermission" name="*:1-100000"/>
+   <java-permission class="java.awt.AWTPermission" name="accessClipboard"/>
+   <java-permission class="java.awt.AWTPermission" name="showWindowWithoutWarningBanner"/>
+  </java-permissions>
+ </permissions>
+ <moduleParts>
+  <modulePart name="lonworks-ux" runtimeProfile="ux"/>
+  <modulePart name="lonworks-wb" runtimeProfile="wb"/>
+ </moduleParts>
+</module>

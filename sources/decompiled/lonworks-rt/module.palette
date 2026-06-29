@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<bajaObjectGraph version="1.0">
+
+<!--
+  -  Module Palette File
+  -  Copyright 2001 Tridium Inc, All Rights Reserved.
+  -  $Revision$ $Date$
+  -->  
+  
+ <p m="b=baja" t="b:UnrestrictedFolder">
+  <p n="LonNetwork" m="l=lonworks" t="l:LonNetwork">
+   <p n="localLonDevice">
+    <p n="nviRequest" t="l:LocalNv">
+     <p n="nvProps" t="l:NvProps">
+      <p n="snvtType" v="92"/>
+      <p n="objectIndex" v="0"/>
+      <p n="memberIndex" v="1"/>
+     </p>
+     <p n="selfDoc" v="@0|1"/>
+     <p n="objectId" x="min=f:0.0|precision=i:0|max=f:65535.0|type=s:u16" t="l:LonFloat" v="0.0"/>
+     <p n="objectRequest" x="type=s:e8" t="l:LonEnum" v="baja:DynamicEnum 0@{rqNormal=0,rqDisabled=1,rqUpdateStatus=2,rqSelfTest=3,rqUpdateAlarm=4,rqReportMask=5,rqOverride=6,rqEnable=7,rqRmvOverride=8,rqClearStatus=9,rqClearAlarm=10,rqAlarmNotifyEnabled=11,rqAlarmNotifyDisabled=12,rqManualCtrl=13,rqRemoteCtrl=14,rqProgram=15,rqClearReset=16,rqReset=17,rqNul=-1}"/>
+    </p>
+    <p n="nvoStatus" t="l:LocalNv">
+     <p n="nvProps" t="l:NvProps">
+      <p n="nvIndex" v="1"/>
+      <p n="snvtType" v="93"/>
+      <p n="objectIndex" v="0"/>
+      <p n="memberIndex" v="2"/>
+     </p>
+     <p n="nvConfigData" t="l:NvConfigData">
+      <p n="direction" v="output"/>
+     </p>
+     <p n="selfDoc" v="@0|2"/>
+     <p n="objectId" x="min=f:0.0|precision=i:0|max=f:65535.0|type=s:u16" t="l:LonFloat" v="0.0"/>
+     <p n="invalidId" x="bit=i:7|byt=i:2|len=i:1|type=s:bb" t="l:LonBoolean" v="false"/>
+     <p n="invalidRequest" x="bit=i:6|byt=i:2|len=i:1|type=s:bb" t="l:LonBoolean" v="false"/>
+     <p n="disabled" x="bit=i:5|byt=i:2|len=i:1|type=s:bb" t="l:LonBoolean" v="false"/>
+     <p n="outOfLimits" x="bit=i:4|byt=i:2|len=i:1|type=s:bb" t="l:LonBoolean" v="false"/>
+     <p n="openCircuit" x="bit=i:3|byt=i:2|len=i:1|type=s:bb" t="l:LonBoolean" v="false"/>
+     <p n="outOfService" x="bit=i:2|byt=i:2|len=i:1|type=s:bb" t="l:LonBoolean" v="false"/>
+     <p n="mechanicalFault" x="bit=i:1|byt=i:2|len=i:1|type=s:bb" t="l:LonBoolean" v="false"/>
+     <p n="feedbackFailure" x="bit=i:0|byt=i:2|len=i:1|type=s:bb" t="l:LonBoolean" v="false"/>
+     <p n="overRange" x="bit=i:7|byt=i:3|len=i:1|type=s:bb" t="l:LonBoolean" v="false"/>
+     <p n="underRange" x="bit=i:6|byt=i:3|len=i:1|type=s:bb" t="l:LonBoolean" v="false"/>
+     <p n="electricalFault" x="bit=i:5|byt=i:3|len=i:1|type=s:bb" t="l:LonBoolean" v="false"/>
+     <p n="unableToMeasure" x="bit=i:4|byt=i:3|len=i:1|type=s:bb" t="l:LonBoolean" v="false"/>
+     <p n="commFailure" x="bit=i:3|byt=i:3|len=i:1|type=s:bb" t="l:LonBoolean" v="false"/>
+     <p n="failSelfTest" x="bit=i:2|byt=i:3|len=i:1|type=s:bb" t="l:LonBoolean" v="false"/>
+     <p n="selfTestInProgress" x="bit=i:1|byt=i:3|len=i:1|type=s:bb" t="l:LonBoolean" v="false"/>
+     <p n="lockedOut" x="bit=i:0|byt=i:3|len=i:1|type=s:bb" t="l:LonBoolean" v="false"/>
+     <p n="manualControl" x="bit=i:7|byt=i:4|len=i:1|type=s:bb" t="l:LonBoolean" v="false"/>
+     <p n="inAlarm" x="bit=i:6|byt=i:4|len=i:1|type=s:bb" t="l:LonBoolean" v="false"/>
+     <p n="inOverride" x="bit=i:5|byt=i:4|len=i:1|type=s:bb" t="l:LonBoolean" v="false"/>
+     <p n="reportMask" x="bit=i:4|byt=i:4|len=i:1|type=s:bb" t="l:LonBoolean" v="false"/>
+     <p n="programmingMode" x="bit=i:3|byt=i:4|len=i:1|type=s:bb" t="l:LonBoolean" v="false"/>
+     <p n="programmingFail" x="bit=i:2|byt=i:4|len=i:1|type=s:bb" t="l:LonBoolean" v="false"/>
+     <p n="alarmNotifyDisabled" x="bit=i:1|byt=i:4|len=i:1|type=s:bb" t="l:LonBoolean" v="false"/>
+     <p n="resetComplete" x="bit=i:0|byt=i:4|len=i:1|type=s:bb" t="l:LonBoolean" v="false"/>
+     <p n="reserved2" x="bit=i:0|byt=i:5|len=i:8|type=s:bb" t="l:LonBoolean" v="false"/>
+    </p>
+   </p>
+  </p>
+  <p n="DynamicDevice" t="l:DynamicDevice"/>
+  <p n="LonRouter" t="l:LonRouter"/>
+  <p n="LonDeviceFolder" t="l:LonDeviceFolder"/>
+  <p n="LonObjectFolder" t="l:LonObjectFolder"/>
+  <!-- p n="LonPoints" t="l:LonPointDeviceExt"/ -->
+  <p n="LonPointFolder" t="l:LonPointFolder"/>
+  <p n="LonTuningPolicy" t="l:LonTuningPolicy"/>
+  <p n="LinkFilter" t="l:LinkFilter"/>
+ </p>
+</bajaObjectGraph>
