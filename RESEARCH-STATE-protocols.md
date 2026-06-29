@@ -24,6 +24,16 @@ covered, packet encoding not). Fox and LON have partial wire coverage to deepen.
 - **Coverage metric**: 6 / 6 backlog items closed.
 - **Last iteration**: 2026-06-29 — P6 Sox/Soxs presence audit closed (B136); **STATIC loop STOPPED**.
 
+> **Applied-integration coda (2026-06-29, B137) — does NOT change the 6/6 STOP.** B137 is an APPLIED/
+> DESIGN block (Nivel 1), not a new static-wire gap: it consumes B131's Modbus wire findings to produce a
+> LOGO! 8 ↔ Niagara Modbus TCP **integration plan** (driver config tree from the `modbusTcp`/`modbusCore`
+> CONFIG classes + register-map crosswalk against the logosoft LOGO! corpus B66-B76 + byte-order
+> reconciliation + Workbench recipe). It REFINES B131 §131.9 (network/device byte-order PROPERTY default
+> is `order3210`/big-endian, not the `order1032` enum-DEFAULT constant). **Empirical validation is
+> DEFERRED** to a future DYNAMIC phase against the bench LOGO (`192.168.0.100:502`, left Modbus-enabled);
+> until then the interoperability conclusion is `[INFER]`. The static protocols backlog remains **6/6
+> CLOSED, loop STOPPED**.
+
 ## Gap-backlog (prioritized)
 
 | Pr. | ID | Gap | Artifact / source | Status |

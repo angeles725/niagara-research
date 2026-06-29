@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **134 bloques**
+Total: **135 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -139,6 +139,7 @@ Total: **134 bloques**
 | 134 | [niagara-mental-model-bloque134.md](niagara-mental-model-bloque134.md) | Block 134 — Fox/Foxs protocol wire: the line-oriented frame envelope, frame opcodes, channel/circuit multiplexing, the hello/tune login state machine, and the SCRAM-SHA-256 authentication digest |
 | 135 | [niagara-mental-model-bloque135.md](niagara-mental-model-bloque135.md) | Block 135 — LON network-variable wire encoding: the SNVT byte serialization, the resolution/offset scaling, struct/bitfield packing, the LonTalk Network-Interface application buffer (NI command codes + ExpAppMessage header), the network-variable update message, and the LonMark file-transfer framing |
 | 136 | [niagara-mental-model-bloque136.md](niagara-mental-model-bloque136.md) | Block 136 — Sox/Soxs presence audit in N4 (negative finding): the legacy NiagaraAX Sox protocol is ABSENT from this OptimizerSupervisor install — only vestigial Sedona-management UI labels and orphan icons survive; the station role Sox once shared is carried by Fox |
+| 137 | [niagara-mental-model-bloque137.md](niagara-mental-model-bloque137.md) | Block 137 — INTEGRATION PLAN: Siemens LOGO! 8 (Modbus TCP slave) ↔ Niagara N4 (modbusTcp master) — driver component tree, register-map crosswalk, byte-order reconciliation, Workbench wiring (DESIGN; empirical validation DEFERRED) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
