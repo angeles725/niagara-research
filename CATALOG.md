@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **136 bloques**
+Total: **137 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -141,6 +141,7 @@ Total: **136 bloques**
 | 136 | [niagara-mental-model-bloque136.md](niagara-mental-model-bloque136.md) | Block 136 — Sox/Soxs presence audit in N4 (negative finding): the legacy NiagaraAX Sox protocol is ABSENT from this OptimizerSupervisor install — only vestigial Sedona-management UI labels and orphan icons survive; the station role Sox once shared is carried by Fox |
 | 137 | [niagara-mental-model-bloque137.md](niagara-mental-model-bloque137.md) | Block 137 — INTEGRATION PLAN: Siemens LOGO! 8 (Modbus TCP slave) ↔ Niagara N4 (modbusTcp master) — driver component tree, register-map crosswalk, byte-order reconciliation, Workbench wiring (DESIGN; empirical validation DEFERRED) |
 | 138 | [niagara-mental-model-bloque138.md](niagara-mental-model-bloque138.md) | Block 138 — nmodsreflow.77 (`-rt`): módulo, servicio y espina HTTP/WebSocket |
+| 139 | [niagara-mental-model-bloque139.md](niagara-mental-model-bloque139.md) | Block 139 — nmodsreflow.77 (`-rt`): subsistema de licensing (dual Niagara/XML, firma RSA, host binding) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

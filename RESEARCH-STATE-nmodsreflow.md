@@ -23,9 +23,9 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
 
 ## Coverage
 
-- **Covered blocks (este focus)**: 1 — B138 (módulo/service/espina HTTP-WebSocket).
-- **Coverage metric**: 1 / 12 gaps cerrados.
-- **Last iteration**: 2026-07-01 — R1 cerrado (esqueleto backend `-rt`).
+- **Covered blocks (este focus)**: 2 — B138 (módulo/service/espina HTTP-WebSocket), B139 (licensing).
+- **Coverage metric**: 2 / 12 gaps cerrados.
+- **Last iteration**: 2026-07-01 — R4 cerrado (subsistema licensing).
 
 ## Gap-backlog (priorizado)
 
@@ -33,7 +33,7 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
 |---|---|---|---|
 | — | R1 · esqueleto: módulo, `BReflowService`, ORD scheme, `BaseServlet`/`SocketServlet` | Java `-rt` | **cerrado B138** |
 | high | R2 · canal WebSocket: `BReflowChannelService` + `BReflowWebSocketAcceptor` + `IReflowCommand` (pub/sub, dispatch de comandos, sesiones) | Java `-rt` | pending |
-| high | R4 · licensing: `License`/`LicenseValidator`/`LicenseManager`/`LicenseClient` (RSA-SHA256, host binding, `api.niagaramodules.com`, station-type gating) | Java `-rt` | pending |
+| — | R4 · licensing: `License`/`LicenseValidator`/`LicenseManager`/`LicenseClient` (RSA-SHA256, host binding, `api.niagaramodules.com`, station-type gating) | Java `-rt` | **cerrado B139** |
 | high | R5 · history: `HistoryIO`/`HistoryData`/`HistoryGhostSubscriber`/`HistoryGroups` (cache GZIP, threading privilegiado, lookup por id) | Java `-rt` | pending |
 | medium | R3 · montaje del servlet: cómo `BaseServlet`/`SocketServlet` reciben path en Jetty (cross-ref `web-rt`, B9) | Java `-rt` + framework | pending |
 | medium | R6 · alarms: `ReflowAlarmSource`/`AlarmData`/`QueryFilter`/`AlarmSourceCollection` + `AlarmQueryResponse` (POST) | Java `-rt` | pending |
@@ -49,6 +49,7 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
 | # | Fecha | Gap cerrado | Bloque | Nuevos gaps |
 |---|---|---|---|---|
 | 1 | 2026-07-01 | R1 esqueleto backend `-rt` | B138 | R3 (montaje servlet) formalizado desde hallazgo in-block |
+| 2 | 2026-07-01 | R4 licensing | B139 | 0 (subsistema autocontenido; cruza a B75/B113/B126) |
 
 ## Blocked gaps (con lo que necesitan)
 
@@ -56,15 +57,16 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
 
 ## Stop control (primario = read-only-investigable = 0, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 11 (R2–R12)   ← el loop STATIC para cuando llegue a 0
+- **Open gaps — read-only investigable**: 10 (R2, R3, R5–R12)   ← el loop STATIC para cuando llegue a 0
 - **Open gaps — requires-execution**: 0
 - **Open gaps — blocked** (hardware/live/NDA): 0
 - Iteraciones consecutivas con backlog vacío (secundario): 0/2
 - Budget cap: none
 
-## Self-verify (B138)
+## Self-verify
 
-- Tokens `[CERT]` chequeados vía grep: 20/20 presentes (incl. T20=0 confirmando ausencia de `doPut/doDelete`
-  en build 77 → divergencia de Clean-177 sostenida). Cero citas alucinadas.
-- Marker tally B138: `[CERT]` ~28 · `[CERT-a]` 1 (DIFF forense) · `[INFER]` 1 (hipótesis montaje servlet).
-  Ratio `[INFER]/[CERT]` ≈ 0.04 — evidencia investigable abundante, lejos del umbral 0.5.
+- **B138**: 20/20 tokens `[CERT]` grep-confirmados (incl. T20=0 → divergencia Clean-177). `[CERT]` ~28 ·
+  `[CERT-a]` 1 · `[INFER]` 1. Ratio `[INFER]/[CERT]` ≈ 0.04.
+- **B139**: 16/16 tokens `[CERT]` grep-confirmados. `[CERT]` ~32 · `[CERT-a]` 1 (DIFF forense §3) ·
+  `[INFER]` 4 (implicaciones de seguridad, claramente etiquetadas). Ratio `[INFER]/[CERT]` ≈ 0.13 —
+  evidencia abundante; los `[INFER]` son análisis de seguridad derivado, no huecos de evidencia.
