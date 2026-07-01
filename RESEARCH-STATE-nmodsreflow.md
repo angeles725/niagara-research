@@ -23,19 +23,21 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
 
 ## Coverage
 
-- **Covered blocks (este focus)**: 2 — B138 (módulo/service/espina HTTP-WebSocket), B139 (licensing).
-- **Coverage metric**: 2 / 12 gaps cerrados.
-- **Last iteration**: 2026-07-01 — R4 cerrado (subsistema licensing).
+- **Covered blocks (este focus)**: 3 — B138 (módulo/service/espina HTTP-WebSocket), B139 (licensing),
+  B140 (canal WebSocket: acceptor/sesiones/pub-sub/dispatch).
+- **Coverage metric**: 3 / 12 gaps cerrados.
+- **Last iteration**: 2026-07-01 — R2 cerrado (canal WebSocket); B140 cerró además el "servlet mount GAP"
+  de B138 §138.4 (web.xml `/ws`), por lo que R3 queda casi-cerrado (solo resta la base `/module/<name>/`).
 
 ## Gap-backlog (priorizado)
 
 | Prioridad | Gap | Tipo/fuente | Estado |
 |---|---|---|---|
 | — | R1 · esqueleto: módulo, `BReflowService`, ORD scheme, `BaseServlet`/`SocketServlet` | Java `-rt` | **cerrado B138** |
-| high | R2 · canal WebSocket: `BReflowChannelService` + `BReflowWebSocketAcceptor` + `IReflowCommand` (pub/sub, dispatch de comandos, sesiones) | Java `-rt` | pending |
+| — | R2 · canal WebSocket: `BReflowChannelService` + `BReflowWebSocketAcceptor` + `IReflowCommand` (pub/sub, dispatch de comandos, sesiones) | Java `-rt` | **cerrado B140** |
 | — | R4 · licensing: `License`/`LicenseValidator`/`LicenseManager`/`LicenseClient` (RSA-SHA256, host binding, `api.niagaramodules.com`, station-type gating) | Java `-rt` | **cerrado B139** |
 | high | R5 · history: `HistoryIO`/`HistoryData`/`HistoryGhostSubscriber`/`HistoryGroups` (cache GZIP, threading privilegiado, lookup por id) | Java `-rt` | pending |
-| medium | R3 · montaje del servlet: cómo `BaseServlet`/`SocketServlet` reciben path en Jetty (cross-ref `web-rt`, B9) | Java `-rt` + framework | pending |
+| low | R3 · montaje del servlet: cómo `BaseServlet`/`SocketServlet` reciben path en Jetty (cross-ref `web-rt`, B9) | Java `-rt` + framework | casi-cerrado B140 (web.xml `/ws` + `/*`); resta base `/module/<name>/` |
 | medium | R6 · alarms: `ReflowAlarmSource`/`AlarmData`/`QueryFilter`/`AlarmSourceCollection` + `AlarmQueryResponse` (POST) | Java `-rt` | pending |
 | medium | R7 · sync: `BReflowSyncService`/`ConfigIO`/`ReflowSyncResponse` + favoritos ORD-tree (multiusuario) | Java `-rt` | pending |
 | medium | R8 · backups: `BackupManager` (daily/incremental) + `Backup*Response` | Java `-rt` | pending |
@@ -50,6 +52,7 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
 |---|---|---|---|---|
 | 1 | 2026-07-01 | R1 esqueleto backend `-rt` | B138 | R3 (montaje servlet) formalizado desde hallazgo in-block |
 | 2 | 2026-07-01 | R4 licensing | B139 | 0 (subsistema autocontenido; cruza a B75/B113/B126) |
+| 3 | 2026-07-01 | R2 canal WebSocket | B140 | 0 (cerró colateralmente el mount GAP de B138 → R3 casi-cerrado) |
 
 ## Blocked gaps (con lo que necesitan)
 
@@ -57,10 +60,11 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
 
 ## Stop control (primario = read-only-investigable = 0, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 10 (R2, R3, R5–R12)   ← el loop STATIC para cuando llegue a 0
+- **Open gaps — read-only investigable**: 9 (R5–R12; R3 casi-cerrado)   ← el loop STATIC para cuando llegue a 0
 - **Open gaps — requires-execution**: 0
 - **Open gaps — blocked** (hardware/live/NDA): 0
 - Iteraciones consecutivas con backlog vacío (secundario): 0/2
+- Próximo gap (según prioridad): **R5 · history** (`HistoryIO`/`HistoryData`/`HistoryGhostSubscriber`/`HistoryGroups`)
 - Budget cap: none
 
 ## Self-verify
@@ -70,3 +74,8 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
 - **B139**: 16/16 tokens `[CERT]` grep-confirmados. `[CERT]` ~32 · `[CERT-a]` 1 (DIFF forense §3) ·
   `[INFER]` 4 (implicaciones de seguridad, claramente etiquetadas). Ratio `[INFER]/[CERT]` ≈ 0.13 —
   evidencia abundante; los `[INFER]` son análisis de seguridad derivado, no huecos de evidencia.
+- **B140**: `[CERT]` ~58 (todos `file:line` sobre el JAR embarcado build .75; registro de comandos
+  grep-confirmado) · `[INFER]` 8 (comportamiento/seguridad derivado, cada uno anclado en líneas `[CERT]`).
+  Ratio `[INFER]/[CERT]` ≈ 0.14. Hallazgos notables: montaje real vía `web.xml` `/ws`; dispatch bajo
+  `AccessController.doPrivileged`; bug de fan-out en `ReflowChannel.broadcast(except)` (`return` en vez de
+  `continue`); WS atado a la sesión HTTP Niagara.
