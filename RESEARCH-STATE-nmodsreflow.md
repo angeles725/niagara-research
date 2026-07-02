@@ -23,18 +23,19 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
 
 ## Coverage
 
-- **Covered blocks (este focus)**: 7 — B138 (módulo/service/espina HTTP-WebSocket), B139 (licensing),
+- **Covered blocks (este focus)**: 8 — B138 (módulo/service/espina HTTP-WebSocket), B139 (licensing),
   B140 (canal WebSocket: acceptor/sesiones/pub-sub/dispatch), B141 (history: cache gzip disco, threading
   privilegiado, ghost-subscribe, grouping), B142 (alarms: query read-only, doPrivileged ancho, BQL injection uuid),
   B143 (sync: config JSON-Patch multiusuario, doPrivileged config-write sin perms, favoritos por-usuario, sin locking),
-  B144 (backups: path traversal por sanitización asimétrica, cero autorización, ops destructivas GET).
-- **Coverage metric**: 7 / 12 gaps cerrados (+ 1 sub-gap nuevo R13 descubierto).
-- **Last iteration**: 2026-07-02 — R8 cerrado (backups): BackupManager static-util; un backup = copia del config.json.
-  **Superficie más grave del focus**: sanitización de nombre ASIMÉTRICA (create la aplica `:215`, pero
-  destroy `:64`/apply `:174`/rename `:89` NO) → path traversal de delete/overwrite/move de `.json` arbitrario;
-  cero `requiredPermissions` en las 6 Response; ops destructivas (apply/destroy/reset) GET-triggerable (CSRF);
-  reset borra config sin auth ni token. Único subsistema SIN `doPrivileged`. Nota cross-focus REFORZADA en
-  B144 §144.5 (R8 = pico de la superficie de seguridad agregada).
+  B144 (backups: path traversal por sanitización asimétrica, cero autorización, ops destructivas GET),
+  B145 (config REST: read `?file=` traversal, overwrite total sin auth, delta = 2ª puerta a applyConfig).
+- **Coverage metric**: 8 / 12 gaps cerrados (+ 1 sub-gap nuevo R13 descubierto).
+- **Last iteration**: 2026-07-02 — R9 cerrado (config REST): las 3 Response del `config.json` (`ConfigResponse` GET, `ConfigUpdateResponse`
+  POST overwrite total, `ConfigDeltaResponse` POST JSON-Patch) tienen **cero `requiredPermissions`**. Confirma
+  la tesis: el config se muta sin auth también por REST (3 vías: sync-delta WS + overwrite total + delta). Nuevo:
+  **`ConfigResponse ?file=` = lectura arbitraria** de la station (traversal de lectura) con passthrough de
+  secretos; `ConfigDeltaResponse` es 2ª puerta al `applyConfig` privilegiado de B143; author de headers
+  `Client-*` spoofeable. Nota cross-focus completa en B145 §145.6 (patrón de seguridad totalmente caracterizado).
 
 ## Gap-backlog (priorizado)
 
@@ -48,7 +49,7 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
 | — | R6 · alarms: `ReflowAlarmSource`/`AlarmData`/`QueryFilter`/`AlarmSourceCollection` + `AlarmQueryResponse` (POST) | Java `-rt` | **cerrado B142** |
 | — | R7 · sync: `BReflowSyncService`/`ConfigIO`/`ReflowSyncResponse` + favoritos ORD-tree (multiusuario) | Java `-rt` | **cerrado B143** |
 | — | R8 · backups: `BackupManager` (daily/incremental) + `Backup*Response` | Java `-rt` | **cerrado B144** |
-| medium | R9 · config: `ConfigResponse`/`ConfigUpdateResponse`/`ConfigDeltaResponse` (contrato config.json + JSON Patch RFC6902 de B51) | Java `-rt` | pending |
+| — | R9 · config: `ConfigResponse`/`ConfigUpdateResponse`/`ConfigDeltaResponse` (contrato config.json + JSON Patch RFC6902 de B51) | Java `-rt` | **cerrado B145** |
 | medium | R10 · command agents: los 8 `BReflow*Commands` (License/File/Nav/CSV/History/Alarm/User/BQL) como superficie de comandos | Java `-rt` | pending |
 | low | R11 · util: `RangeCalculator`/`CompareRangeCalculator`/`PointHelper`/`NavNodeSerializer`/`Json`/`StringUtils`/`BDateRangeEnum` | Java `-rt` | pending |
 | low | R12 · contrato de datos frontend↔-rt: shapes JSON de los responses (parcialmente en B50/B51) | Java `-rt` + bundle | pending |
@@ -65,6 +66,7 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
 | 5 | 2026-07-02 | R6 alarms | B142 | R13 (taint source `http/util/Query`+`QueryFilter.make`, feed de BQL injection) |
 | 6 | 2026-07-02 | R7 sync | B143 | 0 (config-write surface; refuerza nota cross-focus con superficie de escritura) |
 | 7 | 2026-07-02 | R8 backups | B144 | 0 (path traversal + zero-auth destructivo; pico de la superficie agregada) |
+| 8 | 2026-07-02 | R9 config REST | B145 | 0 (confirma config-write sin auth por REST; agrega read-traversal `?file=`) |
 
 ## Blocked gaps (con lo que necesitan)
 
@@ -72,11 +74,11 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
 
 ## Stop control (primario = read-only-investigable = 0, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 6 (R9–R13; R3 casi-cerrado)   ← el loop STATIC para cuando llegue a 0
+- **Open gaps — read-only investigable**: 5 (R10–R13; R3 casi-cerrado)   ← el loop STATIC para cuando llegue a 0
 - **Open gaps — requires-execution**: 0
 - **Open gaps — blocked** (hardware/live/NDA): 0
 - Iteraciones consecutivas con backlog vacío (secundario): 0/2
-- Próximo gap (según prioridad): **R9 · config** (`ConfigResponse`/`ConfigUpdateResponse`/`ConfigDeltaResponse` — contrato config.json + JSON Patch RFC6902). Alternativa de alta señal: R13 (taint source `http/util/Query`, cierra el análisis de la BQL injection de B142 y de los params `file` de B144).
+- Próximo gap (según prioridad): **R10 · command agents** (los 8 `BReflow*Commands` License/File/Nav/CSV/History/Alarm/User/BQL como superficie de comandos). Alternativa de alta señal: R13 (taint source `http/util/Query`, cierra el análisis del traversal/injection de B142/B144/B145).
 - Budget cap: none
 
 ## Self-verify
@@ -120,3 +122,11 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
   porque el gap es de seguridad (mucha deducción de impacto sobre pocas líneas load-bearing), no por falta de
   evidencia. **Superficie más grave del focus**: path traversal delete/overwrite/move de `.json` arbitrario +
   wipe de config, todo sin autorización y GET-triggerable (CSRF). Único subsistema sin `doPrivileged`.
+- **B145**: tokens load-bearing `[CERT]` grep-confirmados en `file:line` exacto — `ConfigResponse` `?file=`
+  override `:28-29` + `findFile` `:37` (GET `:26`) · `ConfigUpdateResponse` body `:51` + Content-Length-only
+  `:64` + overwrite directo `:69` · `ConfigDeltaResponse` `applyConfig(...)` `:40` (delega a B143) · ausencia
+  total de `requiredPermissions`/`doPrivileged` en las 3 (grep-negativo). `[CERT]` ~30 · `[INFER]` 12 (impacto
+  de seguridad, todos anclados). Ratio `[INFER]/[CERT]` ≈ 0.40. Confirma la tesis: config mutable sin auth por
+  REST (3 vías) + traversal de LECTURA arbitraria (`?file=`) con passthrough de secretos + audit trail forjable
+  (author de headers `Client-*`). Patrón de seguridad agregado totalmente caracterizado → síntesis cross-focus
+  madura como NEXT-ACTION.
