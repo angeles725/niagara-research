@@ -14,10 +14,15 @@
 | nmodsreflow | stopped | `RESEARCH-STATE-nmodsreflow.md` | Arquitectura backend del módulo OEM NiagaraMods Reflow v1.7.7 `-rt` (service, HTTP/WS, subsistemas) — CERRADO, hilo de seguridad consolidado | B138–B150 |
 | nmodsreflow-ux | stopped | `RESEARCH-STATE-nmodsreflow-ux.md` | Capa cliente/browser del módulo NiagaraMods Reflow v1.7.7 `-ux` (módulo fino de registro/loaders + SPA Vue embarcada) — CERRADO, paridad frontend con el backend | B151-B155 |
 | live-station | stopped | `RESEARCH-STATE-live-station.md` | Validación DINÁMICA (§12) de la station Niagara N4 VIVA en 127.0.0.1 (WSL mirrored). `live-install` → SECRETS DISCIPLINE. Etapa A (runtime) + Etapa B (14 defectos de B150 con usuario `API`) — CERRADO, 13/14 con veredicto vivo | B156–B162 |
+| chihuahua | **active** | `RESEARCH-STATE-chihuahua.md` | Módulo dashboard Niagara N4 de FUENTE PROPIA (`com.angeles.chihuahua`) para BMS Honeywell MX60. Lectura directa (no decompilado). Tri-parte rt/ux/wb, RBAC write-gate, frontend ES5 IIFE. Objetivo: documentar → comparar con Reflow → análisis de brechas | B163– |
 
 ## Focus activo
 
-**(ninguno activo)** — `live-station` CERRADO 2026-07-02.
+**chihuahua** (fuente propia) — ACTIVO desde 2026-07-02. Módulo dashboard MX60 (Honeywell, dominio agua/bombeo,
+6 plantas). Tri-parte `chihuahua-{rt,ux,wb}`, servlet `BChiServlet` en `/mx60/` con dispatch puro + guards
+CSRF-lite, **RBAC write-gate (`checkCanWrite`) en cada endpoint mutante** (el contraste agudo con Reflow, que
+no gatea). Bootstrap con B163 (esqueleto) + backlog de 14 gaps (barrido de auditoría §13). La comparación
+chihuahua↔Reflow y el análisis de brechas son bloques de síntesis POSTERIORES (pedido del usuario).
 
 **live-station** (dinámico §12) — CERRADO 2026-07-02, 7 bloques B156-B162. Primera validación `[CERT-hw]`
 end-to-end de la station Niagara N4 VIVA. Etapa A mapeó el runtime (Reflow 1.7.7 en `/nmodsreflow/`, usuario

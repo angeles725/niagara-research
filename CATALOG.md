@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **160 bloques**
+Total: **161 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -165,6 +165,7 @@ Total: **160 bloques**
 | 160 | [niagara-mental-model-bloque160.md](niagara-mental-model-bloque160.md) | Block 160 — Etapa B (2/n): CONFIRMACIÓN VIVA del config-write sin auth (V1-V3, V12) |
 | 161 | [niagara-mental-model-bloque161.md](niagara-mental-model-bloque161.md) | Block 161 — Etapa B (3/n): los destructivos — backups está AUTH-GATED en vivo (V4/V10 no reproducen) |
 | 162 | [niagara-mental-model-bloque162.md](niagara-mental-model-bloque162.md) | Block 162 — SÍNTESIS TERMINAL del focus `live-station`: los 14 defectos de B150 contra la station viva |
+| 163 | [niagara-mental-model-bloque163.md](niagara-mental-model-bloque163.md) | Block 163 — chihuahua MX60 (`-rt/-ux/-wb`): identidad, espina HTTP servlet y postura RBAC (esqueleto del focus) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
