@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **143 bloques**
+Total: **144 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -148,6 +148,7 @@ Total: **143 bloques**
 | 143 | [niagara-mental-model-bloque143.md](niagara-mental-model-bloque143.md) | Block 143 — nmodsreflow.77 (`-rt`): subsistema sync (colaboración config multiusuario JSON-Patch, favoritos por-usuario, sin locking) |
 | 144 | [niagara-mental-model-bloque144.md](niagara-mental-model-bloque144.md) | Block 144 — nmodsreflow.77 (`-rt`): subsistema backups (path traversal por sanitización asimétrica, cero autorización, ops destructivas GET) |
 | 145 | [niagara-mental-model-bloque145.md](niagara-mental-model-bloque145.md) | Block 145 — nmodsreflow.77 (`-rt`): superficie REST de config (read con `?file=` traversal, overwrite total, delta = 2ª puerta a applyConfig) |
+| 146 | [niagara-mental-model-bloque146.md](niagara-mental-model-bloque146.md) | Block 146 — nmodsreflow.77 (`-rt`): los 8 command agents `BReflow*Commands` (tabla de autorización, y por qué el gate `"r"` no protege el REST) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

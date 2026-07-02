@@ -23,19 +23,20 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
 
 ## Coverage
 
-- **Covered blocks (este focus)**: 8 — B138 (módulo/service/espina HTTP-WebSocket), B139 (licensing),
+- **Covered blocks (este focus)**: 9 — B138 (módulo/service/espina HTTP-WebSocket), B139 (licensing),
   B140 (canal WebSocket: acceptor/sesiones/pub-sub/dispatch), B141 (history: cache gzip disco, threading
   privilegiado, ghost-subscribe, grouping), B142 (alarms: query read-only, doPrivileged ancho, BQL injection uuid),
   B143 (sync: config JSON-Patch multiusuario, doPrivileged config-write sin perms, favoritos por-usuario, sin locking),
   B144 (backups: path traversal por sanitización asimétrica, cero autorización, ops destructivas GET),
-  B145 (config REST: read `?file=` traversal, overwrite total sin auth, delta = 2ª puerta a applyConfig).
-- **Coverage metric**: 8 / 12 gaps cerrados (+ 1 sub-gap nuevo R13 descubierto).
-- **Last iteration**: 2026-07-02 — R9 cerrado (config REST): las 3 Response del `config.json` (`ConfigResponse` GET, `ConfigUpdateResponse`
-  POST overwrite total, `ConfigDeltaResponse` POST JSON-Patch) tienen **cero `requiredPermissions`**. Confirma
-  la tesis: el config se muta sin auth también por REST (3 vías: sync-delta WS + overwrite total + delta). Nuevo:
-  **`ConfigResponse ?file=` = lectura arbitraria** de la station (traversal de lectura) con passthrough de
-  secretos; `ConfigDeltaResponse` es 2ª puerta al `applyConfig` privilegiado de B143; author de headers
-  `Client-*` spoofeable. Nota cross-focus completa en B145 §145.6 (patrón de seguridad totalmente caracterizado).
+  B145 (config REST: read `?file=` traversal, overwrite total sin auth, delta = 2ª puerta a applyConfig),
+  B146 (8 command agents: todos gatean `"r"`, ops potentes mal escaladas; REST bypassa el gate).
+- **Coverage metric**: 9 / 12 gaps cerrados (+ 1 sub-gap nuevo R13 descubierto).
+- **Last iteration**: 2026-07-02 — R10 cerrado (command agents): los 8 `BReflow*Commands` gatean UNIFORME a `requiredPermissions="r"` (read-level)
+  vía `@AgentOn` — **REVISE-and-CONFIRM**: la capa de comandos NO es "cero autorización" (corrige el framing de
+  B143-B145), pero el gate está mal escalado (BQL arbitrario con Context nulo `:68`, license refresh `:169`,
+  fs-traversal `:64` todos detrás de `"r"`) Y los Response REST bypassean el gate llamando a los statics
+  directo (el `"r"` cabalga el `@AgentOn`, no el dato). Negativos: sin file-write/delete (File sólo `listFiles`),
+  sin user-CRUD (User sólo lee roles). Nota cross-focus AFINADA en B146 §146.6.
 
 ## Gap-backlog (priorizado)
 
@@ -50,7 +51,7 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
 | — | R7 · sync: `BReflowSyncService`/`ConfigIO`/`ReflowSyncResponse` + favoritos ORD-tree (multiusuario) | Java `-rt` | **cerrado B143** |
 | — | R8 · backups: `BackupManager` (daily/incremental) + `Backup*Response` | Java `-rt` | **cerrado B144** |
 | — | R9 · config: `ConfigResponse`/`ConfigUpdateResponse`/`ConfigDeltaResponse` (contrato config.json + JSON Patch RFC6902 de B51) | Java `-rt` | **cerrado B145** |
-| medium | R10 · command agents: los 8 `BReflow*Commands` (License/File/Nav/CSV/History/Alarm/User/BQL) como superficie de comandos | Java `-rt` | pending |
+| — | R10 · command agents: los 8 `BReflow*Commands` (License/File/Nav/CSV/History/Alarm/User/BQL) como superficie de comandos | Java `-rt` | **cerrado B146** |
 | low | R11 · util: `RangeCalculator`/`CompareRangeCalculator`/`PointHelper`/`NavNodeSerializer`/`Json`/`StringUtils`/`BDateRangeEnum` | Java `-rt` | pending |
 | low | R12 · contrato de datos frontend↔-rt: shapes JSON de los responses (parcialmente en B50/B51) | Java `-rt` + bundle | pending |
 | medium | R13 · taint source HTTP: `http/util/Query` (`method_363`) + `QueryFilter.make` — cómo TODO el filtrado se construye desde input crudo (feed de la BQL injection de B142 y del doPrivileged) | Java `-rt` | pending (descubierto en B142) |
@@ -67,6 +68,7 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
 | 6 | 2026-07-02 | R7 sync | B143 | 0 (config-write surface; refuerza nota cross-focus con superficie de escritura) |
 | 7 | 2026-07-02 | R8 backups | B144 | 0 (path traversal + zero-auth destructivo; pico de la superficie agregada) |
 | 8 | 2026-07-02 | R9 config REST | B145 | 0 (confirma config-write sin auth por REST; agrega read-traversal `?file=`) |
+| 9 | 2026-07-02 | R10 command agents | B146 | 0 (REVISA framing: gate `"r"` uniforme; REST bypassa el gate; ops mal escaladas) |
 
 ## Blocked gaps (con lo que necesitan)
 
@@ -74,11 +76,11 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
 
 ## Stop control (primario = read-only-investigable = 0, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 5 (R10–R13; R3 casi-cerrado)   ← el loop STATIC para cuando llegue a 0
+- **Open gaps — read-only investigable**: 4 (R11–R13; R3 casi-cerrado)   ← el loop STATIC para cuando llegue a 0
 - **Open gaps — requires-execution**: 0
 - **Open gaps — blocked** (hardware/live/NDA): 0
 - Iteraciones consecutivas con backlog vacío (secundario): 0/2
-- Próximo gap (según prioridad): **R10 · command agents** (los 8 `BReflow*Commands` License/File/Nav/CSV/History/Alarm/User/BQL como superficie de comandos). Alternativa de alta señal: R13 (taint source `http/util/Query`, cierra el análisis del traversal/injection de B142/B144/B145).
+- Próximo gap (según prioridad): **R13 · taint source** (`http/util/Query.method_363` + `QueryFilter.make`) — alta señal: cierra el análisis del traversal/injection común a B142/B144/B145/B146 (todos los params `file`/`query`). Alternativas de menor prioridad: R11 util, R12 contrato de datos, R3 (base `/module/<name>/`, casi-cerrado).
 - Budget cap: none
 
 ## Self-verify
@@ -130,3 +132,11 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
   REST (3 vías) + traversal de LECTURA arbitraria (`?file=`) con passthrough de secretos + audit trail forjable
   (author de headers `Client-*`). Patrón de seguridad agregado totalmente caracterizado → síntesis cross-focus
   madura como NEXT-ACTION.
+- **B146**: tokens load-bearing `[CERT]` grep-confirmados en `file:line` exacto — `requiredPermissions="r"`
+  en los 8 (`@AgentOn`: BQL:29 · File:23 · User:18 · License:27 · Nav:22 · CSV:26 · History:21 · Alarm:24) ·
+  BQL `BOrd.make(query)` `:50`/`:64` + `ord.get(null)` `:68` (Context nulo) · license refresh `:169` ·
+  File sólo `listFiles` `:33`+`findFile` `:64` (sin write) · User sólo `getRoles`/`getAllRoles` `:28-35`
+  (sin CRUD) · Alarm `canAcknowledgeAlarms` `:101` (informativo). `[CERT]` ~34 · `[INFER]` 10 (todos
+  anclados). Ratio `[INFER]/[CERT]` ≈ 0.29. **REVISE-and-CONFIRM**: los 8 gatean `"r"` (corrige "cero
+  autorización"), pero mal escalado + REST bypassa el gate (cabalga `@AgentOn`, no el dato). Negativos: sin
+  file-write/delete, sin user-CRUD (colapsan 2 sub-claims de la tesis).
