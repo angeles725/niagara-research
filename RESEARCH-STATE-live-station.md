@@ -13,8 +13,8 @@ usuario por paso. El usuario de prueba (`API`) se revoca al terminar.
 
 ## Cobertura
 
-- **Métrica:** 13 / 19 gaps cerrados (0.68). **Etapa A CERRADA**. Etapa B: read-side (V6/V13/V11/V5/V14) + write reversible (V1-V3/V12) verificados; pendientes V4/V10 (destructivos), V7/V8 (BQL), V9.
-- **Bloques del focus:** B156 (perfil pasivo), B157 (Etapa A auth), B158 (platform + cierre A), B159 (Etapa B read-side), B160 (config-write CONFIRMADO vivo: V1-V3/V12).
+- **Métrica:** 17 / 19 gaps cerrados (0.89). **Etapa A CERRADA**. Etapa B: 13/14 con veredicto vivo; solo V7/V8 (BQL exacto, canal WS) diferido = requires-execution.
+- **Bloques del focus:** B156 (perfil pasivo), B157 (Etapa A auth), B158 (platform + cierre A), B159 (read-side), B160 (config-write CONFIRMADO), B161 (destructivos: backups auth-gated V4/V10, V5 reachable, V7/V8 diferido).
 - **Autorización rung-3:** concedida por el operador esta sesión (backup propio verificado sha256 bf70f28f…; el operador tiene el suyo). Expira al cierre de sesión / revocación del usuario `API`.
 
 ## Ground-truth vivo (§12 — re-medido, NO heredado)
@@ -71,6 +71,7 @@ Los items de ESCRITURA (config-write/traversal/wipe) son rung 2-3 (§12): backup
 | 3 | A5 + cierre A2 | B158 | no · inline | platform 3011/5011 = HTTP(S) guardado (403); A2 ausencia probada (blocked); **Etapa A CERRADA**; 4/4 tokens |
 | 4 | Etapa B read (V6/V13/V11/V5/V14) | B159 | no · inline | read-first rung-1; superficie viva CONFIRMADA pero exfil trivial NO reproduce (`?file=`→{status:500}, WeatherMap fetch outbound sí, EquipmentNote header consumido); versión viva 1.7.7; V8 diferido a WS; 5/5 tokens |
 | 5 | Etapa B write reversible (V1-V3/V12) | B160 | no · inline · rung-2 | **CROWN**: read-level user sobrescribió config vía POST config_update (oracle-confirmado), audit forjable con Client-* forjados; restore byte-idéntico ×2 (bf70f28f); tesis B150 §150.1 → `[CERT-hw]`; 4/4 tokens |
+| 6 | Etapa B destructivos (V4/V10/V5/V7-8) | B161 | no · inline · rung-3 autoriz. | backups **auth-gated 403** (V4/V10 NO reproducen, config nunca borrado; §14 corrige B144 GET/cero-auth); V5 note-write reachable (500); V7/V8 BQL diferido a canal WS (requires-execution); 5/5 tokens |
 
 ## Próxima acción
 

@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **158 bloques**
+Total: **159 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -163,6 +163,7 @@ Total: **158 bloques**
 | 158 | [niagara-mental-model-bloque158.md](niagara-mental-model-bloque158.md) | Block 158 — Platform daemon HTTP-guardado + cierre de Etapa A (mapa del runtime vivo) |
 | 159 | [niagara-mental-model-bloque159.md](niagara-mental-model-bloque159.md) | Block 159 — Etapa B (1/n): verificación viva de los defectos de LECTURA de [Block 150] |
 | 160 | [niagara-mental-model-bloque160.md](niagara-mental-model-bloque160.md) | Block 160 — Etapa B (2/n): CONFIRMACIÓN VIVA del config-write sin auth (V1-V3, V12) |
+| 161 | [niagara-mental-model-bloque161.md](niagara-mental-model-bloque161.md) | Block 161 — Etapa B (3/n): los destructivos — backups está AUTH-GATED en vivo (V4/V10 no reproducen) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

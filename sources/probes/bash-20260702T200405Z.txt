@@ -1,0 +1,12 @@
+# probe run 20260702T200405Z
+# cmd: bash /tmp/claude-1000/-home-cristian-niagara-research/1e80fd78-49b7-4c97-be04-cd7d1d88413c/scratchpad/etapaB-gatematrix.sh
+---
+### mutation authorization at read-level (user API, perm r) ###
+  config_update overwrite (POST, no-op pristine) 200
+  equipment-notes-update write (POST, traversal) 500
+  backups/create (POST)                          403
+  backups/destroy (POST)                         403
+  backups/reset config-WIPE (POST)               403
+  backups/reset GET-shaped (old B144 method)     405
+### config integrity (must stay pristine) ###
+  sha256[:16]: bf70f28f2c2ceab0 bytes: 60154 pristine: True

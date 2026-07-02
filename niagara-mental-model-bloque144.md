@@ -1,7 +1,11 @@
 # Block 144 — nmodsreflow.77 (`-rt`): subsistema backups (path traversal por sanitización asimétrica, cero autorización, ops destructivas GET)
 
 > Research de **NiagaraMods Reflow v1.7.7 (build .75), paquete `backups/` del runtime `-rt`**: cómo Reflow
-> crea, lista, aplica, borra, renombra y resetea backups del `config.json`. Cubre `BackupManager` y las 6
+> crea, lista, aplica, borra, renombra y resetea backups del `config.json`.
+> **Verificado en vivo (B161, §14):** contra la station 1.7.7 real estas ops son **POST** (no GET — GET→405) y
+> están **auth-gated: POST create/destroy/reset → 403** para un usuario read-level. El traversal destructivo y
+> el wipe **NO son alcanzables a read-level** en ese despliegue (el code-path sin sanitizar sigue en el
+> decompilado, pero un gate lo antecede). Ver [Block 161] §161.2-3 `[CERT-hw]`. Cubre `BackupManager` y las 6
 > Response HTTP (`BackupList/Create/Apply/Destroy/Rename/Reset`). NO cubre el scheduler que dispara el daily
 > (vive en `BReflowService`, B138) ni el router/servlet que mapea los `serve` (B138/B140 — relevante para la
 > pregunta de auth upstream).

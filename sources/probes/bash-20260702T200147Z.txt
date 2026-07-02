@@ -1,0 +1,17 @@
+# probe run 20260702T200147Z
+# cmd: bash /tmp/claude-1000/-home-cristian-niagara-research/1e80fd78-49b7-4c97-be04-cd7d1d88413c/scratchpad/etapaB-v478.sh
+---
+### V7/V8: alarm query engine reachable at read-level? (POST /station/alarms/query) ###
+  benign empty JSON body -> code=500 len=55
+  body with single-quote in a field (injection signal) -> code=500 len=55
+  CSV export (GET, read) reachable -> code=200
+
+### V4: sacrificial backup CRUD (net-zero, my own throwaway file) ###
+  create?file=research_sac_probe_b161 -> code=405
+  list backups (names only, confirm sacrificial present):
+    sacrificial present: False | entries: 1
+  destroy?file=research_sac_probe_b161 (destructive op at read-level) -> code=405
+  confirm gone (re-list): sacrificial still present: False
+  ## traversal proof: destroy with ../ to a NONEXISTENT benign name (no real target) ##
+  destroy?file=..%2fnonexistent_probe_zzz -> code=405
+  destroy?file=..%2f..%2fnonexistent_probe_zzz -> code=405
