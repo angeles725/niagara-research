@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **137 bloques**
+Total: **139 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -142,7 +142,8 @@ Total: **137 bloques**
 | 137 | [niagara-mental-model-bloque137.md](niagara-mental-model-bloque137.md) | Block 137 — INTEGRATION PLAN: Siemens LOGO! 8 (Modbus TCP slave) ↔ Niagara N4 (modbusTcp master) — driver component tree, register-map crosswalk, byte-order reconciliation, Workbench wiring (DESIGN; empirical validation DEFERRED) |
 | 138 | [niagara-mental-model-bloque138.md](niagara-mental-model-bloque138.md) | Block 138 — nmodsreflow.77 (`-rt`): módulo, servicio y espina HTTP/WebSocket |
 | 139 | [niagara-mental-model-bloque139.md](niagara-mental-model-bloque139.md) | Block 139 — nmodsreflow.77 (`-rt`): subsistema de licensing (dual Niagara/XML, firma RSA, host binding) |
-| 140 | [niagara-mental-model-bloque140.md](niagara-mental-model-bloque140.md) | Block 140 — nmodsreflow.77 (`-rt`): canal WebSocket — acceptor, sesiones atadas a la sesión HTTP, pub/sub de canales (reflow / reflow-config), dispatch privilegiado de IReflowCommand; cierra el servlet-mount GAP de B138 (web.xml /ws) |
+| 140 | [niagara-mental-model-bloque140.md](niagara-mental-model-bloque140.md) | Block 140 — nmodsreflow.77 (`-rt`): canal WebSocket (acceptor, sesiones, pub/sub de canales, dispatch de comandos) |
+| 141 | [niagara-mental-model-bloque141.md](niagara-mental-model-bloque141.md) | Block 141 — nmodsreflow.77 (`-rt`): subsistema history (cache GZIP en disco, threading privilegiado, ghost-subscribe, grouping) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
