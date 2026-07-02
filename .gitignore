@@ -11,3 +11,7 @@ desktop.ini
 
 # Claude Code / runtime
 .drafts/
+
+# Orchestrator-local artifacts (not corpus) — research-sdd METHODOLOGY §15
+.atl/*.cache.json
+.claude/
