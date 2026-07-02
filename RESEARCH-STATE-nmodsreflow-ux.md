@@ -31,20 +31,21 @@ contra B149/B150. NO es re-auditar v1.7.5 (eso es B50/B51); es el build `.77` co
 
 ## Coverage
 
-- **Covered blocks (este focus)**: 1 — B151 (esqueleto `-ux`: 3 view-agents `BIJavaScript` + identidad del módulo).
-- **Coverage metric**: 1 / 7 gaps cerrados.
-- **Last iteration**: 2026-07-02 — U1 cerrado (esqueleto): el `-ux` es la capa de REGISTRO de vistas (no
-  contiene la SPA). 3 `BSingleton BIJavaScript BIFormFactorMax` sobre `ReflowService`, cada una apunta a un
-  loader JS vía `module://`. Matiz: `BReflowConfig` gatea `"rw"` (vs `"r"` de las otras), pero es gate de
-  VISTA — el REST de config-write no gatea nada (B145) → cosmético (mismo patrón "gate en el agente, no en el
-  dato" de B146 §146.5, reconfirmado desde UX; alimenta B150).
+- **Covered blocks (este focus)**: 2 — B151 (esqueleto `-ux`), B152 (cadena de loaders JS: widgets bajaux → iframe → SPA).
+- **Coverage metric**: 2 / 7 gaps cerrados.
+- **Last iteration**: 2026-07-02 — U2 cerrado (loaders JS): los 3 widgets bajaux montan la SPA **dentro de un
+  iframe** (`src='/nmodsreflow/#'+$reflowPath`, el path del BaseServlet B138/B149) y la puentean vía globals
+  `injectBaja`/`injectConfig`(+`destroyApp`) — así la SPA hereda la sesión Niagara autenticada sin re-login. El
+  ORD scheme `|reflow:` (resolver.js) mapea a rutas hash del Vue router. `hyperlink.js` parcha `niagara.env` con
+  un Proxy para interceptar navegación (`unescape(path)`→`location.href`, pero scopeado a `/nmodsreflow/#`, bajo
+  riesgo). Browser (no-wb) se redirige a `/nmodsreflow`; Workbench usa el iframe.
 
 ## Gap-backlog (priorizado)
 
 | Prioridad | Gap | Tipo/fuente | Estado |
 |---|---|---|---|
 | — | U1 · esqueleto `-ux`: `BReflow`/`BReflowConfig`/`BReflowRedirect` (tipos BComponent/profile, registro de vista) + `module.palette` + `module.xml` | Java `-ux` | **cerrado B151** |
-| high | U2 · cadena de loaders JS: `reflow.js`/`reflow_config.js`/`reflow_redirect.js` + `lib/{loader,resolver,hyperlink}.js` — cómo BajaScript bootstrapea y monta la SPA | JS `-ux` | pending |
+| — | U2 · cadena de loaders JS: `reflow.js`/`reflow_config.js`/`reflow_redirect.js` + `lib/{loader,resolver,hyperlink}.js` — cómo BajaScript bootstrapea y monta la SPA | JS `-ux` | **cerrado B152** |
 | high | U3 · SPA embarcada `.77`: identidad/build de `app.4509efb4.js` (minificada) + `chunk-vendors` — framework (Vue 2.7 per B50), diff forense frontend 1.7.5↔1.7.7 vs B51 | JS `-rt/rc` (minificado → beautifier) | pending |
 | medium | U4 · wiring frontend↔backend: cómo la SPA llama al REST/WS (cara cliente del contrato B149 + canal WS B140) — capa fetch/axios, endpoints, headers | JS SPA + cross-ref B149/B140 | pending |
 | medium | U5 · postura de seguridad cliente: ¿la SPA envía los headers `Client-Username`/`Client-Id` (audit forjable B145)?; cómo arma los params `file`/`query`/`config` (cara cliente de B142/B144/B145/B147); secretos/tokens en el bundle; interplay CSP (B149) | JS SPA + cross-ref B145/B147/B149 | pending |
@@ -59,11 +60,11 @@ contra B149/B150. NO es re-auditar v1.7.5 (eso es B50/B51); es el build `.77` co
 
 ## Stop control (primario = read-only-investigable = 0, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 6 (U2-U7; U3-U5 condicionados a beautifier, provisionable)
+- **Open gaps — read-only investigable**: 5 (U3-U7; U3-U5 condicionados a beautifier, provisionable)
 - **Open gaps — requires-execution**: 0
 - **Open gaps — blocked** (hardware/live/NDA): 0
 - Iteraciones consecutivas con backlog vacío (secundario): 0/2
-- Próximo gap (según prioridad): **U2 · cadena de loaders JS** (`reflow.js`/`reflow_config.js`/`reflow_redirect.js` + `lib/{loader,resolver,hyperlink}.js`)
+- Próximo gap (según prioridad): **U3 · SPA embarcada `.77`** (`app.4509efb4.js` minificada + `chunk-vendors`). REQUIERE provisionar un beautifier JS (js-beautify/prettier vía install-tool.sh o npx) antes de citar `file:line`. Contrato a verificar (de B152): globals `injectBaja`/`injectConfig`/`destroyApp` + router hash.
 - Budget cap: none
 
 ## Iteration history
@@ -71,6 +72,7 @@ contra B149/B150. NO es re-auditar v1.7.5 (eso es B50/B51); es el build `.77` co
 | # | Fecha | Gap cerrado | Bloque | Nuevos gaps |
 |---|---|---|---|---|
 | 1 | 2026-07-02 | U1 esqueleto `-ux` | B151 | 0 (confirma la cadena de loaders para U2) |
+| 2 | 2026-07-02 | U2 loaders JS | B152 | 0 (deja el contrato de globals inject*/destroyApp + router hash para U3) |
 
 ## Self-verify
 
@@ -78,3 +80,8 @@ contra B149/B150. NO es re-auditar v1.7.5 (eso es B50/B51); es el build `.77` co
   `file:line`, fuente primaria). `[CERT]` ~22 · `[INFER]` 7 (todos anclados). Ratio `[INFER]/[CERT]` ≈ 0.32.
   Hallazgo notable: el `-ux` es puro registro de vistas (3 `BIJavaScript` view-agents sobre `ReflowService`);
   el gate `"rw"` de `BReflowConfig` es de VISTA (cosmético vs el REST sin gate de B145, patrón B146 §146.5).
+- **B152**: lectura directa completa de los 6 archivos JS (65+62+67+71+22+113 líneas, fuente primaria). `[CERT]`
+  ~30 · `[INFER]` 9 (todos anclados). Ratio `[INFER]/[CERT]` ≈ 0.30. Hallazgos: SPA en iframe con puente de
+  globals `injectBaja`/`injectConfig`/`destroyApp` (hereda sesión Niagara sin re-login); ORD scheme `|reflow:`
+  → router hash; Proxy de `niagara.env` en `hyperlink.js` (navegación scopeada a `/nmodsreflow/#`, open-redirect
+  bajo); redirect browser→`/nmodsreflow`. Deja el contrato de globals para verificar en U3 (SPA).
