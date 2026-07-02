@@ -39,6 +39,12 @@ Browser / WB
 - Vite 5.4.14 con `@vitejs/plugin-vue2` 2.3.3
 - Vuex 3.6.2 + Vue Router 3.6.5
 - axios 0.21.4 (HTTP client)
+
+> **Nota §14 (corregido/refinado en B153):** este stack es el del **dev-tree v1.7.5** (`Reflow-Clean-177`,
+> `package.json`). El **bundle EMBARCADO del build .77** corre versiones distintas, verificadas en el bundle
+> minificado (`vendors.beauty.js:7394,37147`): **Vue 2.6.14** (no 2.7.16) y **vue-router 3.4.5** (no 3.6.5).
+> Es divergencia dev-vs-shipped / downgrade entre 1.7.5→1.7.7, no un error de este bloque — pero el número de
+> Vue del artefacto que efectivamente corre en `.77` es 2.6.14. Ver B153 §153.2.
 - socket.io-client 2.5.0 (WebSocket)
 - view-design 4.7.0 (componente UI iView)
 - D3 7.9.0 (charts)

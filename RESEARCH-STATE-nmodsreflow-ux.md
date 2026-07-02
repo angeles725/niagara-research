@@ -31,14 +31,15 @@ contra B149/B150. NO es re-auditar v1.7.5 (eso es B50/B51); es el build `.77` co
 
 ## Coverage
 
-- **Covered blocks (este focus)**: 2 — B151 (esqueleto `-ux`), B152 (cadena de loaders JS: widgets bajaux → iframe → SPA).
-- **Coverage metric**: 2 / 7 gaps cerrados.
-- **Last iteration**: 2026-07-02 — U2 cerrado (loaders JS): los 3 widgets bajaux montan la SPA **dentro de un
-  iframe** (`src='/nmodsreflow/#'+$reflowPath`, el path del BaseServlet B138/B149) y la puentean vía globals
-  `injectBaja`/`injectConfig`(+`destroyApp`) — así la SPA hereda la sesión Niagara autenticada sin re-login. El
-  ORD scheme `|reflow:` (resolver.js) mapea a rutas hash del Vue router. `hyperlink.js` parcha `niagara.env` con
-  un Proxy para interceptar navegación (`unescape(path)`→`location.href`, pero scopeado a `/nmodsreflow/#`, bajo
-  riesgo). Browser (no-wb) se redirige a `/nmodsreflow`; Workbench usa el iframe.
+- **Covered blocks (este focus)**: 3 — B151 (esqueleto `-ux`), B152 (loaders JS), B153 (SPA embarcada: identidad/framework/globals/router).
+- **Coverage metric**: 3 / 7 gaps cerrados.
+- **Last iteration**: 2026-07-02 — U3 cerrado (SPA embarcada): bundle `app.4509efb4.js` (sha256 `81b82b83…`,
+  2.63 MB) beautificado con js-beautify. Build stamp `v1.7.7.75 RC5`. **Framework: Vue 2.6.14** (§14: CORRIGE/
+  refina B50 que decía 2.7.16 — era el dev-tree v1.7.5), vue-router 3.4.5 hash, Vuex, axios. Contrato de globals
+  `injectBaja`/`injectConfig`/`destroyApp` VERIFICADO (B152). Router hash `/nmodsreflow/#`. Confirmado desde el
+  cliente que **`Client-Username` es estado Vuex mutable** → audit forjable (B145). Secreto: token Mapbox
+  público hardcodeado (`app.beauty.js:118864`). WS a `/nmodsreflow/ws` canal `reflow`, `sync-delta` como comando
+  (B140/B143). El barrido dejó U4/U5 mayormente pre-respondidos.
 
 ## Gap-backlog (priorizado)
 
@@ -46,7 +47,7 @@ contra B149/B150. NO es re-auditar v1.7.5 (eso es B50/B51); es el build `.77` co
 |---|---|---|---|
 | — | U1 · esqueleto `-ux`: `BReflow`/`BReflowConfig`/`BReflowRedirect` (tipos BComponent/profile, registro de vista) + `module.palette` + `module.xml` | Java `-ux` | **cerrado B151** |
 | — | U2 · cadena de loaders JS: `reflow.js`/`reflow_config.js`/`reflow_redirect.js` + `lib/{loader,resolver,hyperlink}.js` — cómo BajaScript bootstrapea y monta la SPA | JS `-ux` | **cerrado B152** |
-| high | U3 · SPA embarcada `.77`: identidad/build de `app.4509efb4.js` (minificada) + `chunk-vendors` — framework (Vue 2.7 per B50), diff forense frontend 1.7.5↔1.7.7 vs B51 | JS `-rt/rc` (minificado → beautifier) | pending |
+| — | U3 · SPA embarcada `.77`: identidad/build de `app.4509efb4.js` (minificada) + `chunk-vendors` — framework (Vue 2.6.14, corrige B50), diff forense frontend 1.5↔1.7 vs B51 | JS `-rt/rc` (beautify js-beautify) | **cerrado B153** |
 | medium | U4 · wiring frontend↔backend: cómo la SPA llama al REST/WS (cara cliente del contrato B149 + canal WS B140) — capa fetch/axios, endpoints, headers | JS SPA + cross-ref B149/B140 | pending |
 | medium | U5 · postura de seguridad cliente: ¿la SPA envía los headers `Client-Username`/`Client-Id` (audit forjable B145)?; cómo arma los params `file`/`query`/`config` (cara cliente de B142/B144/B145/B147); secretos/tokens en el bundle; interplay CSP (B149) | JS SPA + cross-ref B145/B147/B149 | pending |
 | low | U6 · redirect/hyperlink: `BReflowRedirect` + `reflow_redirect.js` + `lib/hyperlink.js` — deep-linking / navegación ORD (posible superficie de open-redirect) | Java+JS `-ux` | pending |
@@ -60,11 +61,11 @@ contra B149/B150. NO es re-auditar v1.7.5 (eso es B50/B51); es el build `.77` co
 
 ## Stop control (primario = read-only-investigable = 0, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 5 (U3-U7; U3-U5 condicionados a beautifier, provisionable)
+- **Open gaps — read-only investigable**: 4 (U4-U7; el beautified-temp de la SPA ya está en scratchpad — U4/U5 no necesitan re-provisión)
 - **Open gaps — requires-execution**: 0
 - **Open gaps — blocked** (hardware/live/NDA): 0
 - Iteraciones consecutivas con backlog vacío (secundario): 0/2
-- Próximo gap (según prioridad): **U3 · SPA embarcada `.77`** (`app.4509efb4.js` minificada + `chunk-vendors`). REQUIERE provisionar un beautifier JS (js-beautify/prettier vía install-tool.sh o npx) antes de citar `file:line`. Contrato a verificar (de B152): globals `injectBaja`/`injectConfig`/`destroyApp` + router hash.
+- Próximo gap (según prioridad): **U4 · wiring frontend↔backend** (mapa completo de endpoints REST/WS que la SPA llama, capa axios, cara cliente del contrato B149). Mayormente pre-respondido por el barrido de U3; finalizar sobre `scratchpad/app.beauty.js`. Luego U5 (seguridad cliente), U6 (redirect/hyperlink), U7 (config cliente).
 - Budget cap: none
 
 ## Iteration history
@@ -73,6 +74,7 @@ contra B149/B150. NO es re-auditar v1.7.5 (eso es B50/B51); es el build `.77` co
 |---|---|---|---|---|
 | 1 | 2026-07-02 | U1 esqueleto `-ux` | B151 | 0 (confirma la cadena de loaders para U2) |
 | 2 | 2026-07-02 | U2 loaders JS | B152 | 0 (deja el contrato de globals inject*/destroyApp + router hash para U3) |
+| 3 | 2026-07-02 | U3 SPA embarcada | B153 | 0 (§14 corrige B50 Vue 2.7→2.6.14; deja U4/U5 pre-respondidos) |
 
 ## Self-verify
 
@@ -85,3 +87,9 @@ contra B149/B150. NO es re-auditar v1.7.5 (eso es B50/B51); es el build `.77` co
   globals `injectBaja`/`injectConfig`/`destroyApp` (hereda sesión Niagara sin re-login); ORD scheme `|reflow:`
   → router hash; Proxy de `niagara.env` en `hyperlink.js` (navegación scopeada a `/nmodsreflow/#`, open-redirect
   bajo); redirect browser→`/nmodsreflow`. Deja el contrato de globals para verificar en U3 (SPA).
+- **B153**: barrido delegado (sonnet) + beautify js-beautify de la SPA (2.63 MB → temp) + verificación directa
+  de 8 grupos de tokens load-bearing sobre `app.beauty.js`/`vendors.beauty.js` (build stamp `:121900`, globals
+  `:121783/121864/121928`, Vue `vendors:7394`, router `vendors:37147`, Client-Username `:14160/87135`, Mapbox
+  `:118864`, WS `:4087`, hash `:121825`). `[CERT]` ~28 · `[INFER]` 8 (anclados). Ratio ≈ 0.29. **Corrige B50**
+  (Vue 2.7.16 dev-tree → 2.6.14 shipped, §14). Confirma B152 (contrato de globals) y B145 (Client-Username
+  mutable). Identidad re-medida en vivo (sha256). Tool js-beautify registrado en INSTALLED-TOOLS.md.
