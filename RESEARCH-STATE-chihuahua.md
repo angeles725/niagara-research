@@ -28,8 +28,9 @@ dimensiones que Reflow (B138-B155). Diferenciadores ya vistos: frontend ES5 IIFE
 
 ## Cobertura
 
-- **Métrica:** 10 / 14 gaps cerrados (0.71). C1-C10 cerrados (B163-B172).
-- **Bloques del focus:** B163 (esqueleto), B164 (RBAC), B165 (servlet), B166 (alarmas), B167 (audit), B168 (protección), B169 (equipment/estado), B170 (subscripción frontend), B171 (write-path), B172 (WB tool).
+- **Métrica:** 14 / 14 gaps cerrados (1.00). **Documentación de subsistemas COMPLETA** (C1-C14, B163-B176).
+- **Bloques del focus:** B163 esqueleto · B164 RBAC · B165 servlet · B166 alarmas · B167 audit · B168 protección · B169 equipment/estado · B170 subscripción · B171 write-path · B172 WB tool · B173 links · B174 history · B175 schedule · B176 build/tests.
+- **Pendiente:** síntesis de comparación chihuahua↔Reflow + análisis de brechas (bloques posteriores, pedido del usuario).
 
 ## Backlog (matriz de cobertura → 14 gaps, derivada del barrido de auditoría §13)
 
@@ -65,6 +66,10 @@ dimensiones que Reflow (B138-B155). Diferenciadores ya vistos: frontend ES5 IIFE
 | 8 | C8 | B170 | sí · orquestado | subscripción: window.MX60 IIFE, baja push vs fallback REST 5s (mutuamente excluyentes), SnapshotStore coalescing RAF+500ms (lo que Vue haría solo); 47 CERT |
 | 9 | C9 | B171 | sí · orquestado | write-path: `_bajaSetBroken=true` latch → setpoint XHR-first (rama baja muerta); ≥4 POST vivos + ackAll híbrido; CapabilityStore decorativo; 34 CERT |
 | 10 | C10 | B172 | sí · orquestado | WB tool: BBatchLinkEditor (rwi agent), validate→commit-transaction por-space (sin rollback atómico global), 6 helpers puros WSL-testables; sin equivalente Reflow; 47 CERT |
+| 11 | C11 | B173 | sí · orquestado | links: export/import `chih-links.json` ORD slot-path estable, tmp-then-move atómico; gotcha setpoint CORREGIDO (getSlot vs get), guard atSteadyState; 49 CERT |
+| 12 | C12 | B174 | sí · orquestado | history: stride downsampling buffer-first (arregla bug 98% descartado), cap 5000/100k, matching link-graph + fallback nombre, 8 rangos; 57 CERT |
+| 13 | C13 | B175 | sí · orquestado | schedule: BQL NumericSchedule polimórfico + filtro BChiUp-parent, split listar(JSON)/editar(iframe WebScheduler nativo sin sandbox); 58 CERT |
+| 14 | C14 | B176 | sí · orquestado | build/deploy: gradle multi-módulo, cross-version 4.13→4.14 slot-freeze, BUILD_ID -dirty, niagaraTest discovery=0 (bug plugin 7.6.17) + run-tests-wsl.sh; 58 CERT |
 
 ## Próxima acción
 
