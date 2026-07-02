@@ -12,15 +12,16 @@
 | platform-native | stopped | `RESEARCH-STATE-platform-native.md` | RE nativo de la plataforma (launchers, JNI, licensing/crypto, driver DLLs, daemon) | B124–B130 |
 | protocols | stopped | `RESEARCH-STATE-protocols.md` | Wire-level de protocolos (Modbus/OPC/BACnet/Fox/LON/Sox) + integración LOGO!8 | B131–B137 |
 | nmodsreflow | stopped | `RESEARCH-STATE-nmodsreflow.md` | Arquitectura backend del módulo OEM NiagaraMods Reflow v1.7.7 `-rt` (service, HTTP/WS, subsistemas) — CERRADO, hilo de seguridad consolidado | B138–B150 |
-| **nmodsreflow-ux** | **active** | `RESEARCH-STATE-nmodsreflow-ux.md` | Capa cliente/browser del módulo NiagaraMods Reflow v1.7.7 `-ux` (módulo fino de registro/loaders + SPA Vue embarcada) — paridad frontend con el backend | B151– |
+| nmodsreflow-ux | stopped | `RESEARCH-STATE-nmodsreflow-ux.md` | Capa cliente/browser del módulo NiagaraMods Reflow v1.7.7 `-ux` (módulo fino de registro/loaders + SPA Vue embarcada) — CERRADO, paridad frontend con el backend | B151-B155 |
 
 ## Focus activo
 
-**nmodsreflow-ux** — iniciado 2026-07-02, ángulo "Capa cliente -ux del build .77" (confirmado con el usuario).
-Fuente: módulo `-ux` decompilado (Vineflower) en
-`/home/cristian/modules/Prototipos/modulos/organized/nmodsreflow77/nmodsreflow77-ux/` + SPA embarcada en
-`.../nmodsreflow77-rt/vineflower/rc/`. Complementa el backend `nmodsreflow` (B138-B150, cerrado). Próximo gap:
-U1 (esqueleto `-ux`).
+**(ninguno activo)** — ambos focuses de nmodsreflow están CERRADOS.
+
+**nmodsreflow-ux** (capa cliente `-ux`) — CERRADO 2026-07-02, 5 bloques B151-B155, superficie cliente
+completamente mapeada (registro de vistas → loaders/iframe → SPA Vue 2.6.14 → wiring REST/WS → seguridad
+cliente). §14: corrigió B50 (Vue 2.7→2.6.14). Confirmó B143/B144/B145 desde el cliente. NEXT-ACTION =
+verificación dinámica sobre station viva (requiere hardware/decisión humana).
 
 **nmodsreflow** (backend `-rt`) — CERRADO 2026-07-02, 13 bloques B138-B150, superficie completamente mapeada,
 síntesis de seguridad cross-focus en B150. Residual R3 (mount `/module/<name>/`) no perseguido.

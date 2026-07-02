@@ -31,8 +31,8 @@ contra B149/B150. NO es re-auditar v1.7.5 (eso es B50/B51); es el build `.77` co
 
 ## Coverage
 
-- **Covered blocks (este focus)**: 4 — B151 (esqueleto `-ux`), B152 (loaders JS), B153 (SPA embarcada), B154 (wiring cliente↔backend: endpoints REST + comandos WS).
-- **Coverage metric**: 4 / 7 gaps cerrados.
+- **Covered blocks (este focus)**: 5 — B151 (esqueleto), B152 (loaders JS), B153 (SPA embarcada), B154 (wiring), B155 (seguridad cliente + cierre U6/U7 por remisión).
+- **Coverage metric**: 7 / 7 gaps cerrados. **FOCUS CERRADO.**
 - **Last iteration**: 2026-07-02 — U3 cerrado (SPA embarcada): bundle `app.4509efb4.js` (sha256 `81b82b83…`,
   2.63 MB) beautificado con js-beautify. Build stamp `v1.7.7.75 RC5`. **Framework: Vue 2.6.14** (§14: CORRIGE/
   refina B50 que decía 2.7.16 — era el dev-tree v1.7.5), vue-router 3.4.5 hash, Vuex, axios. Contrato de globals
@@ -45,6 +45,13 @@ contra B149/B150. NO es re-auditar v1.7.5 (eso es B50/B51); es el build `.77` co
   create/rename/apply/destroy/reset son GET con `?file=` (mutación destructiva GET-shaped / CSRF). Confirma B143
   (favorites-read/write, sync-delta, config-control son los comandos WS) y B145 (config_update/delta POST +
   headers Client-Id[server]/Client-Username[mutable]/Client-Migration[nuevo]).
+- **Last iteration**: 2026-07-02 — U5 cerrado + U6/U7 por remisión (B155, FOCUS CERRADO). Hallazgo central:
+  `encodeName` (`app.beauty.js:3933`) usa el **mismo regex de sanitización que `BackupManager.create`** — el
+  cliente limpia el nombre de backup para las 4 ops, enmascarando el bug asimétrico del server (destroy/apply/
+  rename sin sanitizar, B144) en el happy-path, pero el bug queda latente-real para un request HTTP directo. El
+  resto de "defensa" cliente es URL-encoding que el server deshace (B147). La SPA no AGREGA defectos a B150; los
+  alimenta (config-write, `?file=`, reset, `Client-Username` mutable). U6 (redirect) remite a B152; U7 (config)
+  a B153/B154.
 
 ## Gap-backlog (priorizado)
 
@@ -54,9 +61,9 @@ contra B149/B150. NO es re-auditar v1.7.5 (eso es B50/B51); es el build `.77` co
 | — | U2 · cadena de loaders JS: `reflow.js`/`reflow_config.js`/`reflow_redirect.js` + `lib/{loader,resolver,hyperlink}.js` — cómo BajaScript bootstrapea y monta la SPA | JS `-ux` | **cerrado B152** |
 | — | U3 · SPA embarcada `.77`: identidad/build de `app.4509efb4.js` (minificada) + `chunk-vendors` — framework (Vue 2.6.14, corrige B50), diff forense frontend 1.5↔1.7 vs B51 | JS `-rt/rc` (beautify js-beautify) | **cerrado B153** |
 | — | U4 · wiring frontend↔backend: cómo la SPA llama al REST/WS (cara cliente del contrato B149 + canal WS B140) — capa fetch/axios, endpoints, headers | JS SPA + cross-ref B149/B140 | **cerrado B154** |
-| medium | U5 · postura de seguridad cliente: ¿la SPA envía los headers `Client-Username`/`Client-Id` (audit forjable B145)?; cómo arma los params `file`/`query`/`config` (cara cliente de B142/B144/B145/B147); secretos/tokens en el bundle; interplay CSP (B149) | JS SPA + cross-ref B145/B147/B149 | pending |
-| low | U6 · redirect/hyperlink: `BReflowRedirect` + `reflow_redirect.js` + `lib/hyperlink.js` — deep-linking / navegación ORD (posible superficie de open-redirect) | Java+JS `-ux` | pending |
-| low | U7 · config cliente: `BReflowConfig` + `reflow_config.js` — contrato de config del lado cliente (cross-ref config.json B143/B145 + B51) | Java+JS `-ux` | pending |
+| — | U5 · postura de seguridad cliente: ¿la SPA envía los headers `Client-Username`/`Client-Id` (audit forjable B145)?; cómo arma los params `file`/`query`/`config` (cara cliente de B142/B144/B145/B147); secretos/tokens en el bundle; interplay CSP (B149) | JS SPA + cross-ref B145/B147/B149 | **cerrado B155** |
+| — | U6 · redirect/hyperlink: `BReflowRedirect` + `reflow_redirect.js` + `lib/hyperlink.js` — deep-linking / navegación ORD (posible superficie de open-redirect) | Java+JS `-ux` | **cerrado por remisión (B152 §152.4-152.5, notado en B155)** |
+| — | U7 · config cliente: `BReflowConfig` + `reflow_config.js` — contrato de config del lado cliente (cross-ref config.json B143/B145 + B51) | Java+JS `-ux` | **cerrado por remisión (B153/B154, notado en B155)** |
 
 ## Blocked gaps (con lo que necesitan)
 
@@ -64,13 +71,17 @@ contra B149/B150. NO es re-auditar v1.7.5 (eso es B50/B51); es el build `.77` co
   necesita un **beautifier JS** (js-beautify/prettier) para rigor `file:line`; a provisionar (§10) en la
   iteración que la ataque. NO bloquea el focus (U1/U2/U6/U7 son directamente legibles); sólo condiciona U3-U5.
 
-## Stop control (primario = read-only-investigable = 0, METHODOLOGY §8)
+## Stop control (primario = read-only-investigable = 0, METHODOLOGY §8) — **FOCUS DETENIDO (STOP)**
 
-- **Open gaps — read-only investigable**: 3 (U5 seguridad cliente, U6 redirect/hyperlink, U7 config cliente — varios solapados con B152/B153/B154, se cerrarán con criterio; posible consolidación)
-- **Open gaps — requires-execution**: 0
-- **Open gaps — blocked** (hardware/live/NDA): 0
-- Iteraciones consecutivas con backlog vacío (secundario): 0/2
-- Próximo gap (según prioridad): **U5 · postura de seguridad cliente** (construcción de params `file`/`query`/`config`, el `Client-Username` mutable ya visto, el token Mapbox, y la síntesis de cómo la SPA alimenta la cadena de sinks de B150) sobre `scratchpad/app.beauty.js`. Luego U6 (redirect/hyperlink, mayormente B152) y U7 (config cliente).
+- **Open gaps — read-only investigable**: **0**. U1-U7 cerrados (U6/U7 por remisión). Superficie cliente `-ux`
+  completamente mapeada (5 bloques B151-B155).
+- **Open gaps — requires-execution**: 0 (read-only).
+- **Open gaps — blocked** (hardware/live/NDA): 0.
+- **STOP declarado**: primario disparado (investigable = 0). Focus `nmodsreflow-ux` COMPLETO.
+- **§18 self-retrospective**: pendiente de correr (retro fresh-context que PROPONE deltas al kit).
+- **NEXT-ACTION (corpus)**: la verificación DINÁMICA de los defectos de B150 (backend) confirmados desde el
+  cliente en B154/B155 requiere una **station Niagara viva** (fuera de read-only) → decisión humana/hardware.
+  Loop TERMINADO tras el retro (sin reagenda).
 - Budget cap: none
 
 ## Iteration history
@@ -81,6 +92,7 @@ contra B149/B150. NO es re-auditar v1.7.5 (eso es B50/B51); es el build `.77` co
 | 2 | 2026-07-02 | U2 loaders JS | B152 | 0 (deja el contrato de globals inject*/destroyApp + router hash para U3) |
 | 3 | 2026-07-02 | U3 SPA embarcada | B153 | 0 (§14 corrige B50 Vue 2.7→2.6.14; deja U4/U5 pre-respondidos) |
 | 4 | 2026-07-02 | U4 wiring cliente↔backend | B154 | 0 (confirma B143/B144/B145 desde el cliente; mapa endpoint+WS completo) |
+| 5 | 2026-07-02 | U5 seguridad cliente (+U6/U7 por remisión) | B155 | 0 (FOCUS CERRADO; encodeName enmascara el bug B144) |
 
 ## Self-verify
 
@@ -103,3 +115,9 @@ contra B149/B150. NO es re-auditar v1.7.5 (eso es B50/B51); es el build `.77` co
   (endpoints con `file:line` de axios verb, comandos WS, headers) · `[INFER]` 6 (anclados). Ratio ≈ 0.20.
   Mapa endpoint→método→backend completo; confirma B143 (comandos WS), B144 (backups GET `?file=`), B145
   (config POST + `Client-*`). Header nuevo `Client-Migration`.
+- **B155**: grep dirigido + ventanas del beautified-temp. `[CERT]` ~14 (encodeName `:3933`, los 4 usos
+  `:3963/3984/4006/4027`, Client-Username `:14160/14234`, config_delta `:14228`, encodeURI* varios) · `[INFER]`
+  ~11 (análisis de seguridad + mapa a B150 + cierre por remisión). Ratio `[INFER]/[CERT]` ≈ 0.79 — ALTO, pero es
+  un **bloque de síntesis/seguridad** (no de evidencia nueva), ratio esperado y sano (METHODOLOGY §11); no
+  señala agotamiento por falta de evidencia. Hallazgo central: `encodeName` = mismo regex que `BackupManager.create`
+  → enmascara el traversal B144 en el happy-path, latente-real vía HTTP directo. Cierra U5; U6/U7 por remisión.
