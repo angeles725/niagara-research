@@ -178,6 +178,9 @@ Niagara en `module.xml`, ni extienden `BWebServlet`; el mecanismo por el que rec
 station (p.ej. `/reflow/...`) no está en el módulo `-rt` inspeccionado `[CERT]` (grep sin resultados de
 `BWebServlet`/`addServlet`/`getServletName`). Hipótesis: se registran vía el `web-rt` framework o un
 `BServletView` no visto todavía `[INFER]`. → registrado como gap R3.
+> **Resuelto en vivo (B157, §14):** contra la station VIVA el mount real es **`/nmodsreflow/`** (no `/reflow/`):
+> `/nmodsreflow`, `/nmodsreflow/config` (200 `application/json`), `/nmodsreflow/file` responden autenticados;
+> `/reflow/*` → 404 (confirma este GAP). Ver [Block 157] §157.3 `[CERT-hw]`.
 
 ## 138.6 — Loader `-ux` y divergencia de `Reflow-Clean-177` `[CERT]`
 

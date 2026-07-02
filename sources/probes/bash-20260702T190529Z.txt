@@ -1,0 +1,27 @@
+# probe run 20260702T190529Z
+# cmd: bash /tmp/claude-1000/-home-cristian-niagara-research/1e80fd78-49b7-4c97-be04-cd7d1d88413c/scratchpad/auth-sweep.sh
+---
+### Basic auth (HTTPBasicScheme) proof — /ord/ Location changes with auth ###
+  no-auth /ord/ Location: https://127.0.0.1/login
+  auth    /ord/ Location: https://127.0.0.1/ord/station:%7Cslot:/
+
+### Mounted vs unmounted web surface (authenticated HTTP codes) ###
+  /ord/station:%7Cslot:/       200
+  /ord/module:                 200
+  /spy                         404
+  /spy/versions                404
+  /about                       404
+  /nav                         404
+  /doc/version.txt             404
+  /wb                          403
+  /hx                          404
+
+### Reflow servlet live mount — /nmodsreflow/* vs /reflow/* ###
+  /reflow                  404 text/html;charset=iso-8859-1
+  /reflow/config           404 text/html;charset=iso-8859-1
+  /reflow/file             404 text/html;charset=iso-8859-1
+  /nmodsreflow             200 text/html
+  /nmodsreflow/config      200 application/json
+  /nmodsreflow/file        200 text/html
+  /nmodsreflow/reflow      200 text/html
+  /nmodsreflow/rc          200 text/html

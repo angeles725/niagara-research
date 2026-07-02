@@ -13,8 +13,8 @@ usuario por paso. El usuario de prueba (`API`) se revoca al terminar.
 
 ## Cobertura
 
-- **Métrica:** 1 / 15 gaps cerrados (0.07). Etapa A arrancada; Etapa B (14 verificaciones) pendiente.
-- **Bloques del focus:** B156 (perfil pasivo).
+- **Métrica:** 3 / 15 gaps cerrados (0.20). Etapa A casi mapeada (A2 parcial, A5 pendiente); Etapa B (14) pendiente.
+- **Bloques del focus:** B156 (perfil pasivo), B157 (Etapa A autenticada: superficie web + mount Reflow).
 
 ## Ground-truth vivo (§12 — re-medido, NO heredado)
 
@@ -28,10 +28,10 @@ Ver [Block 156] §156.7. Ancla: cert SHA-256 `C1:01:41:B2:…:E5:D2`, `hostAddre
 | Gap | Descripción | Estado | Clasificación |
 |---|---|---|---|
 | A1 | Perfil pasivo: puertos, cert, fox hello, postura HTTP/TLS | **CERRADO** (B156) | read-only ✓ |
-| A2 | Versión exacta Niagara + Reflow (gated tras login §156.4) — medir en vivo | abierto | requiere test-user (auth) |
-| A3 | Árbol de componentes / módulos instalados de la station (autenticado) | abierto | requiere test-user (auth) |
-| A4 | Endpoints REST/WS vivos de Reflow (B138-B149) presentes y respondiendo | abierto | requiere test-user (auth) |
-| A5 | Platform daemon 3011/5011 — qué expone (identidad, no login) | abierto | read-only (probe platform) |
+| A2 | Versión exacta Niagara + Reflow — medir en vivo | **PARCIAL** (B157 §157.5): web no la filtra (spy/doc/about 404); pendiente A5/platform | requiere platform probe |
+| A3 | Superficie web montada de la station (autenticado) | **CERRADO** (B157 §157.2): ord vivo; spy/about/nav/hx no montados; wb 403 | auth read ✓ |
+| A4 | Endpoints vivos de Reflow (B138-B149) | **CERRADO** (B157 §157.3-4): mount real `/nmodsreflow/`, config responde JSON read-level; resuelve B138 §178 | auth read ✓ |
+| A5 | Platform daemon 3011/5011 — qué expone (identidad + versión, no login) | abierto | read-only (probe platform) |
 
 ### Etapa B — TERMINAL: verificar los 14 defectos de [Block 150] §150.2 contra la station viva
 
@@ -67,9 +67,12 @@ Los items de ESCRITURA (config-write/traversal/wipe) son rung 2-3 (§12): backup
 | Iter | Gap | Bloque | delegado? · modelo | Notas |
 |---|---|---|---|---|
 | 1 | A1 | B156 | no · inline | perfil pasivo; 13/13 tokens; eleva item14 y presencia Reflow a `[CERT-hw]` |
+| 2 | A2/A3/A4 | B157 | no · inline | Etapa A auth (Basic); 7/7 tokens; mount real `/nmodsreflow/` resuelve B138 §178 (§14); config JSON read-level; A2 parcial |
 
 ## Próxima acción
 
-Checkpoint SUPERVISADO. La continuación de Etapa A (A2/A3/A4) y toda Etapa B requieren **autenticar con el
-usuario de prueba `API`** — transición a interacción autenticada. Confirmar con el usuario antes de loguear
-(SECRETS DISCIPLINE + rung ≥1 autenticado). A5 (platform 3011/5011) es read-only y puede correr sin auth.
+Autenticación resuelta: **HTTPBasicScheme** con el usuario `API` (Basic directo, sin SCRAM). Etapa A casi
+completa: falta **A5** (platform 3011/5011, read-only, cierra A2/versión). Luego **Etapa B terminal**: los 14
+defectos sobre los paths reales `/nmodsreflow/*`. Los items de LECTURA (V6, V8, V11-read, V13) son rung 1
+autenticado; los de ESCRITURA/destructivos (V1-V5, V7, V9, V10, V12) son rung 2-3 → **checkpoint supervisado
+por paso, con backup+oracle** antes de cada escritura (§12). Credencial `API` se revoca al terminar.
