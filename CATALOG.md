@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **162 bloques**
+Total: **166 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -167,6 +167,10 @@ Total: **162 bloques**
 | 162 | [niagara-mental-model-bloque162.md](niagara-mental-model-bloque162.md) | Block 162 — SÍNTESIS TERMINAL del focus `live-station`: los 14 defectos de B150 contra la station viva |
 | 163 | [niagara-mental-model-bloque163.md](niagara-mental-model-bloque163.md) | Block 163 — chihuahua MX60 (`-rt/-ux/-wb`): identidad, espina HTTP servlet y postura RBAC (esqueleto del focus) |
 | 164 | [niagara-mental-model-bloque164.md](niagara-mental-model-bloque164.md) | Block 164 — chihuahua MX60 (`-ux`): RBAC / write-authorization (el gate que Reflow no tiene) |
+| 165 | [niagara-mental-model-bloque165.md](niagara-mental-model-bloque165.md) | Block 165 — chihuahua MX60 (`-ux`): superficie servlet HTTP completa (dispatch puro, guards, contrato de datos) |
+| 166 | [niagara-mental-model-bloque166.md](niagara-mental-model-bloque166.md) | Block 166 — chihuahua MX60 (`-ux/-rt`): subsistema de alarmas (BQL query, latch/unlatch, notes, ackAll, source grouping) |
+| 167 | [niagara-mental-model-bloque167.md](niagara-mental-model-bloque167.md) | Block 167 — chihuahua MX60 (`-ux/-rt`): audit trail (ring auditLog, fire-and-forget, merge con SecurityHistory) |
+| 168 | [niagara-mental-model-bloque168.md](niagara-mental-model-bloque168.md) | Block 168 — chihuahua MX60 (`-rt/-ux`): protección/thresholds (slots BChiUp, control-tick 10s, allowlist de escritura) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

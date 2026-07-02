@@ -28,8 +28,8 @@ dimensiones que Reflow (B138-B155). Diferenciadores ya vistos: frontend ES5 IIFE
 
 ## Cobertura
 
-- **Métrica:** 2 / 14 gaps cerrados (0.14). C1 (B163), C2 RBAC (B164).
-- **Bloques del focus:** B163 (identidad + espina servlet + headline RBAC), B164 (RBAC deep).
+- **Métrica:** 6 / 14 gaps cerrados (0.43). C1-C6 cerrados (B163-B168).
+- **Bloques del focus:** B163 (esqueleto), B164 (RBAC), B165 (superficie servlet), B166 (alarmas), B167 (audit), B168 (protección/thresholds).
 
 ## Backlog (matriz de cobertura → 14 gaps, derivada del barrido de auditoría §13)
 
@@ -57,6 +57,10 @@ dimensiones que Reflow (B138-B155). Diferenciadores ya vistos: frontend ES5 IIFE
 | (bootstrap) | — | — | sí · audit sweep (general-purpose) | barrido §13 → matriz de cobertura + 14 gaps; spot-check §11 de 4 citas = OK |
 | 1 | C1 | B163 | no · inline (sobre barrido) | esqueleto: identidad v1.3 tri-parte, servlet `/mx60/`+dispatch+guards+endpoint map, RBAC write-gate headline |
 | 2 | C2 | B164 | sí · sonnet (deep-read) | RBAC: `checkCanWrite` fail-closed en los 8 handlers de control (theme exento auth-only); riesgo OPERATOR_WRITE global-vs-category (documentado :274-280); capability decorativo/server-autoritativo; spot-check §11 OK |
+| 3 | C3 | B165 | sí · orquestado | superficie servlet: dispatch puro `RouteAction`, mapa GET/POST completo, 3 guards, 423 lock solo setpoint; 76 CERT; spot-check OK |
+| 4 | C4 | B166 | sí · orquestado | alarmas: query BQL paginación por contador, latch en slot `alarmLatches`, notas en `^chihuahua-alarm-notes.json`, ackAll colecta+baja-native; 80 CERT |
+| 5 | C5 | B167 | sí · orquestado | audit: ring ~500 fire-and-forget en 7 rutas, merge SecurityHistory; login-history TODO en realidad resuelto; NET-ADD vs Reflow; 86 CERT |
+| 6 | C6 | B168 | sí · orquestado | protección: state-machine permanent-latch (sin hysteresis), control-tick 10s + COV, cascada asimétrica, allowlist thresholds; 56 CERT |
 
 ## Próxima acción
 
