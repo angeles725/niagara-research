@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **147 bloques**
+Total: **148 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -152,6 +152,7 @@ Total: **147 bloques**
 | 147 | [niagara-mental-model-bloque147.md](niagara-mental-model-bloque147.md) | Block 147 — nmodsreflow.77 (`-rt`): el taint source HTTP (`Query.method_363` URL-decode sin sanitizar; `QueryFilter` no cubre los params peligrosos) |
 | 148 | [niagara-mental-model-bloque148.md](niagara-mental-model-bloque148.md) | Block 148 — nmodsreflow.77 (`-rt`): capa util (cierre de superficie — bug de ventana en CompareRangeCalculator, taint funnel CommandHelpers) |
 | 149 | [niagara-mental-model-bloque149.md](niagara-mental-model-bloque149.md) | Block 149 — nmodsreflow.77 (`-rt`): contrato de datos HTTP (router `BaseServlet`, shapes JSON, y nuevos sinks que extienden la tesis) |
+| 150 | [niagara-mental-model-bloque150.md](niagara-mental-model-bloque150.md) | Block 150 — Síntesis cross-focus de seguridad: nmodsreflow × platform-security (bloque TERMINAL del focus) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

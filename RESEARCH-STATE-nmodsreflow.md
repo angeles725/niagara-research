@@ -23,7 +23,7 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
 
 ## Coverage
 
-- **Covered blocks (este focus)**: 12 — B138 (módulo/service/espina HTTP-WebSocket), B139 (licensing),
+- **Covered blocks (este focus)**: 13 — B138 (módulo/service/espina HTTP-WebSocket), B139 (licensing),
   B140 (canal WebSocket: acceptor/sesiones/pub-sub/dispatch), B141 (history: cache gzip disco, threading
   privilegiado, ghost-subscribe, grouping), B142 (alarms: query read-only, doPrivileged ancho, BQL injection uuid),
   B143 (sync: config JSON-Patch multiusuario, doPrivileged config-write sin perms, favoritos por-usuario, sin locking),
@@ -32,15 +32,14 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
   B146 (8 command agents: todos gatean `"r"`, ops potentes mal escaladas; REST bypassa el gate),
   B147 (taint source: `Query.method_363` URL-decode sin sanitizar; `QueryFilter` no cubre los params peligrosos),
   B148 (util: cierre de superficie — bug de ventana en `CompareRangeCalculator.last30days`, taint funnel `CommandHelpers`),
-  B149 (contrato de datos HTTP: router `BaseServlet` sin envelope ni auth-gate, shapes JSON, nuevos sinks EquipmentNote/WeatherMap).
-- **Coverage metric**: 12 / 13 gaps cerrados (R13 incluido; sólo resta R3 casi-cerrado).
-- **Last iteration**: 2026-07-02 — R12 cerrado (contrato de datos): `BaseServlet` rutea con un ladder if/else sobre `getPathInfo()`, **sin envelope
-  común y sin gate de auth** (grep-negativo → refuerza la tesis zero-auth a nivel router; el REST no tiene ni el
-  `"r"` de los comandos). Documentados los shapes JSON de las 9 Response no cubiertas (arrays/árboles
-  `{ord,name,type}`) + los 4 serializers. **Nuevos sinks que extienden la cadena**: EquipmentNote read/write por
-  header `Equipment-Id`→FilePath (primitiva de escritura sin perms), WeatherMap SSRF-flavored (`config`→URL
-  upstream) + fuga del HostID de la station, FileTree expone el árbol completo, CSP `unsafe-inline/eval`. Nota
-  cross-focus en B149 §149.5 (suma sinks; veredicto sin cambio). Mapeo de superficie COMPLETO.
+  B149 (contrato de datos HTTP: router `BaseServlet` sin envelope ni auth-gate, shapes JSON, nuevos sinks EquipmentNote/WeatherMap),
+  B150 (SÍNTESIS TERMINAL cross-focus de seguridad: nmodsreflow × platform-security — 14 defectos consolidados + multiplicador de plataforma).
+- **Coverage metric**: 12 / 13 gaps cerrados + bloque de síntesis terminal (B150). Focus CERRADO. Sólo resta R3 casi-cerrado residual.
+- **Last iteration**: 2026-07-02 — FOCUS CERRADO — B150 síntesis terminal cross-focus de seguridad (nmodsreflow × platform-security): consolida 14
+  clases de defecto (config-write sin auth x3, traversal lectura/escritura, BQL injection/arbitrario, doPrivileged
+  x4, wipe sin token, SSRF+HostID leak, audit forjable, URL-decode sin sanitizar, CSP unsafe-*) tejidas contra el
+  multiplicador de plataforma (skipModuleValidation B75/B113 + licensing bypass B139; el HostID que fuga WeatherMap
+  = el que ancla el licensing). Incluye postura defensiva [INFER]. Superficie backend -rt COMPLETAMENTE mapeada.
 
 ## Gap-backlog (priorizado)
 
@@ -76,18 +75,20 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
 | 10 | 2026-07-02 | R13 taint source | B147 | 0 (cierra el hilo de seguridad end-to-end: URL-decode sin sanitizar, params peligrosos bypassan QueryFilter) |
 | 11 | 2026-07-02 | R11 util | B148 | 0 (cierre de superficie; bug last30days + taint funnel CommandHelpers, corrobora B147) |
 | 12 | 2026-07-02 | R12 contrato de datos | B149 | 0 (router sin auth-gate refuerza tesis; nuevos sinks EquipmentNote/WeatherMap; superficie COMPLETA) |
+| 13 | 2026-07-02 | SÍNTESIS terminal | B150 | 0 (consolidación cross-focus; FOCUS CERRADO) |
 
 ## Blocked gaps (con lo que necesitan)
 
 - (ninguno) — todo el focus es read-only-investigable sobre el JAR ya decompilado.
 
-## Stop control (primario = read-only-investigable = 0, METHODOLOGY §8)
+## Stop control (primario = read-only-investigable = 0, METHODOLOGY §8) — **FOCUS DETENIDO (STOP)**
 
-- **Open gaps — read-only investigable**: 1 residual (R3 · base `/module/<name>/`, casi-cerrado — bajo valor) + NEXT-ACTION terminal pendiente (síntesis cross-focus)   ← superficie de subsistemas COMPLETA
-- **Open gaps — requires-execution**: 0
-- **Open gaps — blocked** (hardware/live/NDA): 0
-- Iteraciones consecutivas con backlog vacío (secundario): 0/2
-- Próximo gap: **NEXT-ACTION TERMINAL = bloque de síntesis cross-focus de seguridad** (nmodsreflow × platform-security) — consolida B139/B141/B142/B143/B144/B145/B146/B147/B149 contra `skipModuleValidation` (B75/B113) y el licensing bypass (B139). Autónomo y seguro (read-only, sólo consolida hallazgos citados). R3 queda como residual casi-cerrado de bajo valor. Tras la síntesis → STOP del focus con TOOLS REPORT.
+- **Open gaps — read-only investigable**: 0 de valor sustantivo. Sólo resta **R3** (base `/module/<name>/`, casi-cerrado en B140 vía web.xml `/*`; el residual es el prefijo de mount de Jetty, bajo valor) — se declara NO perseguido, no mueve el modelo mental.
+- **Open gaps — requires-execution**: 0 (read-only).
+- **Open gaps — blocked** (hardware/live/NDA): 0.
+- **STOP declarado**: superficie backend `-rt` COMPLETAMENTE mapeada (13 bloques B138-B150); hilo de seguridad cerrado end-to-end (B147) y consolidado (B150). El primario (investigable sustantivo = 0) disparó el STOP.
+- **NEXT-ACTION (corpus multi-focus)**: nmodsreflow es UN focus del corpus `niagara-research`. El próximo paso NO es read-only-autónomo — la verificación DINÁMICA de los 14 defectos de B150 requiere una **station Niagara viva** (fuera de read-only). Recomendación al usuario/orquestador: (a) elegir un nuevo focus/ángulo (otro módulo/subsistema), o (b) autorizar una fase dinámica sobre station viva para verificar explotabilidad. Requiere decisión humana/hardware → loop TERMINADO (sin reagenda).
+- Budget cap: none.
 - Budget cap: none
 
 ## Self-verify
@@ -170,3 +171,9 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
   `:43-54` · FileResponse `module://.../rc`+path `:49` · serializers shapes. `[CERT]` ~30 · `[INFER]` 11
   (todos anclados). Ratio `[INFER]/[CERT]` ≈ 0.37. Contrato de datos documentado; router sin auth-gate refuerza
   la tesis; nuevos sinks (EquipmentNote write-por-header, WeatherMap SSRF+HostID leak) suman a la cadena.
+- **B150** (síntesis terminal): bloque de consolidación read-only, sin decompilado nuevo. Cuerpo ~mayoría
+  `[CERT]` por re-cita de `file:line` ya verificados en B138-B149/B75/B113/B139 (14 defectos en la tabla §150.2,
+  cada uno anclado a su bloque fuente) + `[INFER]` para el modelo de amenaza agregado (§150.1/150.3) y la postura
+  defensiva (§150.4, marcada como recomendación). No se re-verificó por grep lo ya verificado en origen; no se
+  citó ningún `file:line` nuevo (sólo cross-refs a bloques existentes). Ratio `[INFER]/[CERT]` alto por diseño
+  (bloque de análisis, no de evidencia nueva).
