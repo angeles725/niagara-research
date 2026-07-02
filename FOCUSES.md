@@ -11,10 +11,16 @@
 | optimizersupervisor | paused | `RESEARCH-STATE-optimizersupervisor.md` | Install vivo OptimizerSupervisor N4.14.0.162 (config.bog de stations vivas) | B123 |
 | platform-native | stopped | `RESEARCH-STATE-platform-native.md` | RE nativo de la plataforma (launchers, JNI, licensing/crypto, driver DLLs, daemon) | B124–B130 |
 | protocols | stopped | `RESEARCH-STATE-protocols.md` | Wire-level de protocolos (Modbus/OPC/BACnet/Fox/LON/Sox) + integración LOGO!8 | B131–B137 |
-| **nmodsreflow** | **active** | `RESEARCH-STATE-nmodsreflow.md` | Arquitectura backend del módulo OEM NiagaraMods Reflow v1.7.7 `-rt` (service, HTTP/WS, subsistemas) | B138– |
+| nmodsreflow | stopped | `RESEARCH-STATE-nmodsreflow.md` | Arquitectura backend del módulo OEM NiagaraMods Reflow v1.7.7 `-rt` (service, HTTP/WS, subsistemas) — CERRADO, hilo de seguridad consolidado | B138–B150 |
+| **nmodsreflow-ux** | **active** | `RESEARCH-STATE-nmodsreflow-ux.md` | Capa cliente/browser del módulo NiagaraMods Reflow v1.7.7 `-ux` (módulo fino de registro/loaders + SPA Vue embarcada) — paridad frontend con el backend | B151– |
 
 ## Focus activo
 
-**nmodsreflow** — iniciado 2026-07-01, ángulo "Arquitectura backend -rt" (confirmado con el usuario).
-Fuente: JAR embarcado `nmodsreflow.77` decompilado (Vineflower) en
-`/home/cristian/modules/Prototipos/modulos/organized/nmodsreflow77/`. Próximo gap: R2 (canal WebSocket).
+**nmodsreflow-ux** — iniciado 2026-07-02, ángulo "Capa cliente -ux del build .77" (confirmado con el usuario).
+Fuente: módulo `-ux` decompilado (Vineflower) en
+`/home/cristian/modules/Prototipos/modulos/organized/nmodsreflow77/nmodsreflow77-ux/` + SPA embarcada en
+`.../nmodsreflow77-rt/vineflower/rc/`. Complementa el backend `nmodsreflow` (B138-B150, cerrado). Próximo gap:
+U1 (esqueleto `-ux`).
+
+**nmodsreflow** (backend `-rt`) — CERRADO 2026-07-02, 13 bloques B138-B150, superficie completamente mapeada,
+síntesis de seguridad cross-focus en B150. Residual R3 (mount `/module/<name>/`) no perseguido.

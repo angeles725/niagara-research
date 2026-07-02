@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **148 bloques**
+Total: **149 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -153,6 +153,7 @@ Total: **148 bloques**
 | 148 | [niagara-mental-model-bloque148.md](niagara-mental-model-bloque148.md) | Block 148 — nmodsreflow.77 (`-rt`): capa util (cierre de superficie — bug de ventana en CompareRangeCalculator, taint funnel CommandHelpers) |
 | 149 | [niagara-mental-model-bloque149.md](niagara-mental-model-bloque149.md) | Block 149 — nmodsreflow.77 (`-rt`): contrato de datos HTTP (router `BaseServlet`, shapes JSON, y nuevos sinks que extienden la tesis) |
 | 150 | [niagara-mental-model-bloque150.md](niagara-mental-model-bloque150.md) | Block 150 — Síntesis cross-focus de seguridad: nmodsreflow × platform-security (bloque TERMINAL del focus) |
+| 151 | [niagara-mental-model-bloque151.md](niagara-mental-model-bloque151.md) | Block 151 — nmodsreflow.77 (`-ux`): esqueleto del módulo cliente (3 view-agents `BIJavaScript` sobre `ReflowService`, identidad del módulo) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
