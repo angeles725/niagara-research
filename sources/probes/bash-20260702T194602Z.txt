@@ -1,0 +1,31 @@
+# probe run 20260702T194602Z
+# cmd: bash /tmp/claude-1000/-home-cristian-niagara-research/1e80fd78-49b7-4c97-be04-cd7d1d88413c/scratchpad/etapaB-read.sh
+---
+### live subpath discovery (codes) ###
+  /nmodsreflow/config                        200
+  /nmodsreflow/weather-map                   500
+  /nmodsreflow/station/equipment-notes       200
+  /nmodsreflow/station/image-library         200
+  /nmodsreflow/file                          200
+
+### V6 + V13 read-traversal via ConfigResponse ?file= (codes+lengths only) ###
+  config (no ?file, baseline)                          code=200 len=60154
+  ?file=config.json (override same)                    code=200 len=17
+  ?file=../ (plain traversal)                          code=200 len=17
+  ?file=%2e%2e%2f (V13 url-decoded ../)                code=200 len=17
+  ?file=..%2f..%2f..%2fconfig.json                     code=200 len=17
+
+### V11 WeatherMap SSRF-flavored + HostID leak (PRESENCE ONLY, value never printed) ###
+  weather-map?config=/TEST -> code=500 len=54
+  response mentions 'host=' param (HostID leak present?): no
+  (HostID VALUE intentionally NOT captured — SECRETS DISCIPLINE)
+
+### V5-read EquipmentNote traversal by Equipment-Id header (codes only) ###
+  equipment-notes (no header)                    200
+  equipment-notes Equipment-Id: ../../x          500
+
+### V14 input reflected in error body (send bad path, check reflection) ###
+  bad path /ZZQ7391XREFLECT -> code=200
+  marker reflected in error body: no
+  reflow/reflowVersion from backup config (non-secret version fields only):
+   version= 14 reflowVersion= 1.7.5-43

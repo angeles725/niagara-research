@@ -13,8 +13,9 @@ usuario por paso. El usuario de prueba (`API`) se revoca al terminar.
 
 ## Cobertura
 
-- **Métrica:** 4 / 19 gaps cerrados (0.21). **Etapa A CERRADA** (A1/A3/A4/A5 cerrados; A2 blocked-on-creds). Etapa B (14) pendiente.
-- **Bloques del focus:** B156 (perfil pasivo), B157 (Etapa A auth: web + mount Reflow), B158 (platform + cierre Etapa A).
+- **Métrica:** 9 / 19 gaps cerrados (0.47). **Etapa A CERRADA**; A2 Reflow-version ahora `[CERT-hw]` (1.7.7 Ago 2025). Etapa B: read-side verificado (5 veredictos), write/BQL pendientes.
+- **Bloques del focus:** B156 (perfil pasivo), B157 (Etapa A auth: web + mount Reflow), B158 (platform + cierre Etapa A), B159 (Etapa B read-side: V6/V13/V11/V5/V14).
+- **Autorización rung-3:** concedida por el operador esta sesión (backup propio verificado sha256 bf70f28f…; el operador tiene el suyo). Expira al cierre de sesión / revocación del usuario `API`.
 
 ## Ground-truth vivo (§12 — re-medido, NO heredado)
 
@@ -68,6 +69,7 @@ Los items de ESCRITURA (config-write/traversal/wipe) son rung 2-3 (§12): backup
 | 1 | A1 | B156 | no · inline | perfil pasivo; 13/13 tokens; eleva item14 y presencia Reflow a `[CERT-hw]` |
 | 2 | A2/A3/A4 | B157 | no · inline | Etapa A auth (Basic); 7/7 tokens; mount real `/nmodsreflow/` resuelve B138 §178 (§14); config JSON read-level; A2 parcial |
 | 3 | A5 + cierre A2 | B158 | no · inline | platform 3011/5011 = HTTP(S) guardado (403); A2 ausencia probada (blocked); **Etapa A CERRADA**; 4/4 tokens |
+| 4 | Etapa B read (V6/V13/V11/V5/V14) | B159 | no · inline | read-first rung-1; superficie viva CONFIRMADA pero exfil trivial NO reproduce (`?file=`→{status:500}, WeatherMap fetch outbound sí, EquipmentNote header consumido); versión viva 1.7.7; V8 diferido a WS; 5/5 tokens |
 
 ## Próxima acción
 

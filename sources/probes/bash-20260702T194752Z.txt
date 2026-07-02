@@ -1,0 +1,15 @@
+# probe run 20260702T194752Z
+# cmd: bash /tmp/claude-1000/-home-cristian-niagara-research/1e80fd78-49b7-4c97-be04-cd7d1d88413c/scratchpad/etapaB-read-char.sh
+---
+### live running version (SPA HTML comment, non-secret) ###
+Build version: 1.7.7 - Thursday, August 14th, 2025, 5:27:45 PM  --> 
+### config data field version (from own backup, non-secret) ###
+config.version= 14 config.reflowVersion= 1.7.5-43
+
+### V6/V13 ConfigResponse ?file= — returns error envelope, NOT file contents ###
+  ?file=config.json body: { "status": 500 }  ?file=..%2f..%2f..%2fconfig.json body: { "status": 500 }  (any ?file=VALUE -> {status:500}; other param names ignored -> default config len=60154, so ?file is the read param but errors)
+
+### V11 WeatherMap — outbound fetch mechanism present (errors on fetch) ###
+  weather-map?config=/TEST body: <h1>ERROR 500: Error fetching image from provider</h1>
+### V5 EquipmentNote header consumed (traversal attempted -> 500) ###
+  Equipment-Id ../../x body: <h1>ERROR 500: Internal Error</h1>/station/equipment-notes
