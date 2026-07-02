@@ -28,8 +28,8 @@ dimensiones que Reflow (B138-B155). Diferenciadores ya vistos: frontend ES5 IIFE
 
 ## Cobertura
 
-- **Métrica:** 1 / 14 gaps cerrados (0.07). C1 (esqueleto) cerrado por B163.
-- **Bloques del focus:** B163 (identidad + espina servlet + headline RBAC).
+- **Métrica:** 2 / 14 gaps cerrados (0.14). C1 (B163), C2 RBAC (B164).
+- **Bloques del focus:** B163 (identidad + espina servlet + headline RBAC), B164 (RBAC deep).
 
 ## Backlog (matriz de cobertura → 14 gaps, derivada del barrido de auditoría §13)
 
@@ -56,6 +56,7 @@ dimensiones que Reflow (B138-B155). Diferenciadores ya vistos: frontend ES5 IIFE
 |---|---|---|---|---|
 | (bootstrap) | — | — | sí · audit sweep (general-purpose) | barrido §13 → matriz de cobertura + 14 gaps; spot-check §11 de 4 citas = OK |
 | 1 | C1 | B163 | no · inline (sobre barrido) | esqueleto: identidad v1.3 tri-parte, servlet `/mx60/`+dispatch+guards+endpoint map, RBAC write-gate headline |
+| 2 | C2 | B164 | sí · sonnet (deep-read) | RBAC: `checkCanWrite` fail-closed en los 8 handlers de control (theme exento auth-only); riesgo OPERATOR_WRITE global-vs-category (documentado :274-280); capability decorativo/server-autoritativo; spot-check §11 OK |
 
 ## Próxima acción
 

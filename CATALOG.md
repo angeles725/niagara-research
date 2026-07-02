@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **161 bloques**
+Total: **162 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -166,6 +166,7 @@ Total: **161 bloques**
 | 161 | [niagara-mental-model-bloque161.md](niagara-mental-model-bloque161.md) | Block 161 — Etapa B (3/n): los destructivos — backups está AUTH-GATED en vivo (V4/V10 no reproducen) |
 | 162 | [niagara-mental-model-bloque162.md](niagara-mental-model-bloque162.md) | Block 162 — SÍNTESIS TERMINAL del focus `live-station`: los 14 defectos de B150 contra la station viva |
 | 163 | [niagara-mental-model-bloque163.md](niagara-mental-model-bloque163.md) | Block 163 — chihuahua MX60 (`-rt/-ux/-wb`): identidad, espina HTTP servlet y postura RBAC (esqueleto del focus) |
+| 164 | [niagara-mental-model-bloque164.md](niagara-mental-model-bloque164.md) | Block 164 — chihuahua MX60 (`-ux`): RBAC / write-authorization (el gate que Reflow no tiene) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
