@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **155 bloques**
+Total: **156 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -160,6 +160,7 @@ Total: **155 bloques**
 | 155 | [niagara-mental-model-bloque155.md](niagara-mental-model-bloque155.md) | Block 155 — nmodsreflow.77 (`-ux`): postura de seguridad cliente (cara SPA de la cadena B150; por qué el traversal B144 pasa inadvertido) |
 | 156 | [niagara-mental-model-bloque156.md](niagara-mental-model-bloque156.md) | Block 156 — Perfil pasivo de la station viva (Etapa A · B1 del focus `live-station`) |
 | 157 | [niagara-mental-model-bloque157.md](niagara-mental-model-bloque157.md) | Block 157 — Etapa A autenticada: superficie web viva y mount real del servlet Reflow |
+| 158 | [niagara-mental-model-bloque158.md](niagara-mental-model-bloque158.md) | Block 158 — Platform daemon HTTP-guardado + cierre de Etapa A (mapa del runtime vivo) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

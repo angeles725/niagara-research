@@ -1,0 +1,13 @@
+# probe run 20260702T191119Z
+# cmd: bash /tmp/claude-1000/-home-cristian-niagara-research/1e80fd78-49b7-4c97-be04-cd7d1d88413c/scratchpad/recon-a2neg.sh
+---
+### version-disclosure endpoints, authenticated read-level user ###
+  /spy/versions                    404
+  /doc/version.txt                 404
+  /about                           404
+  /module/baja                     403
+  /module/bajaScript               403
+  /ord/module:%7Cmodule:baja       404
+### grep version quad from authenticated station shell + public prelogin (empty = not disclosed) ###
+  station shell quad: (none if blank)
+  prelogin quad:      (none if blank)

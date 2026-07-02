@@ -1,0 +1,21 @@
+# probe run 20260702T191016Z
+# cmd: bash /tmp/claude-1000/-home-cristian-niagara-research/1e80fd78-49b7-4c97-be04-cd7d1d88413c/scratchpad/recon-platform.sh
+---
+### 3011 plain — unsolicited banner (2s, no send) ###
+### 3011 plain — HTTP-style GET poke ###
+HTTP/1.1 403 Forbidden
+x-frame-options: deny
+Connection: close
+Content-Length: 0
+### 3011 plain — niagarad greeting poke ###
+HTTP/1.1 400 No URI
+Content-Type: text/html;charset=iso-8859-1
+Content-Length: 49
+Connection: close
+<h1>Bad Message 400</h1><pre>reason: No URI</pre>
+### 5011 TLS — greeting after handshake ###
+HTTP/1.1 403 Forbidden
+Strict-Transport-Security: max-age=63072000
+x-frame-options: deny
+Connection: close
+Content-Length: 0

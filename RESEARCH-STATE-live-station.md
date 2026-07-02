@@ -13,8 +13,8 @@ usuario por paso. El usuario de prueba (`API`) se revoca al terminar.
 
 ## Cobertura
 
-- **Métrica:** 3 / 15 gaps cerrados (0.20). Etapa A casi mapeada (A2 parcial, A5 pendiente); Etapa B (14) pendiente.
-- **Bloques del focus:** B156 (perfil pasivo), B157 (Etapa A autenticada: superficie web + mount Reflow).
+- **Métrica:** 4 / 19 gaps cerrados (0.21). **Etapa A CERRADA** (A1/A3/A4/A5 cerrados; A2 blocked-on-creds). Etapa B (14) pendiente.
+- **Bloques del focus:** B156 (perfil pasivo), B157 (Etapa A auth: web + mount Reflow), B158 (platform + cierre Etapa A).
 
 ## Ground-truth vivo (§12 — re-medido, NO heredado)
 
@@ -28,10 +28,10 @@ Ver [Block 156] §156.7. Ancla: cert SHA-256 `C1:01:41:B2:…:E5:D2`, `hostAddre
 | Gap | Descripción | Estado | Clasificación |
 |---|---|---|---|
 | A1 | Perfil pasivo: puertos, cert, fox hello, postura HTTP/TLS | **CERRADO** (B156) | read-only ✓ |
-| A2 | Versión exacta Niagara + Reflow — medir en vivo | **PARCIAL** (B157 §157.5): web no la filtra (spy/doc/about 404); pendiente A5/platform | requiere platform probe |
+| A2 | Versión exacta Niagara + Reflow — medir en vivo | **BLOCKED** (B158 §158.2): ausencia probada — no disclosed a read-level (spy/doc/module 404/403, platform 403); §12 NO heredada | blocked-on-platform/admin-creds |
 | A3 | Superficie web montada de la station (autenticado) | **CERRADO** (B157 §157.2): ord vivo; spy/about/nav/hx no montados; wb 403 | auth read ✓ |
 | A4 | Endpoints vivos de Reflow (B138-B149) | **CERRADO** (B157 §157.3-4): mount real `/nmodsreflow/`, config responde JSON read-level; resuelve B138 §178 | auth read ✓ |
-| A5 | Platform daemon 3011/5011 — qué expone (identidad + versión, no login) | abierto | read-only (probe platform) |
+| A5 | Platform daemon 3011/5011 — qué expone (identidad + versión, no login) | **CERRADO** (B158 §158.1): 3011/5011 son HTTP(S) Jetty, 403 sin creds de plataforma; sin banner pre-auth | read-only ✓ |
 
 ### Etapa B — TERMINAL: verificar los 14 defectos de [Block 150] §150.2 contra la station viva
 
@@ -57,10 +57,9 @@ Los items de ESCRITURA (config-write/traversal/wipe) son rung 2-3 (§12): backup
 
 ## Clasificación del backlog (§8)
 
-- **read-only-investigable ahora (sin auth):** A5 (platform probe). [A1 cerrado]
-- **investigable con test-user (auth, read):** A2, A3, A4, V6, V8, V11(read), V13.
-- **supervised-dynamic (escritura, rung 2-3):** V1-V5, V7, V9, V10, V12 — requieren OK por paso + oracle.
-- **parcial:** V14 (CSP ya confirmada viva; falta el input reflejado en error).
+- **Etapa A:** CERRADA (A1/A3/A4/A5). A2 = blocked-on-platform/admin-creds (no bloquea Etapa B).
+- **Etapa B read-only (rung-1 auth, sin escrituras):** V6, V8, V11(read), V13, V14(input reflejado).
+- **Etapa B supervised-dynamic (escritura/destructivo, rung 2-3, OK por paso + backup + oracle):** V1-V5, V7, V9, V10, V12.
 
 ## Historia de iteraciones
 
@@ -68,6 +67,7 @@ Los items de ESCRITURA (config-write/traversal/wipe) son rung 2-3 (§12): backup
 |---|---|---|---|---|
 | 1 | A1 | B156 | no · inline | perfil pasivo; 13/13 tokens; eleva item14 y presencia Reflow a `[CERT-hw]` |
 | 2 | A2/A3/A4 | B157 | no · inline | Etapa A auth (Basic); 7/7 tokens; mount real `/nmodsreflow/` resuelve B138 §178 (§14); config JSON read-level; A2 parcial |
+| 3 | A5 + cierre A2 | B158 | no · inline | platform 3011/5011 = HTTP(S) guardado (403); A2 ausencia probada (blocked); **Etapa A CERRADA**; 4/4 tokens |
 
 ## Próxima acción
 
