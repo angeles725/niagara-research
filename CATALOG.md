@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **139 bloques**
+Total: **140 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -144,6 +144,7 @@ Total: **139 bloques**
 | 139 | [niagara-mental-model-bloque139.md](niagara-mental-model-bloque139.md) | Block 139 — nmodsreflow.77 (`-rt`): subsistema de licensing (dual Niagara/XML, firma RSA, host binding) |
 | 140 | [niagara-mental-model-bloque140.md](niagara-mental-model-bloque140.md) | Block 140 — nmodsreflow.77 (`-rt`): canal WebSocket (acceptor, sesiones, pub/sub de canales, dispatch de comandos) |
 | 141 | [niagara-mental-model-bloque141.md](niagara-mental-model-bloque141.md) | Block 141 — nmodsreflow.77 (`-rt`): subsistema history (cache GZIP en disco, threading privilegiado, ghost-subscribe, grouping) |
+| 142 | [niagara-mental-model-bloque142.md](niagara-mental-model-bloque142.md) | Block 142 — nmodsreflow.77 (`-rt`): subsistema alarms (query read-only, doPrivileged ancho, BQL injection vía uuid) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

@@ -23,14 +23,14 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
 
 ## Coverage
 
-- **Covered blocks (este focus)**: 4 — B138 (módulo/service/espina HTTP-WebSocket), B139 (licensing),
+- **Covered blocks (este focus)**: 5 — B138 (módulo/service/espina HTTP-WebSocket), B139 (licensing),
   B140 (canal WebSocket: acceptor/sesiones/pub-sub/dispatch), B141 (history: cache gzip disco, threading
-  privilegiado, ghost-subscribe, grouping).
-- **Coverage metric**: 4 / 12 gaps cerrados.
-- **Last iteration**: 2026-07-02 — R5 cerrado (history): la "cache GZIP" son 2 blobs en disco (no memoria)
-  con TTL wall-clock; query bajo `AccessController.doPrivileged` ancho (mismo patrón que B140); ghost-subscribe
-  fire-once para montar histories no-locales; grouping = nav tree, no favoritos. Nota de seguridad cross-focus
-  anotada (doPrivileged + skipModuleValidation B75/B113 + bypass licensing B139).
+  privilegiado, ghost-subscribe, grouping), B142 (alarms: query read-only, doPrivileged ancho, BQL injection uuid).
+- **Coverage metric**: 5 / 12 gaps cerrados (+ 1 sub-gap nuevo R13 descubierto).
+- **Last iteration**: 2026-07-02 — R6 cerrado (alarms): subsistema read/report-only (no ack/mutación);
+  motor `AlarmData` bajo `doPrivileged` ancho (3er subsistema con el patrón); **BQL injection concreta vía
+  `uuid` sin escapar (`AlarmData.java:82`) alcanzable a read-permission (`requiredPermissions="r"`)**; sin
+  cache gzip (re-corre BQL en vivo). Nota de seguridad cross-focus REFORZADA en B142 §142.8.
 
 ## Gap-backlog (priorizado)
 
@@ -41,13 +41,14 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
 | — | R4 · licensing: `License`/`LicenseValidator`/`LicenseManager`/`LicenseClient` (RSA-SHA256, host binding, `api.niagaramodules.com`, station-type gating) | Java `-rt` | **cerrado B139** |
 | — | R5 · history: `HistoryIO`/`HistoryData`/`HistoryGhostSubscriber`/`HistoryGroups` (cache GZIP, threading privilegiado, lookup por id) | Java `-rt` | **cerrado B141** |
 | low | R3 · montaje del servlet: cómo `BaseServlet`/`SocketServlet` reciben path en Jetty (cross-ref `web-rt`, B9) | Java `-rt` + framework | casi-cerrado B140 (web.xml `/ws` + `/*`); resta base `/module/<name>/` |
-| medium | R6 · alarms: `ReflowAlarmSource`/`AlarmData`/`QueryFilter`/`AlarmSourceCollection` + `AlarmQueryResponse` (POST) | Java `-rt` | pending |
+| — | R6 · alarms: `ReflowAlarmSource`/`AlarmData`/`QueryFilter`/`AlarmSourceCollection` + `AlarmQueryResponse` (POST) | Java `-rt` | **cerrado B142** |
 | medium | R7 · sync: `BReflowSyncService`/`ConfigIO`/`ReflowSyncResponse` + favoritos ORD-tree (multiusuario) | Java `-rt` | pending |
 | medium | R8 · backups: `BackupManager` (daily/incremental) + `Backup*Response` | Java `-rt` | pending |
 | medium | R9 · config: `ConfigResponse`/`ConfigUpdateResponse`/`ConfigDeltaResponse` (contrato config.json + JSON Patch RFC6902 de B51) | Java `-rt` | pending |
 | medium | R10 · command agents: los 8 `BReflow*Commands` (License/File/Nav/CSV/History/Alarm/User/BQL) como superficie de comandos | Java `-rt` | pending |
 | low | R11 · util: `RangeCalculator`/`CompareRangeCalculator`/`PointHelper`/`NavNodeSerializer`/`Json`/`StringUtils`/`BDateRangeEnum` | Java `-rt` | pending |
 | low | R12 · contrato de datos frontend↔-rt: shapes JSON de los responses (parcialmente en B50/B51) | Java `-rt` + bundle | pending |
+| medium | R13 · taint source HTTP: `http/util/Query` (`method_363`) + `QueryFilter.make` — cómo TODO el filtrado se construye desde input crudo (feed de la BQL injection de B142 y del doPrivileged) | Java `-rt` | pending (descubierto en B142) |
 
 ## Iteration history
 
@@ -57,6 +58,7 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
 | 2 | 2026-07-01 | R4 licensing | B139 | 0 (subsistema autocontenido; cruza a B75/B113/B126) |
 | 3 | 2026-07-01 | R2 canal WebSocket | B140 | 0 (cerró colateralmente el mount GAP de B138 → R3 casi-cerrado) |
 | 4 | 2026-07-02 | R5 history | B141 | 0 (subsistema autocontenido; abre nota de síntesis cross-focus security) |
+| 5 | 2026-07-02 | R6 alarms | B142 | R13 (taint source `http/util/Query`+`QueryFilter.make`, feed de BQL injection) |
 
 ## Blocked gaps (con lo que necesitan)
 
@@ -64,11 +66,11 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
 
 ## Stop control (primario = read-only-investigable = 0, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 8 (R6–R12; R3 casi-cerrado)   ← el loop STATIC para cuando llegue a 0
+- **Open gaps — read-only investigable**: 8 (R7–R13; R3 casi-cerrado)   ← el loop STATIC para cuando llegue a 0
 - **Open gaps — requires-execution**: 0
 - **Open gaps — blocked** (hardware/live/NDA): 0
 - Iteraciones consecutivas con backlog vacío (secundario): 0/2
-- Próximo gap (según prioridad): **R6 · alarms** (`ReflowAlarmSource`/`AlarmData`/`QueryFilter`/`AlarmSourceCollection` + `AlarmQueryResponse` POST)
+- Próximo gap (según prioridad): **R7 · sync** (`BReflowSyncService`/`ConfigIO`/`ReflowSyncResponse` + favoritos ORD-tree multiusuario). Alternativa de alta señal: R13 (taint source `http/util/Query`, cierra el análisis de la BQL injection de B142).
 - Budget cap: none
 
 ## Self-verify
@@ -89,3 +91,9 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
   huecos de evidencia. Hallazgos notables: la "cache GZIP" son 2 blobs en disco (no memoria) con TTL
   wall-clock; query bajo `doPrivileged` ancho alimentado por query-string HTTP; ghost-subscribe fire-once
   con posible leak; BQL por concat; page-count roto (int-divide antes de `ceil`).
+- **B142**: 9 grupos de tokens load-bearing `[CERT]` grep-confirmados en su `file:line` exacto (uuid BQL
+  `:82` · doPrivileged `:122-126` · AlarmDbConnection/timeQuery `:250,254` · perms `="r"` `:24` ·
+  POST parse `:31,35,38` · String `==` `:340,343` + CSV `:28` · catch vacío `:132` · HashMap collection).
+  `[CERT]` ~42 · `[INFER]` 11 (análisis de seguridad/correctitud, todos anclados). Ratio `[INFER]/[CERT]`
+  ≈ 0.26. Hallazgo de mayor señal: **BQL injection vía `uuid` sin escapar alcanzable a read-permission**;
+  3er subsistema con `doPrivileged` ancho; subsistema read-only (sin ack). Refuerza la nota cross-focus.
