@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **145 bloques**
+Total: **146 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -150,6 +150,7 @@ Total: **145 bloques**
 | 145 | [niagara-mental-model-bloque145.md](niagara-mental-model-bloque145.md) | Block 145 — nmodsreflow.77 (`-rt`): superficie REST de config (read con `?file=` traversal, overwrite total, delta = 2ª puerta a applyConfig) |
 | 146 | [niagara-mental-model-bloque146.md](niagara-mental-model-bloque146.md) | Block 146 — nmodsreflow.77 (`-rt`): los 8 command agents `BReflow*Commands` (tabla de autorización, y por qué el gate `"r"` no protege el REST) |
 | 147 | [niagara-mental-model-bloque147.md](niagara-mental-model-bloque147.md) | Block 147 — nmodsreflow.77 (`-rt`): el taint source HTTP (`Query.method_363` URL-decode sin sanitizar; `QueryFilter` no cubre los params peligrosos) |
+| 148 | [niagara-mental-model-bloque148.md](niagara-mental-model-bloque148.md) | Block 148 — nmodsreflow.77 (`-rt`): capa util (cierre de superficie — bug de ventana en CompareRangeCalculator, taint funnel CommandHelpers) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

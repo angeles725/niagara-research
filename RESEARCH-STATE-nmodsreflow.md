@@ -23,21 +23,22 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
 
 ## Coverage
 
-- **Covered blocks (este focus)**: 10 — B138 (módulo/service/espina HTTP-WebSocket), B139 (licensing),
+- **Covered blocks (este focus)**: 11 — B138 (módulo/service/espina HTTP-WebSocket), B139 (licensing),
   B140 (canal WebSocket: acceptor/sesiones/pub-sub/dispatch), B141 (history: cache gzip disco, threading
   privilegiado, ghost-subscribe, grouping), B142 (alarms: query read-only, doPrivileged ancho, BQL injection uuid),
   B143 (sync: config JSON-Patch multiusuario, doPrivileged config-write sin perms, favoritos por-usuario, sin locking),
   B144 (backups: path traversal por sanitización asimétrica, cero autorización, ops destructivas GET),
   B145 (config REST: read `?file=` traversal, overwrite total sin auth, delta = 2ª puerta a applyConfig),
   B146 (8 command agents: todos gatean `"r"`, ops potentes mal escaladas; REST bypassa el gate),
-  B147 (taint source: `Query.method_363` URL-decode sin sanitizar; `QueryFilter` no cubre los params peligrosos).
-- **Coverage metric**: 10 / 13 gaps cerrados (R13 incluido en el denominador).
-- **Last iteration**: 2026-07-02 — R13 cerrado (taint source): `Query.method_363` (`http/util/Query`) es un parser mínimo que **URL-decodifica el
-  query string crudo sin sanitizar** (agrava el taint: `%2F`→`/`, `%27`→`'` reconstruyen los chars del
-  traversal/injection); guard asimétrico (crash sin `=`, mapComplex sí protege). `QueryFilter.make` es un filtro
-  TIPADO sólo para campos de alarma que **NO cubre** los params peligrosos (`file`/`query`/`uuid`, grep-negativo)
-  → esos van directo fuente→sink. **Cierra el hilo de seguridad end-to-end**: nada aguas arriba mitiga; los
-  hallazgos B142/B144/B145/B146 son explotables de punta a punta. Nota cross-focus CERRADA en B147 §147.4.
+  B147 (taint source: `Query.method_363` URL-decode sin sanitizar; `QueryFilter` no cubre los params peligrosos),
+  B148 (util: cierre de superficie — bug de ventana en `CompareRangeCalculator.last30days`, taint funnel `CommandHelpers`).
+- **Coverage metric**: 11 / 13 gaps cerrados (R13 incluido en el denominador).
+- **Last iteration**: 2026-07-02 — R11 cerrado (util): cierre de superficie de las 8 clases de `util/`. La capa es plumbing en su mayoría correcto,
+  con dos hallazgos: (1) bug de correctitud en `CompareRangeCalculator.last30days` — ventana de 60 días
+  `[now-90,now-30]` en vez de 30 (segundo `cal.add` acumulativo), infla la comparación de 30 días de B141; (2)
+  `CommandHelpers.ordFromArgument` es el embudo taint hacia `BOrd.make(arg)` sin validación (confirma, no agrega,
+  el taint source de B147). Negativos que corroboran B147: `StringUtils` no sanitiza (sólo `countOccurrences`),
+  `Json`/`NavNodeSerializer` construyen JSON con escaping seguro. No mueve la nota de seguridad (cerrada en B147 §147.4).
 
 ## Gap-backlog (priorizado)
 
@@ -53,7 +54,7 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
 | — | R8 · backups: `BackupManager` (daily/incremental) + `Backup*Response` | Java `-rt` | **cerrado B144** |
 | — | R9 · config: `ConfigResponse`/`ConfigUpdateResponse`/`ConfigDeltaResponse` (contrato config.json + JSON Patch RFC6902 de B51) | Java `-rt` | **cerrado B145** |
 | — | R10 · command agents: los 8 `BReflow*Commands` (License/File/Nav/CSV/History/Alarm/User/BQL) como superficie de comandos | Java `-rt` | **cerrado B146** |
-| low | R11 · util: `RangeCalculator`/`CompareRangeCalculator`/`PointHelper`/`NavNodeSerializer`/`Json`/`StringUtils`/`BDateRangeEnum` | Java `-rt` | pending |
+| — | R11 · util: `RangeCalculator`/`CompareRangeCalculator`/`PointHelper`/`NavNodeSerializer`/`Json`/`StringUtils`/`BDateRangeEnum` | Java `-rt` | **cerrado B148** |
 | low | R12 · contrato de datos frontend↔-rt: shapes JSON de los responses (parcialmente en B50/B51) | Java `-rt` + bundle | pending |
 | — | R13 · taint source HTTP: `http/util/Query` (`method_363`) + `QueryFilter.make` — cómo TODO el filtrado se construye desde input crudo (feed de la BQL injection de B142 y del doPrivileged) | Java `-rt` | **cerrado B147** |
 
@@ -71,6 +72,7 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
 | 8 | 2026-07-02 | R9 config REST | B145 | 0 (confirma config-write sin auth por REST; agrega read-traversal `?file=`) |
 | 9 | 2026-07-02 | R10 command agents | B146 | 0 (REVISA framing: gate `"r"` uniforme; REST bypassa el gate; ops mal escaladas) |
 | 10 | 2026-07-02 | R13 taint source | B147 | 0 (cierra el hilo de seguridad end-to-end: URL-decode sin sanitizar, params peligrosos bypassan QueryFilter) |
+| 11 | 2026-07-02 | R11 util | B148 | 0 (cierre de superficie; bug last30days + taint funnel CommandHelpers, corrobora B147) |
 
 ## Blocked gaps (con lo que necesitan)
 
@@ -78,11 +80,11 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
 
 ## Stop control (primario = read-only-investigable = 0, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 3 (R11 util, R12 contrato de datos; R3 casi-cerrado)   ← el loop STATIC para cuando llegue a 0
+- **Open gaps — read-only investigable**: 2 (R12 contrato de datos; R3 casi-cerrado)   ← el loop STATIC para cuando llegue a 0
 - **Open gaps — requires-execution**: 0
 - **Open gaps — blocked** (hardware/live/NDA): 0
 - Iteraciones consecutivas con backlog vacío (secundario): 0/2
-- Próximo gap (según prioridad): **R11 · util** (`RangeCalculator`/`CompareRangeCalculator`/`PointHelper`/`NavNodeSerializer`/`Json`/`StringUtils`/`BDateRangeEnum`). Luego R12 (contrato de datos frontend↔-rt). Al llegar a investigable=0, NEXT-ACTION = **bloque de síntesis cross-focus de seguridad** (nmodsreflow × platform-security), ya maduro y con el hilo cerrado end-to-end (B147 §147.4).
+- Próximo gap (según prioridad): **R12 · contrato de datos frontend↔-rt** (shapes JSON de los responses, parcialmente en B50/B51) — último gap de superficie. Después queda R3 (casi-cerrado). Al llegar a investigable=0, NEXT-ACTION = **bloque de síntesis cross-focus de seguridad** (nmodsreflow × platform-security), ya maduro y con el hilo cerrado end-to-end (B147 §147.4).
 - Budget cap: none
 
 ## Self-verify
@@ -150,3 +152,11 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
   anclados). Ratio `[INFER]/[CERT]` ≈ 0.27. **Cierra el hilo end-to-end**: el único transform fuente→sink es
   URL-decode (agrava el taint), y los params peligrosos no pasan por el filtro tipado → explotabilidad
   confirmada, no teórica.
+- **B148**: barrido delegado de 8 clases + verificación directa de la aritmética del bug y del taint funnel.
+  Tokens `[CERT]`: `last30days` `cal.add(5,-30)`+`add(5,-60)` `CompareRangeCalculator.java:164,166` (ventana 60d)
+  vs `last7days` `:199,201` (7d correcto) · `CommandHelpers.ordFromArgument` `BOrd.make(arg.toString())`
+  `CommandHelpers.java:18` + `comp.get("ord")` `:15` · `StringUtils` sólo `countOccurrences` `:4` · `Json`
+  `com.tridium.json` `.put` `:15-17` · `NavNodeSerializer` `writeStringField` `:34` · `BDateRangeEnum` 15 rangos
+  `:12-13`. `[CERT]` ~24 · `[INFER]` 7 (todos anclados). Ratio `[INFER]/[CERT]` ≈ 0.29. Cierre de superficie:
+  1 bug de correctitud (last30days 60d), 1 taint funnel que corrobora B147, negativos que confirman "sin
+  sanitización en util/". No mueve la nota de seguridad.
