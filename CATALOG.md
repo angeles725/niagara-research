@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **174 bloques**
+Total: **175 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -179,6 +179,7 @@ Total: **174 bloques**
 | 174 | [niagara-mental-model-bloque174.md](niagara-mental-model-bloque174.md) | Block 174 — chihuahua MX60 (`-ux`): subsistema history (BHistoryDatabase, stride downsampling, equipment-histories) |
 | 175 | [niagara-mental-model-bloque175.md](niagara-mental-model-bloque175.md) | Block 175 — chihuahua MX60 (`-ux`): subsistema schedule (NumericSchedule BQL, filtro BChiUp-parent, WebScheduler iframe) |
 | 176 | [niagara-mental-model-bloque176.md](niagara-mental-model-bloque176.md) | Block 176 — chihuahua MX60: build/deploy + infraestructura de tests (gradle multi-módulo, slot-freeze 4.13→4.14, niagaraTest gap) |
+| 177 | [niagara-mental-model-bloque177.md](niagara-mental-model-bloque177.md) | Block 177 — Síntesis comparativa: chihuahua MX60 ↔ nmodsreflow, diferencias + análisis de brechas |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

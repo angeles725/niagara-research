@@ -30,7 +30,7 @@ dimensiones que Reflow (B138-B155). Diferenciadores ya vistos: frontend ES5 IIFE
 
 - **Métrica:** 14 / 14 gaps cerrados (1.00). **Documentación de subsistemas COMPLETA** (C1-C14, B163-B176).
 - **Bloques del focus:** B163 esqueleto · B164 RBAC · B165 servlet · B166 alarmas · B167 audit · B168 protección · B169 equipment/estado · B170 subscripción · B171 write-path · B172 WB tool · B173 links · B174 history · B175 schedule · B176 build/tests.
-- **Pendiente:** síntesis de comparación chihuahua↔Reflow + análisis de brechas (bloques posteriores, pedido del usuario).
+- **Comparación:** B177 (chihuahua↔Reflow, diferencias + brechas) — ENTREGADA. Objetivo del usuario completo.
 
 ## Backlog (matriz de cobertura → 14 gaps, derivada del barrido de auditoría §13)
 
