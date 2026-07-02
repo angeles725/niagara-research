@@ -1,0 +1,35 @@
+# probe run 20260702T185535Z
+# cmd: bash /tmp/claude-1000/-home-cristian-niagara-research/1e80fd78-49b7-4c97-be04-cd7d1d88413c/scratchpad/recon-version.sh
+---
+############ /login page (version disclosure, no creds) ############
+--- login headers ---
+HTTP/1.1 302 Found
+Strict-Transport-Security: max-age=63072000
+Content-Security-Policy: connect-src 'self' workbench ws://127.0.0.1:443 wss://127.0.0.1:443 unsplash.niagaramodules.com; default-src 'self' workbench; font-src 'self' workbench fonts.gstatic.com; img-src 'self' workbench data: module: images.unsplash.com; report-uri /csp-reports; script-src 'self' workbench 'unsafe-inline' 'unsafe-eval'; style-src 'self' workbench 'unsafe-inline' cdnjs.cloudflare.com fonts.googleapis.com
+Cross-Origin-Opener-Policy: same-origin
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 1; mode=block
+Sec-GPC: 1
+Location: https://127.0.0.1/prelogin
+Content-Length: 0
+
+
+############ what is :8080 ############
+HTTP/1.1 404 Not Found
+Connection: Keep-Alive
+Server: Embedthis-http
+ETag: "0-0-699333b6"
+Cache-Control: no-cache
+Last-Modified: Mon, 16 Feb 2026 15:11:50 GMT
+Date: Thu, 02 Jul 2026 18:55:33 GMT
+Content-Length: 167
+Keep-Alive: timeout=60, max=199
+
+--- 8080 TLS? ---
+  (not TLS / no cert)
+
+############ known Niagara version endpoints (passive GET) ############
+  /doc/version.txt -> 302
+  /system/version -> 302
+  /niagara/version -> 302

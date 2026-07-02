@@ -1,0 +1,75 @@
+# probe run 20260702T185430Z
+# cmd: bash /tmp/claude-1000/-home-cristian-niagara-research/1e80fd78-49b7-4c97-be04-cd7d1d88413c/scratchpad/recon-passive.sh
+---
+############ 1. TCP reachability (incl. neighbour Niagara/field ports) ############
+  1911 closed/filtered
+  4911 OPEN
+  80 OPEN
+  443 OPEN
+  3011 OPEN
+  5011 OPEN
+  502 closed/filtered
+  47808 closed/filtered
+  8080 OPEN
+  21 closed/filtered
+  22 closed/filtered
+  23 closed/filtered
+
+############ 2. HTTP :80 response head ############
+HTTP/1.1 303 See Other
+Location: https://127.0.0.1/
+Content-Length: 0
+
+
+############ 3. HTTPS :443 response head ############
+HTTP/1.1 302 Found
+Strict-Transport-Security: max-age=63072000
+Location: https://127.0.0.1/login
+Content-Length: 0
+
+--- prelogin body (first 60 lines, no creds sent) ---
+
+############ 4. TLS cert :443 (web) ############
+subject=CN=Niagara4, O=ForRecoveryPurposes, C=US
+issuer=CN=Niagara4, O=ForRecoveryPurposes, C=US
+serial=4805059222B8463716769608
+notBefore=Sep 17 18:24:46 2025 GMT
+notAfter=Sep 17 18:24:46 2026 GMT
+sha256 Fingerprint=C1:01:41:B2:C4:C3:42:DB:E9:23:1A:06:DD:89:DE:CA:DC:F0:A5:FF:07:7D:F7:1F:90:E0:40:5F:D5:84:E5:D2
+--- key/sig/SAN :443 ---
+        Signature Algorithm: sha256WithRSAEncryption
+            Not Before: Sep 17 18:24:46 2025 GMT
+            Not After : Sep 17 18:24:46 2026 GMT
+                Public-Key: (2048 bit)
+                DNS:Niagara4
+    Signature Algorithm: sha256WithRSAEncryption
+
+############ 5. TLS cert :4911 (foxs) ############
+subject=CN=Niagara4, O=ForRecoveryPurposes, C=US
+issuer=CN=Niagara4, O=ForRecoveryPurposes, C=US
+notBefore=Sep 17 18:24:46 2025 GMT
+notAfter=Sep 17 18:24:46 2026 GMT
+sha256 Fingerprint=C1:01:41:B2:C4:C3:42:DB:E9:23:1A:06:DD:89:DE:CA:DC:F0:A5:FF:07:7D:F7:1F:90:E0:40:5F:D5:84:E5:D2
+
+############ 6. TLS cert :5011 (platform-tls) ############
+subject=CN=Niagara4, O=ForRecoveryPurposes, C=US
+issuer=CN=Niagara4, O=ForRecoveryPurposes, C=US
+notBefore=Sep 17 18:24:46 2025 GMT
+notAfter=Sep 17 18:24:46 2026 GMT
+sha256 Fingerprint=C1:01:41:B2:C4:C3:42:DB:E9:23:1A:06:DD:89:DE:CA:DC:F0:A5:FF:07:7D:F7:1F:90:E0:40:5F:D5:84:E5:D2
+
+############ 7. Platform :3011 plaintext banner (passive read, no cmd) ############
+
+############ 8. Foxs :4911 hello handshake (read-only protocol negotiation) ############
+fox a 0 -1 fox hello
+fox.version=s:1.0.2
+hostName=s:DESKTOP-4AAQ77H
+hostAddress=s:192.168.100.100
+app.name=s:Station
+fox a 1 -1 fox challenge
+
+############ 9. TLS versions/ciphers offered :443 (posture, passive) ############
+  tls1: New, (NONE), Cipher is (NONE)
+  tls1_1: New, (NONE), Cipher is (NONE)
+  tls1_2: New, (NONE), Cipher is (NONE)
+  tls1_3: New, TLSv1.3, Cipher is TLS_AES_256_GCM_SHA384

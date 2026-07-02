@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **153 bloques**
+Total: **154 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -158,6 +158,7 @@ Total: **153 bloques**
 | 153 | [niagara-mental-model-bloque153.md](niagara-mental-model-bloque153.md) | Block 153 — nmodsreflow.77 (`-ux`): la SPA embarcada (identidad/build, framework Vue 2.6.14, contrato de globals, router hash) |
 | 154 | [niagara-mental-model-bloque154.md](niagara-mental-model-bloque154.md) | Block 154 — nmodsreflow.77 (`-ux`): wiring cliente↔backend (mapa de endpoints REST + comandos WS de la SPA) |
 | 155 | [niagara-mental-model-bloque155.md](niagara-mental-model-bloque155.md) | Block 155 — nmodsreflow.77 (`-ux`): postura de seguridad cliente (cara SPA de la cadena B150; por qué el traversal B144 pasa inadvertido) |
+| 156 | [niagara-mental-model-bloque156.md](niagara-mental-model-bloque156.md) | Block 156 — Perfil pasivo de la station viva (Etapa A · B1 del focus `live-station`) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
