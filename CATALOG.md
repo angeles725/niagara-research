@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **166 bloques**
+Total: **170 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -171,6 +171,10 @@ Total: **166 bloques**
 | 166 | [niagara-mental-model-bloque166.md](niagara-mental-model-bloque166.md) | Block 166 — chihuahua MX60 (`-ux/-rt`): subsistema de alarmas (BQL query, latch/unlatch, notes, ackAll, source grouping) |
 | 167 | [niagara-mental-model-bloque167.md](niagara-mental-model-bloque167.md) | Block 167 — chihuahua MX60 (`-ux/-rt`): audit trail (ring auditLog, fire-and-forget, merge con SecurityHistory) |
 | 168 | [niagara-mental-model-bloque168.md](niagara-mental-model-bloque168.md) | Block 168 — chihuahua MX60 (`-rt/-ux`): protección/thresholds (slots BChiUp, control-tick 10s, allowlist de escritura) |
+| 169 | [niagara-mental-model-bloque169.md](niagara-mental-model-bloque169.md) | Block 169 — chihuahua MX60 (`-rt/-ux`): equipment reader + modelo de config/estado (auto-provisioning, slots persistentes) |
+| 170 | [niagara-mental-model-bloque170.md](niagara-mental-model-bloque170.md) | Block 170 — chihuahua MX60 (`-ux`): topología de subscripción frontend (window.MX60, BajaScript + fallback REST, throttling) |
+| 171 | [niagara-mental-model-bloque171.md](niagara-mental-model-bloque171.md) | Block 171 — chihuahua MX60 (`-ux`): write-path frontend (WritePoint, XHR-POST vs baja-native, _bajaSetBroken) |
+| 172 | [niagara-mental-model-bloque172.md](niagara-mental-model-bloque172.md) | Block 172 — chihuahua MX60 (`-wb`): herramienta Workbench BatchLinkEditor (batch-link, validate + commit atómico) — sin equivalente en Reflow |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

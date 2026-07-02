@@ -28,8 +28,8 @@ dimensiones que Reflow (B138-B155). Diferenciadores ya vistos: frontend ES5 IIFE
 
 ## Cobertura
 
-- **Métrica:** 6 / 14 gaps cerrados (0.43). C1-C6 cerrados (B163-B168).
-- **Bloques del focus:** B163 (esqueleto), B164 (RBAC), B165 (superficie servlet), B166 (alarmas), B167 (audit), B168 (protección/thresholds).
+- **Métrica:** 10 / 14 gaps cerrados (0.71). C1-C10 cerrados (B163-B172).
+- **Bloques del focus:** B163 (esqueleto), B164 (RBAC), B165 (servlet), B166 (alarmas), B167 (audit), B168 (protección), B169 (equipment/estado), B170 (subscripción frontend), B171 (write-path), B172 (WB tool).
 
 ## Backlog (matriz de cobertura → 14 gaps, derivada del barrido de auditoría §13)
 
@@ -61,6 +61,10 @@ dimensiones que Reflow (B138-B155). Diferenciadores ya vistos: frontend ES5 IIFE
 | 4 | C4 | B166 | sí · orquestado | alarmas: query BQL paginación por contador, latch en slot `alarmLatches`, notas en `^chihuahua-alarm-notes.json`, ackAll colecta+baja-native; 80 CERT |
 | 5 | C5 | B167 | sí · orquestado | audit: ring ~500 fire-and-forget en 7 rutas, merge SecurityHistory; login-history TODO en realidad resuelto; NET-ADD vs Reflow; 86 CERT |
 | 6 | C6 | B168 | sí · orquestado | protección: state-machine permanent-latch (sin hysteresis), control-tick 10s + COV, cascada asimétrica, allowlist thresholds; 56 CERT |
+| 7 | C7 | B169 | sí · orquestado | equipment/estado: auto-provisioning seed-before-add, 88 equipos reales (vs 68 doc, §14 deriva), userThemes/auditLog persistentes .bog, alarmLatches por-BChiUp; 56 CERT |
+| 8 | C8 | B170 | sí · orquestado | subscripción: window.MX60 IIFE, baja push vs fallback REST 5s (mutuamente excluyentes), SnapshotStore coalescing RAF+500ms (lo que Vue haría solo); 47 CERT |
+| 9 | C9 | B171 | sí · orquestado | write-path: `_bajaSetBroken=true` latch → setpoint XHR-first (rama baja muerta); ≥4 POST vivos + ackAll híbrido; CapabilityStore decorativo; 34 CERT |
+| 10 | C10 | B172 | sí · orquestado | WB tool: BBatchLinkEditor (rwi agent), validate→commit-transaction por-space (sin rollback atómico global), 6 helpers puros WSL-testables; sin equivalente Reflow; 47 CERT |
 
 ## Próxima acción
 
