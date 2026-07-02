@@ -75,8 +75,7 @@ Los items de ESCRITURA (config-write/traversal/wipe) son rung 2-3 (§12): backup
 
 ## Próxima acción
 
-Autenticación resuelta: **HTTPBasicScheme** con el usuario `API` (Basic directo, sin SCRAM). Etapa A casi
-completa: falta **A5** (platform 3011/5011, read-only, cierra A2/versión). Luego **Etapa B terminal**: los 14
-defectos sobre los paths reales `/nmodsreflow/*`. Los items de LECTURA (V6, V8, V11-read, V13) son rung 1
-autenticado; los de ESCRITURA/destructivos (V1-V5, V7, V9, V10, V12) son rung 2-3 → **checkpoint supervisado
-por paso, con backup+oracle** antes de cada escritura (§12). Credencial `API` se revoca al terminar.
+**FOCUS CERRADO (terminal, B162).** Etapa A + Etapa B completas; 13/14 defectos con veredicto vivo. Único
+pendiente: **V7/V8 (BQL exacto)** en el canal WS command-invoke = **requires-execution** (§8/§19) — reapertura
+acotada futura con un probe WS portado. Autorización rung-3 de sesión **expirada**; el usuario `API` se revoca.
+Station **pristina** (`bf70f28f`, 60154 B). Cero secretos exfiltrados (invariante cumplido).
