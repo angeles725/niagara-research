@@ -1,3 +1,4 @@
+<!-- review-status: applied 2026-07-02 · kit 9dcbbc7 (all 7 deltas applied; #7 trimmed to the verifiable half) -->
 # Retro — niagara-research · nmodsreflow + nmodsreflow-ux · 2026-07-02 · Research-SDD self-retrospective
 
 > Run reviewed: nmodsreflow backend B138-B150 (13 blocks) + nmodsreflow-ux frontend B151-B155 (5 blocks),
