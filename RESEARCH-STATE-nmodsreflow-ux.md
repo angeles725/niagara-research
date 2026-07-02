@@ -31,8 +31,8 @@ contra B149/B150. NO es re-auditar v1.7.5 (eso es B50/B51); es el build `.77` co
 
 ## Coverage
 
-- **Covered blocks (este focus)**: 3 — B151 (esqueleto `-ux`), B152 (loaders JS), B153 (SPA embarcada: identidad/framework/globals/router).
-- **Coverage metric**: 3 / 7 gaps cerrados.
+- **Covered blocks (este focus)**: 4 — B151 (esqueleto `-ux`), B152 (loaders JS), B153 (SPA embarcada), B154 (wiring cliente↔backend: endpoints REST + comandos WS).
+- **Coverage metric**: 4 / 7 gaps cerrados.
 - **Last iteration**: 2026-07-02 — U3 cerrado (SPA embarcada): bundle `app.4509efb4.js` (sha256 `81b82b83…`,
   2.63 MB) beautificado con js-beautify. Build stamp `v1.7.7.75 RC5`. **Framework: Vue 2.6.14** (§14: CORRIGE/
   refina B50 que decía 2.7.16 — era el dev-tree v1.7.5), vue-router 3.4.5 hash, Vuex, axios. Contrato de globals
@@ -40,6 +40,11 @@ contra B149/B150. NO es re-auditar v1.7.5 (eso es B50/B51); es el build `.77` co
   cliente que **`Client-Username` es estado Vuex mutable** → audit forjable (B145). Secreto: token Mapbox
   público hardcodeado (`app.beauty.js:118864`). WS a `/nmodsreflow/ws` canal `reflow`, `sync-delta` como comando
   (B140/B143). El barrido dejó U4/U5 mayormente pre-respondidos.
+- **Last iteration**: 2026-07-02 — U4 cerrado (wiring): mapa completo endpoint→método→backend de la SPA (tabla
+  en B154 §154.1) + set de comandos WS sobre el canal `reflow`. **Confirma B144 desde el cliente**: backups
+  create/rename/apply/destroy/reset son GET con `?file=` (mutación destructiva GET-shaped / CSRF). Confirma B143
+  (favorites-read/write, sync-delta, config-control son los comandos WS) y B145 (config_update/delta POST +
+  headers Client-Id[server]/Client-Username[mutable]/Client-Migration[nuevo]).
 
 ## Gap-backlog (priorizado)
 
@@ -48,7 +53,7 @@ contra B149/B150. NO es re-auditar v1.7.5 (eso es B50/B51); es el build `.77` co
 | — | U1 · esqueleto `-ux`: `BReflow`/`BReflowConfig`/`BReflowRedirect` (tipos BComponent/profile, registro de vista) + `module.palette` + `module.xml` | Java `-ux` | **cerrado B151** |
 | — | U2 · cadena de loaders JS: `reflow.js`/`reflow_config.js`/`reflow_redirect.js` + `lib/{loader,resolver,hyperlink}.js` — cómo BajaScript bootstrapea y monta la SPA | JS `-ux` | **cerrado B152** |
 | — | U3 · SPA embarcada `.77`: identidad/build de `app.4509efb4.js` (minificada) + `chunk-vendors` — framework (Vue 2.6.14, corrige B50), diff forense frontend 1.5↔1.7 vs B51 | JS `-rt/rc` (beautify js-beautify) | **cerrado B153** |
-| medium | U4 · wiring frontend↔backend: cómo la SPA llama al REST/WS (cara cliente del contrato B149 + canal WS B140) — capa fetch/axios, endpoints, headers | JS SPA + cross-ref B149/B140 | pending |
+| — | U4 · wiring frontend↔backend: cómo la SPA llama al REST/WS (cara cliente del contrato B149 + canal WS B140) — capa fetch/axios, endpoints, headers | JS SPA + cross-ref B149/B140 | **cerrado B154** |
 | medium | U5 · postura de seguridad cliente: ¿la SPA envía los headers `Client-Username`/`Client-Id` (audit forjable B145)?; cómo arma los params `file`/`query`/`config` (cara cliente de B142/B144/B145/B147); secretos/tokens en el bundle; interplay CSP (B149) | JS SPA + cross-ref B145/B147/B149 | pending |
 | low | U6 · redirect/hyperlink: `BReflowRedirect` + `reflow_redirect.js` + `lib/hyperlink.js` — deep-linking / navegación ORD (posible superficie de open-redirect) | Java+JS `-ux` | pending |
 | low | U7 · config cliente: `BReflowConfig` + `reflow_config.js` — contrato de config del lado cliente (cross-ref config.json B143/B145 + B51) | Java+JS `-ux` | pending |
@@ -61,11 +66,11 @@ contra B149/B150. NO es re-auditar v1.7.5 (eso es B50/B51); es el build `.77` co
 
 ## Stop control (primario = read-only-investigable = 0, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 4 (U4-U7; el beautified-temp de la SPA ya está en scratchpad — U4/U5 no necesitan re-provisión)
+- **Open gaps — read-only investigable**: 3 (U5 seguridad cliente, U6 redirect/hyperlink, U7 config cliente — varios solapados con B152/B153/B154, se cerrarán con criterio; posible consolidación)
 - **Open gaps — requires-execution**: 0
 - **Open gaps — blocked** (hardware/live/NDA): 0
 - Iteraciones consecutivas con backlog vacío (secundario): 0/2
-- Próximo gap (según prioridad): **U4 · wiring frontend↔backend** (mapa completo de endpoints REST/WS que la SPA llama, capa axios, cara cliente del contrato B149). Mayormente pre-respondido por el barrido de U3; finalizar sobre `scratchpad/app.beauty.js`. Luego U5 (seguridad cliente), U6 (redirect/hyperlink), U7 (config cliente).
+- Próximo gap (según prioridad): **U5 · postura de seguridad cliente** (construcción de params `file`/`query`/`config`, el `Client-Username` mutable ya visto, el token Mapbox, y la síntesis de cómo la SPA alimenta la cadena de sinks de B150) sobre `scratchpad/app.beauty.js`. Luego U6 (redirect/hyperlink, mayormente B152) y U7 (config cliente).
 - Budget cap: none
 
 ## Iteration history
@@ -75,6 +80,7 @@ contra B149/B150. NO es re-auditar v1.7.5 (eso es B50/B51); es el build `.77` co
 | 1 | 2026-07-02 | U1 esqueleto `-ux` | B151 | 0 (confirma la cadena de loaders para U2) |
 | 2 | 2026-07-02 | U2 loaders JS | B152 | 0 (deja el contrato de globals inject*/destroyApp + router hash para U3) |
 | 3 | 2026-07-02 | U3 SPA embarcada | B153 | 0 (§14 corrige B50 Vue 2.7→2.6.14; deja U4/U5 pre-respondidos) |
+| 4 | 2026-07-02 | U4 wiring cliente↔backend | B154 | 0 (confirma B143/B144/B145 desde el cliente; mapa endpoint+WS completo) |
 
 ## Self-verify
 
@@ -93,3 +99,7 @@ contra B149/B150. NO es re-auditar v1.7.5 (eso es B50/B51); es el build `.77` co
   `:118864`, WS `:4087`, hash `:121825`). `[CERT]` ~28 · `[INFER]` 8 (anclados). Ratio ≈ 0.29. **Corrige B50**
   (Vue 2.7.16 dev-tree → 2.6.14 shipped, §14). Confirma B152 (contrato de globals) y B145 (Client-Username
   mutable). Identidad re-medida en vivo (sha256). Tool js-beautify registrado en INSTALLED-TOOLS.md.
+- **B154**: grep dirigido + lectura de ventanas del beautified-temp (fuente primaria 1:1). `[CERT]` ~30
+  (endpoints con `file:line` de axios verb, comandos WS, headers) · `[INFER]` 6 (anclados). Ratio ≈ 0.20.
+  Mapa endpoint→método→backend completo; confirma B143 (comandos WS), B144 (backups GET `?file=`), B145
+  (config POST + `Client-*`). Header nuevo `Client-Migration`.

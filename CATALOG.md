@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **151 bloques**
+Total: **152 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -156,6 +156,7 @@ Total: **151 bloques**
 | 151 | [niagara-mental-model-bloque151.md](niagara-mental-model-bloque151.md) | Block 151 — nmodsreflow.77 (`-ux`): esqueleto del módulo cliente (3 view-agents `BIJavaScript` sobre `ReflowService`, identidad del módulo) |
 | 152 | [niagara-mental-model-bloque152.md](niagara-mental-model-bloque152.md) | Block 152 — nmodsreflow.77 (`-ux`): cadena de loaders JS (widgets bajaux → iframe → SPA, ORD scheme `|reflow:`, proxy de hyperlink) |
 | 153 | [niagara-mental-model-bloque153.md](niagara-mental-model-bloque153.md) | Block 153 — nmodsreflow.77 (`-ux`): la SPA embarcada (identidad/build, framework Vue 2.6.14, contrato de globals, router hash) |
+| 154 | [niagara-mental-model-bloque154.md](niagara-mental-model-bloque154.md) | Block 154 — nmodsreflow.77 (`-ux`): wiring cliente↔backend (mapa de endpoints REST + comandos WS de la SPA) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
