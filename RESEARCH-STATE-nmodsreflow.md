@@ -23,17 +23,18 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
 
 ## Coverage
 
-- **Covered blocks (este focus)**: 6 — B138 (módulo/service/espina HTTP-WebSocket), B139 (licensing),
+- **Covered blocks (este focus)**: 7 — B138 (módulo/service/espina HTTP-WebSocket), B139 (licensing),
   B140 (canal WebSocket: acceptor/sesiones/pub-sub/dispatch), B141 (history: cache gzip disco, threading
   privilegiado, ghost-subscribe, grouping), B142 (alarms: query read-only, doPrivileged ancho, BQL injection uuid),
-  B143 (sync: config JSON-Patch multiusuario, doPrivileged config-write sin perms, favoritos por-usuario, sin locking).
-- **Coverage metric**: 6 / 12 gaps cerrados (+ 1 sub-gap nuevo R13 descubierto).
-- **Last iteration**: 2026-07-02 — R7 cerrado (sync): `BReflowSyncService` (BAbstractService bajo BReflowService)
-  = colaboración realtime multiusuario sobre `config.json` compartido vía deltas JSON-Patch (zjsonpatch). El
-  comando `sync-delta` **aplica y persiste un JSON-Patch del cliente bajo `doPrivileged` ancho SIN
-  `requiredPermissions`** (4to subsistema con el patrón, único que escribe estado); `ConfigIO` sin locking
-  (threads crudos); favoritos por-usuario self-scoped por username server-side (sin cross-user write ni path
-  traversal alcanzable). Nota cross-focus REFORZADA en B143 §143.7 (agrega la superficie config-write).
+  B143 (sync: config JSON-Patch multiusuario, doPrivileged config-write sin perms, favoritos por-usuario, sin locking),
+  B144 (backups: path traversal por sanitización asimétrica, cero autorización, ops destructivas GET).
+- **Coverage metric**: 7 / 12 gaps cerrados (+ 1 sub-gap nuevo R13 descubierto).
+- **Last iteration**: 2026-07-02 — R8 cerrado (backups): BackupManager static-util; un backup = copia del config.json.
+  **Superficie más grave del focus**: sanitización de nombre ASIMÉTRICA (create la aplica `:215`, pero
+  destroy `:64`/apply `:174`/rename `:89` NO) → path traversal de delete/overwrite/move de `.json` arbitrario;
+  cero `requiredPermissions` en las 6 Response; ops destructivas (apply/destroy/reset) GET-triggerable (CSRF);
+  reset borra config sin auth ni token. Único subsistema SIN `doPrivileged`. Nota cross-focus REFORZADA en
+  B144 §144.5 (R8 = pico de la superficie de seguridad agregada).
 
 ## Gap-backlog (priorizado)
 
@@ -46,7 +47,7 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
 | low | R3 · montaje del servlet: cómo `BaseServlet`/`SocketServlet` reciben path en Jetty (cross-ref `web-rt`, B9) | Java `-rt` + framework | casi-cerrado B140 (web.xml `/ws` + `/*`); resta base `/module/<name>/` |
 | — | R6 · alarms: `ReflowAlarmSource`/`AlarmData`/`QueryFilter`/`AlarmSourceCollection` + `AlarmQueryResponse` (POST) | Java `-rt` | **cerrado B142** |
 | — | R7 · sync: `BReflowSyncService`/`ConfigIO`/`ReflowSyncResponse` + favoritos ORD-tree (multiusuario) | Java `-rt` | **cerrado B143** |
-| medium | R8 · backups: `BackupManager` (daily/incremental) + `Backup*Response` | Java `-rt` | pending |
+| — | R8 · backups: `BackupManager` (daily/incremental) + `Backup*Response` | Java `-rt` | **cerrado B144** |
 | medium | R9 · config: `ConfigResponse`/`ConfigUpdateResponse`/`ConfigDeltaResponse` (contrato config.json + JSON Patch RFC6902 de B51) | Java `-rt` | pending |
 | medium | R10 · command agents: los 8 `BReflow*Commands` (License/File/Nav/CSV/History/Alarm/User/BQL) como superficie de comandos | Java `-rt` | pending |
 | low | R11 · util: `RangeCalculator`/`CompareRangeCalculator`/`PointHelper`/`NavNodeSerializer`/`Json`/`StringUtils`/`BDateRangeEnum` | Java `-rt` | pending |
@@ -63,6 +64,7 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
 | 4 | 2026-07-02 | R5 history | B141 | 0 (subsistema autocontenido; abre nota de síntesis cross-focus security) |
 | 5 | 2026-07-02 | R6 alarms | B142 | R13 (taint source `http/util/Query`+`QueryFilter.make`, feed de BQL injection) |
 | 6 | 2026-07-02 | R7 sync | B143 | 0 (config-write surface; refuerza nota cross-focus con superficie de escritura) |
+| 7 | 2026-07-02 | R8 backups | B144 | 0 (path traversal + zero-auth destructivo; pico de la superficie agregada) |
 
 ## Blocked gaps (con lo que necesitan)
 
@@ -70,11 +72,11 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
 
 ## Stop control (primario = read-only-investigable = 0, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 7 (R8–R13; R3 casi-cerrado)   ← el loop STATIC para cuando llegue a 0
+- **Open gaps — read-only investigable**: 6 (R9–R13; R3 casi-cerrado)   ← el loop STATIC para cuando llegue a 0
 - **Open gaps — requires-execution**: 0
 - **Open gaps — blocked** (hardware/live/NDA): 0
 - Iteraciones consecutivas con backlog vacío (secundario): 0/2
-- Próximo gap (según prioridad): **R8 · backups** (`BackupManager` daily/incremental + `Backup*Response`). Alternativa de alta señal: R13 (taint source `http/util/Query`, cierra el análisis de la BQL injection de B142).
+- Próximo gap (según prioridad): **R9 · config** (`ConfigResponse`/`ConfigUpdateResponse`/`ConfigDeltaResponse` — contrato config.json + JSON Patch RFC6902). Alternativa de alta señal: R13 (taint source `http/util/Query`, cierra el análisis de la BQL injection de B142 y de los params `file` de B144).
 - Budget cap: none
 
 ## Self-verify
@@ -109,3 +111,12 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
   `[INFER]/[CERT]` ≈ 0.30. Hallazgo de mayor señal: **config-write de un JSON-Patch del cliente bajo
   `doPrivileged` ancho SIN permission check** (4to subsistema, único que escribe estado); `ConfigIO` sin
   locking; favoritos self-scoped por username server-side (sin cross-user write ni path traversal alcanzable).
+- **B144**: tokens load-bearing `[CERT]` grep-confirmados en `file:line` exacto — sanitize regex create `:215`
+  vs concats sin sanitizar destroy `:64`/apply `:174`/rename `:89` (newName scrub `:83`); `delete()` `:69`;
+  ausencia total de `requiredPermissions`/`doPrivileged`/permission-checks en `backups/`+`Backup*Response`
+  (grep-negativo); las 6 Response = `serve` GET-shaped `getQueryString`; reset delete `config.json` `:20`.
+  `[CERT]` ~34 · `[INFER]` 14 (análisis de explotabilidad; el escape real del `..` marcado `[INFER]` porque
+  depende de la semántica de `FilePath`, anclado al concat `[CERT]`). Ratio `[INFER]/[CERT]` ≈ 0.41 — alto
+  porque el gap es de seguridad (mucha deducción de impacto sobre pocas líneas load-bearing), no por falta de
+  evidencia. **Superficie más grave del focus**: path traversal delete/overwrite/move de `.json` arbitrario +
+  wipe de config, todo sin autorización y GET-triggerable (CSRF). Único subsistema sin `doPrivileged`.

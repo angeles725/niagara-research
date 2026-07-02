@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **141 bloques**
+Total: **142 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -146,6 +146,7 @@ Total: **141 bloques**
 | 141 | [niagara-mental-model-bloque141.md](niagara-mental-model-bloque141.md) | Block 141 — nmodsreflow.77 (`-rt`): subsistema history (cache GZIP en disco, threading privilegiado, ghost-subscribe, grouping) |
 | 142 | [niagara-mental-model-bloque142.md](niagara-mental-model-bloque142.md) | Block 142 — nmodsreflow.77 (`-rt`): subsistema alarms (query read-only, doPrivileged ancho, BQL injection vía uuid) |
 | 143 | [niagara-mental-model-bloque143.md](niagara-mental-model-bloque143.md) | Block 143 — nmodsreflow.77 (`-rt`): subsistema sync (colaboración config multiusuario JSON-Patch, favoritos por-usuario, sin locking) |
+| 144 | [niagara-mental-model-bloque144.md](niagara-mental-model-bloque144.md) | Block 144 — nmodsreflow.77 (`-rt`): subsistema backups (path traversal por sanitización asimétrica, cero autorización, ops destructivas GET) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
