@@ -23,20 +23,21 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
 
 ## Coverage
 
-- **Covered blocks (este focus)**: 9 — B138 (módulo/service/espina HTTP-WebSocket), B139 (licensing),
+- **Covered blocks (este focus)**: 10 — B138 (módulo/service/espina HTTP-WebSocket), B139 (licensing),
   B140 (canal WebSocket: acceptor/sesiones/pub-sub/dispatch), B141 (history: cache gzip disco, threading
   privilegiado, ghost-subscribe, grouping), B142 (alarms: query read-only, doPrivileged ancho, BQL injection uuid),
   B143 (sync: config JSON-Patch multiusuario, doPrivileged config-write sin perms, favoritos por-usuario, sin locking),
   B144 (backups: path traversal por sanitización asimétrica, cero autorización, ops destructivas GET),
   B145 (config REST: read `?file=` traversal, overwrite total sin auth, delta = 2ª puerta a applyConfig),
-  B146 (8 command agents: todos gatean `"r"`, ops potentes mal escaladas; REST bypassa el gate).
-- **Coverage metric**: 9 / 12 gaps cerrados (+ 1 sub-gap nuevo R13 descubierto).
-- **Last iteration**: 2026-07-02 — R10 cerrado (command agents): los 8 `BReflow*Commands` gatean UNIFORME a `requiredPermissions="r"` (read-level)
-  vía `@AgentOn` — **REVISE-and-CONFIRM**: la capa de comandos NO es "cero autorización" (corrige el framing de
-  B143-B145), pero el gate está mal escalado (BQL arbitrario con Context nulo `:68`, license refresh `:169`,
-  fs-traversal `:64` todos detrás de `"r"`) Y los Response REST bypassean el gate llamando a los statics
-  directo (el `"r"` cabalga el `@AgentOn`, no el dato). Negativos: sin file-write/delete (File sólo `listFiles`),
-  sin user-CRUD (User sólo lee roles). Nota cross-focus AFINADA en B146 §146.6.
+  B146 (8 command agents: todos gatean `"r"`, ops potentes mal escaladas; REST bypassa el gate),
+  B147 (taint source: `Query.method_363` URL-decode sin sanitizar; `QueryFilter` no cubre los params peligrosos).
+- **Coverage metric**: 10 / 13 gaps cerrados (R13 incluido en el denominador).
+- **Last iteration**: 2026-07-02 — R13 cerrado (taint source): `Query.method_363` (`http/util/Query`) es un parser mínimo que **URL-decodifica el
+  query string crudo sin sanitizar** (agrava el taint: `%2F`→`/`, `%27`→`'` reconstruyen los chars del
+  traversal/injection); guard asimétrico (crash sin `=`, mapComplex sí protege). `QueryFilter.make` es un filtro
+  TIPADO sólo para campos de alarma que **NO cubre** los params peligrosos (`file`/`query`/`uuid`, grep-negativo)
+  → esos van directo fuente→sink. **Cierra el hilo de seguridad end-to-end**: nada aguas arriba mitiga; los
+  hallazgos B142/B144/B145/B146 son explotables de punta a punta. Nota cross-focus CERRADA en B147 §147.4.
 
 ## Gap-backlog (priorizado)
 
@@ -54,7 +55,7 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
 | — | R10 · command agents: los 8 `BReflow*Commands` (License/File/Nav/CSV/History/Alarm/User/BQL) como superficie de comandos | Java `-rt` | **cerrado B146** |
 | low | R11 · util: `RangeCalculator`/`CompareRangeCalculator`/`PointHelper`/`NavNodeSerializer`/`Json`/`StringUtils`/`BDateRangeEnum` | Java `-rt` | pending |
 | low | R12 · contrato de datos frontend↔-rt: shapes JSON de los responses (parcialmente en B50/B51) | Java `-rt` + bundle | pending |
-| medium | R13 · taint source HTTP: `http/util/Query` (`method_363`) + `QueryFilter.make` — cómo TODO el filtrado se construye desde input crudo (feed de la BQL injection de B142 y del doPrivileged) | Java `-rt` | pending (descubierto en B142) |
+| — | R13 · taint source HTTP: `http/util/Query` (`method_363`) + `QueryFilter.make` — cómo TODO el filtrado se construye desde input crudo (feed de la BQL injection de B142 y del doPrivileged) | Java `-rt` | **cerrado B147** |
 
 ## Iteration history
 
@@ -69,6 +70,7 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
 | 7 | 2026-07-02 | R8 backups | B144 | 0 (path traversal + zero-auth destructivo; pico de la superficie agregada) |
 | 8 | 2026-07-02 | R9 config REST | B145 | 0 (confirma config-write sin auth por REST; agrega read-traversal `?file=`) |
 | 9 | 2026-07-02 | R10 command agents | B146 | 0 (REVISA framing: gate `"r"` uniforme; REST bypassa el gate; ops mal escaladas) |
+| 10 | 2026-07-02 | R13 taint source | B147 | 0 (cierra el hilo de seguridad end-to-end: URL-decode sin sanitizar, params peligrosos bypassan QueryFilter) |
 
 ## Blocked gaps (con lo que necesitan)
 
@@ -76,11 +78,11 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
 
 ## Stop control (primario = read-only-investigable = 0, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 4 (R11–R13; R3 casi-cerrado)   ← el loop STATIC para cuando llegue a 0
+- **Open gaps — read-only investigable**: 3 (R11 util, R12 contrato de datos; R3 casi-cerrado)   ← el loop STATIC para cuando llegue a 0
 - **Open gaps — requires-execution**: 0
 - **Open gaps — blocked** (hardware/live/NDA): 0
 - Iteraciones consecutivas con backlog vacío (secundario): 0/2
-- Próximo gap (según prioridad): **R13 · taint source** (`http/util/Query.method_363` + `QueryFilter.make`) — alta señal: cierra el análisis del traversal/injection común a B142/B144/B145/B146 (todos los params `file`/`query`). Alternativas de menor prioridad: R11 util, R12 contrato de datos, R3 (base `/module/<name>/`, casi-cerrado).
+- Próximo gap (según prioridad): **R11 · util** (`RangeCalculator`/`CompareRangeCalculator`/`PointHelper`/`NavNodeSerializer`/`Json`/`StringUtils`/`BDateRangeEnum`). Luego R12 (contrato de datos frontend↔-rt). Al llegar a investigable=0, NEXT-ACTION = **bloque de síntesis cross-focus de seguridad** (nmodsreflow × platform-security), ya maduro y con el hilo cerrado end-to-end (B147 §147.4).
 - Budget cap: none
 
 ## Self-verify
@@ -140,3 +142,11 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
   anclados). Ratio `[INFER]/[CERT]` ≈ 0.29. **REVISE-and-CONFIRM**: los 8 gatean `"r"` (corrige "cero
   autorización"), pero mal escalado + REST bypassa el gate (cabalga `@AgentOn`, no el dato). Negativos: sin
   file-write/delete, sin user-CRUD (colapsan 2 sub-claims de la tesis).
+- **B147**: lectura directa completa de las 2 clases (203 líneas) + grep-confirmación de negativos. Tokens
+  load-bearing `[CERT]`: `URLDecoder.decode` `Q:19` (URL-decode del input crudo) · split `&`/`indexOf("=")`
+  `Q:15,18` · guard asimétrico `Q:18-19` vs `mapComplex Q:32-33,38` · `QueryFilter` campos sólo de alarma
+  `QF:16-24,26-112` · **`QueryFilter` no referencia `file`/`query`/`uuid`** (grep-negativo) · sinks directos
+  `BackupDestroyResponse:13`/`ConfigResponse:27`/`BackupApplyResponse:18`. `[CERT]` ~22 · `[INFER]` 6 (todos
+  anclados). Ratio `[INFER]/[CERT]` ≈ 0.27. **Cierra el hilo end-to-end**: el único transform fuente→sink es
+  URL-decode (agrava el taint), y los params peligrosos no pasan por el filtro tipado → explotabilidad
+  confirmada, no teórica.
