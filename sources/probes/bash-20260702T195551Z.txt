@@ -1,0 +1,13 @@
+# probe run 20260702T195551Z
+# cmd: bash /tmp/claude-1000/-home-cristian-niagara-research/1e80fd78-49b7-4c97-be04-cd7d1d88413c/scratchpad/etapaB-write-evidence.sh
+---
+### V1-V3 config-write (POST /nmodsreflow/config_update) — outcome from real captures ###
+  POST marker at read-level user API -> HTTP 200 (accepted)
+  oracle GET after write: __researchProbe present = True -> WRITE APPLIED, no write-auth gate
+  afterwrite bytes = 63778
+### V12 forged Client-* author headers -> HTTP 200 (arbitrary author accepted; audit forgeable) ###
+### RESTORE verification — live station returned to pristine ###
+  live config sha256 == pristine backup: True
+  pristine sha256[:24]: bf70f28f2c2ceab031d9dce0
+  marker absent in live config: True
+  live bytes: 60154

@@ -13,8 +13,8 @@ usuario por paso. El usuario de prueba (`API`) se revoca al terminar.
 
 ## Cobertura
 
-- **Métrica:** 9 / 19 gaps cerrados (0.47). **Etapa A CERRADA**; A2 Reflow-version ahora `[CERT-hw]` (1.7.7 Ago 2025). Etapa B: read-side verificado (5 veredictos), write/BQL pendientes.
-- **Bloques del focus:** B156 (perfil pasivo), B157 (Etapa A auth: web + mount Reflow), B158 (platform + cierre Etapa A), B159 (Etapa B read-side: V6/V13/V11/V5/V14).
+- **Métrica:** 13 / 19 gaps cerrados (0.68). **Etapa A CERRADA**. Etapa B: read-side (V6/V13/V11/V5/V14) + write reversible (V1-V3/V12) verificados; pendientes V4/V10 (destructivos), V7/V8 (BQL), V9.
+- **Bloques del focus:** B156 (perfil pasivo), B157 (Etapa A auth), B158 (platform + cierre A), B159 (Etapa B read-side), B160 (config-write CONFIRMADO vivo: V1-V3/V12).
 - **Autorización rung-3:** concedida por el operador esta sesión (backup propio verificado sha256 bf70f28f…; el operador tiene el suyo). Expira al cierre de sesión / revocación del usuario `API`.
 
 ## Ground-truth vivo (§12 — re-medido, NO heredado)
@@ -70,6 +70,7 @@ Los items de ESCRITURA (config-write/traversal/wipe) son rung 2-3 (§12): backup
 | 2 | A2/A3/A4 | B157 | no · inline | Etapa A auth (Basic); 7/7 tokens; mount real `/nmodsreflow/` resuelve B138 §178 (§14); config JSON read-level; A2 parcial |
 | 3 | A5 + cierre A2 | B158 | no · inline | platform 3011/5011 = HTTP(S) guardado (403); A2 ausencia probada (blocked); **Etapa A CERRADA**; 4/4 tokens |
 | 4 | Etapa B read (V6/V13/V11/V5/V14) | B159 | no · inline | read-first rung-1; superficie viva CONFIRMADA pero exfil trivial NO reproduce (`?file=`→{status:500}, WeatherMap fetch outbound sí, EquipmentNote header consumido); versión viva 1.7.7; V8 diferido a WS; 5/5 tokens |
+| 5 | Etapa B write reversible (V1-V3/V12) | B160 | no · inline · rung-2 | **CROWN**: read-level user sobrescribió config vía POST config_update (oracle-confirmado), audit forjable con Client-* forjados; restore byte-idéntico ×2 (bf70f28f); tesis B150 §150.1 → `[CERT-hw]`; 4/4 tokens |
 
 ## Próxima acción
 
