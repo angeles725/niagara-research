@@ -23,7 +23,7 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
 
 ## Coverage
 
-- **Covered blocks (este focus)**: 11 — B138 (módulo/service/espina HTTP-WebSocket), B139 (licensing),
+- **Covered blocks (este focus)**: 12 — B138 (módulo/service/espina HTTP-WebSocket), B139 (licensing),
   B140 (canal WebSocket: acceptor/sesiones/pub-sub/dispatch), B141 (history: cache gzip disco, threading
   privilegiado, ghost-subscribe, grouping), B142 (alarms: query read-only, doPrivileged ancho, BQL injection uuid),
   B143 (sync: config JSON-Patch multiusuario, doPrivileged config-write sin perms, favoritos por-usuario, sin locking),
@@ -31,14 +31,16 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
   B145 (config REST: read `?file=` traversal, overwrite total sin auth, delta = 2ª puerta a applyConfig),
   B146 (8 command agents: todos gatean `"r"`, ops potentes mal escaladas; REST bypassa el gate),
   B147 (taint source: `Query.method_363` URL-decode sin sanitizar; `QueryFilter` no cubre los params peligrosos),
-  B148 (util: cierre de superficie — bug de ventana en `CompareRangeCalculator.last30days`, taint funnel `CommandHelpers`).
-- **Coverage metric**: 11 / 13 gaps cerrados (R13 incluido en el denominador).
-- **Last iteration**: 2026-07-02 — R11 cerrado (util): cierre de superficie de las 8 clases de `util/`. La capa es plumbing en su mayoría correcto,
-  con dos hallazgos: (1) bug de correctitud en `CompareRangeCalculator.last30days` — ventana de 60 días
-  `[now-90,now-30]` en vez de 30 (segundo `cal.add` acumulativo), infla la comparación de 30 días de B141; (2)
-  `CommandHelpers.ordFromArgument` es el embudo taint hacia `BOrd.make(arg)` sin validación (confirma, no agrega,
-  el taint source de B147). Negativos que corroboran B147: `StringUtils` no sanitiza (sólo `countOccurrences`),
-  `Json`/`NavNodeSerializer` construyen JSON con escaping seguro. No mueve la nota de seguridad (cerrada en B147 §147.4).
+  B148 (util: cierre de superficie — bug de ventana en `CompareRangeCalculator.last30days`, taint funnel `CommandHelpers`),
+  B149 (contrato de datos HTTP: router `BaseServlet` sin envelope ni auth-gate, shapes JSON, nuevos sinks EquipmentNote/WeatherMap).
+- **Coverage metric**: 12 / 13 gaps cerrados (R13 incluido; sólo resta R3 casi-cerrado).
+- **Last iteration**: 2026-07-02 — R12 cerrado (contrato de datos): `BaseServlet` rutea con un ladder if/else sobre `getPathInfo()`, **sin envelope
+  común y sin gate de auth** (grep-negativo → refuerza la tesis zero-auth a nivel router; el REST no tiene ni el
+  `"r"` de los comandos). Documentados los shapes JSON de las 9 Response no cubiertas (arrays/árboles
+  `{ord,name,type}`) + los 4 serializers. **Nuevos sinks que extienden la cadena**: EquipmentNote read/write por
+  header `Equipment-Id`→FilePath (primitiva de escritura sin perms), WeatherMap SSRF-flavored (`config`→URL
+  upstream) + fuga del HostID de la station, FileTree expone el árbol completo, CSP `unsafe-inline/eval`. Nota
+  cross-focus en B149 §149.5 (suma sinks; veredicto sin cambio). Mapeo de superficie COMPLETO.
 
 ## Gap-backlog (priorizado)
 
@@ -55,7 +57,7 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
 | — | R9 · config: `ConfigResponse`/`ConfigUpdateResponse`/`ConfigDeltaResponse` (contrato config.json + JSON Patch RFC6902 de B51) | Java `-rt` | **cerrado B145** |
 | — | R10 · command agents: los 8 `BReflow*Commands` (License/File/Nav/CSV/History/Alarm/User/BQL) como superficie de comandos | Java `-rt` | **cerrado B146** |
 | — | R11 · util: `RangeCalculator`/`CompareRangeCalculator`/`PointHelper`/`NavNodeSerializer`/`Json`/`StringUtils`/`BDateRangeEnum` | Java `-rt` | **cerrado B148** |
-| low | R12 · contrato de datos frontend↔-rt: shapes JSON de los responses (parcialmente en B50/B51) | Java `-rt` + bundle | pending |
+| — | R12 · contrato de datos frontend↔-rt: shapes JSON de los responses (parcialmente en B50/B51) | Java `-rt` + bundle | **cerrado B149** |
 | — | R13 · taint source HTTP: `http/util/Query` (`method_363`) + `QueryFilter.make` — cómo TODO el filtrado se construye desde input crudo (feed de la BQL injection de B142 y del doPrivileged) | Java `-rt` | **cerrado B147** |
 
 ## Iteration history
@@ -73,6 +75,7 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
 | 9 | 2026-07-02 | R10 command agents | B146 | 0 (REVISA framing: gate `"r"` uniforme; REST bypassa el gate; ops mal escaladas) |
 | 10 | 2026-07-02 | R13 taint source | B147 | 0 (cierra el hilo de seguridad end-to-end: URL-decode sin sanitizar, params peligrosos bypassan QueryFilter) |
 | 11 | 2026-07-02 | R11 util | B148 | 0 (cierre de superficie; bug last30days + taint funnel CommandHelpers, corrobora B147) |
+| 12 | 2026-07-02 | R12 contrato de datos | B149 | 0 (router sin auth-gate refuerza tesis; nuevos sinks EquipmentNote/WeatherMap; superficie COMPLETA) |
 
 ## Blocked gaps (con lo que necesitan)
 
@@ -80,11 +83,11 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
 
 ## Stop control (primario = read-only-investigable = 0, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 2 (R12 contrato de datos; R3 casi-cerrado)   ← el loop STATIC para cuando llegue a 0
+- **Open gaps — read-only investigable**: 1 residual (R3 · base `/module/<name>/`, casi-cerrado — bajo valor) + NEXT-ACTION terminal pendiente (síntesis cross-focus)   ← superficie de subsistemas COMPLETA
 - **Open gaps — requires-execution**: 0
 - **Open gaps — blocked** (hardware/live/NDA): 0
 - Iteraciones consecutivas con backlog vacío (secundario): 0/2
-- Próximo gap (según prioridad): **R12 · contrato de datos frontend↔-rt** (shapes JSON de los responses, parcialmente en B50/B51) — último gap de superficie. Después queda R3 (casi-cerrado). Al llegar a investigable=0, NEXT-ACTION = **bloque de síntesis cross-focus de seguridad** (nmodsreflow × platform-security), ya maduro y con el hilo cerrado end-to-end (B147 §147.4).
+- Próximo gap: **NEXT-ACTION TERMINAL = bloque de síntesis cross-focus de seguridad** (nmodsreflow × platform-security) — consolida B139/B141/B142/B143/B144/B145/B146/B147/B149 contra `skipModuleValidation` (B75/B113) y el licensing bypass (B139). Autónomo y seguro (read-only, sólo consolida hallazgos citados). R3 queda como residual casi-cerrado de bajo valor. Tras la síntesis → STOP del focus con TOOLS REPORT.
 - Budget cap: none
 
 ## Self-verify
@@ -160,3 +163,10 @@ eligió el ángulo "Arquitectura backend -rt" (2026-07-01).
   `:12-13`. `[CERT]` ~24 · `[INFER]` 7 (todos anclados). Ratio `[INFER]/[CERT]` ≈ 0.29. Cierre de superficie:
   1 bug de correctitud (last30days 60d), 1 taint funnel que corrobora B147, negativos que confirman "sin
   sanitización en util/". No mueve la nota de seguridad.
+- **B149**: tokens `[CERT]` grep-confirmados en `file:line` exacto — `BaseServlet` cero checks de permiso
+  (grep count 0) + dispatch `getPathInfo` `:57,272` + CSP `unsafe-inline/eval` `:48`/`connect-src *` `:50` ·
+  EquipmentNote header→FilePath read `EquipmentNoteResponse.java:20-24`/write `EquipmentNoteUpdateResponse.java:20,24`
+  · WeatherMap `config`→URL upstream `WeatherMapResponse.java:82` + `getHostId` `:117-119` · FileTree shape
+  `:43-54` · FileResponse `module://.../rc`+path `:49` · serializers shapes. `[CERT]` ~30 · `[INFER]` 11
+  (todos anclados). Ratio `[INFER]/[CERT]` ≈ 0.37. Contrato de datos documentado; router sin auth-gate refuerza
+  la tesis; nuevos sinks (EquipmentNote write-por-header, WeatherMap SSRF+HostID leak) suman a la cadena.
