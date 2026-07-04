@@ -1,4 +1,4 @@
-<!-- review-status: pending -->
+<!-- review-status: applied 2026-07-04 · kit 2d5a54f -->
 # Retro — niagara-research · live-station · 2026-07-02 · Research-SDD self-retrospective
 
 > Run reviewed: focus `live-station` B156-B162 (6 iterations + terminal synthesis). Trigger: focus-completion (§8 terminal).
