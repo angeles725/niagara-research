@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **177 bloques**
+Total: **178 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -182,6 +182,7 @@ Total: **177 bloques**
 | 177 | [niagara-mental-model-bloque177.md](niagara-mental-model-bloque177.md) | Block 177 — Síntesis comparativa: chihuahua MX60 ↔ nmodsreflow, diferencias + análisis de brechas |
 | 178 | [niagara-mental-model-bloque178.md](niagara-mental-model-bloque178.md) | Block 178 — nmodsreflow: cómo mapea puntos↔equipos (por CONTENCIÓN de driver, no por link) vs chihuahua |
 | 179 | [niagara-mental-model-bloque179.md](niagara-mental-model-bloque179.md) | PX Menu-Button / Dropdown (Workbench): no hay widget nativo, dos patrones viables |
+| 180 | [niagara-mental-model-bloque180.md](niagara-mental-model-bloque180.md) | PX Editor (Workbench): workflow oficial — crear vista, paleta, bindear, property sheet |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

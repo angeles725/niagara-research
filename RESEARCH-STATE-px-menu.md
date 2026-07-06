@@ -14,7 +14,7 @@ permiten emular un botón que despliega un menú vertical de opciones en un grá
 
 ## Cobertura
 
-**1 / 11 gaps** cerrados (9%).
+**2 / 11 gaps** cerrados (18%).
 
 > Backlog EXPANDIDO 2026-07-06 (pedido del usuario: documentación exhaustiva de "cómo funciona, sus reglas,
 > su sintaxis"). Tres capas de evidencia: gramática autoritativa (`PxDecoder/PxEncoder` decompilados,
@@ -26,7 +26,7 @@ permiten emular un botón que despliega un menú vertical de opciones en un grá
 | Gap | Descripción | Estado | Bloque | Fuente confirmada |
 |---|---|---|---|---|
 | G1 | Sin widget dropdown nativo; `BMenu*`=Swing WB; mapa 2 patrones. | **cerrado** | B179 | bloque35:80, bloque36, kitPx bindings |
-| G5 | **PX Editor (herramienta) — workflow oficial**: crear Px View, paleta, bind widgets, add binding, property sheet. | investigable `[CERT-doc]` | — | `niagara-help/docs-text/docGraphics.txt` (9051 l.), `devguide-clean/px.txt`, guías easyTemplating |
+| G5 | **PX Editor (herramienta) — workflow oficial**: crear Px View, paleta, bind widgets, add binding, property sheet. | **cerrado** | B180 | `sources/text-extracts/docGraphics-px-editor.md` (11 rangos preservados de docGraphics.txt) |
 | G6 | **Gramática autoritativa del formato PX**: `PxDecoder`/`PxEncoder` — cómo se serializa cada widget/propiedad/binding; mapeo `px:Tipo`→clase B; reglas del `XParser` (tag en 1 línea, comentarios, escaping). | investigable `[CERT]` | — | `docSource/.../javax/baja/ui/px/PxEncoder.java` + `PxDecoder.java` |
 | G7 | **Sistema de layout**: `CanvasPane` (absoluto `layout="x,y,w,h"`) vs `GridPane`/`BorderPane`/`FlowPane` (constraint-based). Reglas por pane. | investigable `[CERT]` | — | `bajaui-wb/javax/baja/ui/pane/BCanvasPane.java`, `BGridPane.java`, `BBorderPane.java` |
 | G8 | **Serialización de valores de propiedad**: `BPoint "x,y"`, `BSize "w,h"`, colores (`#hex`/nombres/gradientes), fuentes (`"bold 12.0pt Arial"`), enums. | investigable `[CERT]` | — | clases `gx`/`BLabel` + `.px` reales |
@@ -39,8 +39,8 @@ permiten emular un botón que despliega un menú vertical de opciones en un grá
 
 ## Clasificación del backlog (§8)
 
-- **read-only-investigable**: 10 (G5, G6, G7, G8, G9, G2, G3, G10, G11, G4) — TODAS con fuente confirmada
-  alcanzable (2026-07-06). G5 es `[CERT-doc]` (docs oficiales); el resto `[CERT]` (decompilado + `.px` reales).
+- **read-only-investigable**: 9 (G6, G7, G8, G9, G2, G3, G10, G11, G4) — TODAS con fuente confirmada
+  alcanzable (2026-07-06). El resto `[CERT]` (decompilado + `.px` reales). G5 cerrado (B180).
 - **requires-execution**: 0. **blocked**: 0.
 - **Orden de ataque**: G5 (editor oficial) → G6 (gramática/reglas) → G7 (layout) → G8 (valores) →
   G9 (converters) → G2 (PopupBinding) → G3 (in-place) → G10 (ords) → G11 (PxInclude) → G4 (síntesis `menu.px`).
@@ -57,6 +57,7 @@ el bloque G5, **preservar** los extractos relevantes en `sources/` de este targe
 | Iter | Gap | Bloque | Delegado? · tier | Resultado |
 |---|---|---|---|---|
 | 1 | G1 | B179 | no · inline | Framing: sin widget nativo; `BMenu*` = Swing WB (bloque35:80); mapa 2 patrones. |
+| 2 | G5 | B180 | yes · sonnet | Workflow oficial PX Editor (docGraphics.txt): New Px View wizard, paleta/árbol, bind por drag-ord, Add Binding=slot hijo, tipos de binding oficiales, hyperlink/HyperlinkLabel, reglas ords relativos + degradeBehavior. 11 rangos preservados en sources/. |
 
 ## Notas
 
