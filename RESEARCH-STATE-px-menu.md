@@ -14,7 +14,7 @@ permiten emular un botón que despliega un menú vertical de opciones en un grá
 
 ## Cobertura
 
-**4 / 11 gaps** cerrados (36%).
+**5 / 12 gaps** cerrados (42%).
 
 > Backlog EXPANDIDO 2026-07-06 (pedido del usuario: documentación exhaustiva de "cómo funciona, sus reglas,
 > su sintaxis"). Tres capas de evidencia: gramática autoritativa (`PxDecoder/PxEncoder` decompilados,
@@ -29,7 +29,8 @@ permiten emular un botón que despliega un menú vertical de opciones en un grá
 | G5 | **PX Editor (herramienta) — workflow oficial**: crear Px View, paleta, bind widgets, add binding, property sheet. | **cerrado** | B180 | `sources/text-extracts/docGraphics-px-editor.md` (11 rangos preservados de docGraphics.txt) |
 | G6 | **Gramática autoritativa del formato PX**: `PxDecoder`/`PxEncoder` — serialización, mapeo tipo→clase vía `<import>`, atributo=prop-simple vs sub-elemento=binding, tag en 1 línea. | **cerrado** | B181 | `sources/decompiled/bajaui-wb-px/{PxDecoder,PxEncoder}.java` (preservados) |
 | G7 | **Sistema de layout**: `CanvasPane` (absoluto `layout="x,y,w,h"`) vs `GridPane`/`FlowPane` (add-order) vs `EdgePane` (5 slots nombrados). `layout`=prop de `BWidget`. (§14: `BBorderPane`≠5-regiones, es CSS-box.) | **cerrado** | B182 | `sources/decompiled/bajaui-wb-layout/` (6 clases preservadas) |
-| G8 | **Serialización de valores de propiedad**: `BPoint "x,y"`, `BSize "w,h"`, colores (`#hex`/nombres/gradientes), fuentes (`"bold 12.0pt Arial"`), enums. | investigable `[CERT]` | — | clases `gx`/`BLabel` + `.px` reales |
+| G8 | **Serialización de valores**: `BColor` (#rrggbb/#aarrggbb/nombres/rgb()), `BFont` (`[bold][italic]<size>pt <name>`), `BBrush` (solid vs linear/radialGradient + `stop(offset% color)`), `BPoint`/`BSize` (`x,y`), `BInsets` (CSS-shorthand). Lado encode autoritativo. | **cerrado** | B183 | `sources/decompiled/gx-rt/` (6 clases preservadas) |
+| G12 | **`com.tridium.gx.parser.Parser`** — reconocimiento del lado PARSE (color/font/brush/insets). Refinamiento; el lado encode (G8) ya basta para authoring. | investigable `[CERT]` (baja prioridad) | — | `organized/gx/gx-rt/vineflower/com/tridium/gx/parser/Parser.java` (confirmado) |
 | G9 | **Catálogo de converters** (módulo `converters`, `javax.baja.converters.*`): la pieza del patrón dinámico `visible`. Qué convierte cada uno. | investigable `[CERT]` | — | `converters/converters-rt/vineflower/javax/baja/converters/*.java` |
 | G2 | `kitPx:PopupBinding` — mecánica: trigger, ventana `BNiagaraWbDialog`, props. | investigable `[CERT]` | — | `docSource/.../kitPx-wb/com/tridium/kitpx/BPopupBinding.java` |
 | G3 | Patrón in-place (toggle visibility): `BValueBinding` + converter dinámico → `visible`; estado en station; fricción del toggle. | investigable `[CERT]` | — | `bajaui-wb/javax/baja/ui/BValueBinding.java` + `BWidget.java` |
@@ -39,8 +40,8 @@ permiten emular un botón que despliega un menú vertical de opciones en un grá
 
 ## Clasificación del backlog (§8)
 
-- **read-only-investigable**: 7 (G8, G9, G2, G3, G10, G11, G4) — TODAS con fuente confirmada
-  alcanzable (2026-07-06), `[CERT]` (decompilado + `.px` reales). G5/G6/G7 cerrados (B180-B182).
+- **read-only-investigable**: 7 (G9, G2, G3, G10, G11, G4, G12) — TODAS con fuente confirmada
+  alcanzable (2026-07-06), `[CERT]`. G5/G6/G7/G8 cerrados (B180-B183). G12 = baja prioridad (refinamiento).
 - **requires-execution**: 0. **blocked**: 0.
 - **Orden de ataque**: G5 (editor oficial) → G6 (gramática/reglas) → G7 (layout) → G8 (valores) →
   G9 (converters) → G2 (PopupBinding) → G3 (in-place) → G10 (ords) → G11 (PxInclude) → G4 (síntesis `menu.px`).
@@ -60,6 +61,7 @@ el bloque G5, **preservar** los extractos relevantes en `sources/` de este targe
 | 2 | G5 | B180 | yes · sonnet | Workflow oficial PX Editor (docGraphics.txt): New Px View wizard, paleta/árbol, bind por drag-ord, Add Binding=slot hijo, tipos de binding oficiales, hyperlink/HyperlinkLabel, reglas ords relativos + degradeBehavior. 11 rangos preservados en sources/. |
 | 3 | G6 | B181 | yes · sonnet | Gramática PxDecoder/PxEncoder: raíz `px`/`version="1.0"`, secciones fijas, tipo resuelto vía `<import>` (no namespace), atributo=prop-frozen-simple no-default vs sub-elemento=binding/slot-hijo, tag en 1 línea (raíz del gotcha XParser), errores=XException. 2 fuentes preservadas. |
 | 4 | G7 | B182 | yes · sonnet | Layout: `layout`=prop de `BWidget` (por eso atributo del hijo). CanvasPane=absoluto+viewSize/scale; GridPane=row-major add-order (columnCount def 2); FlowPane=horizontal+wrap; EdgePane=5 slots nombrados. §14: BBorderPane≠5-regiones (es CSS-box). Menú vertical → GridPane columnCount=1. 6 clases preservadas. |
+| 5 | G8 | B183 | yes · sonnet | Serialización gx (lado encode): BColor #rrggbb/#aarrggbb+nombres+rgb(); BFont `[bold][italic][underline]<size>pt <name>`; BBrush BNF gradientes + `stop(offset% color)`; BPoint/BSize `x,y`; BInsets CSS-shorthand. Parser (parse-side) ubicado en vineflower → gap G12. 6 clases gx preservadas. |
 
 ## Notas
 

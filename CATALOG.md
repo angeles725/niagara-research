@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **180 bloques**
+Total: **181 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -185,6 +185,7 @@ Total: **180 bloques**
 | 180 | [niagara-mental-model-bloque180.md](niagara-mental-model-bloque180.md) | PX Editor (Workbench): workflow oficial — crear vista, paleta, bindear, property sheet |
 | 181 | [niagara-mental-model-bloque181.md](niagara-mental-model-bloque181.md) | Gramática autoritativa del formato PX: PxDecoder / PxEncoder |
 | 182 | [niagara-mental-model-bloque182.md](niagara-mental-model-bloque182.md) | Sistema de layout PX: CanvasPane (absoluto) vs GridPane/EdgePane/FlowPane (constraint) |
+| 183 | [niagara-mental-model-bloque183.md](niagara-mental-model-bloque183.md) | Serialización de valores de propiedad PX (gx): color, font, gradiente, point/size/insets |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
