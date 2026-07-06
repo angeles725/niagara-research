@@ -14,7 +14,7 @@ permiten emular un botón que despliega un menú vertical de opciones en un grá
 
 ## Cobertura
 
-**10 / 12 gaps** cerrados (83%).
+**11 / 12 gaps** cerrados (92%).
 
 > Backlog EXPANDIDO 2026-07-06 (pedido del usuario: documentación exhaustiva de "cómo funciona, sus reglas,
 > su sintaxis"). Tres capas de evidencia: gramática autoritativa (`PxDecoder/PxEncoder` decompilados,
@@ -36,12 +36,12 @@ permiten emular un botón que despliega un menú vertical de opciones en un grá
 | G3 | `BValueBinding` (patrón in-place): `getOnWidget` = slot converter dinámico (motor `visible`); `hyperlink` (nav izq) + `popupEnabled` (menú acciones der vía NavMenuUtil); `degradeBehavior` heredado de BBinding. | **cerrado** | B186 | `sources/decompiled/bajaui-wb-px/BValueBinding.java` + `BBinding.java` (preservados) |
 | G10 | Ord schemes: cadena `scheme:body\|...`; 15 schemes (remisión bloque35); relevantes al menú (slot/station/file/history/view/module); relativo(`^`/`..`) vs absoluto + `BOrd.make(base,rel).normalize()`; portabilidad. | **cerrado** | B187 | bloque35:3 + `sources/decompiled/baja-naming/BOrd.java` + `.px` reales |
 | G11 | `BPxInclude` (extends BWidget): embebe una `.px` por su `ord` (carga async, `root`, `baseOrd`, `variables`, `reload` on-change). Al ser BWidget su `visible` es togglable → menú reutilizable in-place. | **cerrado** | B188 | `sources/decompiled/bajaui-wb-px/BPxInclude.java` (preservado) |
-| G4 | **Síntesis aplicada**: sintaxis verificada del `menu.px` (estructura, `Label`+`hyperlink`, converter `visible`) + gotcha XParser. Bloque culminante que ata todo. | investigable `[CERT]` | — | `.px` reales (Venom Cvahu101, hx warmupInclude, PxFile.px) |
+| G4 | **Síntesis aplicada culminante** (DESIGN/APPLIED): `menu.px` completo patrón A (PopupBinding) + patrón B (in-place toggle visible), integrando B179-B188 con cada decisión respaldada. Reglas tag-1-línea, GridPane columnCount=1, fricción del toggle. | **cerrado** | B189 | síntesis [Block 179-188] |
 
 ## Clasificación del backlog (§8)
 
-- **read-only-investigable**: 2 (G4, G12) — con fuente confirmada. G5-G11 + G2/G3 cerrados (B180-B188).
-  G4 = síntesis culminante (integra los 10 bloques). G12 = baja prioridad (refinamiento parser).
+- **read-only-investigable**: 1 (G12) — fuente confirmada, baja prioridad (refinamiento parser). G4 cerrado
+  (B189 síntesis). Todo lo esencial del focus (11/12) documentado. Próximo: G12 → luego STOP + §18 retro.
 - **requires-execution**: 0. **blocked**: 0.
 - **Orden de ataque**: G5 (editor oficial) → G6 (gramática/reglas) → G7 (layout) → G8 (valores) →
   G9 (converters) → G2 (PopupBinding) → G3 (in-place) → G10 (ords) → G11 (PxInclude) → G4 (síntesis `menu.px`).
@@ -66,6 +66,8 @@ el bloque G5, **preservar** los extractos relevantes en `sources/` de este targe
 | 7 | G2 | B185 | no · inline | PopupBinding: extends BBinding @AgentOn Widget; started() linkTo mouseEvent; released() con isButton1Down()→popup() (clic, no hover; corrige bloque36); popup() abre BNiagaraWbDialog vía BWbShell (Workbench) con position/size absolutos → NO anclado. Props title/position(100,100)/size(800x600)/modal. 1 fuente preservada. |
 | 8 | G3 | B186 | no · inline | BValueBinding: @AgentOn Widget+Value. getOnWidget(prop)=busca slot con name==prop, si BConverter convierte from(out punto)→propiedad (motor visible). Props hyperlink(nav izq)/summary/popupEnabled(menú acciones der vía NavMenuUtil reflection). degradeBehavior de BBinding. Integra con B184. 2 fuentes preservadas. |
 | 9 | G10 | B187 | no · inline | Ord schemes: cadena scheme:body\|...; 15 schemes por remisión bloque35:3; relevantes al menú slot/station/file/history/view/module; relativo (^/..) vs absoluto + BOrd.make(base,rel).normalize(); regla portabilidad (ords relativos). BOrd.java preservada. |
+| 10 | G11 | B188 | no · inline | BPxInclude extends BWidget: embebe .px por ord (async load, root, baseOrd, variables, reload on-change). Al ser BWidget su visible es togglable → menú reutilizable in-place (DRY). Remisión bloque22. 1 fuente preservada. |
+| 11 | G4 | B189 | no · inline | SÍNTESIS DESIGN/APPLIED (ratio 0.69 sano): menu.px completo patrón A (GridPane columnCount=1 + PopupBinding file:^) y B (visible←ValueBinding+IBooleanToSimple←menuOpen). Reglas tag-1-línea, valores gx, type-guard, ords relativos, degradeBehavior. Fricción toggle (BooleanWritable sin action toggle nativa) + gotcha init(). Integra B179-B188. |
 
 ## Notas
 
