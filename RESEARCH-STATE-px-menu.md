@@ -14,7 +14,7 @@ permiten emular un botón que despliega un menú vertical de opciones en un grá
 
 ## Cobertura
 
-**2 / 11 gaps** cerrados (18%).
+**3 / 11 gaps** cerrados (27%).
 
 > Backlog EXPANDIDO 2026-07-06 (pedido del usuario: documentación exhaustiva de "cómo funciona, sus reglas,
 > su sintaxis"). Tres capas de evidencia: gramática autoritativa (`PxDecoder/PxEncoder` decompilados,
@@ -27,7 +27,7 @@ permiten emular un botón que despliega un menú vertical de opciones en un grá
 |---|---|---|---|---|
 | G1 | Sin widget dropdown nativo; `BMenu*`=Swing WB; mapa 2 patrones. | **cerrado** | B179 | bloque35:80, bloque36, kitPx bindings |
 | G5 | **PX Editor (herramienta) — workflow oficial**: crear Px View, paleta, bind widgets, add binding, property sheet. | **cerrado** | B180 | `sources/text-extracts/docGraphics-px-editor.md` (11 rangos preservados de docGraphics.txt) |
-| G6 | **Gramática autoritativa del formato PX**: `PxDecoder`/`PxEncoder` — cómo se serializa cada widget/propiedad/binding; mapeo `px:Tipo`→clase B; reglas del `XParser` (tag en 1 línea, comentarios, escaping). | investigable `[CERT]` | — | `docSource/.../javax/baja/ui/px/PxEncoder.java` + `PxDecoder.java` |
+| G6 | **Gramática autoritativa del formato PX**: `PxDecoder`/`PxEncoder` — serialización, mapeo tipo→clase vía `<import>`, atributo=prop-simple vs sub-elemento=binding, tag en 1 línea. | **cerrado** | B181 | `sources/decompiled/bajaui-wb-px/{PxDecoder,PxEncoder}.java` (preservados) |
 | G7 | **Sistema de layout**: `CanvasPane` (absoluto `layout="x,y,w,h"`) vs `GridPane`/`BorderPane`/`FlowPane` (constraint-based). Reglas por pane. | investigable `[CERT]` | — | `bajaui-wb/javax/baja/ui/pane/BCanvasPane.java`, `BGridPane.java`, `BBorderPane.java` |
 | G8 | **Serialización de valores de propiedad**: `BPoint "x,y"`, `BSize "w,h"`, colores (`#hex`/nombres/gradientes), fuentes (`"bold 12.0pt Arial"`), enums. | investigable `[CERT]` | — | clases `gx`/`BLabel` + `.px` reales |
 | G9 | **Catálogo de converters** (módulo `converters`, `javax.baja.converters.*`): la pieza del patrón dinámico `visible`. Qué convierte cada uno. | investigable `[CERT]` | — | `converters/converters-rt/vineflower/javax/baja/converters/*.java` |
@@ -39,8 +39,8 @@ permiten emular un botón que despliega un menú vertical de opciones en un grá
 
 ## Clasificación del backlog (§8)
 
-- **read-only-investigable**: 9 (G6, G7, G8, G9, G2, G3, G10, G11, G4) — TODAS con fuente confirmada
-  alcanzable (2026-07-06). El resto `[CERT]` (decompilado + `.px` reales). G5 cerrado (B180).
+- **read-only-investigable**: 8 (G7, G8, G9, G2, G3, G10, G11, G4) — TODAS con fuente confirmada
+  alcanzable (2026-07-06), `[CERT]` (decompilado + `.px` reales). G5 (B180) y G6 (B181) cerrados.
 - **requires-execution**: 0. **blocked**: 0.
 - **Orden de ataque**: G5 (editor oficial) → G6 (gramática/reglas) → G7 (layout) → G8 (valores) →
   G9 (converters) → G2 (PopupBinding) → G3 (in-place) → G10 (ords) → G11 (PxInclude) → G4 (síntesis `menu.px`).
@@ -58,6 +58,7 @@ el bloque G5, **preservar** los extractos relevantes en `sources/` de este targe
 |---|---|---|---|---|
 | 1 | G1 | B179 | no · inline | Framing: sin widget nativo; `BMenu*` = Swing WB (bloque35:80); mapa 2 patrones. |
 | 2 | G5 | B180 | yes · sonnet | Workflow oficial PX Editor (docGraphics.txt): New Px View wizard, paleta/árbol, bind por drag-ord, Add Binding=slot hijo, tipos de binding oficiales, hyperlink/HyperlinkLabel, reglas ords relativos + degradeBehavior. 11 rangos preservados en sources/. |
+| 3 | G6 | B181 | yes · sonnet | Gramática PxDecoder/PxEncoder: raíz `px`/`version="1.0"`, secciones fijas, tipo resuelto vía `<import>` (no namespace), atributo=prop-frozen-simple no-default vs sub-elemento=binding/slot-hijo, tag en 1 línea (raíz del gotcha XParser), errores=XException. 2 fuentes preservadas. |
 
 ## Notas
 
