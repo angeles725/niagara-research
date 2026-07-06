@@ -14,26 +14,37 @@ permiten emular un botón que despliega un menú vertical de opciones en un grá
 
 ## Cobertura
 
-**1 / 5 gaps** cerrados (20%).
+**1 / 11 gaps** cerrados (9%).
+
+> Backlog EXPANDIDO 2026-07-06 (pedido del usuario: documentación exhaustiva de "cómo funciona, sus reglas,
+> su sintaxis"). Tres capas de evidencia: gramática autoritativa (`PxDecoder/PxEncoder` decompilados,
+> `[CERT]`), workflow oficial (`niagara-help` docs, `[CERT-doc]`), y validación empírica (cientos de `.px`
+> reales). El focus deja de ser solo "el menú" y pasa a documentar el **PX Editor y su formato**.
 
 ## Gap backlog (priorizado)
 
 | Gap | Descripción | Estado | Bloque | Fuente confirmada |
 |---|---|---|---|---|
-| G1 | No existe widget dropdown nativo en PX; `bajaui` `BMenu/BMenuBar/BMenuItem` son menús Swing del Workbench, no widgets de canvas. Mapa de los 2 patrones viables. | **cerrado** | B179 | bloque35:80, bloque36 catálogo, kitPx bindings decompilados |
-| G5 | **PX Editor (la herramienta) — workflow oficial**: crear una Px View, la paleta, agregar/enlazar widgets, agregar un binding, el property sheet. Doc oficial Tridium (`[CERT-doc]`). | investigable | — | `niagara-help/devguide-clean/px.txt`, `docs-text/docGraphics.txt`, `guides-clean/easyTemplating/Binding_the_Datapoints_using_Hyperlink_Ord.txt` |
-| G2 | `kitPx:PopupBinding` — mecánica real: trigger, ventana `BNiagaraWbDialog`, props. | investigable | — | `organized/docSource/.../kitPx-wb/com/tridium/kitpx/BPopupBinding.java` |
-| G3 | Patrón in-place (toggle visibility): `BValueBinding` + converter dinámico → `visible`; estado en la station; fricción del toggle. | investigable | — | `bajaui-wb/javax/baja/ui/BValueBinding.java` + `BWidget.java` |
-| G4 | Sintaxis PX verificada del `menu.px` (estructura, `Label`+`hyperlink`, converter `visible`) + gotcha XParser (tag en 1 línea). | investigable | — | `.px` reales (Venom Cvahu101, hx warmupInclude, PxFile.px default) |
+| G1 | Sin widget dropdown nativo; `BMenu*`=Swing WB; mapa 2 patrones. | **cerrado** | B179 | bloque35:80, bloque36, kitPx bindings |
+| G5 | **PX Editor (herramienta) — workflow oficial**: crear Px View, paleta, bind widgets, add binding, property sheet. | investigable `[CERT-doc]` | — | `niagara-help/docs-text/docGraphics.txt` (9051 l.), `devguide-clean/px.txt`, guías easyTemplating |
+| G6 | **Gramática autoritativa del formato PX**: `PxDecoder`/`PxEncoder` — cómo se serializa cada widget/propiedad/binding; mapeo `px:Tipo`→clase B; reglas del `XParser` (tag en 1 línea, comentarios, escaping). | investigable `[CERT]` | — | `docSource/.../javax/baja/ui/px/PxEncoder.java` + `PxDecoder.java` |
+| G7 | **Sistema de layout**: `CanvasPane` (absoluto `layout="x,y,w,h"`) vs `GridPane`/`BorderPane`/`FlowPane` (constraint-based). Reglas por pane. | investigable `[CERT]` | — | `bajaui-wb/javax/baja/ui/pane/BCanvasPane.java`, `BGridPane.java`, `BBorderPane.java` |
+| G8 | **Serialización de valores de propiedad**: `BPoint "x,y"`, `BSize "w,h"`, colores (`#hex`/nombres/gradientes), fuentes (`"bold 12.0pt Arial"`), enums. | investigable `[CERT]` | — | clases `gx`/`BLabel` + `.px` reales |
+| G9 | **Catálogo de converters** (módulo `converters`, `javax.baja.converters.*`): la pieza del patrón dinámico `visible`. Qué convierte cada uno. | investigable `[CERT]` | — | `converters/converters-rt/vineflower/javax/baja/converters/*.java` |
+| G2 | `kitPx:PopupBinding` — mecánica: trigger, ventana `BNiagaraWbDialog`, props. | investigable `[CERT]` | — | `docSource/.../kitPx-wb/com/tridium/kitpx/BPopupBinding.java` |
+| G3 | Patrón in-place (toggle visibility): `BValueBinding` + converter dinámico → `visible`; estado en station; fricción del toggle. | investigable `[CERT]` | — | `bajaui-wb/javax/baja/ui/BValueBinding.java` + `BWidget.java` |
+| G10 | **Ord schemes en bindings** (`slot:`, `station:`, `file:`, `history:`, `view:`, `module:`…): cómo se escriben y resuelven los hyperlinks/targets. | investigable `[CERT]` | — | `BOrd` + bloque35 (lista de schemes) |
+| G11 | **`BPxInclude`** — embeber una `.px` dentro de otra (relevante para el menú como componente reutilizable). | investigable `[CERT]` | — | `docSource/.../javax/baja/ui/px/BPxInclude.java`, bloque22 |
+| G4 | **Síntesis aplicada**: sintaxis verificada del `menu.px` (estructura, `Label`+`hyperlink`, converter `visible`) + gotcha XParser. Bloque culminante que ata todo. | investigable `[CERT]` | — | `.px` reales (Venom Cvahu101, hx warmupInclude, PxFile.px) |
 
 ## Clasificación del backlog (§8)
 
-- **read-only-investigable**: 4 (G5, G2, G3, G4) — G5 vía docs oficiales `[CERT-doc]` en niagara-help
-  (fuente confirmada 2026-07-06); G2/G3/G4 con fuente decompilada/`.px` confirmada y leída.
-- **requires-execution**: 0.
-- **blocked**: 0.
-- **Orden de ataque**: G5 (editor oficial, prioridad del usuario) → G2 (PopupBinding) → G3 (in-place) →
-  G4 (sintaxis `menu.px`).
+- **read-only-investigable**: 10 (G5, G6, G7, G8, G9, G2, G3, G10, G11, G4) — TODAS con fuente confirmada
+  alcanzable (2026-07-06). G5 es `[CERT-doc]` (docs oficiales); el resto `[CERT]` (decompilado + `.px` reales).
+- **requires-execution**: 0. **blocked**: 0.
+- **Orden de ataque**: G5 (editor oficial) → G6 (gramática/reglas) → G7 (layout) → G8 (valores) →
+  G9 (converters) → G2 (PopupBinding) → G3 (in-place) → G10 (ords) → G11 (PxInclude) → G4 (síntesis `menu.px`).
+- **Fuera de ámbito** (gaps futuros si se reabre): perfil **Hx** (`BHxPxPopupBinding`) y **bajaux** moderno.
 
 ## Fuentes cross-target (niagara-help = target #3)
 
