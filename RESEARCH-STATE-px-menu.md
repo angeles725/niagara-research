@@ -14,7 +14,7 @@ permiten emular un botón que despliega un menú vertical de opciones en un grá
 
 ## Cobertura
 
-**11 / 12 gaps** cerrados (92%).
+**12 / 12 gaps** cerrados (100%) — **FOCUS STOPPED** (read-only-investigable = 0).
 
 > Backlog EXPANDIDO 2026-07-06 (pedido del usuario: documentación exhaustiva de "cómo funciona, sus reglas,
 > su sintaxis"). Tres capas de evidencia: gramática autoritativa (`PxDecoder/PxEncoder` decompilados,
@@ -30,7 +30,7 @@ permiten emular un botón que despliega un menú vertical de opciones en un grá
 | G6 | **Gramática autoritativa del formato PX**: `PxDecoder`/`PxEncoder` — serialización, mapeo tipo→clase vía `<import>`, atributo=prop-simple vs sub-elemento=binding, tag en 1 línea. | **cerrado** | B181 | `sources/decompiled/bajaui-wb-px/{PxDecoder,PxEncoder}.java` (preservados) |
 | G7 | **Sistema de layout**: `CanvasPane` (absoluto `layout="x,y,w,h"`) vs `GridPane`/`FlowPane` (add-order) vs `EdgePane` (5 slots nombrados). `layout`=prop de `BWidget`. (§14: `BBorderPane`≠5-regiones, es CSS-box.) | **cerrado** | B182 | `sources/decompiled/bajaui-wb-layout/` (6 clases preservadas) |
 | G8 | **Serialización de valores**: `BColor` (#rrggbb/#aarrggbb/nombres/rgb()), `BFont` (`[bold][italic]<size>pt <name>`), `BBrush` (solid vs linear/radialGradient + `stop(offset% color)`), `BPoint`/`BSize` (`x,y`), `BInsets` (CSS-shorthand). Lado encode autoritativo. | **cerrado** | B183 | `sources/decompiled/gx-rt/` (6 clases preservadas) |
-| G12 | **`com.tridium.gx.parser.Parser`** — reconocimiento del lado PARSE (color/font/brush/insets). Refinamiento; el lado encode (G8) ya basta para authoring. | investigable `[CERT]` (baja prioridad) | — | `organized/gx/gx-rt/vineflower/com/tridium/gx/parser/Parser.java` (confirmado) |
+| G12 | `Parser` parse-side: `parseColor` (hex 3/6/8, nombres, rgb/rgba), `parseFont` (bold/italic/pt), `parseBrush` (sólido/gradiente stop()), `parseInsets`. Simetría round-trip con encode-side confirmada. | **cerrado** | B190 | `sources/decompiled/gx-parser/Parser.java` (preservado) |
 | G9 | **Catálogo de converters** (104 clases; familia `BI*ToSimple` widget-facing). `BIBooleanToSimple` (trueValue/falseValue + type-guard) SÍ produce boolean usable para `visible`, sin coerción. Gotcha init() reseed. | **cerrado** | B184 | `sources/decompiled/converters-rt/` (5 clases preservadas) |
 | G2 | `kitPx:PopupBinding` — extends BBinding, @AgentOn bajaui:Widget; trigger MOUSE_RELEASED button1 (clic, no hover); abre BNiagaraWbDialog (Workbench) con position/size absolutos; props title/position/size/modal + ord heredada. | **cerrado** | B185 | `sources/decompiled/kitPx-wb/BPopupBinding.java` (preservado) |
 | G3 | `BValueBinding` (patrón in-place): `getOnWidget` = slot converter dinámico (motor `visible`); `hyperlink` (nav izq) + `popupEnabled` (menú acciones der vía NavMenuUtil); `degradeBehavior` heredado de BBinding. | **cerrado** | B186 | `sources/decompiled/bajaui-wb-px/BValueBinding.java` + `BBinding.java` (preservados) |
@@ -40,8 +40,9 @@ permiten emular un botón que despliega un menú vertical de opciones en un grá
 
 ## Clasificación del backlog (§8)
 
-- **read-only-investigable**: 1 (G12) — fuente confirmada, baja prioridad (refinamiento parser). G4 cerrado
-  (B189 síntesis). Todo lo esencial del focus (11/12) documentado. Próximo: G12 → luego STOP + §18 retro.
+- **read-only-investigable**: **0** → **STOP** (§8 exhaustión del set investigable). 12/12 gaps cerrados.
+- **requires-execution**: 0. **blocked**: 0.
+- STOP 2026-07-06: 12 bloques (B179-B190), 100% cobertura. Verificación de sources en el commit de cierre.
 - **requires-execution**: 0. **blocked**: 0.
 - **Orden de ataque**: G5 (editor oficial) → G6 (gramática/reglas) → G7 (layout) → G8 (valores) →
   G9 (converters) → G2 (PopupBinding) → G3 (in-place) → G10 (ords) → G11 (PxInclude) → G4 (síntesis `menu.px`).
@@ -68,6 +69,7 @@ el bloque G5, **preservar** los extractos relevantes en `sources/` de este targe
 | 9 | G10 | B187 | no · inline | Ord schemes: cadena scheme:body\|...; 15 schemes por remisión bloque35:3; relevantes al menú slot/station/file/history/view/module; relativo (^/..) vs absoluto + BOrd.make(base,rel).normalize(); regla portabilidad (ords relativos). BOrd.java preservada. |
 | 10 | G11 | B188 | no · inline | BPxInclude extends BWidget: embebe .px por ord (async load, root, baseOrd, variables, reload on-change). Al ser BWidget su visible es togglable → menú reutilizable in-place (DRY). Remisión bloque22. 1 fuente preservada. |
 | 11 | G4 | B189 | no · inline | SÍNTESIS DESIGN/APPLIED (ratio 0.69 sano): menu.px completo patrón A (GridPane columnCount=1 + PopupBinding file:^) y B (visible←ValueBinding+IBooleanToSimple←menuOpen). Reglas tag-1-línea, valores gx, type-guard, ords relativos, degradeBehavior. Fricción toggle (BooleanWritable sin action toggle nativa) + gotcha init(). Integra B179-B188. |
+| 12 | G12 | B190 | no · inline | Parser parse-side: parseColor (hex 3/6/8+nombres+rgb/rgba), parseFont (bold/italic/pt), parseBrush (sólido/gradiente stop()), parseInsets. Round-trip encode↔parse cerrado. Parser.java preservada. |
 
 ## Notas
 

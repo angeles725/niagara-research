@@ -15,14 +15,20 @@
 | nmodsreflow-ux | stopped | `RESEARCH-STATE-nmodsreflow-ux.md` | Capa cliente/browser del módulo NiagaraMods Reflow v1.7.7 `-ux` (módulo fino de registro/loaders + SPA Vue embarcada) — CERRADO, paridad frontend con el backend | B151-B155 |
 | live-station | stopped | `RESEARCH-STATE-live-station.md` | Validación DINÁMICA (§12) de la station Niagara N4 VIVA en 127.0.0.1 (WSL mirrored). `live-install` → SECRETS DISCIPLINE. Etapa A (runtime) + Etapa B (14 defectos de B150 con usuario `API`) — CERRADO, 13/14 con veredicto vivo | B156–B162 |
 | chihuahua | stopped | `RESEARCH-STATE-chihuahua.md` | Módulo dashboard Niagara N4 de FUENTE PROPIA (`com.angeles.chihuahua`) para BMS Honeywell MX60. Lectura directa. Tri-parte rt/ux/wb, RBAC write-gate, frontend ES5 IIFE. Documentado (C1-C14) + comparado con Reflow (B177) — CERRADO | B163–B177 |
-| px-menu | active | `RESEARCH-STATE-px-menu.md` | PX Menu-Button/Dropdown en Workbench: emulación de menú desplegable (PopupBinding vs toggle in-place), sintaxis `.px`, gramática PxDecoder/Encoder, catálogo de converters, workflow oficial del editor (niagara-help) | B179– |
+| px-menu | stopped | `RESEARCH-STATE-px-menu.md` | PX Menu-Button/Dropdown en Workbench: emulación de menú desplegable (PopupBinding vs toggle in-place), sintaxis `.px`, gramática PxDecoder/Encoder, catálogo de converters, workflow oficial del editor (niagara-help) — CERRADO 12/12 | B179–B190 |
 
 ## Focus activo
 
-**px-menu** (capa UI/PX) — ACTIVO desde 2026-07-06. Cómo construir un "Menu Button / Dropdown" (estilo
-SLDS) en el PX Editor perfil Workbench. B179 (framing: sin widget nativo, `BMenu*`=Swing WB, 2 patrones).
-Backlog: workflow editor oficial (G5, niagara-help), `PopupBinding` (G2), toggle in-place (G3), sintaxis
-`.px` (G4) + capa de gramática/sintaxis a expandir (PxDecoder/Encoder, converters, layout, ords).
+**(ninguno activo)** — `px-menu` CERRADO 2026-07-06 (12/12 gaps, B179-B190).
+
+**px-menu** (capa UI/PX) — CERRADO 2026-07-06, 12 bloques B179-B190. Cómo construir un "Menu Button /
+Dropdown" (estilo SLDS) en el PX Editor perfil Workbench. **Framing** (B179: sin widget nativo, `BMenu*`=Swing
+WB, 2 patrones) → **workflow oficial del editor** (B180, docGraphics.txt `[CERT-doc]`) → **gramática/sintaxis**
+(B181 PxDecoder/Encoder + tag-1-línea, B182 layout panes + §14 BBorderPane≠5-regiones, B183 valores gx) →
+**motor del binding** (B184 converters + BIBooleanToSimple type-guard, B186 BValueBinding) → **los 2 patrones**
+(B185 PopupBinding, B186 in-place) → **ords/includes** (B187, B188) → **síntesis** (B189 menu.px completo) →
+**round-trip** (B190 Parser). Tres capas de evidencia: decompilado `[CERT]`, doc oficial `[CERT-doc]`, `.px`
+reales. Deliverable: `scratchpad/menu.px`. Sin fase dinámica pendiente (todo read-only static).
 
 **(base cerrado)** — `chihuahua` CERRADO 2026-07-02 (14/14 subsistemas + comparación con Reflow).
 

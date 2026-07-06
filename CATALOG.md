@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **187 bloques**
+Total: **188 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -192,6 +192,7 @@ Total: **187 bloques**
 | 187 | [niagara-mental-model-bloque187.md](niagara-mental-model-bloque187.md) | Ord schemes en bindings/hyperlinks: cómo se escriben los targets del menú |
 | 188 | [niagara-mental-model-bloque188.md](niagara-mental-model-bloque188.md) | BPxInclude: embeber una .px en otra (el menú como componente reutilizable) |
 | 189 | [niagara-mental-model-bloque189.md](niagara-mental-model-bloque189.md) | Síntesis aplicada: el menu.px completo (patrón A PopupBinding + patrón B in-place) |
+| 190 | [niagara-mental-model-bloque190.md](niagara-mental-model-bloque190.md) | gx Parser (parse-side): simetría round-trip con el encode-side |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
