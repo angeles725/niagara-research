@@ -31,3 +31,4 @@ Decompiled Java sources live under `sources/decompiled/<jar-name>/`.
 | decompiled/baja-naming/BOrd.java | original Tridium source (docSource-doc) | organized/docSource/.../baja/javax/baja/naming/BOrd.java | 2026-07-06 | 89eae854742a6e87 | B187 |
 | decompiled/bajaui-wb-px/BPxInclude.java | original Tridium source (docSource-doc) | organized/docSource/.../bajaui-wb/javax/baja/ui/px/BPxInclude.java | 2026-07-06 | (per-file, ver git) | B188 |
 | decompiled/gx-parser/Parser.java | decompiled (Vineflower) | organized/gx/gx-rt/vineflower/com/tridium/gx/parser/Parser.java | 2026-07-06 | (per-file, ver git) | B190 |
+| decompiled/pxEditor-wb/ | decompiled (Vineflower) — BPxEditor, BPxEditorPane, BPxEditorOptions, BMwFromPalette, BMakeWidget, PxEditorController, NavNodeFactory | organized/pxEditor/pxEditor-wb/vineflower/{javax/baja/px/editor,com/tridium/px/editor}/ | 2026-07-06 | (per-file, ver git) | B191 |

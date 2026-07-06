@@ -16,13 +16,13 @@ formato) con la superficie de la herramienta y su paleta.
 
 ## Cobertura
 
-**0 / 6 gaps** cerrados (0%). Bootstrap 2026-07-06.
+**1 / 6 gaps** cerrados (17%). Bootstrap 2026-07-06.
 
 ## Gap backlog (priorizado)
 
 | Gap | Descripción | Estado | Bloque | Fuente confirmada |
 |---|---|---|---|---|
-| E1 | **El editor como herramienta** (`pxEditor-wb`): `BPxEditor`, `BPxEditorPane`, `BMwFromPalette` (make-widget-from-palette), `BPxEditorOptions` — cómo el editor construye/edita el árbol de widgets, la paleta, el drop. | investigable `[CERT]` | — | `organized/pxEditor-wb/vineflower/{com/tridium/px/editor,javax/baja/px/editor}/` |
+| E1 | El editor como herramienta: `BPxEditor` extends BWbPxView (load/save round-trip por PxEncoder/Decoder); `BPxEditorPane` (canvas BEdgePane+BStudio); paleta→canvas (WidgetFactory→BMakeWidget wizard→BMwFromPalette); clone por encode→decode + placeholder ord; `BPxEditorOptions` (per-usuario); undo delegado al Workbench. | **cerrado** | B191 | `sources/decompiled/pxEditor-wb/` (7 clases preservadas) |
 | E2 | **Catálogo completo de widgets** `bajaui`: inputs (`BCheckBox`/`BRadioButton`/`BTextField`/`BSlider`), contenedores (`BTabbedPane`/`BSplitPane`/`BScrollPane`), datos (`BTable`/`BTree`). Propiedades clave de cada uno. | investigable `[CERT]` | — | `docSource/.../bajaui-wb/javax/baja/ui/*.java` |
 | E3 | **Los 9 bindings `kitPx` restantes**: Action, BoundLabel, ButtonGroup, IncrementSetPoint, MomentaryToggle, MouseOver, SetPoint, Spectrum, SpectrumSetpoint — mecánica y uso de cada uno. | investigable `[CERT]` | — | `organized/kitPx/kitPx-wb/vineflower/com/tridium/kitpx/*Binding.java` |
 | E4 | **Media / perfiles**: `BPxMedia`/`BWbPxMedia`/HxPxMedia/UxPxMedia — cómo el mismo `.px` se resuelve y renderiza en Workbench vs Hx vs bajaux. | investigable `[CERT]` | — | `bajaui-wb/.../BPxMedia.java` + `workbench-wb/.../BWbPxMedia.java` |
@@ -31,7 +31,7 @@ formato) con la superficie de la herramienta y su paleta.
 
 ## Clasificación del backlog (§8)
 
-- **read-only-investigable**: 6 (E1-E6) — todas con fuente confirmada alcanzable (2026-07-06).
+- **read-only-investigable**: 5 (E2-E6) — todas con fuente confirmada. E1 cerrado (B191).
 - **requires-execution**: 0. **blocked**: 0.
 - **Orden de ataque**: E1 (editor tool) → E2 (widgets) → E3 (bindings) → E4 (media) → E5 (theming) → E6 (animación).
 
@@ -39,7 +39,7 @@ formato) con la superficie de la herramienta y su paleta.
 
 | Iter | Gap | Bloque | Delegado? · tier | Resultado |
 |---|---|---|---|---|
-| — | — | — | — | (bootstrap; primera iteración pendiente E1) |
+| 1 | E1 | B191 | yes · sonnet | pxEditor-wb tool: BPxEditor extends BWbPxView, load/save+clone round-trip PxEncoder/Decoder, árbol BWidget en BRootContainer (no BComponent). BPxEditorPane canvas (BEdgePane+BStudio facade+SelectedWidgets, edit vs readonly). Paleta→canvas: WidgetFactory chain→NavNodeFactory→BMakeWidget wizard→BMwFromPalette (BPaletteSideBar embebido, placeholder ord `<ord>`). BPxEditorOptions per-usuario (grid/snap/animateBindings/preserveIdentities). Undo delegado al Workbench Command/CommandArtifact. 7 clases preservadas. |
 
 ## Notas
 

@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **188 bloques**
+Total: **189 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -193,6 +193,7 @@ Total: **188 bloques**
 | 188 | [niagara-mental-model-bloque188.md](niagara-mental-model-bloque188.md) | BPxInclude: embeber una .px en otra (el menú como componente reutilizable) |
 | 189 | [niagara-mental-model-bloque189.md](niagara-mental-model-bloque189.md) | Síntesis aplicada: el menu.px completo (patrón A PopupBinding + patrón B in-place) |
 | 190 | [niagara-mental-model-bloque190.md](niagara-mental-model-bloque190.md) | gx Parser (parse-side): simetría round-trip con el encode-side |
+| 191 | [niagara-mental-model-bloque191.md](niagara-mental-model-bloque191.md) | El PX Editor como herramienta (pxEditor-wb): árbol de widgets, paleta→canvas, opciones |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
