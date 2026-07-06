@@ -16,10 +16,15 @@
 | live-station | stopped | `RESEARCH-STATE-live-station.md` | Validación DINÁMICA (§12) de la station Niagara N4 VIVA en 127.0.0.1 (WSL mirrored). `live-install` → SECRETS DISCIPLINE. Etapa A (runtime) + Etapa B (14 defectos de B150 con usuario `API`) — CERRADO, 13/14 con veredicto vivo | B156–B162 |
 | chihuahua | stopped | `RESEARCH-STATE-chihuahua.md` | Módulo dashboard Niagara N4 de FUENTE PROPIA (`com.angeles.chihuahua`) para BMS Honeywell MX60. Lectura directa. Tri-parte rt/ux/wb, RBAC write-gate, frontend ES5 IIFE. Documentado (C1-C14) + comparado con Reflow (B177) — CERRADO | B163–B177 |
 | px-menu | stopped | `RESEARCH-STATE-px-menu.md` | PX Menu-Button/Dropdown en Workbench: emulación de menú desplegable (PopupBinding vs toggle in-place), sintaxis `.px`, gramática PxDecoder/Encoder, catálogo de converters, workflow oficial del editor (niagara-help) — CERRADO 12/12 | B179–B190 |
+| px-editor | active | `RESEARCH-STATE-px-editor.md` | El PX Editor en amplitud: la herramienta (`pxEditor-wb`), catálogo completo de widgets/bindings, media/perfiles (Wb/Hx/Ux), theming (Palladium/CSS), animación. Continúa px-menu | B191– |
 
 ## Focus activo
 
-**(ninguno activo)** — `px-menu` CERRADO 2026-07-06 (12/12 gaps, B179-B190).
+**px-editor** (capa UI/PX, amplitud) — ACTIVO desde 2026-07-06. El PX Editor completo más allá del menú:
+la herramienta `pxEditor-wb` (E1), catálogo de widgets (E2), 9 bindings kitPx restantes (E3), media/perfiles
+(E4), theming (E5), animación (E6). Continúa `px-menu`. Backlog 6 gaps, todos con fuente confirmada.
+
+**(px-menu cerrado)** — `px-menu` CERRADO 2026-07-06 (12/12 gaps, B179-B190).
 
 **px-menu** (capa UI/PX) — CERRADO 2026-07-06, 12 bloques B179-B190. Cómo construir un "Menu Button /
 Dropdown" (estilo SLDS) en el PX Editor perfil Workbench. **Framing** (B179: sin widget nativo, `BMenu*`=Swing
