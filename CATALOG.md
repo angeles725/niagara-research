@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **185 bloques**
+Total: **186 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -190,6 +190,7 @@ Total: **185 bloques**
 | 185 | [niagara-mental-model-bloque185.md](niagara-mental-model-bloque185.md) | kitPx:PopupBinding: mecánica del hyperlink-popup (patrón A del menú) |
 | 186 | [niagara-mental-model-bloque186.md](niagara-mental-model-bloque186.md) | BValueBinding: el motor del patrón in-place (data→propiedad) + hyperlink |
 | 187 | [niagara-mental-model-bloque187.md](niagara-mental-model-bloque187.md) | Ord schemes en bindings/hyperlinks: cómo se escriben los targets del menú |
+| 188 | [niagara-mental-model-bloque188.md](niagara-mental-model-bloque188.md) | BPxInclude: embeber una .px en otra (el menú como componente reutilizable) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

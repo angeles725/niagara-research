@@ -14,7 +14,7 @@ permiten emular un botón que despliega un menú vertical de opciones en un grá
 
 ## Cobertura
 
-**9 / 12 gaps** cerrados (75%).
+**10 / 12 gaps** cerrados (83%).
 
 > Backlog EXPANDIDO 2026-07-06 (pedido del usuario: documentación exhaustiva de "cómo funciona, sus reglas,
 > su sintaxis"). Tres capas de evidencia: gramática autoritativa (`PxDecoder/PxEncoder` decompilados,
@@ -35,13 +35,13 @@ permiten emular un botón que despliega un menú vertical de opciones en un grá
 | G2 | `kitPx:PopupBinding` — extends BBinding, @AgentOn bajaui:Widget; trigger MOUSE_RELEASED button1 (clic, no hover); abre BNiagaraWbDialog (Workbench) con position/size absolutos; props title/position/size/modal + ord heredada. | **cerrado** | B185 | `sources/decompiled/kitPx-wb/BPopupBinding.java` (preservado) |
 | G3 | `BValueBinding` (patrón in-place): `getOnWidget` = slot converter dinámico (motor `visible`); `hyperlink` (nav izq) + `popupEnabled` (menú acciones der vía NavMenuUtil); `degradeBehavior` heredado de BBinding. | **cerrado** | B186 | `sources/decompiled/bajaui-wb-px/BValueBinding.java` + `BBinding.java` (preservados) |
 | G10 | Ord schemes: cadena `scheme:body\|...`; 15 schemes (remisión bloque35); relevantes al menú (slot/station/file/history/view/module); relativo(`^`/`..`) vs absoluto + `BOrd.make(base,rel).normalize()`; portabilidad. | **cerrado** | B187 | bloque35:3 + `sources/decompiled/baja-naming/BOrd.java` + `.px` reales |
-| G11 | **`BPxInclude`** — embeber una `.px` dentro de otra (relevante para el menú como componente reutilizable). | investigable `[CERT]` | — | `docSource/.../javax/baja/ui/px/BPxInclude.java`, bloque22 |
+| G11 | `BPxInclude` (extends BWidget): embebe una `.px` por su `ord` (carga async, `root`, `baseOrd`, `variables`, `reload` on-change). Al ser BWidget su `visible` es togglable → menú reutilizable in-place. | **cerrado** | B188 | `sources/decompiled/bajaui-wb-px/BPxInclude.java` (preservado) |
 | G4 | **Síntesis aplicada**: sintaxis verificada del `menu.px` (estructura, `Label`+`hyperlink`, converter `visible`) + gotcha XParser. Bloque culminante que ata todo. | investigable `[CERT]` | — | `.px` reales (Venom Cvahu101, hx warmupInclude, PxFile.px) |
 
 ## Clasificación del backlog (§8)
 
-- **read-only-investigable**: 3 (G11, G4, G12) — TODAS con fuente confirmada
-  alcanzable (2026-07-06), `[CERT]`. G5-G9 + G2 + G3 + G10 cerrados (B180-B187). G12 = baja prioridad.
+- **read-only-investigable**: 2 (G4, G12) — con fuente confirmada. G5-G11 + G2/G3 cerrados (B180-B188).
+  G4 = síntesis culminante (integra los 10 bloques). G12 = baja prioridad (refinamiento parser).
 - **requires-execution**: 0. **blocked**: 0.
 - **Orden de ataque**: G5 (editor oficial) → G6 (gramática/reglas) → G7 (layout) → G8 (valores) →
   G9 (converters) → G2 (PopupBinding) → G3 (in-place) → G10 (ords) → G11 (PxInclude) → G4 (síntesis `menu.px`).

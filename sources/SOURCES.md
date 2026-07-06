@@ -28,3 +28,4 @@ Decompiled Java sources live under `sources/decompiled/<jar-name>/`.
 | decompiled/kitPx-wb/BPopupBinding.java | original Tridium source (docSource-doc) | organized/docSource/.../kitPx-wb/com/tridium/kitpx/BPopupBinding.java | 2026-07-06 | 82e3656bba5b07eaa19a3e8c3179cf5709a26635097556045937399d77af0968 | B185 |
 | decompiled/bajaui-wb-px/BValueBinding.java + BBinding.java | original Tridium source (docSource-doc) | organized/docSource/.../bajaui-wb/javax/baja/ui/{BValueBinding,BBinding}.java | 2026-07-06 | (per-file, ver git) | B186 |
 | decompiled/baja-naming/BOrd.java | original Tridium source (docSource-doc) | organized/docSource/.../baja/javax/baja/naming/BOrd.java | 2026-07-06 | 89eae854742a6e87 | B187 |
+| decompiled/bajaui-wb-px/BPxInclude.java | original Tridium source (docSource-doc) | organized/docSource/.../bajaui-wb/javax/baja/ui/px/BPxInclude.java | 2026-07-06 | (per-file, ver git) | B188 |
