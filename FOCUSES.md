@@ -15,10 +15,16 @@
 | nmodsreflow-ux | stopped | `RESEARCH-STATE-nmodsreflow-ux.md` | Capa cliente/browser del módulo NiagaraMods Reflow v1.7.7 `-ux` (módulo fino de registro/loaders + SPA Vue embarcada) — CERRADO, paridad frontend con el backend | B151-B155 |
 | live-station | stopped | `RESEARCH-STATE-live-station.md` | Validación DINÁMICA (§12) de la station Niagara N4 VIVA en 127.0.0.1 (WSL mirrored). `live-install` → SECRETS DISCIPLINE. Etapa A (runtime) + Etapa B (14 defectos de B150 con usuario `API`) — CERRADO, 13/14 con veredicto vivo | B156–B162 |
 | chihuahua | stopped | `RESEARCH-STATE-chihuahua.md` | Módulo dashboard Niagara N4 de FUENTE PROPIA (`com.angeles.chihuahua`) para BMS Honeywell MX60. Lectura directa. Tri-parte rt/ux/wb, RBAC write-gate, frontend ES5 IIFE. Documentado (C1-C14) + comparado con Reflow (B177) — CERRADO | B163–B177 |
+| px-menu | active | `RESEARCH-STATE-px-menu.md` | PX Menu-Button/Dropdown en Workbench: emulación de menú desplegable (PopupBinding vs toggle in-place), sintaxis `.px`, gramática PxDecoder/Encoder, catálogo de converters, workflow oficial del editor (niagara-help) | B179– |
 
 ## Focus activo
 
-**(ninguno activo)** — `chihuahua` CERRADO 2026-07-02 (14/14 subsistemas + comparación con Reflow).
+**px-menu** (capa UI/PX) — ACTIVO desde 2026-07-06. Cómo construir un "Menu Button / Dropdown" (estilo
+SLDS) en el PX Editor perfil Workbench. B179 (framing: sin widget nativo, `BMenu*`=Swing WB, 2 patrones).
+Backlog: workflow editor oficial (G5, niagara-help), `PopupBinding` (G2), toggle in-place (G3), sintaxis
+`.px` (G4) + capa de gramática/sintaxis a expandir (PxDecoder/Encoder, converters, layout, ords).
+
+**(base cerrado)** — `chihuahua` CERRADO 2026-07-02 (14/14 subsistemas + comparación con Reflow).
 
 **chihuahua** (fuente propia) — CERRADO 2026-07-02, 15 bloques B163-B177. Módulo dashboard MX60 (Honeywell, dominio agua/bombeo,
 6 plantas). Tri-parte `chihuahua-{rt,ux,wb}`, servlet `BChiServlet` en `/mx60/` con dispatch puro + guards
