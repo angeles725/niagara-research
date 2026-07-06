@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **191 bloques**
+Total: **192 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -196,6 +196,7 @@ Total: **191 bloques**
 | 191 | [niagara-mental-model-bloque191.md](niagara-mental-model-bloque191.md) | El PX Editor como herramienta (pxEditor-wb): árbol de widgets, paleta→canvas, opciones |
 | 192 | [niagara-mental-model-bloque192.md](niagara-mental-model-bloque192.md) | Catálogo de widgets bajaui: inputs, contenedores, datos |
 | 193 | [niagara-mental-model-bloque193.md](niagara-mental-model-bloque193.md) | Los 9 bindings kitPx restantes: mecánica de cada uno |
+| 194 | [niagara-mental-model-bloque194.md](niagara-mental-model-bloque194.md) | PX Media / perfiles: por qué el mismo .px se renderiza distinto (Wb/Hx/Mobile/bajaux) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
