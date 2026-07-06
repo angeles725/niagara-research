@@ -14,7 +14,7 @@ permiten emular un botón que despliega un menú vertical de opciones en un grá
 
 ## Cobertura
 
-**7 / 12 gaps** cerrados (58%).
+**8 / 12 gaps** cerrados (67%).
 
 > Backlog EXPANDIDO 2026-07-06 (pedido del usuario: documentación exhaustiva de "cómo funciona, sus reglas,
 > su sintaxis"). Tres capas de evidencia: gramática autoritativa (`PxDecoder/PxEncoder` decompilados,
@@ -33,15 +33,15 @@ permiten emular un botón que despliega un menú vertical de opciones en un grá
 | G12 | **`com.tridium.gx.parser.Parser`** — reconocimiento del lado PARSE (color/font/brush/insets). Refinamiento; el lado encode (G8) ya basta para authoring. | investigable `[CERT]` (baja prioridad) | — | `organized/gx/gx-rt/vineflower/com/tridium/gx/parser/Parser.java` (confirmado) |
 | G9 | **Catálogo de converters** (104 clases; familia `BI*ToSimple` widget-facing). `BIBooleanToSimple` (trueValue/falseValue + type-guard) SÍ produce boolean usable para `visible`, sin coerción. Gotcha init() reseed. | **cerrado** | B184 | `sources/decompiled/converters-rt/` (5 clases preservadas) |
 | G2 | `kitPx:PopupBinding` — extends BBinding, @AgentOn bajaui:Widget; trigger MOUSE_RELEASED button1 (clic, no hover); abre BNiagaraWbDialog (Workbench) con position/size absolutos; props title/position/size/modal + ord heredada. | **cerrado** | B185 | `sources/decompiled/kitPx-wb/BPopupBinding.java` (preservado) |
-| G3 | Patrón in-place (toggle visibility): `BValueBinding` + converter dinámico → `visible`; estado en station; fricción del toggle. | investigable `[CERT]` | — | `bajaui-wb/javax/baja/ui/BValueBinding.java` + `BWidget.java` |
+| G3 | `BValueBinding` (patrón in-place): `getOnWidget` = slot converter dinámico (motor `visible`); `hyperlink` (nav izq) + `popupEnabled` (menú acciones der vía NavMenuUtil); `degradeBehavior` heredado de BBinding. | **cerrado** | B186 | `sources/decompiled/bajaui-wb-px/BValueBinding.java` + `BBinding.java` (preservados) |
 | G10 | **Ord schemes en bindings** (`slot:`, `station:`, `file:`, `history:`, `view:`, `module:`…): cómo se escriben y resuelven los hyperlinks/targets. | investigable `[CERT]` | — | `BOrd` + bloque35 (lista de schemes) |
 | G11 | **`BPxInclude`** — embeber una `.px` dentro de otra (relevante para el menú como componente reutilizable). | investigable `[CERT]` | — | `docSource/.../javax/baja/ui/px/BPxInclude.java`, bloque22 |
 | G4 | **Síntesis aplicada**: sintaxis verificada del `menu.px` (estructura, `Label`+`hyperlink`, converter `visible`) + gotcha XParser. Bloque culminante que ata todo. | investigable `[CERT]` | — | `.px` reales (Venom Cvahu101, hx warmupInclude, PxFile.px) |
 
 ## Clasificación del backlog (§8)
 
-- **read-only-investigable**: 5 (G3, G10, G11, G4, G12) — TODAS con fuente confirmada
-  alcanzable (2026-07-06), `[CERT]`. G5-G9 + G2 cerrados (B180-B185). G12 = baja prioridad (refinamiento).
+- **read-only-investigable**: 4 (G10, G11, G4, G12) — TODAS con fuente confirmada
+  alcanzable (2026-07-06), `[CERT]`. G5-G9 + G2 + G3 cerrados (B180-B186). G12 = baja prioridad (refinamiento).
 - **requires-execution**: 0. **blocked**: 0.
 - **Orden de ataque**: G5 (editor oficial) → G6 (gramática/reglas) → G7 (layout) → G8 (valores) →
   G9 (converters) → G2 (PopupBinding) → G3 (in-place) → G10 (ords) → G11 (PxInclude) → G4 (síntesis `menu.px`).
@@ -64,6 +64,7 @@ el bloque G5, **preservar** los extractos relevantes en `sources/` de este targe
 | 5 | G8 | B183 | yes · sonnet | Serialización gx (lado encode): BColor #rrggbb/#aarrggbb+nombres+rgb(); BFont `[bold][italic][underline]<size>pt <name>`; BBrush BNF gradientes + `stop(offset% color)`; BPoint/BSize `x,y`; BInsets CSS-shorthand. Parser (parse-side) ubicado en vineflower → gap G12. 6 clases gx preservadas. |
 | 6 | G9 | B184 | yes · sonnet | Converters (104 clases): familia BI*ToSimple=widget-facing. BConverter.convert(from,to,ctx) contrato. BIBooleanToSimple: trueValue/falseValue (default TRUE/FALSE) + type-guard getType()==to.getType() → SÍ produce boolean para `visible` sin coerción. Gotcha init() reseed ambos slots al valor actual. Hermanos BINumericToSimple (lookup-map), BIStatusToSimple (status bits). 5 clases preservadas. |
 | 7 | G2 | B185 | no · inline | PopupBinding: extends BBinding @AgentOn Widget; started() linkTo mouseEvent; released() con isButton1Down()→popup() (clic, no hover; corrige bloque36); popup() abre BNiagaraWbDialog vía BWbShell (Workbench) con position/size absolutos → NO anclado. Props title/position(100,100)/size(800x600)/modal. 1 fuente preservada. |
+| 8 | G3 | B186 | no · inline | BValueBinding: @AgentOn Widget+Value. getOnWidget(prop)=busca slot con name==prop, si BConverter convierte from(out punto)→propiedad (motor visible). Props hyperlink(nav izq)/summary/popupEnabled(menú acciones der vía NavMenuUtil reflection). degradeBehavior de BBinding. Integra con B184. 2 fuentes preservadas. |
 
 ## Notas
 
