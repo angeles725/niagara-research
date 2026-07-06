@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **193 bloques**
+Total: **194 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -198,6 +198,7 @@ Total: **193 bloques**
 | 193 | [niagara-mental-model-bloque193.md](niagara-mental-model-bloque193.md) | Los 9 bindings kitPx restantes: mecánica de cada uno |
 | 194 | [niagara-mental-model-bloque194.md](niagara-mental-model-bloque194.md) | PX Media / perfiles: por qué el mismo .px se renderiza distinto (Wb/Hx/Mobile/bajaux) |
 | 195 | [niagara-mental-model-bloque195.md](niagara-mental-model-bloque195.md) | Theming/CSS: cómo se estilan los widgets (Palladium Swing vs .ux-* web) |
+| 196 | [niagara-mental-model-bloque196.md](niagara-mental-model-bloque196.md) | Animación en PX: "animar" = data binding (+ SVG animado) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

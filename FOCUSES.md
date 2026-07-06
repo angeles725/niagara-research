@@ -16,13 +16,18 @@
 | live-station | stopped | `RESEARCH-STATE-live-station.md` | Validación DINÁMICA (§12) de la station Niagara N4 VIVA en 127.0.0.1 (WSL mirrored). `live-install` → SECRETS DISCIPLINE. Etapa A (runtime) + Etapa B (14 defectos de B150 con usuario `API`) — CERRADO, 13/14 con veredicto vivo | B156–B162 |
 | chihuahua | stopped | `RESEARCH-STATE-chihuahua.md` | Módulo dashboard Niagara N4 de FUENTE PROPIA (`com.angeles.chihuahua`) para BMS Honeywell MX60. Lectura directa. Tri-parte rt/ux/wb, RBAC write-gate, frontend ES5 IIFE. Documentado (C1-C14) + comparado con Reflow (B177) — CERRADO | B163–B177 |
 | px-menu | stopped | `RESEARCH-STATE-px-menu.md` | PX Menu-Button/Dropdown en Workbench: emulación de menú desplegable (PopupBinding vs toggle in-place), sintaxis `.px`, gramática PxDecoder/Encoder, catálogo de converters, workflow oficial del editor (niagara-help) — CERRADO 12/12 | B179–B190 |
-| px-editor | active | `RESEARCH-STATE-px-editor.md` | El PX Editor en amplitud: la herramienta (`pxEditor-wb`), catálogo completo de widgets/bindings, media/perfiles (Wb/Hx/Ux), theming (Palladium/CSS), animación. Continúa px-menu | B191– |
+| px-editor | stopped | `RESEARCH-STATE-px-editor.md` | El PX Editor en amplitud: la herramienta (`pxEditor-wb`), catálogo completo de widgets/bindings, media/perfiles (Wb/Hx/Mobile), theming (Palladium/CSS), animación=data-binding. Continúa px-menu — CERRADO 6/6 | B191–B196 |
 
 ## Focus activo
 
-**px-editor** (capa UI/PX, amplitud) — ACTIVO desde 2026-07-06. El PX Editor completo más allá del menú:
-la herramienta `pxEditor-wb` (E1), catálogo de widgets (E2), 9 bindings kitPx restantes (E3), media/perfiles
-(E4), theming (E5), animación (E6). Continúa `px-menu`. Backlog 6 gaps, todos con fuente confirmada.
+**(ninguno activo)** — `px-editor` CERRADO 2026-07-06 (6/6 gaps, B191-B196).
+
+**px-editor** (capa UI/PX, amplitud) — CERRADO 2026-07-06, 6 bloques B191-B196. El PX Editor completo más
+allá del menú: la herramienta `pxEditor-wb` (B191: BPxEditor/BStudio/BMakeWidget wizard, load/save/clone por
+PxEncoder/Decoder) → catálogo de widgets bajaui (B192: botones/inputs/contenedores/datos-por-modelo) → los 9
+bindings kitPx (B193: split BBinding/BValueBinding) → media/perfiles (B194: Wb permisivo, Hx agent-gated,
+Mobile whitelist, bajaux sin PxMedia) → theming (B195: Palladium Java vs `.ux-*` CSS) → animación=data-binding
+(B196). Junto con px-menu (B179-B190), el subsistema PX queda reconstruido end-to-end.
 
 **(px-menu cerrado)** — `px-menu` CERRADO 2026-07-06 (12/12 gaps, B179-B190).
 

@@ -425,3 +425,46 @@ the HyperlinkLabel causes a mouse cursor to change to a standard link cursor and
 a hyperlink when clicked.
 ```
 
+## docGraphics.txt:1522-1560 — Chapter 4: Animating graphics (data binding)
+```
+Chapter 4 Animating graphics (data
+binding)
+
+Topics covered in this chapter
+
+ About data binding
+ Add a data binding to a widget
+ Animate a widget property
+ Animate using static SVG images
+ Relativize absolute Ords
+ Types of data bindings
+
+Animated graphics are comprised of one or more widgets assembled in a Px file, available for display using
+the Workbench display media types. Animated graphics change, or update, based on data values that come
+from object sources that are connected (or bound) to them.
+
+A graphic can be as simple as a single word of text ON or a number 72, or it can be an animated image such
+as a rotating fan. Widgets provide the graphic visualization of data in Workbench. Animated graphics are
+comprised of one or more widgets assembled in a Px file, available for display using the Workbench display
+media types.
+
+Widgets are animated by binding any widget properties to a legitimate data source. This means that you can
+connect numeric values to widget properties that use numeric values and you can connect binary values to
+objects that can use binary values. By animating the properties of a widget, you can control text and image
+appearance as well as a change a widget's location on the page and even its visibility.
+
+About data binding
+
+Bindings are established between a widget and an object. Binding provides real-time information for
+presentation.
+
+All widgets may be bound to data sources using data binding. An ord links a bindings to a widget. A single
+binding consists of a single widget�object relationship. A binding's ord property identifies the location of
+the object that updates and animates the widget.
+
+For example, the most common type of binding, the value binding, provides some of the typical functions
+that are associated with building real-time information for presentation as both text and graphics. This in-
+cludes support for mouse-over status and right-click actions. Additionally it provides a mechanism to ani-
+mate any property of its parent widget using converters that convert the target object into property values.
+```
+
