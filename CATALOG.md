@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **182 bloques**
+Total: **183 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -187,6 +187,7 @@ Total: **182 bloques**
 | 182 | [niagara-mental-model-bloque182.md](niagara-mental-model-bloque182.md) | Sistema de layout PX: CanvasPane (absoluto) vs GridPane/EdgePane/FlowPane (constraint) |
 | 183 | [niagara-mental-model-bloque183.md](niagara-mental-model-bloque183.md) | Serialización de valores de propiedad PX (gx): color, font, gradiente, point/size/insets |
 | 184 | [niagara-mental-model-bloque184.md](niagara-mental-model-bloque184.md) | Catálogo de converters (BConverter): el motor del binding dinámico a `visible` |
+| 185 | [niagara-mental-model-bloque185.md](niagara-mental-model-bloque185.md) | kitPx:PopupBinding: mecánica del hyperlink-popup (patrón A del menú) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
