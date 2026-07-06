@@ -1,0 +1,34 @@
+.menu:hover,
+.menu-item:hover,
+.button:hover,
+.menu-button:hover,
+.menu-item:hover,
+.split-menu-button:hover {
+  -fx-cursor: hand;
+}
+
+/* Profile Menu Bar */
+
+#menu-bar-profile {
+  -fx-background-color: null;
+}
+
+#menu-bar-profile-container {
+  -fx-background-color: linear-gradient(to bottom, #686868, #929292), -fx-body-color;
+  -fx-background-insets: 0, 1 0 1 0;
+  -fx-background-radius: 0, 0 ;
+}
+
+/* Profile Quick Search */
+
+#menu-bar-profile-quick-search {
+  -fx-padding: 0 5 0 25;
+}
+
+#menu-bar-profile-quick-search-icon {
+  -fx-background-color: null;
+}
+
+#menu-bar-profile-quick-search-container {
+  -fx-padding: 0 30 0 0;
+}

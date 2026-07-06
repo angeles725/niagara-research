@@ -1,0 +1,697 @@
+/* @noSnoop */
+/*
+ * Copyright 2020 Tridium, Inc. All Rights Reserved.
+ */
+.ux-Slider input {
+  vertical-align: middle;
+}
+.ux-Slider.-t-Slider-orientation-horizontal input {
+  height: 17px;
+  width: 100px;
+}
+.ux-Slider.-t-Slider-orientation-vertical input {
+  height: 100px;
+  width: 17px;
+}
+.LayoutEditor .layoutTable.isFill .dataColumn > * {
+  visibility: hidden;
+}
+.LayoutEditor .dataColumn.hideContents > * {
+  visibility: hidden;
+}
+.ux-ConstrainedPane {
+  display: flex;
+}
+.ux-ConstrainedPane .-t-ConstrainedPane-content {
+  overflow: hidden;
+  flex: 0 0 100%;
+}
+.ux-BorderPane {
+  display: flex;
+  flex-flow: column-reverse nowrap;
+}
+.ux-BorderPane .-t-BorderPane-label {
+  position: relative;
+  display: inline-flex;
+  align-self: flex-start;
+  flex: 0 0 auto;
+  background-color: white;
+}
+.ux-BorderPane .-t-BorderPane-inner {
+  flex: 1 1 100%;
+  box-sizing: border-box;
+  min-height: 0;
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+}
+.ux-BorderPane .-t-BorderPane-inner .-t-BorderPane-content {
+  flex: 0 0 100%;
+  min-width: 0;
+}
+.ux-TransformPane {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ux-Button {
+  display: flex;
+  align-items: stretch;
+  box-sizing: border-box;
+}
+.ux-Button > .ux-Button-outline {
+  min-width: 0;
+  flex-basis: 100%;
+  display: flex;
+  align-items: stretch;
+}
+.ux-Button > .ux-Button-outline > button {
+  display: flex;
+  overflow: hidden;
+  flex-basis: 100%;
+  position: relative;
+  font-weight: bold;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+  border: 0;
+}
+.ux-Button > .ux-Button-outline > button > .ux-Label {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+.ux-Button > .ux-Button-outline > button:focus {
+  outline: none;
+}
+.ux-Button > .ux-Button-outline > button:focus:after {
+  display: block;
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  bottom: 1px;
+  left: 1px;
+  pointer-events: none;
+  content: '';
+  border: 1px dotted black;
+}
+.ux-Button:not(.bajaux-disabled) button:active > .ux-Label > .ux-Label-content {
+  position: relative;
+  top: 1px;
+  left: 1px;
+}
+.pxEditMode .ux-CanvasPane .-t-CanvasPane-viewPane {
+  box-shadow: 0.5px 0.5px 0 0.5px rgba(0, 0, 0, 0.2);
+  background: repeating-linear-gradient(180deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 0px, rgba(0, 0, 0, 0.2) 1px, transparent 1px, transparent 10px), repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 0px, rgba(0, 0, 0, 0.2) 1px, transparent 1px, transparent 10px);
+}
+.ux-GridPane {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.ux-GridPane > .-t-GridPane-inner {
+  flex: 0 0 auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+.ux-GridPane > .-t-GridPane-inner > .-t-GridPane-cell {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+}
+.ux-GridPane > .-t-GridPane-inner > .-t-GridPane-cell > * {
+  flex-basis: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+.ux-GridPane > .-t-GridPane-inner > .-t-GridPane-cell > .-t-GridPane-cell-content {
+  display: flex;
+  align-items: stretch;
+}
+.ux-GridPane > .-t-GridPane-inner > .-t-GridPane-cell > .-t-GridPane-cell-content > * {
+  flex-basis: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+.ux-GridPane > .-t-GridPane-inner > .-t-GridPane-cell > .-t-GridPane-cell-content > .bajaux-invisible {
+  display: none;
+}
+.ux-TabbedPane {
+  display: flex;
+  width: 100%;
+}
+.ux-TabbedPane .ux-EdgePane.-t-TabbedPane-content {
+  display: flex;
+  width: 100%;
+}
+.ux-TabbedPane .ux-EdgePane.-t-TabbedPane-content .-t-EdgePane-cell-right .-t-FlowPane-contents,
+.ux-TabbedPane .ux-EdgePane.-t-TabbedPane-content .-t-EdgePane-cell-left .-t-FlowPane-contents {
+  flex-direction: column;
+  align-items: stretch;
+}
+.ux-TabbedPane .ux-EdgePane.-t-TabbedPane-content .-t-EdgePane-cell-right .-t-FlowPane-contents .-t-FlowPane-child-content > div,
+.ux-TabbedPane .ux-EdgePane.-t-TabbedPane-content .-t-EdgePane-cell-left .-t-FlowPane-contents .-t-FlowPane-child-content > div {
+  width: 100%;
+}
+.ux-TabbedPane .ux-EdgePane.-t-TabbedPane-content .-t-EdgePane-cell-top .-t-FlowPane-contents,
+.ux-TabbedPane .ux-EdgePane.-t-TabbedPane-content .-t-EdgePane-cell-bottom .-t-FlowPane-contents {
+  flex-direction: column;
+  align-items: stretch;
+  flex-flow: wrap-reverse;
+}
+.ux-TabbedPane .ux-TabbedPane-tab {
+  padding: 4px;
+  pointer-events: none;
+  position: relative;
+}
+.ux-TabbedPane .ux-TabbedPane-tab.ux-TabbedPane-tab-unselected:not(.ux-TabbedPane-tab-disabled) {
+  pointer-events: inherit;
+  cursor: pointer;
+}
+.ux-TabbedPane .ux-TabbedPane-tab.ux-TabbedPane-tab-unselected:not(.ux-TabbedPane-tab-disabled) .ux-Label {
+  cursor: pointer;
+}
+.ux-TabbedPane .-t-TabbedPane-content .-t-TabbedPane-content-wrapper {
+  display: flex;
+  align-items: stretch;
+  height: 100%;
+}
+.ux-TabbedPane .-t-TabbedPane-content .-t-TabbedPane-content-wrapper > * {
+  flex-basis: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+.ux-TabbedPane .-t-TabbedPane-content .-t-TabbedPane-content-child-content.-t-TabbedPane-content-unselected {
+  display: none;
+}
+.ux-EdgePane {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+  flex: 0 0 100%;
+  min-width: 0;
+}
+.ux-EdgePane .-t-EdgePane-cell {
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+}
+.ux-EdgePane .-t-EdgePane-cell > * {
+  flex-basis: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+.ux-EdgePane .-t-EdgePane-cell > .bajaux-invisible {
+  display: none;
+}
+.ux-EdgePane > .-t-EdgePane-band {
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: stretch;
+}
+.ux-EdgePane > .-t-EdgePane-band > * {
+  flex-basis: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+.ux-EdgePane > .-t-EdgePane-header {
+  flex: 0 1 auto;
+}
+.ux-EdgePane > .-t-EdgePane-body {
+  flex: 1 10000000000 100%;
+}
+.ux-EdgePane > .-t-EdgePane-footer {
+  flex: 0 100000 auto;
+}
+.ux-EdgePane > .-t-EdgePane-body {
+  flex-flow: row nowrap;
+}
+.ux-EdgePane > .-t-EdgePane-body > .-t-EdgePane-cell {
+  min-width: 0;
+}
+.ux-EdgePane > .-t-EdgePane-body > .-t-EdgePane-cell-left {
+  flex: 0 1 auto;
+}
+.ux-EdgePane > .-t-EdgePane-body > .-t-EdgePane-cell-center {
+  flex: 1 10000000000 100%;
+}
+.ux-EdgePane > .-t-EdgePane-body > .-t-EdgePane-cell-right {
+  flex: 0 100000 auto;
+}
+.ux-ExpandablePane {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+  flex: 0 0 100%;
+  min-width: 0;
+}
+.ux-ExpandablePane > .-t-ExpandablePane-band-expansion {
+  flex: 1;
+}
+.ux-ExpandablePane > .-t-ExpandablePane-band {
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: stretch;
+}
+.ux-ExpandablePane > .-t-ExpandablePane-band > * {
+  flex-basis: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+.ux-ExpandablePane > .-t-ExpandablePane-band .-t-ExpandablePane-cell-summary {
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  display: flex;
+  align-items: stretch;
+}
+.ux-ExpandablePane > .-t-ExpandablePane-band .-t-ExpandablePane-cell-summary .-t-ExpandablePane-cell-summary-content {
+  padding-left: 1px;
+}
+.ux-ExpandablePane > .-t-ExpandablePane-band .-t-ExpandablePane-cell-icon-container {
+  display: flex;
+  align-items: stretch;
+  margin-top: 1px;
+}
+.ux-ExpandablePane > .-t-ExpandablePane-band .-t-ExpandablePane-cell-icon-container .-t-ExpandablePane-cell-icon-border:hover {
+  border: 1px solid gray;
+  border-top-color: white;
+  border-left-color: white;
+  cursor: pointer;
+}
+.ux-ExpandablePane > .-t-ExpandablePane-band .-t-ExpandablePane-cell-icon-container .-t-ExpandablePane-cell-icon-border {
+  display: flex;
+  align-items: center;
+  border: 1px solid transparent;
+  margin: 0 2px 2px 3px;
+}
+.ux-ExpandablePane > .-t-ExpandablePane-band .-t-ExpandablePane-cell-icon-container .-t-ExpandablePane-cell-icon-border .-t-ExpandablePane-cell-icon {
+  align-self: center;
+  font-family: FontAwesome;
+  font-size: 13px;
+}
+.ux-ExpandablePane .-t-ExpandablePane-band-summary:not(t-expandablePane-selected) .-t-ExpandablePane-cell-icon:after {
+  content: "\f103";
+  /* down arrow */
+  display: inline;
+  margin: 0 3px 0 1px;
+}
+.ux-ExpandablePane .-t-ExpandablePane-band-summary.-t-ExpandablePane-selected .-t-ExpandablePane-cell-icon:after {
+  content: "\f102";
+  /* up arrow */
+  display: inline;
+  margin: 0 3px 0 1px;
+}
+.ux-FlowPane {
+  display: flex;
+  align-items: stretch;
+}
+.ux-FlowPane > * {
+  flex-basis: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+.ux-FlowPane > .-t-FlowPane-wrapper {
+  flex-flow: column nowrap;
+  overflow: hidden;
+}
+.ux-FlowPane > .-t-FlowPane-wrapper > .-t-FlowPane-contents {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  align-content: flex-start;
+}
+.ux-FlowPane > .-t-FlowPane-wrapper > .-t-FlowPane-contents > .-t-FlowPane-child-content {
+  display: flex;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.ux-FlowPane > .-t-FlowPane-wrapper > .-t-FlowPane-contents > .-t-FlowPane-child-content > * {
+  max-width: 100%;
+}
+.ux-FlowPane > .-t-FlowPane-wrapper > .-t-FlowPane-contents > .-t-FlowPane-child-content:not(.ux-ResponsivePane) {
+  display: flex;
+  align-items: stretch;
+}
+.ux-FlowPane > .-t-FlowPane-wrapper > .-t-FlowPane-contents > .-t-FlowPane-child-content:not(.ux-ResponsivePane) > * {
+  flex-basis: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+.ux-FlowPane > .-t-FlowPane-wrapper > .-t-FlowPane-contents > .-t-FlowPane-child-content.bajaux-invisible.bajaux-invisible {
+  display: none;
+}
+.ux-FlowPane > .-t-FlowPane-wrapper > .-t-FlowPane-contents > .-t-FlowPane-child-content > .ux-ResponsivePane {
+  flex-basis: 100%;
+  display: flex;
+  box-sizing: border-box;
+  flex-grow: 1;
+}
+.ux-FlowPane > .-t-FlowPane-wrapper > .-t-FlowPane-contents > .-t-FlowPane-child-content > .ux-ResponsivePane > * {
+  flex-basis: 100%;
+}
+.ux-FlowPane > .-t-FlowPane-wrapper > .-t-FlowPane-contents > .-t-FlowPane-hard-break {
+  flex: 0 0 100%;
+  height: 0;
+}
+/*
+we need a bit of special behavior for FlowPanes while we're calculating layout.
+ */
+.ux-layout-mode .ux-FlowPane > .-t-FlowPane-contents {
+  /*
+  FlowPane needs the CanvasPanes to stay present, so any max-width: pref panes
+  take up the correct space so other panes have the correct width available.
+   */
+  /*
+  for max-width: pref panes, keep them showing so they continue taking space
+  from any percent panes. otherwise we'll lay out as if they aren't there and
+  they'll wreck the layout when they're shown again.
+   */
+}
+.ux-layout-mode .ux-FlowPane > .-t-FlowPane-contents > .-t-FlowPane-child-content > .ux-ResponsivePane .ux-CanvasPane > .-t-CanvasPane-viewPane-wrapper {
+  display: flex;
+  max-width: unset;
+}
+.ux-layout-mode .ux-FlowPane > .-t-FlowPane-contents > .flowPane-child-content:not(.ux-use-preferred-max-width) > .ux-ResponsivePane .ux-CanvasPane > .-t-CanvasPane-viewPane-wrapper {
+  /*
+    why width 0 instead of display: none? this is so any vertical space continues to
+    be taken up, so the vertical scrollbar stays present. now the canvaspanes
+    will size to elementWidth - scrollbarWidth, instead of sizing to elementWidth
+    and then causing a horizontal scrollbar when they're displayed again.
+     */
+  max-width: 0;
+  max-height: unset;
+  overflow: hidden;
+}
+.ux-layout-mode .ux-CanvasPane > .-t-CanvasPane-viewPane-wrapper {
+  max-width: 0;
+  max-height: 0;
+}
+.ux-CanvasPane {
+  display: flex;
+}
+.ux-CanvasPane .-t-CanvasPane-viewPane-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.ux-CanvasPane .-t-CanvasPane-viewPane-wrapper .-t-CanvasPane-viewPane {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  flex-shrink: 0;
+}
+.ux-CanvasPane .-t-CanvasPane-viewPane-wrapper .-t-CanvasPane-viewPane .-t-CanvasPane-child {
+  position: absolute;
+}
+.ux-CanvasPane .-t-CanvasPane-viewPane-wrapper .-t-CanvasPane-viewPane .-t-CanvasPane-child:not(.ux-needs-overflow) {
+  overflow: hidden;
+}
+.ux-RadioButton {
+  background: transparent !important;
+}
+.ux-ToggleButton {
+  display: inline-flex;
+}
+.ux-ToggleButton .-t-ToggleButton-col {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 2px 2px 0;
+}
+.ux-ToggleButton .-t-ToggleButton-col input {
+  margin: 0;
+}
+.ux-ToggleButton .-t-ToggleButton-col-stretch {
+  width: 100%;
+}
+.ux-ToggleButton .ux-Label {
+  height: 100%;
+  width: 100%;
+}
+.ux-ToggleButton.ux-Button-buttonStyle-normal .ux-Label,
+.ux-ToggleButton.ux-Button-buttonStyle-toolBar .ux-Label {
+  padding-left: 2px;
+}
+.ux-ToggleButton.ux-Button-buttonStyle-none .ux-Label {
+  padding-left: 16.5px;
+}
+.ux-ToggleButton.ux-Button-buttonStyle-none .-t-ToggleButton-input {
+  display: none;
+}
+.ux-ToggleButton.ux-Button-buttonStyle-hyperlink .-t-ToggleButton-input {
+  display: none;
+}
+.ux-ToggleButton.ux-Button-buttonStyle-hyperlink .-t-Label-text {
+  color: blue;
+  text-decoration: underline;
+}
+.ux-Label {
+  overflow: hidden;
+  display: inline-flex;
+}
+.ux-Label:hover {
+  cursor: default;
+}
+.ux-Label .-t-Label-text {
+  position: relative;
+}
+.ux-Label .ux-Label-content {
+  display: inline-flex;
+  align-items: center;
+}
+.ux-Label .-t-Label-textToIconAlignCenter {
+  background-repeat: no-repeat;
+  background-position: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.ux-Label .-t-Label-image {
+  font-size: 0;
+}
+.ux-Label.-t-Label-cursor-pointer {
+  cursor: pointer;
+}
+.ux-Label.bajaux-disabled {
+  color: #848687;
+}
+.ux-Label.bajaux-disabled .-t-Label-image {
+  opacity: 50%;
+}
+.ux-EmptyWidget,
+.ux-NullWidget {
+  display: none !important;
+  font-size: 0;
+}
+.ux-PxInclude {
+  display: flex;
+  align-items: stretch;
+}
+.ux-PxInclude > .ux-PxWidget {
+  position: relative;
+  flex-basis: 100%;
+  min-width: 0;
+}
+.ux-ScrollPane {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255);
+}
+.ux-ScrollPane > .-t-ScrollPane-wrapper {
+  display: flex;
+  flex-basis: 100%;
+  flex-flow: column nowrap;
+  align-items: stretch;
+  box-sizing: border-box;
+  overflow: visible;
+}
+.ux-ScrollPane > .-t-ScrollPane-wrapper > .-t-ScrollPane-content {
+  flex-basis: 100%;
+  min-width: min-content;
+  min-height: min-content;
+}
+.-t-scrollbar-measure {
+  width: 100px;
+  height: 100px;
+  overflow: scroll;
+  position: absolute;
+  top: -9999px;
+}
+.ux-Picture {
+  display: inline-flex;
+  overflow: hidden;
+}
+.ux-Picture .IconEditor .wrapper,
+.ux-Label .IconEditor .wrapper {
+  width: auto;
+  height: auto;
+}
+.ux-Picture .IconEditor .wrapper span,
+.ux-Label .IconEditor .wrapper span {
+  position: inherit;
+}
+.ux-ValueBinding.-t-ValueBinding-hyperlink-target {
+  cursor: pointer;
+}
+.ux-WebWidget {
+  display: flex;
+  flex-flow: column nowrap;
+  background: white;
+}
+.ux-WebWidget .bajaux-toolbar-outer {
+  flex: 0 0 auto;
+  align-self: flex-start;
+}
+.ux-WebWidget .bajaux-toolbar-outer .displayName {
+  display: none;
+}
+.ux-WebWidget > .bajaux-widget-container {
+  flex: 0 1 100%;
+  position: relative;
+  overflow: auto;
+  display: flex;
+  flex-flow: column nowrap;
+}
+.ux-WebWidget > .bajaux-widget-container > .-t-WebWidget-inner {
+  flex: 1 1 100%;
+  min-height: 0;
+}
+.ux-WebWidget.bajaux-disabled {
+  pointer-events: none;
+}
+.ux-PxWidget {
+  display: flex;
+  align-items: stretch;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+.ux-PxWidget .-t-PxWidget-content.ux-root {
+  flex: 1 1 100%;
+  overflow: hidden;
+  position: static;
+  left: auto;
+  right: auto;
+  top: auto;
+  bottom: auto;
+}
+.ux-PxWidget .-t-PxWidget-content.ux-root:not(.ux-ScrollPane) {
+  background: rgba(255, 255, 255, 0);
+}
+.ux-PxWidget .bajaux-disabled {
+  pointer-events: none;
+}
+.ux-PxWidget .bajaux-invisible {
+  visibility: hidden;
+}
+.ux-HyperlinkLabel {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  box-sizing: border-box;
+}
+.ux-HyperlinkLabel > .-t-HyperlinkLabel-anchor-outline {
+  flex-basis: 100%;
+  display: flex;
+  align-items: stretch;
+}
+.ux-HyperlinkLabel > .-t-HyperlinkLabel-anchor-outline > a {
+  flex-basis: 100%;
+  position: relative;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  text-decoration: none;
+  color: #000;
+  background: none;
+}
+.ux-HyperlinkLabel > .-t-HyperlinkLabel-anchor-outline > a > .ux-Label {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+.ux-HyperlinkLabel .-t-Label-border {
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+.ux-HyperlinkLabel:not(.bajaux-disabled) .-t-HyperlinkLabel-mouseover .ux-Label {
+  cursor: pointer;
+}
+.ux-WebBrowser iframe {
+  border: 0;
+  width: 100%;
+  height: 100%;
+}
+.ux-WebBrowser div {
+  width: 100%;
+  height: 100%;
+}
+.CollectionView {
+  white-space: nowrap;
+  display: flex;
+  flex-flow: column nowrap;
+  flex: 1 1 100%;
+}
+.CollectionView .CollectionView-tableContainer {
+  flex: 1 1 100%;
+  overflow: hidden;
+  display: flex;
+  position: relative;
+}
+.CollectionView .tableview {
+  flex: 1 1 100%;
+}
+.CollectionView .CollectionViewHeader {
+  display: flex;
+  align-items: center;
+}
+.CollectionView .CollectionViewHeader .CollectionView-warning {
+  background: #ffe;
+  border: 1px solid #996;
+  padding: 2px;
+  margin-left: 5px;
+}
+.ux-SplitPane .-t-SplitPane-divider-not-moveable {
+  pointer-events: none;
+}
+.ux-SplitPane .split-pane-component {
+  display: flex;
+  align-items: stretch;
+}
+.ux-SplitPane .split-pane-component > * {
+  flex-basis: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+.ux-Separator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ux-Separator .-t-Separator-inner-horizontal {
+  border-top: 1px solid #666666;
+  width: 100%;
+  height: 0;
+}
+.ux-Separator .-t-Separator-inner-vertical {
+  border-right: 1px solid #666666;
+  height: 100%;
+  width: 0;
+}
+.hx-bajaux-fe > .ux-btn-tb-group > .ux-btn-tb > .display > .displayName {
+  display: none;
+}
+/*# sourceMappingURL=/module/bajaui/maps/bajaui.map */
