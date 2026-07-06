@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **184 bloques**
+Total: **185 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -189,6 +189,7 @@ Total: **184 bloques**
 | 184 | [niagara-mental-model-bloque184.md](niagara-mental-model-bloque184.md) | Catálogo de converters (BConverter): el motor del binding dinámico a `visible` |
 | 185 | [niagara-mental-model-bloque185.md](niagara-mental-model-bloque185.md) | kitPx:PopupBinding: mecánica del hyperlink-popup (patrón A del menú) |
 | 186 | [niagara-mental-model-bloque186.md](niagara-mental-model-bloque186.md) | BValueBinding: el motor del patrón in-place (data→propiedad) + hyperlink |
+| 187 | [niagara-mental-model-bloque187.md](niagara-mental-model-bloque187.md) | Ord schemes en bindings/hyperlinks: cómo se escriben los targets del menú |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
