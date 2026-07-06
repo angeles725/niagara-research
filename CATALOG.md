@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **190 bloques**
+Total: **191 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -195,6 +195,7 @@ Total: **190 bloques**
 | 190 | [niagara-mental-model-bloque190.md](niagara-mental-model-bloque190.md) | gx Parser (parse-side): simetría round-trip con el encode-side |
 | 191 | [niagara-mental-model-bloque191.md](niagara-mental-model-bloque191.md) | El PX Editor como herramienta (pxEditor-wb): árbol de widgets, paleta→canvas, opciones |
 | 192 | [niagara-mental-model-bloque192.md](niagara-mental-model-bloque192.md) | Catálogo de widgets bajaui: inputs, contenedores, datos |
+| 193 | [niagara-mental-model-bloque193.md](niagara-mental-model-bloque193.md) | Los 9 bindings kitPx restantes: mecánica de cada uno |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
