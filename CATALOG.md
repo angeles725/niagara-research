@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **206 bloques**
+Total: **207 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -211,6 +211,7 @@ Total: **206 bloques**
 | 206 | [niagara-mental-model-bloque206.md](niagara-mental-model-bloque206.md) | Los commands de nivel editor (`commands/`): patrón por remisión + responsive/border/apply-props |
 | 207 | [niagara-mental-model-bloque207.md](niagara-mental-model-bloque207.md) | `easyBinding`: el módulo OEM Honeywell de auto-binding sobre kitPx (license-gated, assets cifrados) |
 | 208 | [niagara-mental-model-bloque208.md](niagara-mental-model-bloque208.md) | `svgBatik`: Apache Batik empaquetado + 5 clases Tridium que lo enchufan a gx:Image por ORD |
+| 209 | [niagara-mental-model-bloque209.md](niagara-mental-model-bloque209.md) | Síntesis `px-editor-deep`: 4 hilos transversales del subsistema PX profundo (B198-B208) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

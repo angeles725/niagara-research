@@ -17,7 +17,7 @@
 | chihuahua | stopped | `RESEARCH-STATE-chihuahua.md` | Módulo dashboard Niagara N4 de FUENTE PROPIA (`com.angeles.chihuahua`) para BMS Honeywell MX60. Lectura directa. Tri-parte rt/ux/wb, RBAC write-gate, frontend ES5 IIFE. Documentado (C1-C14) + comparado con Reflow (B177) — CERRADO | B163–B177 |
 | px-menu | stopped | `RESEARCH-STATE-px-menu.md` | PX Menu-Button/Dropdown en Workbench: emulación de menú desplegable (PopupBinding vs toggle in-place), sintaxis `.px`, gramática PxDecoder/Encoder, catálogo de converters, workflow oficial del editor (niagara-help) — CERRADO 12/12 | B179–B190 |
 | px-editor | stopped | `RESEARCH-STATE-px-editor.md` | El PX Editor en amplitud: la herramienta (`pxEditor-wb`), catálogo completo de widgets/bindings, media/perfiles (Wb/Hx/Mobile), theming (Palladium/CSS), animación=data-binding. Continúa px-menu — CERRADO 6/6 | B191–B196 |
-| px-editor-deep | **active** | `RESEARCH-STATE-px-editor-deep.md` | Profundizar pxEditor-wb (D: sidebars/studio/make/commands/field-editors) + módulos vecinos (X: webChart, templates, kitPxGraphics/Hvac/N4svg, svgBatik, bajaux). **10/11** (…D2 B205; D4 B206; X6 B207 easyBinding). **Grupo D cerrado**. Próximo: X4 svgBatik (último) | B198– |
+| px-editor-deep | **stopped** | `RESEARCH-STATE-px-editor-deep.md` | Profundizar pxEditor-wb (D: sidebars/studio/make/commands/field-editors) + módulos vecinos (X: webChart, templates, kitPxGraphics/Hvac/N4svg, svgBatik, bajaux). **CERRADO 11/11** (B198-B208 + síntesis B209). Grupo D (D1-D5) + Grupo X (X1-X6). Todo el subsistema PX deep documentado | B198– |
 
 ## Focus activo
 
