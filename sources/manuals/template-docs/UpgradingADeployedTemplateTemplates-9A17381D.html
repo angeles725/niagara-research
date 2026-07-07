@@ -1,0 +1,85 @@
+<!-- Htmldoc has been run -->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="keywords" content="Niagara" scheme="atiChunkerMeta">
+      <meta name="keywords" content="Niagara 4.14" scheme="atiChunkerMeta">
+      <meta name="keywords" content="Supervisor" scheme="atiChunkerMeta">
+      <meta name="keywords" content="Workbench" scheme="atiChunkerMeta">
+      <meta name="keywords" content="Niagara 4.13" scheme="atiChunkerMeta">
+
+      <link href="css/styler_custom.css" rel="stylesheet" type="text/css">
+      <title>Upgrading a deployed template</title>
+<!-- Auto-generated style sheet link --><link rel='StyleSheet' href='module://bajaui/doc/style.css' type='text/css' />
+<!-- Auto-generated js link for Activity Monitoring --><script type='text/javascript' src='module://web/rc/util/activityMonitor.js'></script>
+<script type='text/javascript'>window.addEventListener('load', activityMonitor.start);</script>
+   </head>
+   <body class=" x-bookmap-1-0" lang="en-US" id="mapelement_bookmap1">
+<!-- Auto-generated Header NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/ProvisioningDeployedTemplatesTempla-9A312AB6.html" class="navbar">Prev</a> |  <a href="/doc/DowngradingADeployedTemplateTemplat-9A30AF16.html" class="navbar">Next</a></p>
+
+      <div xmlns:ch="http://www.arbortext.com/namespace/chunker" class=" x-topic-16-0" id="UpgradingADeployedTemplateTemplates-9A17381D" lang="en-us">
+         <h2 class=" x-title-22-0 x-title-22-1 x-title-22-2 x-title-22-3" id="styler-id1.1.1.5.9.7.1" lang="en-us">Upgrading a deployed template</h2><span class=" x-titlealts-2-0"></span><div class=" x-shortdesc-2-0" lang="en-us">This procedure documents how to upgrade a deployed template in the station.</div>
+         <div class=" x-prolog-1-0" lang="en-us">
+            <div class=" x-metadata-1-0" lang="en-us"><span class=" x-keywords-2-0" lang="en-us"><a class="indexterm" name="d65162e4310"></a><a class="indexterm" name="d65162e4314"></a></span></div>
+         </div>
+         <div class=" x-body-1-0" lang="en-us">
+            <div class=" x-prereq-1-0" lang="en-us">Prerequisites: 
+               <p class=" x-p-13-0" lang="en-us">One (or more) existing deployed templates with the <span class=" x-systemoutput-1-0" lang="en-us">Out of Date</span> status displayed in the <span class=" x-wintitle-2-0" lang="en-us">Template Manager</span> view.
+               </p>
+            </div>
+            <div class=" x-context-1-0" lang="en-us">
+               <div class=" x-note-1-0 x-note-1-2" lang="en-us">&nbsp;<b><span style="font-weight: bold; ">CAUTION: </span></b>Upgrading deployed templates wipes out any local changes you have made to those objects.&nbsp;
+               </div>
+               <div class=" x--ufe-ContextGentextKeeps-1-0"><span style="font-weight: bold; ">Perform the following steps:</span></div>
+            </div>
+            <div lang="en-us">
+               <ol class=" x-ol-1-0">
+                  <li class=" x--inherit-background-color x-step-7-0 x--zero-text-indent" lang="en-us"><span class=" x-cmd-1-0" lang="en-us">Click to select a single row that shows a template is <span class=" x-systemoutput-1-0" lang="en-us">Out of Date</span> and click <b class=" x-uicontrol-3-0" lang="en-us">Upgrade</b>.</span><div class=" x-itemgroup-1-0" lang="en-us">This flags the selected template to be upgraded.
+                        <p class=" x-p-13-0" lang="en-us">Optionally, if multiple templates appear <span class=" x-systemoutput-1-0" lang="en-us">Out of Date</span>, you can click <b class=" x-uicontrol-3-0" lang="en-us">Upgrade All Out Of Date</b> to flag all out of date templates to be upgraded.
+                        </p>
+                     </div>
+                  </li>
+                  <li class=" x--inherit-background-color x-step-7-0 x--zero-text-indent" lang="en-us"><span class=" x-cmd-1-0" lang="en-us">To initiate deployment, click <b class=" x-uicontrol-3-0" lang="en-us">Commit</b>.</span><div class=" x-itemgroup-1-0" lang="en-us">
+                        <div class=" x-note-1-0 x-note-1-7" lang="en-us">&nbsp;<b><span style="font-weight: bold; ">NOTE: </span></b>The deployment process completely removes the existing template and installs a newer version.&nbsp;
+                        </div>
+                     </div>
+                     <div class=" x-itemgroup-1-0" lang="en-us">The <span class=" x-wintitle-2-0" lang="en-us">Commit Template</span> window opens.
+                     </div>
+                  </li>
+                  <li class=" x--inherit-background-color x-step-7-0 x--zero-text-indent" lang="en-us"><span class=" x-cmd-1-0" lang="en-us">In the <span class=" x-wintitle-2-0" lang="en-us">Commit Template</span> window, click <b class=" x-uicontrol-3-0" lang="en-us">Yes</b> to continue.</span><div class=" x-itemgroup-1-0" lang="en-us">
+                        <div class=" x-note-1-0 x-note-1-7" lang="en-us">&nbsp;<b><span style="font-weight: bold; ">NOTE: </span></b>The Upgrade, Downgrade, and Redeploy procedures all use the same deploy process to complete provisioning.&nbsp;
+                        </div>
+                     </div>
+                  </li>
+               </ol>
+            </div>
+            <div class=" x-section-1-0" id="styler-id1.1.1.5.9.7.5.4" lang="en-us">Upon completion of upgrading the deployed template, the <span class=" x-wintitle-2-0" lang="en-us">Template Manager</span> view shows the template’s status as <b class=" x-uicontrol-3-0" lang="en-us">Up to Date</b>.
+            </div>
+         </div>
+         <div class=" x-related-links-1-0">
+            <div class=" x--ufe-relatedlinks-display-1-0">
+               <div class=" x--ufe-relatedHierarchical-1-0 x--ufe-relatedHierarchical-1-1">
+                  <h3 class=" x--ufe-related-links-title-1-0" id="styler-idu1.1.1.5.9.7.6.1.1.1">Related Links</h3>
+                  <div class=" x--ufe-relatedChild-1-0"></div>
+                  <div class=" x--ufe-relatedParent-1-0">
+                     <li class=" x-link-2-0 x-link-2-1"><a href="ProvisioningDeployedTemplatesTempla-9A312AB6.html#ProvisioningDeployedTemplatesTempla-9A312AB6" title="The Template Manager view supports updating one or more deployed templates in a single action. The functionality facilitates upgrading previously deployed templates by monitoring the version and status of deployed templates, and allowing you to make modifications to templates. On completion of modifications to a source template, you can apply the changes either to all out-of-date deployed template instances or to a select number of deployed template instances. "><span class=" x-linktext-2-0 x-linktext-2-5" lang="en-US">Provisioning deployed templates (Parent Topic)</span></a></li>
+                  </div>
+               </div>
+               <div class=" x--ufe-relatedPrevious-1-0"></div>
+               <div class=" x--ufe-relatedNext-1-0"></div>
+               <div class=" x--ufe-relatedConcepts-1-0"></div>
+               <div class=" x--ufe-relatedTasks-1-0"></div>
+               <div class=" x--ufe-relatedReferences-1-0"></div>
+               <div class=" x--ufe-relatedTopics-1-0"></div>
+               <div class=" x--ufe-relatedOther-1-0"></div>
+               <div class=" x--ufe-relatedLinklists-1-0"></div>
+            </div>
+         </div>
+      </div>
+
+<!-- Auto-generated Footer NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/ProvisioningDeployedTemplatesTempla-9A312AB6.html" class="navbar">Prev</a> |  <a href="/doc/DowngradingADeployedTemplateTemplat-9A30AF16.html" class="navbar">Next</a></p>
+<!-- Auto-generated copyright note --><p class='copyright'></p>
+   </body>
+</html>

@@ -1,0 +1,191 @@
+<!-- Htmldoc has been run -->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="keywords" content="Niagara 4.14" scheme="atiChunkerMeta">
+      <meta name="keywords" content="Workbench" scheme="atiChunkerMeta">
+      <meta name="keywords" content="Supervisor" scheme="atiChunkerMeta">
+      <meta name="keywords" content="Niagara 4.13" scheme="atiChunkerMeta">
+      <meta name="keywords" content="Niagara" scheme="atiChunkerMeta">
+
+      <link href="css/styler_custom.css" rel="stylesheet" type="text/css">
+      <title>Template inputs, outputs, relations, configs, and tags</title>
+<!-- Auto-generated style sheet link --><link rel='StyleSheet' href='module://bajaui/doc/style.css' type='text/css' />
+<!-- Auto-generated js link for Activity Monitoring --><script type='text/javascript' src='module://web/rc/util/activityMonitor.js'></script>
+<script type='text/javascript'>window.addEventListener('load', activityMonitor.start);</script>
+   </head>
+   <body class=" x-bookmap-1-0" lang="en-US" id="mapelement_bookmap1">
+<!-- Auto-generated Header NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/TemplateInstanceData.html" class="navbar">Prev</a> |  <a href="/doc/DeployingBulkTemplatesViaTheTemplat-7F170339.html" class="navbar">Next</a></p>
+
+      <div xmlns:ch="http://www.arbortext.com/namespace/chunker" class=" x-topic-16-0" id="TemplateInputsOutputsRelations-89F2BFFF" lang="en-US">
+         <h2 class=" x-title-22-0 x-title-22-1 x-title-22-2 x-title-22-3" id="styler-id1.1.1.7.9.8.1" lang="en-US">Template inputs, outputs, relations, configs, and tags</h2><span class=" x-titlealts-2-0"></span><div class=" x-shortdesc-2-0" lang="en-US">The right-most header columns of the spreadsheet define inputs, outputs, relations, configs, and tags.</div>
+         <div class=" x-prolog-1-0" lang="en-US">
+            <div class=" x-metadata-1-0" lang="en-US"><span class=" x-keywords-2-0" lang="en-US"><a class="indexterm" name="d65162e7224"></a></span></div>
+         </div>
+         <div class=" x-body-1-0" lang="en-US">
+            <div class=" x-section-1-0" id="styler-id1.1.1.7.9.8.5.1" lang="en-US">
+               <p class=" x-p-13-0" lang="en-US">If the source template does not contain inputs, outputs, relations, configuration properties, or tags, columns for those are
+                  not included in the exported;worksheet tab. For example, if the source template has no defined;Relation elements, no Relations
+                  columns exist in the spreadsheet.
+               </p>
+               <p class=" x-p-13-0" lang="en-US">An initial definition column for each item contains the template details for the item. The details of these definitions are
+                  described below. A variable number of columns for each item depend on the source template definition.<div class=" x-image-2-0 x-image-2-9" lang="en-US"><img alt="Image" height="185" src="graphics/Templates_InputsOutputsConfig.png"  width="1004"></div></p>
+            </div>
+            <div class=" x-section-1-0" id="styler-id1.1.1.7.9.8.5.2" lang="en-US">
+               <p class=" x-p-13-0" lang="en-US">The deployment job links inputs and outputs into a slot somewhere in the station.</p>
+               <h3 class=" x-title-45-0" id="styler-id1.1.1.7.9.8.5.2.2" lang="en-US">Inputs</h3>
+               <p class=" x-p-13-0" lang="en-US">Each template input has a corresponding column for defining the source component for the input. The information in the template
+                  is meant to assist you when deciding what the input is used for. The value of the cell is a named component that satisfies
+                  the Bind Hints query for that input. The input component must exist on the station for the link to be satisfied. These values
+                  are required.
+               </p>
+            </div>
+            <div class=" x-section-1-0" id="styler-id1.1.1.7.9.8.5.3" lang="en-US">
+               <h3 class=" x-title-45-0" id="styler-id1.1.1.7.9.8.5.3.1" lang="en-US">Outputs</h3>
+               <p class=" x-p-13-0" lang="en-US">Each template output has two corresponding columns for defining the destination component and slot for that output. The value
+                  of the cell in the first column is a named component that satisfies the Bind Hints query for the input. The value of the cell
+                  in the second column is the target slot name for that named component. The output component and slot must exist on the station
+                  for the link to be satisfied.
+               </p>
+            </div>
+            <div class=" x-section-1-0" id="styler-id1.1.1.7.9.8.5.4" lang="en-US">
+               <h3 class=" x-title-45-0" id="styler-id1.1.1.7.9.8.5.4.1" lang="en-US">Relations</h3>
+               <p class=" x-p-13-0" lang="en-US">Each template relation has a corresponding column for defining the paired component for that relation. The value is a named
+                  component that satisfies the Relate Hints query for the relation. The component must exist on the station for the relation
+                  to be satisfied.
+               </p>
+            </div>
+            <div class=" x-section-1-0" id="styler-id1.1.1.7.9.8.5.5" lang="en-US">
+               <h3 class=" x-title-45-0" id="styler-id1.1.1.7.9.8.5.5.1" lang="en-US">Configs</h3>
+               <p class=" x-p-13-0" lang="en-US">Each template configuration property (Config) has a corresponding column for defining the value applied to the Config. Each
+                  Slot Type cell for the Config header has a comment that indicates the type of entry to make for the value (integer, number,
+                  string, and so on). If you leave the value cell blank for a template instance, the Default Value applies.
+               </p>
+               <div class=" x-table-2-0 x-table-2-2" id="styler-id1.1.1.7.9.8.5.5.3" lang="en-US">
+                  <h3 class=" x-title-31-0" id="styler-id1.1.1.7.9.8.5.5.3.1" lang="en-US">Config Data Element</h3>
+                  <table class=" x-tgroup-1-0" style="border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; border-top-style: solid; border-top-width: 1.0pt; border-top-color: #000000; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; ">
+                     <colgroup>
+                        <col style="width: 19.333333333333332%; ">
+                        <col style="width: 23.666666666666668%; ">
+                        <col style="width: 57%; ">
+                     </colgroup>
+                     <thead class=" x-thead-1-0" style="vertical-align: bottom; text-align: left; font-weight: bold; ">
+                        <tr class=" x-row-1-0">
+                           <th class="entry-in-thead" style="text-align: left; vertical-align: top; padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-top-style: solid; border-top-width: 1.0pt; border-top-color: #000000; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; ">Element</th>
+                           <th class="entry-in-thead" style="text-align: left; vertical-align: top; padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-top-style: solid; border-top-width: 1.0pt; border-top-color: #000000; ">Used In</th>
+                           <th class="entry-in-thead" style="text-align: left; vertical-align: top; padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-top-style: solid; border-top-width: 1.0pt; border-top-color: #000000; ">Description</th>
+                        </tr>
+                     </thead>
+                     <tbody class=" x-tbody-1-0" style="vertical-align: top; ">
+                        <tr class=" x-row-1-0">
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; ">Slot Name</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; ">Inputs, Outputs, Configs</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; ">Defines the name of the slot that is added to the template component when deployed. It defines the slot on the template component
+                              that inputs link to and outputs link from.
+                           </td>
+                        </tr>
+                        <tr class=" x-row-1-0">
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; ">User Tip</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; ">All</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; ">Provides information about this item to establish the appropriate instance values. This information is meant to assist you
+                              when deciding what an input is used for.
+                           </td>
+                        </tr>
+                        <tr class=" x-row-1-0">
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; ">Bind Hints</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; ">Inputs, Outputs</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; ">Defines the NEQL query string used to derive the candidate components. The NEQL search uses this tag query statement to locate
+                              possible components in the running station where the connecting link should be applied.
+                           </td>
+                        </tr>
+                        <tr class=" x-row-1-0">
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; ">Target Slot Hints</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; ">Inputs, Outputs</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; ">Provides a suggestion for source or target slot value of linking component. The value should be the name of a slot that exists
+                              on the source or target component.
+                           </td>
+                        </tr>
+                        <tr class=" x-row-1-0">
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; ">Relation Id</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; ">Relations</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; ">Defines the name of the relation, usually chosen from an existing tag dictionary. The deployment job uses this relation definition
+                              when it creates the relationship.
+                           </td>
+                        </tr>
+                        <tr class=" x-row-1-0">
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; ">Relation Hints</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; ">Relations</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; ">Defines the NEQL query string used to derive the candidate relation components. The NEQL search uses this tag query statement
+                              to locate possible components in the running station where the connecting relation should be applied.
+                           </td>
+                        </tr>
+                        <tr class=" x-row-1-0">
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; ">Direction</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; ">Relations</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; ">Indicates an inbound or outbound relation. This relation direction is based on the device being processed.</td>
+                        </tr>
+                        <tr class=" x-row-1-0">
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; ">Slot Type</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; ">Configs</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; ">Indicates the data type of the configuration property. The attached comment provides guidance on appropriate values.</td>
+                        </tr>
+                        <tr class=" x-row-1-0">
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; ">Default Value</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; ">Configs</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; ">Defines the default value to apply if the cell entry if the Config is blank.</td>
+                        </tr>
+                        <tr class=" x-row-1-0">
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; ">Slot Path Scope</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; ">Inputs, Outputs, Relations</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; ">Defines the station slot path of a component used as the root in the NEQL query for bind hints and relation hints. The value
+                              is a slot path definition, which is a list of hierarchical components separated by a slash. There are no leading or trailing
+                              slashes in the value. If you do not enter a value, the default value will be used. If both the row and the default values
+                              are empty, the slot path scope will be ignored and the entire station will be queried.
+                           </td>
+                        </tr>
+                        <tr class=" x-row-1-0">
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; ">Description</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; ">All</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; ">Provides any additional information about the specific columns. The information in this cell can provide more detailed information
+                              as to the purpose of this configuration property. Using this information, a user can determine what values to enter in the
+                              worksheet.
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <div class=" x-section-1-0" id="styler-id1.1.1.7.9.8.5.6" lang="en-US">
+               <h3 class=" x-title-45-0" id="styler-id1.1.1.7.9.8.5.6.1" lang="en-US">Tags</h3>
+               <p class=" x-p-13-0" lang="en-US">Each requested template string tag has a corresponding column for defining the deployed value for that string tag ID. When
+                  deployed, any string tag with that ID inside the template will get the declared value.
+               </p>
+            </div>
+         </div>
+         <div class=" x-related-links-1-0">
+            <div class=" x--ufe-relatedlinks-display-1-0">
+               <div class=" x--ufe-relatedHierarchical-1-0 x--ufe-relatedHierarchical-1-1">
+                  <h3 class=" x--ufe-related-links-title-1-0" id="styler-idu1.1.1.7.9.8.6.1.1.1">Related Links</h3>
+                  <div class=" x--ufe-relatedChild-1-0"></div>
+                  <div class=" x--ufe-relatedParent-1-0">
+                     <li class=" x-link-2-0 x-link-2-1"><a href="AboutTheSpreadsheet-89F3D5D6.html#AboutTheSpreadsheet-89F3D5D6" title="A template instance contains the unique data required to configure each device that is managed by a single station. The exported Excel file is populated with metadata and header rows to indicate column positions, which you fill in to correctly configure each template instance."><span class=" x-linktext-2-0 x-linktext-2-5" lang="en-US">About the exported spreadsheet (Parent Topic)</span></a></li>
+                  </div>
+               </div>
+               <div class=" x--ufe-relatedPrevious-1-0"></div>
+               <div class=" x--ufe-relatedNext-1-0"></div>
+               <div class=" x--ufe-relatedConcepts-1-0"></div>
+               <div class=" x--ufe-relatedTasks-1-0"></div>
+               <div class=" x--ufe-relatedReferences-1-0"></div>
+               <div class=" x--ufe-relatedTopics-1-0"></div>
+               <div class=" x--ufe-relatedOther-1-0"></div>
+               <div class=" x--ufe-relatedLinklists-1-0"></div>
+            </div>
+         </div>
+      </div>
+
+<!-- Auto-generated Footer NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/TemplateInstanceData.html" class="navbar">Prev</a> |  <a href="/doc/DeployingBulkTemplatesViaTheTemplat-7F170339.html" class="navbar">Next</a></p>
+<!-- Auto-generated copyright note --><p class='copyright'></p>
+   </body>
+</html>

@@ -1,0 +1,89 @@
+<!-- Htmldoc has been run -->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+      <link href="css/styler_custom.css" rel="stylesheet" type="text/css">
+      <title>Application template vs component (device) template</title>
+<!-- Auto-generated style sheet link --><link rel='StyleSheet' href='module://bajaui/doc/style.css' type='text/css' />
+<!-- Auto-generated js link for Activity Monitoring --><script type='text/javascript' src='module://web/rc/util/activityMonitor.js'></script>
+<script type='text/javascript'>window.addEventListener('load', activityMonitor.start);</script>
+   </head>
+   <body class=" x-bookmap-1-0" lang="en-US" id="mapelement_bookmap1">
+<!-- Auto-generated Header NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/ApplicationTemplateVs.StationTempla-B8430A09.html" class="navbar">Prev</a> |  <a href="/doc/ExistingFileAndComponentStructuresF-B8CDA09C.html" class="navbar">Next</a></p>
+
+      <div xmlns:ch="http://www.arbortext.com/namespace/chunker" class=" x-topic-19-0" id="ApplicationTemplateVs.ComponentDevi-B8475EE9" lang="en-US">
+         <h2 class=" x-title-27-0 x-title-27-1 x-title-27-2" id="styler-id1.1.1.6.8.1" lang="en-US">Application template vs component (device) template</h2><span class=" x-titlealts-2-0"></span><div class=" x-shortdesc-2-0" lang="en-US">The term component template also represents the device template.</div>
+         <div class=" x-prolog-1-0" lang="en-US">
+            <div class=" x-metadata-1-0" lang="en-US"><span class=" x-keywords-2-0" lang="en-US"><a class="indexterm" name="d65162e5112"></a></span></div>
+         </div>
+         <div class=" x-body-1-0" lang="en-US">
+            <div class=" x-section-1-0" id="styler-id1.1.1.6.8.5.1" lang="en-US">
+               <h3 class=" x-title-45-0" id="styler-id1.1.1.6.8.5.1.1" lang="en-US">Similarities</h3>
+               <p class=" x-p-13-0" lang="en-US">
+                  <div lang="en-US">
+                     <ul class=" x-ul-1-0">
+                        <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Application templates and component templates are installed (deployed) to a station in a similar way.</span></li>
+                        <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Application templates and component templates can be edited and configuration properties can be defined.</span></li>
+                        <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">When deploying component templates or installing application templates, the defined configuration properties can be set.</span></li>
+                        <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Application templates and component templates can contain graphics and subtemplates.</span></li>
+                        <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">The subtemplates of both application templates and component templates must be component templates.</span></li>
+                     </ul>
+                  </div>
+               </p>
+            </div>
+            <div class=" x-section-1-0" id="styler-id1.1.1.6.8.5.2" lang="en-US">
+               <h3 class=" x-title-45-0" id="styler-id1.1.1.6.8.5.2.1" lang="en-US">Differences</h3>
+               <p class=" x-p-13-0" lang="en-US">
+                  <div lang="en-US">
+                     <ul class=" x-ul-1-0">
+                        <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Component templates can define inputs, outputs, and references; these options do not exist for application templates.</span></li>
+                        <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">The target for a component template can be any container, but the user must select a container that is appropriate for the
+                              components of the template. In contrast, an application template can only be installed to the root Config folder of the station.</span></li>
+                        <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">The root component of a component template is given a user-assigned name when it is deployed. The names of components installed
+                              by an application template are fixed.</span></li>
+                        <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Deploying a component template always adds a new component tree to a path that did not exist before; the name may be modified
+                              during the deployment to make its path unique. For an application template, existing components in the station will be deleted
+                              first to ensure that no functionality from the old application remains; also it confirms that there will be no naming conflicts
+                              in the resulting station.</span></li>
+                        <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Multiple deployments of a component template can be created in a station; an application template has one installation in
+                              a station and there is only one application in the station</span></li>
+                        <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Bulk deployment of application templates is not available. They can be deployed to a single station manually, or can be deployed
+                              to multiple stations by using provisioning.</span></li>
+                        <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">The bulk deploy spreadsheet for a component template includes columns for parent path, component name, display name, and location.
+                              None of these columns are relevant for application templates. </span></li>
+                        <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Bulk deploy can create many uniquely-named instances of a component template in the target. Since a target can only have one
+                              application template, bulk deploy for these is perhaps a contradiction, but the spreadsheet is a way to uniquely configure
+                              the one instance that can be created. </span></li>
+                     </ul>
+                  </div>
+               </p>
+            </div>
+         </div>
+         <div class=" x-related-links-1-0">
+            <div class=" x--ufe-relatedlinks-display-1-0">
+               <div class=" x--ufe-relatedHierarchical-1-0 x--ufe-relatedHierarchical-1-1">
+                  <h3 class=" x--ufe-related-links-title-1-0" id="styler-idu1.1.1.6.8.6.1.1.1">Related Links</h3>
+                  <div class=" x--ufe-relatedChild-1-0"></div>
+                  <div class=" x--ufe-relatedParent-1-0">
+                     <li class=" x-link-2-0 x-link-2-1"><a href="ApplicationTemplate-B83DC405.html#ApplicationTemplate-B83DC405" title="Application templates are a mechanism to deploy an entire station application to a running station. They are the primary means of sharing solutions that are built or Edge devices."><span class=" x-linktext-2-0 x-linktext-2-5" lang="en-US">Application template (Parent Topic)</span></a></li>
+                  </div>
+               </div>
+               <div class=" x--ufe-relatedPrevious-1-0"></div>
+               <div class=" x--ufe-relatedNext-1-0"></div>
+               <div class=" x--ufe-relatedConcepts-1-0"></div>
+               <div class=" x--ufe-relatedTasks-1-0"></div>
+               <div class=" x--ufe-relatedReferences-1-0"></div>
+               <div class=" x--ufe-relatedTopics-1-0"></div>
+               <div class=" x--ufe-relatedOther-1-0"></div>
+               <div class=" x--ufe-relatedLinklists-1-0"></div>
+            </div>
+         </div>
+      </div>
+
+<!-- Auto-generated Footer NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/ApplicationTemplateVs.StationTempla-B8430A09.html" class="navbar">Prev</a> |  <a href="/doc/ExistingFileAndComponentStructuresF-B8CDA09C.html" class="navbar">Next</a></p>
+<!-- Auto-generated copyright note --><p class='copyright'></p>
+   </body>
+</html>

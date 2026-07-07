@@ -1,0 +1,51 @@
+package com.tridium.template;
+
+import com.tridium.platform.SystemFilePaths;
+import javax.baja.file.FilePath;
+import javax.baja.naming.SlotPath;
+import javax.baja.tag.Id;
+
+public interface TemplateConst {
+   String TEMPLATE_CREATION = "ntplCreation";
+   String TEMPLATE_CONFIG_NAME = "templateConfig";
+   String TEMPLATE_MANIFEST_NAME = "template-manifest.xml";
+   String TEMPLATE_EXTENSION = "ntpl";
+   String APPLICATION_TEMPLATE_EXTENSION = "napl";
+   String EXCEL_OLD_EXTENSION = "xls";
+   String EXCEL_NEW_EXTENSION = "xlsx";
+   String TEMPLATE_VENDOR_DEFAULT = "Tridium";
+   String TEMPLATE_VERSION_DEFAULT = "1.0";
+   String TEMPLATE_STATE_DEFAULT = "Draft";
+   String APPLICATION_SERVICE_NAME = "ApplicationService";
+   Id TEMPLATE_FILE_TAG_ID = Id.newId("ntpl:fileName");
+   Id TEMPLATE_ROOT_TAG_ID = Id.newId("ntpl:template");
+   Id TEMPLATE_VENDOR_TAG_ID = Id.newId("ntpl:vendor");
+   Id TEMPLATE_VERSION_TAG_ID = Id.newId("ntpl:version");
+   Id TEMPLATE_TITLE_TAG_ID = Id.newId("ntpl:title");
+   Id TEMPLATE_DESCRIPTION_TAG_ID = Id.newId("ntpl:desc");
+   Id TEMPLATE_ICON_TAG_ID = Id.newId("ntpl:icon");
+   Id TEMPLATE_SUBTEMPLATE_TAG_ID = Id.newId("ntpl:subtemplate");
+   Id TEMPLATE_UID_TAG_ID = Id.newId("ntpl:id");
+   int TAG_FLAGS = 16389;
+   String NTPL_FILE_TAG_NAME = SlotPath.escape(TEMPLATE_FILE_TAG_ID.getQName());
+   String ROOT_TAG_NAME = SlotPath.escape(TEMPLATE_ROOT_TAG_ID.getQName());
+   String VENDOR_TAG_NAME = SlotPath.escape(TEMPLATE_VENDOR_TAG_ID.getQName());
+   String VERSION_TAG_NAME = SlotPath.escape(TEMPLATE_VERSION_TAG_ID.getQName());
+   String TITLE_TAG_NAME = SlotPath.escape(TEMPLATE_TITLE_TAG_ID.getQName());
+   String INFO_TAG_NAME = SlotPath.escape(TEMPLATE_DESCRIPTION_TAG_ID.getQName());
+   String UID_TAG_NAME = SlotPath.escape(TEMPLATE_UID_TAG_ID.getQName());
+   String ICON_TAG_NAME = SlotPath.escape(TEMPLATE_ICON_TAG_ID.getQName());
+   FilePath TEMPLATE_MODULE_DIR = SystemFilePaths.getLocalModulesPath();
+   FilePath TEMPLATE_DIR = new FilePath("~templates");
+   String TEMPLATE_GROUP_BASE = "template";
+   String TEMPLATE_TYPE_ID = "ntpl";
+   String TEMPLATE_PX_GROUP_ID = "tridium.template.px";
+   String TEMPLATE_PX_TYPE_ID = "px";
+   String TEMPLATE_IMAGE_GROUP_ID = "tridium.template.image";
+   String TEMPLATE_FILEPATH_BASE = "^template/";
+   String APPLICATION_TEMPLATE_FILEPATH_BASE = "^applicationTemplate/";
+   String TEMPLATE_FILEPATH_SHARED = "shared/template/";
+   String APPLICATION_TEMPLATE_FILEPATH_SHARED = "shared/applicationTemplate/";
+   String TEMPLATE_PXFILEPATH_BASE = "^px/deploy";
+   String ACE_FILE_LOCATION = "^^ace";
+}

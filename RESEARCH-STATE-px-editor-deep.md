@@ -14,7 +14,7 @@ Prioridad del usuario: **D1 (`sidebars/`, el property/cell-sheet — corazón op
 
 ## Cobertura
 
-**2 / 10 gaps** (ratio 0.20). Read-only-investigable: 8 restantes · requires-execution: 0 · blocked: 0.
+**3 / 11 gaps** (ratio 0.27). Read-only-investigable: 8 restantes (incl. gap nuevo X6) · requires-execution: 0 · blocked: 0.
 
 ## Historial de iteraciones
 
@@ -22,6 +22,7 @@ Prioridad del usuario: **D1 (`sidebars/`, el property/cell-sheet — corazón op
 |---|---|---|---|---|
 | 1 | D1 | B198 | `sidebars/`: `BPxCellSheet` (property/binding editor) + 3-way `newCellEditor` + los CE del Workbench + commands→`javax.baja.ui.Command` (undo/redo) + árbol `PxTreeModel`/`PxTreeSelection` sync + propsheet/layersheet + binding/ ORD-rewriting. 36 CERT/3 INFER. | sí · sonnet |
 | 2 | X1 | B199 | `webChart`: charting = **bajaux puro** (D3/JS), Java `ux` solo bridge `JsInfo` (confirma B194). Capa `rt` = servlets query(data/schedule)/file + `.chart` JSON + RPC. Motor JS: `seriesFactory` (4 series: Servlet/Schedule/Point/External), scales Time/Value D3, sampling auto 2500. Settings sobre `webEditors`. 27 CERT/9 CERT-doc/2 INFER. | sí · sonnet |
+| 3 | X2 | B200 | `template`+`templateBulk`: sistema de templates (Application/Component/Station). `.ntpl`=zip(bog+manifest), `BTemplateConfig` modelo central, configs expuestos (`BConfigBinding`) + passwords (strip del secreto), deploy=`UpgradeUtil` save→remove→deploy→restore, bulk vía Excel (`templateBulk`=POI reflexivo opcional). Graphics tab = `BPxEditorPane` embebido. Descubre gap X6 (easyBinding). 24 CERT/11 CERT-doc/3 INFER. | sí · sonnet |
 
 ## Grupo D — Subsistemas internos de `pxEditor-wb` (nombrados en B191, no deep-dived)
 
@@ -38,16 +39,17 @@ Prioridad del usuario: **D1 (`sidebars/`, el property/cell-sheet — corazón op
 | Gap | Descripción | Fuente (confirmada 2026-07-06) | Prioridad |
 |---|---|---|---|
 | ~~X1~~ | ✅ **CUBIERTO (B199)** — `webChart`: charting bajaux/D3, servlets rt + motor JS + docs oficiales. Fuentes en `sources/decompiled/webChart-{rt,ux}/` + `sources/manuals/webChart-docs/`. | ~~`organized/webChart*`~~ | — |
-| X2 | **`template`/`templateBulk`/`easyBinding`**: el sistema de templates PX (bloque36 lo rozó). | `organized/{template,templateBulk,easyBinding}*` | **ALTA** |
+| ~~X2~~ | ✅ **CUBIERTO (B200)** — `template`+`templateBulk`: sistema de templates (`.ntpl`, configs expuestos, deploy/upgrade, bulk Excel). Graphics tab = PxEditor embebido. Fuentes en `sources/decompiled/template-{rt,wb}/`+`templateBulk/`+`sources/manuals/template-docs/`. `easyBinding` separado → X6. | ~~`organized/{template,templateBulk}*`~~ | — |
+| X6 | **`easyBinding` — 119 clases** (rt/wb/ux): el subsistema de binding simplificado (descubierto durante X2, NO referenciado por `template`). Distinto del binding kitPx (B193) y del templating. | `organized/easyBinding/` (rt+wb+ux, confirmado 2026-07-06) | media |
 | X3 | **`kitPxGraphics`/`kitPxHvac`/`kitPxN4svg`**: packs de widgets gráficos (HVAC, SVG). | `organized/kitPx{Graphics,Hvac,N4svg}*` | media |
 | X4 | **`svgBatik`**: el motor SVG (B196 lo mencionó sin abrir) — cómo se renderiza un SVG animado en PX. | `organized/svgBatik*` | baja |
 | X5 | **`bajaux`**: el render web moderno a fondo — el pipeline JS/HTML5 (`BUx*` codegen) que B194 dijo "no usa PxMedia" pero NO documentó. | `organized/bajaux*` | media |
 
 ## Clasificación (§8)
 
-- **read-only-investigable**: 8 (D2, D3, D4, D5, X2-X5 — fuentes confirmadas 2026-07-06). **requires-execution**: 0. **blocked**: 0.
-- **Orden sugerido restante**: **X2 (templates)** → D3/D5 → X3/X5 → D2/D4 → X4.
-- **PRÓXIMO gap**: **X2 — `template`/`templateBulk`/`easyBinding`** (el sistema de templates PX, prioridad ALTA; B36 lo rozó).
+- **read-only-investigable**: 8 (D2, D3, D4, D5, X3, X4, X5, X6 — fuentes confirmadas 2026-07-06). **requires-execution**: 0. **blocked**: 0.
+- **Orden sugerido restante**: **D3 (make/wizard)** o **D5 (field editors)** → X3/X5 → D2/D4 → X6/X4.
+- **PRÓXIMO gap**: **D3 — `make/` (16 estrategias del wizard)** (media; solo `BMwFromPalette` documentado en B191).
 
 ## Notas
 

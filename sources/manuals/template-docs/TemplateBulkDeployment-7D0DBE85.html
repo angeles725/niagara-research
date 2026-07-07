@@ -1,0 +1,100 @@
+<!-- Htmldoc has been run -->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="keywords" content="Workbench" scheme="atiChunkerMeta">
+      <meta name="keywords" content="Niagara 4.14" scheme="atiChunkerMeta">
+      <meta name="keywords" content="Supervisor" scheme="atiChunkerMeta">
+      <meta name="keywords" content="Niagara 4.13" scheme="atiChunkerMeta">
+      <meta name="keywords" content="Niagara" scheme="atiChunkerMeta">
+
+      <link href="css/styler_custom.css" rel="stylesheet" type="text/css">
+      <title>Template bulk deployment</title>
+<!-- Auto-generated style sheet link --><link rel='StyleSheet' href='module://bajaui/doc/style.css' type='text/css' />
+<!-- Auto-generated js link for Activity Monitoring --><script type='text/javascript' src='module://web/rc/util/activityMonitor.js'></script>
+<script type='text/javascript'>window.addEventListener('load', activityMonitor.start);</script>
+   </head>
+   <body class=" x-bookmap-1-0" lang="en-US" id="mapelement_bookmap1">
+<!-- Auto-generated Header NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/InstallingOptionalComponentsTemplat-B23FE642.html" class="navbar">Prev</a> |  <a href="/doc/ExportingTheTemplateSpreadsheet-7D1601B6.html" class="navbar">Next</a></p>
+
+      <div xmlns:ch="http://www.arbortext.com/namespace/chunker" class=" x-chapter-2-0" id="TemplateBulkDeployment-7D0DBE85" lang="en-US">
+         <h1 class=" x-title-50-0 x-title-50-1" id="styler-id1.1.1.7.1" lang="en-US">Template bulk deployment</h1><span class=" x-titlealts-2-0"></span><div class=" x-shortdesc-2-0" lang="en-US">A single operation can deploy multiple instances of one or more templates to a station. </div>
+         <div class=" x-prolog-1-0" lang="en-US">
+            <div class=" x-metadata-1-0" lang="en-US"><span class=" x-keywords-2-0" lang="en-US"><a class="indexterm" name="d65162e6287"></a></span></div>
+         </div>
+         <div class=" x-body-1-0" lang="en-US">
+            <div class=" x-section-1-0" id="styler-id1.1.1.7.5.1" lang="en-US">
+               <p class=" x-p-13-0" lang="en-US">Template bulk deployment differs from bulk provisioning in that provisioning configures multiple stations in a single operation,
+                  whereas template bulk deployment configures a single station with multiple instances of one or more templates. This operation
+                  loads information into the station for each device or other entity the station supports. Template bulk deployment does not
+                  support automatic bulk deployment of sub-templates.
+               </p>
+               <div class=" x-note-1-0 x-note-1-7" lang="en-US">&nbsp;<b><span style="font-weight: bold; ">NOTE: </span></b>To avoid future problems, make sure that you tag and configure devices correctly before making a template and using it to
+                  configure other devices. Additionally, you must copy all relevant tag dictionaries (with the exception of the <span class=" x-keyword-2-0" lang="en-US">
+                     <ch:meta content="Niagara" name="keywords"></ch:meta><span style="white-space: nowrap;">Niagara</span></span> tag dictionaries) from the tag dictionaries Service to the tag dictionaries folder in your User Home file space before the
+                  template is first created (or edited), and during template deployment to be successful. Also, the system does not automatically
+                  apply subsequent template changes to the configured devices.&nbsp;
+               </div>
+            </div>
+            <div class=" x-section-1-0" id="styler-id1.1.1.7.5.2" lang="en-US">
+               <h3 class=" x-title-45-0" id="styler-id1.1.1.7.5.2.1" lang="en-US">Prerequisite</h3>
+               <p class=" x-p-13-0" lang="en-US">Bulk deployment assumes that the one or more templates to deploy exist.</p>
+            </div>
+            <div class=" x-section-1-0" id="styler-id1.1.1.7.5.3" lang="en-US">
+               <h3 class=" x-title-45-0" id="styler-id1.1.1.7.5.3.1" lang="en-US">Overview</h3>
+               <p class=" x-p-13-0" lang="en-US">The bulk deployment process involves these primary steps:</p>
+               <div lang="en-US">
+                  <ol class=" x-ol-1-0">
+                     <li class=" x--inherit-background-color x-li-9-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Select the template(s) to include in the deployment and create an Excel file that contains a worksheet for each template.</span></li>
+                     <li class=" x--inherit-background-color x-li-9-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">For each worksheet, fill in a row with the unique information required by each station device.</span></li>
+                     <li class=" x--inherit-background-color x-li-9-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Select this Excel file to use in the deployment, and execute the deployment job. The job starts with the first worksheet in
+                           the Excel spreadsheet, extracts configuration data from each row, and configures each device in the target station. The job
+                           moves from left to right through the worksheets. Data dependencies must be located in the worksheets ahead of when they are
+                           needed.
+                           <div class=" x-note-1-0 x-note-1-7" lang="en-US">&nbsp;<b><span style="font-weight: bold; ">NOTE: </span></b><span class=" x-keyword-2-0" lang="en-US">
+                                 <ch:meta content="Niagara 4.13" name="keywords"></ch:meta><span style="white-space: nowrap;">Niagara 4.13</span></span> or prior <span class=" x-keyword-2-0" lang="en-US">
+                                 <ch:meta content="Workbench" name="keywords"></ch:meta>Workbench</span> or <span class=" x-keyword-2-0" lang="en-US">
+                                 <ch:meta content="Supervisor" name="keywords"></ch:meta>Supervisor</span> versions do not support Excel files generated from a <span class=" x-keyword-2-0" lang="en-US">
+                                 <ch:meta content="Niagara 4.14" name="keywords"></ch:meta><span style="white-space: nowrap;">Niagara 4.14</span></span> <span class=" x-keyword-2-0" lang="en-US">
+                                 <ch:meta content="Workbench" name="keywords"></ch:meta>Workbench</span>.&nbsp;
+                           </div></span></li>
+                  </ol>
+               </div>
+               <p class=" x-p-13-0" lang="en-US">Template bulk deployment does not work when a station is offline.</p>
+            </div>
+         </div>
+         <div class=" x-related-links-1-0">
+            <div class=" x--ufe-relatedlinks-display-1-0">
+               <div class=" x--ufe-relatedHierarchical-1-0 x--ufe-relatedHierarchical-1-1">
+                  <h3 class=" x--ufe-related-links-title-1-0" id="styler-idu1.1.1.7.6.1.1.1">Related Links</h3>
+                  <div class=" x--ufe-relatedChild-1-0">
+                     <li class=" x-link-2-0 x-link-2-1"><a href="ExportingTheTemplateSpreadsheet-7D1601B6.html#ExportingTheTemplateSpreadsheet-7D1601B6" title="Exporting template configuration properties to an Excel spreadsheet assembles in a single file the information to be deployed to each station. You may create and deploy more than one Excel file/template file set to complete an entire application installation or include multiple templates as part of the single Excel file. The export function generates a separate Excel worksheet tab for each template."><span class=" x-linktext-2-0" lang="en-us">Exporting the template spreadsheet</span></a></li>
+                     <li class=" x-link-2-0 x-link-2-1"><a href="EditingASpreadsheet-TemplatesGuide-90E0C93B.html#EditingASpreadsheet-TemplatesGuide-90E0C93B" title="Edit the rows in the spreadsheet to provide the unique device information required by each template instance."><span class=" x-linktext-2-0" lang="en-us">Editing a spreadsheet</span></a></li>
+                     <li class=" x-link-2-0 x-link-2-1"><a href="AboutTheSpreadsheet-89F3D5D6.html#AboutTheSpreadsheet-89F3D5D6" title="A template instance contains the unique data required to configure each device that is managed by a single station. The exported Excel file is populated with metadata and header rows to indicate column positions, which you fill in to correctly configure each template instance."><span class=" x-linktext-2-0" lang="en-US">About the exported spreadsheet</span></a></li>
+                     <li class=" x-link-2-0 x-link-2-1"><a href="DeployingBulkTemplatesViaTheTemplat-7F170339.html#DeployingBulkTemplatesViaTheTemplat-7F170339" title="This topic documents how to import bulk templates to the station database via the Template Manager view."><span class=" x-linktext-2-0" lang="en-us">Deploying bulk templates</span></a></li>
+                     <li class=" x-link-2-0 x-link-2-1"><a href="ExportingTheApplicationTemplateSpre-D228B4E7.html#ExportingTheApplicationTemplateSpre-D228B4E7" title="You can export the configuration of an application template to an Excel spreadsheet."><span class=" x-linktext-2-0" lang="en-us">Exporting the application template spreadsheet</span></a></li>
+                     <li class=" x-link-2-0 x-link-2-1"><a href="EditingTheApplicationTemplateSpread-283D25CE.html#EditingTheApplicationTemplateSpread-283D25CE" title="You edit the rows in the spreadsheet to provide the unique device information required by the template instance."><span class=" x-linktext-2-0" lang="en-us">Editing the application template spreadsheet</span></a></li>
+                     <li class=" x-link-2-0 x-link-2-1"><a href="InstallingBulkApplicationTemplates-B24084B8.html#InstallingBulkApplicationTemplates-B24084B8" title="You can install application templates using bulk deployment by importing bulk templates to the station database via the Template Manager view. The workflow is very similar to deploying component and device templates, with a few key differences that are outlined here."><span class=" x-linktext-2-0" lang="en-us">Installing bulk application templates</span></a></li>
+                     <li class=" x-link-2-0 x-link-2-1"><a href="UpdatingTemplateConfigurationTempla-F39D6175.html#UpdatingTemplateConfigurationTempla-F39D6175" title="You can use exported spreadsheets used for deploying component templates or installing application templates to update the configuration of a previously deployed template."><span class=" x-linktext-2-0" lang="en-us">Updating template configuration</span></a></li>
+                     <li class=" x-link-2-0 x-link-2-1"><a href="OptionalComponentsWhenInstallingBul-B241B3BC.html#OptionalComponentsWhenInstallingBul-B241B3BC" title="You can declare and install optional components in application templates using bulk deployment. "><span class=" x-linktext-2-0" lang="en-US">Optional components when installing bulk application templates</span></a></li>
+                  </div>
+                  <div class=" x--ufe-relatedParent-1-0"></div>
+               </div>
+               <div class=" x--ufe-relatedPrevious-1-0"></div>
+               <div class=" x--ufe-relatedNext-1-0"></div>
+               <div class=" x--ufe-relatedConcepts-1-0"></div>
+               <div class=" x--ufe-relatedTasks-1-0"></div>
+               <div class=" x--ufe-relatedReferences-1-0"></div>
+               <div class=" x--ufe-relatedTopics-1-0"></div>
+               <div class=" x--ufe-relatedOther-1-0"></div>
+               <div class=" x--ufe-relatedLinklists-1-0"></div>
+            </div>
+         </div>
+      </div>
+
+<!-- Auto-generated Footer NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/InstallingOptionalComponentsTemplat-B23FE642.html" class="navbar">Prev</a> |  <a href="/doc/ExportingTheTemplateSpreadsheet-7D1601B6.html" class="navbar">Next</a></p>
+<!-- Auto-generated copyright note --><p class='copyright'></p>
+   </body>
+</html>

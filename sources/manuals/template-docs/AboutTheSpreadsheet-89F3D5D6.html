@@ -1,0 +1,117 @@
+<!-- Htmldoc has been run -->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="keywords" content="Niagara 4.14" scheme="atiChunkerMeta">
+      <meta name="keywords" content="Workbench" scheme="atiChunkerMeta">
+      <meta name="keywords" content="Supervisor" scheme="atiChunkerMeta">
+      <meta name="keywords" content="Niagara 4.13" scheme="atiChunkerMeta">
+      <meta name="keywords" content="Niagara" scheme="atiChunkerMeta">
+
+      <link href="css/styler_custom.css" rel="stylesheet" type="text/css">
+      <title>About the exported spreadsheet</title>
+<!-- Auto-generated style sheet link --><link rel='StyleSheet' href='module://bajaui/doc/style.css' type='text/css' />
+<!-- Auto-generated js link for Activity Monitoring --><script type='text/javascript' src='module://web/rc/util/activityMonitor.js'></script>
+<script type='text/javascript'>window.addEventListener('load', activityMonitor.start);</script>
+   </head>
+   <body class=" x-bookmap-1-0" lang="en-US" id="mapelement_bookmap1">
+<!-- Auto-generated Header NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/EditingASpreadsheet-TemplatesGuide-90E0C93B.html" class="navbar">Prev</a> |  <a href="/doc/TemplateInstanceData.html" class="navbar">Next</a></p>
+
+      <div xmlns:ch="http://www.arbortext.com/namespace/chunker" class=" x-topic-19-0" id="AboutTheSpreadsheet-89F3D5D6" lang="en-US">
+         <h2 class=" x-title-27-0 x-title-27-1 x-title-27-2" id="styler-id1.1.1.7.9.1" lang="en-US">About the exported spreadsheet</h2><span class=" x-titlealts-2-0"></span><div class=" x-shortdesc-2-0" lang="en-US">A template instance contains the unique data required to configure each device that is managed by a single station. The exported
+            Excel file is populated with metadata and header rows to indicate column positions, which you fill in to correctly configure
+            each template instance.
+         </div>
+         <div class=" x-prolog-1-0" lang="en-US">
+            <div class=" x-metadata-1-0" lang="en-US"><span class=" x-keywords-2-0" lang="en-US"><a class="indexterm" name="d65162e6912"></a><a class="indexterm" name="d65162e6914"></a></span></div>
+         </div>
+         <div class=" x-body-1-0" lang="en-US">
+            <div class=" x-section-1-0" id="styler-id1.1.1.7.9.5.1" lang="en-US">
+               <div class=" x-fig-1-0 x-fig-1-1" id="styler-id1.1.1.7.9.5.1.1" lang="en-US"><h5 class=" x-title-49-0" id="styler-id1.1.1.7.9.5.1.1.1" lang="en-US">Figure 1.  &nbsp;&nbsp;Example exported Excel file</h5><div class=" x-image-2-0 x-image-2-9" lang="en-US"><img alt="Image" height="185" src="graphics/Templates_ExampleExportedFile.png"  width="1004"></div></div>
+               <div class=" x-simpletable-1-0 x-simpletable-1-1" id="styler-id1.1.1.7.9.5.1.2" lang="en-US">
+                  <table border="1" cellpadding="7" frame="box" rules="all" style="border-width: 1.0pt; " width="100%">
+                     <col width="36">
+                     <col width="444">
+                     <tbody>
+                        <tr class=" x-strow-1-0" lang="en-US" style="vertical-align: top; ">
+                           <td class=" x-stentry-2-0" lang="en-US"><span class=" x-b-1-0" lang="en-US">1</span></td>
+                           <td class=" x-stentry-2-0" lang="en-US">The spreadsheet contains a separate worksheet tab for each selected template. The <code class=" x-parmname-2-0" lang="en-US">Template Vendor</code> and <code class=" x-parmname-2-0" lang="en-US">Title</code> combine to make the worksheet tab name. You can rename and move the worksheet tabs as required. 
+                              <p class=" x-p-13-0" lang="en-US">The top six rows of each worksheet contain data required by the bulk deployment process to define the purpose of each column.
+                                 Do not edit these rows in the spreadsheet. To change their content, go back and edit the template <code class=" x-parmname-2-0" lang="en-US">Description</code> and <code class=" x-parmname-2-0" lang="en-US">Info</code> properties on the <span class=" x-wintitle-2-0" lang="en-US">Template Info</span> tab in <span class=" x-keyword-2-0" lang="en-US">
+                                    <ch:meta content="Workbench" name="keywords"></ch:meta>Workbench</span>, and export the Excel file again.
+                              </p>
+                              <p class=" x-p-13-0" lang="en-US">The order of the worksheet tabs is important. The bulk deployment job works from left to right through each worksheet, adding
+                                 all template items before creating links and relations. If an individual template requires something else to already exist
+                                 in the running station, and a template tab installs that something, make sure the required entity is in a worksheet to the
+                                 left of the worksheet that requires its existence.
+                              </p>
+                           </td>
+                        </tr>
+                        <tr class=" x-strow-1-0" lang="en-US" style="vertical-align: top; ">
+                           <td class=" x-stentry-2-0" lang="en-US"><span class=" x-b-1-0" lang="en-US">2</span></td>
+                           <td class=" x-stentry-2-0" lang="en-US">The left-most columns provide information needed to generate a template instance. Metadata and header rows indicate the column
+                              positions to configure each template instance. Each of these column headers includes a comment describing the entry for this
+                              column. A template instance is defined by filling in a row in the worksheet tab. Additional rows define multiple instances
+                              of a template. Values for each column can be required or optional.
+                           </td>
+                        </tr>
+                        <tr class=" x-strow-1-0" lang="en-US" style="vertical-align: top; ">
+                           <td class=" x-stentry-2-0" lang="en-US"><span class=" x-b-1-0" lang="en-US">3</span></td>
+                           <td class=" x-stentry-2-0" lang="en-US">Additional template information is included as formula values.</td>
+                        </tr>
+                        <tr class=" x-strow-1-0" lang="en-US" style="vertical-align: top; ">
+                           <td class=" x-stentry-2-0" lang="en-US"><span class=" x-b-1-0" lang="en-US">4</span></td>
+                           <td class=" x-stentry-2-0" lang="en-US">Comments (indicated by a red triangle in the upper right corner of the cell) provide additional information for specific header
+                              cells. Hover the mouse pointer over the cell to show the comments on that cell. If the template has a <code class=" x-parmname-2-0" lang="en-US">Template Info</code> value, it is included as a comment on the template description value cell (B1). If the Excel file is encrypted, a <span class=" x-wintitle-2-0" lang="en-US">Privacy Note</span> label is inserted in cell (A2), with a notice in cell (B2) stating that “This file is encrypted to protect passwords or other
+                              private data. Please maintain the encryption and safeguard the contents while editing.”
+                           </td>
+                        </tr>
+                        <tr class=" x-strow-1-0" lang="en-US" style="vertical-align: top; ">
+                           <td class=" x-stentry-2-0" lang="en-US"><span class=" x-b-1-0" lang="en-US">5</span></td>
+                           <td class=" x-stentry-2-0" lang="en-US">The rest of the header columns define inputs, outputs, relations, configuration properties, and (optional) string tags.</td>
+                        </tr>
+                        <tr class=" x-strow-1-0" lang="en-US" style="vertical-align: top; ">
+                           <td class=" x-stentry-2-0" lang="en-US"><span class=" x-b-1-0" lang="en-US">6, 7, 8</span></td>
+                           <td class=" x-stentry-2-0" lang="en-US">As of <span class=" x-keyword-2-0" lang="en-US">
+                                 <ch:meta content="Niagara 4.14" name="keywords"></ch:meta><span style="white-space: nowrap;">Niagara 4.14</span></span>, for each template Input and Output, a third column is added, and for each Relation, a second column is added to contain
+                              the value of the <code class=" x-parmname-2-0" lang="en-US">Slot Path Scope</code>. You can define for each template instance a custom value for the <code class=" x-parmname-2-0" lang="en-US">Slot Path Scope</code> to be used during the bulk deployment process.
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+               <div class=" x-note-1-0 x-note-1-7" lang="en-US">&nbsp;<b><span style="font-weight: bold; ">NOTE: </span></b>The string values for most of the generated Excel columns, comments, and metadata are in the template lexicon. They can be
+                  localized and internationalized as needed. Refer to the <span class=" x-cite-1-0" lang="en-US"><span class=" x-ph-1-0" lang="en-US">Niagara Lexicon Guide</span></span>. &nbsp;
+               </div>
+            </div>
+         </div>
+         <div class=" x-related-links-1-0">
+            <div class=" x--ufe-relatedlinks-display-1-0">
+               <div class=" x--ufe-relatedHierarchical-1-0 x--ufe-relatedHierarchical-1-1">
+                  <h3 class=" x--ufe-related-links-title-1-0" id="styler-idu1.1.1.7.9.6.1.1.1">Related Links</h3>
+                  <div class=" x--ufe-relatedChild-1-0">
+                     <li class=" x-link-2-0 x-link-2-1"><a href="TemplateInstanceData.html#TemplateInstanceData" title="The template instance data are defined by the left-most columns in the spreadsheet with the gray background. Rows seven through xxxx (however many you need) is where you enter data into the worksheet for each entity, usually a device, but not always. The bulk deployment job processes each row one at a time until, for each row that contains a defined device, it adds a device to the running station."><span class=" x-linktext-2-0" lang="en-US">Template instance data</span></a></li>
+                     <li class=" x-link-2-0 x-link-2-1"><a href="TemplateInputsOutputsRelations-89F2BFFF.html#TemplateInputsOutputsRelations-89F2BFFF" title="The right-most header columns of the spreadsheet define inputs, outputs, relations, configs, and tags."><span class=" x-linktext-2-0" lang="en-US">Template inputs, outputs, relations, configs, and tags</span></a></li>
+                  </div>
+                  <div class=" x--ufe-relatedParent-1-0">
+                     <li class=" x-link-2-0 x-link-2-1"><a href="TemplateBulkDeployment-7D0DBE85.html#TemplateBulkDeployment-7D0DBE85" title="A single operation can deploy multiple instances of one or more templates to a station. "><span class=" x-linktext-2-0 x-linktext-2-5" lang="en-US">Template bulk deployment (Parent Topic)</span></a></li>
+                  </div>
+               </div>
+               <div class=" x--ufe-relatedPrevious-1-0"></div>
+               <div class=" x--ufe-relatedNext-1-0"></div>
+               <div class=" x--ufe-relatedConcepts-1-0"></div>
+               <div class=" x--ufe-relatedTasks-1-0"></div>
+               <div class=" x--ufe-relatedReferences-1-0"></div>
+               <div class=" x--ufe-relatedTopics-1-0"></div>
+               <div class=" x--ufe-relatedOther-1-0"></div>
+               <div class=" x--ufe-relatedLinklists-1-0"></div>
+            </div>
+         </div>
+      </div>
+
+<!-- Auto-generated Footer NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/EditingASpreadsheet-TemplatesGuide-90E0C93B.html" class="navbar">Prev</a> |  <a href="/doc/TemplateInstanceData.html" class="navbar">Next</a></p>
+<!-- Auto-generated copyright note --><p class='copyright'></p>
+   </body>
+</html>

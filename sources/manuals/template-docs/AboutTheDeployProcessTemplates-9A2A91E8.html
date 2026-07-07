@@ -1,0 +1,128 @@
+<!-- Htmldoc has been run -->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="keywords" content="Workbench" scheme="atiChunkerMeta">
+
+      <link href="css/styler_custom.css" rel="stylesheet" type="text/css">
+      <title>About the provisioning Deploy process</title>
+<!-- Auto-generated style sheet link --><link rel='StyleSheet' href='module://bajaui/doc/style.css' type='text/css' />
+<!-- Auto-generated js link for Activity Monitoring --><script type='text/javascript' src='module://web/rc/util/activityMonitor.js'></script>
+<script type='text/javascript'>window.addEventListener('load', activityMonitor.start);</script>
+   </head>
+   <body class=" x-bookmap-1-0" lang="en-US" id="mapelement_bookmap1">
+<!-- Auto-generated Header NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/DeployedTemplateProvisioningCommand-9A109FB3.html" class="navbar">Prev</a> |  <a href="/doc/AboutTheProvisioningDetachProcessTe-9BA043CD.html" class="navbar">Next</a></p>
+
+      <div xmlns:ch="http://www.arbortext.com/namespace/chunker" class=" x-topic-16-0" id="AboutTheDeployProcessTemplates-9A2A91E8" lang="en-US">
+         <h2 class=" x-title-22-0 x-title-22-1 x-title-22-2 x-title-22-3" id="styler-id1.1.1.8.10.9.1" lang="en-US">About the provisioning Deploy process</h2><span class=" x-titlealts-2-0"></span><div class=" x-shortdesc-2-0" lang="en-US">The Upgrade, Downgrade, and Redeploy provisioning commands all use the same deployment process. This section describes what
+            happens programmatically during this process.
+         </div>
+         <div class=" x-prolog-1-0" lang="en-US">
+            <div class=" x-metadata-1-0" lang="en-US"><span class=" x-keywords-2-0" lang="en-US"><a class="indexterm" name="d65162e9724"></a><a class="indexterm" name="d65162e9728"></a></span></div>
+         </div>
+         <div class=" x-body-1-0" lang="en-US">
+            <div class=" x-section-1-0" id="styler-id1.1.1.8.10.9.5.1" lang="en-US">
+               <div lang="en-US">
+                  <ol class=" x-ol-1-0">
+                     <li class=" x--inherit-background-color x-li-9-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Upon clicking <b class=" x-uicontrol-3-0" lang="en-US">Commit</b> during the upgrade, downgrade, or redeploy provisioning procedures, a <span class=" x-wintitle-2-0" lang="en-US">Commit Template</span> confirmation window alerts you that this process removes the existing template and installs a different version, and prompts
+                           you to click <b class=" x-uicontrol-3-0" lang="en-US">Yes</b> to confirm that you wish to continue.</span></li>
+                     <li class=" x--inherit-background-color x-li-9-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">If the target is an online station (this is handled by an Upgrade Job in the station).
+                           <div lang="en-US">
+                              <ol class=" x-ol-1-0">
+                                 <li class=" x--inherit-background-color x-li-7-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">For each template that you selected to be upgraded, downgraded, or redeployed the following steps occur:
+                                       <div lang="en-US">
+                                          <ol class=" x-ol-1-0">
+                                             <li class=" x--inherit-background-color x-li-5-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">The template <code class=" x-filepath-1-0" lang="en-US">.ntpl</code> file is copied to the target station's file system at: <code class=" x-filepath-1-0" lang="en-US">^template/"+vendor</code>. If it already exists (validated with crc check), the file is not copied.</span></li>
+                                             <li class=" x--inherit-background-color x-li-5-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Adds a reference to the template root to be updated to a BVector that will be an argument to the Upgrade Job.</span></li>
+                                          </ol>
+                                       </div></span></li>
+                                 <li class=" x--inherit-background-color x-li-7-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Submits an Upgrade Job with a list of template roots to be upgraded.</span></li>
+                                 <li class=" x--inherit-background-color x-li-7-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">The Upgrade Job runs in the station.
+                                       <div lang="en-US">
+                                          <ol class=" x-ol-1-0">
+                                             <li class=" x--inherit-background-color x-li-5-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">For each template identified to be upgraded the following occurs:
+                                                   <div lang="en-US">
+                                                      <ol class=" x-ol-1-0">
+                                                         <li class=" x--inherit-background-color x-li-4-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Get a reference to the <code class=" x-filepath-1-0" lang="en-US">.ntpl</code> pushed to the station’s file system (which was pushed by client prior to launching this job)</span></li>
+                                                         <li class=" x--inherit-background-color x-li-4-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Get a reference to the deployed template root component's parent.</span></li>
+                                                         <li class=" x--inherit-background-color x-li-4-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Save the current state of the deployed template:
+                                                               <div lang="en-US">
+                                                                  <ul class=" x-ul-1-0">
+                                                                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Save the location of the deployed template root component (BWsAnnotation)</span></li>
+                                                                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Save persistent properties of the template root component.</span></li>
+                                                                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Save the location and values of any BPassword slots.</span></li>
+                                                                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Save the current value of template configuration properties</span></li>
+                                                                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Save any input links to the template root component.</span></li>
+                                                                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Save any output knobs from the template root component</span></li>
+                                                                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Save any input relations to the template root component</span></li>
+                                                                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Save any output relations from the template root component</span></li>
+                                                                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Save the location and value of any tags in the template component tree that aren't defined in the template definition and
+                                                                           namespace is not "ntpl".</span></li>
+                                                                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Save the location and current value of any slots defined as an editable slot in a PxView.</span></li>
+                                                                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Save any external links and relations to or from internal template components.</span></li>
+                                                                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Save current state of any BHistoryExt's</span></li>
+                                                                  </ul>
+                                                               </div></span></li>
+                                                         <li class=" x--inherit-background-color x-li-4-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Remove the existing template root component from its parent.</span></li>
+                                                         <li class=" x--inherit-background-color x-li-4-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Using the .ntpl reference deploy the template to the template's parent.</span></li>
+                                                         <li class=" x--inherit-background-color x-li-4-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Restore the values saved in the previous Save step.</span><p class=" x-p-8-0" lang="en-US">In general, the restoration of saved property values is done by property name and value. If the template property has been
+                                                               renamed and it is one of the saved properties, its value will not be restored.
+                                                               <div lang="en-US">
+                                                                  <ul class=" x-ul-1-0">
+                                                                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Restore the location of the deployed template root component (BWsAnnotation)</span></li>
+                                                                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Restore persistent properties of the template root component. If properties have been removed from the template they will
+                                                                           not b restored.</span></li>
+                                                                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Restore the location and values of any BPassword slots. If BPassword properties have been removed from the template they will
+                                                                           not be restored.</span></li>
+                                                                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Restore the current value of template configuration properties If a template configuration property has been removed it will
+                                                                           not be restored.</span></li>
+                                                                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Restore any input links to the template root component.</span></li>
+                                                                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Restore any output knobs from the template root component</span></li>
+                                                                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Restore any input relations to the template root component</span></li>
+                                                                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Restore any output relations from the template root component</span></li>
+                                                                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Restore any save component tags.</span></li>
+                                                                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Restore the saved values of any slots defined as an editable slot in a PxView.</span></li>
+                                                                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Restore the saved external links and relations.</span></li>
+                                                                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Restore the saved state of BHistoryExt's.</span></li>
+                                                                  </ul>
+                                                               </div>
+                                                            </p>
+                                                         </li>
+                                                      </ol>
+                                                   </div></span></li>
+                                          </ol>
+                                       </div></span></li>
+                              </ol>
+                           </div></span></li>
+                     <li class=" x--inherit-background-color x-li-9-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">The online station deployment is complete.</span></li>
+                  </ol>
+               </div>
+            </div>
+         </div>
+         <div class=" x-related-links-1-0">
+            <div class=" x--ufe-relatedlinks-display-1-0">
+               <div class=" x--ufe-relatedHierarchical-1-0 x--ufe-relatedHierarchical-1-1">
+                  <h3 class=" x--ufe-related-links-title-1-0" id="styler-idu1.1.1.8.10.9.6.1.1.1">Related Links</h3>
+                  <div class=" x--ufe-relatedChild-1-0"></div>
+                  <div class=" x--ufe-relatedParent-1-0">
+                     <li class=" x-link-2-0 x-link-2-1"><a href="template-TemplateManagerView.html#template-TemplateManagerView" title="The Template Manager is the primary view of the Template Service. It facilitates upgrading deployed templates by monitoring the version and status of deployed templates, and allowing modifications to the source template. At which point, the upgrade may be applied to all out-of-date deployed templates or only to selected instances. By default, this view compares the deployed templates against your locally available templates, meaning the templates found in the ~templates folder on your local keywordsWorkbenchWorkbench PC."><span class=" x-linktext-2-0 x-linktext-2-5" lang="en-US">Template Manager view (Parent Topic)</span></a></li>
+                  </div>
+               </div>
+               <div class=" x--ufe-relatedPrevious-1-0"></div>
+               <div class=" x--ufe-relatedNext-1-0"></div>
+               <div class=" x--ufe-relatedConcepts-1-0"></div>
+               <div class=" x--ufe-relatedTasks-1-0"></div>
+               <div class=" x--ufe-relatedReferences-1-0"></div>
+               <div class=" x--ufe-relatedTopics-1-0"></div>
+               <div class=" x--ufe-relatedOther-1-0"></div>
+               <div class=" x--ufe-relatedLinklists-1-0"></div>
+            </div>
+         </div>
+      </div>
+
+<!-- Auto-generated Footer NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/DeployedTemplateProvisioningCommand-9A109FB3.html" class="navbar">Prev</a> |  <a href="/doc/AboutTheProvisioningDetachProcessTe-9BA043CD.html" class="navbar">Next</a></p>
+<!-- Auto-generated copyright note --><p class='copyright'></p>
+   </body>
+</html>
