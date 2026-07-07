@@ -1,4 +1,4 @@
-<!-- review-status: pending -->
+<!-- review-status: applied 2026-07-07 · kit dee4b26 (PR #13) -->
 # Retro — niagara-research · px-editor-core · 2026-07-06 · Research-SDD self-retrospective
 
 > Run reviewed: focus `px-editor-core`, B210-B214 + synthesis B215 (5/5 gaps C1-C5, STOP §8 exhausted). The
