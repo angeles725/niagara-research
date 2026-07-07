@@ -14,7 +14,7 @@ Prioridad del usuario: **D1 (`sidebars/`, el property/cell-sheet — corazón op
 
 ## Cobertura
 
-**7 / 11 gaps** (ratio 0.64). Read-only-investigable: 4 restantes · requires-execution: 0 · blocked: 0.
+**8 / 11 gaps** (ratio 0.73). Read-only-investigable: 3 restantes · requires-execution: 0 · blocked: 0.
 
 ## Historial de iteraciones
 
@@ -26,6 +26,7 @@ Prioridad del usuario: **D1 (`sidebars/`, el property/cell-sheet — corazón op
 | 4 | D3 | B201 | `make/` wizard: `BMakeWidget`(BEdgePane) + selección **agent-based** (`BMwConfig` implements BIAgent). 8 estrategias `BMw*`: Chart/TimePlot (chart **clásico** `javax.baja.chart`, §14 vs webChart B199), BoundLabel (fallback), PxInclude, WorkbenchView, ActionBatch/PropertyBatch (grid). `MakeWidgetContext` reutiliza el cell-sheet (B198). `addBinding` deja la ord frozen. 19 CERT/1 INFER. | sí · sonnet |
 | 5 | D5 | B202 | Field editors inline kitPx (4): par Wb-Swing (`BGenericFieldEditor`→`BWbFieldEditor.makeFor`, `BSetPointFieldEditor`) ↔ par Ux-web (shim `BSingleton`+`BIJavaScriptWidget`→JS). **Sin interfaz compartida**: paridad por type+agent (B192/B194). Semántica setpoint (dual-path write + gate) en el BINDING (`BSetPointBinding`), no en el FE. Hazard: Ux confía canWrite() client-side. 19 CERT/2 INFER. | sí · sonnet |
 | 6 | X3 | B203 | Packs gráficos: `kitPxGraphics`/`kitPxHvac`/`kitPxN4svg` = **BOG palettes sin código** (símbolos pre-bound). Raster (BoundLabel+IBooleanToSimple On/Off, confirma B196) vs vector N4svg (`ui:Picture`+SVG+converters numeric/status ricos). `kitPxBuilding` la excepción con componentes Java tipados (BEquipment/BDamper/BKnob). 14 CERT/2 INFER. | no · inline (gap liviano) |
+| 8 | D2 | B205 | `studio/` (61 clases): sistema de dibujo del canvas. `BStudio`=5 role-interfaces+State pattern (mouse→tracker). Trackers=máquinas de estado (UnpressedTracker el router de hit-test). Painters=buffer-and-overlay (perf). Artisans=strategy per-shape; PathArtisan=gramática SVG path sobre gx `IPathGeom` (B183). Commands `javax.baja.ui.Command`+Artifact (cierra base D4). Gotchas: anchor estático, ConvertPointTracker stub vacío, Select sin undo. 17 CERT/2 INFER. | sí · sonnet |
 | 7 | X5 | B204 | Framework **bajaux**: `Widget` lifecycle template-method (init/load/read/save/destroy sobre jQuery, NO ES6 class) + **spandrel** (virtual-DOM propio: diff shallow por circular refs de BajaScript Complex, focus-preservation "never wipe while typing", DiffQueue 5-buckets) + `WidgetManager`/RequireJS + puente rt→web (`BIJavaScriptWidget`/`JsInfo`/`WbWebWidgetServlet`/`NiagaraEnv` window.niagara.env + receta bundling js→…→webChart→kitPx). Confirma B194 (grep negativo PxMedia/Swing). 24 CERT/2 INFER. | sí · sonnet |
 
 ## Grupo D — Subsistemas internos de `pxEditor-wb` (nombrados en B191, no deep-dived)
@@ -33,7 +34,7 @@ Prioridad del usuario: **D1 (`sidebars/`, el property/cell-sheet — corazón op
 | Gap | Descripción | Fuente (confirmada 2026-07-06) | Prioridad |
 |---|---|---|---|
 | ~~D1~~ | ✅ **CUBIERTO (B198)** — `sidebars/` (66 clases): cell-sheet, cell editors, commands undo/redo, árbol de widgets, propsheet/layersheet, binding/ ORD-rewriting. Fuentes preservadas en `sources/decompiled/pxEditor-wb/sidebars/`. | ~~`organized/.../editor/sidebars/`~~ | — |
-| D2 | **`studio/` — 6**: `BStudio` + trackers/painters, las herramientas de dibujo (`NormalTool`/`GeometryTool`), edición de geometría, dragOver/drop. | `.../com/tridium/px/editor/studio/` | media |
+| ~~D2~~ | ✅ **CUBIERTO (B205)** — `studio/` (61 clases, no 6): BStudio+trackers+painters+artisans+commands. Fuente en `sources/decompiled/pxEditor-wb/studio/`. | ~~`.../editor/studio/`~~ | — |
 | ~~D3~~ | ✅ **CUBIERTO (B201)** — `make/` wizard: `BMakeWidget`+selección agent-based+8 estrategias `BMw*`. Fuente en `sources/decompiled/pxEditor-wb/make/`. Descubre: `javax.baja.chart` (chart clásico) como feed futuro. | ~~`.../editor/make/`~~ | — |
 | D4 | **`commands/` — 36**: `MoveWidget`/`MorphWidget`/`Align`/`Reorg`/`Delete` + el undo/redo delegado al `Command`/`CommandArtifact` del Workbench. | `.../com/tridium/px/editor/studio/commands/` + `commands/` | baja |
 | ~~D5~~ | ✅ **CUBIERTO (B202)** — 4 field editors inline kitPx (Wb-Swing ↔ Ux-web), paridad por type+agent, semántica en el binding. Fuente en `sources/decompiled/kitPx-fe/`. | ~~`kitPx-wb/.../*FieldEditor.java`~~ | — |
@@ -51,9 +52,9 @@ Prioridad del usuario: **D1 (`sidebars/`, el property/cell-sheet — corazón op
 
 ## Clasificación (§8)
 
-- **read-only-investigable**: 4 (D2, D4, X4, X6 — fuentes confirmadas 2026-07-06). **requires-execution**: 0. **blocked**: 0.
-- **Orden sugerido restante**: **D2 (studio)** → D4 (commands) → X6 (easyBinding) → X4 (svgBatik).
-- **PRÓXIMO gap**: **D2 — `studio/`** (BStudio + trackers/painters, herramientas de dibujo NormalTool/GeometryTool, dragOver/drop).
+- **read-only-investigable**: 3 (D4, X4, X6 — fuentes confirmadas 2026-07-06). **requires-execution**: 0. **blocked**: 0.
+- **Orden sugerido restante**: **D4 (commands editor-level)** → X6 (easyBinding) → X4 (svgBatik).
+- **PRÓXIMO gap**: **D4 — `commands/` editor-level** (Delete/Insert/Rename patrón por remisión B205 + sustancia nueva: AddResponsive/AddBorder/GotoOrd/ApplyPxProperties).
 
 ## Notas
 

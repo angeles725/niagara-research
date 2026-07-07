@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **202 bloques**
+Total: **203 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -207,6 +207,7 @@ Total: **202 bloques**
 | 202 | [niagara-mental-model-bloque202.md](niagara-mental-model-bloque202.md) | Field editors inline (kitPx): paridad Wb-Swing ↔ Ux-web por type+agent, semántica en el binding |
 | 203 | [niagara-mental-model-bloque203.md](niagara-mental-model-bloque203.md) | Los packs de widgets gráficos (kitPxGraphics/Hvac/N4svg/Building): palettes BOG, no código |
 | 204 | [niagara-mental-model-bloque204.md](niagara-mental-model-bloque204.md) | El framework bajaux: `Widget` + spandrel (virtual-DOM propio) + el puente rt→web |
+| 205 | [niagara-mental-model-bloque205.md](niagara-mental-model-bloque205.md) | `studio/`: el sistema de dibujo del canvas (Studio + trackers + painters + artisans) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
