@@ -1,0 +1,1484 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bajaObjectGraph version="1.0">
+<p h="1" m="b=baja" t="b:UnrestrictedFolder">
+ <!-- /boolean -->
+ <p n="boolean" h="2" t="b:UnrestrictedFolder">
+  <!-- /boolean/bulbSmall -->
+  <p n="bulbSmall" h="3" m="kitPx=kitPx" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,13.0,20.0"/>
+   <!-- /boolean/bulbSmall/bnd -->
+   <p n="bnd" h="4" m="ui=bajaui" t="ui:ValueBinding">
+    <p n="image" m="conv=converters" t="conv:IBooleanToSimple">
+     <p n="trueValue" m="gx=gx" t="gx:Image" v="module://kitPxHvac/boolean/bulbSmallTrue.gif"/>
+     <p n="falseValue" t="gx:Image" v="module://kitPxHvac/boolean/bulbSmallFalse.gif"/>
+    </p>
+   </p>
+   <!-- /boolean/bulbSmall/compPreviewWidget -->
+   <p n="compPreviewWidget" f="hR" h="5" t="ui:Label">
+    <p n="image" v="module://kitPxHvac/boolean/bulbSmallTrue.gif"/>
+   </p>
+  </p>
+  <!-- /boolean/bulb -->
+  <p n="bulb" h="6" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,27.0,44.0"/>
+   <!-- /boolean/bulb/bnd -->
+   <p n="bnd" h="7" t="ui:ValueBinding">
+    <p n="image" t="conv:IBooleanToSimple">
+     <p n="trueValue" t="gx:Image" v="module://kitPxHvac/boolean/bulbTrue.gif"/>
+     <p n="falseValue" t="gx:Image" v="module://kitPxHvac/boolean/bulbFalse.gif"/>
+    </p>
+   </p>
+   <!-- /boolean/bulb/compPreviewWidget -->
+   <p n="compPreviewWidget" f="hR" h="8" t="ui:Label">
+    <p n="image" v="module://kitPxHvac/boolean/bulbTrue.gif"/>
+   </p>
+  </p>
+  <!-- /boolean/occupiedSmall -->
+  <p n="occupiedSmall" h="9" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,21.0,22.0"/>
+   <!-- /boolean/occupiedSmall/bnd -->
+   <p n="bnd" h="a" t="ui:ValueBinding">
+    <p n="image" t="conv:IBooleanToSimple">
+     <p n="trueValue" t="gx:Image" v="module://kitPxHvac/boolean/occupiedSmallTrue.gif"/>
+     <p n="falseValue" t="gx:Image" v="module://kitPxHvac/boolean/occupiedSmallFalse.gif"/>
+    </p>
+   </p>
+   <!-- /boolean/occupiedSmall/compPreviewWidget -->
+   <p n="compPreviewWidget" f="hR" h="b" t="ui:Label">
+    <p n="image" v="module://kitPxHvac/boolean/occupiedSmallTrue.gif"/>
+   </p>
+  </p>
+  <!-- /boolean/occupied -->
+  <p n="occupied" h="c" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,29.0,20.0"/>
+   <!-- /boolean/occupied/bnd -->
+   <p n="bnd" h="d" t="ui:ValueBinding">
+    <p n="image" t="conv:IBooleanToSimple">
+     <p n="trueValue" t="gx:Image" v="module://kitPxHvac/boolean/occupiedTrue.gif"/>
+     <p n="falseValue" t="gx:Image" v="module://kitPxHvac/boolean/occupiedFalse.gif"/>
+    </p>
+   </p>
+   <!-- /boolean/occupied/compPreviewWidget -->
+   <p n="compPreviewWidget" f="hR" h="e" t="ui:Label">
+    <p n="image" v="module://kitPxHvac/boolean/occupiedTrue.gif"/>
+   </p>
+  </p>
+  <p n="wsAnnotation" f="r" t="b:WsAnnotation" v="2,2,8"/>
+ </p>
+ <!-- /coils -->
+ <p n="coils" h="f" t="b:UnrestrictedFolder">
+  <!-- /coils/coolingCoil -->
+  <p n="coolingCoil" h="10" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,40.0,100.0"/>
+   <!-- /coils/coolingCoil/bnd -->
+   <p n="bnd" h="11" t="ui:ValueBinding">
+    <p n="image" t="conv:IBooleanToSimple">
+     <p n="trueValue" t="gx:Image" v="module://kitPxHvac/coils/coolingCoilTrue.gif"/>
+     <p n="falseValue" t="gx:Image" v="module://kitPxHvac/coils/coolingCoilFalse.gif"/>
+    </p>
+   </p>
+   <!-- /coils/coolingCoil/compPreviewWidget -->
+   <p n="compPreviewWidget" f="hR" h="12" t="ui:Label">
+    <p n="image" v="module://kitPxHvac/coils/coolingCoilTrue.gif"/>
+   </p>
+  </p>
+  <!-- /coils/coolingCoilv2wL -->
+  <p n="coolingCoilv2wL" h="13" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,90.0,150.0"/>
+   <!-- /coils/coolingCoilv2wL/bnd -->
+   <p n="bnd" h="14" t="ui:ValueBinding">
+    <p n="image" t="conv:IBooleanToSimple">
+     <p n="trueValue" t="gx:Image" v="module://kitPxHvac/coils/coolingCoilv2wLTrue.gif"/>
+     <p n="falseValue" t="gx:Image" v="module://kitPxHvac/coils/coolingCoilv2wLFalse.gif"/>
+    </p>
+   </p>
+   <!-- /coils/coolingCoilv2wL/compPreviewWidget -->
+   <p n="compPreviewWidget" f="hR" h="15" t="ui:Label">
+    <p n="image" v="module://kitPxHvac/coils/coolingCoilv2wLTrue.gif"/>
+   </p>
+  </p>
+  <!-- /coils/coolingCoilv2wR -->
+  <p n="coolingCoilv2wR" h="16" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,115.0,150.0"/>
+   <!-- /coils/coolingCoilv2wR/bnd -->
+   <p n="bnd" h="17" t="ui:ValueBinding">
+    <p n="image" t="conv:IBooleanToSimple">
+     <p n="trueValue" t="gx:Image" v="module://kitPxHvac/coils/coolingCoilv2wRTrue.gif"/>
+     <p n="falseValue" t="gx:Image" v="module://kitPxHvac/coils/coolingCoilv2wRFalse.gif"/>
+    </p>
+   </p>
+   <!-- /coils/coolingCoilv2wR/compPreviewWidget -->
+   <p n="compPreviewWidget" f="hR" h="18" t="ui:Label">
+    <p n="image" v="module://kitPxHvac/coils/coolingCoilv2wRTrue.gif"/>
+   </p>
+  </p>
+  <!-- /coils/coolingCoilv3wL -->
+  <p n="coolingCoilv3wL" h="19" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,90.0,150.0"/>
+   <!-- /coils/coolingCoilv3wL/bnd -->
+   <p n="bnd" h="1a" t="ui:ValueBinding">
+    <p n="image" t="conv:IBooleanToSimple">
+     <p n="trueValue" t="gx:Image" v="module://kitPxHvac/coils/coolingCoilv3wLTrue.gif"/>
+     <p n="falseValue" t="gx:Image" v="module://kitPxHvac/coils/coolingCoilv3wLFalse.gif"/>
+    </p>
+   </p>
+   <!-- /coils/coolingCoilv3wL/compPreviewWidget -->
+   <p n="compPreviewWidget" f="hR" h="1b" t="ui:Label">
+    <p n="image" v="module://kitPxHvac/coils/coolingCoilv3wLTrue.gif"/>
+   </p>
+  </p>
+  <!-- /coils/coolingCoilv3wR -->
+  <p n="coolingCoilv3wR" h="1c" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,115.0,150.0"/>
+   <!-- /coils/coolingCoilv3wR/bnd -->
+   <p n="bnd" h="1d" t="ui:ValueBinding">
+    <p n="image" t="conv:IBooleanToSimple">
+     <p n="trueValue" t="gx:Image" v="module://kitPxHvac/coils/coolingCoilv3wRTrue.gif"/>
+     <p n="falseValue" t="gx:Image" v="module://kitPxHvac/coils/coolingCoilv3wRFalse.gif"/>
+    </p>
+   </p>
+   <!-- /coils/coolingCoilv3wR/compPreviewWidget -->
+   <p n="compPreviewWidget" f="hR" h="1e" t="ui:Label">
+    <p n="image" v="module://kitPxHvac/coils/coolingCoilv3wRTrue.gif"/>
+   </p>
+  </p>
+  <!-- /coils/electricHeatingCoil -->
+  <p n="electricHeatingCoil" h="1f" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,40.0,100.0"/>
+   <!-- /coils/electricHeatingCoil/bnd -->
+   <p n="bnd" h="20" t="ui:ValueBinding">
+    <p n="image" t="conv:IBooleanToSimple">
+     <p n="trueValue" t="gx:Image" v="module://kitPxHvac/coils/electricHeatingCoilTrue.gif"/>
+     <p n="falseValue" t="gx:Image" v="module://kitPxHvac/coils/electricHeatingCoilFalse.gif"/>
+    </p>
+   </p>
+   <!-- /coils/electricHeatingCoil/compPreviewWidget -->
+   <p n="compPreviewWidget" f="hR" h="21" t="ui:Label">
+    <p n="image" v="module://kitPxHvac/coils/electricHeatingCoilTrue.gif"/>
+   </p>
+  </p>
+  <!-- /coils/filterV -->
+  <p n="filterV" h="22" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,40.0,100.0"/>
+   <!-- /coils/filterV/bnd -->
+   <p n="bnd" h="23" t="ui:ValueBinding">
+    <p n="image" t="conv:INumericToSimple">
+     <p n="map" v="gx:Image -inf:20.0=module://kitPxHvac/coils/filterV1.gif;20.0:40.0=module://kitPxHvac/coils/filterV2.gif;40.0:60.0=module://kitPxHvac/coils/filterV3.gif;60.0:80.0=module://kitPxHvac/coils/filterV4.gif;80.0:+inf=module://kitPxHvac/coils/filterV5.gif;default=null;"/>
+    </p>
+   </p>
+   <!-- /coils/filterV/compPreviewWidget -->
+   <p n="compPreviewWidget" f="hR" h="24" t="ui:Label">
+    <p n="image" v="module://kitPxHvac/coils/filterV1.gif"/>
+   </p>
+  </p>
+  <!-- /coils/heatingCoil -->
+  <p n="heatingCoil" h="25" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,40.0,100.0"/>
+   <!-- /coils/heatingCoil/bnd -->
+   <p n="bnd" h="26" t="ui:ValueBinding">
+    <p n="image" t="conv:IBooleanToSimple">
+     <p n="trueValue" t="gx:Image" v="module://kitPxHvac/coils/heatingCoilTrue.gif"/>
+     <p n="falseValue" t="gx:Image" v="module://kitPxHvac/coils/heatingCoilFalse.gif"/>
+    </p>
+   </p>
+   <!-- /coils/heatingCoil/compPreviewWidget -->
+   <p n="compPreviewWidget" f="hR" h="27" t="ui:Label">
+    <p n="image" v="module://kitPxHvac/coils/heatingCoilTrue.gif"/>
+   </p>
+  </p>
+  <!-- /coils/heatingCoilv2wL -->
+  <p n="heatingCoilv2wL" h="28" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,90.0,150.0"/>
+   <!-- /coils/heatingCoilv2wL/bnd -->
+   <p n="bnd" h="29" t="ui:ValueBinding">
+    <p n="image" t="conv:IBooleanToSimple">
+     <p n="trueValue" t="gx:Image" v="module://kitPxHvac/coils/heatingCoilv2wLTrue.gif"/>
+     <p n="falseValue" t="gx:Image" v="module://kitPxHvac/coils/heatingCoilv2wLFalse.gif"/>
+    </p>
+   </p>
+   <!-- /coils/heatingCoilv2wL/compPreviewWidget -->
+   <p n="compPreviewWidget" f="hR" h="2a" t="ui:Label">
+    <p n="image" v="module://kitPxHvac/coils/heatingCoilv2wLTrue.gif"/>
+   </p>
+  </p>
+  <!-- /coils/heatingCoilv2wR -->
+  <p n="heatingCoilv2wR" h="2b" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,115.0,150.0"/>
+   <!-- /coils/heatingCoilv2wR/bnd -->
+   <p n="bnd" h="2c" t="ui:ValueBinding">
+    <p n="image" t="conv:IBooleanToSimple">
+     <p n="trueValue" t="gx:Image" v="module://kitPxHvac/coils/heatingCoilv2wRTrue.gif"/>
+     <p n="falseValue" t="gx:Image" v="module://kitPxHvac/coils/heatingCoilv2wRFalse.gif"/>
+    </p>
+   </p>
+   <!-- /coils/heatingCoilv2wR/compPreviewWidget -->
+   <p n="compPreviewWidget" f="hR" h="2d" t="ui:Label">
+    <p n="image" v="module://kitPxHvac/coils/heatingCoilv2wRTrue.gif"/>
+   </p>
+  </p>
+  <!-- /coils/heatingCoilv3wL -->
+  <p n="heatingCoilv3wL" h="2e" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,90.0,150.0"/>
+   <!-- /coils/heatingCoilv3wL/bnd -->
+   <p n="bnd" h="2f" t="ui:ValueBinding">
+    <p n="image" t="conv:IBooleanToSimple">
+     <p n="trueValue" t="gx:Image" v="module://kitPxHvac/coils/heatingCoilv3wLTrue.gif"/>
+     <p n="falseValue" t="gx:Image" v="module://kitPxHvac/coils/heatingCoilv3wLFalse.gif"/>
+    </p>
+   </p>
+   <!-- /coils/heatingCoilv3wL/compPreviewWidget -->
+   <p n="compPreviewWidget" f="hR" h="30" t="ui:Label">
+    <p n="image" v="module://kitPxHvac/coils/heatingCoilv3wLTrue.gif"/>
+   </p>
+  </p>
+  <!-- /coils/heatingCoilv3wR -->
+  <p n="heatingCoilv3wR" h="31" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,115.0,150.0"/>
+   <!-- /coils/heatingCoilv3wR/bnd -->
+   <p n="bnd" h="32" t="ui:ValueBinding">
+    <p n="image" t="conv:IBooleanToSimple">
+     <p n="trueValue" t="gx:Image" v="module://kitPxHvac/coils/heatingCoilv3wRTrue.gif"/>
+     <p n="falseValue" t="gx:Image" v="module://kitPxHvac/coils/heatingCoilv3wRFalse.gif"/>
+    </p>
+   </p>
+   <!-- /coils/heatingCoilv3wR/compPreviewWidget -->
+   <p n="compPreviewWidget" f="hR" h="33" t="ui:Label">
+    <p n="image" v="module://kitPxHvac/coils/heatingCoilv3wRTrue.gif"/>
+   </p>
+  </p>
+  <p n="wsAnnotation" f="r" t="b:WsAnnotation" v="6,6,8"/>
+ </p>
+ <!-- /dampers -->
+ <p n="dampers" h="34" t="b:UnrestrictedFolder">
+  <!-- /dampers/damperH -->
+  <p n="damperH" h="35" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,100.0,50.0"/>
+   <!-- /dampers/damperH/bnd -->
+   <p n="bnd" h="36" t="ui:ValueBinding">
+    <p n="image" t="conv:INumericToSimple">
+     <p n="map" v="gx:Image -inf:20.0=module://kitPxHvac/dampers/damperH1.gif;20.0:40.0=module://kitPxHvac/dampers/damperH2.gif;40.0:60.0=module://kitPxHvac/dampers/damperH3.gif;60.0:80.0=module://kitPxHvac/dampers/damperH4.gif;80.0:+inf=module://kitPxHvac/dampers/damperH5.gif;default=null;"/>
+    </p>
+   </p>
+   <!-- /dampers/damperH/compPreviewWidget -->
+   <p n="compPreviewWidget" f="hR" h="37" t="ui:Label">
+    <p n="image" v="module://kitPxHvac/dampers/damperH1.gif"/>
+   </p>
+  </p>
+  <!-- /dampers/damperV -->
+  <p n="damperV" h="38" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,50.0,100.0"/>
+   <!-- /dampers/damperV/bnd -->
+   <p n="bnd" h="39" t="ui:ValueBinding">
+    <p n="image" t="conv:INumericToSimple">
+     <p n="map" v="gx:Image -inf:20.0=module://kitPxHvac/dampers/damperV1.gif;20.0:40.0=module://kitPxHvac/dampers/damperV2.gif;40.0:60.0=module://kitPxHvac/dampers/damperV3.gif;60.0:80.0=module://kitPxHvac/dampers/damperV4.gif;80.0:+inf=module://kitPxHvac/dampers/damperV5.gif;default=null;"/>
+    </p>
+   </p>
+   <!-- /dampers/damperV/compPreviewWidget -->
+   <p n="compPreviewWidget" f="hR" h="3a" t="ui:Label">
+    <p n="image" v="module://kitPxHvac/dampers/damperV1.gif"/>
+   </p>
+  </p>
+  <!-- /dampers/vavDamperA -->
+  <p n="vavDamperA" h="3b" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,110.0,100.0"/>
+   <!-- /dampers/vavDamperA/bnd -->
+   <p n="bnd" h="3c" t="ui:ValueBinding">
+    <p n="image" t="conv:INumericToSimple">
+     <p n="map" v="gx:Image -inf:20.0=module://kitPxHvac/dampers/vavDamperA1.gif;20.0:40.0=module://kitPxHvac/dampers/vavDamperA2.gif;40.0:60.0=module://kitPxHvac/dampers/vavDamperA3.gif;60.0:80.0=module://kitPxHvac/dampers/vavDamperA4.gif;80.0:+inf=module://kitPxHvac/dampers/vavDamperA5.gif;default=null;"/>
+    </p>
+   </p>
+   <!-- /dampers/vavDamperA/compPreviewWidget -->
+   <p n="compPreviewWidget" f="hR" h="3d" t="ui:Label">
+    <p n="image" v="module://kitPxHvac/dampers/vavDamperA1.gif"/>
+   </p>
+  </p>
+  <!-- /dampers/vavDamperB -->
+  <p n="vavDamperB" h="3e" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,60.0,55.0"/>
+   <!-- /dampers/vavDamperB/bnd -->
+   <p n="bnd" h="3f" t="ui:ValueBinding">
+    <p n="image" t="conv:INumericToSimple">
+     <p n="map" v="gx:Image -inf:20.0=module://kitPxHvac/dampers/vavDamperB1.gif;20.0:40.0=module://kitPxHvac/dampers/vavDamperB2.gif;40.0:60.0=module://kitPxHvac/dampers/vavDamperB3.gif;60.0:80.0=module://kitPxHvac/dampers/vavDamperB4.gif;80.0:+inf=module://kitPxHvac/dampers/vavDamperB5.gif;default=null;"/>
+    </p>
+   </p>
+   <!-- /dampers/vavDamperB/compPreviewWidget -->
+   <p n="compPreviewWidget" f="hR" h="40" t="ui:Label">
+    <p n="image" v="module://kitPxHvac/dampers/vavDamperB1.gif"/>
+   </p>
+  </p>
+  <p n="wsAnnotation" f="r" t="b:WsAnnotation" v="10,10,8"/>
+ </p>
+ <!-- /devices -->
+ <p n="devices" h="41" t="b:UnrestrictedFolder">
+  <!-- /devices/dpsLongBtmAlarm -->
+  <p n="dpsLongBtmAlarm" h="42" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,165.0,75.0"/>
+   <p n="image" v="module://kitPxHvac/devices/dpsLongBtmAlarm.gif"/>
+  </p>
+  <!-- /devices/dpsLongBtmNorm -->
+  <p n="dpsLongBtmNorm" h="43" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,165.0,75.0"/>
+   <p n="image" v="module://kitPxHvac/devices/dpsLongBtmNorm.gif"/>
+  </p>
+  <!-- /devices/dpsLongTopAlarm -->
+  <p n="dpsLongTopAlarm" h="44" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,165.0,85.0"/>
+   <p n="image" v="module://kitPxHvac/devices/dpsLongTopAlarm.gif"/>
+  </p>
+  <!-- /devices/dpsLongTopNorm -->
+  <p n="dpsLongTopNorm" h="45" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,165.0,85.0"/>
+   <p n="image" v="module://kitPxHvac/devices/dpsLongTopNorm.gif"/>
+  </p>
+  <!-- /devices/dpsShortBtmAlarm -->
+  <p n="dpsShortBtmAlarm" h="46" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,65.0,75.0"/>
+   <p n="image" v="module://kitPxHvac/devices/dpsShortBtmAlarm.gif"/>
+  </p>
+  <!-- /devices/dpsShortBtmNorm -->
+  <p n="dpsShortBtmNorm" h="47" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,65.0,75.0"/>
+   <p n="image" v="module://kitPxHvac/devices/dpsShortBtmNorm.gif"/>
+  </p>
+  <!-- /devices/dpsShortTopAlarm -->
+  <p n="dpsShortTopAlarm" h="48" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,65.0,85.0"/>
+   <p n="image" v="module://kitPxHvac/devices/dpsShortTopAlarm.gif"/>
+  </p>
+  <!-- /devices/dpsShortTopNorm -->
+  <p n="dpsShortTopNorm" h="49" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,65.0,85.0"/>
+   <p n="image" v="module://kitPxHvac/devices/dpsShortTopNorm.gif"/>
+  </p>
+  <!-- /devices/flowSensorCircle -->
+  <p n="flowSensorCircle" h="4a" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,40.0,115.0"/>
+   <p n="image" v="module://kitPxHvac/devices/flowSensorCircle.gif"/>
+  </p>
+  <!-- /devices/flowSensorCross -->
+  <p n="flowSensorCross" h="4b" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,35.0,125.0"/>
+   <p n="image" v="module://kitPxHvac/devices/flowSensorCross.gif"/>
+  </p>
+  <!-- /devices/humidifier -->
+  <p n="humidifier" h="4c" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,35.0,95.0"/>
+   <!-- /devices/humidifier/bnd -->
+   <p n="bnd" h="4d" t="ui:ValueBinding">
+    <p n="image" t="conv:IBooleanToSimple">
+     <p n="trueValue" t="gx:Image" v="module://kitPxHvac/devices/humidifierTrue.gif"/>
+     <p n="falseValue" t="gx:Image" v="module://kitPxHvac/devices/humidifierFalse.gif"/>
+    </p>
+   </p>
+   <!-- /devices/humidifier/compPreviewWidget -->
+   <p n="compPreviewWidget" f="hR" h="4e" t="ui:Label">
+    <p n="image" v="module://kitPxHvac/devices/humidifierTrue.gif"/>
+   </p>
+  </p>
+  <!-- /devices/pipeSensorBottom -->
+  <p n="pipeSensorBottom" h="4f" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,25.0,40.0"/>
+   <p n="image" v="module://kitPxHvac/devices/pipeSensorBottom.gif"/>
+  </p>
+  <!-- /devices/pipeSensorLeft -->
+  <p n="pipeSensorLeft" h="50" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,40.0,25.0"/>
+   <p n="image" v="module://kitPxHvac/devices/pipeSensorLeft.gif"/>
+  </p>
+  <!-- /devices/pipeSensorRight -->
+  <p n="pipeSensorRight" h="51" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,40.0,25.0"/>
+   <p n="image" v="module://kitPxHvac/devices/pipeSensorRight.gif"/>
+  </p>
+  <!-- /devices/pipeSensorTop -->
+  <p n="pipeSensorTop" h="52" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,25.0,40.0"/>
+   <p n="image" v="module://kitPxHvac/devices/pipeSensorTop.gif"/>
+  </p>
+  <!-- /devices/smokeDetector -->
+  <p n="smokeDetector" h="53" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,52.0,96.0"/>
+   <!-- /devices/smokeDetector/bnd -->
+   <p n="bnd" h="54" t="ui:ValueBinding">
+    <p n="image" t="conv:IBooleanToSimple">
+     <p n="trueValue" t="gx:Image" v="module://kitPxHvac/devices/smokeDetectorTrue.gif"/>
+     <p n="falseValue" t="gx:Image" v="module://kitPxHvac/devices/smokeDetectorFalse.gif"/>
+    </p>
+   </p>
+   <!-- /devices/smokeDetector/compPreviewWidget -->
+   <p n="compPreviewWidget" f="hR" h="55" t="ui:Label">
+    <p n="image" v="module://kitPxHvac/devices/smokeDetectorTrue.gif"/>
+   </p>
+  </p>
+  <!-- /devices/tempSensorBottom -->
+  <p n="tempSensorBottom" h="56" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,25.0,80.0"/>
+   <p n="image" v="module://kitPxHvac/devices/tempSensorBottom.gif"/>
+  </p>
+  <!-- /devices/tempSensorLeft -->
+  <p n="tempSensorLeft" h="57" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,80.0,25.0"/>
+   <p n="image" v="module://kitPxHvac/devices/tempSensorLeft.gif"/>
+  </p>
+  <!-- /devices/tempSensorTop -->
+  <p n="tempSensorTop" h="58" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,25.0,80.0"/>
+   <p n="image" v="module://kitPxHvac/devices/tempSensorTop.gif"/>
+  </p>
+  <p n="wsAnnotation" f="r" t="b:WsAnnotation" v="14,14,8"/>
+ </p>
+ <!-- /ducts -->
+ <p n="ducts" h="59" t="b:UnrestrictedFolder">
+  <!-- /ducts/ductA -->
+  <p n="ductA" h="5a" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,650.0,310.0"/>
+   <p n="image" v="module://kitPxHvac/ducts/ductA.gif"/>
+  </p>
+  <!-- /ducts/ductB -->
+  <p n="ductB" h="5b" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,650.0,351.0"/>
+   <p n="image" v="module://kitPxHvac/ducts/ductB.gif"/>
+  </p>
+  <!-- /ducts/ductC -->
+  <p n="ductC" h="5c" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,650.0,201.0"/>
+   <p n="image" v="module://kitPxHvac/ducts/ductC.gif"/>
+  </p>
+  <!-- /ducts/ductD -->
+  <p n="ductD" h="5d" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,650.0,200.0"/>
+   <p n="image" v="module://kitPxHvac/ducts/ductD.gif"/>
+  </p>
+  <!-- /ducts/hlbreak -->
+  <p n="hlbreak" h="5e" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,50.0,101.0"/>
+   <p n="image" v="module://kitPxHvac/ducts/hlbreak.gif"/>
+  </p>
+  <!-- /ducts/hlend -->
+  <p n="hlend" h="5f" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,50.0,101.0"/>
+   <p n="image" v="module://kitPxHvac/ducts/hlend.gif"/>
+  </p>
+  <!-- /ducts/hmid -->
+  <p n="hmid" h="60" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,125.0,101.0"/>
+   <p n="image" v="module://kitPxHvac/ducts/hmid.gif"/>
+  </p>
+  <!-- /ducts/hmidSmall -->
+  <p n="hmidSmall" h="61" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,50.0,101.0"/>
+   <p n="image" v="module://kitPxHvac/ducts/hmidSmall.gif"/>
+  </p>
+  <!-- /ducts/hrbreak -->
+  <p n="hrbreak" h="62" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,50.0,101.0"/>
+   <p n="image" v="module://kitPxHvac/ducts/hrbreak.gif"/>
+  </p>
+  <!-- /ducts/hrend -->
+  <p n="hrend" h="63" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,50.0,101.0"/>
+   <p n="image" v="module://kitPxHvac/ducts/hrend.gif"/>
+  </p>
+  <!-- /ducts/hrendGrate -->
+  <p n="hrendGrate" h="64" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,50.0,101.0"/>
+   <p n="image" v="module://kitPxHvac/ducts/hrendGrate.gif"/>
+  </p>
+  <!-- /ducts/hrendHole -->
+  <p n="hrendHole" h="65" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,50.0,101.0"/>
+   <p n="image" v="module://kitPxHvac/ducts/hrendHole.gif"/>
+  </p>
+  <!-- /ducts/hrendSolid -->
+  <p n="hrendSolid" h="66" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,50.0,101.0"/>
+   <p n="image" v="module://kitPxHvac/ducts/hrendSolid.gif"/>
+  </p>
+  <!-- /ducts/hrwhy -->
+  <p n="hrwhy" h="67" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,100.0,176.0"/>
+   <p n="image" v="module://kitPxHvac/ducts/hrwhy.gif"/>
+  </p>
+  <!-- /ducts/hrwhyLeft -->
+  <p n="hrwhyLeft" h="68" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,100.0,176.0"/>
+   <p n="image" v="module://kitPxHvac/ducts/hrwhyLeft.gif"/>
+  </p>
+  <!-- /ducts/hrwhy3wayL -->
+  <p n="hrwhy3wayL" h="69" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,120.0,251.0"/>
+   <p n="image" v="module://kitPxHvac/ducts/hrwhy3wayL.gif"/>
+  </p>
+  <!-- /ducts/hrwhy3wayR -->
+  <p n="hrwhy3wayR" h="6a" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,120.0,251.0"/>
+   <p n="image" v="module://kitPxHvac/ducts/hrwhy3wayR.gif"/>
+  </p>
+  <!-- /ducts/roundLEnd -->
+  <p n="roundLEnd" h="6b" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,50.0,101.0"/>
+   <p n="image" v="module://kitPxHvac/ducts/roundLEnd.gif"/>
+  </p>
+  <!-- /ducts/roundLTrans -->
+  <p n="roundLTrans" h="6c" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,60.0,101.0"/>
+   <p n="image" v="module://kitPxHvac/ducts/roundLTrans.gif"/>
+  </p>
+  <!-- /ducts/roundMid -->
+  <p n="roundMid" h="6d" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,50.0,101.0"/>
+   <p n="image" v="module://kitPxHvac/ducts/roundMid.gif"/>
+  </p>
+  <!-- /ducts/roundREnd -->
+  <p n="roundREnd" h="6e" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,50.0,101.0"/>
+   <p n="image" v="module://kitPxHvac/ducts/roundREnd.gif"/>
+  </p>
+  <!-- /ducts/roundRTrans -->
+  <p n="roundRTrans" h="6f" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,60.0,101.0"/>
+   <p n="image" v="module://kitPxHvac/ducts/roundRTrans.gif"/>
+  </p>
+  <!-- /ducts/tnorth -->
+  <p n="tnorth" h="70" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,150.0,125.0"/>
+   <p n="image" v="module://kitPxHvac/ducts/tnorth.gif"/>
+  </p>
+  <!-- /ducts/tsouth -->
+  <p n="tsouth" h="71" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,150.0,125.0"/>
+   <p n="image" v="module://kitPxHvac/ducts/tsouth.gif"/>
+  </p>
+  <!-- /ducts/vbend -->
+  <p n="vbend" h="72" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,101.0,50.0"/>
+   <p n="image" v="module://kitPxHvac/ducts/vbend.gif"/>
+  </p>
+  <!-- /ducts/vmid -->
+  <p n="vmid" h="73" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,101.0,125.0"/>
+   <p n="image" v="module://kitPxHvac/ducts/vmid.gif"/>
+  </p>
+  <!-- /ducts/vtend -->
+  <p n="vtend" h="74" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,101.0,50.0"/>
+   <p n="image" v="module://kitPxHvac/ducts/vtend.gif"/>
+  </p>
+  <p n="wsAnnotation" f="r" t="b:WsAnnotation" v="18,18,8"/>
+ </p>
+ <!-- /equipment -->
+ <p n="equipment" h="75" t="b:UnrestrictedFolder">
+  <!-- /equipment/chillerBasic -->
+  <p n="chillerBasic" h="76" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,240.0,215.0"/>
+   <p n="image" v="module://kitPxHvac/equipment/chillerBasic.gif"/>
+  </p>
+  <!-- /equipment/coolingTower -->
+  <p n="coolingTower" h="77" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,120.0,150.0"/>
+   <!-- /equipment/coolingTower/bnd -->
+   <p n="bnd" h="78" t="ui:ValueBinding">
+    <p n="image" t="conv:IBooleanToSimple">
+     <p n="trueValue" t="gx:Image" v="module://kitPxHvac/equipment/coolingTowerTrue.gif"/>
+     <p n="falseValue" t="gx:Image" v="module://kitPxHvac/equipment/coolingTowerFalse.gif"/>
+    </p>
+   </p>
+   <!-- /equipment/coolingTower/compPreviewWidget -->
+   <p n="compPreviewWidget" f="hR" h="79" t="ui:Label">
+    <p n="image" v="module://kitPxHvac/equipment/coolingTowerTrue.gif"/>
+   </p>
+  </p>
+  <!-- /equipment/exhaustFan -->
+  <p n="exhaustFan" h="7a" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,160.0,185.0"/>
+   <!-- /equipment/exhaustFan/bnd -->
+   <p n="bnd" h="7b" t="ui:ValueBinding">
+    <p n="image" t="conv:IBooleanToSimple">
+     <p n="trueValue" t="gx:Image" v="module://kitPxHvac/equipment/exhaustFanTrue.gif"/>
+     <p n="falseValue" t="gx:Image" v="module://kitPxHvac/equipment/exhaustFanFalse.gif"/>
+    </p>
+   </p>
+   <!-- /equipment/exhaustFan/compPreviewWidget -->
+   <p n="compPreviewWidget" f="hR" h="7c" t="ui:Label">
+    <p n="image" v="module://kitPxHvac/equipment/exhaustFanTrue.gif"/>
+   </p>
+  </p>
+  <!-- /equipment/fanLeft -->
+  <p n="fanLeft" h="7d" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,150.0,100.0"/>
+   <!-- /equipment/fanLeft/bnd -->
+   <p n="bnd" h="7e" t="ui:ValueBinding">
+    <p n="image" t="conv:IBooleanToSimple">
+     <p n="trueValue" t="gx:Image" v="module://kitPxHvac/equipment/fanLeftTrue.gif"/>
+     <p n="falseValue" t="gx:Image" v="module://kitPxHvac/equipment/fanLeftFalse.gif"/>
+    </p>
+   </p>
+   <!-- /equipment/fanLeft/compPreviewWidget -->
+   <p n="compPreviewWidget" f="hR" h="7f" t="ui:Label">
+    <p n="image" v="module://kitPxHvac/equipment/fanLeftTrue.gif"/>
+   </p>
+  </p>
+  <!-- /equipment/fanRight -->
+  <p n="fanRight" h="80" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,150.0,100.0"/>
+   <!-- /equipment/fanRight/bnd -->
+   <p n="bnd" h="81" t="ui:ValueBinding">
+    <p n="image" t="conv:IBooleanToSimple">
+     <p n="trueValue" t="gx:Image" v="module://kitPxHvac/equipment/fanRightTrue.gif"/>
+     <p n="falseValue" t="gx:Image" v="module://kitPxHvac/equipment/fanRightFalse.gif"/>
+    </p>
+   </p>
+   <!-- /equipment/fanRight/compPreviewWidget -->
+   <p n="compPreviewWidget" f="hR" h="82" t="ui:Label">
+    <p n="image" v="module://kitPxHvac/equipment/fanRightTrue.gif"/>
+   </p>
+  </p>
+  <!-- /equipment/generator -->
+  <p n="generator" h="83" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,71.0,71.0"/>
+   <!-- /equipment/generator/bnd -->
+   <p n="bnd" h="84" t="ui:ValueBinding">
+    <p n="image" t="conv:IBooleanToSimple">
+     <p n="trueValue" t="gx:Image" v="module://kitPxHvac/equipment/generatorTrue.gif"/>
+     <p n="falseValue" t="gx:Image" v="module://kitPxHvac/equipment/generatorFalse.gif"/>
+    </p>
+   </p>
+   <!-- /equipment/generator/compPreviewWidget -->
+   <p n="compPreviewWidget" f="hR" h="85" t="ui:Label">
+    <p n="image" v="module://kitPxHvac/equipment/generatorTrue.gif"/>
+   </p>
+  </p>
+  <!-- /equipment/heatExchanger -->
+  <p n="heatExchanger" h="86" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,220.0,90.0"/>
+   <p n="image" v="module://kitPxHvac/equipment/heatExchanger.gif"/>
+  </p>
+  <!-- /equipment/heatExchangerPF -->
+  <p n="heatExchangerPF" h="87" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,60.0,80.0"/>
+   <p n="image" v="module://kitPxHvac/equipment/heatExchangerPF.gif"/>
+  </p>
+  <!-- /equipment/meterDial -->
+  <p n="meterDial" h="88" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,380.0,380.0"/>
+   <p n="image" v="module://kitPxHvac/equipment/meterDial.gif"/>
+  </p>
+  <!-- /equipment/meterDialLeft -->
+  <p n="meterDialLeft" h="89" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,50.0,50.0"/>
+   <!-- /equipment/meterDialLeft/bnd -->
+   <p n="bnd" h="8a" t="ui:ValueBinding">
+    <p n="image" t="conv:INumericToSimple">
+     <p n="map" v="gx:Image -inf:10.0=module://kitPxHvac/equipment/meterDialLeft0.gif;10.0:20.0=module://kitPxHvac/equipment/meterDialLeft1.gif;20.0:30.0=module://kitPxHvac/equipment/meterDialLeft2.gif;30.0:40.0=module://kitPxHvac/equipment/meterDialLeft3.gif;40.0:50.0=module://kitPxHvac/equipment/meterDialLeft4.gif;50.0:60.0=module://kitPxHvac/equipment/meterDialLeft5.gif;60.0:70.0=module://kitPxHvac/equipment/meterDialLeft6.gif;70.0:80.0=module://kitPxHvac/equipment/meterDialLeft7.gif;80.0:90.0=module://kitPxHvac/equipment/meterDialLeft8.gif;90.0:+inf=module://kitPxHvac/equipment/meterDialLeft9.gif;default=null;"/>
+    </p>
+   </p>
+   <!-- /equipment/meterDialLeft/compPreviewWidget -->
+   <p n="compPreviewWidget" f="hR" h="8b" t="ui:Label">
+    <p n="image" v="module://kitPxHvac/equipment/meterDialLeft0.gif"/>
+   </p>
+  </p>
+  <!-- /equipment/meterDialRight -->
+  <p n="meterDialRight" h="8c" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,50.0,50.0"/>
+   <!-- /equipment/meterDialRight/bnd -->
+   <p n="bnd" h="8d" t="ui:ValueBinding">
+    <p n="image" t="conv:INumericToSimple">
+     <p n="map" v="gx:Image -inf:10.0=module://kitPxHvac/equipment/meterDialRight0.gif;10.0:20.0=module://kitPxHvac/equipment/meterDialRight1.gif;20.0:30.0=module://kitPxHvac/equipment/meterDialRight2.gif;30.0:40.0=module://kitPxHvac/equipment/meterDialRight3.gif;40.0:50.0=module://kitPxHvac/equipment/meterDialRight4.gif;50.0:60.0=module://kitPxHvac/equipment/meterDialRight5.gif;60.0:70.0=module://kitPxHvac/equipment/meterDialRight6.gif;70.0:80.0=module://kitPxHvac/equipment/meterDialRight7.gif;80.0:90.0=module://kitPxHvac/equipment/meterDialRight8.gif;90.0:+inf=module://kitPxHvac/equipment/meterDialRight9.gif;default=null;"/>
+    </p>
+   </p>
+   <!-- /equipment/meterDialRight/compPreviewWidget -->
+   <p n="compPreviewWidget" f="hR" h="8e" t="ui:Label">
+    <p n="image" v="module://kitPxHvac/equipment/meterDialRight0.gif"/>
+   </p>
+  </p>
+  <!-- /equipment/meterDigital -->
+  <p n="meterDigital" h="8f" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,190.0,190.0"/>
+   <p n="image" v="module://kitPxHvac/equipment/meterDigital.gif"/>
+  </p>
+  <!-- /equipment/pumpColdLeft -->
+  <p n="pumpColdLeft" h="90" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,41.0,25.0"/>
+   <!-- /equipment/pumpColdLeft/bnd -->
+   <p n="bnd" h="91" t="ui:ValueBinding">
+    <p n="image" t="conv:IBooleanToSimple">
+     <p n="trueValue" t="gx:Image" v="module://kitPxHvac/equipment/pumpColdLeftTrue.gif"/>
+     <p n="falseValue" t="gx:Image" v="module://kitPxHvac/equipment/pumpColdLeftFalse.gif"/>
+    </p>
+   </p>
+   <!-- /equipment/pumpColdLeft/compPreviewWidget -->
+   <p n="compPreviewWidget" f="hR" h="92" t="ui:Label">
+    <p n="image" v="module://kitPxHvac/equipment/pumpColdLeftTrue.gif"/>
+   </p>
+  </p>
+  <!-- /equipment/pumpColdRight -->
+  <p n="pumpColdRight" h="93" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,41.0,25.0"/>
+   <!-- /equipment/pumpColdRight/bnd -->
+   <p n="bnd" h="94" t="ui:ValueBinding">
+    <p n="image" t="conv:IBooleanToSimple">
+     <p n="trueValue" t="gx:Image" v="module://kitPxHvac/equipment/pumpColdRightTrue.gif"/>
+     <p n="falseValue" t="gx:Image" v="module://kitPxHvac/equipment/pumpColdRightFalse.gif"/>
+    </p>
+   </p>
+   <!-- /equipment/pumpColdRight/compPreviewWidget -->
+   <p n="compPreviewWidget" f="hR" h="95" t="ui:Label">
+    <p n="image" v="module://kitPxHvac/equipment/pumpColdRightTrue.gif"/>
+   </p>
+  </p>
+  <!-- /equipment/pumpCoolLeft -->
+  <p n="pumpCoolLeft" h="96" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,41.0,25.0"/>
+   <!-- /equipment/pumpCoolLeft/bnd -->
+   <p n="bnd" h="97" t="ui:ValueBinding">
+    <p n="image" t="conv:IBooleanToSimple">
+     <p n="trueValue" t="gx:Image" v="module://kitPxHvac/equipment/pumpCoolLeftTrue.gif"/>
+     <p n="falseValue" t="gx:Image" v="module://kitPxHvac/equipment/pumpCoolLeftFalse.gif"/>
+    </p>
+   </p>
+   <!-- /equipment/pumpCoolLeft/compPreviewWidget -->
+   <p n="compPreviewWidget" f="hR" h="98" t="ui:Label">
+    <p n="image" v="module://kitPxHvac/equipment/pumpCoolLeftTrue.gif"/>
+   </p>
+  </p>
+  <!-- /equipment/pumpCoolRight -->
+  <p n="pumpCoolRight" h="99" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,41.0,25.0"/>
+   <!-- /equipment/pumpCoolRight/bnd -->
+   <p n="bnd" h="9a" t="ui:ValueBinding">
+    <p n="image" t="conv:IBooleanToSimple">
+     <p n="trueValue" t="gx:Image" v="module://kitPxHvac/equipment/pumpCoolRightTrue.gif"/>
+     <p n="falseValue" t="gx:Image" v="module://kitPxHvac/equipment/pumpCoolRightFalse.gif"/>
+    </p>
+   </p>
+   <!-- /equipment/pumpCoolRight/compPreviewWidget -->
+   <p n="compPreviewWidget" f="hR" h="9b" t="ui:Label">
+    <p n="image" v="module://kitPxHvac/equipment/pumpCoolRightTrue.gif"/>
+   </p>
+  </p>
+  <!-- /equipment/pumpHotLeft -->
+  <p n="pumpHotLeft" h="9c" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,41.0,25.0"/>
+   <!-- /equipment/pumpHotLeft/bnd -->
+   <p n="bnd" h="9d" t="ui:ValueBinding">
+    <p n="image" t="conv:IBooleanToSimple">
+     <p n="trueValue" t="gx:Image" v="module://kitPxHvac/equipment/pumpHotLeftTrue.gif"/>
+     <p n="falseValue" t="gx:Image" v="module://kitPxHvac/equipment/pumpHotLeftFalse.gif"/>
+    </p>
+   </p>
+   <!-- /equipment/pumpHotLeft/compPreviewWidget -->
+   <p n="compPreviewWidget" f="hR" h="9e" t="ui:Label">
+    <p n="image" v="module://kitPxHvac/equipment/pumpHotLeftTrue.gif"/>
+   </p>
+  </p>
+  <!-- /equipment/pumpHotRight -->
+  <p n="pumpHotRight" h="9f" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,41.0,25.0"/>
+   <!-- /equipment/pumpHotRight/bnd -->
+   <p n="bnd" h="a0" t="ui:ValueBinding">
+    <p n="image" t="conv:IBooleanToSimple">
+     <p n="trueValue" t="gx:Image" v="module://kitPxHvac/equipment/pumpHotRightTrue.gif"/>
+     <p n="falseValue" t="gx:Image" v="module://kitPxHvac/equipment/pumpHotRightFalse.gif"/>
+    </p>
+   </p>
+   <!-- /equipment/pumpHotRight/compPreviewWidget -->
+   <p n="compPreviewWidget" f="hR" h="a1" t="ui:Label">
+    <p n="image" v="module://kitPxHvac/equipment/pumpHotRightTrue.gif"/>
+   </p>
+  </p>
+  <!-- /equipment/pumpLeft -->
+  <p n="pumpLeft" h="a2" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,41.0,25.0"/>
+   <!-- /equipment/pumpLeft/bnd -->
+   <p n="bnd" h="a3" t="ui:ValueBinding">
+    <p n="image" t="conv:IBooleanToSimple">
+     <p n="trueValue" t="gx:Image" v="module://kitPxHvac/equipment/pumpLeftTrue.gif"/>
+     <p n="falseValue" t="gx:Image" v="module://kitPxHvac/equipment/pumpLeftFalse.gif"/>
+    </p>
+   </p>
+   <!-- /equipment/pumpLeft/compPreviewWidget -->
+   <p n="compPreviewWidget" f="hR" h="a4" t="ui:Label">
+    <p n="image" v="module://kitPxHvac/equipment/pumpLeftTrue.gif"/>
+   </p>
+  </p>
+  <!-- /equipment/pumpRight -->
+  <p n="pumpRight" h="a5" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,41.0,25.0"/>
+   <!-- /equipment/pumpRight/bnd -->
+   <p n="bnd" h="a6" t="ui:ValueBinding">
+    <p n="image" t="conv:IBooleanToSimple">
+     <p n="trueValue" t="gx:Image" v="module://kitPxHvac/equipment/pumpRightTrue.gif"/>
+     <p n="falseValue" t="gx:Image" v="module://kitPxHvac/equipment/pumpRightFalse.gif"/>
+    </p>
+   </p>
+   <!-- /equipment/pumpRight/compPreviewWidget -->
+   <p n="compPreviewWidget" f="hR" h="a7" t="ui:Label">
+    <p n="image" v="module://kitPxHvac/equipment/pumpRightTrue.gif"/>
+   </p>
+  </p>
+  <!-- /equipment/pumpWarmLeft -->
+  <p n="pumpWarmLeft" h="a8" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,41.0,25.0"/>
+   <!-- /equipment/pumpWarmLeft/bnd -->
+   <p n="bnd" h="a9" t="ui:ValueBinding">
+    <p n="image" t="conv:IBooleanToSimple">
+     <p n="trueValue" t="gx:Image" v="module://kitPxHvac/equipment/pumpWarmLeftTrue.gif"/>
+     <p n="falseValue" t="gx:Image" v="module://kitPxHvac/equipment/pumpWarmLeftFalse.gif"/>
+    </p>
+   </p>
+   <!-- /equipment/pumpWarmLeft/compPreviewWidget -->
+   <p n="compPreviewWidget" f="hR" h="aa" t="ui:Label">
+    <p n="image" v="module://kitPxHvac/equipment/pumpWarmLeftTrue.gif"/>
+   </p>
+  </p>
+  <!-- /equipment/pumpWarmRight -->
+  <p n="pumpWarmRight" h="ab" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,41.0,25.0"/>
+   <!-- /equipment/pumpWarmRight/bnd -->
+   <p n="bnd" h="ac" t="ui:ValueBinding">
+    <p n="image" t="conv:IBooleanToSimple">
+     <p n="trueValue" t="gx:Image" v="module://kitPxHvac/equipment/pumpWarmRightTrue.gif"/>
+     <p n="falseValue" t="gx:Image" v="module://kitPxHvac/equipment/pumpWarmRightFalse.gif"/>
+    </p>
+   </p>
+   <!-- /equipment/pumpWarmRight/compPreviewWidget -->
+   <p n="compPreviewWidget" f="hR" h="ad" t="ui:Label">
+    <p n="image" v="module://kitPxHvac/equipment/pumpWarmRightTrue.gif"/>
+   </p>
+  </p>
+  <p n="wsAnnotation" f="r" t="b:WsAnnotation" v="22,22,8"/>
+ </p>
+ <!-- /misc -->
+ <p n="misc" h="ae" t="b:UnrestrictedFolder">
+  <!-- /misc/arrowDown -->
+  <p n="arrowDown" h="af" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,50.0,50.0"/>
+   <p n="image" v="module://kitPxHvac/misc/arrowDown.gif"/>
+  </p>
+  <!-- /misc/arrowLeft -->
+  <p n="arrowLeft" h="b0" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,50.0,50.0"/>
+   <p n="image" v="module://kitPxHvac/misc/arrowLeft.gif"/>
+  </p>
+  <!-- /misc/arrowRight -->
+  <p n="arrowRight" h="b1" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,50.0,50.0"/>
+   <p n="image" v="module://kitPxHvac/misc/arrowRight.gif"/>
+  </p>
+  <!-- /misc/arrowUp -->
+  <p n="arrowUp" h="b2" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,50.0,50.0"/>
+   <p n="image" v="module://kitPxHvac/misc/arrowUp.gif"/>
+  </p>
+  <!-- /misc/cArrowDown -->
+  <p n="cArrowDown" h="b3" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,50.0,50.0"/>
+   <p n="image" v="module://kitPxHvac/misc/cArrowDown.gif"/>
+  </p>
+  <!-- /misc/cArrowLeft -->
+  <p n="cArrowLeft" h="b4" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,50.0,50.0"/>
+   <p n="image" v="module://kitPxHvac/misc/cArrowLeft.gif"/>
+  </p>
+  <!-- /misc/cArrowRight -->
+  <p n="cArrowRight" h="b5" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,50.0,50.0"/>
+   <p n="image" v="module://kitPxHvac/misc/cArrowRight.gif"/>
+  </p>
+  <!-- /misc/cArrowUp -->
+  <p n="cArrowUp" h="b6" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,50.0,50.0"/>
+   <p n="image" v="module://kitPxHvac/misc/cArrowUp.gif"/>
+  </p>
+  <!-- /misc/cPipeArrowDown -->
+  <p n="cPipeArrowDown" h="b7" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,19.0,19.0"/>
+   <p n="image" v="module://kitPxHvac/misc/cPipeArrowDown.gif"/>
+  </p>
+  <!-- /misc/cPipeArrowLeft -->
+  <p n="cPipeArrowLeft" h="b8" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,19.0,19.0"/>
+   <p n="image" v="module://kitPxHvac/misc/cPipeArrowLeft.gif"/>
+  </p>
+  <!-- /misc/cPipeArrowRight -->
+  <p n="cPipeArrowRight" h="b9" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,19.0,19.0"/>
+   <p n="image" v="module://kitPxHvac/misc/cPipeArrowRight.gif"/>
+  </p>
+  <!-- /misc/cPipeArrowUp -->
+  <p n="cPipeArrowUp" h="ba" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,19.0,19.0"/>
+   <p n="image" v="module://kitPxHvac/misc/cPipeArrowUp.gif"/>
+  </p>
+  <!-- /misc/dialSwitch2PosLeft -->
+  <p n="dialSwitch2PosLeft" h="bb" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,90.0,90.0"/>
+   <p n="image" v="module://kitPxHvac/misc/dialSwitch2PosLeft.gif"/>
+  </p>
+  <!-- /misc/dialSwitch2PosRight -->
+  <p n="dialSwitch2PosRight" h="bc" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,90.0,90.0"/>
+   <p n="image" v="module://kitPxHvac/misc/dialSwitch2PosRight.gif"/>
+  </p>
+  <!-- /misc/dialSwitch3PosLeft -->
+  <p n="dialSwitch3PosLeft" h="bd" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,90.0,90.0"/>
+   <p n="image" v="module://kitPxHvac/misc/dialSwitch3PosLeft.gif"/>
+  </p>
+  <!-- /misc/dialSwitch3PosMiddle -->
+  <p n="dialSwitch3PosMiddle" h="be" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,90.0,90.0"/>
+   <p n="image" v="module://kitPxHvac/misc/dialSwitch3PosMiddle.gif"/>
+  </p>
+  <!-- /misc/dialSwitch3PosRight -->
+  <p n="dialSwitch3PosRight" h="bf" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,90.0,90.0"/>
+   <p n="image" v="module://kitPxHvac/misc/dialSwitch3PosRight.gif"/>
+  </p>
+  <!-- /misc/hArrowDown -->
+  <p n="hArrowDown" h="c0" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,50.0,50.0"/>
+   <p n="image" v="module://kitPxHvac/misc/hArrowDown.gif"/>
+  </p>
+  <!-- /misc/hArrowLeft -->
+  <p n="hArrowLeft" h="c1" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,50.0,50.0"/>
+   <p n="image" v="module://kitPxHvac/misc/hArrowLeft.gif"/>
+  </p>
+  <!-- /misc/hArrowRight -->
+  <p n="hArrowRight" h="c2" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,50.0,50.0"/>
+   <p n="image" v="module://kitPxHvac/misc/hArrowRight.gif"/>
+  </p>
+  <!-- /misc/hArrowUp -->
+  <p n="hArrowUp" h="c3" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,50.0,50.0"/>
+   <p n="image" v="module://kitPxHvac/misc/hArrowUp.gif"/>
+  </p>
+  <!-- /misc/hPipeArrowDown -->
+  <p n="hPipeArrowDown" h="c4" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,19.0,19.0"/>
+   <p n="image" v="module://kitPxHvac/misc/hPipeArrowDown.gif"/>
+  </p>
+  <!-- /misc/hPipeArrowLeft -->
+  <p n="hPipeArrowLeft" h="c5" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,19.0,19.0"/>
+   <p n="image" v="module://kitPxHvac/misc/hPipeArrowLeft.gif"/>
+  </p>
+  <!-- /misc/hPipeArrowRight -->
+  <p n="hPipeArrowRight" h="c6" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,19.0,19.0"/>
+   <p n="image" v="module://kitPxHvac/misc/hPipeArrowRight.gif"/>
+  </p>
+  <!-- /misc/hPipeArrowUp -->
+  <p n="hPipeArrowUp" h="c7" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,19.0,19.0"/>
+   <p n="image" v="module://kitPxHvac/misc/hPipeArrowUp.gif"/>
+  </p>
+  <!-- /misc/meterNiagara -->
+  <p n="meterNiagara" h="c8" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,88.0,30.0"/>
+   <p n="image" v="module://kitPxHvac/misc/meterNiagara.gif"/>
+  </p>
+  <!-- /misc/meterNiagaraLarge -->
+    <p n="meterNiagaraLarge" h="4c8" t="kitPx:BoundLabel">
+     <p n="layout" v="0.0,0.0,360.0,154.0"/>
+     <p n="image" v="module://kitPxHvac/misc/meterNiagaraLarge.gif"/>
+    </p>
+  <!-- /misc/pDeckFull -->
+  <p n="pDeckFull" h="c9" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,105.0,40.0"/>
+   <p n="image" v="module://kitPxHvac/misc/pDeckFull.gif"/>
+  </p>
+  <!-- /misc/pDeckLimited -->
+  <p n="pDeckLimited" h="ca" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,105.0,40.0"/>
+   <p n="image" v="module://kitPxHvac/misc/pDeckLimited.gif"/>
+  </p>
+  <!-- /misc/pDeckVacancy -->
+  <p n="pDeckVacancy" h="cb" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,105.0,40.0"/>
+   <p n="image" v="module://kitPxHvac/misc/pDeckVacancy.gif"/>
+  </p>
+  <!-- /misc/pipeArrowDown -->
+  <p n="pipeArrowDown" h="cc" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,19.0,19.0"/>
+   <p n="image" v="module://kitPxHvac/misc/pipeArrowDown.gif"/>
+  </p>
+  <!-- /misc/pipeArrowLeft -->
+  <p n="pipeArrowLeft" h="cd" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,19.0,19.0"/>
+   <p n="image" v="module://kitPxHvac/misc/pipeArrowLeft.gif"/>
+  </p>
+  <!-- /misc/pipeArrowRight -->
+  <p n="pipeArrowRight" h="ce" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,19.0,19.0"/>
+   <p n="image" v="module://kitPxHvac/misc/pipeArrowRight.gif"/>
+  </p>
+  <!-- /misc/pipeArrowUp -->
+  <p n="pipeArrowUp" h="cf" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,19.0,19.0"/>
+   <p n="image" v="module://kitPxHvac/misc/pipeArrowUp.gif"/>
+  </p>
+  <!-- /misc/textPlateDepressedLeft -->
+  <p n="textPlateDepressedLeft" h="d0" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,10.0,24.0"/>
+   <p n="image" v="module://kitPxHvac/misc/textPlateDepressedLeft.gif"/>
+  </p>
+  <!-- /misc/textPlateDepressedMid -->
+  <p n="textPlateDepressedMid" h="d1" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,100.0,24.0"/>
+   <p n="image" v="module://kitPxHvac/misc/textPlateDepressedMid.gif"/>
+  </p>
+  <!-- /misc/textPlateDepressedRight -->
+  <p n="textPlateDepressedRight" h="d2" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,10.0,24.0"/>
+   <p n="image" v="module://kitPxHvac/misc/textPlateDepressedRight.gif"/>
+  </p>
+  <!-- /misc/textPlateLEDGreen -->
+  <p n="textPlateLEDGreen" h="d3" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,25.0,21.0"/>
+   <!-- /misc/textPlateLEDGreen/bnd -->
+   <p n="bnd" h="d4" t="ui:ValueBinding">
+    <p n="image" t="conv:IBooleanToSimple">
+     <p n="trueValue" t="gx:Image" v="module://kitPxHvac/misc/textPlateLEDGreenTrue.gif"/>
+     <p n="falseValue" t="gx:Image" v="module://kitPxHvac/misc/textPlateLEDGreenFalse.gif"/>
+    </p>
+   </p>
+   <!-- /misc/textPlateLEDGreen/compPreviewWidget -->
+   <p n="compPreviewWidget" f="hR" h="d5" t="ui:Label">
+    <p n="image" v="module://kitPxHvac/misc/textPlateLEDGreenTrue.gif"/>
+   </p>
+  </p>
+  <!-- /misc/textPlateLEDRed -->
+  <p n="textPlateLEDRed" h="d6" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,25.0,21.0"/>
+   <!-- /misc/textPlateLEDRed/bnd -->
+   <p n="bnd" h="d7" t="ui:ValueBinding">
+    <p n="image" t="conv:IBooleanToSimple">
+     <p n="trueValue" t="gx:Image" v="module://kitPxHvac/misc/textPlateLEDRedTrue.gif"/>
+     <p n="falseValue" t="gx:Image" v="module://kitPxHvac/misc/textPlateLEDRedFalse.gif"/>
+    </p>
+   </p>
+   <!-- /misc/textPlateLEDRed/compPreviewWidget -->
+   <p n="compPreviewWidget" f="hR" h="d8" t="ui:Label">
+    <p n="image" v="module://kitPxHvac/misc/textPlateLEDRedTrue.gif"/>
+   </p>
+  </p>
+  <!-- /misc/textPlateLEDYellow -->
+  <p n="textPlateLEDYellow" h="d9" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,25.0,21.0"/>
+   <!-- /misc/textPlateLEDYellow/bnd -->
+   <p n="bnd" h="da" t="ui:ValueBinding">
+    <p n="image" t="conv:IBooleanToSimple">
+     <p n="trueValue" t="gx:Image" v="module://kitPxHvac/misc/textPlateLEDYellowTrue.gif"/>
+     <p n="falseValue" t="gx:Image" v="module://kitPxHvac/misc/textPlateLEDYellowFalse.gif"/>
+    </p>
+   </p>
+   <!-- /misc/textPlateLEDYellow/compPreviewWidget -->
+   <p n="compPreviewWidget" f="hR" h="db" t="ui:Label">
+    <p n="image" v="module://kitPxHvac/misc/textPlateLEDYellowTrue.gif"/>
+   </p>
+  </p>
+  <!-- /misc/textPlateLeft -->
+  <p n="textPlateLeft" h="dc" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,25.0,21.0"/>
+   <p n="image" v="module://kitPxHvac/misc/textPlateLeft.gif"/>
+  </p>
+  <!-- /misc/textPlateMid -->
+  <p n="textPlateMid" h="dd" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,50.0,21.0"/>
+   <p n="image" v="module://kitPxHvac/misc/textPlateMid.gif"/>
+  </p>
+  <!-- /misc/textPlateRight -->
+  <p n="textPlateRight" h="de" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,25.0,21.0"/>
+   <p n="image" v="module://kitPxHvac/misc/textPlateRight.gif"/>
+  </p>
+  <!-- /misc/thermometer -->
+  <p n="thermometer" h="df" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,16.0,64.0"/>
+   <p n="image" v="module://kitPxHvac/misc/thermometer.gif"/>
+  </p>
+  <!-- /misc/thermometerSpectrum -->
+  <p n="thermometerSpectrum" h="e0" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,16.0,63.0"/>
+   <p n="image" v="module://kitPxHvac/misc/thermometerSpectrum.gif"/>
+  </p>
+  <p n="wsAnnotation" f="r" t="b:WsAnnotation" v="26,26,8"/>
+ </p>
+ <!-- /piping -->
+ <p n="piping" h="e1" t="b:UnrestrictedFolder">
+  <!-- /piping/coldCross -->
+  <p n="coldCross" h="e2" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,29.0,29.0"/>
+   <p n="image" v="module://kitPxHvac/piping/coldCross.gif"/>
+  </p>
+  <!-- /piping/coldElbowNE -->
+  <p n="coldElbowNE" h="e3" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,21.0,21.0"/>
+   <p n="image" v="module://kitPxHvac/piping/coldElbowNE.gif"/>
+  </p>
+  <!-- /piping/coldElbowNW -->
+  <p n="coldElbowNW" h="e4" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,21.0,21.0"/>
+   <p n="image" v="module://kitPxHvac/piping/coldElbowNW.gif"/>
+  </p>
+  <!-- /piping/coldElbowSE -->
+  <p n="coldElbowSE" h="e5" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,21.0,21.0"/>
+   <p n="image" v="module://kitPxHvac/piping/coldElbowSE.gif"/>
+  </p>
+  <!-- /piping/coldElbowSW -->
+  <p n="coldElbowSW" h="e6" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,21.0,21.0"/>
+   <p n="image" v="module://kitPxHvac/piping/coldElbowSW.gif"/>
+  </p>
+  <!-- /piping/coldHoriz -->
+  <p n="coldHoriz" h="e7" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,100.0,7.0"/>
+   <p n="image" v="module://kitPxHvac/piping/coldHoriz.gif"/>
+  </p>
+  <!-- /piping/coldTeeE -->
+  <p n="coldTeeE" h="e8" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,21.0,29.0"/>
+   <p n="image" v="module://kitPxHvac/piping/coldTeeE.gif"/>
+  </p>
+  <!-- /piping/coldTeeN -->
+  <p n="coldTeeN" h="e9" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,29.0,21.0"/>
+   <p n="image" v="module://kitPxHvac/piping/coldTeeN.gif"/>
+  </p>
+  <!-- /piping/coldTeeS -->
+  <p n="coldTeeS" h="ea" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,29.0,21.0"/>
+   <p n="image" v="module://kitPxHvac/piping/coldTeeS.gif"/>
+  </p>
+  <!-- /piping/coldTeeW -->
+  <p n="coldTeeW" h="eb" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,21.0,29.0"/>
+   <p n="image" v="module://kitPxHvac/piping/coldTeeW.gif"/>
+  </p>
+  <!-- /piping/coldVert -->
+  <p n="coldVert" h="ec" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,7.0,100.0"/>
+   <p n="image" v="module://kitPxHvac/piping/coldVert.gif"/>
+  </p>
+  <!-- /piping/coolCross -->
+  <p n="coolCross" h="ed" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,29.0,29.0"/>
+   <p n="image" v="module://kitPxHvac/piping/coolCross.gif"/>
+  </p>
+  <!-- /piping/coolElbowNE -->
+  <p n="coolElbowNE" h="ee" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,21.0,21.0"/>
+   <p n="image" v="module://kitPxHvac/piping/coolElbowNE.gif"/>
+  </p>
+  <!-- /piping/coolElbowNW -->
+  <p n="coolElbowNW" h="ef" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,21.0,21.0"/>
+   <p n="image" v="module://kitPxHvac/piping/coolElbowNW.gif"/>
+  </p>
+  <!-- /piping/coolElbowSE -->
+  <p n="coolElbowSE" h="f0" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,21.0,21.0"/>
+   <p n="image" v="module://kitPxHvac/piping/coolElbowSE.gif"/>
+  </p>
+  <!-- /piping/coolElbowSW -->
+  <p n="coolElbowSW" h="f1" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,21.0,21.0"/>
+   <p n="image" v="module://kitPxHvac/piping/coolElbowSW.gif"/>
+  </p>
+  <!-- /piping/coolHoriz -->
+  <p n="coolHoriz" h="f2" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,100.0,7.0"/>
+   <p n="image" v="module://kitPxHvac/piping/coolHoriz.gif"/>
+  </p>
+  <!-- /piping/coolTeeE -->
+  <p n="coolTeeE" h="f3" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,21.0,29.0"/>
+   <p n="image" v="module://kitPxHvac/piping/coolTeeE.gif"/>
+  </p>
+  <!-- /piping/coolTeeN -->
+  <p n="coolTeeN" h="f4" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,29.0,21.0"/>
+   <p n="image" v="module://kitPxHvac/piping/coolTeeN.gif"/>
+  </p>
+  <!-- /piping/coolTeeS -->
+  <p n="coolTeeS" h="f5" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,29.0,21.0"/>
+   <p n="image" v="module://kitPxHvac/piping/coolTeeS.gif"/>
+  </p>
+  <!-- /piping/coolTeeW -->
+  <p n="coolTeeW" h="f6" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,21.0,29.0"/>
+   <p n="image" v="module://kitPxHvac/piping/coolTeeW.gif"/>
+  </p>
+  <!-- /piping/coolVert -->
+  <p n="coolVert" h="f7" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,7.0,100.0"/>
+   <p n="image" v="module://kitPxHvac/piping/coolVert.gif"/>
+  </p>
+  <!-- /piping/hotCross -->
+  <p n="hotCross" h="f8" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,29.0,29.0"/>
+   <p n="image" v="module://kitPxHvac/piping/hotCross.gif"/>
+  </p>
+  <!-- /piping/hotElbowNE -->
+  <p n="hotElbowNE" h="f9" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,21.0,21.0"/>
+   <p n="image" v="module://kitPxHvac/piping/hotElbowNE.gif"/>
+  </p>
+  <!-- /piping/hotElbowNW -->
+  <p n="hotElbowNW" h="fa" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,21.0,21.0"/>
+   <p n="image" v="module://kitPxHvac/piping/hotElbowNW.gif"/>
+  </p>
+  <!-- /piping/hotElbowSE -->
+  <p n="hotElbowSE" h="fb" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,21.0,21.0"/>
+   <p n="image" v="module://kitPxHvac/piping/hotElbowSE.gif"/>
+  </p>
+  <!-- /piping/hotElbowSW -->
+  <p n="hotElbowSW" h="fc" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,21.0,21.0"/>
+   <p n="image" v="module://kitPxHvac/piping/hotElbowSW.gif"/>
+  </p>
+  <!-- /piping/hotHoriz -->
+  <p n="hotHoriz" h="fd" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,100.0,7.0"/>
+   <p n="image" v="module://kitPxHvac/piping/hotHoriz.gif"/>
+  </p>
+  <!-- /piping/hotTeeE -->
+  <p n="hotTeeE" h="fe" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,21.0,29.0"/>
+   <p n="image" v="module://kitPxHvac/piping/hotTeeE.gif"/>
+  </p>
+  <!-- /piping/hotTeeN -->
+  <p n="hotTeeN" h="ff" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,29.0,21.0"/>
+   <p n="image" v="module://kitPxHvac/piping/hotTeeN.gif"/>
+  </p>
+  <!-- /piping/hotTeeS -->
+  <p n="hotTeeS" h="100" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,29.0,21.0"/>
+   <p n="image" v="module://kitPxHvac/piping/hotTeeS.gif"/>
+  </p>
+  <!-- /piping/hotTeeW -->
+  <p n="hotTeeW" h="101" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,21.0,29.0"/>
+   <p n="image" v="module://kitPxHvac/piping/hotTeeW.gif"/>
+  </p>
+  <!-- /piping/hotVert -->
+  <p n="hotVert" h="102" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,7.0,100.0"/>
+   <p n="image" v="module://kitPxHvac/piping/hotVert.gif"/>
+  </p>
+  <!-- /piping/nCross -->
+  <p n="nCross" h="103" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,29.0,29.0"/>
+   <p n="image" v="module://kitPxHvac/piping/nCross.gif"/>
+  </p>
+  <!-- /piping/nElbowNE -->
+  <p n="nElbowNE" h="104" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,21.0,21.0"/>
+   <p n="image" v="module://kitPxHvac/piping/nElbowNE.gif"/>
+  </p>
+  <!-- /piping/nElbowNW -->
+  <p n="nElbowNW" h="105" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,21.0,21.0"/>
+   <p n="image" v="module://kitPxHvac/piping/nElbowNW.gif"/>
+  </p>
+  <!-- /piping/nElbowSE -->
+  <p n="nElbowSE" h="106" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,21.0,21.0"/>
+   <p n="image" v="module://kitPxHvac/piping/nElbowSE.gif"/>
+  </p>
+  <!-- /piping/nElbowSW -->
+  <p n="nElbowSW" h="107" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,21.0,21.0"/>
+   <p n="image" v="module://kitPxHvac/piping/nElbowSW.gif"/>
+  </p>
+  <!-- /piping/nHoriz -->
+  <p n="nHoriz" h="108" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,100.0,7.0"/>
+   <p n="image" v="module://kitPxHvac/piping/nHoriz.gif"/>
+  </p>
+  <!-- /piping/nTeeE -->
+  <p n="nTeeE" h="109" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,21.0,29.0"/>
+   <p n="image" v="module://kitPxHvac/piping/nTeeE.gif"/>
+  </p>
+  <!-- /piping/nTeeN -->
+  <p n="nTeeN" h="10a" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,29.0,21.0"/>
+   <p n="image" v="module://kitPxHvac/piping/nTeeN.gif"/>
+  </p>
+  <!-- /piping/nTeeS -->
+  <p n="nTeeS" h="10b" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,29.0,21.0"/>
+   <p n="image" v="module://kitPxHvac/piping/nTeeS.gif"/>
+  </p>
+  <!-- /piping/nTeeW -->
+  <p n="nTeeW" h="10c" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,21.0,29.0"/>
+   <p n="image" v="module://kitPxHvac/piping/nTeeW.gif"/>
+  </p>
+  <!-- /piping/nVert -->
+  <p n="nVert" h="10d" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,7.0,100.0"/>
+   <p n="image" v="module://kitPxHvac/piping/nVert.gif"/>
+  </p>
+  <!-- /piping/warmCross -->
+  <p n="warmCross" h="10e" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,29.0,29.0"/>
+   <p n="image" v="module://kitPxHvac/piping/warmCross.gif"/>
+  </p>
+  <!-- /piping/warmElbowNE -->
+  <p n="warmElbowNE" h="10f" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,21.0,21.0"/>
+   <p n="image" v="module://kitPxHvac/piping/warmElbowNE.gif"/>
+  </p>
+  <!-- /piping/warmElbowNW -->
+  <p n="warmElbowNW" h="110" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,21.0,21.0"/>
+   <p n="image" v="module://kitPxHvac/piping/warmElbowNW.gif"/>
+  </p>
+  <!-- /piping/warmElbowSE -->
+  <p n="warmElbowSE" h="111" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,21.0,21.0"/>
+   <p n="image" v="module://kitPxHvac/piping/warmElbowSE.gif"/>
+  </p>
+  <!-- /piping/warmElbowSW -->
+  <p n="warmElbowSW" h="112" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,21.0,21.0"/>
+   <p n="image" v="module://kitPxHvac/piping/warmElbowSW.gif"/>
+  </p>
+  <!-- /piping/warmHoriz -->
+  <p n="warmHoriz" h="113" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,100.0,7.0"/>
+   <p n="image" v="module://kitPxHvac/piping/warmHoriz.gif"/>
+  </p>
+  <!-- /piping/warmTeeE -->
+  <p n="warmTeeE" h="114" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,21.0,29.0"/>
+   <p n="image" v="module://kitPxHvac/piping/warmTeeE.gif"/>
+  </p>
+  <!-- /piping/warmTeeN -->
+  <p n="warmTeeN" h="115" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,29.0,21.0"/>
+   <p n="image" v="module://kitPxHvac/piping/warmTeeN.gif"/>
+  </p>
+  <!-- /piping/warmTeeS -->
+  <p n="warmTeeS" h="116" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,29.0,21.0"/>
+   <p n="image" v="module://kitPxHvac/piping/warmTeeS.gif"/>
+  </p>
+  <!-- /piping/warmTeeW -->
+  <p n="warmTeeW" h="117" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,21.0,29.0"/>
+   <p n="image" v="module://kitPxHvac/piping/warmTeeW.gif"/>
+  </p>
+  <!-- /piping/warmVert -->
+  <p n="warmVert" h="118" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,7.0,100.0"/>
+   <p n="image" v="module://kitPxHvac/piping/warmVert.gif"/>
+  </p>
+  <p n="wsAnnotation" f="r" t="b:WsAnnotation" v="30,30,8"/>
+ </p>
+ <!-- /valves -->
+ <p n="valves" h="119" t="b:UnrestrictedFolder">
+  <!-- /valves/cValve2wayL -->
+  <p n="cValve2wayL" h="11a" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,90.0,125.0"/>
+   <p n="image" v="module://kitPxHvac/valves/cValve2wayL.gif"/>
+  </p>
+  <!-- /valves/cValve2wayLTop -->
+  <p n="cValve2wayLTop" h="11b" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,90.0,150.0"/>
+   <p n="image" v="module://kitPxHvac/valves/cValve2wayLTop.gif"/>
+  </p>
+  <!-- /valves/cValve2wayR -->
+  <p n="cValve2wayR" h="11c" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,90.0,125.0"/>
+   <p n="image" v="module://kitPxHvac/valves/cValve2wayR.gif"/>
+  </p>
+  <!-- /valves/cValve2wayRTop -->
+  <p n="cValve2wayRTop" h="11d" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,90.0,150.0"/>
+   <p n="image" v="module://kitPxHvac/valves/cValve2wayRTop.gif"/>
+  </p>
+  <!-- /valves/cValve3wayL -->
+  <p n="cValve3wayL" h="11e" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,90.0,125.0"/>
+   <p n="image" v="module://kitPxHvac/valves/cValve3wayL.gif"/>
+  </p>
+  <!-- /valves/cValve3wayLTop -->
+  <p n="cValve3wayLTop" h="11f" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,90.0,150.0"/>
+   <p n="image" v="module://kitPxHvac/valves/cValve3wayLTop.gif"/>
+  </p>
+  <!-- /valves/cValve3wayR -->
+  <p n="cValve3wayR" h="120" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,90.0,125.0"/>
+   <p n="image" v="module://kitPxHvac/valves/cValve3wayR.gif"/>
+  </p>
+  <!-- /valves/cValve3wayRTop -->
+  <p n="cValve3wayRTop" h="121" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,90.0,150.0"/>
+   <p n="image" v="module://kitPxHvac/valves/cValve3wayRTop.gif"/>
+  </p>
+  <!-- /valves/globeValve2Way -->
+  <p n="globeValve2Way" h="122" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,25.0,50.0"/>
+   <p n="image" v="module://kitPxHvac/valves/globeValve2Way.gif"/>
+  </p>
+  <!-- /valves/globeValve3Way -->
+  <p n="globeValve3Way" h="123" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,25.0,50.0"/>
+   <p n="image" v="module://kitPxHvac/valves/globeValve3Way.gif"/>
+  </p>
+  <!-- /valves/hValve2wayL -->
+  <p n="hValve2wayL" h="124" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,90.0,125.0"/>
+   <p n="image" v="module://kitPxHvac/valves/hValve2wayL.gif"/>
+  </p>
+  <!-- /valves/hValve2wayLTop -->
+  <p n="hValve2wayLTop" h="125" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,90.0,150.0"/>
+   <p n="image" v="module://kitPxHvac/valves/hValve2wayLTop.gif"/>
+  </p>
+  <!-- /valves/hValve2wayR -->
+  <p n="hValve2wayR" h="126" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,90.0,125.0"/>
+   <p n="image" v="module://kitPxHvac/valves/hValve2wayR.gif"/>
+  </p>
+  <!-- /valves/hValve2wayRTop -->
+  <p n="hValve2wayRTop" h="127" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,90.0,150.0"/>
+   <p n="image" v="module://kitPxHvac/valves/hValve2wayRTop.gif"/>
+  </p>
+  <!-- /valves/hValve3wayL -->
+  <p n="hValve3wayL" h="128" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,90.0,125.0"/>
+   <p n="image" v="module://kitPxHvac/valves/hValve3wayL.gif"/>
+  </p>
+  <!-- /valves/hValve3wayLTop -->
+  <p n="hValve3wayLTop" h="129" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,90.0,150.0"/>
+   <p n="image" v="module://kitPxHvac/valves/hValve3wayLTop.gif"/>
+  </p>
+  <!-- /valves/hValve3wayR -->
+  <p n="hValve3wayR" h="12a" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,90.0,125.0"/>
+   <p n="image" v="module://kitPxHvac/valves/hValve3wayR.gif"/>
+  </p>
+  <!-- /valves/hValve3wayRTop -->
+  <p n="hValve3wayRTop" h="12b" t="kitPx:BoundLabel">
+   <p n="layout" v="0.0,0.0,90.0,150.0"/>
+   <p n="image" v="module://kitPxHvac/valves/hValve3wayRTop.gif"/>
+  </p>
+  <p n="wsAnnotation" f="r" t="b:WsAnnotation" v="34,34,8"/>
+ </p>
+</p>
+</bajaObjectGraph>
