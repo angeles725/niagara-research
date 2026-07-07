@@ -1,0 +1,111 @@
+<!-- Htmldoc has been run -->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="keywords" content="Niagara 4.1" scheme="atiChunkerMeta">
+      <meta name="keywords" content="Niagara" scheme="atiChunkerMeta">
+      <meta name="keywords" content="Niagara 4.12" scheme="atiChunkerMeta">
+      <meta name="keywords" content="Workbench" scheme="atiChunkerMeta">
+      <meta name="keywords" content="Niagara 4.8" scheme="atiChunkerMeta">
+      <meta name="keywords" content="Niagara 4" scheme="atiChunkerMeta">
+      <meta name="keywords" content="Niagara 4.2" scheme="atiChunkerMeta">
+
+      <title>About sampling</title>
+<!-- Auto-generated style sheet link --><link rel='StyleSheet' href='module://bajaui/doc/style.css' type='text/css' />
+<!-- Auto-generated js link for Activity Monitoring --><script type='text/javascript' src='module://web/rc/util/activityMonitor.js'></script>
+<script type='text/javascript'>window.addEventListener('load', activityMonitor.start);</script>
+   </head>
+   <body class=" x-bookmap-1-0" lang="en-US" id="mapelement_bookmap1">
+<!-- Auto-generated Header NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/webChart-ChartFile.html" class="navbar">Prev</a> |  <a href="/doc/AboutAddingDataFromASupervisor-21A438D3.html" class="navbar">Next</a></p>
+
+      <div xmlns:ch="http://www.arbortext.com/namespace/chunker" class=" x-topic-13-0" id="AboutSampling-E7DD848B" lang="en-US">
+         <h2 class=" x-title-15-0 x-title-15-1 x-title-15-2 x-title-15-3 x-title-15-4" id="styler-id1.1.1.5.7.8.7.1" lang="en-US">About sampling</h2><span class=" x-titlealts-2-0"></span><div class=" x-shortdesc-2-0" lang="en-US">Sampling uses a simple roll-up technique to get large data sets down to a manageable number of points. This improves chart
+            rendering performance and it smooths out the chart data somewhat which can make it easier to interpret. 
+         </div>
+         <div class=" x-prolog-1-0" lang="en-US">
+            <div class=" x-metadata-1-0" lang="en-US"><span class=" x-keywords-2-0" lang="en-US"><a class="indexterm" name="d8067e6949"></a><a class="indexterm" name="d8067e6953"></a></span></div>
+         </div>
+         <div class=" x-body-1-0" lang="en-US">
+            <div class=" x-section-1-0" id="styler-id1.1.1.5.7.8.7.5.1" lang="en-US">
+               <p class=" x-p-13-0" lang="en-US">Rollup (or Rollup Interval) is an interval of time that is used to determine what (and how) data is presented in your chart.
+                  The effect is that rollup groups the data into auto-configured intervals. Each point displayed, using the rollup, represents
+                  a designated time interval before the specified plot time. This interval is a stat that can be seen in the Settings window
+                  <b class=" x-uicontrol-3-0" lang="en-US">Sampling Period</b> property (only visible once sampling has begun).
+               </p>
+               <p class=" x-p-13-0" lang="en-US">When the focused point array is larger than 2500, roll-up buckets are created and calculated based on the available time based
+                  on total duration/2500. The roll-up amount is rounded up to the next highest time increment. For example, if the calculated
+                  roll-up bucket is 2.5 hours, a roll-up bucket of 3 hours is used and the roll up will start at an even increment. So if the
+                  first entry is 2:35 am, then the first rollover bucket will be 2:00 and the next bucket will start at 3:00. 
+               </p>
+               <p class=" x-p-13-0" lang="en-US">Auto-Sampling turns on automatically if the focused data set exceeds 2500 and turns off automatically once the focused data
+                  set is below the 2500 threshold. 
+               </p>
+               <p class=" x-p-13-0" lang="en-US">Sampling is on if the <span class=" x-wintitle-2-0" lang="en-US">Chart</span> view <b class=" x-uicontrol-3-0" lang="en-US">Sampling</b> command is selected. Alternately, in the settings <b class=" x-uicontrol-3-0" lang="en-US">Sampling</b> tab, you can turn on sampling by disabling Auto Sampling and setting <code class=" x-parmname-2-0" lang="en-US">Sampling</code> to <code class=" x-option-2-0" lang="en-US">true</code>. Additional settings allow you to configure the Facets Limit Mode, Show Start Trend Gaps or hide them, and Show Data Gaps.
+               </p>
+            </div>
+            <div class=" x-section-1-0" id="styler-id1.1.1.5.7.8.7.5.2" lang="en-US">
+               <h3 class=" x-title-45-0" id="styler-id1.1.1.5.7.8.7.5.2.1" lang="en-US">Sampling enhancements</h3>
+               <p class=" x-p-13-0" lang="en-US">In <span class=" x-keyword-2-0" lang="en-US">
+                     <ch:meta content="Niagara 4.1" name="keywords"></ch:meta><span style="white-space: nowrap;">Niagara 4.1</span></span> and later, enhancements in sampling protect against an unlimited number of points in a web chart consuming all available
+                  memory on the PC. The number of points are configurable with a system.property, as are the limits for when to start auto sampling
+                  and when to force auto sampling on.
+               </p>
+               <p class=" x-p-13-0" lang="en-US">Data chunking, which is used for all data, accommodates large histories (those exceeding configured size limits) resulting
+                  in improved performance. Chunking limits the amount of memory consumed while data is loading. The chart displays once information
+                  about the series is received and data displays in the chart as it comes in from a chunked response.
+               </p>
+               <p class=" x-p-13-0" lang="en-US">Note too, that an added chart command (in <span class=" x-keyword-2-0" lang="en-US">
+                     <ch:meta content="Niagara 4.1" name="keywords"></ch:meta><span style="white-space: nowrap;">Niagara 4.1</span></span> and later) functions as described here:
+               </p>
+               <div lang="en-US">
+                  <ul class=" x-ul-1-0">
+                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">The <b class=" x-uicontrol-3-0" lang="en-US">Stop</b> command (<span class=" x-image-2-0 x-image-2-7" lang="en-US"><img alt="Image" height="17" src="graphics/icon_mediastop_0000012820.png"  width="17"></span>), becomes visible only while data is loading. At any point during data loading, you can press the button to stop the chunking
+                           process. Press <b class=" x-uicontrol-3-0" lang="en-US">Stop</b> once to halt data coming from the server. While stopped, the button displays a red border. Press <b class=" x-uicontrol-3-0" lang="en-US">Stop</b> a second time to reload the data.</span></li>
+                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Changing the <b class=" x-uicontrol-3-0" lang="en-US">Time Range</b> while the page is loading also triggers the <b class=" x-uicontrol-3-0" lang="en-US">Stop</b> command followed by a page reload.</span></li>
+                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">For performance reasons, you cannot turn off sampling once the number of points in the focused data set exceeds 50,000 (or
+                           the configured default maxSamplingSize). If you attempt to turn off sampling a popup alerts you that “The chart has too many
+                           points (&gt;50,000). Sampling cannot be turned off until the page is focused on fewer points.” You can change the <b class=" x-uicontrol-3-0" lang="en-US">Time Range</b> to focus on fewer points.</span></li>
+                  </ul>
+               </div>
+               <p class=" x-p-13-0" lang="en-US">The following configurable system.properties (<code class=" x-filepath-1-0" lang="en-US">!defaults/system.properties</code>) allow you to fine tune sampling defaults:
+               </p>
+               <div lang="en-US">
+                  <ul class=" x-ul-1-0">
+                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US"><code class=" x-codeph-1-0" lang="en-US">#niagara.webChart.autoSamplingSize=2500</code></span><p class=" x-p-8-0" lang="en-US">This property sets the default auto sampling size. This applies when sampling is turned on to improve web browser interaction.</p>
+                     </li>
+                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US"><code class=" x-codeph-1-0" lang="en-US">#niagara.webChart.maxSamplingSize=50000</code></span><p class=" x-p-8-0" lang="en-US">This sets the default maximum sampling size. When exceeded, sampling cannot be turned off.</p>
+                     </li>
+                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US"><code class=" x-codeph-1-0" lang="en-US">#niagara.webChart.maxSeriesCapacity=250000</code></span><p class=" x-p-8-0" lang="en-US">This sets the maximum capacity for a data series. When the indicated <b class=" x-uicontrol-3-0" lang="en-US">Time Range</b> loads more points than the configured maximum capacity (default=250,000), the <b class=" x-uicontrol-3-0" lang="en-US">Sampling</b> command displays a red border and a popup (shown) alerts you that only the most recent 250,000 points will be shown in the
+                           chart.<div class=" x-image-2-0 x-image-2-9" lang="en-US"><img alt="Image" height="129" src="graphics/charts_exampleoverlimit-cropped_0000012819.png"  width="378"></div></p>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+         <div class=" x-related-links-1-0">
+            <div class=" x--ufe-relatedlinks-display-1-0">
+               <div class=" x--ufe-relatedHierarchical-1-0 x--ufe-relatedHierarchical-1-1">
+                  <h3 class=" x--ufe-related-links-title-1-0" id="styler-idu1.1.1.5.7.8.7.6.1.1.1">Related Links</h3>
+                  <div class=" x--ufe-relatedChild-1-0"></div>
+                  <div class=" x--ufe-relatedParent-1-0">
+                     <li class=" x-link-2-0 x-link-2-1"><a href="webChart-ChartFile.html#webChart-ChartFile" title="Options in the Chart view Settings window allow you to make data presentation changes that are of a persistent nature, meaning the changes are retained when the chart is exported or saved. "><span class=" x-linktext-2-0 x-linktext-2-5" lang="en-US">Chart settings (Parent Topic)</span></a></li>
+                  </div>
+               </div>
+               <div class=" x--ufe-relatedPrevious-1-0"></div>
+               <div class=" x--ufe-relatedNext-1-0"></div>
+               <div class=" x--ufe-relatedConcepts-1-0"></div>
+               <div class=" x--ufe-relatedTasks-1-0"></div>
+               <div class=" x--ufe-relatedReferences-1-0"></div>
+               <div class=" x--ufe-relatedTopics-1-0"></div>
+               <div class=" x--ufe-relatedOther-1-0"></div>
+               <div class=" x--ufe-relatedLinklists-1-0"></div>
+            </div>
+         </div>
+      </div>
+
+<!-- Auto-generated Footer NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/webChart-ChartFile.html" class="navbar">Prev</a> |  <a href="/doc/AboutAddingDataFromASupervisor-21A438D3.html" class="navbar">Next</a></p>
+<!-- Auto-generated copyright note --><p class='copyright'></p>
+   </body>
+</html>

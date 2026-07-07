@@ -1,0 +1,30 @@
+/*
+ * @copyright 2015 Tridium, Inc. All Rights Reserved.
+ * @author JJ Frankovich
+ */
+
+.ColorEditor-preview {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.ColorChooser-palette {
+  position: relative;
+  background-color: black;
+  width: 137px;
+  height: 137px;
+}
+
+.ColorChooser-swatch {
+  width: 48px;
+  height: 48px;
+  border: 1px solid black;
+}
+
+.ColorChooser-palette-entry {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}        

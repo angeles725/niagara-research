@@ -1,0 +1,237 @@
+/*
+ * @copyright 2015 Tridium, Inc. All Rights Reserved.
+ * @author JJ Frankovich
+ */
+
+.titleEdit.titleEdit {
+  z-index: 9001; /*must be higher than js-dialog*/
+  text-shadow: none;
+}
+
+.webChart-menu-content,
+.ChartWidgetOuter {
+  text-shadow: none;
+}
+
+.webChart-menu-content div.CommandButton {
+  padding: 2px 6px;
+}
+
+.webChart-grid div.CommandButton {
+  padding: 4px 6px;
+}
+
+.webChart-grid div.CommandButton .displayName {
+  display: none;
+}
+
+.webChart-grid div.ux-toggled {
+  background-color: #D0D0D0;
+}
+
+.webchart-seriesEditor span.CommandButton {
+  padding: 2px 8px;
+}
+
+
+.webchart-seriesEditor span.ux-toggled {
+  background-color: #D0D0D0;
+}
+
+.webChart-grid .CommandButton:active {
+  background-color: /* @neutral-4 */ #a9a9a9;
+  color: /* @secondary-1 */ #3d3d3d;
+}
+
+.webChart-grid div.ux-toggled:active {
+  background-color: /*blue;*/ /* @neutral-5: */ #808080;
+  color: white;
+}
+
+.webChart-grid .CommandButton:hover {
+  background-color: /* @neutral-2: */ #ebebeb;
+}
+
+.webChart-grid div.ux-toggled:hover {
+  background-color: #D0D0D0;
+}
+
+.webchart-seriesEditor .CommandButton:active {
+  background-color: /* @neutral-4 */ #a9a9a9;
+  color: /* @secondary-1 */ #3d3d3d;
+}
+
+.webchart-seriesEditor span.ux-toggled:active {
+  background-color: /*blue;*/ /* @neutral-5: */ #808080;
+  color: white;
+}
+
+.webchart-seriesEditor .CommandButton:hover {
+  background-color: /* @neutral-2: */ #ebebeb;
+}
+
+.webchart-seriesEditor span.ux-toggled:hover {
+  background-color: #D0D0D0;
+}
+
+.webchart-attention {
+  border: 2px solid red !important;
+  padding: 2px 4px !important;
+}
+
+.save-modified > span.display > span.icon {
+  -moz-box-shadow: 0 0 6px #105ccd;
+  -webkit-box-shadow: 0 0 6px #105ccd;
+  box-shadow: 0 0 6px #105ccd;
+}
+
+.webChart-grid div.input-group,
+.webChart-grid span.input-group-addon,
+.webChart-grid div {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.webChart-grid .input-group .form-control,
+.webChart-grid .editor.type-baja-AbsTimeRange .editor.type-baja-AbsTime,
+.webChart-grid span.input-group-btn,
+.webChart-grid span.input-group-addon {
+  width: auto;
+}
+
+div.ChartWidgetOuter {
+  background-color: white;
+}
+
+.webChart-add-series-content {
+  overflow: auto;
+  width: 400px;
+  height: 400px;
+}
+
+table.SimplePropertySheet {
+  width: 100%;
+}
+
+.SimplePropertySheet {
+  font-size: 16px;
+}
+
+.webChart-contextMenuTitle {
+  background-color: white;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.webChart-selectable {
+  cursor: pointer;
+}
+
+svg.ChartWidget {
+  height: 100% !important;
+  width: 100% !important;
+  display: block;
+  overflow: hidden;
+}
+
+.SettingsCommand-Container .editor.PropertySheet .col-value {
+  min-width: 5em;
+}
+
+.DialogWizardCommand-Container .editor.PropertySheetRow > .col-spacer > .wrapper,
+.SettingsCommand-Container .editor.PropertySheetRow > .col-spacer > .wrapper {
+  padding: 0;
+}
+
+.SettingsCommand-Container.SettingsCommand-Container .expand,
+.DialogWizardCommand-Container .expand {
+  display: none;
+}
+
+.SettingsCommand-Container .key-desiredSamplingPeriod .editor.type-baja-RelTime > .editor.minutes input,
+.SettingsCommand-Container .editor.type-baja-RelTime > .editor.seconds input {
+  width: 4em;
+}
+
+.SettingsCommand-Container .key-sampleSize input,
+.SettingsCommand-Container .key-availableDataPoints input,
+.SettingsCommand-Container .PropertySheet .key-samplingPeriod .editor.type-baja-String > input {
+  width: 7em;
+}
+
+/*non-dialog related items use css class*/
+.ux-webchart-thin .webChart-grid div.CommandButton.js-tab-exportCommand,
+.ux-webchart-thin .webChart-grid div.CommandButton.js-tab-deltaCommand,
+.ux-webchart-thin .webChart-grid div.CommandButton.js-tab-samplingCommand,
+.ux-webchart-thin .webChart-grid div.CommandButton.js-tab-statusColoringCommand,
+.ux-webchart-thin .webChart-grid div.CommandButton.js-tab-liveCommand,
+.ux-webchart-thin .webChart-grid div.CommandButton.js-tab-interpolateTailCommand {
+  display: none;
+}
+
+.ux-webchart-hide-title .titleGroup,
+.ux-webchart-hide-legend .legendGroup {
+  display: none;
+}
+
+/*dialog related items use media queries*/
+@media only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px) {
+  .webchart-startEndTimeRangeEditor .ux-table-row > td {
+    display: block;
+  }
+
+  .SettingsCommand-Container .key-desiredSamplingPeriod .editor.type-baja-RelTime > .editor.type-baja-Number,
+  .SettingsCommand-Container .key-desiredSamplingPeriod .editor.type-baja-Time > .editor.type-baja-Number,
+  .SettingsCommand-Container .key-desiredSamplingPeriod .editor.type-baja-Time > .editor.ampm {
+    display: block;
+    padding: 5px 0 5px 0;
+  }
+
+  .DialogWizardCommand-Container .PropertySheet .editor.type-baja-String > input,
+  .DialogWizardCommand-Container .PropertySheet .editor.type-baja-Double > input {
+    width: 11em;
+  }
+}
+
+.line.interpolated {
+  stroke-dasharray: 2, 2;
+}
+
+.chartWidget-exportAsPdf-hidePopup .data-popup-line-fixed,
+.chartWidget-exportAsPdf-hidePopup .data-popup-line,
+.chartWidget-exportAsPdf-hidePopup .data-popup-fixed,
+.chartWidget-exportAsPdf-hidePopup .data-popup,
+.chartWidget-exportAsPdf-hidePopup .data-popup-circle,
+.chartWidget-exportAsPdf-hidePopup .webChart-tip,
+.chartWidget-exportAsPdf-hidePopup .titleEdit {
+  display: none;
+}
+
+@media print {
+  .data-popup-line-fixed,
+  .data-popup-line,
+  .data-popup-fixed,
+  .data-popup,
+  .data-popup-circle,
+  .webChart-tip,
+  .titleEdit {
+    display: none;
+  }
+
+  /*Chrome print bug requires this as a workaround*/
+  .Line .x-axis-minor,
+  .Line .y-axis-minor,
+  .Line .y-axis-major,
+  .Line .x-axis-major,
+  line.bar,
+  line.status {
+    fill-opacity: 0;
+  }
+}
+
+.webChart-grid div.js-tab-showWarningCommand {
+  display: none;
+}

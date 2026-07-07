@@ -14,13 +14,14 @@ Prioridad del usuario: **D1 (`sidebars/`, el property/cell-sheet — corazón op
 
 ## Cobertura
 
-**1 / 10 gaps** (ratio 0.10). Read-only-investigable: 9 restantes · requires-execution: 0 · blocked: 0.
+**2 / 10 gaps** (ratio 0.20). Read-only-investigable: 8 restantes · requires-execution: 0 · blocked: 0.
 
 ## Historial de iteraciones
 
 | # | Gap | Bloque | Hallazgo | Delegado? · tier |
 |---|---|---|---|---|
 | 1 | D1 | B198 | `sidebars/`: `BPxCellSheet` (property/binding editor) + 3-way `newCellEditor` + los CE del Workbench + commands→`javax.baja.ui.Command` (undo/redo) + árbol `PxTreeModel`/`PxTreeSelection` sync + propsheet/layersheet + binding/ ORD-rewriting. 36 CERT/3 INFER. | sí · sonnet |
+| 2 | X1 | B199 | `webChart`: charting = **bajaux puro** (D3/JS), Java `ux` solo bridge `JsInfo` (confirma B194). Capa `rt` = servlets query(data/schedule)/file + `.chart` JSON + RPC. Motor JS: `seriesFactory` (4 series: Servlet/Schedule/Point/External), scales Time/Value D3, sampling auto 2500. Settings sobre `webEditors`. 27 CERT/9 CERT-doc/2 INFER. | sí · sonnet |
 
 ## Grupo D — Subsistemas internos de `pxEditor-wb` (nombrados en B191, no deep-dived)
 
@@ -36,7 +37,7 @@ Prioridad del usuario: **D1 (`sidebars/`, el property/cell-sheet — corazón op
 
 | Gap | Descripción | Fuente (confirmada 2026-07-06) | Prioridad |
 |---|---|---|---|
-| X1 | **`webChart`**: gráficos/charts (marcado como boundary en B192/B194, no abierto). | `organized/webChart*` | **ALTA** |
+| ~~X1~~ | ✅ **CUBIERTO (B199)** — `webChart`: charting bajaux/D3, servlets rt + motor JS + docs oficiales. Fuentes en `sources/decompiled/webChart-{rt,ux}/` + `sources/manuals/webChart-docs/`. | ~~`organized/webChart*`~~ | — |
 | X2 | **`template`/`templateBulk`/`easyBinding`**: el sistema de templates PX (bloque36 lo rozó). | `organized/{template,templateBulk,easyBinding}*` | **ALTA** |
 | X3 | **`kitPxGraphics`/`kitPxHvac`/`kitPxN4svg`**: packs de widgets gráficos (HVAC, SVG). | `organized/kitPx{Graphics,Hvac,N4svg}*` | media |
 | X4 | **`svgBatik`**: el motor SVG (B196 lo mencionó sin abrir) — cómo se renderiza un SVG animado en PX. | `organized/svgBatik*` | baja |
@@ -44,9 +45,9 @@ Prioridad del usuario: **D1 (`sidebars/`, el property/cell-sheet — corazón op
 
 ## Clasificación (§8)
 
-- **read-only-investigable**: 9 (D2, D3, D4, D5, X1-X5 — fuentes confirmadas 2026-07-06). **requires-execution**: 0. **blocked**: 0.
-- **Orden sugerido restante**: **X1 (`webChart`)** → X2 (templates) → D3/D5 → X3/X5 → D2/D4 → X4.
-- **PRÓXIMO gap**: **X1 — `webChart`** (charts/gráficos, prioridad ALTA; boundary marcado en B192/B194, no abierto).
+- **read-only-investigable**: 8 (D2, D3, D4, D5, X2-X5 — fuentes confirmadas 2026-07-06). **requires-execution**: 0. **blocked**: 0.
+- **Orden sugerido restante**: **X2 (templates)** → D3/D5 → X3/X5 → D2/D4 → X4.
+- **PRÓXIMO gap**: **X2 — `template`/`templateBulk`/`easyBinding`** (el sistema de templates PX, prioridad ALTA; B36 lo rozó).
 
 ## Notas
 

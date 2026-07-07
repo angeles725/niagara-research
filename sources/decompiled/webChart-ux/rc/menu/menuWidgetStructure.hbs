@@ -1,0 +1,14 @@
+{{!this is the template for MenuWidget.}}
+
+<div class="MenuWidget-container">
+  <table class="webChart-menu">
+    {{#each tabs}}
+    <tr>
+     <td class="webChart-menu-content">
+      <div class="js-tab-{{ safeTitle }}">
+      </div>
+     </td>
+   </tr>
+  {{/each}}
+  </table>
+</div>

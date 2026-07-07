@@ -1,0 +1,41 @@
+/*
+ * @copyright 2015 Tridium, Inc. All Rights Reserved.
+ * @author JJ Frankovich
+ */
+
+.bajaux-widget-container > div.CircularGaugeWidgetOuter.bajaux-widget {
+  background-color: white;
+  overflow: hidden;
+  height: 100%;
+}
+
+.CircularGaugeWidget {
+  background-color: white;
+}
+
+.CircularGaugeWidget.heightFix {
+  height: -webkit-fill-available;
+}
+
+.CircularGaugeWidget .title text, .CircularGaugeWidget .valueText text {
+  font-size: 16px;
+  font-weight: 100;
+  fill: #3d3d3d;
+}
+
+.CircularGaugeWidget .label text {
+  font-size: 13px;
+}
+
+.CircularGaugeWidget text {
+  fill: rgb(129, 129, 129);
+}
+
+/* Hack for showing a gauge in a dialog. */
+/* if changing, update JS as well. */
+.js-dialog-content .CircularGaugeWidgetOuter {
+  width: 300px;
+  height: 260px;
+  padding-right: 10px;
+  padding-bottom: 20px;
+}

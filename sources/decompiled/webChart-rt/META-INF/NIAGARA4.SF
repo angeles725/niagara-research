@@ -1,0 +1,39 @@
+Signature-Version: 1.0
+Created-By: 21.0.3 (Azul Systems, Inc.)
+SHA-256-Digest-Manifest: 5k0MbFrhrWypk2LhI5Ue+ldAY+2cMnMyoIa3zc5F7HA=
+SHA-256-Digest-Manifest-Main-Attributes: ar8VEqdMTyCJ9h3TAl5BTu0svU3e9mv
+ rvoBoztxHJ3E=
+
+Name: com/tridium/webChart/BChartFile.class
+SHA-256-Digest: lFUCZsa7VPY66P5Edijq1VoaAT+znShhnzwdcjsRd2A=
+
+Name: javax/baja/webChart/BIChartFactory.class
+SHA-256-Digest: VsbuWQaHY5KEmqFc850xQcBIkN72cwzvv0HDsgyI49c=
+
+Name: com/tridium/webChart/BWebChartTimeRangeType.class
+SHA-256-Digest: ml48BMQUbz/IaxqALvypaa4pycvUQAxgaZsPXPKWLK4=
+
+Name: com/tridium/webChart/WebChartQueryServlet.class
+SHA-256-Digest: 0JB/cXDhasJ88RVCC61+njLL2HUPM4tUjgDBEqoyVCE=
+
+Name: com/tridium/webChart/BWebChartQueryRpc.class
+SHA-256-Digest: Nya6toenSiT+xkt7oH54T2xqNUerw4GbULU20dPLTxU=
+
+Name: com/tridium/webChart/WebChartFileServlet.class
+SHA-256-Digest: zqKoT8pr1ak9gljmWGoPXhazwSeQr+FlZd1DviXbUXY=
+
+Name: com/tridium/webChart/BWebChartTimeRange.class
+SHA-256-Digest: X/PipZdoGS2emocHNpG70X6jxZ/zbUM5RQzKTH49vJI=
+
+Name: META-INF/module.xml
+SHA-256-Digest: Z1on9wYP3ZW9fnT2X6YrpPh/oSTg+X98QM+NxPoO/Bc=
+
+Name: com/tridium/webChart/WebChartUtil.class
+SHA-256-Digest: R4eEkvaLUikOUjRNuH4O7x+zHZiQXz+7IBr6qjK8lfQ=
+
+Name: webChart-rt.lexicon
+SHA-256-Digest: opuQPYtjps5Qj8DYYR7VQHVDyXgAtN7laqq1BU7Hl1U=
+
+Name: WEB-INF/web.xml
+SHA-256-Digest: O+pprsGGkhT7+VsHc+gVvcBhxksxgkKZfOE87XGUKUc=
+

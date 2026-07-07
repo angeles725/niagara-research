@@ -1,0 +1,23 @@
+{{!this is the template for TabbedEditor.}}
+
+<div class="ux-tab-container">
+  <table class="ux-tab">
+    <tr>      
+      {{#each tabs}}
+      <td class="ux-tab-title js-tab-title-{{ safeTitle }}" >
+        {{ title }}
+      </td>
+      {{/each}}
+      <td class="ux-tab-title-end">
+      </td>
+    </tr>
+    <tr>
+     {{#each tabs}}
+     <td class="ux-tab-content">
+      <div class="js-tab-content-{{ safeTitle }}">
+      </div>
+     </td>
+     {{/each}}
+   </tr>
+  </table>
+</div>

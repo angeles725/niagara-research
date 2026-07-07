@@ -1,0 +1,334 @@
+/*
+ * @copyright 2015 Tridium, Inc. All Rights Reserved.
+ * @author JJ Frankovich
+ */
+
+.Line .line-chart-background {
+  fill: #FFFFFF;
+}
+
+.Line .line-chart-border {
+  stroke: #ccc;
+  fill: none;
+  stroke-width: 2px;
+}
+
+.Line .axis path,
+.Line .axis line {
+  fill: none;
+  stroke: #000;
+  stroke-dasharray: 5, 5;
+  shape-rendering: crispEdges;
+}
+
+.Line .line {
+  fill: none;
+  stroke-width: 2px;
+}
+
+.Line .y-axis-major,
+.Line .x-axis-major {
+  stroke: #ccc;
+}
+
+.Line .y-axis-minor,
+.Line .x-axis-minor {
+  stroke-dasharray: 5, 5;
+  stroke: #ccc;
+}
+
+.Line .chart {
+  background-color: #FFFFFF;
+}
+
+/* These are the default theme Colors used for Lines, Bars, LegendEntry, etc. They can be overridden in your
+   theme by creating just a more specific rule in your theme.css like .ChartWidget > .theme > .themeColor:nth-child(1)
+*/
+
+.Line > .theme > .themeColor:nth-child(1) {
+  color: #00A0B0;
+}
+
+.Line > .theme > .themeColor:nth-child(2) {
+  color: #06BF00;
+}
+
+.Line > .theme > .themeColor:nth-child(3) {
+  color: #B300DB;
+}
+
+.Line > .theme > .themeColor:nth-child(4) {
+  color: #0050FF;
+}
+
+.Line > .theme > .themeColor:nth-child(5) {
+  color: #D9BB96;
+}
+
+.Line > .theme > .themeColor:nth-child(6) {
+  color: #8C0000;
+}
+
+.Line > .theme > .themeColor:nth-child(7) {
+  color: #387038;
+}
+
+.Line > .theme > .themeColor:nth-child(8) {
+  color: #703870;
+}
+
+.Line > .theme > .themeColor:nth-child(9) {
+  color: #25255A;
+}
+
+.Line > .theme > .themeColor:nth-child(10) {
+  color: #1F6F70;
+}
+
+.Line .titleGroup text {
+  font-size: 25px;
+  fill: #3d3d3d;
+  font-weight: 100;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.legendEntry text {
+  /**fill: gray;**/
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.xAxisLabel text, .x text, .y text, .yAxisLabel text {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.yAxisLabel text {
+  font-weight: bold;
+}
+
+.x text, .y text, .xAxisLabel text {
+  font-size: 14px;
+  font-weight: bold;
+  fill: gray;
+}
+
+.legendEntry text {
+  font-size: 14px;
+}
+
+.xAxisLabel text {
+  text-anchor: middle;
+  font-size: 13px;
+}
+
+.xAxisLabel text.sampling{
+  text-anchor: start;
+  cursor: pointer;
+}
+
+.Line .legendEntry-disabled {
+  /**fill: lightGray;**/
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.line-container-overlay {
+  fill: none;
+  pointer-events: visible;
+}
+
+.bajaux-disabled .line-container-overlay {
+  pointer-events: none;
+}
+
+/*Data pop up*/
+
+.data-popup-line, .data-popup-line-fixed {
+  stroke: #696f79;
+  stroke-width: 2px;
+  shape-rendering: crispEdges;
+}
+
+.data-popup, .data-popup-fixed, .titleEdit, .webChart-tip {
+  background-color: #696f79;
+  color: white;
+  position: absolute;
+  z-index: 1000;
+  padding: 0.5em;
+  -moz-box-shadow: 0 0 5px #888;
+  -webkit-box-shadow: 0 0 5px #888;
+  box-shadow: 0 0 5px #888;
+  cursor: default;
+  -moz-border-radius: 0.5em;
+  border-radius: 0.5em;
+}
+
+.data-popup.interpolated, .data-popup-fixed.interpolated {
+  color: #696f79;
+  background-color: white;
+}
+
+.data-popup-fixed-row-name {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.data-popup-fixed-row-value {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.webChart-tip {
+  text-align: center;
+}
+
+.webChart-pointer {
+  position: relative;
+  bottom: -14px;
+  left: 3px;
+  border-style: solid;
+  border-width: 10px 10px 0;
+  border-color: #696f79 transparent;
+  display: block;
+  width: 0;
+  z-index: 1;
+}
+
+.webChart-pointer-top {
+  position: relative;
+  top: -14px;
+  left: 3px;
+  border-style: solid;
+  /*border-width: 10px 10px 0;*/
+  border-width: 0 10px 10px 10px;
+  border-color: #696f79 transparent;
+  display: block;
+  width: 0;
+  z-index: 1;
+}
+
+.webChart-tip-message {
+  text-align: left;
+  padding-bottom: 6px;
+}
+
+.webChart-tip-neverAgain {
+  padding: 3px 0px 0px 0px;
+}
+
+button.webChart-tip-button {
+  color: white;
+  background-color: #696f79;
+  border: 1px solid white;
+  padding: 5px 30px;
+  border-radius: 0.5em;
+}
+
+.data-popup-fixed-title {
+  font-weight: bold;
+  padding-bottom: 5px;
+}
+
+.data-popup-fixed-row {
+  padding: 2px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+.data-popup-fixed-row-img {
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+}
+
+.data-popup-fixed-title {
+  font-size: 14px;
+  padding-right: 1.5em;
+}
+
+.data-popup-fixed-close {
+  position: absolute;
+  text-align: center;
+  vertical-align: middle;
+  top: 0px;
+  right: 0px;
+  margin: 1px;
+  font-family: Arial;
+  font-size: 13px;
+  -moz-border-radius: 0.4em;
+  border-radius: 0.4em;
+  width: 1.3em;
+  height: 1.3em;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+.data-popup-fixed-close:hover {
+  -moz-box-shadow: 0 0 5px #f9f9f9;
+  -webkit-box-shadow: 0 0 5px #f9f9f9;
+  box-shadow: 0 0 5px #f9f9f9;
+}
+
+.data-popup-fixed-close:active {
+  -moz-box-shadow: inset 0 0 5px #f9f9f9;
+  -webkit-box-shadow: inset 0 0 5px #f9f9f9;
+  box-shadow: inset 0 0 5px #f9f9f9;
+}
+
+.titleEdit input {
+  font-family: inherit;
+  font-size: 25px;
+  fill: #3d3d3d;
+  font-weight: 100;
+}
+
+.webchart-export-command-content {
+  text-align: center;
+}
+
+.webchart-export-command-content input {
+  width: 18em;
+}
+
+.tick-overlay > rect {
+  fill-opacity: 0;
+}
+
+.tick-overlay > rect.y-ticks:not(.locked) {
+  cursor: n-resize;
+}
+
+.tick-overlay > rect.x-ticks:not(.locked) {
+  cursor: e-resize;
+}
+

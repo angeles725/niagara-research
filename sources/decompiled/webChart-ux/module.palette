@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bajaObjectGraph version="1.0">
+<p h="1" m="b=baja" t="b:UnrestrictedFolder">
+ <!-- /Chart -->
+ <p n="Chart" h="2" m="wb=workbench" t="wb:WebWidget">
+  <p n="layout" m="ui=bajaui" t="ui:Layout" v="0.0,0.0,640.0,480.0"/>
+  <p n="js" t="b:Ord" v="view:webChart:ChartWidget"/>
+  <!-- /Chart/wbViewBinding -->
+  <p n="wbViewBinding" h="4" t="wb:WbViewBinding">
+  </p>
+ </p>
+ <!-- /CircularGauge -->
+ <p n="CircularGauge" h="5" t="wb:WebWidget">
+  <p n="layout" t="ui:Layout" v="0.0,0.0,300.0,260.0"/>
+  <p n="js" t="b:Ord" v="view:webChart:CircularGaugeWidget"/>
+  <!-- /CircularGauge/wbViewBinding -->
+  <p n="wbViewBinding" h="7" t="wb:WbViewBinding">
+  </p>
+  <p n="formFactor" f="rh3" m="w=web" t="w:FormFactorEnum" v="compact"/>
+ </p>
+</p>
+</bajaObjectGraph>

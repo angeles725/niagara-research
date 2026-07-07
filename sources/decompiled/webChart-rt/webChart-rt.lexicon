@@ -1,0 +1,6 @@
+help.guide.base=module://docWebCharts/doc
+
+webChart.msg.timestampRequired=AbsTime 'timestamp' Field is Required
+webChart.msg.valueRequired=Numeric or Enum 'value' Field is Required
+start=Start
+end=End

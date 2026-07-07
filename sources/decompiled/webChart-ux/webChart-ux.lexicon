@@ -1,0 +1,249 @@
+ChartWidget.displayName=Chart
+ChartWidget.icon=module://icons/x16/charts/line.png
+
+webChart.toggleLiveCmd.displayName=Pause
+webChart.toggleLiveCmd.description=Toggle Pause
+webChart.toggleLiveCmd.icon=module://icons/x16/mediaPause.png
+
+webChart.toggleAutoZoomCmd.displayName=Home Zoom
+webChart.toggleAutoZoomCmd.description=Toggle Home Zoom
+webChart.toggleAutoZoomCmd.icon=module://icons/x16/homeZoom.png
+
+webChart.toggleTimeZoomCommand.displayName=Time Zoom
+webChart.toggleTimeZoomCommand.description=Toggle Time Zoom
+webChart.toggleTimeZoomCommand.icon=module://icons/x16/timeZoom.png
+
+webChart.setTimeRangeCommand.displayName=Time Range
+webChart.setTimeRangeCommand.description=Set Time Range
+webChart.setTimeRangeCommand.icon=module://icons/x16/clock.png
+
+webChart.toggleDeltaCommand.displayName=Delta
+webChart.toggleDeltaCommand.description=Toggle Delta Command
+webChart.toggleDeltaCommand.icon=module://icons/x16/delta.png
+
+webChart.toggleInterpolateTailCommand.displayName=Interpolate Tail
+webChart.toggleInterpolateTailCommand.description=Toggle Interpolate Tail
+webChart.toggleInterpolateTailCommand.icon=module://icons/x16/ellipsis.png
+
+webChart.toggleSamplingCommand.displayName=Sampling
+webChart.toggleSamplingCommand.description=Toggle Sampling Command
+webChart.toggleSamplingCommand.icon=module://icons/x16/control/math/average.png
+
+webChart.toggleStatusColoring.displayName=Status Coloring
+webChart.toggleStatusColoring.description=Toggle Status Coloring
+webChart.toggleStatusColoring.icon=module://icons/x16/widgets/radioButton.png
+
+webChart.settingsCommand.displayName=Chart Settings
+webChart.settingsCommand.description=Change the Chart Settings
+webChart.settingsCommand.icon=module://icons/x16/gear.png
+
+webChart.stopCommand.displayName=Stop Command
+webChart.stopCommand.description=Stop the Chart from loading
+webChart.stopCommand.icon=module://icons/x16/stop.png
+
+webChart.addSeriesCommand.description=Add Series
+webChart.addSeriesCommand.icon=module://icons/x16/add.png
+webChart.addSeriesCommand.loading=Loading...
+
+webChart.showLayersCommand.displayName=Show Layers
+webChart.showLayersCommand.description=Toggle Visibility of Different Layers
+webChart.showLayersCommand.icon=module://icons/x16/layers.png
+
+webChart.settingsCommand.dialogTitle=Settings
+webChart.settingsCommand.seriesTabTitle=Series
+webChart.settingsCommand.axisTabTitle=Axis
+webChart.settingsCommand.layersTabTitle=Layers
+webChart.settingsCommand.samplingTabTitle=Sampling
+webChart.settingsCommand.axisListTabTitle=Axis List
+
+webChart.SaveCommand.displayName=Save
+webChart.SaveCommand.description=Save Chart
+webChart.SaveCommand.icon=module://icons/x16/save.png
+
+webChart.SetAxisValuesCommand.displayName=Set Axis Values
+webChart.SetAxisValuesCommand.description=Set Axis Values
+webChart.SetAxisValuesCommand.icon=module://icons/x16/widgets/scrollPane.png
+
+webChart.LockAxisCommand.displayName=Lock Axis
+webChart.LockAxisCommand.description=Lock Axis
+webChart.LockAxisCommand.icon=module://icons/x16/lock.png
+
+webChart.UnlockAxisCommand.displayName=Unlock Axis
+webChart.UnlockAxisCommand.description=Unlock Axis
+webChart.UnlockAxisCommand.icon=module://icons/x16/keys.png
+
+colorPicker.dialogTitle=Color Picker
+
+webChart.removeFromChart.displayName=Remove from Chart
+webChart.removeFromChart.description=Remove the current entry(s) from the chart
+webChart.removeFromChart.icon=module://icons/x16/close.png
+
+webChart.removeOthers.displayName=Remove Others
+webChart.removeOthers.description=Remove the other legend entries from the chart
+webChart.removeOthers.icon=module://icons/x16/fitToWindow.png
+
+webChart.setAsPrimary.displayName=Set as Primary
+webChart.setAsPrimary.description=Set as Primary Value Scale for chart.
+webChart.setAsPrimary.icon=module://icons/x16/flag.png
+
+webChart.tips.confirm=OK
+webChart.tips.neverShowAgain=Never Show Again
+
+#tips
+webChart.tips.tooManyPoints=Chart has too many points. \n\n Only the most recent {0} points will be shown.\nPlease select a smaller time range.
+webChart.tips.samplingTooHigh=Chart has too many points ({0} > {1}). \n\n Sampling cannot be turned off \nuntil the page is focused on less points.
+webChart.tips.valueScaleTip=Charted Points have different units.\n\n Click axis label to toggle units\ndisplayed on Y axis.
+
+#Option slot names
+fileName=File Name
+destination=Destination
+fileType=File Type
+locked=Locked
+viewOnExport=View on Export
+sampling=Sampling
+timeFormat=Time Format
+exportRange=Export Range
+statusColumn=Status Column
+status=Status
+timestamp=Timestamp
+ordType=Ord Type
+baseOrd=Base Ord
+absolute=Absolute
+relative=Relative
+
+converters.ChartWidgetToCsv.displayName=CSV
+converters.ChartWidgetToCsv.icon=module://icons/x16/excel.png
+
+converters.ChartWidgetToChartFile.displayName=Chart
+converters.ChartWidgetToChartFile.icon=module://icons/x16/charts/line.png
+
+converters.ChartWidgetToPrint.displayName=Print
+converters.ChartWidgetToPrint.icon=module://icons/x16/print.png
+
+yAxisOrient=Y Axis Orientation
+dataZoom=Data Zoom Scope
+showGrid=Show Grid
+chartCursor=Chart Cursor
+
+dataPopup=Data Popup
+dataMouseover=Data Mouseover
+statusColoring=Status Coloring
+
+autoSampling=Auto Sampling
+sampling=Sampling
+samplingType=Sampling Type
+sampleSize=Sample Size
+availableDataPoints=Data Points
+samplingPeriod=Sampling Period
+webChart.toggle=Toggle {0}
+
+displayName=Display Name
+displayUnit=Display Unit
+unit=Unit
+unitQuality=Unit Quality
+max=Max
+min=Min
+seriesList=Series List
+reset=Reset
+
+facetsLimitMode=Facets Limit Mode
+inclusive=Inclusive
+
+showStartTrendGaps=Show Start Trend Gaps
+showDataGaps=Show Data Gaps
+yes=Yes
+no=No
+gap=Gap
+dotted=Dotted
+solid=Solid
+showInterpolateTail=Show Interpolate Tail
+delta=Delta
+
+#chartTypes
+chartType.line.description=Line
+chartType.line.icon=/module/icons/x16/charts/line.png
+
+chartType.discreteLine.description=Discrete Line
+chartType.discreteLine.icon=/module/icons/x16/charts/discreteLine.png
+
+chartType.shade.description=Shade
+chartType.shade.icon=/module/icons/x16/distributeHorizontal.png
+
+chartType.bar.description=Bar
+chartType.bar.icon=/module/icons/x16/charts/bar.png
+
+dateTo={0} to {1}
+years=Years
+days=Days
+hours=Hours
+minutes=Minutes
+seconds=Seconds
+milliseconds=Milliseconds
+on=On
+off=Off
+right=Right
+left=Left
+primary=Primary
+all=All
+crosshair=Crosshair
+none=None
+average=Average
+sum=Sum
+download=Download
+station=Station
+print=Print
+chart=chart
+csv=csv
+absolute=Absolute
+relative=Relative
+
+#error handling
+webChart.errorTitle=Error
+webChart.cannotLoadSeries=Cannot load Series:\n {0} \n\n {1}
+webChart.exportFailure=Cannot export chart to {0}: \n\n {1}
+webChart.PermissionsException=Permissions Exception: {0} < {1}
+webChart.AlreadyPresentError=The following ords are already added to this chart: \n\n {0}
+webChart.TooManyChartsError=There are only {0} charts supported at a time. The following ords cannot be added: \n\n {1}
+webChart.minMaxFailure=Min must be less than Max: {0} >= {1}
+webChart.minMaxFailure.tooClose=Min and and max are too close.
+webChart.sameDisplayName=Cannot use same Display Name: {0} == {1}
+webChart.blankDisplayName=Cannot use blank display Name
+webChart.ChartAlreadyFullError=There are only {0} charts supported at a time.
+
+#BWebChartTimeRangeType
+auto=Auto
+timeRange=Time Range
+today=Today
+yesterday=Yesterday
+lastWeek=Last Week
+lastMonth=Last Month
+lastYear=Last Year
+last24Hours=Last 24 Hours
+last7Days=Last 7 Days
+weekToDate=Week-To-Date
+monthToDate=Month-To-Date
+yearToDate=Year-To-Date
+
+desiredSamplingPeriod=Desired Period
+day=Day
+week=Week
+month=Month
+year=Year
+
+milliseconds=Milliseconds
+millisecond=Millisecond
+minute=Minute
+minutes=Minutes
+second=Second
+seconds=Seconds
+
+sampling.bestFit=Best Fit
+sampling.min1=1 Minute
+sampling.min15=15 Minutes
+sampling.min30=30 Minutes
+sampling.hour=Hour
+sampling.day=Day
+sampling.week=Week
+sampling.month=Month
+sampling.year=Year
+sampling.custom=Custom

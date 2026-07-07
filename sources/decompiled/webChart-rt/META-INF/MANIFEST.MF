@@ -1,0 +1,38 @@
+Manifest-Version: 1.0
+Implementation-Vendor: Tridium
+Implementation-Version: 4.14.0.162
+Sealed: true
+
+Name: com/tridium/webChart/BChartFile.class
+SHA-256-Digest: TVYex7hoA5QnyfbAADNVYec4oQPEfLstOAb0dv/S3JI=
+
+Name: javax/baja/webChart/BIChartFactory.class
+SHA-256-Digest: 58ZLw4lJQPMGnKyr0otzM9U4TvM49E6G5uyTvq3Ax0w=
+
+Name: com/tridium/webChart/BWebChartTimeRangeType.class
+SHA-256-Digest: w3iCTk7/F8faYd3pbFSLdk5rWmfBlPi9U3BiBHIwFQ4=
+
+Name: com/tridium/webChart/WebChartQueryServlet.class
+SHA-256-Digest: HVZJWe6HpHBHyqTnNLNL4Gzci/7U+/wz4O+APt/2b5M=
+
+Name: com/tridium/webChart/BWebChartQueryRpc.class
+SHA-256-Digest: 4Tz4kegBdWAE7NaEdkiJlXLINhi2VmjeLFQHML0AmSc=
+
+Name: com/tridium/webChart/WebChartFileServlet.class
+SHA-256-Digest: 5B4nR7p2v1RwyeyMqbHN4Kjgu2kxdfZ7pOo8Ts+FBcc=
+
+Name: com/tridium/webChart/BWebChartTimeRange.class
+SHA-256-Digest: jdJsRAUTwmKxY63ziiHvZ45TCIPo/r7uyQWoS+UUJKc=
+
+Name: META-INF/module.xml
+SHA-256-Digest: geMf5HsC0qkmAwPCm3+dd89nBBAtO+cn/Rd/bR/KbQo=
+
+Name: com/tridium/webChart/WebChartUtil.class
+SHA-256-Digest: JsL05kuB2ne3HuWDSFhW3QKdw9LIyx291uXWIuDWhXg=
+
+Name: webChart-rt.lexicon
+SHA-256-Digest: qbBTLe+5hINTqAlVgyH6Kgc8GPZs6lZZAKBinrqHazI=
+
+Name: WEB-INF/web.xml
+SHA-256-Digest: I9+Agl/5OzX0qqf4jE9/fd+PsJ/tnvXJDdCu6rl1TCs=
+

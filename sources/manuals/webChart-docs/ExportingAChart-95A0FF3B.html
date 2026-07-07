@@ -1,0 +1,152 @@
+<!-- Htmldoc has been run -->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="keywords" content="Niagara 4.6" scheme="atiChunkerMeta">
+      <meta name="keywords" content="Workbench" scheme="atiChunkerMeta">
+      <meta name="keywords" content="Niagara 4" scheme="atiChunkerMeta">
+
+      <title>Exporting a chart (Workbench or browser)</title>
+<!-- Auto-generated style sheet link --><link rel='StyleSheet' href='module://bajaui/doc/style.css' type='text/css' />
+<!-- Auto-generated js link for Activity Monitoring --><script type='text/javascript' src='module://web/rc/util/activityMonitor.js'></script>
+<script type='text/javascript'>window.addEventListener('load', activityMonitor.start);</script>
+   </head>
+   <body class=" x-bookmap-1-0" lang="en-US" id="mapelement_bookmap1">
+<!-- Auto-generated Header NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/ZoomingOnAChart-95A25314.html" class="navbar">Prev</a> |  <a href="/doc/SavingAChartFile-7EFB464D.html" class="navbar">Next</a></p>
+
+      <div xmlns:ch="http://www.arbortext.com/namespace/chunker" class=" x-topic-19-0" id="ExportingAChart-95A0FF3B" lang="en-US">
+         <h2 class=" x-title-27-0 x-title-27-1 x-title-27-2" id="styler-id1.1.1.4.23.1" lang="en-US">Exporting a chart (<span class=" x-keyword-2-0" lang="en-US">
+               <ch:meta content="Workbench" name="keywords"></ch:meta>Workbench</span> or browser)
+         </h2><span class=" x-titlealts-2-0"></span><div class=" x-shortdesc-2-0" lang="en-US">You can export a <span class=" x-wintitle-2-0" lang="en-US">Chart</span> view to either chart file (<code class=" x-filepath-1-0" lang="en-US">chartName.chart</code>), a csv file (<code class=" x-filepath-1-0" lang="en-US">chartName.csv</code>), or an Object to oBIX file. 
+         </div>
+         <div class=" x-prolog-1-0" lang="en-US">
+            <div class=" x-metadata-1-0" lang="en-US"><span class=" x-keywords-2-0" lang="en-US"><span class=" x-keyword-1-0" lang="en-US">
+                     <ch:meta content="Niagara 4" name="keywords"></ch:meta></span><a class="indexterm" name="d8067e3984"></a></span></div>
+         </div>
+         <div class=" x-body-1-0" lang="en-US">
+            <div class=" x-prereq-1-0" lang="en-US">Prerequisites: Chart view open in <span class=" x-keyword-2-0" lang="en-US">
+                  <ch:meta content="Workbench" name="keywords"></ch:meta>Workbench</span>.
+            </div>
+            <div class=" x-context-1-0" lang="en-US">
+               <div class=" x-note-1-0 x-note-1-7" lang="en-US">&nbsp;<b><span style="font-weight: bold; ">NOTE: </span></b>In <span class=" x-keyword-2-0" lang="en-US">
+                     <ch:meta content="Niagara 4.6" name="keywords"></ch:meta><span style="white-space: nowrap;">Niagara 4.6</span></span> and later, there is added support in web charts for resolving relative ords. When exporting a web chart there is now an option
+                  to specify <code class=" x-option-2-0" lang="en-US">Absolute</code> or <code class=" x-option-2-0" lang="en-US">Relative</code> ord types. Once you finish configuring a web chart (e.g. setting time range, colors, chart types, etc.) and export the chart
+                  to a file using the Relative ord option, the chart file can be embedded in a relative Px page assigned to components in the
+                  station which match the same base ord structure.&nbsp;
+               </div>
+               <div class=" x--ufe-ContextGentextKeeps-1-0"><span style="font-weight: bold; ">Perform the following steps:</span></div>
+            </div>
+            <div lang="en-US">
+               <ol class=" x-ol-1-0">
+                  <li class=" x--inherit-background-color x-step-7-0 x--zero-text-indent" lang="en-US"><span class=" x-cmd-1-0" lang="en-US">In the <span class=" x-wintitle-2-0" lang="en-US">Command Bar</span>, click <span class=" x-image-2-0 x-image-2-7" lang="en-US"><img alt="Image" src="graphics/export_0000009768.png" ></span>(<b class=" x-uicontrol-3-0" lang="en-US">Export</b>).</span><div class=" x-itemgroup-1-0" lang="en-US">The <span class=" x-wintitle-2-0" lang="en-US">Exporting</span> window opens. <div class=" x-image-2-0 x-image-2-9" lang="en-US"><img alt="Image" height="180" src="graphics/ExportWizard3_0000057050.png"  width="360"></div></div>
+                  </li>
+                  <li class=" x--inherit-background-color x-step-7-0 x--zero-text-indent" lang="en-US"><span class=" x-cmd-1-0" lang="en-US">In the <span class=" x-wintitle-2-0" lang="en-US">Exporting</span> window, select from the following options:</span><div class=" x-choicetable-1-0 x-choicetable-1-6" id="styler-id1.1.1.4.23.5.3.2.2" lang="en-US">
+                        <table border="1" cellpadding="7" frame="box" rules="all" style="border-width: 1.0pt; " width="100%">
+                           <col width="180">
+                           <col width="300">
+                           <thead style="text-align: left; ">
+                              <tr class=" x-chhead-1-0" lang="en-US" style="vertical-align: top; ">
+                                 <th class=" x-choptionhd-1-0" lang="en-US" style="text-align: left; ">Action</th>
+                                 <th class=" x-chdeschd-1-0" lang="en-US" style="text-align: left; ">Description</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr class=" x-chrow-1-0" lang="en-US" style="vertical-align: top; ">
+                                 <td class=" x-choption-1-0" lang="en-US">Select the Chart Exporter (File Type) </td>
+                                 <td class=" x-chdesc-1-0" lang="en-US"><code class=" x-option-2-0" lang="en-US">chart</code>  (default), <code class=" x-option-2-0" lang="en-US">csv</code>, or <code class=" x-option-2-0" lang="en-US">Object to oBIX</code></td>
+                              </tr>
+                              <tr class=" x-chrow-1-0" lang="en-US" style="vertical-align: top; ">
+                                 <td class=" x-choption-1-0" lang="en-US">Select Ord Type</td>
+                                 <td class=" x-chdesc-1-0" lang="en-US"><code class=" x-option-2-0" lang="en-US">Absolute</code>  (default) or <code class=" x-option-2-0" lang="en-US">Relative</code>. 
+                                    <div class=" x-note-1-0 x-note-1-7" lang="en-US">&nbsp;<b><span style="font-weight: bold; ">NOTE: </span></b>For the Relative and Absolute ord type, the additional <code class=" x-parmname-2-0" lang="en-US">Base Ord</code> property displays in an editable field. &nbsp;
+                                    </div>
+                                 </td>
+                              </tr>
+                              <tr class=" x-chrow-1-0" lang="en-US" style="vertical-align: top; ">
+                                 <td class=" x-choption-1-0" lang="en-US">Select Destination</td>
+                                 <td class=" x-chdesc-1-0" lang="en-US"><code class=" x-option-2-0" lang="en-US">Station</code> file space (default), or <code class=" x-option-2-0" lang="en-US">Download</code> to your operating system user space.
+                                 </td>
+                              </tr>
+                              <tr class=" x-chrow-1-0" lang="en-US" style="vertical-align: top; ">
+                                 <td class=" x-choption-1-0" lang="en-US">Select View on Export</td>
+                                 <td class=" x-chdesc-1-0" lang="en-US"><code class=" x-option-2-0" lang="en-US">true</code> or <code class=" x-option-2-0" lang="en-US">false</code> (default)
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                  </li>
+                  <li class=" x--inherit-background-color x-step-7-0 x--zero-text-indent" lang="en-US"><span class=" x-cmd-1-0" lang="en-US">If <code class=" x-option-2-0" lang="en-US">csv</code> file format is chosen, following additional options are displayed:</span><div class=" x-choicetable-1-0 x-choicetable-1-6" id="styler-id1.1.1.4.23.5.3.3.2" lang="en-US">
+                        <table border="1" cellpadding="7" frame="box" rules="all" style="border-width: 1.0pt; " width="100%">
+                           <col width="180">
+                           <col width="300">
+                           <thead style="text-align: left; ">
+                              <tr class=" x-chhead-1-0" lang="en-US" style="vertical-align: top; ">
+                                 <th class=" x-choptionhd-1-0" lang="en-US" style="text-align: left; ">Action</th>
+                                 <th class=" x-chdeschd-1-0" lang="en-US" style="text-align: left; ">Description</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr class=" x-chrow-1-0" lang="en-US" style="vertical-align: top; ">
+                                 <td class=" x-choption-1-0" lang="en-US">Include Headers</td>
+                                 <td class=" x-chdesc-1-0" lang="en-US"><code class=" x-option-2-0" lang="en-US">true</code> or <code class=" x-option-2-0" lang="en-US">false</code> (default)
+                                 </td>
+                              </tr>
+                              <tr class=" x-chrow-1-0" lang="en-US" style="vertical-align: top; ">
+                                 <td class=" x-choption-1-0" lang="en-US">Include BOM</td>
+                                 <td class=" x-chdesc-1-0" lang="en-US"><code class=" x-option-2-0" lang="en-US">true</code> or <code class=" x-option-2-0" lang="en-US">false</code> (default)
+                                 </td>
+                              </tr>
+                              <tr class=" x-chrow-1-0" lang="en-US" style="vertical-align: top; ">
+                                 <td class=" x-choption-1-0" lang="en-US">Encode To String</td>
+                                 <td class=" x-chdesc-1-0" lang="en-US"><code class=" x-option-2-0" lang="en-US">true</code> or <code class=" x-option-2-0" lang="en-US">false</code> (default)
+                                 </td>
+                              </tr>
+                              <tr class=" x-chrow-1-0" lang="en-US" style="vertical-align: top; ">
+                                 <td class=" x-choption-1-0" lang="en-US">Use CRLF Line Endings</td>
+                                 <td class=" x-chdesc-1-0" lang="en-US"><code class=" x-option-2-0" lang="en-US">CRLF (\r\n)</code> or <code class=" x-option-2-0" lang="en-US">LF (\n)</code> (default)
+                                 </td>
+                              </tr>
+                              <tr class=" x-chrow-1-0" lang="en-US" style="vertical-align: top; ">
+                                 <td class=" x-choption-1-0" lang="en-US">Delimiter</td>
+                                 <td class=" x-chdesc-1-0" lang="en-US">Enter the delimiter for the file.</td>
+                              </tr>
+                              <tr class=" x-chrow-1-0" lang="en-US" style="vertical-align: top; ">
+                                 <td class=" x-choption-1-0" lang="en-US">Status Column</td>
+                                 <td class=" x-chdesc-1-0" lang="en-US"><code class=" x-option-2-0" lang="en-US">true</code> or <code class=" x-option-2-0" lang="en-US">false</code> (default)
+                                 </td>
+                              </tr>
+                              <tr class=" x-chrow-1-0" lang="en-US" style="vertical-align: top; ">
+                                 <td class=" x-choption-1-0" lang="en-US">Max Records</td>
+                                 <td class=" x-chdesc-1-0" lang="en-US">text </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                  </li>
+                  <li class=" x--inherit-background-color x-step-7-0 x--zero-text-indent" lang="en-US"><span class=" x-cmd-1-0" lang="en-US">Click <b class=" x-uicontrol-3-0" lang="en-US">OK</b>.</span></li>
+               </ol>
+            </div>
+            <div class=" x-section-1-0" id="styler-id1.1.1.4.23.5.4" lang="en-US">
+               <p class=" x-p-13-0" lang="en-US">The file is exported to the selected destination.<div class=" x-image-2-0 x-image-2-9" lang="en-US"><img alt="Image" height="146" src="graphics/chart_filespace-chart-csv_0000015277_0000000601.png"  width="116"></div></p>
+               <div class=" x-note-1-0 x-note-1-7" lang="en-US">&nbsp;<b><span style="font-weight: bold; ">NOTE: </span></b>Most options in the <b class=" x-uicontrol-3-0" lang="en-US">Command Bar</b> provide fine tuning for viewing purposes only. Changes made with those options are of a temporary nature and are not included
+                  when the chart is saved or exported. For example, if you turn on time zoom and Delta using buttons in the command bar and
+                  then export the chart, the chart file displays with the original default settings for those options. Exceptions to this are
+                  changes made with the <code class=" x-option-2-0" lang="en-US">Time Range</code>, <code class=" x-option-2-0" lang="en-US">Sampling</code>, and <code class=" x-option-2-0" lang="en-US">Status Coloring</code> options, which are included on export or save. <span class=" x-p-9-0" lang="en-US">If you want to export the chart and retain all of the changes that you have made, you need to do the following: 
+                     <div lang="en-US">
+                        <ol class=" x-ol-1-0">
+                           <li class=" x--inherit-background-color x-li-9-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Export the modified chart to a Station File.</span></li>
+                           <li class=" x--inherit-background-color x-li-9-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Create a <span class=" x-wintitle-2-0" lang="en-US">Px</span> view for this chart and load the exported Station File to this <span class=" x-wintitle-2-0" lang="en-US">Px</span> view. The chart will display with the modifications included.</span></li>
+                        </ol>
+                     </div></span>&nbsp;
+               </div>
+            </div>
+         </div>
+      </div>
+
+<!-- Auto-generated Footer NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/ZoomingOnAChart-95A25314.html" class="navbar">Prev</a> |  <a href="/doc/SavingAChartFile-7EFB464D.html" class="navbar">Next</a></p>
+<!-- Auto-generated copyright note --><p class='copyright'></p>
+   </body>
+</html>

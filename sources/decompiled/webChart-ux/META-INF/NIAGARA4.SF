@@ -1,0 +1,237 @@
+Signature-Version: 1.0
+Created-By: 21.0.3 (Azul Systems, Inc.)
+SHA-256-Digest-Manifest: CoP6N554RLrzokvKT++55TXFxdsZT9VKurYNo6to22E=
+SHA-256-Digest-Manifest-Main-Attributes: ar8VEqdMTyCJ9h3TAl5BTu0svU3e9mv
+ rvoBoztxHJ3E=
+
+Name: rc/fe/series/ChartTypeEditor.js
+SHA-256-Digest: Oi/Qpal7owjCiRFbgTzgbt6WYD+sZHnuPlEXm295d/k=
+
+Name: rc/command/SettingsCommand.js
+SHA-256-Digest: fclFnpxPJ9D4JCym+sAhE7tp45BrOo+y17BSLuT8uI4=
+
+Name: module.palette
+SHA-256-Digest: CMO0vPnbFeggsPLGQNoErPMFIYgxbwIbzKbkVwB1tt4=
+
+Name: rc/fe/color/ColorEditor.js
+SHA-256-Digest: CaUQ3l3+vdR4nonkhxiECjk4FuJHiW6kwUoUQUSMuaQ=
+
+Name: rc/line/ZoomLayer.js
+SHA-256-Digest: NxiNVwY5DBsYTXlp1/r1RXwNNBpCS9k0Au+4NwuttNQ=
+
+Name: rc/fe/color/colorChooser.js
+SHA-256-Digest: xJ4GXyaMENospus8YT3YWvf+EBX9PIOpAFjH/p3nnx4=
+
+Name: rc/model/BaseChartFactory.js
+SHA-256-Digest: 0mehBXH5OsNmDDJ4a5Hb4rLDI0H2QJwbHyj4KRCcXoM=
+
+Name: rc/transform/ChartWidgetToChartFile.js
+SHA-256-Digest: bhXdDEU5wmIRgnSLuDrulSpdemnoG1NXBiGAJgIAzOk=
+
+Name: rc/export/exportUtil.js
+SHA-256-Digest: RPFKLWid1VJp0OySj6MECml1u+e5eZnG+txIntuxIHc=
+
+Name: rc/optionsManager.js
+SHA-256-Digest: akhQAynO42evj/xYmIhi4F5csKbAovxgX9gSJBJyZIg=
+
+Name: rc/line/Line.js
+SHA-256-Digest: cEGFAd+kF9t360V6n+ba7eTQBBQiXrtr++JjB2nEVRI=
+
+Name: rc/command/addSeriesCommand.js
+SHA-256-Digest: EPZdxgZEwg0nUQlHcx371k20ygjpeHoQqN+/YHgsu8w=
+
+Name: rc/fe/series/SeriesEditor.js
+SHA-256-Digest: wy4SJBZVCHdhlhUdNY5TQk6Xi2FYWPadIP/0nP5rnu8=
+
+Name: com/tridium/webChart/ux/gauge/BCircularGaugeWidget.class
+SHA-256-Digest: qva4nh9b7REOry9VbYG/TX2GjDemaiGsDVtYv/3GLJY=
+
+Name: rc/fe/startEndTimeRangeEditorStructure.hbs
+SHA-256-Digest: n2mPGT49nh7/RE/AJ0YhSbkx6HRBmpGP8oVOdBkP7Ao=
+
+Name: rc/gauge/CircularGaugeWidget.js
+SHA-256-Digest: zt49VUu0iLtUq9XD38pAr+HbtCLWxpR5vi7bDR9uYus=
+
+Name: webChart-ux.lexicon
+SHA-256-Digest: qocQpTpapezDkjYvNFOG3aew4T87u/U5zT5zrkOvd7o=
+
+Name: rc/model/ServletSeries.js
+SHA-256-Digest: VUNgkOAsGW9NcRy1Hvg1jaNL5NJC7x/CSu8+OTjwIEM=
+
+Name: rc/grid/GridEditor.js
+SHA-256-Digest: OMOnQG/zYJTLkfcpdeZwrYh6oRAKASoaxl7EeKSkH5k=
+
+Name: rc/choiceUtil.js
+SHA-256-Digest: N85mI0k3/wUMlua/rNnBvhpQ08/YAIBG+itxCgud7Eo=
+
+Name: rc/line/TipLayer.js
+SHA-256-Digest: 4F81YlfKrOWw4y5FkynWUp0Qnmtvfhq6W0AHjQHkiLk=
+
+Name: rc/tab/Tab.js
+SHA-256-Digest: kk2m99ZT1YVkkBNsIac/q4Pnjwpc0SpLDKn0lhtIDaU=
+
+Name: rc/model/seriesFactory.js
+SHA-256-Digest: 36tBfY8KTkqgE0kPsUyEHmnow8L1OtEgM3AR/HepROQ=
+
+Name: rc/tab/tabbedEditorStructure.hbs
+SHA-256-Digest: CMLjd+OPbQKDRVKVw70XVA3I2lxwULh5MHewkwlsAuQ=
+
+Name: rc/command/DialogWizardCommand.js
+SHA-256-Digest: sliDE42OXwDh15BuLV2W9Zd8QomJb3wBAODS+35L7xI=
+
+Name: rc/ChartWidget.js
+SHA-256-Digest: +Dy6/LusvGQgFKBksVEIFohonOP+rrMmu1Ssz/U9nqk=
+
+Name: rc/ChartSettings.js
+SHA-256-Digest: NOd7eIPbvY381paNtWx9GlAku14sO+eQU3Aemp1ys9g=
+
+Name: rc/gauge/model.js
+SHA-256-Digest: iX84qXPDW+brr0vf+sG5Hos0AXLHlS84M4VAE8kq8PY=
+
+Name: rc/chunkUtil.js
+SHA-256-Digest: 3S4roWmcUMcvEsVHVv7Kq1HHA8j8tC0ZkAlNv3Qz9sY=
+
+Name: rc/line/XAxisLayer.js
+SHA-256-Digest: 1B2xl6OmN4sU3Vs4GqirG/QiRflpFydmVjvvA+LwsZQ=
+
+Name: rc/model/ExternalSeries.js
+SHA-256-Digest: Ps9ERleig6aaTxFKoVrxyVQzWXGMH0N/hJLUsWJyTCI=
+
+Name: rc/localeUtil.js
+SHA-256-Digest: 28Nc8VKCKLlx2GMYboJa+vJ95vh8KxsQffei5YWfHtM=
+
+Name: javax/baja/webchart/ux/BWebChartJsBuild.class
+SHA-256-Digest: 7Rzd2hRj1DP5mK+WtsJ4I65QvJubOJ5Kq8IAGbVEVyI=
+
+Name: rc/transform/ChartWidgetToCsv.js
+SHA-256-Digest: MW22pAjasZiFchT5XVr0wDJCbXNPSXn5WlKd0ZowWmo=
+
+Name: javax/baja/webchart/ux/BWebChartCssResource.class
+SHA-256-Digest: wMMKFyYolGRXK8cbpAHp8sPpaenO9HVwiEEgUXZXRkI=
+
+Name: rc/line/YAxisLayer.js
+SHA-256-Digest: m8z/BRUe3REETdoDrp0ci0V3koupevyeMI9t7fChZdE=
+
+Name: rc/command/LockAxisCommand.js
+SHA-256-Digest: VvS5+Cl69z+W1UC5l87f3Qfnjy30ruV9ETHxUO8IH2Y=
+
+Name: com/tridium/webChart/ux/BChartWidget.class
+SHA-256-Digest: 5WjVy2Uq6u2rb9qAvyNcvvRCH3UofgTqubxkFAcY/RU=
+
+Name: rc/chartEvents.js
+SHA-256-Digest: y/A0K7uIhIDEOrzSWfGZ9OSlKfo+/1w/hoXuriSKJjM=
+
+Name: rc/webChartUtil.js
+SHA-256-Digest: /MtTm12Xq1jloFGTm0jmIuoar3Kmah2XVqv9+yKnYGI=
+
+Name: rc/fe/color/colorChooserStructure.hbs
+SHA-256-Digest: 2pXQRwjJlAj4YOr1eIdY2DzvqJcFWowoiz0OcPq1OgY=
+
+Name: rc/line/DataLayer.js
+SHA-256-Digest: 5Fibk34CmDWDGto5KYqr7nEtcmlWoQFIvjkuM28bslM=
+
+Name: rc/line/LegendLayer.js
+SHA-256-Digest: XZr3V+8pKznaXRdEMaN+BKl8FMyN0TOArTCpIGksSV4=
+
+Name: rc/command/SetAxisValuesCommand.js
+SHA-256-Digest: h6W9Fi7XMA57EZC0OmTwzQgDZgyTxt+4vu6FjhIZWr0=
+
+Name: rc/fe/StartEndTimeRangeEditor.js
+SHA-256-Digest: ywNuC9LytjwyuS/ww2YhiuyatSoEvDhbiq6lvWTHEis=
+
+Name: rc/ChartWidgetStyle.css
+SHA-256-Digest: sfD1SfRO+nZh50/+/l2n2hjmsE5Nt0YqCpf3cinpsyw=
+
+Name: rc/model/TimeScale.js
+SHA-256-Digest: 8/TynR/X4VE3oFO83hU+hk7NhstqeJladEQLXXOSfrA=
+
+Name: rc/line/DataPopupLayer.js
+SHA-256-Digest: mvb64POMdoa5PqpOmKEPu7nSF2mxZ01YZ/aVPhPeYiY=
+
+Name: rc/webChart.built.min.js
+SHA-256-Digest: r0ktZSKcQEh8h+j88lXlYSPQW8mz2DKxqzLRls3Pv1Q=
+
+Name: rc/model/BaseScale.js
+SHA-256-Digest: fVXgG/80XbvoCdvo7yICIKQf4Z3+O6DHGw27zDq0Oo8=
+
+Name: rc/menu/MenuWidget.js
+SHA-256-Digest: SXJndpufP1p9d8W+J30NqAKO8au2+hbeLlgHaEfDqZI=
+
+Name: rc/model/PointSeries.js
+SHA-256-Digest: hZJ+SH5kiNd5RgtjOnFKwtUfSQyye2fsbg+O/tlQQrk=
+
+Name: rc/model/LineModel.js
+SHA-256-Digest: 3HkMy6JQAboXGc7ENH8qT3QK72knfZubDZayuncJ+NU=
+
+Name: rc/model/modelUtil.js
+SHA-256-Digest: cdhrNKCiP7ULG/DjhbRTiJkbIlSxu73bg9Zcg3+y2mo=
+
+Name: rc/model/BaseModel.js
+SHA-256-Digest: mLrM1ZQW7IOt6ISe/VJqU2YlI2Y0UppHPpUqo3HibZg=
+
+Name: rc/line/TitleLayer.js
+SHA-256-Digest: HgL4yeZhLExVScx8qu30/00E87rpAuwejidxz9odAb8=
+
+Name: rc/model/samplingUtil.js
+SHA-256-Digest: PB5E6X1Cf93F01rhh4UXMJNcKYPLB6eZ+KU6IgGp3xA=
+
+Name: rc/command/StopCommand.js
+SHA-256-Digest: RUcyn+v6wpQYDLJtjHGOXHgX5tkR9AqZyMrZO6xICOg=
+
+Name: rc/line/LabelsLayer.js
+SHA-256-Digest: tAv7TxzbBZM8ujianTyRnl/N67igbR0oXB/Dp9wXxSQ=
+
+Name: rc/model/BaseSeries.js
+SHA-256-Digest: 0VyBxAm5xahOCchEGEPfm6sqjF0Y0LvTDRA7BB2e7Fw=
+
+Name: META-INF/module.xml
+SHA-256-Digest: C8zH9OkcpJaQWuzHIq0RU3j7+l8gJlFgXAXJNb0kXaw=
+
+Name: rc/fe/series/seriesEditorStructure.hbs
+SHA-256-Digest: 1ZzmgLTqYhLfdHAKhgSFdAhxRdbfrB7AhnocGfV+sfA=
+
+Name: rc/model/ValueScale.js
+SHA-256-Digest: WWjpBRzdRPqVM2q3vRp+sCB/k4YhKFf7WYc8CbQ1+oA=
+
+Name: rc/menu/contextMenuUtil.js
+SHA-256-Digest: WGSYpqmUv93rE5E9jkUOZox8cT2rqVZ5mG665FxLwCQ=
+
+Name: rc/model/ScheduleSeries.js
+SHA-256-Digest: kWb6W8+g2BwQYUZsP0p9GurjhVEfmM61242lxw1how8=
+
+Name: rc/grid/gridEditorStructure.hbs
+SHA-256-Digest: 08DuGfpLPle2fSH3tNTatGwVcRuC5onDf1c7GuaXiqk=
+
+Name: rc/tab/TabbedEditor.js
+SHA-256-Digest: DF2GRV3nY0eVFr8dbyAeUNyejBl+Ebf3NpnmUU/GY8I=
+
+Name: rc/menu/menuWidgetStructure.hbs
+SHA-256-Digest: vJHMJ9LDMSBgjCNjim6SSTInDqS057barQDl8uc+7Ls=
+
+Name: rc/transform/chartWidgetTransformOperationProvider.js
+SHA-256-Digest: V2p8lPpdm5ccKIvOsVOnjZQH0SYwcEBHuJhjdReGLjs=
+
+Name: rc/line/LineStyle.css
+SHA-256-Digest: abtOQhywsLlvGGuOrkmQsGTLKOgKdphaobw8KjfQO0M=
+
+Name: rc/transform/ChartWidgetToPrint.js
+SHA-256-Digest: r+rzn5ZRgiYqCMSjTOX2WD+jrX+kvQBKISn0nT62cRk=
+
+Name: rc/fe/SimplePropertySheet.js
+SHA-256-Digest: 8l/Jf2kaFWrVKPcTHcqi46qYkO5yvO+UZoPN5R+f3Js=
+
+Name: rc/fe/SamplingPeriodEditor.js
+SHA-256-Digest: z45Nf24Llll/S1ZYO7IVYXtZnANMIaxWI77ZoWsWSK0=
+
+Name: rc/dragUtil.js
+SHA-256-Digest: MWm1v/qRCaV7LzhnM1kfOInE9wKsa6xhDPdsbyVcT9Q=
+
+Name: rc/fe/color/colorChooserStyle.css
+SHA-256-Digest: Wh8kBG0QffMnNY9wYNam+XSJYTeA4MqcRXGFca2XUoU=
+
+Name: rc/gauge/CircularGaugeWidgetStyle.css
+SHA-256-Digest: b+P7BZ530DoPCx1vSD0VV/SYOebIOi4CEIsnjiE7Fdc=
+
+Name: rc/donut/DonutChartWidget.js
+SHA-256-Digest: yFj4Tb2wb9ZjN44qHYynXRwskFzUIRGBVuLwrIzI+7A=
+

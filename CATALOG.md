@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **196 bloques**
+Total: **197 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -201,6 +201,7 @@ Total: **196 bloques**
 | 196 | [niagara-mental-model-bloque196.md](niagara-mental-model-bloque196.md) | Animación en PX: "animar" = data binding (+ SVG animado) |
 | 197 | [niagara-mental-model-bloque197.md](niagara-mental-model-bloque197.md) | Síntesis cross-focus: el subsistema PX de Niagara N4 end-to-end |
 | 198 | [niagara-mental-model-bloque198.md](niagara-mental-model-bloque198.md) | `sidebars/`: el cell-sheet, los cell editors y el árbol de widgets (corazón operativo del editor) |
+| 199 | [niagara-mental-model-bloque199.md](niagara-mental-model-bloque199.md) | `webChart`: el charting es bajaux puro (D3/JS) sobre servlets rt; Java ux es solo el bridge |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

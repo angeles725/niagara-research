@@ -1,0 +1,256 @@
+<!-- Htmldoc has been run -->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="keywords" content="Niagara" scheme="atiChunkerMeta">
+      <meta name="keywords" content="Workbench" scheme="atiChunkerMeta">
+      <meta name="keywords" content="Niagara 4.2" scheme="atiChunkerMeta">
+
+      <title>webChart-ChartWidget</title>
+<!-- Auto-generated style sheet link --><link rel='StyleSheet' href='module://bajaui/doc/style.css' type='text/css' />
+<!-- Auto-generated js link for Activity Monitoring --><script type='text/javascript' src='module://web/rc/util/activityMonitor.js'></script>
+<script type='text/javascript'>window.addEventListener('load', activityMonitor.start);</script>
+   </head>
+   <body class=" x-bookmap-1-0" lang="en-US" id="mapelement_bookmap1">
+<!-- Auto-generated Header NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/ChartingComponentsGuide-AC2928C9.html" class="navbar">Prev</a> |  <a href="/doc/ChartCommands-E46A07E2.html" class="navbar">Next</a></p>
+
+      <div xmlns:ch="http://www.arbortext.com/namespace/chunker" class=" x-topic-19-0" id="webChart-ChartWidget" lang="en-US">
+         <h2 class=" x-title-27-0 x-title-27-1 x-title-27-2" id="styler-id1.1.1.5.7.1" lang="en-US">webChart-ChartWidget</h2><span class=" x-titlealts-2-0"></span><div class=" x-shortdesc-2-0" lang="en-US">Located in the <span class=" x-apiname-2-0" lang="en-US">webChart</span> palette, this bajaux HTML5-based WebWidget component allows you to add a Chart widget to a Px page or Hx page, or to a Dashboard
+            pane. The widget allows you to create, modify, and render dynamic, interactive web-based charts in <span class=" x-keyword-2-0" lang="en-US">
+               <ch:meta content="Workbench" name="keywords"></ch:meta>Workbench</span> or in a late version HTML5-capable browser. 
+         </div>
+         <div class=" x-prolog-1-0" lang="en-US">
+            <div class=" x-metadata-1-0" lang="en-US"><span class=" x-keywords-2-0" lang="en-US"><a class="indexterm" name="d8067e4871"></a><a class="indexterm" name="d8067e4873"></a><a class="indexterm" name="d8067e4875"></a></span></div>
+         </div>
+         <div class=" x-body-1-0" lang="en-US">
+            <div class=" x-section-1-0" id="styler-id1.1.1.5.7.5.1" lang="en-US">
+               <h3 class=" x-title-45-0" id="styler-id1.1.1.5.7.5.1.1" lang="en-US">Enhancements in <span class=" x-keyword-2-0" lang="en-US">
+                     <ch:meta content="Niagara 4.2" name="keywords"></ch:meta><span style="white-space: nowrap;">Niagara 4.2</span></span></h3>
+               <p class=" x-p-13-0" lang="en-US"><span class=" x-keyword-2-0" lang="en-US">
+                     <ch:meta content="Niagara 4.2" name="keywords"></ch:meta><span style="white-space: nowrap;">Niagara 4.2</span></span> provides the capability to render data from Proxy Points and Virtual Points added to a web chart from a Supervisor. For details,
+                  see <a href="AboutAddingDataFromASupervisor-21A438D3.html#AboutAddingDataFromASupervisor-21A438D3" class=" x-xref-9-0 x-xref-9-1 x-xref-9-8" lang="en-US" title="In keywordsNiagara 4.2Niagara 4.2, you can add virtual points and proxy points on a supervisor to a web chart which uses the local enabled history on the supervisor to initialize the chart. If a local history is not found, the chart displays live data (for numeric, boolean, and enum points)."><span class=" x--sfe-CrossReference-1-0"> </span><span class=" x-ph-1-0" lang="en-US">About adding data from a supervisor</span></a>.
+               </p>
+               <p class=" x-p-13-0" lang="en-US">Another supported feature is adding multiple bindings to a web chart in a Px graphic. Using <span class=" x-wintitle-2-0" lang="en-US">PxEditor</span> you can configure the Wb View Binding property to resolve an OrdList.
+               </p>
+            </div>
+            <div class=" x-section-1-0" id="styler-id1.1.1.5.7.5.2" lang="en-US">
+               <h3 class=" x-title-45-0" id="styler-id1.1.1.5.7.5.2.1" lang="en-US">About the Chart view</h3>
+               <p class=" x-p-13-0" lang="en-US">The <b class=" x-uicontrol-3-0" lang="en-US">Chart</b> view (shown below) is the default view for History records in <span class=" x-keyword-2-0" lang="en-US">
+                     <ch:meta content="Workbench" name="keywords"></ch:meta>Workbench</span> and in the HTML5 Hx profile, and a secondary view on schedules, as well as Enum, Numeric, and Boolean points.
+               </p>
+               <div class=" x-note-1-0 x-note-1-7" lang="en-US">&nbsp;<b><span style="font-weight: bold; ">NOTE: </span></b>Legacy charts, those created in earlier releases, are available as secondary <b class=" x-uicontrol-3-0" lang="en-US">History Chart</b> views on History records.&nbsp;
+               </div>
+               <div class=" x-fig-1-0 x-fig-1-1" id="styler-id1.1.1.5.7.5.2.4" lang="en-US"><h5 class=" x-title-49-0" id="styler-id1.1.1.5.7.5.2.4.1" lang="en-US">Figure 1.  &nbsp;&nbsp;Chart view description</h5><div class=" x-image-2-0 x-image-2-9" lang="en-US"><img alt="Image" src="graphics/chartoverview-1_140626_003_0000011034_0000000582.png" ></div><p class=" x-sl-8-0" lang="en-US">
+                     <p class=" x-sli-6-0 x-sli-6-2" lang="en-US"><span class=" x-image-2-0 x-image-2-7" lang="en-US"><img alt="Image" height="17" src="graphics/numberedbullet-1-solid_0000008086.png"  width="18"></span> Settings icon — click to access chart Settings dialog 
+                     </p>
+                     <p class=" x-sli-6-0 x-sli-6-2" lang="en-US"><span class=" x-image-2-0 x-image-2-7" lang="en-US"><img alt="Image" height="17" src="graphics/numberedbullet-2-solid_0000008085.png"  width="18"></span> Command bar — click icons to launch chart commands 
+                     </p>
+                     <p class=" x-sli-6-0 x-sli-6-2" lang="en-US"><span class=" x-image-2-0 x-image-2-7" lang="en-US"><img alt="Image" height="17" src="graphics/numberedbullet-3-solid_0000008084.png"  width="18"></span> Cursor position indicator 
+                     </p>
+                     <p class=" x-sli-6-0 x-sli-6-2" lang="en-US"><span class=" x-image-2-0 x-image-2-7" lang="en-US"><img alt="Image" height="17" src="graphics/numberedbullet-4-solid_0000008083.png"  width="18"></span> Data Value popup — displays when cursor is on a point 
+                     </p>
+                     <p class=" x-sli-6-0 x-sli-6-2" lang="en-US"><span class=" x-image-2-0 x-image-2-7" lang="en-US"><img alt="Image" height="17" src="graphics/numberedbullet-5-solid_0000011021_0000000597.png"  width="18"></span> Y-Axis label — default orientation of Y-axis for primary data 
+                     </p>
+                     <p class=" x-sli-6-0 x-sli-6-2" lang="en-US"><span class=" x-image-2-0 x-image-2-7" lang="en-US"><img alt="Image" height="17" src="graphics/numberedbullet-6-solid_0000011033_0000000596.png"  width="18"></span> X-Axis label — default orientation of X-axis. Once you have defined a specific <code class=" x-option-2-0" lang="en-US">Time Range</code> for the chart, you can click this label to reopen the <span class=" x-wintitle-2-0" lang="en-US">Time Range</span> dialog to modify the range. 
+                     </p>
+                  </p>
+               </div>
+               <p class=" x-p-13-0" lang="en-US">Data that can be rendered in a chart includes historical data, live historical data, live data, as well as schedules.</p>
+               <p class=" x-p-13-0" lang="en-US">Although chart type is configurable via the <span class=" x-menucascade-1-0" lang="en-US"><b class=" x-uicontrol-2-0" lang="en-US">Settings</b><b class=" x-uicontrol-1-0" lang="en-US"><span style="font-weight: normal; "> &gt; </span>Series</b></span> tab dialog, the default chart type is determined by the type of data being presented. For example:
+               </p>
+               <div class=" x-dl-1-0" id="styler-id1.1.1.5.7.5.2.7" lang="en-US">
+                  <table border="1" cellpadding="7" frame="box" rules="all" style="border-width: 1.0pt; " width="100%">
+                     <col width="240">
+                     <col width="720">
+                     <thead style="text-align: left; ">
+                        <tr class=" x-dlhead-1-0" lang="en-US" style="vertical-align: top; ">
+                           <th class=" x-dthd-1-0" lang="en-US" style="text-align: left; ">Component type</th>
+                           <th class=" x-ddhd-1-0" lang="en-US" style="text-align: left; ">Default chart type</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr class=" x-dlentry-1-0" lang="en-US" style="vertical-align: top; ">
+                           <td class=" x-dt-1-0" lang="en-US">Numeric histories and points</td>
+                           <td class=" x-dd-1-0" lang="en-US">Render as lines with interpolation, display as a line chart.</td>
+                        </tr>
+                        <tr class=" x-dlentry-1-0" lang="en-US" style="vertical-align: top; ">
+                           <td class=" x-dt-1-0" lang="en-US">Numeric schedules</td>
+                           <td class=" x-dd-1-0" lang="en-US">Render as discrete lines with no interpolation, display as a line chart.</td>
+                        </tr>
+                        <tr class=" x-dlentry-1-0" lang="en-US" style="vertical-align: top; ">
+                           <td class=" x-dt-1-0" lang="en-US">Boolean and Enum points</td>
+                           <td class=" x-dd-1-0" lang="en-US">Render as shaded areas referred to as “swim lanes,” displayed as a shaded chart. Opacity of the swim lanes fill is based on
+                              the ordinal of the Enum.
+                           </td>
+                        </tr>
+                        <tr class=" x-dlentry-1-0" lang="en-US" style="vertical-align: top; ">
+                           <td class=" x-dt-1-0" lang="en-US">Boolean and Enum schedules</td>
+                           <td class=" x-dd-1-0" lang="en-US">Render as shaded areas referred to as “swim lanes,” displayed as a shaded chart. Opacity of the swim lanes fill is based on
+                              the ordinal of the Enum.
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+               <p class=" x-p-13-0" lang="en-US">Different types of data (Numeric and Boolean or Enum) can be combined on the same chart. In that situation, the swim lanes
+                  representing Boolean and Enum data display with a dimmed opacity to allow you to more clearly view the lines representing
+                  the numeric data. Also, you can modify the default chart type of one or more components in a chart. For example, you can set
+                  a boolean writable point to display bars while the data for another component plots a line.
+               </p>
+               <p class=" x-p-13-0" lang="en-US">The interactive Chart view allows you to make modifications while a chart is rendering. For example, while viewing a chart
+                  you can add one or more points, history records, schedules, or even containers of data such as a points folder or a hierarchy
+                  component.  
+               </p>
+               <p class=" x-p-13-0" lang="en-US">When adding data to a chart, the Y-axis automatically adjusts the units and can accommodate different units of measure by
+                  displaying multiple Y-axes. On a chart containing data with three or more different units of measure, such as that shown below,
+                  the display still shows dual Y-axes. You can switch the units displayed on the secondary Y-axis by clicking on the dimmed
+                  axis label. For example, on the left-side Y-axis in the figure below, the dimmed % symbol indicates an alternate Y-axis with
+                  percent as the unit of measure. Clicking that <b class=" x-uicontrol-3-0" lang="en-US">%</b> symbol switches the Y-axis units from displaying degrees to percent.
+               </p>
+               <p class=" x-p-13-0" lang="en-US">You can alternately hide or show specific data or even completely remove data from a chart via the right-click menu. Additionally,
+                  chart settings permit you to customize the appearance of a chart via selectable data colors and chart type per component,
+                  axis orientation, data source zooming, as well as permitting you to turn on or off the chart grid, background color, data
+                  popups, and status colors.
+               </p>
+               <p class=" x-p-13-0" lang="en-US">
+                  <div class=" x-fig-1-0 x-fig-1-1" id="styler-id1.1.1.5.7.5.2.12.1" lang="en-US"><h5 class=" x-title-49-0" id="styler-id1.1.1.5.7.5.2.12.1.1" lang="en-US">Figure 2.  &nbsp;&nbsp;Multiple Y-axes accommodate data with different units of measure</h5><div class=" x-image-2-0 x-image-2-9" lang="en-US"><img alt="Image" src="graphics/charts_edittimerange_0000015219_0000000609.png" ></div></div>
+               </p>
+               <p class=" x-p-13-0" lang="en-US">Web charts utilize standard <span class=" x-keyword-2-0" lang="en-US">
+                     <ch:meta content="Niagara" name="keywords"></ch:meta><span style="white-space: nowrap;">Niagara</span></span> status colors to indicate current status. As shown in the chart below where the Status Coloring command is invoked, a red
+                  dot indicating <code class=" x-option-2-0" lang="en-US">Alarm</code> status marks each plot in the <b class=" x-uicontrol-3-0" lang="en-US">Ramp</b> line while an orange dot indicating <code class=" x-option-2-0" lang="en-US">Fault</code> status marks each plot in the <b class=" x-uicontrol-3-0" lang="en-US">FaultHistory</b> line. Also, status colors shown in the Fixed Data Popup dialog confirm the status of charted data. 
+                  <div class=" x-fig-1-0 x-fig-1-1" id="styler-id1.1.1.5.7.5.2.13.6" lang="en-US"><h5 class=" x-title-49-0" id="styler-id1.1.1.5.7.5.2.13.6.1" lang="en-US">Figure 3.  &nbsp;&nbsp;Line chart displaying status colors</h5><div class=" x-image-2-0 x-image-2-9" lang="en-US"><img alt="Image" src="graphics/charts_addseriesdialog_0000015050_0000000591.png" ></div></div>
+               </p>
+               <p class=" x-p-13-0" lang="en-US">Shade and Bar charts also display status colors. When enabled, if there is a non-ok status a color band at the top of the
+                  shaded area or bar indicates the status.
+               </p>
+            </div>
+            <div class=" x-section-1-0" id="styler-id1.1.1.5.7.5.3" lang="en-US">
+               <h3 class=" x-title-45-0" id="styler-id1.1.1.5.7.5.3.1" lang="en-US">Configurable properties for the Chart widget</h3><a class="indexterm" name="d8067e5100"></a><div class=" x-fig-1-0 x-fig-1-1" id="styler-id1.1.1.5.7.5.3.3" lang="en-US"><h5 class=" x-title-49-0" id="styler-id1.1.1.5.7.5.3.3.1" lang="en-US">Figure 4.  &nbsp;&nbsp;Chart widget properties<div class=" x-image-2-0 x-image-2-9" lang="en-US"><img alt="Image" height="332" src="graphics/ChartWidgetproperties_0000077964.png"  width="333"></div></h5>
+               </div>
+            </div>
+            <div class=" x-properties-1-0 x-properties-1-1" id="styler-id1.1.1.5.7.5.4" lang="en-US">
+               <table border="1" cellpadding="7" frame="box" rules="all" style="border-width: 1.0pt; " width="100%">
+                  <col width="160">
+                  <col width="160">
+                  <col width="160">
+                  <thead style="text-align: left; ">
+                     <tr class=" x-prophead-1-0" lang="en-US" style="vertical-align: top; ">
+                        <th class=" x-proptypehd-1-0" lang="en-US" style="text-align: left; ">Property</th>
+                        <th class=" x-propvaluehd-1-0" lang="en-US" style="text-align: left; ">Value</th>
+                        <th class=" x-propdeschd-1-0" lang="en-US" style="text-align: left; ">Description</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr class=" x-property-1-0" lang="en-US" style="vertical-align: top; ">
+                        <td class=" x-proptype-1-0" lang="en-US">defaultOption</td>
+                        <td class=" x-propvalue-1-0" lang="en-US">file:^charts/defaultOptions.chart</td>
+                        <td class=" x-propdesc-1-0" lang="en-US">Provides ord for the defaultOption widget. You can browse to select another widget.</td>
+                     </tr>
+                     <tr class=" x-property-1-0" lang="en-US" style="vertical-align: top; ">
+                        <td class=" x-proptype-1-0" lang="en-US">hideHeaderWidth</td>
+                        <td class=" x-propvalue-1-0" lang="en-US">number</td>
+                        <td class=" x-propdesc-1-0" lang="en-US">All headers are visible when you set the value 800 pixel and above.</td>
+                     </tr>
+                     <tr class=" x-property-1-0" lang="en-US" style="vertical-align: top; ">
+                        <td class=" x-proptype-1-0" lang="en-US">Visible</td>
+                        <td class=" x-propvalue-1-0" lang="en-US">true (default), false</td>
+                        <td class=" x-propdesc-1-0" lang="en-US">
+                           <div class=" x-div-1-0" lang="en-US">Enables/disables display of the widget.</div>
+                        </td>
+                     </tr>
+                     <tr class=" x-property-1-0" lang="en-US" style="vertical-align: top; ">
+                        <td class=" x-proptype-1-0" lang="en-US">Enabled (general)</td>
+                        <td class=" x-propvalue-1-0" lang="en-US"><code class=" x-option-2-0" lang="en-US">true</code> or <code class=" x-option-2-0" lang="en-US">false</code></td>
+                        <td class=" x-propdesc-1-0" lang="en-US">
+                           <div class=" x-div-1-0" lang="en-US">Activates (<code class=" x-option-2-0" lang="en-US">true</code>) and deactivates (<code class=" x-option-2-0" lang="en-US">false</code>) use of the object (network, device, point, component, table, schedule, descriptor, etc.).
+                           </div>
+                           <div class=" x-div-1-0" id="Enabled-div" lang="en-US">Activates (<code class=" x-option-2-0" lang="en-US">true</code>) and deactivates (<code class=" x-option-2-0" lang="en-US">false</code>) use of the object (network, device, point, component, table, schedule, descriptor, etc.).
+                           </div>
+                        </td>
+                     </tr>
+                     <tr class=" x-property-1-0" lang="en-US" style="vertical-align: top; ">
+                        <td class=" x-proptype-1-0" lang="en-US">Layout</td>
+                        <td class=" x-propvalue-1-0" lang="en-US">Default values: X=0.00, Y=0.00, Width=000.00, Height=000.00 Fill=on, off (default)</td>
+                        <td class=" x-propdesc-1-0" lang="en-US">
+                           <div class=" x-div-1-0" lang="en-US">Provides X and Y positioning coordinates for the widget as well as, Width, Height, and Fill. X and Y units can be specified
+                              as <code class=" x-option-2-0" lang="en-US">Absolute</code> or <code class=" x-option-2-0" lang="en-US">Percent</code>. While Width and Height dimensions can be specified as <code class=" x-option-2-0" lang="en-US">Absolute</code>, <code class=" x-option-2-0" lang="en-US">Percent</code>, or <code class=" x-option-2-0" lang="en-US">Preferred units</code>. The Fill check box turns fill on and off.
+                           </div>
+                        </td>
+                     </tr>
+                     <tr class=" x-property-1-0" lang="en-US" style="vertical-align: top; ">
+                        <td class=" x-proptype-1-0" lang="en-US">Js</td>
+                        <td class=" x-propvalue-1-0" lang="en-US">view:webChart:ChartWidget (default)</td>
+                        <td class=" x-propdesc-1-0" lang="en-US">
+                           <div class=" x-div-1-0" lang="en-US">Provides an ORD for the Javascript widget. You can browse to select another widget.</div>
+                        </td>
+                     </tr>
+                     <tr class=" x-property-1-0" lang="en-US" style="vertical-align: top; ">
+                        <td class=" x-proptype-1-0" lang="en-US">layer</td>
+                        <td class=" x-propvalue-1-0" lang="en-US">drop-down</td>
+                        <td class=" x-propdesc-1-0" lang="en-US">null</td>
+                     </tr>
+                     <tr class=" x-property-1-0" lang="en-US" style="vertical-align: top; ">
+                        <td class=" x-proptype-1-0" lang="en-US">legendVisibility</td>
+                        <td class=" x-propvalue-1-0" lang="en-US">drop-down</td>
+                        <td class=" x-propdesc-1-0" lang="en-US">Provides legendVisibility as per set value. (for example <code class=" x-option-2-0" lang="en-US">Responsive</code>, <code class=" x-option-2-0" lang="en-US">Show</code>, <code class=" x-option-2-0" lang="en-US">Hide</code>)
+                        </td>
+                     </tr>
+                     <tr class=" x-property-1-0" lang="en-US" style="vertical-align: top; ">
+                        <td class=" x-proptype-1-0" lang="en-US">preferredSize</td>
+                        <td class=" x-propvalue-1-0" lang="en-US">Default values: Width=000.00, Height=000.00</td>
+                        <td class=" x-propdesc-1-0" lang="en-US">preferredSize can use to set the values of height and width of widgetbar.</td>
+                     </tr>
+                     <tr class=" x-property-1-0" lang="en-US" style="vertical-align: top; ">
+                        <td class=" x-proptype-1-0" lang="en-US">title</td>
+                        <td class=" x-propvalue-1-0" lang="en-US">text</td>
+                        <td class=" x-propdesc-1-0" lang="en-US">You can add the title.</td>
+                     </tr>
+                     <tr class=" x-property-1-0" lang="en-US" style="vertical-align: top; ">
+                        <td class=" x-proptype-1-0" lang="en-US">titlevisibility</td>
+                        <td class=" x-propvalue-1-0" lang="en-US">drop-down</td>
+                        <td class=" x-propdesc-1-0" lang="en-US">Provides titleVisibility as per set value. (for example <code class=" x-option-2-0" lang="en-US">Responsive</code>, <code class=" x-option-2-0" lang="en-US">Show</code>, <code class=" x-option-2-0" lang="en-US">Hide</code>)
+                        </td>
+                     </tr>
+                     <tr class=" x-property-1-0" lang="en-US" style="vertical-align: top; ">
+                        <td class=" x-proptype-1-0" lang="en-US">wbViewBinding</td>
+                        <td class=" x-propvalue-1-0" lang="en-US">Binding null —&gt;WebWidget (default)</td>
+                        <td class=" x-propdesc-1-0" lang="en-US">
+                           <div class=" x-div-1-0" lang="en-US">Provides an ORD for abound label. You can browse to select the ORD. This property also provides selectable options for <code class=" x-parmname-2-0" lang="en-US">Degrade Behavior</code> (<code class=" x-option-2-0" lang="en-US">None</code>, <code class=" x-option-2-0" lang="en-US">Disable</code>, and <code class=" x-option-2-0" lang="en-US">Hide</code>).
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+         <div class=" x-related-links-1-0">
+            <div class=" x--ufe-relatedlinks-display-1-0">
+               <div class=" x--ufe-relatedHierarchical-1-0 x--ufe-relatedHierarchical-1-1">
+                  <h3 class=" x--ufe-related-links-title-1-0" id="styler-idu1.1.1.5.7.6.1.1.1">Related Links</h3>
+                  <div class=" x--ufe-relatedChild-1-0">
+                     <li class=" x-link-2-0 x-link-2-1"><a href="ChartCommands-E46A07E2.html#ChartCommands-E46A07E2" title="Options in the Chart view Command Bar allow you to fine tune data presentation. "><span class=" x-linktext-2-0" lang="en-US">Chart commands</span></a></li>
+                     <li class=" x-link-2-0 x-link-2-1"><a href="webChart-ChartFile.html#webChart-ChartFile" title="Options in the Chart view Settings window allow you to make data presentation changes that are of a persistent nature, meaning the changes are retained when the chart is exported or saved. "><span class=" x-linktext-2-0" lang="en-US">Chart settings</span></a></li>
+                     <li class=" x-link-2-0 x-link-2-1"><a href="AboutAddingDataFromASupervisor-21A438D3.html#AboutAddingDataFromASupervisor-21A438D3" title="In keywordsNiagara 4.2Niagara 4.2, you can add virtual points and proxy points on a supervisor to a web chart which uses the local enabled history on the supervisor to initialize the chart. If a local history is not found, the chart displays live data (for numeric, boolean, and enum points)."><span class=" x-linktext-2-0" lang="en-US">About adding data from a supervisor</span></a></li>
+                  </div>
+                  <div class=" x--ufe-relatedParent-1-0">
+                     <li class=" x-link-2-0 x-link-2-1"><a href="ChartingComponentsGuide-AC2928C9.html#ChartingComponentsGuide-AC2928C9" title="Charting views and components are described in detail in the following topics."><span class=" x-linktext-2-0 x-linktext-2-5" lang="en-US">Web charts reference (Parent Topic)</span></a></li>
+                  </div>
+               </div>
+               <div class=" x--ufe-relatedPrevious-1-0"></div>
+               <div class=" x--ufe-relatedNext-1-0"></div>
+               <div class=" x--ufe-relatedConcepts-1-0"></div>
+               <div class=" x--ufe-relatedTasks-1-0"></div>
+               <div class=" x--ufe-relatedReferences-1-0"></div>
+               <div class=" x--ufe-relatedTopics-1-0"></div>
+               <div class=" x--ufe-relatedOther-1-0"></div>
+               <div class=" x--ufe-relatedLinklists-1-0"></div>
+            </div>
+         </div>
+      </div>
+
+<!-- Auto-generated Footer NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/ChartingComponentsGuide-AC2928C9.html" class="navbar">Prev</a> |  <a href="/doc/ChartCommands-E46A07E2.html" class="navbar">Next</a></p>
+<!-- Auto-generated copyright note --><p class='copyright'></p>
+   </body>
+</html>
