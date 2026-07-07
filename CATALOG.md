@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **204 bloques**
+Total: **205 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -209,6 +209,7 @@ Total: **204 bloques**
 | 204 | [niagara-mental-model-bloque204.md](niagara-mental-model-bloque204.md) | El framework bajaux: `Widget` + spandrel (virtual-DOM propio) + el puente rt→web |
 | 205 | [niagara-mental-model-bloque205.md](niagara-mental-model-bloque205.md) | `studio/`: el sistema de dibujo del canvas (Studio + trackers + painters + artisans) |
 | 206 | [niagara-mental-model-bloque206.md](niagara-mental-model-bloque206.md) | Los commands de nivel editor (`commands/`): patrón por remisión + responsive/border/apply-props |
+| 207 | [niagara-mental-model-bloque207.md](niagara-mental-model-bloque207.md) | `easyBinding`: el módulo OEM Honeywell de auto-binding sobre kitPx (license-gated, assets cifrados) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
