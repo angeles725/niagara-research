@@ -14,7 +14,7 @@ Prioridad del usuario: **D1 (`sidebars/`, el property/cell-sheet — corazón op
 
 ## Cobertura
 
-**3 / 11 gaps** (ratio 0.27). Read-only-investigable: 8 restantes (incl. gap nuevo X6) · requires-execution: 0 · blocked: 0.
+**4 / 11 gaps** (ratio 0.36). Read-only-investigable: 7 restantes · requires-execution: 0 · blocked: 0.
 
 ## Historial de iteraciones
 
@@ -23,6 +23,7 @@ Prioridad del usuario: **D1 (`sidebars/`, el property/cell-sheet — corazón op
 | 1 | D1 | B198 | `sidebars/`: `BPxCellSheet` (property/binding editor) + 3-way `newCellEditor` + los CE del Workbench + commands→`javax.baja.ui.Command` (undo/redo) + árbol `PxTreeModel`/`PxTreeSelection` sync + propsheet/layersheet + binding/ ORD-rewriting. 36 CERT/3 INFER. | sí · sonnet |
 | 2 | X1 | B199 | `webChart`: charting = **bajaux puro** (D3/JS), Java `ux` solo bridge `JsInfo` (confirma B194). Capa `rt` = servlets query(data/schedule)/file + `.chart` JSON + RPC. Motor JS: `seriesFactory` (4 series: Servlet/Schedule/Point/External), scales Time/Value D3, sampling auto 2500. Settings sobre `webEditors`. 27 CERT/9 CERT-doc/2 INFER. | sí · sonnet |
 | 3 | X2 | B200 | `template`+`templateBulk`: sistema de templates (Application/Component/Station). `.ntpl`=zip(bog+manifest), `BTemplateConfig` modelo central, configs expuestos (`BConfigBinding`) + passwords (strip del secreto), deploy=`UpgradeUtil` save→remove→deploy→restore, bulk vía Excel (`templateBulk`=POI reflexivo opcional). Graphics tab = `BPxEditorPane` embebido. Descubre gap X6 (easyBinding). 24 CERT/11 CERT-doc/3 INFER. | sí · sonnet |
+| 4 | D3 | B201 | `make/` wizard: `BMakeWidget`(BEdgePane) + selección **agent-based** (`BMwConfig` implements BIAgent). 8 estrategias `BMw*`: Chart/TimePlot (chart **clásico** `javax.baja.chart`, §14 vs webChart B199), BoundLabel (fallback), PxInclude, WorkbenchView, ActionBatch/PropertyBatch (grid). `MakeWidgetContext` reutiliza el cell-sheet (B198). `addBinding` deja la ord frozen. 19 CERT/1 INFER. | sí · sonnet |
 
 ## Grupo D — Subsistemas internos de `pxEditor-wb` (nombrados en B191, no deep-dived)
 
@@ -30,7 +31,7 @@ Prioridad del usuario: **D1 (`sidebars/`, el property/cell-sheet — corazón op
 |---|---|---|---|
 | ~~D1~~ | ✅ **CUBIERTO (B198)** — `sidebars/` (66 clases): cell-sheet, cell editors, commands undo/redo, árbol de widgets, propsheet/layersheet, binding/ ORD-rewriting. Fuentes preservadas en `sources/decompiled/pxEditor-wb/sidebars/`. | ~~`organized/.../editor/sidebars/`~~ | — |
 | D2 | **`studio/` — 6**: `BStudio` + trackers/painters, las herramientas de dibujo (`NormalTool`/`GeometryTool`), edición de geometría, dragOver/drop. | `.../com/tridium/px/editor/studio/` | media |
-| D3 | **`make/` — 16 estrategias del wizard**: `BMwBoundLabel`, `BMwChart`, `BMwTimePlot`, `BMwWorkbenchView`, `BMwPxInclude`… (solo `BMwFromPalette` se documentó en B191). | `.../com/tridium/px/editor/make/` | media |
+| ~~D3~~ | ✅ **CUBIERTO (B201)** — `make/` wizard: `BMakeWidget`+selección agent-based+8 estrategias `BMw*`. Fuente en `sources/decompiled/pxEditor-wb/make/`. Descubre: `javax.baja.chart` (chart clásico) como feed futuro. | ~~`.../editor/make/`~~ | — |
 | D4 | **`commands/` — 36**: `MoveWidget`/`MorphWidget`/`Align`/`Reorg`/`Delete` + el undo/redo delegado al `Command`/`CommandArtifact` del Workbench. | `.../com/tridium/px/editor/studio/commands/` + `commands/` | baja |
 | D5 | **Field editors**: `BGenericFieldEditor`, `BSetPointFieldEditor` + variantes Ux (`BUxGenericFieldEditor`/`BUxSetPointFieldEditor`) — cómo funcionan los editores inline. | `organized/kitPx/kitPx-wb/vineflower/.../*FieldEditor.java` | media |
 
@@ -47,9 +48,9 @@ Prioridad del usuario: **D1 (`sidebars/`, el property/cell-sheet — corazón op
 
 ## Clasificación (§8)
 
-- **read-only-investigable**: 8 (D2, D3, D4, D5, X3, X4, X5, X6 — fuentes confirmadas 2026-07-06). **requires-execution**: 0. **blocked**: 0.
-- **Orden sugerido restante**: **D3 (make/wizard)** o **D5 (field editors)** → X3/X5 → D2/D4 → X6/X4.
-- **PRÓXIMO gap**: **D3 — `make/` (16 estrategias del wizard)** (media; solo `BMwFromPalette` documentado en B191).
+- **read-only-investigable**: 7 (D2, D4, D5, X3, X4, X5, X6 — fuentes confirmadas 2026-07-06). **requires-execution**: 0. **blocked**: 0.
+- **Orden sugerido restante**: **D5 (field editors)** → X3/X5 → D2/D4 → X6/X4.
+- **PRÓXIMO gap**: **D5 — Field editors** (`BGenericFieldEditor`/`BSetPointFieldEditor` + variantes Ux en kitPx-wb).
 
 ## Notas
 

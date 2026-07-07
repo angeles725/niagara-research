@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **198 bloques**
+Total: **199 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -203,6 +203,7 @@ Total: **198 bloques**
 | 198 | [niagara-mental-model-bloque198.md](niagara-mental-model-bloque198.md) | `sidebars/`: el cell-sheet, los cell editors y el árbol de widgets (corazón operativo del editor) |
 | 199 | [niagara-mental-model-bloque199.md](niagara-mental-model-bloque199.md) | `webChart`: el charting es bajaux puro (D3/JS) sobre servlets rt; Java ux es solo el bridge |
 | 200 | [niagara-mental-model-bloque200.md](niagara-mental-model-bloque200.md) | El sistema de templates: `.ntpl` (zip+bog), configs expuestos, deploy/upgrade y bulk vía Excel |
+| 201 | [niagara-mental-model-bloque201.md](niagara-mental-model-bloque201.md) | El wizard "Make Widget" (`make/`): estrategias agent-based que convierten un ord en widget |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
