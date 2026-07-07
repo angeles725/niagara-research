@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **201 bloques**
+Total: **202 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -206,6 +206,7 @@ Total: **201 bloques**
 | 201 | [niagara-mental-model-bloque201.md](niagara-mental-model-bloque201.md) | El wizard "Make Widget" (`make/`): estrategias agent-based que convierten un ord en widget |
 | 202 | [niagara-mental-model-bloque202.md](niagara-mental-model-bloque202.md) | Field editors inline (kitPx): paridad Wb-Swing ↔ Ux-web por type+agent, semántica en el binding |
 | 203 | [niagara-mental-model-bloque203.md](niagara-mental-model-bloque203.md) | Los packs de widgets gráficos (kitPxGraphics/Hvac/N4svg/Building): palettes BOG, no código |
+| 204 | [niagara-mental-model-bloque204.md](niagara-mental-model-bloque204.md) | El framework bajaux: `Widget` + spandrel (virtual-DOM propio) + el puente rt→web |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

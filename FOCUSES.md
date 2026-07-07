@@ -17,12 +17,12 @@
 | chihuahua | stopped | `RESEARCH-STATE-chihuahua.md` | Módulo dashboard Niagara N4 de FUENTE PROPIA (`com.angeles.chihuahua`) para BMS Honeywell MX60. Lectura directa. Tri-parte rt/ux/wb, RBAC write-gate, frontend ES5 IIFE. Documentado (C1-C14) + comparado con Reflow (B177) — CERRADO | B163–B177 |
 | px-menu | stopped | `RESEARCH-STATE-px-menu.md` | PX Menu-Button/Dropdown en Workbench: emulación de menú desplegable (PopupBinding vs toggle in-place), sintaxis `.px`, gramática PxDecoder/Encoder, catálogo de converters, workflow oficial del editor (niagara-help) — CERRADO 12/12 | B179–B190 |
 | px-editor | stopped | `RESEARCH-STATE-px-editor.md` | El PX Editor en amplitud: la herramienta (`pxEditor-wb`), catálogo completo de widgets/bindings, media/perfiles (Wb/Hx/Mobile), theming (Palladium/CSS), animación=data-binding. Continúa px-menu — CERRADO 6/6 | B191–B196 |
-| px-editor-deep | **active** | `RESEARCH-STATE-px-editor-deep.md` | Profundizar pxEditor-wb (D: sidebars/studio/make/commands/field-editors) + módulos vecinos (X: webChart, templates, kitPxGraphics/Hvac/N4svg, svgBatik, bajaux). **6/11** (D1 B198; X1 B199; X2 B200; D3 B201; D5 B202; X3 B203 packs gráficos). +gap X6. Próximo: X5 bajaux | B198– |
+| px-editor-deep | **active** | `RESEARCH-STATE-px-editor-deep.md` | Profundizar pxEditor-wb (D: sidebars/studio/make/commands/field-editors) + módulos vecinos (X: webChart, templates, kitPxGraphics/Hvac/N4svg, svgBatik, bajaux). **7/11** (D1 B198; X1 B199; X2 B200; D3 B201; D5 B202; X3 B203; X5 B204 bajaux). +gap X6. Próximo: D2 studio | B198– |
 
 ## Focus activo
 
 **`px-editor-deep`** (ACTIVO, 3/11) — arrancado 2026-07-06. D1 `sidebars/` (B198) + X1 `webChart` (B199) + X2
-`template` (B200) + D3 `make/` (B201) + D5 field-editors (B202) + X3 packs gráficos (B203, BOG palettes raster/SVG). Próximo gap: **X5 (`bajaux`)**. Continuar con
+`template` (B200) + D3 `make/` (B201) + D5 field-editors (B202) + X3 packs gráficos (B203) + X5 framework bajaux (B204, Widget+spandrel virtual-DOM). Próximo gap: **D2 (`studio/`)**. Continuar con
 `/research-sdd niagara-research px-editor-deep continue`.
 
 **Sesión 2026-07-06 — subsistema PX**: 19 bloques (B179-B197). `px-menu` CERRADO 12/12 (B179-B190, el menú +

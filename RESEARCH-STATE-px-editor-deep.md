@@ -14,7 +14,7 @@ Prioridad del usuario: **D1 (`sidebars/`, el property/cell-sheet — corazón op
 
 ## Cobertura
 
-**6 / 11 gaps** (ratio 0.55). Read-only-investigable: 5 restantes · requires-execution: 0 · blocked: 0.
+**7 / 11 gaps** (ratio 0.64). Read-only-investigable: 4 restantes · requires-execution: 0 · blocked: 0.
 
 ## Historial de iteraciones
 
@@ -26,6 +26,7 @@ Prioridad del usuario: **D1 (`sidebars/`, el property/cell-sheet — corazón op
 | 4 | D3 | B201 | `make/` wizard: `BMakeWidget`(BEdgePane) + selección **agent-based** (`BMwConfig` implements BIAgent). 8 estrategias `BMw*`: Chart/TimePlot (chart **clásico** `javax.baja.chart`, §14 vs webChart B199), BoundLabel (fallback), PxInclude, WorkbenchView, ActionBatch/PropertyBatch (grid). `MakeWidgetContext` reutiliza el cell-sheet (B198). `addBinding` deja la ord frozen. 19 CERT/1 INFER. | sí · sonnet |
 | 5 | D5 | B202 | Field editors inline kitPx (4): par Wb-Swing (`BGenericFieldEditor`→`BWbFieldEditor.makeFor`, `BSetPointFieldEditor`) ↔ par Ux-web (shim `BSingleton`+`BIJavaScriptWidget`→JS). **Sin interfaz compartida**: paridad por type+agent (B192/B194). Semántica setpoint (dual-path write + gate) en el BINDING (`BSetPointBinding`), no en el FE. Hazard: Ux confía canWrite() client-side. 19 CERT/2 INFER. | sí · sonnet |
 | 6 | X3 | B203 | Packs gráficos: `kitPxGraphics`/`kitPxHvac`/`kitPxN4svg` = **BOG palettes sin código** (símbolos pre-bound). Raster (BoundLabel+IBooleanToSimple On/Off, confirma B196) vs vector N4svg (`ui:Picture`+SVG+converters numeric/status ricos). `kitPxBuilding` la excepción con componentes Java tipados (BEquipment/BDamper/BKnob). 14 CERT/2 INFER. | no · inline (gap liviano) |
+| 7 | X5 | B204 | Framework **bajaux**: `Widget` lifecycle template-method (init/load/read/save/destroy sobre jQuery, NO ES6 class) + **spandrel** (virtual-DOM propio: diff shallow por circular refs de BajaScript Complex, focus-preservation "never wipe while typing", DiffQueue 5-buckets) + `WidgetManager`/RequireJS + puente rt→web (`BIJavaScriptWidget`/`JsInfo`/`WbWebWidgetServlet`/`NiagaraEnv` window.niagara.env + receta bundling js→…→webChart→kitPx). Confirma B194 (grep negativo PxMedia/Swing). 24 CERT/2 INFER. | sí · sonnet |
 
 ## Grupo D — Subsistemas internos de `pxEditor-wb` (nombrados en B191, no deep-dived)
 
@@ -46,13 +47,13 @@ Prioridad del usuario: **D1 (`sidebars/`, el property/cell-sheet — corazón op
 | X6 | **`easyBinding` — 119 clases** (rt/wb/ux): el subsistema de binding simplificado (descubierto durante X2, NO referenciado por `template`). Distinto del binding kitPx (B193) y del templating. | `organized/easyBinding/` (rt+wb+ux, confirmado 2026-07-06) | media |
 | ~~X3~~ | ✅ **CUBIERTO (B203)** — packs gráficos = BOG palettes de símbolos pre-bound (raster vs vector SVG); kitPxBuilding con componentes Java. Fuente en `sources/decompiled/kitPx-graphics-packs/`. | ~~`organized/kitPx{Graphics,Hvac,N4svg}*`~~ | — |
 | X4 | **`svgBatik`**: el motor SVG (B196 lo mencionó sin abrir) — cómo se renderiza un SVG animado en PX. | `organized/svgBatik*` | baja |
-| X5 | **`bajaux`**: el render web moderno a fondo — el pipeline JS/HTML5 (`BUx*` codegen) que B194 dijo "no usa PxMedia" pero NO documentó. | `organized/bajaux*` | media |
+| ~~X5~~ | ✅ **CUBIERTO (B204)** — framework bajaux: `Widget`+spandrel(virtual-DOM)+bridge rt→web. Confirma B194. Fuente en `sources/decompiled/bajaux/`. | ~~`organized/bajaux*`~~ | — |
 
 ## Clasificación (§8)
 
-- **read-only-investigable**: 5 (D2, D4, X4, X5, X6 — fuentes confirmadas 2026-07-06). **requires-execution**: 0. **blocked**: 0.
-- **Orden sugerido restante**: **X5 (bajaux)** → D2/D4 → X6/X4.
-- **PRÓXIMO gap**: **X5 — `bajaux`** (el render web moderno a fondo: pipeline JS/HTML5, BUx* codegen).
+- **read-only-investigable**: 4 (D2, D4, X4, X6 — fuentes confirmadas 2026-07-06). **requires-execution**: 0. **blocked**: 0.
+- **Orden sugerido restante**: **D2 (studio)** → D4 (commands) → X6 (easyBinding) → X4 (svgBatik).
+- **PRÓXIMO gap**: **D2 — `studio/`** (BStudio + trackers/painters, herramientas de dibujo NormalTool/GeometryTool, dragOver/drop).
 
 ## Notas
 
