@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **211 bloques**
+Total: **212 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -216,6 +216,7 @@ Total: **211 bloques**
 | 211 | [niagara-mental-model-bloque211.md](niagara-mental-model-bloque211.md) | Block 211 — La API base del PX Editor: `javax.baja.px.editor` (root, 7 clases): BPxEditor, BPxSideBar, controller, selección, tool, profile, transfer |
 | 212 | [niagara-mental-model-bloque212.md](niagara-mental-model-bloque212.md) | Block 212 — La capa de creación/inserción de widgets: `javax.baja.px.editor.factory` (10 clases): WidgetFactory + WidgetInserter (DTO) + 8 factories |
 | 213 | [niagara-mental-model-bloque213.md](niagara-mental-model-bloque213.md) | Block 213 — La infra transversal del PX Editor: `com.tridium.px.editor.util` (6) + `property` (1): SelectedWidgets, Reflector, LayerManager, MenuBuilder, Handle, PxPropertyUtil |
+| 214 | [niagara-mental-model-bloque214.md](niagara-mental-model-bloque214.md) | Block 214 — Los field-editors de converters del PX Editor: `com.tridium.px.editor.fieldeditors` (3): BIEnumToSimpleFE, BINumericToSimpleFE, BIStatusToSimpleFE |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
