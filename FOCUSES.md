@@ -18,13 +18,17 @@
 | px-menu | stopped | `RESEARCH-STATE-px-menu.md` | PX Menu-Button/Dropdown en Workbench: emulación de menú desplegable (PopupBinding vs toggle in-place), sintaxis `.px`, gramática PxDecoder/Encoder, catálogo de converters, workflow oficial del editor (niagara-help) — CERRADO 12/12 | B179–B190 |
 | px-editor | stopped | `RESEARCH-STATE-px-editor.md` | El PX Editor en amplitud: la herramienta (`pxEditor-wb`), catálogo completo de widgets/bindings, media/perfiles (Wb/Hx/Mobile), theming (Palladium/CSS), animación=data-binding. Continúa px-menu — CERRADO 6/6 | B191–B196 |
 | px-editor-deep | **stopped** | `RESEARCH-STATE-px-editor-deep.md` | Profundizar pxEditor-wb (D: sidebars/studio/make/commands/field-editors) + módulos vecinos (X: webChart, templates, kitPxGraphics/Hvac/N4svg, svgBatik, bajaux). **CERRADO 11/11** (B198-B208 + síntesis B209). Grupo D (D1-D5) + Grupo X (X1-X6). Todo el subsistema PX deep documentado | B198–B209 |
-| px-editor-core | **active** | `RESEARCH-STATE-px-editor-core.md` | La INFRAESTRUCTURA de pxEditor-wb nombrada-no-abierta — C1 event bus ✅B210, C2 API base ✅B211, C3 factory/WidgetInserter ✅B212, C4 util/property ✅B213, C5 fieldeditors de converters (3). ~39 clases, fuentes confirmadas. **4/5** | B210– |
+| px-editor-core | **stopped** | `RESEARCH-STATE-px-editor-core.md` | La INFRAESTRUCTURA de pxEditor-wb nombrada-no-abierta — C1 event bus ✅B210, C2 API base ✅B211, C3 factory/WidgetInserter ✅B212, C4 util/property ✅B213, C5 fieldeditors ✅B214 + síntesis B215. **CERRADO 5/5**. 5 hilos: BPxEditor hub, selección=nexo (+§14), @AgentOn=extensión, undo=Command, delgado sobre bajaux | B210–B215 |
 
 ## Focus activo
 
-**`px-editor-core` ACTIVO** — arrancado 2026-07-06 (B210). Infra interna de pxEditor-wb. **4/5 gaps**:
-C1 ✅B210, C2 ✅B211, C3 ✅B212, C4 (util/property) ✅B213. Siguiente y ÚLTIMO: **C5 (fieldeditors de converters)**.
-B213 corrigió §14 a B211 (SelectedWidgets no dispara PxSelectionEvent).
+**(ninguno activo)** — `px-editor-core` CERRADO 5/5 (2026-07-06, B210-B214 evidencia + B215 síntesis).
+Infra interna de pxEditor-wb: C1 event bus (B210), C2 API base root (B211), C3 factory/WidgetInserter (B212),
+C4 util/property (B213), C5 fieldeditors converters (B214). Síntesis B215: 5 hilos (BPxEditor hub-and-spoke,
+selección=nexo +§14 corrige B211, @AgentOn=mecanismo de extensión uniforme, undo=Command en la infra, capa
+delgada sobre bajaux). §14: B213→B211 (SelectedWidgets dispara PxWidgetEvent, no PxSelectionEvent). **Todo el
+subsistema PX de Niagara N4 documentado end-to-end**: 4 focuses (px-menu B179-190, px-editor B191-196,
+px-editor-deep B198-209, px-editor-core B210-215) + síntesis B197/B209/B215.
 
 **px-editor-deep** (capa herramienta/render deep) — CERRADO 2026-07-06, 11 bloques B198-B208 + síntesis B209.
 Grupo D interno (sidebars B198, studio B205, make B201, commands B206, field-editors B202) + Grupo X vecinos
