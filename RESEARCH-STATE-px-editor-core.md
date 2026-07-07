@@ -1,6 +1,6 @@
-# RESEARCH-STATE — Focus `px-editor-core` (PLANIFICADO — arranca próxima sesión)
+# RESEARCH-STATE — Focus `px-editor-core` (ACTIVO — B210–)
 
-> Focus **PLANIFICADO** (no arrancado). Captura la **infraestructura de `pxEditor-wb`** que los focuses previos
+> Focus **ACTIVO** (arrancado 2026-07-06, B210). Captura la **infraestructura de `pxEditor-wb`** que los focuses previos
 > (px-menu B179-B190, px-editor B191-B196, px-editor-deep B198-B209) NOMBRARON repetidamente pero nunca abrieron:
 > el bus de eventos, la API pública base, la factory de widgets, y la infra util. Registrado 2026-07-06 al cerrar
 > sesión. Numeración global de bloques (desde **B210**). Corpus en Español (técnico EN).
@@ -15,14 +15,14 @@ editor usa pero que ningún bloque documentó a fondo. Es un focus de "cerrar el
 
 ## Cobertura
 
-**0 / 5 gaps** (PLANIFICADO, sin arrancar). ~39 clases (conteo real `find`+`wc`, un solo pipeline vineflower —
+**1 / 5 gaps** (C1 cerrado en B210). ~39 clases (conteo real `find`+`wc`, un solo pipeline vineflower —
 lección retro 2026-07-06).
 
 ## Backlog
 
 | Gap | Descripción | Fuente (confirmada 2026-07-06) | Prioridad |
 |---|---|---|---|
-| C1 | **`javax.baja.px.editor.event` — 12 clases**: el **PxEvent bus** — `PxEvent`+`PxListener` + subtipos (`PxWidgetEvent`, `PxPropertyEvent`, `PxBindingEvent`, `PxLayerEvent`, `PxSelectionEvent`, `PxComponentEvent`, `PxCompoundBindingEvent`, `PxCompoundWidgetEvent`, `PxEditorEvent`, `PxUserDefinedEvent`). El pub/sub que sincroniza sidebars↔canvas↔árbol; citado en B198/B201/B205/B206 sin abrir. | `organized/pxEditor/pxEditor-wb/vineflower/javax/baja/px/editor/event/` | **ALTA** |
+| ~~C1~~ | ✅ **CERRADO B210** — **`javax.baja.px.editor.event` — 12 clases**: el **PxEvent bus** documentado end-to-end: `PxEvent` (abstract, 9 categorías) + `PxListener` (SAM `pxEvent`) + taxonomía (2 jerarquías, `PxComponentEvent` intermedia) + compound (batch multi-widget) + dispatch en `BPxEditor` (registro/fire, no en el paquete `event`; sidebars oyentes+emisores) + `EventUtil` (reclasificación fina 13-const + factories compound; cruce `BConverter`). | `organized/pxEditor/pxEditor-wb/vineflower/javax/baja/px/editor/event/` | ~~ALTA~~ |
 | C2 | **`javax.baja.px.editor` (root) — 7 clases**: la API pública base — `BPxEditor`, `BPxSideBar` (base de TODO sidebar), `PxEditorController`, `PxEditorSelection`, `BDrawingTool`, `BPxProfile`, `BIPxTransferWidget`. Las abstracciones que todo extiende. | `.../vineflower/javax/baja/px/editor/*.java` | **ALTA** |
 | C3 | **`javax.baja.px.editor.factory` — 10 clases**: la creación/inserción de widgets — `WidgetInserter` (materializa el resultado del wizard, B201 lo dejó fuera de scope), `WidgetFactory`, `WidgetCloningFactory`, `ImageCopyingWidgetFactory`, `LabelFactory`/`PictureFactory`/`ImageFileFactory`/`JsFileFactory`/`PxFileFactory`/`NavNodeFactory`. | `.../vineflower/javax/baja/px/editor/factory/` | media |
 | C4 | **`com.tridium.px.editor.util` (6) + `property` (1)**: infra transversal — `EventUtil` (crea los PxEvents, visto en B198), `Reflector` (freeform panes/converters, muy usado B198), `SelectedWidgets` (el modelo de selección compartido canvas/árbol), `LayerManager`, `MenuBuilder`, `Handle`, `PxPropertyUtil`. | `.../vineflower/com/tridium/px/editor/{util,property}/` | media |
@@ -30,9 +30,19 @@ lección retro 2026-07-06).
 
 ## Clasificación (§8)
 
-- **read-only-investigable**: 5 (todos con fuente confirmada alcanzable — chequeo de existencia 2026-07-06).
+- **read-only-investigable**: 4 (C2-C5; todos con fuente confirmada alcanzable — chequeo 2026-07-06).
 - **requires-execution**: 0. **blocked**: 0.
-- **Orden sugerido**: C1 (event bus) → C2 (API base) → C3 (factory) → C4 (util) → C5 (fieldeditors).
+- **Orden sugerido restante**: C2 (API base) → C3 (factory) → C4 (util) → C5 (fieldeditors).
+- **Pre-respuestas parciales de B210** (cerrarán en parte por remisión): C2 verá `BPxEditor` ya abierto como
+  hub del bus (listeners/firePxEvent, `BPxEditor.java:63,143-234`); C4 verá `EventUtil` ya abierto
+  (reclasificación + factories, `util/EventUtil.java:45-135`); C5 verá el cruce `EventUtil`↔`BConverter.TYPE`.
+  No surgieron gaps NUEVOS fuera de C1-C5 (el bus es autocontenido; sus dependencias ya estaban en backlog).
+
+## Historia de iteración
+
+| Iter | Bloque | Gap | Resultado | delegado? · modelo | Ratio [INFER]/[CERT] |
+|---|---|---|---|---|---|
+| 1 | B210 | C1 | cerrado por NUEVA investigación (12 clases event + EventUtil + dispatch BPxEditor) | sí · sonnet | 2/7 = 0.29 (evidencia, sano) |
 
 ## Notas
 
