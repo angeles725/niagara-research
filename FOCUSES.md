@@ -17,13 +17,13 @@
 | chihuahua | stopped | `RESEARCH-STATE-chihuahua.md` | Módulo dashboard Niagara N4 de FUENTE PROPIA (`com.angeles.chihuahua`) para BMS Honeywell MX60. Lectura directa. Tri-parte rt/ux/wb, RBAC write-gate, frontend ES5 IIFE. Documentado (C1-C14) + comparado con Reflow (B177) — CERRADO | B163–B177 |
 | px-menu | stopped | `RESEARCH-STATE-px-menu.md` | PX Menu-Button/Dropdown en Workbench: emulación de menú desplegable (PopupBinding vs toggle in-place), sintaxis `.px`, gramática PxDecoder/Encoder, catálogo de converters, workflow oficial del editor (niagara-help) — CERRADO 12/12 | B179–B190 |
 | px-editor | stopped | `RESEARCH-STATE-px-editor.md` | El PX Editor en amplitud: la herramienta (`pxEditor-wb`), catálogo completo de widgets/bindings, media/perfiles (Wb/Hx/Mobile), theming (Palladium/CSS), animación=data-binding. Continúa px-menu — CERRADO 6/6 | B191–B196 |
-| px-editor-deep | **planned** | `RESEARCH-STATE-px-editor-deep.md` | PENDIENTE (próxima sesión): profundizar pxEditor-wb (D: sidebars/studio/make/commands/field-editors) + módulos vecinos (X: webChart, templates, kitPxGraphics/Hvac/N4svg, svgBatik, bajaux). Backlog 10 gaps, fuentes confirmadas | B198– |
+| px-editor-deep | **active** | `RESEARCH-STATE-px-editor-deep.md` | Profundizar pxEditor-wb (D: sidebars/studio/make/commands/field-editors) + módulos vecinos (X: webChart, templates, kitPxGraphics/Hvac/N4svg, svgBatik, bajaux). **1/10** (D1 CUBIERTO en B198: `sidebars/` cell-sheet+CE+commands+tree). Próximo: X1 `webChart` | B198– |
 
 ## Focus activo
 
-**(ninguno activo)** — sesión cerrada 2026-07-06. **PRÓXIMO**: focus `px-editor-deep` (PLANIFICADO, 10 gaps)
-— arrancar con `/research-sdd niagara-research px-editor-deep new`. Prioridad: D1 (`sidebars/` cell-sheet) →
-X1 (`webChart`) → X2 (templates).
+**`px-editor-deep`** (ACTIVO, 1/10) — arrancado 2026-07-06. D1 (`sidebars/`, corazón operativo del editor)
+cubierto en **B198**. Próximo gap: **X1 (`webChart`)** → X2 (templates). Continuar con
+`/research-sdd niagara-research px-editor-deep continue`.
 
 **Sesión 2026-07-06 — subsistema PX**: 19 bloques (B179-B197). `px-menu` CERRADO 12/12 (B179-B190, el menú +
 formato/gramática). `px-editor` CERRADO 6/6 (B191-B196, el editor en amplitud). `B197` síntesis cross-focus

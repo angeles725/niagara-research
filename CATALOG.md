@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **195 bloques**
+Total: **196 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -200,6 +200,7 @@ Total: **195 bloques**
 | 195 | [niagara-mental-model-bloque195.md](niagara-mental-model-bloque195.md) | Theming/CSS: cómo se estilan los widgets (Palladium Swing vs .ux-* web) |
 | 196 | [niagara-mental-model-bloque196.md](niagara-mental-model-bloque196.md) | Animación en PX: "animar" = data binding (+ SVG animado) |
 | 197 | [niagara-mental-model-bloque197.md](niagara-mental-model-bloque197.md) | Síntesis cross-focus: el subsistema PX de Niagara N4 end-to-end |
+| 198 | [niagara-mental-model-bloque198.md](niagara-mental-model-bloque198.md) | `sidebars/`: el cell-sheet, los cell editors y el árbol de widgets (corazón operativo del editor) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

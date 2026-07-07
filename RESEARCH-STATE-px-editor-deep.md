@@ -1,10 +1,9 @@
-# RESEARCH-STATE — Focus `px-editor-deep` (PLANIFICADO — pendientes de px-editor)
+# RESEARCH-STATE — Focus `px-editor-deep` (ACTIVO — en curso)
 
-> Focus **PLANIFICADO** (no arrancado). Captura lo que los focuses `px-menu` (B179-B190) y `px-editor`
-> (B191-B196) NO cubrieron a fondo. Registrado 2026-07-06 al cerrar sesión; arranca la PRÓXIMA sesión.
-> Numeración global de bloques (desde B198). Corpus en Español (técnico EN).
+> Focus **ACTIVO** (arrancado 2026-07-06). Captura lo que los focuses `px-menu` (B179-B190) y `px-editor`
+> (B191-B196) NO cubrieron a fondo. Numeración global de bloques (desde B198). Corpus en Español (técnico EN).
 > Engram topic key: `research/niagara/px-editor-deep/{gaps,progress}`.
-> Arranque: `/research-sdd niagara-research px-editor-deep new` (o `continue` una vez bootstrapeado).
+> Continuar: `/research-sdd niagara-research px-editor-deep continue`.
 
 ## Ángulo declarado (§b2)
 
@@ -15,13 +14,19 @@ Prioridad del usuario: **D1 (`sidebars/`, el property/cell-sheet — corazón op
 
 ## Cobertura
 
-**0 / 10 gaps** (PLANIFICADO, sin arrancar).
+**1 / 10 gaps** (ratio 0.10). Read-only-investigable: 9 restantes · requires-execution: 0 · blocked: 0.
+
+## Historial de iteraciones
+
+| # | Gap | Bloque | Hallazgo | Delegado? · tier |
+|---|---|---|---|---|
+| 1 | D1 | B198 | `sidebars/`: `BPxCellSheet` (property/binding editor) + 3-way `newCellEditor` + los CE del Workbench + commands→`javax.baja.ui.Command` (undo/redo) + árbol `PxTreeModel`/`PxTreeSelection` sync + propsheet/layersheet + binding/ ORD-rewriting. 36 CERT/3 INFER. | sí · sonnet |
 
 ## Grupo D — Subsistemas internos de `pxEditor-wb` (nombrados en B191, no deep-dived)
 
 | Gap | Descripción | Fuente (confirmada 2026-07-06) | Prioridad |
 |---|---|---|---|
-| D1 | **`sidebars/` — 66 archivos**: el cell-sheet/property-editor real (`BPxCellSheet`+celleditors), el árbol de widgets (`BPxTreePane`/`PxTreeModel`), la paleta. El corazón operativo del editor. | `organized/pxEditor/pxEditor-wb/vineflower/com/tridium/px/editor/sidebars/` | **ALTA** |
+| ~~D1~~ | ✅ **CUBIERTO (B198)** — `sidebars/` (66 clases): cell-sheet, cell editors, commands undo/redo, árbol de widgets, propsheet/layersheet, binding/ ORD-rewriting. Fuentes preservadas en `sources/decompiled/pxEditor-wb/sidebars/`. | ~~`organized/.../editor/sidebars/`~~ | — |
 | D2 | **`studio/` — 6**: `BStudio` + trackers/painters, las herramientas de dibujo (`NormalTool`/`GeometryTool`), edición de geometría, dragOver/drop. | `.../com/tridium/px/editor/studio/` | media |
 | D3 | **`make/` — 16 estrategias del wizard**: `BMwBoundLabel`, `BMwChart`, `BMwTimePlot`, `BMwWorkbenchView`, `BMwPxInclude`… (solo `BMwFromPalette` se documentó en B191). | `.../com/tridium/px/editor/make/` | media |
 | D4 | **`commands/` — 36**: `MoveWidget`/`MorphWidget`/`Align`/`Reorg`/`Delete` + el undo/redo delegado al `Command`/`CommandArtifact` del Workbench. | `.../com/tridium/px/editor/studio/commands/` + `commands/` | baja |
@@ -39,9 +44,9 @@ Prioridad del usuario: **D1 (`sidebars/`, el property/cell-sheet — corazón op
 
 ## Clasificación (§8)
 
-- **read-only-investigable**: 10 (todos con fuente confirmada alcanzable — chequeo de existencia 2026-07-06).
-- **requires-execution**: 0. **blocked**: 0.
-- **Orden sugerido**: D1 → X1 → X2 → D3/D5 → X3/X5 → D2/D4 → X4.
+- **read-only-investigable**: 9 (D2, D3, D4, D5, X1-X5 — fuentes confirmadas 2026-07-06). **requires-execution**: 0. **blocked**: 0.
+- **Orden sugerido restante**: **X1 (`webChart`)** → X2 (templates) → D3/D5 → X3/X5 → D2/D4 → X4.
+- **PRÓXIMO gap**: **X1 — `webChart`** (charts/gráficos, prioridad ALTA; boundary marcado en B192/B194, no abierto).
 
 ## Notas
 
