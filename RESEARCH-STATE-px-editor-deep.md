@@ -1,4 +1,4 @@
-# RESEARCH-STATE — Focus `px-editor-deep` (ACTIVO — en curso)
+# RESEARCH-STATE — Focus `px-editor-deep` (STOPPED — 11/11 CERRADO)
 
 > Focus **ACTIVO** (arrancado 2026-07-06). Captura lo que los focuses `px-menu` (B179-B190) y `px-editor`
 > (B191-B196) NO cubrieron a fondo. Numeración global de bloques (desde B198). Corpus en Español (técnico EN).
@@ -14,7 +14,7 @@ Prioridad del usuario: **D1 (`sidebars/`, el property/cell-sheet — corazón op
 
 ## Cobertura
 
-**10 / 11 gaps** (ratio 0.91). Read-only-investigable: 1 restante (X4) · requires-execution: 0 · blocked: 0.
+**11 / 11 gaps** (ratio 1.00) — **FOCUS CERRADO**. Read-only-investigable: 0 → STOP (§8). · requires-execution: 0 · blocked: 0.
 
 ## Historial de iteraciones
 
@@ -26,6 +26,7 @@ Prioridad del usuario: **D1 (`sidebars/`, el property/cell-sheet — corazón op
 | 4 | D3 | B201 | `make/` wizard: `BMakeWidget`(BEdgePane) + selección **agent-based** (`BMwConfig` implements BIAgent). 8 estrategias `BMw*`: Chart/TimePlot (chart **clásico** `javax.baja.chart`, §14 vs webChart B199), BoundLabel (fallback), PxInclude, WorkbenchView, ActionBatch/PropertyBatch (grid). `MakeWidgetContext` reutiliza el cell-sheet (B198). `addBinding` deja la ord frozen. 19 CERT/1 INFER. | sí · sonnet |
 | 5 | D5 | B202 | Field editors inline kitPx (4): par Wb-Swing (`BGenericFieldEditor`→`BWbFieldEditor.makeFor`, `BSetPointFieldEditor`) ↔ par Ux-web (shim `BSingleton`+`BIJavaScriptWidget`→JS). **Sin interfaz compartida**: paridad por type+agent (B192/B194). Semántica setpoint (dual-path write + gate) en el BINDING (`BSetPointBinding`), no en el FE. Hazard: Ux confía canWrite() client-side. 19 CERT/2 INFER. | sí · sonnet |
 | 6 | X3 | B203 | Packs gráficos: `kitPxGraphics`/`kitPxHvac`/`kitPxN4svg` = **BOG palettes sin código** (símbolos pre-bound). Raster (BoundLabel+IBooleanToSimple On/Off, confirma B196) vs vector N4svg (`ui:Picture`+SVG+converters numeric/status ricos). `kitPxBuilding` la excepción con componentes Java tipados (BEquipment/BDamper/BKnob). 14 CERT/2 INFER. | no · inline (gap liviano) |
+| 11 | X4 | B208 | `svgBatik` = **Apache Batik repackaged** (~604 clases) + 5 clases Tridium: `BSvgDecoder`(extends `BImageDecoder`, usa GVTBuilder→BufferedImage para rasterizar SVG) + puente ORD↔Batik-URL (registra protocolo `ord:` en Batik, `ImageTagRegistry`). Rasteriza los SVG de N4svg (B203). Integración de lib externa, no reimplementación. 12 CERT/2 INFER. | no · inline |
 | 10 | X6 | B207 | `easyBinding`: módulo **OEM Honeywell** (`com.honeywell.easybinding`) de auto-binding sobre kitPx. Widget único bundlea value/alarm/override+`BBoundLabel`; converter auto por tipo (`BIEbConverter`). 2 familias binding (`BEasy*`/kitPx runtime vs `BEb*`/`BValueBinding` web-preview). Rebind virtual→real (link templates B200). Assets cifrados **AES por license-feature** (OEM branding). License-gated. PARCIALMENTE OBFUSCADO. 17 CERT/7 INFER. | sí · sonnet |
 | 9 | D4 | B206 | `commands/` editor-level (14): patrón `Command`/`Artifact` por REMISIÓN a B205. Sustancia nueva: familia Insert(Dynamic/Frozen)/Delete/Rename/NewWidget + wrappers estructurales **AddResponsive**(`BResponsivePane`, responsive PX)/AddBorder(`BBorderPane`) + GotoOrd (navegación) + ApplyPxPropertiesToNewWidgets (aplica PX-props de B200 a widgets nuevos). **Cierra grupo D (D1-D5)**. 12 CERT/2 INFER. | no · inline |
 | 8 | D2 | B205 | `studio/` (61 clases): sistema de dibujo del canvas. `BStudio`=5 role-interfaces+State pattern (mouse→tracker). Trackers=máquinas de estado (UnpressedTracker el router de hit-test). Painters=buffer-and-overlay (perf). Artisans=strategy per-shape; PathArtisan=gramática SVG path sobre gx `IPathGeom` (B183). Commands `javax.baja.ui.Command`+Artifact (cierra base D4). Gotchas: anchor estático, ConvertPointTracker stub vacío, Select sin undo. 17 CERT/2 INFER. | sí · sonnet |
@@ -49,14 +50,14 @@ Prioridad del usuario: **D1 (`sidebars/`, el property/cell-sheet — corazón op
 | ~~X2~~ | ✅ **CUBIERTO (B200)** — `template`+`templateBulk`: sistema de templates (`.ntpl`, configs expuestos, deploy/upgrade, bulk Excel). Graphics tab = PxEditor embebido. Fuentes en `sources/decompiled/template-{rt,wb}/`+`templateBulk/`+`sources/manuals/template-docs/`. `easyBinding` separado → X6. | ~~`organized/{template,templateBulk}*`~~ | — |
 | ~~X6~~ | ✅ **CUBIERTO (B207)** — `easyBinding`: OEM Honeywell, auto-binding sobre kitPx, license-gated, assets AES-cifrados. Fuente en `sources/decompiled/easyBinding/`. | ~~`organized/easyBinding/`~~ | — |
 | ~~X3~~ | ✅ **CUBIERTO (B203)** — packs gráficos = BOG palettes de símbolos pre-bound (raster vs vector SVG); kitPxBuilding con componentes Java. Fuente en `sources/decompiled/kitPx-graphics-packs/`. | ~~`organized/kitPx{Graphics,Hvac,N4svg}*`~~ | — |
-| X4 | **`svgBatik`**: el motor SVG (B196 lo mencionó sin abrir) — cómo se renderiza un SVG animado en PX. | `organized/svgBatik*` | baja |
+| ~~X4~~ | ✅ **CUBIERTO (B208)** — `svgBatik` = Apache Batik + 5 clases Tridium (BSvgDecoder + puente ORD). Fuente en `sources/decompiled/svgBatik/`. | ~~`organized/svgBatik*`~~ | — |
 | ~~X5~~ | ✅ **CUBIERTO (B204)** — framework bajaux: `Widget`+spandrel(virtual-DOM)+bridge rt→web. Confirma B194. Fuente en `sources/decompiled/bajaux/`. | ~~`organized/bajaux*`~~ | — |
 
 ## Clasificación (§8)
 
-- **read-only-investigable**: 1 (X4 svgBatik — último). **requires-execution**: 0. **blocked**: 0. **Grupo D CERRADO.**
-- **Orden sugerido restante**: **X4 (svgBatik)** — ÚLTIMO gap.
-- **PRÓXIMO gap**: **X4 — `svgBatik`** (el motor SVG; ÚLTIMO gap del focus).
+- **read-only-investigable**: 0 → **STOP (§8, exhausted)**. **requires-execution**: 0. **blocked**: 0. Todos los 11 gaps cerrados.
+- **Orden sugerido restante**: — (ninguno; focus cerrado).
+- **PRÓXIMO gap**: — (focus STOPPED 11/11).
 
 ## Notas
 
