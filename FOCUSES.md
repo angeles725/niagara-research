@@ -18,13 +18,13 @@
 | px-menu | stopped | `RESEARCH-STATE-px-menu.md` | PX Menu-Button/Dropdown en Workbench: emulación de menú desplegable (PopupBinding vs toggle in-place), sintaxis `.px`, gramática PxDecoder/Encoder, catálogo de converters, workflow oficial del editor (niagara-help) — CERRADO 12/12 | B179–B190 |
 | px-editor | stopped | `RESEARCH-STATE-px-editor.md` | El PX Editor en amplitud: la herramienta (`pxEditor-wb`), catálogo completo de widgets/bindings, media/perfiles (Wb/Hx/Mobile), theming (Palladium/CSS), animación=data-binding. Continúa px-menu — CERRADO 6/6 | B191–B196 |
 | px-editor-deep | **stopped** | `RESEARCH-STATE-px-editor-deep.md` | Profundizar pxEditor-wb (D: sidebars/studio/make/commands/field-editors) + módulos vecinos (X: webChart, templates, kitPxGraphics/Hvac/N4svg, svgBatik, bajaux). **CERRADO 11/11** (B198-B208 + síntesis B209). Grupo D (D1-D5) + Grupo X (X1-X6). Todo el subsistema PX deep documentado | B198–B209 |
-| px-editor-core | **active** | `RESEARCH-STATE-px-editor-core.md` | La INFRAESTRUCTURA de pxEditor-wb nombrada-no-abierta — C1 event bus ✅B210, C2 API base ✅B211, C3 factory/WidgetInserter (10), C4 util (EventUtil/Reflector/SelectedWidgets, 7), C5 fieldeditors de converters (3). ~39 clases, fuentes confirmadas. **2/5** | B210– |
+| px-editor-core | **active** | `RESEARCH-STATE-px-editor-core.md` | La INFRAESTRUCTURA de pxEditor-wb nombrada-no-abierta — C1 event bus ✅B210, C2 API base ✅B211, C3 factory/WidgetInserter ✅B212, C4 util (EventUtil/Reflector/SelectedWidgets, 7), C5 fieldeditors de converters (3). ~39 clases, fuentes confirmadas. **3/5** | B210– |
 
 ## Focus activo
 
-**`px-editor-core` ACTIVO** — arrancado 2026-07-06 (B210). Infra interna de pxEditor-wb. **2/5 gaps**:
-C1 (PxEvent bus) ✅B210, C2 (API base root) ✅B211. Siguiente: **C3 (factory/WidgetInserter)**.
-Prioridad restante: C3 → C4 (util) → C5 (fieldeditors).
+**`px-editor-core` ACTIVO** — arrancado 2026-07-06 (B210). Infra interna de pxEditor-wb. **3/5 gaps**:
+C1 ✅B210, C2 ✅B211, C3 (factory/WidgetInserter) ✅B212. Siguiente: **C4 (util: EventUtil/Reflector/SelectedWidgets)**.
+Prioridad restante: C4 → C5 (fieldeditors).
 
 **px-editor-deep** (capa herramienta/render deep) — CERRADO 2026-07-06, 11 bloques B198-B208 + síntesis B209.
 Grupo D interno (sidebars B198, studio B205, make B201, commands B206, field-editors B202) + Grupo X vecinos

@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **209 bloques**
+Total: **210 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -214,6 +214,7 @@ Total: **209 bloques**
 | 209 | [niagara-mental-model-bloque209.md](niagara-mental-model-bloque209.md) | Síntesis `px-editor-deep`: 4 hilos transversales del subsistema PX profundo (B198-B208) |
 | 210 | [niagara-mental-model-bloque210.md](niagara-mental-model-bloque210.md) | Block 210 — El bus de eventos del PX Editor: `javax.baja.px.editor.event` (PxEvent / PxListener + dispatch en BPxEditor + EventUtil) |
 | 211 | [niagara-mental-model-bloque211.md](niagara-mental-model-bloque211.md) | Block 211 — La API base del PX Editor: `javax.baja.px.editor` (root, 7 clases): BPxEditor, BPxSideBar, controller, selección, tool, profile, transfer |
+| 212 | [niagara-mental-model-bloque212.md](niagara-mental-model-bloque212.md) | Block 212 — La capa de creación/inserción de widgets: `javax.baja.px.editor.factory` (10 clases): WidgetFactory + WidgetInserter (DTO) + 8 factories |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
