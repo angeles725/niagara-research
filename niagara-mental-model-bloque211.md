@@ -119,6 +119,13 @@ llama `select`/`deselect`/`setWidgets` y luego levanta un `PxSelectionEvent` por
 con las reacciones `resetHandles()`/`forceRootLayout()`/`doUpdate()` de `firePxEvent` casos 3-6
 (`BPxEditor.java:186-213`). Complementa a B210, no lo duplica.
 
+> **Corregido en [Block 213] §213.1 (§14).** La impl concreta es `SelectedWidgets` (`implements
+> PxEditorSelection`, `SelectedWidgets.java:22`), pero sus mutadores `select`/`deselect`/`setWidgets` **NO**
+> disparan `PxSelectionEvent` (no hay siquiera import de esa clase). Lo que dispara es un `Subscriber` interno
+> que emite `PxWidgetEvent` en cambios de PROPIEDAD de widgets ya seleccionados (`SelectedWidgets.java:53-54`).
+> El `[INFER]` de arriba queda ACOTADO: "SelectedWidgets es la impl" se confirma; "dispara PxSelectionEvent al
+> mutar" queda sin evidencia y se remite al caller `BPxEditor`/`BPxEditorPane`.
+
 ## 211.5 — `BDrawingTool`: la herramienta activa como `BFrozenEnum` (5 estados) `[CERT]`
 
 La abstracción "drawing tool" es un **enum congelado**, NO una interfaz de manejo de mouse:
