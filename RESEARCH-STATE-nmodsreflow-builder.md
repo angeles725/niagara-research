@@ -38,8 +38,8 @@ geo Mapbox ("3D") → síntesis de producto → **diseño de portabilidad a chih
 
 ## Coverage
 
-- **Métrica**: 4 / 11 gaps cerrados (0.36).
-- **Bloques del focus**: B216 (BG1 stack), B217 (BG2 modelo+persistencia, **[CERT-live]**), B218 (BG5 catálogo de widgets), B219 (BG7 assets embebidos + mecanismo ORD→URL).
+- **Métrica**: 5 / 11 gaps cerrados (0.45).
+- **Bloques del focus**: B216 (BG1 stack), B217 (BG2 modelo+persistencia, **[CERT-live]**), B218 (BG5 catálogo), B219 (BG7 assets embebidos + ORD→URL), B220 (BG8 upload = out-of-band, sin upload in-app).
 - **Reordenamiento**: BG5 se adelantó a BG3/BG4 al aparecer el dashboard real de disco `HoneywellMX605132026` (26 cards, 10 tipos) — evidencia primaria fuerte para el catálogo. BG3 (motor JSON-Patch) y BG4 (editor/layout) siguen pendientes.
 - **Last iteration**: 2026-07-12 — BG1 cerrado (B216, stack & librerías): RT Java = jackson (JSON, 30 clases) +
   flipkart-zjsonpatch (motor JSON-Patch RFC-6902, el "editá-y-se-actualiza") + opencsv (CSV export) +
@@ -60,7 +60,7 @@ geo Mapbox ("3D") → síntesis de producto → **diseño de portabilidad a chih
 | — | BG5 · **Catálogo de widgets/cards**: 20 tipos ofrecidos (registro `cardTypes`) + alias legacy `gauge`; switch `type→component` (v-if); schema/defaults por tipo; add-flow = dropdown en drawer (no paleta drag); especiales hx/url=iframe, building-map=Mapbox | SPA (beautify) + config real disco | **cerrado B218** |
 | media | BG6 · **Render de gauges/charts**: gauge = SVG custom (`circleStyle`, `stroke-dasharray`/`linecap`); `HistoryChart` lib perdida a minificación → beautify dirigido del chunk | SPA (beautify) · parcial thin | pending |
 | — | BG7 · **Bibliotecas de assets embebidas**: `image-library` (25 JPG HVAC, nav-RPC no REST), FontAwesome icon-picker (1853), `point-matrix.json` (109, auto-bind), `sound-library` (11 MP3); **mecanismo ORD→URL** `$ord.image()`: `module://`→`/module/`, `file:^`→`/ord/` (servlets nativos Niagara, no el custom) | Java `-rt` + assets + SPA | **cerrado B219** |
-| media | BG8 · **Assets propios del usuario: listado + upload de fotos**: `ImageListResponse` escanea `BFileSystem` desde `^`; `EquipmentNoteUpdateResponse` byte-passthrough a `^reflow/notes/`; NO hay endpoint multipart → mecanismo static, payload base64-in-JSON = thin/needs-live | Java `-rt` + SPA | pending (thin en payload) |
+| — | BG8 · **Assets propios del usuario (upload)**: **veredicto: NO hay upload in-app** (doPost 4 rutas, 0 multipart; bundle 0 FileReader/FormData); fotos llegan out-of-band al file space (Workbench), Reflow las referencia `file:^Imagenes/…`; picker = nav-RPC `station:\|file:^`; formatos jpg/jpeg/png/svg/gif | Java `-rt` + SPA + disco | **cerrado B220** |
 | media | BG9 · **Vista geo "3D" Mapbox**: `Mgl*` wrappers, card `building-map`, markers 2D, sin pitch/extrusion en código Reflow (3D latente no usado); `WeatherMapResponse` radar PNG desde cloud niagaramodules; `MglRasterLayer` | SPA + Java `-rt` · nuance needs-live | pending |
 | media | BG10 · **SÍNTESIS Parte A**: "cómo Reflow construye un dashboard editable end-to-end" — flujo de producto completo, cross-ref BG1-BG9 | síntesis (design) | pending |
 | design | BG11 · **Parte B — portabilidad a chihuahua**: cómo añadir la capacidad de builder a `chihuahua` (ES5 IIFE `window.MX60`, sin Vue, con RBAC write-gate); brechas, opciones, plan | applied/design (READ-ONLY sobre chihuahua) | pending |
@@ -77,7 +77,7 @@ geo Mapbox ("3D") → síntesis de producto → **diseño de portabilidad a chih
 
 ## Stop control (primario = read-only-investigable, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 7 (BG3, BG4, BG6, BG8-BG11; BG6/BG8/BG9 con componentes thin acotados, el resto full-static).
+- **Open gaps — read-only investigable**: 6 (BG3, BG4, BG6, BG9, BG10, BG11; BG6/BG9 con componentes thin acotados, el resto full-static).
 - **Open gaps — requires-execution**: 0.
 - **Fase dinámica ABIERTA (§12)**: station N4 VIVA disponible (localhost, usuario `API`/HTTPBasicScheme + `API2`/DIGEST;
   Reflow **1.7.5-43**) + station de disco `HoneywellMX605132026` (Reflow completo, dashboard medianamente armado).
@@ -94,6 +94,7 @@ geo Mapbox ("3D") → síntesis de producto → **diseño de portabilidad a chih
 | 2 | 2026-07-12 | BG2 modelo dashboard + persistencia | B217 | sí · sweep SPA (sonnet) + validación live (no·inline) | 0 (validado [CERT-live] contra station viva; abre experimento de escritura dinámico) |
 | 3 | 2026-07-12 | BG5 catálogo widgets (adelantado) | B218 | sí · sweep bundle (sonnet) + config real disco (no·inline) | 0 (20 tipos + type→component + defaults + add-flow; nueva fuente: dashboard real HoneywellMX605132026) |
 | 4 | 2026-07-12 | BG7 assets embebidos + ORD→URL | B219 | sí · sweep imágenes (sonnet) | 0 (image-library nav-RPC, FontAwesome 1853, point-matrix 109, $ord.image resolver; sweep cubre también BG8) |
+| 5 | 2026-07-12 | BG8 upload fotos propias | B220 | no · inline (sobre sweep B219) | 0 (veredicto: sin upload in-app; out-of-band + nav-RPC picker) |
 
 ## Self-verify
 
@@ -127,3 +128,8 @@ geo Mapbox ("3D") → síntesis de producto → **diseño de portabilidad a chih
   ImageListResponse:49 formatos jpg/png/svg/gif/jpeg). verify-block ok. `[CERT]` 10 · `[INFER]` 1. Ratio 0.10
   (evidencia sólida). Hallazgo clave: Reflow NO sirve imágenes — delega a servlets nativos Niagara `/module/` y
   `/ord/`; ImageLibrary/ImageList REST son vestigiales (bundle usa nav-RPC).
+- **B220**: tokens load-bearing grep-confirmados — BaseServlet doPost 4 rutas (:273-285, sin multipart/getParts),
+  bundle 0 hits FileReader/multipart/FormData, ImageBrowser BF:40681 (file:^/module://, emite {ord,width,height}),
+  nav root station BF:38839 (`station:|file:^`), EquipmentNoteUpdate :20-27 (^reflow/notes/, byte-passthrough),
+  ImageListResponse :49 formatos. Evidencia disco: shared/Imagenes reales. verify-block ok. `[CERT]` 9 · `[INFER]`
+  4. Ratio 0.44 (evidencia+diseño chihuahua). Veredicto: SIN upload in-app, fotos out-of-band vía Workbench.

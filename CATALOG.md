@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **217 bloques**
+Total: **218 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -222,6 +222,7 @@ Total: **217 bloques**
 | 217 | [niagara-mental-model-bloque217.md](niagara-mental-model-bloque217.md) | Block 217 — Reflow dashboard-builder (II): el modelo de dashboard editable, su persistencia y el update en vivo |
 | 218 | [niagara-mental-model-bloque218.md](niagara-mental-model-bloque218.md) | Block 218 — Reflow dashboard-builder (III): el catálogo de widgets y cómo se agrega uno |
 | 219 | [niagara-mental-model-bloque219.md](niagara-mental-model-bloque219.md) | Block 219 — Reflow dashboard-builder (IV): bibliotecas de assets embebidas y el mecanismo ORD→URL de imágenes |
+| 220 | [niagara-mental-model-bloque220.md](niagara-mental-model-bloque220.md) | Block 220 — Reflow dashboard-builder (V): cómo el usuario agrega sus PROPIAS fotos (upload) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
