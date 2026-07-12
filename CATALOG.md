@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **238 bloques**
+Total: **239 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -243,6 +243,7 @@ Total: **238 bloques**
 | 238 | [niagara-mental-model-bloque238.md](niagara-mental-model-bloque238.md) | Block 238 — Reflow: usuarios, themes, favoritos y el modelo de autorización (profiles) |
 | 239 | [niagara-mental-model-bloque239.md](niagara-mental-model-bloque239.md) | Block 239 — Reflow: navegación/menú y el modelo de datos de equipment |
 | 240 | [niagara-mental-model-bloque240.md](niagara-mental-model-bloque240.md) | Block 240 — Reflow: la UI de alarmas (widget, consola, ack, sonidos) |
+| 241 | [niagara-mental-model-bloque241.md](niagara-mental-model-bloque241.md) | Block 241 — Reflow: schedules (widget + edición vía WebScheduler nativo) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
