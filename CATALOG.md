@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **227 bloques**
+Total: **228 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -232,6 +232,7 @@ Total: **227 bloques**
 | 227 | [niagara-mental-model-bloque227.md](niagara-mental-model-bloque227.md) | Block 227 — Reflow dashboard-builder (XI): modernización del stack — qué usar hoy y qué mejorar |
 | 228 | [niagara-mental-model-bloque228.md](niagara-mental-model-bloque228.md) | Block 228 — Reflow dashboard-builder (XII): auto-binding de puntos (equipment remap / comisionamiento) |
 | 229 | [niagara-mental-model-bloque229.md](niagara-mental-model-bloque229.md) | Block 229 — Reflow dashboard-builder (XIII): floorplans (planos con overlays de puntos en vivo) |
+| 230 | [niagara-mental-model-bloque230.md](niagara-mental-model-bloque230.md) | Block 230 — Reflow: evolución de producto v1.7.5 → v1.7.7 (qué cambió realmente) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
