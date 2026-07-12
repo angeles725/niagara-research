@@ -38,7 +38,10 @@ geo Mapbox ("3D") → síntesis de producto → **diseño de portabilidad a chih
 
 ## Coverage
 
-- **Métrica**: **12 / 12 gaps cerrados (1.00). FOCUS COMPLETO.** *(backlog ampliado 2026-07-12: BG11 → chihuahua; +BG13 modernización. 12 = BG1-BG11 + BG13.)*
+- **Métrica**: base **12 / 12 CERRADO** (BG1-BG11 + BG13). **REABIERTO 2026-07-12** (autorizado por usuario) con
+  10 gaps nuevos en 4 grupos A→B→C→D (budget adicional, §8 reopen): **A** auto-binding + floorplans, **B** ciclo de
+  vida (licensing-producto/backups/migración/diff-versiones), **C** dinámico (experimento escritura + editor browser),
+  **D** (pedido usuario 2026-07-12) módulos que usa + sistema de vistas Workbench/navegador. Métrica reapertura: 0 / 10 (A en curso).
 - **Bloques del focus**: B216 (BG1 stack), B217 (BG2 modelo **[CERT-live]**), B218 (BG5 catálogo), B219 (BG7 assets), B220 (BG8 upload), B221 (BG3 motor+control), B222 (BG9 Mapbox=2D), B223 (BG4 editor+masonry), B224 (BG6 render gauge/chart + §14 corrige B216/B218).
 - **Correcciones §14** (B224): B216 §216.4 (d3 NO ausente, aliaseado) + B218 §218.3 (circle=iView wrapper, no SVG custom). Notas insertadas en ambos origen.
 - **Reordenamiento**: BG5 se adelantó a BG3/BG4 al aparecer el dashboard real de disco `HoneywellMX605132026` (26 cards, 10 tipos) — evidencia primaria fuerte para el catálogo. BG3 (motor JSON-Patch) y BG4 (editor/layout) siguen pendientes.
@@ -66,6 +69,21 @@ geo Mapbox ("3D") → síntesis de producto → **diseño de portabilidad a chih
 | — | BG10 · **SÍNTESIS Parte A**: flujo end-to-end (crear→editar→persistir→propagar→enriquecer) + stack por capa + 6 hilos transversales (server delgado, apoyo en plataforma, doc+patches, editar-sobre-vista-viva, todo gateado, lección §14) | síntesis (design) | **cerrado B225** |
 | — | BG11 · **Parte B — chihuahua como builder + portabilidad**: documentado con las mismas dimensiones; **veredicto: chihuahua NO tiene capacidad builder** (dashboard FIJO, layout hardcoded en constantes Java, "no drag-drop" deliberado); tabla comparativa 11 dimensiones; **chihuahua tiene 3D real (Three.js) que Reflow no**; lidera en RBAC/audit; plan de portabilidad 5 piezas ranked | design (chihuahua fuente propia) | **cerrado B226** |
 | — | BG13 · **Modernización del stack** (pedido usuario): diagnóstico (Vue2 EOL, Vuex→Pinia, iView discontinuado, Masonry→CSS Grid, mapbox→MapLibre, +Vite/TS); tabla de-qué-a-qué; mejoras arquitectónicas (tipar config, upload real, editor sin iframe, RBAC); qué mantener (doc+JSON-Patch, d3, delegar a plataforma) | design/análisis (B216 + web) | **cerrado B227** |
+
+## Reapertura 2026-07-12 — backlog A→B→C (autorizado por usuario)
+
+| Grupo | Gap | Tipo/fuente | Estado |
+|---|---|---|---|
+| **A** | BG14 · **Auto-binding de puntos**: tabla point-matrix (109 puntos, 10 tipos, regex); template filtra n/a + prioridad→5 grupos; matcher `ua` (regex/name/hash-#); flujo `MAP_DEVICE` (LOAD_NIAGARA_POINTS→match→assign ord, 3 modos); override per-punto + lockFromRemap; persist compacto `{pointId:ord}` | SPA + point-matrix.json | **cerrado B228** |
+| **A** | BG15 · **Floorplans**: planos de planta con overlays de puntos arrastrables (vue-drag-resize), modelo floor/element, edición drag-place | SPA (beautify) | pending (sweep) |
+| B | BG16 · **Licensing como producto**: qué límite gatea cada tier (`license.limits.*`), servicio `api.niagaramodules.com`, activación (ángulo producto, no seguridad B139) | SPA + Java `-rt` | queued |
+| B | BG17 · **Versionado/backups del dashboard**: `backups/` (Pre-remap/Incremental/restore) como historial de producto (ángulo producto, no seguridad B144) | Java `-rt` + disco | queued |
+| B | BG18 · **Migración de config entre versiones**: header `Client-Migration`, `migrationActive`/`migrationStatus`, cómo migra un dashboard viejo | SPA + Java `-rt` | queued |
+| B | BG19 · **Evolución de producto 1.5→1.7→1.7.7**: destilar `REFLOW-175-vs-177-DIFF.md` (cambios de capacidad builder) | DIFF + bloques | queued |
+| C | BG20 · **Experimento de escritura (dinámico §12)**: crear un dashboard más completo en la station viva, observar JSON-Patch en vivo (backup `bf70f28f…` listo) | station viva (write supervisado) | queued (requiere OK write) |
+| C | BG21 · **Editor en el browser (dinámico §12)**: ver/interactuar el modo edición real con chrome-devtools (requiere Chrome con debug port) | station viva (browser) | queued (requiere Chrome) |
+| D | BG22 · **Módulos que usa nmodsReflow y cómo**: árbol de dependencias `module.xml` (baja, bajaux, web, control, gx, driver…), qué usa de cada uno y para qué; libs de terceros embarcadas vs módulos del framework | Java `-rt`/`-ux` module.xml + imports | queued |
+| D | BG23 · **Sistema de vistas (Workbench/navegador/perfiles)**: cómo Reflow registra sus 3 vistas (`BReflow`/`BReflowConfig`/`BReflowRedirect` = `BIJavaScript` view-agents, parcial B151/B152), en qué perfiles se sirve (Wb/Hx/browser/mobile), iframe vs Workbench, cómo la misma SPA corre en cada contexto | Java `-ux` + SPA + cross-ref px-editor B194 | queued |
 
 ## Blocked / thin-source gaps (con lo que necesitan)
 
