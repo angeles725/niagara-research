@@ -51,7 +51,7 @@ geo Mapbox ("3D") → síntesis de producto → **diseño de portabilidad a chih
 - **Métrica**: base **12 / 12 CERRADO** (BG1-BG11 + BG13). **REABIERTO 2026-07-12** (autorizado por usuario) con
   16 gaps nuevos en 5 grupos A→B→C→D→E (budget adicional, §8 reopen): **A** auto-binding + floorplans, **B** ciclo de
   vida (licensing-producto/backups/migración/diff-versiones), **C** dinámico (experimento escritura + editor browser),
-  **D** (pedido usuario 2026-07-12) módulos que usa + sistema de vistas Workbench/navegador. Métrica reapertura: **11 / 16 — A+B+D + BG26/27/28 (B228-B238). Grupo E en curso (BG28✓; BG24/25/29 pendientes). Grupo C PENDIENTE de OK del usuario.**
+  **D** (pedido usuario 2026-07-12) módulos que usa + sistema de vistas Workbench/navegador. Métrica reapertura: **12 / 16 — A+B+D + BG26/27/28/29 (B228-B239). Grupo E en curso (BG29✓; BG24/25 pendientes). Grupo C PENDIENTE de OK del usuario.**
 - **Bloques del focus**: B216 (BG1 stack), B217 (BG2 modelo **[CERT-live]**), B218 (BG5 catálogo), B219 (BG7 assets), B220 (BG8 upload), B221 (BG3 motor+control), B222 (BG9 Mapbox=2D), B223 (BG4 editor+masonry), B224 (BG6 render gauge/chart + §14 corrige B216/B218).
 - **Correcciones §14** (B224): B216 §216.4 (d3 NO ausente, aliaseado) + B218 §218.3 (circle=iView wrapper, no SVG custom). Notas insertadas en ambos origen.
 - **Reordenamiento**: BG5 se adelantó a BG3/BG4 al aparecer el dashboard real de disco `HoneywellMX605132026` (26 cards, 10 tipos) — evidencia primaria fuerte para el catálogo. BG3 (motor JSON-Patch) y BG4 (editor/layout) siguen pendientes.
@@ -99,7 +99,7 @@ geo Mapbox ("3D") → síntesis de producto → **diseño de portabilidad a chih
 | — | BG26 · **Weather**: componente `Weather` compartido (current+forecast), provider **AerisWeather** vía cloud-proxy `weather.niagaramodules.com/observations`+`/forecasts` (host=hostId); ubicación por station (city/zip/coord) + override per-card; gate `weather.enabled` | SPA | **cerrado B236** |
 | — | BG27 · **History pipeline + CSV**: HistoryChartDataResponse→HistoryData cursor SIN downsampling (vuelca rango crudo, vs chihuahua stride B174); BDateRangeEnum 15 rangos por tag; client fetch http/BQL; CSV: opencsv importa point-map + alarm CSV (NO history export, que es client-side data:text/csv). §14 corrige B216 | Java `-rt` + SPA | **cerrado B237** |
 | — | BG28 · **Users/themes/favorites/profiles**: user=username/roles(passthrough station)/isConfig, SIN capability flags; theme global admin + colors tinycolor editor, SIN userThemes (dif chihuahua); favorites per-usuario WS command filename server-derived; **autorización=profiles** (route-restriction gating, no booleanos per-acción) | SPA + Java + disco | **cerrado B238** |
-| **E** | BG29 · **Navigation/menu + equipment model**: módulo `navigation` (árbol nav, grupos), modelo `equipment` (types/items/groups) completo | SPA | queued |
+| — | BG29 · **Navigation + equipment model**: nav árbol 2-niveles (items[]+subnavs[], type=UI-selector, ADD_ITEM_FOR_PAGE auto; restricción via profiles); equipment types[](10 templates) vs items[](devices), encoding we() compacto {pointId:ord} delta-vs-template, servedBy; jerarquía building→floors/equipment (confirma B217) | SPA + disco | **cerrado B239** |
 
 ## Blocked / thin-source gaps (con lo que necesitan)
 
