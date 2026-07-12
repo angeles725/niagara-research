@@ -1,0 +1,32 @@
+# B217 live probe — GET https://localhost/nmodsreflow/config
+# user API (HTTPBasicScheme), read-only, 2026-07-12 · HTTP 200 · 60154 B
+# SANITIZED: structure only. Client site data (building/equipment/schedule/history names,
+# coordinates, profiles, theme branding VALUES) REDACTED per SECRETS DISCIPLINE (live-install).
+# Backup of full body kept ONLY in scratchpad (not corpus): BACKUP-config-basic-20260712.json sha256 bf70f28f…
+
+LIVE IDENTITY (§12 re-measured, not inherited):
+  reflowVersion       : 1.7.5-43        <-- station runs Reflow 1.7.5 (static corpus B216/B217 = JAR 1.7.7.75)
+  config schemaVersion: 14
+  stateLoaded         : true
+  savePaused          : false
+
+TOP-LEVEL config.json KEYS (18):
+  alarms, buildings, colors, dashboardCards, equipment, floorplans, histories,
+  landing, navigation, pages, profiles, reflowVersion, savePaused, schedules,
+  stateLoaded, theme, version, weather
+
+DASHBOARD MODEL (validates B217 §217.1-217.2):
+  dashboardCards.cards : length 2 (this is the FACTORY-DEFAULT dashboard)
+  card field names     : id, type, enabled, config   (NO width/height present -> defaults apply)
+  distinct card types  : alarm, weather-forecast
+  card[0] alarm  config keys : display, displayType, title
+  card[1] weather-forecast config keys : (empty {})
+  landing.cards        : array of 2 ids; landing.cards == dashboardCards.cards[].id  -> MATCH true
+  pages.items          : 0 custom pages
+
+CLIENT-SITE SCALE (counts only, names redacted):
+  buildings=22  equipment=32  schedules=10  histories=21
+
+THEME/product surface keys (branding VALUES redacted):
+  background, backgroundPosition, copyright, copyrightLink, logo, logoHeight,
+  logoHeightMobile, shortName, showCardHoverAnimation, showWelcome, subtitle, title, useStationTimezone

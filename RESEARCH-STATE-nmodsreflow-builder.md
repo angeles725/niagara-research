@@ -38,8 +38,8 @@ geo Mapbox ("3D") → síntesis de producto → **diseño de portabilidad a chih
 
 ## Coverage
 
-- **Métrica**: 1 / 11 gaps cerrados (0.09).
-- **Bloques del focus**: B216 (BG1 stack & librerías).
+- **Métrica**: 2 / 11 gaps cerrados (0.18).
+- **Bloques del focus**: B216 (BG1 stack & librerías), B217 (BG2 modelo dashboard + persistencia + update en vivo, **validado [CERT-live]**).
 - **Last iteration**: 2026-07-12 — BG1 cerrado (B216, stack & librerías): RT Java = jackson (JSON, 30 clases) +
   flipkart-zjsonpatch (motor JSON-Patch RFC-6902, el "editá-y-se-actualiza") + opencsv (CSV export) +
   apache-commons-io TeeOutputStream (cache-and-serve) + com.tridium.json (JSON de assets). SPA = Vue 2.6.14 +
@@ -53,7 +53,7 @@ geo Mapbox ("3D") → síntesis de producto → **diseño de portabilidad a chih
 | Prioridad | Gap | Tipo/fuente | Estado |
 |---|---|---|---|
 | — | BG1 · **Stack & librerías + función de cada una**: RT (jackson, flipkart-zjsonpatch, opencsv, apache-commons-io, com.tridium.json) + JS (Vue 2.6.14, vue-router, Vuex, SortableJS 1.10.2, vue-drag-resize, mapbox-gl, FontAwesome; ausencia de d3/axios) | Java `-rt` + SPA (banners/imports) | **cerrado B216** |
-| alta | BG2 · **Modelo de dashboard editable + persistencia**: dashboard = array de `cards {id,type,config,width}`, blob opaco a Java (`^reflow/config.json`), Vuex `dashboardCards`; save full (`ConfigUpdateResponse`) + push live WS `config-reload` | Java `sync/`+`http/responses/` + SPA | pending |
+| — | BG2 · **Modelo de dashboard editable + persistencia**: dashboard = array de `cards {id,type,config,width}`, blob opaco a Java (`^reflow/config.json`), Vuex `dashboardCards`; save full (`ConfigUpdateResponse`) + push live WS `config-reload`; delta multiusuario (JSON-Patch, merge en caliente) | Java `sync/`+`http/responses/` + SPA | **cerrado B217 (+[CERT-live])** |
 | alta | BG3 · **Motor de update en vivo (JSON Patch)**: `flipkart-zjsonpatch` RFC-6902, `ConfigDeltaResponse`→`BReflowSyncService.apply()`; merge multiusuario "editá y se actualiza" | Java `-rt` | pending |
 | alta | BG4 · **Editor visual / edit mode + layout**: `editMode`, edición inline por card (`cardTypeChanged`/`cardWidthChanged`/`config-menu`), masonry + enum `single/double/full`, `vue-drag-resize` secundario, SortableJS reorder; NO hay paleta drag estilo Canva | SPA (beautify) | pending |
 | alta | BG5 · **Catálogo de widgets/cards**: los ~19-21 tipos (alarm, building-map, gage, equipment-list, point-display, historyChart, weather-*, table, toggle, circle, hyperlink, schedule-list, divider…) + switch `type→component` + `card.config` schema por tipo | SPA (beautify) | pending |
@@ -76,10 +76,12 @@ geo Mapbox ("3D") → síntesis de producto → **diseño de portabilidad a chih
 
 ## Stop control (primario = read-only-investigable, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 10 (BG2-BG11; BG6/BG8/BG9 con componentes thin acotados, el resto full-static).
+- **Open gaps — read-only investigable**: 9 (BG3-BG11; BG6/BG8/BG9 con componentes thin acotados, el resto full-static).
 - **Open gaps — requires-execution**: 0.
-- **Open gaps — blocked** (live/hardware): 0 duros; sub-afirmaciones de BG8/BG9 pueden diferirse a fase dinámica.
-- **STOP**: NO declarado — 10 gaps investigables (BG2 siguiente).
+- **Fase dinámica ABIERTA (§12)**: station N4 VIVA disponible (localhost, usuario `API`/HTTPBasicScheme + `API2`/DIGEST;
+  Reflow **1.7.5-43**) + station de disco `HoneywellMX605132026` (Reflow completo, dashboard medianamente armado).
+  Habilita validación `[CERT-live]` y un experimento de ESCRITURA supervisado (backup `bf70f28f…` listo).
+- **STOP**: NO declarado — 9 gaps investigables (BG3 siguiente) + fase dinámica en curso.
 - Budget cap: none.
 
 ## Iteration history
@@ -88,6 +90,7 @@ geo Mapbox ("3D") → síntesis de producto → **diseño de portabilidad a chih
 |---|---|---|---|---|---|
 | (bootstrap) | 2026-07-12 | — | — | sí · audit sweep matriz (sonnet) | 11 gaps derivados de la matriz de 24 subsistemas |
 | 1 | 2026-07-12 | BG1 stack & librerías | B216 | no · inline (sobre matriz) | 0 (inventario; alimenta BG2/BG3/BG6/BG7/BG9) |
+| 2 | 2026-07-12 | BG2 modelo dashboard + persistencia | B217 | sí · sweep SPA (sonnet) + validación live (no·inline) | 0 (validado [CERT-live] contra station viva; abre experimento de escritura dinámico) |
 
 ## Self-verify
 
@@ -99,3 +102,13 @@ geo Mapbox ("3D") → síntesis de producto → **diseño de portabilidad a chih
   three/babylon/WebGLRenderer=0). verify-block exit 0. `[CERT]` 8 (adj) · `[INFER]` 5 (adj). Ratio ≈ 0.62 —
   bloque de INVENTARIO-con-roles (cada lib = 1 [CERT] presencia + 1 [INFER] rol deducido); no señala
   agotamiento. Identidad SPA anclada por sha256 (`81b82b83…` = B153).
+- **B217**: tokens load-bearing grep-confirmados en beautified temp (`dashboardCards` BF:13952 · cards/ADD_CARD
+  BF:8378 · Na()/removeUndefined BF:13938 · saveState/config_update BF:14144 · saveDelta/config_delta/sendFullState
+  BF:14184 · STATE_DELTA/delta-sync BF:14029 · "Reload Required"/requiresReload BF:118191 · enum
+  single/double/full/quarter/half BF:92460) + Java (`ConfigUpdateResponse.java` config.json:33/Config-Timestamp:91/
+  config-reload:96/broadcast:101 · `BReflowSyncService.java` JsonPatch.apply:420/delta:438-446). **Validación
+  [CERT-live]** (station viva, GET config 200): forma `cards[]`={id,type,enabled,config} + config alarm=
+  {display,displayType,title} + `landing.cards==pool ids` (match=true) + 18 keys top-level → todos CONFIRMED.
+  verify-block exit 0. `[CERT-live]` 3 · `[CERT]` 15 · `[INFER]` 5. Ratio 0.28 (evidencia, sano). Divergencia de
+  versión notada (station 1.7.5-43 vs corpus static 1.7.7.75; schema config v14 común). Probe sanitizado en
+  `sources/probes/B217-live-config-structure-20260712.txt` (estructura, cero datos del cliente).
