@@ -19,15 +19,21 @@
 | px-editor | stopped | `RESEARCH-STATE-px-editor.md` | El PX Editor en amplitud: la herramienta (`pxEditor-wb`), catálogo completo de widgets/bindings, media/perfiles (Wb/Hx/Mobile), theming (Palladium/CSS), animación=data-binding. Continúa px-menu — CERRADO 6/6 | B191–B196 |
 | px-editor-deep | **stopped** | `RESEARCH-STATE-px-editor-deep.md` | Profundizar pxEditor-wb (D: sidebars/studio/make/commands/field-editors) + módulos vecinos (X: webChart, templates, kitPxGraphics/Hvac/N4svg, svgBatik, bajaux). **CERRADO 11/11** (B198-B208 + síntesis B209). Grupo D (D1-D5) + Grupo X (X1-X6). Todo el subsistema PX deep documentado | B198–B209 |
 | px-editor-core | **stopped** | `RESEARCH-STATE-px-editor-core.md` | La INFRAESTRUCTURA de pxEditor-wb nombrada-no-abierta — C1 event bus ✅B210, C2 API base ✅B211, C3 factory/WidgetInserter ✅B212, C4 util/property ✅B213, C5 fieldeditors ✅B214 + síntesis B215. **CERRADO 5/5**. 5 hilos: BPxEditor hub, selección=nexo (+§14), @AgentOn=extensión, undo=Command, delgado sobre bajaux | B210–B215 |
-| nmodsreflow-builder | **active** | `RESEARCH-STATE-nmodsreflow-builder.md` | Reflow como CONSTRUCTOR de dashboards (ángulo PRODUCTO, no seguridad): stack/librerías, modelo de dashboard editable + persistencia, motor de update en vivo (JSON Patch), editor visual/layout (masonry+enum, no grid-drag), catálogo de widgets, render gauges/SVG, bibliotecas de assets embebidas (image/sound/icon/point-matrix), assets propios del usuario, vista geo Mapbox ("3D"=2D). Parte B = portabilidad a chihuahua. Backlog 11 gaps (audit-first) | B216– |
+| nmodsreflow-builder | **stopped** | `RESEARCH-STATE-nmodsreflow-builder.md` | Reflow como CONSTRUCTOR de dashboards (ángulo PRODUCTO). **CERRADO 12/12** (B216-B227): stack/libs (B216, §14 d3 presente), modelo dashboard+persistencia **[CERT-live]** (B217), catálogo 20 widgets (B218), assets embebidos+ORD→URL (B219), upload=out-of-band (B220), motor JSON-Patch+control multiusuario (B221), Mapbox "3D"=2D (B222), editor+masonry (B223), render gauge/chart d3/iView (B224), síntesis Parte A (B225), chihuahua-builder+portabilidad (B226), modernización stack (B227) | B216–B227 |
 
 ## Focus activo
 
-**`nmodsreflow-builder`** (ángulo PRODUCTO/BUILDER) — SEMBRADO 2026-07-12 (audit-first, matriz de 24 subsistemas ·
-sonnet → backlog 11 gaps BG1-BG11). Reconstruye cómo Reflow crea/edita/actualiza dashboards y agrega contenido
-(arte de equipos, fotos, iconos, gauges, vista Mapbox) dentro del propio módulo. El "3D" es Mapbox GL 2D (sin
-three.js/babylon; sin pitch/extrusion en código Reflow). El motor "editá-y-se-actualiza" es flipkart-zjsonpatch
-(RFC-6902). Parte B posterior: diseño de portabilidad al módulo propio `chihuahua`. Arranca en B216 (BG1 stack).
+**(ninguno activo)** — `nmodsreflow-builder` CERRADO 12/12 (2026-07-12, B216-B227). §18 retro pendiente de correr.
+
+**nmodsreflow-builder** (ángulo PRODUCTO/BUILDER) — CERRADO 2026-07-12, 12 bloques B216-B227. Cómo Reflow crea/edita/
+actualiza dashboards y agrega contenido dentro del módulo. Hallazgos: servidor delgado (persiste/parchea JSON opaco),
+composición 100% cliente Vue; "editá-y-se-actualiza" = JSON-Patch RFC-6902 (fast-json-patch cliente / flipkart server)
++ control multiusuario cooperativo; catálogo 20 widgets (add=dropdown, no paleta drag); layout=masonry; editor=iframe
+live-preview; assets=delegados a servlets nativos Niagara (`/module/`, `/ord/`), upload=out-of-band (Workbench);
+"3D"=Mapbox 2D. **§14**: d3 SÍ presente (aliaseado, corrige B216); circle=iView (corrige B218). Validación **[CERT-live]**
+contra station N4 viva (B217 §217.8) + dashboard real de disco (B218). Parte B (B226): chihuahua NO tiene builder
+(dashboard fijo) pero tiene **3D real Three.js** que Reflow no, y lidera en RBAC/audit; plan de portabilidad 5 piezas.
+Modernización (B227): Vue2 EOL→Vue3/Pinia/Vite/TS, mapbox→MapLibre, mantener JSON-Patch+d3.
 
 **(px-editor-core cerrado)** — `px-editor-core` CERRADO 5/5 (2026-07-06, B210-B214 evidencia + B215 síntesis).
 Infra interna de pxEditor-wb: C1 event bus (B210), C2 API base root (B211), C3 factory/WidgetInserter (B212),
