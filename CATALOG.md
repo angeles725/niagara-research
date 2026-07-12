@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **213 bloques**
+Total: **214 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -218,6 +218,7 @@ Total: **213 bloques**
 | 213 | [niagara-mental-model-bloque213.md](niagara-mental-model-bloque213.md) | Block 213 — La infra transversal del PX Editor: `com.tridium.px.editor.util` (6) + `property` (1): SelectedWidgets, Reflector, LayerManager, MenuBuilder, Handle, PxPropertyUtil |
 | 214 | [niagara-mental-model-bloque214.md](niagara-mental-model-bloque214.md) | Block 214 — Los field-editors de converters del PX Editor: `com.tridium.px.editor.fieldeditors` (3): BIEnumToSimpleFE, BINumericToSimpleFE, BIStatusToSimpleFE |
 | 215 | [niagara-mental-model-bloque215.md](niagara-mental-model-bloque215.md) | Block 215 — SÍNTESIS del focus `px-editor-core`: 5 hilos transversales de la infraestructura de `pxEditor-wb` |
+| 216 | [niagara-mental-model-bloque216.md](niagara-mental-model-bloque216.md) | Block 216 — Reflow dashboard-builder (I): stack y librerías, y la función de cada una |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
