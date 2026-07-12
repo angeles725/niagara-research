@@ -38,7 +38,7 @@ geo Mapbox ("3D") → síntesis de producto → **diseño de portabilidad a chih
 
 ## Coverage
 
-- **Métrica**: 11 / 12 gaps cerrados (0.92). Falta sólo **BG11** (chihuahua-como-builder + comparación + portabilidad). *(backlog ampliado 2026-07-12: BG11 → chihuahua; +BG13 modernización. 12 = BG1-BG11 + BG13.)*
+- **Métrica**: **12 / 12 gaps cerrados (1.00). FOCUS COMPLETO.** *(backlog ampliado 2026-07-12: BG11 → chihuahua; +BG13 modernización. 12 = BG1-BG11 + BG13.)*
 - **Bloques del focus**: B216 (BG1 stack), B217 (BG2 modelo **[CERT-live]**), B218 (BG5 catálogo), B219 (BG7 assets), B220 (BG8 upload), B221 (BG3 motor+control), B222 (BG9 Mapbox=2D), B223 (BG4 editor+masonry), B224 (BG6 render gauge/chart + §14 corrige B216/B218).
 - **Correcciones §14** (B224): B216 §216.4 (d3 NO ausente, aliaseado) + B218 §218.3 (circle=iView wrapper, no SVG custom). Notas insertadas en ambos origen.
 - **Reordenamiento**: BG5 se adelantó a BG3/BG4 al aparecer el dashboard real de disco `HoneywellMX605132026` (26 cards, 10 tipos) — evidencia primaria fuerte para el catálogo. BG3 (motor JSON-Patch) y BG4 (editor/layout) siguen pendientes.
@@ -64,7 +64,7 @@ geo Mapbox ("3D") → síntesis de producto → **diseño de portabilidad a chih
 | — | BG8 · **Assets propios del usuario (upload)**: **veredicto: NO hay upload in-app** (doPost 4 rutas, 0 multipart; bundle 0 FileReader/FormData); fotos llegan out-of-band al file space (Workbench), Reflow las referencia `file:^Imagenes/…`; picker = nav-RPC `station:\|file:^`; formatos jpg/jpeg/png/svg/gif | Java `-rt` + SPA + disco | **cerrado B220** |
 | — | BG9 · **Vista geo "3D" Mapbox = 2D**: veredicto tajante (0 pitch/bearing/fill-extrusion en código Reflow; solo center/zoom/fitBounds); building-map markers `[lon,lat]` desde módulo buildings; 6 estilos planos configurables; weather-map=2 superficies (PNG estática + raster tiles) gate `license.limits.maps`; cloud niagaramodules + hostId | SPA + Java `-rt` | **cerrado B222** |
 | — | BG10 · **SÍNTESIS Parte A**: flujo end-to-end (crear→editar→persistir→propagar→enriquecer) + stack por capa + 6 hilos transversales (server delgado, apoyo en plataforma, doc+patches, editar-sobre-vista-viva, todo gateado, lección §14) | síntesis (design) | **cerrado B225** |
-| design | BG11 · **Parte B — chihuahua como builder + portabilidad** (AMPLIADO por el usuario): documentar `chihuahua` con las MISMAS dimensiones que Reflow (stack, modelo de dashboard, ¿editor?, widgets, assets) → comparación de capacidad builder → brechas → plan de portar la capacidad. `chihuahua` es ES5 IIFE `window.MX60`, sin Vue, dashboard fijo con RBAC | applied/design (READ-ONLY sobre chihuahua, fuente propia) | pending |
+| — | BG11 · **Parte B — chihuahua como builder + portabilidad**: documentado con las mismas dimensiones; **veredicto: chihuahua NO tiene capacidad builder** (dashboard FIJO, layout hardcoded en constantes Java, "no drag-drop" deliberado); tabla comparativa 11 dimensiones; **chihuahua tiene 3D real (Three.js) que Reflow no**; lidera en RBAC/audit; plan de portabilidad 5 piezas ranked | design (chihuahua fuente propia) | **cerrado B226** |
 | — | BG13 · **Modernización del stack** (pedido usuario): diagnóstico (Vue2 EOL, Vuex→Pinia, iView discontinuado, Masonry→CSS Grid, mapbox→MapLibre, +Vite/TS); tabla de-qué-a-qué; mejoras arquitectónicas (tipar config, upload real, editor sin iframe, RBAC); qué mantener (doc+JSON-Patch, d3, delegar a plataforma) | design/análisis (B216 + web) | **cerrado B227** |
 
 ## Blocked / thin-source gaps (con lo que necesitan)
@@ -79,12 +79,15 @@ geo Mapbox ("3D") → síntesis de producto → **diseño de portabilidad a chih
 
 ## Stop control (primario = read-only-investigable, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 6 (BG3, BG4, BG6, BG9, BG10, BG11; BG6/BG9 con componentes thin acotados, el resto full-static).
+- **Open gaps — read-only investigable**: **0**. Los 12 gaps cerrados.
 - **Open gaps — requires-execution**: 0.
-- **Fase dinámica ABIERTA (§12)**: station N4 VIVA disponible (localhost, usuario `API`/HTTPBasicScheme + `API2`/DIGEST;
-  Reflow **1.7.5-43**) + station de disco `HoneywellMX605132026` (Reflow completo, dashboard medianamente armado).
-  Habilita validación `[CERT-live]` y un experimento de ESCRITURA supervisado (backup `bf70f28f…` listo).
-- **STOP**: NO declarado — 8 gaps investigables (BG3 o BG7 siguiente) + fase dinámica en curso.
+- **Fase dinámica ABIERTA (§12, opcional)**: station N4 VIVA (localhost, usuario `API`/HTTPBasicScheme + `API2`/DIGEST;
+  Reflow **1.7.5-43**) + station de disco `HoneywellMX605132026` (dashboard real de 26 cards). Ya se usó para validar
+  BG2 `[CERT-live]` (B217 §217.8) y como fuente del catálogo real (B218). **Pendiente opcional**: experimento de
+  ESCRITURA supervisado (crear un dashboard más completo end-to-end; backup `bf70f28f…` listo como revert) — requiere
+  OK del usuario, es lo único que queda y sale del read-only.
+- **STOP DECLARADO** (primario: read-only-investigable = 0). Focus `nmodsreflow-builder` COMPLETO 12/12. Terminal:
+  síntesis Parte A = B225; §18 self-retrospective pendiente de correr.
 - Budget cap: none.
 
 ## Iteration history
@@ -103,6 +106,7 @@ geo Mapbox ("3D") → síntesis de producto → **diseño de portabilidad a chih
 | 9 | 2026-07-12 | BG6 render gauge/chart | B224 | sí · sweep editor/render (sonnet) | 0 (§14: d3 presente aliaseado corrige B216; circle=iView corrige B218; Gauge SVG bespoke) |
 | 10 | 2026-07-12 | BG10 síntesis Parte A | B225 | no · inline (síntesis) | 0 (flujo end-to-end + stack por capa + 6 hilos transversales) |
 | 11 | 2026-07-12 | BG13 modernización stack | B227 | no · inline + 1 WebSearch (snapshot) | 0 (Vue2 EOL→Vue3/Pinia/Vite/TS, iView→SVG propio, mapbox→MapLibre, Masonry→CSS Grid; mantener doc+JSON-Patch+d3) |
+| 12 | 2026-07-12 | BG11 chihuahua-builder + portabilidad | B226 | sí · sweep chihuahua (sonnet) | 0 (**FOCUS COMPLETO 12/12**; chihuahua=dashboard fijo sin builder, tiene 3D Three.js, lidera RBAC; plan portabilidad 5 piezas) |
 
 ## Self-verify
 
