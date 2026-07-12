@@ -18,6 +18,16 @@
 > `UX/` = `nmodsreflow77-ux/vineflower/` (registro de vistas fino, ya cubierto en B151-B155).
 > Tools: `decompile-java.sh` (ya aplicado) + lectura directa + grep + js-beautify (SPA) + CodeGraph.
 > Mirrored in engram (project `niagara-research`): `research/niagara/nmodsreflow-builder/{gaps,progress}`.
+<!-- research-state.v1 -->
+schema: research-state.v1
+covered_blocks: 233
+gaps_closed: 0
+known_gaps: 0
+investigable_open: 0
+requires_execution_open: 0
+blocked_open: 0
+<!-- /research-state.v1 -->
+
 
 ## Why this focus exists
 
@@ -41,7 +51,7 @@ geo Mapbox ("3D") → síntesis de producto → **diseño de portabilidad a chih
 - **Métrica**: base **12 / 12 CERRADO** (BG1-BG11 + BG13). **REABIERTO 2026-07-12** (autorizado por usuario) con
   16 gaps nuevos en 5 grupos A→B→C→D→E (budget adicional, §8 reopen): **A** auto-binding + floorplans, **B** ciclo de
   vida (licensing-producto/backups/migración/diff-versiones), **C** dinámico (experimento escritura + editor browser),
-  **D** (pedido usuario 2026-07-12) módulos que usa + sistema de vistas Workbench/navegador. Métrica reapertura: **9 / 16 — grupos A+B+D + BG26 (B228-B236). Grupo E en curso (BG26✓; BG24/25/27/28/29 en sweeps). Grupo C PENDIENTE de OK del usuario.**
+  **D** (pedido usuario 2026-07-12) módulos que usa + sistema de vistas Workbench/navegador. Métrica reapertura: **10 / 16 — A+B+D + BG26/BG27 (B228-B237). Grupo E en curso (BG26/27✓; BG24/25/28/29 pendientes de escribir). Grupo C PENDIENTE de OK del usuario.**
 - **Bloques del focus**: B216 (BG1 stack), B217 (BG2 modelo **[CERT-live]**), B218 (BG5 catálogo), B219 (BG7 assets), B220 (BG8 upload), B221 (BG3 motor+control), B222 (BG9 Mapbox=2D), B223 (BG4 editor+masonry), B224 (BG6 render gauge/chart + §14 corrige B216/B218).
 - **Correcciones §14** (B224): B216 §216.4 (d3 NO ausente, aliaseado) + B218 §218.3 (circle=iView wrapper, no SVG custom). Notas insertadas en ambos origen.
 - **Reordenamiento**: BG5 se adelantó a BG3/BG4 al aparecer el dashboard real de disco `HoneywellMX605132026` (26 cards, 10 tipos) — evidencia primaria fuerte para el catálogo. BG3 (motor JSON-Patch) y BG4 (editor/layout) siguen pendientes.
@@ -87,7 +97,7 @@ geo Mapbox ("3D") → síntesis de producto → **diseño de portabilidad a chih
 | **E** | BG24 · **UI de alarmas cliente**: widget `alarm` + página de alarmas (consola, ack/ackAll, prioridades, filtros, sonidos `sound-library`) — B142 solo backend | SPA (beautify) | queued |
 | **E** | BG25 · **Schedules (frontend)**: widget `schedule-list` + editor WebScheduler embebido + horarios/excepciones | SPA + schedule-rt | queued |
 | — | BG26 · **Weather**: componente `Weather` compartido (current+forecast), provider **AerisWeather** vía cloud-proxy `weather.niagaramodules.com/observations`+`/forecasts` (host=hostId); ubicación por station (city/zip/coord) + override per-card; gate `weather.enabled` | SPA | **cerrado B236** |
-| **E** | BG27 · **History data pipeline + CSV export**: `HistoryChartDataResponse`, rangos/downsampling, `BReflowCSVCommands` (opencsv) — B141 vio storage, no consumo | Java `-rt` + SPA | queued |
+| — | BG27 · **History pipeline + CSV**: HistoryChartDataResponse→HistoryData cursor SIN downsampling (vuelca rango crudo, vs chihuahua stride B174); BDateRangeEnum 15 rangos por tag; client fetch http/BQL; CSV: opencsv importa point-map + alarm CSV (NO history export, que es client-side data:text/csv). §14 corrige B216 | Java `-rt` + SPA | **cerrado B237** |
 | **E** | BG28 · **Users/themes/favorites**: `BReflowUserCommands`, `userThemes` persistente, `favorites` por-usuario (B143), roles/capabilities cliente | SPA + Java `-rt` + disco | queued |
 | **E** | BG29 · **Navigation/menu + equipment model**: módulo `navigation` (árbol nav, grupos), modelo `equipment` (types/items/groups) completo | SPA | queued |
 

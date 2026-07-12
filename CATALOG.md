@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **234 bloques**
+Total: **235 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -239,6 +239,7 @@ Total: **234 bloques**
 | 234 | [niagara-mental-model-bloque234.md](niagara-mental-model-bloque234.md) | Block 234 — Reflow: qué módulos Niagara usa y para qué (dependencias + tipos) |
 | 235 | [niagara-mental-model-bloque235.md](niagara-mental-model-bloque235.md) | Block 235 — Reflow: el sistema de vistas (Workbench, navegador, perfiles) |
 | 236 | [niagara-mental-model-bloque236.md](niagara-mental-model-bloque236.md) | Block 236 — Reflow: el subsistema de clima (weather) |
+| 237 | [niagara-mental-model-bloque237.md](niagara-mental-model-bloque237.md) | Block 237 — Reflow: pipeline de datos de history + export CSV (+ corrección §14 a B216) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
