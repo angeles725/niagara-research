@@ -38,8 +38,8 @@ geo Mapbox ("3D") → síntesis de producto → **diseño de portabilidad a chih
 
 ## Coverage
 
-- **Métrica**: 7 / 12 gaps cerrados (0.58). *(backlog ampliado 2026-07-12: BG11 → chihuahua-como-builder + comparar + portar; +BG13 modernización del stack. 12 = BG1-BG11 + BG13.)*
-- **Bloques del focus**: B216 (BG1 stack), B217 (BG2 modelo+persistencia **[CERT-live]**), B218 (BG5 catálogo), B219 (BG7 assets+ORD→URL), B220 (BG8 upload out-of-band), B221 (BG3 motor JSON-Patch+control), B222 (BG9 Mapbox "3D"=2D).
+- **Métrica**: 8 / 12 gaps cerrados (0.67). *(backlog ampliado 2026-07-12: BG11 → chihuahua-como-builder + comparar + portar; +BG13 modernización del stack. 12 = BG1-BG11 + BG13.)*
+- **Bloques del focus**: B216 (BG1 stack), B217 (BG2 modelo **[CERT-live]**), B218 (BG5 catálogo), B219 (BG7 assets+ORD→URL), B220 (BG8 upload), B221 (BG3 motor+control), B222 (BG9 Mapbox=2D), B223 (BG4 editor+masonry).
 - **Reordenamiento**: BG5 se adelantó a BG3/BG4 al aparecer el dashboard real de disco `HoneywellMX605132026` (26 cards, 10 tipos) — evidencia primaria fuerte para el catálogo. BG3 (motor JSON-Patch) y BG4 (editor/layout) siguen pendientes.
 - **Last iteration**: 2026-07-12 — BG1 cerrado (B216, stack & librerías): RT Java = jackson (JSON, 30 clases) +
   flipkart-zjsonpatch (motor JSON-Patch RFC-6902, el "editá-y-se-actualiza") + opencsv (CSV export) +
@@ -56,7 +56,7 @@ geo Mapbox ("3D") → síntesis de producto → **diseño de portabilidad a chih
 | — | BG1 · **Stack & librerías + función de cada una**: RT (jackson, flipkart-zjsonpatch, opencsv, apache-commons-io, com.tridium.json) + JS (Vue 2.6.14, vue-router, Vuex, SortableJS 1.10.2, vue-drag-resize, mapbox-gl, FontAwesome; ausencia de d3/axios) | Java `-rt` + SPA (banners/imports) | **cerrado B216** |
 | — | BG2 · **Modelo de dashboard editable + persistencia**: dashboard = array de `cards {id,type,config,width}`, blob opaco a Java (`^reflow/config.json`), Vuex `dashboardCards`; save full (`ConfigUpdateResponse`) + push live WS `config-reload`; delta multiusuario (JSON-Patch, merge en caliente) | Java `sync/`+`http/responses/` + SPA | **cerrado B217 (+[CERT-live])** |
 | — | BG3 · **Motor de update en vivo (JSON Patch)**: `flipkart-zjsonpatch` RFC-6902 apply bajo doPrivileged, rollback de timestamp, broadcast `delta`, control multiusuario cooperativo (configControl token, grant/revoke/request), persistencia debounced | Java `-rt` | **cerrado B221** |
-| alta | BG4 · **Editor visual / edit mode + layout**: `editMode`, edición inline por card (`cardTypeChanged`/`cardWidthChanged`/`config-menu`), masonry + enum `single/double/full`, `vue-drag-resize` secundario, SortableJS reorder; NO hay paleta drag estilo Canva | SPA (beautify) | pending |
+| — | BG4 · **Editor visual + layout**: edit-mode = 2 mounts (isConfig) + iframe live-preview; layout = directiva `v-masonry` (Masonry.js) + cardClass width/height→clases + heightStyle px (60/15); reorder = drag en lista sidebar (vuedraggable) → recommit ids → `dashboard-redraw`; resize = Selects (no handle); vue-drag-resize solo floorplan; pages ADD_ITEM | SPA (beautify) | **cerrado B223** |
 | — | BG5 · **Catálogo de widgets/cards**: 20 tipos ofrecidos (registro `cardTypes`) + alias legacy `gauge`; switch `type→component` (v-if); schema/defaults por tipo; add-flow = dropdown en drawer (no paleta drag); especiales hx/url=iframe, building-map=Mapbox | SPA (beautify) + config real disco | **cerrado B218** |
 | media | BG6 · **Render de gauges/charts**: gauge = SVG custom (`circleStyle`, `stroke-dasharray`/`linecap`); `HistoryChart` lib perdida a minificación → beautify dirigido del chunk | SPA (beautify) · parcial thin | pending |
 | — | BG7 · **Bibliotecas de assets embebidas**: `image-library` (25 JPG HVAC, nav-RPC no REST), FontAwesome icon-picker (1853), `point-matrix.json` (109, auto-bind), `sound-library` (11 MP3); **mecanismo ORD→URL** `$ord.image()`: `module://`→`/module/`, `file:^`→`/ord/` (servlets nativos Niagara, no el custom) | Java `-rt` + assets + SPA | **cerrado B219** |
@@ -98,6 +98,7 @@ geo Mapbox ("3D") → síntesis de producto → **diseño de portabilidad a chih
 | 5 | 2026-07-12 | BG8 upload fotos propias | B220 | no · inline (sobre sweep B219) | 0 (veredicto: sin upload in-app; out-of-band + nav-RPC picker) |
 | 6 | 2026-07-12 | BG3 motor JSON-Patch + control multiusuario | B221 | no · inline (lectura directa Java) | +1 (BG13 modernización, pedido usuario; BG11 ampliado a chihuahua-builder) |
 | 7 | 2026-07-12 | BG9 vista geo Mapbox ("3D"=2D) | B222 | sí · sweep Mapbox (sonnet) | 0 (veredicto 2D tajante; weather-map 2 superficies + cloud niagaramodules) |
+| 8 | 2026-07-12 | BG4 editor visual + layout masonry | B223 | sí · sweep editor (sonnet) | 0 (2 mounts+iframe preview, v-masonry, reorder lista, resize Selects; abre correcciones §14 a B216/B218 en BG6) |
 
 ## Self-verify
 
