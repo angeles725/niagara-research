@@ -6,6 +6,16 @@
 > Install root: `/mnt/c/Honeywell/OptimizerSupervisor-N4.14.0.162/` (36 EXE / 136 DLL, PE32+ x86‑64; + `libciper.so`).
 > Tools: `research-sdd/toolbelt/decompile-native.sh` + radare2/rabin2 + objdump + strings (Ghidra NOT on PATH).
 > Mirrored in engram: `research/niagara/platform-native-gaps`, `research/niagara/platform-native-progress`.
+<!-- research-state.v1 -->
+schema: research-state.v1
+covered_blocks: 233
+gaps_closed: 7
+known_gaps: 7
+investigable_open: 0
+requires_execution_open: 0
+blocked_open: 0
+<!-- /research-state.v1 -->
+
 
 ## Coverage
 

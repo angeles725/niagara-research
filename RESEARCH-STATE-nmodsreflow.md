@@ -13,6 +13,16 @@
 > `/home/cristian/modules/Prototipos/modulos/REFLOW-175-vs-177-DIFF.md`.
 > Tools: `research-sdd/toolbelt` (Vineflower ya aplicado) + lectura directa + CodeGraph + grep.
 > Mirrored in engram (project `niagara-research`): `research/niagara/nmodsreflow/gaps`, `.../nmodsreflow/progress`.
+<!-- research-state.v1 -->
+schema: research-state.v1
+covered_blocks: 233
+gaps_closed: 12
+known_gaps: 13
+investigable_open: 0
+requires_execution_open: 0
+blocked_open: 0
+<!-- /research-state.v1 -->
+
 
 ## Why this focus exists
 

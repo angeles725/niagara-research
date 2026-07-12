@@ -7,6 +7,16 @@
 > análisis de brechas que el usuario pidió DESPUÉS de documentar.
 > Numeración global de bloques (`niagara-mental-model-bloqueN.md`). Engram:
 > `research/niagara/chihuahua/{progress,gaps}` (proyecto `niagara-research`).
+<!-- research-state.v1 -->
+schema: research-state.v1
+covered_blocks: 233
+gaps_closed: 0
+known_gaps: 0
+investigable_open: 0
+requires_execution_open: 0
+blocked_open: 0
+<!-- /research-state.v1 -->
+
 
 ## Subject (dónde vive la fuente)
 

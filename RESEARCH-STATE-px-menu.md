@@ -5,6 +5,16 @@
 > Numeración global de bloques (`niagara-mental-model-bloqueN.md`), mismo repo/hook. Corpus en Español
 > (técnico EN), por continuidad con los 178 bloques previos.
 > Engram topic key: `research/niagara/px-menu/{gaps,progress}`.
+<!-- research-state.v1 -->
+schema: research-state.v1
+covered_blocks: 233
+gaps_closed: 0
+known_gaps: 0
+investigable_open: 0
+requires_execution_open: 0
+blocked_open: 0
+<!-- /research-state.v1 -->
+
 
 ## Ángulo declarado (§b2)
 

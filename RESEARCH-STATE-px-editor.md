@@ -6,6 +6,16 @@
 > del menú; éste cubre el resto de la superficie del editor.
 > Numeración global de bloques (`niagara-mental-model-bloqueN.md`), desde B191. Corpus en Español (técnico EN).
 > Engram topic key: `research/niagara/px-editor/{gaps,progress}`.
+<!-- research-state.v1 -->
+schema: research-state.v1
+covered_blocks: 233
+gaps_closed: 0
+known_gaps: 0
+investigable_open: 0
+requires_execution_open: 0
+blocked_open: 0
+<!-- /research-state.v1 -->
+
 
 ## Ángulo declarado (§b2)
 

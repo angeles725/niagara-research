@@ -6,6 +6,16 @@
 > sesión. Numeración global de bloques (desde **B210**). Corpus en Español (técnico EN).
 > Engram topic key: `research/niagara/px-editor-core/{gaps,progress}`.
 > Arranque: `/research-sdd niagara-research px-editor-core new` (o `continue` una vez bootstrapeado).
+<!-- research-state.v1 -->
+schema: research-state.v1
+covered_blocks: 233
+gaps_closed: 0
+known_gaps: 0
+investigable_open: 0
+requires_execution_open: 0
+blocked_open: 0
+<!-- /research-state.v1 -->
+
 
 ## Ángulo declarado (§b2)
 

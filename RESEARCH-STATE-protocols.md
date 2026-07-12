@@ -8,6 +8,16 @@
 > Source root: `/mnt/c/Honeywell/OptimizerSupervisor-N4.14.0.162/modules/` (977 module jars).
 > Tools: `research-sdd/toolbelt/decompile-java.sh` (Vineflower/CFR/Procyon) + javap + strings.
 > Mirrored in engram: `research/niagara/protocols-gaps`, `research/niagara/protocols-progress`.
+<!-- research-state.v1 -->
+schema: research-state.v1
+covered_blocks: 233
+gaps_closed: 6
+known_gaps: 6
+investigable_open: 0
+requires_execution_open: 1
+blocked_open: 0
+<!-- /research-state.v1 -->
+
 
 ## Why this focus exists
 

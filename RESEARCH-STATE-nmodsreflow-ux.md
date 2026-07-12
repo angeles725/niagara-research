@@ -15,6 +15,16 @@
 > Tools: `decompile-java.sh` (ya aplicado) + lectura directa + grep + (para la SPA minificada) beautifier JS
 > a provisionar si hace falta (§10).
 > Mirrored in engram (project `niagara-research`): `research/niagara/nmodsreflow-ux/gaps`, `.../progress`.
+<!-- research-state.v1 -->
+schema: research-state.v1
+covered_blocks: 233
+gaps_closed: 7
+known_gaps: 7
+investigable_open: 0
+requires_execution_open: 0
+blocked_open: 0
+<!-- /research-state.v1 -->
+
 
 ## Why this focus exists
 

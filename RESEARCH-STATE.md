@@ -12,6 +12,16 @@
 > was B110; that was stale — B110–B114 already exist (honRemoteConfig, honEagleHawkHMI, security
 > detection, module-signing hardening, BOG encryption). The next free number is **B115**, which this
 > iteration wrote.
+<!-- research-state.v1 -->
+schema: research-state.v1
+covered_blocks: 233
+gaps_closed: 7
+known_gaps: 8
+investigable_open: 0
+requires_execution_open: 1
+blocked_open: 0
+<!-- /research-state.v1 -->
+
 
 ## Coverage
 

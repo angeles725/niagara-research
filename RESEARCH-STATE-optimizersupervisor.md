@@ -4,6 +4,16 @@
 > from the main `RESEARCH-STATE.md` (decompiled-module corpus) and from the STOPPED Spyder focus.
 > Mirrored in engram (`research/niagara/optimizersupervisor-gaps`, `.../optimizersupervisor-progress`),
 > project `niagara-research`. READ-ONLY over real production data; corpus language ENGLISH.
+<!-- research-state.v1 -->
+schema: research-state.v1
+covered_blocks: 233
+gaps_closed: 1
+known_gaps: 14
+investigable_open: 0
+requires_execution_open: 0
+blocked_open: 2
+<!-- /research-state.v1 -->
+
 
 ## Subject
 
