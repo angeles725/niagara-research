@@ -41,7 +41,7 @@ geo Mapbox ("3D") → síntesis de producto → **diseño de portabilidad a chih
 - **Métrica**: base **12 / 12 CERRADO** (BG1-BG11 + BG13). **REABIERTO 2026-07-12** (autorizado por usuario) con
   10 gaps nuevos en 4 grupos A→B→C→D (budget adicional, §8 reopen): **A** auto-binding + floorplans, **B** ciclo de
   vida (licensing-producto/backups/migración/diff-versiones), **C** dinámico (experimento escritura + editor browser),
-  **D** (pedido usuario 2026-07-12) módulos que usa + sistema de vistas Workbench/navegador. Métrica reapertura: 0 / 10 (A en curso).
+  **D** (pedido usuario 2026-07-12) módulos que usa + sistema de vistas Workbench/navegador. Métrica reapertura: **2 / 10 (grupo A COMPLETO: B228 auto-binding, B229 floorplans). Sigue grupo B.**
 - **Bloques del focus**: B216 (BG1 stack), B217 (BG2 modelo **[CERT-live]**), B218 (BG5 catálogo), B219 (BG7 assets), B220 (BG8 upload), B221 (BG3 motor+control), B222 (BG9 Mapbox=2D), B223 (BG4 editor+masonry), B224 (BG6 render gauge/chart + §14 corrige B216/B218).
 - **Correcciones §14** (B224): B216 §216.4 (d3 NO ausente, aliaseado) + B218 §218.3 (circle=iView wrapper, no SVG custom). Notas insertadas en ambos origen.
 - **Reordenamiento**: BG5 se adelantó a BG3/BG4 al aparecer el dashboard real de disco `HoneywellMX605132026` (26 cards, 10 tipos) — evidencia primaria fuerte para el catálogo. BG3 (motor JSON-Patch) y BG4 (editor/layout) siguen pendientes.
@@ -75,7 +75,7 @@ geo Mapbox ("3D") → síntesis de producto → **diseño de portabilidad a chih
 | Grupo | Gap | Tipo/fuente | Estado |
 |---|---|---|---|
 | **A** | BG14 · **Auto-binding de puntos**: tabla point-matrix (109 puntos, 10 tipos, regex); template filtra n/a + prioridad→5 grupos; matcher `ua` (regex/name/hash-#); flujo `MAP_DEVICE` (LOAD_NIAGARA_POINTS→match→assign ord, 3 modos); override per-punto + lockFromRemap; persist compacto `{pointId:ord}` | SPA + point-matrix.json | **cerrado B228** |
-| **A** | BG15 · **Floorplans**: planos de planta con overlays de puntos arrastrables (vue-drag-resize), modelo floor/element, edición drag-place | SPA (beautify) | pending (sweep) |
+| **A** | BG15 · **Floorplans**: modelo floorplans/floor/element (8 tipos: label/icon/button/image/text/zone/arrow/group), floor type reflow|niagara(PX), render + vue-drag-resize, edición add/move/resize + auto-poblar (`addEquipmentLabels`), overlay live `BoundLabel` (baja subscription + BStatus), zoom localStorage 24h | SPA (beautify) | **cerrado B229** |
 | B | BG16 · **Licensing como producto**: qué límite gatea cada tier (`license.limits.*`), servicio `api.niagaramodules.com`, activación (ángulo producto, no seguridad B139) | SPA + Java `-rt` | queued |
 | B | BG17 · **Versionado/backups del dashboard**: `backups/` (Pre-remap/Incremental/restore) como historial de producto (ángulo producto, no seguridad B144) | Java `-rt` + disco | queued |
 | B | BG18 · **Migración de config entre versiones**: header `Client-Migration`, `migrationActive`/`migrationStatus`, cómo migra un dashboard viejo | SPA + Java `-rt` | queued |
