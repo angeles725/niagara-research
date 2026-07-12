@@ -64,3 +64,4 @@ Decompiled Java sources live under `sources/decompiled/<jar-name>/`.
 | manuals/template-docs/TemplateBulkDeployment-7D0DBE85.html | doc oficial Tridium (docTemplates-doc) | organized/docTemplates/.../doc/TemplateBulkDeployment-7D0DBE85.html | 2026-07-06 | cde9dd69864e | B200 |
 | manuals/template-docs/AboutTheSpreadsheet-89F3D5D6.html | doc oficial Tridium (docTemplates-doc) | organized/docTemplates/.../doc/AboutTheSpreadsheet-89F3D5D6.html | 2026-07-06 | 34a692e1c260 | B200 |
 | manuals/template-docs/GraphicsTabTemplates-9DC53E6E.html | doc oficial Tridium (docTemplates-doc) | organized/docTemplates/.../doc/GraphicsTabTemplates-9DC53E6E.html | 2026-07-06 | 3d7c77f6034c | B200 |
+| web-snapshots/B227-vue2-eol-ecosystem-20260712.md | web snapshot (Vue2 EOL + ecosystem) | https://blog.vuejs.org/posts/vue-2-eol | 2026-07-12 | 618a3efc481e | B227 |

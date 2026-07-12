@@ -38,7 +38,7 @@ geo Mapbox ("3D") → síntesis de producto → **diseño de portabilidad a chih
 
 ## Coverage
 
-- **Métrica**: 10 / 12 gaps cerrados (0.83). *(backlog ampliado 2026-07-12: BG11 → chihuahua-como-builder + comparar + portar; +BG13 modernización del stack. 12 = BG1-BG11 + BG13.)*
+- **Métrica**: 11 / 12 gaps cerrados (0.92). Falta sólo **BG11** (chihuahua-como-builder + comparación + portabilidad). *(backlog ampliado 2026-07-12: BG11 → chihuahua; +BG13 modernización. 12 = BG1-BG11 + BG13.)*
 - **Bloques del focus**: B216 (BG1 stack), B217 (BG2 modelo **[CERT-live]**), B218 (BG5 catálogo), B219 (BG7 assets), B220 (BG8 upload), B221 (BG3 motor+control), B222 (BG9 Mapbox=2D), B223 (BG4 editor+masonry), B224 (BG6 render gauge/chart + §14 corrige B216/B218).
 - **Correcciones §14** (B224): B216 §216.4 (d3 NO ausente, aliaseado) + B218 §218.3 (circle=iView wrapper, no SVG custom). Notas insertadas en ambos origen.
 - **Reordenamiento**: BG5 se adelantó a BG3/BG4 al aparecer el dashboard real de disco `HoneywellMX605132026` (26 cards, 10 tipos) — evidencia primaria fuerte para el catálogo. BG3 (motor JSON-Patch) y BG4 (editor/layout) siguen pendientes.
@@ -65,7 +65,7 @@ geo Mapbox ("3D") → síntesis de producto → **diseño de portabilidad a chih
 | — | BG9 · **Vista geo "3D" Mapbox = 2D**: veredicto tajante (0 pitch/bearing/fill-extrusion en código Reflow; solo center/zoom/fitBounds); building-map markers `[lon,lat]` desde módulo buildings; 6 estilos planos configurables; weather-map=2 superficies (PNG estática + raster tiles) gate `license.limits.maps`; cloud niagaramodules + hostId | SPA + Java `-rt` | **cerrado B222** |
 | — | BG10 · **SÍNTESIS Parte A**: flujo end-to-end (crear→editar→persistir→propagar→enriquecer) + stack por capa + 6 hilos transversales (server delgado, apoyo en plataforma, doc+patches, editar-sobre-vista-viva, todo gateado, lección §14) | síntesis (design) | **cerrado B225** |
 | design | BG11 · **Parte B — chihuahua como builder + portabilidad** (AMPLIADO por el usuario): documentar `chihuahua` con las MISMAS dimensiones que Reflow (stack, modelo de dashboard, ¿editor?, widgets, assets) → comparación de capacidad builder → brechas → plan de portar la capacidad. `chihuahua` es ES5 IIFE `window.MX60`, sin Vue, dashboard fijo con RBAC | applied/design (READ-ONLY sobre chihuahua, fuente propia) | pending |
-| media | BG13 · **Modernización del stack** (pedido usuario): dado el stack de Reflow (Vue 2.6.14 EOL, Vuex, vue-router 3, sin build moderno), ¿cuál sería el stack hoy y qué mejorar? (Vue 3/Pinia, TS, Vite, alternativas a mapbox, JSON-Patch nativo, upload real, etc.) — análisis de diseño con tradeoffs | design/análisis (sobre B216 + web) | pending |
+| — | BG13 · **Modernización del stack** (pedido usuario): diagnóstico (Vue2 EOL, Vuex→Pinia, iView discontinuado, Masonry→CSS Grid, mapbox→MapLibre, +Vite/TS); tabla de-qué-a-qué; mejoras arquitectónicas (tipar config, upload real, editor sin iframe, RBAC); qué mantener (doc+JSON-Patch, d3, delegar a plataforma) | design/análisis (B216 + web) | **cerrado B227** |
 
 ## Blocked / thin-source gaps (con lo que necesitan)
 
@@ -101,6 +101,8 @@ geo Mapbox ("3D") → síntesis de producto → **diseño de portabilidad a chih
 | 7 | 2026-07-12 | BG9 vista geo Mapbox ("3D"=2D) | B222 | sí · sweep Mapbox (sonnet) | 0 (veredicto 2D tajante; weather-map 2 superficies + cloud niagaramodules) |
 | 8 | 2026-07-12 | BG4 editor visual + layout masonry | B223 | sí · sweep editor (sonnet) | 0 (2 mounts+iframe preview, v-masonry, reorder lista, resize Selects; abre correcciones §14 a B216/B218 en BG6) |
 | 9 | 2026-07-12 | BG6 render gauge/chart | B224 | sí · sweep editor/render (sonnet) | 0 (§14: d3 presente aliaseado corrige B216; circle=iView corrige B218; Gauge SVG bespoke) |
+| 10 | 2026-07-12 | BG10 síntesis Parte A | B225 | no · inline (síntesis) | 0 (flujo end-to-end + stack por capa + 6 hilos transversales) |
+| 11 | 2026-07-12 | BG13 modernización stack | B227 | no · inline + 1 WebSearch (snapshot) | 0 (Vue2 EOL→Vue3/Pinia/Vite/TS, iView→SVG propio, mapbox→MapLibre, Masonry→CSS Grid; mantener doc+JSON-Patch+d3) |
 
 ## Self-verify
 
