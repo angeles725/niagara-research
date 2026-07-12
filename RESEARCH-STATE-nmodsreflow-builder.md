@@ -38,7 +38,7 @@ geo Mapbox ("3D") → síntesis de producto → **diseño de portabilidad a chih
 
 ## Coverage
 
-- **Métrica**: 9 / 12 gaps cerrados (0.75). *(backlog ampliado 2026-07-12: BG11 → chihuahua-como-builder + comparar + portar; +BG13 modernización del stack. 12 = BG1-BG11 + BG13.)*
+- **Métrica**: 10 / 12 gaps cerrados (0.83). *(backlog ampliado 2026-07-12: BG11 → chihuahua-como-builder + comparar + portar; +BG13 modernización del stack. 12 = BG1-BG11 + BG13.)*
 - **Bloques del focus**: B216 (BG1 stack), B217 (BG2 modelo **[CERT-live]**), B218 (BG5 catálogo), B219 (BG7 assets), B220 (BG8 upload), B221 (BG3 motor+control), B222 (BG9 Mapbox=2D), B223 (BG4 editor+masonry), B224 (BG6 render gauge/chart + §14 corrige B216/B218).
 - **Correcciones §14** (B224): B216 §216.4 (d3 NO ausente, aliaseado) + B218 §218.3 (circle=iView wrapper, no SVG custom). Notas insertadas en ambos origen.
 - **Reordenamiento**: BG5 se adelantó a BG3/BG4 al aparecer el dashboard real de disco `HoneywellMX605132026` (26 cards, 10 tipos) — evidencia primaria fuerte para el catálogo. BG3 (motor JSON-Patch) y BG4 (editor/layout) siguen pendientes.
@@ -63,7 +63,7 @@ geo Mapbox ("3D") → síntesis de producto → **diseño de portabilidad a chih
 | — | BG7 · **Bibliotecas de assets embebidas**: `image-library` (25 JPG HVAC, nav-RPC no REST), FontAwesome icon-picker (1853), `point-matrix.json` (109, auto-bind), `sound-library` (11 MP3); **mecanismo ORD→URL** `$ord.image()`: `module://`→`/module/`, `file:^`→`/ord/` (servlets nativos Niagara, no el custom) | Java `-rt` + assets + SPA | **cerrado B219** |
 | — | BG8 · **Assets propios del usuario (upload)**: **veredicto: NO hay upload in-app** (doPost 4 rutas, 0 multipart; bundle 0 FileReader/FormData); fotos llegan out-of-band al file space (Workbench), Reflow las referencia `file:^Imagenes/…`; picker = nav-RPC `station:\|file:^`; formatos jpg/jpeg/png/svg/gif | Java `-rt` + SPA + disco | **cerrado B220** |
 | — | BG9 · **Vista geo "3D" Mapbox = 2D**: veredicto tajante (0 pitch/bearing/fill-extrusion en código Reflow; solo center/zoom/fitBounds); building-map markers `[lon,lat]` desde módulo buildings; 6 estilos planos configurables; weather-map=2 superficies (PNG estática + raster tiles) gate `license.limits.maps`; cloud niagaramodules + hostId | SPA + Java `-rt` | **cerrado B222** |
-| media | BG10 · **SÍNTESIS Parte A**: "cómo Reflow construye un dashboard editable end-to-end" — flujo de producto completo, cross-ref BG1-BG9 | síntesis (design) | pending |
+| — | BG10 · **SÍNTESIS Parte A**: flujo end-to-end (crear→editar→persistir→propagar→enriquecer) + stack por capa + 6 hilos transversales (server delgado, apoyo en plataforma, doc+patches, editar-sobre-vista-viva, todo gateado, lección §14) | síntesis (design) | **cerrado B225** |
 | design | BG11 · **Parte B — chihuahua como builder + portabilidad** (AMPLIADO por el usuario): documentar `chihuahua` con las MISMAS dimensiones que Reflow (stack, modelo de dashboard, ¿editor?, widgets, assets) → comparación de capacidad builder → brechas → plan de portar la capacidad. `chihuahua` es ES5 IIFE `window.MX60`, sin Vue, dashboard fijo con RBAC | applied/design (READ-ONLY sobre chihuahua, fuente propia) | pending |
 | media | BG13 · **Modernización del stack** (pedido usuario): dado el stack de Reflow (Vue 2.6.14 EOL, Vuex, vue-router 3, sin build moderno), ¿cuál sería el stack hoy y qué mejorar? (Vue 3/Pinia, TS, Vite, alternativas a mapbox, JSON-Patch nativo, upload real, etc.) — análisis de diseño con tradeoffs | design/análisis (sobre B216 + web) | pending |
 

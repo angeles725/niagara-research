@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **222 bloques**
+Total: **223 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -227,6 +227,7 @@ Total: **222 bloques**
 | 222 | [niagara-mental-model-bloque222.md](niagara-mental-model-bloque222.md) | Block 222 — Reflow dashboard-builder (VII): la vista geo "3D" (Mapbox GL, en realidad 2D) |
 | 223 | [niagara-mental-model-bloque223.md](niagara-mental-model-bloque223.md) | Block 223 — Reflow dashboard-builder (VIII): el editor visual y el layout (masonry) |
 | 224 | [niagara-mental-model-bloque224.md](niagara-mental-model-bloque224.md) | Block 224 — Reflow dashboard-builder (IX): render de gauges y charts (+ correcciones §14 a B216/B218) |
+| 225 | [niagara-mental-model-bloque225.md](niagara-mental-model-bloque225.md) | Block 225 — Reflow dashboard-builder (X): SÍNTESIS de producto — cómo Reflow construye un dashboard editable end-to-end |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
