@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **232 bloques**
+Total: **233 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -237,6 +237,7 @@ Total: **232 bloques**
 | 232 | [niagara-mental-model-bloque232.md](niagara-mental-model-bloque232.md) | Block 232 — Reflow: licensing como producto (límites, tiers, activación) |
 | 233 | [niagara-mental-model-bloque233.md](niagara-mental-model-bloque233.md) | Block 233 — Reflow: migración de config entre versiones de schema |
 | 234 | [niagara-mental-model-bloque234.md](niagara-mental-model-bloque234.md) | Block 234 — Reflow: qué módulos Niagara usa y para qué (dependencias + tipos) |
+| 235 | [niagara-mental-model-bloque235.md](niagara-mental-model-bloque235.md) | Block 235 — Reflow: el sistema de vistas (Workbench, navegador, perfiles) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
