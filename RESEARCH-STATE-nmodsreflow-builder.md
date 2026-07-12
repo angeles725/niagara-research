@@ -41,7 +41,7 @@ geo Mapbox ("3D") → síntesis de producto → **diseño de portabilidad a chih
 - **Métrica**: base **12 / 12 CERRADO** (BG1-BG11 + BG13). **REABIERTO 2026-07-12** (autorizado por usuario) con
   10 gaps nuevos en 4 grupos A→B→C→D (budget adicional, §8 reopen): **A** auto-binding + floorplans, **B** ciclo de
   vida (licensing-producto/backups/migración/diff-versiones), **C** dinámico (experimento escritura + editor browser),
-  **D** (pedido usuario 2026-07-12) módulos que usa + sistema de vistas Workbench/navegador. Métrica reapertura: **6 / 10 (grupos A+B COMPLETOS). Sigue C (dinámico) y D (módulos+vistas) (grupo A COMPLETO: B228 auto-binding, B229 floorplans). Sigue grupo B.**
+  **D** (pedido usuario 2026-07-12) módulos que usa + sistema de vistas Workbench/navegador. Métrica reapertura: **7 / 10 (grupos A+B COMPLETOS). Sigue C (dinámico) y D (módulos+vistas) (grupo A COMPLETO: B228 auto-binding, B229 floorplans). Sigue grupo B.**
 - **Bloques del focus**: B216 (BG1 stack), B217 (BG2 modelo **[CERT-live]**), B218 (BG5 catálogo), B219 (BG7 assets), B220 (BG8 upload), B221 (BG3 motor+control), B222 (BG9 Mapbox=2D), B223 (BG4 editor+masonry), B224 (BG6 render gauge/chart + §14 corrige B216/B218).
 - **Correcciones §14** (B224): B216 §216.4 (d3 NO ausente, aliaseado) + B218 §218.3 (circle=iView wrapper, no SVG custom). Notas insertadas en ambos origen.
 - **Reordenamiento**: BG5 se adelantó a BG3/BG4 al aparecer el dashboard real de disco `HoneywellMX605132026` (26 cards, 10 tipos) — evidencia primaria fuerte para el catálogo. BG3 (motor JSON-Patch) y BG4 (editor/layout) siguen pendientes.
@@ -82,7 +82,7 @@ geo Mapbox ("3D") → síntesis de producto → **diseño de portabilidad a chih
 | B | BG19 · **Evolución de producto 1.5→1.7**: v1.7.5 estaba unlicensed (diff licensing=restauración); cambios reales = history (threading privilegiado + HistoryGhostSubscriber cross-station fix), AlarmQuery GET→POST (breaking), demo deep-link; **builder/modelo dashboard ESTABLE (schema v14)**; UX 0 cambios | DIFF preservado + bloques | **cerrado B230** |
 | C | BG20 · **Experimento de escritura (dinámico §12)**: crear un dashboard más completo en la station viva, observar JSON-Patch en vivo (backup `bf70f28f…` listo) | station viva (write supervisado) | queued (requiere OK write) |
 | C | BG21 · **Editor en el browser (dinámico §12)**: ver/interactuar el modo edición real con chrome-devtools (requiere Chrome con debug port) | station viva (browser) | queued (requiere Chrome) |
-| D | BG22 · **Módulos que usa nmodsReflow y cómo**: árbol de dependencias `module.xml` (baja, bajaux, web, control, gx, driver…), qué usa de cada uno y para qué; libs de terceros embarcadas vs módulos del framework | Java `-rt`/`-ux` module.xml + imports | queued |
+| D | BG22 · **Módulos que usa nmodsReflow**: -rt 12 deps Tridium (baja/web/history/alarm/control/schedule/bql/bacnet/driver/net/box/platform) + para qué cada uno; -ux +nmodsreflow-rt; tipos (service/scheme reflow:/8 commands/channel/ws/sync + 3 views); Reflow=agregador transversal | module.xml + bloques | **cerrado B234** |
 | D | BG23 · **Sistema de vistas (Workbench/navegador/perfiles)**: cómo Reflow registra sus 3 vistas (`BReflow`/`BReflowConfig`/`BReflowRedirect` = `BIJavaScript` view-agents, parcial B151/B152), en qué perfiles se sirve (Wb/Hx/browser/mobile), iframe vs Workbench, cómo la misma SPA corre en cada contexto | Java `-ux` + SPA + cross-ref px-editor B194 | queued |
 
 ## Blocked / thin-source gaps (con lo que necesitan)
