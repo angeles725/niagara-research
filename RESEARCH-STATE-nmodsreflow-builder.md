@@ -38,8 +38,9 @@ geo Mapbox ("3D") → síntesis de producto → **diseño de portabilidad a chih
 
 ## Coverage
 
-- **Métrica**: 2 / 11 gaps cerrados (0.18).
-- **Bloques del focus**: B216 (BG1 stack & librerías), B217 (BG2 modelo dashboard + persistencia + update en vivo, **validado [CERT-live]**).
+- **Métrica**: 3 / 11 gaps cerrados (0.27).
+- **Bloques del focus**: B216 (BG1 stack), B217 (BG2 modelo+persistencia, **[CERT-live]**), B218 (BG5 catálogo de widgets, **adelantado** por evidencia dinámica del dashboard real de disco).
+- **Reordenamiento**: BG5 se adelantó a BG3/BG4 al aparecer el dashboard real de disco `HoneywellMX605132026` (26 cards, 10 tipos) — evidencia primaria fuerte para el catálogo. BG3 (motor JSON-Patch) y BG4 (editor/layout) siguen pendientes.
 - **Last iteration**: 2026-07-12 — BG1 cerrado (B216, stack & librerías): RT Java = jackson (JSON, 30 clases) +
   flipkart-zjsonpatch (motor JSON-Patch RFC-6902, el "editá-y-se-actualiza") + opencsv (CSV export) +
   apache-commons-io TeeOutputStream (cache-and-serve) + com.tridium.json (JSON de assets). SPA = Vue 2.6.14 +
@@ -56,7 +57,7 @@ geo Mapbox ("3D") → síntesis de producto → **diseño de portabilidad a chih
 | — | BG2 · **Modelo de dashboard editable + persistencia**: dashboard = array de `cards {id,type,config,width}`, blob opaco a Java (`^reflow/config.json`), Vuex `dashboardCards`; save full (`ConfigUpdateResponse`) + push live WS `config-reload`; delta multiusuario (JSON-Patch, merge en caliente) | Java `sync/`+`http/responses/` + SPA | **cerrado B217 (+[CERT-live])** |
 | alta | BG3 · **Motor de update en vivo (JSON Patch)**: `flipkart-zjsonpatch` RFC-6902, `ConfigDeltaResponse`→`BReflowSyncService.apply()`; merge multiusuario "editá y se actualiza" | Java `-rt` | pending |
 | alta | BG4 · **Editor visual / edit mode + layout**: `editMode`, edición inline por card (`cardTypeChanged`/`cardWidthChanged`/`config-menu`), masonry + enum `single/double/full`, `vue-drag-resize` secundario, SortableJS reorder; NO hay paleta drag estilo Canva | SPA (beautify) | pending |
-| alta | BG5 · **Catálogo de widgets/cards**: los ~19-21 tipos (alarm, building-map, gage, equipment-list, point-display, historyChart, weather-*, table, toggle, circle, hyperlink, schedule-list, divider…) + switch `type→component` + `card.config` schema por tipo | SPA (beautify) | pending |
+| — | BG5 · **Catálogo de widgets/cards**: 20 tipos ofrecidos (registro `cardTypes`) + alias legacy `gauge`; switch `type→component` (v-if); schema/defaults por tipo; add-flow = dropdown en drawer (no paleta drag); especiales hx/url=iframe, building-map=Mapbox | SPA (beautify) + config real disco | **cerrado B218** |
 | media | BG6 · **Render de gauges/charts**: gauge = SVG custom (`circleStyle`, `stroke-dasharray`/`linecap`); `HistoryChart` lib perdida a minificación → beautify dirigido del chunk | SPA (beautify) · parcial thin | pending |
 | alta | BG7 · **Bibliotecas de assets embebidas en el módulo**: `image-library` (25 JPG HVAC, 8 cat, `ImageLibraryResponse`, `module://`), `sound-library` (11 MP3), FontAwesome icon-picker (`icon-search.json` 1853 + `icon-categories.json` 75), `point-matrix.json` (109 puntos + regex auto-bind), point badges (5), backgrounds — cómo se sirven y referencian desde un widget | Java `-rt` + assets | pending |
 | media | BG8 · **Assets propios del usuario: listado + upload de fotos**: `ImageListResponse` escanea `BFileSystem` desde `^`; `EquipmentNoteUpdateResponse` byte-passthrough a `^reflow/notes/`; NO hay endpoint multipart → mecanismo static, payload base64-in-JSON = thin/needs-live | Java `-rt` + SPA | pending (thin en payload) |
@@ -76,12 +77,12 @@ geo Mapbox ("3D") → síntesis de producto → **diseño de portabilidad a chih
 
 ## Stop control (primario = read-only-investigable, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 9 (BG3-BG11; BG6/BG8/BG9 con componentes thin acotados, el resto full-static).
+- **Open gaps — read-only investigable**: 8 (BG3, BG4, BG6-BG11; BG6/BG8/BG9 con componentes thin acotados, el resto full-static).
 - **Open gaps — requires-execution**: 0.
 - **Fase dinámica ABIERTA (§12)**: station N4 VIVA disponible (localhost, usuario `API`/HTTPBasicScheme + `API2`/DIGEST;
   Reflow **1.7.5-43**) + station de disco `HoneywellMX605132026` (Reflow completo, dashboard medianamente armado).
   Habilita validación `[CERT-live]` y un experimento de ESCRITURA supervisado (backup `bf70f28f…` listo).
-- **STOP**: NO declarado — 9 gaps investigables (BG3 siguiente) + fase dinámica en curso.
+- **STOP**: NO declarado — 8 gaps investigables (BG3 o BG7 siguiente) + fase dinámica en curso.
 - Budget cap: none.
 
 ## Iteration history
@@ -91,6 +92,7 @@ geo Mapbox ("3D") → síntesis de producto → **diseño de portabilidad a chih
 | (bootstrap) | 2026-07-12 | — | — | sí · audit sweep matriz (sonnet) | 11 gaps derivados de la matriz de 24 subsistemas |
 | 1 | 2026-07-12 | BG1 stack & librerías | B216 | no · inline (sobre matriz) | 0 (inventario; alimenta BG2/BG3/BG6/BG7/BG9) |
 | 2 | 2026-07-12 | BG2 modelo dashboard + persistencia | B217 | sí · sweep SPA (sonnet) + validación live (no·inline) | 0 (validado [CERT-live] contra station viva; abre experimento de escritura dinámico) |
+| 3 | 2026-07-12 | BG5 catálogo widgets (adelantado) | B218 | sí · sweep bundle (sonnet) + config real disco (no·inline) | 0 (20 tipos + type→component + defaults + add-flow; nueva fuente: dashboard real HoneywellMX605132026) |
 
 ## Self-verify
 
@@ -112,3 +114,9 @@ geo Mapbox ("3D") → síntesis de producto → **diseño de portabilidad a chih
   verify-block exit 0. `[CERT-live]` 3 · `[CERT]` 15 · `[INFER]` 5. Ratio 0.28 (evidencia, sano). Divergencia de
   versión notada (station 1.7.5-43 vs corpus static 1.7.7.75; schema config v14 común). Probe sanitizado en
   `sources/probes/B217-live-config-structure-20260712.txt` (estructura, cero datos del cliente).
+- **B218**: tokens load-bearing grep-confirmados en beautified temp (`cardTypes` registro BF:100416 · dispatch
+  v-if BF:92544 · alias `gauge` BF:92554 · `newCard`/ADD_CARD BF:91353 · Select "Card Type" BF:92432 ·
+  `cardTypeChanged` BF:100536 · `weather-map defaultConfig` BF:26882 · hx-iframe BF:23047 · url-iframe BF:23319 ·
+  badgeForCard/nameForCard BF:91255/91301) + catálogo real del config de disco (10 tipos + schema por tipo, jq).
+  verify-block exit 0. `[CERT]` 10 · `[INFER]` 3. Ratio 0.30 (evidencia, sano). 20 tipos ofrecidos + alias legacy.
+  Probe sanitizado `sources/probes/B218-dashboard-catalog-real-20260712.txt`. Divergencia versión notada.

@@ -1,0 +1,44 @@
+# B218 evidence — REAL Reflow dashboard from disk station
+# path: C:\Users\equipo\Niagara4.14\OptimizerSupervisor\stations\HoneywellMX605132026\shared\reflow\config.json
+# read 2026-07-12 · 247854 B · valid JSON · read-only
+# SANITIZED: card TYPES + config SCHEMA (keys) only. Client site VALUES (point ORDs, equipment/building
+# names, coordinates, image filenames) REDACTED per SECRETS DISCIPLINE (client production config).
+
+IDENTITY: reflowVersion=1.7.5-43  config schemaVersion=14   (same as live localhost station)
+
+DASHBOARD SCALE (a "medium-complete" real dashboard):
+  dashboardCards.cards = 26      landing.cards = 6      pages.items = 2      buildings = 23
+
+CARD CATALOG ACTUALLY USED (type -> count), 10 distinct of the ~19-21 offered:
+  historyChart 6 · point-list 6 · equipment-list 3 · hyperlink 3 · alarm 2 ·
+  equipment-type 2 · building-map 1 · circle 1 · point-display 1 · weather-current 1
+
+WIDGET config SCHEMA (keys per type — the per-widget config contract, values redacted):
+  historyChart    : chartColor, chartType, customYAxis, history, hyperlink, hyperlinkBuilding, range, title
+  point-list      : points, showIcons, statusColor, title
+  equipment-list  : equipment, title
+  hyperlink       : allowed, backgroundImage, backgroundTint, iconName, iconStyle, link, title, titleColor, view
+  alarm           : console, display, displayType, link, priorities, title
+  equipment-type  : equipment, hyperlinkStyle, ord, schedule, showAll, title, typeId
+  building-map    : (empty at card.config level — map state lives in the buildings module, not the card)
+  circle (gauge)  : lower, ord, upper          (numeric ring gauge: point ORD + lower/upper bounds)
+  point-display   : ord, title
+  weather-current : locationDisplay, title
+
+width enum used : single, double, full
+height enum used: auto, double, min, quarter
+
+USER-UPLOADED IMAGES (the "add your own photos/designs" mechanism):
+  referenced as ORD string "file:^Imagenes/<filename>"  (^ = station home)
+  23 distinct image-ref strings; used in hyperlink.backgroundImage and floorplans photos
+  physical files live at: <station>/shared/Imagenes/*.jpg|.jpeg|.png  (user drops them there)
+
+floorplans object keys: enabled, floors, hideNavigationArrows, hidePhotoOverlay, photoTextColor, rememberZoom
+  (floorplan = an uploaded photo with point overlays; separate from dashboardCards)
+
+ALSO ON DISK (Reflow persistence footprint per station):
+  shared/reflow/config.json          — the dashboard (this file)
+  shared/reflow/backups/             — Backup <date>.json, Incremental Backup.json, Pre-remap Backup*.json
+  shared/reflow/favorites            — user favorites
+  shared/px/nmodsreflow              — px view wrappers
+  shared/Imagenes/                   — user-uploaded equipment/plant photos
