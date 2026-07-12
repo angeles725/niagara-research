@@ -77,7 +77,7 @@ observado en el dashboard real):
 
 | type | keys de config (schema) | defaults (código) | evidencia |
 |---|---|---|---|
-| `circle`/`gage` | `ord, lower, upper` | `ord:null, lower:0, upper:100` | `BF:93137,93209,93279` + real `{ord,lower,upper}` |
+| `circle`/`gage` | `ord, lower, upper` | `ord:null, lower:0, upper:100` | `BF:93137,93209,93279` + real `{ord,lower,upper}` — ⚠ **render CORREGIDO en B224 §14**: `gage`/`gauge`=SVG bespoke; `circle`=wrapper iView `<Circle>` (no SVG propio) |
 | `historyChart` | `chartType, chartColor, range, customYAxis, history, hyperlink, hyperlinkBuilding, title` | `chartType:"area", chartColor:"primary", range:"lastHour"` | `BF:96262,96293,96335` + real |
 | `hyperlink` | `title, titleSize, titleColor, textPosition, iconName, iconStyle, iconColor, buttonLabel, backgroundImage, backgroundPosition, link, view, allowed` | `iconName:"far fa-question-circle", backgroundImage:null, textPosition:"center"` | `BF:97250-97420` + real |
 | `alarm` | `display, displayType, console, title, link, priorities` | escrito en mount: `display:"total", displayType:"active", title:"Active Alarms"` | `BF:92990` + real |

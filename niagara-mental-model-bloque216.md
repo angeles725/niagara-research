@@ -72,7 +72,7 @@ qué significa "3D" en este producto: **no es modelado 3D, es una vista de mapa 
 
 | Supuesto | Verdict | Evidencia |
 |---|---|---|
-| Usa **d3** para charts/gauges | **AUSENTE** | `d3-selection`/`d3-scale`/`d3-shape`/`d3-array`/`d3-axis` = 0 hits en ambos bundles `[CERT]` (grep negativo). Los "d3…" que aparecían eran ids de módulo webpack / colores hex. Los gauges son **SVG custom** (BG6). |
+| Usa **d3** para charts/gauges | ⚠ **CORREGIDO en B224 (§14): d3 SÍ ESTÁ PRESENTE** | El grep de `d3-selection`/`d3-scale` dio 0 porque D3 está **aliaseado bajo module ids de webpack** (`UQ["o"]`=select…), no como string `"d3"`. El `historyChart`/sparkline se renderiza con un componente `<d3chart>` que usa el data-join de d3-selection (B224 §224.4). Un grep negativo de un nombre de librería sobre un bundle aliaseado NO prueba ausencia. Los gauges: `gage`/`gauge`=SVG custom, `circle`=wrapper iView (B224). |
 | Usa **axios** para HTTP | **AUSENTE** | `axios` = 0 hits en ambos bundles `[CERT]` (grep negativo). El cliente usa un wrapper POST propio (mecanismo exacto → BG2/BG4). |
 
 Ambas ausencias importan para la Parte B (portabilidad a chihuahua): no hay que replicar d3/axios, y el gauge es

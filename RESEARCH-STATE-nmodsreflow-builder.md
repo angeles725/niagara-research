@@ -38,8 +38,9 @@ geo Mapbox ("3D") → síntesis de producto → **diseño de portabilidad a chih
 
 ## Coverage
 
-- **Métrica**: 8 / 12 gaps cerrados (0.67). *(backlog ampliado 2026-07-12: BG11 → chihuahua-como-builder + comparar + portar; +BG13 modernización del stack. 12 = BG1-BG11 + BG13.)*
-- **Bloques del focus**: B216 (BG1 stack), B217 (BG2 modelo **[CERT-live]**), B218 (BG5 catálogo), B219 (BG7 assets+ORD→URL), B220 (BG8 upload), B221 (BG3 motor+control), B222 (BG9 Mapbox=2D), B223 (BG4 editor+masonry).
+- **Métrica**: 9 / 12 gaps cerrados (0.75). *(backlog ampliado 2026-07-12: BG11 → chihuahua-como-builder + comparar + portar; +BG13 modernización del stack. 12 = BG1-BG11 + BG13.)*
+- **Bloques del focus**: B216 (BG1 stack), B217 (BG2 modelo **[CERT-live]**), B218 (BG5 catálogo), B219 (BG7 assets), B220 (BG8 upload), B221 (BG3 motor+control), B222 (BG9 Mapbox=2D), B223 (BG4 editor+masonry), B224 (BG6 render gauge/chart + §14 corrige B216/B218).
+- **Correcciones §14** (B224): B216 §216.4 (d3 NO ausente, aliaseado) + B218 §218.3 (circle=iView wrapper, no SVG custom). Notas insertadas en ambos origen.
 - **Reordenamiento**: BG5 se adelantó a BG3/BG4 al aparecer el dashboard real de disco `HoneywellMX605132026` (26 cards, 10 tipos) — evidencia primaria fuerte para el catálogo. BG3 (motor JSON-Patch) y BG4 (editor/layout) siguen pendientes.
 - **Last iteration**: 2026-07-12 — BG1 cerrado (B216, stack & librerías): RT Java = jackson (JSON, 30 clases) +
   flipkart-zjsonpatch (motor JSON-Patch RFC-6902, el "editá-y-se-actualiza") + opencsv (CSV export) +
@@ -58,7 +59,7 @@ geo Mapbox ("3D") → síntesis de producto → **diseño de portabilidad a chih
 | — | BG3 · **Motor de update en vivo (JSON Patch)**: `flipkart-zjsonpatch` RFC-6902 apply bajo doPrivileged, rollback de timestamp, broadcast `delta`, control multiusuario cooperativo (configControl token, grant/revoke/request), persistencia debounced | Java `-rt` | **cerrado B221** |
 | — | BG4 · **Editor visual + layout**: edit-mode = 2 mounts (isConfig) + iframe live-preview; layout = directiva `v-masonry` (Masonry.js) + cardClass width/height→clases + heightStyle px (60/15); reorder = drag en lista sidebar (vuedraggable) → recommit ids → `dashboard-redraw`; resize = Selects (no handle); vue-drag-resize solo floorplan; pages ADD_ITEM | SPA (beautify) | **cerrado B223** |
 | — | BG5 · **Catálogo de widgets/cards**: 20 tipos ofrecidos (registro `cardTypes`) + alias legacy `gauge`; switch `type→component` (v-if); schema/defaults por tipo; add-flow = dropdown en drawer (no paleta drag); especiales hx/url=iframe, building-map=Mapbox | SPA (beautify) + config real disco | **cerrado B218** |
-| media | BG6 · **Render de gauges/charts**: gauge = SVG custom (`circleStyle`, `stroke-dasharray`/`linecap`); `HistoryChart` lib perdida a minificación → beautify dirigido del chunk | SPA (beautify) · parcial thin | pending |
+| — | BG6 · **Render gauges/charts**: `Gauge`(gage/gauge)=SVG bespoke (dashArray sobre path fijo); `circle`=wrapper iView `<Circle>`; `historyChart`/sparkline=**D3.js** (`<d3chart>`, d3-selection aliaseado); chartTypes area/line/bar/heatmap/scatter. §14 corrige B216(d3)/B218(circle) | SPA (beautify) | **cerrado B224** |
 | — | BG7 · **Bibliotecas de assets embebidas**: `image-library` (25 JPG HVAC, nav-RPC no REST), FontAwesome icon-picker (1853), `point-matrix.json` (109, auto-bind), `sound-library` (11 MP3); **mecanismo ORD→URL** `$ord.image()`: `module://`→`/module/`, `file:^`→`/ord/` (servlets nativos Niagara, no el custom) | Java `-rt` + assets + SPA | **cerrado B219** |
 | — | BG8 · **Assets propios del usuario (upload)**: **veredicto: NO hay upload in-app** (doPost 4 rutas, 0 multipart; bundle 0 FileReader/FormData); fotos llegan out-of-band al file space (Workbench), Reflow las referencia `file:^Imagenes/…`; picker = nav-RPC `station:\|file:^`; formatos jpg/jpeg/png/svg/gif | Java `-rt` + SPA + disco | **cerrado B220** |
 | — | BG9 · **Vista geo "3D" Mapbox = 2D**: veredicto tajante (0 pitch/bearing/fill-extrusion en código Reflow; solo center/zoom/fitBounds); building-map markers `[lon,lat]` desde módulo buildings; 6 estilos planos configurables; weather-map=2 superficies (PNG estática + raster tiles) gate `license.limits.maps`; cloud niagaramodules + hostId | SPA + Java `-rt` | **cerrado B222** |
@@ -99,6 +100,7 @@ geo Mapbox ("3D") → síntesis de producto → **diseño de portabilidad a chih
 | 6 | 2026-07-12 | BG3 motor JSON-Patch + control multiusuario | B221 | no · inline (lectura directa Java) | +1 (BG13 modernización, pedido usuario; BG11 ampliado a chihuahua-builder) |
 | 7 | 2026-07-12 | BG9 vista geo Mapbox ("3D"=2D) | B222 | sí · sweep Mapbox (sonnet) | 0 (veredicto 2D tajante; weather-map 2 superficies + cloud niagaramodules) |
 | 8 | 2026-07-12 | BG4 editor visual + layout masonry | B223 | sí · sweep editor (sonnet) | 0 (2 mounts+iframe preview, v-masonry, reorder lista, resize Selects; abre correcciones §14 a B216/B218 en BG6) |
+| 9 | 2026-07-12 | BG6 render gauge/chart | B224 | sí · sweep editor/render (sonnet) | 0 (§14: d3 presente aliaseado corrige B216; circle=iView corrige B218; Gauge SVG bespoke) |
 
 ## Self-verify
 
