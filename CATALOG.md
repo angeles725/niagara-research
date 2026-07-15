@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **244 blocks**
+Total: **245 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -250,3 +250,4 @@ Total: **244 blocks**
 | 246 | [niagara-mental-model-bloque246.md](niagara-mental-model-bloque246.md) | U5 Honeywell utility modules: `honBacnetHelper` (BACnet descriptor extensions + license gate + private-transfer) · `honLonsockClient` (LON-over-TCP RNI) · `honUtilityBacRestore` · `honDescriptionUtility` |
 | 247 | [niagara-mental-model-bloque247.md](niagara-mental-model-bloque247.md) | U6 legacy AX / ASCOT residue: `honeywellAXPlatinum(+HR)` (AX-era Px UI widgets) + `honeywellASC` (minimal ASCOT VAV) |
 | 248 | [niagara-mental-model-bloque248.md](niagara-mental-model-bloque248.md) | U7 Forge Connect onboarding: `fcEasyOnboard` (cloud device onboarding) + `fcModelSync{Bacnet,Niagara}` (cloud model-sync write path) |
+| 249 | [niagara-mental-model-bloque249.md](niagara-mental-model-bloque249.md) | U8 Centraline residue: `clStationUpgradeTool` (CentraLine→Honeywell rebrand migration) + `clPrintout` (station documentation/PDF) + `clExtensions`/`clProfile` + 4 resource bundles |
