@@ -22,8 +22,8 @@ status: active
 seeded_from: audits/2026-07-12-coverage-audit.md
 seeded_on: 2026-07-15
 gaps_total: 15 investigable (U1 depth-covered by B242; sub-gaps U1b/U1c queued) + 2 blocked
-gaps_closed: 8 (U1 core → B242 · U2 → B243 · U3 → B244 · U4 → B245 · U5 → B246 · U6 → B247 · U7 → B248 · U8 → B249)
-blocks_written: B242–B249
+gaps_closed: 9 (U1–U8 → B242–B249 · U9 → B250)
+blocks_written: B242–B250
 block_prefix: niagara-mental-model-bloqueN.md (shared global numbering; next free number derived live at loop time)
 
 ## Gap-backlog (prioritized) — from coverage audit §3
@@ -44,7 +44,7 @@ grep-verified ABSENT from all 122+ block `.md` files by the coverage audit (ment
 | MED | U6 | **honeywellAXPlatinum(+HR), honeywellASC** — legacy AX / ASCOT-adjacent OEM (B107 covered `ascCommon/ascBacnet/ascLon`, NOT `honeywellASC`) | `honeywellAXPlatinum/` (3), `HR/` (1), `honeywellASC/` (1) | investigable | **COVERED → B247** (TRIVIAL legacy-AX residue: AXPlatinum = AX-era Px UI — BHonAnimator 9-frame image widget + BHonPalette root; HR = high-res palette variant; honeywellASC = 1-cls stub AscVav — closes B107's "honeywellASC not covered" note as proven-thinness) |
 | MED | U7 | **Forge Connect onboarding + model-sync variants** (TRIDIUM modules, not Honeywell — but HBT_PRODUCTION cloud env) | `fcEasyOnboard/` (14), `fcModelSync{Bacnet,Niagara}/` (2+2) | investigable | **COVERED → B248** (fcEasyOnboard = BEasyOnboard ICloudConfiguration cloud device onboarding — deviceRegistration/AuthURL + BEnvironment CB/HBT/QA/STAGING/UAE prod + easyOnBoard/clean jobs, deps nIotHubConnector/nSentienceConnector. fcModelSync = cloud→station WRITE path: BacnetCloudWriter via priority + FoxCloudWriter via Fox proxy) |
 | MED | U8 | **Centraline residue** — AHU/Heating PX, LON IO r5, profile, station-upgrade tool, extensions, printout, DIN symbols | 8 mods (clPrintout 24, clStationUpgradeTool 11, clExtensions 2, clProfile 1 + 4 resource-only) | investigable | **COVERED → B249** (KEY: clStationUpgradeTool = CentraLine→Honeywell REBRAND migration — n4mig.exe -filePassPhrase:Centraline + rewrites clBACnetUtilities:*→hon:* in BOG/px/nav; clProfile = CentraLine skin steering to Honeywell agents. EXPLAINS the multi-brand pattern of B242/244/246/248. clPrintout = station-doc PDF gen + clPrintout.exe, 9-brand+expiry gate) |
-| LOW-MED | U9 | **Honeywell Modbus smart-sensor + plantController migrators** (B95 covered BACnet TR50; B90 touched migrators) — partial | `honeywellModbusSmartSensor/`, `honPlantControllerMigrator/`, `honPlantControllerEHMigrator/` | investigable | open |
+| LOW-MED | U9 | **Honeywell Modbus smart-sensor + plantController migrators** — DELTA over B90 | honPlantControllerMigrator (68), honeywellModbusSmartSensor (25), honPlantControllerEHMigrator (8) | investigable | **COVERED → B250** (honPlantControllerMigrator = online EagleHawk/BEATS-Adv→PanelBus migration job, StationType=B90 #17, strips the 17 B246 BHonBacnet*Descriptors, CustomIOMigrator plugin registry; EHMigrator = EagleHawk onboard-IO→SnapOnIO plugin, panelbus license gate; ModbusSmartSensor = TR50 air-quality register map TEMP1/HUM2/CO2 3/PM25 4/AQI30, fn codes 3/4/6) |
 | LOW-MED | U10 | **Other-vendor OEM drivers** — Andover, Carrier CCN, McQuay, AAP, MAXPRO, Orion, Silk, axvelocity, BACnet FFT | `andoverAC256/`, `andoverInfinity/`, `ccn/`, `mcquay/`, `aaphp/`, `aapup/`, `maxpro/`, `orion/`, `alarmOrion/`, `silk/`, `axvelocity/`, `BACnetFFTN4/` | investigable | open |
 | LOW | U11 | **Video subsystem** — entire Tridium/OEM video stack, no block | `nvideo/`, `naxisVideo/`, `remoteVideo/`, `videoDriver/`, `videoMigrator/`, `baseRtsp/`, `xprotect/`, `maxpro/` | investigable (out of Honeywell-BMS mission) | open |
 | LOW | U12 | **Tridium framework drivers not deep-distilled** — OPC-UA, Modbus framework, M-Bus, SNMP, oBIX, OpenADR, weather | `opcUaClient/Core/Server/`, `opc/`, `modbusCore/Async/Tcp*/Slave*/`, `mbus/`, `snmp*/`, `nSnmp/`, `obixDriver/`, `openAdr/`, `weather/`, `weatherUnderground/` | investigable (mostly out of mission) | open |
@@ -83,8 +83,8 @@ grep-verified ABSENT from all 122+ block `.md` files by the coverage audit (ment
 
 ## Stop control (METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: **9** (U9–U15 + U1b + U1c). ← focus ACTIVE, 8 blocks written (B242–B249).
-- **Gaps closed**: **8** (U1–U8 → B242–B249) + honIrmAppl, honFirmwarePackage, lonHoneywellAnalytics & 4 Centraline resource bundles closed by proven-absence (resource-only).
+- **Open gaps — read-only investigable**: **8** (U10–U15 + U1b + U1c). ← focus ACTIVE, 9 blocks written (B242–B250).
+- **Gaps closed**: **9** (U1–U9 → B242–B250) + honIrmAppl, honFirmwarePackage, lonHoneywellAnalytics & 4 Centraline resource bundles closed by proven-absence (resource-only).
 - **Open gaps — requires-execution**: **1** (B-1/G8 — shared with Spyder focus).
 - **Open gaps — blocked (missing artifact)**: **1** (B-2/G5b — shared with Spyder focus).
 - **Coverage metric**: **4 / 17** investigable gaps closed (U1 core, U2, U3, U4; U1b/U1c are queued next slices of U1).
