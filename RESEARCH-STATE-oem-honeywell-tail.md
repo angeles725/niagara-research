@@ -6,10 +6,10 @@
 > decompiled and present under `/home/cristian/modules/Prototipos/modulos/organized/` (and the
 > `module-navigator` 926-JAR inventory) but carry no dedicated block.
 >
-> **Status: PLANNED** — backlog committed, **0 blocks written yet**. The loop must NOT re-BOOTSTRAP this
-> focus (§16): it picks up this state and writes its first block against the highest-priority open gap.
-> Corpus language for NEW blocks = **English** (matches the Spyder-era convention; the pre-B115 legacy
-> blocks are Spanish).
+> **Status: ACTIVE** — first block written (**B242**, 2026-07-15, honIrmConfig-rt spine). The loop must NOT
+> re-BOOTSTRAP this focus (§16): it picks up this state and writes the next block against the highest-priority
+> open gap. Corpus language for NEW blocks = **English** (matches the Spyder-era convention; the pre-B115
+> legacy blocks are Spanish).
 >
 > Scope note: the coverage audit found ~90% coverage of the corpus's STATED mission (N4 mental model +
 > Honeywell OEM stack + frontend + analytics + security) but only ~17–20% of the full decompiled universe
@@ -18,11 +18,12 @@
 > out-of-scope bulk (U16 207 LON vendor profiles, U17 41 lexicons) is explicitly excluded.
 
 focus: oem-honeywell-tail
-status: planned
+status: active
 seeded_from: audits/2026-07-12-coverage-audit.md
 seeded_on: 2026-07-15
-gaps_total: 15 investigable + 2 blocked
-gaps_closed: 0
+gaps_total: 15 investigable (U1 depth-covered by B242; sub-gaps U1b/U1c queued) + 2 blocked
+gaps_closed: 1 (U1 core — honIrmConfig-rt spine, B242)
+blocks_written: B242
 block_prefix: niagara-mental-model-bloqueN.md (shared global numbering; next free number derived live at loop time)
 
 ## Gap-backlog (prioritized) — from coverage audit §3
@@ -32,7 +33,10 @@ grep-verified ABSENT from all 122+ block `.md` files by the coverage audit (ment
 
 | Pri | ID | Gap | Where (`organized/…`) | State | Status |
 |---|---|---|---|---|---|
-| **HIGH** | U1 | **honIrmAppl + honIrmConfig** — IRM/BEATS application + config layers (completes the triad with B105 `honIrmControl`) | `honIrmAppl/`, `honIrmConfig/` | investigable | open |
+| **HIGH** | U1 | **honIrmConfig** — IRM/BEATS config-runtime layer (completes the triad with B105 `honIrmControl`) | `honIrmConfig/…-rt/vineflower` | investigable | **DEPTH-COVERED → B242** (honIrmConfig-rt spine: manager tier, Nano protocol, FB factory, OEM brand, crypto; §14 refines B88 transport + B105 call-direction) |
+| note | U1-appl | **honIrmAppl** — resource-only palette jar (`class_count:0`, `tiene_codigo_java:false` per fase1-recon) — NO decompiled Java | `honIrmAppl/…-rt.jar` | blocked-on-source (no code) | closed by proven-absence (resource-only; not a code module) |
+| MED | U1b | **honIrmConfig `-wb` (51 cls) + `-ux` (9 cls)** — Workbench UI (field editors, menu agents, views) + UX server-side-call handlers of the IRM Nano config tool | `honIrmConfig/…-wb`, `…-ux` vineflower | investigable | open (uncovered by B242, which was -rt only) |
+| MED | U1c | **Per-opcode auth trace** — does EVERY `NanoCmdIds` opcode enforce a password/session check, or only a subset? (B242 §242.9 left this open) | `honIrmConfig/…-rt/…/protocol`, `…/manager` sec state machine | investigable | open |
 | **HIGH** | U2 | **honFirmwarePackage + honeywellVersionManager** — firmware packaging + version mgmt (supply-chain; ties to B94 OTA + B75/B113 signing arc) | `honFirmwarePackage/`, `honeywellVersionManager/` | investigable | open |
 | **HIGH** | U3 | **honAlarmConsole + honAlarmExt** — Honeywell alarm console + alarm extensions (OEM layer over B8/B34 alarm) | `honAlarmConsole/`, `honAlarmExt/` | investigable | open |
 | MED-HIGH | U4 | **SylkActuatorAnalytics + lonHoneywellAnalytics** — Honeywell OEM analytics (ties to B66–68 + B88 Sylk) | `SylkActuatorAnalytics/`, `lonHoneywellAnalytics/` | investigable | open |
@@ -65,14 +69,23 @@ grep-verified ABSENT from all 122+ block `.md` files by the coverage audit (ment
   from `organized/` (confirmed: no such dir); referenced only by string + reflection. `blocked-on-artifact`.
   (Also tracked in the Spyder focus as G5b — same gap.)
 
+## Iteration history
+
+| It | Date | Gap closed | Block | New gaps uncovered |
+|---|---|---|---|---|
+| it.1 | 2026-07-15 | **U1 core** — `honIrmConfig-rt` spine (manager tier BIrmBacnetDevice/BIrmControlManager/BIrmConfig · Nano command protocol NanoCmd/NanoCmdIds/NanoResponseCodes · extension-point FB factory · BModelFeaturesEnum · 7-brand OEM licensing · own AES/PBKDF2 crypto layer w/ hardcoded-key weakness · inherited BBacnetDevice contract). §14 refines B88 (transport: BACnet sole prod, sim-TCP :47616, IP/BLE=config not transports) + B105 (call-direction one-way honIrmControl→honIrmConfig, 474 edges/0 reverse). Delegated: 2 sweeps · sonnet (vineflower recon + module-nav/docSource relational). 6/6 load-bearing tokens re-verified by me. | **B242** | U1b (-wb 51 + -ux 9 UI), U1c (per-opcode auth trace); honIrmAppl closed by proven-absence (resource-only) |
+
 ## Stop control (METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: **15** (U1–U15). ← focus NOT stopped; PLANNED, 0 blocks written.
+- **Open gaps — read-only investigable**: **16** (U2–U15 + U1b + U1c). ← focus ACTIVE, 1 block written (B242).
+- **Gaps closed**: **1** (U1 core → B242) + honIrmAppl closed by proven-absence (resource-only, not a code module).
 - **Open gaps — requires-execution**: **1** (B-1/G8 — shared with Spyder focus).
 - **Open gaps — blocked (missing artifact)**: **1** (B-2/G5b — shared with Spyder focus).
-- Recommended first block: **U1** `honIrmAppl` + `honIrmConfig` (closes the IRM/BEATS triad next to B105).
-  Before authoring, run the PROMPT-LOOP e2 existence+size pre-flight (measured count over the real dir,
-  METHODOLOGY §13 "measured count, never a hand-guess"; collapse duplicate procyon/vineflower trees).
+- **Coverage metric**: **1 / 17** investigable gaps closed (U1 core; U1b/U1c are the queued next slices of U1).
+- Recommended next block: **U2** `honFirmwarePackage` + `honeywellVersionManager` (HIGH, firmware supply-chain;
+  ties to B242's firmware-download instance numbers + the B75/B94/B113 signing arc), OR **U1b/U1c** to finish
+  the honIrmConfig module first. Run the PROMPT-LOOP e2 existence+size pre-flight before authoring (measured
+  count over the real dir, collapse procyon/vineflower).
 
-**Resume condition**: open this focus by picking U1 (highest priority) and running the NORMAL CYCLE. This is
-a PLANNED focus — do not re-bootstrap it; the backlog above is the seed.
+**Resume condition**: continue this ACTIVE focus by picking U2 (or U1b/U1c) and running the NORMAL CYCLE. Do
+not re-bootstrap; the backlog above is the seed.
