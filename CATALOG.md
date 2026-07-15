@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **238 blocks**
+Total: **239 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -244,3 +244,4 @@ Total: **238 blocks**
 | 240 | [niagara-mental-model-bloque240.md](niagara-mental-model-bloque240.md) | Reflow: la UI de alarmas (widget, consola, ack, sonidos) |
 | 241 | [niagara-mental-model-bloque241.md](niagara-mental-model-bloque241.md) | Reflow: schedules (widget + edición vía WebScheduler nativo) |
 | 242 | [niagara-mental-model-bloque242.md](niagara-mental-model-bloque242.md) | `honIrmConfig` deep: the IRM Nano / BEATS config-runtime spine (manager · Nano command protocol · FB factory · OEM brand · crypto) — delta over B88 |
+| 243 | [niagara-mental-model-bloque243.md](niagara-mental-model-bloque243.md) | U2 firmware supply-chain: `honFirmwarePackage` (code-signed firmware delivery vehicle) + `honeywellVersionManager` (`BHonVersion` tuple) |
