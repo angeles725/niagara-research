@@ -13,5 +13,5 @@ desktop.ini
 .drafts/
 
 # Orchestrator-local artifacts (not corpus) — research-sdd METHODOLOGY §15
-.atl/*.cache.json
+.atl/
 .claude/
