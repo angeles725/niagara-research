@@ -22,8 +22,8 @@ status: active
 seeded_from: audits/2026-07-12-coverage-audit.md
 seeded_on: 2026-07-15
 gaps_total: 15 investigable (U1 depth-covered by B242; sub-gaps U1b/U1c queued) + 2 blocked
-gaps_closed: 3 (U1 core → B242 · U2 → B243 · U3 → B244)
-blocks_written: B242, B243, B244
+gaps_closed: 4 (U1 core → B242 · U2 → B243 · U3 → B244 · U4 → B245)
+blocks_written: B242, B243, B244, B245
 block_prefix: niagara-mental-model-bloqueN.md (shared global numbering; next free number derived live at loop time)
 
 ## Gap-backlog (prioritized) — from coverage audit §3
@@ -39,7 +39,7 @@ grep-verified ABSENT from all 122+ block `.md` files by the coverage audit (ment
 | MED | U1c | **Per-opcode auth trace** — does EVERY `NanoCmdIds` opcode enforce a password/session check, or only a subset? (B242 §242.9 left this open) | `honIrmConfig/…-rt/…/protocol`, `…/manager` sec state machine | investigable | open |
 | **HIGH** | U2 | **honFirmwarePackage + honeywellVersionManager** — firmware packaging + version mgmt (supply-chain) | `honFirmwarePackage/` (0 code), `honeywellVersionManager/` (1 cls) | investigable | **COVERED → B243** (both THIN: honFirmwarePackage = code-signed resource-only firmware delivery vehicle w/ 3 payloads — HMI + PanelBus IO fw, DigiCert-G4→Honeywell signer; honeywellVersionManager = 1-class BHonVersion 6-tuple. Ties B94 OTA + B242 fw inst-nums + B75/B113 signing) |
 | **HIGH** | U3 | **honAlarmConsole + honAlarmExt** — Honeywell alarm console + alarm extensions (OEM layer over B8/B34 alarm) | `honAlarmConsole/` (5 cls), `honAlarmExt/` (5 cls) | investigable | **COVERED → B244** (honAlarmExt = alarm-delay/transient-suppression: BHonAlarmClass/BHonConsoleRecipient buffer+BDelayFilterState UNKNOWN/DELAYED/SENT/IGNORED; honAlarmConsole = brand-aware JS console BIFormFactorMax + BQL RPC summary, license-gated, same 7-brand set as B242. ZKM on console) |
-| MED-HIGH | U4 | **SylkActuatorAnalytics + lonHoneywellAnalytics** — Honeywell OEM analytics (ties to B66–68 + B88 Sylk) | `SylkActuatorAnalytics/`, `lonHoneywellAnalytics/` | investigable | open |
+| MED-HIGH | U4 | **SylkActuatorAnalytics + lonHoneywellAnalytics** — Honeywell OEM analytics (ties to B66–68 + B88 Sylk) | `SylkActuatorAnalytics/` (4 cls), `lonHoneywellAnalytics/` (0 code) | investigable | **COVERED → B245** (SylkActuatorAnalytics = actuator cycle-count wear analytics: BSylkActuatorService + RPC NEQL query n:history/ActuatorCycleCount → JS bar-graph widget. lonHoneywellAnalytics = resource-only LON IAQ device-interface bundle IAQCo2/IAQMulti.lnml, signed by Honeywell Product PKI — 2nd signer vs B243 DigiCert) |
 | MED | U5 | Honeywell utility modules — BACnet helper, BAC restore, lonsock client, description utility | `honBacnetHelper/`, `honUtilityBacRestore/`, `honLonsockClient/`, `honDescriptionUtility/` | investigable | open |
 | MED | U6 | **honeywellAXPlatinum(+HR), honeywellASC** — legacy AX / ASCOT-adjacent OEM (B107 covered `ascCommon/ascBacnet/ascLon`, NOT `honeywellASC`) | `honeywellAXPlatinum/`, `honeywellAXPlatinumHR/`, `honeywellASC/` | investigable | open |
 | MED | U7 | **Forge Connect onboarding + model-sync variants** — only `fcModelSync` (B85) + `honCloudEasyOnboard` (B84) covered; `fcEasyOnboard` has 0 mentions | `fcEasyOnboard/`, `fcModelSyncBacnet/`, `fcModelSyncNiagara/` | investigable | open |
@@ -76,17 +76,18 @@ grep-verified ABSENT from all 122+ block `.md` files by the coverage audit (ment
 | it.1 | 2026-07-15 | **U1 core** — `honIrmConfig-rt` spine (manager tier BIrmBacnetDevice/BIrmControlManager/BIrmConfig · Nano command protocol NanoCmd/NanoCmdIds/NanoResponseCodes · extension-point FB factory · BModelFeaturesEnum · 7-brand OEM licensing · own AES/PBKDF2 crypto layer w/ hardcoded-key weakness · inherited BBacnetDevice contract). §14 refines B88 (transport: BACnet sole prod, sim-TCP :47616, IP/BLE=config not transports) + B105 (call-direction one-way honIrmControl→honIrmConfig, 474 edges/0 reverse). Delegated: 2 sweeps · sonnet (vineflower recon + module-nav/docSource relational). 6/6 load-bearing tokens re-verified by me. | **B242** | U1b (-wb 51 + -ux 9 UI), U1c (per-opcode auth trace); honIrmAppl closed by proven-absence (resource-only) |
 | it.2 | 2026-07-15 | **U2** — firmware supply-chain (both THIN, e2 re-scoped): honFirmwarePackage = 0-code resource-only firmware DELIVERY module (3 payloads: HMI_FW_v1.5.4.26.frm 1.7MB + PanelBus Pb_fw.bin/Pb_fw_Snapon.bin, magic-byte variant discriminator), jar code-signed DigiCert-G4 RSA4096/SHA384 → Honeywell International Inc., per-entry SHA-256 manifest incl. firmware. honeywellVersionManager = 1 class BHonVersion (BStruct, 6-tuple Niagara+Tool version, swallow-to-zero compare). Read inline (no sweep). All [CERT] observed by me. | **B243** | none net-new (both modules exhausted); honFirmwarePackage closed by proven-absence on code axis |
 | it.3 | 2026-07-15 | **U3** — OEM alarm layer (both SMALL, ~10 cls, read inline): honAlarmExt = alarm-delay/transient-suppression over Tridium alarm fw (BHonAlarmClass extends BAlarmClass + BHonConsoleRecipient extends BConsoleRecipient, both add enableAlarmDelay/delayTime/sendDelayBufferOnShutdown + buffer via doRouteAlarm/handleAlarm; BDelayFilterState UNKNOWN/DELAYED/SENT/IGNORED — send only if still active after delay). honAlarmConsole = brand-aware JS console (BHonAlarmConsole implements BIJavaScript,BIFormFactorMax) + BQL RPC summary (getMultiSourceSummary→JSON, BDynamicTimeRange+BFilterSet, license-gated getBrandFromLicenseFile, same 7-brand set as B242). ZKM on console (1 method decompile-failed). | **B244** | none net-new (both exhausted) |
+| it.4 | 2026-07-15 | **U4** — OEM analytics (SMALL, read inline): SylkActuatorAnalytics (4 cls) = actuator cycle-count wear analytics — BSylkActuatorService extends BAbstractService (autoConfigureNiagaraNetwork action) + BSylkActuatorToolRPC NEQL query `n:history and s:ActuatorCycleCount and s:ActuatorName` → JSON bar-graph + BSylkActuatorWidget JS (BIJavaScript/BIFormFactorMax/BIOffline). lonHoneywellAnalytics (0 code) = resource-only LON IAQ device-interface bundle (IAQCo2/IAQMulti .lnml XLonDevice, programID 80000c0a46040402). SIGNING: signed by Honeywell Product PKI RSA (OU=ACS) — a 2ND internal signer vs B243's external DigiCert-G4. | **B245** | none net-new (both exhausted) |
 
 ## Stop control (METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: **14** (U4–U15 + U1b + U1c). ← focus ACTIVE, 3 blocks written (B242, B243, B244).
-- **Gaps closed**: **3** (U1 core → B242 · U2 → B243 · U3 → B244) + honIrmAppl & honFirmwarePackage closed by proven-absence (resource-only).
+- **Open gaps — read-only investigable**: **13** (U5–U15 + U1b + U1c). ← focus ACTIVE, 4 blocks written (B242–B245).
+- **Gaps closed**: **4** (U1 core → B242 · U2 → B243 · U3 → B244 · U4 → B245) + honIrmAppl, honFirmwarePackage & lonHoneywellAnalytics closed by proven-absence (resource-only).
 - **Open gaps — requires-execution**: **1** (B-1/G8 — shared with Spyder focus).
 - **Open gaps — blocked (missing artifact)**: **1** (B-2/G5b — shared with Spyder focus).
-- **Coverage metric**: **3 / 17** investigable gaps closed (U1 core, U2, U3; U1b/U1c are queued next slices of U1).
-- Recommended next block: **U4** `SylkActuatorAnalytics` + `lonHoneywellAnalytics` (MED-HIGH, OEM analytics over
-  B66-68 + B88 Sylk), OR **U1b/U1c** to finish the honIrmConfig module first. Run the PROMPT-LOOP e2
-  existence+size pre-flight before authoring (measured count over the real dir, collapse procyon/vineflower).
+- **Coverage metric**: **4 / 17** investigable gaps closed (U1 core, U2, U3, U4; U1b/U1c are queued next slices of U1).
+- Recommended next block: **U5** Honeywell utility modules (`honBacnetHelper`/`honUtilityBacRestore`/`honLonsockClient`/`honDescriptionUtility`, MED),
+  OR **U1b/U1c** to finish the honIrmConfig module first. Run the PROMPT-LOOP e2 existence+size pre-flight before
+  authoring (measured count over the real dir, collapse procyon/vineflower).
 
-**Resume condition**: continue this ACTIVE focus by picking U4 (or U1b/U1c) and running the NORMAL CYCLE. Do
+**Resume condition**: continue this ACTIVE focus by picking U5 (or U1b/U1c) and running the NORMAL CYCLE. Do
 not re-bootstrap; the backlog above is the seed.
