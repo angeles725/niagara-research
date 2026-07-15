@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **241 blocks**
+Total: **242 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -247,3 +247,4 @@ Total: **241 blocks**
 | 243 | [niagara-mental-model-bloque243.md](niagara-mental-model-bloque243.md) | U2 firmware supply-chain: `honFirmwarePackage` (code-signed firmware delivery vehicle) + `honeywellVersionManager` (`BHonVersion` tuple) |
 | 244 | [niagara-mental-model-bloque244.md](niagara-mental-model-bloque244.md) | U3 OEM alarm layer: `honAlarmExt` (alarm-delay / transient suppression) + `honAlarmConsole` (brand-aware JS console + BQL RPC) |
 | 245 | [niagara-mental-model-bloque245.md](niagara-mental-model-bloque245.md) | U4 OEM analytics: `SylkActuatorAnalytics` (actuator cycle-count analytics) + `lonHoneywellAnalytics` (LON IAQ device-interface bundle) |
+| 246 | [niagara-mental-model-bloque246.md](niagara-mental-model-bloque246.md) | U5 Honeywell utility modules: `honBacnetHelper` (BACnet descriptor extensions + license gate + private-transfer) · `honLonsockClient` (LON-over-TCP RNI) · `honUtilityBacRestore` · `honDescriptionUtility` |
