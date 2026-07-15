@@ -73,7 +73,9 @@ Clases raíz verificadas `[CERT]`:
 
 **Doble familia de bindings `[CERT-a]`**: `BEasy*` (render PX en Workbench, sobre `BSecureBoundLabelBinding`) vs `BEb*` (`BEbValueBinding extends BValueBinding`, render web Hx — propaga el ORD a `valueOrd`/`alarmOrd`/`overrideOrd` del `BWebWidget` que consume el JS).
 
-**Generador de paletas (Palette Builder Wizard, 5 pasos) `[CERT-a]`**: `BEasyPaletteBuilder extends BWbTool` escanea una estructura de carpetas `Folder_*/Widget_*/{ON,OFF,ALARM,OVERRIDE,STATE}/` (con `STATE/state.values` formato `valor=imagen`), construye widgets, **encripta las imágenes con AES-128** (`KitpxUtils.encrypt`, clave derivada del feature name `honEasyBinding`, marcador final `{0x7F,0x7F}`) y **empaqueta un `<moduleName>-rt.jar` completo** con `JarOutputStream`. En web, `BHxPxEasyPicture.update()` desencripta y envía base64 al JS.
+**Generador de paletas (Palette Builder Wizard, 5 pasos) `[CERT-a]`**: `BEasyPaletteBuilder extends BWbTool` escanea una estructura de carpetas `Folder_*/Widget_*/{ON,OFF,ALARM,OVERRIDE,STATE}/` (con `STATE/state.values` formato `valor=imagen`), construye widgets, **encripta las imágenes con AES** (`EncryptDecrypt.encrypt()` en `easybinding/util/EncryptDecrypt.java:54`; clave derivada del feature name `honEasyBinding` en `easybinding/util/KitpxUtils.java:38`; marcador final `{0x7F,0x7F}` en `EncryptDecrypt.java:61`) y **empaqueta un `<moduleName>-rt.jar` completo** con `JarOutputStream`. En web, `BHxPxEasyPicture.update()` desencripta y envía base64 al JS.
+>
+> `[§14 corregido por audit 2026-07-12 (audits/2026-07-12-certainty-audit.md, claim #22)]` — la clase dueña de la llamada al cifrado es `EncryptDecrypt`, NO `KitpxUtils` (que orquesta y aporta la clave). La sustancia (AES, fuente de la clave `honEasyBinding`, marcador `{0x7F,0x7F}`) fue CONFIRMED verbatim; solo se afinó la atribución de la clase.
 
 **Dos jobs de migración batch `[CERT-a]`**: `BEasyBindingNiagaraVirtualSupportJob` (reescribe ORDs `NiagaraVirtual...` → `ControlPoint` real en todos los `.px`) y `BUpgradeToEncryptedEasyWidgets` (reemplaza `<Picture>`→`<EasyPicture>` en bytes del PX para migrar a paletas encriptadas).
 
