@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **242 blocks**
+Total: **243 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -248,3 +248,4 @@ Total: **242 blocks**
 | 244 | [niagara-mental-model-bloque244.md](niagara-mental-model-bloque244.md) | U3 OEM alarm layer: `honAlarmExt` (alarm-delay / transient suppression) + `honAlarmConsole` (brand-aware JS console + BQL RPC) |
 | 245 | [niagara-mental-model-bloque245.md](niagara-mental-model-bloque245.md) | U4 OEM analytics: `SylkActuatorAnalytics` (actuator cycle-count analytics) + `lonHoneywellAnalytics` (LON IAQ device-interface bundle) |
 | 246 | [niagara-mental-model-bloque246.md](niagara-mental-model-bloque246.md) | U5 Honeywell utility modules: `honBacnetHelper` (BACnet descriptor extensions + license gate + private-transfer) · `honLonsockClient` (LON-over-TCP RNI) · `honUtilityBacRestore` · `honDescriptionUtility` |
+| 247 | [niagara-mental-model-bloque247.md](niagara-mental-model-bloque247.md) | U6 legacy AX / ASCOT residue: `honeywellAXPlatinum(+HR)` (AX-era Px UI widgets) + `honeywellASC` (minimal ASCOT VAV) |

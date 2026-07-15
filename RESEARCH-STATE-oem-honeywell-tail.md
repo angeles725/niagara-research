@@ -22,8 +22,8 @@ status: active
 seeded_from: audits/2026-07-12-coverage-audit.md
 seeded_on: 2026-07-15
 gaps_total: 15 investigable (U1 depth-covered by B242; sub-gaps U1b/U1c queued) + 2 blocked
-gaps_closed: 5 (U1 core → B242 · U2 → B243 · U3 → B244 · U4 → B245 · U5 → B246)
-blocks_written: B242, B243, B244, B245, B246
+gaps_closed: 6 (U1 core → B242 · U2 → B243 · U3 → B244 · U4 → B245 · U5 → B246 · U6 → B247)
+blocks_written: B242, B243, B244, B245, B246, B247
 block_prefix: niagara-mental-model-bloqueN.md (shared global numbering; next free number derived live at loop time)
 
 ## Gap-backlog (prioritized) — from coverage audit §3
@@ -41,7 +41,7 @@ grep-verified ABSENT from all 122+ block `.md` files by the coverage audit (ment
 | **HIGH** | U3 | **honAlarmConsole + honAlarmExt** — Honeywell alarm console + alarm extensions (OEM layer over B8/B34 alarm) | `honAlarmConsole/` (5 cls), `honAlarmExt/` (5 cls) | investigable | **COVERED → B244** (honAlarmExt = alarm-delay/transient-suppression: BHonAlarmClass/BHonConsoleRecipient buffer+BDelayFilterState UNKNOWN/DELAYED/SENT/IGNORED; honAlarmConsole = brand-aware JS console BIFormFactorMax + BQL RPC summary, license-gated, same 7-brand set as B242. ZKM on console) |
 | MED-HIGH | U4 | **SylkActuatorAnalytics + lonHoneywellAnalytics** — Honeywell OEM analytics (ties to B66–68 + B88 Sylk) | `SylkActuatorAnalytics/` (4 cls), `lonHoneywellAnalytics/` (0 code) | investigable | **COVERED → B245** (SylkActuatorAnalytics = actuator cycle-count wear analytics: BSylkActuatorService + RPC NEQL query n:history/ActuatorCycleCount → JS bar-graph widget. lonHoneywellAnalytics = resource-only LON IAQ device-interface bundle IAQCo2/IAQMulti.lnml, signed by Honeywell Product PKI — 2nd signer vs B243 DigiCert) |
 | MED | U5 | Honeywell utility modules — BACnet helper, BAC restore, lonsock client, description utility | `honBacnetHelper/` (73 cls), `honLonsockClient/` (15), 2×1 | investigable | **COVERED → B246** (honBacnetHelper = BACnet descriptor extensions w/ BIHonCommon default-logic + HON-NADV license bypass + HonPrivateTransferListener VENDOR_ID_HON=17/PT-18/30 = same channel as B242 BIrmConfig; honLonsockClient = LON-over-TCP Echelon RNI port 3830; honUtilityBacRestore + honDescriptionUtility = 1-cls each) |
-| MED | U6 | **honeywellAXPlatinum(+HR), honeywellASC** — legacy AX / ASCOT-adjacent OEM (B107 covered `ascCommon/ascBacnet/ascLon`, NOT `honeywellASC`) | `honeywellAXPlatinum/`, `honeywellAXPlatinumHR/`, `honeywellASC/` | investigable | open |
+| MED | U6 | **honeywellAXPlatinum(+HR), honeywellASC** — legacy AX / ASCOT-adjacent OEM (B107 covered `ascCommon/ascBacnet/ascLon`, NOT `honeywellASC`) | `honeywellAXPlatinum/` (3), `HR/` (1), `honeywellASC/` (1) | investigable | **COVERED → B247** (TRIVIAL legacy-AX residue: AXPlatinum = AX-era Px UI — BHonAnimator 9-frame image widget + BHonPalette root; HR = high-res palette variant; honeywellASC = 1-cls stub AscVav — closes B107's "honeywellASC not covered" note as proven-thinness) |
 | MED | U7 | **Forge Connect onboarding + model-sync variants** — only `fcModelSync` (B85) + `honCloudEasyOnboard` (B84) covered; `fcEasyOnboard` has 0 mentions | `fcEasyOnboard/`, `fcModelSyncBacnet/`, `fcModelSyncNiagara/` | investigable | open |
 | MED | U8 | **Centraline residue** — AHU/Heating PX graphics, LON IO r5, profile, station-upgrade tool, extensions, printout, DIN symbols | `CentralineAhuPx/`, `CentralineHtgPx/`, `CentralineLONIOr5/`, `clProfile/`, `clStationUpgradeTool/`, `clExtensions/`, `clPrintout/`, `DINsymbol/` | investigable | open |
 | LOW-MED | U9 | **Honeywell Modbus smart-sensor + plantController migrators** (B95 covered BACnet TR50; B90 touched migrators) — partial | `honeywellModbusSmartSensor/`, `honPlantControllerMigrator/`, `honPlantControllerEHMigrator/` | investigable | open |
@@ -81,8 +81,8 @@ grep-verified ABSENT from all 122+ block `.md` files by the coverage audit (ment
 
 ## Stop control (METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: **12** (U6–U15 + U1b + U1c). ← focus ACTIVE, 5 blocks written (B242–B246).
-- **Gaps closed**: **5** (U1 core → B242 · U2 → B243 · U3 → B244 · U4 → B245 · U5 → B246) + honIrmAppl, honFirmwarePackage & lonHoneywellAnalytics closed by proven-absence (resource-only).
+- **Open gaps — read-only investigable**: **11** (U7–U15 + U1b + U1c). ← focus ACTIVE, 6 blocks written (B242–B247).
+- **Gaps closed**: **6** (U1 core → B242 · U2 → B243 · U3 → B244 · U4 → B245 · U5 → B246 · U6 → B247) + honIrmAppl, honFirmwarePackage & lonHoneywellAnalytics closed by proven-absence (resource-only).
 - **Open gaps — requires-execution**: **1** (B-1/G8 — shared with Spyder focus).
 - **Open gaps — blocked (missing artifact)**: **1** (B-2/G5b — shared with Spyder focus).
 - **Coverage metric**: **4 / 17** investigable gaps closed (U1 core, U2, U3, U4; U1b/U1c are queued next slices of U1).
