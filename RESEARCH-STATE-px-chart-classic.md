@@ -18,10 +18,10 @@
 
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 251
-gaps_closed: 5
+covered_blocks: 252
+gaps_closed: 6
 known_gaps: 8
-investigable_open: 3
+investigable_open: 2
 requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
@@ -76,8 +76,8 @@ token líder `pending`); el detalle de fuentes y clases por gap va en la lista b
 | high | H3 binding a datos reales (histories/puntos) | decompiled-java | closed (B253) |
 | high | H4 consumidores reales + §14 vs B199/B201 | relational | closed (B254) |
 | medium | H5 implementación interna com.tridium.chart | decompiled-java | closed (B255) |
-| medium | H6 salidas no-Swing PDF + HX | decompiled-java | pending (NEXT) |
-| medium | H7 los tests como especificación | decompiled-java | pending |
+| medium | H6 salidas no-Swing PDF + HX | decompiled-java | closed (B256) |
+| medium | H7 los tests como especificación | decompiled-java | pending (NEXT) |
 | low | H8 el split rt/wb | decompiled-java | pending |
 
 ### Detalle por gap (fuentes medidas)
@@ -112,13 +112,12 @@ token líder `pending`); el detalle de fuentes y clases por gap va en la lista b
 
 ## Clasificación (§8)
 
-- **read-only-investigable**: **3** (H6, H7, H8) → focus ACTIVO, pero cerca del agotamiento: los tres
-  gaps restantes suman **16 clases** (pdf 2 + hx 1 + test 8 + rt 5). Se cerrarán INLINE (sin sub-agente):
-  el kit reserva la delegación para barridos de >3-4 archivos.
+- **read-only-investigable**: **2** (H7, H8) → focus ACTIVO, cerca del agotamiento: suman **13 clases**
+  (test 8 + rt 5). Se cierran INLINE (sin sub-agente), como H6.
 - **requires-execution**: 0. **blocked**: 0. (Nota: el posible off-by-one de `BDiscreteAxis.fromDisplaySpace`,
   B252 §252.7-i, quedó marcado `[INFER]` NO confirmado — reproducirlo exige ejecución, fuera del alcance.)
-- **Coverage metric**: **5 / 8** gaps cerrados (B251-B255). Las 4 HIGH cerradas; quedan 2 MED + 1 LOW.
-- **Próximo gap**: **H6** (`com.tridium.chart.pdf` + `.hx` — las salidas no-Swing).
+- **Coverage metric**: **6 / 8** gaps cerrados (B251-B256). Quedan H7 (MED) + H8 (LOW).
+- **Próximo gap**: **H7** (`com.tridium.chart.test` — los tests como especificación).
 - **SEÑAL DE AGOTAMIENTO (§11)**: dos bloques CONSECUTIVOS de evidencia por encima del umbral 0.5 —
   B254 = 0.59, B255 = 0.56. La evidencia investigable del focus se está agotando; consistente con las 16
   clases que quedan. Alimenta la decisión §8 de STOP tras H8.
@@ -130,6 +129,7 @@ token líder `pending`); el detalle de fuentes y clases por gap va en la lista b
 
 | It | Fecha | Gap | Bloque | Hallazgo | Delegado? · tier |
 |---|---|---|---|---|---|
+| it.6 | 2026-07-24 | **H6** — salidas no-Swing | **B256** | `BPdfChartPane extends BChartPane implements BIPdfWidget`: para exportar **TRASPASA el modelo, no lo copia** — al chart EN VIVO le instala un `BoundChartModel` vacío y le pasa el modelo original a la copia PDF (evita duplicar un `TableSeries` con toda la tabla, pero deja el widget de pantalla inconsistente). **La prueba de que Tridium lo sabía**: `BResourceManagerToPdf.export()` termina forzando `getWbShell().getRefreshCommand().doInvoke()` — una reparación explícita del efecto colateral. Bindings clonados vía `temp.fw(303, target, ...)` (opcode interno no documentado). **§14 a B254 §254.8**: `BHxPxChartPane` (@NiagaraSingleton, agente sobre chart:ChartPane) demuestra que el chart clásico **SÍ llega al browser** por el perfil **Hx legacy** — pero DEGRADADO a imagen muerta: `getChildWidgets()` devuelve array VACÍO y `getMouseEventHandler()` devuelve NULL → sin zoom, sin pan, sin traza. El veredicto correcto tiene TRES casos, no dos: Workbench=clásico interactivo · browser moderno=webChart · **browser Hx=clásico renderizado en servidor sin interacción**. Propaga los facets del HxOp a todos los ejes (así llega el formato de fecha del cliente). | **no · inline** (3 clases, 180 líneas — bajo el umbral de delegación) |
 | it.5 | 2026-07-24 | **H5** — impl privada | **B255** | Las 13 clases privadas NO son misceláneo: son **infraestructura de INTERACCIÓN y EDICIÓN** (contenedor de ejes, controles pan/zoom, 4 field editors del property sheet) — Tridium mantuvo público el modelo/ejes/bindings y privado el cómo se edita e interactúa. **RESUELVE el UNVERIFIED de B252 §252.5**: `BAxisContainer.paint()` es quien llama `axis.getRenderer().paint(g, axis)` con `g.push()/translate()/pop()` por eje (por eso el renderer pinta en coords locales); también explica cómo se setean `BAxisDimension`/`BAxisLocation` sin ser slots (los propaga `addAxis()`). `BoundChartSpec` = back-pointer al binding y NADA más (pasivo, confirma B253 §253.4). `BoundTimeSeries` = búfer paginado 256 con compresión por cambio (una señal plana NO consume memoria: estira el timestamp de la última muestra) y ventana en 2 modos (anclada hasta llenar `timeWindow`, luego rodante). **COMPLETA B254 §254.3**: el desplegable de tipo de eje del property sheet usa `getTypes()` (todos los subtipos registrados de BAxis), NO `getAgents()` → los ejes custom de analytics SÍ le aparecen al usuario aunque no sean agentes; el punto de extensión funciona por la vía MANUAL, no la automática. **3 defectos verificados**: (a) carrera de datos real — `sample()` es `synchronized` pero `getValue()`/`getSampleCount()` NO, y el poll de 2 Hz corre permanente mientras el paint thread lee; (b) `ChartUtil.makeGradient()` emite DOS stops en 0% → el color original del brush NUNCA se rinde (afecta a todo `BAreaChart`); (c) misma carrera en `BResourceManager`. Bonus: `BResourceManager` = el patrón mínimo para embeber un chart en una vista Workbench (2 Series sobre int[], BChartPane, NullAxisRenderer). Sin ZKM: las 13 decompilan limpio. 11 tokens re-verificados. verify-block exit 0, ratio 9/16 = 0.56 → **2do bloque consecutivo >0.5 = señal de agotamiento §11** | sí · **sonnet** (barrido 13 clases) + verificación inline |
 | it.4 | 2026-07-24 | **H4** — consumidores + veredicto | **B254** | **8 módulos / 55 archivos** consumen el chart clásico (module-navigator sobre 926 jars). El pesado es `analytics-wb`: sus charts **EXTIENDEN `BChart`** (no lo envuelven) → **Analytics NO tiene motor gráfico propio en Workbench**, y hereda TODOS los gotchas de B251/B252 (12 colores, slurp, búfer AWT). También lo usa `honeywellSpyderTool` (`BPieChartPane`) → el mismo motor dibuja en la herramienta de comisionamiento Spyder. `BChartRenderLimitConfiguration` (analytics-rt, propiedad OCULTA de BAnalyticService): topes por tipo 3.000-250.000 filas, coherentes con mitigar el slurp — pero **enforcement UNVERIFIED**, cero llamadores visibles. **VEREDICTO clásico vs webChart: lo decide el PERFIL, no un switch** — Workbench/Swing = clásico, browser/móvil = webChart; los puentes (`analytics-wb`, `history-wb`) escriben DOS implementaciones separadas, no hay conversión. **Ausencia probada: CERO `@Deprecated` en todo el módulo** → el chart clásico está plenamente vigente en 4.14, es paralelo a webChart, no anterior. §14 x2: (a) matiza B253 §253.5 — el registro de agentes para ejes EXISTE pero `BDaysAxis`/`BHoursAxis` NO llevan `@AgentOn` (ausencia probada) y se construyen a mano → capacidad declarativa no transitada; (b) matiza B253 §253.9 — los permisos SÍ existen, una capa arriba: `BHistoryChart` usa `@AgentOn(requiredPermissions="r")`. 12 tokens re-verificados. verify-block exit 0, ratio 10/17 = 0.59 — bloque declarado **MIXTO evidencia+veredicto**; la evidencia RELACIONAL sí queda agotada (55 archivos enumerados) | sí · **sonnet** (80 tool-calls, module-navigator) + verificación inline |
 | it.3 | 2026-07-24 | **H3** — binding a datos | **B253** | `BChartBinding extends BBinding` (javax.baja.ui) con **5 slots propios** — HERMANO de `BValueBinding`, no descendiente; declarable desde `.px`. Dos estrategias con naturaleza temporal OPUESTA: `BTableChartBinding` = **SNAPSHOT** (resuelve la ORD una vez, `Tables.slurp()`, sin COV ni scheduler → un chart de history NO se actualiza solo, solo al re-ligarse) vs `BValueChartBinding` = **POLL de 500 ms HARDCODEADO** (`Clock.schedulePeriodically`; el slot `timeWindow` de 5 min es el ANCHO de ventana, no la frecuencia) con filtro COV encima (`BoundTimeSeries.isChange`) y `pageSize=256` hardcodeado; al desbindear DESCARTA la historia en memoria. **Ausencia probada**: 0 referencias a `BHistoryConfig`/`BIHistory` en las 67 clases — el chart NO conoce histories, todo pasa por `BITable`. `doSyncBindings()` = reconciliación en 2 barridos disparada por `bound()`/`unbound()`, NO por llegada de datos; reutiliza ejes vía `findAxis()`+`isCompatible()` y FUSIONA ejes discretos. `BAxisSpec.toAxis()` elige el tipo de eje **por REGISTRO DE AGENTES** (`Sys.getRegistry().getAgents` filtrado por `BAxis.TYPE`). `BAxisBound`+`BColumnIdentifier` viven en `-rt` (lo serializable) con formato de cable `"fixed,<typespec>,<valor>"` / `"tableColumn:<nombre>"`. **§14 CORRIGE B252 §252.5**: mi tesis "módulo pre-agentes" era una generalización indebida desde la capa de render — el módulo SÍ usa agentes en la capa de datos; solo el RENDER quedó cableado a setters. §253.8: 2 afirmaciones del barrido corregidas, incl. "mecanismo multi-serie muerto" → FALSO, `BTransformChartBindingCollection` (seriesTransform-wb) es implementador único en 50.798 archivos. 12 tokens re-verificados. verify-block exit 0, ratio 11/23 = 0.48 | sí · **sonnet** (barrido binding) + module-navigator inline |
