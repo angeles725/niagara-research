@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **248 blocks**
+Total: **249 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -254,3 +254,4 @@ Total: **248 blocks**
 | 250 | [niagara-mental-model-bloque250.md](niagara-mental-model-bloque250.md) | U9 PlantController migration + Modbus smart sensor: `honPlantControllerMigrator` (EagleHawk/BEATS-Adv→PanelBus) + `honPlantControllerEHMigrator` (EagleHawk onboard-IO) + `honeywellModbusSmartSensor` (TR50 air-quality) |
 | 251 | [niagara-mental-model-bloque251.md](niagara-mental-model-bloque251.md) | Chart clásico (I): `BChart`, la jerarquía de tipos y el modelo de datos |
 | 252 | [niagara-mental-model-bloque252.md](niagara-mental-model-bloque252.md) | Chart clásico (II): ejes, tick spacing y el pipeline de render Swing |
+| 253 | [niagara-mental-model-bloque253.md](niagara-mental-model-bloque253.md) | Chart clásico (III): el binding a datos reales, y §14 corrigiendo B252 |
