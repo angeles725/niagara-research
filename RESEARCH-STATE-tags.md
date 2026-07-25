@@ -22,8 +22,8 @@
 schema: research-state.v1
 covered_blocks: 258
 gaps_closed: 3
-known_gaps: 9
-investigable_open: 6
+known_gaps: 10
+investigable_open: 7
 requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
@@ -64,6 +64,7 @@ Formato canónico de 4 columnas exigido por `research-sdd-status.sh`.
 | medium | T7 exportTags UI + integracion px | decompiled-java | pending |
 | medium | T8 tagdictionary UI y UX | decompiled-java | pending |
 | medium | T9 documentacion oficial Tridium | external-doc | pending |
+| low | T10 la ontologia BRICK | decompiled-java | pending |
 
 ### Detalle por gap
 
@@ -92,9 +93,9 @@ Formato canónico de 4 columnas exigido por `research-sdd-status.sh`.
 
 ## Clasificación (§8)
 
-- **read-only-investigable**: **6** (T4-T9) → focus ACTIVO.
+- **read-only-investigable**: **7** (T4-T10) → focus ACTIVO (T10 es un gap NUEVO descubierto en it.3).
 - **requires-execution**: 0. **blocked**: 0.
-- **Coverage metric**: **3 / 9** (B260-B262).
+- **Coverage metric**: **3 / 10** (B260-B262). El backlog creció: +T10 (Brick).
 - **Próximo gap**: **T4** (`condition/` 9 + `neqlize/` 6 — la traducción tag→query NEQL).
 - **NOTA DE MÉTODO (§11)**: B260 cerró con ratio **0.74**, muy sobre el umbral. A diferencia de B254/B255 del
   focus anterior, acá **NO indica agotamiento** — T1 recién abrió el subsistema y quedan 8 gaps / ~137 clases.
