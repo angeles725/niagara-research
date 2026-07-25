@@ -21,18 +21,34 @@
 | px-editor-core | **stopped** | `RESEARCH-STATE-px-editor-core.md` | La INFRAESTRUCTURA de pxEditor-wb nombrada-no-abierta — C1 event bus ✅B210, C2 API base ✅B211, C3 factory/WidgetInserter ✅B212, C4 util/property ✅B213, C5 fieldeditors ✅B214 + síntesis B215. **CERRADO 5/5**. 5 hilos: BPxEditor hub, selección=nexo (+§14), @AgentOn=extensión, undo=Command, delgado sobre bajaux | B210–B215 |
 | nmodsreflow-builder | **reabierto (14/16)** | `RESEARCH-STATE-nmodsreflow-builder.md` | Reflow como CONSTRUCTOR de dashboards (ángulo PRODUCTO). Base 12/12 + **REABIERTO** grupos A/B/D/E (B228-B241): auto-binding, floorplans, licensing, backups, migración, diff-versiones, módulos, vistas, weather, history/CSV, users/profiles, nav/equipment, alarmas-UI, schedules. Solo falta grupo **C** (dinámico, pendiente OK usuario). **CERRADO 12/12** (B216-B227): stack/libs (B216, §14 d3 presente), modelo dashboard+persistencia **[CERT-live]** (B217), catálogo 20 widgets (B218), assets embebidos+ORD→URL (B219), upload=out-of-band (B220), motor JSON-Patch+control multiusuario (B221), Mapbox "3D"=2D (B222), editor+masonry (B223), render gauge/chart d3/iView (B224), síntesis Parte A (B225), chihuahua-builder+portabilidad (B226), modernización stack (B227) | B216–B227 |
 | oem-honeywell-tail | **paused (9/17)** | `RESEARCH-STATE-oem-honeywell-tail.md` | Cola investigable OEM-Honeywell + framework NO cubierta, SEMBRADA del coverage audit `audits/2026-07-12-coverage-audit.md` (§16). 9 gaps cerrados U1-U9 (B242-B250): honIrmConfig-rt, firmware supply-chain, alarm layer, OEM analytics, utilidades honBacnetHelper/honLonsockClient, residuo AX/ASCOT, Forge Connect onboarding, residuo Centraline (= rebrand CentraLine→Honeywell), migradores PlantController/Modbus smart sensor. Abiertos: U10-U15 + U1b/U1c. Fuera de scope: U16 (207 lon* profiles) + U17 (41 lexicons) | B242–B250 |
-| px-chart-classic | **activo (0/8)** | `RESEARCH-STATE-px-chart-classic.md` | El sistema de charting **CLÁSICO** (`javax.baja.chart`, módulo `chart` Swing/Workbench) — el feed que px-editor-core y B201 declararon "otro focus". 67 clases distintas medidas (rt 5 / wb 62; API pública 35+9). 8 gaps: H1 modelo+jerarquía, H2 ejes/render, H3 binding a histories, H4 consumidores + §14 vs B199/B201, H5 impl `com.tridium.chart`, H6 PDF+HX, H7 tests, H8 split rt/wb. Pregunta transversal: por qué N4 arrastra DOS sistemas de charting | B251– |
+| px-chart-classic | **stopped (8/8)** | `RESEARCH-STATE-px-chart-classic.md` | El sistema de charting **CLÁSICO** (`javax.baja.chart`, módulo `chart` Swing/Workbench) — el feed que px-editor-core y B201 declararon "otro focus". 67 clases distintas medidas (rt 5 / wb 62; API pública 35+9). 8 gaps: H1 modelo+jerarquía, H2 ejes/render, H3 binding a histories, H4 consumidores + §14 vs B199/B201, H5 impl `com.tridium.chart`, H6 PDF+HX, H7 tests, H8 split rt/wb. Pregunta transversal: por qué N4 arrastra DOS sistemas de charting | B251–B259 |
 
 ## Focus activo
 
-**px-chart-classic** (bootstrapeado 2026-07-24) — el charting CLÁSICO `javax.baja.chart`. Arranca en B251
-sobre H1 (modelo + jerarquía de charts). Ángulo: reconstruir el modelo de datos, la jerarquía de tipos, el
-render Swing y el binding a histories, y responder por qué N4 arrastra DOS sistemas de charting (clásico
-Swing-Workbench vs `webChart` bajaux/D3 de B199). Pre-flight e2 medido: 67 clases distintas (no 134 — el raw
-`.java` triplicaba por los pipelines decompiled/procyon/vineflower). Consumidor de peso detectado con
-module-navigator: **`analytics-wb`** importa `javax.baja.chart` directo (BAggregationChart,
-BAverageProfileChart, BEquipmentOperationChart, BDaysAxis/BHoursAxis, BAnalyticChartBinding) → el chart
-clásico es la base de los gráficos de Analytics (cruce con B66-B68).
+**(ninguno activo)** — `px-chart-classic` CERRADO 8/8 el 2026-07-24 (B251-B258 + síntesis B259).
+
+**PRÓXIMO FOCUS COMPROMETIDO: `tags`** (pedido explícito del usuario, aún NO bootstrapeado). Cobertura actual
+= solo espinazo: B21 (Tag Framework + Haystack 4 + BQL + NEQL, 10 secciones), B82 (diccionarios OEM Honeywell
+deofuscados) y B5 (tags en ORD/BOG). Material medido sin abrir: `tagdictionary` 78 clases (rt 69/ux 5/wb 4),
+`exportTags` 44, `haystack` 37 → ~159 clases con un solo bloque de espinazo. Y **200 archivos de documentación
+oficial Tridium SIN TOCAR** (`docTagging` + `docRelations` + `docExportTags`) = fuente `[CERT-doc]`;
+`docRelations` apunta al sistema de RELACIONES, que B21 solo roza.
+
+**COLA DE PX pendiente** (verificado 0 entradas en CATALOG): `webEditors` 95 clases · `galileoKitPx` 19 ·
+`kitPxBuilding` 15 = 129 clases.
+
+**px-chart-classic** (charting CLÁSICO `javax.baja.chart`) — CERRADO 2026-07-24, 8/8 gaps, 9 bloques
+B251-B259. Seis hilos (B259): (1) **dos motores PARALELOS, no sucesivos** — cero `@Deprecated`, decide el
+PERFIL: Workbench=clásico · browser moderno=webChart · **browser Hx=clásico rasterizado sin interacción**;
+(2) extensibilidad PARTIDA — declarativa en datos (`@AgentOn` en bindings, `getTypes()` en el property sheet),
+cableada en dibujo (renderers solo por setter); (3) diseño ANSIOSO — `Tables.slurp()` carga la tabla entera,
+de ahí los topes de `BChartRenderLimitConfiguration` y el traspaso-no-copia del export a PDF; el único camino
+incremental es `BoundTimeSeries` (páginas de 256 + filtro por cambio); (4) **5 defectos confirmados** con
+causa estructural común: **el módulo distribuido NO trae un solo test automatizado** (B257); (5) el split
+rt/wb es un principio — al runtime solo lo SERIALIZABLE (4 tipos + `TrendFlags`), 1 dependencia vs 14;
+(6) quien extiende HEREDA — Analytics, la vista de histories y `honeywellSpyderTool` extienden `BChart`, así
+que todos los gotchas se propagan. §14 x3: B253 corrige B252 (tesis "pre-agentes" era generalización
+indebida), B254 matiza B253 x2, B256 matiza B254 (el tercer caso Hx).
 
 **(pausado)** — `oem-honeywell-tail` en 9/17 (B242-B250, 2026-07-15); abiertos U10-U15 + U1b/U1c.
 `nmodsreflow-builder` CERRADO 12/12 (2026-07-12, B216-B227). §18 retro pendiente de correr.
