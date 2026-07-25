@@ -20,7 +20,7 @@
 
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 265
+covered_blocks: 266
 gaps_closed: 10
 known_gaps: 10
 investigable_open: 0
