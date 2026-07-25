@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **264 blocks**
+Total: **265 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -270,3 +270,4 @@ Total: **264 blocks**
 | 266 | [niagara-mental-model-bloque266.md](niagara-mental-model-bloque266.md) | Tags (VII): "Export Tags" NO es parte del subsistema de tags — y §14 a B21 |
 | 267 | [niagara-mental-model-bloque267.md](niagara-mental-model-bloque267.md) | Tags (VIII): la UI de Export Tags y el puente `BPxViewTag` hacia el subsistema PX |
 | 268 | [niagara-mental-model-bloque268.md](niagara-mental-model-bloque268.md) | Tags (IX): la cara de usuario del diccionario — Workbench y navegador |
+| 269 | [niagara-mental-model-bloque269.md](niagara-mental-model-bloque269.md) | Tags (X): la documentación oficial — lo que resuelve, lo que matiza y lo que agrega |

@@ -1,4 +1,4 @@
-# RESEARCH-STATE — focus: tags (ACTIVE)
+# RESEARCH-STATE — focus: tags (STOPPED 10/10)
 
 > Multi-focus corpus (METHODOLOGY §16). Focus **BOOTSTRAPEADO 2026-07-24** a pedido explícito del usuario
 > ("investigar todo lo relacionado con los tags"), inmediatamente después de cerrar `px-chart-classic` 8/8.
@@ -20,16 +20,16 @@
 
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 264
-gaps_closed: 9
+covered_blocks: 265
+gaps_closed: 10
 known_gaps: 10
-investigable_open: 1
+investigable_open: 0
 requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
 
 focus: tags
-status: active
+status: stopped
 bootstrapped_on: 2026-07-24
 block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libre: B260)
 
@@ -63,7 +63,7 @@ Formato canónico de 4 columnas exigido por `research-sdd-status.sh`.
 | medium | T6 exportTags runtime | decompiled-java | closed (B266) |
 | medium | T7 exportTags UI + integracion px | decompiled-java | closed (B267) |
 | medium | T8 tagdictionary UI y UX | decompiled-java | closed (B268) |
-| medium | T9 documentacion oficial Tridium | external-doc | pending (NEXT) |
+| medium | T9 documentacion oficial Tridium | external-doc | closed (B269) |
 | low | T10 la ontologia BRICK | decompiled-java | closed (B265) |
 
 ### Detalle por gap
@@ -93,10 +93,10 @@ Formato canónico de 4 columnas exigido por `research-sdd-status.sh`.
 
 ## Clasificación (§8)
 
-- **read-only-investigable**: **1** (T9) → focus ACTIVO, último gap.
+- **read-only-investigable**: **0** → **STOP (§8, exhaustión del set investigable)**.
 - **requires-execution**: 0. **blocked**: 0.
-- **Coverage metric**: **9 / 10** (B260-B268). El backlog creció en it.3: +T10 (Brick), cerrado en it.6.
-- **Próximo gap**: **T6** (`exportTags-rt`, 28 clases).
+- **Coverage metric**: **10 / 10** (B260-B269) — ratio 1.00.
+- **Próximo gap**: ninguno. **STOP**. Sigue la síntesis de cierre.
 - **NOTA DE MÉTODO (§11)**: B260 cerró con ratio **0.74**, muy sobre el umbral. A diferencia de B254/B255 del
   focus anterior, acá **NO indica agotamiento** — T1 recién abrió el subsistema y quedan 8 gaps / ~137 clases.
   Indica **exceso de deducción del autor** (glosa comparativa contra el focus del chart). Corrección aplicada
@@ -106,6 +106,7 @@ Formato canónico de 4 columnas exigido por `research-sdd-status.sh`.
 
 | It | Fecha | Gap | Bloque | Hallazgo | Delegado? · tier |
 |---|---|---|---|---|---|
+| it.10 | 2026-07-24 | **T9** — doc oficial | **B269** | Bloque de **SÍNTESIS DOCUMENTAL** (contraste doc-vs-código), no barrido. **RESUELVE el UNVERIFIED de B260 §260.2**: `Dictionary.limit` **= 2 diccionarios por defecto**, ampliable en la licencia igual que el límite de devices; los que excedan quedan en fault y **sus tags desaparecen del diálogo de edición**. Consecuencia operativa: `n` siempre está ⇒ queda UNO libre ⇒ montar Haystack completo (`hs`+`h4`) con licencia default deja uno de los tres EN FAULT. **MATIZA B261 §261.3**: los índices no tienen evicción PERO son de **heap y transitorios** — se construyen perezosamente al ejecutar NEQL y **mueren en cada reboot**; el riesgo no es fuga acumulativa sino presión de heap en sesión larga de JACE. Sin índice, cada consulta NEQL sobre un tag implícito es un **barrido completo de la station**. **CONFIRMA B263 §263.4-5 con la fuente oficial** y nombra el caso de uso: neqlize existe para **bindings PX REUTILIZABLES** (convertir ORD de slot-path a ORD de query NEQL para que el mismo gráfico sirva bajo cualquier equipo), desde **N4.9**; por eso excluye `n:name` — 'hurt the reusability of a graphic'. **AGREGA 3 conceptos ausentes del código**: (a) **Ad Hoc tags** = tags creados desde el diálogo SIN diccionario, la vía de escape del modelo gobernado; (b) **Choice tags** = `BDynamicEnum` + reglas que implican un marcador según el valor elegido (explica para qué existe `BDynamicEnumTagInfo` de B260 §260.3); (c) **offline tagging** = un régimen de descubrimiento DISTINTO (busca en paletas de módulos y en `user-home/tagDictionary`), que matiza el 'se monta, no se registra' de B260 §260.1. **§269.5 — lo que la doc NO resuelve**: nada sobre la integridad referencial rota (B262 §262.6), los 2 bypasses de `frozen`, la validación NEQL que no aborta, ni las 4 fallas silenciosas. Los hallazgos operativamente más peligrosos salieron TODOS del código. Back-fill honesto: `docExportTags` queda SIN bloque citante porque ninguno la cita (su contenido es Niagara Network, no tagging) | **no · inline** (lectura de fuentes preservadas) |
 | it.9 | 2026-07-24 | **T8** — UI del diccionario | **B268** | Workbench: `BTagDictionaryManager` (agente sobre el servicio, `requiredPermissions="W"`) con Import/Export y **Tag Group Report** — que es la cara de usuario de `updateTagGroupRelations()` (B261 §261.6, la que saltea el candado `frozen` con `Context.decoding`): el operador ve un diálogo de migración y por debajo se reescriben slots de tags por relaciones. **Toda esa migración está en un `catch(Exception)` con solo `printStackTrace()`** ⇒ fallo a mitad = componentes PARCIALMENTE migrados, sin rollback ni aviso (**cuarta falla silenciosa del subsistema**, tras B261/B262/B264). Navegador: `BTagManager` (bajaux, `BIFormFactorMax`, agente sobre **`baja:Component`** — aparece en TODO componente sin filtro de taggeabilidad) + `BRelationIdEditor` (`BIFormFactorMini` + **`BIOffline`**, coherente porque un id de relación es texto `namespace:name`). 6 RPC alimentan la UI; `getTagInfos` devuelve `isIdeal`, o sea **el `testIdealMatch` de B263 §263.3 es lo que filtra la paleta que ve el usuario**. **§268.4 — CUARTA verificación de permisos, cuarta falsa alarma evitada**: el barrido afirmó que los diccionarios que no implementen `BIProtected` quedan expuestos; verificado que **`BComponent implements BIProtected`** ⇒ la rama `: true` NUNCA se alcanza para un diccionario. Nota de método: **4 de 4** claims de permisos de sub-agentes requirieron corrección — es una limitación estructural del barrido delegado (el sub-agente no tiene el modelo del framework), no mala suerte. 6 tokens re-verificados | sí · **sonnet** (mismo barrido que it.8) + verificación inline |
 | it.8 | 2026-07-24 | **T7** — exportTags UI | **B267** | La UI no inventa nada: reutiliza `@AgentOn` (B211), `BWbFieldEditor` (B214/B202) y commands, tal cual — confirma la uniformidad de la infra de Workbench de B215. **EL HALLAZGO ESTÁ EN `tags/px/`**: `BPxViewTag` distribuye **VISTAS PX** de supervisor a subordinadas — habilita virtuales, recorre el `.px` con `IPxOrdVisitor`, crea un `BNiagaraFileImport` para que el archivo viaje, aplica `BCategoryMask` a las ORDs y planta un **`BSubstitutePxView`** en el espacio virtual con el mapa `substituteOrds` que **reescribe las ORDs en runtime** para cada estación. Es distribución de gráficos a escala de FLOTA sin editar 30 copias del .px. **Es el eslabón que faltaba** entre los 4 focuses PX (que documentaron cómo se CONSTRUYE una vista) y el join (cómo se DISTRIBUYE). **Riesgo estructural**: `BSubstitutePxView` vive en `exportTags-wb.jar` pero se persiste en el espacio virtual del DESTINO — un JACE que no carga el perfil `-wb` no puede resolver el tipo (no reproducido; verificado por la ubicación de las clases). Gotcha: la contraseña de join es una columna `Prop` normal en `BJoinProfileManager` (oculta por defecto, pero el enmascarado no se impone en esa capa). 6 tokens re-verificados | sí · **sonnet** (65 tool-calls, cubrió T7+T8) + verificación inline |
 | it.7 | 2026-07-24 | **T6** — exportTags rt | **B266** | **HALLAZGO: "Export Tags" NO pertenece al subsistema de tags.** Ausencia probada: barrido de `com.tridium.tagdictionary|javax.baja.tagdictionary|javax.baja.tag.` sobre las **28 clases** → **0 archivos**. Cero código en común. Es un mecanismo de **JOIN supervisor↔subordinada** de Niagara Network: la subordinada aloja `BNiagaraExportTag` que declaran qué ofrece; el supervisor abre **sesión Fox**, **descarga el BOG binario** de la subordinada (`ValueDocDecoder`), lo mergea en su `BNiagaraNetwork`, consulta por **BQL** los tags habilitados filtrando por nombre de supervisora, y provisiona proxies (`BPointTag`→punto+ProxyExt, history/file/schedule imports, `BComponentTag`→copia de propiedades). "Tag" acá = etiqueta declarativa de exportación, NO tag semántico. **§14 a B21 §21.4**: aquel bloque metió este workflow dentro del bloque del framework de tags, lo que induce a creer que son el mismo subsistema — y YO heredé el error al sembrar T6/T7 en este focus. Pertenece al hilo Niagara Network/supervisor. Categorías: `BCategoryFilter` con glob sobre `BStationInformation`, primer match gana **según posición en el árbol** (reordenar hijos cambia la categoría aplicada). Seguridad: auditoría SIEMPRE (en el `finally`, con usuario), alarma ante fallo, y credenciales que viajan como **parámetro de acción serializado** sobre Fox (sin TLS si `useFoxs`=false). **§266.6 — TERCERA corrección consecutiva sobre permisos**: el barrido leyó `flags = 4` como "nivel operador"; en Niagara es **`Flags.HIDDEN`**, un flag de VISIBILIDAD, no de permiso (el propio corpus ya lo documentó así en B260 §260.7-d). Nota de método adoptada: todo claim de permisos de un sub-agente se verifica contra la semántica real del framework antes de escribirse. Gotchas: worker de **un solo hilo** (cola 1000) que serializa todos los joins, polling sin timeout en la subordinada, 3 excepciones tragadas. 7 tokens re-verificados | sí · **sonnet** (28 clases) + verificación inline |
