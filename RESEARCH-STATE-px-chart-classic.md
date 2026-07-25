@@ -18,10 +18,10 @@
 
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 247
-gaps_closed: 1
+covered_blocks: 248
+gaps_closed: 2
 known_gaps: 8
-investigable_open: 7
+investigable_open: 6
 requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
@@ -72,8 +72,8 @@ token líder `pending`); el detalle de fuentes y clases por gap va en la lista b
 | Priority | Gap | Type | Status |
 |---|---|---|---|
 | high | H1 modelo de datos + jerarquía de charts | decompiled-java | closed (B251) |
-| high | H2 ejes + render Swing | decompiled-java | pending (NEXT) |
-| high | H3 binding a datos reales (histories/puntos) | decompiled-java | pending |
+| high | H2 ejes + render Swing | decompiled-java | closed (B252) |
+| high | H3 binding a datos reales (histories/puntos) | decompiled-java | pending (NEXT) |
 | high | H4 consumidores reales + §14 vs B199/B201 | relational | pending |
 | medium | H5 implementación interna com.tridium.chart | decompiled-java | pending |
 | medium | H6 salidas no-Swing PDF + HX | decompiled-java | pending |
@@ -112,15 +112,17 @@ token líder `pending`); el detalle de fuentes y clases por gap va en la lista b
 
 ## Clasificación (§8)
 
-- **read-only-investigable**: **7** (H2-H8) → focus ACTIVO.
-- **requires-execution**: 0. **blocked**: 0.
-- **Coverage metric**: **1 / 8** gaps cerrados (B251).
-- **Próximo gap**: **H2** (ejes + render Swing — B251 los nombró sin abrirlos).
+- **read-only-investigable**: **6** (H3-H8) → focus ACTIVO.
+- **requires-execution**: 0. **blocked**: 0. (Nota: el posible off-by-one de `BDiscreteAxis.fromDisplaySpace`,
+  B252 §252.7-i, quedó marcado `[INFER]` NO confirmado — reproducirlo exige ejecución, fuera del alcance.)
+- **Coverage metric**: **2 / 8** gaps cerrados (B251, B252).
+- **Próximo gap**: **H3** (binding a datos reales — `javax.baja.chart.binding`, donde vive `BoundChartModel`).
 
 ## Historia de iteración
 
 | It | Fecha | Gap | Bloque | Hallazgo | Delegado? · tier |
 |---|---|---|---|---|---|
+| it.2 | 2026-07-24 | **H2** — ejes + render | **B252** | `BAxis extends BObject implements BIAgent` (NO es BComponent, cero slots, 8 métodos abstractos); `toDisplaySpace()` invierte el origen en el eje Y dentro de la propia proyección. `BDiscreteAxis` cuelga de `BAxis` DIRECTO (no de `BContinuousAxis`) y tiene el zoom deshabilitado. **DOS algoritmos de tick spacing distintos**: numérico = redondeo por orden de magnitud (log10 + piso duro 5.0 + tope 20 ticks), temporal = tabla fija de 10 tramos (1ms..1año) + tope 30 ticks, con facet `timeFormat` como override real. `BAxisDimension`/`BAxisLocation` = `BFrozenEnum` en `-rt`. **HALLAZGO DE ARQUITECTURA**: la extensión del render es 100% PROGRAMÁTICA (setters Java, incl. uno estático) — ni slot, ni `@AgentOn`, ni factory; anomalía frente a B211/B212/B214 → `chart` precede al mecanismo de agentes. `BChartPane`: TRES niveles de refresco (build/refresh/rebuild diferido, refina B251 §251.7), reparto de ejes hardcodeado (1er X→bottom, 2do→top, 1er Y→left, resto→right), zoomStack ilimitado, `export()` solo exporta el PRIMER chart. Doble búfer de `BChartCanvas` **solo bajo AWT**. `BNullChartLegend` = Null Object. **2 BUGS REALES de Tridium confirmados literalmente**: (a) `assignColors()` usa `return` donde iba `continue` → si la 1ra serie ya tiene brush, NINGUNA de las siguientes recibe color; (b) `BChartHeader` testea `title.length()` para decidir si pinta el SUBTÍTULO → subtítulo inútil sin título. Más: reset del eje temporal ancla al reloj de pared (ventana 1h), ±10.0 hardcodeado si min==max, mínimo 300×300, `ParseException` tragada en el layout de ticks. 14 tokens re-verificados (incluidos los 2 bugs). verify-block exit 0, ratio 8/28 = 0.29 (evidencia, sano) | sí · **sonnet** (barrido ejes/render) + verificación inline |
 | it.1 | 2026-07-24 | **H1** — modelo + jerarquía | **B251** | `BChart extends BWidget` con CERO slots propios y `paint()` **final** (solo hook `doPaint()`); exige padre `BChartPane` o `IllegalStateException`. Los 7 tipos concretos extienden `BChart` directo y **ninguno es thin** — el tipo de gráfico es una SUBCLASE JAVA, no un enum (contraste estructural con el `seriesFactory` JS de B199). `ChartModel` = clase abstracta que hereda de `BChart.ChartSupport` (todo modelo lleva back-pointer a su chart). `TableSeries` hace `Tables.slurp()` = **materialización ansiosa completa** del BITable (techo de escala). `JoinTable` = pivote multi-serie (no es BITable) con auto-escala inventada 0–10 si min=max=0. `TrendFlags` (en `-rt`) recibe los bits de `BStatus` directo → el estado de calidad y la decisión de dibujar comparten palabra de bits. Eventos: solo `SPEC_MODIFIED(3)` hace `refresh()`, todo lo demás `rebuild()`. **8 hallazgos load-bearing** incl. tope duro de 12 colores con caída silenciosa a negro, logger pisado en `export()`, `BDiscreteLineChart` no reentrante, cast sin guarda en `BStackedBarChart`, excepción tragada en `ChartController`. **Proven-absence**: CERO gate de licencia/capacidad (contraste con la capa OEM de B242/B244/B246). §251.9: 2 afirmaciones del barrido CORREGIDAS por el token-check (ruta de `BoundChartModel`; falso "sin guarda de padre nulo"). 13 tokens re-verificados. verify-block exit 0, ratio 7/19 = 0.37 (evidencia, sano) | sí · **sonnet** (barrido 34 clases) + verificación inline |
 
 **Resume condition**: focus ACTIVO recién bootstrapeado. NO re-bootstrapear; tomar H1 del backlog de arriba y
