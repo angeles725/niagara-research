@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **259 blocks**
+Total: **260 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -265,3 +265,4 @@ Total: **259 blocks**
 | 261 | [niagara-mental-model-bloque261.md](niagara-mental-model-bloque261.md) | Tags (II): el motor del diccionario — el `n:` built-in, los índices y el import/export |
 | 262 | [niagara-mental-model-bloque262.md](niagara-mental-model-bloque262.md) | Tags (III): el sistema de RELACIONES de Niagara N4 |
 | 263 | [niagara-mental-model-bloque263.md](niagara-mental-model-bloque263.md) | Tags (IV): el álgebra de condiciones y qué es realmente "neqlize" |
+| 264 | [niagara-mental-model-bloque264.md](niagara-mental-model-bloque264.md) | Tags (V): el módulo `haystack` son DOS diccionarios, no un servidor |
