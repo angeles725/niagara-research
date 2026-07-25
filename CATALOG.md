@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **257 blocks**
+Total: **258 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -263,3 +263,4 @@ Total: **257 blocks**
 | 259 | [niagara-mental-model-bloque259.md](niagara-mental-model-bloque259.md) | Síntesis de cierre: el charting clásico de Niagara N4 (focus `px-chart-classic`) |
 | 260 | [niagara-mental-model-bloque260.md](niagara-mental-model-bloque260.md) | Tags (I): la API pública del framework de diccionarios de tags |
 | 261 | [niagara-mental-model-bloque261.md](niagara-mental-model-bloque261.md) | Tags (II): el motor del diccionario — el `n:` built-in, los índices y el import/export |
+| 262 | [niagara-mental-model-bloque262.md](niagara-mental-model-bloque262.md) | Tags (III): el sistema de RELACIONES de Niagara N4 |

@@ -66,4 +66,4 @@ Decompiled Java sources live under `sources/decompiled/<jar-name>/`.
 | manuals/template-docs/GraphicsTabTemplates-9DC53E6E.html | doc oficial Tridium (docTemplates-doc) | organized/docTemplates/.../doc/GraphicsTabTemplates-9DC53E6E.html | 2026-07-06 | 3d7c77f6034c | B200 |
 | web-snapshots/B227-vue2-eol-ecosystem-20260712.md | web snapshot (Vue2 EOL + ecosystem) | https://blog.vuejs.org/posts/vue-2-eol | 2026-07-12 | 618a3efc481e | B227 |
 | REFLOW-175-vs-177-DIFF.md | análisis forense diff 1.7.5↔1.7.7 (proyecto Prototipos) | /home/cristian/modules/Prototipos/modulos/REFLOW-175-vs-177-DIFF.md | 2026-07-12 | 41451664be69 | B230 |
-| manuals/docRelations-N4.14-guide.md | guía oficial Tridium Relations (17 HTML → texto, N4.14) | organized/docRelations/docRelations-doc/**/*.html | 2026-07-24 | 90e4df5c27fc | B261 |
+| manuals/docRelations-N4.14-guide.md | guía oficial Tridium Relations (17 HTML → texto, N4.14) | organized/docRelations/docRelations-doc/**/*.html | 2026-07-24 | 90e4df5c27fc | B262 |
