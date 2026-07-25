@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **256 blocks**
+Total: **257 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -262,3 +262,4 @@ Total: **256 blocks**
 | 258 | [niagara-mental-model-bloque258.md](niagara-mental-model-bloque258.md) | Chart clásico (VIII): el split rt/wb — qué sabe una station de un chart que no puede dibujar |
 | 259 | [niagara-mental-model-bloque259.md](niagara-mental-model-bloque259.md) | Síntesis de cierre: el charting clásico de Niagara N4 (focus `px-chart-classic`) |
 | 260 | [niagara-mental-model-bloque260.md](niagara-mental-model-bloque260.md) | Tags (I): la API pública del framework de diccionarios de tags |
+| 261 | [niagara-mental-model-bloque261.md](niagara-mental-model-bloque261.md) | Tags (II): el motor del diccionario — el `n:` built-in, los índices y el import/export |

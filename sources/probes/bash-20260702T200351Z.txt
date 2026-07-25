@@ -1,0 +1,6 @@
+# probe run 20260702T200351Z
+# cmd: bash /tmp/claude-1000/-home-cristian-niagara-research/1e80fd78-49b7-4c97-be04-cd7d1d88413c/scratchpad/etapaB-gatematrix.sh
+---
+### mutation authorization at read-level (POST) — UN-GATED vs GATED ###
+/tmp/claude-1000/-home-cristian-niagara-research/1e80fd78-49b7-4c97-be04-cd7d1d88413c/scratchpad/etapaB-gatematrix.sh: line 8: syntax error near unexpected token `('
+/tmp/claude-1000/-home-cristian-niagara-research/1e80fd78-49b7-4c97-be04-cd7d1d88413c/scratchpad/etapaB-gatematrix.sh: line 8: `printf '  %-46s %s\n' "equipment-notes-update (note write)" "$(curl "${A[@]}" -X POST -H 'Equipment-Id: ../../x' --data 'x' -o /dev/null -w '%{http_code}' "https://$IP/nmodsreflow/station/equipment-notes-update")"'

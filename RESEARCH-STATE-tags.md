@@ -20,10 +20,10 @@
 
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 256
-gaps_closed: 1
+covered_blocks: 257
+gaps_closed: 2
 known_gaps: 9
-investigable_open: 8
+investigable_open: 7
 requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
@@ -56,8 +56,8 @@ Formato canónico de 4 columnas exigido por `research-sdd-status.sh`.
 | Priority | Gap | Type | Status |
 |---|---|---|---|
 | high | T1 API pública javax.baja.tagdictionary | decompiled-java | closed (B260) |
-| high | T2 el motor del diccionario (tag + util + raiz) | decompiled-java | pending (NEXT) |
-| high | T3 el sistema de RELACIONES | decompiled-java | pending |
+| high | T2 el motor del diccionario (tag + util + raiz) | decompiled-java | closed (B261) |
+| high | T3 el sistema de RELACIONES | decompiled-java | pending (NEXT) |
 | high | T4 condiciones + neqlize (tag a query) | decompiled-java | pending |
 | medium | T5 haystack la implementacion completa | decompiled-java | pending |
 | medium | T6 exportTags runtime | decompiled-java | pending |
@@ -92,10 +92,10 @@ Formato canónico de 4 columnas exigido por `research-sdd-status.sh`.
 
 ## Clasificación (§8)
 
-- **read-only-investigable**: **8** (T2-T9) → focus ACTIVO.
+- **read-only-investigable**: **7** (T3-T9) → focus ACTIVO.
 - **requires-execution**: 0. **blocked**: 0.
-- **Coverage metric**: **1 / 9** (B260).
-- **Próximo gap**: **T2** (el motor del diccionario).
+- **Coverage metric**: **2 / 9** (B260, B261).
+- **Próximo gap**: **T3** (las relaciones). Fuente `[CERT-doc]` ya preservada y registrada: `sources/manuals/docRelations-N4.14-guide.md` (gate e3 = **CERTIFIABLE-NOW**).
 - **NOTA DE MÉTODO (§11)**: B260 cerró con ratio **0.74**, muy sobre el umbral. A diferencia de B254/B255 del
   focus anterior, acá **NO indica agotamiento** — T1 recién abrió el subsistema y quedan 8 gaps / ~137 clases.
   Indica **exceso de deducción del autor** (glosa comparativa contra el focus del chart). Corrección aplicada
@@ -105,6 +105,7 @@ Formato canónico de 4 columnas exigido por `research-sdd-status.sh`.
 
 | It | Fecha | Gap | Bloque | Hallazgo | Delegado? · tier |
 |---|---|---|---|---|---|
+| it.2 | 2026-07-24 | **T2** — motor | **B261** | El diccionario `Niagara` **no está compilado**: se lee de `module://<módulo>/bog/Niagara.bog` al arrancar. Compiladas sí están las 35 constantes `Id` del namespace `n` + **8 relaciones**; **`TAG_GROUP_RELATION` = `Id.newId("n","tagGroup")`** — cierra el mecanismo que B260 §260.4 dedujo. **Los tags de station son COMPUTADOS, no almacenados**: las 14 clases de `tag/` calculan su valor en cada consulta (`n:point`, `n:history`, `n:input/output`, `n:hasPxView`...) — por eso el subsistema necesita índices. **Dos índices, NINGUNO acotado**: `TagRuleIndex` (Id→Set<TagRule>, ConcurrentHashMap) y `EntityTagIndex` (BOrd→TagInfo[], synchronized) — sin cap, sin TTL, sin evicción; agregar/quitar un Id redimensiona TODOS los arrays (O(n entidades)). Import/export solo JSON y CSV (12 columnas, 13 tipos de valor cerrados); **la validación del predicado NEQL LOGUEA pero NO aborta** → un predicado roto entra y no matchea nada, falla silenciosa. Contra un archivo hostil no hay más protección que el `maxImportFileSize` de 1024 KB (CSV sin límite de filas; JSON sin límite de profundidad). **SEGUNDO bypass del candado `frozen`**: `Context.decoding` en `updateTagGroupRelations()`, sin chequeo de permisos en el sitio de llamada. §261.7: **2 afirmaciones del barrido CORREGIDAS, ambas sobre permisos** — (1) los `return` de `doImportDictionary` son RECHAZOS, no bypasses; lo real es que un diccionario VACÍO se importa sin pedir permiso; (2) "cualquiera puede exportar" era sobreafirmación (la invocación de acción ya pasa por el gate del framework) — el hallazgo real es la ASIMETRÍA: import chequea `hasAdminWrite()`, export no chequea nada y **descarta el contexto del invocador** (`submit(null)`). 9 tokens re-verificados. ratio 9/20 = **0.45** (bajó desde 0.74 de B260 tras aplicar la corrección de método) | sí · **sonnet** (24 clases) + verificación inline |
 | it.1 | 2026-07-24 | **T1** — API pública | **B260** | **Un diccionario NO se registra: se MONTA.** `isParentLegal` exige que cuelgue como hijo directo de `BTagDictionaryService`, y el servicio los descubre **iterando sus propios slots** (`getProperties().next(TagDictionary.class)`) — ni un `@AgentOn` ni consulta al registro para descubrirlos (contraste fuerte con el chart, que extiende por agentes). Publicar un diccionario propio es configuración de ESTACIÓN, no de módulo. **El tagging SÍ está licenciado**: `getFeature("tridium","tags")` + un cupo opaco por diccionario vía `fw(501,"dictionary.limit")` que deja en `fatalFault` permanente si se excede — contraste directo con el chart clásico, donde la ausencia de gates fue hallazgo (B254 §254.8). Modelo: `Id` = `namespace:nombre`, y el **marcador es el valor por DEFAULT** (`BMarker.MARKER`), coherente con la orientación Haystack. El framework gobierna solo lo IMPLÍCITO (los tags directos viven en `javax.baja.tag.Entity`); la pieza central es `BSmartTagDictionary` con `tagRules`, y **un componente se une a un grupo mediante una RELACIÓN** (TAG_GROUP_RELATION) → las relaciones son infraestructura del tagging, lo que justifica T3 como gap propio. **HALLAZGO DE SEGURIDAD**: `public static Context importContext` (NO final) + `BInfoList.checkContext()` lo acepta ⇒ cualquier código de la JVM puede leerlo y **escribir en un diccionario `frozen`**; y al no ser final, otro módulo podría reemplazarlo (se registra la forma, no se afirma explotabilidad). Gotchas: `isImportRequired()` con AND triple (un diccionario con tags+grupos pero CERO relaciones dispara importación automática al arrancar), excepción tragada en `BDataPolicy`, caché estática compartida por JVM, `maxImportFileSize` oculto 1024 KB, y contratos JSON documentados SOLO por excepción en runtime. Primer `@Deprecated` real de estos dos focuses: `BTagGroupMonitor`. 11 tokens re-verificados | sí · **sonnet** (22 clases) + verificación inline |
 
 **Resume condition**: focus ACTIVO recién bootstrapeado. NO re-bootstrapear. Fuentes ya medidas (e2 arriba).
