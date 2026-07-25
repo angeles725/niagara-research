@@ -8,7 +8,7 @@
 > Arranque: `/research-sdd niagara-research px-editor-core new` (o `continue` una vez bootstrapeado).
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 233
+covered_blocks: 247
 gaps_closed: 0
 known_gaps: 0
 investigable_open: 0

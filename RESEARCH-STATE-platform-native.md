@@ -8,7 +8,7 @@
 > Mirrored in engram: `research/niagara/platform-native-gaps`, `research/niagara/platform-native-progress`.
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 233
+covered_blocks: 247
 gaps_closed: 7
 known_gaps: 7
 investigable_open: 0

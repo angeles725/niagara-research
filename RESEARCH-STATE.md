@@ -14,7 +14,7 @@
 > iteration wrote.
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 233
+covered_blocks: 247
 gaps_closed: 7
 known_gaps: 8
 investigable_open: 0

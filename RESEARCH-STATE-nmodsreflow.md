@@ -15,7 +15,7 @@
 > Mirrored in engram (project `niagara-research`): `research/niagara/nmodsreflow/gaps`, `.../nmodsreflow/progress`.
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 233
+covered_blocks: 247
 gaps_closed: 12
 known_gaps: 13
 investigable_open: 0

@@ -16,6 +16,16 @@
 > (~340 distinct-logic modules). This focus is the prioritized, mission-relevant slice of that tail — led
 > by the four HIGH-priority Honeywell modules — NOT an attempt to cover all 340 modules. The genuinely
 > out-of-scope bulk (U16 207 LON vendor profiles, U17 41 lexicons) is explicitly excluded.
+<!-- research-state.v1 -->
+schema: research-state.v1
+covered_blocks: 247
+gaps_closed: 0
+known_gaps: 0
+investigable_open: 0
+requires_execution_open: 1
+blocked_open: 0
+<!-- /research-state.v1 -->
+
 
 focus: oem-honeywell-tail
 status: active

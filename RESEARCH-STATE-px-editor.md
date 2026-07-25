@@ -8,7 +8,7 @@
 > Engram topic key: `research/niagara/px-editor/{gaps,progress}`.
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 233
+covered_blocks: 247
 gaps_closed: 0
 known_gaps: 0
 investigable_open: 0

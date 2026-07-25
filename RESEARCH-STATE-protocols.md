@@ -10,11 +10,11 @@
 > Mirrored in engram: `research/niagara/protocols-gaps`, `research/niagara/protocols-progress`.
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 233
+covered_blocks: 247
 gaps_closed: 6
 known_gaps: 6
 investigable_open: 0
-requires_execution_open: 1
+requires_execution_open: 6
 blocked_open: 0
 <!-- /research-state.v1 -->
 
