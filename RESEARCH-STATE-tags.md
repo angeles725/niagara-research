@@ -20,10 +20,10 @@
 
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 255
-gaps_closed: 0
+covered_blocks: 256
+gaps_closed: 1
 known_gaps: 9
-investigable_open: 9
+investigable_open: 8
 requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
@@ -55,8 +55,8 @@ Formato canónico de 4 columnas exigido por `research-sdd-status.sh`.
 
 | Priority | Gap | Type | Status |
 |---|---|---|---|
-| high | T1 API pública javax.baja.tagdictionary | decompiled-java | pending (NEXT) |
-| high | T2 el motor del diccionario (tag + util + raiz) | decompiled-java | pending |
+| high | T1 API pública javax.baja.tagdictionary | decompiled-java | closed (B260) |
+| high | T2 el motor del diccionario (tag + util + raiz) | decompiled-java | pending (NEXT) |
 | high | T3 el sistema de RELACIONES | decompiled-java | pending |
 | high | T4 condiciones + neqlize (tag a query) | decompiled-java | pending |
 | medium | T5 haystack la implementacion completa | decompiled-java | pending |
@@ -92,16 +92,16 @@ Formato canónico de 4 columnas exigido por `research-sdd-status.sh`.
 
 ## Clasificación (§8)
 
-- **read-only-investigable**: **9** (T1-T9) → focus ACTIVO.
+- **read-only-investigable**: **8** (T2-T9) → focus ACTIVO.
 - **requires-execution**: 0. **blocked**: 0.
-- **Coverage metric**: **0 / 9** (bootstrap).
-- **Próximo gap**: **T1** (la API pública — todo lo demás cuelga del contrato).
+- **Coverage metric**: **1 / 9** (B260).
+- **Próximo gap**: **T2** (el motor del diccionario).
 
 ## Historia de iteración
 
 | It | Fecha | Gap | Bloque | Hallazgo | Delegado? · tier |
 |---|---|---|---|---|---|
-| (ninguna aún — bootstrap 2026-07-24) | | | | | |
+| it.1 | 2026-07-24 | **T1** — API pública | **B260** | **Un diccionario NO se registra: se MONTA.** `isParentLegal` exige que cuelgue como hijo directo de `BTagDictionaryService`, y el servicio los descubre **iterando sus propios slots** (`getProperties().next(TagDictionary.class)`) — ni un `@AgentOn` ni consulta al registro para descubrirlos (contraste fuerte con el chart, que extiende por agentes). Publicar un diccionario propio es configuración de ESTACIÓN, no de módulo. **El tagging SÍ está licenciado**: `getFeature("tridium","tags")` + un cupo opaco por diccionario vía `fw(501,"dictionary.limit")` que deja en `fatalFault` permanente si se excede — contraste directo con el chart clásico, donde la ausencia de gates fue hallazgo (B254 §254.8). Modelo: `Id` = `namespace:nombre`, y el **marcador es el valor por DEFAULT** (`BMarker.MARKER`), coherente con la orientación Haystack. El framework gobierna solo lo IMPLÍCITO (los tags directos viven en `javax.baja.tag.Entity`); la pieza central es `BSmartTagDictionary` con `tagRules`, y **un componente se une a un grupo mediante una RELACIÓN** (TAG_GROUP_RELATION) → las relaciones son infraestructura del tagging, lo que justifica T3 como gap propio. **HALLAZGO DE SEGURIDAD**: `public static Context importContext` (NO final) + `BInfoList.checkContext()` lo acepta ⇒ cualquier código de la JVM puede leerlo y **escribir en un diccionario `frozen`**; y al no ser final, otro módulo podría reemplazarlo (se registra la forma, no se afirma explotabilidad). Gotchas: `isImportRequired()` con AND triple (un diccionario con tags+grupos pero CERO relaciones dispara importación automática al arrancar), excepción tragada en `BDataPolicy`, caché estática compartida por JVM, `maxImportFileSize` oculto 1024 KB, y contratos JSON documentados SOLO por excepción en runtime. Primer `@Deprecated` real de estos dos focuses: `BTagGroupMonitor`. 11 tokens re-verificados | sí · **sonnet** (22 clases) + verificación inline |
 
 **Resume condition**: focus ACTIVO recién bootstrapeado. NO re-bootstrapear. Fuentes ya medidas (e2 arriba).
 Para T9 correr el gate e3 antes de autorizar el bloque.
