@@ -67,5 +67,5 @@ Decompiled Java sources live under `sources/decompiled/<jar-name>/`.
 | web-snapshots/B227-vue2-eol-ecosystem-20260712.md | web snapshot (Vue2 EOL + ecosystem) | https://blog.vuejs.org/posts/vue-2-eol | 2026-07-12 | 618a3efc481e | B227 |
 | REFLOW-175-vs-177-DIFF.md | análisis forense diff 1.7.5↔1.7.7 (proyecto Prototipos) | /home/cristian/modules/Prototipos/modulos/REFLOW-175-vs-177-DIFF.md | 2026-07-12 | 41451664be69 | B230 |
 | manuals/docRelations-N4.14-guide.md | guía oficial Tridium Relations (17 HTML → texto, N4.14) | organized/docRelations/docRelations-doc/**/*.html | 2026-07-24 | 90e4df5c27fc | B262 |
-| manuals/docTagging-N4.14-guide.md | guía oficial Tridium Tagging (93 HTML → texto, N4.14) | organized/docTagging/docTagging-doc/**/*.html | 2026-07-24 | 2ae5a290fbca |  |
+| manuals/docTagging-N4.14-guide.md | guía oficial Tridium Tagging (93 HTML → texto, N4.14) | organized/docTagging/docTagging-doc/**/*.html | 2026-07-24 | 2ae5a290fbca | B265 |
 | manuals/docExportTags-N4.14-guide.md | guía oficial Tridium Export Tags (86 HTML → texto, N4.14) | organized/docExportTags/docExportTags-doc/**/*.html | 2026-07-24 | 9b3e2d25bc0b |  |
