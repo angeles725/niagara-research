@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **249 blocks**
+Total: **250 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -255,3 +255,4 @@ Total: **249 blocks**
 | 251 | [niagara-mental-model-bloque251.md](niagara-mental-model-bloque251.md) | Chart clásico (I): `BChart`, la jerarquía de tipos y el modelo de datos |
 | 252 | [niagara-mental-model-bloque252.md](niagara-mental-model-bloque252.md) | Chart clásico (II): ejes, tick spacing y el pipeline de render Swing |
 | 253 | [niagara-mental-model-bloque253.md](niagara-mental-model-bloque253.md) | Chart clásico (III): el binding a datos reales, y §14 corrigiendo B252 |
+| 254 | [niagara-mental-model-bloque254.md](niagara-mental-model-bloque254.md) | Chart clásico (IV): el mapa de consumidores y el veredicto clásico vs `webChart` |
