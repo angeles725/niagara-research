@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **261 blocks**
+Total: **262 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -267,3 +267,4 @@ Total: **261 blocks**
 | 263 | [niagara-mental-model-bloque263.md](niagara-mental-model-bloque263.md) | Tags (IV): el álgebra de condiciones y qué es realmente "neqlize" |
 | 264 | [niagara-mental-model-bloque264.md](niagara-mental-model-bloque264.md) | Tags (V): el módulo `haystack` son DOS diccionarios, no un servidor |
 | 265 | [niagara-mental-model-bloque265.md](niagara-mental-model-bloque265.md) | Tags (VI): Brick — dos clases que arreglan dos límites del framework |
+| 266 | [niagara-mental-model-bloque266.md](niagara-mental-model-bloque266.md) | Tags (VII): "Export Tags" NO es parte del subsistema de tags — y §14 a B21 |
