@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **253 blocks**
+Total: **254 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -259,3 +259,4 @@ Total: **253 blocks**
 | 255 | [niagara-mental-model-bloque255.md](niagara-mental-model-bloque255.md) | Chart clásico (V): la implementación privada `com.tridium.chart` |
 | 256 | [niagara-mental-model-bloque256.md](niagara-mental-model-bloque256.md) | Chart clásico (VI): las salidas no-Swing — PDF y el perfil Hx |
 | 257 | [niagara-mental-model-bloque257.md](niagara-mental-model-bloque257.md) | Chart clásico (VII): los "tests" no son tests — y eso explica los defectos |
+| 258 | [niagara-mental-model-bloque258.md](niagara-mental-model-bloque258.md) | Chart clásico (VIII): el split rt/wb — qué sabe una station de un chart que no puede dibujar |
