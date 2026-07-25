@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **252 blocks**
+Total: **253 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -258,3 +258,4 @@ Total: **252 blocks**
 | 254 | [niagara-mental-model-bloque254.md](niagara-mental-model-bloque254.md) | Chart clásico (IV): el mapa de consumidores y el veredicto clásico vs `webChart` |
 | 255 | [niagara-mental-model-bloque255.md](niagara-mental-model-bloque255.md) | Chart clásico (V): la implementación privada `com.tridium.chart` |
 | 256 | [niagara-mental-model-bloque256.md](niagara-mental-model-bloque256.md) | Chart clásico (VI): las salidas no-Swing — PDF y el perfil Hx |
+| 257 | [niagara-mental-model-bloque257.md](niagara-mental-model-bloque257.md) | Chart clásico (VII): los "tests" no son tests — y eso explica los defectos |
