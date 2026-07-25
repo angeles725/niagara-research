@@ -19,6 +19,15 @@
 > **Método**: barrido delegado (tier `sonnet`) + verificación inline del driver: **11 tokens load-bearing**
 > re-verificados, incluido el hallazgo de seguridad de §260.6. Marcadores: `[CERT]` = fuente primaria
 > (`file:line`); `[INFER]` = deducción. Bloque de EVIDENCIA.
+>
+> **NOTA DE MÉTODO — el ratio de este bloque mide al autor, no a la fuente.** Cerró en **0.74**
+> (14 `[INFER]` / 19 `[CERT]`), muy por encima del umbral 0.5. En [Bloque 254] y [Bloque 255] un ratio alto
+> señalaba agotamiento real de la evidencia; **acá NO**: el gap T1 recién abrió el subsistema y el focus tiene
+> 8 gaps con ~137 clases por delante. Lo que este número dice es que **deduje de más** — sobre todo
+> contrastando con el focus del chart recién cerrado. Se deja anotado en vez de reclasificar el bloque a
+> "síntesis" para bajar el número: las secciones §260.1, §260.2 y §260.6 se apoyan en citas verificadas, pero
+> el volumen de interpretación alrededor es excesivo para un bloque de apertura. Corrección para T2 en
+> adelante: más cita, menos glosa.
 
 ---
 

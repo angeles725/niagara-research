@@ -96,6 +96,10 @@ Formato canónico de 4 columnas exigido por `research-sdd-status.sh`.
 - **requires-execution**: 0. **blocked**: 0.
 - **Coverage metric**: **1 / 9** (B260).
 - **Próximo gap**: **T2** (el motor del diccionario).
+- **NOTA DE MÉTODO (§11)**: B260 cerró con ratio **0.74**, muy sobre el umbral. A diferencia de B254/B255 del
+  focus anterior, acá **NO indica agotamiento** — T1 recién abrió el subsistema y quedan 8 gaps / ~137 clases.
+  Indica **exceso de deducción del autor** (glosa comparativa contra el focus del chart). Corrección aplicada
+  desde T2: más cita, menos interpretación.
 
 ## Historia de iteración
 
