@@ -6,7 +6,7 @@
 > project `niagara-research`. READ-ONLY over real production data; corpus language ENGLISH.
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 247
+covered_blocks: 266
 gaps_closed: 1
 known_gaps: 14
 investigable_open: 0
