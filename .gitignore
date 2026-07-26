@@ -15,3 +15,7 @@ desktop.ini
 # Orchestrator-local artifacts (not corpus) — research-sdd METHODOLOGY §15
 .atl/
 .claude/
+
+# Python bytecode
+__pycache__/
+*.pyc
