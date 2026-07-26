@@ -2,11 +2,11 @@
 # SessionStart hook — Niagara research protocol for this project.
 # Emits additionalContext that Claude reads at the start of every session.
 #
-# UBICACIÓN: vive acá (tools/hooks/) y NO en .claude/, porque .claude/ está en
-# .gitignore — mezcla config con estado local. Este archivo es el contenido
-# valioso y tiene que viajar con el repo. Lo referencia .claude/settings.json
-# vía $CLAUDE_PROJECT_DIR/tools/hooks/, que sí es local por máquina.
-# Si clonás el repo en otra máquina, replicá ese settings.json.
+# UBICACIÓN: vive acá (tools/hooks/) y NO en .claude/, porque .claude/ entró al
+# .gitignore y cualquier archivo NUEVO ahí adentro no se versionaría. Lo referencia
+# .claude/settings.json por $CLAUDE_PROJECT_DIR/tools/hooks/ — ese settings SÍ está
+# trackeado (se commiteó antes del .gitignore, y git sigue siguiendo lo que ya
+# seguía), así que las dos piezas viajan con el repo y no se desincronizan.
 #
 # v3 (2026-07-26): tras dos auditorías independientes (una con evidencia de la
 # sesión B271-B288, otra ciega). Cambios respecto de v2:
