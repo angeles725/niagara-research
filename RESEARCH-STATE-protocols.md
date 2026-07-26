@@ -83,6 +83,25 @@ covered, packet encoding not). Fox and LON have partial wire coverage to deepen.
 - **Blocks written this focus**: B131, B132, B133, B134, B135, B136. **Coverage ratio: 6 / 6.**
 - Closed gaps: P1 Modbus (B131), P2 OPC (B132), P3 BACnet (B133), P4 Fox (B134), P5 LON (B135), P6 Sox-absence (B136).
 
+> **UPDATE 2026-07-26 (B279): P3-mstp is RECLASSIFIED — it was NOT decompile-reachable.** The MS/TP
+> data-link framing is not in the Java corpus at all: the preamble `0x55` appears nowhere in 50 798
+> decompiled files, `platMstp-rt` contains zero CRC code, and the JNI boundary is
+> `sendFrame0(handle, destAddr, data, dataExpectingReply)` — preamble, frame types, CRC-8/CRC-16 and token
+> passing all live in the native `mstpnpsdk` / `platmstp` libraries, which are absent from this Supervisor
+> install (MS/TP is a JACE-side capability). Closing it now needs **native-RE** (Ghidra on a JACE image) or
+> a **live RS-485 capture** — the same disposition as P5-phys for LON. What *is* documented: the exact
+> boundary, the EMSTP false lead, and the full configuration surface. See [B279].
+>
+> **UPDATE 2026-07-26 (B280): P3-sc is CLOSED.** BACnet/SC turned out to be the opposite of P3-mstp —
+> fully implemented in Java, 40 classes across `com.tridium.bacnet.stack.link.sc` (17, connection/topology)
+> and `…sc.message` (23, codec), with **no native methods**. Documented: the 13 BVLC-SC function codes
+> (0-12), the header layout (function / controlFlags / messageId / optional VMACs / destination+data
+> options / payload), the four control-flag bits, the strict-decoder behaviour, the **48-bit VMAC**
+> (broadcast = all-ones, device VMACs randomly generated), and the connection timing defaults
+> (reconnect 2 s → 600 s). Also **corrects two figures in B23 §23.24/§23.27**: neither `49152` nor `TLSv1`
+> appears anywhere in `bacnet-rt` — the transport is WebSocket URIs, so the port comes from the `wss://`
+> URI rather than a compiled-in constant. See [B280].
+>
 > NOTE on P3-mstp / P3-sc / P4-srp6 / P4-legacy: these spin-off gaps (BACnet MS/TP framing, BACnet/SC transport, SRP6 key-exchange message format, AX legacy-digest scheme) were uncovered during B133/B134 as *further-depth* items inside already-closed protocol blocks. They are decompile-reachable but were NOT part of the 6-item prioritized backlog and are NOT required to close the protocols static loop; they are parked as optional deepening for a future focus pass, not blockers of the STOP. The loop stops on the prioritized read-only set = 0.
 
 - **Blocked / requires-execution (each tagged with the access it needs):**

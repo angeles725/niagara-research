@@ -229,6 +229,13 @@ Dos capas de operación:
 
 **BACnet/MSTP**: `BBacnetMstpLinkLayer`. Serial port (COM2, COM3). Props: MSTP Address (0-127), baud rate (9600 default, 19200, 38400, 57600, 76800), Max Master, Max Info Frames (default 1, max 50), Support Extended Frames (>128 bytes).
 
+> **CORRECCIÓN (B279 §279.9/§279.10)**: `maxInfoFrames` es **default 20, rango 1–100** (`defaultValue = "20"`,
+> `BFacets.makeInt(1,100)` en `BBacnetMstpLinkLayer`) `[CERT]` — no "default 1, max 50". La EngNote oficial de
+> Tridium también se equivoca aquí, en otra dirección ("1-127, defaults to 50"). Además falta `baud_115200`
+> en la lista de arriba: son **seis** rates (9600/19200/38400/57600/76800/115200). Defaults verificados:
+> `maxMaster=127`, `supportExtendedFrames=false`, `usageTimeout=ms_20`, `txThrottle=10` (0–20), `mstpTrunk=0`,
+> `portName="COM1"`.
+
 **BACnet/PTP**: enlace serial simple, sin token-passing.
 
 **Startup sequence**: `BacnetNetwork.started()` → BacnetStack → BacnetClientLayer → BacnetServerLayer → BacnetTransportLayer → BacnetNetworkLayer → NetworkPort → BacnetIpLinkLayer/MstpLinkLayer.

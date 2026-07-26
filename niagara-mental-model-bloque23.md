@@ -1454,6 +1454,15 @@ Flujo en Niagara:
 
 **Status en N4.14**: arquitectura preparada; uso operacional limitado. No ampliamente desplegado todavía.
 
+> **CORRECCIÓN (B280 §280.7)**: los dos números de arriba **no están en el código**. `49152` → cero matches
+> en `bacnet-rt`; `TLSv1` → cero matches `[CERT]`. El transporte real son **URIs WebSocket** validadas por
+> `ScMessageUtil.checkWebSocketUri()` y transportadas como `List<String>` en `AddressResolutionAck`, sobre
+> `IScWebSocket` con `closeWebSocket(statusCode, reason)`. El puerto sale de la URI `wss://`, por conexión y
+> configurable — 49152 es el default IANA de la *spec*, no una constante del driver, y la versión de TLS la
+> negocia la capa WebSocket. Las tres clases nombradas (`ScBvlcMessage`, `ScNpdu`, `BScLinkLayer`) sí
+> existen y están verificadas. El diagrama de capas y los requisitos de certificado siguen siendo válidos.
+> B280 documenta el codec completo: 13 function codes, header BVLC-SC y VMAC de 48 bits.
+
 ---
 
 ## 23.25 Routing — router BACnet
