@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Niagara Presentation XML -->
+<px version="1.0" media="workbench:WbPxMedia">
+<import>
+  <module name="baja"/>
+  <module name="bajaui"/>
+  <module name="converters"/>
+  <module name="gx"/>
+  <module name="kitPx"/>
+</import>
+<content>
+<CanvasPane viewSize="1000.0,800.0" background="#e8ebf0">
+
+  <Label layout="30.0,120.0,500.0,26.0" text="Pattern B - anchored dropdown" font="bold 16.0pt Arial" foreground="#1b2733"/>
+
+  <ToggleButton layout="40.0,170.0,140.0,26.0" text="Menu">
+    <SetPointBinding ord="station:|slot:/Drivers/PRUEBAS/MenuOpen" widgetEvent="actionPerformed" widgetProperty="selected"/>
+  </ToggleButton>
+
+  <GridPane layout="16.0,78.0,140.0,130.0" columnCount="1" columnAlign="fill" rowGap="1.0" columnGap="0.0" uniformColumnWidth="true">
+
+    <ValueBinding ord="station:|slot:/Drivers/PRUEBAS/MenuOpen" degradeBehavior="hide">
+      <IBooleanToSimple name="visible"/>
+    </ValueBinding>
+
+    <Label text="Carpeta PRUEBAS" font="bold 11.0pt Arial" foreground="#1b2733" background="#f4f6f9" halign="fill">
+      <ValueBinding hyperlink="station:|slot:/Drivers/PRUEBAS|view:workbench:PropertySheet"/>
+    </Label>
+
+    <Label text="Bacnet Network" font="bold 11.0pt Arial" foreground="#1b2733" background="#f4f6f9" halign="fill">
+      <ValueBinding hyperlink="station:|slot:/Drivers/BacnetNetwork|view:workbench:PropertySheet"/>
+    </Label>
+
+    <Label text="Niagara Network" font="bold 11.0pt Arial" foreground="#1b2733" background="#f4f6f9" halign="fill">
+      <ValueBinding hyperlink="station:|slot:/Drivers/NiagaraNetwork|view:workbench:PropertySheet"/>
+    </Label>
+
+    <Label text="Alarmas" font="bold 11.0pt Arial" foreground="#1b2733" background="#f4f6f9" halign="fill">
+      <ValueBinding hyperlink="station:|slot:/Services/AlarmService|view:alarm:AlarmDbView"/>
+    </Label>
+
+    <Label text="Historial" font="bold 11.0pt Arial" foreground="#1b2733" background="#f4f6f9" halign="fill">
+      <ValueBinding hyperlink="history:|view:history:HistoryChartBuilder"/>
+    </Label>
+
+  </GridPane>
+
+</CanvasPane>
+</content>
+</px>

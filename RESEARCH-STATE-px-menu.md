@@ -7,11 +7,11 @@
 > Engram topic key: `research/niagara/px-menu/{gaps,progress}`.
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 266
-gaps_closed: 0
-known_gaps: 0
-investigable_open: 0
-requires_execution_open: 0
+covered_blocks: 270
+gaps_closed: 17
+known_gaps: 25
+investigable_open: 4
+requires_execution_open: 4
 blocked_open: 0
 <!-- /research-state.v1 -->
 
@@ -24,7 +24,24 @@ permiten emular un botón que despliega un menú vertical de opciones en un grá
 
 ## Cobertura
 
-**12 / 12 gaps** cerrados (100%) — **FOCUS STOPPED** (read-only-investigable = 0).
+**12 / 12 gaps originales** cerrados (100%). **REABIERTO 2026-07-26** con una fase DINÁMICA (§12) contra
+station viva: **17 / 25** cerrados. 8 gaps hijo abiertos (4 STATIC investigables, 4 DYNAMIC que requieren
+la station). Bloques nuevos: **B289-B292**.
+
+> **Fase dinámica 2026-07-26** — el focus se cerró en 2026-07-06 con evidencia estática (decompilado + doc).
+> Una sesión aplicada contra la station VIVA `PRUEBAS` (OptimizerSupervisor N4.14.0.162, Honeywell,
+> `https://localhost`) produjo evidencia `[CERT-live]` que **corrigió DOS bloques cerrados** — exactamente
+> el escenario que METHODOLOGY §14 anticipa. Lo estático no estaba mal por descuido: estaba incompleto
+> porque nadie había desplegado el patrón.
+>
+> **Correcciones aplicadas** (bloque viejo editado + bloque nuevo que lo explica):
+> - **B187** §187.3/§187.4/§187.5 decía que el `^` de `file:` era "relativo al dir actual". Es un ANCLA
+>   ABSOLUTA al station home (`BFileSystem.java:144-151`) y en la práctica mapea a `<station>/shared/`.
+>   → corregido en B187, explicado en **B289**.
+> - **B189** §189.4 declaraba el toggle de un botón "sin resolver en PX puro" y §189.5 recomendaba
+>   `PopupBinding`. Ambas cosas revertidas: el toggle sale con `ToggleButton` + `SetPointBinding`, y
+>   `PopupBinding` NO produce un dropdown (abre una ventana con caption literal `"Pop up"`).
+>   → corregido en B189, explicado en **B292**.
 
 > Backlog EXPANDIDO 2026-07-06 (pedido del usuario: documentación exhaustiva de "cómo funciona, sus reglas,
 > su sintaxis"). Tres capas de evidencia: gramática autoritativa (`PxDecoder/PxEncoder` decompilados,
@@ -50,9 +67,13 @@ permiten emular un botón que despliega un menú vertical de opciones en un grá
 
 ## Clasificación del backlog (§8)
 
-- **read-only-investigable**: **0** → **STOP** (§8 exhaustión del set investigable). 12/12 gaps cerrados.
-- **requires-execution**: 0. **blocked**: 0.
-- STOP 2026-07-06: 12 bloques (B179-B190), 100% cobertura. Verificación de sources en el commit de cierre.
+- STOP 2026-07-06: 12 bloques (B179-B190), 12/12, read-only-investigable = 0.
+- **REABIERTO 2026-07-26** (fase dinámica §12, station viva). Estado actual:
+  **read-only-investigable: 3** (B289-G2, B291-G3, B292-G2) ·
+  **requires-execution: 4** (B290-G1, B290-G2, B291-G1, B291-G2, B292-G1 — necesitan la station) ·
+  **blocked: 0**. 17/25 cerrados, bloques B289-B292.
+- **Orden de ataque sugerido**: B292-G1 (`ButtonGroupBinding` + hyperlink → navbar con ítem activo, es lo
+  que el trabajo aplicado pide a continuación) → B291-G2 (perfiles) → B289-G2 (mecanismo de `^`).
 - **requires-execution**: 0. **blocked**: 0.
 - **Orden de ataque**: G5 (editor oficial) → G6 (gramática/reglas) → G7 (layout) → G8 (valores) →
   G9 (converters) → G2 (PopupBinding) → G3 (in-place) → G10 (ords) → G11 (PxInclude) → G4 (síntesis `menu.px`).
@@ -87,3 +108,40 @@ el bloque G5, **preservar** los extractos relevantes en `sources/` de este targe
   confirmadas alcanzables antes de abrir cada iteración (SOURCE-BEFORE-AGENT).
 - Perfil **Hx** (`BHxPxPopupBinding`) y **bajaux** quedan fuera de ámbito de este focus (el usuario fijó
   Workbench); se anotan como gaps futuros si se reabre.
+
+---
+
+## Fase dinámica — 2026-07-26 (station viva `PRUEBAS`)
+
+Evidencia `[CERT-live]` contra OptimizerSupervisor N4.14.0.162 (Honeywell) en `https://localhost`.
+Probe preservada: `sources/probes/live-20260727T012800Z-station-pruebas-filespace-and-obix.txt`.
+Aplica SECRETS DISCIPLINE (live-install): se cita estructura, nunca valores de credenciales.
+
+| # | Gap | Bloque | Resultado |
+|---|---|---|---|
+| 13 | D1 — ¿Dónde viven realmente los `.px` de una station? Los dos espacios (component vs file). | **B289** | `^` es ANCLA ABSOLUTA (`BFileSystem.java:144-151`), y mapea a `<station>/shared/`, no a `<station>/`. **Corrige B187.** Un `.px` NO puede vivir en un `baja:Folder` del component space. Discriminar la station VIVA por `config.bog.lock` fresco. |
+| 14 | D2 — Acceso HTTP programático a una station viva. | **B290** | Un usuario nuevo toma `DigestScheme` → el server IGNORA el header Basic y devuelve 302 a `/login`. Con `HTTPBasicScheme`: `/obix` y `/obix/config/` = 200, `/` sigue 302 (superficies de auth distintas). `config.bog` es un ZIP con `file.xml` → estructura offline sin Workbench, pero refleja el estado EN DISCO, no el runtime. |
+| 15 | D3 — ¿Qué JavaScript se puede usar con solo `.px`, sin compilar módulos? | **B291** | `BWebWidget` filtra su ord a `ViewQuery` → exige vista de módulo. `BWebBrowser extends BWidget` con ord LIBRE → es la vía. La station sirve el file space: `/file/px/...` crudo vs `/ord/file:%5E...` envuelto en perfil Hx (6 marcadores de chrome vs 0). Trampa del iframe `about:blank`: las rutas absolutas no resuelven; el CSP permite `data:`. Dialecto ES5. |
+| 16 | D4 — El toggle de un botón, dado por irresoluble en B189 §189.4. | **B292** | RESUELTO en PX puro: `BToggleButton.selected` (`:33-51`) + `BSetPointBinding` (`:49-54`, "attempts to use a set action to save") + `IBooleanToSimple` sobre `visible`. **Corrige B189 §189.4 y §189.5.** `PopupBinding` NO es un dropdown: abre ventana con caption literal `"Pop up"`. |
+| 17 | B289-G1 — el ord de pathbar que tiraba `UnknownSchemeException`. | **B289** | CERRADO: el culpable era el segmento `station:`. El ord correcto es `local:\|foxs:\|file:^px/...` — `file:` encadena tras `foxs:`, nunca tras `station:`. Coherente con los dos espacios disjuntos (§289.1). |
+
+### Gaps hijo abiertos (8)
+
+| ID | Gap | Clase |
+|---|---|---|
+| B289-G2 | ¿`Sys.getStationHome()` devuelve `<station>/shared/`, o el file space aplica una restricción encima? §289.3 fija el mapeo OBSERVADO, no su mecanismo. | STATIC |
+| B290-G1 | ¿Se puede alcanzar el servlet obix con el esquema DIGEST desde un cliente no-browser (implementando el handshake SCRAM), evitando una cuenta Basic? | DYNAMIC |
+| B290-G2 | La superficie de ESCRITURA de obix (`op name="save"`, puntos writable) no se ejerció — solo lecturas. Cae bajo la receta LIVE-WRITE de §12 y la etiqueta `⚠ CONFIG MUTATION`. | DYNAMIC |
+| B291-G1 | ¿`BWebBrowser` acepta un ord HTTP absoluto (`ip:host\|http:/file/...`) para saltear el envoltorio desde el widget? Variante escrita, no confirmada. | DYNAMIC |
+| B291-G2 | Comportamiento de un `.px` con `WebBrowser` entre perfiles: verificado bajo `view:hx:HxPxView`, NO bajo Px View de Workbench ni perfil mobile. La clase vive en `workbench-wb`. | DYNAMIC |
+| B291-G3 | ¿Una página servida por `/file/` puede usar la API bajaux (suscripciones, BajaScript) en vez de fetch/DOM plano? ¿Es alcanzable el contexto RequireJS de B204? | STATIC |
+| B292-G1 | `BButtonGroupBinding` end-to-end sobre un `EnumWritable`: ¿los radio buttons generados admiten hyperlink? Es la pieza que falta para un navbar con "ítem activo" persistente. | DYNAMIC |
+| B292-G2 | ¿`ActiveStateSimple` sobre `stroke` vs `background` lo decide el atributo `background` declarado, o el tipo de widget? Dos archivos del sitio correlacionan; sin lectura de código. | STATIC |
+
+### Deliverables desplegados en la station
+
+`<station>/shared/px/` — `dropdown.px` (Patrón B, **confirmado funcionando** por el operador),
+`navbar.px` (barra horizontal con hover), `webmenu.px` + `webmenu/menu.html` (menú HTML/CSS/JS embebido
+vía `WebBrowser`), `webmenu-v1.px` / `webmenu-v2.px` (dos variantes de branding para elección del cliente).
+Requiere un `BooleanWritable` en la station (`Drivers/PRUEBAS/MenuOpen`) — **los slots son
+case-sensitive**.

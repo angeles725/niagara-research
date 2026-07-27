@@ -19,3 +19,17 @@ desktop.ini
 # Python bytecode
 __pycache__/
 *.pyc
+
+# Credentials — NEVER commit. Rotating the password is the only real fix once
+# a secret reaches git history, so keep it out in the first place.
+.secrets
+.secrets.*
+*.env
+.env
+.env.*
+credentials
+credentials.*
+*.pem
+*.key
+*.p12
+*.jks

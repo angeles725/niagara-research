@@ -1,0 +1,220 @@
+PROBE — live station PRUEBAS (OptimizerSupervisor N4.14.0.162, Honeywell), localhost
+Captured 2026-07-26/27 UTC. Channel: HTTP over TLS to the running station + read-only
+filesystem inspection of the station home from WSL.
+
+SECRETS DISCIPLINE: no credential values appear in this file. The service account is
+referred to structurally ("a station user whose Authentication Scheme Name is
+HTTPBasicScheme"). Credentials live in a git-ignored .secrets outside this corpus.
+
+================================================================================
+A. REACHABILITY — which host address answers from WSL
+================================================================================
+$ WINIP=$(ip route show default | rg -o '[\d.]+' | head -1); echo "Windows host IP: $WINIP"
+Windows host IP: 192.168.100.1
+
+$ curl -sk -o /dev/null -w 'http=%{http_code} time=%{time_total}s\n' --max-time 6 https://localhost/
+http=302 time=0.026527s
+
+$ curl -sk -o /dev/null -w 'http=%{http_code} time=%{time_total}s\n' --max-time 6 https://192.168.100.1/
+http=000 time=0.000000s        <- no response
+
+=> localhost forwarding WSL->Windows works; the WSL default-gateway address does NOT.
+
+================================================================================
+B. IDENTITY — what is answering
+================================================================================
+$ curl -sk -D- -o /dev/null --max-time 8 https://localhost/
+HTTP/1.1 302 Found
+Strict-Transport-Security: max-age=63072000
+Content-Security-Policy: connect-src 'self' workbench ws://localhost:443 wss://localhost:443 ...
+X-Frame-Options: SAMEORIGIN
+Location: https://localhost/ord
+
+$ curl -sk --max-time 8 -L https://localhost/ | rg -io '<title>[^<]*</title>|honeywell|Niagara Framework 4[^<]*'
+<title>PRUEBAS - Acceso</title>
+honeywell
+Niagara Framework 4 - Honeywell
+
+================================================================================
+C. AUTH SCHEME — why HTTP Basic was ignored before the fix
+================================================================================
+Protected endpoints redirect to the login form and DO NOT emit WWW-Authenticate:
+
+$ curl -sk -D- -o /dev/null --max-time 8 'https://localhost/obix/'
+HTTP/1.1 302 Found
+Location: https://localhost/login
+
+$ curl -sk -D- -o /dev/null --max-time 8 'https://localhost/ord'
+HTTP/1.1 302 Found
+Location: https://localhost/login
+
+Login form markers (the active scheme is the browser/SCRAM digest flow):
+$ curl -sk --max-time 8 -L https://localhost/ | rg -io 'name="[^"]*"|/login/core/[^"]*'
+/login/core/auth.min.js
+name="j_password"
+name="j_username"
+
+BEFORE the fix — a user left on the default DigestScheme, Basic offered by the client:
+  /                302
+  /obix            403
+  /obix/config/    403
+
+AFTER the fix — same user with Authentication Scheme Name = HTTPBasicScheme:
+  /                302     <- web UI keeps its own scheme; EXPECTED, not a fault
+  /obix            200
+  /obix/config/    200
+
+================================================================================
+D. OBIX PAYLOAD — the station object (proof of authenticated read)
+================================================================================
+$ curl -sk --max-time 15 -u "<user>:<pass>" "https://localhost/obix/config/"
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type='text/xsl' href='/obix/xsl'?>
+<obj href="https://localhost/obix/config/" is="/obix/def/baja:Station" display="Station" ...>
+ <str name="stationName" val="PRUEBAS" href="stationName/" displayName="Station Name"/>
+ <str name="sysInfo" val="" href="sysInfo/" null="true" displayName="Sys Info" writable="true"/>
+ <ref name="Services" href="Services/" is="/obix/def/baja:ServiceContainer" .../>
+ <op name="save" href="save/" displayName="Save"/>
+ <ref name="Drivers" href="Drivers/" is="/obix/def/driver:DriverContainer" .../>
+ <ref name="Apps" href="Apps/" is="/obix/def/app:AppContainer" .../>
+</obj>
+
+$ curl -sk -u ... "https://localhost/obix/config/Drivers/" | rg -o '<ref name="[^"]*"[^>]{0,90}'
+<ref name="NiagaraNetwork" ... is="/obix/def/niagaraDriver:NiagaraNetwork"
+<ref name="CODIGOS" href="CODIGOS/" is="/obix/def/baja:Folder"
+<ref name="AbstractMqttDriverNetwork" ... is="/obix/def/abstractMqttDriver:AbstractMqttDriverNetwork"
+<ref name="BacnetNetwork" ... is="/obix/def/bacnet:BacnetNetwork"
+<ref name="SnmpNetwork" ... is="/obix/def/nSnmp:SnmpNetwork"
+<ref name="ObixNetwork" ... is="/obix/def/obixDriver:ObixNetwork"
+<ref name="PRUEBAS" href="PRUEBAS/" is="/obix/def/baja:Folder"
+
+$ curl -sk -u ... "https://localhost/obix/config/Drivers/PRUEBAS/"
+<obj href=".../obix/config/Drivers/PRUEBAS/" is="/obix/def/baja:Folder" display="Folder" ...>
+</obj>
+=> Drivers/PRUEBAS is an EMPTY baja:Folder in the COMPONENT space. It holds no files.
+
+================================================================================
+E. FILE SPACE — where the .px files actually live
+================================================================================
+Station home on disk (the RUNNING instance — identified by a fresh config.bog.lock):
+
+  C:\ProgramData\Niagara4.14\OptimizerSupervisor\stations\PRUEBAS
+    config.bog       2026-07-25 13:20
+    config.bog.lock  2026-07-26 18:51   <- live lock => this is the running station
+
+  C:\Users\equipo\Niagara4.14\OptimizerSupervisor\stations\PRUEBAS
+    config.bog       2026-07-02 13:00
+    (no lock)                            <- NOT running
+
+Contents of <station>/shared/ :
+  domo  Imagenes  images  irmRepository  niagaramods.license  px  reflow  sdash  wifiCertificatesLog
+
+Contents of <station>/shared/px/ :
+  Bien.px  copy  Dashboard  Floorplan.px  Graphic.px  hesPxN4svg  INTERFAZ.px
+  kitPxN4svg  Plantas  PS.px  PxFile.px
+
+The Workbench Nav tree under Files shows EXACTLY the contents of <station>/shared/
+(domo, Imagenes, images, irmRepository, px ...) and does NOT show config.bog,
+console.txt, alarm/ or history/, which exist in <station>/ but not in <station>/shared/.
+
+Ord usage inside the REAL .px files of this station:
+$ rg -o 'ord="[^"]*"' <station>/shared/px/*.px | rg 'file:'
+  Floorplan.px:ord="file:^px/Header.px"
+  Bien.px:ord="file:^px/Dashboard/Home.px"
+  Bien.px:ord="file:^px/Plantas/Planta4.px"
+  Bien.px:ord="file:^px/Plantas/Planta5.px"
+
+$ rg -o 'file:\^[a-zA-Z/]*' <station>/shared/px/*.px | sort | uniq -c | sort -rn | head
+     13 file:^Imagenes/Iconos/icono
+     12 file:^px/Plantas/Planta
+      9 file:^px/kitPxN
+      5 file:^Imagenes/maquila
+      5 file:^Imagenes/honeywell
+      4 file:^px/hesPxN
+      2 file:^px/Header
+
+=> file:^px/...      resolves to <station>/shared/px/...
+=> file:^Imagenes/... resolves to <station>/shared/Imagenes/...
+=> therefore ^ (the file-space root) maps to <station>/shared/, NOT to <station>/.
+
+================================================================================
+F. VALID vs INVALID .px IN THE SAME FOLDER
+================================================================================
+Floorplan.px:1-21 (real project graphic — Niagara syntax, one-line tags):
+  <?xml version="1.0" encoding="UTF-8"?>
+  <!-- Niagara Presentation XML -->
+  <px version="1.0" media="workbench:WbPxMedia">
+  <import>
+    <module name="baja"/> <module name="bajaui"/> <module name="converters"/>
+    <module name="gx"/>   <module name="kitPx"/>  <module name="vykonPro"/>
+  </import>
+  <content>
+  <ScrollPane>
+    <CanvasPane name="content" viewSize="1000.0,800.0" scale="fitRatio" minScaleFactor="0.5" maxScaleFactor="1.0" background="#f2f2f2">
+      <PxInclude layout="0.0,0.0,1000.0,130.0" ord="file:^px/Header.px"/>
+      <Picture layout="80.0,210.0,800.0,499.0" image="file:^images/Floorplan3D.png" scale="fitRatio"/>
+      <Polygon pen="5.0" geom="170.0,470.0 130.0,600.0 360.0,600.0 370.0,470.0 ">
+        <MouseOverBinding>
+          <ActiveStateSimple name="stroke">
+            <Brush name="activeState" value="#ffff40"/>
+
+Graphic.px:9-46 (same folder — NOT Niagara syntax):
+  <BorderPane>
+    <BorderPane.north>                      <- JavaFX-style nested property element
+      <Widget x="0" y="0" width="1920" height="80">   <- x/y/width/height, not layout=
+        <Rectangle
+          fill="linear(0%,0%,0%,100%,navy,dodgerblue)"   <- attributes split across lines
+          width="1920"
+          height="80"/>
+        <Label
+          x="20"
+          y="30"
+          text="Mi Sistema BAS"
+          font="bold 24pt sans-serif"/>     <- not the "bold 24.0pt Arial" grammar
+    <Ellipse centerX="200" centerY="200" radiusX="100" radiusY="100" .../>  <- JavaFX geometry
+    <Rectangle ... cornerRadius="10" .../>
+
+Widget census across the station's real .px files:
+$ rg -o --no-filename '<[A-Z][A-Za-z]+' <station>/shared/px/*.px | sort | uniq -c | sort -rn | head
+     29 <Label      22 <Brush     14 <ObjectToString   14 <BoundLabelBinding
+     14 <BoundLabel 11 <ActiveStateSimple  10 <MouseOverBinding  9 <Polygon
+      8 <Ellipse     7 <ValueBinding  7 <Line  6 <CanvasPane  5 <ImageButton
+
+================================================================================
+G. config.bog AS A DIAGNOSTIC SURFACE (offline, no Workbench)
+================================================================================
+$ file <station>/config.bog
+  Zip archive data, at least v2.0 to extract, compression method=deflate
+$ unzip -o -q config.bog -d cfg_x   ->  cfg_x/file.xml
+
+Users found under t="b:UserService" (structure only, no credential material):
+  defaultPrototype (b:User, prototype)   admin (b:User)   BACnet (b:User)   test (b:User)
+
+Authentication schemes registered under AuthenticationSchemeFolder:
+  authenticationSchemes  b:AuthenticationSchemeFolder
+  DigestScheme           b:DigestAuthenticationScheme
+  AXDigestScheme         b:LegacyDigestAuthenticationScheme
+  HTTPBasicScheme        b:HTTPBasicAuthenticationScheme
+  HTTPBasicScheme1       b:HTTPBasicAuthenticationScheme
+
+CAVEAT: config.bog reflects the ON-DISK state. A user created in Workbench without a
+station Save is absent here while the RUNTIME already has it. Observed exactly that:
+the service account authenticated over HTTP while not appearing in this file.
+
+================================================================================
+H. FAILED ORD (unresolved — recorded so the next pass does not retry blind)
+================================================================================
+Ord typed into the Workbench pathbar:
+  local:|foxs:|station:|file:^px/pruebas.px
+
+Result:
+  javax.baja.naming.UnknownSchemeException: javax.baja.naming.unresolvedexception
+     at com.tridium.sys.registry.RegistryDatabase.getOrdScheme(RegistryDatabase.java:272)
+     at com.tridium.sys.registry.NRegistry.getOrdScheme(NRegistry.java:138)
+     at javax.baja.naming.BOrdScheme.lookup(BOrdScheme.java:57)
+     at javax.baja.naming.BOrd.resolve(BOrd.java:290)
+     at com.tridium.workbench.shell.BNiagaraWbShell.resolve(BNiagaraWbShell.java:669)
+     ... at com.tridium.workbench.pathbar.BPathBarTextField.keyReleased(BPathBarTextField.java:142)
+
+Which of the four schemes is unregistered was NOT determined. Navigating the tree
+(Station -> Files -> px) reaches the same files without typing an ord.

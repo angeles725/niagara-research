@@ -1,0 +1,29 @@
+<px version='1.0'>
+
+<import>
+  <module name='baja'/>
+  <module name='gx'/>
+  <module name='bajaui'/>
+</import>
+
+<content>
+  <GridPane columnCount="1" rowGap="2" columnGap="0.0" background="#c8ccd4" columnAlign="fill" uniformColumnWidth="true">
+    <Label text="Dashboard" font="bold 12.0pt Arial" foreground="#1b2733" background="#f4f6f9" halign="fill">
+      <ValueBinding hyperlink="station:|slot:/Graphics/Dashboard|view:px:View"/>
+    </Label>
+    <Label text="Equipos" font="bold 12.0pt Arial" foreground="#1b2733" background="#f4f6f9" halign="fill">
+      <ValueBinding hyperlink="station:|slot:/Graphics/Equipos|view:px:View"/>
+    </Label>
+    <Label text="Alarmas" font="bold 12.0pt Arial" foreground="#1b2733" background="#f4f6f9" halign="fill">
+      <ValueBinding hyperlink="station:|slot:/Services/AlarmService|view:alarm:AlarmDbView"/>
+    </Label>
+    <Label text="Historial" font="bold 12.0pt Arial" foreground="#1b2733" background="#f4f6f9" halign="fill">
+      <ValueBinding hyperlink="history:|view:history:HistoryChartBuilder"/>
+    </Label>
+    <Label text="Configuracion" font="bold 12.0pt Arial" foreground="#1b2733" background="#f4f6f9" halign="fill">
+      <ValueBinding hyperlink="station:|slot:/Config|view:workbench:PropertySheet"/>
+    </Label>
+  </GridPane>
+</content>
+
+</px>

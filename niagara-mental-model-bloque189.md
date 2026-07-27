@@ -91,7 +91,16 @@ coerción** (B184 §184.4); `degradeBehavior="hide"` de `BBinding` (B186 §186.1
 Como el panel es un `BWidget`, también se puede EMBEBER `menu.px` con `<PxInclude ord="file:^px/menu.px"/>` y
 togglear la `visible` del `PxInclude` — la vía más DRY (B188 §188.4). `[INFER]`
 
-## 189.4 — La fricción del toggle (sin resolver en PX puro) `[CERT]`
+## 189.4 — La fricción del toggle (~~sin resolver en PX puro~~ — **RESUELTA, ver [Block 292]**) `[CERT]`
+
+> **CORRECCIÓN (2026-07-26) — [Block 292].** El título original de esta sección era "sin resolver en PX
+> puro". **Es falso.** Las dos premisas de abajo se sostienen (PX no tiene scripting; `BooleanWritable` no
+> tiene action `toggle`), pero la conclusión no: el estado NO necesita voltearse con una *action*.
+> `BToggleButton` (bajaui) tiene una propiedad boolean `selected` (`BToggleButton.java:33-51`) y
+> `BSetPointBinding` (kitPx) escribe una propiedad del widget al punto — y su javadoc dice que ante un
+> componente "attempts to use a `set` action to save" (`BSetPointBinding.java:49-54`). El toggle de UN solo
+> botón sale así, en PX puro, y está **verificado funcionando en station viva**. Los dos workarounds de
+> abajo (abrir-con-botón/cerrar-con-selección, o lógica en la station) quedan innecesarios. `[CERT]`
 
 El punto débil real del patrón B: `PX no tiene scripting` (B181/B22), así que el estado vive en la station; y
 `BooleanWritable` **no tiene una action `toggle` nativa** — `ActionBinding` invoca una action fija (B186 §186.3
@@ -115,6 +124,18 @@ no-op hasta configurar `trueValue`/`falseValue` en el property sheet. `[CERT]` (
 
 **Recomendación**: para Workbench, arrancar con **Patrón A** (bajo esfuerzo, sin tocar la station). El in-place
 solo si el anclaje visual es requisito duro. `[INFER]`
+
+> **CORRECCIÓN (2026-07-26) — [Block 292] §292.5.** Esta recomendación se invirtió con evidencia de campo.
+> El Patrón A NO produce un dropdown: `BPopupBinding` importa `com.tridium.workbench.shell.BNiagaraWbDialog`,
+> su javadoc dice "popping up new views **in a window**" y su prop `title` tiene default literal `"Pop up"`
+> (`BPopupBinding.java:33,38,111`) — que es el rótulo que el usuario ve en la ventana flotante, tanto en
+> Workbench como en el navegador. `[CERT]`
+>
+> Para un desplegable ANCLADO, el default es el **Patrón B** con la mecánica de [Block 292] §292.4, cuya
+> "alta" columna de esfuerzo en la tabla de arriba ya no aplica: es un `ToggleButton` + un
+> `SetPointBinding` + un `BooleanWritable`. El Patrón A sigue siendo correcto para lo que dice hacer —
+> abrir una VISTA en una ventana. Y si el menú debe SUPERPONERSE a otros widgets, ningún patrón PX sirve:
+> el canvas no lo permite (ver [Block 291]). `[INFER]`
 
 Mapa de respaldo: gramática/tag-1-línea [Block 181] · layout GridPane [Block 182] · valores gx [Block 183] ·
 converter type-guard [Block 184] · PopupBinding [Block 185] · ValueBinding/hyperlink [Block 186] · ords

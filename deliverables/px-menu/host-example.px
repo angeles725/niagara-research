@@ -1,0 +1,18 @@
+<px version='1.0'>
+
+<import>
+  <module name='baja'/>
+  <module name='gx'/>
+  <module name='bajaui'/>
+</import>
+
+<content>
+  <CanvasPane name="content" viewSize="1024.0,768.0" background="#e8ebf0">
+    <Label layout="16,12,300,24" text="Planta - Vista general" font="bold 16.0pt Arial" foreground="#1b2733"/>
+    <Button layout="8,40,96,26" text="Menu">
+      <PopupBinding ord="file:^px/menu.px" size="200,180" position="8,66" modal="false"/>
+    </Button>
+  </CanvasPane>
+</content>
+
+</px>

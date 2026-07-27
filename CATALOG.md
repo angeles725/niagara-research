@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **286 bloques**
+Total: **290 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -291,6 +291,10 @@ Total: **286 bloques**
 | 286 | [niagara-mental-model-bloque286.md](niagara-mental-model-bloque286.md) | Header options de BACnet/SC: marker de 1 byte con 4 campos; **el must-understand solo se hace valer en destination options**; las desconocidas conservan sus bytes |
 | 287 | [niagara-mental-model-bloque287.md](niagara-mental-model-bloque287.md) | Topología y seguridad de BACnet/SC: failover de 6 estados con failback automático; dos certificados; **una conexión SC entrante se autentica como un `BUser` de Niagara** |
 | 288 | [niagara-mental-model-bloque288.md](niagara-mental-model-bloque288.md) | Cierre del barrido: verificada la suposición de B276 sobre los writables (difieren solo en el chequeo de dominio); `Elapsed_Active_Time` = totalizador con intervalo forzado a 1 s + punto derivado |
+| 289 | [niagara-mental-model-bloque289.md](niagara-mental-model-bloque289.md) | Block 289 — The live station's file space: `^` resolves to `shared/`, and why a `.px` cannot live in `Drivers/` |
+| 290 | [niagara-mental-model-bloque290.md](niagara-mental-model-bloque290.md) | Block 290 — Reading a live station over HTTP: why Basic auth is ignored by default, and `config.bog` as an offline diagnostic surface |
+| 291 | [niagara-mental-model-bloque291.md](niagara-mental-model-bloque291.md) | Block 291 — The PX↔web bridge without a module: `WebBrowser` vs `WebWidget`, the `/file/` servlet, and the `about:blank` iframe trap |
+| 292 | [niagara-mental-model-bloque292.md](niagara-mental-model-bloque292.md) | Block 292 — The one-button toggle IS solvable in pure PX: `ToggleButton` + `SetPointBinding` closes B189 §189.4 |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
