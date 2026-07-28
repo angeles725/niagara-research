@@ -294,8 +294,11 @@ axvelocity 4 · easyTemplating 2 · honeywellFunctionBlocks 2 · honBACnetUtilit
 `[CERT]` The mass is OEM equipment graphics (`ascCommon/resources/graphics/VAVGraphics.px`,
 `CVAHUGraphics.px`), not framework samples. `[CERT]`
 
-**The find that matters: the editor's own base template.** `easyTemplating-wb` ships `res/PxFile.px`, and it
-is the skeleton a new Px view starts from: `[CERT]`
+**The find that matters: the base template a new Px view starts from.** `[CERT]`
+
+> ↪ **Attribution corrected in §293.14.** The authoritative copy is the one `BPxMedia.getPxFileOrd()` names,
+> `<niagara-home>/defaults/workbench/newfiles/PxFile.px`. The `easyTemplating` file quoted below is a
+> byte-identical packaged duplicate (same sha256, empty `diff`). The `ScrollPane` conclusion is unaffected.
 
 ```xml
 <px version='1.0'>
@@ -379,6 +382,18 @@ first would have produced a false negative. `[INFER]`
 | §293.12 the chrome is gone after the fix | reload capture, `HistoryChartBuilder` | `[CERT-live]` |
 | §293.12 a third native view inherits the menu | same capture | `[CERT-live]` |
 | §293.12 the `\|view:`-already-present branch works | ord `history:\|view:history:…` rendered correctly | `[CERT-live]` |
+| §293.13 the first hypothesis (raw ord in the iframe) was WRONG | probe reported `isBrowser = true` | `[CERT-live]` |
+| §293.13 `location.origin` is `https://workbench` under the widget | probe output quoted verbatim | `[CERT-live]` |
+| §293.13 the iframe fired LOAD yet rendered nothing | probe `iframe LOAD fired ->` | `[CERT-live]` |
+| ⇒ root-relative URLs resolve to the synthetic host, not the station | derived | `[INFER]` |
+| ⇒ B291 §291.5's `workbench` CSP token is that virtual host | derived | `[INFER]` |
+| §293.14 this session's files declare `WbPxMedia`, not `HxPxMedia` | the deployed `.px` | `[CERT-live]` |
+| §293.14 a `WbPxMedia` file renders fine under the browser | §293.11 captures | `[CERT-live]` |
+| ⇒ `media` is an authoring contract, not a runtime lock | derived from the two above | `[INFER]` |
+| §293.14 `PxMediaValidationUtil` warns/confirms at edit time | `:28-52` quoted | `[CERT]` |
+| §293.14 `getPxFileOrd()` defaults to `file:!defaults/workbench/newfiles/PxFile.px` | `BPxMedia.java:126-135` quoted | `[CERT]` |
+| §293.14 `newfiles/` holds 9 per-type templates | directory listing | `[CERT-live]` |
+| §293.14 the `easyTemplating` copy is byte-identical | sha256 match + empty diff | `[CERT-live]` |
 
 Tally: **[CERT] 12 / [CERT-doc] 3 / [CERT-live] 9 / [INFER] 13.**
 
@@ -546,6 +561,147 @@ Two things that capture settles beyond the chrome: `[CERT-live]`
 Route A is therefore complete for the browser profile: inherited menu, anchored dropdown, shaded parent tab,
 native views included, no Niagara chrome. `[CERT-live]`
 
+## 293.13 — `BWebBrowser` serves from a SYNTHETIC ORIGIN, and that identifies B291's unexplained CSP token `[CERT-live]`
+
+Under Workbench the shell rendered its navbar and then showed an **empty content frame**. Two hypotheses
+were formed and the first was **wrong**, which is why this section exists: guessing twice in a row was
+avoided by instrumenting instead.
+
+**Discarded hypothesis**: that the iframe had received a raw ord (`file:^px/…`) because `isBrowser` was
+false, and that an iframe `src` is resource loading which `Href2Ord` never sees. The reasoning about
+`Href2Ord` is correct, but the premise was not — `isBrowser` measured **true**. `[CERT-live]`
+
+**The probe.** An unconditional diagnostic strip was added to the shell reporting the host it is running in.
+Verbatim output under Workbench: `[CERT-live]`
+
+```
+B293-G7 probe
+isBrowser         = true
+location.protocol = https:
+location.href     = https://workbench/index.html
+location.origin   = https://workbench
+document.baseURI  = https://workbench/index.html
+iframe src set to = /ord/station:%7Cslot:/Services/AlarmService%7Cview:alarm:AlarmDbView?fullScreen=true
+iframe LOAD fired -> /ord/station:%7Cslot:/Services/AlarmService%7Cview:alarm:AlarmDbView?fullScreen=true
+```
+
+**The finding: the document is served from `https://workbench`, a synthetic origin that is NOT the
+station.** `[CERT-live]` So the root-relative `/ord/…` resolved against `https://workbench/ord/…` — a host
+with no station behind it. `LOAD` fired (something was returned) while the panel stayed blank, which is why
+the failure presents as "nothing renders" rather than as an error. `[INFER]`
+
+**This identifies the `workbench` token in [Block 291] §291.5.** That block recorded the station's CSP
+verbatim, including `default-src 'self' workbench` and `script-src 'self' workbench …`, and catalogued what
+each directive permitted without ever explaining what the host `workbench` *was*. It is not a Tridium
+allow-list curiosity: it is **the widget's own virtual host**, and the CSP names it because that is the
+origin the hosted document actually runs under. `[INFER]` B291 §291.5 has been annotated with a pointer here.
+
+**Consequence for authored pages, general beyond this shell**: inside `BWebBrowser`, *every* root-relative
+URL points at the synthetic host, not the station. That is the same class of failure as §291.4's broken
+image — which B291 attributed to an `about:blank` base — and both share one lesson: **under this widget a
+document has no reliable relative path back to the station.** `[INFER]` §291.4's fix was a `data:` URI,
+i.e. removing the path entirely; this section's fix is spelling the origin out.
+
+```js
+var SYNTHETIC_HOST = 'workbench';
+var STATION_ORIGIN = 'https://localhost';   /* the station's real origin */
+var isSynthetic = window.location.hostname === SYNTHETIC_HOST;
+…
+return isSynthetic ? STATION_ORIGIN + path : path;
+```
+`shell.html`, deployed `[CERT-live]`
+
+**Known risk, not yet tested**: the CSP of §291.5 has no `frame-src`, so framing falls back to
+`default-src 'self' workbench`. If that CSP applies to the synthetic-origin document, an iframe pointing at
+`https://localhost` is **blocked**, and the fix fails for a second, unrelated reason. Whether the
+jxBrowser-served document carries that CSP at all was not measured. → **B293-G7** stays open. `[INFER]`
+
+**Portability cost, stated plainly**: `STATION_ORIGIN` is a hard-coded host. A document inside the synthetic
+origin has no way to discover the station's address, so this is configuration, not detection — and it is the
+one line that must change per deployment. `[INFER]`
+
+## 293.14 — What `media="…"` actually decides, and the per-media template it points at `[CERT]` `[CERT-live]`
+
+Prompted by a direct question — *"N4 has several `media` types; right now we're using HxMedia, right?"* —
+which contains a misconception worth correcting precisely, because the answer changes what the attribute is
+FOR. [Block 194] already catalogues the four media; this section does not re-derive them, it adds the two
+things B194 did not cover and settles the runtime-vs-authoring confusion.
+
+**Correction first: we are NOT using `HxPxMedia`.** Every `.px` written this session declares
+`media="workbench:WbPxMedia"`, copied from the station's own graphics as the imitation baseline. `[CERT-live]`
+What is true is that those files were **rendered under the Hx profile** in the browser. Those are different
+things, and §293.11's captures prove they are independent: a `WbPxMedia` file rendered correctly in a plain
+browser. `[CERT-live]`
+
+**So what does `media` decide?** Not who may render the file. It is the **authoring-time contract**: the
+media a file declares is the target the *editor* validates against.
+
+```java
+public static int validateMediaDialog(BPxMedia media, BWidget root, BPxEditor editor, Context cx) {
+   boolean attemptingChange = media != null;
+   …
+   Map<String, String> warnings = ValidationUtil.getValidationWarnings(media, new BWidget[]{root}, validateChildren, cx);
+   if (warnings.size() > 0) { … BDialog.confirm(…) : BDialog.warning(…) }
+```
+`pxEditor-wb/com/tridium/px/editor/PxMediaValidationUtil.java:28-52` `[CERT]`
+
+Read what that method does: it collects warnings for a **candidate** media, and when the author is
+*changing* it (`attemptingChange`) it asks for confirmation instead of merely warning. `[CERT]` That is a
+design-time guard — "these widgets will not survive on that target" — and it maps directly onto B194's
+finding that the base `BPxMedia.validateWidget` returns `null` and subclasses override to RESTRICT.
+`[CERT]` (B194 §194.1 by reference)
+
+**The four media, and what each one is for** — from [Block 194] §194.3, not re-derived: `[CERT]`
+
+| Media | For | Restriction |
+|---|---|---|
+| `workbench:WbPxMedia` | graphics authored for **Workbench** (Swing) | **none** — renders any widget or binding |
+| `hx:HxPxMedia` | graphics targeted at the **Hx web profile** | agent-gated: a widget is supported only if a `BHxPxWidget` agent exists for its type |
+| `mobile:MobilePxMedia` | the **mobile** profile | strictest — a fixed whitelist of 14 widget types |
+| `report:ReportPxMedia` | **report** output | no widget restriction; it overrides the *template* instead (below) |
+
+The practical reading for this site: **`WbPxMedia` is the permissive one.** Declaring it means the editor
+will not warn about anything — which is convenient while authoring and is also why an author gets no
+heads-up that a given binding has no Hx agent. If a graphic is *meant* for the browser, declaring
+`hx:HxPxMedia` is what turns those silent gaps into editor warnings. `[INFER]`
+
+**The second thing B194 did not cover: each media names its own new-file template.** `[CERT]`
+
+```java
+/**
+ * Return the file that is used to create
+ * new PX drawings.  Default returns
+ * BOrd.make("file:!defaults/workbench/newfiles/PxFile.px").
+ */
+public BOrd getPxFileOrd() { return DEFAULT_PX_FILE; }
+public static final BOrd DEFAULT_PX_FILE = BOrd.make("file:!defaults/workbench/newfiles/PxFile.px");
+```
+`bajaui-wb/javax/baja/ui/px/BPxMedia.java:126-135` `[CERT]`
+
+Note the `!` anchor — **Niagara home**, not the `^` station home of [Block 289]. `[CERT]` The directory it
+points at is a full new-file template set, one per file type: `[CERT-live]`
+
+```
+BogFile.bog · HtmlFile.html · JavaFile.java · NavFile.nav · PaletteFile.palette
+PxFile.px · ReportPxFile.px · SyntheticModule.sjar · TextFile.txt
+```
+`<niagara-home>/defaults/workbench/newfiles/` `[CERT-live]`
+
+`BReportPxMedia` is the one media that uses the hook — B194 recorded it overrides `getPxFileOrd()` to
+`ReportPxFile.px`, and that file is right there beside the default, opening with `<ReportPane/>` instead of
+a canvas. `[CERT-live]` So "each media may ship its own skeleton" is not theoretical: it is exercised once,
+by reports.
+
+### Correction to §293.8 of this same block `[CERT-live]`
+
+§293.8 called `easyTemplating-wb/res/PxFile.px` "the editor's own base template". The **conclusion** — that
+the root `ScrollPane` comes from the template, which is why §293.2's guide has to tell authors to delete it
+— is correct and unchanged. The **attribution** was imprecise: the authoritative template is the one
+`getPxFileOrd()` names, `<niagara-home>/defaults/workbench/newfiles/PxFile.px`. `easyTemplating` ships a
+**byte-identical copy** — same sha256 `fa159ca1…4a8982`, `diff` empty. `[CERT-live]` A packaged duplicate,
+not the source of truth. The finding stands; the citation now points at the file the framework actually
+reads.
+
 ## 293.x — Connections and open gaps
 
 - **[Block 291]** — the bridge this block builds on: `/file/` vs `/ord/file:`, the CSP rule sheet, the ES5
@@ -565,5 +721,5 @@ native views included, no Niagara chrome. `[CERT-live]`
 | **B293-G3** | The guide names **Action Button** from `kitPx` for the menu entries, while the station's `navbar.px` uses `ImageButton` + `ActionBinding` + `MouseOverBinding`. Are these the same widget under two names, or did the site diverge from the documented recipe? Not resolved here. | STATIC |
 | **B293-G4** | §293.8 counted ~250 module-shipped `.px` but opened only 3. The OEM graphics libraries (`honeywellVenomGraphics` 60, `honeywellSpyderTool` 48, `ascCommon` 40, `honeywellAXPlatinum*` 40) are an unread corpus of *working, shipped* PX authored by the vendor — the highest-fidelity style guide available for this site, and never surveyed. | STATIC |
 | ~~**B293-G6**~~ | **CLOSED §293.11 for the browser profile**: the click navigates the iframe; frame isolation holds; the menu survives a native `AlarmDbView`. The Workbench half is re-opened as **B293-G7**. | **closed (browser)** |
-| **B293-G7** | Same click test under **Workbench**, where `BWebBrowserView:540` intercepts links at widget level. Does the shell's frame isolation survive there, or is Route A browser-only? | DYNAMIC |
+| **B293-G7** | NARROWED by §293.13 from "does it work" to one measurable question: **does the CSP of B291 §291.5 apply to the synthetic-origin document?** It declares no `frame-src`, so framing falls back to `default-src 'self' workbench` — under which an iframe pointing at `https://localhost` is blocked. If it does apply, Route A is browser-only under Workbench regardless of the origin fix. | DYNAMIC |
 | **B293-G5** | `BRadioButtonGroupBinding.groupScope` defaults to `BToggleButtonGroupScopeEnum.universal` (§293.5). What are the other scope values, and does a non-universal scope confine grouping to a `PxInclude` subtree? Relevant because it decides whether one included navbar can be grouped independently per host page. | STATIC |

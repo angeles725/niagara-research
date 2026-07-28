@@ -142,6 +142,12 @@ there is no path left to resolve. Measured on the real asset: 442×72 at 128 col
 
 ## 291.5 — What that CSP permits, as a rule sheet `[CERT-live]`
 
+> **↪ The `workbench` host in these directives is IDENTIFIED by [Block 293] §293.13.** It is not a Tridium
+> allow-list curiosity: `BWebBrowser` serves its document from a **synthetic origin**
+> (`location.origin === "https://workbench"`, measured live), and the CSP names it because that is the
+> origin the hosted page runs under. Consequence: inside the widget every root-relative URL points at that
+> synthetic host, not at the station — the same class of failure as §291.4's broken image.
+
 | Capability | Allowed | Why |
 |---|---|---|
 | Inline `<script>` | **yes** | `script-src ... 'unsafe-inline'` |

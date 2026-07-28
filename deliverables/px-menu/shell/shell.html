@@ -37,6 +37,10 @@
   /* The content frame owns everything below the navbar. Views loaded here
      never see the menu, so the menu never has to be repeated in them. */
   .content { flex: 1 1 auto; border: 0; width: 100%; display: block; background: #e8ebf0; }
+  /* Diagnostic strip: only filled in when the host is not a plain browser. */
+  #diag { display: none; margin: 0; padding: 10px 14px; background: #1b2733; color: #7dd3a0;
+    font: 12px/1.5 Consolas, monospace; white-space: pre-wrap; flex: 0 0 auto; }
+  #diag.on { display: block; }
 </style>
 </head>
 <body>
@@ -74,6 +78,7 @@
   </div>
 
   <iframe class="content" name="content" id="content"></iframe>
+  <pre id="diag"></pre>
 
 </div>
 
@@ -148,6 +153,16 @@
 
      So the ord is the single source of truth in data-ord, and the href is built for
      whichever host is actually rendering the page. */
+  /* MEASURED (B293 §293.13): inside BWebBrowser the document is served from a
+     SYNTHETIC origin -- location.origin === 'https://workbench' -- not from the
+     station. That is the same 'workbench' token listed in the station's CSP
+     (B291 §291.5). Consequence: a root-relative /ord/... resolves against
+     https://workbench, which is not the station, so the frame loads nothing.
+     Under that host only, the station's real origin must be spelled out. */
+  var SYNTHETIC_HOST = 'workbench';
+  var STATION_ORIGIN = 'https://localhost';   /* <- set to the station's real origin */
+
+  var isSynthetic = window.location.hostname === SYNTHETIC_HOST;
   var isBrowser = /^https?:$/.test(window.location.protocol);
 
   /* fullScreen is an Hx VIEW PARAMETER, not a plain query arg:
@@ -159,7 +174,8 @@
   function ordToHref(ord) {
     if (!isBrowser) { return ord; }               /* raw ord: passes isAlreadyOrd() */
     var withView = ord.indexOf('|view:') !== -1 ? ord : ord + '|view:';
-    return '/ord/' + withView.replace(/\|/g, '%7C').replace(/\^/g, '%5E') + '?fullScreen=true';
+    var path = '/ord/' + withView.replace(/\|/g, '%7C').replace(/\^/g, '%5E') + '?fullScreen=true';
+    return isSynthetic ? STATION_ORIGIN + path : path;
   }
 
   for (var j = 0; j < links.length; j++) {
@@ -180,6 +196,27 @@
   var last = recall() || HOME;
   frame.src = ordToHref(last);
   markActive(last);
+
+  /* B293-G7 probe. Inside BWebBrowser the iframe src is NOT link navigation, so
+     Href2Ord never sees it and a raw ord cannot resolve. Report what the host
+     actually is instead of guessing. Invisible in a real browser. */
+  /* Probe kept only under the synthetic host, where B293-G7 is still open.
+     In a real browser the shell is already clean - do not show debug there. */
+  var d = document.getElementById('diag');
+  if (isSynthetic) { d.className = 'on'; }
+  function say(t) { d.appendChild(document.createTextNode(t + '\n')); }
+  say('B293-G7 probe');
+  say('isBrowser         = ' + isBrowser);
+  say('isSynthetic       = ' + isSynthetic);
+  say('location.protocol = ' + window.location.protocol);
+  say('location.href     = ' + window.location.href);
+  say('location.origin   = ' + window.location.origin);
+  say('document.baseURI  = ' + document.baseURI);
+  say('iframe src set to = ' + frame.getAttribute('src'));
+  frame.onload  = function () {
+    say('iframe LOAD fired -> ' + frame.getAttribute('src'));
+  };
+  frame.onerror = function () { say('iframe ERROR'); };
 })();
 </script>
 

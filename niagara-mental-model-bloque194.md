@@ -34,6 +34,13 @@ Por eso el header de un `.px` de Workbench trae `media="workbench:WbPxMedia"` y 
 
 ## 194.3 — Los 4 media concretos, de más permisivo a más estricto `[CERT]`
 
+> **↪ AMPLIADO por [Block 293] §293.14** con dos cosas que este bloque no cubrió: (a) `media` es un
+> contrato de AUTORÍA, no un candado de runtime — `PxMediaValidationUtil` valida en el EDITOR, y se verificó
+> en vivo que un `.px` con `WbPxMedia` renderiza sin problema bajo el perfil Hx del navegador; (b)
+> `BPxMedia.getPxFileOrd()` hace que cada media pueda traer su PROPIA plantilla de archivo nuevo
+> (`file:!defaults/workbench/newfiles/PxFile.px` por defecto, ancla `!` = Niagara home), que es el mecanismo
+> detrás del `ScrollPane` raíz del que habla la guía de menús de navegación.
+
 | Media | Restricción de widgets | Cita |
 |---|---|---|
 | **`BWbPxMedia`** (Workbench/Swing) | NINGUNA — hereda la base permisiva, override solo `getType()`. Renderiza CUALQUIER widget/binding | `BWbPxMedia` (workbench-wb) |
