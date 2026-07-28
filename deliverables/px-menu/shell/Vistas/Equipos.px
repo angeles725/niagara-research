@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Niagara Presentation XML -->
+<!--
+  Content page. Loaded inside the shell's content iframe, so it carries NO menu
+  of its own. Adding a navbar here would double it.
+-->
+<px version="1.0" media="workbench:WbPxMedia">
+<import>
+  <module name="baja"/>
+  <module name="bajaui"/>
+  <module name="gx"/>
+</import>
+<content>
+<CanvasPane name="content" viewSize="1600.0,900.0" scale="fitRatio" minScaleFactor="0.5" maxScaleFactor="1.5" background="#e8ebf0">
+
+  <Label layout="24.0,20.0,600.0,28.0" text="Equipos" font="bold 18.0pt Arial" foreground="#1b2733"/>
+  <Label layout="24.0,52.0,900.0,20.0" text="Listado y estado de equipos." font="11.0pt Arial" foreground="#5a6672"/>
+
+  <BorderPane layout="24.0,88.0,1000.0,420.0" background="#ffffff" border="1.0 solid #d0d5dc">
+    <Label text="Arrastra aqui los equipos" font="12.0pt Arial" foreground="#8a9099"/>
+  </BorderPane>
+
+</CanvasPane>
+</content>
+</px>

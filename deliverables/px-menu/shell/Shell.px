@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Niagara Presentation XML -->
+<!--
+  Shell.px - the ONLY graphic that carries the menu.
+
+  A full-screen WebBrowser hosts shell.html, which owns the navbar AND a content
+  iframe. Every other view is loaded inside that iframe, so it inherits the menu
+  without declaring anything. Do not add a navbar to the content pages.
+
+  Open with:  local:|foxs:|file:^px/Shell.px    (never chain file: after station: - B289-G1)
+  Web:        /ord/file:%5Epx/Shell.px
+-->
+<px version="1.0" media="workbench:WbPxMedia">
+<import>
+  <module name="baja"/>
+  <module name="bajaui"/>
+  <module name="gx"/>
+  <module name="jxBrowser"/>
+  <module name="workbench"/>
+</import>
+<content>
+<CanvasPane name="content" viewSize="1920.0,1080.0" scale="fitRatio" minScaleFactor="0.5" maxScaleFactor="1.5" background="#3b6ea5">
+
+  <WebBrowser layout="0.0,0.0,1920.0,1080.0" ord="file:^px/webmenu/shell.html" title="" showProgressIndicator="false" contextMenuEnabled="false"/>
+
+</CanvasPane>
+</content>
+</px>

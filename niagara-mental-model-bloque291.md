@@ -163,6 +163,13 @@ function expressions, no template literals. `[INFER]`
 
 ## 291.6 — Navigation back into Niagara from the hosted page `[CERT-live]`
 
+> **⚠ CORRECTED by [Block 293] §293.10 — this rule is BROWSER-PROFILE ONLY.** Inside a `BWebBrowser`
+> widget (Workbench) the requirement is the **opposite**: pass the **raw ord** (`file:^px/x.px`), never
+> `/ord/<encoded>`. `Href2Ord.isAlreadyOrd` tests the substring before the first colon; for
+> `/ord/file:%5E…` that substring is `"/ord/file"`, which is not a registered ord scheme, so the href is
+> wrapped in `file:` and merged onto the widget's own ord — producing `file:/ord/file:%255E…` and a 403.
+> Verified live. See B293 §293.10 for the mechanism and the dual-host fix.
+
 Links use `/ord/<url-encoded-ord>`, and must carry `target="_top"` to escape the iframe of §291.3:
 
 ```html

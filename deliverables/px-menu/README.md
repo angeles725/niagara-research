@@ -12,6 +12,27 @@ Three routes, ordered by what they actually deliver. Read the verdict before pic
 | **A — `PopupBinding`** | **No** — opens a *window* | n/a | no | no |
 | **B — in-place toggle** | **Yes** | no (PX canvas can't) | yes | no |
 | **C — hosted HTML** | **Yes** | **yes** | no | no |
+| **D — HTML shell + iframe** | **Yes** | **yes** | no | no |
+
+## Inheriting the menu across pages (B293)
+
+If the menu must appear on more than one page, the question stops being "which dropdown" and becomes
+"which views does it have to survive". Two answers, and they are not interchangeable:
+
+| | **Shell (`shell/`, route D)** | **`PxInclude`** |
+|---|---|---|
+| Inherited by | **every** view, native ones included | only `.px` you author |
+| Reloads on navigate | no — only the content iframe swaps | yes — whole page |
+| Active-tab highlight | yes, a CSS class | **not today** (B292-G1) |
+| Official Tridium pattern | no | **yes** |
+
+Native views (`PropertySheet`, `AlarmDbView`, chart builders) are framework-rendered, so there is nowhere to
+put a `PxInclude` — that is the whole reason the shell exists.
+
+**`PxInclude` gotcha, straight from the Tridium guide** (`docGraphics_CreatingANavigationMenu-1D868C52.txt`):
+*"Remove the ScrollPane at the root in this view otherwise scroll bars display on the menu once it is
+embedded."* This is not an edge case — the editor's base template (`easyTemplating-wb/res/PxFile.px`) **has
+that `ScrollPane`**, so every new Px view is wrong by default until the node is deleted.
 
 **Pattern A does not produce a dropdown.** `BPopupBinding` imports `BNiagaraWbDialog`, its javadoc says
 "popping up new views *in a window*", and its `title` defaults to the literal `"Pop up"` — the caption
@@ -25,6 +46,10 @@ for opening a view in a window, and the wrong one for a menu.
 | `menu.px` | A | The popup contents. Kept as the reference for the `GridPane` + `ValueBinding hyperlink` idiom. |
 | `host-example.px` | A | Host graphic with the trigger `Button` + `PopupBinding`. |
 | `dropdown-pattern-b.px` | B | **Recommended for an anchored dropdown.** `ToggleButton` + `SetPointBinding` + `visible` toggle. |
+| `shell/shell.html` | D | **Recommended when the menu must be inherited.** Navbar + content iframe; links use `target="content"`, not `_top`. |
+| `shell/Shell.px` | D | Full-screen `WebBrowser` host — the only graphic that carries the menu. |
+| `shell/menu-v3.html` | C | Bare navbar with the active-tab fix (`.active` CSS + `sessionStorage`). Use when there is no shell. |
+| `shell/Vistas/*.px` | D | Content pages, deliberately menu-free. `Planta-heredado.px` is the `PxInclude` counter-example. |
 
 ## Install
 

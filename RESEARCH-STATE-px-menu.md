@@ -7,11 +7,11 @@
 > Engram topic key: `research/niagara/px-menu/{gaps,progress}`.
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 270
-gaps_closed: 17
-known_gaps: 25
-investigable_open: 4
-requires_execution_open: 4
+covered_blocks: 271
+gaps_closed: 21
+known_gaps: 33
+investigable_open: 6
+requires_execution_open: 5
 blocked_open: 0
 <!-- /research-state.v1 -->
 
@@ -25,8 +25,28 @@ permiten emular un botón que despliega un menú vertical de opciones en un grá
 ## Cobertura
 
 **12 / 12 gaps originales** cerrados (100%). **REABIERTO 2026-07-26** con una fase DINÁMICA (§12) contra
-station viva: **17 / 25** cerrados. 8 gaps hijo abiertos (4 STATIC investigables, 4 DYNAMIC que requieren
-la station). Bloques nuevos: **B289-B292**.
+station viva: **21 / 33** cerrados. Bloques nuevos: **B289-B293**.
+
+> **Sesión aplicada 2026-07-28 — B293 (DOCUMENT-MODE §20), pedido del cliente.** El operador del sitio pidió
+> que la pestaña padre quede **sombreada** tras pinchar una entrada del dropdown, y el integrador pidió que
+> el menú quedara **heredado** por las páginas de contenido. Resultado: DOS rutas documentadas y desplegadas.
+>
+> - **Ruta A — shell HTML** (`shell.html` + `Shell.px`): navbar + `<iframe name="content">`. Cambiar
+>   `target="_top"` por el nombre del frame hace que el navbar NO se recargue nunca ⇒ herencia gratis sobre
+>   **todas** las vistas (incluidas las nativas), estado activo con una clase CSS, y el dropdown deja de
+>   recortarse (B291 lo tenía en una franja de 56 px).
+> - **Ruta B — `PxInclude`**: es el patrón **OFICIAL de Tridium** —
+>   `docGraphics_CreatingANavigationMenu-1D868C52.txt`, "Create a global navigation menu using PxInclude".
+>   Solo alcanza a los `.px` propios; las vistas nativas no embeben nada.
+>
+> **Nota de método**: el bloque estuvo a un paso de afirmar que no existía patrón oficial. Lo salvó consultar
+> niagara-help (fuente 2). Calibración nueva: para PX, la doc responde al **nombre de clase/widget**, no a la
+> intención descrita — `"PxInclude"` → 18 archivos; `"graphic template"`, `"Px template"`,
+> `"navigation bar graphic reuse"`, `"web browser widget px"` → cero.
+>
+> **Plantillas `.px`**: no están en la doc, están en los módulos (~250). La base del editor es
+> `easyTemplating-wb/res/PxFile.px`, y **trae un `ScrollPane` en la raíz** — que es exactamente lo que la
+> guía manda borrar para un menú. El gotcha oficial es un default de plantilla, no un caso raro.
 
 > **Fase dinámica 2026-07-26** — el focus se cerró en 2026-07-06 con evidencia estática (decompilado + doc).
 > Una sesión aplicada contra la station VIVA `PRUEBAS` (OptimizerSupervisor N4.14.0.162, Honeywell,
@@ -63,17 +83,34 @@ la station). Bloques nuevos: **B289-B292**.
 | G3 | `BValueBinding` (patrón in-place): `getOnWidget` = slot converter dinámico (motor `visible`); `hyperlink` (nav izq) + `popupEnabled` (menú acciones der vía NavMenuUtil); `degradeBehavior` heredado de BBinding. | **cerrado** | B186 | `sources/decompiled/bajaui-wb-px/BValueBinding.java` + `BBinding.java` (preservados) |
 | G10 | Ord schemes: cadena `scheme:body\|...`; 15 schemes (remisión bloque35); relevantes al menú (slot/station/file/history/view/module); relativo(`^`/`..`) vs absoluto + `BOrd.make(base,rel).normalize()`; portabilidad. | **cerrado** | B187 | bloque35:3 + `sources/decompiled/baja-naming/BOrd.java` + `.px` reales |
 | G11 | `BPxInclude` (extends BWidget): embebe una `.px` por su `ord` (carga async, `root`, `baseOrd`, `variables`, `reload` on-change). Al ser BWidget su `visible` es togglable → menú reutilizable in-place. | **cerrado** | B188 | `sources/decompiled/bajaui-wb-px/BPxInclude.java` (preservado) |
+| B293 | **Menú HEREDADO + tab activo** (pedido del cliente): ruta A shell HTML (navbar + iframe) vs ruta B `PxInclude` (patrón oficial Tridium); dónde viven las plantillas `.px` (~250 en módulos, base = `easyTemplating/res/PxFile.px` con `ScrollPane` raíz); dialecto real del editor; `BBorder` orden libre; `BRadioButtonGroupBinding` OEM. | **cerrado** | B293 | guía `docGraphics_CreatingANavigationMenu-1D868C52.txt` + `BBorder.java` + `BHalign.java` + `BRadioButtonGroupBinding.java` + station viva |
 | G4 | **Síntesis aplicada culminante** (DESIGN/APPLIED): `menu.px` completo patrón A (PopupBinding) + patrón B (in-place toggle visible), integrando B179-B188 con cada decisión respaldada. Reglas tag-1-línea, GridPane columnCount=1, fricción del toggle. | **cerrado** | B189 | síntesis [Block 179-188] |
 
 ## Clasificación del backlog (§8)
 
 - STOP 2026-07-06: 12 bloques (B179-B190), 12/12, read-only-investigable = 0.
 - **REABIERTO 2026-07-26** (fase dinámica §12, station viva). Estado actual:
-  **read-only-investigable: 3** (B289-G2, B291-G3, B292-G2) ·
-  **requires-execution: 4** (B290-G1, B290-G2, B291-G1, B291-G2, B292-G1 — necesitan la station) ·
-  **blocked: 0**. 17/25 cerrados, bloques B289-B292.
-- **Orden de ataque sugerido**: B292-G1 (`ButtonGroupBinding` + hyperlink → navbar con ítem activo, es lo
-  que el trabajo aplicado pide a continuación) → B291-G2 (perfiles) → B289-G2 (mecanismo de `^`).
+  **read-only-investigable: 6** (B289-G2, B291-G3, B292-G2, B293-G3, B293-G4, B293-G5) ·
+  **requires-execution: 6** (B290-G1, B290-G2, B291-G1, B291-G2, B292-G1, B293-G1, B293-G2 — necesitan la
+  station) · **blocked: 0**. 18/31 cerrados, bloques B289-B293.
+- **B293-G1 y B293-G6 CERRADOS 2026-07-28 con render vivo en DOS perfiles**:
+  · **Workbench** — el navbar RENDERIZA (cierra media B291-G2), pero todos los links dieron 404/403. Causa
+    en código: `Href2Ord.hrefToOrd` mete el href como ord relativo al del widget. **CORRIGE B291 §291.6**:
+    dentro de `BWebBrowser` va el ORD CRUDO, no `/ord/<encoded>`. Ver B293 §293.10.
+  · **Navegador** — PASA END-TO-END (B293 §293.11). El clic navega el IFRAME, la pestaña PADRE queda
+    sombreada, el `Dashboard/Home.px` de producción entra sin tocarlo, y **el menú sobrevive un
+    `AlarmDbView` NATIVO** — la prueba observada de que ruta A ≠ ruta B.
+- **B293-G2 CERRADO 2026-07-28**: `fullScreen=true` como VIEW PARAMETER (`BHxProfile.fullScreenKey`, default
+  `"false"` ⇒ el chrome es opt-out) elimina tab strip + selector de vista + icon rail. Verificado con
+  `HistoryChartBuilder`, que además ejercitó la rama "el ord ya trae `|view:`". **RUTA A COMPLETA para el
+  perfil navegador**: menú heredado, dropdown anclado, pestaña padre sombreada, vistas nativas incluidas,
+  sin chrome de Niagara.
+- **Orden de ataque sugerido**: **B293-G7** (el mismo test de clic bajo Workbench, donde
+  `BWebBrowserView:540` intercepta a nivel widget) → **B293-G4** (~250 `.px` OEM sin abrir: la mejor guía de
+  estilo disponible para este sitio) → B292-G1 (tab activo en PX puro) → **B293-G4** (~250 `.px` OEM sin abrir:
+  la mejor guía de estilo disponible para este sitio) → B292-G1 (`ButtonGroupBinding` + hyperlink → tab
+  activo en PX puro, ahora mejor acotado: el blocker es la PERSISTENCIA, no la exclusividad — B293 §293.5)
+  → B291-G2 (perfiles) → B289-G2 (mecanismo de `^`).
 - **requires-execution**: 0. **blocked**: 0.
 - **Orden de ataque**: G5 (editor oficial) → G6 (gramática/reglas) → G7 (layout) → G8 (valores) →
   G9 (converters) → G2 (PopupBinding) → G3 (in-place) → G10 (ords) → G11 (PxInclude) → G4 (síntesis `menu.px`).

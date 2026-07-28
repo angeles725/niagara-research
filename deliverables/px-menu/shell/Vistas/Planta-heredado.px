@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Niagara Presentation XML -->
+<!--
+  Route B - the OFFICIAL Tridium pattern for a global navigation menu.
+  Guide: "Create a global navigation menu using PxInclude"
+         (guides-clean/Graphics/docGraphics_CreatingANavigationMenu-1D868C52.txt)
+
+  The menu lives in ONE file (navbar.px). Every page embeds it with a single
+  PxInclude, so editing navbar.px updates every page at once.
+
+  GOTCHA from the guide: the included .px must NOT have a ScrollPane at its root,
+  or scroll bars appear around the menu once embedded. navbar.px complies.
+
+  LIMIT: this only reaches .px files you author. Native views (PropertySheet,
+  AlarmDbView, chart builders) cannot embed anything, so they show no menu.
+  Use Shell.px (route A) when the menu must survive those views too.
+-->
+<px version="1.0" media="workbench:WbPxMedia">
+<import>
+  <module name="baja"/>
+  <module name="bajaui"/>
+  <module name="gx"/>
+</import>
+<content>
+<CanvasPane name="content" viewSize="1600.0,900.0" scale="fitRatio" minScaleFactor="0.5" maxScaleFactor="1.5" background="#e8ebf0">
+
+  <PxInclude layout="0.0,0.0,1600.0,56.0" ord="file:^px/navbar.px"/>
+
+  <Label layout="24.0,84.0,600.0,28.0" text="Planta - menu heredado" font="bold 18.0pt Arial" foreground="#1b2733"/>
+  <Label layout="24.0,116.0,900.0,20.0" text="El navbar de arriba vive en navbar.px, no en este archivo." font="11.0pt Arial" foreground="#5a6672"/>
+
+  <BorderPane layout="24.0,152.0,1000.0,420.0" background="#ffffff" border="1.0 solid #d0d5dc">
+    <Label text="Arrastra aqui los puntos de la planta" font="12.0pt Arial" foreground="#8a9099"/>
+  </BorderPane>
+
+</CanvasPane>
+</content>
+</px>
