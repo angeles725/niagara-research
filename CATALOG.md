@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **305 bloques**
+Total: **306 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -310,6 +310,7 @@ Total: **305 bloques**
 | 305 | [niagara-mental-model-bloque305.md](niagara-mental-model-bloque305.md) | Block 305 — `ModbusTcpRxDriver`: a three-state socket machine, the two receive modes behind `rxProcessMode`, and why the length field is read one byte wide |
 | 306 | [niagara-mental-model-bloque306.md](niagara-mental-model-bloque306.md) | Block 306 — Server write-through: station points and remote masters write the SAME map with no arbitration, and the persistence blob is rebuilt once per byte |
 | 307 | [niagara-mental-model-bloque307.md](niagara-mental-model-bloque307.md) | Block 307 — The exception response: `byteCount` IS the exception code — §14 correcting Block 303's "inconsistency" |
+| 308 | [niagara-mental-model-bloque308.md](niagara-mental-model-bloque308.md) | Block 308 — The dispatch layer: `getResponse(0)` waits forever by design, and the network-wide dispatcher SERIALISES transmission — §14 qualifying Block 295's parallelism claim |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

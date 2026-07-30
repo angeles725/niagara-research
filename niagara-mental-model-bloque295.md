@@ -232,6 +232,12 @@ thread, closes the socket and nulls the streams `[CERT]` `:25-33`. The transmit 
 traces and hands the bytes to the Rx driver's output stream `[CERT]`
 `modbusTcp-rt/…/comm/ModbusTcpTxDriver.java:11-36`, so the socket is owned by the receiver.
 
+> **§14 — QUALIFIED by [Block 308] §308.3.** The socket/thread inventory below is correct, but the
+> throughput reading is not: the OUTBOUND path funnels through a single, network-scoped dispatcher thread
+> (`BBasicNetwork.dispatcher`, a `BBasicWorker`), and `execute()` blocks in `transmit()` until the response
+> or timeout. So sends are **serialised per network** regardless of device count. Per-device sockets buy
+> ISOLATION (a slow device blocks only its own Rx thread), not parallel throughput.
+
 `[INFER]` this is the single most important performance fact in the whole driver, and it is nowhere in the
 guide: **Modbus TCP scales with device count, the gateway and serial do not.** Twenty TCP devices poll
 concurrently on twenty sockets; twenty devices behind a TCP/serial gateway queue on one. A slow device on a
