@@ -11,7 +11,7 @@
 | optimizersupervisor | paused | `RESEARCH-STATE-optimizersupervisor.md` | Install vivo OptimizerSupervisor N4.14.0.162 (config.bog de stations vivas) | B123 |
 | platform-native | stopped | `RESEARCH-STATE-platform-native.md` | RE nativo de la plataforma (launchers, JNI, licensing/crypto, driver DLLs, daemon) | B124–B130 |
 | protocols | stopped | `RESEARCH-STATE-protocols.md` | Wire-level de protocolos (Modbus/OPC/BACnet/Fox/LON/Sox) + integración LOGO!8 | B131–B137 |
-| **modbus** | **ACTIVO (1/11)** | `RESEARCH-STATE-modbus.md` | El **driver** Modbus completo de N4 (6 módulos Tridium + 2 OEM Honeywell, 188 clases medidas): árbol de componentes, config de red/device, modelo de puntos cliente, lado servidor/esclavo, motor de polling, presets/file-records, diagnóstico, licencia, workflow de Workbench. **NO reabre `protocols`**: ese cerró el wire (B131), este abre el driver. Primera vez que el corpus cita la guía oficial `docModbus` (87 topics, cero citas previas) | B294– |
+| **modbus** | **stopped (22/22)** | `RESEARCH-STATE-modbus.md` | El **driver** Modbus completo de N4 (6 módulos Tridium + 2 OEM Honeywell, 188 clases medidas): árbol de componentes, config, modelo de puntos, lado servidor/esclavo, motor de adquisición, escritura/presets/file-records, diagnóstico, licencia, workflow de Workbench, capa OEM, migrador. **NO reabre `protocols`**: ese cerró el wire (B131), este el driver. Primeras citas del corpus a `docModbus` (87 topics) y a la guía TR100 Modbus (2082 líneas). Síntesis en B315 | B294–B315 |
 | nmodsreflow | stopped | `RESEARCH-STATE-nmodsreflow.md` | Arquitectura backend del módulo OEM NiagaraMods Reflow v1.7.7 `-rt` (service, HTTP/WS, subsistemas) — CERRADO, hilo de seguridad consolidado | B138–B150 |
 | nmodsreflow-ux | stopped | `RESEARCH-STATE-nmodsreflow-ux.md` | Capa cliente/browser del módulo NiagaraMods Reflow v1.7.7 `-ux` (módulo fino de registro/loaders + SPA Vue embarcada) — CERRADO, paridad frontend con el backend | B151-B155 |
 | live-station | stopped | `RESEARCH-STATE-live-station.md` | Validación DINÁMICA (§12) de la station Niagara N4 VIVA en 127.0.0.1 (WSL mirrored). `live-install` → SECRETS DISCIPLINE. Etapa A (runtime) + Etapa B (14 defectos de B150 con usuario `API`) — CERRADO, 13/14 con veredicto vivo | B156–B162 |
@@ -29,19 +29,34 @@
 
 ## Focus activo
 
-**`modbus`** (ACTIVO 2/13, bootstrapeado 2026-07-30) — el **driver** Modbus completo, no el cable.
-**B294** (M1: arquitectura, 5 redes, jerarquía de 3 niveles, asimetría cliente 6 / servidor 3 ProxyExt) +
-**B295** (M11: motor de adquisición). Próximo gap: **M2** (configuración de red y device).
+**(ninguno activo)** — `modbus` CERRADO 22/22 el 2026-07-30 (B294-B314 + síntesis B315).
 
-Hallazgos operativos de B295: cada punto elige entre `devicePoll` (agrupado, 1 transacción para N
-registros) y `pointPoll` (1 transacción por punto), y el **default es el lento**; `Learn Optimum Device
-Poll Config` sólo agrupa direcciones **estrictamente consecutivas** (un hueco de 1 parte el run) y sólo si
-hay ≥2; el driver **fragmenta solo** a 125 registros / 2000 coils, y en **ASCII parte ese techo a la
-mitad**; el grupo se pollea a la frecuencia de su punto **más rápido** (contagio); y en **Modbus TCP hay un
-socket + un hilo Rx POR DEVICE**, mientras el gateway TCP y el serial comparten uno por red — la diferencia
-de escalabilidad más grande del driver, ausente de la doc oficial.
-
-Gaps `high` restantes: **M2** config, **M3** modelo de puntos cliente, **M4** lado servidor/esclavo.
+**modbus** (el DRIVER, no el cable) — CERRADO 2026-07-30, 22 bloques B294-B315. Siete hilos (B315):
+(1) **el cliente se configura, el servidor se vigila** — 6 vs 3 ProxyExt (un esclavo Niagara no puede exponer
+string ni enum-bits), 3 vs 0 propiedades de red, y el servidor no tiene motor de poll porque responde en vez
+de preguntar (sirve desde 4 mapas en memoria, O(rango) no O(puntos)); (2) **CUATRO defaults inseguros de
+fábrica** — `usePresetMultipleRegister`=false hace que una escritura de 32/64 bits **NO sea atómica** (FC6 en
+loop, el lector ve un valor roto: es un ajuste de CORRECTITUD que la guía presenta como rutina),
+`criticalData`=false pierde el setpoint del maestro en un corte, el formato de dirección por defecto es **hex**
+(tipear 40001 da 262145) y `pointPoll` por defecto = una transacción por punto; más un quinto por consecuencia:
+la validación de base addresses **sólo corre en formato modbus**, así que el default la desactiva;
+(3) **todo se serializa** — dispatcher de UN hilo por RED (los sockets por device dan aislamiento, no
+throughput), cola FIFO con tope 256 y `QueueFullException` sin capturar, fragmentación 125/2000 con el techo
+**partido a la mitad en ASCII**, y timing serial con umbrales en **ms fijos** en vez de la regla t3.5 relativa
+al baud (~20 ms extra por trama a 115200); la serialización es JUSTA (nadie se adelanta); (4) **firma de código
+repetida** — 4 loops copy-paste en Learn, pares Active/Possible clonados, 2 dispatchers gemelos, **2
+`System.out.println` shippeados**, FC 23 con clase pero sin `case`, constantes MAX_READ/WRITE sin consumidor, y
+el blob de persistencia reconstruido **una vez por byte**; (5) **la doc oficial describe otro producto** — 4
+defectos MEDIDOS: jar equivocado en §Modules, el feature `modbus` **no existe** (son cuatro), la página de
+límites es de **MS/TP**, y **0 menciones de 64-bit** en 87 topics mientras el driver trae 3 tipos de 64 bits;
+(6) **dos §14 internos** — B307 corrige B303 (`byteCount` ES el código de excepción, ninguna ruta estaba mal) y
+B308 matiza B295 (los envíos se serializan; corrige mi lectura de throughput); (7) **el discovery lo pone el
+OEM** — el driver no tiene ninguno (0 hits, con control positivo contra bacnet-wb) porque el protocolo no lo
+permite; Honeywell lo aporta **embebiendo el mapa de registros en código** (registro 3 = CO₂ en un TR50), y el
+**TR100 es el contraejemplo**: sin módulo Modbus, sólo una guía de 2082 líneas que el integrador transcribe a
+mano. **Lo NO resuelto y declarado**: el condicional de thread-safety de B311 (M22 re-scopeado a un focus
+`driver-framework` inexistente — el corpus NO afirma que haya data race) y todo lo que necesita dispositivo
+vivo (hereda `P1-dyn` de `protocols`). Retro §18: `retros/2026-07-30-modbus.md`, 6 deltas propuestos al kit.
 
 ## Cola de trabajo para la próxima sesión (sembrada 2026-07-24)
 

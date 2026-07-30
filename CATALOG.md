@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **312 bloques**
+Total: **313 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -317,6 +317,7 @@ Total: **312 bloques**
 | 312 | [niagara-mental-model-bloque312.md](niagara-mental-model-bloque312.md) | Block 312 — The dispatcher queue: FIFO by design, fully synchronised, capped at 256 — and `QueueFullException` propagates raw to the caller |
 | 313 | [niagara-mental-model-bloque313.md](niagara-mental-model-bloque313.md) | Block 313 — `modbusTcpSlaveMigrator`: 61 lines that rename `httpPort` into a typed `BServerPort`, and nothing else |
 | 314 | [niagara-mental-model-bloque314.md](niagara-mental-model-bloque314.md) | Block 314 — The Honeywell OEM layer: it supplies the discovery Tridium's driver does not have, by embedding the register map in code |
+| 315 | [niagara-mental-model-bloque315.md](niagara-mental-model-bloque315.md) | Block 315 — SYNTHESIS of the `modbus` focus (B294–B314): a driver whose defaults are wrong, whose concurrency is narrower than it looks, and whose documentation describes a different product |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
