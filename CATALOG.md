@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **295 bloques**
+Total: **296 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -300,6 +300,7 @@ Total: **295 bloques**
 | 295 | [niagara-mental-model-bloque295.md](niagara-mental-model-bloque295.md) | Block 295 — The Modbus acquisition engine: devicePoll vs pointPoll, how groups are formed, register-run coalescing, request fragmentation (125/2000 and the ASCII penalty), and the transport threading model |
 | 296 | [niagara-mental-model-bloque296.md](niagara-mental-model-bloque296.md) | Block 296 — Modbus configuration surface: the network→device override with a single switch, the four base addresses, `BFlexAddress` formats, and the synthesized ping |
 | 297 | [niagara-mental-model-bloque297.md](niagara-mental-model-bloque297.md) | Block 297 — The client point model: six ProxyExt types, three register-type enums, the 8 datatypes and their register counts, and the byte-order permutations the driver cannot express |
+| 298 | [niagara-mental-model-bloque298.md](niagara-mental-model-bloque298.md) | Block 298 — The server (slave) side: Niagara as a Modbus slave is an in-memory register map with four declared ranges, asymmetric persistence, and only three point types |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
