@@ -1,4 +1,4 @@
-# RESEARCH-STATE — focus: modbus (ACTIVO 15/21)
+# RESEARCH-STATE — focus: modbus (ACTIVO 16/21)
 
 > Multi-focus corpus (METHODOLOGY §16). Focus **BOOTSTRAPEADO 2026-07-30** sobre el **driver Modbus
 > completo de Niagara N4** — los 6 módulos Tridium (`modbusCore`, `modbusTcp`, `modbusAsync`,
@@ -22,9 +22,9 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 covered_blocks: 291
-gaps_closed: 15
+gaps_closed: 16
 known_gaps: 21
-investigable_open: 6
+investigable_open: 5
 requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
@@ -98,7 +98,7 @@ es el decompilado vineflower `[CERT]` más los `bajadoc` de `devguide/modbusCore
 | medium | **M17** — El layout PDU de FC 20/21 (sub-requests, reference type 6, framing por record). B131 §131.4 documentó el esqueleto del request; B299 cubrió el modelo de componentes pero NO los bytes. Abierto por B299 como M5-a | `modbusCore-rt/messages/Modbus{Read,Write}FileRequest` + `server/messages/*File*` | pending |
 | medium | **M16** — El path de SERVICIO de peticiones del esclavo (`server/messages/`, 7 clases: read/write, file read/write, FC 23 write-read): cómo se valida un PDU entrante contra los rangos y qué código de excepción devuelve una dirección fuera de rango. Abierto por B298 como M4-a | `modbusCore-rt/server/messages/**` + los dos `ModbusUnsolicitedReceive` | **COVERED → B303** |
 | medium | **M15** — El path de LECTURA/decode por tipo de punto: `devicePoll(entry)` rebanando el buffer compartido + el camino `readUnsubscribed` de punto individual. Abierto por B297 como M3-a | `modbusCore-rt/client/point/*ProxyExt` | **COVERED → B302** |
-| medium | **M14** — Los ajustes de la LÍNEA serial en sí (`serialPortConfig` = `BSerialHelper` de `serial-rt`, fuera de los jars Modbus): baud, paridad, bits, y cómo interactúan `maxRxInterCharacterDelay`/`minRxFrameEnd` con la regla de silencio de 3.5 caracteres de RTU. Abierto por B296 como M2-a | `serial-rt` + B294 §294.4 | pending |
+| medium | **M14** — Los ajustes de la LÍNEA serial en sí (`serialPortConfig` = `BSerialHelper` de `serial-rt`, fuera de los jars Modbus): baud, paridad, bits, y cómo interactúan `maxRxInterCharacterDelay`/`minRxFrameEnd` con la regla de silencio de 3.5 caracteres de RTU. Abierto por B296 como M2-a | `serial-rt` + B294 §294.4 | **COVERED → B309** |
 | medium | **M13** — La capa `Comm`/`dispatch` de `basicDriver` (abierto por B295 como M11-c): ¿`dispatch()` + `getResponse(0)` serializa por Comm o permite pipelining? qué significa el argumento `0` | `basicDriver-rt/com/tridium/basicdriver/comm/**` | **COVERED → B308** |
 | high | **M11** — **El MOTOR de adquisición**: cómo el driver convierte N puntos en el mínimo de transacciones Modbus — poll groups, coalescing de registros contiguos, scheduling/tuning policy, el hilo Tx/Rx y la cola de mensajes. Es la pregunta "cómo obtiene los datos rápido" | `BModbusClientPollGroup`, `BModbusClientPointDeviceExt`, `modbusTcp/comm/ModbusTcp{Tx,Rx}Driver`, `modbusAsync/comm/*` + `docModbus` §ConfiguringForPolling/§ClientOperations | **COVERED → B295** |
 
@@ -141,15 +141,17 @@ HIPÓTESIS que debe falsarse antes de entrar a un bloque:
   B305 (M12, `ModbusTcpRxDriver`: máquina de 3 estados, packet-mode vs byte-mode, length leído de 1 byte),
   B306 (M18, write-through del servidor: último que escribe gana, sin arbitraje; blob de persistencia reconstruido por byte),
   B307 (M19, respuesta de excepción: `byteCount` ES el código de excepción — §14 corrige B303),
-  B308 (M13, capa de dispatch: `wait(0)` = esperar para siempre; el dispatcher es POR RED y de UN hilo → los envíos se SERIALIZAN — §14 matiza B295).
-- **Coverage metric**: 15 / 21 backlog items closed.
-- **Last iteration**: 2026-07-30 — M13 cerrado (B308), que **matiza B295 §295.7** (§14).
+  B308 (M13, capa de dispatch: `wait(0)` = esperar para siempre; el dispatcher es POR RED y de UN hilo → los envíos se SERIALIZAN — §14 matiza B295),
+  B309 (M14, framing serial: el timing RTU SÍ está en Java, pero con umbrales en ms FIJOS, no la regla t3.5 relativa al baud).
+- **Coverage metric**: 16 / 21 backlog items closed.
+- **Last iteration**: 2026-07-30 — M14 cerrado (B309).
 
 ## Iteration history
 
 | # | Date | Gap closed | Block | Delegated? · tier | New gaps uncovered |
 |---|---|---|---|---|---|
 | 1 | 2026-07-30 | M1 arquitectura del driver | B294 | no · inline | M1-lic (¿el `port.limit` del ejemplo de licencia aplica al feature `modbus` o es copy-paste de MS/TP? → se investiga en M7); M1-gw (`BModbusTcpGateway` es un device de nivel-red, no una red: verificar cómo se cuenta para la licencia y para el poll scheduler → M2/M7) |
+| 16 | 2026-07-30 | M14 línea serial / framing RTU | B309 | no · inline | ninguno nuevo. **Resultado POSITIVO donde B279 (MS/TP) fue negativo**: el timing de framing RTU sí es alcanzable en Java. Hallazgo: Tridium usa umbrales en ms FIJOS (`minRxFrameEnd` 20 ms, `maxRxInterCharacterDelay` 50 ms) en vez de la regla t3.5 relativa al baud — a 115200 eso son ~20 ms de latencia añadida por frame |
 | 15 | 2026-07-30 | M13 capa Comm/dispatch | B308 | no · inline | **M21** (orden de la cola del Worker). **§14: matiza B295 §295.7** — el inventario de sockets/hilos por device está bien, pero el path de ENVÍO pasa por un dispatcher único por RED (`BBasicWorker`, un hilo) y `execute()` bloquea en `transmit()`: los envíos se serializan. Los sockets por device dan AISLAMIENTO, no throughput paralelo. Puntero añadido en B295 |
 | 14 | 2026-07-30 | M19 layout de la respuesta de excepción | B307 | no · inline | ninguno. **§14: corrige B303 §303.5** — la "inconsistencia" de `byteCount` 1 vs 2 no era un defecto: en un frame de excepción ese campo ES el código Modbus (1=Illegal Function, 2=Illegal Data Address) y `data` no se serializa. Puntero añadido en B303 |
 | 13 | 2026-07-30 | M18 write-through del servidor | B306 | no · inline | **M20** (thread-safety de los 4 IntHashMap — planteado como pregunta abierta, NO como defecto). **Cierra el arrastre de M4-b** abierto por B298 y postergado por B302 y B303 |
@@ -168,7 +170,7 @@ HIPÓTESIS que debe falsarse antes de entrar a un bloque:
 ## Stop control
 
 - Primary criterion: read-only-investigable backlog exhaustion (METHODOLOGY §8).
-- Loop status: **ACTIVO**. investigable_open = 6.
+- Loop status: **ACTIVO**. investigable_open = 5.
 - Blocked / requires-execution: ninguno todavía. Un eventual gap dinámico (verificar contra un dispositivo
   Modbus vivo) heredaría el gap **P1-dyn** ya abierto por B131 en `RESEARCH-STATE-protocols.md` — no se
   duplica acá.

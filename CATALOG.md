@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **306 bloques**
+Total: **307 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -311,6 +311,7 @@ Total: **306 bloques**
 | 306 | [niagara-mental-model-bloque306.md](niagara-mental-model-bloque306.md) | Block 306 — Server write-through: station points and remote masters write the SAME map with no arbitration, and the persistence blob is rebuilt once per byte |
 | 307 | [niagara-mental-model-bloque307.md](niagara-mental-model-bloque307.md) | Block 307 — The exception response: `byteCount` IS the exception code — §14 correcting Block 303's "inconsistency" |
 | 308 | [niagara-mental-model-bloque308.md](niagara-mental-model-bloque308.md) | Block 308 — The dispatch layer: `getResponse(0)` waits forever by design, and the network-wide dispatcher SERIALISES transmission — §14 qualifying Block 295's parallelism claim |
+| 309 | [niagara-mental-model-bloque309.md](niagara-mental-model-bloque309.md) | Block 309 — Serial framing: Tridium replaces RTU's baud-relative 3.5-character silence with fixed millisecond thresholds, and `serial-rt` is pure API |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
