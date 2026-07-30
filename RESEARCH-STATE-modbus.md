@@ -1,4 +1,4 @@
-# RESEARCH-STATE — focus: modbus (ACTIVO 8/17)
+# RESEARCH-STATE — focus: modbus (ACTIVO 9/17)
 
 > Multi-focus corpus (METHODOLOGY §16). Focus **BOOTSTRAPEADO 2026-07-30** sobre el **driver Modbus
 > completo de Niagara N4** — los 6 módulos Tridium (`modbusCore`, `modbusTcp`, `modbusAsync`,
@@ -22,9 +22,9 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 covered_blocks: 291
-gaps_closed: 8
+gaps_closed: 9
 known_gaps: 17
-investigable_open: 9
+investigable_open: 8
 requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
@@ -93,7 +93,7 @@ es el decompilado vineflower `[CERT]` más los `bajadoc` de `devguide/modbusCore
 | medium | **M12** — `ModbusTcpRxDriver` (358 líneas, abierto por B295 como M11-b): socket manager, política de reconexión, matching de transaction-id contra el contador de errores de red, manejo de frames parciales | `modbusTcp-rt/comm/ModbusTcpRxDriver.java` + los contadores de `BModbusNetwork` (B294 §294.7) | pending |
 | medium | **M17** — El layout PDU de FC 20/21 (sub-requests, reference type 6, framing por record). B131 §131.4 documentó el esqueleto del request; B299 cubrió el modelo de componentes pero NO los bytes. Abierto por B299 como M5-a | `modbusCore-rt/messages/Modbus{Read,Write}FileRequest` + `server/messages/*File*` | pending |
 | medium | **M16** — El path de SERVICIO de peticiones del esclavo (`server/messages/`, 7 clases: read/write, file read/write, FC 23 write-read): cómo se valida un PDU entrante contra los rangos y qué código de excepción devuelve una dirección fuera de rango. Abierto por B298 como M4-a | `modbusCore-rt/server/messages/**` | pending |
-| medium | **M15** — El path de LECTURA/decode por tipo de punto: `devicePoll(entry)` rebanando el buffer compartido + el camino `readUnsubscribed` de punto individual. Abierto por B297 como M3-a | `modbusCore-rt/client/point/*ProxyExt` | pending |
+| medium | **M15** — El path de LECTURA/decode por tipo de punto: `devicePoll(entry)` rebanando el buffer compartido + el camino `readUnsubscribed` de punto individual. Abierto por B297 como M3-a | `modbusCore-rt/client/point/*ProxyExt` | **COVERED → B302** |
 | medium | **M14** — Los ajustes de la LÍNEA serial en sí (`serialPortConfig` = `BSerialHelper` de `serial-rt`, fuera de los jars Modbus): baud, paridad, bits, y cómo interactúan `maxRxInterCharacterDelay`/`minRxFrameEnd` con la regla de silencio de 3.5 caracteres de RTU. Abierto por B296 como M2-a | `serial-rt` + B294 §294.4 | pending |
 | medium | **M13** — La capa `Comm`/`dispatch` de `basicDriver` (abierto por B295 como M11-c): ¿`dispatch()` + `getResponse(0)` serializa por Comm o permite pipelining? qué significa el argumento `0` | `basicDriver-rt/com/tridium/basicdriver/comm/**` | pending |
 | high | **M11** — **El MOTOR de adquisición**: cómo el driver convierte N puntos en el mínimo de transacciones Modbus — poll groups, coalescing de registros contiguos, scheduling/tuning policy, el hilo Tx/Rx y la cola de mensajes. Es la pregunta "cómo obtiene los datos rápido" | `BModbusClientPollGroup`, `BModbusClientPointDeviceExt`, `modbusTcp/comm/ModbusTcp{Tx,Rx}Driver`, `modbusAsync/comm/*` + `docModbus` §ConfiguringForPolling/§ClientOperations | **COVERED → B295** |
@@ -130,15 +130,17 @@ HIPÓTESIS que debe falsarse antes de entrar a un bloque:
   B298 (M4, lado servidor/esclavo: mapa en memoria, 4 rangos declarados, persistencia asimétrica, `criticalData`),
   B299 (M5, path de escritura + presets + file records: escritura multi-registro NO atómica por defecto),
   B300 (M6, diagnóstico: el signo del código de error indica el origen del fallo; contadores de red no alarmables),
-  B301 (M7, licencia: NO existe un feature `modbus`, son cuatro; cierra M1-lic y M1-gw).
-- **Coverage metric**: 8 / 17 backlog items closed.
-- **Last iteration**: 2026-07-30 — M7 cerrado (B301).
+  B301 (M7, licencia: NO existe un feature `modbus`, son cuatro; cierra M1-lic y M1-gw),
+  B302 (M15, path de lectura: slicing del buffer compartido, códigos 102/103, ciclo de suscripción).
+- **Coverage metric**: 9 / 17 backlog items closed.
+- **Last iteration**: 2026-07-30 — M15 cerrado (B302).
 
 ## Iteration history
 
 | # | Date | Gap closed | Block | Delegated? · tier | New gaps uncovered |
 |---|---|---|---|---|---|
 | 1 | 2026-07-30 | M1 arquitectura del driver | B294 | no · inline | M1-lic (¿el `port.limit` del ejemplo de licencia aplica al feature `modbus` o es copy-paste de MS/TP? → se investiga en M7); M1-gw (`BModbusTcpGateway` es un device de nivel-red, no una red: verificar cómo se cuenta para la licencia y para el poll scheduler → M2/M7) |
+| 9 | 2026-07-30 | M15 path de lectura/decode | B302 | no · inline | ninguno nuevo. **M4-b re-scopeado a M16** (el servidor no tiene análogo de `devicePoll`); M5-b (`IPropertyValidator`) queda como ítem menor dentro de M16, no merece gap propio |
 | 8 | 2026-07-30 | M7 licencia y límites | B301 | no · inline | ninguno nuevo. **CIERRA M1-lic** (el `port.limit` de la doc es de MS/TP, no aparece en ningún feature modbus) y **M1-gw** (el gateway TCP gasta la licencia `modbusTcp`, heredada y `final`) |
 | 7 | 2026-07-30 | M6 diagnóstico y modos de fallo | B300 | no · inline | ninguno nuevo |
 | 6 | 2026-07-30 | M5 escritura/presets/file records | B299 | no · inline | **M17** (layout PDU de FC 20/21); M5-b (`IPropertyValidator` del preset → **M15**). **Cierra la mitad WRITE de `P1-fc`** del focus protocols (B131) |
@@ -150,7 +152,7 @@ HIPÓTESIS que debe falsarse antes de entrar a un bloque:
 ## Stop control
 
 - Primary criterion: read-only-investigable backlog exhaustion (METHODOLOGY §8).
-- Loop status: **ACTIVO**. investigable_open = 9.
+- Loop status: **ACTIVO**. investigable_open = 8.
 - Blocked / requires-execution: ninguno todavía. Un eventual gap dinámico (verificar contra un dispositivo
   Modbus vivo) heredaría el gap **P1-dyn** ya abierto por B131 en `RESEARCH-STATE-protocols.md` — no se
   duplica acá.
