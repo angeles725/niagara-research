@@ -1,4 +1,4 @@
-# RESEARCH-STATE — focus: modbus (ACTIVO 20/22)
+# RESEARCH-STATE — focus: modbus (ACTIVO 21/22)
 
 > Multi-focus corpus (METHODOLOGY §16). Focus **BOOTSTRAPEADO 2026-07-30** sobre el **driver Modbus
 > completo de Niagara N4** — los 6 módulos Tridium (`modbusCore`, `modbusTcp`, `modbusAsync`,
@@ -22,9 +22,9 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 covered_blocks: 291
-gaps_closed: 20
+gaps_closed: 21
 known_gaps: 22
-investigable_open: 2
+investigable_open: 1
 requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
@@ -88,7 +88,7 @@ es el decompilado vineflower `[CERT]` más los `bajadoc` de `devguide/modbusCore
 | medium | **M6** — Diagnóstico y modos de fallo: exception status, comm status, debugging de mensajes, troubleshooting oficial | `BModbusClientExceptionStatus`, `BCommStatus(Enum)`, `ModbusErrorCodes`, `ModbusException` + `docModbus` §ExceptionResponses/§DebuggingMessages/§Troubleshooting | **COVERED → B300** |
 | medium | **M7** — Licencia y límites operativos del feature `modbus` (cuántos devices/puntos/puertos) y qué habilita la licencia real del cliente | `docModbus` §LimitsImposedByTheModbusLicenses + `licenses/*.license` del install + comprobación en código | **COVERED → B301** (cierra además M1-lic y M1-gw) |
 | medium | **M8** — El workflow de Workbench: device manager, point manager, discovery (¿existe?), y las 6 ventanas documentadas | `modbusCore-wb`/`-ux` (11) + `modbusTcp/Async/Slave -wb` + `docModbus` §Plugins/§Windows/§New*Window | **COVERED → B304** |
-| low | **M9** — Los 2 módulos OEM Honeywell sobre Modbus (`honeywellModbusDeviceManager` 14, `honeywellModbusSmartSensor` 25): qué agregan sobre el driver base y qué queda sin cubrir tras B94/B95/B250 | `honeywellModbus*` + `TR100_Modbus_Integration_Guide_31-00748.txt` | pending |
+| low | **M9** — Los 2 módulos OEM Honeywell sobre Modbus (`honeywellModbusDeviceManager` 14, `honeywellModbusSmartSensor` 25): qué agregan sobre el driver base y qué queda sin cubrir tras B94/B95/B250 | `honeywellModbus*` + `TR100_Modbus_Integration_Guide_31-00748.txt` | **COVERED → B314** |
 | low | **M10** — `modbusTcpSlaveMigrator` (1 clase): qué migra, desde qué versión, y por qué el slave TCP necesitó un migrador | `modbusTcpSlaveMigrator-wb` + B25 (única mención previa) | **COVERED → B313** |
 | medium | **M12** — `ModbusTcpRxDriver` (358 líneas, abierto por B295 como M11-b): socket manager, política de reconexión, matching de transaction-id contra el contador de errores de red, manejo de frames parciales | `modbusTcp-rt/comm/ModbusTcpRxDriver.java` + los contadores de `BModbusNetwork` (B294 §294.7) | **COVERED → B305** (cierra además M2-b) |
 | medium | **M18** — Write-through del SERVIDOR: cómo `BModbusServerProxyExt` y los puntos de la station pueblan los 4 `IntHashMap`, y qué pasa cuando un maestro escribe un coil que además maneja un punto (¿último que escribe gana, o el punto es autoritativo?). Arrastra M4-b desde B298→B302→B303 | `modbusCore-rt/server/point/**` | **COVERED → B306** |
@@ -147,15 +147,17 @@ HIPÓTESIS que debe falsarse antes de entrar a un bloque:
   B310 (M17, PDU de FC 20/21: un solo sub-request hard-codeado, reference type 6, byte count calculado distinto en read y write),
   B311 (M20, thread-safety: `IntHashMap` sin garantías + maestro en hilo dedicado + cero locks → condicional fuerte, NO afirmación de defecto),
   B312 (M21, cola del dispatcher: FIFO por javadoc, `enqueue` nunca `push` → orden garantizado; tope 256 y `QueueFullException` sin capturar),
-  B313 (M10, migrador: 61 líneas que convierten `httpPort` (int) → `port` (`BServerPort`) sólo en el slave TCP).
-- **Coverage metric**: 20 / 22 backlog items closed.
-- **Last iteration**: 2026-07-30 — M10 cerrado (B313).
+  B313 (M10, migrador: 61 líneas que convierten `httpPort` (int) → `port` (`BServerPort`) sólo en el slave TCP),
+  B314 (M9, capa OEM Honeywell: aporta el discovery que el driver base NO tiene, embebiendo el mapa de registros en código; el TR100 Modbus es el contraejemplo sin módulo).
+- **Coverage metric**: 21 / 22 backlog items closed.
+- **Last iteration**: 2026-07-30 — M9 cerrado (B314).
 
 ## Iteration history
 
 | # | Date | Gap closed | Block | Delegated? · tier | New gaps uncovered |
 |---|---|---|---|---|---|
 | 1 | 2026-07-30 | M1 arquitectura del driver | B294 | no · inline | M1-lic (¿el `port.limit` del ejemplo de licencia aplica al feature `modbus` o es copy-paste de MS/TP? → se investiga en M7); M1-gw (`BModbusTcpGateway` es un device de nivel-red, no una red: verificar cómo se cuenta para la licencia y para el poll scheduler → M2/M7) |
+| 21 | 2026-07-30 | M9 capa OEM Honeywell | B314 | no · inline | ninguno para este focus (lo profundo va al focus `oem-honeywell-tail`, pausado 9/17). **Hallazgo**: los módulos OEM SÍ traen discovery (6 clases Discover/Learn) — no contradice B304, cuyo alcance eran los módulos `modbus*`: el discovery lo aporta el OEM embebiendo el mapa de registros. **Contraejemplo TR100**: sin módulo Modbus propio, sólo una guía oficial de 2082 líneas (primera cita en el corpus) → el integrador tipea a mano. **Autocorrección pre-commit**: afirmé que esa guía era BACnet; abrirla antes de commitear lo desmintió |
 | 20 | 2026-07-30 | M10 `modbusTcpSlaveMigrator` | B313 | no · inline | ninguno nuevo. El esquema viejo llamaba `httpPort` (un int) al puerto de escucha del slave Modbus; el migrador lo levanta al `BServerPort` tipado. Idempotente por centinela. **Remite a B25** el inventario de migradores en vez de re-derivarlo |
 | 19 | 2026-07-30 | M21 orden de la cola del dispatcher | B312 | no · inline | ninguno nuevo. FIFO confirmado por javadoc original + `BBasicWorker.post()` usa `enqueue` (nunca `push`, que sí existe) → **ningún device puede adelantarse a otro**: la serialización es JUSTA, no sólo serial. Hallazgo colateral: tope de cola **256** y `QueueFullException` que `post()` NO captura |
 | 18 | 2026-07-30 | M20 thread-safety de los mapas del servidor | B311 | no · inline | **M22** (qué hilo del engine llama `updateOutput` — zanjaría el condicional). Cerrado como **parcialmente determinable**: medido que `IntHashMap` no da garantías (fuente original, 3 queries sobre las 372 líneas), que el maestro escribe desde el hilo `ModTcpSlave:UnsolRcv` y que no hay locks; NO medido el hilo del lado engine → conclusión CONDICIONAL a propósito. Colateral: **segundo** `System.out.println` de depuración shippeado |
@@ -179,7 +181,7 @@ HIPÓTESIS que debe falsarse antes de entrar a un bloque:
 ## Stop control
 
 - Primary criterion: read-only-investigable backlog exhaustion (METHODOLOGY §8).
-- Loop status: **ACTIVO**. investigable_open = 2.
+- Loop status: **ACTIVO**. investigable_open = 1.
 - Blocked / requires-execution: ninguno todavía. Un eventual gap dinámico (verificar contra un dispositivo
   Modbus vivo) heredaría el gap **P1-dyn** ya abierto por B131 en `RESEARCH-STATE-protocols.md` — no se
   duplica acá.
