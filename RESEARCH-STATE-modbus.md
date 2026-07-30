@@ -1,4 +1,4 @@
-# RESEARCH-STATE — focus: modbus (ACTIVO 3/14)
+# RESEARCH-STATE — focus: modbus (ACTIVO 4/15)
 
 > Multi-focus corpus (METHODOLOGY §16). Focus **BOOTSTRAPEADO 2026-07-30** sobre el **driver Modbus
 > completo de Niagara N4** — los 6 módulos Tridium (`modbusCore`, `modbusTcp`, `modbusAsync`,
@@ -22,8 +22,8 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 covered_blocks: 291
-gaps_closed: 3
-known_gaps: 14
+gaps_closed: 4
+known_gaps: 15
 investigable_open: 11
 requires_execution_open: 0
 blocked_open: 0
@@ -91,6 +91,7 @@ es el decompilado vineflower `[CERT]` más los `bajadoc` de `devguide/modbusCore
 | low | **M9** — Los 2 módulos OEM Honeywell sobre Modbus (`honeywellModbusDeviceManager` 14, `honeywellModbusSmartSensor` 25): qué agregan sobre el driver base y qué queda sin cubrir tras B94/B95/B250 | `honeywellModbus*` + `TR100_Modbus_Integration_Guide_31-00748.txt` | pending |
 | low | **M10** — `modbusTcpSlaveMigrator` (1 clase): qué migra, desde qué versión, y por qué el slave TCP necesitó un migrador | `modbusTcpSlaveMigrator-wb` + B25 (única mención previa) | pending |
 | medium | **M12** — `ModbusTcpRxDriver` (358 líneas, abierto por B295 como M11-b): socket manager, política de reconexión, matching de transaction-id contra el contador de errores de red, manejo de frames parciales | `modbusTcp-rt/comm/ModbusTcpRxDriver.java` + los contadores de `BModbusNetwork` (B294 §294.7) | pending |
+| medium | **M15** — El path de LECTURA/decode por tipo de punto: `devicePoll(entry)` rebanando el buffer compartido + el camino `readUnsubscribed` de punto individual. Abierto por B297 como M3-a | `modbusCore-rt/client/point/*ProxyExt` | pending |
 | medium | **M14** — Los ajustes de la LÍNEA serial en sí (`serialPortConfig` = `BSerialHelper` de `serial-rt`, fuera de los jars Modbus): baud, paridad, bits, y cómo interactúan `maxRxInterCharacterDelay`/`minRxFrameEnd` con la regla de silencio de 3.5 caracteres de RTU. Abierto por B296 como M2-a | `serial-rt` + B294 §294.4 | pending |
 | medium | **M13** — La capa `Comm`/`dispatch` de `basicDriver` (abierto por B295 como M11-c): ¿`dispatch()` + `getResponse(0)` serializa por Comm o permite pipelining? qué significa el argumento `0` | `basicDriver-rt/com/tridium/basicdriver/comm/**` | pending |
 | high | **M11** — **El MOTOR de adquisición**: cómo el driver convierte N puntos en el mínimo de transacciones Modbus — poll groups, coalescing de registros contiguos, scheduling/tuning policy, el hilo Tx/Rx y la cola de mensajes. Es la pregunta "cómo obtiene los datos rápido" | `BModbusClientPollGroup`, `BModbusClientPointDeviceExt`, `modbusTcp/comm/ModbusTcp{Tx,Rx}Driver`, `modbusAsync/comm/*` + `docModbus` §ConfiguringForPolling/§ClientOperations | **COVERED → B295** |
@@ -122,15 +123,17 @@ HIPÓTESIS que debe falsarse antes de entrar a un bloque:
 
 - **Covered blocks (this focus)**: 2 — B294 (M1, arquitectura del driver + 2 correcciones a la doc oficial),
   B295 (M11, motor de adquisición: devicePoll/pointPoll, coalescing, fragmentación, threading),
-  B296 (M2, superficie de configuración: override de un solo switch, base addresses, `BFlexAddress`, ping sintético).
-- **Coverage metric**: 3 / 14 backlog items closed.
-- **Last iteration**: 2026-07-30 — M2 cerrado (B296).
+  B296 (M2, superficie de configuración: override de un solo switch, base addresses, `BFlexAddress`, ping sintético),
+  B297 (M3, modelo de puntos cliente: 6 ProxyExt, 3 enums de tipo de registro, 8 datatypes, permutaciones de byte order).
+- **Coverage metric**: 4 / 15 backlog items closed.
+- **Last iteration**: 2026-07-30 — M3 cerrado (B297).
 
 ## Iteration history
 
 | # | Date | Gap closed | Block | Delegated? · tier | New gaps uncovered |
 |---|---|---|---|---|---|
 | 1 | 2026-07-30 | M1 arquitectura del driver | B294 | no · inline | M1-lic (¿el `port.limit` del ejemplo de licencia aplica al feature `modbus` o es copy-paste de MS/TP? → se investiga en M7); M1-gw (`BModbusTcpGateway` es un device de nivel-red, no una red: verificar cómo se cuenta para la licencia y para el poll scheduler → M2/M7) |
+| 4 | 2026-07-30 | M3 modelo de puntos cliente | B297 | no · inline | **M15** (path de lectura/decode por tipo de punto); M3-b (`StringProxyExt` ↔ file records → se pliega a **M5**) |
 | 3 | 2026-07-30 | M2 superficie de configuración | B296 | no · inline | **M14** (ajustes de la línea serial: `BSerialHelper` de `serial-rt` vs la regla de 3.5 caracteres de RTU); M2-b (`rxProcessMode` en gateway y device TCP → se pliega a **M12**) |
 | 2 | 2026-07-30 | M11 motor de adquisición | B295 | no · inline | M11-a (path de ESCRITURA: FC5/6 vs FC15/16, `usePresetMultipleRegister`/`useForceMultipleCoil`, `MAX_WRITE_DATA_SIZE` muerto → se pliega a **M5**); **M11-b** (`ModbusTcpRxDriver`, 358 líneas: socket manager, política de reconexión, matching de transaction-id, frames parciales — NO abierto); **M11-c** (¿`dispatch()`/`getResponse(0)` serializa por Comm o permite pipelining? qué significa el `0` — requiere leer la capa `Comm` de basicDriver) |
 
