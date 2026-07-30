@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **310 bloques**
+Total: **311 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -315,6 +315,7 @@ Total: **310 bloques**
 | 310 | [niagara-mental-model-bloque310.md](niagara-mental-model-bloque310.md) | Block 310 — FC 20/21 on the wire: a single hard-coded sub-request, reference type 6, and a byte count computed two different ways |
 | 311 | [niagara-mental-model-bloque311.md](niagara-mental-model-bloque311.md) | Block 311 — Thread safety of the server maps: `IntHashMap` gives no guarantees, the master writes from a dedicated thread, and nothing synchronises the two writers |
 | 312 | [niagara-mental-model-bloque312.md](niagara-mental-model-bloque312.md) | Block 312 — The dispatcher queue: FIFO by design, fully synchronised, capped at 256 — and `QueueFullException` propagates raw to the caller |
+| 313 | [niagara-mental-model-bloque313.md](niagara-mental-model-bloque313.md) | Block 313 — `modbusTcpSlaveMigrator`: 61 lines that rename `httpPort` into a typed `BServerPort`, and nothing else |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
