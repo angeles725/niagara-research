@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **303 bloques**
+Total: **304 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -308,6 +308,7 @@ Total: **303 bloques**
 | 303 | [niagara-mental-model-bloque303.md](niagara-mental-model-bloque303.md) | Block 303 — Serving a request as a slave: the function-code dispatcher, which FCs Niagara answers, and the FC 23 handler that exists but is never reached |
 | 304 | [niagara-mental-model-bloque304.md](niagara-mental-model-bloque304.md) | Block 304 — The Workbench layer: six device managers, one 1299-line point manager, a dedicated address field editor — and NO discovery anywhere in the driver |
 | 305 | [niagara-mental-model-bloque305.md](niagara-mental-model-bloque305.md) | Block 305 — `ModbusTcpRxDriver`: a three-state socket machine, the two receive modes behind `rxProcessMode`, and why the length field is read one byte wide |
+| 306 | [niagara-mental-model-bloque306.md](niagara-mental-model-bloque306.md) | Block 306 — Server write-through: station points and remote masters write the SAME map with no arbitration, and the persistence blob is rebuilt once per byte |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
