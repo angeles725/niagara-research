@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **291 bloques**
+Total: **292 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -296,6 +296,7 @@ Total: **291 bloques**
 | 291 | [niagara-mental-model-bloque291.md](niagara-mental-model-bloque291.md) | Block 291 — The PX↔web bridge without a module: `WebBrowser` vs `WebWidget`, the `/file/` servlet, and the `about:blank` iframe trap |
 | 292 | [niagara-mental-model-bloque292.md](niagara-mental-model-bloque292.md) | Block 292 — The one-button toggle IS solvable in pure PX: `ToggleButton` + `SetPointBinding` closes B189 §189.4 |
 | 293 | [niagara-mental-model-bloque293.md](niagara-mental-model-bloque293.md) | Block 293 — Menu inheritance across views: the official `PxInclude` route vs the HTML shell, and the active-tab state the `.px` route still cannot express |
+| 294 | [niagara-mental-model-bloque294.md](niagara-mental-model-bloque294.md) | Block 294 — Modbus driver architecture: five network types, the 3-level class hierarchy, the module/palette map, and the client-vs-server asymmetry |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

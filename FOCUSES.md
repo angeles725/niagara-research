@@ -11,6 +11,7 @@
 | optimizersupervisor | paused | `RESEARCH-STATE-optimizersupervisor.md` | Install vivo OptimizerSupervisor N4.14.0.162 (config.bog de stations vivas) | B123 |
 | platform-native | stopped | `RESEARCH-STATE-platform-native.md` | RE nativo de la plataforma (launchers, JNI, licensing/crypto, driver DLLs, daemon) | B124–B130 |
 | protocols | stopped | `RESEARCH-STATE-protocols.md` | Wire-level de protocolos (Modbus/OPC/BACnet/Fox/LON/Sox) + integración LOGO!8 | B131–B137 |
+| **modbus** | **ACTIVO (1/11)** | `RESEARCH-STATE-modbus.md` | El **driver** Modbus completo de N4 (6 módulos Tridium + 2 OEM Honeywell, 188 clases medidas): árbol de componentes, config de red/device, modelo de puntos cliente, lado servidor/esclavo, motor de polling, presets/file-records, diagnóstico, licencia, workflow de Workbench. **NO reabre `protocols`**: ese cerró el wire (B131), este abre el driver. Primera vez que el corpus cita la guía oficial `docModbus` (87 topics, cero citas previas) | B294– |
 | nmodsreflow | stopped | `RESEARCH-STATE-nmodsreflow.md` | Arquitectura backend del módulo OEM NiagaraMods Reflow v1.7.7 `-rt` (service, HTTP/WS, subsistemas) — CERRADO, hilo de seguridad consolidado | B138–B150 |
 | nmodsreflow-ux | stopped | `RESEARCH-STATE-nmodsreflow-ux.md` | Capa cliente/browser del módulo NiagaraMods Reflow v1.7.7 `-ux` (módulo fino de registro/loaders + SPA Vue embarcada) — CERRADO, paridad frontend con el backend | B151-B155 |
 | live-station | stopped | `RESEARCH-STATE-live-station.md` | Validación DINÁMICA (§12) de la station Niagara N4 VIVA en 127.0.0.1 (WSL mirrored). `live-install` → SECRETS DISCIPLINE. Etapa A (runtime) + Etapa B (14 defectos de B150 con usuario `API`) — CERRADO, 13/14 con veredicto vivo | B156–B162 |
@@ -28,7 +29,11 @@
 
 ## Focus activo
 
-**(ninguno activo)** — `tags` CERRADO 10/10 el 2026-07-24 (B260-B269 + síntesis B270).
+**`modbus`** (ACTIVO 1/11, bootstrapeado 2026-07-30) — el **driver** Modbus completo, no el cable.
+Arranca en **B294** (M1 cerrado). Próximo gap: **M2** (configuración de red y device).
+Los tres gaps `high` que quedan son el núcleo de "cómo funciona de verdad": **M2** config,
+**M3** modelo de puntos cliente, **M4** lado servidor/esclavo y **M11** el motor de adquisición
+(poll groups, coalescing, hilos Tx/Rx).
 
 ## Cola de trabajo para la próxima sesión (sembrada 2026-07-24)
 
