@@ -1,4 +1,4 @@
-# RESEARCH-STATE — focus: modbus (ACTIVO 11/19)
+# RESEARCH-STATE — focus: modbus (ACTIVO 12/19)
 
 > Multi-focus corpus (METHODOLOGY §16). Focus **BOOTSTRAPEADO 2026-07-30** sobre el **driver Modbus
 > completo de Niagara N4** — los 6 módulos Tridium (`modbusCore`, `modbusTcp`, `modbusAsync`,
@@ -22,9 +22,9 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 covered_blocks: 291
-gaps_closed: 11
+gaps_closed: 12
 known_gaps: 19
-investigable_open: 8
+investigable_open: 7
 requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
@@ -90,7 +90,7 @@ es el decompilado vineflower `[CERT]` más los `bajadoc` de `devguide/modbusCore
 | medium | **M8** — El workflow de Workbench: device manager, point manager, discovery (¿existe?), y las 6 ventanas documentadas | `modbusCore-wb`/`-ux` (11) + `modbusTcp/Async/Slave -wb` + `docModbus` §Plugins/§Windows/§New*Window | **COVERED → B304** |
 | low | **M9** — Los 2 módulos OEM Honeywell sobre Modbus (`honeywellModbusDeviceManager` 14, `honeywellModbusSmartSensor` 25): qué agregan sobre el driver base y qué queda sin cubrir tras B94/B95/B250 | `honeywellModbus*` + `TR100_Modbus_Integration_Guide_31-00748.txt` | pending |
 | low | **M10** — `modbusTcpSlaveMigrator` (1 clase): qué migra, desde qué versión, y por qué el slave TCP necesitó un migrador | `modbusTcpSlaveMigrator-wb` + B25 (única mención previa) | pending |
-| medium | **M12** — `ModbusTcpRxDriver` (358 líneas, abierto por B295 como M11-b): socket manager, política de reconexión, matching de transaction-id contra el contador de errores de red, manejo de frames parciales | `modbusTcp-rt/comm/ModbusTcpRxDriver.java` + los contadores de `BModbusNetwork` (B294 §294.7) | pending |
+| medium | **M12** — `ModbusTcpRxDriver` (358 líneas, abierto por B295 como M11-b): socket manager, política de reconexión, matching de transaction-id contra el contador de errores de red, manejo de frames parciales | `modbusTcp-rt/comm/ModbusTcpRxDriver.java` + los contadores de `BModbusNetwork` (B294 §294.7) | **COVERED → B305** (cierra además M2-b) |
 | medium | **M18** — Write-through del SERVIDOR: cómo `BModbusServerProxyExt` y los puntos de la station pueblan los 4 `IntHashMap`, y qué pasa cuando un maestro escribe un coil que además maneja un punto (¿último que escribe gana, o el punto es autoritativo?). Arrastra M4-b desde B298→B302→B303 | `modbusCore-rt/server/point/**` | pending |
 | low | **M19** — Layout de la respuesta de EXCEPCIÓN: qué significa `byteCount` en un frame con el bit 7 del function code puesto, y dónde se escribe realmente el código de excepción. Abierto por B303 §303.5 (observación registrada, interpretación deferida a propósito) | `modbusCore-rt/messages/ModbusResponse` + B131 §131.4 | pending |
 | medium | **M17** — El layout PDU de FC 20/21 (sub-requests, reference type 6, framing por record). B131 §131.4 documentó el esqueleto del request; B299 cubrió el modelo de componentes pero NO los bytes. Abierto por B299 como M5-a | `modbusCore-rt/messages/Modbus{Read,Write}FileRequest` + `server/messages/*File*` | pending |
@@ -135,15 +135,17 @@ HIPÓTESIS que debe falsarse antes de entrar a un bloque:
   B301 (M7, licencia: NO existe un feature `modbus`, son cuatro; cierra M1-lic y M1-gw),
   B302 (M15, path de lectura: slicing del buffer compartido, códigos 102/103, ciclo de suscripción),
   B303 (M16, servicio de peticiones del esclavo: dispatcher por function code; FC 23 muerto en el servidor),
-  B304 (M8, capa Workbench: 6 device managers, point manager de 1299 líneas, y CERO discovery en todo el driver).
-- **Coverage metric**: 11 / 19 backlog items closed.
-- **Last iteration**: 2026-07-30 — M8 cerrado (B304).
+  B304 (M8, capa Workbench: 6 device managers, point manager de 1299 líneas, y CERO discovery en todo el driver),
+  B305 (M12, `ModbusTcpRxDriver`: máquina de 3 estados, packet-mode vs byte-mode, length leído de 1 byte).
+- **Coverage metric**: 12 / 19 backlog items closed.
+- **Last iteration**: 2026-07-30 — M12 cerrado (B305).
 
 ## Iteration history
 
 | # | Date | Gap closed | Block | Delegated? · tier | New gaps uncovered |
 |---|---|---|---|---|---|
 | 1 | 2026-07-30 | M1 arquitectura del driver | B294 | no · inline | M1-lic (¿el `port.limit` del ejemplo de licencia aplica al feature `modbus` o es copy-paste de MS/TP? → se investiga en M7); M1-gw (`BModbusTcpGateway` es un device de nivel-red, no una red: verificar cómo se cuenta para la licencia y para el poll scheduler → M2/M7) |
+| 12 | 2026-07-30 | M12 `ModbusTcpRxDriver` | B305 | no · inline | ninguno nuevo. **Cierra M2-b** (`rxProcessMode` = packet-mode vs byte-mode). Aporta a **M19**: en recepción el código de excepción está en el offset 8 del frame TCP, pero M19 sigue abierto (falta el lado emisor) |
 | 11 | 2026-07-30 | M8 workflow de Workbench | B304 | no · inline | ninguno nuevo. **Hallazgo negativo mayor**: el driver Modbus NO tiene discovery (0 hits de `Discover`/`LearnJob` en todos los módulos; control positivo contra `bacnet-wb`) — es el hueco con forma de Modbus en B28 |
 | 10 | 2026-07-30 | M16 servicio de peticiones del esclavo | B303 | no · inline | **M18** (write-through del servidor — M4-b sigue SIN cerrar, se arrastra explícitamente); **M19** (layout de la respuesta de excepción, interpretación deferida) |
 | 9 | 2026-07-30 | M15 path de lectura/decode | B302 | no · inline | ninguno nuevo. **M4-b re-scopeado a M16** (el servidor no tiene análogo de `devicePoll`); M5-b (`IPropertyValidator`) queda como ítem menor dentro de M16, no merece gap propio |
@@ -158,7 +160,7 @@ HIPÓTESIS que debe falsarse antes de entrar a un bloque:
 ## Stop control
 
 - Primary criterion: read-only-investigable backlog exhaustion (METHODOLOGY §8).
-- Loop status: **ACTIVO**. investigable_open = 8.
+- Loop status: **ACTIVO**. investigable_open = 7.
 - Blocked / requires-execution: ninguno todavía. Un eventual gap dinámico (verificar contra un dispositivo
   Modbus vivo) heredaría el gap **P1-dyn** ya abierto por B131 en `RESEARCH-STATE-protocols.md` — no se
   duplica acá.

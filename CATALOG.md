@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **302 bloques**
+Total: **303 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -307,6 +307,7 @@ Total: **302 bloques**
 | 302 | [niagara-mental-model-bloque302.md](niagara-mental-model-bloque302.md) | Block 302 — The read path: how a point slices the shared buffer, how `absoluteAddress` is computed, and the two error codes that mean "you fell out of your group" |
 | 303 | [niagara-mental-model-bloque303.md](niagara-mental-model-bloque303.md) | Block 303 — Serving a request as a slave: the function-code dispatcher, which FCs Niagara answers, and the FC 23 handler that exists but is never reached |
 | 304 | [niagara-mental-model-bloque304.md](niagara-mental-model-bloque304.md) | Block 304 — The Workbench layer: six device managers, one 1299-line point manager, a dedicated address field editor — and NO discovery anywhere in the driver |
+| 305 | [niagara-mental-model-bloque305.md](niagara-mental-model-bloque305.md) | Block 305 — `ModbusTcpRxDriver`: a three-state socket machine, the two receive modes behind `rxProcessMode`, and why the length field is read one byte wide |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
