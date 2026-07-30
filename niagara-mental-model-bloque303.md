@@ -112,6 +112,10 @@ But the two TCP paths disagree on `byteCount` while both send an empty `data` ar
 | unsupported FC (`:144-146`) | **1** | `new byte[0]` |
 | read failure (`:207-208`) | **2** | `new byte[0]` |
 
+> **§14 — CORRECTED by [Block 307].** The second alternative below is the right one: on an exception frame
+> `byteCount` **is** the Modbus exception code (1 = Illegal Function, 2 = Illegal Data Address), and `data`
+> is not serialised at all. Neither path is wrong. See [Block 307] §307.3.
+
 `[INFER]` one of the two is wrong, or `byteCount` carries a different meaning on an exception frame than on
 a data frame — a standard Modbus exception response has a one-byte payload (the exception code), and neither
 path writes an exception code into `data` at all. Resolving which byte actually reaches the wire requires
