@@ -92,6 +92,30 @@ es el decompilado vineflower `[CERT]` más los `bajadoc` de `devguide/modbusCore
 | low | **M10** — `modbusTcpSlaveMigrator` (1 clase): qué migra, desde qué versión, y por qué el slave TCP necesitó un migrador | `modbusTcpSlaveMigrator-wb` + B25 (única mención previa) | pending |
 | high | **M11** — **El MOTOR de adquisición**: cómo el driver convierte N puntos en el mínimo de transacciones Modbus — poll groups, coalescing de registros contiguos, scheduling/tuning policy, el hilo Tx/Rx y la cola de mensajes. Es la pregunta "cómo obtiene los datos rápido" | `BModbusClientPollGroup`, `BModbusClientPointDeviceExt`, `modbusTcp/comm/ModbusTcp{Tx,Rx}Driver`, `modbusAsync/comm/*` + `docModbus` §ConfiguringForPolling/§ClientOperations | pending |
 
+## Pistas ya levantadas para M11 (scouting, NO son hallazgos cerrados)
+
+Reconocimiento hecho el 2026-07-30 al priorizar M11 a pedido del usuario. Se registran acá para que la
+iteración que abra M11 no las re-derive; **ninguna está cerrada ni tiene bloque**, y la última es una
+HIPÓTESIS que debe falsarse antes de entrar a un bloque:
+
+- El agrupamiento lo produce la acción `learnOptimumDevicePollConfig` sobre `BDevicePollConfigTable`
+  (`BDevicePollConfigTable.java:23-33`), que delega en
+  `BModbusClientDevice.getOptimumDevicePollConfigEntryList()` (`BModbusClientDevice.java:683`).
+- El algoritmo: separa los puntos en 4 listas por tipo de registro, ordena por dirección absoluta y forma
+  runs de direcciones **estrictamente consecutivas** (`difference != 1` → `break`). Un run de 1 no genera
+  entry — ese punto se sigue polleando individualmente. Offsets de reconstrucción: `+40001` holding,
+  `+30001` input, `+1` coil (`BModbusClientDevice.java:709-818`).
+- Los 4 bloques del algoritmo son copy-paste literal, y `getActiveXxxPollEntries()` /
+  `getPossibleXxxPollEntries()` son pares de métodos con cuerpo idéntico salvo `synchronized`
+  (`BDevicePollConfigTable.java:62-204`).
+- **HIPÓTESIS a falsar en M11**: el algoritmo no impone tope de tamaño de grupo — `consecutivePointsToPoll`
+  admite hasta **9999** por facets (`BDevicePollConfigEntry.java:52`), mientras el protocolo tope a 125
+  holding registers por FC03. Las constantes `MAX_READ_DATA_SIZE = 255` / `MAX_WRITE_DATA_SIZE = 16`
+  existen (`ModbusMessageConst.java:26-27`) pero **no tienen un solo consumidor** en los 5 jars del driver
+  (`rg` sobre `modbusCore/Tcp/Async/TcpSlave/Slave-rt` → solo la declaración). Si no hay clamp aguas abajo,
+  un run largo produciría un request ilegal. **Falta recorrer el path de construcción del mensaje antes de
+  afirmarlo** — ver HARD RULE "RE-MEASURE A DRAMATIC NEGATIVE".
+
 ## Coverage
 
 - **Covered blocks (this focus)**: 1 — B294 (M1, arquitectura del driver + mapa de módulos + 2 correcciones a la doc oficial).
