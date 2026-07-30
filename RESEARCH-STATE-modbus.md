@@ -1,4 +1,4 @@
-# RESEARCH-STATE — focus: modbus (ACTIVO 18/22)
+# RESEARCH-STATE — focus: modbus (ACTIVO 19/22)
 
 > Multi-focus corpus (METHODOLOGY §16). Focus **BOOTSTRAPEADO 2026-07-30** sobre el **driver Modbus
 > completo de Niagara N4** — los 6 módulos Tridium (`modbusCore`, `modbusTcp`, `modbusAsync`,
@@ -22,9 +22,9 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 covered_blocks: 291
-gaps_closed: 18
+gaps_closed: 19
 known_gaps: 22
-investigable_open: 4
+investigable_open: 3
 requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
@@ -93,7 +93,7 @@ es el decompilado vineflower `[CERT]` más los `bajadoc` de `devguide/modbusCore
 | medium | **M12** — `ModbusTcpRxDriver` (358 líneas, abierto por B295 como M11-b): socket manager, política de reconexión, matching de transaction-id contra el contador de errores de red, manejo de frames parciales | `modbusTcp-rt/comm/ModbusTcpRxDriver.java` + los contadores de `BModbusNetwork` (B294 §294.7) | **COVERED → B305** (cierra además M2-b) |
 | medium | **M18** — Write-through del SERVIDOR: cómo `BModbusServerProxyExt` y los puntos de la station pueblan los 4 `IntHashMap`, y qué pasa cuando un maestro escribe un coil que además maneja un punto (¿último que escribe gana, o el punto es autoritativo?). Arrastra M4-b desde B298→B302→B303 | `modbusCore-rt/server/point/**` | **COVERED → B306** |
 | low | **M22** — Qué hilo del engine de Niagara invoca `updateOutput`/`writeDesired` sobre un proxy extension. Zanjaría de plano el condicional de B311 §311.4. NO es específico de Modbus: es una pregunta de framework (`BTuningPolicy`/threading del engine) que serviría a todos los focuses de driver | `driver-rt` + `baja` en docSource | pending |
-| low | **M21** — Semántica de orden de la cola del `Worker`/`Queue` de Baja: ¿es FIFO? ¿un `dispatch()` concurrente puede colarse adelante? Hace falta para decir algo sobre EQUIDAD entre devices en una red serializada. Abierto por B308 §308.4 | `docSource` `javax/baja/util/{Worker,Queue}.java` | pending |
+| low | **M21** — Semántica de orden de la cola del `Worker`/`Queue` de Baja: ¿es FIFO? ¿un `dispatch()` concurrente puede colarse adelante? Hace falta para decir algo sobre EQUIDAD entre devices en una red serializada. Abierto por B308 §308.4 | `docSource` `javax/baja/util/{Worker,Queue}.java` | **COVERED → B312** |
 | low | **M20** — Thread-safety de los 4 `IntHashMap` del servidor: las escrituras del maestro llegan por el hilo Rx y las de los puntos por el hilo del engine; NO se observó sincronización en ninguno de los dos paths. Requiere `javax.baja.nre.util.IntHashMap` + el contrato de threading de `updateOutput`. Abierto por B306 §306.5 como PREGUNTA ABIERTA, no como afirmación de defecto | `nre.jar` + `basicDriver-rt` | **COVERED → B311** (parcialmente determinable) |
 | low | **M19** — Layout de la respuesta de EXCEPCIÓN: qué significa `byteCount` en un frame con el bit 7 del function code puesto, y dónde se escribe realmente el código de excepción. Abierto por B303 §303.5 (observación registrada, interpretación deferida a propósito) | `modbusCore-rt/messages/ModbusResponse` + B131 §131.4 | **COVERED → B307** |
 | medium | **M17** — El layout PDU de FC 20/21 (sub-requests, reference type 6, framing por record). B131 §131.4 documentó el esqueleto del request; B299 cubrió el modelo de componentes pero NO los bytes. Abierto por B299 como M5-a | `modbusCore-rt/messages/Modbus{Read,Write}FileRequest` + `server/messages/*File*` | **COVERED → B310** |
@@ -145,15 +145,17 @@ HIPÓTESIS que debe falsarse antes de entrar a un bloque:
   B308 (M13, capa de dispatch: `wait(0)` = esperar para siempre; el dispatcher es POR RED y de UN hilo → los envíos se SERIALIZAN — §14 matiza B295),
   B309 (M14, framing serial: el timing RTU SÍ está en Java, pero con umbrales en ms FIJOS, no la regla t3.5 relativa al baud),
   B310 (M17, PDU de FC 20/21: un solo sub-request hard-codeado, reference type 6, byte count calculado distinto en read y write),
-  B311 (M20, thread-safety: `IntHashMap` sin garantías + maestro en hilo dedicado + cero locks → condicional fuerte, NO afirmación de defecto).
-- **Coverage metric**: 18 / 22 backlog items closed.
-- **Last iteration**: 2026-07-30 — M20 cerrado (B311) como PARCIALMENTE DETERMINABLE.
+  B311 (M20, thread-safety: `IntHashMap` sin garantías + maestro en hilo dedicado + cero locks → condicional fuerte, NO afirmación de defecto),
+  B312 (M21, cola del dispatcher: FIFO por javadoc, `enqueue` nunca `push` → orden garantizado; tope 256 y `QueueFullException` sin capturar).
+- **Coverage metric**: 19 / 22 backlog items closed.
+- **Last iteration**: 2026-07-30 — M21 cerrado (B312).
 
 ## Iteration history
 
 | # | Date | Gap closed | Block | Delegated? · tier | New gaps uncovered |
 |---|---|---|---|---|---|
 | 1 | 2026-07-30 | M1 arquitectura del driver | B294 | no · inline | M1-lic (¿el `port.limit` del ejemplo de licencia aplica al feature `modbus` o es copy-paste de MS/TP? → se investiga en M7); M1-gw (`BModbusTcpGateway` es un device de nivel-red, no una red: verificar cómo se cuenta para la licencia y para el poll scheduler → M2/M7) |
+| 19 | 2026-07-30 | M21 orden de la cola del dispatcher | B312 | no · inline | ninguno nuevo. FIFO confirmado por javadoc original + `BBasicWorker.post()` usa `enqueue` (nunca `push`, que sí existe) → **ningún device puede adelantarse a otro**: la serialización es JUSTA, no sólo serial. Hallazgo colateral: tope de cola **256** y `QueueFullException` que `post()` NO captura |
 | 18 | 2026-07-30 | M20 thread-safety de los mapas del servidor | B311 | no · inline | **M22** (qué hilo del engine llama `updateOutput` — zanjaría el condicional). Cerrado como **parcialmente determinable**: medido que `IntHashMap` no da garantías (fuente original, 3 queries sobre las 372 líneas), que el maestro escribe desde el hilo `ModTcpSlave:UnsolRcv` y que no hay locks; NO medido el hilo del lado engine → conclusión CONDICIONAL a propósito. Colateral: **segundo** `System.out.println` de depuración shippeado |
 | 17 | 2026-07-30 | M17 layout PDU de FC 20/21 | B310 | no · inline | ninguno nuevo. El resto de `P1-fc` (comportamiento VIVO de FC20/21) queda bajo la disposición `P1-dyn` que ya trackea RESEARCH-STATE-protocols.md — NO se duplica acá |
 | 16 | 2026-07-30 | M14 línea serial / framing RTU | B309 | no · inline | ninguno nuevo. **Resultado POSITIVO donde B279 (MS/TP) fue negativo**: el timing de framing RTU sí es alcanzable en Java. Hallazgo: Tridium usa umbrales en ms FIJOS (`minRxFrameEnd` 20 ms, `maxRxInterCharacterDelay` 50 ms) en vez de la regla t3.5 relativa al baud — a 115200 eso son ~20 ms de latencia añadida por frame |
@@ -175,7 +177,7 @@ HIPÓTESIS que debe falsarse antes de entrar a un bloque:
 ## Stop control
 
 - Primary criterion: read-only-investigable backlog exhaustion (METHODOLOGY §8).
-- Loop status: **ACTIVO**. investigable_open = 4.
+- Loop status: **ACTIVO**. investigable_open = 3.
 - Blocked / requires-execution: ninguno todavía. Un eventual gap dinámico (verificar contra un dispositivo
   Modbus vivo) heredaría el gap **P1-dyn** ya abierto por B131 en `RESEARCH-STATE-protocols.md` — no se
   duplica acá.
