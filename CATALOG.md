@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **296 bloques**
+Total: **297 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -301,6 +301,7 @@ Total: **296 bloques**
 | 296 | [niagara-mental-model-bloque296.md](niagara-mental-model-bloque296.md) | Block 296 — Modbus configuration surface: the network→device override with a single switch, the four base addresses, `BFlexAddress` formats, and the synthesized ping |
 | 297 | [niagara-mental-model-bloque297.md](niagara-mental-model-bloque297.md) | Block 297 — The client point model: six ProxyExt types, three register-type enums, the 8 datatypes and their register counts, and the byte-order permutations the driver cannot express |
 | 298 | [niagara-mental-model-bloque298.md](niagara-mental-model-bloque298.md) | Block 298 — The server (slave) side: Niagara as a Modbus slave is an in-memory register map with four declared ranges, asymmetric persistence, and only three point types |
+| 299 | [niagara-mental-model-bloque299.md](niagara-mental-model-bloque299.md) | Block 299 — The write path, presets and file records: why `usePresetMultipleRegister` is a correctness setting and not an optimization, and how strings ride FC 20/21 |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

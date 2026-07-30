@@ -1,4 +1,4 @@
-# RESEARCH-STATE — focus: modbus (ACTIVO 5/16)
+# RESEARCH-STATE — focus: modbus (ACTIVO 6/17)
 
 > Multi-focus corpus (METHODOLOGY §16). Focus **BOOTSTRAPEADO 2026-07-30** sobre el **driver Modbus
 > completo de Niagara N4** — los 6 módulos Tridium (`modbusCore`, `modbusTcp`, `modbusAsync`,
@@ -22,8 +22,8 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 covered_blocks: 291
-gaps_closed: 5
-known_gaps: 16
+gaps_closed: 6
+known_gaps: 17
 investigable_open: 11
 requires_execution_open: 0
 blocked_open: 0
@@ -84,13 +84,14 @@ es el decompilado vineflower `[CERT]` más los `bajadoc` de `devguide/modbusCore
 | high | **M2** — Configuración de red y de device: propiedades reales del property sheet, override network→device, base addresses, `BFlexAddress`, ping sintético | `docModbus` §NetworkConfiguration/§DeviceConfiguration/§Configuring* + `BModbusClientConfig`, `BModbusDevice`, `BFlexAddress` | **COVERED → B296** |
 | high | **M3** — Modelo de puntos CLIENTE: los 6 ProxyExt, `BFlexAddress`, los 10 enums de datatype/byte-order, y cómo un registro se vuelve un `BStatusNumeric` | `modbusCore-rt/client/point` (10) + `point` (14) + `enums` (10) + `docModbus` §CreatingClientProxyPoints/§NewPointTypeWindow | pending |
 | high | **M4** — El lado SERVIDOR/esclavo: cómo la station EXPONE datos como slave Modbus; simetría real vs aparente con el cliente | `modbusCore-rt/server/**` (18) + `modbusSlave-rt` (7) + `modbusTcpSlave-rt` (7) + `docModbus` §ServerslaveConfiguration/§ModbusSlaveDevice | **COVERED → B298** |
-| medium | **M5** — Presets, file records (FC 20/21) y string records: la superficie que B131 dejó como "esqueleto estático" (gap P1-fc del focus protocols) | `BModbusClientPreset*`, `BModbusFileRecord`, `BModbusStringRecord` + `docModbus` §AddingClientPresets/§AddingClientFileRecords | pending |
+| medium | **M5** — Presets, file records (FC 20/21) y string records: la superficie que B131 dejó como "esqueleto estático" (gap P1-fc del focus protocols) | `BModbusClientPreset*`, `BModbusFileRecord`, `BModbusStringRecord` + `docModbus` §AddingClientPresets/§AddingClientFileRecords | **COVERED → B299** |
 | medium | **M6** — Diagnóstico y modos de fallo: exception status, comm status, debugging de mensajes, troubleshooting oficial | `BModbusClientExceptionStatus`, `BCommStatus(Enum)`, `ModbusErrorCodes`, `ModbusException` + `docModbus` §ExceptionResponses/§DebuggingMessages/§Troubleshooting | pending |
 | medium | **M7** — Licencia y límites operativos del feature `modbus` (cuántos devices/puntos/puertos) y qué habilita la licencia real del cliente | `docModbus` §LimitsImposedByTheModbusLicenses + `licenses/*.license` del install + comprobación en código | pending |
 | medium | **M8** — El workflow de Workbench: device manager, point manager, discovery (¿existe?), y las 6 ventanas documentadas | `modbusCore-wb`/`-ux` (11) + `modbusTcp/Async/Slave -wb` + `docModbus` §Plugins/§Windows/§New*Window | pending |
 | low | **M9** — Los 2 módulos OEM Honeywell sobre Modbus (`honeywellModbusDeviceManager` 14, `honeywellModbusSmartSensor` 25): qué agregan sobre el driver base y qué queda sin cubrir tras B94/B95/B250 | `honeywellModbus*` + `TR100_Modbus_Integration_Guide_31-00748.txt` | pending |
 | low | **M10** — `modbusTcpSlaveMigrator` (1 clase): qué migra, desde qué versión, y por qué el slave TCP necesitó un migrador | `modbusTcpSlaveMigrator-wb` + B25 (única mención previa) | pending |
 | medium | **M12** — `ModbusTcpRxDriver` (358 líneas, abierto por B295 como M11-b): socket manager, política de reconexión, matching de transaction-id contra el contador de errores de red, manejo de frames parciales | `modbusTcp-rt/comm/ModbusTcpRxDriver.java` + los contadores de `BModbusNetwork` (B294 §294.7) | pending |
+| medium | **M17** — El layout PDU de FC 20/21 (sub-requests, reference type 6, framing por record). B131 §131.4 documentó el esqueleto del request; B299 cubrió el modelo de componentes pero NO los bytes. Abierto por B299 como M5-a | `modbusCore-rt/messages/Modbus{Read,Write}FileRequest` + `server/messages/*File*` | pending |
 | medium | **M16** — El path de SERVICIO de peticiones del esclavo (`server/messages/`, 7 clases: read/write, file read/write, FC 23 write-read): cómo se valida un PDU entrante contra los rangos y qué código de excepción devuelve una dirección fuera de rango. Abierto por B298 como M4-a | `modbusCore-rt/server/messages/**` | pending |
 | medium | **M15** — El path de LECTURA/decode por tipo de punto: `devicePoll(entry)` rebanando el buffer compartido + el camino `readUnsubscribed` de punto individual. Abierto por B297 como M3-a | `modbusCore-rt/client/point/*ProxyExt` | pending |
 | medium | **M14** — Los ajustes de la LÍNEA serial en sí (`serialPortConfig` = `BSerialHelper` de `serial-rt`, fuera de los jars Modbus): baud, paridad, bits, y cómo interactúan `maxRxInterCharacterDelay`/`minRxFrameEnd` con la regla de silencio de 3.5 caracteres de RTU. Abierto por B296 como M2-a | `serial-rt` + B294 §294.4 | pending |
@@ -126,15 +127,17 @@ HIPÓTESIS que debe falsarse antes de entrar a un bloque:
   B295 (M11, motor de adquisición: devicePoll/pointPoll, coalescing, fragmentación, threading),
   B296 (M2, superficie de configuración: override de un solo switch, base addresses, `BFlexAddress`, ping sintético),
   B297 (M3, modelo de puntos cliente: 6 ProxyExt, 3 enums de tipo de registro, 8 datatypes, permutaciones de byte order),
-  B298 (M4, lado servidor/esclavo: mapa en memoria, 4 rangos declarados, persistencia asimétrica, `criticalData`).
-- **Coverage metric**: 5 / 16 backlog items closed.
-- **Last iteration**: 2026-07-30 — M4 cerrado (B298). **Los 4 gaps `high` originales están cerrados.**
+  B298 (M4, lado servidor/esclavo: mapa en memoria, 4 rangos declarados, persistencia asimétrica, `criticalData`),
+  B299 (M5, path de escritura + presets + file records: escritura multi-registro NO atómica por defecto).
+- **Coverage metric**: 6 / 17 backlog items closed.
+- **Last iteration**: 2026-07-30 — M5 cerrado (B299). **Los 4 gaps `high` originales + M11 + M5 cerrados.**
 
 ## Iteration history
 
 | # | Date | Gap closed | Block | Delegated? · tier | New gaps uncovered |
 |---|---|---|---|---|---|
 | 1 | 2026-07-30 | M1 arquitectura del driver | B294 | no · inline | M1-lic (¿el `port.limit` del ejemplo de licencia aplica al feature `modbus` o es copy-paste de MS/TP? → se investiga en M7); M1-gw (`BModbusTcpGateway` es un device de nivel-red, no una red: verificar cómo se cuenta para la licencia y para el poll scheduler → M2/M7) |
+| 6 | 2026-07-30 | M5 escritura/presets/file records | B299 | no · inline | **M17** (layout PDU de FC 20/21); M5-b (`IPropertyValidator` del preset → **M15**). **Cierra la mitad WRITE de `P1-fc`** del focus protocols (B131) |
 | 5 | 2026-07-30 | M4 lado servidor/esclavo | B298 | no · inline | **M16** (path de servicio de peticiones del esclavo); M4-b (write-through de puntos al mapa → se pliega a **M15**) |
 | 4 | 2026-07-30 | M3 modelo de puntos cliente | B297 | no · inline | **M15** (path de lectura/decode por tipo de punto); M3-b (`StringProxyExt` ↔ file records → se pliega a **M5**) |
 | 3 | 2026-07-30 | M2 superficie de configuración | B296 | no · inline | **M14** (ajustes de la línea serial: `BSerialHelper` de `serial-rt` vs la regla de 3.5 caracteres de RTU); M2-b (`rxProcessMode` en gateway y device TCP → se pliega a **M12**) |
