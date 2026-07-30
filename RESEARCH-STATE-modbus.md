@@ -1,4 +1,4 @@
-# RESEARCH-STATE — focus: modbus (ACTIVO 1/11)
+# RESEARCH-STATE — focus: modbus (ACTIVO 2/13)
 
 > Multi-focus corpus (METHODOLOGY §16). Focus **BOOTSTRAPEADO 2026-07-30** sobre el **driver Modbus
 > completo de Niagara N4** — los 6 módulos Tridium (`modbusCore`, `modbusTcp`, `modbusAsync`,
@@ -22,9 +22,9 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 covered_blocks: 291
-gaps_closed: 1
-known_gaps: 11
-investigable_open: 10
+gaps_closed: 2
+known_gaps: 13
+investigable_open: 11
 requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
@@ -90,7 +90,9 @@ es el decompilado vineflower `[CERT]` más los `bajadoc` de `devguide/modbusCore
 | medium | **M8** — El workflow de Workbench: device manager, point manager, discovery (¿existe?), y las 6 ventanas documentadas | `modbusCore-wb`/`-ux` (11) + `modbusTcp/Async/Slave -wb` + `docModbus` §Plugins/§Windows/§New*Window | pending |
 | low | **M9** — Los 2 módulos OEM Honeywell sobre Modbus (`honeywellModbusDeviceManager` 14, `honeywellModbusSmartSensor` 25): qué agregan sobre el driver base y qué queda sin cubrir tras B94/B95/B250 | `honeywellModbus*` + `TR100_Modbus_Integration_Guide_31-00748.txt` | pending |
 | low | **M10** — `modbusTcpSlaveMigrator` (1 clase): qué migra, desde qué versión, y por qué el slave TCP necesitó un migrador | `modbusTcpSlaveMigrator-wb` + B25 (única mención previa) | pending |
-| high | **M11** — **El MOTOR de adquisición**: cómo el driver convierte N puntos en el mínimo de transacciones Modbus — poll groups, coalescing de registros contiguos, scheduling/tuning policy, el hilo Tx/Rx y la cola de mensajes. Es la pregunta "cómo obtiene los datos rápido" | `BModbusClientPollGroup`, `BModbusClientPointDeviceExt`, `modbusTcp/comm/ModbusTcp{Tx,Rx}Driver`, `modbusAsync/comm/*` + `docModbus` §ConfiguringForPolling/§ClientOperations | pending |
+| medium | **M12** — `ModbusTcpRxDriver` (358 líneas, abierto por B295 como M11-b): socket manager, política de reconexión, matching de transaction-id contra el contador de errores de red, manejo de frames parciales | `modbusTcp-rt/comm/ModbusTcpRxDriver.java` + los contadores de `BModbusNetwork` (B294 §294.7) | pending |
+| medium | **M13** — La capa `Comm`/`dispatch` de `basicDriver` (abierto por B295 como M11-c): ¿`dispatch()` + `getResponse(0)` serializa por Comm o permite pipelining? qué significa el argumento `0` | `basicDriver-rt/com/tridium/basicdriver/comm/**` | pending |
+| high | **M11** — **El MOTOR de adquisición**: cómo el driver convierte N puntos en el mínimo de transacciones Modbus — poll groups, coalescing de registros contiguos, scheduling/tuning policy, el hilo Tx/Rx y la cola de mensajes. Es la pregunta "cómo obtiene los datos rápido" | `BModbusClientPollGroup`, `BModbusClientPointDeviceExt`, `modbusTcp/comm/ModbusTcp{Tx,Rx}Driver`, `modbusAsync/comm/*` + `docModbus` §ConfiguringForPolling/§ClientOperations | **COVERED → B295** |
 
 ## Pistas ya levantadas para M11 (scouting, NO son hallazgos cerrados)
 
@@ -108,30 +110,31 @@ HIPÓTESIS que debe falsarse antes de entrar a un bloque:
 - Los 4 bloques del algoritmo son copy-paste literal, y `getActiveXxxPollEntries()` /
   `getPossibleXxxPollEntries()` son pares de métodos con cuerpo idéntico salvo `synchronized`
   (`BDevicePollConfigTable.java:62-204`).
-- **HIPÓTESIS a falsar en M11**: el algoritmo no impone tope de tamaño de grupo — `consecutivePointsToPoll`
-  admite hasta **9999** por facets (`BDevicePollConfigEntry.java:52`), mientras el protocolo tope a 125
-  holding registers por FC03. Las constantes `MAX_READ_DATA_SIZE = 255` / `MAX_WRITE_DATA_SIZE = 16`
-  existen (`ModbusMessageConst.java:26-27`) pero **no tienen un solo consumidor** en los 5 jars del driver
-  (`rg` sobre `modbusCore/Tcp/Async/TcpSlave/Slave-rt` → solo la declaración). Si no hay clamp aguas abajo,
-  un run largo produciría un request ilegal. **Falta recorrer el path de construcción del mensaje antes de
-  afirmarlo** — ver HARD RULE "RE-MEASURE A DRAMATIC NEGATIVE".
+- ~~**HIPÓTESIS a falsar en M11**: el algoritmo no impone tope de tamaño de grupo…~~ → **REFUTADA por B295
+  §295.4.** El clamp EXISTE, pero no en `ModbusMessageConst` (esas dos constantes efectivamente están
+  muertas): está en `BModbusClientDevice.readRegisters` (`maxReadSize = 125 - 125 % minReadSize`) y
+  `readStatusRegisters` (`maxReadSize = 2000`), ambos con un `do…while` que FRAGMENTA la petición. Un run de
+  9999 no produce un PDU ilegal: produce 80 transacciones. **Hallazgo mejor que la hipótesis**: en modo
+  ASCII (`modbusMode == 0`) el driver PARTE su propio techo a la mitad (125→62, 2000→1000).
 
 ## Coverage
 
-- **Covered blocks (this focus)**: 1 — B294 (M1, arquitectura del driver + mapa de módulos + 2 correcciones a la doc oficial).
-- **Coverage metric**: 1 / 11 backlog items closed.
-- **Last iteration**: 2026-07-30 — M1 cerrado (B294).
+- **Covered blocks (this focus)**: 2 — B294 (M1, arquitectura del driver + 2 correcciones a la doc oficial),
+  B295 (M11, motor de adquisición: devicePoll/pointPoll, coalescing, fragmentación, threading).
+- **Coverage metric**: 2 / 13 backlog items closed.
+- **Last iteration**: 2026-07-30 — M11 cerrado (B295).
 
 ## Iteration history
 
 | # | Date | Gap closed | Block | Delegated? · tier | New gaps uncovered |
 |---|---|---|---|---|---|
 | 1 | 2026-07-30 | M1 arquitectura del driver | B294 | no · inline | M1-lic (¿el `port.limit` del ejemplo de licencia aplica al feature `modbus` o es copy-paste de MS/TP? → se investiga en M7); M1-gw (`BModbusTcpGateway` es un device de nivel-red, no una red: verificar cómo se cuenta para la licencia y para el poll scheduler → M2/M7) |
+| 2 | 2026-07-30 | M11 motor de adquisición | B295 | no · inline | M11-a (path de ESCRITURA: FC5/6 vs FC15/16, `usePresetMultipleRegister`/`useForceMultipleCoil`, `MAX_WRITE_DATA_SIZE` muerto → se pliega a **M5**); **M11-b** (`ModbusTcpRxDriver`, 358 líneas: socket manager, política de reconexión, matching de transaction-id, frames parciales — NO abierto); **M11-c** (¿`dispatch()`/`getResponse(0)` serializa por Comm o permite pipelining? qué significa el `0` — requiere leer la capa `Comm` de basicDriver) |
 
 ## Stop control
 
 - Primary criterion: read-only-investigable backlog exhaustion (METHODOLOGY §8).
-- Loop status: **ACTIVO**. investigable_open = 10.
+- Loop status: **ACTIVO**. investigable_open = 11.
 - Blocked / requires-execution: ninguno todavía. Un eventual gap dinámico (verificar contra un dispositivo
   Modbus vivo) heredaría el gap **P1-dyn** ya abierto por B131 en `RESEARCH-STATE-protocols.md` — no se
   duplica acá.

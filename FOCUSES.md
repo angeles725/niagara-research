@@ -29,11 +29,19 @@
 
 ## Focus activo
 
-**`modbus`** (ACTIVO 1/11, bootstrapeado 2026-07-30) — el **driver** Modbus completo, no el cable.
-Arranca en **B294** (M1 cerrado). Próximo gap: **M2** (configuración de red y device).
-Los tres gaps `high` que quedan son el núcleo de "cómo funciona de verdad": **M2** config,
-**M3** modelo de puntos cliente, **M4** lado servidor/esclavo y **M11** el motor de adquisición
-(poll groups, coalescing, hilos Tx/Rx).
+**`modbus`** (ACTIVO 2/13, bootstrapeado 2026-07-30) — el **driver** Modbus completo, no el cable.
+**B294** (M1: arquitectura, 5 redes, jerarquía de 3 niveles, asimetría cliente 6 / servidor 3 ProxyExt) +
+**B295** (M11: motor de adquisición). Próximo gap: **M2** (configuración de red y device).
+
+Hallazgos operativos de B295: cada punto elige entre `devicePoll` (agrupado, 1 transacción para N
+registros) y `pointPoll` (1 transacción por punto), y el **default es el lento**; `Learn Optimum Device
+Poll Config` sólo agrupa direcciones **estrictamente consecutivas** (un hueco de 1 parte el run) y sólo si
+hay ≥2; el driver **fragmenta solo** a 125 registros / 2000 coils, y en **ASCII parte ese techo a la
+mitad**; el grupo se pollea a la frecuencia de su punto **más rápido** (contagio); y en **Modbus TCP hay un
+socket + un hilo Rx POR DEVICE**, mientras el gateway TCP y el serial comparten uno por red — la diferencia
+de escalabilidad más grande del driver, ausente de la doc oficial.
+
+Gaps `high` restantes: **M2** config, **M3** modelo de puntos cliente, **M4** lado servidor/esclavo.
 
 ## Cola de trabajo para la próxima sesión (sembrada 2026-07-24)
 
