@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **293 bloques**
+Total: **294 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -298,6 +298,7 @@ Total: **293 bloques**
 | 293 | [niagara-mental-model-bloque293.md](niagara-mental-model-bloque293.md) | Block 293 — Menu inheritance across views: the official `PxInclude` route vs the HTML shell, and the active-tab state the `.px` route still cannot express |
 | 294 | [niagara-mental-model-bloque294.md](niagara-mental-model-bloque294.md) | Block 294 — Modbus driver architecture: five network types, the 3-level class hierarchy, the module/palette map, and the client-vs-server asymmetry |
 | 295 | [niagara-mental-model-bloque295.md](niagara-mental-model-bloque295.md) | Block 295 — The Modbus acquisition engine: devicePoll vs pointPoll, how groups are formed, register-run coalescing, request fragmentation (125/2000 and the ASCII penalty), and the transport threading model |
+| 296 | [niagara-mental-model-bloque296.md](niagara-mental-model-bloque296.md) | Block 296 — Modbus configuration surface: the network→device override with a single switch, the four base addresses, `BFlexAddress` formats, and the synthesized ping |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
