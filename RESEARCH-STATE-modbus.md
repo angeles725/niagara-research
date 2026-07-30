@@ -1,4 +1,4 @@
-# RESEARCH-STATE — focus: modbus (ACTIVO 16/21)
+# RESEARCH-STATE — focus: modbus (ACTIVO 17/21)
 
 > Multi-focus corpus (METHODOLOGY §16). Focus **BOOTSTRAPEADO 2026-07-30** sobre el **driver Modbus
 > completo de Niagara N4** — los 6 módulos Tridium (`modbusCore`, `modbusTcp`, `modbusAsync`,
@@ -22,9 +22,9 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 covered_blocks: 291
-gaps_closed: 16
+gaps_closed: 17
 known_gaps: 21
-investigable_open: 5
+investigable_open: 4
 requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
@@ -95,7 +95,7 @@ es el decompilado vineflower `[CERT]` más los `bajadoc` de `devguide/modbusCore
 | low | **M21** — Semántica de orden de la cola del `Worker`/`Queue` de Baja: ¿es FIFO? ¿un `dispatch()` concurrente puede colarse adelante? Hace falta para decir algo sobre EQUIDAD entre devices en una red serializada. Abierto por B308 §308.4 | `docSource` `javax/baja/util/{Worker,Queue}.java` | pending |
 | low | **M20** — Thread-safety de los 4 `IntHashMap` del servidor: las escrituras del maestro llegan por el hilo Rx y las de los puntos por el hilo del engine; NO se observó sincronización en ninguno de los dos paths. Requiere `javax.baja.nre.util.IntHashMap` + el contrato de threading de `updateOutput`. Abierto por B306 §306.5 como PREGUNTA ABIERTA, no como afirmación de defecto | `nre.jar` + `basicDriver-rt` | pending |
 | low | **M19** — Layout de la respuesta de EXCEPCIÓN: qué significa `byteCount` en un frame con el bit 7 del function code puesto, y dónde se escribe realmente el código de excepción. Abierto por B303 §303.5 (observación registrada, interpretación deferida a propósito) | `modbusCore-rt/messages/ModbusResponse` + B131 §131.4 | **COVERED → B307** |
-| medium | **M17** — El layout PDU de FC 20/21 (sub-requests, reference type 6, framing por record). B131 §131.4 documentó el esqueleto del request; B299 cubrió el modelo de componentes pero NO los bytes. Abierto por B299 como M5-a | `modbusCore-rt/messages/Modbus{Read,Write}FileRequest` + `server/messages/*File*` | pending |
+| medium | **M17** — El layout PDU de FC 20/21 (sub-requests, reference type 6, framing por record). B131 §131.4 documentó el esqueleto del request; B299 cubrió el modelo de componentes pero NO los bytes. Abierto por B299 como M5-a | `modbusCore-rt/messages/Modbus{Read,Write}FileRequest` + `server/messages/*File*` | **COVERED → B310** |
 | medium | **M16** — El path de SERVICIO de peticiones del esclavo (`server/messages/`, 7 clases: read/write, file read/write, FC 23 write-read): cómo se valida un PDU entrante contra los rangos y qué código de excepción devuelve una dirección fuera de rango. Abierto por B298 como M4-a | `modbusCore-rt/server/messages/**` + los dos `ModbusUnsolicitedReceive` | **COVERED → B303** |
 | medium | **M15** — El path de LECTURA/decode por tipo de punto: `devicePoll(entry)` rebanando el buffer compartido + el camino `readUnsubscribed` de punto individual. Abierto por B297 como M3-a | `modbusCore-rt/client/point/*ProxyExt` | **COVERED → B302** |
 | medium | **M14** — Los ajustes de la LÍNEA serial en sí (`serialPortConfig` = `BSerialHelper` de `serial-rt`, fuera de los jars Modbus): baud, paridad, bits, y cómo interactúan `maxRxInterCharacterDelay`/`minRxFrameEnd` con la regla de silencio de 3.5 caracteres de RTU. Abierto por B296 como M2-a | `serial-rt` + B294 §294.4 | **COVERED → B309** |
@@ -142,15 +142,17 @@ HIPÓTESIS que debe falsarse antes de entrar a un bloque:
   B306 (M18, write-through del servidor: último que escribe gana, sin arbitraje; blob de persistencia reconstruido por byte),
   B307 (M19, respuesta de excepción: `byteCount` ES el código de excepción — §14 corrige B303),
   B308 (M13, capa de dispatch: `wait(0)` = esperar para siempre; el dispatcher es POR RED y de UN hilo → los envíos se SERIALIZAN — §14 matiza B295),
-  B309 (M14, framing serial: el timing RTU SÍ está en Java, pero con umbrales en ms FIJOS, no la regla t3.5 relativa al baud).
-- **Coverage metric**: 16 / 21 backlog items closed.
-- **Last iteration**: 2026-07-30 — M14 cerrado (B309).
+  B309 (M14, framing serial: el timing RTU SÍ está en Java, pero con umbrales en ms FIJOS, no la regla t3.5 relativa al baud),
+  B310 (M17, PDU de FC 20/21: un solo sub-request hard-codeado, reference type 6, byte count calculado distinto en read y write).
+- **Coverage metric**: 17 / 21 backlog items closed.
+- **Last iteration**: 2026-07-30 — M17 cerrado (B310).
 
 ## Iteration history
 
 | # | Date | Gap closed | Block | Delegated? · tier | New gaps uncovered |
 |---|---|---|---|---|---|
 | 1 | 2026-07-30 | M1 arquitectura del driver | B294 | no · inline | M1-lic (¿el `port.limit` del ejemplo de licencia aplica al feature `modbus` o es copy-paste de MS/TP? → se investiga en M7); M1-gw (`BModbusTcpGateway` es un device de nivel-red, no una red: verificar cómo se cuenta para la licencia y para el poll scheduler → M2/M7) |
+| 17 | 2026-07-30 | M17 layout PDU de FC 20/21 | B310 | no · inline | ninguno nuevo. El resto de `P1-fc` (comportamiento VIVO de FC20/21) queda bajo la disposición `P1-dyn` que ya trackea RESEARCH-STATE-protocols.md — NO se duplica acá |
 | 16 | 2026-07-30 | M14 línea serial / framing RTU | B309 | no · inline | ninguno nuevo. **Resultado POSITIVO donde B279 (MS/TP) fue negativo**: el timing de framing RTU sí es alcanzable en Java. Hallazgo: Tridium usa umbrales en ms FIJOS (`minRxFrameEnd` 20 ms, `maxRxInterCharacterDelay` 50 ms) en vez de la regla t3.5 relativa al baud — a 115200 eso son ~20 ms de latencia añadida por frame |
 | 15 | 2026-07-30 | M13 capa Comm/dispatch | B308 | no · inline | **M21** (orden de la cola del Worker). **§14: matiza B295 §295.7** — el inventario de sockets/hilos por device está bien, pero el path de ENVÍO pasa por un dispatcher único por RED (`BBasicWorker`, un hilo) y `execute()` bloquea en `transmit()`: los envíos se serializan. Los sockets por device dan AISLAMIENTO, no throughput paralelo. Puntero añadido en B295 |
 | 14 | 2026-07-30 | M19 layout de la respuesta de excepción | B307 | no · inline | ninguno. **§14: corrige B303 §303.5** — la "inconsistencia" de `byteCount` 1 vs 2 no era un defecto: en un frame de excepción ese campo ES el código Modbus (1=Illegal Function, 2=Illegal Data Address) y `data` no se serializa. Puntero añadido en B303 |
@@ -170,7 +172,7 @@ HIPÓTESIS que debe falsarse antes de entrar a un bloque:
 ## Stop control
 
 - Primary criterion: read-only-investigable backlog exhaustion (METHODOLOGY §8).
-- Loop status: **ACTIVO**. investigable_open = 5.
+- Loop status: **ACTIVO**. investigable_open = 4.
 - Blocked / requires-execution: ninguno todavía. Un eventual gap dinámico (verificar contra un dispositivo
   Modbus vivo) heredaría el gap **P1-dyn** ya abierto por B131 en `RESEARCH-STATE-protocols.md` — no se
   duplica acá.

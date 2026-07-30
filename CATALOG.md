@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **307 bloques**
+Total: **308 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -312,6 +312,7 @@ Total: **307 bloques**
 | 307 | [niagara-mental-model-bloque307.md](niagara-mental-model-bloque307.md) | Block 307 — The exception response: `byteCount` IS the exception code — §14 correcting Block 303's "inconsistency" |
 | 308 | [niagara-mental-model-bloque308.md](niagara-mental-model-bloque308.md) | Block 308 — The dispatch layer: `getResponse(0)` waits forever by design, and the network-wide dispatcher SERIALISES transmission — §14 qualifying Block 295's parallelism claim |
 | 309 | [niagara-mental-model-bloque309.md](niagara-mental-model-bloque309.md) | Block 309 — Serial framing: Tridium replaces RTU's baud-relative 3.5-character silence with fixed millisecond thresholds, and `serial-rt` is pure API |
+| 310 | [niagara-mental-model-bloque310.md](niagara-mental-model-bloque310.md) | Block 310 — FC 20/21 on the wire: a single hard-coded sub-request, reference type 6, and a byte count computed two different ways |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
