@@ -1,4 +1,4 @@
-# RESEARCH-STATE — focus: modbus (ACTIVO 21/22)
+# RESEARCH-STATE — focus: modbus (ACTIVO 22/22 — investigable agotado)
 
 > Multi-focus corpus (METHODOLOGY §16). Focus **BOOTSTRAPEADO 2026-07-30** sobre el **driver Modbus
 > completo de Niagara N4** — los 6 módulos Tridium (`modbusCore`, `modbusTcp`, `modbusAsync`,
@@ -22,9 +22,9 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 covered_blocks: 291
-gaps_closed: 21
+gaps_closed: 22
 known_gaps: 22
-investigable_open: 1
+investigable_open: 0
 requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
@@ -92,7 +92,7 @@ es el decompilado vineflower `[CERT]` más los `bajadoc` de `devguide/modbusCore
 | low | **M10** — `modbusTcpSlaveMigrator` (1 clase): qué migra, desde qué versión, y por qué el slave TCP necesitó un migrador | `modbusTcpSlaveMigrator-wb` + B25 (única mención previa) | **COVERED → B313** |
 | medium | **M12** — `ModbusTcpRxDriver` (358 líneas, abierto por B295 como M11-b): socket manager, política de reconexión, matching de transaction-id contra el contador de errores de red, manejo de frames parciales | `modbusTcp-rt/comm/ModbusTcpRxDriver.java` + los contadores de `BModbusNetwork` (B294 §294.7) | **COVERED → B305** (cierra además M2-b) |
 | medium | **M18** — Write-through del SERVIDOR: cómo `BModbusServerProxyExt` y los puntos de la station pueblan los 4 `IntHashMap`, y qué pasa cuando un maestro escribe un coil que además maneja un punto (¿último que escribe gana, o el punto es autoritativo?). Arrastra M4-b desde B298→B302→B303 | `modbusCore-rt/server/point/**` | **COVERED → B306** |
-| low | **M22** — Qué hilo del engine de Niagara invoca `updateOutput`/`writeDesired` sobre un proxy extension. Zanjaría de plano el condicional de B311 §311.4. NO es específico de Modbus: es una pregunta de framework (`BTuningPolicy`/threading del engine) que serviría a todos los focuses de driver | `driver-rt` + `baja` en docSource | pending |
+| low | **M22** — Qué hilo del engine de Niagara invoca `updateOutput`/`writeDesired` sobre un proxy extension. Zanjaría de plano el condicional de B311 §311.4. NO es específico de Modbus: es una pregunta de framework (`BTuningPolicy`/threading del engine) que serviría a todos los focuses de driver | `driver-rt` + `baja` en docSource | **CERRADO POR RE-SCOPE — fuera del alcance de este focus** (ver nota abajo) |
 | low | **M21** — Semántica de orden de la cola del `Worker`/`Queue` de Baja: ¿es FIFO? ¿un `dispatch()` concurrente puede colarse adelante? Hace falta para decir algo sobre EQUIDAD entre devices en una red serializada. Abierto por B308 §308.4 | `docSource` `javax/baja/util/{Worker,Queue}.java` | **COVERED → B312** |
 | low | **M20** — Thread-safety de los 4 `IntHashMap` del servidor: las escrituras del maestro llegan por el hilo Rx y las de los puntos por el hilo del engine; NO se observó sincronización en ninguno de los dos paths. Requiere `javax.baja.nre.util.IntHashMap` + el contrato de threading de `updateOutput`. Abierto por B306 §306.5 como PREGUNTA ABIERTA, no como afirmación de defecto | `nre.jar` + `basicDriver-rt` | **COVERED → B311** (parcialmente determinable) |
 | low | **M19** — Layout de la respuesta de EXCEPCIÓN: qué significa `byteCount` en un frame con el bit 7 del function code puesto, y dónde se escribe realmente el código de excepción. Abierto por B303 §303.5 (observación registrada, interpretación deferida a propósito) | `modbusCore-rt/messages/ModbusResponse` + B131 §131.4 | **COVERED → B307** |
@@ -149,8 +149,25 @@ HIPÓTESIS que debe falsarse antes de entrar a un bloque:
   B312 (M21, cola del dispatcher: FIFO por javadoc, `enqueue` nunca `push` → orden garantizado; tope 256 y `QueueFullException` sin capturar),
   B313 (M10, migrador: 61 líneas que convierten `httpPort` (int) → `port` (`BServerPort`) sólo en el slave TCP),
   B314 (M9, capa OEM Honeywell: aporta el discovery que el driver base NO tiene, embebiendo el mapa de registros en código; el TR100 Modbus es el contraejemplo sin módulo).
-- **Coverage metric**: 21 / 22 backlog items closed.
-- **Last iteration**: 2026-07-30 — M9 cerrado (B314).
+- **Coverage metric**: 22 / 22 backlog items closed.
+- **Last iteration**: 2026-07-30 — M22 cerrado por RE-SCOPE. **investigable_open = 0 → STOP.**
+
+### Nota de cierre de M22 (sin bloque propio, a propósito)
+
+M22 preguntaba qué hilo del engine de Niagara invoca `updateOutput`/`writeDesired` sobre un proxy extension.
+Lo abrió B311 §311.4 porque zanjaría de plano su condicional sobre la data race de los mapas del servidor.
+
+**No es una pregunta de Modbus.** `updateOutput`/`writeDesired` son del framework de drivers (`BTuningPolicy`,
+el engine de la station) y la respuesta serviría por igual a BACnet, LON, OPC y cualquier otro driver. Cerrarla
+acá habría significado investigar el framework bajo la etiqueta de un focus de protocolo, y dejar el hallazgo
+enterrado donde ningún futuro focus de driver lo buscaría.
+
+**Disposición**: pertenece a un focus `driver-framework` que todavía no existe (los feeds naturales son B4 y B7,
+que documentaron el driver framework a nivel arquitectura). Queda sembrado ahí, no acá.
+
+**Consecuencia que se declara explícitamente**: el condicional de B311 §311.4 **queda sin zanjar**. El corpus
+NO afirma que el driver Modbus tenga una data race — afirma lo medido (contenedor sin garantías, escritor del
+maestro en hilo dedicado, cero locks) y nombra el eslabón que falta. Eso es el estado real del conocimiento.
 
 ## Iteration history
 
@@ -181,7 +198,8 @@ HIPÓTESIS que debe falsarse antes de entrar a un bloque:
 ## Stop control
 
 - Primary criterion: read-only-investigable backlog exhaustion (METHODOLOGY §8).
-- Loop status: **ACTIVO**. investigable_open = 1.
+- Loop status: **STOP** (2026-07-30). investigable_open = **0** — backlog read-only agotado (METHODOLOGY §8).
+- Pendiente del TERMINAL TRIGGER: bloque de síntesis + §18 retro + mirror en FOCUSES.md/TARGETS.md.
 - Blocked / requires-execution: ninguno todavía. Un eventual gap dinámico (verificar contra un dispositivo
   Modbus vivo) heredaría el gap **P1-dyn** ya abierto por B131 en `RESEARCH-STATE-protocols.md` — no se
   duplica acá.
