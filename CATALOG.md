@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **300 bloques**
+Total: **301 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -305,6 +305,7 @@ Total: **300 bloques**
 | 300 | [niagara-mental-model-bloque300.md](niagara-mental-model-bloque300.md) | Block 300 — Diagnostics: the sign of the error code tells you where the fault is, the 20-value comm-status vocabulary, and the four network counters nobody can alarm on |
 | 301 | [niagara-mental-model-bloque301.md](niagara-mental-model-bloque301.md) | Block 301 — Licensing: there is no `modbus` feature — there are four, one per palette; the TCP gateway spends the `modbusTcp` licence; and the guide's limits topic quotes an MS/TP example |
 | 302 | [niagara-mental-model-bloque302.md](niagara-mental-model-bloque302.md) | Block 302 — The read path: how a point slices the shared buffer, how `absoluteAddress` is computed, and the two error codes that mean "you fell out of your group" |
+| 303 | [niagara-mental-model-bloque303.md](niagara-mental-model-bloque303.md) | Block 303 — Serving a request as a slave: the function-code dispatcher, which FCs Niagara answers, and the FC 23 handler that exists but is never reached |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
