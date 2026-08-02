@@ -1,0 +1,3600 @@
+### ??4DsfDsaKeyPairGenerator@@QEAAAEAV0@AEBV0@@Z @ 18001dca0 type=Label
+
+/* public: class DsfDsaKeyPairGenerator & __ptr64 __cdecl DsfDsaKeyPairGenerator::operator=(class
+   DsfDsaKeyPairGenerator const & __ptr64) __ptr64 */
+
+DsfDsaKeyPairGenerator * __thiscall
+DsfDsaKeyPairGenerator::operator=(DsfDsaKeyPairGenerator *this,DsfDsaKeyPairGenerator *param_1)
+
+{
+                    /* 0x1dca0  26  ??4DsfDsaKeyPairGenerator@@QEAAAEAV0@AEBV0@@Z
+                       0x1dca0  27  ??4DsfObject@@QEAAAEAV0@$$QEAV0@@Z
+                       0x1dca0  28  ??4DsfObject@@QEAAAEAV0@AEBV0@@Z
+                       0x1dca0  29  ??4DsfRsaKeyPairGenerator@@QEAAAEAV0@AEBV0@@Z
+                       0x1dca0  33  ??4DsfShaMessageDigest@@QEAAAEAV0@AEBV0@@Z */
+  return this;
+}
+
+
+### ?__autoclassinit2@DsfSha1WithDsaSignature@@QEAAX_K@Z @ 18001dd70 type=Label
+
+/* public: void __cdecl DsfAes256Cipher::__autoclassinit2(unsigned __int64) __ptr64 */
+
+void __thiscall DsfAes256Cipher::__autoclassinit2(DsfAes256Cipher *this,__uint64 param_1)
+
+{
+                    /* 0x1dd70  45  ?__autoclassinit2@DsfAes256Cipher@@QEAAX_K@Z
+                       0x1dd70  46  ?__autoclassinit2@DsfSha1MessageDigest@@QEAAX_K@Z
+                       0x1dd70  47  ?__autoclassinit2@DsfSha1WithDsaSignature@@QEAAX_K@Z
+                       0x1dd70  48  ?__autoclassinit2@DsfSha256MessageDigest@@QEAAX_K@Z
+                       0x1dd70  49  ?__autoclassinit2@DsfShaWithRsaSignature@@QEAAX_K@Z */
+  memset(this,0,param_1);
+  return;
+}
+
+
+### ?__autoclassinit2@DsfShaWithRsaSignature@@QEAAX_K@Z @ 18001dd70 type=Label
+
+/* public: void __cdecl DsfAes256Cipher::__autoclassinit2(unsigned __int64) __ptr64 */
+
+void __thiscall DsfAes256Cipher::__autoclassinit2(DsfAes256Cipher *this,__uint64 param_1)
+
+{
+                    /* 0x1dd70  45  ?__autoclassinit2@DsfAes256Cipher@@QEAAX_K@Z
+                       0x1dd70  46  ?__autoclassinit2@DsfSha1MessageDigest@@QEAAX_K@Z
+                       0x1dd70  47  ?__autoclassinit2@DsfSha1WithDsaSignature@@QEAAX_K@Z
+                       0x1dd70  48  ?__autoclassinit2@DsfSha256MessageDigest@@QEAAX_K@Z
+                       0x1dd70  49  ?__autoclassinit2@DsfShaWithRsaSignature@@QEAAX_K@Z */
+  memset(this,0,param_1);
+  return;
+}
+
+
+### Java_com_tridium_dsf_provider_spi_DsfDsaKeyPairGeneratorSpi_deleteContext0 @ 18001ea20 type=Label
+
+void Java_com_tridium_dsf_provider_spi_DsfAes256CipherSpi_deleteContext0
+               (JNIEnv_ *param_1,_jobject *param_2)
+
+{
+  DsfObject *pDVar1;
+  DsfObject *pDVar2;
+  
+                    /* 0x1ea20  117
+                       Java_com_tridium_dsf_provider_spi_DsfAes256CipherSpi_deleteContext0
+                       0x1ea20  123
+                       Java_com_tridium_dsf_provider_spi_DsfDsaKeyPairGeneratorSpi_deleteContext0
+                       0x1ea20  126
+                       Java_com_tridium_dsf_provider_spi_DsfRsaKeyPairGeneratorSpi_deleteContext0
+                       0x1ea20  137
+                       Java_com_tridium_dsf_provider_spi_DsfSha1WithDsaSignatureSpi_deleteContext0
+                       0x1ea20  146
+                       Java_com_tridium_dsf_provider_spi_DsfSha1WithRsaSignatureSpi_deleteContext0
+                       0x1ea20  161
+                       Java_com_tridium_dsf_provider_spi_DsfSha256WithRsaSignatureSpi_deleteContext0
+                        */
+  pDVar1 = DsfObject::getContext(param_1,param_2);
+  pDVar2 = pDVar1 + -8;
+  if (pDVar1 == (DsfObject *)0x0) {
+    pDVar2 = (DsfObject *)0x0;
+  }
+  if (pDVar2 != (DsfObject *)0x0) {
+    DsfObject::setContext(param_1,param_2,(DsfObject *)0x0);
+    (*(code *)PTR__guard_dispatch_icall_180026210)(pDVar2,1);
+  }
+  return;
+}
+
+
+### Java_com_tridium_dsf_provider_spi_DsfSha1WithDsaSignatureSpi_deleteContext0 @ 18001ea20 type=Label
+
+void Java_com_tridium_dsf_provider_spi_DsfAes256CipherSpi_deleteContext0
+               (JNIEnv_ *param_1,_jobject *param_2)
+
+{
+  DsfObject *pDVar1;
+  DsfObject *pDVar2;
+  
+                    /* 0x1ea20  117
+                       Java_com_tridium_dsf_provider_spi_DsfAes256CipherSpi_deleteContext0
+                       0x1ea20  123
+                       Java_com_tridium_dsf_provider_spi_DsfDsaKeyPairGeneratorSpi_deleteContext0
+                       0x1ea20  126
+                       Java_com_tridium_dsf_provider_spi_DsfRsaKeyPairGeneratorSpi_deleteContext0
+                       0x1ea20  137
+                       Java_com_tridium_dsf_provider_spi_DsfSha1WithDsaSignatureSpi_deleteContext0
+                       0x1ea20  146
+                       Java_com_tridium_dsf_provider_spi_DsfSha1WithRsaSignatureSpi_deleteContext0
+                       0x1ea20  161
+                       Java_com_tridium_dsf_provider_spi_DsfSha256WithRsaSignatureSpi_deleteContext0
+                        */
+  pDVar1 = DsfObject::getContext(param_1,param_2);
+  pDVar2 = pDVar1 + -8;
+  if (pDVar1 == (DsfObject *)0x0) {
+    pDVar2 = (DsfObject *)0x0;
+  }
+  if (pDVar2 != (DsfObject *)0x0) {
+    DsfObject::setContext(param_1,param_2,(DsfObject *)0x0);
+    (*(code *)PTR__guard_dispatch_icall_180026210)(pDVar2,1);
+  }
+  return;
+}
+
+
+### DsfDsaKeyPairGenerator @ 18001eda0 type=Function
+
+/* public: __cdecl DsfDsaKeyPairGenerator::DsfDsaKeyPairGenerator(class DsfDsaKeyPairGenerator const
+   & __ptr64) __ptr64 */
+
+DsfDsaKeyPairGenerator * __thiscall
+DsfDsaKeyPairGenerator::DsfDsaKeyPairGenerator
+          (DsfDsaKeyPairGenerator *this,DsfDsaKeyPairGenerator *param_1)
+
+{
+                    /* 0x1eda0  3  ??0DsfDsaKeyPairGenerator@@QEAA@AEBV0@@Z
+                       0x1eda0  4  ??0DsfDsaKeyPairGenerator@@QEAA@XZ */
+  *(undefined ***)this = vftable;
+  return this;
+}
+
+
+### ??0DsfDsaKeyPairGenerator@@QEAA@XZ @ 18001eda0 type=Label
+
+/* public: __cdecl DsfDsaKeyPairGenerator::DsfDsaKeyPairGenerator(class DsfDsaKeyPairGenerator const
+   & __ptr64) __ptr64 */
+
+DsfDsaKeyPairGenerator * __thiscall
+DsfDsaKeyPairGenerator::DsfDsaKeyPairGenerator
+          (DsfDsaKeyPairGenerator *this,DsfDsaKeyPairGenerator *param_1)
+
+{
+                    /* 0x1eda0  3  ??0DsfDsaKeyPairGenerator@@QEAA@AEBV0@@Z
+                       0x1eda0  4  ??0DsfDsaKeyPairGenerator@@QEAA@XZ */
+  *(undefined ***)this = vftable;
+  return this;
+}
+
+
+### ??0DsfDsaKeyPairGenerator@@QEAA@AEBV0@@Z @ 18001eda0 type=Label
+
+/* public: __cdecl DsfDsaKeyPairGenerator::DsfDsaKeyPairGenerator(class DsfDsaKeyPairGenerator const
+   & __ptr64) __ptr64 */
+
+DsfDsaKeyPairGenerator * __thiscall
+DsfDsaKeyPairGenerator::DsfDsaKeyPairGenerator
+          (DsfDsaKeyPairGenerator *this,DsfDsaKeyPairGenerator *param_1)
+
+{
+                    /* 0x1eda0  3  ??0DsfDsaKeyPairGenerator@@QEAA@AEBV0@@Z
+                       0x1eda0  4  ??0DsfDsaKeyPairGenerator@@QEAA@XZ */
+  *(undefined ***)this = vftable;
+  return this;
+}
+
+
+### ~DsfDsaKeyPairGenerator @ 18001edb0 type=Function
+
+/* public: virtual __cdecl DsfDsaKeyPairGenerator::~DsfDsaKeyPairGenerator(void) __ptr64 */
+
+void __thiscall DsfDsaKeyPairGenerator::~DsfDsaKeyPairGenerator(DsfDsaKeyPairGenerator *this)
+
+{
+                    /* 0x1edb0  18  ??1DsfDsaKeyPairGenerator@@UEAA@XZ */
+  *(undefined ***)this = vftable;
+  return;
+}
+
+
+### ??1DsfDsaKeyPairGenerator@@UEAA@XZ @ 18001edb0 type=Label
+
+/* public: virtual __cdecl DsfDsaKeyPairGenerator::~DsfDsaKeyPairGenerator(void) __ptr64 */
+
+void __thiscall DsfDsaKeyPairGenerator::~DsfDsaKeyPairGenerator(DsfDsaKeyPairGenerator *this)
+
+{
+                    /* 0x1edb0  18  ??1DsfDsaKeyPairGenerator@@UEAA@XZ */
+  *(undefined ***)this = vftable;
+  return;
+}
+
+
+### ?generateKeyPair@DsfDsaKeyPairGenerator@@QEAAPEAV_jbyteArray@@PEAUJNIEnv_@@PEAV_jobject@@H@Z @ 18001ee50 type=Label
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+/* public: class _jbyteArray * __ptr64 __cdecl DsfDsaKeyPairGenerator::generateKeyPair(struct
+   JNIEnv_ * __ptr64,class _jobject * __ptr64,int) __ptr64 */
+
+_jbyteArray * __thiscall
+DsfDsaKeyPairGenerator::generateKeyPair
+          (DsfDsaKeyPairGenerator *this,JNIEnv_ *param_1,_jobject *param_2,int param_3)
+
+{
+  enum_errDescrValues eVar1;
+  int *piVar2;
+  undefined8 uVar3;
+  ulonglong uVar4;
+  _jbyteArray *p_Var5;
+  void *_Dst;
+  char *pcVar6;
+  undefined1 auStackY_c8 [32];
+  uint local_88 [2];
+  longlong local_80;
+  void *local_78;
+  int local_70 [2];
+  longlong *local_68;
+  undefined8 local_60;
+  undefined1 local_58 [4];
+  uint local_54;
+  undefined8 local_50;
+  undefined8 uStack_48;
+  undefined4 local_40;
+  ulonglong local_38;
+  
+                    /* 0x1ee50  60
+                       ?generateKeyPair@DsfDsaKeyPairGenerator@@QEAAPEAV_jbyteArray@@PEAUJNIEnv_@@PEAV_jobject@@H@Z
+                        */
+  local_38 = DAT_180046100 ^ (ulonglong)auStackY_c8;
+  local_80 = 0;
+  local_78 = (void *)0x0;
+  local_60 = 0;
+  local_54 = 0;
+  local_50 = 0;
+  uStack_48 = 0;
+  local_40 = 0;
+  piVar2 = DsfObject::getRandomContext(param_1);
+  if (piVar2 != (int *)0x0) {
+    uVar3 = FUN_1800177b0(local_70);
+    eVar1 = (enum_errDescrValues)uVar3;
+    if (eVar1 == 0) {
+      uVar3 = FUN_180017690(local_70,&local_80);
+      eVar1 = (enum_errDescrValues)uVar3;
+      if (eVar1 == 0) {
+        eVar1 = FUN_180014830(piVar2,local_68,param_3,&local_54,&local_50,&local_60,&local_80);
+        if (eVar1 == 0) {
+          uVar4 = FUN_1800171c0(local_70,&local_78,local_88);
+          eVar1 = (enum_errDescrValues)uVar4;
+          if (eVar1 == 0) {
+            p_Var5 = (_jbyteArray *)
+                     (*(code *)PTR__guard_dispatch_icall_180026210)(param_1,local_88[0]);
+            _Dst = (void *)(*(code *)PTR__guard_dispatch_icall_180026210)(param_1,p_Var5,local_58);
+            memcpy(_Dst,local_78,(ulonglong)local_88[0]);
+            (*(code *)PTR__guard_dispatch_icall_180026210)(param_1,p_Var5,_Dst,0);
+            free(local_78);
+            FUN_1800147b0((longlong *)&local_68,(longlong *)0x0);
+            FUN_180009bd0(&local_80);
+            return p_Var5;
+          }
+          pcVar6 = "error generating DER from key";
+        }
+        else {
+          pcVar6 = "error generating dsa key pair";
+        }
+        DsfObject::throwException
+                  ((DsfObject *)(this + 8),param_1,"java/security/ProviderException",pcVar6,eVar1);
+        FUN_1800147b0((longlong *)&local_68,&local_80);
+        return (_jbyteArray *)0x0;
+      }
+      pcVar6 = "error creating dsa key pair";
+    }
+    else {
+      pcVar6 = "error initializing asymmetric key";
+    }
+    DsfObject::throwException
+              ((DsfObject *)(this + 8),param_1,"java/security/ProviderException",pcVar6,eVar1);
+  }
+  return (_jbyteArray *)0x0;
+}
+
+
+### ?generateKeyPair@DsfDsaKeyPairGenerator@@QEAAPEAV_jbyteArray@@PEAUJNIEnv_@@PEAV_jobject@@HPEAV2@22@Z @ 18001f020 type=Label
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+/* public: class _jbyteArray * __ptr64 __cdecl DsfDsaKeyPairGenerator::generateKeyPair(struct
+   JNIEnv_ * __ptr64,class _jobject * __ptr64,int,class _jbyteArray * __ptr64,class _jbyteArray *
+   __ptr64,class _jbyteArray * __ptr64) __ptr64 */
+
+_jbyteArray * __thiscall
+DsfDsaKeyPairGenerator::generateKeyPair
+          (DsfDsaKeyPairGenerator *this,JNIEnv_ *param_1,_jobject *param_2,int param_3,
+          _jbyteArray *param_4,_jbyteArray *param_5,_jbyteArray *param_6)
+
+{
+  enum_errDescrValues eVar1;
+  int *piVar2;
+  undefined8 uVar3;
+  ulonglong uVar4;
+  _jbyteArray *p_Var5;
+  void *_Dst;
+  char *pcVar6;
+  undefined1 auStackY_c8 [32];
+  uint auStack_88 [2];
+  longlong lStack_80;
+  void *pvStack_78;
+  int aiStack_70 [2];
+  longlong *plStack_68;
+  undefined8 uStack_60;
+  undefined1 auStack_58 [4];
+  uint uStack_54;
+  undefined8 uStack_50;
+  undefined8 uStack_48;
+  undefined4 uStack_40;
+  ulonglong uStack_38;
+  
+  uStack_38 = DAT_180046100 ^ (ulonglong)auStackY_c8;
+  lStack_80 = 0;
+  pvStack_78 = (void *)0x0;
+  uStack_60 = 0;
+  uStack_54 = 0;
+  uStack_50 = 0;
+  uStack_48 = 0;
+  uStack_40 = 0;
+  piVar2 = DsfObject::getRandomContext(param_1);
+  if (piVar2 != (int *)0x0) {
+    uVar3 = FUN_1800177b0(aiStack_70);
+    eVar1 = (enum_errDescrValues)uVar3;
+    if (eVar1 == 0) {
+      uVar3 = FUN_180017690(aiStack_70,&lStack_80);
+      eVar1 = (enum_errDescrValues)uVar3;
+      if (eVar1 == 0) {
+        eVar1 = FUN_180014830(piVar2,plStack_68,param_3,&uStack_54,&uStack_50,&uStack_60,&lStack_80)
+        ;
+        if (eVar1 == 0) {
+          uVar4 = FUN_1800171c0(aiStack_70,&pvStack_78,auStack_88);
+          eVar1 = (enum_errDescrValues)uVar4;
+          if (eVar1 == 0) {
+            p_Var5 = (_jbyteArray *)
+                     (*(code *)PTR__guard_dispatch_icall_180026210)(param_1,auStack_88[0]);
+            _Dst = (void *)(*(code *)PTR__guard_dispatch_icall_180026210)(param_1,p_Var5,auStack_58)
+            ;
+            memcpy(_Dst,pvStack_78,(ulonglong)auStack_88[0]);
+            (*(code *)PTR__guard_dispatch_icall_180026210)(param_1,p_Var5,_Dst,0);
+            free(pvStack_78);
+            FUN_1800147b0((longlong *)&plStack_68,(longlong *)0x0);
+            FUN_180009bd0(&lStack_80);
+            return p_Var5;
+          }
+          pcVar6 = "error generating DER from key";
+        }
+        else {
+          pcVar6 = "error generating dsa key pair";
+        }
+        DsfObject::throwException
+                  ((DsfObject *)(this + 8),param_1,"java/security/ProviderException",pcVar6,eVar1);
+        FUN_1800147b0((longlong *)&plStack_68,&lStack_80);
+        return (_jbyteArray *)0x0;
+      }
+      pcVar6 = "error creating dsa key pair";
+    }
+    else {
+      pcVar6 = "error initializing asymmetric key";
+    }
+    DsfObject::throwException
+              ((DsfObject *)(this + 8),param_1,"java/security/ProviderException",pcVar6,eVar1);
+  }
+  return (_jbyteArray *)0x0;
+}
+
+
+### Java_com_tridium_dsf_provider_spi_DsfDsaKeyPairGeneratorSpi_generateDsaKeyPair0__I @ 18001f030 type=Function
+
+void Java_com_tridium_dsf_provider_spi_DsfDsaKeyPairGeneratorSpi_generateDsaKeyPair0__I
+               (JNIEnv_ *param_1,_jobject *param_2,int param_3)
+
+{
+  DsfObject *pDVar1;
+  DsfDsaKeyPairGenerator *this;
+  DsfObject *this_00;
+  _jobject *p_Var2;
+  DsfObject *pDVar3;
+  
+  p_Var2 = param_2;
+                    /* 0x1f030  124
+                       Java_com_tridium_dsf_provider_spi_DsfDsaKeyPairGeneratorSpi_generateDsaKeyPair0__I
+                        */
+  pDVar1 = DsfObject::getContext(param_1,param_2);
+  pDVar3 = (DsfObject *)0x0;
+  this_00 = pDVar1 + -8;
+  if (pDVar1 == (DsfObject *)0x0) {
+    this_00 = pDVar3;
+  }
+  if (this_00 == (DsfObject *)0x0) {
+    this = (DsfDsaKeyPairGenerator *)FUN_180024d1c(8);
+    this_00 = pDVar3;
+    if (this != (DsfDsaKeyPairGenerator *)0x0) {
+      this_00 = (DsfObject *)
+                DsfDsaKeyPairGenerator::DsfDsaKeyPairGenerator
+                          (this,(DsfDsaKeyPairGenerator *)p_Var2);
+    }
+    pDVar1 = this_00 + 8;
+    if (this_00 == (DsfObject *)0x0) {
+      pDVar1 = pDVar3;
+    }
+    DsfObject::setContext(param_1,param_2,pDVar1);
+  }
+  DsfDsaKeyPairGenerator::generateKeyPair((DsfDsaKeyPairGenerator *)this_00,param_1,param_2,param_3)
+  ;
+  return;
+}
+
+
+### Java_com_tridium_dsf_provider_spi_DsfDsaKeyPairGeneratorSpi_generateDsaKeyPair0__I_3B_3B_3B @ 18001f0d0 type=Function
+
+void Java_com_tridium_dsf_provider_spi_DsfDsaKeyPairGeneratorSpi_generateDsaKeyPair0__I_3B_3B_3B
+               (JNIEnv_ *param_1,_jobject *param_2,int param_3,_jbyteArray *param_4,
+               _jbyteArray *param_5,_jbyteArray *param_6)
+
+{
+  DsfObject *pDVar1;
+  DsfDsaKeyPairGenerator *this;
+  DsfObject *this_00;
+  _jobject *p_Var2;
+  DsfObject *pDVar3;
+  
+  p_Var2 = param_2;
+                    /* 0x1f0d0  125
+                       Java_com_tridium_dsf_provider_spi_DsfDsaKeyPairGeneratorSpi_generateDsaKeyPair0__I_3B_3B_3B
+                        */
+  pDVar1 = DsfObject::getContext(param_1,param_2);
+  pDVar3 = (DsfObject *)0x0;
+  this_00 = pDVar1 + -8;
+  if (pDVar1 == (DsfObject *)0x0) {
+    this_00 = pDVar3;
+  }
+  if (this_00 == (DsfObject *)0x0) {
+    this = (DsfDsaKeyPairGenerator *)FUN_180024d1c(8);
+    this_00 = pDVar3;
+    if (this != (DsfDsaKeyPairGenerator *)0x0) {
+      this_00 = (DsfObject *)
+                DsfDsaKeyPairGenerator::DsfDsaKeyPairGenerator
+                          (this,(DsfDsaKeyPairGenerator *)p_Var2);
+    }
+    pDVar1 = this_00 + 8;
+    if (this_00 == (DsfObject *)0x0) {
+      pDVar1 = pDVar3;
+    }
+    DsfObject::setContext(param_1,param_2,pDVar1);
+  }
+  DsfDsaKeyPairGenerator::generateKeyPair
+            ((DsfDsaKeyPairGenerator *)this_00,param_1,param_2,param_3,param_4,param_5,param_6);
+  return;
+}
+
+
+### DsfSha1WithDsaSignature @ 180020980 type=Function
+
+/* public: __cdecl DsfSha1WithDsaSignature::DsfSha1WithDsaSignature(class DsfSha1WithDsaSignature
+   const & __ptr64) __ptr64 */
+
+DsfSha1WithDsaSignature * __thiscall
+DsfSha1WithDsaSignature::DsfSha1WithDsaSignature
+          (DsfSha1WithDsaSignature *this,DsfSha1WithDsaSignature *param_1)
+
+{
+  undefined8 uVar1;
+  
+                    /* 0x20980  9  ??0DsfSha1WithDsaSignature@@QEAA@AEBV0@@Z */
+  *(undefined ***)this = vftable;
+  uVar1 = *(undefined8 *)(param_1 + 0x10);
+  *(undefined8 *)(this + 8) = *(undefined8 *)(param_1 + 8);
+  *(undefined8 *)(this + 0x10) = uVar1;
+  *(undefined8 *)(this + 0x18) = *(undefined8 *)(param_1 + 0x18);
+  *(undefined4 *)(this + 0x20) = *(undefined4 *)(param_1 + 0x20);
+  *(undefined4 *)(this + 0x24) = *(undefined4 *)(param_1 + 0x24);
+  return this;
+}
+
+
+### ??0DsfSha1WithDsaSignature@@QEAA@AEBV0@@Z @ 180020980 type=Label
+
+/* public: __cdecl DsfSha1WithDsaSignature::DsfSha1WithDsaSignature(class DsfSha1WithDsaSignature
+   const & __ptr64) __ptr64 */
+
+DsfSha1WithDsaSignature * __thiscall
+DsfSha1WithDsaSignature::DsfSha1WithDsaSignature
+          (DsfSha1WithDsaSignature *this,DsfSha1WithDsaSignature *param_1)
+
+{
+  undefined8 uVar1;
+  
+                    /* 0x20980  9  ??0DsfSha1WithDsaSignature@@QEAA@AEBV0@@Z */
+  *(undefined ***)this = vftable;
+  uVar1 = *(undefined8 *)(param_1 + 0x10);
+  *(undefined8 *)(this + 8) = *(undefined8 *)(param_1 + 8);
+  *(undefined8 *)(this + 0x10) = uVar1;
+  *(undefined8 *)(this + 0x18) = *(undefined8 *)(param_1 + 0x18);
+  *(undefined4 *)(this + 0x20) = *(undefined4 *)(param_1 + 0x20);
+  *(undefined4 *)(this + 0x24) = *(undefined4 *)(param_1 + 0x24);
+  return this;
+}
+
+
+### DsfSha1WithDsaSignature @ 1800209b0 type=Function
+
+/* public: __cdecl DsfSha1WithDsaSignature::DsfSha1WithDsaSignature(void) __ptr64 */
+
+DsfSha1WithDsaSignature * __thiscall
+DsfSha1WithDsaSignature::DsfSha1WithDsaSignature(DsfSha1WithDsaSignature *this)
+
+{
+                    /* 0x209b0  10  ??0DsfSha1WithDsaSignature@@QEAA@XZ */
+  *(undefined8 *)(this + 0x18) = 0;
+  *(undefined ***)this = vftable;
+  FUN_1800177b0((undefined4 *)(this + 8));
+  *(undefined4 *)(this + 0x20) = 0;
+  *(undefined4 *)(this + 0x24) = 0x14;
+  return this;
+}
+
+
+### ??0DsfSha1WithDsaSignature@@QEAA@XZ @ 1800209b0 type=Label
+
+/* public: __cdecl DsfSha1WithDsaSignature::DsfSha1WithDsaSignature(void) __ptr64 */
+
+DsfSha1WithDsaSignature * __thiscall
+DsfSha1WithDsaSignature::DsfSha1WithDsaSignature(DsfSha1WithDsaSignature *this)
+
+{
+                    /* 0x209b0  10  ??0DsfSha1WithDsaSignature@@QEAA@XZ */
+  *(undefined8 *)(this + 0x18) = 0;
+  *(undefined ***)this = vftable;
+  FUN_1800177b0((undefined4 *)(this + 8));
+  *(undefined4 *)(this + 0x20) = 0;
+  *(undefined4 *)(this + 0x24) = 0x14;
+  return this;
+}
+
+
+### ~DsfSha1WithDsaSignature @ 1800209f0 type=Function
+
+/* WARNING: Switch with 1 destination removed at 0x000180020a27 */
+/* public: virtual __cdecl DsfSha1WithDsaSignature::~DsfSha1WithDsaSignature(void) __ptr64 */
+
+void __thiscall DsfSha1WithDsaSignature::~DsfSha1WithDsaSignature(DsfSha1WithDsaSignature *this)
+
+{
+  undefined8 *puVar1;
+  
+                    /* 0x209f0  21  ??1DsfSha1WithDsaSignature@@UEAA@XZ */
+  *(undefined ***)this = vftable;
+  FUN_1800179b0((int *)(this + 8),(longlong *)0x0);
+  puVar1 = *(undefined8 **)(this + 0x18);
+  if (puVar1 == (undefined8 *)0x0) {
+    return;
+  }
+                    /* WARNING: Could not recover jumptable at 0x0001800259c0. Too many branches */
+                    /* WARNING: Treating indirect jump as call */
+  (**(code **)*puVar1)(puVar1,1);
+  return;
+}
+
+
+### ??1DsfSha1WithDsaSignature@@UEAA@XZ @ 1800209f0 type=Label
+
+/* WARNING: Switch with 1 destination removed at 0x000180020a27 */
+/* public: virtual __cdecl DsfSha1WithDsaSignature::~DsfSha1WithDsaSignature(void) __ptr64 */
+
+void __thiscall DsfSha1WithDsaSignature::~DsfSha1WithDsaSignature(DsfSha1WithDsaSignature *this)
+
+{
+  undefined8 *puVar1;
+  
+                    /* 0x209f0  21  ??1DsfSha1WithDsaSignature@@UEAA@XZ */
+  *(undefined ***)this = vftable;
+  FUN_1800179b0((int *)(this + 8),(longlong *)0x0);
+  puVar1 = *(undefined8 **)(this + 0x18);
+  if (puVar1 == (undefined8 *)0x0) {
+    return;
+  }
+                    /* WARNING: Could not recover jumptable at 0x0001800259c0. Too many branches */
+                    /* WARNING: Treating indirect jump as call */
+  (**(code **)*puVar1)(puVar1,1);
+  return;
+}
+
+
+### ??4DsfSha1WithDsaSignature@@QEAAAEAV0@AEBV0@@Z @ 180020a40 type=Label
+
+/* public: class DsfSha1WithDsaSignature & __ptr64 __cdecl DsfSha1WithDsaSignature::operator=(class
+   DsfSha1WithDsaSignature const & __ptr64) __ptr64 */
+
+DsfSha1WithDsaSignature * __thiscall
+DsfSha1WithDsaSignature::operator=(DsfSha1WithDsaSignature *this,DsfSha1WithDsaSignature *param_1)
+
+{
+  undefined8 uVar1;
+  
+                    /* 0x20a40  31  ??4DsfSha1WithDsaSignature@@QEAAAEAV0@AEBV0@@Z */
+  uVar1 = *(undefined8 *)(param_1 + 0x10);
+  *(undefined8 *)(this + 8) = *(undefined8 *)(param_1 + 8);
+  *(undefined8 *)(this + 0x10) = uVar1;
+  *(undefined8 *)(this + 0x18) = *(undefined8 *)(param_1 + 0x18);
+  *(undefined4 *)(this + 0x20) = *(undefined4 *)(param_1 + 0x20);
+  *(undefined4 *)(this + 0x24) = *(undefined4 *)(param_1 + 0x24);
+  return this;
+}
+
+
+### ?createDSASignature@DsfSha1WithDsaSignature@@AEAA?AW4enum_errDescrValues@@PEAUvlong@@0PEAPEAEPEAI@Z @ 180020b20 type=Label
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+/* private: enum enum_errDescrValues __cdecl DsfSha1WithDsaSignature::createDSASignature(struct
+   vlong * __ptr64,struct vlong * __ptr64,unsigned char * __ptr64 * __ptr64,unsigned int * __ptr64)
+   __ptr64 */
+
+enum_errDescrValues __thiscall
+DsfSha1WithDsaSignature::createDSASignature
+          (DsfSha1WithDsaSignature *this,vlong *param_1,vlong *param_2,uchar **param_3,uint *param_4
+          )
+
+{
+  enum_errDescrValues eVar1;
+  byte *_Memory;
+  byte *_Memory_00;
+  undefined8 uVar2;
+  ulonglong uVar3;
+  size_t sVar4;
+  undefined1 auStackY_88 [32];
+  uint local_58;
+  uint local_54;
+  longlong *local_50;
+  undefined8 local_48;
+  undefined8 local_40;
+  ulonglong local_38;
+  
+                    /* 0x20b20  51
+                       ?createDSASignature@DsfSha1WithDsaSignature@@AEAA?AW4enum_errDescrValues@@PEAUvlong@@0PEAPEAEPEAI@Z
+                        */
+  local_38 = DAT_180046100 ^ (ulonglong)auStackY_88;
+  FUN_180009540((longlong *)param_1,(undefined1 *)0x0,&local_58);
+  sVar4 = (size_t)(local_58 + 1);
+  if (local_58 == 0xffffffff) {
+    sVar4 = 0xffffffffffffffff;
+  }
+  _Memory = malloc(sVar4);
+  if (_Memory != (byte *)0x0) {
+    *_Memory = 0;
+    FUN_180009540((longlong *)param_1,_Memory + 1,&local_58);
+    FUN_180009540((longlong *)param_2,(undefined1 *)0x0,&local_54);
+    sVar4 = (size_t)(local_54 + 1);
+    if (local_54 == 0xffffffff) {
+      sVar4 = 0xffffffffffffffff;
+    }
+    _Memory_00 = malloc(sVar4);
+    if (_Memory_00 != (byte *)0x0) {
+      *_Memory_00 = 0;
+      FUN_180009540((longlong *)param_2,_Memory_00 + 1,&local_54);
+      uVar2 = FUN_180001380(0,0x30,0,0,&local_50);
+      if ((enum_errDescrValues)uVar2 != 0) {
+        free(_Memory);
+        free(_Memory_00);
+        return (enum_errDescrValues)uVar2;
+      }
+      uVar2 = FUN_180001220((longlong)local_50,local_58 + 1,_Memory,&local_48);
+      eVar1 = (enum_errDescrValues)uVar2;
+      if (eVar1 == 0) {
+        uVar2 = FUN_180001220((longlong)local_50,local_54 + 1,_Memory_00,&local_40);
+        eVar1 = (enum_errDescrValues)uVar2;
+        if (eVar1 == 0) {
+          uVar3 = FUN_180001550((longlong)local_50,param_3,param_4);
+          eVar1 = (enum_errDescrValues)uVar3;
+        }
+      }
+      free(_Memory);
+      free(_Memory_00);
+      FUN_180005420(local_50);
+      return eVar1;
+    }
+  }
+  return 0xffffe82b;
+}
+
+
+### ?initSign@DsfSha1WithDsaSignature@@QEAAXPEAUJNIEnv_@@PEAV_jobject@@PEAV_jbyteArray@@@Z @ 180020ca0 type=Label
+
+/* public: void __cdecl DsfSha1WithDsaSignature::initSign(struct JNIEnv_ * __ptr64,class _jobject *
+   __ptr64,class _jbyteArray * __ptr64) __ptr64 */
+
+void __thiscall
+DsfSha1WithDsaSignature::initSign
+          (DsfSha1WithDsaSignature *this,JNIEnv_ *param_1,_jobject *param_2,_jbyteArray *param_3)
+
+{
+  undefined4 uVar1;
+  longlong lVar2;
+  ulonglong uVar3;
+  
+                    /* 0x20ca0  67
+                       ?initSign@DsfSha1WithDsaSignature@@QEAAXPEAUJNIEnv_@@PEAV_jobject@@PEAV_jbyteArray@@@Z
+                        */
+  reset(this,param_1,param_2);
+  uVar1 = (*(code *)PTR__guard_dispatch_icall_180026210)(param_1,param_3);
+  lVar2 = (*(code *)PTR__guard_dispatch_icall_180026210)(param_1,param_3,0);
+  uVar3 = FUN_180016e00(lVar2,uVar1,(int *)(this + 8));
+  (*(code *)PTR__guard_dispatch_icall_180026210)(param_1,param_3,lVar2,0);
+  if ((enum_errDescrValues)uVar3 != 0) {
+    DsfObject::throwException
+              ((DsfObject *)(this + 8),param_1,"java/security/ProviderException",
+               "unable to read dsa private key",(enum_errDescrValues)uVar3);
+  }
+  *(undefined4 *)(this + 0x20) = 1;
+  return;
+}
+
+
+### ?initVerify@DsfSha1WithDsaSignature@@QEAAXPEAUJNIEnv_@@PEAV_jobject@@PEAV_jbyteArray@@@Z @ 180020d70 type=Label
+
+/* public: void __cdecl DsfSha1WithDsaSignature::initVerify(struct JNIEnv_ * __ptr64,class _jobject
+   * __ptr64,class _jbyteArray * __ptr64) __ptr64 */
+
+void __thiscall
+DsfSha1WithDsaSignature::initVerify
+          (DsfSha1WithDsaSignature *this,JNIEnv_ *param_1,_jobject *param_2,_jbyteArray *param_3)
+
+{
+  uint uVar1;
+  enum_errDescrValues eVar2;
+  uchar *puVar3;
+  
+                    /* 0x20d70  69
+                       ?initVerify@DsfSha1WithDsaSignature@@QEAAXPEAUJNIEnv_@@PEAV_jobject@@PEAV_jbyteArray@@@Z
+                        */
+  reset(this,param_1,param_2);
+  uVar1 = (*(code *)PTR__guard_dispatch_icall_180026210)(param_1,param_3);
+  puVar3 = (uchar *)(*(code *)PTR__guard_dispatch_icall_180026210)(param_1,param_3,0);
+  eVar2 = parseDSAPublicKey(this,puVar3,uVar1,(AsymmetricKey *)(this + 8));
+  (*(code *)PTR__guard_dispatch_icall_180026210)(param_1,param_3,puVar3,0);
+  if (eVar2 == 0) {
+    *(undefined4 *)(this + 0x20) = 2;
+  }
+  else {
+    DsfObject::throwException
+              ((DsfObject *)(this + 8),param_1,"java/security/ProviderException",
+               "unable to read dsa public key",eVar2);
+  }
+  return;
+}
+
+
+### parseDERInteger @ 180020e40 type=Function
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+/* private: enum enum_errDescrValues __cdecl DsfSha1WithDsaSignature::parseDERInteger(unsigned char
+   const * __ptr64,unsigned int,unsigned char * __ptr64 * __ptr64,unsigned int * __ptr64) __ptr64 */
+
+enum_errDescrValues __thiscall
+DsfSha1WithDsaSignature::parseDERInteger
+          (DsfSha1WithDsaSignature *this,uchar *param_1,uint param_2,uchar **param_3,uint *param_4)
+
+{
+  uint uVar1;
+  longlong lVar2;
+  enum_errDescrValues eVar3;
+  ulonglong uVar4;
+  undefined8 uVar5;
+  void *_Src;
+  uchar *_Dst;
+  undefined1 auStack_98 [32];
+  undefined8 local_78;
+  undefined8 uStack_70;
+  longlong *local_68 [2];
+  undefined8 local_58;
+  undefined8 uStack_50;
+  undefined8 local_48 [2];
+  ulonglong local_38;
+  
+                    /* 0x20e40  85
+                       ?parseDERInteger@DsfSha1WithDsaSignature@@AEAA?AW4enum_errDescrValues@@PEBEIPEAPEAEPEAI@Z
+                        */
+  local_38 = DAT_180046100 ^ (ulonglong)auStack_98;
+  local_68[0] = (longlong *)0x0;
+  FUN_180003580(local_48,param_2,param_1);
+  FUN_1800028b0(&local_58,local_48);
+  local_78 = local_58;
+  uStack_70 = uStack_50;
+  uVar4 = FUN_1800019e0(&local_78,local_68);
+  eVar3 = (enum_errDescrValues)uVar4;
+  if (-1 < (int)eVar3) {
+    lVar2 = local_68[0][1];
+    uVar5 = FUN_180002040(lVar2,2);
+    if ((int)uVar5 < 0) {
+      eVar3 = 0xffffe24d;
+    }
+    else {
+      uVar1 = *(uint *)(lVar2 + 0x28);
+      local_78 = local_58;
+      uStack_70 = uStack_50;
+      _Src = (void *)FUN_180002900(&local_78);
+      if (_Src == (void *)0x0) {
+        eVar3 = 0xffffe82b;
+      }
+      else {
+        _Dst = malloc((ulonglong)uVar1);
+        *param_3 = _Dst;
+        memcpy(_Dst,_Src,(ulonglong)uVar1);
+        *param_4 = uVar1;
+        local_78 = local_58;
+        uStack_70 = uStack_50;
+        FUN_180002940(&local_78);
+      }
+    }
+  }
+  if (local_68[0] != (longlong *)0x0) {
+    FUN_180005420(local_68[0]);
+  }
+  return eVar3;
+}
+
+
+### ?parseDERInteger@DsfSha1WithDsaSignature@@AEAA?AW4enum_errDescrValues@@PEBEIPEAPEAEPEAI@Z @ 180020e40 type=Label
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+/* private: enum enum_errDescrValues __cdecl DsfSha1WithDsaSignature::parseDERInteger(unsigned char
+   const * __ptr64,unsigned int,unsigned char * __ptr64 * __ptr64,unsigned int * __ptr64) __ptr64 */
+
+enum_errDescrValues __thiscall
+DsfSha1WithDsaSignature::parseDERInteger
+          (DsfSha1WithDsaSignature *this,uchar *param_1,uint param_2,uchar **param_3,uint *param_4)
+
+{
+  uint uVar1;
+  longlong lVar2;
+  enum_errDescrValues eVar3;
+  ulonglong uVar4;
+  undefined8 uVar5;
+  void *_Src;
+  uchar *_Dst;
+  undefined1 auStack_98 [32];
+  undefined8 local_78;
+  undefined8 uStack_70;
+  longlong *local_68 [2];
+  undefined8 local_58;
+  undefined8 uStack_50;
+  undefined8 local_48 [2];
+  ulonglong local_38;
+  
+                    /* 0x20e40  85
+                       ?parseDERInteger@DsfSha1WithDsaSignature@@AEAA?AW4enum_errDescrValues@@PEBEIPEAPEAEPEAI@Z
+                        */
+  local_38 = DAT_180046100 ^ (ulonglong)auStack_98;
+  local_68[0] = (longlong *)0x0;
+  FUN_180003580(local_48,param_2,param_1);
+  FUN_1800028b0(&local_58,local_48);
+  local_78 = local_58;
+  uStack_70 = uStack_50;
+  uVar4 = FUN_1800019e0(&local_78,local_68);
+  eVar3 = (enum_errDescrValues)uVar4;
+  if (-1 < (int)eVar3) {
+    lVar2 = local_68[0][1];
+    uVar5 = FUN_180002040(lVar2,2);
+    if ((int)uVar5 < 0) {
+      eVar3 = 0xffffe24d;
+    }
+    else {
+      uVar1 = *(uint *)(lVar2 + 0x28);
+      local_78 = local_58;
+      uStack_70 = uStack_50;
+      _Src = (void *)FUN_180002900(&local_78);
+      if (_Src == (void *)0x0) {
+        eVar3 = 0xffffe82b;
+      }
+      else {
+        _Dst = malloc((ulonglong)uVar1);
+        *param_3 = _Dst;
+        memcpy(_Dst,_Src,(ulonglong)uVar1);
+        *param_4 = uVar1;
+        local_78 = local_58;
+        uStack_70 = uStack_50;
+        FUN_180002940(&local_78);
+      }
+    }
+  }
+  if (local_68[0] != (longlong *)0x0) {
+    FUN_180005420(local_68[0]);
+  }
+  return eVar3;
+}
+
+
+### parseDSAPublicKey @ 180020fb0 type=Function
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+/* private: enum enum_errDescrValues __cdecl DsfSha1WithDsaSignature::parseDSAPublicKey(unsigned
+   char const * __ptr64,unsigned int,struct AsymmetricKey * __ptr64) __ptr64 */
+
+enum_errDescrValues __thiscall
+DsfSha1WithDsaSignature::parseDSAPublicKey
+          (DsfSha1WithDsaSignature *this,uchar *param_1,uint param_2,AsymmetricKey *param_3)
+
+{
+  uint uVar1;
+  longlong lVar2;
+  enum_errDescrValues eVar3;
+  ulonglong uVar4;
+  undefined8 uVar5;
+  longlong lVar6;
+  undefined8 *puVar7;
+  uchar *puVar8;
+  uchar *puVar9;
+  undefined1 auStackY_108 [32];
+  undefined8 local_b8;
+  longlong local_a8 [2];
+  undefined8 local_98 [2];
+  uint local_88;
+  int local_84;
+  int local_80;
+  int local_7c;
+  uchar *local_78;
+  longlong *local_70;
+  undefined4 local_68;
+  undefined4 uStack_64;
+  undefined8 local_58 [2];
+  ulonglong local_48;
+  uchar *_Memory;
+  
+                    /* 0x20fb0  86
+                       ?parseDSAPublicKey@DsfSha1WithDsaSignature@@AEAA?AW4enum_errDescrValues@@PEBEIPEAUAsymmetricKey@@@Z
+                        */
+  local_48 = DAT_180046100 ^ (ulonglong)auStackY_108;
+  _Memory = (uchar *)0x0;
+  puVar8 = (uchar *)0x0;
+  local_70 = (longlong *)0x0;
+  local_78 = (uchar *)0x0;
+  puVar9 = (uchar *)0x0;
+  if ((param_1 == (uchar *)0x0) || (param_3 == (AsymmetricKey *)0x0)) {
+    return 0xffffe88f;
+  }
+  local_b8 = this;
+  FUN_180003580(local_58,param_2,param_1);
+  FUN_1800028b0((undefined8 *)&local_68,local_58);
+  local_a8[0] = CONCAT44(uStack_64,local_68);
+  uVar4 = FUN_1800019e0(local_a8,&local_70);
+  eVar3 = (enum_errDescrValues)uVar4;
+  if (-1 < (int)eVar3) {
+    lVar2 = local_70[1];
+    uVar5 = FUN_180002040(lVar2,0x10);
+    if ((int)uVar5 < 0) {
+      eVar3 = 0xffffe24d;
+    }
+    else {
+      lVar2 = *(longlong *)(lVar2 + 8);
+      uVar5 = FUN_180002040(lVar2,0x10);
+      if ((int)uVar5 < 0) {
+        eVar3 = 0xffffe24d;
+      }
+      else {
+        lVar2 = *(longlong *)(lVar2 + 8);
+        uVar5 = FUN_180002040(lVar2,6);
+        if ((int)uVar5 < 0) {
+          eVar3 = 0xffffe24d;
+          _Memory = puVar8;
+        }
+        else {
+          lVar2 = *(longlong *)(lVar2 + 0x10);
+          uVar5 = FUN_180002040(lVar2,0x10);
+          if ((int)uVar5 < 0) {
+            eVar3 = 0xffffe24d;
+            _Memory = puVar8;
+          }
+          else {
+            lVar2 = *(longlong *)(lVar2 + 8);
+            uVar5 = FUN_180002040(lVar2,2);
+            if ((int)uVar5 < 0) {
+              eVar3 = 0xffffe24d;
+              _Memory = puVar8;
+            }
+            else {
+              local_7c = *(int *)(lVar2 + 0x28);
+              local_a8[0] = CONCAT44(uStack_64,local_68);
+              lVar6 = FUN_180002900(local_a8);
+              if (lVar6 == 0) {
+                eVar3 = 0xffffe82b;
+              }
+              else {
+                lVar2 = *(longlong *)(lVar2 + 0x10);
+                uVar5 = FUN_180002040(lVar2,2);
+                if ((int)uVar5 < 0) {
+                  eVar3 = 0xffffe24d;
+                  puVar7 = &local_b8;
+                  local_b8 = (DsfSha1WithDsaSignature *)CONCAT44(uStack_64,local_68);
+                }
+                else {
+                  local_80 = *(int *)(lVar2 + 0x28);
+                  local_a8[0] = FUN_180002900(local_a8);
+                  if (local_a8[0] == 0) {
+                    local_b8 = (DsfSha1WithDsaSignature *)CONCAT44(uStack_64,local_68);
+                    puVar7 = &local_b8;
+                    eVar3 = 0xffffe82b;
+                  }
+                  else {
+                    puVar7 = *(undefined8 **)(lVar2 + 0x10);
+                    uVar5 = FUN_180002040((longlong)puVar7,2);
+                    if ((int)uVar5 < 0) {
+                      eVar3 = 0xffffe24d;
+                      puVar8 = _Memory;
+                      puVar9 = _Memory;
+                    }
+                    else {
+                      local_84 = *(int *)(puVar7 + 5);
+                      puVar8 = (uchar *)FUN_180002900(local_98);
+                      if (puVar8 == (uchar *)0x0) {
+                        eVar3 = 0xffffe82b;
+                        puVar9 = _Memory;
+                      }
+                      else {
+                        lVar2 = *(longlong *)*puVar7;
+                        uVar5 = FUN_180002040(lVar2,0x10);
+                        if ((int)uVar5 < 0) {
+                          eVar3 = 0xffffe24d;
+                        }
+                        else {
+                          lVar2 = *(longlong *)(lVar2 + 0x10);
+                          uVar5 = FUN_180002040(lVar2,3);
+                          if ((int)uVar5 < 0) {
+                            eVar3 = 0xffffe24d;
+                          }
+                          else {
+                            uVar1 = *(uint *)(lVar2 + 0x28);
+                            puVar9 = (uchar *)FUN_180002900(local_98);
+                            if (puVar9 == (uchar *)0x0) {
+                              eVar3 = 0xffffe82b;
+                            }
+                            else {
+                              eVar3 = parseDERInteger(local_b8,puVar9,uVar1,&local_78,&local_88);
+                              _Memory = local_78;
+                              if (eVar3 == 0) {
+                                uVar5 = FUN_180017690((int *)param_3,(longlong *)0x0);
+                                _Memory = local_78;
+                                eVar3 = (enum_errDescrValues)uVar5;
+                                if (-1 < (int)eVar3) {
+                                  uVar4 = FUN_180014c20(*(longlong **)(param_3 + 8),lVar6,local_7c,
+                                                        local_a8[0],local_80,(longlong)puVar8,
+                                                        local_84,(longlong)local_78,local_88,
+                                                        (longlong *)0x0);
+                                  eVar3 = (enum_errDescrValues)uVar4;
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                    local_b8 = (DsfSha1WithDsaSignature *)CONCAT44(uStack_64,local_68);
+                    FUN_180002940(&local_b8);
+                    FUN_180002940(local_98);
+                    if (puVar8 != (uchar *)0x0) {
+                      FUN_180002940(local_98);
+                    }
+                    if (puVar9 == (uchar *)0x0) goto LAB_180021334;
+                    puVar7 = local_98;
+                  }
+                }
+                FUN_180002940(puVar7);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+LAB_180021334:
+  if (local_70 != (longlong *)0x0) {
+    FUN_180005420(local_70);
+  }
+  if (_Memory != (uchar *)0x0) {
+    free(_Memory);
+  }
+  if ((int)eVar3 < 0) {
+    FUN_1800179b0((int *)param_3,(longlong *)0x0);
+  }
+  return eVar3;
+}
+
+
+### ?parseDSAPublicKey@DsfSha1WithDsaSignature@@AEAA?AW4enum_errDescrValues@@PEBEIPEAUAsymmetricKey@@@Z @ 180020fb0 type=Label
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+/* private: enum enum_errDescrValues __cdecl DsfSha1WithDsaSignature::parseDSAPublicKey(unsigned
+   char const * __ptr64,unsigned int,struct AsymmetricKey * __ptr64) __ptr64 */
+
+enum_errDescrValues __thiscall
+DsfSha1WithDsaSignature::parseDSAPublicKey
+          (DsfSha1WithDsaSignature *this,uchar *param_1,uint param_2,AsymmetricKey *param_3)
+
+{
+  uint uVar1;
+  longlong lVar2;
+  enum_errDescrValues eVar3;
+  ulonglong uVar4;
+  undefined8 uVar5;
+  longlong lVar6;
+  undefined8 *puVar7;
+  uchar *puVar8;
+  uchar *puVar9;
+  undefined1 auStackY_108 [32];
+  undefined8 local_b8;
+  longlong local_a8 [2];
+  undefined8 local_98 [2];
+  uint local_88;
+  int local_84;
+  int local_80;
+  int local_7c;
+  uchar *local_78;
+  longlong *local_70;
+  undefined4 local_68;
+  undefined4 uStack_64;
+  undefined8 local_58 [2];
+  ulonglong local_48;
+  uchar *_Memory;
+  
+                    /* 0x20fb0  86
+                       ?parseDSAPublicKey@DsfSha1WithDsaSignature@@AEAA?AW4enum_errDescrValues@@PEBEIPEAUAsymmetricKey@@@Z
+                        */
+  local_48 = DAT_180046100 ^ (ulonglong)auStackY_108;
+  _Memory = (uchar *)0x0;
+  puVar8 = (uchar *)0x0;
+  local_70 = (longlong *)0x0;
+  local_78 = (uchar *)0x0;
+  puVar9 = (uchar *)0x0;
+  if ((param_1 == (uchar *)0x0) || (param_3 == (AsymmetricKey *)0x0)) {
+    return 0xffffe88f;
+  }
+  local_b8 = this;
+  FUN_180003580(local_58,param_2,param_1);
+  FUN_1800028b0((undefined8 *)&local_68,local_58);
+  local_a8[0] = CONCAT44(uStack_64,local_68);
+  uVar4 = FUN_1800019e0(local_a8,&local_70);
+  eVar3 = (enum_errDescrValues)uVar4;
+  if (-1 < (int)eVar3) {
+    lVar2 = local_70[1];
+    uVar5 = FUN_180002040(lVar2,0x10);
+    if ((int)uVar5 < 0) {
+      eVar3 = 0xffffe24d;
+    }
+    else {
+      lVar2 = *(longlong *)(lVar2 + 8);
+      uVar5 = FUN_180002040(lVar2,0x10);
+      if ((int)uVar5 < 0) {
+        eVar3 = 0xffffe24d;
+      }
+      else {
+        lVar2 = *(longlong *)(lVar2 + 8);
+        uVar5 = FUN_180002040(lVar2,6);
+        if ((int)uVar5 < 0) {
+          eVar3 = 0xffffe24d;
+          _Memory = puVar8;
+        }
+        else {
+          lVar2 = *(longlong *)(lVar2 + 0x10);
+          uVar5 = FUN_180002040(lVar2,0x10);
+          if ((int)uVar5 < 0) {
+            eVar3 = 0xffffe24d;
+            _Memory = puVar8;
+          }
+          else {
+            lVar2 = *(longlong *)(lVar2 + 8);
+            uVar5 = FUN_180002040(lVar2,2);
+            if ((int)uVar5 < 0) {
+              eVar3 = 0xffffe24d;
+              _Memory = puVar8;
+            }
+            else {
+              local_7c = *(int *)(lVar2 + 0x28);
+              local_a8[0] = CONCAT44(uStack_64,local_68);
+              lVar6 = FUN_180002900(local_a8);
+              if (lVar6 == 0) {
+                eVar3 = 0xffffe82b;
+              }
+              else {
+                lVar2 = *(longlong *)(lVar2 + 0x10);
+                uVar5 = FUN_180002040(lVar2,2);
+                if ((int)uVar5 < 0) {
+                  eVar3 = 0xffffe24d;
+                  puVar7 = &local_b8;
+                  local_b8 = (DsfSha1WithDsaSignature *)CONCAT44(uStack_64,local_68);
+                }
+                else {
+                  local_80 = *(int *)(lVar2 + 0x28);
+                  local_a8[0] = FUN_180002900(local_a8);
+                  if (local_a8[0] == 0) {
+                    local_b8 = (DsfSha1WithDsaSignature *)CONCAT44(uStack_64,local_68);
+                    puVar7 = &local_b8;
+                    eVar3 = 0xffffe82b;
+                  }
+                  else {
+                    puVar7 = *(undefined8 **)(lVar2 + 0x10);
+                    uVar5 = FUN_180002040((longlong)puVar7,2);
+                    if ((int)uVar5 < 0) {
+                      eVar3 = 0xffffe24d;
+                      puVar8 = _Memory;
+                      puVar9 = _Memory;
+                    }
+                    else {
+                      local_84 = *(int *)(puVar7 + 5);
+                      puVar8 = (uchar *)FUN_180002900(local_98);
+                      if (puVar8 == (uchar *)0x0) {
+                        eVar3 = 0xffffe82b;
+                        puVar9 = _Memory;
+                      }
+                      else {
+                        lVar2 = *(longlong *)*puVar7;
+                        uVar5 = FUN_180002040(lVar2,0x10);
+                        if ((int)uVar5 < 0) {
+                          eVar3 = 0xffffe24d;
+                        }
+                        else {
+                          lVar2 = *(longlong *)(lVar2 + 0x10);
+                          uVar5 = FUN_180002040(lVar2,3);
+                          if ((int)uVar5 < 0) {
+                            eVar3 = 0xffffe24d;
+                          }
+                          else {
+                            uVar1 = *(uint *)(lVar2 + 0x28);
+                            puVar9 = (uchar *)FUN_180002900(local_98);
+                            if (puVar9 == (uchar *)0x0) {
+                              eVar3 = 0xffffe82b;
+                            }
+                            else {
+                              eVar3 = parseDERInteger(local_b8,puVar9,uVar1,&local_78,&local_88);
+                              _Memory = local_78;
+                              if (eVar3 == 0) {
+                                uVar5 = FUN_180017690((int *)param_3,(longlong *)0x0);
+                                _Memory = local_78;
+                                eVar3 = (enum_errDescrValues)uVar5;
+                                if (-1 < (int)eVar3) {
+                                  uVar4 = FUN_180014c20(*(longlong **)(param_3 + 8),lVar6,local_7c,
+                                                        local_a8[0],local_80,(longlong)puVar8,
+                                                        local_84,(longlong)local_78,local_88,
+                                                        (longlong *)0x0);
+                                  eVar3 = (enum_errDescrValues)uVar4;
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                    local_b8 = (DsfSha1WithDsaSignature *)CONCAT44(uStack_64,local_68);
+                    FUN_180002940(&local_b8);
+                    FUN_180002940(local_98);
+                    if (puVar8 != (uchar *)0x0) {
+                      FUN_180002940(local_98);
+                    }
+                    if (puVar9 == (uchar *)0x0) goto LAB_180021334;
+                    puVar7 = local_98;
+                  }
+                }
+                FUN_180002940(puVar7);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+LAB_180021334:
+  if (local_70 != (longlong *)0x0) {
+    FUN_180005420(local_70);
+  }
+  if (_Memory != (uchar *)0x0) {
+    free(_Memory);
+  }
+  if ((int)eVar3 < 0) {
+    FUN_1800179b0((int *)param_3,(longlong *)0x0);
+  }
+  return eVar3;
+}
+
+
+### parseDSASignature @ 180021390 type=Function
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+/* private: enum enum_errDescrValues __cdecl DsfSha1WithDsaSignature::parseDSASignature(unsigned
+   char * __ptr64,unsigned int,struct vlong * __ptr64 * __ptr64,struct vlong * __ptr64 * __ptr64)
+   __ptr64 */
+
+enum_errDescrValues __thiscall
+DsfSha1WithDsaSignature::parseDSASignature
+          (DsfSha1WithDsaSignature *this,uchar *param_1,uint param_2,vlong **param_3,vlong **param_4
+          )
+
+{
+  int iVar1;
+  int iVar2;
+  enum_errDescrValues eVar3;
+  ulonglong uVar4;
+  undefined8 uVar5;
+  longlong lVar6;
+  longlong lVar7;
+  undefined1 auStack_a8 [32];
+  undefined8 local_88;
+  undefined8 uStack_80;
+  longlong *local_78 [2];
+  undefined8 local_68;
+  undefined8 uStack_60;
+  undefined8 local_58 [2];
+  ulonglong local_48;
+  
+                    /* 0x21390  87
+                       ?parseDSASignature@DsfSha1WithDsaSignature@@AEAA?AW4enum_errDescrValues@@PEAEIPEAPEAUvlong@@1@Z
+                        */
+  local_48 = DAT_180046100 ^ (ulonglong)auStack_a8;
+  local_78[0] = (longlong *)0x0;
+  if (param_1 == (uchar *)0x0) {
+    eVar3 = 0xffffe88f;
+  }
+  else {
+    FUN_180003580(local_58,param_2,param_1);
+    FUN_1800028b0(&local_68,local_58);
+    local_88 = local_68;
+    uStack_80 = uStack_60;
+    uVar4 = FUN_1800019e0(&local_88,local_78);
+    eVar3 = (enum_errDescrValues)uVar4;
+    if (eVar3 == 0) {
+      lVar7 = local_78[0][1];
+      uVar5 = FUN_180002040(lVar7,0x10);
+      if (-1 < (int)uVar5) {
+        lVar7 = *(longlong *)(lVar7 + 8);
+        uVar5 = FUN_180002040(lVar7,2);
+        if (-1 < (int)uVar5) {
+          iVar1 = *(int *)(lVar7 + 0x28);
+          local_88 = local_68;
+          uStack_80 = uStack_60;
+          lVar6 = FUN_180002900(&local_88);
+          if (lVar6 == 0) {
+            FUN_180005420(local_78[0]);
+            return 0xffffe82b;
+          }
+          lVar7 = *(longlong *)(lVar7 + 0x10);
+          uVar5 = FUN_180002040(lVar7,2);
+          if ((int)uVar5 < 0) {
+            FUN_180005420(local_78[0]);
+            return 0xffffd827;
+          }
+          iVar2 = *(int *)(lVar7 + 0x28);
+          local_88 = local_68;
+          uStack_80 = uStack_60;
+          lVar7 = FUN_180002900(&local_88);
+          if (lVar7 == 0) {
+            local_88 = local_68;
+            uStack_80 = uStack_60;
+            FUN_180002940(&local_88);
+            FUN_180005420(local_78[0]);
+            return 0xffffe82b;
+          }
+          uVar4 = FUN_18000eb70(lVar6,iVar1,(longlong *)param_3,(longlong *)0x0);
+          eVar3 = (enum_errDescrValues)uVar4;
+          if (eVar3 == 0) {
+            uVar4 = FUN_18000eb70(lVar7,iVar2,(longlong *)param_4,(longlong *)0x0);
+            eVar3 = (enum_errDescrValues)uVar4;
+            local_88 = local_68;
+            uStack_80 = uStack_60;
+            if (eVar3 == 0) {
+              FUN_180002940(&local_88);
+              local_88 = local_68;
+              uStack_80 = uStack_60;
+              FUN_180002940(&local_88);
+              FUN_180005420(local_78[0]);
+              return 0;
+            }
+          }
+          FUN_180002940(&local_88);
+          local_88 = local_68;
+          uStack_80 = uStack_60;
+          FUN_180002940(&local_88);
+          FUN_180005420(local_78[0]);
+          return eVar3;
+        }
+      }
+      FUN_180005420(local_78[0]);
+      eVar3 = 0xffffd827;
+    }
+  }
+  return eVar3;
+}
+
+
+### ?parseDSASignature@DsfSha1WithDsaSignature@@AEAA?AW4enum_errDescrValues@@PEAEIPEAPEAUvlong@@1@Z @ 180021390 type=Label
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+/* private: enum enum_errDescrValues __cdecl DsfSha1WithDsaSignature::parseDSASignature(unsigned
+   char * __ptr64,unsigned int,struct vlong * __ptr64 * __ptr64,struct vlong * __ptr64 * __ptr64)
+   __ptr64 */
+
+enum_errDescrValues __thiscall
+DsfSha1WithDsaSignature::parseDSASignature
+          (DsfSha1WithDsaSignature *this,uchar *param_1,uint param_2,vlong **param_3,vlong **param_4
+          )
+
+{
+  int iVar1;
+  int iVar2;
+  enum_errDescrValues eVar3;
+  ulonglong uVar4;
+  undefined8 uVar5;
+  longlong lVar6;
+  longlong lVar7;
+  undefined1 auStack_a8 [32];
+  undefined8 local_88;
+  undefined8 uStack_80;
+  longlong *local_78 [2];
+  undefined8 local_68;
+  undefined8 uStack_60;
+  undefined8 local_58 [2];
+  ulonglong local_48;
+  
+                    /* 0x21390  87
+                       ?parseDSASignature@DsfSha1WithDsaSignature@@AEAA?AW4enum_errDescrValues@@PEAEIPEAPEAUvlong@@1@Z
+                        */
+  local_48 = DAT_180046100 ^ (ulonglong)auStack_a8;
+  local_78[0] = (longlong *)0x0;
+  if (param_1 == (uchar *)0x0) {
+    eVar3 = 0xffffe88f;
+  }
+  else {
+    FUN_180003580(local_58,param_2,param_1);
+    FUN_1800028b0(&local_68,local_58);
+    local_88 = local_68;
+    uStack_80 = uStack_60;
+    uVar4 = FUN_1800019e0(&local_88,local_78);
+    eVar3 = (enum_errDescrValues)uVar4;
+    if (eVar3 == 0) {
+      lVar7 = local_78[0][1];
+      uVar5 = FUN_180002040(lVar7,0x10);
+      if (-1 < (int)uVar5) {
+        lVar7 = *(longlong *)(lVar7 + 8);
+        uVar5 = FUN_180002040(lVar7,2);
+        if (-1 < (int)uVar5) {
+          iVar1 = *(int *)(lVar7 + 0x28);
+          local_88 = local_68;
+          uStack_80 = uStack_60;
+          lVar6 = FUN_180002900(&local_88);
+          if (lVar6 == 0) {
+            FUN_180005420(local_78[0]);
+            return 0xffffe82b;
+          }
+          lVar7 = *(longlong *)(lVar7 + 0x10);
+          uVar5 = FUN_180002040(lVar7,2);
+          if ((int)uVar5 < 0) {
+            FUN_180005420(local_78[0]);
+            return 0xffffd827;
+          }
+          iVar2 = *(int *)(lVar7 + 0x28);
+          local_88 = local_68;
+          uStack_80 = uStack_60;
+          lVar7 = FUN_180002900(&local_88);
+          if (lVar7 == 0) {
+            local_88 = local_68;
+            uStack_80 = uStack_60;
+            FUN_180002940(&local_88);
+            FUN_180005420(local_78[0]);
+            return 0xffffe82b;
+          }
+          uVar4 = FUN_18000eb70(lVar6,iVar1,(longlong *)param_3,(longlong *)0x0);
+          eVar3 = (enum_errDescrValues)uVar4;
+          if (eVar3 == 0) {
+            uVar4 = FUN_18000eb70(lVar7,iVar2,(longlong *)param_4,(longlong *)0x0);
+            eVar3 = (enum_errDescrValues)uVar4;
+            local_88 = local_68;
+            uStack_80 = uStack_60;
+            if (eVar3 == 0) {
+              FUN_180002940(&local_88);
+              local_88 = local_68;
+              uStack_80 = uStack_60;
+              FUN_180002940(&local_88);
+              FUN_180005420(local_78[0]);
+              return 0;
+            }
+          }
+          FUN_180002940(&local_88);
+          local_88 = local_68;
+          uStack_80 = uStack_60;
+          FUN_180002940(&local_88);
+          FUN_180005420(local_78[0]);
+          return eVar3;
+        }
+      }
+      FUN_180005420(local_78[0]);
+      eVar3 = 0xffffd827;
+    }
+  }
+  return eVar3;
+}
+
+
+### ?reset@DsfSha1WithDsaSignature@@AEAAXPEAUJNIEnv_@@PEAV_jobject@@@Z @ 1800215e0 type=Label
+
+/* private: void __cdecl DsfSha1WithDsaSignature::reset(struct JNIEnv_ * __ptr64,class _jobject *
+   __ptr64) __ptr64 */
+
+void __thiscall
+DsfSha1WithDsaSignature::reset(DsfSha1WithDsaSignature *this,JNIEnv_ *param_1,_jobject *param_2)
+
+{
+  DsfSha1MessageDigest *this_00;
+  undefined8 uVar1;
+  
+                    /* 0x215e0  90
+                       ?reset@DsfSha1WithDsaSignature@@AEAAXPEAUJNIEnv_@@PEAV_jobject@@@Z */
+  FUN_1800179b0((int *)(this + 8),(longlong *)0x0);
+  FUN_1800177b0((undefined4 *)(this + 8));
+  if (*(longlong *)(this + 0x18) != 0) {
+    (*(code *)PTR__guard_dispatch_icall_180026210)(*(longlong *)(this + 0x18),1);
+  }
+  this_00 = (DsfSha1MessageDigest *)FUN_180024d1c(0x10);
+  if (this_00 == (DsfSha1MessageDigest *)0x0) {
+    uVar1 = 0;
+  }
+  else {
+    *(undefined8 *)this_00 = 0;
+    *(undefined8 *)(this_00 + 8) = 0;
+    uVar1 = DsfSha1MessageDigest::DsfSha1MessageDigest(this_00);
+  }
+  *(undefined8 *)(this + 0x18) = uVar1;
+  (*(code *)PTR__guard_dispatch_icall_180026210)(uVar1,param_1,param_2);
+  *(undefined4 *)(this + 0x20) = 0;
+  return;
+}
+
+
+### ?sign@DsfSha1WithDsaSignature@@QEAA?AW4enum_errDescrValues@@PEAUJNIEnv_@@PEAV_jobject@@PEAPEAEPEAI@Z @ 180021690 type=Label
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+/* public: enum enum_errDescrValues __cdecl DsfSha1WithDsaSignature::sign(struct JNIEnv_ *
+   __ptr64,class _jobject * __ptr64,unsigned char * __ptr64 * __ptr64,unsigned int * __ptr64)
+   __ptr64 */
+
+enum_errDescrValues __thiscall
+DsfSha1WithDsaSignature::sign
+          (DsfSha1WithDsaSignature *this,JNIEnv_ *param_1,_jobject *param_2,uchar **param_3,
+          uint *param_4)
+
+{
+  int iVar1;
+  enum_errDescrValues eVar2;
+  void *_Memory;
+  ulonglong uVar3;
+  int *piVar4;
+  undefined1 auStackY_b8 [32];
+  vlong *local_78;
+  longlong local_70;
+  vlong *local_68;
+  int local_60 [2];
+  ulonglong local_58;
+  
+                    /* 0x21690  94
+                       ?sign@DsfSha1WithDsaSignature@@QEAA?AW4enum_errDescrValues@@PEAUJNIEnv_@@PEAV_jobject@@PEAPEAEPEAI@Z
+                        */
+  local_58 = DAT_180046100 ^ (ulonglong)auStackY_b8;
+  local_78 = (vlong *)0x0;
+  local_68 = (vlong *)0x0;
+  local_70 = 0;
+  if (*(int *)(this + 0x20) == 1) {
+    _Memory = (void *)thunk_FUN_180024d1c(0x14);
+    iVar1 = (*(code *)PTR__guard_dispatch_icall_180026210)
+                      (*(undefined8 *)(this + 0x18),param_1,param_2);
+    if (iVar1 == *(int *)(this + 0x24)) {
+      uVar3 = FUN_18000eb70((longlong)_Memory,0x14,&local_70,(longlong *)0x0);
+      free(_Memory);
+      if ((enum_errDescrValues)uVar3 == 0) {
+        piVar4 = DsfObject::getRandomContext(param_1);
+        eVar2 = FUN_1800144b0(piVar4,*(undefined8 **)(this + 0x10),local_70,local_60,
+                              (longlong *)&local_78,&local_68,(longlong *)0x0);
+        FUN_180009b30(&local_70,(longlong *)0x0);
+        if (eVar2 == 0) {
+          if (local_60[0] == 0) {
+            DsfObject::throwException
+                      ((DsfObject *)(this + 8),param_1,"java/security/SignatureException",
+                       "error signing message, failed to verify",0);
+            FUN_180009b30((longlong *)&local_78,(longlong *)0x0);
+            FUN_180009b30((longlong *)&local_68,(longlong *)0x0);
+            eVar2 = 0xffffd824;
+          }
+          else {
+            eVar2 = createDSASignature(this,local_78,local_68,param_3,param_4);
+            FUN_180009b30((longlong *)&local_78,(longlong *)0x0);
+            FUN_180009b30((longlong *)&local_68,(longlong *)0x0);
+            if (eVar2 == 0) {
+              reset(this,param_1,param_2);
+              eVar2 = 0;
+            }
+            else {
+              DsfObject::throwException
+                        ((DsfObject *)(this + 8),param_1,"java/security/SignatureException",
+                         "error creating dsa signature",eVar2);
+              eVar2 = 0xffffe881;
+            }
+          }
+        }
+        else {
+          DsfObject::throwException
+                    ((DsfObject *)(this + 8),param_1,"java/security/SignatureException",
+                     "error signing message",eVar2);
+          FUN_180009b30((longlong *)&local_78,(longlong *)0x0);
+          eVar2 = 0xffffe881;
+        }
+      }
+      else {
+        DsfObject::throwException
+                  ((DsfObject *)(this + 8),param_1,"java/security/SignatureException",
+                   "converting message to vlong",(enum_errDescrValues)uVar3);
+        FUN_180009b30(&local_70,(longlong *)0x0);
+        eVar2 = 0xffffe881;
+      }
+    }
+    else {
+      DsfObject::throwException
+                ((DsfObject *)(this + 8),param_1,"java/security/SignatureException",
+                 "error calculating final digest");
+      free(_Memory);
+      eVar2 = 0xffffe881;
+    }
+  }
+  else {
+    DsfObject::throwException
+              ((DsfObject *)(this + 8),param_1,"java/security/SignatureException",
+               "signature not initialized for signing");
+    eVar2 = 0xffffe886;
+  }
+  return eVar2;
+}
+
+
+### ?sign@DsfSha1WithDsaSignature@@QEAAHPEAUJNIEnv_@@PEAV_jobject@@PEAV_jbyteArray@@JJ@Z @ 180021920 type=Label
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+/* public: int __cdecl DsfSha1WithDsaSignature::sign(struct JNIEnv_ * __ptr64,class _jobject *
+   __ptr64,class _jbyteArray * __ptr64,long,long) __ptr64 */
+
+int __thiscall
+DsfSha1WithDsaSignature::sign
+          (DsfSha1WithDsaSignature *this,JNIEnv_ *param_1,_jobject *param_2,_jbyteArray *param_3,
+          long param_4,long param_5)
+
+{
+  enum_errDescrValues eVar1;
+  longlong lVar2;
+  undefined1 auStackY_78 [32];
+  uchar *local_48;
+  uint local_40 [2];
+  ulonglong local_38;
+  
+                    /* 0x21920  95
+                       ?sign@DsfSha1WithDsaSignature@@QEAAHPEAUJNIEnv_@@PEAV_jobject@@PEAV_jbyteArray@@JJ@Z
+                        */
+  local_38 = DAT_180046100 ^ (ulonglong)auStackY_78;
+  if (*(int *)(this + 0x20) == 1) {
+    eVar1 = sign(this,param_1,param_2,&local_48,local_40);
+    if (eVar1 == 0) {
+      if (param_5 - param_4 < (int)local_40[0]) {
+        free(local_48);
+        DsfObject::throwException
+                  ((DsfObject *)(this + 8),param_1,"java/security/SignatureException",
+                   "insufficient space for signature");
+        local_40[0] = 0;
+      }
+      else {
+        lVar2 = (*(code *)PTR__guard_dispatch_icall_180026210)(param_1,param_3,0);
+        memcpy((void *)(lVar2 + param_4),local_48,(ulonglong)local_40[0]);
+        free(local_48);
+        (*(code *)PTR__guard_dispatch_icall_180026210)(param_1,param_3,lVar2,0);
+      }
+    }
+    else {
+      DsfObject::throwException
+                ((DsfObject *)(this + 8),param_1,"java/security/SignatureException",
+                 "error calculating signature",eVar1);
+      local_40[0] = 0;
+    }
+  }
+  else {
+    DsfObject::throwException
+              ((DsfObject *)(this + 8),param_1,"java/security/SignatureException",
+               "signature not initialized for signing");
+    local_40[0] = 0;
+  }
+  return local_40[0];
+}
+
+
+### ?sign@DsfSha1WithDsaSignature@@QEAAPEAV_jbyteArray@@PEAUJNIEnv_@@PEAV_jobject@@@Z @ 180021a60 type=Label
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+/* public: class _jbyteArray * __ptr64 __cdecl DsfSha1WithDsaSignature::sign(struct JNIEnv_ *
+   __ptr64,class _jobject * __ptr64) __ptr64 */
+
+_jbyteArray * __thiscall
+DsfSha1WithDsaSignature::sign(DsfSha1WithDsaSignature *this,JNIEnv_ *param_1,_jobject *param_2)
+
+{
+  enum_errDescrValues eVar1;
+  _jbyteArray *p_Var2;
+  void *_Dst;
+  undefined1 auStackY_68 [32];
+  uint local_38 [2];
+  uchar *local_30;
+  ulonglong local_28;
+  
+                    /* 0x21a60  96
+                       ?sign@DsfSha1WithDsaSignature@@QEAAPEAV_jbyteArray@@PEAUJNIEnv_@@PEAV_jobject@@@Z
+                        */
+  local_28 = DAT_180046100 ^ (ulonglong)auStackY_68;
+  if (*(int *)(this + 0x20) == 1) {
+    eVar1 = sign(this,param_1,param_2,&local_30,local_38);
+    if (eVar1 == 0) {
+      p_Var2 = (_jbyteArray *)(*(code *)PTR__guard_dispatch_icall_180026210)(param_1,local_38[0]);
+      _Dst = (void *)(*(code *)PTR__guard_dispatch_icall_180026210)(param_1,p_Var2,0);
+      memcpy(_Dst,local_30,(ulonglong)local_38[0]);
+      free(local_30);
+      (*(code *)PTR__guard_dispatch_icall_180026210)(param_1,p_Var2,_Dst,0);
+    }
+    else {
+      DsfObject::throwException
+                ((DsfObject *)(this + 8),param_1,"java/security/SignatureException",
+                 "error calculating signature",eVar1);
+      p_Var2 = (_jbyteArray *)0x0;
+    }
+  }
+  else {
+    DsfObject::throwException
+              ((DsfObject *)(this + 8),param_1,"java/security/SignatureException",
+               "signature not initialized for signing");
+    p_Var2 = (_jbyteArray *)0x0;
+  }
+  return p_Var2;
+}
+
+
+### ?update@DsfShaWithRsaSignature@@QEAAXPEAUJNIEnv_@@PEAV_jobject@@C@Z @ 180021b70 type=Label
+
+/* public: void __cdecl DsfSha1WithDsaSignature::update(struct JNIEnv_ * __ptr64,class _jobject *
+   __ptr64,signed char) __ptr64 */
+
+void __thiscall
+DsfSha1WithDsaSignature::update
+          (DsfSha1WithDsaSignature *this,JNIEnv_ *param_1,_jobject *param_2,char param_3)
+
+{
+                    /* 0x21b70  106
+                       ?update@DsfSha1WithDsaSignature@@QEAAXPEAUJNIEnv_@@PEAV_jobject@@C@Z
+                       0x21b70  110
+                       ?update@DsfShaWithRsaSignature@@QEAAXPEAUJNIEnv_@@PEAV_jobject@@C@Z */
+  if (*(int *)(this + 0x20) == 0) {
+    DsfObject::throwException
+              ((DsfObject *)(this + 8),param_1,"java/security/SignatureException",
+               "signature not initialized");
+    return;
+  }
+  (*(code *)PTR__guard_dispatch_icall_180026210)();
+  return;
+}
+
+
+### ?update@DsfSha1WithDsaSignature@@QEAAXPEAUJNIEnv_@@PEAV_jobject@@C@Z @ 180021b70 type=Label
+
+/* public: void __cdecl DsfSha1WithDsaSignature::update(struct JNIEnv_ * __ptr64,class _jobject *
+   __ptr64,signed char) __ptr64 */
+
+void __thiscall
+DsfSha1WithDsaSignature::update
+          (DsfSha1WithDsaSignature *this,JNIEnv_ *param_1,_jobject *param_2,char param_3)
+
+{
+                    /* 0x21b70  106
+                       ?update@DsfSha1WithDsaSignature@@QEAAXPEAUJNIEnv_@@PEAV_jobject@@C@Z
+                       0x21b70  110
+                       ?update@DsfShaWithRsaSignature@@QEAAXPEAUJNIEnv_@@PEAV_jobject@@C@Z */
+  if (*(int *)(this + 0x20) == 0) {
+    DsfObject::throwException
+              ((DsfObject *)(this + 8),param_1,"java/security/SignatureException",
+               "signature not initialized");
+    return;
+  }
+  (*(code *)PTR__guard_dispatch_icall_180026210)();
+  return;
+}
+
+
+### ?update@DsfShaWithRsaSignature@@QEAAXPEAUJNIEnv_@@PEAV_jobject@@PEAV_jbyteArray@@JJ@Z @ 180021bb0 type=Label
+
+/* public: void __cdecl DsfSha1WithDsaSignature::update(struct JNIEnv_ * __ptr64,class _jobject *
+   __ptr64,class _jbyteArray * __ptr64,long,long) __ptr64 */
+
+void __thiscall
+DsfSha1WithDsaSignature::update
+          (DsfSha1WithDsaSignature *this,JNIEnv_ *param_1,_jobject *param_2,_jbyteArray *param_3,
+          long param_4,long param_5)
+
+{
+                    /* 0x21bb0  107
+                       ?update@DsfSha1WithDsaSignature@@QEAAXPEAUJNIEnv_@@PEAV_jobject@@PEAV_jbyteArray@@JJ@Z
+                       0x21bb0  111
+                       ?update@DsfShaWithRsaSignature@@QEAAXPEAUJNIEnv_@@PEAV_jobject@@PEAV_jbyteArray@@JJ@Z
+                        */
+  if (*(int *)(this + 0x20) == 0) {
+    DsfObject::throwException
+              ((DsfObject *)(this + 8),param_1,"java/security/SignatureException",
+               "signature not initialized");
+    return;
+  }
+  (*(code *)PTR__guard_dispatch_icall_180026210)
+            (*(undefined8 *)(this + 0x18),param_1,param_2,param_3,param_4,param_5);
+  return;
+}
+
+
+### ?update@DsfSha1WithDsaSignature@@QEAAXPEAUJNIEnv_@@PEAV_jobject@@PEAV_jbyteArray@@JJ@Z @ 180021bb0 type=Label
+
+/* public: void __cdecl DsfSha1WithDsaSignature::update(struct JNIEnv_ * __ptr64,class _jobject *
+   __ptr64,class _jbyteArray * __ptr64,long,long) __ptr64 */
+
+void __thiscall
+DsfSha1WithDsaSignature::update
+          (DsfSha1WithDsaSignature *this,JNIEnv_ *param_1,_jobject *param_2,_jbyteArray *param_3,
+          long param_4,long param_5)
+
+{
+                    /* 0x21bb0  107
+                       ?update@DsfSha1WithDsaSignature@@QEAAXPEAUJNIEnv_@@PEAV_jobject@@PEAV_jbyteArray@@JJ@Z
+                       0x21bb0  111
+                       ?update@DsfShaWithRsaSignature@@QEAAXPEAUJNIEnv_@@PEAV_jobject@@PEAV_jbyteArray@@JJ@Z
+                        */
+  if (*(int *)(this + 0x20) == 0) {
+    DsfObject::throwException
+              ((DsfObject *)(this + 8),param_1,"java/security/SignatureException",
+               "signature not initialized");
+    return;
+  }
+  (*(code *)PTR__guard_dispatch_icall_180026210)
+            (*(undefined8 *)(this + 0x18),param_1,param_2,param_3,param_4,param_5);
+  return;
+}
+
+
+### ?verify@DsfSha1WithDsaSignature@@QEAAEPEAUJNIEnv_@@PEAV_jobject@@PEAV_jbyteArray@@@Z @ 180021c10 type=Label
+
+/* public: unsigned char __cdecl DsfSha1WithDsaSignature::verify(struct JNIEnv_ * __ptr64,class
+   _jobject * __ptr64,class _jbyteArray * __ptr64) __ptr64 */
+
+uchar __thiscall
+DsfSha1WithDsaSignature::verify
+          (DsfSha1WithDsaSignature *this,JNIEnv_ *param_1,_jobject *param_2,_jbyteArray *param_3)
+
+{
+  uchar uVar1;
+  long lVar2;
+  
+                    /* 0x21c10  112
+                       ?verify@DsfSha1WithDsaSignature@@QEAAEPEAUJNIEnv_@@PEAV_jobject@@PEAV_jbyteArray@@@Z
+                        */
+  lVar2 = (*(code *)PTR__guard_dispatch_icall_180026210)(param_1,param_3);
+  uVar1 = verify(this,param_1,param_2,param_3,0,lVar2);
+  return uVar1;
+}
+
+
+### ?verify@DsfSha1WithDsaSignature@@QEAAEPEAUJNIEnv_@@PEAV_jobject@@PEAV_jbyteArray@@JJ@Z @ 180021c80 type=Label
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+/* public: unsigned char __cdecl DsfSha1WithDsaSignature::verify(struct JNIEnv_ * __ptr64,class
+   _jobject * __ptr64,class _jbyteArray * __ptr64,long,long) __ptr64 */
+
+uchar __thiscall
+DsfSha1WithDsaSignature::verify
+          (DsfSha1WithDsaSignature *this,JNIEnv_ *param_1,_jobject *param_2,_jbyteArray *param_3,
+          long param_4,long param_5)
+
+{
+  uint uVar1;
+  int iVar2;
+  enum_errDescrValues eVar3;
+  void *_Memory;
+  ulonglong uVar4;
+  uchar *puVar5;
+  char *pcVar6;
+  undefined1 auStackY_a8 [32];
+  vlong *local_78;
+  vlong *local_70;
+  longlong *local_68;
+  int local_60 [2];
+  ulonglong local_58;
+  
+                    /* 0x21c80  113
+                       ?verify@DsfSha1WithDsaSignature@@QEAAEPEAUJNIEnv_@@PEAV_jobject@@PEAV_jbyteArray@@JJ@Z
+                        */
+  local_58 = DAT_180046100 ^ (ulonglong)auStackY_a8;
+  local_78 = (vlong *)0x0;
+  local_70 = (vlong *)0x0;
+  local_68 = (longlong *)0x0;
+  if (*(int *)(this + 0x20) != 2) {
+    DsfObject::throwException
+              ((DsfObject *)(this + 8),param_1,"java/security/SignatureException",
+               "signature not initialized for verifying");
+    return '\0';
+  }
+  uVar1 = (*(code *)PTR__guard_dispatch_icall_180026210)(param_1,param_3);
+  if (4 < uVar1 - 0x2c) {
+    DsfObject::throwException
+              ((DsfObject *)(this + 8),param_1,"java/security/SignatureException",
+               "invalid signature size");
+    return '\0';
+  }
+  _Memory = (void *)thunk_FUN_180024d1c(0x14);
+  iVar2 = (*(code *)PTR__guard_dispatch_icall_180026210)
+                    (*(undefined8 *)(this + 0x18),param_1,param_2);
+  if (iVar2 != *(int *)(this + 0x24)) {
+    DsfObject::throwException
+              ((DsfObject *)(this + 8),param_1,"java/security/SignatureException",
+               "error calculating final digest");
+    FUN_180009b30((longlong *)&local_78,(longlong *)0x0);
+    FUN_180009b30((longlong *)&local_70,(longlong *)0x0);
+    free(_Memory);
+    return '\0';
+  }
+  uVar4 = FUN_18000eb70((longlong)_Memory,0x14,(longlong *)&local_68,(longlong *)0x0);
+  eVar3 = (enum_errDescrValues)uVar4;
+  free(_Memory);
+  if (eVar3 == 0) {
+    puVar5 = (uchar *)(*(code *)PTR__guard_dispatch_icall_180026210)(param_1,param_3,0);
+    eVar3 = parseDSASignature(this,puVar5,uVar1,&local_78,&local_70);
+    (*(code *)PTR__guard_dispatch_icall_180026210)(param_1,param_3,puVar5,0);
+    if (eVar3 == 0) {
+      uVar4 = FUN_180014d10(*(undefined8 **)(this + 0x10),local_68,(longlong *)local_78,
+                            (longlong *)local_70,local_60,(longlong *)0x0);
+      FUN_180009b30((longlong *)&local_78,(longlong *)0x0);
+      FUN_180009b30((longlong *)&local_70,(longlong *)0x0);
+      FUN_180009b30((longlong *)&local_68,(longlong *)0x0);
+      if ((enum_errDescrValues)uVar4 != 0) {
+        DsfObject::throwException
+                  ((DsfObject *)(this + 8),param_1,"java/security/SignatureException",
+                   "error verifying signature",(enum_errDescrValues)uVar4);
+        return '\0';
+      }
+      if (local_60[0] == 0) {
+        DsfObject::throwException
+                  ((DsfObject *)(this + 8),param_1,"java/security/SignatureException",
+                   "error verifying signature");
+        return '\0';
+      }
+      reset(this,param_1,param_2);
+      return '\x01';
+    }
+    pcVar6 = "error parsing signature";
+  }
+  else {
+    pcVar6 = "converting message to vlong";
+  }
+  DsfObject::throwException
+            ((DsfObject *)(this + 8),param_1,"java/security/SignatureException",pcVar6,eVar3);
+  FUN_180009b30((longlong *)&local_78,(longlong *)0x0);
+  FUN_180009b30((longlong *)&local_70,(longlong *)0x0);
+  FUN_180009b30((longlong *)&local_68,(longlong *)0x0);
+  return '\0';
+}
+
+
+### Java_com_tridium_dsf_provider_spi_DsfSha1WithDsaSignatureSpi_engineInitSign0 @ 180021f50 type=Function
+
+void Java_com_tridium_dsf_provider_spi_DsfSha1WithDsaSignatureSpi_engineInitSign0
+               (JNIEnv_ *param_1,_jobject *param_2,_jbyteArray *param_3)
+
+{
+  DsfObject *pDVar1;
+  DsfSha1WithDsaSignature *this;
+  DsfObject *this_00;
+  DsfObject *pDVar2;
+  
+                    /* 0x21f50  138
+                       Java_com_tridium_dsf_provider_spi_DsfSha1WithDsaSignatureSpi_engineInitSign0
+                        */
+  pDVar1 = DsfObject::getContext(param_1,param_2);
+  pDVar2 = (DsfObject *)0x0;
+  this_00 = pDVar1 + -8;
+  if (pDVar1 == (DsfObject *)0x0) {
+    this_00 = pDVar2;
+  }
+  if (this_00 == (DsfObject *)0x0) {
+    this = (DsfSha1WithDsaSignature *)FUN_180024d1c(0x28);
+    this_00 = pDVar2;
+    if (this != (DsfSha1WithDsaSignature *)0x0) {
+      *(undefined8 *)this = 0;
+      *(undefined8 *)(this + 8) = 0;
+      *(undefined8 *)(this + 0x10) = 0;
+      *(undefined8 *)(this + 0x18) = 0;
+      *(undefined8 *)(this + 0x20) = 0;
+      this_00 = (DsfObject *)DsfSha1WithDsaSignature::DsfSha1WithDsaSignature(this);
+    }
+    pDVar1 = this_00 + 8;
+    if (this_00 == (DsfObject *)0x0) {
+      pDVar1 = pDVar2;
+    }
+    DsfObject::setContext(param_1,param_2,pDVar1);
+  }
+  DsfSha1WithDsaSignature::initSign((DsfSha1WithDsaSignature *)this_00,param_1,param_2,param_3);
+  return;
+}
+
+
+### Java_com_tridium_dsf_provider_spi_DsfSha1WithDsaSignatureSpi_engineInitVerify0 @ 180022000 type=Function
+
+void Java_com_tridium_dsf_provider_spi_DsfSha1WithDsaSignatureSpi_engineInitVerify0
+               (JNIEnv_ *param_1,_jobject *param_2,_jbyteArray *param_3)
+
+{
+  DsfObject *pDVar1;
+  DsfSha1WithDsaSignature *this;
+  DsfObject *this_00;
+  DsfObject *pDVar2;
+  
+                    /* 0x22000  139
+                       Java_com_tridium_dsf_provider_spi_DsfSha1WithDsaSignatureSpi_engineInitVerify0
+                        */
+  pDVar1 = DsfObject::getContext(param_1,param_2);
+  pDVar2 = (DsfObject *)0x0;
+  this_00 = pDVar1 + -8;
+  if (pDVar1 == (DsfObject *)0x0) {
+    this_00 = pDVar2;
+  }
+  if (this_00 == (DsfObject *)0x0) {
+    this = (DsfSha1WithDsaSignature *)FUN_180024d1c(0x28);
+    this_00 = pDVar2;
+    if (this != (DsfSha1WithDsaSignature *)0x0) {
+      *(undefined8 *)this = 0;
+      *(undefined8 *)(this + 8) = 0;
+      *(undefined8 *)(this + 0x10) = 0;
+      *(undefined8 *)(this + 0x18) = 0;
+      *(undefined8 *)(this + 0x20) = 0;
+      this_00 = (DsfObject *)DsfSha1WithDsaSignature::DsfSha1WithDsaSignature(this);
+    }
+    pDVar1 = this_00 + 8;
+    if (this_00 == (DsfObject *)0x0) {
+      pDVar1 = pDVar2;
+    }
+    DsfObject::setContext(param_1,param_2,pDVar1);
+  }
+  DsfSha1WithDsaSignature::initVerify((DsfSha1WithDsaSignature *)this_00,param_1,param_2,param_3);
+  return;
+}
+
+
+### Java_com_tridium_dsf_provider_spi_DsfSha1WithDsaSignatureSpi_engineSign0__ @ 1800220b0 type=Function
+
+_jbyteArray *
+Java_com_tridium_dsf_provider_spi_DsfSha1WithDsaSignatureSpi_engineSign0__
+          (JNIEnv_ *param_1,_jobject *param_2)
+
+{
+  DsfObject *pDVar1;
+  _jbyteArray *p_Var2;
+  DsfObject *this;
+  
+                    /* 0x220b0  140
+                       Java_com_tridium_dsf_provider_spi_DsfSha1WithDsaSignatureSpi_engineSign0__ */
+  pDVar1 = DsfObject::getContext(param_1,param_2);
+  this = pDVar1 + -8;
+  if (pDVar1 == (DsfObject *)0x0) {
+    this = (DsfObject *)(DsfSha1WithDsaSignature *)0x0;
+  }
+  if (this == (DsfObject *)0x0) {
+    DsfObject::throwStaticException
+              (param_1,"java/security/ProviderException","sig engine not intialized",0xffffe88f);
+    return (_jbyteArray *)0x0;
+  }
+  p_Var2 = DsfSha1WithDsaSignature::sign((DsfSha1WithDsaSignature *)this,param_1,param_2);
+  return p_Var2;
+}
+
+
+### Java_com_tridium_dsf_provider_spi_DsfSha1WithDsaSignatureSpi_engineSign0___3BII @ 180022120 type=Function
+
+int Java_com_tridium_dsf_provider_spi_DsfSha1WithDsaSignatureSpi_engineSign0___3BII
+              (JNIEnv_ *param_1,_jobject *param_2,_jbyteArray *param_3,long param_4,long param_5)
+
+{
+  int iVar1;
+  DsfObject *pDVar2;
+  DsfObject *this;
+  
+                    /* 0x22120  141
+                       Java_com_tridium_dsf_provider_spi_DsfSha1WithDsaSignatureSpi_engineSign0___3BII
+                        */
+  pDVar2 = DsfObject::getContext(param_1,param_2);
+  this = pDVar2 + -8;
+  if (pDVar2 == (DsfObject *)0x0) {
+    this = (DsfObject *)(DsfSha1WithDsaSignature *)0x0;
+  }
+  if (this == (DsfObject *)0x0) {
+    DsfObject::throwStaticException
+              (param_1,"java/security/ProviderException","sig engine not intialized",0xffffe88f);
+    iVar1 = 0;
+  }
+  else {
+    iVar1 = DsfSha1WithDsaSignature::sign
+                      ((DsfSha1WithDsaSignature *)this,param_1,param_2,param_3,param_4,param_5);
+  }
+  return iVar1;
+}
+
+
+### Java_com_tridium_dsf_provider_spi_DsfSha1WithDsaSignatureSpi_engineUpdate0__B @ 1800221b0 type=Function
+
+void Java_com_tridium_dsf_provider_spi_DsfSha1WithDsaSignatureSpi_engineUpdate0__B
+               (JNIEnv_ *param_1,_jobject *param_2,char param_3)
+
+{
+  DsfObject *pDVar1;
+  DsfObject *this;
+  
+                    /* 0x221b0  142
+                       Java_com_tridium_dsf_provider_spi_DsfSha1WithDsaSignatureSpi_engineUpdate0__B
+                       0x221b0  151
+                       Java_com_tridium_dsf_provider_spi_DsfSha1WithRsaSignatureSpi_engineUpdate0__B
+                       0x221b0  166
+                       Java_com_tridium_dsf_provider_spi_DsfSha256WithRsaSignatureSpi_engineUpdate0__B
+                        */
+  pDVar1 = DsfObject::getContext(param_1,param_2);
+  this = pDVar1 + -8;
+  if (pDVar1 == (DsfObject *)0x0) {
+    this = (DsfObject *)(DsfSha1WithDsaSignature *)0x0;
+  }
+  if (this == (DsfObject *)0x0) {
+    DsfObject::throwStaticException
+              (param_1,"java/security/ProviderException","sig engine not intialized",0xffffe88f);
+    return;
+  }
+  DsfSha1WithDsaSignature::update((DsfSha1WithDsaSignature *)this,param_1,param_2,param_3);
+  return;
+}
+
+
+### Java_com_tridium_dsf_provider_spi_DsfSha1WithDsaSignatureSpi_engineUpdate0___3BII @ 180022230 type=Function
+
+void Java_com_tridium_dsf_provider_spi_DsfSha1WithDsaSignatureSpi_engineUpdate0___3BII
+               (JNIEnv_ *param_1,_jobject *param_2,_jbyteArray *param_3,long param_4,long param_5)
+
+{
+  DsfObject *pDVar1;
+  DsfObject *this;
+  
+                    /* 0x22230  143
+                       Java_com_tridium_dsf_provider_spi_DsfSha1WithDsaSignatureSpi_engineUpdate0___3BII
+                       0x22230  152
+                       Java_com_tridium_dsf_provider_spi_DsfSha1WithRsaSignatureSpi_engineUpdate0___3BII
+                       0x22230  167
+                       Java_com_tridium_dsf_provider_spi_DsfSha256WithRsaSignatureSpi_engineUpdate0___3BII
+                        */
+  pDVar1 = DsfObject::getContext(param_1,param_2);
+  this = pDVar1 + -8;
+  if (pDVar1 == (DsfObject *)0x0) {
+    this = (DsfObject *)(DsfSha1WithDsaSignature *)0x0;
+  }
+  if (this == (DsfObject *)0x0) {
+    DsfObject::throwStaticException
+              (param_1,"java/security/ProviderException","sig engine not intialized",0xffffe88f);
+  }
+  else {
+    DsfSha1WithDsaSignature::update
+              ((DsfSha1WithDsaSignature *)this,param_1,param_2,param_3,param_4,param_5);
+  }
+  return;
+}
+
+
+### Java_com_tridium_dsf_provider_spi_DsfSha1WithDsaSignatureSpi_engineVerify0___3B @ 1800222c0 type=Function
+
+uchar Java_com_tridium_dsf_provider_spi_DsfSha1WithDsaSignatureSpi_engineVerify0___3B
+                (JNIEnv_ *param_1,_jobject *param_2,_jbyteArray *param_3)
+
+{
+  uchar uVar1;
+  DsfObject *pDVar2;
+  DsfObject *this;
+  
+                    /* 0x222c0  144
+                       Java_com_tridium_dsf_provider_spi_DsfSha1WithDsaSignatureSpi_engineVerify0___3B
+                        */
+  pDVar2 = DsfObject::getContext(param_1,param_2);
+  this = pDVar2 + -8;
+  if (pDVar2 == (DsfObject *)0x0) {
+    this = (DsfObject *)(DsfSha1WithDsaSignature *)0x0;
+  }
+  if (this == (DsfObject *)0x0) {
+    DsfObject::throwStaticException
+              (param_1,"java/security/ProviderException","sig engine not intialized",0xffffe88f);
+    return '\x01';
+  }
+  uVar1 = DsfSha1WithDsaSignature::verify((DsfSha1WithDsaSignature *)this,param_1,param_2,param_3);
+  return uVar1;
+}
+
+
+### Java_com_tridium_dsf_provider_spi_DsfSha1WithDsaSignatureSpi_engineVerify0___3BII @ 180022340 type=Function
+
+uchar Java_com_tridium_dsf_provider_spi_DsfSha1WithDsaSignatureSpi_engineVerify0___3BII
+                (JNIEnv_ *param_1,_jobject *param_2,_jbyteArray *param_3,long param_4,long param_5)
+
+{
+  uchar uVar1;
+  DsfObject *pDVar2;
+  DsfObject *this;
+  
+                    /* 0x22340  145
+                       Java_com_tridium_dsf_provider_spi_DsfSha1WithDsaSignatureSpi_engineVerify0___3BII
+                        */
+  pDVar2 = DsfObject::getContext(param_1,param_2);
+  this = pDVar2 + -8;
+  if (pDVar2 == (DsfObject *)0x0) {
+    this = (DsfObject *)(DsfSha1WithDsaSignature *)0x0;
+  }
+  if (this == (DsfObject *)0x0) {
+    DsfObject::throwStaticException
+              (param_1,"java/security/ProviderException","sig engine not intialized",0xffffe88f);
+    uVar1 = '\x01';
+  }
+  else {
+    uVar1 = DsfSha1WithDsaSignature::verify
+                      ((DsfSha1WithDsaSignature *)this,param_1,param_2,param_3,param_4,param_5);
+  }
+  return uVar1;
+}
+
+
+### DsfShaWithRsaSignature @ 1800223d0 type=Function
+
+/* public: __cdecl DsfShaWithRsaSignature::DsfShaWithRsaSignature(class DsfShaWithRsaSignature const
+   & __ptr64) __ptr64 */
+
+DsfShaWithRsaSignature * __thiscall
+DsfShaWithRsaSignature::DsfShaWithRsaSignature
+          (DsfShaWithRsaSignature *this,DsfShaWithRsaSignature *param_1)
+
+{
+  undefined8 uVar1;
+  
+                    /* 0x223d0  15  ??0DsfShaWithRsaSignature@@QEAA@AEBV0@@Z */
+  *(undefined ***)this = vftable;
+  uVar1 = *(undefined8 *)(param_1 + 0x10);
+  *(undefined8 *)(this + 8) = *(undefined8 *)(param_1 + 8);
+  *(undefined8 *)(this + 0x10) = uVar1;
+  *(undefined8 *)(this + 0x18) = *(undefined8 *)(param_1 + 0x18);
+  *(undefined4 *)(this + 0x20) = *(undefined4 *)(param_1 + 0x20);
+  *(undefined4 *)(this + 0x24) = *(undefined4 *)(param_1 + 0x24);
+  *(undefined8 *)(this + 0x28) = *(undefined8 *)(param_1 + 0x28);
+  *(undefined4 *)(this + 0x30) = *(undefined4 *)(param_1 + 0x30);
+  *(undefined4 *)(this + 0x34) = *(undefined4 *)(param_1 + 0x34);
+  return this;
+}
+
+
+### ??0DsfShaWithRsaSignature@@QEAA@AEBV0@@Z @ 1800223d0 type=Label
+
+/* public: __cdecl DsfShaWithRsaSignature::DsfShaWithRsaSignature(class DsfShaWithRsaSignature const
+   & __ptr64) __ptr64 */
+
+DsfShaWithRsaSignature * __thiscall
+DsfShaWithRsaSignature::DsfShaWithRsaSignature
+          (DsfShaWithRsaSignature *this,DsfShaWithRsaSignature *param_1)
+
+{
+  undefined8 uVar1;
+  
+                    /* 0x223d0  15  ??0DsfShaWithRsaSignature@@QEAA@AEBV0@@Z */
+  *(undefined ***)this = vftable;
+  uVar1 = *(undefined8 *)(param_1 + 0x10);
+  *(undefined8 *)(this + 8) = *(undefined8 *)(param_1 + 8);
+  *(undefined8 *)(this + 0x10) = uVar1;
+  *(undefined8 *)(this + 0x18) = *(undefined8 *)(param_1 + 0x18);
+  *(undefined4 *)(this + 0x20) = *(undefined4 *)(param_1 + 0x20);
+  *(undefined4 *)(this + 0x24) = *(undefined4 *)(param_1 + 0x24);
+  *(undefined8 *)(this + 0x28) = *(undefined8 *)(param_1 + 0x28);
+  *(undefined4 *)(this + 0x30) = *(undefined4 *)(param_1 + 0x30);
+  *(undefined4 *)(this + 0x34) = *(undefined4 *)(param_1 + 0x34);
+  return this;
+}
+
+
+### ??4DsfShaWithRsaSignature@@QEAAAEAV0@AEBV0@@Z @ 180022410 type=Label
+
+/* public: class DsfShaWithRsaSignature & __ptr64 __cdecl DsfShaWithRsaSignature::operator=(class
+   DsfShaWithRsaSignature const & __ptr64) __ptr64 */
+
+DsfShaWithRsaSignature * __thiscall
+DsfShaWithRsaSignature::operator=(DsfShaWithRsaSignature *this,DsfShaWithRsaSignature *param_1)
+
+{
+  undefined8 uVar1;
+  
+                    /* 0x22410  34  ??4DsfShaWithRsaSignature@@QEAAAEAV0@AEBV0@@Z */
+  uVar1 = *(undefined8 *)(param_1 + 0x10);
+  *(undefined8 *)(this + 8) = *(undefined8 *)(param_1 + 8);
+  *(undefined8 *)(this + 0x10) = uVar1;
+  *(undefined8 *)(this + 0x18) = *(undefined8 *)(param_1 + 0x18);
+  *(undefined4 *)(this + 0x20) = *(undefined4 *)(param_1 + 0x20);
+  *(undefined4 *)(this + 0x24) = *(undefined4 *)(param_1 + 0x24);
+  *(undefined8 *)(this + 0x28) = *(undefined8 *)(param_1 + 0x28);
+  *(undefined4 *)(this + 0x30) = *(undefined4 *)(param_1 + 0x30);
+  *(undefined4 *)(this + 0x34) = *(undefined4 *)(param_1 + 0x34);
+  return this;
+}
+
+
+### DsfShaWithRsaSignature @ 1800232d0 type=Function
+
+/* public: __cdecl DsfShaWithRsaSignature::DsfShaWithRsaSignature(enum SignatureDigestType) __ptr64
+    */
+
+DsfShaWithRsaSignature * __thiscall
+DsfShaWithRsaSignature::DsfShaWithRsaSignature
+          (DsfShaWithRsaSignature *this,SignatureDigestType param_1)
+
+{
+  undefined4 uVar1;
+  undefined *puVar2;
+  bool bVar3;
+  
+                    /* 0x232d0  16  ??0DsfShaWithRsaSignature@@QEAA@W4SignatureDigestType@@@Z */
+  *(undefined8 *)(this + 0x18) = 0;
+  *(undefined ***)this = vftable;
+  FUN_1800177b0((undefined4 *)(this + 8));
+  bVar3 = param_1 != 0;
+  *(SignatureDigestType *)(this + 0x24) = param_1;
+  *(undefined4 *)(this + 0x20) = 0;
+  puVar2 = &DAT_1800460e8;
+  if (bVar3) {
+    puVar2 = &DAT_1800460d0;
+  }
+  *(undefined **)(this + 0x28) = puVar2;
+  uVar1 = 0xf;
+  if (bVar3) {
+    uVar1 = 0x13;
+  }
+  *(undefined4 *)(this + 0x30) = uVar1;
+  uVar1 = 0x14;
+  if (bVar3) {
+    uVar1 = 0x20;
+  }
+  *(undefined4 *)(this + 0x34) = uVar1;
+  return this;
+}
+
+
+### ??0DsfShaWithRsaSignature@@QEAA@W4SignatureDigestType@@@Z @ 1800232d0 type=Label
+
+/* public: __cdecl DsfShaWithRsaSignature::DsfShaWithRsaSignature(enum SignatureDigestType) __ptr64
+    */
+
+DsfShaWithRsaSignature * __thiscall
+DsfShaWithRsaSignature::DsfShaWithRsaSignature
+          (DsfShaWithRsaSignature *this,SignatureDigestType param_1)
+
+{
+  undefined4 uVar1;
+  undefined *puVar2;
+  bool bVar3;
+  
+                    /* 0x232d0  16  ??0DsfShaWithRsaSignature@@QEAA@W4SignatureDigestType@@@Z */
+  *(undefined8 *)(this + 0x18) = 0;
+  *(undefined ***)this = vftable;
+  FUN_1800177b0((undefined4 *)(this + 8));
+  bVar3 = param_1 != 0;
+  *(SignatureDigestType *)(this + 0x24) = param_1;
+  *(undefined4 *)(this + 0x20) = 0;
+  puVar2 = &DAT_1800460e8;
+  if (bVar3) {
+    puVar2 = &DAT_1800460d0;
+  }
+  *(undefined **)(this + 0x28) = puVar2;
+  uVar1 = 0xf;
+  if (bVar3) {
+    uVar1 = 0x13;
+  }
+  *(undefined4 *)(this + 0x30) = uVar1;
+  uVar1 = 0x14;
+  if (bVar3) {
+    uVar1 = 0x20;
+  }
+  *(undefined4 *)(this + 0x34) = uVar1;
+  return this;
+}
+
+
+### ~DsfShaWithRsaSignature @ 180023350 type=Function
+
+/* WARNING: Switch with 1 destination removed at 0x000180023387 */
+/* public: virtual __cdecl DsfShaWithRsaSignature::~DsfShaWithRsaSignature(void) __ptr64 */
+
+void __thiscall DsfShaWithRsaSignature::~DsfShaWithRsaSignature(DsfShaWithRsaSignature *this)
+
+{
+  undefined8 *puVar1;
+  
+                    /* 0x23350  24  ??1DsfShaWithRsaSignature@@UEAA@XZ */
+  *(undefined ***)this = vftable;
+  FUN_1800179b0((int *)(this + 8),(longlong *)0x0);
+  puVar1 = *(undefined8 **)(this + 0x18);
+  if (puVar1 == (undefined8 *)0x0) {
+    return;
+  }
+                    /* WARNING: Could not recover jumptable at 0x0001800259c0. Too many branches */
+                    /* WARNING: Treating indirect jump as call */
+  (**(code **)*puVar1)(puVar1,1);
+  return;
+}
+
+
+### ??1DsfShaWithRsaSignature@@UEAA@XZ @ 180023350 type=Label
+
+/* WARNING: Switch with 1 destination removed at 0x000180023387 */
+/* public: virtual __cdecl DsfShaWithRsaSignature::~DsfShaWithRsaSignature(void) __ptr64 */
+
+void __thiscall DsfShaWithRsaSignature::~DsfShaWithRsaSignature(DsfShaWithRsaSignature *this)
+
+{
+  undefined8 *puVar1;
+  
+                    /* 0x23350  24  ??1DsfShaWithRsaSignature@@UEAA@XZ */
+  *(undefined ***)this = vftable;
+  FUN_1800179b0((int *)(this + 8),(longlong *)0x0);
+  puVar1 = *(undefined8 **)(this + 0x18);
+  if (puVar1 == (undefined8 *)0x0) {
+    return;
+  }
+                    /* WARNING: Could not recover jumptable at 0x0001800259c0. Too many branches */
+                    /* WARNING: Treating indirect jump as call */
+  (**(code **)*puVar1)(puVar1,1);
+  return;
+}
+
+
+### ?initSign@DsfShaWithRsaSignature@@QEAAXPEAUJNIEnv_@@PEAV_jobject@@PEAV_jbyteArray@@@Z @ 1800233b0 type=Label
+
+/* public: void __cdecl DsfShaWithRsaSignature::initSign(struct JNIEnv_ * __ptr64,class _jobject *
+   __ptr64,class _jbyteArray * __ptr64) __ptr64 */
+
+void __thiscall
+DsfShaWithRsaSignature::initSign
+          (DsfShaWithRsaSignature *this,JNIEnv_ *param_1,_jobject *param_2,_jbyteArray *param_3)
+
+{
+  undefined4 uVar1;
+  enum_errDescrValues eVar2;
+  longlong lVar3;
+  ulonglong uVar4;
+  
+                    /* 0x233b0  68
+                       ?initSign@DsfShaWithRsaSignature@@QEAAXPEAUJNIEnv_@@PEAV_jobject@@PEAV_jbyteArray@@@Z
+                        */
+  reset(this,param_1,param_2);
+  uVar1 = (*(code *)PTR__guard_dispatch_icall_180026210)(param_1,param_3);
+  lVar3 = (*(code *)PTR__guard_dispatch_icall_180026210)(param_1,param_3,0);
+  nativeReset(this);
+  uVar4 = FUN_180016e00(lVar3,uVar1,(int *)(this + 8));
+  eVar2 = (enum_errDescrValues)uVar4;
+  if (eVar2 == 0) {
+    *(undefined4 *)(this + 0x20) = 1;
+  }
+  (*(code *)PTR__guard_dispatch_icall_180026210)(param_1,param_3,lVar3,0);
+  if (eVar2 == 0) {
+    *(undefined4 *)(this + 0x20) = 1;
+  }
+  else {
+    DsfObject::throwException
+              ((DsfObject *)(this + 8),param_1,"java/security/ProviderException",
+               "unable to read rsa private key",eVar2);
+  }
+  return;
+}
+
+
+### ?initVerify@DsfShaWithRsaSignature@@QEAAXPEAUJNIEnv_@@PEAV_jobject@@PEAV_jbyteArray@@@Z @ 180023490 type=Label
+
+/* public: void __cdecl DsfShaWithRsaSignature::initVerify(struct JNIEnv_ * __ptr64,class _jobject *
+   __ptr64,class _jbyteArray * __ptr64) __ptr64 */
+
+void __thiscall
+DsfShaWithRsaSignature::initVerify
+          (DsfShaWithRsaSignature *this,JNIEnv_ *param_1,_jobject *param_2,_jbyteArray *param_3)
+
+{
+  undefined4 uVar1;
+  enum_errDescrValues eVar2;
+  longlong lVar3;
+  ulonglong uVar4;
+  
+                    /* 0x23490  70
+                       ?initVerify@DsfShaWithRsaSignature@@QEAAXPEAUJNIEnv_@@PEAV_jobject@@PEAV_jbyteArray@@@Z
+                        */
+  reset(this,param_1,param_2);
+  uVar1 = (*(code *)PTR__guard_dispatch_icall_180026210)(param_1,param_3);
+  lVar3 = (*(code *)PTR__guard_dispatch_icall_180026210)(param_1,param_3,0);
+  nativeReset(this);
+  uVar4 = FUN_180016a30(lVar3,uVar1,(int *)(this + 8));
+  eVar2 = (enum_errDescrValues)uVar4;
+  if (eVar2 == 0) {
+    *(undefined4 *)(this + 0x20) = 2;
+  }
+  (*(code *)PTR__guard_dispatch_icall_180026210)(param_1,param_3,lVar3,0);
+  if (eVar2 == 0) {
+    *(undefined4 *)(this + 0x20) = 2;
+  }
+  else {
+    DsfObject::throwException
+              ((DsfObject *)(this + 8),param_1,"java/security/ProviderException",
+               "unable to read rsa public key",eVar2);
+  }
+  return;
+}
+
+
+### ?nativeInitSign@DsfShaWithRsaSignature@@QEAA?AW4enum_errDescrValues@@HPEAE@Z @ 180023570 type=Label
+
+/* public: enum enum_errDescrValues __cdecl DsfShaWithRsaSignature::nativeInitSign(int,unsigned char
+   * __ptr64) __ptr64 */
+
+enum_errDescrValues __thiscall
+DsfShaWithRsaSignature::nativeInitSign(DsfShaWithRsaSignature *this,int param_1,uchar *param_2)
+
+{
+  ulonglong uVar1;
+  
+                    /* 0x23570  75
+                       ?nativeInitSign@DsfShaWithRsaSignature@@QEAA?AW4enum_errDescrValues@@HPEAE@Z
+                        */
+  nativeReset(this);
+  uVar1 = FUN_180016e00((longlong)param_2,param_1,(int *)(this + 8));
+  if ((enum_errDescrValues)uVar1 == 0) {
+    *(undefined4 *)(this + 0x20) = 1;
+  }
+  return (enum_errDescrValues)uVar1;
+}
+
+
+### ?nativeInitVerify@DsfShaWithRsaSignature@@QEAA?AW4enum_errDescrValues@@HPEAE@Z @ 1800235c0 type=Label
+
+/* public: enum enum_errDescrValues __cdecl DsfShaWithRsaSignature::nativeInitVerify(int,unsigned
+   char * __ptr64) __ptr64 */
+
+enum_errDescrValues __thiscall
+DsfShaWithRsaSignature::nativeInitVerify(DsfShaWithRsaSignature *this,int param_1,uchar *param_2)
+
+{
+  ulonglong uVar1;
+  
+                    /* 0x235c0  76
+                       ?nativeInitVerify@DsfShaWithRsaSignature@@QEAA?AW4enum_errDescrValues@@HPEAE@Z
+                        */
+  nativeReset(this);
+  uVar1 = FUN_180016a30((longlong)param_2,param_1,(int *)(this + 8));
+  if ((enum_errDescrValues)uVar1 == 0) {
+    *(undefined4 *)(this + 0x20) = 2;
+  }
+  return (enum_errDescrValues)uVar1;
+}
+
+
+### ?nativeReset@DsfShaWithRsaSignature@@AEAAXXZ @ 180023610 type=Label
+
+/* private: void __cdecl DsfShaWithRsaSignature::nativeReset(void) __ptr64 */
+
+void __thiscall DsfShaWithRsaSignature::nativeReset(DsfShaWithRsaSignature *this)
+
+{
+  DsfSha1MessageDigest *this_00;
+  undefined8 uVar1;
+  DsfSha256MessageDigest *this_01;
+  
+                    /* 0x23610  79  ?nativeReset@DsfShaWithRsaSignature@@AEAAXXZ */
+  FUN_1800179b0((int *)(this + 8),(longlong *)0x0);
+  FUN_1800177b0((undefined4 *)(this + 8));
+  if (*(longlong *)(this + 0x18) != 0) {
+    (*(code *)PTR__guard_dispatch_icall_180026210)(*(longlong *)(this + 0x18),1);
+  }
+  if (*(int *)(this + 0x24) == 0) {
+    this_00 = (DsfSha1MessageDigest *)FUN_180024d1c(0x10);
+    if (this_00 == (DsfSha1MessageDigest *)0x0) {
+      uVar1 = 0;
+    }
+    else {
+      *(undefined8 *)this_00 = 0;
+      *(undefined8 *)(this_00 + 8) = 0;
+      uVar1 = DsfSha1MessageDigest::DsfSha1MessageDigest(this_00);
+    }
+  }
+  else {
+    this_01 = (DsfSha256MessageDigest *)FUN_180024d1c(0x10);
+    if (this_01 == (DsfSha256MessageDigest *)0x0) {
+      uVar1 = 0;
+    }
+    else {
+      *(undefined8 *)this_01 = 0;
+      *(undefined8 *)(this_01 + 8) = 0;
+      uVar1 = DsfSha256MessageDigest::DsfSha256MessageDigest(this_01);
+    }
+  }
+  *(undefined8 *)(this + 0x18) = uVar1;
+  (*(code *)PTR__guard_dispatch_icall_180026210)();
+  *(undefined4 *)(this + 0x20) = 0;
+  return;
+}
+
+
+### ?nativeSign@DsfShaWithRsaSignature@@QEAAHPEAEHH@Z @ 1800236d0 type=Label
+
+/* public: int __cdecl DsfShaWithRsaSignature::nativeSign(unsigned char * __ptr64,int,int) __ptr64
+    */
+
+int __thiscall
+DsfShaWithRsaSignature::nativeSign
+          (DsfShaWithRsaSignature *this,uchar *param_1,int param_2,int param_3)
+
+{
+                    /* 0x236d0  80  ?nativeSign@DsfShaWithRsaSignature@@QEAAHPEAEHH@Z */
+  return -0x177f;
+}
+
+
+### ?nativeUpdate@DsfShaWithRsaSignature@@QEAA?AW4enum_errDescrValues@@PEAEHH@Z @ 1800236e0 type=Label
+
+/* public: enum enum_errDescrValues __cdecl DsfShaWithRsaSignature::nativeUpdate(unsigned char *
+   __ptr64,int,int) __ptr64 */
+
+enum_errDescrValues __thiscall
+DsfShaWithRsaSignature::nativeUpdate
+          (DsfShaWithRsaSignature *this,uchar *param_1,int param_2,int param_3)
+
+{
+  enum_errDescrValues eVar1;
+  
+                    /* 0x236e0  83
+                       ?nativeUpdate@DsfShaWithRsaSignature@@QEAA?AW4enum_errDescrValues@@PEAEHH@Z
+                        */
+  if (*(int *)(this + 0x20) == 0) {
+    return 0xffffe890;
+  }
+  eVar1 = (*(code *)PTR__guard_dispatch_icall_180026210)();
+  return eVar1;
+}
+
+
+### nativeVerify @ 180023710 type=Function
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+/* public: int __cdecl DsfShaWithRsaSignature::nativeVerify(unsigned char * __ptr64,int,int) __ptr64
+    */
+
+int __thiscall
+DsfShaWithRsaSignature::nativeVerify
+          (DsfShaWithRsaSignature *this,uchar *param_1,int param_2,int param_3)
+
+{
+  int iVar1;
+  uint uVar2;
+  uchar *_Dst;
+  uchar *_Dst_00;
+  uchar *puVar3;
+  uchar *puVar4;
+  uint *puVar5;
+  ulonglong uVar6;
+  undefined1 auStackY_78 [32];
+  ulong local_48;
+  uint local_44;
+  ulonglong local_40;
+  
+                    /* 0x23710  84  ?nativeVerify@DsfShaWithRsaSignature@@QEAAHPEAEHH@Z */
+  local_40 = DAT_180046100 ^ (ulonglong)auStackY_78;
+  if (*(int *)(this + 0x20) == 2) {
+    FUN_180018820(*(longlong *)(this + 0x10),&local_44);
+    iVar1 = FUN_1800094e0(*(longlong **)(*(longlong *)(this + 0x10) + 0x10));
+    uVar6 = (ulonglong)(iVar1 + 7U >> 3);
+    _Dst = (uchar *)thunk_FUN_180024d1c(uVar6);
+    memset(_Dst,0xff,uVar6);
+    memcpy(_Dst,*(void **)(this + 0x28),(ulonglong)*(uint *)(this + 0x30));
+    uVar2 = (*(code *)PTR__guard_dispatch_icall_180026210)
+                      (*(undefined8 *)(this + 0x18),_Dst + *(uint *)(this + 0x30),
+                       *(undefined4 *)(this + 0x34));
+    if (uVar2 == *(uint *)(this + 0x34)) {
+      _Dst_00 = (uchar *)thunk_FUN_180024d1c(uVar6);
+      memset(_Dst_00,0xff,uVar6);
+      puVar3 = param_1 + param_2;
+      puVar5 = &local_48;
+      puVar4 = _Dst_00;
+      uVar6 = FUN_180018ba0(*(longlong *)(this + 0x10),(longlong)puVar3,(char *)_Dst_00,puVar5,
+                            (longlong *)0x0);
+      uVar2 = (uint)uVar6;
+      if (uVar2 == 0) {
+        iVar1 = DsfUtil::isDebugEnabled();
+        if (iVar1 != 0) {
+          FUN_18000fdf0("Comparing signatures:\n\n",puVar3,puVar4,puVar5);
+          uVar6 = (ulonglong)(uint)(*(int *)(this + 0x34) + *(int *)(this + 0x30));
+          DsfObject::hexdump(_Dst,*(int *)(this + 0x34) + *(int *)(this + 0x30));
+          FUN_18000fdf0("\nwith:\n",uVar6,puVar4,puVar5);
+          DsfObject::hexdump(_Dst_00,local_48);
+        }
+        iVar1 = memcmp(_Dst,_Dst_00,(ulonglong)*(uint *)(this + 0x34));
+        free(_Dst_00);
+        free(_Dst);
+        nativeReset(this);
+        uVar2 = -(uint)(iVar1 != 0) & 0xffffe1e1;
+      }
+      else {
+        free(_Dst);
+        free(_Dst_00);
+      }
+    }
+    else {
+      free(_Dst);
+      if (-1 < (int)uVar2) {
+        uVar2 = 0xffffe1e1;
+      }
+    }
+  }
+  else {
+    uVar2 = 0xffffe881;
+  }
+  return uVar2;
+}
+
+
+### ?nativeVerify@DsfShaWithRsaSignature@@QEAAHPEAEHH@Z @ 180023710 type=Label
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+/* public: int __cdecl DsfShaWithRsaSignature::nativeVerify(unsigned char * __ptr64,int,int) __ptr64
+    */
+
+int __thiscall
+DsfShaWithRsaSignature::nativeVerify
+          (DsfShaWithRsaSignature *this,uchar *param_1,int param_2,int param_3)
+
+{
+  int iVar1;
+  uint uVar2;
+  uchar *_Dst;
+  uchar *_Dst_00;
+  uchar *puVar3;
+  uchar *puVar4;
+  uint *puVar5;
+  ulonglong uVar6;
+  undefined1 auStackY_78 [32];
+  ulong local_48;
+  uint local_44;
+  ulonglong local_40;
+  
+                    /* 0x23710  84  ?nativeVerify@DsfShaWithRsaSignature@@QEAAHPEAEHH@Z */
+  local_40 = DAT_180046100 ^ (ulonglong)auStackY_78;
+  if (*(int *)(this + 0x20) == 2) {
+    FUN_180018820(*(longlong *)(this + 0x10),&local_44);
+    iVar1 = FUN_1800094e0(*(longlong **)(*(longlong *)(this + 0x10) + 0x10));
+    uVar6 = (ulonglong)(iVar1 + 7U >> 3);
+    _Dst = (uchar *)thunk_FUN_180024d1c(uVar6);
+    memset(_Dst,0xff,uVar6);
+    memcpy(_Dst,*(void **)(this + 0x28),(ulonglong)*(uint *)(this + 0x30));
+    uVar2 = (*(code *)PTR__guard_dispatch_icall_180026210)
+                      (*(undefined8 *)(this + 0x18),_Dst + *(uint *)(this + 0x30),
+                       *(undefined4 *)(this + 0x34));
+    if (uVar2 == *(uint *)(this + 0x34)) {
+      _Dst_00 = (uchar *)thunk_FUN_180024d1c(uVar6);
+      memset(_Dst_00,0xff,uVar6);
+      puVar3 = param_1 + param_2;
+      puVar5 = &local_48;
+      puVar4 = _Dst_00;
+      uVar6 = FUN_180018ba0(*(longlong *)(this + 0x10),(longlong)puVar3,(char *)_Dst_00,puVar5,
+                            (longlong *)0x0);
+      uVar2 = (uint)uVar6;
+      if (uVar2 == 0) {
+        iVar1 = DsfUtil::isDebugEnabled();
+        if (iVar1 != 0) {
+          FUN_18000fdf0("Comparing signatures:\n\n",puVar3,puVar4,puVar5);
+          uVar6 = (ulonglong)(uint)(*(int *)(this + 0x34) + *(int *)(this + 0x30));
+          DsfObject::hexdump(_Dst,*(int *)(this + 0x34) + *(int *)(this + 0x30));
+          FUN_18000fdf0("\nwith:\n",uVar6,puVar4,puVar5);
+          DsfObject::hexdump(_Dst_00,local_48);
+        }
+        iVar1 = memcmp(_Dst,_Dst_00,(ulonglong)*(uint *)(this + 0x34));
+        free(_Dst_00);
+        free(_Dst);
+        nativeReset(this);
+        uVar2 = -(uint)(iVar1 != 0) & 0xffffe1e1;
+      }
+      else {
+        free(_Dst);
+        free(_Dst_00);
+      }
+    }
+    else {
+      free(_Dst);
+      if (-1 < (int)uVar2) {
+        uVar2 = 0xffffe1e1;
+      }
+    }
+  }
+  else {
+    uVar2 = 0xffffe881;
+  }
+  return uVar2;
+}
+
+
+### ?reset@DsfShaWithRsaSignature@@AEAAXPEAUJNIEnv_@@PEAV_jobject@@@Z @ 1800238d0 type=Label
+
+/* private: void __cdecl DsfShaWithRsaSignature::reset(struct JNIEnv_ * __ptr64,class _jobject *
+   __ptr64) __ptr64 */
+
+void __thiscall
+DsfShaWithRsaSignature::reset(DsfShaWithRsaSignature *this,JNIEnv_ *param_1,_jobject *param_2)
+
+{
+  DsfSha1MessageDigest *this_00;
+  undefined8 uVar1;
+  DsfSha256MessageDigest *this_01;
+  
+                    /* 0x238d0  92
+                       ?reset@DsfShaWithRsaSignature@@AEAAXPEAUJNIEnv_@@PEAV_jobject@@@Z */
+  FUN_1800179b0((int *)(this + 8),(longlong *)0x0);
+  FUN_1800177b0((undefined4 *)(this + 8));
+  if (*(longlong *)(this + 0x18) != 0) {
+    (*(code *)PTR__guard_dispatch_icall_180026210)(*(longlong *)(this + 0x18),1);
+  }
+  if (*(int *)(this + 0x24) == 0) {
+    this_00 = (DsfSha1MessageDigest *)FUN_180024d1c(0x10);
+    if (this_00 == (DsfSha1MessageDigest *)0x0) {
+      uVar1 = 0;
+    }
+    else {
+      *(undefined8 *)this_00 = 0;
+      *(undefined8 *)(this_00 + 8) = 0;
+      uVar1 = DsfSha1MessageDigest::DsfSha1MessageDigest(this_00);
+    }
+  }
+  else {
+    this_01 = (DsfSha256MessageDigest *)FUN_180024d1c(0x10);
+    if (this_01 == (DsfSha256MessageDigest *)0x0) {
+      uVar1 = 0;
+    }
+    else {
+      *(undefined8 *)this_01 = 0;
+      *(undefined8 *)(this_01 + 8) = 0;
+      uVar1 = DsfSha256MessageDigest::DsfSha256MessageDigest(this_01);
+    }
+  }
+  *(undefined8 *)(this + 0x18) = uVar1;
+  (*(code *)PTR__guard_dispatch_icall_180026210)(uVar1,param_1,param_2);
+  *(undefined4 *)(this + 0x20) = 0;
+  return;
+}
+
+
+### ?sign@DsfShaWithRsaSignature@@QEAAHPEAUJNIEnv_@@PEAV_jobject@@PEAV_jbyteArray@@JJ@Z @ 1800239b0 type=Label
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+/* public: int __cdecl DsfShaWithRsaSignature::sign(struct JNIEnv_ * __ptr64,class _jobject *
+   __ptr64,class _jbyteArray * __ptr64,long,long) __ptr64 */
+
+int __thiscall
+DsfShaWithRsaSignature::sign
+          (DsfShaWithRsaSignature *this,JNIEnv_ *param_1,_jobject *param_2,_jbyteArray *param_3,
+          long param_4,long param_5)
+
+{
+  int iVar1;
+  int iVar2;
+  uint uVar3;
+  int iVar4;
+  enum_errDescrValues eVar5;
+  undefined2 *_Dst;
+  ulonglong uVar6;
+  longlong lVar7;
+  undefined8 uVar8;
+  uint uVar9;
+  char *pcVar10;
+  undefined1 auStackY_a8 [32];
+  longlong *local_70;
+  longlong *local_68;
+  void *local_60;
+  ulonglong local_58;
+  
+                    /* 0x239b0  97
+                       ?sign@DsfShaWithRsaSignature@@QEAAHPEAUJNIEnv_@@PEAV_jobject@@PEAV_jbyteArray@@JJ@Z
+                        */
+  local_58 = DAT_180046100 ^ (ulonglong)auStackY_a8;
+  local_70 = (longlong *)0x0;
+  local_68 = (longlong *)0x0;
+  if (*(int *)(this + 0x20) != 1) {
+    DsfObject::throwException
+              ((DsfObject *)(this + 8),param_1,"java/security/SignatureException",
+               "signature not initialized for signing");
+    return 0;
+  }
+  iVar4 = *(int *)(this + 0x30);
+  iVar1 = *(int *)(this + 0x34);
+  iVar2 = FUN_1800094e0(*(longlong **)(*(longlong *)(this + 0x10) + 0x10));
+  uVar9 = iVar2 + 7U >> 3;
+  if (param_5 < (int)uVar9) {
+    pcVar10 = "output buffer space is insufficient";
+  }
+  else {
+    if (iVar4 + iVar1 + 0xbU <= uVar9) {
+      _Dst = (undefined2 *)thunk_FUN_180024d1c((ulonglong)uVar9);
+      uVar8 = 0;
+      memset(_Dst,0,(ulonglong)uVar9);
+      *_Dst = 0x100;
+      uVar3 = uVar9 - (iVar4 + iVar1);
+      uVar6 = (ulonglong)uVar3;
+      if (uVar3 != 0) {
+        memset(_Dst + 1,(int)CONCAT71((int7)((ulonglong)uVar8 >> 8),0xff),uVar6);
+      }
+      *(undefined1 *)((uVar6 - 1) + (longlong)_Dst) = 0;
+      memcpy((void *)(uVar6 + (longlong)_Dst),*(void **)(this + 0x28),
+             (ulonglong)*(uint *)(this + 0x30));
+      iVar4 = (*(code *)PTR__guard_dispatch_icall_180026210)
+                        (*(undefined8 *)(this + 0x18),param_1,param_2);
+      if (iVar4 != *(int *)(this + 0x34)) {
+        DsfObject::throwException
+                  ((DsfObject *)(this + 8),param_1,"java/security/SignatureException",
+                   "error calculating final digest");
+        free(_Dst);
+        return 0;
+      }
+      eVar5 = FUN_180016750((longlong)_Dst,uVar9,(longlong *)&local_70);
+      free(_Dst);
+      if (eVar5 != 0) {
+        DsfObject::throwException
+                  ((DsfObject *)(this + 8),param_1,"java/security/SignatureException",
+                   "error generating integer representative message",eVar5);
+        FUN_180009b30((longlong *)&local_70,(longlong *)0x0);
+        return 0;
+      }
+      uVar6 = thunk_FUN_180017ad0(*(longlong *)(this + 0x10),local_70,(undefined *)0x0,0,&local_68,
+                                  (longlong *)0x0);
+      eVar5 = (enum_errDescrValues)uVar6;
+      FUN_180009b30((longlong *)&local_70,(longlong *)0x0);
+      if (eVar5 == 0) {
+        uVar6 = FUN_1800166e0(local_68,uVar9,&local_60);
+        eVar5 = (enum_errDescrValues)uVar6;
+        FUN_180009b30((longlong *)&local_68,(longlong *)0x0);
+        if (eVar5 == 0) {
+          lVar7 = (*(code *)PTR__guard_dispatch_icall_180026210)(param_1,param_3,0);
+          memcpy((void *)(param_4 + lVar7),local_60,(ulonglong)uVar9);
+          (*(code *)PTR__guard_dispatch_icall_180026210)(param_1,param_3,lVar7,0);
+          free(local_60);
+          reset(this,param_1,param_2);
+          return uVar9;
+        }
+        pcVar10 = "error generating signature array";
+      }
+      else {
+        pcVar10 = "error generating integer representative signature";
+      }
+      DsfObject::throwException
+                ((DsfObject *)(this + 8),param_1,"java/security/SignatureException",pcVar10,eVar5);
+      return 0;
+    }
+    pcVar10 = "message too long";
+  }
+  DsfObject::throwException
+            ((DsfObject *)(this + 8),param_1,"java/security/SignatureException",pcVar10);
+  return 0;
+}
+
+
+### ?sign@DsfShaWithRsaSignature@@QEAAPEAV_jbyteArray@@PEAUJNIEnv_@@PEAV_jobject@@@Z @ 180023ca0 type=Label
+
+/* public: class _jbyteArray * __ptr64 __cdecl DsfShaWithRsaSignature::sign(struct JNIEnv_ *
+   __ptr64,class _jobject * __ptr64) __ptr64 */
+
+_jbyteArray * __thiscall
+DsfShaWithRsaSignature::sign(DsfShaWithRsaSignature *this,JNIEnv_ *param_1,_jobject *param_2)
+
+{
+  int iVar1;
+  _jbyteArray *p_Var2;
+  uint uVar3;
+  
+                    /* 0x23ca0  98
+                       ?sign@DsfShaWithRsaSignature@@QEAAPEAV_jbyteArray@@PEAUJNIEnv_@@PEAV_jobject@@@Z
+                        */
+  if (*(int *)(this + 0x20) != 1) {
+    DsfObject::throwException
+              ((DsfObject *)(this + 8),param_1,"java/security/SignatureException",
+               "signature not initialized for signing");
+    return (_jbyteArray *)0x0;
+  }
+  iVar1 = FUN_1800094e0(*(longlong **)(*(longlong *)(this + 0x10) + 0x10));
+  uVar3 = iVar1 + 7U >> 3;
+  p_Var2 = (_jbyteArray *)(*(code *)PTR__guard_dispatch_icall_180026210)(param_1,uVar3);
+  sign(this,param_1,param_2,p_Var2,0,uVar3);
+  return p_Var2;
+}
+
+
+### ?verify@DsfShaWithRsaSignature@@QEAAEPEAUJNIEnv_@@PEAV_jobject@@PEAV_jbyteArray@@@Z @ 180023d60 type=Label
+
+/* public: unsigned char __cdecl DsfShaWithRsaSignature::verify(struct JNIEnv_ * __ptr64,class
+   _jobject * __ptr64,class _jbyteArray * __ptr64) __ptr64 */
+
+uchar __thiscall
+DsfShaWithRsaSignature::verify
+          (DsfShaWithRsaSignature *this,JNIEnv_ *param_1,_jobject *param_2,_jbyteArray *param_3)
+
+{
+  uchar uVar1;
+  long lVar2;
+  
+                    /* 0x23d60  114
+                       ?verify@DsfShaWithRsaSignature@@QEAAEPEAUJNIEnv_@@PEAV_jobject@@PEAV_jbyteArray@@@Z
+                        */
+  lVar2 = (*(code *)PTR__guard_dispatch_icall_180026210)(param_1,param_3);
+  uVar1 = verify(this,param_1,param_2,param_3,0,lVar2);
+  return uVar1;
+}
+
+
+### ?verify@DsfShaWithRsaSignature@@QEAAEPEAUJNIEnv_@@PEAV_jobject@@PEAV_jbyteArray@@JJ@Z @ 180023dd0 type=Label
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+/* public: unsigned char __cdecl DsfShaWithRsaSignature::verify(struct JNIEnv_ * __ptr64,class
+   _jobject * __ptr64,class _jbyteArray * __ptr64,long,long) __ptr64 */
+
+uchar __thiscall
+DsfShaWithRsaSignature::verify
+          (DsfShaWithRsaSignature *this,JNIEnv_ *param_1,_jobject *param_2,_jbyteArray *param_3,
+          long param_4,long param_5)
+
+{
+  int iVar1;
+  int iVar2;
+  enum_errDescrValues eVar3;
+  int iVar4;
+  longlong lVar5;
+  ulonglong uVar6;
+  undefined2 *_Buf1;
+  undefined8 uVar7;
+  uint uVar8;
+  uint uVar9;
+  undefined1 auStackY_98 [32];
+  longlong *local_68;
+  longlong *local_60;
+  void *local_58;
+  ulonglong local_50;
+  
+                    /* 0x23dd0  115
+                       ?verify@DsfShaWithRsaSignature@@QEAAEPEAUJNIEnv_@@PEAV_jobject@@PEAV_jbyteArray@@JJ@Z
+                        */
+  local_50 = DAT_180046100 ^ (ulonglong)auStackY_98;
+  local_68 = (longlong *)0x0;
+  if (*(int *)(this + 0x20) != 2) {
+    DsfObject::throwException
+              ((DsfObject *)(this + 8),param_1,"java/security/SignatureException",
+               "signature not initialized for verifying");
+    return '\0';
+  }
+  iVar2 = FUN_1800094e0(*(longlong **)(*(longlong *)(this + 0x10) + 0x10));
+  iVar4 = *(int *)(this + 0x34);
+  iVar1 = *(int *)(this + 0x30);
+  uVar8 = iVar2 + 7U >> 3;
+  iVar2 = (*(code *)PTR__guard_dispatch_icall_180026210)(param_1,param_3);
+  if ((param_5 == uVar8) && (param_5 + param_4 <= iVar2)) {
+    lVar5 = (*(code *)PTR__guard_dispatch_icall_180026210)(param_1,param_3,0);
+    eVar3 = FUN_180016750(lVar5 + param_4,uVar8,(longlong *)&local_68);
+    (*(code *)PTR__guard_dispatch_icall_180026210)(param_1,param_3,lVar5);
+    if (eVar3 == 0) {
+      eVar3 = FUN_180017fa0(*(longlong *)(this + 0x10),local_68,(longlong *)&local_60,
+                            (longlong *)0x0);
+      FUN_180009b30((longlong *)&local_68,(longlong *)0x0);
+      if (eVar3 == 0) {
+        uVar6 = FUN_1800166e0(local_60,uVar8,&local_58);
+        uVar7 = 0;
+        eVar3 = (enum_errDescrValues)uVar6;
+        FUN_180009b30((longlong *)&local_60,(longlong *)0x0);
+        if (eVar3 == 0) {
+          _Buf1 = (undefined2 *)thunk_FUN_180024d1c((ulonglong)uVar8);
+          uVar9 = uVar8 - (iVar4 + iVar1);
+          uVar6 = (ulonglong)uVar9;
+          *_Buf1 = 0x100;
+          if (0 < (int)uVar9) {
+            memset(_Buf1 + 1,(int)CONCAT71((int7)((ulonglong)uVar7 >> 8),0xff),uVar6);
+          }
+          *(undefined1 *)((uVar6 - 1) + (longlong)_Buf1) = 0;
+          memcpy((void *)(uVar6 + (longlong)_Buf1),*(void **)(this + 0x28),
+                 (ulonglong)*(uint *)(this + 0x30));
+          iVar4 = (*(code *)PTR__guard_dispatch_icall_180026210)
+                            (*(undefined8 *)(this + 0x18),param_1,param_2,
+                             *(uint *)(this + 0x30) + uVar6 + (longlong)_Buf1);
+          if (iVar4 != *(int *)(this + 0x34)) {
+            DsfObject::throwException
+                      ((DsfObject *)(this + 8),param_1,"java/security/SignatureException",
+                       "error calculating final digest");
+            free(local_58);
+            free(_Buf1);
+            return '\0';
+          }
+          iVar4 = memcmp(_Buf1,local_58,(ulonglong)uVar8);
+          free(local_58);
+          free(_Buf1);
+          reset(this,param_1,param_2);
+          return iVar4 == 0;
+        }
+      }
+      DsfObject::throwException
+                ((DsfObject *)(this + 8),param_1,"java/security/SignatureException",
+                 "invalid signature",eVar3);
+    }
+    else {
+      DsfObject::throwException
+                ((DsfObject *)(this + 8),param_1,"java/security/SignatureException",
+                 "error generating integer representative signature",eVar3);
+      FUN_180009b30((longlong *)&local_68,(longlong *)0x0);
+    }
+    return '\0';
+  }
+  DsfObject::throwException
+            ((DsfObject *)(this + 8),param_1,"java/security/SignatureException","invalid signature")
+  ;
+  return '\0';
+}
+
+
+### checkFileSignature @ 1800240a0 type=Function
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+/* public: static int __cdecl DsfUtil::checkFileSignature(unsigned char * __ptr64,int,char const *
+   __ptr64,int) */
+
+int __cdecl DsfUtil::checkFileSignature(uchar *param_1,int param_2,char *param_3,int param_4)
+
+{
+  char cVar1;
+  longlong lVar2;
+  enum_errDescrValues eVar3;
+  int iVar4;
+  char *pcVar5;
+  DsfShaWithRsaSignature *this;
+  char *pcVar6;
+  undefined *puVar7;
+  FILE *pFVar8;
+  uchar *_DstBuf;
+  size_t sVar9;
+  undefined4 in_register_00000014;
+  undefined8 uVar10;
+  undefined8 uVar11;
+  undefined4 in_register_0000008c;
+  FILE *pFVar12;
+  ulonglong uVar13;
+  undefined1 auStack_178 [32];
+  DsfShaWithRsaSignature *local_158;
+  char cStack_149;
+  char local_148 [4];
+  char local_144 [268];
+  ulonglong local_38;
+  
+  uVar11 = CONCAT44(in_register_0000008c,param_4);
+                    /* 0x240a0  50  ?checkFileSignature@DsfUtil@@SAHPEAEHPEBDH@Z */
+  uVar10 = CONCAT44(in_register_00000014,param_2);
+  local_38 = DAT_180046100 ^ (ulonglong)auStack_178;
+  if ((param_3 == (char *)0x0) || (0xfe < param_4 - 1U)) {
+    pcVar6 = getenv("dsf_debug");
+    if (pcVar6 != (char *)0x0) {
+      FUN_18000fdf0("ERROR [DsfUtil::checkFileSignature] Invalid filePath provided\n",uVar10,param_3
+                    ,uVar11);
+    }
+    eVar3 = 0xffffe829;
+  }
+  else if ((param_1 == (uchar *)0x0) || (500 < param_2)) {
+    pcVar6 = getenv("dsf_debug");
+    if (pcVar6 != (char *)0x0) {
+      FUN_18000fdf0("ERROR [DsfUtil::checkFileSignature] Invalid key provided\n",uVar10,param_3,
+                    uVar11);
+    }
+LAB_1800244fe:
+    eVar3 = 0xffffe1eb;
+  }
+  else {
+    pcVar6 = param_3;
+    pcVar5 = getenv("dsf_debug");
+    if (pcVar5 != (char *)0x0) {
+      FUN_18000fdf0("INFO [DsfUtil::checkFileSignature] creating signature object\n",uVar10,pcVar6,
+                    uVar11);
+    }
+    local_158 = (DsfShaWithRsaSignature *)FUN_180024d1c(0x38);
+    if (local_158 == (DsfShaWithRsaSignature *)0x0) {
+      this = (DsfShaWithRsaSignature *)0x0;
+    }
+    else {
+      *(undefined8 *)local_158 = 0;
+      *(undefined8 *)(local_158 + 8) = 0;
+      *(undefined8 *)(local_158 + 0x10) = 0;
+      *(undefined8 *)(local_158 + 0x18) = 0;
+      *(undefined8 *)(local_158 + 0x20) = 0;
+      *(undefined8 *)(local_158 + 0x28) = 0;
+      *(undefined8 *)(local_158 + 0x30) = 0;
+      this = (DsfShaWithRsaSignature *)DsfShaWithRsaSignature::DsfShaWithRsaSignature(local_158,1);
+    }
+    eVar3 = DsfShaWithRsaSignature::nativeInitVerify(this,param_2,param_1);
+    if (eVar3 == 0) {
+      pcVar6 = getenv("dsf_debug");
+      if (pcVar6 != (char *)0x0) {
+        FUN_18000fdf0("INFO [DsfUtil::checkFileSignature] reading data from filePath %s\n",param_3,
+                      param_1,uVar11);
+      }
+      puVar7 = &DAT_180032bc8;
+      pFVar8 = fopen(param_3,"rb");
+      if (pFVar8 == (FILE *)0x0) {
+        pcVar6 = getenv("dsf_debug");
+        if (pcVar6 != (char *)0x0) {
+          FUN_18000fdf0("ERROR [DsfUtil::checkFileSignature] unable to open filePath %s\n",param_3,
+                        param_1,uVar11);
+        }
+LAB_1800243af:
+        if (this != (DsfShaWithRsaSignature *)0x0) {
+          (*(code *)PTR__guard_dispatch_icall_180026210)(this,1);
+        }
+        eVar3 = 0xffffe3df;
+      }
+      else {
+        _DstBuf = (uchar *)thunk_FUN_180024d1c(0x2800);
+        pcVar6 = getenv("dsf_debug");
+        if (pcVar6 != (char *)0x0) {
+          FUN_18000fdf0("INFO [DsfUtil::checkFileSignature] reading source file for signature\n",
+                        puVar7,param_1,uVar11);
+        }
+        uVar10 = 0x2800;
+        pFVar12 = pFVar8;
+        puVar7 = (undefined *)fread(_DstBuf,1,0x2800,pFVar8);
+        if (puVar7 < (undefined *)0x80000000) {
+LAB_180024260:
+          pFVar12 = (FILE *)((ulonglong)puVar7 & 0xffffffff);
+          uVar10 = 0;
+          eVar3 = DsfShaWithRsaSignature::nativeUpdate(this,_DstBuf,0,(int)puVar7);
+          if (eVar3 == 0) {
+            if (0x27ff < (int)puVar7) goto code_r0x000180024284;
+            fclose(pFVar8);
+            uVar10 = 0;
+            uVar11 = 0x104;
+            memset(local_148,0,0x104);
+            lVar2 = -(longlong)param_3;
+            do {
+              cVar1 = *param_3;
+              param_3[(longlong)(local_148 + lVar2)] = cVar1;
+              param_3 = param_3 + 1;
+            } while (cVar1 != '\0');
+            pcVar6 = &cStack_149;
+            do {
+              pcVar5 = pcVar6;
+              pcVar6 = pcVar5 + 1;
+            } while (*pcVar6 != '\0');
+            *(undefined4 *)pcVar6 = DAT_180037a34;
+            pcVar5[5] = DAT_180037a38;
+            pcVar6 = getenv("dsf_debug");
+            if (pcVar6 != (char *)0x0) {
+              FUN_18000fdf0("INFO [DsfUtil::checkFileSignature] open signature file\n",uVar10,uVar11
+                            ,pFVar12);
+            }
+            puVar7 = &DAT_180032bc8;
+            pFVar8 = fopen(local_148,"rb");
+            if (pFVar8 != (FILE *)0x0) {
+              pcVar6 = getenv("dsf_debug");
+              if (pcVar6 != (char *)0x0) {
+                FUN_18000fdf0("INFO [DsfUtil::checkFileSignature] reading key\n",puVar7,uVar11,
+                              pFVar12);
+              }
+              uVar10 = 1;
+              uVar11 = 0x2800;
+              pFVar12 = pFVar8;
+              sVar9 = fread(_DstBuf,1,0x2800,pFVar8);
+              fclose(pFVar8);
+              pcVar6 = getenv("dsf_debug");
+              if (sVar9 < 0x1f5) {
+                if (pcVar6 != (char *)0x0) {
+                  FUN_18000fdf0("INFO [DsfUtil::checkFileSignature] verifying file signature\n",
+                                uVar10,uVar11,pFVar12);
+                }
+                uVar13 = sVar9 & 0xffffffff;
+                uVar10 = 0;
+                iVar4 = DsfShaWithRsaSignature::nativeVerify(this,_DstBuf,0,(int)sVar9);
+                pcVar6 = getenv("dsf_debug");
+                if (pcVar6 == (char *)0x0) {
+                  return iVar4;
+                }
+                pcVar6 = "ERROR [DsfUtil::checkFileSignature] file signature verification failed\n";
+                if (iVar4 == 0) {
+                  pcVar6 = 
+                  "INFO [DsfUtil::checkFileSignature] file signature verification succeeded\n";
+                }
+                FUN_18000fdf0(pcVar6,_DstBuf,uVar10,uVar13);
+                return iVar4;
+              }
+              if (pcVar6 != (char *)0x0) {
+                FUN_18000fdf0("ERROR [DsfUtil::checkFileSignature] invalid key size\n",uVar10,uVar11
+                              ,pFVar12);
+              }
+              free(_DstBuf);
+              if (this != (DsfShaWithRsaSignature *)0x0) {
+                (*(code *)PTR__guard_dispatch_icall_180026210)(this,1);
+                return -0x1e15;
+              }
+              goto LAB_1800244fe;
+            }
+            pcVar6 = getenv("dsf_debug");
+            if (pcVar6 != (char *)0x0) {
+              FUN_18000fdf0("ERROR [DsfUtil::checkFileSignature] error opening signature file\n",
+                            puVar7,uVar11,pFVar12);
+            }
+            free(_DstBuf);
+            goto LAB_1800243af;
+          }
+          pcVar6 = getenv("dsf_debug");
+          if (pcVar6 == (char *)0x0) goto LAB_1800242c5;
+          puVar7 = FUN_1800035a0(eVar3);
+          pcVar6 = "ERROR [DsfUtil::checkFileSignature] error reading source file: %s\n";
+          goto LAB_1800242c0;
+        }
+LAB_1800242a4:
+        pcVar6 = getenv("dsf_debug");
+        if (pcVar6 != (char *)0x0) {
+          pcVar6 = "ERROR [DsfUtil::checkFileSignature] bytes read from file exceeds INT_MAX: %zu\n"
+          ;
+LAB_1800242c0:
+          FUN_18000fdf0(pcVar6,puVar7,uVar10,pFVar12);
+        }
+LAB_1800242c5:
+        free(_DstBuf);
+        fclose(pFVar8);
+        if (this != (DsfShaWithRsaSignature *)0x0) {
+          (*(code *)PTR__guard_dispatch_icall_180026210)(this,1);
+        }
+        eVar3 = 0xffffe3de;
+      }
+    }
+    else {
+      pcVar6 = getenv("dsf_debug");
+      if (pcVar6 != (char *)0x0) {
+        puVar7 = FUN_1800035a0(eVar3);
+        FUN_18000fdf0("ERROR [DsfUtil::checkFileSignature] unable to initalize signature verification: %s"
+                      ,puVar7,param_1,uVar11);
+      }
+      if (this != (DsfShaWithRsaSignature *)0x0) {
+        (*(code *)PTR__guard_dispatch_icall_180026210)(this,1);
+      }
+    }
+  }
+  return eVar3;
+code_r0x000180024284:
+  uVar10 = 0x2800;
+  pFVar12 = pFVar8;
+  puVar7 = (undefined *)fread(_DstBuf,1,0x2800,pFVar8);
+  if ((undefined *)0x7fffffff < puVar7) goto LAB_1800242a4;
+  goto LAB_180024260;
+}
+
+
+### ?checkFileSignature@DsfUtil@@SAHPEAEHPEBDH@Z @ 1800240a0 type=Label
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+/* public: static int __cdecl DsfUtil::checkFileSignature(unsigned char * __ptr64,int,char const *
+   __ptr64,int) */
+
+int __cdecl DsfUtil::checkFileSignature(uchar *param_1,int param_2,char *param_3,int param_4)
+
+{
+  char cVar1;
+  longlong lVar2;
+  enum_errDescrValues eVar3;
+  int iVar4;
+  char *pcVar5;
+  DsfShaWithRsaSignature *this;
+  char *pcVar6;
+  undefined *puVar7;
+  FILE *pFVar8;
+  uchar *_DstBuf;
+  size_t sVar9;
+  undefined4 in_register_00000014;
+  undefined8 uVar10;
+  undefined8 uVar11;
+  undefined4 in_register_0000008c;
+  FILE *pFVar12;
+  ulonglong uVar13;
+  undefined1 auStack_178 [32];
+  DsfShaWithRsaSignature *local_158;
+  char cStack_149;
+  char local_148 [4];
+  char local_144 [268];
+  ulonglong local_38;
+  
+  uVar11 = CONCAT44(in_register_0000008c,param_4);
+                    /* 0x240a0  50  ?checkFileSignature@DsfUtil@@SAHPEAEHPEBDH@Z */
+  uVar10 = CONCAT44(in_register_00000014,param_2);
+  local_38 = DAT_180046100 ^ (ulonglong)auStack_178;
+  if ((param_3 == (char *)0x0) || (0xfe < param_4 - 1U)) {
+    pcVar6 = getenv("dsf_debug");
+    if (pcVar6 != (char *)0x0) {
+      FUN_18000fdf0("ERROR [DsfUtil::checkFileSignature] Invalid filePath provided\n",uVar10,param_3
+                    ,uVar11);
+    }
+    eVar3 = 0xffffe829;
+  }
+  else if ((param_1 == (uchar *)0x0) || (500 < param_2)) {
+    pcVar6 = getenv("dsf_debug");
+    if (pcVar6 != (char *)0x0) {
+      FUN_18000fdf0("ERROR [DsfUtil::checkFileSignature] Invalid key provided\n",uVar10,param_3,
+                    uVar11);
+    }
+LAB_1800244fe:
+    eVar3 = 0xffffe1eb;
+  }
+  else {
+    pcVar6 = param_3;
+    pcVar5 = getenv("dsf_debug");
+    if (pcVar5 != (char *)0x0) {
+      FUN_18000fdf0("INFO [DsfUtil::checkFileSignature] creating signature object\n",uVar10,pcVar6,
+                    uVar11);
+    }
+    local_158 = (DsfShaWithRsaSignature *)FUN_180024d1c(0x38);
+    if (local_158 == (DsfShaWithRsaSignature *)0x0) {
+      this = (DsfShaWithRsaSignature *)0x0;
+    }
+    else {
+      *(undefined8 *)local_158 = 0;
+      *(undefined8 *)(local_158 + 8) = 0;
+      *(undefined8 *)(local_158 + 0x10) = 0;
+      *(undefined8 *)(local_158 + 0x18) = 0;
+      *(undefined8 *)(local_158 + 0x20) = 0;
+      *(undefined8 *)(local_158 + 0x28) = 0;
+      *(undefined8 *)(local_158 + 0x30) = 0;
+      this = (DsfShaWithRsaSignature *)DsfShaWithRsaSignature::DsfShaWithRsaSignature(local_158,1);
+    }
+    eVar3 = DsfShaWithRsaSignature::nativeInitVerify(this,param_2,param_1);
+    if (eVar3 == 0) {
+      pcVar6 = getenv("dsf_debug");
+      if (pcVar6 != (char *)0x0) {
+        FUN_18000fdf0("INFO [DsfUtil::checkFileSignature] reading data from filePath %s\n",param_3,
+                      param_1,uVar11);
+      }
+      puVar7 = &DAT_180032bc8;
+      pFVar8 = fopen(param_3,"rb");
+      if (pFVar8 == (FILE *)0x0) {
+        pcVar6 = getenv("dsf_debug");
+        if (pcVar6 != (char *)0x0) {
+          FUN_18000fdf0("ERROR [DsfUtil::checkFileSignature] unable to open filePath %s\n",param_3,
+                        param_1,uVar11);
+        }
+LAB_1800243af:
+        if (this != (DsfShaWithRsaSignature *)0x0) {
+          (*(code *)PTR__guard_dispatch_icall_180026210)(this,1);
+        }
+        eVar3 = 0xffffe3df;
+      }
+      else {
+        _DstBuf = (uchar *)thunk_FUN_180024d1c(0x2800);
+        pcVar6 = getenv("dsf_debug");
+        if (pcVar6 != (char *)0x0) {
+          FUN_18000fdf0("INFO [DsfUtil::checkFileSignature] reading source file for signature\n",
+                        puVar7,param_1,uVar11);
+        }
+        uVar10 = 0x2800;
+        pFVar12 = pFVar8;
+        puVar7 = (undefined *)fread(_DstBuf,1,0x2800,pFVar8);
+        if (puVar7 < (undefined *)0x80000000) {
+LAB_180024260:
+          pFVar12 = (FILE *)((ulonglong)puVar7 & 0xffffffff);
+          uVar10 = 0;
+          eVar3 = DsfShaWithRsaSignature::nativeUpdate(this,_DstBuf,0,(int)puVar7);
+          if (eVar3 == 0) {
+            if (0x27ff < (int)puVar7) goto code_r0x000180024284;
+            fclose(pFVar8);
+            uVar10 = 0;
+            uVar11 = 0x104;
+            memset(local_148,0,0x104);
+            lVar2 = -(longlong)param_3;
+            do {
+              cVar1 = *param_3;
+              param_3[(longlong)(local_148 + lVar2)] = cVar1;
+              param_3 = param_3 + 1;
+            } while (cVar1 != '\0');
+            pcVar6 = &cStack_149;
+            do {
+              pcVar5 = pcVar6;
+              pcVar6 = pcVar5 + 1;
+            } while (*pcVar6 != '\0');
+            *(undefined4 *)pcVar6 = DAT_180037a34;
+            pcVar5[5] = DAT_180037a38;
+            pcVar6 = getenv("dsf_debug");
+            if (pcVar6 != (char *)0x0) {
+              FUN_18000fdf0("INFO [DsfUtil::checkFileSignature] open signature file\n",uVar10,uVar11
+                            ,pFVar12);
+            }
+            puVar7 = &DAT_180032bc8;
+            pFVar8 = fopen(local_148,"rb");
+            if (pFVar8 != (FILE *)0x0) {
+              pcVar6 = getenv("dsf_debug");
+              if (pcVar6 != (char *)0x0) {
+                FUN_18000fdf0("INFO [DsfUtil::checkFileSignature] reading key\n",puVar7,uVar11,
+                              pFVar12);
+              }
+              uVar10 = 1;
+              uVar11 = 0x2800;
+              pFVar12 = pFVar8;
+              sVar9 = fread(_DstBuf,1,0x2800,pFVar8);
+              fclose(pFVar8);
+              pcVar6 = getenv("dsf_debug");
+              if (sVar9 < 0x1f5) {
+                if (pcVar6 != (char *)0x0) {
+                  FUN_18000fdf0("INFO [DsfUtil::checkFileSignature] verifying file signature\n",
+                                uVar10,uVar11,pFVar12);
+                }
+                uVar13 = sVar9 & 0xffffffff;
+                uVar10 = 0;
+                iVar4 = DsfShaWithRsaSignature::nativeVerify(this,_DstBuf,0,(int)sVar9);
+                pcVar6 = getenv("dsf_debug");
+                if (pcVar6 == (char *)0x0) {
+                  return iVar4;
+                }
+                pcVar6 = "ERROR [DsfUtil::checkFileSignature] file signature verification failed\n";
+                if (iVar4 == 0) {
+                  pcVar6 = 
+                  "INFO [DsfUtil::checkFileSignature] file signature verification succeeded\n";
+                }
+                FUN_18000fdf0(pcVar6,_DstBuf,uVar10,uVar13);
+                return iVar4;
+              }
+              if (pcVar6 != (char *)0x0) {
+                FUN_18000fdf0("ERROR [DsfUtil::checkFileSignature] invalid key size\n",uVar10,uVar11
+                              ,pFVar12);
+              }
+              free(_DstBuf);
+              if (this != (DsfShaWithRsaSignature *)0x0) {
+                (*(code *)PTR__guard_dispatch_icall_180026210)(this,1);
+                return -0x1e15;
+              }
+              goto LAB_1800244fe;
+            }
+            pcVar6 = getenv("dsf_debug");
+            if (pcVar6 != (char *)0x0) {
+              FUN_18000fdf0("ERROR [DsfUtil::checkFileSignature] error opening signature file\n",
+                            puVar7,uVar11,pFVar12);
+            }
+            free(_DstBuf);
+            goto LAB_1800243af;
+          }
+          pcVar6 = getenv("dsf_debug");
+          if (pcVar6 == (char *)0x0) goto LAB_1800242c5;
+          puVar7 = FUN_1800035a0(eVar3);
+          pcVar6 = "ERROR [DsfUtil::checkFileSignature] error reading source file: %s\n";
+          goto LAB_1800242c0;
+        }
+LAB_1800242a4:
+        pcVar6 = getenv("dsf_debug");
+        if (pcVar6 != (char *)0x0) {
+          pcVar6 = "ERROR [DsfUtil::checkFileSignature] bytes read from file exceeds INT_MAX: %zu\n"
+          ;
+LAB_1800242c0:
+          FUN_18000fdf0(pcVar6,puVar7,uVar10,pFVar12);
+        }
+LAB_1800242c5:
+        free(_DstBuf);
+        fclose(pFVar8);
+        if (this != (DsfShaWithRsaSignature *)0x0) {
+          (*(code *)PTR__guard_dispatch_icall_180026210)(this,1);
+        }
+        eVar3 = 0xffffe3de;
+      }
+    }
+    else {
+      pcVar6 = getenv("dsf_debug");
+      if (pcVar6 != (char *)0x0) {
+        puVar7 = FUN_1800035a0(eVar3);
+        FUN_18000fdf0("ERROR [DsfUtil::checkFileSignature] unable to initalize signature verification: %s"
+                      ,puVar7,param_1,uVar11);
+      }
+      if (this != (DsfShaWithRsaSignature *)0x0) {
+        (*(code *)PTR__guard_dispatch_icall_180026210)(this,1);
+      }
+    }
+  }
+  return eVar3;
+code_r0x000180024284:
+  uVar10 = 0x2800;
+  pFVar12 = pFVar8;
+  puVar7 = (undefined *)fread(_DstBuf,1,0x2800,pFVar8);
+  if ((undefined *)0x7fffffff < puVar7) goto LAB_1800242a4;
+  goto LAB_180024260;
+}
+
+
+### total: 71

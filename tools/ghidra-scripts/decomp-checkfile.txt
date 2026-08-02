@@ -1,0 +1,467 @@
+### checkFileSignature @ 1800240a0
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+/* public: static int __cdecl DsfUtil::checkFileSignature(unsigned char * __ptr64,int,char const *
+   __ptr64,int) */
+
+int __cdecl DsfUtil::checkFileSignature(uchar *param_1,int param_2,char *param_3,int param_4)
+
+{
+  char cVar1;
+  longlong lVar2;
+  enum_errDescrValues eVar3;
+  int iVar4;
+  char *pcVar5;
+  DsfShaWithRsaSignature *this;
+  char *pcVar6;
+  undefined *puVar7;
+  FILE *pFVar8;
+  uchar *_DstBuf;
+  size_t sVar9;
+  undefined4 in_register_00000014;
+  undefined8 uVar10;
+  undefined8 uVar11;
+  undefined4 in_register_0000008c;
+  FILE *pFVar12;
+  ulonglong uVar13;
+  undefined1 auStack_178 [32];
+  DsfShaWithRsaSignature *local_158;
+  char cStack_149;
+  char local_148 [4];
+  char local_144 [268];
+  ulonglong local_38;
+  
+  uVar11 = CONCAT44(in_register_0000008c,param_4);
+                    /* 0x240a0  50  ?checkFileSignature@DsfUtil@@SAHPEAEHPEBDH@Z */
+  uVar10 = CONCAT44(in_register_00000014,param_2);
+  local_38 = DAT_180046100 ^ (ulonglong)auStack_178;
+  if ((param_3 == (char *)0x0) || (0xfe < param_4 - 1U)) {
+    pcVar6 = getenv("dsf_debug");
+    if (pcVar6 != (char *)0x0) {
+      FUN_18000fdf0("ERROR [DsfUtil::checkFileSignature] Invalid filePath provided\n",uVar10,param_3
+                    ,uVar11);
+    }
+    eVar3 = 0xffffe829;
+  }
+  else if ((param_1 == (uchar *)0x0) || (500 < param_2)) {
+    pcVar6 = getenv("dsf_debug");
+    if (pcVar6 != (char *)0x0) {
+      FUN_18000fdf0("ERROR [DsfUtil::checkFileSignature] Invalid key provided\n",uVar10,param_3,
+                    uVar11);
+    }
+LAB_1800244fe:
+    eVar3 = 0xffffe1eb;
+  }
+  else {
+    pcVar6 = param_3;
+    pcVar5 = getenv("dsf_debug");
+    if (pcVar5 != (char *)0x0) {
+      FUN_18000fdf0("INFO [DsfUtil::checkFileSignature] creating signature object\n",uVar10,pcVar6,
+                    uVar11);
+    }
+    local_158 = (DsfShaWithRsaSignature *)FUN_180024d1c(0x38);
+    if (local_158 == (DsfShaWithRsaSignature *)0x0) {
+      this = (DsfShaWithRsaSignature *)0x0;
+    }
+    else {
+      *(undefined8 *)local_158 = 0;
+      *(undefined8 *)(local_158 + 8) = 0;
+      *(undefined8 *)(local_158 + 0x10) = 0;
+      *(undefined8 *)(local_158 + 0x18) = 0;
+      *(undefined8 *)(local_158 + 0x20) = 0;
+      *(undefined8 *)(local_158 + 0x28) = 0;
+      *(undefined8 *)(local_158 + 0x30) = 0;
+      this = (DsfShaWithRsaSignature *)DsfShaWithRsaSignature::DsfShaWithRsaSignature(local_158,1);
+    }
+    eVar3 = DsfShaWithRsaSignature::nativeInitVerify(this,param_2,param_1);
+    if (eVar3 == 0) {
+      pcVar6 = getenv("dsf_debug");
+      if (pcVar6 != (char *)0x0) {
+        FUN_18000fdf0("INFO [DsfUtil::checkFileSignature] reading data from filePath %s\n",param_3,
+                      param_1,uVar11);
+      }
+      puVar7 = &DAT_180032bc8;
+      pFVar8 = fopen(param_3,"rb");
+      if (pFVar8 == (FILE *)0x0) {
+        pcVar6 = getenv("dsf_debug");
+        if (pcVar6 != (char *)0x0) {
+          FUN_18000fdf0("ERROR [DsfUtil::checkFileSignature] unable to open filePath %s\n",param_3,
+                        param_1,uVar11);
+        }
+LAB_1800243af:
+        if (this != (DsfShaWithRsaSignature *)0x0) {
+          (*(code *)PTR__guard_dispatch_icall_180026210)(this,1);
+        }
+        eVar3 = 0xffffe3df;
+      }
+      else {
+        _DstBuf = (uchar *)thunk_FUN_180024d1c(0x2800);
+        pcVar6 = getenv("dsf_debug");
+        if (pcVar6 != (char *)0x0) {
+          FUN_18000fdf0("INFO [DsfUtil::checkFileSignature] reading source file for signature\n",
+                        puVar7,param_1,uVar11);
+        }
+        uVar10 = 0x2800;
+        pFVar12 = pFVar8;
+        puVar7 = (undefined *)fread(_DstBuf,1,0x2800,pFVar8);
+        if (puVar7 < (undefined *)0x80000000) {
+LAB_180024260:
+          pFVar12 = (FILE *)((ulonglong)puVar7 & 0xffffffff);
+          uVar10 = 0;
+          eVar3 = DsfShaWithRsaSignature::nativeUpdate(this,_DstBuf,0,(int)puVar7);
+          if (eVar3 == 0) {
+            if (0x27ff < (int)puVar7) goto code_r0x000180024284;
+            fclose(pFVar8);
+            uVar10 = 0;
+            uVar11 = 0x104;
+            memset(local_148,0,0x104);
+            lVar2 = -(longlong)param_3;
+            do {
+              cVar1 = *param_3;
+              param_3[(longlong)(local_148 + lVar2)] = cVar1;
+              param_3 = param_3 + 1;
+            } while (cVar1 != '\0');
+            pcVar6 = &cStack_149;
+            do {
+              pcVar5 = pcVar6;
+              pcVar6 = pcVar5 + 1;
+            } while (*pcVar6 != '\0');
+            *(undefined4 *)pcVar6 = DAT_180037a34;
+            pcVar5[5] = DAT_180037a38;
+            pcVar6 = getenv("dsf_debug");
+            if (pcVar6 != (char *)0x0) {
+              FUN_18000fdf0("INFO [DsfUtil::checkFileSignature] open signature file\n",uVar10,uVar11
+                            ,pFVar12);
+            }
+            puVar7 = &DAT_180032bc8;
+            pFVar8 = fopen(local_148,"rb");
+            if (pFVar8 != (FILE *)0x0) {
+              pcVar6 = getenv("dsf_debug");
+              if (pcVar6 != (char *)0x0) {
+                FUN_18000fdf0("INFO [DsfUtil::checkFileSignature] reading key\n",puVar7,uVar11,
+                              pFVar12);
+              }
+              uVar10 = 1;
+              uVar11 = 0x2800;
+              pFVar12 = pFVar8;
+              sVar9 = fread(_DstBuf,1,0x2800,pFVar8);
+              fclose(pFVar8);
+              pcVar6 = getenv("dsf_debug");
+              if (sVar9 < 0x1f5) {
+                if (pcVar6 != (char *)0x0) {
+                  FUN_18000fdf0("INFO [DsfUtil::checkFileSignature] verifying file signature\n",
+                                uVar10,uVar11,pFVar12);
+                }
+                uVar13 = sVar9 & 0xffffffff;
+                uVar10 = 0;
+                iVar4 = DsfShaWithRsaSignature::nativeVerify(this,_DstBuf,0,(int)sVar9);
+                pcVar6 = getenv("dsf_debug");
+                if (pcVar6 == (char *)0x0) {
+                  return iVar4;
+                }
+                pcVar6 = "ERROR [DsfUtil::checkFileSignature] file signature verification failed\n";
+                if (iVar4 == 0) {
+                  pcVar6 = 
+                  "INFO [DsfUtil::checkFileSignature] file signature verification succeeded\n";
+                }
+                FUN_18000fdf0(pcVar6,_DstBuf,uVar10,uVar13);
+                return iVar4;
+              }
+              if (pcVar6 != (char *)0x0) {
+                FUN_18000fdf0("ERROR [DsfUtil::checkFileSignature] invalid key size\n",uVar10,uVar11
+                              ,pFVar12);
+              }
+              free(_DstBuf);
+              if (this != (DsfShaWithRsaSignature *)0x0) {
+                (*(code *)PTR__guard_dispatch_icall_180026210)(this,1);
+                return -0x1e15;
+              }
+              goto LAB_1800244fe;
+            }
+            pcVar6 = getenv("dsf_debug");
+            if (pcVar6 != (char *)0x0) {
+              FUN_18000fdf0("ERROR [DsfUtil::checkFileSignature] error opening signature file\n",
+                            puVar7,uVar11,pFVar12);
+            }
+            free(_DstBuf);
+            goto LAB_1800243af;
+          }
+          pcVar6 = getenv("dsf_debug");
+          if (pcVar6 == (char *)0x0) goto LAB_1800242c5;
+          puVar7 = FUN_1800035a0(eVar3);
+          pcVar6 = "ERROR [DsfUtil::checkFileSignature] error reading source file: %s\n";
+          goto LAB_1800242c0;
+        }
+LAB_1800242a4:
+        pcVar6 = getenv("dsf_debug");
+        if (pcVar6 != (char *)0x0) {
+          pcVar6 = "ERROR [DsfUtil::checkFileSignature] bytes read from file exceeds INT_MAX: %zu\n"
+          ;
+LAB_1800242c0:
+          FUN_18000fdf0(pcVar6,puVar7,uVar10,pFVar12);
+        }
+LAB_1800242c5:
+        free(_DstBuf);
+        fclose(pFVar8);
+        if (this != (DsfShaWithRsaSignature *)0x0) {
+          (*(code *)PTR__guard_dispatch_icall_180026210)(this,1);
+        }
+        eVar3 = 0xffffe3de;
+      }
+    }
+    else {
+      pcVar6 = getenv("dsf_debug");
+      if (pcVar6 != (char *)0x0) {
+        puVar7 = FUN_1800035a0(eVar3);
+        FUN_18000fdf0("ERROR [DsfUtil::checkFileSignature] unable to initalize signature verification: %s"
+                      ,puVar7,param_1,uVar11);
+      }
+      if (this != (DsfShaWithRsaSignature *)0x0) {
+        (*(code *)PTR__guard_dispatch_icall_180026210)(this,1);
+      }
+    }
+  }
+  return eVar3;
+code_r0x000180024284:
+  uVar10 = 0x2800;
+  pFVar12 = pFVar8;
+  puVar7 = (undefined *)fread(_DstBuf,1,0x2800,pFVar8);
+  if ((undefined *)0x7fffffff < puVar7) goto LAB_1800242a4;
+  goto LAB_180024260;
+}
+
+
+### ?checkFileSignature@DsfUtil@@SAHPEAEHPEBDH@Z @ 1800240a0
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+/* public: static int __cdecl DsfUtil::checkFileSignature(unsigned char * __ptr64,int,char const *
+   __ptr64,int) */
+
+int __cdecl DsfUtil::checkFileSignature(uchar *param_1,int param_2,char *param_3,int param_4)
+
+{
+  char cVar1;
+  longlong lVar2;
+  enum_errDescrValues eVar3;
+  int iVar4;
+  char *pcVar5;
+  DsfShaWithRsaSignature *this;
+  char *pcVar6;
+  undefined *puVar7;
+  FILE *pFVar8;
+  uchar *_DstBuf;
+  size_t sVar9;
+  undefined4 in_register_00000014;
+  undefined8 uVar10;
+  undefined8 uVar11;
+  undefined4 in_register_0000008c;
+  FILE *pFVar12;
+  ulonglong uVar13;
+  undefined1 auStack_178 [32];
+  DsfShaWithRsaSignature *local_158;
+  char cStack_149;
+  char local_148 [4];
+  char local_144 [268];
+  ulonglong local_38;
+  
+  uVar11 = CONCAT44(in_register_0000008c,param_4);
+                    /* 0x240a0  50  ?checkFileSignature@DsfUtil@@SAHPEAEHPEBDH@Z */
+  uVar10 = CONCAT44(in_register_00000014,param_2);
+  local_38 = DAT_180046100 ^ (ulonglong)auStack_178;
+  if ((param_3 == (char *)0x0) || (0xfe < param_4 - 1U)) {
+    pcVar6 = getenv("dsf_debug");
+    if (pcVar6 != (char *)0x0) {
+      FUN_18000fdf0("ERROR [DsfUtil::checkFileSignature] Invalid filePath provided\n",uVar10,param_3
+                    ,uVar11);
+    }
+    eVar3 = 0xffffe829;
+  }
+  else if ((param_1 == (uchar *)0x0) || (500 < param_2)) {
+    pcVar6 = getenv("dsf_debug");
+    if (pcVar6 != (char *)0x0) {
+      FUN_18000fdf0("ERROR [DsfUtil::checkFileSignature] Invalid key provided\n",uVar10,param_3,
+                    uVar11);
+    }
+LAB_1800244fe:
+    eVar3 = 0xffffe1eb;
+  }
+  else {
+    pcVar6 = param_3;
+    pcVar5 = getenv("dsf_debug");
+    if (pcVar5 != (char *)0x0) {
+      FUN_18000fdf0("INFO [DsfUtil::checkFileSignature] creating signature object\n",uVar10,pcVar6,
+                    uVar11);
+    }
+    local_158 = (DsfShaWithRsaSignature *)FUN_180024d1c(0x38);
+    if (local_158 == (DsfShaWithRsaSignature *)0x0) {
+      this = (DsfShaWithRsaSignature *)0x0;
+    }
+    else {
+      *(undefined8 *)local_158 = 0;
+      *(undefined8 *)(local_158 + 8) = 0;
+      *(undefined8 *)(local_158 + 0x10) = 0;
+      *(undefined8 *)(local_158 + 0x18) = 0;
+      *(undefined8 *)(local_158 + 0x20) = 0;
+      *(undefined8 *)(local_158 + 0x28) = 0;
+      *(undefined8 *)(local_158 + 0x30) = 0;
+      this = (DsfShaWithRsaSignature *)DsfShaWithRsaSignature::DsfShaWithRsaSignature(local_158,1);
+    }
+    eVar3 = DsfShaWithRsaSignature::nativeInitVerify(this,param_2,param_1);
+    if (eVar3 == 0) {
+      pcVar6 = getenv("dsf_debug");
+      if (pcVar6 != (char *)0x0) {
+        FUN_18000fdf0("INFO [DsfUtil::checkFileSignature] reading data from filePath %s\n",param_3,
+                      param_1,uVar11);
+      }
+      puVar7 = &DAT_180032bc8;
+      pFVar8 = fopen(param_3,"rb");
+      if (pFVar8 == (FILE *)0x0) {
+        pcVar6 = getenv("dsf_debug");
+        if (pcVar6 != (char *)0x0) {
+          FUN_18000fdf0("ERROR [DsfUtil::checkFileSignature] unable to open filePath %s\n",param_3,
+                        param_1,uVar11);
+        }
+LAB_1800243af:
+        if (this != (DsfShaWithRsaSignature *)0x0) {
+          (*(code *)PTR__guard_dispatch_icall_180026210)(this,1);
+        }
+        eVar3 = 0xffffe3df;
+      }
+      else {
+        _DstBuf = (uchar *)thunk_FUN_180024d1c(0x2800);
+        pcVar6 = getenv("dsf_debug");
+        if (pcVar6 != (char *)0x0) {
+          FUN_18000fdf0("INFO [DsfUtil::checkFileSignature] reading source file for signature\n",
+                        puVar7,param_1,uVar11);
+        }
+        uVar10 = 0x2800;
+        pFVar12 = pFVar8;
+        puVar7 = (undefined *)fread(_DstBuf,1,0x2800,pFVar8);
+        if (puVar7 < (undefined *)0x80000000) {
+LAB_180024260:
+          pFVar12 = (FILE *)((ulonglong)puVar7 & 0xffffffff);
+          uVar10 = 0;
+          eVar3 = DsfShaWithRsaSignature::nativeUpdate(this,_DstBuf,0,(int)puVar7);
+          if (eVar3 == 0) {
+            if (0x27ff < (int)puVar7) goto code_r0x000180024284;
+            fclose(pFVar8);
+            uVar10 = 0;
+            uVar11 = 0x104;
+            memset(local_148,0,0x104);
+            lVar2 = -(longlong)param_3;
+            do {
+              cVar1 = *param_3;
+              param_3[(longlong)(local_148 + lVar2)] = cVar1;
+              param_3 = param_3 + 1;
+            } while (cVar1 != '\0');
+            pcVar6 = &cStack_149;
+            do {
+              pcVar5 = pcVar6;
+              pcVar6 = pcVar5 + 1;
+            } while (*pcVar6 != '\0');
+            *(undefined4 *)pcVar6 = DAT_180037a34;
+            pcVar5[5] = DAT_180037a38;
+            pcVar6 = getenv("dsf_debug");
+            if (pcVar6 != (char *)0x0) {
+              FUN_18000fdf0("INFO [DsfUtil::checkFileSignature] open signature file\n",uVar10,uVar11
+                            ,pFVar12);
+            }
+            puVar7 = &DAT_180032bc8;
+            pFVar8 = fopen(local_148,"rb");
+            if (pFVar8 != (FILE *)0x0) {
+              pcVar6 = getenv("dsf_debug");
+              if (pcVar6 != (char *)0x0) {
+                FUN_18000fdf0("INFO [DsfUtil::checkFileSignature] reading key\n",puVar7,uVar11,
+                              pFVar12);
+              }
+              uVar10 = 1;
+              uVar11 = 0x2800;
+              pFVar12 = pFVar8;
+              sVar9 = fread(_DstBuf,1,0x2800,pFVar8);
+              fclose(pFVar8);
+              pcVar6 = getenv("dsf_debug");
+              if (sVar9 < 0x1f5) {
+                if (pcVar6 != (char *)0x0) {
+                  FUN_18000fdf0("INFO [DsfUtil::checkFileSignature] verifying file signature\n",
+                                uVar10,uVar11,pFVar12);
+                }
+                uVar13 = sVar9 & 0xffffffff;
+                uVar10 = 0;
+                iVar4 = DsfShaWithRsaSignature::nativeVerify(this,_DstBuf,0,(int)sVar9);
+                pcVar6 = getenv("dsf_debug");
+                if (pcVar6 == (char *)0x0) {
+                  return iVar4;
+                }
+                pcVar6 = "ERROR [DsfUtil::checkFileSignature] file signature verification failed\n";
+                if (iVar4 == 0) {
+                  pcVar6 = 
+                  "INFO [DsfUtil::checkFileSignature] file signature verification succeeded\n";
+                }
+                FUN_18000fdf0(pcVar6,_DstBuf,uVar10,uVar13);
+                return iVar4;
+              }
+              if (pcVar6 != (char *)0x0) {
+                FUN_18000fdf0("ERROR [DsfUtil::checkFileSignature] invalid key size\n",uVar10,uVar11
+                              ,pFVar12);
+              }
+              free(_DstBuf);
+              if (this != (DsfShaWithRsaSignature *)0x0) {
+                (*(code *)PTR__guard_dispatch_icall_180026210)(this,1);
+                return -0x1e15;
+              }
+              goto LAB_1800244fe;
+            }
+            pcVar6 = getenv("dsf_debug");
+            if (pcVar6 != (char *)0x0) {
+              FUN_18000fdf0("ERROR [DsfUtil::checkFileSignature] error opening signature file\n",
+                            puVar7,uVar11,pFVar12);
+            }
+            free(_DstBuf);
+            goto LAB_1800243af;
+          }
+          pcVar6 = getenv("dsf_debug");
+          if (pcVar6 == (char *)0x0) goto LAB_1800242c5;
+          puVar7 = FUN_1800035a0(eVar3);
+          pcVar6 = "ERROR [DsfUtil::checkFileSignature] error reading source file: %s\n";
+          goto LAB_1800242c0;
+        }
+LAB_1800242a4:
+        pcVar6 = getenv("dsf_debug");
+        if (pcVar6 != (char *)0x0) {
+          pcVar6 = "ERROR [DsfUtil::checkFileSignature] bytes read from file exceeds INT_MAX: %zu\n"
+          ;
+LAB_1800242c0:
+          FUN_18000fdf0(pcVar6,puVar7,uVar10,pFVar12);
+        }
+LAB_1800242c5:
+        free(_DstBuf);
+        fclose(pFVar8);
+        if (this != (DsfShaWithRsaSignature *)0x0) {
+          (*(code *)PTR__guard_dispatch_icall_180026210)(this,1);
+        }
+        eVar3 = 0xffffe3de;
+      }
+    }
+    else {
+      pcVar6 = getenv("dsf_debug");
+      if (pcVar6 != (char *)0x0) {
+        puVar7 = FUN_1800035a0(eVar3);
+        FUN_18000fdf0("ERROR [DsfUtil::checkFileSignature] unable to initalize signature verification: %s"
+                      ,puVar7,param_1,uVar11);
+      }
+      if (this != (DsfShaWithRsaSignature *)0x0) {
+        (*(code *)PTR__guard_dispatch_icall_180026210)(this,1);
+      }
+    }
+  }
+  return eVar3;
+code_r0x000180024284:
+  uVar10 = 0x2800;
+  pFVar12 = pFVar8;
+  puVar7 = (undefined *)fread(_DstBuf,1,0x2800,pFVar8);
+  if ((undefined *)0x7fffffff < puVar7) goto LAB_1800242a4;
+  goto LAB_180024260;
+}
+
+
+### total: 2
