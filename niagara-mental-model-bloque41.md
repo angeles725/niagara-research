@@ -385,6 +385,10 @@ public final class LicenseUtil {
 ```
 
 - **Dual public key system**: `masterPublicKey` (legacy) + `version2PublicKey`. License XML signed con uno u otro según version del archivo.
+  > **CORRECCIÓN de build (B322, 2026-08-01)**: esto aplica a la build N4.14 del corpus. La build OEM
+  > `iC-Niagara-4.10.9.14` **no tiene** `version2PublicKey`/ECDSA ni el overload `verify(data,sig,Version)`:
+  > solo `masterPublicKeyData` DSA embebida, y `CertificateFile` verifica siempre contra
+  > `getMasterPublicKey()` (verificado por vineflower sobre `modules/baja.jar` real, sha256 `8f8351b2…`).
 - `verify(bytes, signature, version)` selecciona PublicKey por version.
 - `INVALID_LICENSE_TIME_MILLIS_FLOOR` = piso temporal — fechas debajo se invalidan (probable 2010-01-01 default check anti-clock-rollback).
 

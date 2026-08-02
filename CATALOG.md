@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **319 bloques**
+Total: **320 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -324,6 +324,7 @@ Total: **319 bloques**
 | 319 | [niagara-mental-model-bloque319.md](niagara-mental-model-bloque319.md) | Block 319 — Native licensing gate verified with Ghidra on the real build + LIVE bypass of the `-javaagent` gate (L-11) |
 | 320 | [niagara-mental-model-bloque320.md](niagara-mental-model-bloque320.md) | Block 320 — HostId derivation in the REAL build: four inputs + `disableHostIdGeneration` gate (Ghidra) |
 | 321 | [niagara-mental-model-bloque321.md](niagara-mental-model-bloque321.md) | Block 321 — The crypto engine in the REAL build: `dsfspi.dll` DSA/RSA verifiers + `checkFileSignature` (Ghidra) |
+| 322 | [niagara-mental-model-bloque322.md](niagara-mental-model-bloque322.md) | Block 322 — The Java licensing layer in the REAL build: `baja.jar` verified (single-root delta vs corpus) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
