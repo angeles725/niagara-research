@@ -1,0 +1,9 @@
+$ErrorActionPreference = 'Continue'
+$certDir = 'C:\Niagara\iC-Niagara-4.10.9.14\security\certificates'
+$licDir  = 'C:\Niagara\iC-Niagara-4.10.9.14\security\licenses'
+Write-Output ('RES certDir=' + ((Get-ChildItem $certDir -File).Name -join ','))
+Write-Output ('RES licTree=' + ((Get-ChildItem $licDir -Recurse -Force -ErrorAction SilentlyContinue).FullName.Replace($licDir,'') -join ','))
+$h = Get-FileHash "$certDir\Tridium.certificate" -Algorithm SHA256
+Write-Output ('RES tcert=' + $h.Hash)
+Write-Output ('RES pentest-dirs=' + ((Get-ChildItem 'C:\Users\ASUS' -Directory -Filter 'pentest-*' | Measure-Object).Count))
+Get-Process -Name sshd,niagarad -ErrorAction SilentlyContinue | ForEach-Object { Write-Output ('RES pid ' + $_.Name + '=' + $_.Id) }
