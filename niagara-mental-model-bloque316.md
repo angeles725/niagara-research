@@ -130,6 +130,6 @@ before and after), `nre -licenses` back to `none`/`none`, and all staging/backup
 ## 316.5 — Self-verify
 
 - `verify-block.sh niagara-mental-model-bloque316.md` — exit 0 (verified above).
-- Marker tally (whole block, incl. legend): `[CERT-live]` 9 · `[CERT]` 8 · `[INFER]` 2 (legend + §316.1 note; no load-bearing inference). Load-bearing tokens re-verified: `sshd -T` output, `icacls` output, firewall rule set, `nre -licenses` outputs (baseline + each planted state + restore), `plat.exe` stack trace (`FeatureNotLicensedException: tridium:nre`), `LicenseFile.java:170-181`, `CertificateFile.java:68-87`, `LicenseUtil.java:718-724`, `NLicenseManager.java:89,91-103` (grep-confirmed).
+- Marker tally (whole block, incl. legend): `[CERT-live]` 9 · `[CERT]` 8 · `[INFER]` 2 (legend + §316.1 note; no load-bearing inference). L-8..L-10 added live probes (36 h grace boundary, station.exe F1, wb.exe GUI boot). Load-bearing tokens re-verified: `sshd -T` output, `icacls` output, firewall rule set, `nre -licenses` outputs (baseline + each planted state + restore), `plat.exe` stack trace (`FeatureNotLicensedException: tridium:nre`), `LicenseFile.java:170-181`, `CertificateFile.java:68-87`, `LicenseUtil.java:718-724`, `NLicenseManager.java:89,91-103` (grep-confirmed).
 - RE-MEASURE rule applied: hostId re-measured live (`Win-4D6F-169B-CEF1-8F57`), NOT inherited from the
   earlier narrative (`Win-6E6E-...`) — correction recorded in §316.1.
