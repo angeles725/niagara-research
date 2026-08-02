@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **316 bloques**
+Total: **317 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -321,6 +321,7 @@ Total: **316 bloques**
 | 316 | [niagara-mental-model-bloque316.md](niagara-mental-model-bloque316.md) | Block 316 — Authorized OEM pentest (live): evading the mini-PC install pipeline and the iC-Niagara licensing pipeline |
 | 317 | [niagara-mental-model-bloque317.md](niagara-mental-model-bloque317.md) | Block 317 — Evasion tooling kit: the exact codes used to test the mini-PC pipelines (document mode) |
 | 318 | [niagara-mental-model-bloque318.md](niagara-mental-model-bloque318.md) | Block 318 — Reversibility runbook for the mini-PC pentest (document mode) |
+| 319 | [niagara-mental-model-bloque319.md](niagara-mental-model-bloque319.md) | Block 319 — Native licensing gate verified with Ghidra on the real build + LIVE bypass of the `-javaagent` gate (L-11) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

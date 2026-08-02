@@ -1,0 +1,542 @@
+### Java_com_tridium_nre_platform_NativePlatformProvider_getHostId0 @ 180002d10 type=Function
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+
+void Java_com_tridium_nre_platform_NativePlatformProvider_getHostId0(longlong *param_1)
+
+{
+  Nre *pNVar1;
+  undefined1 auStack_78 [32];
+  undefined8 local_58;
+  undefined8 uStack_50;
+  undefined8 local_48;
+  undefined8 uStack_40;
+  undefined8 local_38;
+  undefined8 uStack_30;
+  undefined8 local_28;
+  undefined8 uStack_20;
+  ulonglong local_18;
+  
+                    /* 0x2d10  142  Java_com_tridium_nre_platform_NativePlatformProvider_getHostId0
+                        */
+  local_18 = DAT_1800191c0 ^ (ulonglong)auStack_78;
+  local_58 = 0;
+  uStack_50 = 0;
+  local_48 = 0;
+  uStack_40 = 0;
+  local_38 = 0;
+  uStack_30 = 0;
+  local_28 = 0;
+  uStack_20 = 0;
+  pNVar1 = Nre::getInstance();
+  (*(code *)PTR__guard_dispatch_icall_18000e748)(pNVar1,&local_58,0x40);
+  (*(code *)PTR__guard_dispatch_icall_18000e748)(param_1,&local_58);
+  return;
+}
+
+
+### isFeaturePresent @ 180004ac0 type=Function
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+/* public: static bool __cdecl LicenseUtil::isFeaturePresent(char const * __ptr64,char const *
+   __ptr64) */
+
+bool __cdecl LicenseUtil::isFeaturePresent(char *param_1,char *param_2)
+
+{
+  bool bVar1;
+  DirectoryListingEntry *_Memory;
+  bool bVar2;
+  int iVar3;
+  long lVar4;
+  DirectoryListing *this;
+  ulonglong uVar5;
+  char *pcVar6;
+  FILE *_File;
+  size_t sVar7;
+  char *pcVar8;
+  size_t _Count;
+  undefined8 in_R9;
+  bool bVar9;
+  undefined1 auStack_188 [32];
+  DirectoryListingEntry *local_168 [2];
+  char local_158 [272];
+  ulonglong local_48;
+  
+                    /* 0x4ac0  94  ?isFeaturePresent@LicenseUtil@@SA_NPEBD0@Z */
+  local_48 = DAT_1800191c0 ^ (ulonglong)auStack_188;
+  bVar9 = false;
+  memset(local_158,0,0x104);
+  FUN_180001e90(local_158,"%s\\security\\licenses",param_1,in_R9);
+  this = NreLib::DirectoryListing::make(local_158);
+  local_168[0] = (DirectoryListingEntry *)0x0;
+  if (this != (DirectoryListing *)0x0) {
+    bVar2 = NreLib::DirectoryListing::hasNext(this);
+    bVar9 = false;
+    if (bVar2) {
+      do {
+        NreLib::DirectoryListing::next(this,local_168);
+        if (local_168[0] != (DirectoryListingEntry *)0x0) {
+          pcVar6 = *(char **)local_168[0];
+          uVar5 = 0xffffffffffffffff;
+          do {
+            uVar5 = uVar5 + 1;
+          } while (pcVar6[uVar5] != '\0');
+          if ((uVar5 < 2) || (*pcVar6 == '.')) {
+            bVar2 = false;
+          }
+          else {
+            bVar2 = true;
+          }
+          pcVar6 = strrchr(pcVar6,0x2e);
+          if (pcVar6 == (char *)0x0) {
+LAB_180004bd7:
+            bVar1 = false;
+          }
+          else {
+            pcVar6 = strrchr(*(char **)local_168[0],0x2e);
+            iVar3 = strcmp(pcVar6,".license");
+            if (iVar3 != 0) goto LAB_180004bd7;
+            bVar1 = true;
+          }
+          if ((bVar2) && (bVar1)) {
+            bVar2 = NreLib::DirectoryListing::isDirectory(*(char **)(local_168[0] + 8));
+            if ((!bVar2) && (_File = fopen(*(char **)(local_168[0] + 8),"r"), _File != (FILE *)0x0))
+            {
+              iVar3 = fseek(_File,0,2);
+              pcVar6 = (char *)0x0;
+              if ((iVar3 == 0) && (lVar4 = ftell(_File), 0 < lVar4)) {
+                _Count = (size_t)lVar4;
+                iVar3 = fseek(_File,0,0);
+                pcVar6 = (char *)0x0;
+                if ((iVar3 != 0) ||
+                   (pcVar6 = (char *)thunk_FUN_18000c0dc(_Count + 1), pcVar6 == (char *)0x0))
+                goto LAB_180004cb5;
+                memset(pcVar6,0,_Count + 1);
+                sVar7 = fread(pcVar6,1,_Count,_File);
+                if (sVar7 != _Count) goto LAB_180004cb5;
+                pcVar8 = strstr(pcVar6,param_2);
+                if (pcVar8 != (char *)0x0) {
+                  bVar9 = true;
+                }
+                fclose(_File);
+              }
+              else {
+LAB_180004cb5:
+                fclose(_File);
+                if (pcVar6 == (char *)0x0) goto LAB_180004ccb;
+              }
+              free(pcVar6);
+            }
+          }
+LAB_180004ccb:
+          _Memory = local_168[0];
+          if (local_168[0] != (DirectoryListingEntry *)0x0) {
+            NreLib::DirectoryListingEntry::~DirectoryListingEntry(local_168[0]);
+            free(_Memory);
+          }
+          local_168[0] = (DirectoryListingEntry *)0x0;
+          if (bVar9) break;
+        }
+        bVar2 = NreLib::DirectoryListing::hasNext(this);
+      } while (bVar2);
+    }
+    NreLib::DirectoryListing::~DirectoryListing(this);
+    free(this);
+  }
+  return bVar9;
+}
+
+
+### ?isFeaturePresent@LicenseUtil@@SA_NPEBD0@Z @ 180004ac0 type=Label
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+/* public: static bool __cdecl LicenseUtil::isFeaturePresent(char const * __ptr64,char const *
+   __ptr64) */
+
+bool __cdecl LicenseUtil::isFeaturePresent(char *param_1,char *param_2)
+
+{
+  bool bVar1;
+  DirectoryListingEntry *_Memory;
+  bool bVar2;
+  int iVar3;
+  long lVar4;
+  DirectoryListing *this;
+  ulonglong uVar5;
+  char *pcVar6;
+  FILE *_File;
+  size_t sVar7;
+  char *pcVar8;
+  size_t _Count;
+  undefined8 in_R9;
+  bool bVar9;
+  undefined1 auStack_188 [32];
+  DirectoryListingEntry *local_168 [2];
+  char local_158 [272];
+  ulonglong local_48;
+  
+                    /* 0x4ac0  94  ?isFeaturePresent@LicenseUtil@@SA_NPEBD0@Z */
+  local_48 = DAT_1800191c0 ^ (ulonglong)auStack_188;
+  bVar9 = false;
+  memset(local_158,0,0x104);
+  FUN_180001e90(local_158,"%s\\security\\licenses",param_1,in_R9);
+  this = NreLib::DirectoryListing::make(local_158);
+  local_168[0] = (DirectoryListingEntry *)0x0;
+  if (this != (DirectoryListing *)0x0) {
+    bVar2 = NreLib::DirectoryListing::hasNext(this);
+    bVar9 = false;
+    if (bVar2) {
+      do {
+        NreLib::DirectoryListing::next(this,local_168);
+        if (local_168[0] != (DirectoryListingEntry *)0x0) {
+          pcVar6 = *(char **)local_168[0];
+          uVar5 = 0xffffffffffffffff;
+          do {
+            uVar5 = uVar5 + 1;
+          } while (pcVar6[uVar5] != '\0');
+          if ((uVar5 < 2) || (*pcVar6 == '.')) {
+            bVar2 = false;
+          }
+          else {
+            bVar2 = true;
+          }
+          pcVar6 = strrchr(pcVar6,0x2e);
+          if (pcVar6 == (char *)0x0) {
+LAB_180004bd7:
+            bVar1 = false;
+          }
+          else {
+            pcVar6 = strrchr(*(char **)local_168[0],0x2e);
+            iVar3 = strcmp(pcVar6,".license");
+            if (iVar3 != 0) goto LAB_180004bd7;
+            bVar1 = true;
+          }
+          if ((bVar2) && (bVar1)) {
+            bVar2 = NreLib::DirectoryListing::isDirectory(*(char **)(local_168[0] + 8));
+            if ((!bVar2) && (_File = fopen(*(char **)(local_168[0] + 8),"r"), _File != (FILE *)0x0))
+            {
+              iVar3 = fseek(_File,0,2);
+              pcVar6 = (char *)0x0;
+              if ((iVar3 == 0) && (lVar4 = ftell(_File), 0 < lVar4)) {
+                _Count = (size_t)lVar4;
+                iVar3 = fseek(_File,0,0);
+                pcVar6 = (char *)0x0;
+                if ((iVar3 != 0) ||
+                   (pcVar6 = (char *)thunk_FUN_18000c0dc(_Count + 1), pcVar6 == (char *)0x0))
+                goto LAB_180004cb5;
+                memset(pcVar6,0,_Count + 1);
+                sVar7 = fread(pcVar6,1,_Count,_File);
+                if (sVar7 != _Count) goto LAB_180004cb5;
+                pcVar8 = strstr(pcVar6,param_2);
+                if (pcVar8 != (char *)0x0) {
+                  bVar9 = true;
+                }
+                fclose(_File);
+              }
+              else {
+LAB_180004cb5:
+                fclose(_File);
+                if (pcVar6 == (char *)0x0) goto LAB_180004ccb;
+              }
+              free(pcVar6);
+            }
+          }
+LAB_180004ccb:
+          _Memory = local_168[0];
+          if (local_168[0] != (DirectoryListingEntry *)0x0) {
+            NreLib::DirectoryListingEntry::~DirectoryListingEntry(local_168[0]);
+            free(_Memory);
+          }
+          local_168[0] = (DirectoryListingEntry *)0x0;
+          if (bVar9) break;
+        }
+        bVar2 = NreLib::DirectoryListing::hasNext(this);
+      } while (bVar2);
+    }
+    NreLib::DirectoryListing::~DirectoryListing(this);
+    free(this);
+  }
+  return bVar9;
+}
+
+
+### getHostId @ 180008510 type=Function
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+/* public: virtual int __cdecl NreWin32::getHostId(char * __ptr64,unsigned int) __ptr64 */
+
+int __thiscall NreWin32::getHostId(NreWin32 *this,char *param_1,uint param_2)
+
+{
+  int iVar1;
+  undefined8 uVar2;
+  undefined8 uVar3;
+  longlong lVar4;
+  longlong lVar5;
+  longlong lVar6;
+  undefined4 in_register_00000084;
+  undefined8 in_R9;
+  char *pcVar7;
+  longlong lVar8;
+  undefined1 auStackY_4c8 [32];
+  ulong local_458 [4];
+  uchar local_448 [6];
+  undefined1 local_442 [250];
+  char local_348 [6];
+  char local_342;
+  undefined1 local_341 [249];
+  char local_248 [256];
+  char local_148 [256];
+  ulonglong local_48;
+  
+                    /* 0x8510  59  ?getHostId@NreWin32@@UEAAHPEADI@Z */
+  uVar3 = CONCAT44(in_register_00000084,param_2);
+  local_48 = DAT_1800191c0 ^ (ulonglong)auStackY_4c8;
+  if (DAT_1800194f0 != 0) {
+    uVar2 = __acrt_iob_func(2);
+    FUN_180007ec0(uVar2,">>> hostid.debug >>>\n",uVar3,in_R9);
+  }
+  builtin_strncpy(local_248,"key",4);
+  memset(local_248 + 4,0,0xfb);
+  local_448[0] = s_owner_180010458[0];
+  local_448[1] = s_owner_180010458[1];
+  local_448[2] = s_owner_180010458[2];
+  local_448[3] = s_owner_180010458[3];
+  local_448[4] = s_owner_180010458[4];
+  local_448[5] = s_owner_180010458[5];
+  memset(local_442,0,0xf9);
+  builtin_strncpy(local_148,"product",8);
+  memset(local_148 + 8,0,0xf7);
+  local_348[0] = s_volume_180010460[0];
+  local_348[1] = s_volume_180010460[1];
+  local_348[2] = s_volume_180010460[2];
+  local_348[3] = s_volume_180010460[3];
+  local_348[4] = s_volume_180010460[4];
+  local_348[5] = s_volume_180010460[5];
+  local_342 = s_volume_180010460[6];
+  memset(local_341,0,0xf8);
+  getOrCreateHiddenKey(this,local_248,0xff);
+  local_458[0] = 0xff;
+  iVar1 = getRegWinCurVerImpl(this,"Windows NT","RegisteredOwner",local_448,local_458);
+  if (iVar1 != 0) {
+    getRegWinCurVerImpl(this,"Windows","RegisteredOwner",local_448,local_458);
+  }
+  getOrCreateCachedProductIdKey(this,local_148,0xff);
+  getVolume(this,local_348,0xff);
+  lVar6 = -1;
+  do {
+    lVar4 = lVar6 + 1;
+    lVar8 = lVar6 + 1;
+    lVar6 = lVar4;
+  } while (local_248[lVar8] != '\0');
+  lVar8 = 0;
+  iVar1 = (int)lVar4;
+  lVar6 = lVar8;
+  if (0 < iVar1) {
+    do {
+      lVar6 = lVar6 + 1;
+    } while (lVar6 < iVar1);
+  }
+  lVar6 = -1;
+  do {
+    lVar5 = lVar6 + 1;
+    lVar4 = lVar6 + 1;
+    lVar6 = lVar5;
+  } while (local_448[lVar4] != '\0');
+  iVar1 = (int)lVar5;
+  lVar6 = lVar8;
+  if (0 < iVar1) {
+    do {
+      lVar6 = lVar6 + 1;
+    } while (lVar6 < iVar1);
+  }
+  lVar6 = -1;
+  do {
+    lVar5 = lVar6 + 1;
+    lVar4 = lVar6 + 1;
+    lVar6 = lVar5;
+  } while (local_148[lVar4] != '\0');
+  iVar1 = (int)lVar5;
+  lVar6 = lVar8;
+  if (0 < iVar1) {
+    do {
+      lVar6 = lVar6 + 1;
+    } while (lVar6 < iVar1);
+  }
+  lVar6 = -1;
+  do {
+    lVar5 = lVar6 + 1;
+    lVar4 = lVar6 + 1;
+    lVar6 = lVar5;
+  } while (local_348[lVar4] != '\0');
+  iVar1 = (int)lVar5;
+  if (0 < iVar1) {
+    do {
+      lVar8 = lVar8 + 1;
+    } while (lVar8 < iVar1);
+  }
+  pcVar7 = "%s-%02X%02X-%02X%02X-%02X%02X-%02X%02X";
+  FUN_18000a9b0(param_1,(ulonglong)param_2,0xffffffffffffffff,
+                "%s-%02X%02X-%02X%02X-%02X%02X-%02X%02X");
+  if (DAT_1800194f0 != 0) {
+    uVar3 = __acrt_iob_func(2);
+    FUN_180007ec0(uVar3,"  prefix  = \'%s\'\n",&DAT_180010478,pcVar7);
+    uVar3 = __acrt_iob_func(2);
+    FUN_180007ec0(uVar3,"  hidden  = \'%s\'\n",local_248,pcVar7);
+    uVar3 = __acrt_iob_func(2);
+    FUN_180007ec0(uVar3,"  owner   = \'%s\'\n",local_448,pcVar7);
+    uVar3 = __acrt_iob_func(2);
+    FUN_180007ec0(uVar3,"  product = \'%s\'\n",local_148,pcVar7);
+    uVar3 = __acrt_iob_func(2);
+    FUN_180007ec0(uVar3,"  volume  = \'%s\'\n",local_348,pcVar7);
+    uVar3 = __acrt_iob_func(2);
+    FUN_180007ec0(uVar3,"  result  = \'%s\'\n",param_1,pcVar7);
+    uVar3 = __acrt_iob_func(2);
+    FUN_180007ec0(uVar3,"<<< hostid.debug <<<\n",param_1,pcVar7);
+  }
+  return 0;
+}
+
+
+### ?getHostId@NreWin32@@UEAAHPEADI@Z @ 180008510 type=Label
+
+/* WARNING: Function: __security_check_cookie replaced with injection: security_check_cookie */
+/* public: virtual int __cdecl NreWin32::getHostId(char * __ptr64,unsigned int) __ptr64 */
+
+int __thiscall NreWin32::getHostId(NreWin32 *this,char *param_1,uint param_2)
+
+{
+  int iVar1;
+  undefined8 uVar2;
+  undefined8 uVar3;
+  longlong lVar4;
+  longlong lVar5;
+  longlong lVar6;
+  undefined4 in_register_00000084;
+  undefined8 in_R9;
+  char *pcVar7;
+  longlong lVar8;
+  undefined1 auStackY_4c8 [32];
+  ulong local_458 [4];
+  uchar local_448 [6];
+  undefined1 local_442 [250];
+  char local_348 [6];
+  char local_342;
+  undefined1 local_341 [249];
+  char local_248 [256];
+  char local_148 [256];
+  ulonglong local_48;
+  
+                    /* 0x8510  59  ?getHostId@NreWin32@@UEAAHPEADI@Z */
+  uVar3 = CONCAT44(in_register_00000084,param_2);
+  local_48 = DAT_1800191c0 ^ (ulonglong)auStackY_4c8;
+  if (DAT_1800194f0 != 0) {
+    uVar2 = __acrt_iob_func(2);
+    FUN_180007ec0(uVar2,">>> hostid.debug >>>\n",uVar3,in_R9);
+  }
+  builtin_strncpy(local_248,"key",4);
+  memset(local_248 + 4,0,0xfb);
+  local_448[0] = s_owner_180010458[0];
+  local_448[1] = s_owner_180010458[1];
+  local_448[2] = s_owner_180010458[2];
+  local_448[3] = s_owner_180010458[3];
+  local_448[4] = s_owner_180010458[4];
+  local_448[5] = s_owner_180010458[5];
+  memset(local_442,0,0xf9);
+  builtin_strncpy(local_148,"product",8);
+  memset(local_148 + 8,0,0xf7);
+  local_348[0] = s_volume_180010460[0];
+  local_348[1] = s_volume_180010460[1];
+  local_348[2] = s_volume_180010460[2];
+  local_348[3] = s_volume_180010460[3];
+  local_348[4] = s_volume_180010460[4];
+  local_348[5] = s_volume_180010460[5];
+  local_342 = s_volume_180010460[6];
+  memset(local_341,0,0xf8);
+  getOrCreateHiddenKey(this,local_248,0xff);
+  local_458[0] = 0xff;
+  iVar1 = getRegWinCurVerImpl(this,"Windows NT","RegisteredOwner",local_448,local_458);
+  if (iVar1 != 0) {
+    getRegWinCurVerImpl(this,"Windows","RegisteredOwner",local_448,local_458);
+  }
+  getOrCreateCachedProductIdKey(this,local_148,0xff);
+  getVolume(this,local_348,0xff);
+  lVar6 = -1;
+  do {
+    lVar4 = lVar6 + 1;
+    lVar8 = lVar6 + 1;
+    lVar6 = lVar4;
+  } while (local_248[lVar8] != '\0');
+  lVar8 = 0;
+  iVar1 = (int)lVar4;
+  lVar6 = lVar8;
+  if (0 < iVar1) {
+    do {
+      lVar6 = lVar6 + 1;
+    } while (lVar6 < iVar1);
+  }
+  lVar6 = -1;
+  do {
+    lVar5 = lVar6 + 1;
+    lVar4 = lVar6 + 1;
+    lVar6 = lVar5;
+  } while (local_448[lVar4] != '\0');
+  iVar1 = (int)lVar5;
+  lVar6 = lVar8;
+  if (0 < iVar1) {
+    do {
+      lVar6 = lVar6 + 1;
+    } while (lVar6 < iVar1);
+  }
+  lVar6 = -1;
+  do {
+    lVar5 = lVar6 + 1;
+    lVar4 = lVar6 + 1;
+    lVar6 = lVar5;
+  } while (local_148[lVar4] != '\0');
+  iVar1 = (int)lVar5;
+  lVar6 = lVar8;
+  if (0 < iVar1) {
+    do {
+      lVar6 = lVar6 + 1;
+    } while (lVar6 < iVar1);
+  }
+  lVar6 = -1;
+  do {
+    lVar5 = lVar6 + 1;
+    lVar4 = lVar6 + 1;
+    lVar6 = lVar5;
+  } while (local_348[lVar4] != '\0');
+  iVar1 = (int)lVar5;
+  if (0 < iVar1) {
+    do {
+      lVar8 = lVar8 + 1;
+    } while (lVar8 < iVar1);
+  }
+  pcVar7 = "%s-%02X%02X-%02X%02X-%02X%02X-%02X%02X";
+  FUN_18000a9b0(param_1,(ulonglong)param_2,0xffffffffffffffff,
+                "%s-%02X%02X-%02X%02X-%02X%02X-%02X%02X");
+  if (DAT_1800194f0 != 0) {
+    uVar3 = __acrt_iob_func(2);
+    FUN_180007ec0(uVar3,"  prefix  = \'%s\'\n",&DAT_180010478,pcVar7);
+    uVar3 = __acrt_iob_func(2);
+    FUN_180007ec0(uVar3,"  hidden  = \'%s\'\n",local_248,pcVar7);
+    uVar3 = __acrt_iob_func(2);
+    FUN_180007ec0(uVar3,"  owner   = \'%s\'\n",local_448,pcVar7);
+    uVar3 = __acrt_iob_func(2);
+    FUN_180007ec0(uVar3,"  product = \'%s\'\n",local_148,pcVar7);
+    uVar3 = __acrt_iob_func(2);
+    FUN_180007ec0(uVar3,"  volume  = \'%s\'\n",local_348,pcVar7);
+    uVar3 = __acrt_iob_func(2);
+    FUN_180007ec0(uVar3,"  result  = \'%s\'\n",param_1,pcVar7);
+    uVar3 = __acrt_iob_func(2);
+    FUN_180007ec0(uVar3,"<<< hostid.debug <<<\n",param_1,pcVar7);
+  }
+  return 0;
+}
+
+
+### s_?getHostId@NreWin32@@UEAAHPEADI@_180013c84 @ 180013c84 type=Label
+### s_?isFeaturePresent@LicenseUtil@@S_1800141f6 @ 1800141f6 type=Label
+### total functions decompiled: 5
