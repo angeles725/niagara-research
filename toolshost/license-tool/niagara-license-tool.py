@@ -184,13 +184,24 @@ def _write_license(root: etree._Element, path: str) -> None:
     tree.write(path, xml_declaration=False, encoding="utf-8", pretty_print=False)
 
 
+def _out_path_for(license_path: str, suffix: str) -> str:
+    """Never write over the input license: derive a NEW output file next to it."""
+    import os
+    base, ext = os.path.splitext(license_path)
+    out = f"{base}{suffix}{ext}"
+    if os.path.abspath(out) == os.path.abspath(license_path):
+        raise SystemExit(f"ERROR: refusing to overwrite input {license_path}")
+    return out
+
+
 def cmd_sign(license_path: str, privkey_path: str) -> None:
     root = load_license_xml(license_path)
     data = canonical_bytes_for_verify(root)
     sig_b64 = _sign_bytes(data, privkey_path)
     _set_signature(root, sig_b64)
-    _write_license(root, license_path)
-    print(f"OK   re-signed {license_path}")
+    out_path = _out_path_for(license_path, "-signed")
+    _write_license(root, out_path)
+    print(f"OK   signed -> {out_path}  (input {license_path} untouched)")
 
 
 def cmd_rehost(license_path: str, new_hostid: str, privkey_path: str) -> None:
@@ -199,8 +210,9 @@ def cmd_rehost(license_path: str, new_hostid: str, privkey_path: str) -> None:
     data = canonical_bytes_for_verify(root)
     sig_b64 = _sign_bytes(data, privkey_path)
     _set_signature(root, sig_b64)
-    _write_license(root, license_path)
-    print(f"OK   re-hosted to {new_hostid} and re-signed: {license_path}")
+    out_path = _out_path_for(license_path, "-rehosted")
+    _write_license(root, out_path)
+    print(f"OK   re-hosted to {new_hostid} and re-signed -> {out_path}  (input untouched)")
 
 
 def cmd_gen(out_path: str, vendor: str, hostid: str, expiration: str,
