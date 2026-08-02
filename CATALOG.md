@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **315 bloques**
+Total: **316 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -320,6 +320,7 @@ Total: **315 bloques**
 | 315 | [niagara-mental-model-bloque315.md](niagara-mental-model-bloque315.md) | Block 315 — SYNTHESIS of the `modbus` focus (B294–B314): a driver whose defaults are wrong, whose concurrency is narrower than it looks, and whose documentation describes a different product |
 | 316 | [niagara-mental-model-bloque316.md](niagara-mental-model-bloque316.md) | Block 316 — Authorized OEM pentest (live): evading the mini-PC install pipeline and the iC-Niagara licensing pipeline |
 | 317 | [niagara-mental-model-bloque317.md](niagara-mental-model-bloque317.md) | Block 317 — Evasion tooling kit: the exact codes used to test the mini-PC pipelines (document mode) |
+| 318 | [niagara-mental-model-bloque318.md](niagara-mental-model-bloque318.md) | Block 318 — Reversibility runbook for the mini-PC pentest (document mode) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
