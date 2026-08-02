@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **314 bloques**
+Total: **315 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -319,6 +319,7 @@ Total: **314 bloques**
 | 314 | [niagara-mental-model-bloque314.md](niagara-mental-model-bloque314.md) | Block 314 — The Honeywell OEM layer: it supplies the discovery Tridium's driver does not have, by embedding the register map in code |
 | 315 | [niagara-mental-model-bloque315.md](niagara-mental-model-bloque315.md) | Block 315 — SYNTHESIS of the `modbus` focus (B294–B314): a driver whose defaults are wrong, whose concurrency is narrower than it looks, and whose documentation describes a different product |
 | 316 | [niagara-mental-model-bloque316.md](niagara-mental-model-bloque316.md) | Block 316 — Authorized OEM pentest (live): evading the mini-PC install pipeline and the iC-Niagara licensing pipeline |
+| 317 | [niagara-mental-model-bloque317.md](niagara-mental-model-bloque317.md) | Block 317 — Evasion tooling kit: the exact codes used to test the mini-PC pipelines (document mode) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
