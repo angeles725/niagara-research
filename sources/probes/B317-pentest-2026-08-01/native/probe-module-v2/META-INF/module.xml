@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="pentestProbe" bajaVersion="0" vendor="Pentest Lab" vendorVersion="2.0.0" description="Pentest probe module v2 (authorized test) - code execution payload" preferredSymbol="pp" nre="true" autoload="true" installable="true" buildMillis="1720039060395" buildHost="pentest" moduleName="pentestProbe" runtimeProfile="rt" releaseDate="2026-08-02">
+ <dirs/>
+ <installation>
+  <dependencies>
+   <nre name="nre-core-*" version="4.10.9.14" desc="NRE core" solvers="commissioning"/>
+  </dependencies>
+ </installation>
+ <types>
+  <type class="com.pentest.ProbePayload" name="ProbePayload"/>
+ </types>
+</module>
