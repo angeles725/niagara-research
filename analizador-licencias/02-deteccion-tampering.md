@@ -37,7 +37,7 @@ re-firmar requiere la clave privada del vendor que no está en ningún lado del 
 
 > **Nota de madurez criptográfica**: el esquema de licencias es DSA-1024/SHA-1 (raíz de 2003,
 > `expiration="never"`), el eslabón más débil de la plataforma frente a módulos (RSA-2048) y binarios
-> (Authenticode RSA-4096/DigiCert G4) (`niagara-mental-model-bloque126.md:178-183`). Detectable no
+> (Authenticode RSA-4096/DigiCert G4) (`niagara-mental-model-bloque126.md:168-176`). Detectable no
 > equivale a inforzable: la detección asume que nadie posee la clave privada del vendor. La
 > plataforma **no valida OCSP/CRL** (certs revocados siguen aceptándose) — relevante para forense de
 > certificados (`niagara-mental-model-bloque27.md:894-898`).
@@ -52,7 +52,7 @@ re-firmar requiere la clave privada del vendor que no está en ningún lado del 
 | `DsfSha1WithDsaSignature` (`dsfspi.dll`, Mocana DSF como JCE provider) | Motor DSA de licencias/certs | `parseDSAPublicKey`/`parseDSASignature`/`parseDERInteger` (`niagara-mental-model-bloque126.md:53,157`) |
 | `DsfUtil::checkFileSignature` (`dsfspi.dll`) | Módulos `.jar.sig` (RSA-2048, detached 256 B) | Defensas de bounds (path ≤255, key ≤500 B, sig <501 B) (`niagara-mental-model-bloque126.md:170-174`) |
 | `nverify.exe` CLI | Archivos firmados contra cadena DigiCert G4 | Estado `ERR_CERT_*` (revoked/expired…); `--unsigned *`/`--removed *` son wildcards que **neutralizan** el check — si un wrapper los pasa, la verificación se vacía (`niagara-mental-model-bloque126.md:105-127`) |
-| Módulos en runtime | `ModuleSignatureStatusEnum`: `OK, NOT_TIMESTAMPED, UNKNOWN, SIGNER_SELF_SIGNED, TIMESTAMP_SELF_SIGNED, CERT_PATH_VALIDATION_FAILURE, CERT_PATH_VALIDATION_WARNING, UNSIGNED, INVALID_SIGNATURE` | B112 (`niagara-mental-model-bloque112.md:16-24`) |
+| Módulos en runtime | `ModuleSignatureStatusEnum`: `OK, NOT_TIMESTAMPED, UNKNOWN, SIGNER_SELF_SIGNED, TIMESTAMP_SELF_SIGNED, CERT_PATH_VALIDATION_FAILURE, CERT_PATH_VALIDATION_WARNING, UNSIGNED, INVALID_SIGNATURE` | B112 (`niagara-mental-model-bloque112.md:61-66`) |
 | Truststores | `NIAGARA4.SF` del install; `cacerts.jceks`/`cacerts.bks` | Editar el truststore invalida `NIAGARA4.SF` → boot rechazado (`niagara-mental-model-bloque18.md:211-215,628`); `cacerts.jceks` corrupto → `Keystore was tampered with` (`niagara-mental-model-bloque27.md:883`) |
 
 ---
@@ -184,7 +184,7 @@ PolicySpy, copias de `.license`/`.certificate`/truststores) antes de tocar nada 
 
 - DSA-1024/SHA-1 de 2003: si el atacante obtiene una clave privada de vendor o un firmador interno,
   la detección por firma no alcanza — se cae a correlación de comportamiento
-  (`niagara-mental-model-bloque126.md:178-183`).
+  (`niagara-mental-model-bloque126.md:168-176`).
 - Sin OCSP/CRL: un cert revocado sigue siendo aceptado (`niagara-mental-model-bloque27.md:894-898`).
 - El text-match nativo es manipulable por diseño (no verifica firma) — es una señal de desacuerdo,
   no un verificador (`niagara-mental-model-bloque126.md:169-177`).

@@ -63,7 +63,7 @@ si es más restrictiva; atributos libres `count="10"`, `point.limit`, `device.li
          version="4.15" generated="2026-04-02">
   <feature name="clCbus" expiration="2027-03-31" history.limit="none" point.limit="none"
            schedule.limit="none" device.limit="none"/>
-  <signature>MC4CFQDOSizKvGQPhgjQ7JjqUSRDEDz3ZgIVAI30TFBJxxyTbcBA+MKBkK5SLBY0</signature>
+  <signature>MC4CFQDOSizKvGQPhgjQ7JjqUSRDEDz3Zg…</signature>  <!-- firma elidida; valor íntegro en niagara-mental-model-bloque126.md:146-152 -->
 </license>
 ```
 
@@ -88,7 +88,7 @@ si es más restrictiva; atributos libres `count="10"`, `point.limit`, `device.li
 
 > Nota de madurez criptográfica: DSA-1024/SHA-1 (raíz de 2003) protege *integridad de la licencia*,
 > no confidencialidad. El esquema de licencias es el eslabón más débil de la plataforma frente a los
-> módulos (RSA-2048) y binarios (Authenticode RSA-4096) (`niagara-mental-model-bloque126.md:178-183`).
+> módulos (RSA-2048) y binarios (Authenticode RSA-4096) (`niagara-mental-model-bloque126.md:168-176`).
 
 ### 2.3 Ubicación en disco
 
@@ -186,8 +186,9 @@ Además, al importar por inbox la validación es la misma (firma + hostId + cert
   (`niagara-mental-model.md:104-110`).
 - **Gotcha**: atributos string-based y **typo-prone silencioso** — `feature.getb("Sma.Exempt", false)`
   devuelve `false` sin error (`niagara-mental-model-bloque41.md:363-365`).
-- **Gotcha de reloj**: SMA se evalúa contra `Clock.time()`; un reloj atrasado puede hacer ver SMA
-  vencida como vigente localmente, pero el servidor de nCloud usa su propio reloj
+- **Gotcha de reloj**: SMA se evalúa contra `Clock.time()` **local**; un reloj **atrasado** hace que
+  una SMA vencida parezca vigente localmente (el check `sma.get() < now` usa el reloj local). El
+  servidor de nCloud verifica con su **propio** reloj — el reloj local no engaña a nCloud
   (`niagara-mental-model-bloque32.md:339,341-345`).
 
 ---

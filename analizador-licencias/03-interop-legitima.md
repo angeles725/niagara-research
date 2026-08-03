@@ -10,7 +10,7 @@
 
 Todo pasa por `javax.baja.license.LicenseManager`, obtenido con `Sys.getLicenseManager()`
 (`niagara-mental-model.md:171-185`; `notes/02-licensing.md:246`). Implementación real:
-`SubscriptionLicenseManager extends NLicenseManager` (`niagara-mental-model-bloque41.md:344`).
+`SubscriptionLicenseManager extends NLicenseManager` (`niagara-mental-model-bloque41.md:394`).
 
 | Método | Qué devuelve | Uso legítimo |
 |---|---|---|
@@ -50,7 +50,7 @@ El archivo es XML plano; no requiere la plataforma para leerse (`notes/02-licens
          expiration="2027-03-31" generated="2026-04-02">
   <feature name="clCbus" expiration="2027-03-31" history.limit="none" point.limit="none"
            schedule.limit="none" device.limit="none"/>
-  <signature>MC4CFQ…</signature>
+  <signature>MC4CFQDOSizKvGQPhgjQ7JjqUSRDEDz3Zg…</signature>  <!-- firma elidida; valor íntegro en niagara-mental-model-bloque126.md:146-152 -->
 </license>
 ```
 (instancia real en `niagara-mental-model-bloque126.md:146-152`).
