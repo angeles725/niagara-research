@@ -117,3 +117,15 @@ python3 toolshost/license-tool/niagara-license-tool.py \
   reversibilidad · B319 — capa nativa text-match + bypass `-javaagent` · B320 — HostId (4 inputs) ·
   B321 — `dsfspi.dll` · B322 — capa Java `baja.jar` (delta single-root) · B323 — este tooling (validación
   en vivo).
+
+## 4. `probe-module/` — Kit de módulo probe con código ejecutable (L-18)
+
+| Archivo | Para qué es | Cómo se usa |
+|---|---|---|
+| `probe-module-v2/com/pentest/ProbePayload.java` (+ `.class`) | **Clase payload de prueba** del test L-18: un `BSimple` válido de Niagara (con `TYPE` vía `Sys.loadType` — el requisito mínimo para que el `sys.registry` acepte el type). Su static-initializer es el "código a ejecutar" observable (en la versión final lanza una excepción con marcador `PENTEST-PAYLOAD-EXECUTED` para probar si la clase se carga). **No contiene ningún secreto** — es código de prueba del atacante simulado | Se compila contra `baja.jar` del install (ver `build-probe-module.sh`) |
+| `probe-module-v2/META-INF/module.xml` | El `module.xml` del módulo probe: `nre="true"`, dependencia `nre-core-*`, `<types>` con `ProbePayload`. (La variante con `<permissions>/<java-permissions>` —formato real de Tridium— se probó y **dispara la validación de cadena en el registro mismo**: `Could not validate certificate chain`) | Se empaqueta en el jar; probar variantes de permisos cambiando este archivo |
+| `pentestProbe-v2-selfsigned.jar` | El módulo **firmado** con la clave self-signed del pentest (RSA 2048, `pentest-keystore.jks` — clave de prueba) — el artefacto del test L-18 | Plantar en `modules\` de la minipc (con backup) y bootear; ver resultado L-18: **registro OK, carga de clase BLOQUEADA** (`verifyModuleSignature`, `Could not validate cert chain`) |
+| `pentestProbe-v2-unsigned.jar` | Contraprueba **sin firma** del test L-18 | Ídem; veredicto: `Module not signed` (`ModuleManager.java:472`) — también bloqueado |
+| `build-probe-module.sh` | **Build reproducible** del módulo: compila `ProbePayload` contra `baja.jar`, arma el jar con `module.xml` + clases, firma con la clave del pentest | `bash build-probe-module.sh [salida.jar]`; env vars `BAJA_JAR`, `KEYSTORE`, `STORE_PASS` |
+
+**Resultado del test (L-18, en la minipc):** el registro del módulo pasa sin errores de firma (modo `low`/fail-open a nivel registry), pero la **carga de cualquier clase** del módulo es bloqueada por `ModuleManager.verifyModuleSignature` (`ModuleManager.java:531/480` → `CertificateChainValidator.validateCertChain:231`) porque el modo efectivo es `noPreference` (la propiedad `niagara.moduleVerificationMode` está comentada en `defaults/system.properties`) — o sea: **no se puede inyectar código ejecutable** con una firma self-signed ni unsigned. La única vía de código sigue siendo firma del OEM, compromiso del daemon (`BPlatTrustStore`), o `exemptions.tes` user-level (B18 §18.9).
