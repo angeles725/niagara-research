@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **333 blocks**
+Total: **334 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -339,3 +339,4 @@ Total: **333 blocks**
 | 335 | [niagara-mental-model-bloque335.md](niagara-mental-model-bloque335.md) | `BJsonSchemaService`: the jsonToolkit service gated by a three-layer license (feature + import/export attributes + SMA), with a superuser-only `runAsUser` identity that inbound writes assume |
 | 336 | [niagara-mental-model-bloque336.md](niagara-mental-model-bloque336.md) | The outbound schema model: a JSON payload IS a tree of members walked top-down into one `JSONWriter`, each bound node resolving a `BOrd` against the station and selecting slots by one of four modes |
 | 337 | [niagara-mental-model-bloque337.md](niagara-mental-model-bloque337.md) | The generation trigger: a COV event regenerates the whole schema SYNCHRONOUSLY on the engine thread, debounced by a single-shot `minWriteTime` timer, and writes the JSON string into the `output` slot |
+| 338 | [niagara-mental-model-bloque338.md](niagara-mental-model-bloque338.md) | Outbound queries: any `BITable`-returning ORD (BQL / NEQL / history / transform) run in parallel on a thread pool, the engine thread blocked up to a 30 s timeout, results cached in memory and rendered later |

@@ -1,0 +1,94 @@
+<!-- Htmldoc has been run -->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="keywords" content="Niagara" scheme="atiChunkerMeta">
+      <title>Setting up queries</title>
+<!-- Auto-generated style sheet link --><link rel='StyleSheet' href='module://bajaui/doc/style.css' type='text/css' />
+<!-- Auto-generated js link for Activity Monitoring --><script type='text/javascript' src='module://web/rc/util/activityMonitor.js'></script>
+<script type='text/javascript'>window.addEventListener('load', activityMonitor.start);</script>
+   </head>
+   <body class=" x-bookmap-1-0" lang="en-US" id="mapelement_bookmap1">
+<!-- Auto-generated Header NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/Queries-Json-9A07510A.html" class="navbar">Prev</a> |  <a href="/doc/AlarmsJson-A4617E57.html" class="navbar">Next</a></p>
+
+      <div xmlns:ch="http://www.arbortext.com/namespace/chunker" class=" x-topic-16-0" id="SettingUpQueriesJson-9A09D8D2" lang="en-US">
+         <h2 class=" x-title-22-0 x-title-22-1 x-title-22-2 x-title-22-3" id="styler-id1.1.1.5.13.7.1" lang="en-US">Setting up queries</h2><span class=" x-titlealts-2-0"></span><div class=" x-shortdesc-2-0" lang="en-US">In addition to the binding queries, which set up a single query bql, neql or ord, you can add additional queries to a <code class=" x-parmname-2-0" lang="en-US">Queries</code> folder. The schema turns the queries in this folder into a string.
+         </div>
+         <div class=" x-prolog-1-0" lang="en-US">
+            <div class=" x-metadata-1-0" lang="en-US"><span class=" x-keywords-2-0" lang="en-US"><a class="indexterm" name="d26056e4400"></a><a class="indexterm" name="d26056e4402"></a><a class="indexterm" name="d26056e4406"></a></span></div>
+         </div>
+         <div class=" x-body-1-0" lang="en-US">
+            <div lang="en-US">
+               <ol class=" x-ol-1-0">
+                  <li class=" x--inherit-background-color x-step-7-0 x--zero-text-indent" lang="en-US"><span class=" x-cmd-1-0" lang="en-US">Create a regular schema.</span><div class=" x-itemgroup-1-0" lang="en-US"><div class=" x-image-2-0 x-image-2-9" lang="en-US"><img alt="Image" height="276" src="graphics/xwc394377926113019106.png"  width="495"></div><p class=" x-p-13-0" lang="en-US">The example above uses the points of a BACnet device. This JSON configuration includes the <code class=" x-parmname-2-0" lang="en-US">Queries</code> folder and the <code class=" x-parmname-2-0" lang="en-US">root</code> object container for the schema.
+                        </p>
+                        <div lang="en-US">
+                           <ol class=" x-ol-1-0">
+                              <li class=" x--inherit-background-color x-li-7-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Identifies the regular queries that define the source of the data for binding. In this example, the query uses bql to identify
+                                    the data.</span></li>
+                              <li class=" x--inherit-background-color x-li-7-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Identifies a query that can become a JSON string. The query result injects the query referenced from the Queries folder into
+                                    the point in the schema output. You can nest these queries anywhere within your JSON message.</span></li>
+                           </ol>
+                        </div>
+                        <p class=" x-p-13-0" lang="en-US">By default, each schema includes a <b class=" x-uicontrol-3-0" lang="en-US">Queries</b> folder, which comes with two properties: <code class=" x-parmname-2-0" lang="en-US">Query Interval</code> (to configure how frequently to execute the query), and <code class=" x-parmname-2-0" lang="en-US">Last Query Completed Timestamp</code>.
+                        </p>
+                     </div>
+                  </li>
+                  <li class=" x--inherit-background-color x-step-7-0 x--zero-text-indent" lang="en-US"><span class=" x-cmd-1-0" lang="en-US">To configure the <code class=" x-parmname-2-0" lang="en-US">Query Interval</code>, right-click the <b class=" x-uicontrol-3-0" lang="en-US">Queries</b> folder, click <span class=" x-menucascade-1-0" lang="en-US"><b class=" x-uicontrol-2-0" lang="en-US">Views</b><b class=" x-uicontrol-1-0" lang="en-US"><span style="font-weight: normal; "> &gt; </span>AX Property Sheet</b></span>, configure the interval, and click <b class=" x-uicontrol-3-0" lang="en-US">Save</b>.</span></li>
+                  <li class=" x--inherit-background-color x-step-7-0 x--zero-text-indent" lang="en-US"><span class=" x-cmd-1-0" lang="en-US">To add an <span class=" x-i-1-0" lang="en-US">ad hoc</span> query to the schema, expand the <b class=" x-uicontrol-3-0" lang="en-US">Query</b> node in the palette, drag a <b class=" x-uicontrol-3-0" lang="en-US">Query</b> from the palette to the <b class=" x-uicontrol-3-0" lang="en-US">Queries</b> folder in the schema, double-click the <b class=" x-uicontrol-3-0" lang="en-US">Query</b>, enter the <code class=" x-parmname-2-0" lang="en-US">Query Ord</code>, and click <b class=" x-uicontrol-3-0" lang="en-US">Save</b>.</span><div class=" x-itemgroup-1-0" lang="en-US">For simplicity, the example <code class=" x-parmname-2-0" lang="en-US">Queries</code> folder contains a single query. It could contain additional queries.
+                     </div>
+                     <div class=" x-itemgroup-1-0" lang="en-US">A above identifies the ord for the single <span class=" x-i-1-0" lang="en-US">ad hoc</span> query (BacnetQuery): <span class=" x-userinput-1-0" lang="en-US">station:|slot:/Drivers/BacnetNetwork/MyName|bql:select name, proxyExt.objectId, out.value AS ‘v’, status from control:ControlPoint</span><p class=" x-p-13-0" lang="en-US">This query searches a particular BACnet device for the name, object ID, current value and status of all points under the device.
+                           The <code class=" x-parmname-2-0" lang="en-US">Last Result Size</code> property indicates that the query finds two points.
+                        </p>
+                     </div>
+                  </li>
+                  <li class=" x--inherit-background-color x-step-7-0 x--zero-text-indent" lang="en-US"><span class=" x-cmd-1-0" lang="en-US">To create a bound query result, expand the <b class=" x-uicontrol-3-0" lang="en-US">Query</b> node in the palette and drag a <b class=" x-uicontrol-3-0" lang="en-US">BoundQueryResult</b> from the palette to the root object in the schema.</span><div class=" x-itemgroup-1-0" lang="en-US">In the example, the bound query result (identified by the second box) references the query (BacnetQuery) and defines the <code class=" x-parmname-2-0" lang="en-US">Output Style</code> to render the query in.
+                     </div>
+                  </li>
+                  <li class=" x--inherit-background-color x-step-7-0 x--zero-text-indent" lang="en-US"><span class=" x-cmd-1-0" lang="en-US">To update the payload message, click the <b class=" x-uicontrol-3-0" lang="en-US">Generate</b> button.</span></li>
+               </ol>
+            </div>
+            <div class=" x-section-1-0" id="styler-id1.1.1.5.13.7.5.2" lang="en-US">The result of running the example query looks like this:
+               <div class=" x-fig-1-0 x-fig-1-1" id="styler-id1.1.1.5.13.7.5.2.1" lang="en-US"><h5 class=" x-title-49-0" id="styler-id1.1.1.5.13.7.5.2.1.1" lang="en-US">Figure 17.  &nbsp;&nbsp;Device connectivity JSON payload</h5><div class=" x-image-2-0 x-image-2-9" lang="en-US"><img alt="Image" height="430" src="graphics/xwc687252874864692683.png"  width="397"></div></div>
+               <p class=" x-p-13-0" lang="en-US">The first group of name and value pairs reports the result of the main binding query (under config). The <span class=" x-systemoutput-1-0" lang="en-US">data</span> block at the bottom shows the result of the <span class=" x-i-1-0" lang="en-US">ad hoc</span> query in the <b class=" x-uicontrol-3-0" lang="en-US">Queries</b> folder. The data block displays as an object array identified by the square brackets. The array contains one object per BACnet
+                  point, in this case two objects, each inside a pair of braces.
+               </p>
+               <p class=" x-p-13-0" lang="en-US">This example could have used a relative schema. Which one to use depends on your requirements. Does your API need all data
+                  in a single JSON message or does it require one message per point? This procedure does not subscribe to the component model.
+                  It runs a bql query to populate the BITable and encodes that data. The power of bql to select data feeds into the input to
+                  the schema the same as you could feed a series transform into this schema, query the historical alarm data, or query history
+                  data. 
+               </p>
+               <p class=" x-p-13-0" lang="en-US">This type of query configuration does not have to be done with device points. By “query” in this context, we mean anything
+                  that returns a BITable so you could use a transform ord, bql on the history space or neql on the component space. Any time
+                  you have something you can feed to the ReportService you can encode and output it with a schema.
+               </p>
+            </div>
+         </div>
+         <div class=" x-related-links-1-0">
+            <div class=" x--ufe-relatedlinks-display-1-0">
+               <div class=" x--ufe-relatedHierarchical-1-0 x--ufe-relatedHierarchical-1-1">
+                  <h3 class=" x--ufe-related-links-title-1-0" id="styler-idu1.1.1.5.13.7.6.1.1.1">Related Links</h3>
+                  <div class=" x--ufe-relatedChild-1-0"></div>
+                  <div class=" x--ufe-relatedParent-1-0">
+                     <li class=" x-link-2-0 x-link-2-1"><a href="Queries-Json-9A07510A.html#Queries-Json-9A07510A" title="Queries search the station database for the data to include in a schema."><span class=" x-linktext-2-0 x-linktext-2-5" lang="en-US">Queries (Parent Topic)</span></a></li>
+                  </div>
+               </div>
+               <div class=" x--ufe-relatedPrevious-1-0"></div>
+               <div class=" x--ufe-relatedNext-1-0"></div>
+               <div class=" x--ufe-relatedConcepts-1-0"></div>
+               <div class=" x--ufe-relatedTasks-1-0"></div>
+               <div class=" x--ufe-relatedReferences-1-0"></div>
+               <div class=" x--ufe-relatedTopics-1-0"></div>
+               <div class=" x--ufe-relatedOther-1-0"></div>
+               <div class=" x--ufe-relatedLinklists-1-0"></div>
+            </div>
+         </div>
+      </div>
+
+<!-- Auto-generated Footer NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/Queries-Json-9A07510A.html" class="navbar">Prev</a> |  <a href="/doc/AlarmsJson-A4617E57.html" class="navbar">Next</a></p>
+<!-- Auto-generated copyright note --><p class='copyright'></p>
+   </body>
+</html>

@@ -1,0 +1,323 @@
+<!-- Htmldoc has been run -->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="keywords" content="Niagara" scheme="atiChunkerMeta">
+      <title>Queries</title>
+<!-- Auto-generated style sheet link --><link rel='StyleSheet' href='module://bajaui/doc/style.css' type='text/css' />
+<!-- Auto-generated js link for Activity Monitoring --><script type='text/javascript' src='module://web/rc/util/activityMonitor.js'></script>
+<script type='text/javascript'>window.addEventListener('load', activityMonitor.start);</script>
+   </head>
+   <body class=" x-bookmap-1-0" lang="en-US" id="mapelement_bookmap1">
+<!-- Auto-generated Header NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/ExportMarkers-94E0333F.html" class="navbar">Prev</a> |  <a href="/doc/SettingUpQueriesJson-9A09D8D2.html" class="navbar">Next</a></p>
+
+      <div xmlns:ch="http://www.arbortext.com/namespace/chunker" class=" x-topic-19-0" id="Queries-Json-9A07510A" lang="en-US">
+         <h2 class=" x-title-27-0 x-title-27-1 x-title-27-2" id="styler-id1.1.1.5.13.1" lang="en-US">Queries</h2><span class=" x-titlealts-2-0"></span><div class=" x-shortdesc-2-0" lang="en-US">Queries search the station database for the data to include in a schema.</div>
+         <div class=" x-prolog-1-0" lang="en-US">
+            <div class=" x-metadata-1-0" lang="en-US"><span class=" x-keywords-2-0" lang="en-US"><a class="indexterm" name="d26056e4039"></a></span></div>
+         </div>
+         <div class=" x-body-1-0" lang="en-US">
+            <div class=" x-section-1-0" id="styler-id1.1.1.5.13.5.1" lang="en-US">
+               <h3 class=" x-title-45-0" id="styler-id1.1.1.5.13.5.1.1" lang="en-US">Query folder</h3><a class="indexterm" name="d26056e4045"></a><p class=" x-p-13-0" lang="en-US">The <b class=" x-uicontrol-3-0" lang="en-US">Queries</b> folder of a JSON schema stores queries whose results are available to be used in the schema. This allows JSON content to
+                  be generated from the results of bql or neql queries. For example, to name just a few, you can generate a report of overridden
+                  points, active alarms, or history logs for a given point.
+               </p>
+               <p class=" x-p-13-0" lang="en-US"><code class=" x-parmname-2-0" lang="en-US">Query Interval</code> is an important property of the queries folder. It determines how often queries execute, and, therefore, how up-to-date any
+                  data exported by the schema will be when an update strategy of CoV is used.
+               </p>
+               <div class=" x-note-1-0 x-note-1-7" lang="en-US">&nbsp;<br class="empty"><b><span style="font-weight: bold; ">NOTE: </span></b>If multiple queries exist, the station runs each query in parallel each time the schema executes.<br class="empty">&nbsp;
+               </div>
+               <p class=" x-p-13-0" lang="en-US">Queries do not execute each time a schema generates in change-of-value mode, otherwise a query could run every time a point
+                  value changes, which could have a negative impact on the performance of the control strategy running in a station. Instead,
+                  a <span class=" x-apiname-2-0" lang="en-US">BoundQueryResult</span> caches the results and adds them to the schema.
+               </p>
+               <p class=" x-p-13-0" lang="en-US">Schemata in on-demand mode and relative schemata do execute each query every time a schema generates.</p>
+               <p class=" x-p-13-0" lang="en-US">It is possible to manually invoke query execution using the <code class=" x-option-2-0" lang="en-US">Execute Queries</code> action of the schema, which could also be linked to some appropriate logic to trigger execution when needed.
+               </p>
+               <div class=" x-note-1-0 x-note-1-6" lang="en-US">&nbsp;<br class="empty"><b><span style="font-weight: bold; ">IMPORTANT: </span></b><span class=" x-p-9-0" lang="en-US">When executing queries against your station, bear in mind the potential performance implications of running queries frequently.
+                     To reduce the scope of the query, focus the first part of the ord to the location where the data are likely to be found, or
+                     by using the stop keyword to prevent depth recursion.</span><br class="empty">&nbsp;
+               </div>
+            </div>
+            <div class=" x-section-1-0" id="styler-id1.1.1.5.13.5.2" lang="en-US">
+               <h3 class=" x-title-45-0" id="styler-id1.1.1.5.13.5.2.1" lang="en-US">Query</h3><a class="indexterm" name="d26056e4098"></a><p class=" x-p-13-0" lang="en-US">You add queries below the <b class=" x-uicontrol-3-0" lang="en-US">Queries</b> folder found at the top level of the schema.
+               </p>
+               <div class=" x-fig-1-0 x-fig-1-1" id="styler-id1.1.1.5.13.5.2.4" lang="en-US"><h5 class=" x-title-49-0" id="styler-id1.1.1.5.13.5.2.4.1" lang="en-US">Figure 16.  &nbsp;&nbsp;Query properties</h5><div class=" x-image-2-0 x-image-2-9" lang="en-US"><img alt="Image" height="109" src="graphics/xwc3022689227932069873.png"  width="541"></div></div>
+               <p class=" x-p-13-0" lang="en-US">A query can be any valid transform, neql or bql statement which returns a BITable. </p>
+               <p class=" x-p-13-0" lang="en-US">Here are some useful examples to include in a schema:</p>
+               <div class=" x-table-2-0 x-table-2-2" id="styler-id1.1.1.5.13.5.2.7" lang="en-US">
+                  <table class=" x-tgroup-1-0" style="border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; border-top-style: solid; border-top-width: 1.0pt; border-top-color: #000000; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; ">
+                     <colgroup>
+                        <col style="width: 263px; ">
+                        <col style="width: 72.60416666666667%; ">
+                     </colgroup>
+                     <thead class=" x-thead-1-0" style="vertical-align: bottom; text-align: left; font-weight: bold; ">
+                        <tr class=" x-row-1-0">
+                           <th class="entry-in-thead" style="text-align: left; padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-top-style: solid; border-top-width: 1.0pt; border-top-color: #000000; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; ">Data to return</th>
+                           <th class="entry-in-thead" style="text-align: left; padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-top-style: solid; border-top-width: 1.0pt; border-top-color: #000000; ">Query</th>
+                        </tr>
+                     </thead>
+                     <tbody class=" x-tbody-1-0" style="vertical-align: top; ">
+                        <tr class=" x-row-1-0">
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; ">BACnet points currently in {override} status</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; "><code class=" x-codeph-1-0" lang="en-US">slot:/Drivers/BacnetNetwork|bql:select name, out.value from control:ControlPoint where status.overridden = 'true'</code></td>
+                        </tr>
+                        <tr class=" x-row-1-0">
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; ">History records</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; "><code class=" x-codeph-1-0" lang="en-US">history:/Newhaven/waveHeight|bql:select timestamp, value</code></td>
+                        </tr>
+                        <tr class=" x-row-1-0">
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; ">Output from a series transform</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; "><code class=" x-codeph-1-0" lang="en-US">station:|transform:slot:/VelocityServlet/lineChart/TransformGraph</code></td>
+                        </tr>
+                        <tr class=" x-row-1-0">
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; ">Alarm database contents</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; "><code class=" x-codeph-1-0" lang="en-US">alarm:|bql:select timestamp, uuid, ackState, source as 'origin'</code><div class=" x-note-1-0 x-note-1-7" lang="en-US">&nbsp;<br class="empty"><b><span style="font-weight: bold; ">NOTE: </span></b><span class=" x-p-9-0" lang="en-US">You may rename the columns using the ‘as’ keyword, which the resultant JSON reflects.</span><br class="empty">&nbsp;
+                              </div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <div class=" x-section-1-0" id="styler-id1.1.1.5.13.5.3" lang="en-US">
+               <h3 class=" x-title-45-0" id="styler-id1.1.1.5.13.5.3.1" lang="en-US">Relative history query</h3><a class="indexterm" name="d26056e4169"></a><p class=" x-p-13-0" lang="en-US">Used in conjunction with a relative schema, the query <code class=" x-parmname-2-0" lang="en-US">Pattern Property</code> pre–appends the current base item to a bql query, so that query data can be included in the payload for a given set of points
+                  or devices:
+               </p><pre class=" x-codeblock-1-0 x-codeblock-1-1" lang="en-US">%baseHistoryOrd%?period=today|bql:select timestamp, value</pre><p class=" x-p-13-0" lang="en-US">You may use this in conjunction with a base query that returns a HistoryConfig or a HistoryExt (or the parent of these types):</p><pre class=" x-codeblock-1-0 x-codeblock-1-1" lang="en-US">station:|slot:/JsonExampleComponents|bql:select * from history:HistoryConfig</pre><p class=" x-p-13-0" lang="en-US">Consider the effect on performance that running many queries on an embedded controller may have.</p>
+            </div>
+            <div class=" x-section-1-0" id="styler-id1.1.1.5.13.5.4" lang="en-US">
+               <h3 class=" x-title-45-0" id="styler-id1.1.1.5.13.5.4.1" lang="en-US">BoundQueryResult</h3><a class="indexterm" name="d26056e4189"></a><p class=" x-p-13-0" lang="en-US">Once you define a query, use the <span class=" x-apiname-2-0" lang="en-US">BoundQueryResult</span> to determine where and how to insert the results into the payload.
+               </p>
+               <p class=" x-p-13-0" lang="en-US">You can mix query results, such as bound properties or other query results with all other schema member types in the same
+                  payload. For example, if required by the target platform, you could construct a floor summary with historical data and current
+                  alarms.
+               </p>
+               <p class=" x-p-13-0" lang="en-US">The JSON Toolkit provides various output formats as the following examples demonstrate, and a developer can create new output
+                  formats.
+               </p>
+               <p class=" x-p-13-0" lang="en-US">The following examples use two columns for the sake of brevity. You may add more columns.</p>
+               <p class=" x-p-13-0" lang="en-US">You can format the timestamp returned by a query using the format options in the schema’s <b class=" x-uicontrol-3-0" lang="en-US">Config</b> folder.
+               </p>
+               <div class=" x-note-1-0 x-note-1-9" lang="en-US">&nbsp;<br class="empty"><b><span style="font-weight: bold; ">REMEMBER: </span></b><br class="empty">&nbsp;
+               </div>Executing a bql query does not trigger subscription of the component in question. The values used are the last values known
+               to the station.
+               <div class=" x-table-2-0 x-table-2-2" id="styler-id1.1.1.5.13.5.4.9" lang="en-US">
+                  <table class=" x-tgroup-1-0" style="border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; border-top-style: solid; border-top-width: 1.0pt; border-top-color: #000000; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; ">
+                     <colgroup>
+                        <col style="width: 210px; ">
+                        <col style="width: 416px; ">
+                     </colgroup>
+                     <thead class=" x-thead-1-0" style="vertical-align: bottom; text-align: left; font-weight: bold; ">
+                        <tr class=" x-row-1-0">
+                           <th class="entry-in-thead" style="text-align: left; padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-top-style: solid; border-top-width: 1.0pt; border-top-color: #000000; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; ">Example</th>
+                           <th class="entry-in-thead" style="text-align: left; padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-top-style: solid; border-top-width: 1.0pt; border-top-color: #000000; ">JSON</th>
+                        </tr>
+                     </thead>
+                     <tbody class=" x-tbody-1-0" style="vertical-align: top; ">
+                        <tr class=" x-row-1-0">
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; ">Row array with header</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; "><pre class=" x-codeblock-1-0 x-codeblock-1-1" lang="en-US">"data": [
+[
+"timestamp", "value"
+], [
+"2019-02-07 23:27:42.116+0000",
+45
+], [
+"2019-02-07 23:28:03.157+0000",
+15
+], [
+"2019-02-07 23:28:24.197+0000",
+85
+], [
+"2019-02-07 23:28:45.222+0000",
+55
+], [
+ 
+"2019-02-07 23:29:06.247+0000",
+25
+]
+]
+</pre></td>
+                        </tr>
+                        <tr class=" x-row-1-0">
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; ">Row array</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; "><pre class=" x-codeblock-1-0 x-codeblock-1-1" lang="en-US">"data": [
+[
+"2019-02-07 23:27:42.116+0000",
+45
+], [
+"2019-02-07 23:28:03.157+0000",
+15
+], [
+"2019-02-07 23:28:24.197+0000",
+85
+], [
+"2019-02-07 23:28:45.222+0000",
+55
+], [
+"2019-02-07 23:29:06.247+0000",
+25
+]
+]
+</pre></td>
+                        </tr>
+                        <tr class=" x-row-1-0">
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; ">Objects array</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; "><pre class=" x-codeblock-1-0 x-codeblock-1-1" lang="en-US">"data": [
+{
+"timestamp": "2019-02-07 23:27:42.116+0000",
+"value": 45
+},
+{
+"timestamp": "2019-02-07 23:28:03.157+0000",
+"value": 15
+},
+{
+"timestamp": "2019-02-07 23:28:24.197+0000",
+"value": 85
+},
+{
+"timestamp": "2019-02-07 23:28:45.222+0000",
+"value": 55
+},
+{
+"timestamp": "2019-02-07 23:29:06.247+0000",
+"value": 25
+}
+]
+</pre></td>
+                        </tr>
+                        <tr class=" x-row-1-0">
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; ">Named objects (The first column is assumed to represent the object name.)</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; "><pre class=" x-codeblock-1-0 x-codeblock-1-1" lang="en-US">"data": [
+"2019-02-07 23:27:42.116+0000": {
+"value": 45
+},
+"2019-02-07 23:28:03.157+0000": {
+"value": 15
+},
+"2019-02-07 23:28:24.197+0000": {
+"value": 85
+},
+"2019-02-07 23:28:45.222+0000": {
+ 
+"value": 55
+},
+"2019-02-07 23:29:06.247+0000": {
+"value": 25
+}
+]
+</pre></td>
+                        </tr>
+                        <tr class=" x-row-1-0">
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; ">Column array with header</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; "><pre class=" x-codeblock-1-0 x-codeblock-1-1" lang="en-US">"data": [
+[
+"timestamp",
+"2019-02-07 23:27:42.116+0000",
+"2019-02-07 23:28:03.157+0000",
+"2019-02-07 23:28:24.197+0000",
+"2019-02-07 23:28:45.222+0000",
+"2019-02-07 23:29:06.247+0000"
+], [
+"value", 45,
+15,
+85,
+55,
+25
+]
+]
+</pre></td>
+                        </tr>
+                        <tr class=" x-row-1-0">
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; ">Column array</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; "><pre class=" x-codeblock-1-0 x-codeblock-1-1" lang="en-US">"data": [
+[
+"2019-02-07 23:27:42.116+0000",
+"2019-02-07 23:28:03.157+0000",
+"2019-02-07 23:28:24.197+0000",
+"2019-02-07 23:28:45.222+0000",
+"2019-02-07 23:29:06.247+0000"
+], [
+45,
+15,
+85,
+55,
+25
+]
+]
+</pre></td>
+                        </tr>
+                        <tr class=" x-row-1-0">
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; ">Single column array 
+                              <div class=" x-note-1-0 x-note-1-7" lang="en-US">&nbsp;<br class="empty"><b><span style="font-weight: bold; ">NOTE: </span></b>The query used to populate the BoundQueryResult should only return one column. It would be wasteful to select data that are
+                                 not expected to emerge in the payload.<br class="empty">&nbsp;
+                              </div>
+                           </td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; "><pre class=" x-codeblock-1-0 x-codeblock-1-1" lang="en-US">"data": [
+45,
+15,
+85,
+55,
+25
+]
+</pre></td>
+                        </tr>
+                        <tr class=" x-row-1-0">
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; ">Key Value Pair Object
+                              <div class=" x-note-1-0 x-note-1-7" lang="en-US">&nbsp;<br class="empty"><b><span style="font-weight: bold; ">NOTE: </span></b>The query used to populate the BoundQueryResult should only return two columns.<br class="empty">&nbsp;
+                              </div>
+                           </td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; "><pre class=" x-codeblock-1-0 x-codeblock-1-1" lang="en-US">“data”: {
+"2019-02-07 23:27:42.116+0000" : 45,
+"2019-02-07 23:28:03.157+0000" : 15,
+"2019-02-07 23:28:24.197+0000" : 85,
+"2019-02-07 23:28:45.222+0000" : 55,
+"2019-02-07 23:29:06.247+0000" : 25
+}</pre></td>
+                        </tr>
+                        <tr class=" x-row-1-0">
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; ">Tuning</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; ">
+                              <p class=" x-p-13-0" lang="en-US">You may use the hidden query folder property <code class=" x-parmname-2-0" lang="en-US">queriesMaxExecutionTime</code> to increase the amount of time granted to complete all the queries during each cycle. Failure to complete in this time causes
+                                 schema generation to fail.
+                              </p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </div>
+         <div class=" x-related-links-1-0">
+            <div class=" x--ufe-relatedlinks-display-1-0">
+               <div class=" x--ufe-relatedHierarchical-1-0 x--ufe-relatedHierarchical-1-1">
+                  <h3 class=" x--ufe-related-links-title-1-0" id="styler-idu1.1.1.5.13.6.1.1.1">Related Links</h3>
+                  <div class=" x--ufe-relatedChild-1-0">
+                     <li class=" x-link-2-0 x-link-2-1"><a href="SettingUpQueriesJson-9A09D8D2.html#SettingUpQueriesJson-9A09D8D2" title="In addition to the binding queries, which set up a single query bql, neql or ord, you can add additional queries to a Queries folder. The schema turns the queries in this folder into a string."><span class=" x-linktext-2-0" lang="en-US">Setting up queries</span></a></li>
+                  </div>
+                  <div class=" x--ufe-relatedParent-1-0">
+                     <li class=" x-link-2-0 x-link-2-1"><a href="Exporting-Json-715BF8A7.html#Exporting-Json-715BF8A7" title="Adding a JsonSchema component to your station allows for the construction of a JSON payload to suit the requirements of your particular application."><span class=" x-linktext-2-0 x-linktext-2-5" lang="en-US">Exporting with a JSON schema (Parent Topic)</span></a></li>
+                  </div>
+               </div>
+               <div class=" x--ufe-relatedPrevious-1-0"></div>
+               <div class=" x--ufe-relatedNext-1-0"></div>
+               <div class=" x--ufe-relatedConcepts-1-0"></div>
+               <div class=" x--ufe-relatedTasks-1-0"></div>
+               <div class=" x--ufe-relatedReferences-1-0 x--ufe-relatedReferences-1-1">
+                  <h3 class=" x--ufe-related-links-title-1-0" id="styler-idu1.1.1.5.13.6.1.6.1">Related References</h3>
+                  <li class=" x-link-2-0 x-link-2-1"><a href="jsonToolkit-JsonSchemaQueryFolder.html#jsonToolkit-JsonSchemaQueryFolder" title="This folder under a JSON schema stores search queries whose results are then available to be used by the schema. Queries generate JSON payloads from the results of bql or neql searches. For example, a query may include a report of overridden points, active alarms, or history logs for a given point."><span class=" x-linktext-2-0 x-linktext-2-3" lang="en-US">Queries (Json Schema Query Folder)</span></a></li>
+               </div>
+               <div class=" x--ufe-relatedTopics-1-0"></div>
+               <div class=" x--ufe-relatedOther-1-0"></div>
+               <div class=" x--ufe-relatedLinklists-1-0"></div>
+            </div>
+         </div>
+      </div>
+
+<!-- Auto-generated Footer NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/ExportMarkers-94E0333F.html" class="navbar">Prev</a> |  <a href="/doc/SettingUpQueriesJson-9A09D8D2.html" class="navbar">Next</a></p>
+<!-- Auto-generated copyright note --><p class='copyright'></p>
+   </body>
+</html>

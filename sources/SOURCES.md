@@ -80,3 +80,6 @@ Decompiled Java sources live under `sources/decompiled/<jar-name>/`.
 | manuals/jsonToolkit-docs/SchemaTuningPolicy-json.html | doc oficial Tridium (docJsonToolkit-doc) | organized/docJsonToolkit/.../doc/SchemaTuningPolicy-json.html | 2026-08-04 | bab813c27a82 | B337 |
 | manuals/jsonToolkit-docs/SubscriptionExamples-Json-71502433.html | doc oficial Tridium (docJsonToolkit-doc) | organized/docJsonToolkit/.../doc/SubscriptionExamples-Json-71502433.html | 2026-08-04 | 8007bf87c57e | B337 |
 | manuals/jsonToolkit-docs/jsonToolkit-SubscriptionSlotBlacklist.html | doc oficial Tridium (docJsonToolkit-doc) | organized/docJsonToolkit/.../doc/jsonToolkit-SubscriptionSlotBlacklist.html | 2026-08-04 | 4921f5f04ca2 | B337 |
+| manuals/jsonToolkit-docs/Queries-Json-9A07510A.html | doc oficial Tridium (docJsonToolkit-doc) | organized/docJsonToolkit/.../doc/Queries-Json-9A07510A.html | 2026-08-04 | e28741c2356c | B338 |
+| manuals/jsonToolkit-docs/jsonToolkit-JsonSchemaQuery.html | doc oficial Tridium (docJsonToolkit-doc) | organized/docJsonToolkit/.../doc/jsonToolkit-JsonSchemaQuery.html | 2026-08-04 | 0b1cea4cfc7f | B338 |
+| manuals/jsonToolkit-docs/SettingUpQueriesJson-9A09D8D2.html | doc oficial Tridium (docJsonToolkit-doc) | organized/docJsonToolkit/.../doc/SettingUpQueriesJson-9A09D8D2.html | 2026-08-04 | 9ef0182a344f | B338 |
