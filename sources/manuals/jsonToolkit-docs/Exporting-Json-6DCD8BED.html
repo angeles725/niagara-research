@@ -1,0 +1,100 @@
+<!-- Htmldoc has been run -->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="keywords" content="Niagara" scheme="atiChunkerMeta">
+      <title>Creating a regular schema</title>
+<!-- Auto-generated style sheet link --><link rel='StyleSheet' href='module://bajaui/doc/style.css' type='text/css' />
+<!-- Auto-generated js link for Activity Monitoring --><script type='text/javascript' src='module://web/rc/util/activityMonitor.js'></script>
+<script type='text/javascript'>window.addEventListener('load', activityMonitor.start);</script>
+   </head>
+   <body class=" x-bookmap-1-0" lang="en-US" id="mapelement_bookmap1">
+<!-- Auto-generated Header NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/ObjectsJson-A460BB17.html" class="navbar">Prev</a> |  <a href="/doc/RelativeSchemaConstruction-94DD3616.html" class="navbar">Next</a></p>
+
+      <div xmlns:ch="http://www.arbortext.com/namespace/chunker" class=" x-topic-16-0" id="Exporting-Json-6DCD8BED" lang="en-US">
+         <h2 class=" x-title-22-0 x-title-22-1 x-title-22-2 x-title-22-3" id="styler-id1.1.1.5.12.8.1" lang="en-US">Creating a regular schema</h2><span class=" x-titlealts-2-0"></span><div class=" x-shortdesc-2-0" lang="en-US">You construct a schema by placing objects from the <span class=" x-apiname-2-0" lang="en-US">jsonToolkit</span> palette in a <span class=" x-apiname-2-0" lang="en-US">JsonSchema</span>.
+         </div>
+         <div class=" x-prolog-1-0" lang="en-US">
+            <div class=" x-metadata-1-0" lang="en-US"><span class=" x-keywords-2-0" lang="en-US"><a class="indexterm" name="d26056e3400"></a></span></div>
+         </div>
+         <div class=" x-body-1-0" lang="en-US">
+            <div class=" x-prereq-1-0" lang="en-US">Prerequisites: The station is running.
+            </div>
+            <div lang="en-US">
+               <ol class=" x-ol-1-0">
+                  <li class=" x--inherit-background-color x-step-7-0 x--zero-text-indent" lang="en-US"><span class=" x-cmd-1-0" lang="en-US">Open the <span class=" x-apiname-2-0" lang="en-US">jsonToolkit</span> palette from the <span class=" x-apiname-2-0" lang="en-US">workbench</span> palette sidebar.</span></li>
+                  <li class=" x--inherit-background-color x-step-7-0 x--zero-text-indent" lang="en-US"><span class=" x-cmd-1-0" lang="en-US">Drag a <span class=" x-apiname-2-0" lang="en-US">JsonSchema</span> to the <b class=" x-uicontrol-3-0" lang="en-US">Config</b> node or another desired folder location and type a unique name for the schema when prompted. <div class=" x-image-2-0 x-image-2-9" lang="en-US"><img alt="Image" height="199" src="graphics/xwc5426696596867198970.png"  width="259"></div></span></li>
+                  <li class=" x--inherit-background-color x-step-7-0 x--zero-text-indent" lang="en-US"><span class=" x-cmd-1-0" lang="en-US">To view the schema <span class=" x-wintitle-2-0" lang="en-US">Property Sheet</span>, double-click the schema glyph in the Nav tree.</span><div class=" x-itemgroup-1-0" lang="en-US">The <span class=" x-wintitle-2-0" lang="en-US">Property Sheet</span> opens.<div class=" x-image-2-0 x-image-2-9" lang="en-US"><img alt="Image" height="409" src="graphics/xwc8498500898706294572.png"  width="1073"></div><p class=" x-p-13-0" lang="en-US">When you initially view the <span class=" x-wintitle-2-0" lang="en-US">Property Sheet</span> for a new schema, the <code class=" x-parmname-2-0" lang="en-US">Output</code> property is an empty black box. JSON strings appear here when you generate output.
+                        </p>
+                     </div>
+                  </li>
+                  <li class=" x--inherit-background-color x-step-7-0 x--zero-text-indent" lang="en-US"><span class=" x-cmd-1-0" lang="en-US">In the <span class=" x-wintitle-2-0" lang="en-US">Property Sheet</span> view, ensure that the <code class=" x-parmname-2-0" lang="en-US">Enabled</code> property is set to <code class=" x-option-2-0" lang="en-US">true</code>.</span><div class=" x-itemgroup-1-0" lang="en-US">Setting <code class=" x-parmname-2-0" lang="en-US">Enabled</code> to <code class=" x-option-2-0" lang="en-US">false</code> prevents the generation of output, the execution of queries and the subscription to bound values.
+                     </div>
+                  </li>
+                  <li class=" x--inherit-background-color x-step-7-0 x--zero-text-indent" lang="en-US"><span class=" x-cmd-1-0" lang="en-US">To begin setting up the message, expand the <b class=" x-uicontrol-3-0" lang="en-US">Objects</b> folder in the palette, drag an <b class=" x-uicontrol-3-0" lang="en-US">Object</b> to the <span class=" x-wintitle-2-0" lang="en-US">Property Sheet</span> and name it, for example, <span class=" x-userinput-1-0" lang="en-US">root</span>.</span><div class=" x-itemgroup-1-0" lang="en-US">Braces { } represent this object in the <code class=" x-parmname-2-0" lang="en-US">Output</code>. This single top-level object serves as the JSON parent container for other JSON objects that make up the message. Each JSON
+                        object requires a pair of braces ({ }) and arrays require brackets ([ ]).
+                     </div>
+                  </li>
+                  <li class=" x--inherit-background-color x-step-7-0 x--zero-text-indent" lang="en-US"><span class=" x-cmd-1-0" lang="en-US">Drag an object, array, or property from the palette to the <span class=" x-wintitle-2-0" lang="en-US">Property Sheet</span> root container.</span><div class=" x-itemgroup-1-0" lang="en-US">Some objects may be simple and other objects may yield the more complex results of <span class=" x-keyword-2-0" lang="en-US">
+                           <ch:meta content="Niagara" name="keywords"></ch:meta><span style="white-space: nowrap;">Niagara</span></span> bql queries. The objects that you choose to add depend on your unique requirements.
+                        <div lang="en-US">
+                           <ul class=" x-ul-1-0">
+                              <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Empty braces { } icons represent a JSON object. A bound object is a named object whose child name and value pairs are the
+                                    slots within an ord target.</span></li>
+                              <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Bracket [ ] icons represent an array, which is an empty named container of other schema entities. A bound array is a named
+                                    object that renders values as a list.</span></li>
+                              <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Other icons represent properties, which may be fixed or bound.</span></li>
+                           </ul>
+                        </div>
+                     </div>
+                  </li>
+                  <li class=" x--inherit-background-color x-step-7-0 x--zero-text-indent" lang="en-US"><span class=" x-cmd-1-0" lang="en-US">To update the schema <code class=" x-parmname-2-0" lang="en-US">Output</code> based on the current values retrieved from the station, click <b class=" x-uicontrol-3-0" lang="en-US">Generate</b>, or right-click the schema name and click <span class=" x-menucascade-1-0" lang="en-US"><b class=" x-uicontrol-2-0" lang="en-US">Actions</b><b class=" x-uicontrol-1-0" lang="en-US"><span style="font-weight: normal; "> &gt; </span>Generate Json</b></span>.</span><div class=" x-itemgroup-1-0" lang="en-US">This action causes a regular schema to re-evaluate any query and populate the <code class=" x-parmname-2-0" lang="en-US">Output</code> box with JSON.
+                     </div>
+                  </li>
+                  <li class=" x--inherit-background-color x-step-7-0 x--zero-text-indent" lang="en-US"><span class=" x-cmd-1-0" lang="en-US">To set up some actual station data, drag in a <span class=" x-apiname-2-0" lang="en-US">BoundObject</span>, name it appropriately, expand the bound object and click the <code class=" x-parmname-2-0" lang="en-US">Select Source</code> finder to the right of the <code class=" x-parmname-2-0" lang="en-US">Binding</code> property.</span><div class=" x-itemgroup-1-0" lang="en-US">This object requires a binding similar to the way components on Px pages require bindings to actual points in a station.</div>
+                     <div class=" x-itemgroup-1-0" lang="en-US">The <span class=" x-wintitle-2-0" lang="en-US">Choose component/slot for JSON</span> window opens.
+                     </div>
+                  </li>
+                  <li class=" x--inherit-background-color x-step-7-0 x--zero-text-indent" lang="en-US"><span class=" x-cmd-1-0" lang="en-US">Navigate to and select the source component, click <b class=" x-uicontrol-3-0" lang="en-US">OK</b> and then click <b class=" x-uicontrol-3-0" lang="en-US">Save</b>.<div class=" x-image-2-0 x-image-2-9" lang="en-US"><img alt="Image" height="310" src="graphics/xwc8005526059105016646.png"  width="353"></div></span><div class=" x-itemgroup-1-0" lang="en-US">When choosing the target for a binding, you can select any type of slot, from devices to control points to out slots to simple
+                        values. There is no restriction. Due to subscription, saving the schema also generates the JSON message (output).
+                     </div>
+                     <div class=" x-itemgroup-1-0" lang="en-US">If your logic contains one or more points whose values change periodically, the schema generates a new JSON message every
+                        time a CoV occurs. If the schema is connected to MQTT, the schema can send each new message to the web.
+                     </div>
+                  </li>
+                  <li class=" x--inherit-background-color x-step-7-0 x--zero-text-indent" lang="en-US"><span class=" x-cmd-1-0" lang="en-US">To change the <code class=" x-parmname-2-0" lang="en-US">Json Name</code> (a read-only property) to the name of the bound input slot on your <span class=" x-wintitle-2-0" lang="en-US">Wire Sheet</span>, change <code class=" x-parmname-2-0" lang="en-US">Json Name Source</code> property to <code class=" x-option-2-0" lang="en-US">Target Name</code>, and, from the <code class=" x-parmname-2-0" lang="en-US">Slots To Include</code> property, choose <code class=" x-option-2-0" lang="en-US">Summary Slots</code>.</span><div class=" x-itemgroup-1-0" lang="en-US">To include specific slots, use the <code class=" x-parmname-2-0" lang="en-US">Slots to Include</code> properties, identify and pick individual slots for more fine-grained control.
+                     </div>
+                  </li>
+               </ol>
+            </div>
+            <div class=" x-section-1-0" id="styler-id1.1.1.5.12.8.5.3" lang="en-US">You may link the output slot to an <span class=" x-apiname-2-0" lang="en-US">EngineCycleMessageQueue</span>, if required, which buffers output sent to the onward transport. These could be MQTT or HTTP depending on the onward linked
+               point.
+            </div>
+         </div>
+         <div class=" x-related-links-1-0">
+            <div class=" x--ufe-relatedlinks-display-1-0">
+               <div class=" x--ufe-relatedHierarchical-1-0 x--ufe-relatedHierarchical-1-1">
+                  <h3 class=" x--ufe-related-links-title-1-0" id="styler-idu1.1.1.5.12.8.6.1.1.1">Related Links</h3>
+                  <div class=" x--ufe-relatedChild-1-0"></div>
+                  <div class=" x--ufe-relatedParent-1-0">
+                     <li class=" x-link-2-0 x-link-2-1"><a href="JSONSchemaConstruction-7A8BDB05.html#JSONSchemaConstruction-7A8BDB05" title="Setting up a schema involves binding station data to JSON entities."><span class=" x-linktext-2-0 x-linktext-2-5" lang="en-US">Schema construction (Parent Topic)</span></a></li>
+                  </div>
+               </div>
+               <div class=" x--ufe-relatedPrevious-1-0"></div>
+               <div class=" x--ufe-relatedNext-1-0"></div>
+               <div class=" x--ufe-relatedConcepts-1-0"></div>
+               <div class=" x--ufe-relatedTasks-1-0"></div>
+               <div class=" x--ufe-relatedReferences-1-0"></div>
+               <div class=" x--ufe-relatedTopics-1-0"></div>
+               <div class=" x--ufe-relatedOther-1-0"></div>
+               <div class=" x--ufe-relatedLinklists-1-0"></div>
+            </div>
+         </div>
+      </div>
+
+<!-- Auto-generated Footer NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/ObjectsJson-A460BB17.html" class="navbar">Prev</a> |  <a href="/doc/RelativeSchemaConstruction-94DD3616.html" class="navbar">Next</a></p>
+<!-- Auto-generated copyright note --><p class='copyright'></p>
+   </body>
+</html>

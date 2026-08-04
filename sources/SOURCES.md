@@ -83,3 +83,5 @@ Decompiled Java sources live under `sources/decompiled/<jar-name>/`.
 | manuals/jsonToolkit-docs/Queries-Json-9A07510A.html | doc oficial Tridium (docJsonToolkit-doc) | organized/docJsonToolkit/.../doc/Queries-Json-9A07510A.html | 2026-08-04 | e28741c2356c | B338 |
 | manuals/jsonToolkit-docs/jsonToolkit-JsonSchemaQuery.html | doc oficial Tridium (docJsonToolkit-doc) | organized/docJsonToolkit/.../doc/jsonToolkit-JsonSchemaQuery.html | 2026-08-04 | 0b1cea4cfc7f | B338 |
 | manuals/jsonToolkit-docs/SettingUpQueriesJson-9A09D8D2.html | doc oficial Tridium (docJsonToolkit-doc) | organized/docJsonToolkit/.../doc/SettingUpQueriesJson-9A09D8D2.html | 2026-08-04 | 9ef0182a344f | B338 |
+| manuals/jsonToolkit-docs/Exporting-Json-6DCD8BED.html | doc oficial Tridium (docJsonToolkit-doc) | organized/docJsonToolkit/.../doc/Exporting-Json-6DCD8BED.html | 2026-08-04 | f0d1cc953776 | B339 |
+| manuals/jsonToolkit-docs/ExportingJsonOutput-6EADCB50.html | doc oficial Tridium (docJsonToolkit-doc) | organized/docJsonToolkit/.../doc/ExportingJsonOutput-6EADCB50.html | 2026-08-04 | 63ef0d251182 | B339 |
