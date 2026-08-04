@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **326 blocks**
+Total: **327 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -332,3 +332,4 @@ Total: **326 blocks**
 | 328 | [niagara-mental-model-bloque328.md](niagara-mental-model-bloque328.md) | OAuth2 SMTP: XOAUTH2 over SASL with the bearer token as the "password", `client_credentials` by secret or certificate, and a token fetched fresh on every send |
 | 329 | [niagara-mental-model-bloque329.md](niagara-mental-model-bloque329.md) | The email security dashboard: 22 filters that grade each account, where severity is gated on `enabled` and the whole posture of E3/E5 becomes an ALERT/WARNING/OK verdict |
 | 330 | [niagara-mental-model-bloque330.md](niagara-mental-model-bloque330.md) | The account base and the authenticator hierarchy: an account is "operational" iff not-disabled-and-not-fault, auth is a pluggable type-config, and the `fw(x=11)` upgrade DISCARDS legacy credentials rather than migrating them |
+| 331 | [niagara-mental-model-bloque331.md](niagara-mental-model-bloque331.md) | The Workbench UI: `BEmailAccountManager` with no "send test" button, a name-picker that populates the recipient dropdown from the live service, and secure New-account defaults that override the insecure component defaults |
