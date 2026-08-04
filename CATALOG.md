@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **324 blocks**
+Total: **325 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -330,3 +330,4 @@ Total: **324 blocks**
 | 326 | [niagara-mental-model-bloque326.md](niagara-mental-model-bloque326.md) | The TLS session: `MailPlatformHandlerSe` builds JavaMail Properties through Niagara's own cert manager, SSL and STARTTLS are mutually exclusive, and transport security is OFF by default |
 | 327 | [niagara-mental-model-bloque327.md](niagara-mental-model-bloque327.md) | The inbound path: `BIncomingAccount` polls POP3/IMAP and fires a `received` topic, and `BEmailAlarmAcknowledger` acks an alarm from any email whose forgeable `From:` matches a privileged user |
 | 328 | [niagara-mental-model-bloque328.md](niagara-mental-model-bloque328.md) | OAuth2 SMTP: XOAUTH2 over SASL with the bearer token as the "password", `client_credentials` by secret or certificate, and a token fetched fresh on every send |
+| 329 | [niagara-mental-model-bloque329.md](niagara-mental-model-bloque329.md) | The email security dashboard: 22 filters that grade each account, where severity is gated on `enabled` and the whole posture of E3/E5 becomes an ALERT/WARNING/OK verdict |
