@@ -1,0 +1,108 @@
+<!-- Htmldoc has been run -->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="keywords" content="Supervisor" scheme="atiChunkerMeta">
+      <meta name="keywords" content="Niagara" scheme="atiChunkerMeta">
+      <meta name="keywords" content="Niagara Framework®" scheme="atiChunkerMeta">
+      <title>Supervisor</title>
+<!-- Auto-generated style sheet link --><link rel='StyleSheet' href='module://bajaui/doc/style.css' type='text/css' />
+<!-- Auto-generated js link for Activity Monitoring --><script type='text/javascript' src='module://web/rc/util/activityMonitor.js'></script>
+<script type='text/javascript'>window.addEventListener('load', activityMonitor.start);</script>
+   </head>
+   <body class=" x-bookmap-1-0" lang="en-US" id="mapelement_bookmap1">
+<!-- Auto-generated Header NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/JsonSchemaService-94D787DE.html" class="navbar">Prev</a> |  <a href="/doc/Exporting-Json-715BF8A7.html" class="navbar">Next</a></p>
+
+      <div xmlns:ch="http://www.arbortext.com/namespace/chunker" class=" x-topic-19-0" id="Supervisors-Json-6DC9E60A" lang="en-US">
+         <h2 class=" x-title-27-0 x-title-27-1 x-title-27-2" id="styler-id1.1.1.4.14.1" lang="en-US"><span class=" x-keyword-2-0" lang="en-US">
+               <ch:meta content="Supervisor" name="keywords"></ch:meta>Supervisor</span></h2><span class=" x-titlealts-2-0"></span><div class=" x-shortdesc-2-0" lang="en-US">The most convenient deployment of the jsonToolkit in cloud connectivity is to connect directly from the controller schema
+            to the remote transport. However, if a controller does not have remote connectivity, a <span class=" x-keyword-2-0" lang="en-US">
+               <ch:meta content="Supervisor" name="keywords"></ch:meta>Supervisor</span> is required. There are a few options to consider.
+         </div>
+         <div class=" x-prolog-1-0" lang="en-US">
+            <div class=" x-metadata-1-0" lang="en-US"><span class=" x-keywords-2-0" lang="en-US"><a class="indexterm" name="d26056e1547"></a><a class="indexterm" name="d26056e1549"></a></span></div>
+         </div>
+         <div class=" x-body-1-0" lang="en-US">
+            <div class=" x-section-1-0" id="styler-id1.1.1.4.14.5.1.1" lang="en-US">
+               <h3 class=" x-title-45-0" id="styler-id1.1.1.4.14.5.1.1.1" lang="en-US">NiagaraNetwork point export</h3>
+               <p class=" x-p-13-0" lang="en-US">You import points from subordinate controllers into a <span class=" x-keyword-2-0" lang="en-US">
+                     <ch:meta content="Supervisor" name="keywords"></ch:meta>Supervisor</span> under the NiagaraNetwork and create <span class=" x-keyword-2-0" lang="en-US">
+                     <ch:meta content="Supervisor" name="keywords"></ch:meta>Supervisor</span> schemata.
+               </p>
+               <div lang="en-US">
+                  <ul class=" x-ul-1-0">
+                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Schema queries and bindings may target points under the <b class=" x-uicontrol-3-0" lang="en-US">NiagaraNetwork</b> and subscription (change of value) will work ok.</span></li>
+                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Some information, such as the parent name and original slot path of the points, may not be available in the schemata.</span></li>
+                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Tag data and permissions may need to be redefined at the <span class=" x-keyword-2-0" lang="en-US">
+                              <ch:meta content="Supervisor" name="keywords"></ch:meta>Supervisor</span> level.</span></li>
+                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Alarms and histories need to be imported to the <span class=" x-keyword-2-0" lang="en-US">
+                              <ch:meta content="Supervisor" name="keywords"></ch:meta>Supervisor</span> if you require these data for your schema.</span></li>
+                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">This approach requires the most configuration overhead and may not be desirable to import all the points to the <span class=" x-keyword-2-0" lang="en-US">
+                              <ch:meta content="Supervisor" name="keywords"></ch:meta>Supervisor</span>.</span></li>
+                  </ul>
+               </div>
+            </div>
+            <div class=" x-section-1-0" id="styler-id1.1.1.4.14.5.1.2" lang="en-US">
+               <h3 class=" x-title-45-0" id="styler-id1.1.1.4.14.5.1.2.1" lang="en-US">System database</h3>
+               <p class=" x-p-13-0" lang="en-US">Use the system database to index subordinate controllers and sys: ords for queries within a <span class=" x-keyword-2-0" lang="en-US">
+                     <ch:meta content="Supervisor" name="keywords"></ch:meta>Supervisor</span> schema.
+               </p>
+               <div lang="en-US">
+                  <ul class=" x-ul-1-0">
+                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Example schema query: <code class=" x-codeph-1-0" lang="en-US">station:|sys:|neql:n:point|bql:select name, out.value, out.status</code></span></li>
+                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Example schema base query: <code class=" x-codeph-1-0" lang="en-US">station:|sys:|neql:n:point|bql:select *</code></span></li>
+                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Subscription to the remote points works so that change of value is available, as is the parent name and original slot path
+                           of the points.</span></li>
+                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">You cannot use a system database ord for a specific point binding.</span></li>
+                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">This option is not suitable for export of alarms and histories.</span></li>
+                  </ul>
+               </div>
+            </div>
+            <div class=" x-section-1-0" id="styler-id1.1.1.4.14.5.1.3" lang="en-US">
+               <h3 class=" x-title-45-0" id="styler-id1.1.1.4.14.5.1.3.1" lang="en-US">NiagaraNetwork schema export</h3>
+               <p class=" x-p-13-0" lang="en-US">The schema runs locally on each controller and is linked to a <span class=" x-apiname-2-0" lang="en-US">StringWritable</span>. This writable point is then imported into the <span class=" x-keyword-2-0" lang="en-US">
+                     <ch:meta content="Supervisor" name="keywords"></ch:meta>Supervisor</span> and linked to remote transport.
+               </p>
+               <div lang="en-US">
+                  <ul class=" x-ul-1-0">
+                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">It makes sense to do the processing at the data source where full point fidelity is available.</span></li>
+                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">The framework deals with permissions locally at each station.</span></li>
+                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">You have full alarm and history support.</span></li>
+                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Linking the imported <span class=" x-apiname-2-0" lang="en-US">StringWritable</span> to a transport, such as MQTT, keeps the point subscribed.</span></li>
+                  </ul>
+               </div>
+            </div>
+            <div class=" x-section-1-0" id="styler-id1.1.1.4.14.5.1.4" lang="en-US">
+               <h3 class=" x-title-45-0" id="styler-id1.1.1.4.14.5.1.4.1" lang="en-US">Proxy</h3>
+               <p class=" x-p-13-0" lang="en-US">If you are using MQTT as your transport, you may set up an intermediary broker to proxy messages to the remote broker. This
+                  solution requires extra IT overhead and support.
+               </p>
+            </div>
+         </div>
+         <div class=" x-related-links-1-0">
+            <div class=" x--ufe-relatedlinks-display-1-0">
+               <div class=" x--ufe-relatedHierarchical-1-0 x--ufe-relatedHierarchical-1-1">
+                  <h3 class=" x--ufe-related-links-title-1-0" id="styler-idu1.1.1.4.14.6.1.1.1">Related Links</h3>
+                  <div class=" x--ufe-relatedChild-1-0"></div>
+                  <div class=" x--ufe-relatedParent-1-0">
+                     <li class=" x-link-2-0 x-link-2-1"><a href="Introduction-JSON-6DA55A8D.html#Introduction-JSON-6DA55A8D" title="The JSON Toolkit module adds functionality to the keywordsNiagara Framework®Niagara Framework®, enabling you to export JSON data (payloads) from a station, or, when importing data, to influence the station in some way. A schema generates a payload for export, whilst a handler processes imported JSON. The Toolkit is intended to give you the power to adapt as needed."><span class=" x-linktext-2-0 x-linktext-2-5" lang="en-US">Introduction (Parent Topic)</span></a></li>
+                  </div>
+               </div>
+               <div class=" x--ufe-relatedPrevious-1-0"></div>
+               <div class=" x--ufe-relatedNext-1-0"></div>
+               <div class=" x--ufe-relatedConcepts-1-0"></div>
+               <div class=" x--ufe-relatedTasks-1-0"></div>
+               <div class=" x--ufe-relatedReferences-1-0"></div>
+               <div class=" x--ufe-relatedTopics-1-0"></div>
+               <div class=" x--ufe-relatedOther-1-0"></div>
+               <div class=" x--ufe-relatedLinklists-1-0"></div>
+            </div>
+         </div>
+      </div>
+
+<!-- Auto-generated Footer NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/JsonSchemaService-94D787DE.html" class="navbar">Prev</a> |  <a href="/doc/Exporting-Json-715BF8A7.html" class="navbar">Next</a></p>
+<!-- Auto-generated copyright note --><p class='copyright'></p>
+   </body>
+</html>

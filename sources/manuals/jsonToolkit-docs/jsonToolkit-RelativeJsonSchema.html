@@ -1,0 +1,129 @@
+<!-- Htmldoc has been run -->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      
+      <title>RelativeJsonSchema (Relative Json Schema)</title>
+<!-- Auto-generated style sheet link --><link rel='StyleSheet' href='module://bajaui/doc/style.css' type='text/css' />
+<!-- Auto-generated js link for Activity Monitoring --><script type='text/javascript' src='module://web/rc/util/activityMonitor.js'></script>
+<script type='text/javascript'>window.addEventListener('load', activityMonitor.start);</script>
+   </head>
+   <body class=" x-bookmap-1-0" lang="en-US" id="mapelement_bookmap1">
+<!-- Auto-generated Header NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/jsonToolkit-BaseQuery.html" class="navbar">Prev</a> |  <a href="/doc/jsonToolkit-JsonSchemaService.html" class="navbar">Next</a></p>
+
+      <div xmlns:ch="http://www.arbortext.com/namespace/chunker" class=" x-topic-19-0" id="jsonToolkit-RelativeJsonSchema" lang="en-US">
+         <h2 class=" x-title-27-0 x-title-27-1 x-title-27-2" id="styler-id1.1.1.8.11.1" lang="en-US">RelativeJsonSchema (Relative Json Schema)</h2><span class=" x-titlealts-2-0"></span><div class=" x-shortdesc-2-0" lang="en-US">This schema enables the scaling of JSON payload generation, which provides faster processing than the speed available using
+            multiple simple schemata.
+         </div>
+         <div class=" x-prolog-1-0" lang="en-US">
+            <div class=" x-metadata-1-0" lang="en-US"><span class=" x-keywords-2-0" lang="en-US"><a class="indexterm" name="d26056e10604"></a></span></div>
+         </div>
+         <div class=" x-body-1-0" lang="en-US">
+            <div class=" x-section-1-0" id="styler-id1.1.1.8.11.5.1" lang="en-US">
+               <div class=" x-fig-1-0 x-fig-1-1" id="styler-id1.1.1.8.11.5.1.1" lang="en-US"><h5 class=" x-title-49-0" id="styler-id1.1.1.8.11.5.1.1.1" lang="en-US">Figure 42.  &nbsp;&nbsp;RelativeJsonSchema properties</h5><div class=" x-image-2-0 x-image-2-9" lang="en-US"><img alt="Image" height="389" src="graphics/xwc2167251170665381875.png"  width="1018"></div></div>
+               <p class=" x-p-13-0" lang="en-US">You add a relative schema to a station by dragging a <span class=" x-apiname-2-0" lang="en-US">RelativeJsonSchema</span> from the palette to the <b class=" x-uicontrol-3-0" lang="en-US">Config</b> folder in the Nav tree. From there, to access schema properties, expand the <b class=" x-uicontrol-3-0" lang="en-US">Config</b> folder and double-click the schema.
+               </p>
+               <p class=" x-p-13-0" lang="en-US">In addition to the standard properties (Enabled, Status, and Fault Cause), these properties are unique to JSON.</p>
+            </div>
+            <div class=" x-properties-1-0 x-properties-1-1" id="styler-id1.1.1.8.11.5.2" lang="en-US">
+               <table border="1" cellpadding="7" frame="box" rules="all" style="border-width: 1.0pt; " width="100%">
+                  <col width="160">
+                  <col width="160">
+                  <col width="160">
+                  <thead style="text-align: left; ">
+                     <tr class=" x-prophead-1-0" lang="en-US" style="vertical-align: top; ">
+                        <th class=" x-proptypehd-1-0" lang="en-US" style="text-align: left; ">Property</th>
+                        <th class=" x-propvaluehd-1-0" lang="en-US" style="text-align: left; ">Value</th>
+                        <th class=" x-propdeschd-1-0" lang="en-US" style="text-align: left; ">Description</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr class=" x-property-1-0" lang="en-US" style="vertical-align: top; ">
+                        <td class=" x-proptype-1-0" lang="en-US">Last Updated</td>
+                        <td class=" x-propvalue-1-0" lang="en-US">read-only (defaults to null)</td>
+                        <td class=" x-propdesc-1-0" lang="en-US">Reports when the relative schema was updated last.</td>
+                     </tr>
+                     <tr class=" x-property-1-0" lang="en-US" style="vertical-align: top; ">
+                        <td class=" x-proptype-1-0" lang="en-US">Config</td>
+                        <td class=" x-propvalue-1-0" lang="en-US">folder</td>
+                        <td class=" x-propdesc-1-0" lang="en-US">Contains properties for configuring the relative schema.</td>
+                     </tr>
+                     <tr class=" x-property-1-0" lang="en-US" style="vertical-align: top; ">
+                        <td class=" x-proptype-1-0" lang="en-US">Queries</td>
+                        <td class=" x-propvalue-1-0" lang="en-US">folder</td>
+                        <td class=" x-propdesc-1-0" lang="en-US">Contains the search arguments.</td>
+                     </tr>
+                     <tr class=" x-property-1-0" lang="en-US" style="vertical-align: top; ">
+                        <td class=" x-proptype-1-0" lang="en-US">Base Query</td>
+                        <td class=" x-propvalue-1-0" lang="en-US">additional properties</td>
+                        <td class=" x-propdesc-1-0" lang="en-US">Defines a query that is intended to resolve targets in the station one at a time. 
+                           <p class=" x-p-13-0" lang="en-US">An example might be all BACnet devices. The base query returns the objects that the schema resolves against. The schema objects
+                              (below the query) then pick out appropriate values.
+                           </p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <div class=" x-section-1-0" id="styler-id1.1.1.8.11.5.3" lang="en-US">
+               <h3 class=" x-title-45-0" id="styler-id1.1.1.8.11.5.3.1" lang="en-US">Buttons</h3>
+               <p class=" x-p-13-0" lang="en-US">These actions are available when you click an icon and name to the right of the <code class=" x-parmname-2-0" lang="en-US">Output</code> property on the schema <span class=" x-wintitle-2-0" lang="en-US">Property Sheet</span>.
+               </p>
+               <div class=" x-fig-1-0 x-fig-1-1" id="styler-id1.1.1.8.11.5.3.3" lang="en-US"><h5 class=" x-title-49-0" id="styler-id1.1.1.8.11.5.3.3.1" lang="en-US">Figure 43.  &nbsp;&nbsp;Relative JSON Schema action buttons on the right side</h5><span class=" x-image-2-0 x-image-2-7" lang="en-US"><img alt="Image" src="graphics/xwc4586931123764680732.png" ></span></div>
+               <div lang="en-US">
+                  <ul class=" x-ul-1-0">
+                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US"><b class=" x-uicontrol-3-0" lang="en-US">Generate</b> requests a rebuild and update of schema output. For relative schemata, this evaluates the <code class=" x-parmname-2-0" lang="en-US">Base Query</code> and publishes results.</span></li>
+                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US"><b class=" x-uicontrol-3-0" lang="en-US">Copy</b> copies the selected JSON to the clipboard.</span></li>
+                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US"><b class=" x-uicontrol-3-0" lang="en-US">Clear Output</b> sets the <b class=" x-uicontrol-3-0" lang="en-US">Out</b> slot of this component to an empty string.</span></li>
+                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US"><b class=" x-uicontrol-3-0" lang="en-US">Output History</b> displays a history of the most recent schema output values in a new tab. This information is useful to confirm output contents
+                           if the schema changes rapidly due to subscribed points, and to have timestamps show how frequently it changes.</span></li>
+                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US"><b class=" x-uicontrol-3-0" lang="en-US">Metrics</b> reports information used to size and provision capacity as well as debug performance problems.</span></li>
+                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US"><b class=" x-uicontrol-3-0" lang="en-US">Indented Display</b> toggles the <code class=" x-parmname-2-0" lang="en-US">Output</code> display between the underlying JSON string (which does not have extraneous whitespace) and a syntax highlighted and indented
+                           version that is easier to understand. It defaults to the latter.</span></li>
+                  </ul>
+               </div>
+            </div>
+            <div class=" x-section-1-0" id="styler-id1.1.1.8.11.5.4" lang="en-US">
+               <h3 class=" x-title-45-0" id="styler-id1.1.1.8.11.5.4.1" lang="en-US">Actions</h3>
+               <p class=" x-p-13-0" lang="en-US">These actions are available when you right-click the <b class=" x-uicontrol-3-0" lang="en-US">JsonSchema</b> node in the Nav tree.
+               </p>
+               <div lang="en-US">
+                  <ul class=" x-ul-1-0">
+                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US"><b class=" x-uicontrol-3-0" lang="en-US">Generate Json</b> executes the JSON code.</span></li>
+                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US"><b class=" x-uicontrol-3-0" lang="en-US">Force Generate Json</b> forces the generate action regardless of the current tuning settings.</span></li>
+                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US"><b class=" x-uicontrol-3-0" lang="en-US">Clear Cache</b> discards the last known values of bindings and cached query results.</span></li>
+                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US"><b class=" x-uicontrol-3-0" lang="en-US">Clear Output</b> sets the <b class=" x-uicontrol-3-0" lang="en-US">Out</b> slot of this component to an empty string.</span></li>
+                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US"><b class=" x-uicontrol-3-0" lang="en-US">Execute Queries</b> forces an immediate execution of all the schemas queries. You can link this action to some appropriate logic to trigger execution
+                           when needed.</span></li>
+                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US"><b class=" x-uicontrol-3-0" lang="en-US">Unregister And Unsubscribe All</b> (relative schema only) unsubscribes the registration from any base items that the relative schema monitors for updates and
+                           removes cloud registration from all export-marked entities in the station.</span></li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+         <div class=" x-related-links-1-0">
+            <div class=" x--ufe-relatedlinks-display-1-0">
+               <div class=" x--ufe-relatedHierarchical-1-0 x--ufe-relatedHierarchical-1-1">
+                  <h3 class=" x--ufe-related-links-title-1-0" id="styler-idu1.1.1.8.11.6.1.1.1">Related Links</h3>
+                  <div class=" x--ufe-relatedChild-1-0"></div>
+                  <div class=" x--ufe-relatedParent-1-0">
+                     <li class=" x-link-2-0 x-link-2-1"><a href="Components-0567A524.html#Components-0567A524" title="Components include services, folders and other model building blocks associated with a module. You may drag them to a Property or Wire Sheet from a palette."><span class=" x-linktext-2-0 x-linktext-2-5" lang="en-US">Components (Parent Topic)</span></a></li>
+                  </div>
+               </div>
+               <div class=" x--ufe-relatedPrevious-1-0"></div>
+               <div class=" x--ufe-relatedNext-1-0"></div>
+               <div class=" x--ufe-relatedConcepts-1-0"></div>
+               <div class=" x--ufe-relatedTasks-1-0"></div>
+               <div class=" x--ufe-relatedReferences-1-0"></div>
+               <div class=" x--ufe-relatedTopics-1-0"></div>
+               <div class=" x--ufe-relatedOther-1-0"></div>
+               <div class=" x--ufe-relatedLinklists-1-0"></div>
+            </div>
+         </div>
+      </div>
+
+<!-- Auto-generated Footer NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/jsonToolkit-BaseQuery.html" class="navbar">Prev</a> |  <a href="/doc/jsonToolkit-JsonSchemaService.html" class="navbar">Next</a></p>
+<!-- Auto-generated copyright note --><p class='copyright'></p>
+   </body>
+</html>

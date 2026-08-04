@@ -96,3 +96,6 @@ Decompiled Java sources live under `sources/decompiled/<jar-name>/`.
 | manuals/jsonToolkit-docs/Components-0567A524.html | doc oficial Tridium (docJsonToolkit-doc) | organized/docJsonToolkit/.../doc/Components-0567A524.html | 2026-08-04 | 9f08bd341255 | B342 |
 | manuals/jsonToolkit-docs/CustomQueryStyle-Json-70E179E6.html | doc oficial Tridium (docJsonToolkit-doc) | organized/docJsonToolkit/.../doc/CustomQueryStyle-Json-70E179E6.html | 2026-08-04 | 4975f5736bc2 | B342 |
 | manuals/jsonToolkit-docs/jsonToolkit-JsonSchemaFacetProperty.html | doc oficial Tridium (docJsonToolkit-doc) | organized/docJsonToolkit/.../doc/jsonToolkit-JsonSchemaFacetProperty.html | 2026-08-04 | 96a5a1a0453c | B342 |
+| manuals/jsonToolkit-docs/RelativeSchemaConstruction-94DD3616.html | doc oficial Tridium (docJsonToolkit-doc) | organized/docJsonToolkit/.../doc/RelativeSchemaConstruction-94DD3616.html | 2026-08-04 | 4f141beb1d92 | B343 |
+| manuals/jsonToolkit-docs/Supervisors-Json-6DC9E60A.html | doc oficial Tridium (docJsonToolkit-doc) | organized/docJsonToolkit/.../doc/Supervisors-Json-6DC9E60A.html | 2026-08-04 | a3cce7a24899 | B343 |
+| manuals/jsonToolkit-docs/jsonToolkit-RelativeJsonSchema.html | doc oficial Tridium (docJsonToolkit-doc) | organized/docJsonToolkit/.../doc/jsonToolkit-RelativeJsonSchema.html | 2026-08-04 | b2f6783c0b91 | B343 |

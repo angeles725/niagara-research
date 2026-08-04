@@ -1,0 +1,76 @@
+<!-- Htmldoc has been run -->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="keywords" content="Niagara" scheme="atiChunkerMeta">
+      <title>Relative schema construction</title>
+<!-- Auto-generated style sheet link --><link rel='StyleSheet' href='module://bajaui/doc/style.css' type='text/css' />
+<!-- Auto-generated js link for Activity Monitoring --><script type='text/javascript' src='module://web/rc/util/activityMonitor.js'></script>
+<script type='text/javascript'>window.addEventListener('load', activityMonitor.start);</script>
+   </head>
+   <body class=" x-bookmap-1-0" lang="en-US" id="mapelement_bookmap1">
+<!-- Auto-generated Header NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/Exporting-Json-6DCD8BED.html" class="navbar">Prev</a> |  <a href="/doc/ExportMarkers-94E0333F.html" class="navbar">Next</a></p>
+
+      <div xmlns:ch="http://www.arbortext.com/namespace/chunker" class=" x-topic-16-0" id="RelativeSchemaConstruction-94DD3616" lang="en-US">
+         <h2 class=" x-title-22-0 x-title-22-1 x-title-22-2 x-title-22-3" id="styler-id1.1.1.5.12.9.1" lang="en-US">Relative schema construction</h2><span class=" x-titlealts-2-0"></span><div class=" x-shortdesc-2-0" lang="en-US">A relative schema enables the scaling of JSON payload generation and much faster engineering than absolute object binding.</div>
+         <div class=" x-prolog-1-0" lang="en-US">
+            <div class=" x-metadata-1-0" lang="en-US"><span class=" x-keywords-2-0" lang="en-US"><a class="indexterm" name="d26056e3654"></a></span></div>
+         </div>
+         <div class=" x-body-1-0" lang="en-US">
+            <p class=" x-p-13-0" lang="en-US">The type of schema discussed thus far uses only absolute ords. In situations with many points, absolute ords could limit scalability.
+               One schema per point or device would not be an efficient way to proceed. In the same way that relative ords in graphics enable
+               efficient engineering with the <span class=" x-keyword-2-0" lang="en-US">
+                  <ch:meta content="Niagara" name="keywords"></ch:meta><span style="white-space: nowrap;">Niagara</span></span> framework, a relative schema provides easier scaling for an existing station and also requires no changes to the JSON when
+               adding new components and points.
+            </p>
+            <p class=" x-p-13-0" lang="en-US">A base query feeds base components to the schema, which the query resolves against the schema one at a time. In this manner
+               it is possible to select, for example, all BACnet points in a station and output their name, status and present value for
+               export to the cloud. If an engineer adds an extra device to the BACnet network in the future, the base query can automatically
+               include it in the data exposed by the station, if the query allows.
+            </p>
+            <p class=" x-p-13-0" lang="en-US">Alone, a relative schema can select data to export or, when combined with an Export Marker, it can send only recent history
+               or publish only when a set tolerance value is exceeded. Further still, you can move points between schema based on their status.
+               You might have one schema that sends verbose point data and another with simple latest values once you add an export marker.
+            </p>
+            <div class=" x-note-1-0 x-note-1-7" lang="en-US">&nbsp;<br class="empty"><b><span style="font-weight: bold; ">NOTE: </span></b>A best practice is to limit the scope of the base query to a subset of points in the station and limit the frequency of JSON
+               message generation. Very frequent payload generation could degrade station performance.<br class="empty">&nbsp;
+            </div>
+            <div class=" x-section-1-0" id="styler-id1.1.1.5.12.9.5.5" lang="en-US">
+               <h3 class=" x-title-45-0" id="styler-id1.1.1.5.12.9.5.5.1" lang="en-US">Base query examples</h3>
+               <p class=" x-p-13-0" lang="en-US">This base query would return all the overridden points beneath the <b class=" x-uicontrol-3-0" lang="en-US">Drivers</b> container:
+               </p><pre class=" x-codeblock-1-0 x-codeblock-1-1" lang="en-US">slot:/Drivers|bql:select * from control:ControlPoint where status.overridden = 'true'</pre><p class=" x-p-13-0" lang="en-US">This query returns all points with the Haystack marker tag, hvac:</p><pre class=" x-codeblock-1-0 x-codeblock-1-1" lang="en-US">slot:/|neql:n:point and hs:hvac</pre><p class=" x-p-13-0" lang="en-US">The base query’s <code class=" x-parmname-2-0" lang="en-US">Publish Interval</code> causes the base query to be re-executed periodically and triggers a complete publish output (of every returned component)
+                  at the interval selected.
+               </p>
+               <p class=" x-p-13-0" lang="en-US">Invoking the <code class=" x-option-2-0" lang="en-US">Generate</code> action on a relative schema evaluates the base query again.
+               </p>
+               <div class=" x-note-1-0 x-note-1-2" lang="en-US">&nbsp;<br class="empty"><b><span style="font-weight: bold; ">CAUTION: </span></b>Do not include the schema output itself in the base query. This will quickly consume available Java heap memory!<br class="empty">&nbsp;
+               </div>
+            </div>
+         </div>
+         <div class=" x-related-links-1-0">
+            <div class=" x--ufe-relatedlinks-display-1-0">
+               <div class=" x--ufe-relatedHierarchical-1-0 x--ufe-relatedHierarchical-1-1">
+                  <h3 class=" x--ufe-related-links-title-1-0" id="styler-idu1.1.1.5.12.9.6.1.1.1">Related Links</h3>
+                  <div class=" x--ufe-relatedChild-1-0"></div>
+                  <div class=" x--ufe-relatedParent-1-0">
+                     <li class=" x-link-2-0 x-link-2-1"><a href="JSONSchemaConstruction-7A8BDB05.html#JSONSchemaConstruction-7A8BDB05" title="Setting up a schema involves binding station data to JSON entities."><span class=" x-linktext-2-0 x-linktext-2-5" lang="en-US">Schema construction (Parent Topic)</span></a></li>
+                  </div>
+               </div>
+               <div class=" x--ufe-relatedPrevious-1-0"></div>
+               <div class=" x--ufe-relatedNext-1-0"></div>
+               <div class=" x--ufe-relatedConcepts-1-0"></div>
+               <div class=" x--ufe-relatedTasks-1-0"></div>
+               <div class=" x--ufe-relatedReferences-1-0"></div>
+               <div class=" x--ufe-relatedTopics-1-0"></div>
+               <div class=" x--ufe-relatedOther-1-0"></div>
+               <div class=" x--ufe-relatedLinklists-1-0"></div>
+            </div>
+         </div>
+      </div>
+
+<!-- Auto-generated Footer NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/Exporting-Json-6DCD8BED.html" class="navbar">Prev</a> |  <a href="/doc/ExportMarkers-94E0333F.html" class="navbar">Next</a></p>
+<!-- Auto-generated copyright note --><p class='copyright'></p>
+   </body>
+</html>
