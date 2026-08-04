@@ -1,4 +1,4 @@
-# RESEARCH-STATE — focus: jsonToolkit (ACTIVE 14/14 — gaps done, synthesis next)
+# RESEARCH-STATE — focus: jsonToolkit (STOPPED 14/14 + synthesis B349)
 
 > Multi-focus corpus (METHODOLOGY §16). Focus **BOOTSTRAPEADO 2026-08-04** a pedido explícito del usuario
 > ("documentar también el módulo JSONTOOLKIT"), inmediatamente tras cerrar el focus `email` (B324-B334).
@@ -20,20 +20,20 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 343
+covered_blocks: 344
 gaps_closed: 14
 known_gaps: 14
 investigable_open: 0
-requires_execution_open: 0
+requires_execution_open: 2
 blocked_open: 0
 deferred_open: 0
 undocumented_findings: 0
 <!-- /research-state.v1 -->
 
 focus: jsonToolkit
-status: active
+status: stopped
 bootstrapped_on: 2026-08-04
-block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libre: B349 (síntesis))
+block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libre: B350 (focus CERRADO))
 
 ## Pre-flight e2 — existencia + tamaño MEDIDO
 
@@ -62,7 +62,7 @@ program, query, schedule, serial.
 
 ## Coverage
 
-- **Covered blocks**: 343 (corpus-wide, shared-global)
+- **Covered blocks**: 344 (B335-B348 + synthesis B349) (corpus-wide, shared-global)
 - **Coverage metric**: 14 / 14 closed
 - **Last iteration**: 2026-08-04 — J14 closed (doc-synthesis, B348)
 
@@ -84,6 +84,8 @@ program, query, schedule, serial.
 | medium | J12 util / engine-cycle queues — LicenseLimit, BEngineCycleMessageQueue backpressure (drop/block) | decompiled-java | closed (B346) |
 | low | J13 ux + wb layers — editores, BJsonToolkitRpcUtil (RPC), FormattedJsonParser (Gson) | decompiled-java + doc | closed (B347) |
 | low | J14 doc-synthesis — grounding en docJsonToolkit (115 archivos [CERT-doc]) + lo que la doc NO resuelve | external-doc | closed (B348) |
+| high | jsonToolkit-G1 export-marker registration ACL bypass — validar en vivo que un JSON entrante registra un ORD arbitrario (B341 §341.4) | live-station | requires-execution → §12 |
+| high | jsonToolkit-G2 alarm-ack attribution spoof — validar el record.setUser verbatim (B341 §341.3) | live-station | requires-execution → §12 |
 
 ## Iteration history
 
@@ -103,7 +105,8 @@ program, query, schedule, serial.
 | 11 | 2026-08-04 | J11 outbound alarm | B345 | yes · sonnet (code+doc sweep) + driver re-read | 0 |
 | 12 | 2026-08-04 | J12 util/engine-cycle queues | B346 | yes · sonnet + driver re-read | 0 |
 | 13 | 2026-08-04 | J13 ux+wb layers | B347 | yes · sonnet + driver security re-verify (2 de-escalations) | 0 |
-| 14 | 2026-08-04 | J14 doc-synthesis | B348 | no · inline (doc survey + doc-silence register) | 0 |
+| 14 | 2026-08-04 | J14 doc-synthesis | B348 | no · inline (doc survey) | 0 |
+| — | 2026-08-04 | focus synthesis | B349 | no · inline (synthesis) | G1,G2 (requires-execution) |
 
 ## Blocked gaps (each tagged with what it needs)
 
@@ -112,7 +115,7 @@ program, query, schedule, serial.
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
 - **Open gaps — read-only investigable**: 0 → STOP (gaps done)   ← el loop ESTÁTICO para cuando esto llega a 0
-- **Open gaps — requires-execution**: 0
+- **Open gaps — requires-execution**: 2 (jsonToolkit-G1/G2 — live-station)
 - **Open gaps — blocked**: 0
 - Consecutive iterations with empty backlog (secondary): 0/2
 - Budget cap: none
