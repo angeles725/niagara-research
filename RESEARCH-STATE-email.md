@@ -25,7 +25,7 @@ covered_blocks: 329
 gaps_closed: 10
 known_gaps: 10
 investigable_open: 0
-requires_execution_open: 0
+requires_execution_open: 1
 blocked_open: 0
 deferred_open: 0
 undocumented_findings: 0
@@ -72,6 +72,7 @@ Formato canónico de 4 columnas exigido por `research-sdd-status.sh`.
 | medium | E8 email-wb — UI de Workbench: BEmailAccountManager, BOutgoingAccountFE (name-picker), field editors | decompiled-java | closed (B331) |
 | low | E9 converters — javax.baja.email.converters (9): adaptadores BEmailAddress/List ↔ String | decompiled-java | closed (B332) |
 | low | E10 email-ux — capa browser: BEmailAccountUxManager + JsBuild/CssResource + type-ext editors | decompiled-java | closed (B333) |
+| high | email-G1 inbound-ack spoofing — validar en vivo que un correo con From: forjado de un usuario admin-write + UUID vivo ackea la alarma (B327 §327.6) | live-mailbox | requires-execution → §12/§19 (not read-only; needs a live station + mailbox) |
 
 ### Remittance (no son gaps — ya cubiertos)
 
@@ -101,7 +102,7 @@ Formato canónico de 4 columnas exigido por `research-sdd-status.sh`.
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
 - **Open gaps — read-only investigable**: 0 → STOP (focus done)   ← el loop ESTÁTICO para cuando esto llega a 0
-- **Open gaps — requires-execution**: 0
+- **Open gaps — requires-execution**: 1 (email-G1 — live-mailbox spoofing test)
 - **Open gaps — blocked**: 0
 - Consecutive iterations with empty backlog (secondary): 0/2
 - Budget cap: none
