@@ -1,0 +1,102 @@
+<!-- Htmldoc has been run -->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="keywords" content="Supervisor" scheme="atiChunkerMeta">
+      <meta name="keywords" content="Niagara" scheme="atiChunkerMeta">
+      <meta name="keywords" content="Niagara Framework®" scheme="atiChunkerMeta">
+      <title>Introduction</title>
+<!-- Auto-generated style sheet link --><link rel='StyleSheet' href='module://bajaui/doc/style.css' type='text/css' />
+<!-- Auto-generated js link for Activity Monitoring --><script type='text/javascript' src='module://web/rc/util/activityMonitor.js'></script>
+<script type='text/javascript'>window.addEventListener('load', activityMonitor.start);</script>
+   </head>
+   <body class=" x-bookmap-1-0" lang="en-US" id="mapelement_bookmap1">
+<!-- Auto-generated Header NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/RelatedDocumentation-Json-6DA67D75.html" class="navbar">Prev</a> |  <a href="/doc/JSON_Example2c9fb.html" class="navbar">Next</a></p>
+
+      <div xmlns:ch="http://www.arbortext.com/namespace/chunker" class=" x-chapter-2-0 x-chapter-2-2" id="Introduction-JSON-6DA55A8D" lang="en-US">
+         <h1 class=" x-title-50-0 x-title-50-1" id="styler-id1.1.1.4.1" lang="en-US">Introduction</h1><span class=" x-titlealts-2-0"></span><div class=" x-shortdesc-2-0" lang="en-US">The JSON Toolkit module adds functionality to the <span class=" x-keyword-2-0" lang="en-US">
+               <ch:meta content="Niagara Framework®" name="keywords"></ch:meta>Niagara Framework®</span>, enabling you to export JSON data (payloads) from a station, or, when importing data, to influence the station in some way.
+            A schema generates a payload for export, whilst a handler processes imported JSON. The Toolkit is intended to give you the
+            power to adapt as needed.
+         </div>
+         <div class=" x-prolog-1-0" lang="en-US">
+            <div class=" x-metadata-1-0" lang="en-US"><span class=" x-keywords-2-0" lang="en-US"><a class="indexterm" name="d26056e382"></a></span></div>
+         </div>
+         <div class=" x-body-1-0" lang="en-US">
+            <p class=" x-p-13-0" lang="en-US">JSON (JavaScript Object Notation) is a simple, lightweight, data encoded string. Used for data interchange since 2002 to communicate
+               between a web browser and a server for the Javascript language, it has gained popularity and is used in many scenarios beyond
+               those implemented in 2002. Many IoT devices can easily receive a JSON payload.
+            </p>
+            <div class=" x-fig-1-0 x-fig-1-1" id="styler-id1.1.1.4.5.2.1" lang="en-US"><h5 class=" x-title-49-0" id="styler-id1.1.1.4.5.2.1.1" lang="en-US">Figure 1.  &nbsp;&nbsp;Logical JSON flow</h5><div class=" x-image-2-0 x-image-2-9" lang="en-US"><img alt="Image" height="479" src="graphics/xwc1094046217651251341.png"  width="545"></div></div>
+            <p class=" x-p-13-0" lang="en-US">On the left is the universe of data available to a <span class=" x-keyword-2-0" lang="en-US">
+                  <ch:meta content="Niagara" name="keywords"></ch:meta><span style="white-space: nowrap;">Niagara</span></span> <span class=" x-i-1-0" lang="en-US">Station</span>. The station database provides some data; other data can come from outside the station. The <span class=" x-i-1-0" lang="en-US">Schema</span> contains configuration properties, which set up its functions. A schema updates when a CoV triggers a generation action from
+               a bound entity or a person invokes the generate action on a schema Property Sheet. This causes any linked properties of the
+               JSON <span class=" x-i-1-0" lang="en-US">Object payload</span> to create the <span class=" x-i-1-0" lang="en-US">Output string</span>, which retrieves and routes the data onward through a <span class=" x-i-1-0" lang="en-US">Transport Point</span> and <span class=" x-i-1-0" lang="en-US">Handler</span> to an alarm recipient, the cloud or other destination, and back to the device for asset control, such as to control the lighting
+               in a home or acknowledge an alarm.
+            </p>
+            <p class=" x-p-13-0" lang="en-US">The format of the JSON output string is relatively simple, organised into a list of <span class=" x-userinput-1-0" lang="en-US">key:value</span> pairs, with support for data types: Numeric, Boolean, Enum and String much like <span class=" x-keyword-2-0" lang="en-US">
+                  <ch:meta content="Niagara" name="keywords"></ch:meta><span style="white-space: nowrap;">Niagara</span></span> points. JSON messages can use any sequence of objects, arrays and key/value pairs. The JSON Toolkit is flexible. You, as
+               a developer can extend the Toolkit or use APIs to access station data. You can drag schema elements around and change the
+               order of the messages.
+            </p>
+            <p class=" x-p-13-0" lang="en-US">JSON supports two data structures: objects and arrays. Complexity emerges from these simple constructs mainly due to the variation
+               in expected payload between different pieces of software, and also their expected encoding of non-primitive types, such as
+               date and time. This is where the demand arises for a flexible solution to marshal <span class=" x-keyword-2-0" lang="en-US">
+                  <ch:meta content="Niagara" name="keywords"></ch:meta><span style="white-space: nowrap;">Niagara</span></span>’s rich object model to and from the JSON format.
+            </p>
+            <p class=" x-p-13-0" lang="en-US">You can extend the Toolkit or use APIs to access a station’s data. JSON can post data to APIs for data transmission. For example,
+               using the inbound components of the JSON Toolkit, external systems can send a JSON-encoded message to a <span class=" x-keyword-2-0" lang="en-US">
+                  <ch:meta content="Niagara" name="keywords"></ch:meta><span style="white-space: nowrap;">Niagara</span></span> station to change a setpoint or acknowledge an alarm.
+            </p>
+            <p class=" x-p-13-0" lang="en-US">As the data manipulator, you set up data retrieval and use by creating links between JSON objects. Each schema contains a
+               single root object, which itself contains the JSON objects that establish the links.
+            </p>
+            <div class=" x-fig-1-0 x-fig-1-1" id="styler-id1.1.1.4.5.7" lang="en-US"><h5 class=" x-title-49-0" id="styler-id1.1.1.4.5.7.1" lang="en-US">Figure 2.  &nbsp;&nbsp;JSON workflow</h5><div class=" x-image-2-0 x-image-2-9" lang="en-US"><img alt="Image" height="56" src="graphics/xwc9078948797891892516.png"  width="549"></div></div>
+            <p class=" x-p-13-0" lang="en-US">From the station to the destination, you link the output string, typically via MQTT, to a string-publish point, which sends
+               the payload to a topic in the broker that forwards (transports) it to the destination system. The schema itself is transport
+               agnostic. Linking produces the desired result.
+            </p>
+            <p class=" x-p-13-0" lang="en-US">For example, just as an external oBIX client can poll a station for data, the JSON output can be retrieved via an HTTP GET
+               request to a URL that exposes its contents as a web servlet. Using JSON, you can have the same rich data that oBIX provides
+               without the pre-defined oBIX format. Using JSON, you choose the format of the data, which affords total flexibility.
+            </p>
+            <p class=" x-p-13-0" lang="en-US">MQTT brokers can link the output of a JSON schema to a cloud platform, such as Bluemix, Google Cloud, and AWS.</p>
+         </div>
+         <div class=" x-related-links-1-0">
+            <div class=" x--ufe-relatedlinks-display-1-0">
+               <div class=" x--ufe-relatedHierarchical-1-0 x--ufe-relatedHierarchical-1-1">
+                  <h3 class=" x--ufe-related-links-title-1-0" id="styler-idu1.1.1.4.6.1.1.1">Related Links</h3>
+                  <div class=" x--ufe-relatedChild-1-0">
+                     <li class=" x-link-2-0 x-link-2-1"><a href="JSON_Example2c9fb.html#JSON_Example2c9fb" title="This is a simple example with JSON objects and arrays."><span class=" x-linktext-2-0" lang="en-US">Quick JSON example</span></a></li>
+                     <li class=" x-link-2-0 x-link-2-1"><a href="TypicalUseCases-Json-94D6D782.html#TypicalUseCases-Json-94D6D782" title="The following information includes a summary of typical JSON use cases, transport protocols and a summary of the toolkit features."><span class=" x-linktext-2-0" lang="en-US">JSON Toolkit use cases</span></a></li>
+                     <li class=" x-link-2-0 x-link-2-1"><a href="TransportProtocols-Json-94D71FFE.html#TransportProtocols-Json-94D71FFE" title="The JSON Toolkit itself does not mandate the transport protocol used."><span class=" x-linktext-2-0" lang="en-US">Transport protocols</span></a></li>
+                     <li class=" x-link-2-0 x-link-2-1"><a href="FeaturesJson-6DA7AA3F.html#FeaturesJson-6DA7AA3F" title="The JSON Toolkit supports a significant list of features and options to aid the engineering effort."><span class=" x-linktext-2-0" lang="en-US">Feature summary</span></a></li>
+                     <li class=" x-link-2-0 x-link-2-1"><a href="ComparisontoAlternatives-json.html#ComparisontoAlternatives-json" title="JSON Toolkit alternatives include oBIX and bajaScript."><span class=" x-linktext-2-0" lang="en-US">Comparison to alternatives</span></a></li>
+                     <li class=" x-link-2-0 x-link-2-1"><a href="LicenseRequirementsJson-6DBD2640.html#LicenseRequirementsJson-6DBD2640" title="To use the JSON Toolkit, your host requires the DR-JSON or DR-S-JSON feature added to the host’s license. Production (non-demo) licenses also require an active Software Maintenance Agreement (SMA) for the toolkit to function. Engineering or Demo licenses should have this feature added by default."><span class=" x-linktext-2-0" lang="en-US">License requirements</span></a></li>
+                     <li class=" x-link-2-0 x-link-2-1"><a href="JsonSchemaService-94D787DE.html#JsonSchemaService-94D787DE" title="To use the toolkit, you first need to set up the JsonSchemaService by adding it to the station Services container."><span class=" x-linktext-2-0" lang="en-US">JSON schema service</span></a></li>
+                     <li class=" x-link-2-0 x-link-2-1"><a href="Supervisors-Json-6DC9E60A.html#Supervisors-Json-6DC9E60A" title="The most convenient deployment of the jsonToolkit in cloud connectivity is to connect directly from the controller schema to the remote transport. However, if a controller does not have remote connectivity, a keywordsSupervisorSupervisor is required. There are a few options to consider."><span class=" x-linktext-2-0" lang="en-US"><span class=" x-keyword-2-0" lang="en-US">
+                                 <ch:meta content="Supervisor" name="keywords"></ch:meta>Supervisor</span></span></a></li>
+                  </div>
+                  <div class=" x--ufe-relatedParent-1-0"></div>
+               </div>
+               <div class=" x--ufe-relatedPrevious-1-0"></div>
+               <div class=" x--ufe-relatedNext-1-0"></div>
+               <div class=" x--ufe-relatedConcepts-1-0"></div>
+               <div class=" x--ufe-relatedTasks-1-0"></div>
+               <div class=" x--ufe-relatedReferences-1-0 x--ufe-relatedReferences-1-1">
+                  <h3 class=" x--ufe-related-links-title-1-0" id="styler-idu1.1.1.4.6.1.6.1">Related References</h3>
+                  <li class=" x-link-2-0 x-link-2-1"><a href="jsonToolkit-JsonSchema.html#jsonToolkit-JsonSchema" title="This component defines the schema, which includes the resulting output, configuration and queries properties, JSON entities, and actions."><span class=" x-linktext-2-0 x-linktext-2-3" lang="en-US">JsonSchema (Json Schema)</span></a></li>
+               </div>
+               <div class=" x--ufe-relatedTopics-1-0"></div>
+               <div class=" x--ufe-relatedOther-1-0"></div>
+               <div class=" x--ufe-relatedLinklists-1-0"></div>
+            </div>
+         </div>
+      </div>
+
+<!-- Auto-generated Footer NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/RelatedDocumentation-Json-6DA67D75.html" class="navbar">Prev</a> |  <a href="/doc/JSON_Example2c9fb.html" class="navbar">Next</a></p>
+<!-- Auto-generated copyright note --><p class='copyright'></p>
+   </body>
+</html>

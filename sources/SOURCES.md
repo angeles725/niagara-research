@@ -107,3 +107,6 @@ Decompiled Java sources live under `sources/decompiled/<jar-name>/`.
 | manuals/jsonToolkit-docs/jsonToolkit-JsonAlarmRecipient.html | doc oficial Tridium (docJsonToolkit-doc) | organized/docJsonToolkit/.../doc/jsonToolkit-JsonAlarmRecipient.html | 2026-08-04 | 07e0fec179c5 | B345 |
 | manuals/jsonToolkit-docs/jsonToolkit-JsonSchemaAlarmRecordProperty.html | doc oficial Tridium (docJsonToolkit-doc) | organized/docJsonToolkit/.../doc/jsonToolkit-JsonSchemaAlarmRecordProperty.html | 2026-08-04 | c74a9f07c170 | B345 |
 | manuals/jsonToolkit-docs/VisualizationJson-9A09FB0F.html | doc oficial Tridium (docJsonToolkit-doc) | organized/docJsonToolkit/.../doc/VisualizationJson-9A09FB0F.html | 2026-08-04 | d1fe1bf2c9d5 | B347 |
+| manuals/jsonToolkit-docs/Introduction-JSON-6DA55A8D.html | doc oficial Tridium (docJsonToolkit-doc) | organized/docJsonToolkit/.../doc/Introduction-JSON-6DA55A8D.html | 2026-08-04 | c68b02fe17d7 | B348 |
+| manuals/jsonToolkit-docs/ComparisontoAlternatives-json.html | doc oficial Tridium (docJsonToolkit-doc) | organized/docJsonToolkit/.../doc/ComparisontoAlternatives-json.html | 2026-08-04 | 3ab388cc5c02 | B348 |
+| manuals/jsonToolkit-docs/LicenseRequirementsJson-6DBD2640.html | doc oficial Tridium (docJsonToolkit-doc) | organized/docJsonToolkit/.../doc/LicenseRequirementsJson-6DBD2640.html | 2026-08-04 | f5e59da64ef6 | B348 |

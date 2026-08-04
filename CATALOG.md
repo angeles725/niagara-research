@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **343 blocks**
+Total: **344 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -349,3 +349,4 @@ Total: **343 blocks**
 | 345 | [niagara-mental-model-bloque345.md](niagara-mental-model-bloque345.md) | The JSON alarm recipient: a `BAlarmRecipient` that renders each alarm through an embedded schema and auto-links the output to a publish point — the `BEmailRecipient` twin without the SMTP |
 | 346 | [niagara-mental-model-bloque346.md](niagara-mental-model-bloque346.md) | The engine-cycle queues bound the whole module: one item drained per engine cycle, capacity 1000, overflow REJECTS (throws) — plus `toJsonType`, where a null Baja value becomes `""`, never JSON null |
 | 347 | [niagara-mental-model-bloque347.md](niagara-mental-model-bloque347.md) | The UI layers: bajaux field editors + one unrestricted-but-benign preview RPC (ux), and a Swing output widget that pretty-prints via bundled Gson with NO typed deserialization (wb) |
+| 348 | [niagara-mental-model-bloque348.md](niagara-mental-model-bloque348.md) | The official `docJsonToolkit` as a source: 114 files, 33 cited, accurate on the happy path — and the decompilation-only findings it never mentions (the security surfaces, the synchronous engine-thread regen, `null`→`""`) |
