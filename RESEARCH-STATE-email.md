@@ -1,4 +1,4 @@
-# RESEARCH-STATE — focus: email (ACTIVE 3/10)
+# RESEARCH-STATE — focus: email (ACTIVE 4/10)
 
 > Multi-focus corpus (METHODOLOGY §16). Focus **BOOTSTRAPEADO 2026-08-04** a pedido explícito del usuario
 > ("vamos a abrir bloques nuevos dedicados al modulo email"), tras una consulta sobre envío de alarmas por
@@ -21,10 +21,10 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 321
-gaps_closed: 3
+covered_blocks: 322
+gaps_closed: 4
 known_gaps: 10
-investigable_open: 7
+investigable_open: 6
 requires_execution_open: 0
 blocked_open: 0
 deferred_open: 0
@@ -34,7 +34,7 @@ undocumented_findings: 0
 focus: email
 status: active
 bootstrapped_on: 2026-08-04
-block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libre: B327)
+block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libre: B328)
 
 ## Pre-flight e2 — existencia + tamaño MEDIDO
 
@@ -52,9 +52,9 @@ Deps de módulo notables (email-rt/module.xml): `alarm-rt`, `oauth2-rt`, `web-rt
 
 ## Coverage
 
-- **Covered blocks**: 321 (corpus-wide, shared-global)
-- **Coverage metric**: 3 / 10 closed
-- **Last iteration**: 2026-08-04 — E3 closed (TLS session, B326)
+- **Covered blocks**: 322 (corpus-wide, shared-global)
+- **Coverage metric**: 4 / 10 closed
+- **Last iteration**: 2026-08-04 — E4 closed (inbound + alarm ack, B327)
 
 ## Gap-backlog (prioritized)
 
@@ -65,7 +65,7 @@ Formato canónico de 4 columnas exigido por `research-sdd-status.sh`.
 | high | E1 BEmailService — ciclo de vida, gate de licencia tridium/email, dependencia runtime JavaMail, contenedor de cuentas | decompiled-java | closed (B324) |
 | high | E2 BOutgoingAccount — pipeline de envío SMTP: cola memoria/disco, maxSendablePerDay, reset midnight, retry | decompiled-java | closed (B325) |
 | high | E3 sesión TLS — MailPlatformHandlerSe + BEmailAccount: Properties JavaMail, useSsl vs useStartTls, tlsMinProtocol | decompiled-java | closed (B326) |
-| medium | E4 lado inbound — BIncomingAccount (POP3/IMAP) + BEmailAlarmAcknowledger (ack por reply-to UUID) | decompiled-java | pending |
+| medium | E4 lado inbound — BIncomingAccount (POP3/IMAP) + BEmailAlarmAcknowledger (ack por reply-to UUID) | decompiled-java | closed (B327) |
 | medium | E5 OAuth2 SMTP — BAbstractOAuthEmailAuthenticator (client-secret vs client-cert), XOAUTH2, tie a oauth2-rt | decompiled-java | pending |
 | medium | E6 security dashboard — BEmailServiceSecurityDashboardProviderAgent: matriz de posturas ALERT/WARNING/OK | decompiled-java | pending |
 | medium | E7 account base + authenticators — BEmailAccount, BEmailClientAuthenticator y variantes, migración de credenciales deprecadas | decompiled-java | pending |
@@ -85,6 +85,7 @@ Formato canónico de 4 columnas exigido por `research-sdd-status.sh`.
 | 1 | 2026-08-04 | E1 BEmailService | B324 | no · inline (constraint: single load-bearing class, 167 lines) | 0 |
 | 2 | 2026-08-04 | E2 BOutgoingAccount | B325 | yes · sonnet (961-line sweep) | 0 |
 | 3 | 2026-08-04 | E3 TLS session | B326 | no · inline (constraint: focused 3-file read) | 0 |
+| 4 | 2026-08-04 | E4 inbound + alarm ack | B327 | yes · sonnet (2-file sweep) + driver re-read | 0 |
 
 ## Blocked gaps (each tagged with what it needs)
 
@@ -92,7 +93,7 @@ Formato canónico de 4 columnas exigido por `research-sdd-status.sh`.
 
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 7   ← el loop ESTÁTICO para cuando esto llega a 0
+- **Open gaps — read-only investigable**: 6   ← el loop ESTÁTICO para cuando esto llega a 0
 - **Open gaps — requires-execution**: 0
 - **Open gaps — blocked**: 0
 - Consecutive iterations with empty backlog (secondary): 0/2
