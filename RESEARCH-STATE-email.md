@@ -1,4 +1,4 @@
-# RESEARCH-STATE — focus: email (ACTIVE 9/10)
+# RESEARCH-STATE — focus: email (ACTIVE 10/10 — gaps done, synthesis next)
 
 > Multi-focus corpus (METHODOLOGY §16). Focus **BOOTSTRAPEADO 2026-08-04** a pedido explícito del usuario
 > ("vamos a abrir bloques nuevos dedicados al modulo email"), tras una consulta sobre envío de alarmas por
@@ -21,10 +21,10 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 327
-gaps_closed: 9
+covered_blocks: 328
+gaps_closed: 10
 known_gaps: 10
-investigable_open: 1
+investigable_open: 0
 requires_execution_open: 0
 blocked_open: 0
 deferred_open: 0
@@ -34,7 +34,7 @@ undocumented_findings: 0
 focus: email
 status: active
 bootstrapped_on: 2026-08-04
-block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libre: B333)
+block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libre: B334 (síntesis))
 
 ## Pre-flight e2 — existencia + tamaño MEDIDO
 
@@ -52,9 +52,9 @@ Deps de módulo notables (email-rt/module.xml): `alarm-rt`, `oauth2-rt`, `web-rt
 
 ## Coverage
 
-- **Covered blocks**: 327 (corpus-wide, shared-global)
-- **Coverage metric**: 9 / 10 closed
-- **Last iteration**: 2026-08-04 — E9 closed (converters, B332)
+- **Covered blocks**: 328 (corpus-wide, shared-global)
+- **Coverage metric**: 10 / 10 closed
+- **Last iteration**: 2026-08-04 — E10 closed (email-ux, B333)
 
 ## Gap-backlog (prioritized)
 
@@ -71,7 +71,7 @@ Formato canónico de 4 columnas exigido por `research-sdd-status.sh`.
 | medium | E7 account base + authenticators — BEmailAccount, BEmailClientAuthenticator y variantes, migración de credenciales deprecadas | decompiled-java | closed (B330) |
 | medium | E8 email-wb — UI de Workbench: BEmailAccountManager, BOutgoingAccountFE (name-picker), field editors | decompiled-java | closed (B331) |
 | low | E9 converters — javax.baja.email.converters (9): adaptadores BEmailAddress/List ↔ String | decompiled-java | closed (B332) |
-| low | E10 email-ux — capa browser: BEmailAccountUxManager + JsBuild/CssResource + type-ext editors | decompiled-java | pending |
+| low | E10 email-ux — capa browser: BEmailAccountUxManager + JsBuild/CssResource + type-ext editors | decompiled-java | closed (B333) |
 
 ### Remittance (no son gaps — ya cubiertos)
 
@@ -91,6 +91,7 @@ Formato canónico de 4 columnas exigido por `research-sdd-status.sh`.
 | 7 | 2026-08-04 | E7 account base + auth | B330 | yes · sonnet (7-file sweep) + driver re-read | 0 |
 | 8 | 2026-08-04 | E8 email-wb UI | B331 | yes · sonnet (7-file sweep) | 0 |
 | 9 | 2026-08-04 | E9 converters | B332 | no · inline (constraint: small formulaic subsystem) | 0 |
+| 10 | 2026-08-04 | E10 email-ux | B333 | no · inline (constraint: shells + packaged JS resources) | 0 |
 
 ## Blocked gaps (each tagged with what it needs)
 
@@ -98,7 +99,7 @@ Formato canónico de 4 columnas exigido por `research-sdd-status.sh`.
 
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 1   ← el loop ESTÁTICO para cuando esto llega a 0
+- **Open gaps — read-only investigable**: 0 → STOP (focus done)   ← el loop ESTÁTICO para cuando esto llega a 0
 - **Open gaps — requires-execution**: 0
 - **Open gaps — blocked**: 0
 - Consecutive iterations with empty backlog (secondary): 0/2
