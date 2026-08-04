@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **329 blocks**
+Total: **330 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -335,3 +335,4 @@ Total: **329 blocks**
 | 331 | [niagara-mental-model-bloque331.md](niagara-mental-model-bloque331.md) | The Workbench UI: `BEmailAccountManager` with no "send test" button, a name-picker that populates the recipient dropdown from the live service, and secure New-account defaults that override the insecure component defaults |
 | 332 | [niagara-mental-model-bloque332.md](niagara-mental-model-bloque332.md) | The address converters: nine `baja:ConversionLink` agents that bridge email-address slots to String/StatusString on the wiresheet, parsing "personal <addr>" with one shared regex |
 | 333 | [niagara-mental-model-bloque333.md](niagara-mental-model-bloque333.md) | The browser layer: `email-ux` is a thin bajaux registration shell over `webEditors`, pairing each Workbench editor with a JS module, and it too has no test-send |
+| 334 | [niagara-mental-model-bloque334.md](niagara-mental-model-bloque334.md) | SYNTHESIS of the `email` focus (B324–B333): the service that actually sends, gated three ways, insecure by default and secure by wizard, with a spoofable inbound door nobody grades |

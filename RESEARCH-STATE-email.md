@@ -1,4 +1,4 @@
-# RESEARCH-STATE — focus: email (ACTIVE 10/10 — gaps done, synthesis next)
+# RESEARCH-STATE — focus: email (STOPPED 10/10 + synthesis B334)
 
 > Multi-focus corpus (METHODOLOGY §16). Focus **BOOTSTRAPEADO 2026-08-04** a pedido explícito del usuario
 > ("vamos a abrir bloques nuevos dedicados al modulo email"), tras una consulta sobre envío de alarmas por
@@ -21,7 +21,7 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 328
+covered_blocks: 329
 gaps_closed: 10
 known_gaps: 10
 investigable_open: 0
@@ -32,9 +32,9 @@ undocumented_findings: 0
 <!-- /research-state.v1 -->
 
 focus: email
-status: active
+status: stopped
 bootstrapped_on: 2026-08-04
-block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libre: B334 (síntesis))
+block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libre: B335 (focus CERRADO))
 
 ## Pre-flight e2 — existencia + tamaño MEDIDO
 
@@ -52,7 +52,7 @@ Deps de módulo notables (email-rt/module.xml): `alarm-rt`, `oauth2-rt`, `web-rt
 
 ## Coverage
 
-- **Covered blocks**: 328 (corpus-wide, shared-global)
+- **Covered blocks**: 329 (B324-B333 + synthesis B334) (corpus-wide, shared-global)
 - **Coverage metric**: 10 / 10 closed
 - **Last iteration**: 2026-08-04 — E10 closed (email-ux, B333)
 
@@ -92,6 +92,7 @@ Formato canónico de 4 columnas exigido por `research-sdd-status.sh`.
 | 8 | 2026-08-04 | E8 email-wb UI | B331 | yes · sonnet (7-file sweep) | 0 |
 | 9 | 2026-08-04 | E9 converters | B332 | no · inline (constraint: small formulaic subsystem) | 0 |
 | 10 | 2026-08-04 | E10 email-ux | B333 | no · inline (constraint: shells + packaged JS resources) | 0 |
+| — | 2026-08-04 | focus synthesis | B334 | no · inline (synthesis) | email-G1 (requires-execution) |
 
 ## Blocked gaps (each tagged with what it needs)
 
