@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **320 blocks**
+Total: **321 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -326,3 +326,4 @@ Total: **320 blocks**
 | 322 | [niagara-mental-model-bloque322.md](niagara-mental-model-bloque322.md) | The Java licensing layer in the REAL build: `baja.jar` verified (single-root delta vs corpus) |
 | 323 | [niagara-mental-model-bloque323.md](niagara-mental-model-bloque323.md) | OEM license tooling (`niagara-license-tool.py`): byte-compatible signer/verifier, validated live |
 | 324 | [niagara-mental-model-bloque324.md](niagara-mental-model-bloque324.md) | The `email` service itself: `BEmailService`, the `tridium/email` license gate, and the JavaMail hard-dependency the guides never mention |
+| 325 | [niagara-mental-model-bloque325.md](niagara-mental-model-bloque325.md) | The outgoing SMTP pipeline: `BOutgoingAccount`'s dual queue, the 100/day cap, and a retry ceiling that is off-by-one between memory and disk |
