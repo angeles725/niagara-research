@@ -1,4 +1,4 @@
-# RESEARCH-STATE — focus: jsonToolkit (ACTIVE 12/14)
+# RESEARCH-STATE — focus: jsonToolkit (ACTIVE 13/14)
 
 > Multi-focus corpus (METHODOLOGY §16). Focus **BOOTSTRAPEADO 2026-08-04** a pedido explícito del usuario
 > ("documentar también el módulo JSONTOOLKIT"), inmediatamente tras cerrar el focus `email` (B324-B334).
@@ -20,10 +20,10 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 341
-gaps_closed: 12
+covered_blocks: 342
+gaps_closed: 13
 known_gaps: 14
-investigable_open: 2
+investigable_open: 1
 requires_execution_open: 0
 blocked_open: 0
 deferred_open: 0
@@ -33,7 +33,7 @@ undocumented_findings: 0
 focus: jsonToolkit
 status: active
 bootstrapped_on: 2026-08-04
-block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libre: B347)
+block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libre: B348)
 
 ## Pre-flight e2 — existencia + tamaño MEDIDO
 
@@ -62,9 +62,9 @@ program, query, schedule, serial.
 
 ## Coverage
 
-- **Covered blocks**: 341 (corpus-wide, shared-global)
-- **Coverage metric**: 12 / 14 closed
-- **Last iteration**: 2026-08-04 — J12 closed (util/engine-cycle queues, B346)
+- **Covered blocks**: 342 (corpus-wide, shared-global)
+- **Coverage metric**: 13 / 14 closed
+- **Last iteration**: 2026-08-04 — J13 closed (ux+wb layers, B347)
 
 ## Gap-backlog (prioritized)
 
@@ -82,7 +82,7 @@ program, query, schedule, serial.
 | medium | J10 inline/program writer — BInlineJsonWriter (referenciado por B76), integracion program-rt | decompiled-java + doc | closed (B344) |
 | medium | J11 outbound alarm — BJsonAlarmRecipient + BIJsonAlarmDataResolver | decompiled-java + doc | closed (B345) |
 | medium | J12 util / engine-cycle queues — LicenseLimit, BEngineCycleMessageQueue backpressure (drop/block) | decompiled-java | closed (B346) |
-| low | J13 ux + wb layers — editores, BJsonToolkitRpcUtil (RPC), FormattedJsonParser (Gson) | decompiled-java + doc | pending |
+| low | J13 ux + wb layers — editores, BJsonToolkitRpcUtil (RPC), FormattedJsonParser (Gson) | decompiled-java + doc | closed (B347) |
 | low | J14 doc-synthesis — grounding en docJsonToolkit (115 archivos [CERT-doc]) + lo que la doc NO resuelve | external-doc | pending |
 
 ## Iteration history
@@ -102,6 +102,7 @@ program, query, schedule, serial.
 | 10 | 2026-08-04 | J10 inline/program writer | B344 | no · inline (small) + PRIOR-COVERAGE B76 | 0 |
 | 11 | 2026-08-04 | J11 outbound alarm | B345 | yes · sonnet (code+doc sweep) + driver re-read | 0 |
 | 12 | 2026-08-04 | J12 util/engine-cycle queues | B346 | yes · sonnet + driver re-read | 0 |
+| 13 | 2026-08-04 | J13 ux+wb layers | B347 | yes · sonnet + driver security re-verify (2 de-escalations) | 0 |
 
 ## Blocked gaps (each tagged with what it needs)
 
@@ -109,7 +110,7 @@ program, query, schedule, serial.
 
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 2   ← el loop ESTÁTICO para cuando esto llega a 0
+- **Open gaps — read-only investigable**: 1   ← el loop ESTÁTICO para cuando esto llega a 0
 - **Open gaps — requires-execution**: 0
 - **Open gaps — blocked**: 0
 - Consecutive iterations with empty backlog (secondary): 0/2

@@ -106,3 +106,4 @@ Decompiled Java sources live under `sources/decompiled/<jar-name>/`.
 | manuals/jsonToolkit-docs/SettingUpAnAlarm-Json-6EB38683.html | doc oficial Tridium (docJsonToolkit-doc) | organized/docJsonToolkit/.../doc/SettingUpAnAlarm-Json-6EB38683.html | 2026-08-04 | e5cf1c145ebe | B345 |
 | manuals/jsonToolkit-docs/jsonToolkit-JsonAlarmRecipient.html | doc oficial Tridium (docJsonToolkit-doc) | organized/docJsonToolkit/.../doc/jsonToolkit-JsonAlarmRecipient.html | 2026-08-04 | 07e0fec179c5 | B345 |
 | manuals/jsonToolkit-docs/jsonToolkit-JsonSchemaAlarmRecordProperty.html | doc oficial Tridium (docJsonToolkit-doc) | organized/docJsonToolkit/.../doc/jsonToolkit-JsonSchemaAlarmRecordProperty.html | 2026-08-04 | c74a9f07c170 | B345 |
+| manuals/jsonToolkit-docs/VisualizationJson-9A09FB0F.html | doc oficial Tridium (docJsonToolkit-doc) | organized/docJsonToolkit/.../doc/VisualizationJson-9A09FB0F.html | 2026-08-04 | d1fe1bf2c9d5 | B347 |

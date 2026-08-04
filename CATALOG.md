@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **342 blocks**
+Total: **343 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -348,3 +348,4 @@ Total: **342 blocks**
 | 344 | [niagara-mental-model-bloque344.md](niagara-mental-model-bloque344.md) | The programmatic escape hatch: `BInlineJsonWriter` drops a `BProgram` into the schema tree and hands it the shared `JSONWriter`, and `BTypeOverride` lets a Program rewrite how a Baja value serializes — the native facility [Block 76] reused |
 | 345 | [niagara-mental-model-bloque345.md](niagara-mental-model-bloque345.md) | The JSON alarm recipient: a `BAlarmRecipient` that renders each alarm through an embedded schema and auto-links the output to a publish point — the `BEmailRecipient` twin without the SMTP |
 | 346 | [niagara-mental-model-bloque346.md](niagara-mental-model-bloque346.md) | The engine-cycle queues bound the whole module: one item drained per engine cycle, capacity 1000, overflow REJECTS (throws) — plus `toJsonType`, where a null Baja value becomes `""`, never JSON null |
+| 347 | [niagara-mental-model-bloque347.md](niagara-mental-model-bloque347.md) | The UI layers: bajaux field editors + one unrestricted-but-benign preview RPC (ux), and a Swing output widget that pretty-prints via bundled Gson with NO typed deserialization (wb) |
