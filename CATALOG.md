@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **341 blocks**
+Total: **342 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -347,3 +347,4 @@ Total: **341 blocks**
 | 343 | [niagara-mental-model-bloque343.md](niagara-mental-model-bloque343.md) | The relative schema: same tree, but the fixed station base is swapped for a stream of query rows run one-at-a-time on a 24 h periodic clock — cross-station aggregation via `station:`/`sys:` ORDs, no explicit Fox |
 | 344 | [niagara-mental-model-bloque344.md](niagara-mental-model-bloque344.md) | The programmatic escape hatch: `BInlineJsonWriter` drops a `BProgram` into the schema tree and hands it the shared `JSONWriter`, and `BTypeOverride` lets a Program rewrite how a Baja value serializes — the native facility [Block 76] reused |
 | 345 | [niagara-mental-model-bloque345.md](niagara-mental-model-bloque345.md) | The JSON alarm recipient: a `BAlarmRecipient` that renders each alarm through an embedded schema and auto-links the output to a publish point — the `BEmailRecipient` twin without the SMTP |
+| 346 | [niagara-mental-model-bloque346.md](niagara-mental-model-bloque346.md) | The engine-cycle queues bound the whole module: one item drained per engine cycle, capacity 1000, overflow REJECTS (throws) — plus `toJsonType`, where a null Baja value becomes `""`, never JSON null |
