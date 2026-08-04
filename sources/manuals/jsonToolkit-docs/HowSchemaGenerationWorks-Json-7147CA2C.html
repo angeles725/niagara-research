@@ -1,0 +1,65 @@
+<!-- Htmldoc has been run -->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="keywords" content="Niagara" scheme="atiChunkerMeta">
+      <title>How schema generation works</title>
+<!-- Auto-generated style sheet link --><link rel='StyleSheet' href='module://bajaui/doc/style.css' type='text/css' />
+<!-- Auto-generated js link for Activity Monitoring --><script type='text/javascript' src='module://web/rc/util/activityMonitor.js'></script>
+<script type='text/javascript'>window.addEventListener('load', activityMonitor.start);</script>
+   </head>
+   <body class=" x-bookmap-1-0" lang="en-US" id="mapelement_bookmap1">
+<!-- Auto-generated Header NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/UsefulMethods-Json-70E4AEA7.html" class="navbar">Prev</a> |  <a href="/doc/BuildingAChartWithApacheVelocity-Js-714AE072.html" class="navbar">Next</a></p>
+
+      <div xmlns:ch="http://www.arbortext.com/namespace/chunker" class=" x-topic-19-0" id="HowSchemaGenerationWorks-Json-7147CA2C" lang="en-US">
+         <h2 class=" x-title-27-0 x-title-27-1 x-title-27-2" id="styler-id1.1.1.7.14.1" lang="en-US">How schema generation works</h2><span class=" x-titlealts-2-0"></span><div class=" x-shortdesc-2-0" lang="en-US">Two actions cause the JSON schema to generate or regenerate it’s output.</div>
+         <div class=" x-prolog-1-0" lang="en-US">
+            <div class=" x-metadata-1-0" lang="en-US"><span class=" x-keywords-2-0" lang="en-US"><a class="indexterm" name="d26056e7451"></a></span></div>
+         </div>
+         <div class=" x-body-1-0" lang="en-US">
+            <p class=" x-p-13-0" lang="en-US">This charts the flow through the schema logic.</p>
+            <div class=" x-fig-1-0 x-fig-1-1" id="styler-id1.1.1.7.14.5.2" lang="en-US"><h5 class=" x-title-49-0" id="styler-id1.1.1.7.14.5.2.1" lang="en-US">Figure 25.  &nbsp;&nbsp;Generate actions</h5><span class=" x-image-2-0 x-image-2-7" lang="en-US"><img alt="Image" height="1018" src="graphics/xwc4733284818710705515.png"  width="801"></span></div>
+            <p class=" x-p-13-0" lang="en-US">Binding ords resolve against the current base item of the schema. Unless you are using a relative JSON schema, this is the
+               station that uses the current result of the base query. Currently, base queries resolve against the station.
+            </p>
+            <div class=" x-fig-1-0 x-fig-1-1" id="styler-id1.1.1.7.14.5.4" lang="en-US"><h5 class=" x-title-49-0" id="styler-id1.1.1.7.14.5.4.1" lang="en-US">Figure 26.  &nbsp;&nbsp;Regular JSON schema with absolute ord bindings that resolve against the station</h5><div class=" x-image-2-0 x-image-2-9" lang="en-US"><img alt="Image" height="245" src="graphics/xwc7452026868500643836.png"  width="424"></div></div>
+            <p class=" x-p-13-0" lang="en-US">Relative JSON schema with relative ord bindings resolve against the current base item. This process repeats until there are
+               no more base items, and results in several output strings.
+            </p>
+            <div class=" x-fig-1-0 x-fig-1-1" id="styler-id1.1.1.7.14.5.6" lang="en-US"><h5 class=" x-title-49-0" id="styler-id1.1.1.7.14.5.6.1" lang="en-US">Figure 27.  &nbsp;&nbsp;Relative JSON schema with relative ord bindings that resolve against the current base item</h5><div class=" x-image-2-0 x-image-2-9" lang="en-US"><img alt="Image" height="389" src="graphics/xwc5109604003019576558.png"  width="669"></div></div>
+            <div class=" x-section-1-0" id="styler-id1.1.1.7.14.5.7.1" lang="en-US">
+               <h3 class=" x-title-45-0" id="styler-id1.1.1.7.14.5.7.1.1" lang="en-US">External access to schema output</h3>
+               <p class=" x-p-13-0" lang="en-US">A URL like the following also allows access to the schema output via the JsonExporter:</p>
+               <p class=" x-p-13-0" lang="en-US"><code class=" x-codeph-1-0" lang="en-US">http://127.0.0.1/ord/station:%7Cslot:/JsonSchema%7Cview:jsonToolkit:JsonExporter</code></p>
+               <p class=" x-p-13-0" lang="en-US">This could allow access to an external application consuming data from <span class=" x-keyword-2-0" lang="en-US">
+                     <ch:meta content="Niagara" name="keywords"></ch:meta><span style="white-space: nowrap;">Niagara</span></span>.
+               </p>
+            </div>
+         </div>
+         <div class=" x-related-links-1-0">
+            <div class=" x--ufe-relatedlinks-display-1-0">
+               <div class=" x--ufe-relatedHierarchical-1-0 x--ufe-relatedHierarchical-1-1">
+                  <h3 class=" x--ufe-related-links-title-1-0" id="styler-idu1.1.1.7.14.6.1.1.1">Related Links</h3>
+                  <div class=" x--ufe-relatedChild-1-0"></div>
+                  <div class=" x--ufe-relatedParent-1-0">
+                     <li class=" x-link-2-0 x-link-2-1"><a href="DeveloperGuide-Json.html#DeveloperGuide-Json" title="Developers can use JSON to create complex queries and apps. They can extend the Toolkit by creating their own query styles."><span class=" x-linktext-2-0 x-linktext-2-5" lang="en-US">Developer guide (Parent Topic)</span></a></li>
+                  </div>
+               </div>
+               <div class=" x--ufe-relatedPrevious-1-0"></div>
+               <div class=" x--ufe-relatedNext-1-0"></div>
+               <div class=" x--ufe-relatedConcepts-1-0"></div>
+               <div class=" x--ufe-relatedTasks-1-0"></div>
+               <div class=" x--ufe-relatedReferences-1-0"></div>
+               <div class=" x--ufe-relatedTopics-1-0"></div>
+               <div class=" x--ufe-relatedOther-1-0"></div>
+               <div class=" x--ufe-relatedLinklists-1-0"></div>
+            </div>
+         </div>
+      </div>
+
+<!-- Auto-generated Footer NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/UsefulMethods-Json-70E4AEA7.html" class="navbar">Prev</a> |  <a href="/doc/BuildingAChartWithApacheVelocity-Js-714AE072.html" class="navbar">Next</a></p>
+<!-- Auto-generated copyright note --><p class='copyright'></p>
+   </body>
+</html>

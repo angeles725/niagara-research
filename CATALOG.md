@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **331 blocks**
+Total: **332 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -337,3 +337,4 @@ Total: **331 blocks**
 | 333 | [niagara-mental-model-bloque333.md](niagara-mental-model-bloque333.md) | The browser layer: `email-ux` is a thin bajaux registration shell over `webEditors`, pairing each Workbench editor with a JS module, and it too has no test-send |
 | 334 | [niagara-mental-model-bloque334.md](niagara-mental-model-bloque334.md) | SYNTHESIS of the `email` focus (B324–B333): the service that actually sends, gated three ways, insecure by default and secure by wizard, with a spoofable inbound door nobody grades |
 | 335 | [niagara-mental-model-bloque335.md](niagara-mental-model-bloque335.md) | `BJsonSchemaService`: the jsonToolkit service gated by a three-layer license (feature + import/export attributes + SMA), with a superuser-only `runAsUser` identity that inbound writes assume |
+| 336 | [niagara-mental-model-bloque336.md](niagara-mental-model-bloque336.md) | The outbound schema model: a JSON payload IS a tree of members walked top-down into one `JSONWriter`, each bound node resolving a `BOrd` against the station and selecting slots by one of four modes |

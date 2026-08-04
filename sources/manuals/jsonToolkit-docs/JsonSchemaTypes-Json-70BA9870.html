@@ -1,0 +1,115 @@
+<!-- Htmldoc has been run -->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      
+      <title>JSON schema types</title>
+<!-- Auto-generated style sheet link --><link rel='StyleSheet' href='module://bajaui/doc/style.css' type='text/css' />
+<!-- Auto-generated js link for Activity Monitoring --><script type='text/javascript' src='module://web/rc/util/activityMonitor.js'></script>
+<script type='text/javascript'>window.addEventListener('load', activityMonitor.start);</script>
+   </head>
+   <body class=" x-bookmap-1-0" lang="en-US" id="mapelement_bookmap1">
+<!-- Auto-generated Header NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/DeveloperGuide-Json.html" class="navbar">Prev</a> |  <a href="/doc/RelativeTopicBuilder-6E4A91AF.html" class="navbar">Next</a></p>
+
+      <div xmlns:ch="http://www.arbortext.com/namespace/chunker" class=" x-topic-19-0" id="JsonSchemaTypes-Json-70BA9870" lang="en-US">
+         <h2 class=" x-title-27-0 x-title-27-1 x-title-27-2" id="styler-id1.1.1.7.7.1" lang="en-US">JSON schema types</h2><span class=" x-titlealts-2-0"></span><div class=" x-shortdesc-2-0" lang="en-US">All components that contribute to the string output of the schema are called members and are nested under the schema. During
+            generation, the system processes each member recursively (top down), appending each member’s result to a JSON writer. This
+            creates the final JSON output string.
+         </div>
+         <div class=" x-prolog-1-0" lang="en-US">
+            <div class=" x-metadata-1-0" lang="en-US"><span class=" x-keywords-2-0" lang="en-US"><a class="indexterm" name="d26056e6759"></a></span></div>
+         </div>
+         <div class=" x-body-1-0" lang="en-US">
+            <div class=" x-section-1-0" id="styler-id1.1.1.7.7.5.1" lang="en-US">
+               <p class=" x-p-13-0" lang="en-US">Three interfaces represent three structural types of the JSON payload:</p>
+               <div lang="en-US">
+                  <ul class=" x-ul-1-0">
+                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Property (key/value pair)</span></li>
+                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Object</span></li>
+                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Array</span></li>
+                  </ul>
+               </div>
+               <p class=" x-p-13-0" lang="en-US">A getJsonName() defines each schema member.</p>
+               <div class=" x-fig-1-0 x-fig-1-1" id="styler-id1.1.1.7.7.5.1.4" lang="en-US"><h5 class=" x-title-49-0" id="styler-id1.1.1.7.7.5.1.4.1" lang="en-US">Figure 22.  &nbsp;&nbsp;Schema types</h5><div class=" x-image-2-0 x-image-2-9" lang="en-US"><img alt="Image" height="308" src="graphics/xwc7613347395515757634.png"  width="757"></div></div>
+               <p class=" x-p-13-0" lang="en-US">Three interfaces represent the three structural types of a JSON payload: property (key and value pair), object and array.
+                  All schema members have a name defined by getJsonName().
+               </p>
+               <p class=" x-p-13-0" lang="en-US">All schema members inherit the default processChildJsonMembers() behaviour, which allows us to recursively call process()
+                  on each member down through the nested schema structure.
+               </p>
+               <p class=" x-p-13-0" lang="en-US">All schema member types extend BJsonSchemaMember and most implement one of the three interface types. The base class lets
+                  us define the parent-child legal checks. This restricts nested types to just other BJsonSchemaMembers. This is where the JSON
+                  passes global schema events, for example, unsubscribe.
+               </p>
+               <p class=" x-p-13-0" lang="en-US">Different types of JSON schema members may be nested under a schema. These are logically grouped by common behaviour.</p>
+               <div class=" x-fig-1-0 x-fig-1-1" id="styler-id1.1.1.7.7.5.1.9" lang="en-US"><h5 class=" x-title-49-0" id="styler-id1.1.1.7.7.5.1.9.1" lang="en-US">Figure 23.  &nbsp;&nbsp;Json schema members</h5><div class=" x-image-2-0 x-image-2-9" lang="en-US"><img alt="Image" height="384" src="graphics/xwc6162998985230150381.png"  width="767"></div></div>
+               <p class=" x-p-13-0" lang="en-US">When developing against the toolkit, most of these classes are open to extension.</p>
+               <h3 class=" x-title-45-0" id="styler-id1.1.1.7.7.5.1.11" lang="en-US">Example 1</h3>
+               <p class=" x-p-13-0" lang="en-US">Consider a requirement for a new key and value pair to represent a device’s startup time as a string value. You might simply
+                  extend the <code class=" x-codeph-1-0" lang="en-US">BJsonSchemaProperty&lt;T&gt;</code> as type <code class=" x-codeph-1-0" lang="en-US">&lt;String&gt;</code> using your own date format or type <code class=" x-codeph-1-0" lang="en-US">&lt;BAbsTime&gt;</code> allowing the schema to render the date automatically using the schema date config. Now, you just need to implement <code class=" x-codeph-1-0" lang="en-US">getJsonValue()</code> to return the appropriate value.
+               </p><pre class=" x-codeblock-1-0 x-codeblock-1-1" lang="en-US"> @NiagaraType
+ public class BDeviceTimeProperty extends BJsonSchemaProperty&lt;BAbsTime&gt;
+ {
+ /*+ ------------ BEGIN BAJA AUTO GENERATED CODE ------------ +*/
+ .....
+ /*+ ------------ END BAJA AUTO GENERATED CODE -------------- +*/
+ 
+  @Override
+  public BAbsTime getJsonValue()
+  {
+    return (BAbsTime) ..... // this will use the schemas date format config
+  }
+ }</pre></div>
+            <div class=" x-section-1-0" id="styler-id1.1.1.7.7.5.2" lang="en-US">
+               <h3 class=" x-title-45-0" id="styler-id1.1.1.7.7.5.2.1" lang="en-US">Example 2</h3>
+               <p class=" x-p-13-0" lang="en-US">This requirement is for an object that contains a key and value pair for each slot on the target component, but only those
+                  with a user defined 1 flag. You might extend BJsonSchemaBoundObject, hide the slotsToInclude slot, and override the method
+                  getPropertiesToIncludeInJson() to only return properties with the user defined flag.
+               </p><pre class=" x-codeblock-1-0 x-codeblock-1-1" lang="en-US"> @NiagaraType
+ @NiagaraProperty(name = "slotsToInclude", type = "jsonToolkit:SlotSelectionType", 
+ defaultValue = "BSlotSelectionType.allVisibleSlots",flags = Flags.HIDDEN, 
+ override = true) public class BUserDefinedFlags extends BJsonSchemaBoundObject
+ {
+ /*+ ------------ BEGIN BAJA AUTO GENERATED CODE ------------ +*/
+ .....
+ /*+ ------------ END BAJA AUTO GENERATED CODE -------------- +*/
+  @Override
+  public List &lt;String&gt;getPropertiesToIncludeInJson(BComplex resolvedTarget)
+  {
+   if (resolvedTarget == null)
+   {
+    return Collections.emptyList(); // or try to resolve it!
+   }
+    return Arrays.stream(resolvedTarget.getPropertiesArray())
+     .filter(prop -&gt; (resolvedTarget.getFlags(prop) &amp; Flags.USER_DEFINED_1) != 0)
+     .map(prop -&gt; prop.getName())
+     .collect(Collectors.toList());
+ }
+}</pre></div>
+         </div>
+         <div class=" x-related-links-1-0">
+            <div class=" x--ufe-relatedlinks-display-1-0">
+               <div class=" x--ufe-relatedHierarchical-1-0 x--ufe-relatedHierarchical-1-1">
+                  <h3 class=" x--ufe-related-links-title-1-0" id="styler-idu1.1.1.7.7.6.1.1.1">Related Links</h3>
+                  <div class=" x--ufe-relatedChild-1-0"></div>
+                  <div class=" x--ufe-relatedParent-1-0">
+                     <li class=" x-link-2-0 x-link-2-1"><a href="DeveloperGuide-Json.html#DeveloperGuide-Json" title="Developers can use JSON to create complex queries and apps. They can extend the Toolkit by creating their own query styles."><span class=" x-linktext-2-0 x-linktext-2-5" lang="en-US">Developer guide (Parent Topic)</span></a></li>
+                  </div>
+               </div>
+               <div class=" x--ufe-relatedPrevious-1-0"></div>
+               <div class=" x--ufe-relatedNext-1-0"></div>
+               <div class=" x--ufe-relatedConcepts-1-0"></div>
+               <div class=" x--ufe-relatedTasks-1-0"></div>
+               <div class=" x--ufe-relatedReferences-1-0"></div>
+               <div class=" x--ufe-relatedTopics-1-0"></div>
+               <div class=" x--ufe-relatedOther-1-0"></div>
+               <div class=" x--ufe-relatedLinklists-1-0"></div>
+            </div>
+         </div>
+      </div>
+
+<!-- Auto-generated Footer NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/DeveloperGuide-Json.html" class="navbar">Prev</a> |  <a href="/doc/RelativeTopicBuilder-6E4A91AF.html" class="navbar">Next</a></p>
+<!-- Auto-generated copyright note --><p class='copyright'></p>
+   </body>
+</html>

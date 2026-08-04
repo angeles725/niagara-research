@@ -1,0 +1,187 @@
+<!-- Htmldoc has been run -->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="keywords" content="Niagara" scheme="atiChunkerMeta">
+      <title>Schema construction</title>
+<!-- Auto-generated style sheet link --><link rel='StyleSheet' href='module://bajaui/doc/style.css' type='text/css' />
+<!-- Auto-generated js link for Activity Monitoring --><script type='text/javascript' src='module://web/rc/util/activityMonitor.js'></script>
+<script type='text/javascript'>window.addEventListener('load', activityMonitor.start);</script>
+   </head>
+   <body class=" x-bookmap-1-0" lang="en-US" id="mapelement_bookmap1">
+<!-- Auto-generated Header NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/JsonSchemaMetrics-6DCEE184.html" class="navbar">Prev</a> |  <a href="/doc/ObjectsJson-A460BB17.html" class="navbar">Next</a></p>
+
+      <div xmlns:ch="http://www.arbortext.com/namespace/chunker" class=" x-topic-19-0" id="JSONSchemaConstruction-7A8BDB05" lang="en-US">
+         <h2 class=" x-title-27-0 x-title-27-1 x-title-27-2" id="styler-id1.1.1.5.12.1" lang="en-US">Schema construction</h2><span class=" x-titlealts-2-0"></span><div class=" x-shortdesc-2-0" lang="en-US">Setting up a schema involves binding station data to JSON entities.</div>
+         <div class=" x-prolog-1-0" lang="en-US">
+            <div class=" x-metadata-1-0" lang="en-US"><span class=" x-keywords-2-0" lang="en-US"><a class="indexterm" name="d26056e2774"></a><a class="indexterm" name="d26056e2778"></a></span></div>
+         </div>
+         <div class=" x-body-1-0" lang="en-US">
+            <div class=" x-section-1-0" id="styler-id1.1.1.5.12.5.1" lang="en-US">
+               <h3 class=" x-title-45-0" id="styler-id1.1.1.5.12.5.1.1" lang="en-US">Binding configuration, about binding</h3>
+               <p class=" x-p-13-0" lang="en-US">Bound properties, objects and arrays are JSON entities, which can use the current values of an ord target to render their
+                  values. Fixed variants do not support binding.
+               </p>
+            </div>
+            <div class=" x-section-1-0" id="SlotSelection-AD7E7B03" lang="en-US">
+               <h3 class=" x-title-45-0" id="styler-id1.1.1.5.12.5.2.1" lang="en-US">Slot selection</h3>
+               <p class=" x-p-13-0" lang="en-US">When picking a bound object or array, you may choose which slots from the target to include in the resultant JSON container.
+                  Currently the options are:
+               </p>
+               <div class=" x-fig-1-0 x-fig-1-1" id="styler-id1.1.1.5.12.5.2.3" lang="en-US"><h5 class=" x-title-49-0" id="styler-id1.1.1.5.12.5.2.3.1" lang="en-US">Figure 10.  &nbsp;&nbsp;Slots to include</h5><div class=" x-image-2-0 x-image-2-9" lang="en-US"><img alt="Image" height="84" src="graphics/xwc1199810765607034271.png"  width="224"></div></div>
+               <div lang="en-US">
+                  <ul class=" x-ul-1-0">
+                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">All slots</span></li>
+                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">All visible slots (hidden slots excluded)</span></li>
+                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Summary slots—only those with a summary flag</span></li>
+                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">Selected slots—manually-selected slots from a list</span></li>
+                  </ul>
+               </div>
+            </div>
+            <div class=" x-section-1-0" id="styler-id1.1.1.5.12.5.3" lang="en-US">
+               <h3 class=" x-title-45-0" id="styler-id1.1.1.5.12.5.3.1" lang="en-US">Target types</h3>
+               <div class=" x-note-1-0 x-note-1-7" lang="en-US">&nbsp;<br class="empty"><b><span style="font-weight: bold; ">NOTE: </span></b>When choosing the bind target for a binding you could select any type of slot, from devices to control points to out slots
+                  to simple values, there are no restrictions.<br class="empty">&nbsp;
+               </div>
+               <p class=" x-p-13-0" lang="en-US">Bound arrays and objects output the value of each of the selected slots (refer to <a href="#SlotSelection-AD7E7B03" class=" x-xref-9-0 x-xref-9-8" lang="en-US"><span class=" x--sfe-CrossReference-1-0"> </span>Slot Selection</a>). The default behaviour for each encountered slot type is as follows:
+               </p>
+               <div class=" x-table-2-0 x-table-2-2" id="styler-id1.1.1.5.12.5.3.4" lang="en-US">
+                  <table class=" x-tgroup-1-0" style="width: 100%; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; border-top-style: solid; border-top-width: 1.0pt; border-top-color: #000000; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; ">
+                     <colgroup>
+                        <col style="width: 200px; ">
+                        <col style="width: 79.16666666666666%; ">
+                     </colgroup>
+                     <thead class=" x-thead-1-0" style="vertical-align: bottom; text-align: left; font-weight: bold; ">
+                        <tr class=" x-row-1-0">
+                           <th class="entry-in-thead" style="text-align: left; padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-top-style: solid; border-top-width: 1.0pt; border-top-color: #000000; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; ">Selection</th>
+                           <th class="entry-in-thead" style="text-align: left; padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-top-style: solid; border-top-width: 1.0pt; border-top-color: #000000; ">Output</th>
+                        </tr>
+                     </thead>
+                     <tbody class=" x-tbody-1-0" style="vertical-align: top; ">
+                        <tr class=" x-row-1-0">
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; ">Strings</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; ">The string value is unchanged</td>
+                        </tr>
+                        <tr class=" x-row-1-0">
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; ">Booleans</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; ">A JSON Boolean</td>
+                        </tr>
+                        <tr class=" x-row-1-0">
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; ">Integer/Long</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; ">A JSON number</td>
+                        </tr>
+                        <tr class=" x-row-1-0">
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; ">Double and float decimals</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; ">A JSON number rounded to use the schema’s decimal places config</td>
+                        </tr>
+                        <tr class=" x-row-1-0">
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; ">Enum value</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; ">A JSON String that represents the Enum value</td>
+                        </tr>
+                        <tr class=" x-row-1-0">
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; ">AbsTime</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; ">A String representation of the date formatted as per the schema config</td>
+                        </tr>
+                        <tr class=" x-row-1-0">
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; ">Control Point</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; ">A JSON String, Numeric, Boolean, or Enum to represent the out slot’s value</td>
+                        </tr>
+                        <tr class=" x-row-1-0">
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; ">Status Value</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; ">A JSON String, Numeric, Boolean, or Enum to represent the value</td>
+                        </tr>
+                        <tr class=" x-row-1-0">
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; ">Status</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; ">A JSON string to represent the value, for example, <span class=" x-systemoutput-1-0" lang="en-US">{ok}</span></td>
+                        </tr>
+                        <tr class=" x-row-1-0">
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; ">Anything else</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; ">The string representation of the value as returned from the framework. This is often the type display name.</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+               <div class=" x-note-1-0 x-note-1-7" lang="en-US">&nbsp;<br class="empty"><b><span style="font-weight: bold; ">NOTE: </span></b>Bound objects and arrays do not recurse. Only direct child slots are included. These behaviours make a few assumptions about
+                  the most-expected case, for example, excluding the status string from certain types. Program overrides may override all these
+                  behaviours. <br class="empty">&nbsp;
+               </div>
+            </div>
+            <div class=" x-section-1-0" id="styler-id1.1.1.5.12.5.4" lang="en-US">
+               <h3 class=" x-title-45-0" id="styler-id1.1.1.5.12.5.4.1" lang="en-US">Naming</h3>
+               <p class=" x-p-13-0" lang="en-US">For binding results you may choose what the key is in the key/value pair:</p>
+               <div class=" x-table-2-0 x-table-2-2" id="styler-id1.1.1.5.12.5.4.3" lang="en-US">
+                  <table class=" x-tgroup-1-0" style="width: 100%; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; border-top-style: solid; border-top-width: 1.0pt; border-top-color: #000000; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; ">
+                     <colgroup>
+                        <col style="width: 200px; ">
+                        <col style="width: 79.16666666666666%; ">
+                     </colgroup>
+                     <thead class=" x-thead-1-0" style="vertical-align: bottom; text-align: left; font-weight: bold; ">
+                        <tr class=" x-row-1-0">
+                           <th class="entry-in-thead" style="text-align: left; padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-top-style: solid; border-top-width: 1.0pt; border-top-color: #000000; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; ">Selection</th>
+                           <th class="entry-in-thead" style="text-align: left; padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-top-style: solid; border-top-width: 1.0pt; border-top-color: #000000; ">Output</th>
+                        </tr>
+                     </thead>
+                     <tbody class=" x-tbody-1-0" style="vertical-align: top; ">
+                        <tr class=" x-row-1-0">
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; ">Display Name</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; ">The name of the bound property, object or array</td>
+                        </tr>
+                        <tr class=" x-row-1-0">
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; ">Target Name</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; ">The name of the ord target</td>
+                        </tr>
+                        <tr class=" x-row-1-0">
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; ">Target Display Name</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; ">The display name of the ord target</td>
+                        </tr>
+                        <tr class=" x-row-1-0">
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; ">Target Parent Name</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; ">The name of the ord target’s parent</td>
+                        </tr>
+                        <tr class=" x-row-1-0">
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; ">Target Path</td>
+                           <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; ">The absolute path of the target from the root of the component tree</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+               <div class=" x-note-1-0 x-note-1-11" lang="en-US">&nbsp;<br class="empty"><b><span style="font-weight: bold; ">TIP: </span></b>You may use a <span class=" x-apiname-2-0" lang="en-US">Tag</span> property with the name <span class=" x-userinput-1-0" lang="en-US">n:name</span> to include point names. This property inserts a single tag value from the bound component in the output. If the <code class=" x-parmname-2-0" lang="en-US">SearchParents</code> property is <code class=" x-option-2-0" lang="en-US">true</code>, the framework searches up the hierarchy for the closest component with a matching tag id (if the tag not found on binding
+                  target.<br class="empty">&nbsp;
+               </div>
+            </div>
+         </div>
+         <div class=" x-related-links-1-0">
+            <div class=" x--ufe-relatedlinks-display-1-0">
+               <div class=" x--ufe-relatedHierarchical-1-0 x--ufe-relatedHierarchical-1-1">
+                  <h3 class=" x--ufe-related-links-title-1-0" id="styler-idu1.1.1.5.12.6.1.1.1">Related Links</h3>
+                  <div class=" x--ufe-relatedChild-1-0">
+                     <li class=" x-link-2-0 x-link-2-1"><a href="ObjectsJson-A460BB17.html#ObjectsJson-A460BB17" title="Entities are objects, arrays, properties and bound properties."><span class=" x-linktext-2-0" lang="en-US">Entities</span></a></li>
+                     <li class=" x-link-2-0 x-link-2-1"><a href="Exporting-Json-6DCD8BED.html#Exporting-Json-6DCD8BED" title="You construct a schema by placing objects from the jsonToolkit palette in a JsonSchema."><span class=" x-linktext-2-0" lang="en-US">Creating a regular schema</span></a></li>
+                     <li class=" x-link-2-0 x-link-2-1"><a href="RelativeSchemaConstruction-94DD3616.html#RelativeSchemaConstruction-94DD3616" title="A relative schema enables the scaling of JSON payload generation and much faster engineering than absolute object binding."><span class=" x-linktext-2-0" lang="en-US">Relative schema construction</span></a></li>
+                     <li class=" x-link-2-0 x-link-2-1"><a href="ExportMarkers-94E0333F.html#ExportMarkers-94E0333F" title="Export markers on points and other entities set up efficient data retrieval."><span class=" x-linktext-2-0" lang="en-US">Export markers</span></a></li>
+                  </div>
+                  <div class=" x--ufe-relatedParent-1-0">
+                     <li class=" x-link-2-0 x-link-2-1"><a href="Exporting-Json-715BF8A7.html#Exporting-Json-715BF8A7" title="Adding a JsonSchema component to your station allows for the construction of a JSON payload to suit the requirements of your particular application."><span class=" x-linktext-2-0 x-linktext-2-5" lang="en-US">Exporting with a JSON schema (Parent Topic)</span></a></li>
+                  </div>
+               </div>
+               <div class=" x--ufe-relatedPrevious-1-0"></div>
+               <div class=" x--ufe-relatedNext-1-0"></div>
+               <div class=" x--ufe-relatedConcepts-1-0"></div>
+               <div class=" x--ufe-relatedTasks-1-0"></div>
+               <div class=" x--ufe-relatedReferences-1-0 x--ufe-relatedReferences-1-1">
+                  <h3 class=" x--ufe-related-links-title-1-0" id="styler-idu1.1.1.5.12.6.1.6.1">Related References</h3>
+                  <li class=" x-link-2-0 x-link-2-1"><a href="jsonToolkit-JsonSchemaBoundProperty.html#jsonToolkit-JsonSchemaBoundProperty" title="This property inserts the current value of the object specified by the Binding property."><span class=" x-linktext-2-0 x-linktext-2-3" lang="en-US">BoundProperty (Json Schema Bound Property)</span></a></li>
+               </div>
+               <div class=" x--ufe-relatedTopics-1-0"></div>
+               <div class=" x--ufe-relatedOther-1-0"></div>
+               <div class=" x--ufe-relatedLinklists-1-0"></div>
+            </div>
+         </div>
+      </div>
+
+<!-- Auto-generated Footer NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/JsonSchemaMetrics-6DCEE184.html" class="navbar">Prev</a> |  <a href="/doc/ObjectsJson-A460BB17.html" class="navbar">Next</a></p>
+<!-- Auto-generated copyright note --><p class='copyright'></p>
+   </body>
+</html>
