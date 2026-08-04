@@ -1,4 +1,4 @@
-# RESEARCH-STATE — focus: jsonToolkit (ACTIVE 7/14)
+# RESEARCH-STATE — focus: jsonToolkit (ACTIVE 8/14)
 
 > Multi-focus corpus (METHODOLOGY §16). Focus **BOOTSTRAPEADO 2026-08-04** a pedido explícito del usuario
 > ("documentar también el módulo JSONTOOLKIT"), inmediatamente tras cerrar el focus `email` (B324-B334).
@@ -20,10 +20,10 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 336
-gaps_closed: 7
+covered_blocks: 337
+gaps_closed: 8
 known_gaps: 14
-investigable_open: 7
+investigable_open: 6
 requires_execution_open: 0
 blocked_open: 0
 deferred_open: 0
@@ -33,7 +33,7 @@ undocumented_findings: 0
 focus: jsonToolkit
 status: active
 bootstrapped_on: 2026-08-04
-block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libre: B342)
+block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libre: B343)
 
 ## Pre-flight e2 — existencia + tamaño MEDIDO
 
@@ -62,9 +62,9 @@ program, query, schedule, serial.
 
 ## Coverage
 
-- **Covered blocks**: 336 (corpus-wide, shared-global)
-- **Coverage metric**: 7 / 14 closed
-- **Last iteration**: 2026-08-04 — J7 closed (inbound handlers/security, B341)
+- **Covered blocks**: 337 (corpus-wide, shared-global)
+- **Coverage metric**: 8 / 14 closed
+- **Last iteration**: 2026-08-04 — J8 closed (outbound detail catalog, B342)
 
 ## Gap-backlog (prioritized)
 
@@ -77,7 +77,7 @@ program, query, schedule, serial.
 | high | J5 exporter/transport — BJsonExporter: como sale el JSON de la station (HTTP/file/fox) | decompiled-java + doc | closed (B339 — proven absence: no autonomous transport) |
 | high | J6 inbound core + selectores — BJsonInbound, BJsonPath/selectores (JSONPath), routing (demux) | decompiled-java + doc | closed (B340) |
 | high | J7 inbound handlers — BJsonSetPointHandler (nivel priority-array + runAsUser), alarm ack, export-marker registration (SEGURIDAD) | decompiled-java + doc | closed (B341) |
-| medium | J8 outbound schema detail — property types (15), style/formatters (query/style), config/tuning (update strategy, name casing) | decompiled-java + doc | pending |
+| medium | J8 outbound schema detail — property types (15), style/formatters (query/style), config/tuning (update strategy, name casing) | decompiled-java + doc | closed (B342) |
 | medium | J9 relative schema — BRelativeJsonSchema/SubscriptionTable: agregacion cross-station por Fox | decompiled-java + doc | pending |
 | medium | J10 inline/program writer — BInlineJsonWriter (referenciado por B76), integracion program-rt | decompiled-java + doc | pending |
 | medium | J11 outbound alarm — BJsonAlarmRecipient + BIJsonAlarmDataResolver | decompiled-java + doc | pending |
@@ -97,6 +97,7 @@ program, query, schedule, serial.
 | 5 | 2026-08-04 | J5 exporter/transport | B339 | no · inline (proven-absence, 2 grep passes) | 0 |
 | 6 | 2026-08-04 | J6 inbound core + selectors | B340 | yes · sonnet (code+doc sweep) + driver re-read | 2 sec surfaces |
 | 7 | 2026-08-04 | J7 inbound handlers/security | B341 | yes · sonnet + driver re-verify (downgraded overstated finding) | 0 |
+| 8 | 2026-08-04 | J8 outbound detail catalog | B342 | yes · sonnet (catalog sweep) + driver enum re-verify | 0 |
 
 ## Blocked gaps (each tagged with what it needs)
 
@@ -104,7 +105,7 @@ program, query, schedule, serial.
 
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 7   ← el loop ESTÁTICO para cuando esto llega a 0
+- **Open gaps — read-only investigable**: 6   ← el loop ESTÁTICO para cuando esto llega a 0
 - **Open gaps — requires-execution**: 0
 - **Open gaps — blocked**: 0
 - Consecutive iterations with empty backlog (secondary): 0/2

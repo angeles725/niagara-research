@@ -1,0 +1,141 @@
+<!-- Htmldoc has been run -->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      
+      <title>Custom query style</title>
+<!-- Auto-generated style sheet link --><link rel='StyleSheet' href='module://bajaui/doc/style.css' type='text/css' />
+<!-- Auto-generated js link for Activity Monitoring --><script type='text/javascript' src='module://web/rc/util/activityMonitor.js'></script>
+<script type='text/javascript'>window.addEventListener('load', activityMonitor.start);</script>
+   </head>
+   <body class=" x-bookmap-1-0" lang="en-US" id="mapelement_bookmap1">
+<!-- Auto-generated Header NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/InlineJSONWriter-94E2D15D.html" class="navbar">Prev</a> |  <a href="/doc/BuilderClassAPI-Json-70E2DA19.html" class="navbar">Next</a></p>
+
+      <div xmlns:ch="http://www.arbortext.com/namespace/chunker" class=" x-topic-19-0" id="CustomQueryStyle-Json-70E179E6" lang="en-US">
+         <h2 class=" x-title-27-0 x-title-27-1 x-title-27-2" id="styler-id1.1.1.7.11.1" lang="en-US">Custom query style</h2><span class=" x-titlealts-2-0"></span><div class=" x-shortdesc-2-0" lang="en-US">Third–party systems may require query results to be formatted in a manner other than the options provided in the JSON Toolkit.</div>
+         <div class=" x-prolog-1-0" lang="en-US">
+            <div class=" x-metadata-1-0" lang="en-US"><span class=" x-keywords-2-0" lang="en-US"><a class="indexterm" name="d26056e7145"></a></span></div>
+         </div>
+         <div class=" x-body-1-0" lang="en-US">
+            <p class=" x-p-13-0" lang="en-US">To render query data differently, extend <code class=" x-codeph-1-0" lang="en-US">BQueryResultWriter</code> and register the class as an agent on <code class=" x-codeph-1-0" lang="en-US">jsonToolkit:JsonSchemaBoundQueryResult</code>.
+            </p>
+            <p class=" x-p-13-0" lang="en-US">This example shows how to format the contents of the <code class=" x-codeph-1-0" lang="en-US">QueryResultHolder</code> for an external system:
+            </p><pre class=" x-codeblock-1-0 x-codeblock-1-1" lang="en-US">package com.tridiumx.jsonToolkit.outbound.schema.query
+
+import static com.tridiumx.jsonToolkit.outbound.schema.support.JsonSchemaUtil.toJsonType
+
+import java.util.concurrent.atomic.AtomicInteger
+import javax.baja.nre.annotations.AgentOn
+import javax.baja.nre.annotations.NiagaraType
+import javax.baja.sys.BString
+import javax.baja.sys.Sys
+import javax.baja.sys.Type
+
+import com.tridiumx.jsonToolkit.outbound.schema.query.style.BQueryResultWriter
+import com.tridium.json.JSONWriter
+
+/**
+ * An example custom query result writer.
+ *
+ * @author Nick Dodd
+ */
+@NiagaraType(agent = @AgentOn(types = "jsonToolkit:JsonSchemaBoundQueryResult"))
+public class BCowSayJson extends BQueryResultWriter
+{
+/*+ ------------ BEGIN BAJA AUTO GENERATED CODE ------------ +*/
+/*@ $com.tridiumx.jsonToolkit.outbound.schema.query.style.BObjectsArray(4046064316)1.0$ @*/
+/* Generated Thu Dec 13 11:24:58 GMT 2018 by Slot-o-Matic (c) Tridium, Inc. 2012 */
+
+////////////////////////////////////////////////////////////////
+// Type
+////////////////////////////////////////////////////////////////
+  
+  @Override
+  public Type getType() { return TYPE }
+  public static final Type TYPE = Sys.loadType(BCowSayJson.class)
+
+/*+ ------------ END BAJA AUTO GENERATED CODE -------------- +*/
+
+  @Override
+  public BString previewText()
+  {
+    return BString.make("A demonstration result writer")
+  }
+
+  @Override
+  public void appendJson(JSONWriter jsonWriter, QueryResultHolder result)
+  {
+    jsonWriter.object()
+
+    try
+    {
+      jsonWriter.key("mooo01").value("____________________________")
+      headerCsv(jsonWriter, result)
+      dataCsv(jsonWriter, result)
+      jsonWriter.key("mooo02").value("----------------------------")
+      jsonWriter.key("mooo03").value("    \\   ^__^               ")
+      jsonWriter.key("mooo04").value("     \\  (oo)\\_______      ")
+      jsonWriter.key("mooo05").value("         (__)\\       )\\/\\")
+      jsonWriter.key("mooo06").value("              ||----w |     ")
+      jsonWriter.key("mooo07").value("              ||     ||     ")
+    }
+    finally
+    {
+      jsonWriter.endObject()
+    }
+  }
+
+  private void headerCsv(JSONWriter jsonWriter, QueryResultHolder result)
+  {
+    jsonWriter.key("columns").value(String.join(",", result.getColumnNames()))
+  }
+
+  private void dataCsv(JSONWriter jsonWriter, QueryResultHolder result)
+  {
+    AtomicInteger rowCount = new AtomicInteger()
+
+    result.getResultList().forEach( map - {
+
+      jsonWriter.key("data" + rowCount.incrementAndGet())
+      jsonWriter.array()
+      try
+      {
+        map.values()
+          .forEach(value - jsonWriter.value(toJsonType(value, getSchema().getConfig())))
+      }
+      finally
+      {
+        jsonWriter.endArray()
+      }
+    })
+
+    processChildJsonMembers(jsonWriter, false)  // append any nested members content 
+    to the json
+  }
+}</pre></div>
+         <div class=" x-related-links-1-0">
+            <div class=" x--ufe-relatedlinks-display-1-0">
+               <div class=" x--ufe-relatedHierarchical-1-0 x--ufe-relatedHierarchical-1-1">
+                  <h3 class=" x--ufe-related-links-title-1-0" id="styler-idu1.1.1.7.11.6.1.1.1">Related Links</h3>
+                  <div class=" x--ufe-relatedChild-1-0"></div>
+                  <div class=" x--ufe-relatedParent-1-0">
+                     <li class=" x-link-2-0 x-link-2-1"><a href="DeveloperGuide-Json.html#DeveloperGuide-Json" title="Developers can use JSON to create complex queries and apps. They can extend the Toolkit by creating their own query styles."><span class=" x-linktext-2-0 x-linktext-2-5" lang="en-US">Developer guide (Parent Topic)</span></a></li>
+                  </div>
+               </div>
+               <div class=" x--ufe-relatedPrevious-1-0"></div>
+               <div class=" x--ufe-relatedNext-1-0"></div>
+               <div class=" x--ufe-relatedConcepts-1-0"></div>
+               <div class=" x--ufe-relatedTasks-1-0"></div>
+               <div class=" x--ufe-relatedReferences-1-0"></div>
+               <div class=" x--ufe-relatedTopics-1-0"></div>
+               <div class=" x--ufe-relatedOther-1-0"></div>
+               <div class=" x--ufe-relatedLinklists-1-0"></div>
+            </div>
+         </div>
+      </div>
+
+<!-- Auto-generated Footer NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/InlineJSONWriter-94E2D15D.html" class="navbar">Prev</a> |  <a href="/doc/BuilderClassAPI-Json-70E2DA19.html" class="navbar">Next</a></p>
+<!-- Auto-generated copyright note --><p class='copyright'></p>
+   </body>
+</html>
