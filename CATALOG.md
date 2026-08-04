@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **339 blocks**
+Total: **340 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -345,3 +345,4 @@ Total: **339 blocks**
 | 341 | [niagara-mental-model-bloque341.md](niagara-mental-model-bloque341.md) | The inbound handlers: point writes ARE authorized as `runAsUser` (real gate), but the JSON sender picks the priority slot, the alarm-ack records a spoofable acker name, and export-marker registration has NO ACL at all |
 | 342 | [niagara-mental-model-bloque342.md](niagara-mental-model-bloque342.md) | The outbound detail catalog: 15 property types in five groups, 8 query-result JSON shapes selected per-result, and a three-stage key-naming pipeline (source → spacing → casing) |
 | 343 | [niagara-mental-model-bloque343.md](niagara-mental-model-bloque343.md) | The relative schema: same tree, but the fixed station base is swapped for a stream of query rows run one-at-a-time on a 24 h periodic clock — cross-station aggregation via `station:`/`sys:` ORDs, no explicit Fox |
+| 344 | [niagara-mental-model-bloque344.md](niagara-mental-model-bloque344.md) | The programmatic escape hatch: `BInlineJsonWriter` drops a `BProgram` into the schema tree and hands it the shared `JSONWriter`, and `BTypeOverride` lets a Program rewrite how a Baja value serializes — the native facility [Block 76] reused |

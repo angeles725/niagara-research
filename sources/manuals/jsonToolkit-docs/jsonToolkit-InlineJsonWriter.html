@@ -1,0 +1,96 @@
+<!-- Htmldoc has been run -->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      
+      <title>InlineJsonWriter (Inline Json Writer)</title>
+<!-- Auto-generated style sheet link --><link rel='StyleSheet' href='module://bajaui/doc/style.css' type='text/css' />
+<!-- Auto-generated js link for Activity Monitoring --><script type='text/javascript' src='module://web/rc/util/activityMonitor.js'></script>
+<script type='text/javascript'>window.addEventListener('load', activityMonitor.start);</script>
+   </head>
+   <body class=" x-bookmap-1-0" lang="en-US" id="mapelement_bookmap1">
+<!-- Auto-generated Header NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/jsonToolkit-EngineCyclePairQueue.html" class="navbar">Prev</a> |  <a href="/doc/jsonToolkit-TypeOverride.html" class="navbar">Next</a></p>
+
+      <div xmlns:ch="http://www.arbortext.com/namespace/chunker" class=" x-topic-19-0" id="jsonToolkit-InlineJsonWriter" lang="en-US">
+         <h2 class=" x-title-27-0 x-title-27-1 x-title-27-2" id="styler-id1.1.1.8.55.1" lang="en-US">InlineJsonWriter (Inline Json Writer)</h2><span class=" x-titlealts-2-0"></span><div class=" x-shortdesc-2-0" lang="en-US">This feature supports custom JSON code.</div>
+         <div class=" x-prolog-1-0" lang="en-US">
+            <div class=" x-metadata-1-0" lang="en-US"><span class=" x-keywords-2-0" lang="en-US"><a class="indexterm" name="d26056e17957"></a></span></div>
+         </div>
+         <div class=" x-body-1-0" lang="en-US">
+            <div class=" x-section-1-0" id="styler-id1.1.1.8.55.5.1" lang="en-US">
+               <p class=" x-p-13-0" lang="en-US">You achieve this using a program object as per the example in the <b class=" x-uicontrol-3-0" lang="en-US">Programs</b> folder of the <span class=" x-apiname-2-0" lang="en-US">jsonToolkit</span> palette. You can extend <code class=" x-codeph-1-0" lang="en-US">BAbstractInlineJsonWriter</code>. Extending the abstract class would be preferred where the program object may be widely distributed, as code contained in
+                  a module is easier to maintain.
+               </p>
+               <div class=" x-fig-1-0 x-fig-1-1" id="styler-id1.1.1.8.55.5.1.2" lang="en-US"><h5 class=" x-title-49-0" id="styler-id1.1.1.8.55.5.1.2.1" lang="en-US">Figure 100.  &nbsp;&nbsp;InlineJsonWriter code properties</h5><div class=" x-image-2-0 x-image-2-9" lang="en-US"><img alt="Image" height="205" src="graphics/xwc5802225277223281026.png"  width="401"></div></div>
+               <p class=" x-p-13-0" lang="en-US">To use this program object, drag it from the <b class=" x-uicontrol-3-0" lang="en-US">Programs</b> folder in the <span class=" x-apiname-2-0" lang="en-US">jsonToolkit</span> palette to the <b class=" x-uicontrol-3-0" lang="en-US">Config</b> folder in the station. To open this <span class=" x-wintitle-2-0" lang="en-US">AX Property Sheet</span>, double-click the <span class=" x-apiname-2-0" lang="en-US">InlineJsonWriter</span> component in the station.
+               </p>
+               <p class=" x-p-13-0" lang="en-US">To view the example code, right–click the <b class=" x-uicontrol-3-0" lang="en-US">Program</b> node, click<span class=" x-menucascade-1-0" lang="en-US"><b class=" x-uicontrol-2-0" lang="en-US">Views</b><b class=" x-uicontrol-1-0" lang="en-US"><span style="font-weight: normal; "> &gt; </span>Program Editor</b></span> and click the <span class=" x-wintitle-2-0" lang="en-US">Edit</span> tab.
+               </p>
+               <p class=" x-p-13-0" lang="en-US">In addition to the standard properties (Status and Fault Cause), these properties support the <span class=" x-apiname-2-0" lang="en-US">InlineJsonWriter</span>.
+               </p>
+            </div>
+            <div class=" x-properties-1-0 x-properties-1-1" id="styler-id1.1.1.8.55.5.2" lang="en-US">
+               <table border="1" cellpadding="7" frame="box" rules="all" style="border-width: 1.0pt; " width="100%">
+                  <col width="160">
+                  <col width="160">
+                  <col width="160">
+                  <thead style="text-align: left; ">
+                     <tr class=" x-prophead-1-0" lang="en-US" style="vertical-align: top; ">
+                        <th class=" x-proptypehd-1-0" lang="en-US" style="text-align: left; ">Property</th>
+                        <th class=" x-propvaluehd-1-0" lang="en-US" style="text-align: left; ">Value</th>
+                        <th class=" x-propdeschd-1-0" lang="en-US" style="text-align: left; ">Description</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr class=" x-property-1-0" lang="en-US" style="vertical-align: top; ">
+                        <td class=" x-proptype-1-0" lang="en-US">Class Name</td>
+                        <td class=" x-propvalue-1-0" lang="en-US">read-only</td>
+                        <td class=" x-propdesc-1-0" lang="en-US">Reports the name that describes this object. Each object is created from a single class. One class can instantiate multiple
+                           objects.
+                        </td>
+                     </tr>
+                     <tr class=" x-property-1-0" lang="en-US" style="vertical-align: top; ">
+                        <td class=" x-proptype-1-0" lang="en-US">Class File</td>
+                        <td class=" x-propvalue-1-0" lang="en-US">read-only</td>
+                        <td class=" x-propdesc-1-0" lang="en-US">Reports the name of the file that contains the custom program.</td>
+                     </tr>
+                     <tr class=" x-property-1-0" lang="en-US" style="vertical-align: top; ">
+                        <td class=" x-proptype-1-0" lang="en-US">Dependencies</td>
+                        <td class=" x-propvalue-1-0" lang="en-US">read-only</td>
+                        <td class=" x-propdesc-1-0" lang="en-US">Identifies the dependent modules.</td>
+                     </tr>
+                     <tr class=" x-property-1-0" lang="en-US" style="vertical-align: top; ">
+                        <td class=" x-proptype-1-0" lang="en-US">Signature</td>
+                        <td class=" x-propvalue-1-0" lang="en-US">read-only</td>
+                        <td class=" x-propdesc-1-0" lang="en-US">Identifies the mathematical scheme used to verify the authenticity of the program.</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+         <div class=" x-related-links-1-0">
+            <div class=" x--ufe-relatedlinks-display-1-0">
+               <div class=" x--ufe-relatedHierarchical-1-0 x--ufe-relatedHierarchical-1-1">
+                  <h3 class=" x--ufe-related-links-title-1-0" id="styler-idu1.1.1.8.55.6.1.1.1">Related Links</h3>
+                  <div class=" x--ufe-relatedChild-1-0"></div>
+                  <div class=" x--ufe-relatedParent-1-0">
+                     <li class=" x-link-2-0 x-link-2-1"><a href="Components-0567A524.html#Components-0567A524" title="Components include services, folders and other model building blocks associated with a module. You may drag them to a Property or Wire Sheet from a palette."><span class=" x-linktext-2-0 x-linktext-2-5" lang="en-US">Components (Parent Topic)</span></a></li>
+                  </div>
+               </div>
+               <div class=" x--ufe-relatedPrevious-1-0"></div>
+               <div class=" x--ufe-relatedNext-1-0"></div>
+               <div class=" x--ufe-relatedConcepts-1-0"></div>
+               <div class=" x--ufe-relatedTasks-1-0"></div>
+               <div class=" x--ufe-relatedReferences-1-0"></div>
+               <div class=" x--ufe-relatedTopics-1-0"></div>
+               <div class=" x--ufe-relatedOther-1-0"></div>
+               <div class=" x--ufe-relatedLinklists-1-0"></div>
+            </div>
+         </div>
+      </div>
+
+<!-- Auto-generated Footer NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/jsonToolkit-EngineCyclePairQueue.html" class="navbar">Prev</a> |  <a href="/doc/jsonToolkit-TypeOverride.html" class="navbar">Next</a></p>
+<!-- Auto-generated copyright note --><p class='copyright'></p>
+   </body>
+</html>

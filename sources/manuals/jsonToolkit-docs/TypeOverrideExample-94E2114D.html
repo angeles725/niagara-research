@@ -1,0 +1,83 @@
+<!-- Htmldoc has been run -->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="keywords" content="Niagara" scheme="atiChunkerMeta">
+      <title>Type Override example</title>
+<!-- Auto-generated style sheet link --><link rel='StyleSheet' href='module://bajaui/doc/style.css' type='text/css' />
+<!-- Auto-generated js link for Activity Monitoring --><script type='text/javascript' src='module://web/rc/util/activityMonitor.js'></script>
+<script type='text/javascript'>window.addEventListener('load', activityMonitor.start);</script>
+   </head>
+   <body class=" x-bookmap-1-0" lang="en-US" id="mapelement_bookmap1">
+<!-- Auto-generated Header NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/RelativeTopicBuilder-6E4A91AF.html" class="navbar">Prev</a> |  <a href="/doc/InlineJSONWriter-94E2D15D.html" class="navbar">Next</a></p>
+
+      <div xmlns:ch="http://www.arbortext.com/namespace/chunker" class=" x-topic-19-0" id="TypeOverrideExample-94E2114D" lang="en-US">
+         <h2 class=" x-title-27-0 x-title-27-1 x-title-27-2" id="styler-id1.1.1.7.9.1" lang="en-US">Type Override example</h2><span class=" x-titlealts-2-0"></span><div class=" x-shortdesc-2-0" lang="en-US">At the core of the JSON Toolkit is a method that maps baja object types to JSON. This determines, for example, how any encountered
+            BControlPoint, Facets, BAbsTime etc. should be encoded in the output.
+         </div>
+         <div class=" x-prolog-1-0" lang="en-US">
+            <div class=" x-metadata-1-0" lang="en-US"><span class=" x-keywords-2-0" lang="en-US"><a class="indexterm" name="d26056e6949"></a></span></div>
+         </div>
+         <div class=" x-body-1-0" lang="en-US">
+            <p class=" x-p-13-0" lang="en-US">The payload includes many variations for the supported <span class=" x-keyword-2-0" lang="en-US">
+                  <ch:meta content="Niagara" name="keywords"></ch:meta><span style="white-space: nowrap;">Niagara</span></span> types. Our approach to accommodating this is to allow a developer or power user the ability to override specific types as
+               they are converted to JSON.
+            </p>
+            <p class=" x-p-13-0" lang="en-US">For a small JsonSchema, the example in the <span class=" x-apiname-2-0" lang="en-US">jsonToolkit</span> palette demonstrates how to use a program <code class=" x-codeph-1-0" lang="en-US">object[^1]</code> to replace units:
+            </p><pre class=" x-codeblock-1-0 x-codeblock-1-1" lang="en-US">/**
+   * Allows Json types to to be overridden when placed under JsonSchema/config/overrides/
+   */
+  public BValue onOverride(final BValue input)
+  {
+    if (input instanceof BUnit)
+    {
+      javax.baja.units.UnitDatabase unitDB = javax.baja.units.UnitDatabase.getDefault()
+      javax.baja.units.UnitDatabase.Quantity quantity = 
+      unitDB.getQuantity(input.as(BUnit.class)) 
+      if (quantity != null)
+      {
+        return BString.make(input.as(BUnit.class).getSymbol() + ":" + quantity.getName())
+      }
+    }
+
+    // If we can't override the value then just return it as we found it
+    return input
+  }</pre><p class=" x-p-13-0" lang="en-US">[^1]: To improve maintainability and station loading time in the event that a program object is duplicated repeatedly, use
+               the ProgramBuilder.
+            </p>
+            <p class=" x-p-13-0" lang="en-US">To use the program, drag this component into the <span class=" x-menucascade-1-0" lang="en-US"><b class=" x-uicontrol-2-0" lang="en-US">Config</b><b class=" x-uicontrol-1-0" lang="en-US"><span style="font-weight: normal; "> &gt; </span>Overrides</b></span> folder of the schema.
+            </p>
+            <div class=" x-fig-1-0 x-fig-1-1" id="styler-id1.1.1.7.9.5.6" lang="en-US"><h5 class=" x-title-49-0" id="styler-id1.1.1.7.9.5.6.1" lang="en-US">Figure 24.  &nbsp;&nbsp;TypeOverride component in jsonSchema</h5><div class=" x-image-2-0 x-image-2-9" lang="en-US"><img alt="Image" height="179" src="graphics/xwc9173977097492733359.png"  width="391"></div></div>
+            <p class=" x-p-13-0" lang="en-US">Developers could also override the <code class=" x-codeph-1-0" lang="en-US">doOverride(BValue value)</code> method in their own <code class=" x-codeph-1-0" lang="en-US">BTypeOverride</code> variant.
+            </p>
+         </div>
+         <div class=" x-related-links-1-0">
+            <div class=" x--ufe-relatedlinks-display-1-0">
+               <div class=" x--ufe-relatedHierarchical-1-0 x--ufe-relatedHierarchical-1-1">
+                  <h3 class=" x--ufe-related-links-title-1-0" id="styler-idu1.1.1.7.9.6.1.1.1">Related Links</h3>
+                  <div class=" x--ufe-relatedChild-1-0"></div>
+                  <div class=" x--ufe-relatedParent-1-0">
+                     <li class=" x-link-2-0 x-link-2-1"><a href="DeveloperGuide-Json.html#DeveloperGuide-Json" title="Developers can use JSON to create complex queries and apps. They can extend the Toolkit by creating their own query styles."><span class=" x-linktext-2-0 x-linktext-2-5" lang="en-US">Developer guide (Parent Topic)</span></a></li>
+                  </div>
+               </div>
+               <div class=" x--ufe-relatedPrevious-1-0"></div>
+               <div class=" x--ufe-relatedNext-1-0"></div>
+               <div class=" x--ufe-relatedConcepts-1-0"></div>
+               <div class=" x--ufe-relatedTasks-1-0"></div>
+               <div class=" x--ufe-relatedReferences-1-0 x--ufe-relatedReferences-1-1">
+                  <h3 class=" x--ufe-related-links-title-1-0" id="styler-idu1.1.1.7.9.6.1.6.1">Related References</h3>
+                  <li class=" x-link-2-0 x-link-2-1"><a href="jsonToolkit-JsonSchemaOverrideFolder.html#jsonToolkit-JsonSchemaOverrideFolder" title="Configures how to convert specific data types to JSON. This definition overrides the default conversion behaviour and applies to anywhere the datatype is encountered in an entire schema. "><span class=" x-linktext-2-0 x-linktext-2-3" lang="en-US">Overrides (Json Schema Overrides Folder)</span></a></li>
+               </div>
+               <div class=" x--ufe-relatedTopics-1-0"></div>
+               <div class=" x--ufe-relatedOther-1-0"></div>
+               <div class=" x--ufe-relatedLinklists-1-0"></div>
+            </div>
+         </div>
+      </div>
+
+<!-- Auto-generated Footer NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/RelativeTopicBuilder-6E4A91AF.html" class="navbar">Prev</a> |  <a href="/doc/InlineJSONWriter-94E2D15D.html" class="navbar">Next</a></p>
+<!-- Auto-generated copyright note --><p class='copyright'></p>
+   </body>
+</html>

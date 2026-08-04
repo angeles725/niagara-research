@@ -99,3 +99,6 @@ Decompiled Java sources live under `sources/decompiled/<jar-name>/`.
 | manuals/jsonToolkit-docs/RelativeSchemaConstruction-94DD3616.html | doc oficial Tridium (docJsonToolkit-doc) | organized/docJsonToolkit/.../doc/RelativeSchemaConstruction-94DD3616.html | 2026-08-04 | 4f141beb1d92 | B343 |
 | manuals/jsonToolkit-docs/Supervisors-Json-6DC9E60A.html | doc oficial Tridium (docJsonToolkit-doc) | organized/docJsonToolkit/.../doc/Supervisors-Json-6DC9E60A.html | 2026-08-04 | a3cce7a24899 | B343 |
 | manuals/jsonToolkit-docs/jsonToolkit-RelativeJsonSchema.html | doc oficial Tridium (docJsonToolkit-doc) | organized/docJsonToolkit/.../doc/jsonToolkit-RelativeJsonSchema.html | 2026-08-04 | b2f6783c0b91 | B343 |
+| manuals/jsonToolkit-docs/InlineJSONWriter-94E2D15D.html | doc oficial Tridium (docJsonToolkit-doc) | organized/docJsonToolkit/.../doc/InlineJSONWriter-94E2D15D.html | 2026-08-04 | 7fe2b7f1c284 | B344 |
+| manuals/jsonToolkit-docs/TypeOverrideExample-94E2114D.html | doc oficial Tridium (docJsonToolkit-doc) | organized/docJsonToolkit/.../doc/TypeOverrideExample-94E2114D.html | 2026-08-04 | 29f992cf5e09 | B344 |
+| manuals/jsonToolkit-docs/jsonToolkit-InlineJsonWriter.html | doc oficial Tridium (docJsonToolkit-doc) | organized/docJsonToolkit/.../doc/jsonToolkit-InlineJsonWriter.html | 2026-08-04 | ef58684bacdc | B344 |
