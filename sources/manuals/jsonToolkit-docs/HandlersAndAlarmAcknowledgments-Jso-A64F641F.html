@@ -1,0 +1,73 @@
+<!-- Htmldoc has been run -->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      
+      <title>Handlers and alarm acknowledgments</title>
+<!-- Auto-generated style sheet link --><link rel='StyleSheet' href='module://bajaui/doc/style.css' type='text/css' />
+<!-- Auto-generated js link for Activity Monitoring --><script type='text/javascript' src='module://web/rc/util/activityMonitor.js'></script>
+<script type='text/javascript'>window.addEventListener('load', activityMonitor.start);</script>
+   </head>
+   <body class=" x-bookmap-1-0" lang="en-US" id="mapelement_bookmap1">
+<!-- Auto-generated Header NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/ConfiguringTheApplicationDirectorTo-F4115CD1.html" class="navbar">Prev</a> |  <a href="/doc/SetpointHandlerAndWritingToPoints-A651B788.html" class="navbar">Next</a></p>
+
+      <div xmlns:ch="http://www.arbortext.com/namespace/chunker" class=" x-topic-19-0" id="HandlersAndAlarmAcknowledgments-Jso-A64F641F" lang="en-US">
+         <h2 class=" x-title-27-0 x-title-27-1 x-title-27-2" id="styler-id1.1.1.6.10.1" lang="en-US">Handlers and alarm acknowledgments</h2><span class=" x-titlealts-2-0"></span><div class=" x-shortdesc-2-0" lang="en-US">Message handlers are components designed to perform a specific task with the data routed and selected via the other inbound
+            components. Handlers make acknowledging alarms possible.
+         </div>
+         <div class=" x-prolog-1-0" lang="en-US">
+            <div class=" x-metadata-1-0" lang="en-US"><span class=" x-keywords-2-0" lang="en-US"><a class="indexterm" name="d26056e6160"></a><a class="indexterm" name="d26056e6162"></a></span></div>
+         </div>
+         <div class=" x-body-1-0" lang="en-US">
+            <p class=" x-p-13-0" lang="en-US">If an alarm exported from a station includes the UUID, an Alarm Uuid Ack Handler can pass back that unique id. The expected
+               format is shown below, where the array allows multiple alarms to be acknowledged at once.
+            </p><pre class=" x-codeblock-1-0 x-codeblock-1-1" lang="en-US">{
+  "user": "Maya",
+  "alarms": [ "5cf9c8b2-1542-42ba-a1fd-5f753c777bc0" ]
+}</pre><p class=" x-p-13-0" lang="en-US">The user value stored on the alarm record identifies which user acknowledged the alarm in the remote application. If the user
+               key is omitted the component still tries to acknowledge the alarms using the fallback name “AlarmUuidAckUser”.
+            </p>
+            <div class=" x-note-1-0 x-note-1-7" lang="en-US">&nbsp;<br class="empty"><b><span style="font-weight: bold; ">NOTE: </span></b>The Json Schema Service <code class=" x-parmname-2-0" lang="en-US">runAsUser</code> is a prerequisite for this handler to work. The specified user must have admin write permissions for the alarm class of the
+               records being acknowledged.<br class="empty">&nbsp;
+            </div>
+            <p class=" x-p-13-0" lang="en-US">Two alarm handler properties configure this task:</p>
+            <div lang="en-US">
+               <ul class=" x-ul-1-0">
+                  <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US"><code class=" x-parmname-2-0" lang="en-US">AckSource</code> is a string appended to every AlarmRecord acknowledged. Its purpose is to allow auditing in future and is stored as <code class=" x-parmname-2-0" lang="en-US">AckSource</code> in the alarm data.</span></li>
+                  <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US">AckResult is a topic that reports the results of the alarm acknowledgment. Its purpose is to log or post process activity.
+                        Here is an example of the output it reports:</span><p class=" x-p-8-0" lang="en-US"><span class=" x-systemoutput-1-0" lang="en-US">"Ack-ed alarm " + record</span></p>
+                     <p class=" x-p-8-0" lang="en-US"><span class=" x-systemoutput-1-0" lang="en-US">"Already ack-ed in alarmDb " + record</span></p>
+                     <p class=" x-p-8-0" lang="en-US"><span class=" x-systemoutput-1-0" lang="en-US">"Could not create BUuid from " + uuid</span></p>
+                  </li>
+               </ul>
+            </div>
+         </div>
+         <div class=" x-related-links-1-0">
+            <div class=" x--ufe-relatedlinks-display-1-0">
+               <div class=" x--ufe-relatedHierarchical-1-0 x--ufe-relatedHierarchical-1-1">
+                  <h3 class=" x--ufe-related-links-title-1-0" id="styler-idu1.1.1.6.10.6.1.1.1">Related Links</h3>
+                  <div class=" x--ufe-relatedChild-1-0"></div>
+                  <div class=" x--ufe-relatedParent-1-0">
+                     <li class=" x-link-2-0 x-link-2-1"><a href="InboundComponents-Json-71508AE4.html#InboundComponents-Json-71508AE4" title="Data coming into a station can be used to modify a setpoint or execute some other action. A handler processes imported JSON."><span class=" x-linktext-2-0 x-linktext-2-5" lang="en-US">Importing JSON (Parent Topic)</span></a></li>
+                  </div>
+               </div>
+               <div class=" x--ufe-relatedPrevious-1-0"></div>
+               <div class=" x--ufe-relatedNext-1-0"></div>
+               <div class=" x--ufe-relatedConcepts-1-0"></div>
+               <div class=" x--ufe-relatedTasks-1-0"></div>
+               <div class=" x--ufe-relatedReferences-1-0 x--ufe-relatedReferences-1-1">
+                  <h3 class=" x--ufe-related-links-title-1-0" id="styler-idu1.1.1.6.10.6.1.6.1">Related References</h3>
+                  <li class=" x-link-2-0 x-link-2-1"><a href="jsonToolkit-AlarmUuidAckHandler.html#jsonToolkit-AlarmUuidAckHandler" title="If the alarms exported from a station include a unique ID (UUID), this component passes back the UUID."><span class=" x-linktext-2-0 x-linktext-2-3" lang="en-US">AlarmUuidAckHandler (Alarm Uuid Ack Handler)</span></a></li>
+               </div>
+               <div class=" x--ufe-relatedTopics-1-0"></div>
+               <div class=" x--ufe-relatedOther-1-0"></div>
+               <div class=" x--ufe-relatedLinklists-1-0"></div>
+            </div>
+         </div>
+      </div>
+
+<!-- Auto-generated Footer NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/ConfiguringTheApplicationDirectorTo-F4115CD1.html" class="navbar">Prev</a> |  <a href="/doc/SetpointHandlerAndWritingToPoints-A651B788.html" class="navbar">Next</a></p>
+<!-- Auto-generated copyright note --><p class='copyright'></p>
+   </body>
+</html>

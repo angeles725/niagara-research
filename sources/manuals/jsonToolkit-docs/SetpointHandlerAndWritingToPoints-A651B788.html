@@ -1,0 +1,65 @@
+<!-- Htmldoc has been run -->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      
+      <title>Setpoint handler and writing to points</title>
+<!-- Auto-generated style sheet link --><link rel='StyleSheet' href='module://bajaui/doc/style.css' type='text/css' />
+<!-- Auto-generated js link for Activity Monitoring --><script type='text/javascript' src='module://web/rc/util/activityMonitor.js'></script>
+<script type='text/javascript'>window.addEventListener('load', activityMonitor.start);</script>
+   </head>
+   <body class=" x-bookmap-1-0" lang="en-US" id="mapelement_bookmap1">
+<!-- Auto-generated Header NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/HandlersAndAlarmAcknowledgments-Jso-A64F641F.html" class="navbar">Prev</a> |  <a href="/doc/ExportSetpointHandlerAndExportRegis-A663DE65.html" class="navbar">Next</a></p>
+
+      <div xmlns:ch="http://www.arbortext.com/namespace/chunker" class=" x-topic-19-0" id="SetpointHandlerAndWritingToPoints-A651B788" lang="en-US">
+         <h2 class=" x-title-27-0 x-title-27-1 x-title-27-2" id="styler-id1.1.1.6.11.1" lang="en-US">Setpoint handler and writing to points</h2><span class=" x-titlealts-2-0"></span><div class=" x-shortdesc-2-0" lang="en-US">The SetPointHandler sets incoming setpoint values to control writable control points.</div>
+         <div class=" x-prolog-1-0" lang="en-US">
+            <div class=" x-metadata-1-0" lang="en-US"><span class=" x-keywords-2-0" lang="en-US"><a class="indexterm" name="d26056e6269"></a></span></div>
+         </div>
+         <div class=" x-body-1-0" lang="en-US">
+            <p class=" x-p-13-0" lang="en-US">ID.</p>
+            <p class=" x-p-13-0" lang="en-US">This is an example of setpoint handler JSON:</p><pre class=" x-codeblock-1-0 x-codeblock-1-1" lang="en-US"> {
+   "%idKey%" : "x",
+   "%valueKey%" : y,
+   ("%slotNameKey%" : "slotName")
+ }</pre><p class=" x-p-13-0" lang="en-US">The Control Points are located by handle ord in the form: <code class=" x-codeph-1-0" lang="en-US">"%idKey%" : "323e"</code> or <code class=" x-codeph-1-0" lang="en-US">"%idKey%" : "h:323e"</code>.
+            </p>
+            <p class=" x-p-13-0" lang="en-US">These properties configure setpoint handlers:</p>
+            <div lang="en-US">
+               <ul class=" x-ul-1-0">
+                  <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US"><code class=" x-parmname-2-0" lang="en-US">idKey</code> is a top-level key in the JSON payload. It represents the point ID.</span></li>
+                  <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US"><code class=" x-parmname-2-0" lang="en-US">valueKey</code> is a top-level key in the JSON payload. It represents the value to set.</span></li>
+                  <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US"><code class=" x-parmname-2-0" lang="en-US">slotNameKey</code> is an optional top-level key in the JSON payload. It represents the slot name to write to.</span></li>
+                  <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US"><code class=" x-parmname-2-0" lang="en-US">defaultWriteSlot</code> defines which slot to write to by default if the payload does not specify a slot.</span></li>
+                  <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US"><code class=" x-parmname-2-0" lang="en-US">runAsUser</code> is a mandatory property for the setpoint handler to use.</span></li>
+               </ul>
+            </div>
+            <p class=" x-p-13-0" lang="en-US">The nested keys, <code class=" x-parmname-2-0" lang="en-US">override/duration</code> and <code class=" x-parmname-2-0" lang="en-US">status</code> are not currently supported.
+            </p>
+         </div>
+         <div class=" x-related-links-1-0">
+            <div class=" x--ufe-relatedlinks-display-1-0">
+               <div class=" x--ufe-relatedHierarchical-1-0 x--ufe-relatedHierarchical-1-1">
+                  <h3 class=" x--ufe-related-links-title-1-0" id="styler-idu1.1.1.6.11.6.1.1.1">Related Links</h3>
+                  <div class=" x--ufe-relatedChild-1-0"></div>
+                  <div class=" x--ufe-relatedParent-1-0">
+                     <li class=" x-link-2-0 x-link-2-1"><a href="InboundComponents-Json-71508AE4.html#InboundComponents-Json-71508AE4" title="Data coming into a station can be used to modify a setpoint or execute some other action. A handler processes imported JSON."><span class=" x-linktext-2-0 x-linktext-2-5" lang="en-US">Importing JSON (Parent Topic)</span></a></li>
+                  </div>
+               </div>
+               <div class=" x--ufe-relatedPrevious-1-0"></div>
+               <div class=" x--ufe-relatedNext-1-0"></div>
+               <div class=" x--ufe-relatedConcepts-1-0"></div>
+               <div class=" x--ufe-relatedTasks-1-0"></div>
+               <div class=" x--ufe-relatedReferences-1-0"></div>
+               <div class=" x--ufe-relatedTopics-1-0"></div>
+               <div class=" x--ufe-relatedOther-1-0"></div>
+               <div class=" x--ufe-relatedLinklists-1-0"></div>
+            </div>
+         </div>
+      </div>
+
+<!-- Auto-generated Footer NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/HandlersAndAlarmAcknowledgments-Jso-A64F641F.html" class="navbar">Prev</a> |  <a href="/doc/ExportSetpointHandlerAndExportRegis-A663DE65.html" class="navbar">Next</a></p>
+<!-- Auto-generated copyright note --><p class='copyright'></p>
+   </body>
+</html>
