@@ -25,11 +25,20 @@
 | niagara-network-supervisor | **planned (0/5)** | `RESEARCH-STATE-niagara-network-supervisor.md` | El eje supervisor↔subordinada. Nace de B266 §266.1: `exportTags` NO es tagging (0/28 clases lo importan), es un join por Fox. 5 gaps: N1 **el riesgo `BSubstitutePxView` wb-vs-rt** (NEXT), N2 `niagaraDriver`, N3 la guía oficial YA preservada, N4 seguridad del canal de join, N5 reproducir el fallo (**requires-execution**). Ya documentado y NO re-investigar: B266 (runtime del join) + B267 (UI + `BPxViewTag`) | (ninguno aún) |
 | px-tail | **planned (0/3)** | `RESEARCH-STATE-px-tail.md` | La COLA del subsistema PX: los 3 módulos con **0 entradas en CATALOG** tras cerrar los 5 focuses PX. Medido: `webEditors` **95** (NEXT — citado en 8 bloques, nunca abierto), `kitPxBuilding` **15** (la excepción con componentes Java tipados de B203), `galileoKitPx` **19** (kitPx de otro OEM) | (ninguno aún) |
 | tags | **stopped (10/10)** | `RESEARCH-STATE-tags.md` | El subsistema de TAGGING donde B21 solo pasó por arriba (B21 = espinazo para ~159 clases; B82 ya cubrió los 29 OEM). 9 gaps: T1 API pública, T2 motor del diccionario, T3 **RELACIONES** (nunca abierto), T4 condiciones+neqlize (tag→query), T5 haystack completo, T6/T7 exportTags rt+UI, T8 UI/UX, T9 **200 archivos de doc oficial Tridium** (primera vez que el corpus usa `[CERT-doc]` de esta fuente) | B260–B270 |
+| **email** | **active (0/10)** | `RESEARCH-STATE-email.md` | El módulo `email` como SUBSISTEMA de servicio: el motor SMTP que ENVÍA (`BEmailService` + `BOutgoingAccount` + sesión JavaMail `MailPlatformHandlerSe`), gate de licencia `tridium/email`, dependencia runtime JavaMail, inbound POP3/IMAP + `BEmailAlarmAcknowledger` (ack por reply-to UUID), OAuth2/XOAUTH2, security dashboard, capas wb/ux. 61 clases (rt 43 · ux 11 · wb 7). **NO reabre alarmas**: `BEmailRecipient` (alarma→correo) ya está en [B34] §34.6.5 (REMITTANCE); este focus es el SERVICIO que el corpus nunca abrió. Audit-first 2026-08-04 | B324– |
 | px-chart-classic | **stopped (8/8)** | `RESEARCH-STATE-px-chart-classic.md` | El sistema de charting **CLÁSICO** (`javax.baja.chart`, módulo `chart` Swing/Workbench) — el feed que px-editor-core y B201 declararon "otro focus". 67 clases distintas medidas (rt 5 / wb 62; API pública 35+9). 8 gaps: H1 modelo+jerarquía, H2 ejes/render, H3 binding a histories, H4 consumidores + §14 vs B199/B201, H5 impl `com.tridium.chart`, H6 PDF+HX, H7 tests, H8 split rt/wb. Pregunta transversal: por qué N4 arrastra DOS sistemas de charting | B251–B259 |
 
 ## Focus activo
 
-**(ninguno activo)** — `modbus` CERRADO 22/22 el 2026-07-30 (B294-B314 + síntesis B315).
+**email** (el servicio que ENVÍA, no el recipient) — BOOTSTRAPEADO 2026-08-04 a pedido del usuario.
+El módulo `email` de N4 como subsistema de servicio: 61 clases (rt 43 · ux 11 · wb 7), audit-first 10 gaps.
+El corpus ya tiene `BEmailRecipient` (alarma→correo) en [B34] §34.6.5; este focus cubre lo que falta:
+`BEmailService` + gate de licencia `tridium/email` + dependencia JavaMail (E1, NEXT), el pipeline de envío
+SMTP con cola/rate-limit (E2), la sesión TLS `MailPlatformHandlerSe` (E3), inbound POP3/IMAP + ack por
+reply-to (E4), OAuth2/XOAUTH2 (E5), security dashboard (E6), account base (E7), y las capas wb/ux (E8-E10).
+Ver `RESEARCH-STATE-email.md`. Próximo bloque: **B324**.
+
+**(previo)** — `modbus` CERRADO 22/22 el 2026-07-30 (B294-B314 + síntesis B315).
 
 **modbus** (el DRIVER, no el cable) — CERRADO 2026-07-30, 22 bloques B294-B315. Siete hilos (B315):
 (1) **el cliente se configura, el servidor se vigila** — 6 vs 3 ProxyExt (un esclavo Niagara no puede exponer
