@@ -102,3 +102,7 @@ Decompiled Java sources live under `sources/decompiled/<jar-name>/`.
 | manuals/jsonToolkit-docs/InlineJSONWriter-94E2D15D.html | doc oficial Tridium (docJsonToolkit-doc) | organized/docJsonToolkit/.../doc/InlineJSONWriter-94E2D15D.html | 2026-08-04 | 7fe2b7f1c284 | B344 |
 | manuals/jsonToolkit-docs/TypeOverrideExample-94E2114D.html | doc oficial Tridium (docJsonToolkit-doc) | organized/docJsonToolkit/.../doc/TypeOverrideExample-94E2114D.html | 2026-08-04 | 29f992cf5e09 | B344 |
 | manuals/jsonToolkit-docs/jsonToolkit-InlineJsonWriter.html | doc oficial Tridium (docJsonToolkit-doc) | organized/docJsonToolkit/.../doc/jsonToolkit-InlineJsonWriter.html | 2026-08-04 | ef58684bacdc | B344 |
+| manuals/jsonToolkit-docs/AlarmsJson-A4617E57.html | doc oficial Tridium (docJsonToolkit-doc) | organized/docJsonToolkit/.../doc/AlarmsJson-A4617E57.html | 2026-08-04 | 9b8f8e8f3096 | B345 |
+| manuals/jsonToolkit-docs/SettingUpAnAlarm-Json-6EB38683.html | doc oficial Tridium (docJsonToolkit-doc) | organized/docJsonToolkit/.../doc/SettingUpAnAlarm-Json-6EB38683.html | 2026-08-04 | e5cf1c145ebe | B345 |
+| manuals/jsonToolkit-docs/jsonToolkit-JsonAlarmRecipient.html | doc oficial Tridium (docJsonToolkit-doc) | organized/docJsonToolkit/.../doc/jsonToolkit-JsonAlarmRecipient.html | 2026-08-04 | 07e0fec179c5 | B345 |
+| manuals/jsonToolkit-docs/jsonToolkit-JsonSchemaAlarmRecordProperty.html | doc oficial Tridium (docJsonToolkit-doc) | organized/docJsonToolkit/.../doc/jsonToolkit-JsonSchemaAlarmRecordProperty.html | 2026-08-04 | c74a9f07c170 | B345 |

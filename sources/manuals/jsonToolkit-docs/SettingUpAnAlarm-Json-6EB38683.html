@@ -1,0 +1,74 @@
+<!-- Htmldoc has been run -->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="keywords" content="Niagara" scheme="atiChunkerMeta">
+      <title>Exporting alarm records to the JsonAlarmRecipient</title>
+<!-- Auto-generated style sheet link --><link rel='StyleSheet' href='module://bajaui/doc/style.css' type='text/css' />
+<!-- Auto-generated js link for Activity Monitoring --><script type='text/javascript' src='module://web/rc/util/activityMonitor.js'></script>
+<script type='text/javascript'>window.addEventListener('load', activityMonitor.start);</script>
+   </head>
+   <body class=" x-bookmap-1-0" lang="en-US" id="mapelement_bookmap1">
+<!-- Auto-generated Header NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/AlarmsJson-A4617E57.html" class="navbar">Prev</a> |  <a href="/doc/ExportingJsonOutput-6EADCB50.html" class="navbar">Next</a></p>
+
+      <div xmlns:ch="http://www.arbortext.com/namespace/chunker" class=" x-topic-16-0" id="SettingUpAnAlarm-Json-6EB38683" lang="en-US">
+         <h2 class=" x-title-22-0 x-title-22-1 x-title-22-2 x-title-22-3" id="styler-id1.1.1.5.14.7.1" lang="en-US">Exporting alarm records to the JsonAlarmRecipient</h2><span class=" x-titlealts-2-0"></span><div class=" x-shortdesc-2-0" lang="en-US">This component comes with a nested schema whose payload output depends on the alarms passed through from the parent recipient.</div>
+         <div class=" x-prolog-1-0" lang="en-US">
+            <div class=" x-metadata-1-0" lang="en-US"><span class=" x-keywords-2-0" lang="en-US"><a class="indexterm" name="d26056e4816"></a><a class="indexterm" name="d26056e4820"></a></span></div>
+         </div>
+         <div class=" x-body-1-0" lang="en-US">
+            <div class=" x-context-1-0" lang="en-US">You may include queries, bound objects or arrays, and properties to return a station’s present value data in the payload.
+               You may also include some specific alarm data types, notably the properties from the alarm record: BAlarmRecord.
+               <div class=" x--ufe-ContextGentextKeeps-1-0"><br class="empty"><span style="font-weight: bold; ">Perform the following steps:</span></div>
+            </div>
+            <div lang="en-US">
+               <ol class=" x-ol-1-0">
+                  <li class=" x--inherit-background-color x-step-7-0 x--zero-text-indent" lang="en-US"><span class=" x-cmd-1-0" lang="en-US">Drag the JsonAlarmRecipient to the <span class=" x-wintitle-2-0" lang="en-US">Wire Sheet</span>.</span></li>
+                  <li class=" x--inherit-background-color x-step-7-0 x--zero-text-indent" lang="en-US"><span class=" x-cmd-1-0" lang="en-US">Connect the Alarm Class to the Route Alarm action on the recipient.</span><div class=" x-itemgroup-1-0" lang="en-US"><div class=" x-image-2-0 x-image-2-9" lang="en-US"><img alt="Image" height="64" src="graphics/xwc4062887453083237169.png"  width="261"></div><p class=" x-p-13-0" lang="en-US">Linking the alarm class to the route action of a <span class=" x-apiname-2-0" lang="en-US">JsonAlarmRecipient</span> component triggers the generation of a new JSON payload each time the recipient receives an alarm from the alarm class.
+                        </p>
+                     </div>
+                  </li>
+                  <li class=" x--inherit-background-color x-step-7-0 x--zero-text-indent" lang="en-US"><span class=" x-cmd-1-0" lang="en-US">Add an <span class=" x-apiname-2-0" lang="en-US">AlarmRecordProperty</span> component to the schema and select one or more properties.</span><div class=" x-itemgroup-1-0" lang="en-US"><div class=" x-image-2-0 x-image-2-9" lang="en-US"><img alt="Image" height="485" src="graphics/xwc8563808566935723241.png"  width="404"></div><p class=" x-p-13-0" lang="en-US">Each property you add to the schema can include selected alarm data in the output, such as the sourceState, uuid, alarmClass
+                           etc. As with other JSON schema properties, you can rename the property; for example “AlarmRecordProperty” can be renamed to
+                           “current value”, as shown above.
+                        </p>
+                     </div>
+                  </li>
+                  <li class=" x--inherit-background-color x-step-7-0 x--zero-text-indent" lang="en-US"><span class=" x-cmd-1-0" lang="en-US">To filter out unwanted alarms before sending data to the alarm recipient, add the <span class=" x-apiname-2-0" lang="en-US">AlarmExportMarkerFilter</span> to the <span class=" x-wintitle-2-0" lang="en-US">Wire Sheet</span> and connect it as shown below.</span><div class=" x-itemgroup-1-0" lang="en-US"><div class=" x-image-2-0 x-image-2-9" lang="en-US"><img alt="Image" height="80" src="graphics/xwc1877608664421744848.png"  width="458"></div><p class=" x-p-13-0" lang="en-US">Normal filtering occurs on alarms passed from the alarm class to the recipient as the station generates the alarms. <div class=" x-image-2-0 x-image-2-9" lang="en-US"><img alt="Image" height="122" src="graphics/xwc5959100027544563595.png"  width="266"></div>The <code class=" x-parmname-2-0" lang="en-US">Send Since</code> action queries the alarm database and passes existing records to the filter (including the supplied timestamp). The system
+                           checks the records for a suitable ExportMarker, and passes them to the receiving JsonSchema to create a new record for each
+                           alarm. Since the timestamp is in the past, the filter should be able to identify when its mode was active.
+                        </p>
+                        <div class=" x-note-1-0 x-note-1-7" lang="en-US">&nbsp;<br class="empty"><b><span style="font-weight: bold; ">NOTE: </span></b><span class=" x-p-9-0" lang="en-US">To prevent accidental data deluge, <code class=" x-parmname-2-0" lang="en-US">Send Since</code> does not function if the filter’s <code class=" x-parmname-2-0" lang="en-US">Mode</code> is set to <code class=" x-option-2-0" lang="en-US">Pass All</code>. You could use a bql query on the alarm database if this is a requirement.</span><br class="empty">&nbsp;
+                        </div>
+                     </div>
+                  </li>
+               </ol>
+            </div>
+         </div>
+         <div class=" x-related-links-1-0">
+            <div class=" x--ufe-relatedlinks-display-1-0">
+               <div class=" x--ufe-relatedHierarchical-1-0 x--ufe-relatedHierarchical-1-1">
+                  <h3 class=" x--ufe-related-links-title-1-0" id="styler-idu1.1.1.5.14.7.6.1.1.1">Related Links</h3>
+                  <div class=" x--ufe-relatedChild-1-0"></div>
+                  <div class=" x--ufe-relatedParent-1-0">
+                     <li class=" x-link-2-0 x-link-2-1"><a href="AlarmsJson-A4617E57.html#AlarmsJson-A4617E57" title="The JsonAlarmRecipient exports alarms using the recipient’s schema."><span class=" x-linktext-2-0 x-linktext-2-5" lang="en-US">Alarms (Parent Topic)</span></a></li>
+                  </div>
+               </div>
+               <div class=" x--ufe-relatedPrevious-1-0"></div>
+               <div class=" x--ufe-relatedNext-1-0"></div>
+               <div class=" x--ufe-relatedConcepts-1-0"></div>
+               <div class=" x--ufe-relatedTasks-1-0"></div>
+               <div class=" x--ufe-relatedReferences-1-0"></div>
+               <div class=" x--ufe-relatedTopics-1-0"></div>
+               <div class=" x--ufe-relatedOther-1-0"></div>
+               <div class=" x--ufe-relatedLinklists-1-0"></div>
+            </div>
+         </div>
+      </div>
+
+<!-- Auto-generated Footer NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/AlarmsJson-A4617E57.html" class="navbar">Prev</a> |  <a href="/doc/ExportingJsonOutput-6EADCB50.html" class="navbar">Next</a></p>
+<!-- Auto-generated copyright note --><p class='copyright'></p>
+   </body>
+</html>

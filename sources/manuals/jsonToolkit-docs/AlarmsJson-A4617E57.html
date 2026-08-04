@@ -1,0 +1,82 @@
+<!-- Htmldoc has been run -->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="keywords" content="Niagara" scheme="atiChunkerMeta">
+      <title>Alarms</title>
+<!-- Auto-generated style sheet link --><link rel='StyleSheet' href='module://bajaui/doc/style.css' type='text/css' />
+<!-- Auto-generated js link for Activity Monitoring --><script type='text/javascript' src='module://web/rc/util/activityMonitor.js'></script>
+<script type='text/javascript'>window.addEventListener('load', activityMonitor.start);</script>
+   </head>
+   <body class=" x-bookmap-1-0" lang="en-US" id="mapelement_bookmap1">
+<!-- Auto-generated Header NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/SettingUpQueriesJson-9A09D8D2.html" class="navbar">Prev</a> |  <a href="/doc/SettingUpAnAlarm-Json-6EB38683.html" class="navbar">Next</a></p>
+
+      <div xmlns:ch="http://www.arbortext.com/namespace/chunker" class=" x-topic-19-0" id="AlarmsJson-A4617E57" lang="en-US">
+         <h2 class=" x-title-27-0 x-title-27-1 x-title-27-2" id="styler-id1.1.1.5.14.1" lang="en-US">Alarms</h2><span class=" x-titlealts-2-0"></span><div class=" x-shortdesc-2-0" lang="en-US">The <span class=" x-apiname-2-0" lang="en-US">JsonAlarmRecipient</span> exports alarms using the recipient’s schema.
+         </div>
+         <div class=" x-prolog-1-0" lang="en-US">
+            <div class=" x-metadata-1-0" lang="en-US"><span class=" x-keywords-2-0" lang="en-US"><a class="indexterm" name="d26056e4597"></a></span></div>
+         </div>
+         <div class=" x-body-1-0" lang="en-US">
+            <div class=" x-section-1-0" id="styler-id1.1.1.5.14.5.1" lang="en-US">
+               <h3 class=" x-title-45-0" id="styler-id1.1.1.5.14.5.1.1" lang="en-US">AlarmRecipient</h3>
+               <p class=" x-p-13-0" lang="en-US">Linking the alarm topic of an alarm class into the route action of a <span class=" x-apiname-2-0" lang="en-US">JsonAlarmRecipient</span> triggers the generation of a new payload each time the alarm class receives an alarm.
+               </p>
+               <p class=" x-p-13-0" lang="en-US">The <span class=" x-apiname-2-0" lang="en-US">JsonAlarmRecipient</span> comes with a nested schema whose payload output depends on the alarms passed through from the parent recipient.
+               </p>
+               <p class=" x-p-13-0" lang="en-US">Queries, bound objects and arrays, and/or properties can include present value data from the station in the payload.</p>
+               <p class=" x-p-13-0" lang="en-US">There are, however, some alarm-specific data types you can include, notably the properties from a <span class=" x-keyword-2-0" lang="en-US">
+                     <ch:meta content="Niagara" name="keywords"></ch:meta><span style="white-space: nowrap;">Niagara</span></span> Alarm Record: BAlarmRecord
+               </p>
+               <p class=" x-p-13-0" lang="en-US">By including the unique identifier in an outgoing message, an inbound payload can acknowledge alarms.</p>
+            </div>
+            <div class=" x-section-1-0" id="styler-id1.1.1.5.14.5.2" lang="en-US">
+               <h3 class=" x-title-45-0" id="styler-id1.1.1.5.14.5.2.1" lang="en-US">Alarm Record Property</h3>
+               <p class=" x-p-13-0" lang="en-US">Only the <span class=" x-apiname-2-0" lang="en-US">JsonAlarmRecipient</span>’s schema supports these alarm-related properties. Adding each of these to the schema allows inclusion of the selected alarm
+                  property in the output.
+               </p>
+               <p class=" x-p-13-0" lang="en-US">For example, the <code class=" x-parmname-2-0" lang="en-US">sourceState</code>, <code class=" x-parmname-2-0" lang="en-US">uuid</code>, alarmClass etc. As with other schema properties the name is determined by renaming the property, for example <code class=" x-parmname-2-0" lang="en-US"></code><code class=" x-parmname-2-0" lang="en-US">AlarmRecordProperty</code> becomes <code class=" x-parmname-2-0" lang="en-US">timestamp</code>.
+               </p>
+            </div>
+            <div class=" x-section-1-0" id="styler-id1.1.1.5.14.5.3" lang="en-US">
+               <h3 class=" x-title-45-0" id="styler-id1.1.1.5.14.5.3.1" lang="en-US">BFormat Property</h3>
+               <p class=" x-p-13-0" lang="en-US">This property defines the alarm data to be extracted from the <span class=" x-keyword-2-0" lang="en-US">
+                     <ch:meta content="Niagara" name="keywords"></ch:meta><span style="white-space: nowrap;">Niagara</span></span> alarm database. For example, if an engineer used the <span class=" x-apiname-2-0" lang="en-US">Metadata</span> property of an AlarmExt to record the location of a point in the building, this could be fetched using alarmData.location
+                  to include in the payload.
+               </p>
+            </div>
+         </div>
+         <div class=" x-related-links-1-0">
+            <div class=" x--ufe-relatedlinks-display-1-0">
+               <div class=" x--ufe-relatedHierarchical-1-0 x--ufe-relatedHierarchical-1-1">
+                  <h3 class=" x--ufe-related-links-title-1-0" id="styler-idu1.1.1.5.14.6.1.1.1">Related Links</h3>
+                  <div class=" x--ufe-relatedChild-1-0">
+                     <li class=" x-link-2-0 x-link-2-1"><a href="SettingUpAnAlarm-Json-6EB38683.html#SettingUpAnAlarm-Json-6EB38683" title="This component comes with a nested schema whose payload output depends on the alarms passed through from the parent recipient."><span class=" x-linktext-2-0" lang="en-US">Exporting alarm records to the JsonAlarmRecipient</span></a></li>
+                  </div>
+                  <div class=" x--ufe-relatedParent-1-0">
+                     <li class=" x-link-2-0 x-link-2-1"><a href="Exporting-Json-715BF8A7.html#Exporting-Json-715BF8A7" title="Adding a JsonSchema component to your station allows for the construction of a JSON payload to suit the requirements of your particular application."><span class=" x-linktext-2-0 x-linktext-2-5" lang="en-US">Exporting with a JSON schema (Parent Topic)</span></a></li>
+                  </div>
+               </div>
+               <div class=" x--ufe-relatedPrevious-1-0"></div>
+               <div class=" x--ufe-relatedNext-1-0"></div>
+               <div class=" x--ufe-relatedConcepts-1-0"></div>
+               <div class=" x--ufe-relatedTasks-1-0"></div>
+               <div class=" x--ufe-relatedReferences-1-0 x--ufe-relatedReferences-1-1">
+                  <h3 class=" x--ufe-related-links-title-1-0" id="styler-idu1.1.1.5.14.6.1.6.1">Related References</h3>
+                  <li class=" x-link-2-0 x-link-2-1"><a href="jsonToolkit-JsonAlarmRecipient.html#jsonToolkit-JsonAlarmRecipient" title="This component configures the recipient of JSON alarm output."><span class=" x-linktext-2-0 x-linktext-2-3" lang="en-US">JsonAlarmRecipient (Json Alarm Recipient)</span></a></li>
+                  <li class=" x-link-2-0 x-link-2-1"><a href="jsonToolkit-JsonSchemaAlarmRecordProperty.html#jsonToolkit-JsonSchemaAlarmRecordProperty" title="These properties are only supported on the JsonAlarmRecipients Schema."><span class=" x-linktext-2-0 x-linktext-2-3" lang="en-US">AlarmRecordProperty (Json Schema Alarm Record Property)</span></a></li>
+                  <li class=" x-link-2-0 x-link-2-1"><a href="jsonToolkit-BFormatString.html#jsonToolkit-BFormatString" title="This property defines alarm data to extract from the keywordsNiagaraNiagara alarm database. For example, if an engineer uses the Metadata property of an AlarmExt to record the location of a point in a building, alarmData.location could fetch this information and include it in the payload."><span class=" x-linktext-2-0 x-linktext-2-3" lang="en-US">BFormatProperty (B Format String)</span></a></li>
+               </div>
+               <div class=" x--ufe-relatedTopics-1-0"></div>
+               <div class=" x--ufe-relatedOther-1-0"></div>
+               <div class=" x--ufe-relatedLinklists-1-0"></div>
+            </div>
+         </div>
+      </div>
+
+<!-- Auto-generated Footer NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/SettingUpQueriesJson-9A09D8D2.html" class="navbar">Prev</a> |  <a href="/doc/SettingUpAnAlarm-Json-6EB38683.html" class="navbar">Next</a></p>
+<!-- Auto-generated copyright note --><p class='copyright'></p>
+   </body>
+</html>
