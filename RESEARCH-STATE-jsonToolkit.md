@@ -1,4 +1,4 @@
-# RESEARCH-STATE — focus: jsonToolkit (ACTIVE 2/14)
+# RESEARCH-STATE — focus: jsonToolkit (ACTIVE 3/14)
 
 > Multi-focus corpus (METHODOLOGY §16). Focus **BOOTSTRAPEADO 2026-08-04** a pedido explícito del usuario
 > ("documentar también el módulo JSONTOOLKIT"), inmediatamente tras cerrar el focus `email` (B324-B334).
@@ -20,10 +20,10 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 331
-gaps_closed: 2
+covered_blocks: 332
+gaps_closed: 3
 known_gaps: 14
-investigable_open: 12
+investigable_open: 11
 requires_execution_open: 0
 blocked_open: 0
 deferred_open: 0
@@ -33,7 +33,7 @@ undocumented_findings: 0
 focus: jsonToolkit
 status: active
 bootstrapped_on: 2026-08-04
-block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libre: B337)
+block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libre: B338)
 
 ## Pre-flight e2 — existencia + tamaño MEDIDO
 
@@ -62,9 +62,9 @@ program, query, schedule, serial.
 
 ## Coverage
 
-- **Covered blocks**: 331 (corpus-wide, shared-global)
-- **Coverage metric**: 2 / 14 closed
-- **Last iteration**: 2026-08-04 — J2 closed (outbound schema model, B336)
+- **Covered blocks**: 332 (corpus-wide, shared-global)
+- **Coverage metric**: 3 / 14 closed
+- **Last iteration**: 2026-08-04 — J3 closed (subscription→output pipeline, B337)
 
 ## Gap-backlog (prioritized)
 
@@ -72,7 +72,7 @@ program, query, schedule, serial.
 |---|---|---|---|
 | high | J1 BJsonSchemaService — entrada, gate de licencia tridium/jsonToolkit (DR-JSON), SMA, threadpool, ciclo de vida | decompiled-java + doc | closed (B335) |
 | high | J2 outbound schema model — BJsonSchema/Member/BoundMember/BoundSlotsContainer, seleccion de slots | decompiled-java + doc | closed (B336) |
-| high | J3 subscription→output pipeline — COV event → JSON serializado, DONDE se escribe la salida (nucleo del valor) | decompiled-java + doc | pending |
+| high | J3 subscription→output pipeline — COV event → JSON serializado, DONDE se escribe la salida (nucleo del valor) | decompiled-java + doc | closed (B337) |
 | high | J4 outbound query — QueryRunner, dialecto BQL/history, timeout/bloqueo del engine thread | decompiled-java + doc | pending |
 | high | J5 exporter/transport — BJsonExporter: como sale el JSON de la station (HTTP/file/fox) | decompiled-java + doc | pending |
 | high | J6 inbound core + selectores — BJsonInbound, BJsonPath/selectores (JSONPath), routing (demux) | decompiled-java + doc | pending |
@@ -92,6 +92,7 @@ program, query, schedule, serial.
 | — | 2026-08-04 | (bootstrap — audit-first) | — | yes · sonnet (audit sweep) | 14 seeded |
 | 1 | 2026-08-04 | J1 BJsonSchemaService | B335 | no · inline (constraint: 2 load-bearing license/service files) | 0 |
 | 2 | 2026-08-04 | J2 outbound schema model | B336 | yes · sonnet (code+doc sweep) | 0 |
+| 3 | 2026-08-04 | J3 subscription→output pipeline | B337 | yes · sonnet (code+doc sweep) + driver re-read | 0 |
 
 ## Blocked gaps (each tagged with what it needs)
 
@@ -99,7 +100,7 @@ program, query, schedule, serial.
 
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 12   ← el loop ESTÁTICO para cuando esto llega a 0
+- **Open gaps — read-only investigable**: 11   ← el loop ESTÁTICO para cuando esto llega a 0
 - **Open gaps — requires-execution**: 0
 - **Open gaps — blocked**: 0
 - Consecutive iterations with empty backlog (secondary): 0/2

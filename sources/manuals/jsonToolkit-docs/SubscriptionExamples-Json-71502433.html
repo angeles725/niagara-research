@@ -1,0 +1,172 @@
+<!-- Htmldoc has been run -->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      
+      <title>Subscription examples with bajascript</title>
+<!-- Auto-generated style sheet link --><link rel='StyleSheet' href='module://bajaui/doc/style.css' type='text/css' />
+<!-- Auto-generated js link for Activity Monitoring --><script type='text/javascript' src='module://web/rc/util/activityMonitor.js'></script>
+<script type='text/javascript'>window.addEventListener('load', activityMonitor.start);</script>
+   </head>
+   <body class=" x-bookmap-1-0" lang="en-US" id="mapelement_bookmap1">
+<!-- Auto-generated Header NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/BuildingAChartWithApacheVelocity-Js-714AE072.html" class="navbar">Prev</a> |  <a href="/doc/InboundComponents-Json-715A7D3D.html" class="navbar">Next</a></p>
+
+      <div xmlns:ch="http://www.arbortext.com/namespace/chunker" class=" x-topic-19-0" id="SubscriptionExamples-Json-71502433" lang="en-US">
+         <h2 class=" x-title-27-0 x-title-27-1 x-title-27-2" id="styler-id1.1.1.7.16.1" lang="en-US">Subscription examples with bajascript</h2><span class=" x-titlealts-2-0"></span><div class=" x-shortdesc-2-0" lang="en-US">Whilst Velocity is a very convenient means to inject data into an html document, one of many benefits of using bajascript
+            in your application is support for subscriptions, which update the graphic as data change.
+         </div>
+         <div class=" x-prolog-1-0" lang="en-US">
+            <div class=" x-metadata-1-0" lang="en-US"><span class=" x-keywords-2-0" lang="en-US"><a class="indexterm" name="d26056e7725"></a></span></div>
+         </div>
+         <div class=" x-body-1-0" lang="en-US">
+            <p class=" x-p-13-0" lang="en-US">Of course, you could build this schema output in bajascript by executing queries or by directly subscribing to the components
+               required, but a jsonSchema may reduce some of the work needed in JavaScript, allowing subscription only to the output slot,
+               which can fetch the required data from the station.
+            </p>
+            <div class=" x-section-1-0" id="styler-id1.1.1.7.16.5.2.1" lang="en-US">
+               <h3 class=" x-title-45-0" id="styler-id1.1.1.7.16.5.2.1.1" lang="en-US">Example html file for showing Chart.js</h3><pre class=" x-codeblock-1-0 x-codeblock-1-1" lang="en-US">&lt;!DOCTYPE html
+&lt;!-- @noSnoop --
+&lt;html
+&lt;head
+  &lt;titleHTML Page&lt;/title&gt;
+
+  &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"&gt;
+  &lt;/script&gt;
+
+  &lt;script type='text/javascript' src='/requirejs/config.js'&gt;&lt;/script&gt;
+  &lt;script type='text/javascript' src='/module/js/com/tridium/js/ext/require/require.min
+  .js?'&gt;&lt;/script&gt;
+
+  &lt;!-- note the special syntax for downloading JS file from the 'bajascript' folder 
+  you add in your station --&gt; 
+  &lt;script type='text/javascript' src='/ord/file:%5Ebajascript/basic.js%7Cview:web
+  :FileDownloadView'&gt;&lt;/script&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;canvas class="my-4 w-100" id="myChart" width="800" height="450"&gt;&lt;/canvas&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</pre></div>
+            <div class=" x-section-1-0" id="styler-id1.1.1.7.16.5.2.2" lang="en-US">
+               <h3 class=" x-title-45-0" id="styler-id1.1.1.7.16.5.2.2.1" lang="en-US">Example basic.js file to fetch chart data</h3>
+               <p class=" x-p-13-0" lang="en-US">The data array in the payload below uses bound properties. A single-column query would allow historical data to be used instead
+                  from a bql query on the history database.
+               </p><pre class=" x-codeblock-1-0 x-codeblock-1-1" lang="en-US">// Subscribe to a Ramp. When it changes, print out the results.
+require(['baja!'], function (baja) {
+    "use strict"
+
+    // A Subscriber is used to listen to Component events in Niagara.
+    var sub = new baja.Subscriber()
+
+    var update = function () {
+
+      // Graphs
+      var ctx = $('#myChart')
+
+      var newJson = JSON.parse(this.getOutput())
+
+      var myChart = new Chart(ctx, newJson)
+    }
+
+    // Attach this function to listen for changed events.
+    sub.attach('changed', update)
+
+    // Resolve the ORD to the Ramp and update the text.
+    baja.Ord.make('station:|slot:/ChartsJS/JsonSchema').get({ok: update, subscriber: sub})
+    })</pre></div>
+            <div class=" x-section-1-0" id="styler-id1.1.1.7.16.5.2.3" lang="en-US">
+               <h3 class=" x-title-45-0" id="styler-id1.1.1.7.16.5.2.3.1" lang="en-US">Example schema output for chart</h3><pre class=" x-codeblock-1-0 x-codeblock-1-1" lang="en-US">{
+  "type": "line",
+  "data": {
+    "labels": [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday"
+    ],
+    "datasets": [
+      {
+        "data": [
+          202,
+          240,
+          202,
+          3,
+          150
+        ],
+        "backgroundColor": "transparent",
+        "borderColor": "#007bff",
+        "borderWidth": 3,
+        "lineTension": 0
+      },
+      {
+        "data": [
+          3,
+          202,
+          150,
+          202,
+          240
+        ],
+        "backgroundColor": "transparent",
+        "borderColor": "#ff0033",
+        "borderWidth": 3,
+        "lineTension": 0
+      }
+    ]
+  },
+  "options": {
+    "scales": {
+      "yAxes": [
+        {
+          "ticks": {
+            "beginAtZero": false
+          }
+        }
+      ]
+    },
+    "legend": {
+      "display": false
+    },
+    "title": {
+      "display": true,
+      "text": "Philips Hue Light Demo"
+    },
+    "tooltips": {
+      "intersect": true,
+      "mode": "index"
+    },
+    "hover": {
+      "intersect": true,
+      "mode": "nearest"
+    }
+  }
+}</pre></div>
+         </div>
+         <div class=" x-related-links-1-0">
+            <div class=" x--ufe-relatedlinks-display-1-0">
+               <div class=" x--ufe-relatedHierarchical-1-0 x--ufe-relatedHierarchical-1-1">
+                  <h3 class=" x--ufe-related-links-title-1-0" id="styler-idu1.1.1.7.16.6.1.1.1">Related Links</h3>
+                  <div class=" x--ufe-relatedChild-1-0"></div>
+                  <div class=" x--ufe-relatedParent-1-0">
+                     <li class=" x-link-2-0 x-link-2-1"><a href="DeveloperGuide-Json.html#DeveloperGuide-Json" title="Developers can use JSON to create complex queries and apps. They can extend the Toolkit by creating their own query styles."><span class=" x-linktext-2-0 x-linktext-2-5" lang="en-US">Developer guide (Parent Topic)</span></a></li>
+                  </div>
+               </div>
+               <div class=" x--ufe-relatedPrevious-1-0"></div>
+               <div class=" x--ufe-relatedNext-1-0"></div>
+               <div class=" x--ufe-relatedConcepts-1-0"></div>
+               <div class=" x--ufe-relatedTasks-1-0"></div>
+               <div class=" x--ufe-relatedReferences-1-0"></div>
+               <div class=" x--ufe-relatedTopics-1-0"></div>
+               <div class=" x--ufe-relatedOther-1-0"></div>
+               <div class=" x--ufe-relatedLinklists-1-0"></div>
+            </div>
+         </div>
+      </div>
+
+<!-- Auto-generated Footer NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/BuildingAChartWithApacheVelocity-Js-714AE072.html" class="navbar">Prev</a> |  <a href="/doc/InboundComponents-Json-715A7D3D.html" class="navbar">Next</a></p>
+<!-- Auto-generated copyright note --><p class='copyright'></p>
+   </body>
+</html>

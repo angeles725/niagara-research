@@ -1,0 +1,66 @@
+<!-- Htmldoc has been run -->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="keywords" content="Niagara" scheme="atiChunkerMeta">
+      <title>Tuning policy</title>
+<!-- Auto-generated style sheet link --><link rel='StyleSheet' href='module://bajaui/doc/style.css' type='text/css' />
+<!-- Auto-generated js link for Activity Monitoring --><script type='text/javascript' src='module://web/rc/util/activityMonitor.js'></script>
+<script type='text/javascript'>window.addEventListener('load', activityMonitor.start);</script>
+   </head>
+   <body class=" x-bookmap-1-0" lang="en-US" id="mapelement_bookmap1">
+<!-- Auto-generated Header NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/ConfigFolderJson.html" class="navbar">Prev</a> |  <a href="/doc/HistoryReports-Entsec-20FBEC36.html" class="navbar">Next</a></p>
+
+      <div xmlns:ch="http://www.arbortext.com/namespace/chunker" class=" x-topic-19-0" id="SchemaTuningPolicy-json" lang="en-US">
+         <h2 class=" x-title-27-0 x-title-27-1 x-title-27-2" id="styler-id1.1.1.5.8.1" lang="en-US">Tuning policy</h2><span class=" x-titlealts-2-0"></span><div class=" x-shortdesc-2-0" lang="en-US">Most tuning policies properties are explained by the <span class=" x-cite-1-0" lang="en-US"><span class=" x-ph-1-0" lang="en-US">Niagara Drivers Guide</span></span>.
+         </div>
+         <div class=" x-prolog-1-0" lang="en-US">
+            <div class=" x-metadata-1-0" lang="en-US"><span class=" x-keywords-2-0" lang="en-US"><a class="indexterm" name="d26056e2266"></a><a class="indexterm" name="d26056e2268"></a></span></div>
+         </div>
+         <div class=" x-body-1-0" lang="en-US">
+            <div class=" x-section-1-0" id="styler-id1.1.1.5.8.5.1" lang="en-US">
+               <p class=" x-p-13-0" lang="en-US">Tuning properties provide rules for evaluating when JSON outputs data and for indicating an update strategy. Configuring this
+                  policy can affect system performance. They are located in the Schema <b class=" x-uicontrol-3-0" lang="en-US">Config</b> folder.
+               </p>
+               <div class=" x-fig-1-0 x-fig-1-1" id="styler-id1.1.1.5.8.5.1.2" lang="en-US"><h5 class=" x-title-49-0" id="styler-id1.1.1.5.8.5.1.2.1" lang="en-US">Figure 8.  &nbsp;&nbsp;Tuning policy properties</h5><div class=" x-image-2-0 x-image-2-9" lang="en-US"><img alt="Image" height="113" src="graphics/xwc1530818511588170533.png"  width="295"></div></div>
+               <p class=" x-p-13-0" lang="en-US"><code class=" x-parmname-2-0" lang="en-US">Update Strategy</code> determines when JSON string generation occurs: at change-of-value or on demand.
+               </p>
+               <p class=" x-p-13-0" lang="en-US">There is a built-in <code class=" x-parmname-2-0" lang="en-US">Min Write Time</code> to ensure that hundreds of concurrent CoV changes over a short time do not result in a deluge of JSON messages. For example,
+                  when set to five (5) seconds and a change-of-value occurs within five seconds of the last change of value, schema generation
+                  defers for a full five seconds. However, if this amount of time exceeds the <code class=" x-parmname-2-0" lang="en-US">Max Write Time</code> setting, the system forces schema generation. In contrast, <code class=" x-parmname-2-0" lang="en-US">Max Write</code> forces an update after the specified interval.
+               </p>
+               <div class=" x-note-1-0 x-note-1-7" lang="en-US">&nbsp;<br class="empty"><b><span style="font-weight: bold; ">NOTE: </span></b>A <code class=" x-option-2-0" lang="en-US">Force Generate Json</code> action overrides all tuning policy settings. <br class="empty">&nbsp;
+               </div>
+               <p class=" x-p-13-0" lang="en-US">Export markers applied to numeric points also have a <code class=" x-parmname-2-0" lang="en-US">CoV Tolerance</code> property which can be used to throttle output.
+               </p>
+               <p class=" x-p-13-0" lang="en-US">The <code class=" x-parmname-2-0" lang="en-US">Write On Start</code> and <code class=" x-parmname-2-0" lang="en-US">Write On Enabled</code> properties provide other ways to invoke schema generation, for example, when the station starts.
+               </p>
+            </div>
+         </div>
+         <div class=" x-related-links-1-0">
+            <div class=" x--ufe-relatedlinks-display-1-0">
+               <div class=" x--ufe-relatedHierarchical-1-0 x--ufe-relatedHierarchical-1-1">
+                  <h3 class=" x--ufe-related-links-title-1-0" id="styler-idu1.1.1.5.8.6.1.1.1">Related Links</h3>
+                  <div class=" x--ufe-relatedChild-1-0"></div>
+                  <div class=" x--ufe-relatedParent-1-0">
+                     <li class=" x-link-2-0 x-link-2-1"><a href="Exporting-Json-715BF8A7.html#Exporting-Json-715BF8A7" title="Adding a JsonSchema component to your station allows for the construction of a JSON payload to suit the requirements of your particular application."><span class=" x-linktext-2-0 x-linktext-2-5" lang="en-US">Exporting with a JSON schema (Parent Topic)</span></a></li>
+                  </div>
+               </div>
+               <div class=" x--ufe-relatedPrevious-1-0"></div>
+               <div class=" x--ufe-relatedNext-1-0"></div>
+               <div class=" x--ufe-relatedConcepts-1-0"></div>
+               <div class=" x--ufe-relatedTasks-1-0"></div>
+               <div class=" x--ufe-relatedReferences-1-0"></div>
+               <div class=" x--ufe-relatedTopics-1-0"></div>
+               <div class=" x--ufe-relatedOther-1-0"></div>
+               <div class=" x--ufe-relatedLinklists-1-0"></div>
+            </div>
+         </div>
+      </div>
+
+<!-- Auto-generated Footer NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/ConfigFolderJson.html" class="navbar">Prev</a> |  <a href="/doc/HistoryReports-Entsec-20FBEC36.html" class="navbar">Next</a></p>
+<!-- Auto-generated copyright note --><p class='copyright'></p>
+   </body>
+</html>
