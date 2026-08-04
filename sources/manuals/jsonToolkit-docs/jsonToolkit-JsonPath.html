@@ -1,0 +1,127 @@
+<!-- Htmldoc has been run -->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      
+      <title>JsonPath (Json Path)</title>
+<!-- Auto-generated style sheet link --><link rel='StyleSheet' href='module://bajaui/doc/style.css' type='text/css' />
+<!-- Auto-generated js link for Activity Monitoring --><script type='text/javascript' src='module://web/rc/util/activityMonitor.js'></script>
+<script type='text/javascript'>window.addEventListener('load', activityMonitor.start);</script>
+   </head>
+   <body class=" x-bookmap-1-0" lang="en-US" id="mapelement_bookmap1">
+<!-- Auto-generated Header NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/jsonToolkit-JsonDemuxRouter.html" class="navbar">Prev</a> |  <a href="/doc/jsonToolkit-JsonAtArrayIndex.html" class="navbar">Next</a></p>
+
+      <div xmlns:ch="http://www.arbortext.com/namespace/chunker" class=" x-topic-19-0" id="jsonToolkit-JsonPath" lang="en-US">
+         <h2 class=" x-title-27-0 x-title-27-1 x-title-27-2" id="styler-id1.1.1.8.43.1" lang="en-US">JsonPath (Json Path)</h2><span class=" x-titlealts-2-0"></span><div class=" x-shortdesc-2-0" lang="en-US">Selectors are components that take an inbound JSON message, apply some selection criteria to it, and set up the result an
+            out slot. This might be a subset of the JSON. It could be, for example, the size of a message or the result of an aggregate
+            function, such as the sum of a repeated value. This selector component allows data to be interactively located and extracted
+            from JSON structures using a special notation to represent the payload structure.
+         </div>
+         <div class=" x-prolog-1-0" lang="en-US">
+            <div class=" x-metadata-1-0" lang="en-US"><span class=" x-keywords-2-0" lang="en-US"><a class="indexterm" name="d26056e15732"></a></span></div>
+         </div>
+         <div class=" x-body-1-0" lang="en-US">
+            <div class=" x-section-1-0" id="styler-id1.1.1.8.43.5.1" lang="en-US">
+               <div class=" x-fig-1-0 x-fig-1-1" id="styler-id1.1.1.8.43.5.1.1" lang="en-US"><h5 class=" x-title-49-0" id="styler-id1.1.1.8.43.5.1.1.1" lang="en-US">Figure 80.  &nbsp;&nbsp;JsonPath properties</h5><div class=" x-image-2-0 x-image-2-9" lang="en-US"><img alt="Image" height="368" src="graphics/xwc7941141112170688193.png"  width="756"></div></div>
+               <p class=" x-p-13-0" lang="en-US">You add this selector to a station by expanding <span class=" x-menucascade-1-0" lang="en-US"><b class=" x-uicontrol-2-0" lang="en-US">Inbound</b><b class=" x-uicontrol-1-0" lang="en-US"><span style="font-weight: normal; "> &gt; </span>Selectors</b></span> in the palette and dragging the <span class=" x-apiname-2-0" lang="en-US">JsonPath</span> to a JSON message router node in the Nav tree.
+               </p>
+               <p class=" x-p-13-0" lang="en-US">In addition to the standard property (Enabled), these properties support the <span class=" x-apiname-2-0" lang="en-US">JsonPath</span>.
+               </p>
+            </div>
+            <div class=" x-properties-1-0 x-properties-1-1" id="styler-id1.1.1.8.43.5.2" lang="en-US">
+               <table border="1" cellpadding="7" frame="box" rules="all" style="border-width: 1.0pt; " width="100%">
+                  <col width="160">
+                  <col width="160">
+                  <col width="160">
+                  <thead style="text-align: left; ">
+                     <tr class=" x-prophead-1-0" lang="en-US" style="vertical-align: top; ">
+                        <th class=" x-proptypehd-1-0" lang="en-US" style="text-align: left; ">Property</th>
+                        <th class=" x-propvaluehd-1-0" lang="en-US" style="text-align: left; ">Value</th>
+                        <th class=" x-propdeschd-1-0" lang="en-US" style="text-align: left; ">Description</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr class=" x-property-1-0" lang="en-US" style="vertical-align: top; ">
+                        <td class=" x-proptype-1-0" lang="en-US">Last Result</td>
+                        <td class=" x-propvalue-1-0" lang="en-US">read-only</td>
+                        <td class=" x-propdesc-1-0" lang="en-US">Reports the results of the alarm acknowledgment to allow for logging or post-processing activity. Example output:
+                           <p class=" x-p-13-0" lang="en-US"><code class=" x-codeph-1-0" lang="en-US">Unable to find messagge key:</code></p>
+                           <p class=" x-p-13-0" lang="en-US"><code class=" x-codeph-1-0" lang="en-US">Problem parsing messageType</code></p>
+                        </td>
+                     </tr>
+                     <tr class=" x-property-1-0" lang="en-US" style="vertical-align: top; ">
+                        <td class=" x-proptype-1-0" lang="en-US">Last Result Time</td>
+                        <td class=" x-propvalue-1-0" lang="en-US">read-only</td>
+                        <td class=" x-propdesc-1-0" lang="en-US">Reports when the handler ran last.</td>
+                     </tr>
+                     <tr class=" x-property-1-0" lang="en-US" style="vertical-align: top; ">
+                        <td class=" x-proptype-1-0" lang="en-US">Last Input</td>
+                        <td class=" x-propvalue-1-0" lang="en-US">read-only</td>
+                        <td class=" x-propdesc-1-0" lang="en-US">Reports the last message routed to a component.</td>
+                     </tr>
+                     <tr class=" x-property-1-0" lang="en-US" style="vertical-align: top; ">
+                        <td class=" x-proptype-1-0" lang="en-US">Status</td>
+                        <td class=" x-propvalue-1-0" lang="en-US">read-only</td>
+                        <td class=" x-propdesc-1-0" lang="en-US">Reflects the current status of the component. 
+                           <p class=" x-p-13-0" lang="en-US"><span class=" x-systemoutput-1-0" lang="en-US">Ok</span> indicates the JSON processed successfully.
+                           </p>
+                           <p class=" x-p-13-0" lang="en-US"><span class=" x-systemoutput-1-0" lang="en-US">fault</span> indicates the JSON did not process for any reason, such as invalid JSON or missing expected values in the JSON.
+                           </p>
+                        </td>
+                     </tr>
+                     <tr class=" x-property-1-0" lang="en-US" style="vertical-align: top; ">
+                        <td class=" x-proptype-1-0" lang="en-US">Out</td>
+                        <td class=" x-propvalue-1-0" lang="en-US">read-only</td>
+                        <td class=" x-propdesc-1-0" lang="en-US">Displays the result.</td>
+                     </tr>
+                     <tr class=" x-property-1-0" lang="en-US" style="vertical-align: top; ">
+                        <td class=" x-proptype-1-0" lang="en-US">Path (JsonPath)</td>
+                        <td class=" x-propvalue-1-0" lang="en-US">text</td>
+                        <td class=" x-propdesc-1-0" lang="en-US">Defines the path.</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <div class=" x-section-1-0" id="styler-id1.1.1.8.43.5.3" lang="en-US">
+               <h3 class=" x-title-45-0" id="styler-id1.1.1.8.43.5.3.1" lang="en-US">Actions</h3>
+               <p class=" x-p-13-0" lang="en-US">These actions are available when you right-click on the <b class=" x-uicontrol-3-0" lang="en-US">JsonPath</b>.
+               </p>
+               <div class=" x-fig-1-0 x-fig-1-1" id="styler-id1.1.1.8.43.5.3.3" lang="en-US"><h5 class=" x-title-49-0" id="styler-id1.1.1.8.43.5.3.3.1" lang="en-US">Figure 81.  &nbsp;&nbsp;JsonPath action buttons </h5><div class=" x-image-2-0 x-image-2-9" lang="en-US"><img alt="Image" height="389" src="graphics/xwc4403656575993802756.png"  width="409"></div></div>
+               <div lang="en-US">
+                  <ul class=" x-ul-1-0">
+                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US"><b class=" x-uicontrol-3-0" lang="en-US">Route</b> causes this component to process the <code class=" x-parmname-2-0" lang="en-US">String</code> parameter and update the <b class=" x-uicontrol-3-0" lang="en-US">Out</b> slot.</span></li>
+                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US"><b class=" x-uicontrol-3-0" lang="en-US">Run Last Input</b> executes the last input again.</span></li>
+                     <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US"><b class=" x-uicontrol-3-0" lang="en-US">Clear Output</b> sets the <b class=" x-uicontrol-3-0" lang="en-US">Out</b> slot of this component to an empty string.</span></li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+         <div class=" x-related-links-1-0">
+            <div class=" x--ufe-relatedlinks-display-1-0">
+               <div class=" x--ufe-relatedHierarchical-1-0 x--ufe-relatedHierarchical-1-1">
+                  <h3 class=" x--ufe-related-links-title-1-0" id="styler-idu1.1.1.8.43.6.1.1.1">Related Links</h3>
+                  <div class=" x--ufe-relatedChild-1-0"></div>
+                  <div class=" x--ufe-relatedParent-1-0">
+                     <li class=" x-link-2-0 x-link-2-1"><a href="Components-0567A524.html#Components-0567A524" title="Components include services, folders and other model building blocks associated with a module. You may drag them to a Property or Wire Sheet from a palette."><span class=" x-linktext-2-0 x-linktext-2-5" lang="en-US">Components (Parent Topic)</span></a></li>
+                  </div>
+               </div>
+               <div class=" x--ufe-relatedPrevious-1-0"></div>
+               <div class=" x--ufe-relatedNext-1-0"></div>
+               <div class=" x--ufe-relatedConcepts-1-0 x--ufe-relatedConcepts-1-1">
+                  <h3 class=" x--ufe-related-links-title-1-0" id="styler-idu1.1.1.8.43.6.1.4.1">Related Concepts</h3>
+                  <li class=" x-link-2-0 x-link-2-1"><a href="AboutTheJsonPathSelector-json-A5F6317D.html#AboutTheJsonPathSelector-json-A5F6317D" title="The JsonPath component allows data to be interactively located and extracted from JSON structures using a special notation to represent the payload structure."><span class=" x-linktext-2-0 x-linktext-2-1" lang="en-US">About the Json Path selector</span></a></li>
+               </div>
+               <div class=" x--ufe-relatedTasks-1-0"></div>
+               <div class=" x--ufe-relatedReferences-1-0"></div>
+               <div class=" x--ufe-relatedTopics-1-0"></div>
+               <div class=" x--ufe-relatedOther-1-0"></div>
+               <div class=" x--ufe-relatedLinklists-1-0"></div>
+            </div>
+         </div>
+      </div>
+
+<!-- Auto-generated Footer NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/jsonToolkit-JsonDemuxRouter.html" class="navbar">Prev</a> |  <a href="/doc/jsonToolkit-JsonAtArrayIndex.html" class="navbar">Next</a></p>
+<!-- Auto-generated copyright note --><p class='copyright'></p>
+   </body>
+</html>

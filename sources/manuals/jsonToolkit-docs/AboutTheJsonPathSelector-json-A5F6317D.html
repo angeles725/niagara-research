@@ -1,0 +1,72 @@
+<!-- Htmldoc has been run -->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      
+      <title>About the Json Path selector</title>
+<!-- Auto-generated style sheet link --><link rel='StyleSheet' href='module://bajaui/doc/style.css' type='text/css' />
+<!-- Auto-generated js link for Activity Monitoring --><script type='text/javascript' src='module://web/rc/util/activityMonitor.js'></script>
+<script type='text/javascript'>window.addEventListener('load', activityMonitor.start);</script>
+   </head>
+   <body class=" x-bookmap-1-0" lang="en-US" id="mapelement_bookmap1">
+<!-- Auto-generated Header NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/CopyingToCreateANewSupStation-49D128E9.html" class="navbar">Prev</a> |  <a href="/doc/ConfiguringTheApplicationDirectorTo-F4115CD1.html" class="navbar">Next</a></p>
+
+      <div xmlns:ch="http://www.arbortext.com/namespace/chunker" class=" x-topic-19-0" id="AboutTheJsonPathSelector-json-A5F6317D" lang="en-US">
+         <h2 class=" x-title-27-0 x-title-27-1 x-title-27-2" id="styler-id1.1.1.6.9.1" lang="en-US">About the Json Path selector</h2><span class=" x-titlealts-2-0"></span><div class=" x-shortdesc-2-0" lang="en-US">The <span class=" x-apiname-2-0" lang="en-US">JsonPath</span> component allows data to be interactively located and extracted from JSON structures using a special notation to represent
+            the payload structure.
+         </div>
+         <div class=" x-prolog-1-0" lang="en-US">
+            <div class=" x-metadata-1-0" lang="en-US"><span class=" x-keywords-2-0" lang="en-US"></span></div>
+         </div>
+         <div class=" x-body-1-0" lang="en-US">
+            <p class=" x-p-13-0" lang="en-US">For the example below, the first item in the values array (1) can be selected using a <span class=" x-apiname-2-0" lang="en-US">JsonPath</span> value of <code class=" x-codeph-1-0" lang="en-US">$.data.values.[0]</code>:<pre class=" x-codeblock-1-0 x-codeblock-1-1" lang="en-US">{
+  "type" : "line", 
+  "data" : 
+  { 
+    "labels" : ["Sunday", "Monday"], 
+    "values" : [ 1, 2 ] 
+  } 
+}</pre><div class=" x-image-2-0 x-image-2-9" lang="en-US"><img alt="Image" height="146" src="graphics/xwc6887540127733559095.png"  width="371"></div></p>
+            <p class=" x-p-13-0" lang="en-US">In this example a single numeric value was selected. However it is possible to select a complete subset of the incoming JSON,
+               for example: <code class=" x-codeph-1-0" lang="en-US">$.data</code> would select the entire data object into the out slot, or <code class=" x-codeph-1-0" lang="en-US">$.data.values</code> would select the entire JSON “values” array. Any expression containing a search with <code class=" x-codeph-1-0" lang="en-US">$..labels</code>, for example, will return search results enclosed within an outer array.
+            </p>
+            <p class=" x-p-13-0" lang="en-US">Much more explanation of this powerful tool can be found at the following websites:</p>
+            <div lang="en-US">
+               <ul class=" x-ul-1-0">
+                  <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US"><code class=" x-filepath-1-0" lang="en-US">https://goessner.net/articles/JsonPath/</code></span></li>
+                  <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US"><code class=" x-filepath-1-0" lang="en-US">http://jsonpath.com/</code></span></li>
+                  <li class=" x--inherit-background-color x-li-10-0 x--zero-text-indent" lang="en-US"><span class=" x-p-4-0" lang="en-US"><code class=" x-filepath-1-0" lang="en-US">https://www.baeldung.com/guide-to-jayway-jsonpath</code></span></li>
+               </ul>
+            </div>
+         </div>
+         <div class=" x-related-links-1-0">
+            <div class=" x--ufe-relatedlinks-display-1-0">
+               <div class=" x--ufe-relatedHierarchical-1-0 x--ufe-relatedHierarchical-1-1">
+                  <h3 class=" x--ufe-related-links-title-1-0" id="styler-idu1.1.1.6.9.6.1.1.1">Related Links</h3>
+                  <div class=" x--ufe-relatedChild-1-0">
+                     <li class=" x-link-2-0 x-link-2-1"><a href="ConfiguringTheApplicationDirectorTo-F4115CD1.html#ConfiguringTheApplicationDirectorTo-F4115CD1" title="Selectors are components that apply selection criteria to an inbound message and display the result in an out slot. The JsonPath component allows data to be interactively located and extracted from JSON structures using a special notation to represent the payload structure."><span class=" x-linktext-2-0" lang="en-US">Applying a jsonPath selector</span></a></li>
+                  </div>
+                  <div class=" x--ufe-relatedParent-1-0">
+                     <li class=" x-link-2-0 x-link-2-1"><a href="InboundComponents-Json-71508AE4.html#InboundComponents-Json-71508AE4" title="Data coming into a station can be used to modify a setpoint or execute some other action. A handler processes imported JSON."><span class=" x-linktext-2-0 x-linktext-2-5" lang="en-US">Importing JSON (Parent Topic)</span></a></li>
+                  </div>
+               </div>
+               <div class=" x--ufe-relatedPrevious-1-0"></div>
+               <div class=" x--ufe-relatedNext-1-0"></div>
+               <div class=" x--ufe-relatedConcepts-1-0"></div>
+               <div class=" x--ufe-relatedTasks-1-0"></div>
+               <div class=" x--ufe-relatedReferences-1-0 x--ufe-relatedReferences-1-1">
+                  <h3 class=" x--ufe-related-links-title-1-0" id="styler-idu1.1.1.6.9.6.1.6.1">Related References</h3>
+                  <li class=" x-link-2-0 x-link-2-1"><a href="jsonToolkit-JsonPath.html#jsonToolkit-JsonPath" title="Selectors are components that take an inbound JSON message, apply some selection criteria to it, and set up the result an out slot. This might be a subset of the JSON. It could be, for example, the size of a message or the result of an aggregate function, such as the sum of a repeated value. This selector component allows data to be interactively located and extracted from JSON structures using a special notation to represent the payload structure."><span class=" x-linktext-2-0 x-linktext-2-3" lang="en-US">JsonPath (Json Path)</span></a></li>
+               </div>
+               <div class=" x--ufe-relatedTopics-1-0"></div>
+               <div class=" x--ufe-relatedOther-1-0"></div>
+               <div class=" x--ufe-relatedLinklists-1-0"></div>
+            </div>
+         </div>
+      </div>
+
+<!-- Auto-generated Footer NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/CopyingToCreateANewSupStation-49D128E9.html" class="navbar">Prev</a> |  <a href="/doc/ConfiguringTheApplicationDirectorTo-F4115CD1.html" class="navbar">Next</a></p>
+<!-- Auto-generated copyright note --><p class='copyright'></p>
+   </body>
+</html>

@@ -1,0 +1,94 @@
+<!-- Htmldoc has been run -->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      
+      <title>Routing complete incoming messages</title>
+<!-- Auto-generated style sheet link --><link rel='StyleSheet' href='module://bajaui/doc/style.css' type='text/css' />
+<!-- Auto-generated js link for Activity Monitoring --><script type='text/javascript' src='module://web/rc/util/activityMonitor.js'></script>
+<script type='text/javascript'>window.addEventListener('load', activityMonitor.start);</script>
+   </head>
+   <body class=" x-bookmap-1-0" lang="en-US" id="mapelement_bookmap1">
+<!-- Auto-generated Header NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/InboundComponents-Json-71508AE4.html" class="navbar">Prev</a> |  <a href="/doc/CopyingToCreateANewSupStation-49D128E9.html" class="navbar">Next</a></p>
+
+      <div xmlns:ch="http://www.arbortext.com/namespace/chunker" class=" x-topic-19-0" id="RedirectingMessages-Json-70340FD3" lang="en-US">
+         <h2 class=" x-title-27-0 x-title-27-1 x-title-27-2" id="styler-id1.1.1.6.7.1" lang="en-US">Routing complete incoming messages</h2><span class=" x-titlealts-2-0"></span><div class=" x-shortdesc-2-0" lang="en-US">A <span class=" x-apiname-2-0" lang="en-US">JsonMessageRouter</span> component directs a whole incoming message (payload) to a new slot so that incoming messages may redirect the JSON to be
+            handled by another component, such as a “handler” component type.
+         </div>
+         <div class=" x-prolog-1-0" lang="en-US">
+            <div class=" x-metadata-1-0" lang="en-US"><span class=" x-keywords-2-0" lang="en-US"><a class="indexterm" name="d26056e5519"></a></span></div>
+         </div>
+         <div class=" x-body-1-0" lang="en-US">
+            <div lang="en-US">
+               <ol class=" x-ol-1-0">
+                  <li class=" x--inherit-background-color x-step-7-0 x--zero-text-indent" lang="en-US"><span class=" x-cmd-1-0" lang="en-US">Open the jsonToolkit palette, expand <span class=" x-menucascade-1-0" lang="en-US"><b class=" x-uicontrol-2-0" lang="en-US">Inbound</b><b class=" x-uicontrol-1-0" lang="en-US"><span style="font-weight: normal; "> &gt; </span>Routers</b></span> and drag a <span class=" x-apiname-2-0" lang="en-US">JsonMessageRouter</span> component to a working folder in the station.</span></li>
+                  <li class=" x--inherit-background-color x-step-7-0 x--zero-text-indent" lang="en-US"><span class=" x-cmd-1-0" lang="en-US">Open the router Property Sheet by double-clicking the <span class=" x-apiname-2-0" lang="en-US">JsonMessageRouter</span> component.</span></li>
+                  <li class=" x--inherit-background-color x-step-7-0 x--zero-text-indent" lang="en-US"><span class=" x-cmd-1-0" lang="en-US">Type a value in the <code class=" x-parmname-2-0" lang="en-US">Key</code> property to identify the type of message (for example: <span class=" x-userinput-1-0" lang="en-US">messageType</span>) and click <b class=" x-uicontrol-3-0" lang="en-US">Save</b>.</span><div class=" x-itemgroup-1-0" lang="en-US">Enabling <code class=" x-parmname-2-0" lang="en-US">Learn Mode</code> adds a dynamic slot on input. This procedure documents how to add the slot manually.
+                     </div>
+                  </li>
+                  <li class=" x--inherit-background-color x-step-7-0 x--zero-text-indent" lang="en-US"><span class=" x-cmd-1-0" lang="en-US">Manually add a dynamic string slot to the router component by opening the <span class=" x-wintitle-2-0" lang="en-US">AX Slot Sheet</span> view, or by simply right-clicking the sheet and clicking <b class=" x-uicontrol-3-0" lang="en-US">Add Slot</b>.</span><div class=" x-itemgroup-1-0" lang="en-US">An <span class=" x-wintitle-2-0" lang="en-US">Add Slot</span> window opens for either method, as shown below.
+                        <div class=" x-table-2-0 x-table-2-2" id="styler-id1.1.1.6.7.5.1.4.2.2" lang="en-US">
+                           <table class=" x-tgroup-1-0" style="border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; border-top-style: solid; border-top-width: 1.0pt; border-top-color: #000000; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; ">
+                              <colgroup>
+                                 <col style="width: 240px; ">
+                                 <col style="width: 240px; ">
+                              </colgroup>
+                              <thead class=" x-thead-1-0" style="vertical-align: bottom; text-align: left; font-weight: bold; ">
+                                 <tr class=" x-row-1-0">
+                                    <th class="entry-in-thead" style="text-align: left; padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-top-style: solid; border-top-width: 1.0pt; border-top-color: #000000; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; ">Adding a slot from the Slot Sheet View</th>
+                                    <th class="entry-in-thead" style="text-align: left; padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-top-style: solid; border-top-width: 1.0pt; border-top-color: #000000; ">Adding a slot using the Action menu</th>
+                                 </tr>
+                              </thead>
+                              <tbody class=" x-tbody-1-0" style="vertical-align: top; ">
+                                 <tr class=" x-row-1-0">
+                                    <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; border-left-style: solid; border-left-width: 1.0pt; border-left-color: #000000; "><span class=" x-image-2-0 x-image-2-7" lang="en-US"><img alt="Image" height="344" src="graphics/xwc5891361214220024740.png"  width="352"></span></td>
+                                    <td class="entry-in-tbody" style="padding: 7px; border-right-style: solid; border-right-width: 1.0pt; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: 1.0pt; border-bottom-color: #000000; "><span class=" x-image-2-0 x-image-2-7" lang="en-US"><img alt="Image" height="110" src="graphics/xwc735959512874439282.png"  width="321"></span></td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                  </li>
+                  <li class=" x--inherit-background-color x-step-7-0 x--zero-text-indent" lang="en-US"><span class=" x-cmd-1-0" lang="en-US">Give the slot a name, use the transient and read-only flags to avoid onward handlers running again at station start and click
+                        <b class=" x-uicontrol-3-0" lang="en-US">OK</b>.</span><div class=" x-itemgroup-1-0" lang="en-US">The new slot is added.<div class=" x-image-2-0 x-image-2-9" lang="en-US"><img alt="Image" height="186" src="graphics/xwc2500100157711313545.png"  width="401"></div></div>
+                  </li>
+                  <li class=" x--inherit-background-color x-step-7-0 x--zero-text-indent" lang="en-US"><span class=" x-cmd-1-0" lang="en-US">On the Wire Sheet, connect the router.</span><div class=" x-itemgroup-1-0" lang="en-US">The following Wire Sheet routes the entire incoming message to the dynamic slot for onward processing:<div class=" x-image-2-0 x-image-2-9" lang="en-US"><img alt="Image" height="109" src="graphics/xwc8054461219683083604.png"  width="477"></div><p class=" x-p-13-0" lang="en-US">For example, if Key = messageType, the JSON routes this message to a string slot with a name “alarmAck” and then on to connected
+                           handlers, as shown above.
+                        </p><pre class=" x-codeblock-1-0 x-codeblock-1-3" lang="en-US">{
+  "messageType": "alarmAck",
+  "user": "AJones",
+  "alarmId": [ "5cf9c8b2-1542-42ba-a1fd-5f753c777bc0" ]
+}</pre></div>
+                  </li>
+               </ol>
+            </div>
+         </div>
+         <div class=" x-related-links-1-0">
+            <div class=" x--ufe-relatedlinks-display-1-0">
+               <div class=" x--ufe-relatedHierarchical-1-0 x--ufe-relatedHierarchical-1-1">
+                  <h3 class=" x--ufe-related-links-title-1-0" id="styler-idu1.1.1.6.7.6.1.1.1">Related Links</h3>
+                  <div class=" x--ufe-relatedChild-1-0"></div>
+                  <div class=" x--ufe-relatedParent-1-0">
+                     <li class=" x-link-2-0 x-link-2-1"><a href="InboundComponents-Json-71508AE4.html#InboundComponents-Json-71508AE4" title="Data coming into a station can be used to modify a setpoint or execute some other action. A handler processes imported JSON."><span class=" x-linktext-2-0 x-linktext-2-5" lang="en-US">Importing JSON (Parent Topic)</span></a></li>
+                  </div>
+               </div>
+               <div class=" x--ufe-relatedPrevious-1-0"></div>
+               <div class=" x--ufe-relatedNext-1-0"></div>
+               <div class=" x--ufe-relatedConcepts-1-0"></div>
+               <div class=" x--ufe-relatedTasks-1-0"></div>
+               <div class=" x--ufe-relatedReferences-1-0 x--ufe-relatedReferences-1-1">
+                  <h3 class=" x--ufe-related-links-title-1-0" id="styler-idu1.1.1.6.7.6.1.6.1">Related References</h3>
+                  <li class=" x-link-2-0 x-link-2-1"><a href="jsonToolkit-JsonMessageRouter.html#jsonToolkit-JsonMessageRouter" title="This component transfers inbound messages to an onward component that is suitable for processing or handling the message."><span class=" x-linktext-2-0 x-linktext-2-3" lang="en-US">JsonMessageRouter (Json Message Router)</span></a></li>
+               </div>
+               <div class=" x--ufe-relatedTopics-1-0"></div>
+               <div class=" x--ufe-relatedOther-1-0"></div>
+               <div class=" x--ufe-relatedLinklists-1-0"></div>
+            </div>
+         </div>
+      </div>
+
+<!-- Auto-generated Footer NavBar --><p class="navbar">  <a href="/doc/index.html" class="navbar">Index</a> |  <a href="/doc/InboundComponents-Json-71508AE4.html" class="navbar">Prev</a> |  <a href="/doc/CopyingToCreateANewSupStation-49D128E9.html" class="navbar">Next</a></p>
+<!-- Auto-generated copyright note --><p class='copyright'></p>
+   </body>
+</html>

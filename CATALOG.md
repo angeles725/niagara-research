@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **335 blocks**
+Total: **336 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -341,3 +341,4 @@ Total: **335 blocks**
 | 337 | [niagara-mental-model-bloque337.md](niagara-mental-model-bloque337.md) | The generation trigger: a COV event regenerates the whole schema SYNCHRONOUSLY on the engine thread, debounced by a single-shot `minWriteTime` timer, and writes the JSON string into the `output` slot |
 | 338 | [niagara-mental-model-bloque338.md](niagara-mental-model-bloque338.md) | Outbound queries: any `BITable`-returning ORD (BQL / NEQL / history / transform) run in parallel on a thread pool, the engine thread blocked up to a 30 s timeout, results cached in memory and rendered later |
 | 339 | [niagara-mental-model-bloque339.md](niagara-mental-model-bloque339.md) | There is NO autonomous transport: jsonToolkit is a JSON marshaller, not a JSON pusher — the `output` slot is the product, read by consumers or saved to a file via the Workbench `BExporter` |
+| 340 | [niagara-mental-model-bloque340.md](niagara-mental-model-bloque340.md) | The inbound core: a `route(BString)` action feeds JSON to selectors (JSONPath via jayway) and routers that map JSON keys to slot names by literal match, with an unguarded array-forEach and opt-in slot auto-creation |

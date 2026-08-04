@@ -85,3 +85,7 @@ Decompiled Java sources live under `sources/decompiled/<jar-name>/`.
 | manuals/jsonToolkit-docs/SettingUpQueriesJson-9A09D8D2.html | doc oficial Tridium (docJsonToolkit-doc) | organized/docJsonToolkit/.../doc/SettingUpQueriesJson-9A09D8D2.html | 2026-08-04 | 9ef0182a344f | B338 |
 | manuals/jsonToolkit-docs/Exporting-Json-6DCD8BED.html | doc oficial Tridium (docJsonToolkit-doc) | organized/docJsonToolkit/.../doc/Exporting-Json-6DCD8BED.html | 2026-08-04 | f0d1cc953776 | B339 |
 | manuals/jsonToolkit-docs/ExportingJsonOutput-6EADCB50.html | doc oficial Tridium (docJsonToolkit-doc) | organized/docJsonToolkit/.../doc/ExportingJsonOutput-6EADCB50.html | 2026-08-04 | 63ef0d251182 | B339 |
+| manuals/jsonToolkit-docs/InboundComponents-Json-71508AE4.html | doc oficial Tridium (docJsonToolkit-doc) | organized/docJsonToolkit/.../doc/InboundComponents-Json-71508AE4.html | 2026-08-04 | d2aec1b8c080 | B340 |
+| manuals/jsonToolkit-docs/AboutTheJsonPathSelector-json-A5F6317D.html | doc oficial Tridium (docJsonToolkit-doc) | organized/docJsonToolkit/.../doc/AboutTheJsonPathSelector-json-A5F6317D.html | 2026-08-04 | ed011e0afd5d | B340 |
+| manuals/jsonToolkit-docs/RedirectingMessages-Json-70340FD3.html | doc oficial Tridium (docJsonToolkit-doc) | organized/docJsonToolkit/.../doc/RedirectingMessages-Json-70340FD3.html | 2026-08-04 | 976e6f09f062 | B340 |
+| manuals/jsonToolkit-docs/jsonToolkit-JsonPath.html | doc oficial Tridium (docJsonToolkit-doc) | organized/docJsonToolkit/.../doc/jsonToolkit-JsonPath.html | 2026-08-04 | c88524606ac6 | B340 |
