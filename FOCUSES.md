@@ -30,7 +30,15 @@
 
 ## Focus activo
 
-**email** — CERRADO 10/10 el 2026-08-04 (B324-B333 + síntesis B334).
+**jsonToolkit** (el marshaller JSON bidireccional) — BOOTSTRAPEADO 2026-08-04 tras cerrar `email`.
+Módulo add-on `com.tridiumx.jsonToolkit` (namespace `tridiumx`, NO core): 163 clases propias (rt 147/ux 8/wb 8)
++ Gson 2.9.0 y jayway-jsonpath shaded (DESCARTADOS). Dos direcciones: **outbound** (JSON dirigido por schema,
+alimentado por subscripciones COV + queries BQL/history) e **inbound** (selectores JSONPath → setpoints / alarm
+ack / export markers). Gate de licencia `getFeature("tridium","jsonToolkit")` ("DR-JSON"). Audit-first 14 gaps
+(J1-J14). Primera cita del corpus a `docJsonToolkit` (115 archivos). Ver `RESEARCH-STATE-jsonToolkit.md`.
+Próximo bloque: **B335**.
+
+**(previo)** **email** — CERRADO 10/10 el 2026-08-04 (B324-B333 + síntesis B334).
 El módulo `email` de N4 como subsistema de servicio: 61 clases (rt 43 · ux 11 · wb 7), audit-first 10 gaps.
 El corpus ya tiene `BEmailRecipient` (alarma→correo) en [B34] §34.6.5; este focus cubre lo que falta:
 `BEmailService` + gate de licencia `tridium/email` + dependencia JavaMail (E1, NEXT), el pipeline de envío

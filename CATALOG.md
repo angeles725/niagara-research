@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **330 blocks**
+Total: **331 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -336,3 +336,4 @@ Total: **330 blocks**
 | 332 | [niagara-mental-model-bloque332.md](niagara-mental-model-bloque332.md) | The address converters: nine `baja:ConversionLink` agents that bridge email-address slots to String/StatusString on the wiresheet, parsing "personal <addr>" with one shared regex |
 | 333 | [niagara-mental-model-bloque333.md](niagara-mental-model-bloque333.md) | The browser layer: `email-ux` is a thin bajaux registration shell over `webEditors`, pairing each Workbench editor with a JS module, and it too has no test-send |
 | 334 | [niagara-mental-model-bloque334.md](niagara-mental-model-bloque334.md) | SYNTHESIS of the `email` focus (B324–B333): the service that actually sends, gated three ways, insecure by default and secure by wizard, with a spoofable inbound door nobody grades |
+| 335 | [niagara-mental-model-bloque335.md](niagara-mental-model-bloque335.md) | `BJsonSchemaService`: the jsonToolkit service gated by a three-layer license (feature + import/export attributes + SMA), with a superuser-only `runAsUser` identity that inbound writes assume |
