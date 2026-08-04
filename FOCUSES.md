@@ -26,17 +26,16 @@
 | px-tail | **planned (0/3)** | `RESEARCH-STATE-px-tail.md` | La COLA del subsistema PX: los 3 módulos con **0 entradas en CATALOG** tras cerrar los 5 focuses PX. Medido: `webEditors` **95** (NEXT — citado en 8 bloques, nunca abierto), `kitPxBuilding` **15** (la excepción con componentes Java tipados de B203), `galileoKitPx` **19** (kitPx de otro OEM) | (ninguno aún) |
 | tags | **stopped (10/10)** | `RESEARCH-STATE-tags.md` | El subsistema de TAGGING donde B21 solo pasó por arriba (B21 = espinazo para ~159 clases; B82 ya cubrió los 29 OEM). 9 gaps: T1 API pública, T2 motor del diccionario, T3 **RELACIONES** (nunca abierto), T4 condiciones+neqlize (tag→query), T5 haystack completo, T6/T7 exportTags rt+UI, T8 UI/UX, T9 **200 archivos de doc oficial Tridium** (primera vez que el corpus usa `[CERT-doc]` de esta fuente) | B260–B270 |
 | **email** | **stopped (10/10 + B334)** | `RESEARCH-STATE-email.md` | El módulo `email` como SUBSISTEMA de servicio: el motor SMTP que ENVÍA (`BEmailService` + `BOutgoingAccount` + sesión JavaMail `MailPlatformHandlerSe`), gate de licencia `tridium/email`, dependencia runtime JavaMail, inbound POP3/IMAP + `BEmailAlarmAcknowledger` (ack por reply-to UUID), OAuth2/XOAUTH2, security dashboard, capas wb/ux. 61 clases (rt 43 · ux 11 · wb 7). **NO reabre alarmas**: `BEmailRecipient` (alarma→correo) ya está en [B34] §34.6.5 (REMITTANCE); este focus es el SERVICIO que el corpus nunca abrió. Audit-first 2026-08-04 | B324– |
+| **jsonToolkit** | **stopped (14/14 + B349)** | `RESEARCH-STATE-jsonToolkit.md` | El add-on `com.tridiumx.jsonToolkit` (namespace `tridiumx`, NO core) como MARSHALLER JSON bidireccional: outbound (schema tree → JSON, generado SÍNCRONO en el engine thread, sin transporte propio — output slot consumido por obix/BLink) + inbound (selectores JSONPath → escrituras/ack/export-markers, confía en el sender). Gate de licencia 3 capas (feature `tridium/jsonToolkit` + atributos import/export + SMA). 163 clases propias (Gson 2.9.0 + jayway-jsonpath DESCARTADOS). Relative schema cross-station (Fox `sys:`), inline Program escape hatch, alarm recipient (gemelo del email sin SMTP). Hallazgos seguridad inbound: export-reg SIN ACL, ack-attribution spoofable, arrayForEach sin guard. **Primera cita del corpus a `docJsonToolkit`** (114 files, 33 citados). Síntesis B349. 2 child gaps G1/G2 (requires-execution). Audit-first 2026-08-04 | B335–B349 |
 | px-chart-classic | **stopped (8/8)** | `RESEARCH-STATE-px-chart-classic.md` | El sistema de charting **CLÁSICO** (`javax.baja.chart`, módulo `chart` Swing/Workbench) — el feed que px-editor-core y B201 declararon "otro focus". 67 clases distintas medidas (rt 5 / wb 62; API pública 35+9). 8 gaps: H1 modelo+jerarquía, H2 ejes/render, H3 binding a histories, H4 consumidores + §14 vs B199/B201, H5 impl `com.tridium.chart`, H6 PDF+HX, H7 tests, H8 split rt/wb. Pregunta transversal: por qué N4 arrastra DOS sistemas de charting | B251–B259 |
 
 ## Focus activo
 
-**jsonToolkit** (el marshaller JSON bidireccional) — BOOTSTRAPEADO 2026-08-04 tras cerrar `email`.
-Módulo add-on `com.tridiumx.jsonToolkit` (namespace `tridiumx`, NO core): 163 clases propias (rt 147/ux 8/wb 8)
-+ Gson 2.9.0 y jayway-jsonpath shaded (DESCARTADOS). Dos direcciones: **outbound** (JSON dirigido por schema,
-alimentado por subscripciones COV + queries BQL/history) e **inbound** (selectores JSONPath → setpoints / alarm
-ack / export markers). Gate de licencia `getFeature("tridium","jsonToolkit")` ("DR-JSON"). Audit-first 14 gaps
-(J1-J14). Primera cita del corpus a `docJsonToolkit` (115 archivos). Ver `RESEARCH-STATE-jsonToolkit.md`.
-Próximo bloque: **B335**.
+**(ninguno activo)** — `jsonToolkit` CERRADO 14/14 el 2026-08-04 (B335-B348 + síntesis B349). Marshaller JSON
+bidireccional add-on: outbound genera SÍNCRONO en el engine thread (bounded por debounce minWrite + timeout 30s
+de queries + engine-cycle queue cap 1000/reject); sin transporte propio (marshaller, no pusher); inbound confía
+en el sender (writes autorizados como runAsUser pero export-reg SIN ACL, ack-attribution spoofable); gate de
+licencia 3 capas (feature + import/export + SMA). 2 child gaps requires-execution (G1 export-ACL / G2 ack-spoof).
 
 **(previo)** **email** — CERRADO 10/10 el 2026-08-04 (B324-B333 + síntesis B334).
 El módulo `email` de N4 como subsistema de servicio: 61 clases (rt 43 · ux 11 · wb 7), audit-first 10 gaps.
