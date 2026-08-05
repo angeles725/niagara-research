@@ -21,10 +21,10 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 354
-gaps_closed: 2
+covered_blocks: 355
+gaps_closed: 3
 known_gaps: 9
-investigable_open: 7
+investigable_open: 6
 requires_execution_open: 0
 blocked_open: 0
 deferred_open: 0
@@ -53,7 +53,7 @@ resolution confirmation.
 | R1 | Architecture/wiring spine: service, source, report DTO, recipients, grid model, exporters | B357 | closed |
 | R2 | Time-range scoping — is there a built-in range param, or is the range carried inside the BQL? What does a user-chosen dynamic range require? | B358 | closed |
 | R3 | Table export pipeline (grid → CSV/text) + Excel(xlsx) gap + file/email delivery | — | open |
-| R4 | History in a report — does a `history:...|bql:` query resolve through BBqlGrid's BatchResolve (records vs navigable ORDs)? | — | open |
+| R4 | History in a report — does a `history:...|bql:` query resolve through BBqlGrid's BatchResolve (records vs navigable ORDs)? | B359 | closed (NO — structural) |
 | R5 | Alarm records in a report — BQL over the alarm db, available AlarmRecord columns, alarm-specific source/grid | — | open |
 | R6 | Chart-in-report — no chart renderer in-module; PDF is wb-only; how the PSI-vs-time chart with bands composes externally | — | open |
 | R7 | ux/web layer — BUxReportPane, BHTML5BqlGridTable, pagination/sort, browser view | — | open |
@@ -66,7 +66,7 @@ resolution confirmation.
 |---|---|---|---|
 | high | R2 time-range scoping | CLOSED B358: no range property in module; range is a `?period=`/BQL ORD substring (12 BWebChartTimeRangeType values, remittance B45); relative preset = zero-code self-updating, arbitrary user range = custom BReportSource or the interactive webChart path | closed |
 | high | R3 table export + xlsx gap | grid→BGridToCsv/BGridToText→BFileRecipient; confirm no xlsx exporter, PDF wb-only | pending |
-| high | R4 history-in-report feasibility | BBqlGrid slurps a table + BatchResolve on ordInSession — do history records produce resolvable ORDs? Needs-live child for final confirmation | pending |
+| high | R4 history-in-report feasibility | CLOSED B359: NO (structural). BBqlGrid force-prepends `select ordInSession,` + slurps + BatchResolves col-0 to component targets — it is a COMPONENT viewer. BHistoryRecord extends BStruct (no ordInSession) → null col-0 → NPE → resolveError. 0 history grids in module. Feasible only via custom BExportSource cursoring BIHistory directly, or the webChart/history path | closed |
 | medium | R5 alarm records in a report | BQL over alarm db through BBqlGrid; map AlarmRecord columns (timestamp, sourcePath, normalTime) | pending |
 | medium | R6 chart-in-report gap | Module has no chart renderer (chart-rt dep but 0 chart classes); PDF wb-only; compose externally — remittance B199/B251-B259 | pending |
 | medium | R7 ux/web grid table | BUxReportPane + BHTML5BqlGridTable + pagination/sort | pending |
@@ -79,6 +79,7 @@ resolution confirmation.
 |---|---|---|---|
 | B357 | R1 | yes · sonnet (audit sweep) + inline verify | Foundation. Sweep mapped the 49-class module + cross-referenced adjacent corpus; driver re-verified every load-bearing citation against decompiled source (BReportService/BReportSource/BReport/BExportSource/BBqlGrid/BFileRecipient/BGridToCsv + module.xml). Spine: schedule(BTimeTrigger)→generate(async action)→single-thread serialized queue→handleGenerate→BReport(name/mime/bytes)→out topic→recipient.route. Grid=BQL, eager Tables.slurp, bans `select *`, no time-range knob. [CERT]-heavy evidence block. |
 | B358 | R2 | no · inline (constraint: narrow scoping gap, 2 grid classes + corpus remittance) | Range lives in the ORD/BQL, not the module. Two grids: BBqlGrid (query→table, time-series vehicle) vs BComponentGrid (sources×cols cross-product, 3s-lease live snapshot, NOT time-series). Range = `?period=` on the history ORD (12 BWebChartTimeRangeType values, server computes start/end when relative — remittance B45/B73). Relative preset (`today`/`monthToDate`) = zero-code self-updating each scheduled run; arbitrary user-chosen range = custom BReportSource subclass (static `query` BOrd can't take a runtime arg) OR the interactive webChart/history-query path. niagara-help 3 real zeros. [CERT]×3 own + ×2 remittance, [INFER]×4, ratio 0.8 (EVIDENCE+APPLIED). |
+| B359 | R4 | yes · sonnet (structural sweep, 51 tool-uses) + inline token-verify (10 citations re-resolved) | R4 = NO (structural). BBqlGrid is a COMPONENT viewer: bans `select *`, force-prepends `select ordInSession,`, eager-slurps, extracts col-0 as ORD, BatchResolves to component targets, renders each cell against `targets[row]`. BHistoryRecord extends BStruct → no `ordInSession` → BQL field null → NPE → `Report.gridTable.bql.resolveError`. BatchResolve fast-path only `slot:/virtual:/h:`. 0 history grids in module (re-measured). Dramatic negative re-measured 2 independent ways. Feasible path = custom BExportSource cursoring BIHistory directly, or webChart/history. [CERT]×9, [INFER]×2, ratio 0.50 (EVIDENCE). |
 
 ## Dismissed file types
 
