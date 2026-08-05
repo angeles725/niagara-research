@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **355 blocks**
+Total: **356 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -361,3 +361,4 @@ Total: **355 blocks**
 | 357 | [niagara-mental-model-bloque357.md](niagara-mental-model-bloque357.md) | Niagara N4 — Bloque 357: the `report` module (I) — the grid→bytes→file/email pipeline, and the two things it does NOT have |
 | 358 | [niagara-mental-model-bloque358.md](niagara-mental-model-bloque358.md) | Niagara N4 — Bloque 358: the `report` module (II) — where the time range actually lives (`?period=` in the BQL ORD), and what a user-chosen range costs |
 | 359 | [niagara-mental-model-bloque359.md](niagara-mental-model-bloque359.md) | Niagara N4 — Bloque 359: the `report` module (III) — history-in-a-report is STRUCTURALLY blocked: `BBqlGrid` is a component viewer, and history samples are `BStruct` records with no `ordInSession` |
+| 360 | [niagara-mental-model-bloque360.md](niagara-mental-model-bloque360.md) | Niagara N4 — Bloque 360: the `report` module (IV) — alarm-records-in-a-report: the DB is fully BQL-queryable and carries every limit-crossing field, but the SAME `ordInSession` wall blocks `BBqlGrid` |
