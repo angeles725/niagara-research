@@ -1,4 +1,4 @@
-# RESEARCH-STATE — focus: electronicSignature (ACTIVE, 1/7)
+# RESEARCH-STATE — focus: electronicSignature (CLOSED, 7/7 + synthesis B356)
 
 > Multi-focus corpus (METHODOLOGY §16). Focus **BOOTSTRAPPED 2026-08-04** at the user's explicit request
 > ("¿tenemos documentado el módulo de firma / que cumple 21 CFR Part 11?"), immediately after closing `jsonToolkit`.
@@ -24,7 +24,7 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 351
+covered_blocks: 352
 gaps_closed: 7
 known_gaps: 8
 investigable_open: 0
@@ -35,9 +35,9 @@ undocumented_findings: 0
 <!-- /research-state.v1 -->
 
 focus: electronicSignature
-status: active
+status: stopped
 bootstrapped_on: 2026-08-04
-block_prefix: niagara-mental-model-bloqueN.md (global numbering; next free: B356)
+block_prefix: niagara-mental-model-bloqueN.md (global numbering; next free: B357)
 
 ## Pre-flight e2 — existence + MEASURED size
 
@@ -80,6 +80,7 @@ Source CONFIRMED reachable; bytecode intact (obfuscation is decompiler-output on
 | B353 | ES3 (+ES5) | yes · sonnet (dual/remote sweep) + inline verify | Remote dual-sig ASYNC (queue via addRemoteRequest, later approval); BSecondaryRemoteAuthentication singleton queue (in-memory Map default / .bog opt-in), passwords zeroed before queueing. Second signer: Base64+LDAP/BPasswordCache (closes ES5) + self-approval HARD-BLOCK (contentEquals→throw) + role enforcement (BSecureUserMixIn level2AuthenticatorRole, primary's role checked vs secondary). Email notify WIRED (RE-MEASURE ×3, gated shouldSendRemoteRequestEmails=false). Fox transport supervisor↔JACE (fox-rt+niagaraDriver-rt). Driver re-ran javap/strings. [CERT]×35 [INFER]×7, ratio 0.20. Module's rigorous half vs weak audit (§353.7). |
 | B354 | ES6 | yes · sonnet (ux/wb sweep) + inline verify | Client btoa() encodes password (SecuredParentEditor.js/Util.js), wire form username;base64(pw) → closes Base64 loop from B352. Editors = BSingleton JS agents (chain →SecuredParentEditor→BaseEditor), one dialog (primary/secondary tabs, legaltext). ENFORCEMENT = TYPE: BSecuredNumericWritable exposes NO plain set/override/auto — only *WithAuthentication(256)+call(2304)+authenticateUser(4). PREFERRED menu agent strips raw `call`; BESProfile/BWebESProfile hide WireSheet/SlotSheet. UI=compliance form. Delete/Rename signed+audited (contrast B351 unsigned purge). Driver re-read btoa+newAction flags. [CERT]×27 [INFER]×5, ratio 0.19. |
 | B355 | ES7 | no · inline (constraint: narrow single-property gap) | §11.100(c) certification = MUTABLE String property ESignAcknowledgement flag 0 on BSecuredDashboardConfiguration (extends BComponent, NOT a secured point). getLegalText reads property FIRST (token-subst), lexicon certificate.message.* only if property empty → §14 corrects B350 (lexicon was framed "baked"; it is the fallback). Editing = ordinary config write: unsigned/unaudited. Default IS compliant (design-surface finding). Capstone of front-strong/back-weak. Driver verified default text in bytecode. [CERT]×15 [INFER]×5, ratio 0.33. investigable→0. |
+| B356 | — (synthesis) | no · inline | Focus-closing SYNTHESIS. Thesis: STRONG signing ceremony / WEAK compliance artifacts. Consolidates ES1-ES7, the Part 11 clause table, 5 secondary threads, 2 §14 corrections, and the field-deployment caveat (posture rests on external RBAC/backup controls). Synthesis block — high ratio expected. [CERT]×9(block-pointers) [INFER]×4. |
 
 ## Dismissed file types
 

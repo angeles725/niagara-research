@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **351 blocks**
+Total: **352 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -357,3 +357,4 @@ Total: **351 blocks**
 | 353 | [niagara-mental-model-bloque353.md](niagara-mental-model-bloque353.md) | `electronicSignature`: the dual-signature / remote path is the RIGOROUS half — asynchronous queued approval, server-enforced second-signer eligibility, hard self-approval block, real email notify — over a Fox supervisor↔JACE transport |
 | 354 | [niagara-mental-model-bloque354.md](niagara-mental-model-bloque354.md) | `electronicSignature`: the UI layer — the browser `btoa()` closes the Base64 loop, the signing dialog is a compliance FORM, and enforcement lives in the type (no plain `set`) + a PREFERRED menu agent that strips the raw `call` verb |
 | 355 | [niagara-mental-model-bloque355.md](niagara-mental-model-bloque355.md) | `electronicSignature`: the §11.100(c) certification the signer swears to is a MUTABLE, unsigned, unaudited station property (`ESignAcknowledgement`) — the lexicon text is only its empty-fallback |
+| 356 | [niagara-mental-model-bloque356.md](niagara-mental-model-bloque356.md) | `electronicSignature` SYNTHESIS: the 21 CFR Part 11 module bolts the signing CEREMONY and leaves the COMPLIANCE ARTIFACTS as ordinary unsigned config — focus closed 7/7 |
