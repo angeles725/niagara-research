@@ -21,10 +21,10 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 353
-gaps_closed: 1
+covered_blocks: 354
+gaps_closed: 2
 known_gaps: 9
-investigable_open: 8
+investigable_open: 7
 requires_execution_open: 0
 blocked_open: 0
 deferred_open: 0
@@ -50,7 +50,7 @@ resolution confirmation.
 | Gap | Question | Block | Status |
 |---|---|---|---|
 | R1 | Architecture/wiring spine: service, source, report DTO, recipients, grid model, exporters | B357 | closed |
-| R2 | Time-range scoping — is there a built-in range param, or is the range carried inside the BQL? What does a user-chosen dynamic range require? | — | open |
+| R2 | Time-range scoping — is there a built-in range param, or is the range carried inside the BQL? What does a user-chosen dynamic range require? | B358 | closed |
 | R3 | Table export pipeline (grid → CSV/text) + Excel(xlsx) gap + file/email delivery | — | open |
 | R4 | History in a report — does a `history:...|bql:` query resolve through BBqlGrid's BatchResolve (records vs navigable ORDs)? | — | open |
 | R5 | Alarm records in a report — BQL over the alarm db, available AlarmRecord columns, alarm-specific source/grid | — | open |
@@ -63,7 +63,7 @@ resolution confirmation.
 
 | Priority | Gap | Notes | Status |
 |---|---|---|---|
-| high | R2 time-range scoping | No built-in range param seen in B357 spine; range appears BQL-carried — confirm + derive the dynamic-range requirement | pending |
+| high | R2 time-range scoping | CLOSED B358: no range property in module; range is a `?period=`/BQL ORD substring (12 BWebChartTimeRangeType values, remittance B45); relative preset = zero-code self-updating, arbitrary user range = custom BReportSource or the interactive webChart path | closed |
 | high | R3 table export + xlsx gap | grid→BGridToCsv/BGridToText→BFileRecipient; confirm no xlsx exporter, PDF wb-only | pending |
 | high | R4 history-in-report feasibility | BBqlGrid slurps a table + BatchResolve on ordInSession — do history records produce resolvable ORDs? Needs-live child for final confirmation | pending |
 | medium | R5 alarm records in a report | BQL over alarm db through BBqlGrid; map AlarmRecord columns (timestamp, sourcePath, normalTime) | pending |
@@ -77,6 +77,7 @@ resolution confirmation.
 | Block | Gap | Delegated? · model tier | Notes |
 |---|---|---|---|
 | B357 | R1 | yes · sonnet (audit sweep) + inline verify | Foundation. Sweep mapped the 49-class module + cross-referenced adjacent corpus; driver re-verified every load-bearing citation against decompiled source (BReportService/BReportSource/BReport/BExportSource/BBqlGrid/BFileRecipient/BGridToCsv + module.xml). Spine: schedule(BTimeTrigger)→generate(async action)→single-thread serialized queue→handleGenerate→BReport(name/mime/bytes)→out topic→recipient.route. Grid=BQL, eager Tables.slurp, bans `select *`, no time-range knob. [CERT]-heavy evidence block. |
+| B358 | R2 | no · inline (constraint: narrow scoping gap, 2 grid classes + corpus remittance) | Range lives in the ORD/BQL, not the module. Two grids: BBqlGrid (query→table, time-series vehicle) vs BComponentGrid (sources×cols cross-product, 3s-lease live snapshot, NOT time-series). Range = `?period=` on the history ORD (12 BWebChartTimeRangeType values, server computes start/end when relative — remittance B45/B73). Relative preset (`today`/`monthToDate`) = zero-code self-updating each scheduled run; arbitrary user-chosen range = custom BReportSource subclass (static `query` BOrd can't take a runtime arg) OR the interactive webChart/history-query path. niagara-help 3 real zeros. [CERT]×3 own + ×2 remittance, [INFER]×4, ratio 0.8 (EVIDENCE+APPLIED). |
 
 ## Dismissed file types
 

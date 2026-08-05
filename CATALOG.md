@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **353 blocks**
+Total: **354 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -359,3 +359,4 @@ Total: **353 blocks**
 | 355 | [niagara-mental-model-bloque355.md](niagara-mental-model-bloque355.md) | `electronicSignature`: the §11.100(c) certification the signer swears to is a MUTABLE, unsigned, unaudited station property (`ESignAcknowledgement`) — the lexicon text is only its empty-fallback |
 | 356 | [niagara-mental-model-bloque356.md](niagara-mental-model-bloque356.md) | `electronicSignature` SYNTHESIS: the 21 CFR Part 11 module bolts the signing CEREMONY and leaves the COMPLIANCE ARTIFACTS as ordinary unsigned config — focus closed 7/7 |
 | 357 | [niagara-mental-model-bloque357.md](niagara-mental-model-bloque357.md) | Niagara N4 — Bloque 357: the `report` module (I) — the grid→bytes→file/email pipeline, and the two things it does NOT have |
+| 358 | [niagara-mental-model-bloque358.md](niagara-mental-model-bloque358.md) | Niagara N4 — Bloque 358: the `report` module (II) — where the time range actually lives (`?period=` in the BQL ORD), and what a user-chosen range costs |
