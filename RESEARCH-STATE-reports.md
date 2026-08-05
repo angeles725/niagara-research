@@ -32,8 +32,9 @@ undocumented_findings: 0
 <!-- /research-state.v1 -->
 
 focus: reports
-status: active
+status: paused
 bootstrapped_on: 2026-08-05
+paused_on: 2026-08-05 (session end after R1/R2; NEXT = R4 history-in-report, the load-bearing client-feasibility gap; R3 export/xlsx also pending)
 block_prefix: niagara-mental-model-bloqueN.md (global numbering; next free after B357: B358)
 
 ## Pre-flight e2 — existence + MEASURED size
