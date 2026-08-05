@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **349 blocks**
+Total: **350 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -355,3 +355,4 @@ Total: **349 blocks**
 | 351 | [niagara-mental-model-bloque351.md](niagara-mental-model-bloque351.md) | `electronicSignature`: the Part 11 audit trail is a plaintext trend history with NO crypto tamper-evidence, and its own `BHistoryMaintenance` exposes three unauthenticated purge actions — the §11.10(e) gap is real |
 | 352 | [niagara-mental-model-bloque352.md](niagara-mental-model-bloque352.md) | `electronicSignature`: the signed-write pipeline re-derived from bytecode — license(cached) → credential(Base64-decoded, real LDAP/local auth) → mandatory-but-unconstrained reason → super-action → 500 ms settle → audit; fail-closed, on a 4-thread pool |
 | 353 | [niagara-mental-model-bloque353.md](niagara-mental-model-bloque353.md) | `electronicSignature`: the dual-signature / remote path is the RIGOROUS half — asynchronous queued approval, server-enforced second-signer eligibility, hard self-approval block, real email notify — over a Fox supervisor↔JACE transport |
+| 354 | [niagara-mental-model-bloque354.md](niagara-mental-model-bloque354.md) | `electronicSignature`: the UI layer — the browser `btoa()` closes the Base64 loop, the signing dialog is a compliance FORM, and enforcement lives in the type (no plain `set`) + a PREFERRED menu agent that strips the raw `call` verb |

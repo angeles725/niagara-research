@@ -24,10 +24,10 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 349
-gaps_closed: 5
+covered_blocks: 350
+gaps_closed: 6
 known_gaps: 8
-investigable_open: 2
+investigable_open: 1
 requires_execution_open: 1
 blocked_open: 0
 deferred_open: 0
@@ -37,7 +37,7 @@ undocumented_findings: 0
 focus: electronicSignature
 status: active
 bootstrapped_on: 2026-08-04
-block_prefix: niagara-mental-model-bloqueN.md (global numbering; next free: B354)
+block_prefix: niagara-mental-model-bloqueN.md (global numbering; next free: B355)
 
 ## Pre-flight e2 — existence + MEASURED size
 
@@ -56,7 +56,7 @@ Source CONFIRMED reachable; bytecode intact (obfuscation is decompiler-output on
 | ES4 | Audit-trail protection + can BHistoryMaintenance purge it without a signature (§11.10(e))? | B351 | closed |
 | ES4-G1 | Live-permission: does a stock RBAC role grant invoke on BHistoryMaintenance to a non-super-user? (requires-execution) | — | blocked-on-live-server |
 | ES5 | Credential handling — CLOSED by B353 §353.3 (remittance): secondary path = Base64+LDAP/BPasswordCache identical to primary, + self-approval block + role enforcement | B353 | closed |
-| ES6 | ux/wb layers (web editors, Swing credential dialog, PX/Hx bindings) | — | pending |
+| ES6 | ux/wb layers (web editors, Swing credential dialog, PX/Hx bindings) | B354 | closed |
 | ES7 | Mutable ESignAcknowledgement property vs baked lexicon — can it diverge? | — | pending |
 
 ## Backlog (investigable)
@@ -67,7 +67,7 @@ Source CONFIRMED reachable; bytecode intact (obfuscation is decompiler-output on
 | high | ES2 sign flow end-to-end | CLOSED B352: pipeline re-derived from bytecode, fail-closed, Base64 cred, reason unconstrained, cached license, 4-thread pool | closed |
 | medium | ES3 dual-signature / remote transport | CLOSED B353: async queue, self-approval block, role enforcement, email wired, Fox transport | closed |
 | medium | ES5 credential handling | CLOSED B353 §353.3 (remittance) — secondary path parity + self-approval/role guards | closed |
-| medium | ES6 ux/wb layers | acknowledgement capture in editors + PX binding | pending |
+| medium | ES6 ux/wb layers | CLOSED B354: client btoa closes Base64 loop; type (no plain set) + PREFERRED menu agent strip call + view-profile = enforcement; UI is compliance form | closed |
 | low | ES7 mutable ESignAcknowledgement | divergence from baked lexicon | pending |
 
 ## Iteration history
@@ -78,6 +78,7 @@ Source CONFIRMED reachable; bytecode intact (obfuscation is decompiler-output on
 | B351 | ES4 | yes · sonnet (purge sweep) + inline verify | No crypto tamper-evidence (plaintext `::` trend record); `BHistoryMaintenance extends BComponent` with 3 `newAction(0,…)` purge actions calling core `HistorySpaceConnection` directly, no signature/auth/BReasons; ordinary history, fullPolicy default `roll`. Driver re-verified all [CERT] (javap + source). [CERT]×35 [CERT-doc]×3 [INFER]×5, ratio 0.13. Opened child ES4-G1 (live-permission reachability). |
 | B352 | ES2 | yes · sonnet (bytecode trace) + inline verify | Pipeline re-derived from `javap -c`: checkLicense(cached)@7 → verifyActionCredentials(Base64+LDAP/BPasswordCache)@8 → getIsValidUser/ifeq@92 → invokeSuperAction@144 → sleep(500)@147 → logHistory@230. FAIL-CLOSED (throw@8 + branch@92). Reason mandatory but no BReasonSet membership check. License=cached bool (runtime expiry uncaught). 4-thread pool → ~8 signed writes/s. Driver re-ran every javap. [CERT]×28 [INFER]×8, ratio 0.29. Re-scoped ES5 (primary path answered). |
 | B353 | ES3 (+ES5) | yes · sonnet (dual/remote sweep) + inline verify | Remote dual-sig ASYNC (queue via addRemoteRequest, later approval); BSecondaryRemoteAuthentication singleton queue (in-memory Map default / .bog opt-in), passwords zeroed before queueing. Second signer: Base64+LDAP/BPasswordCache (closes ES5) + self-approval HARD-BLOCK (contentEquals→throw) + role enforcement (BSecureUserMixIn level2AuthenticatorRole, primary's role checked vs secondary). Email notify WIRED (RE-MEASURE ×3, gated shouldSendRemoteRequestEmails=false). Fox transport supervisor↔JACE (fox-rt+niagaraDriver-rt). Driver re-ran javap/strings. [CERT]×35 [INFER]×7, ratio 0.20. Module's rigorous half vs weak audit (§353.7). |
+| B354 | ES6 | yes · sonnet (ux/wb sweep) + inline verify | Client btoa() encodes password (SecuredParentEditor.js/Util.js), wire form username;base64(pw) → closes Base64 loop from B352. Editors = BSingleton JS agents (chain →SecuredParentEditor→BaseEditor), one dialog (primary/secondary tabs, legaltext). ENFORCEMENT = TYPE: BSecuredNumericWritable exposes NO plain set/override/auto — only *WithAuthentication(256)+call(2304)+authenticateUser(4). PREFERRED menu agent strips raw `call`; BESProfile/BWebESProfile hide WireSheet/SlotSheet. UI=compliance form. Delete/Rename signed+audited (contrast B351 unsigned purge). Driver re-read btoa+newAction flags. [CERT]×27 [INFER]×5, ratio 0.19. |
 
 ## Dismissed file types
 
