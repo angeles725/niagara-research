@@ -24,11 +24,11 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 346
-gaps_closed: 1
-known_gaps: 7
-investigable_open: 6
-requires_execution_open: 0
+covered_blocks: 347
+gaps_closed: 2
+known_gaps: 8
+investigable_open: 5
+requires_execution_open: 1
 blocked_open: 0
 deferred_open: 0
 undocumented_findings: 0
@@ -37,7 +37,7 @@ undocumented_findings: 0
 focus: electronicSignature
 status: active
 bootstrapped_on: 2026-08-04
-block_prefix: niagara-mental-model-bloqueN.md (global numbering; next free: B351)
+block_prefix: niagara-mental-model-bloqueN.md (global numbering; next free: B352)
 
 ## Pre-flight e2 — existence + MEASURED size
 
@@ -53,7 +53,8 @@ Source CONFIRMED reachable; bytecode intact (obfuscation is decompiler-output on
 | ES1 | Identity, origin, type system, license gate, Part 11 mapping | B350 | closed |
 | ES2 | Sign flow end-to-end (license→credential→reason→super-action→audit order) | — | pending |
 | ES3 | Dual-signature / remote transport (queue, email notify, persistence) | — | pending |
-| ES4 | Audit-trail protection + can BHistoryMaintenance purge it without a signature (§11.10(e))? | — | pending |
+| ES4 | Audit-trail protection + can BHistoryMaintenance purge it without a signature (§11.10(e))? | B351 | closed |
+| ES4-G1 | Live-permission: does a stock RBAC role grant invoke on BHistoryMaintenance to a non-super-user? (requires-execution) | — | blocked-on-live-server |
 | ES5 | Credential handling (Base64-not-encrypted? 500ms sleep? confirm from bytecode) | — | pending |
 | ES6 | ux/wb layers (web editors, Swing credential dialog, PX/Hx bindings) | — | pending |
 | ES7 | Mutable ESignAcknowledgement property vs baked lexicon — can it diverge? | — | pending |
@@ -62,7 +63,7 @@ Source CONFIRMED reachable; bytecode intact (obfuscation is decompiler-output on
 
 | Priority | Gap | Notes | Status |
 |---|---|---|---|
-| high | ES4 audit-trail protection + purge surface | §11.10(e) integrity — highest compliance risk | pending |
+| high | ES4 audit-trail protection + purge surface | §11.10(e) integrity — CLOSED B351: no crypto tamper-evidence + 3 unauthenticated purge actions | closed |
 | high | ES2 sign flow end-to-end | re-derive method order from bytecode (scrubbed source) | pending |
 | medium | ES5 credential handling | confirm Base64/sleep hypotheses from bytecode | pending |
 | medium | ES3 dual-signature / remote transport | queue persistence in-memory vs BOG | pending |
@@ -74,6 +75,7 @@ Source CONFIRMED reachable; bytecode intact (obfuscation is decompiler-output on
 | Block | Gap | Delegated? · model tier | Notes |
 |---|---|---|---|
 | B350 | ES1 | yes · sonnet (audit sweep) + inline verify | Foundation. Sweep mapped taxonomy/flow; driver re-verified all load-bearing citations against bytecode/resources (obfuscation caught: decompiled strings scrubbed). [CERT]×35 [CERT-doc]×3 [INFER]×15, ratio 0.39. |
+| B351 | ES4 | yes · sonnet (purge sweep) + inline verify | No crypto tamper-evidence (plaintext `::` trend record); `BHistoryMaintenance extends BComponent` with 3 `newAction(0,…)` purge actions calling core `HistorySpaceConnection` directly, no signature/auth/BReasons; ordinary history, fullPolicy default `roll`. Driver re-verified all [CERT] (javap + source). [CERT]×35 [CERT-doc]×3 [INFER]×5, ratio 0.13. Opened child ES4-G1 (live-permission reachability). |
 
 ## Dismissed file types
 
