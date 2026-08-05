@@ -29,12 +29,28 @@
 | **jsonToolkit** | **stopped (14/14 + B349)** | `RESEARCH-STATE-jsonToolkit.md` | El add-on `com.tridiumx.jsonToolkit` (namespace `tridiumx`, NO core) como MARSHALLER JSON bidireccional: outbound (schema tree → JSON, generado SÍNCRONO en el engine thread, sin transporte propio — output slot consumido por obix/BLink) + inbound (selectores JSONPath → escrituras/ack/export-markers, confía en el sender). Gate de licencia 3 capas (feature `tridium/jsonToolkit` + atributos import/export + SMA). 163 clases propias (Gson 2.9.0 + jayway-jsonpath DESCARTADOS). Relative schema cross-station (Fox `sys:`), inline Program escape hatch, alarm recipient (gemelo del email sin SMTP). Hallazgos seguridad inbound: export-reg SIN ACL, ack-attribution spoofable, arrayForEach sin guard. **Primera cita del corpus a `docJsonToolkit`** (114 files, 33 citados). Síntesis B349. 2 child gaps G1/G2 (requires-execution). Audit-first 2026-08-04 | B335–B349 |
 | **electronicSignature** | **stopped (7/7 + B356)** | `RESEARCH-STATE-electronicSignature.md` | El add-on **TridiumPS** `electronicSignature` (+ `electronicSignatureRemote`), namespaces `com.tridiumx.ps.*` + `com.secured.*`, como la capa de firma electrónica **21 CFR Part 11**: punto asegurado por SUSTITUCIÓN DE TIPO (`BSecured*Writable`), verbos `*WithAuthentication` con re-auth (LDAP/local), reason obligatorio, segundo firmante (`BSecondaryRemoteAuthentication` + `BSecureUserMixIn` Level-2), audit `BSecuredTrendRecord`. Gate `tridium:eSignature` + `point.limit`. **Tesis (B356): CEREMONIA de firma FUERTE / ARTEFACTOS de cumplimiento DÉBILES.** FUERTE: pipeline fail-closed (B352), segundo firmante distinto+rol enforced+self-approval bloqueado (B353). DÉBIL (sin firma/sin auditar): reason solo no-vacío no del set (B352), certificación §11.100(c) = propiedad mutable `ESignAcknowledgement` (B355), audit trail plaintext purgeable (B351). UI=formulario, enforcement=el TIPO; credencial Base64 reversible browser `btoa`↔server (B354). **Refuta** que `signingService` (PKI) cumpliera Part 11 (B350). Ofuscación: decompilado string-scrubbed, bytecode/resources intactos. Cerrado 7/7 2026-08-05. Falta ES4-G1 (requires-execution) | B350–B356 |
 | px-chart-classic | **stopped (8/8)** | `RESEARCH-STATE-px-chart-classic.md` | El sistema de charting **CLÁSICO** (`javax.baja.chart`, módulo `chart` Swing/Workbench) — el feed que px-editor-core y B201 declararon "otro focus". 67 clases distintas medidas (rt 5 / wb 62; API pública 35+9). 8 gaps: H1 modelo+jerarquía, H2 ejes/render, H3 binding a histories, H4 consumidores + §14 vs B199/B201, H5 impl `com.tridium.chart`, H6 PDF+HX, H7 tests, H8 split rt/wb. Pregunta transversal: por qué N4 arrastra DOS sistemas de charting | B251–B259 |
+| **reports** | **active (1/9)** | `RESEARCH-STATE-reports.md` | El módulo core `report` (`report-{rt,ux,wb}`, `javax.baja.report.*` + `com.tridium.report.*`, 49 clases) como SUBSISTEMA: pipeline **scheduled grid→bytes→file/email** con cola serializada de un hilo. Nace de un pedido de cliente (reportes con rango + tabla tipo Excel + chart con marcas de alarma). Tesis: el módulo produce **tablas CSV/text, NO charts, y NO tiene knob de rango** — el entregable COMPONE tres subsistemas (report+chart+alarm) con glue de rango. 9 gaps R1-R9. **NO reabre** charts (B199/B251-B259) ni alarmas (B44/B240): esos son REMITTANCE | B357– |
 
 ## Focus activo
 
-**(ninguno activo)** — `electronicSignature` CERRADO 7/7 el 2026-08-05 (B350-B356). Cola disponible sin re-bootstrap
-(§16): `niagara-network-supervisor` (planned 0/5, arranca en N1), `px-tail` (planned 0/3, arranca en P1 webEditors),
-`oem-honeywell-tail` (paused 9/17, U10-U15+U1b/U1c). Próximo bloque global: **B357**.
+**`reports`** (active 1/9) — BOOTSTRAPPED 2026-08-05 por pedido del usuario
+(`/research-sdd reportes generados con rangos, analiticas con graficas y muestreo de alarmas`), respaldando una
+necesidad real de cliente: reportes sobre un RANGO de fecha/hora/mes → tabla tipo Excel, más un CHART (Y=PSI,
+X=fecha adaptable al rango) que MARQUE los puntos donde la señal cruzó límites de alarma (dos bandas: <12 / >28
+crítica; 15-25 normal), con timestamp por alarma. Angle: el módulo core `report` (49 clases) como pipeline
+**scheduled grid→bytes→file/email**. **B357 (R1)** fija el espinazo: `BReportService` (cola serializada de un
+hilo, super-user) → `BReportSource` (schedule→generate async→out) → `BReport` (BStruct de 4 campos: nombre/
+fileName/mime/bytes) → `BReportRecipient` (file/email). El grid es BQL (`BBqlGrid`: prohíbe `select *`, antepone
+`ordInSession`, `Tables.slurp` ANSIOSO como el chart clásico) y **no tiene knob de rango** — el rango va en el
+BQL. Exporters: CSV/text en la station, **PDF solo en Workbench, sin xlsx**. Y **cero clases de chart** pese al
+dep `chart-rt`. Tesis preliminar: el entregable del cliente es una composición de TRES subsistemas + glue de
+rango, no una feature de report. Backlog: R2 rango · R3 export/xlsx · R4 history-in-report · R5 alarmas-in-report
+· R6 chart-in-report (external) · R7 ux/web · R8 wb builder · R9 síntesis. 8 investigables abiertos.
+
+Cola disponible sin re-bootstrap (§16) para después: `niagara-network-supervisor` (planned 0/5, N1), `px-tail`
+(planned 0/3, P1 webEditors), `oem-honeywell-tail` (paused 9/17, U10-U15+U1b/U1c). Próximo bloque global: **B358**.
+
+**(cerrado)** — `electronicSignature` CERRADO 7/7 el 2026-08-05 (B350-B356).
 
 **(cerrado)** **electronicSignature** — CERRADO 7/7 el 2026-08-05 (B350-B356 = 6 evidence + síntesis B356). La capa
 21 CFR Part 11 de TridiumPS. **Tesis (B356): CEREMONIA de firma FUERTE, ARTEFACTOS de cumplimiento DÉBILES.** El módulo
