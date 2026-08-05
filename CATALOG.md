@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **350 blocks**
+Total: **351 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -356,3 +356,4 @@ Total: **350 blocks**
 | 352 | [niagara-mental-model-bloque352.md](niagara-mental-model-bloque352.md) | `electronicSignature`: the signed-write pipeline re-derived from bytecode — license(cached) → credential(Base64-decoded, real LDAP/local auth) → mandatory-but-unconstrained reason → super-action → 500 ms settle → audit; fail-closed, on a 4-thread pool |
 | 353 | [niagara-mental-model-bloque353.md](niagara-mental-model-bloque353.md) | `electronicSignature`: the dual-signature / remote path is the RIGOROUS half — asynchronous queued approval, server-enforced second-signer eligibility, hard self-approval block, real email notify — over a Fox supervisor↔JACE transport |
 | 354 | [niagara-mental-model-bloque354.md](niagara-mental-model-bloque354.md) | `electronicSignature`: the UI layer — the browser `btoa()` closes the Base64 loop, the signing dialog is a compliance FORM, and enforcement lives in the type (no plain `set`) + a PREFERRED menu agent that strips the raw `call` verb |
+| 355 | [niagara-mental-model-bloque355.md](niagara-mental-model-bloque355.md) | `electronicSignature`: the §11.100(c) certification the signer swears to is a MUTABLE, unsigned, unaudited station property (`ESignAcknowledgement`) — the lexicon text is only its empty-fallback |

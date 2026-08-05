@@ -83,7 +83,7 @@ Part 11 obligation maps to a concrete, cited artifact:
 
 | Part 11 requirement | Artifact (this module) | Citation |
 |---|---|---|
-| §11.100(c) — signature is legally binding, equivalent to handwritten | The certification statement the operator acknowledges: *"I hereby certify that (i) I am the user […] and (iii) it is my intent that the above electronic signature be my legally binding signature just as if it were my handwritten signature."* | `electronicSignature-ux.lexicon:262-264` `[CERT-doc]` |
+| §11.100(c) — signature is legally binding, equivalent to handwritten | The certification statement the operator acknowledges: *"I hereby certify that (i) I am the user […] and (iii) it is my intent that the above electronic signature be my legally binding signature just as if it were my handwritten signature."* ⚠ **§14 [B355]**: this lexicon text is only the DEFAULT/empty-fallback; the RUNTIME source is the MUTABLE, unsigned property `ESignAcknowledgement` — not "baked". | `electronicSignature-ux.lexicon:262-264` `[CERT-doc]`; corrected by [B355] |
 | §11.200(a)(1)(i) — re-authentication at the moment of signing | dependency `ldap-rt` + `BLDAPAuthenticationJob` / `BLDAPUserNamePasswordCallbackHandler` (JAAS re-login) for LDAP users; local password re-entry otherwise | module.xml:41,67 `[CERT]`; flow `[INFER]` |
 | §11.50(a)(3) — the MEANING/reason of the signature | `BReasons` / `BReasonSet` pre-configured reason sets; reason-for-change is a mandatory action parameter | module.xml:29-30 `[CERT]`; enforcement `[INFER]` |
 | §11.200(b) — a second, distinct signer (witness/approver) | `BSecondaryRemoteAuthentication` + `BSecureUserMixIn`'s Level-2 authenticator role | module.xml:56,61 `[CERT]`; flow `[INFER]` |
