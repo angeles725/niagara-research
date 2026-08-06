@@ -29,12 +29,45 @@
 | **jsonToolkit** | **stopped (14/14 + B349)** | `RESEARCH-STATE-jsonToolkit.md` | El add-on `com.tridiumx.jsonToolkit` (namespace `tridiumx`, NO core) como MARSHALLER JSON bidireccional: outbound (schema tree → JSON, generado SÍNCRONO en el engine thread, sin transporte propio — output slot consumido por obix/BLink) + inbound (selectores JSONPath → escrituras/ack/export-markers, confía en el sender). Gate de licencia 3 capas (feature `tridium/jsonToolkit` + atributos import/export + SMA). 163 clases propias (Gson 2.9.0 + jayway-jsonpath DESCARTADOS). Relative schema cross-station (Fox `sys:`), inline Program escape hatch, alarm recipient (gemelo del email sin SMTP). Hallazgos seguridad inbound: export-reg SIN ACL, ack-attribution spoofable, arrayForEach sin guard. **Primera cita del corpus a `docJsonToolkit`** (114 files, 33 citados). Síntesis B349. 2 child gaps G1/G2 (requires-execution). Audit-first 2026-08-04 | B335–B349 |
 | **electronicSignature** | **stopped (7/7 + B356)** | `RESEARCH-STATE-electronicSignature.md` | El add-on **TridiumPS** `electronicSignature` (+ `electronicSignatureRemote`), namespaces `com.tridiumx.ps.*` + `com.secured.*`, como la capa de firma electrónica **21 CFR Part 11**: punto asegurado por SUSTITUCIÓN DE TIPO (`BSecured*Writable`), verbos `*WithAuthentication` con re-auth (LDAP/local), reason obligatorio, segundo firmante (`BSecondaryRemoteAuthentication` + `BSecureUserMixIn` Level-2), audit `BSecuredTrendRecord`. Gate `tridium:eSignature` + `point.limit`. **Tesis (B356): CEREMONIA de firma FUERTE / ARTEFACTOS de cumplimiento DÉBILES.** FUERTE: pipeline fail-closed (B352), segundo firmante distinto+rol enforced+self-approval bloqueado (B353). DÉBIL (sin firma/sin auditar): reason solo no-vacío no del set (B352), certificación §11.100(c) = propiedad mutable `ESignAcknowledgement` (B355), audit trail plaintext purgeable (B351). UI=formulario, enforcement=el TIPO; credencial Base64 reversible browser `btoa`↔server (B354). **Refuta** que `signingService` (PKI) cumpliera Part 11 (B350). Ofuscación: decompilado string-scrubbed, bytecode/resources intactos. Cerrado 7/7 2026-08-05. Falta ES4-G1 (requires-execution) | B350–B356 |
 | px-chart-classic | **stopped (8/8)** | `RESEARCH-STATE-px-chart-classic.md` | El sistema de charting **CLÁSICO** (`javax.baja.chart`, módulo `chart` Swing/Workbench) — el feed que px-editor-core y B201 declararon "otro focus". 67 clases distintas medidas (rt 5 / wb 62; API pública 35+9). 8 gaps: H1 modelo+jerarquía, H2 ejes/render, H3 binding a histories, H4 consumidores + §14 vs B199/B201, H5 impl `com.tridium.chart`, H6 PDF+HX, H7 tests, H8 split rt/wb. Pregunta transversal: por qué N4 arrastra DOS sistemas de charting | B251–B259 |
+| **webChart** | **stopped (9/9)** | `RESEARCH-STATE-webChart.md` | El framework `webChart` (`webChart-{rt,ux}`, 12 clases Java + 59 JS autorales) como SUBSISTEMA en AMPLITUD: el motor de render bajaux (`line/` 11 capas), modelo de series/escalas/sampling (`model/`), catálogo de tipos (line/donut/gauge/boxTable), comandos+interacciones, field editors, pipeline de export, la extensión `BIChartFactory`, y el `.chart` persistido. Bootstrapeado 2026-08-05 tras cerrar el hilo de charting de reports. **NO re-deriva** [B199] (espinazo: servlets, 4 series types, gauge) ni [B367] (veredicto de banda) — ambos REMITTANCE. 9 gaps W1-W9 + síntesis B377 + §18 retro | B368–B377 |
 | **reports** | **stopped (9/9)** | `RESEARCH-STATE-reports.md` | El módulo core `report` (`report-{rt,ux,wb}`, `javax.baja.report.*` + `com.tridium.report.*`, 49 clases) como SUBSISTEMA: pipeline **scheduled grid→bytes→file/email** con cola serializada de un hilo. Nace de un pedido de cliente (reportes con rango + tabla tipo Excel + chart con marcas de alarma). **Tesis CONFIRMADA (B362): el entregable NO es una feature de `report` — el módulo aporta solo el wrapper schedule+entrega; las TRES patas de datos (tabla history, marcas de alarma, chart con bandas) son código CUSTOM rt-profile.** Raíz doble: `BBqlGrid` es visor de COMPONENTES (records `BStruct` sin `ordInSession` → NPE) + split de perfil rt/wb (chart/PDF/PX no cargan en station). 9 gaps R1-R9 cerrados. **NO reabre** charts (B199/B251-B259) ni alarmas (B44/B240): REMITTANCE | B357-B365 |
 
 ## Focus activo
 
-**(ninguno activo)** — `reports` CERRADO 9/9 el 2026-08-05 (B357-B365 + síntesis B362). §18 retro:
-`retros/2026-08-05-reports.md`.
+**`webChart`** (stopped 9/9) — BOOTSTRAPEADO y CERRADO 2026-08-05 en una sesión (W1-W9, B368-B376). El framework de
+charting moderno como subsistema en amplitud (71 artefactos: 12 Java + 59 JS). Nace del hilo de charting de reports (B366/B367): tras probar que la
+banda de alarma es custom en las 4 rutas, el usuario eligió documentar el framework completo. 9 gaps audit-first
+W1-W9 en `RESEARCH-STATE-webChart.md`. **W1 CERRADO B368** — el motor de render es un sistema de capas hecho a mano
+sobre **D3 v3** (`d3.svg.line`, `d3.behavior.zoom`, API legacy): `runLayers` = dispatcher duck-typed promise-chained
+sobre array de 9 capas hardcodeado; `DataLayer` full-redraw (regenera el `d` completo cada pasada, sin
+incrementalidad) con branch tree por tipo de serie; coloreo por status gated (liga B367); Y autoscale solo bajo zoom
+& `!isLocked()`, ticks delegados al modelo; zoom = rescale IN-MEMORY sin round-trip al servlet; motor CERRADO (sin
+registry ni hook de primitiva). §14: `chartLimitMode` es del `ValueScale`/modelo (W2), no de la capa de eje.
+**W2 CERRADO B369** — modelo de series/escalas/sampling. Autoscale = precedencia de 3 niveles por facets
+(`facetsLimitMode` off/inclusive/locked, default off; override per-serie `chartLimitMode`). **HALLAZGO CLAVE:**
+`samplingType` default=`average` GLOBAL por chart → un pico que cruza el límite se **PROMEDIA y desaparece** de la
+línea (`samplingUtil.js:243` sum/count); el status se combina con OR (:232), así que el **color** de alarma
+sobrevive pero la **altura** no; y un solo setting global no puede preservar a la vez los cruces `<12` (necesita
+`min`) y `>28` (necesita `max`). Segundo motivo estructural de que marcar los cruces sea custom en webChart
+(remittance decisión-relevante a reports/B362). **W3-W9 CERRADOS** en paralelo (B370-B376): W5 field editors
+(5 grupos de settings sobre webEditors), W6 export (CSV sampleado + client-print + .chart; sin imagen/xlsx),
+W3 catálogo (2 agentes: line + gauge; donut code-only; **gauge SIN zonas de límite**), W4 comandos (event bus +
+6 Commands + drag→seriesFactory), W7 server (**DEFECTO de permisos** /schedule+/boxTable sendError sin return →
+W7-G1 requires-execution; sin sampling server-side), W8 extensión (BIChartFactory marker + **sin license gate**;
+seam agrega serie no primitiva de dibujo), W9 .chart (JSON definition + 12 time-range presets; tabs≠multi-chart).
+
+**Hilos transversales (5):** (1) motor de render **hecho a mano sobre D3 v3** legacy; (2) **ningún surface dibuja
+límites de alarma** (line/gauge/modelo) — coherente con B366/B367; (3) **abierto en factory, cerrado en dibujo** —
+chart-factory sin licencia (B375) alimenta series, pero la banda sigue siendo fork del DataLayer (B368); (4) el
+**sampling `average` borra los cruces** (B369) y el CSV los exporta sampleados (B371) → la ruta interactiva de B362
+pierde fidelidad salvo max/min, y uno global no cubre `<12` Y `>28`; (5) charting **gratis** + read-gated por
+`canRead()` salvo el defecto W7. Child gap abierto: **W7-G1** (requires-execution). **Síntesis capstone B377** +
+**§18 retro** `retros/2026-08-05-webChart.md` (3 deltas WC-A fan-out paralelo de gaps independientes / WC-B split
+defecto-estático-vs-explotabilidad-runtime / WC-C reconciliación por distinción de capa). Focus cerrado 10 bloques
+B368-B377. Próximo bloque global: **B378**.
+
+**(previo, cerrado)** — `reports` CERRADO 9/9 el 2026-08-05 (B357-B365 + síntesis B362). §18 retro:
+`retros/2026-08-05-reports.md`. Addenda build-vs-buy B366 (Analytics) + B367 (webChart-bandas) — no reabren.
 
 **reports** (el módulo core `report` como subsistema) — CERRADO 2026-08-05, 9 bloques B357-B365. Nació de un
 pedido REAL de cliente (`/research-sdd reportes generados con rangos, analiticas con graficas y muestreo de
@@ -58,8 +91,31 @@ split rt/wb. **Costo (B362 §362.5, [INFER])**: entregable completo ~110-190h �
 ~$13k-23k integrador US/EU; ítem dominante = el renderer del chart con bandas (bloqueado dos veces). Alternativa
 más barata = ruta interactiva webChart (otra necesidad: on-demand, sin push, sin tabla Excel).
 
+**Addendum build-vs-buy (B366, 2026-08-05)** — NO reabre reports (sigue 9/9). Pregunta: ¿comprar la licencia de
+**Niagara Analytics** entrega el chart de rango PSI con bandas de alarma, evitando el renderer custom que B362
+marcó como costo dominante? **NO.** Analytics tiene 7 tipos de chart analíticos (Spectrum/Ranking/LoadDuration/...),
+ninguno es un trend con bandas de límite; su frontend autoral tiene **0 código de alarma/banda**; sus charts se
+construyen SOBRE el framework `webChart` (`BIChartFactory`), así que hereda el techo de webChart; y la guía oficial
+encuadra alarma-vs-chart como salidas **paralelas**, nunca overlay. Veredicto: comprar Analytics recorta las patas
+de **detección** (algoritmo→registro de alarma) y **agregación** (trend wrappers), pero NO la pata cara (chart con
+bandas) — custom en ambos caminos. **Confirma y refuerza B362.** Abre el hilo "¿webChart renderiza regions/
+y-grid-lines ligados a la extensión de alarma de un punto?" → próximo bloque, bajo la línea B199, NO bajo reports.
+
+**B367 webChart-bandas (2026-08-05)** — cierra el hilo que abrió B366; bajo la línea de charting B199, NO es gap de
+reports. ¿webChart renderiza bandas de límite de alarma nativas? **NO tampoco.** Solo colorea el sample por status
+(`isAlarm()`→color, sin banda); el motor de render es un **array de 11 capas HARDCODEADO** en `line/Line.js:25` sin
+`LimitLayer` y sin `addLayer`/registry → agregar la banda = **forkear la composición**, no es plugin. Sweep del
+módulo: 0 `limitLine`/`threshold`/`band`. Clincher estructural: el feed `{t,v,r,s}` **no transporta valores de
+límite**. Doc de developer + niagara-help: silencio (ceros reales). **VEREDICTO: la banda `<12`/`>28` es custom
+INTRÍNSECO en las 4 rutas de charting** (report / BChart clásico / Analytics / webChart) — confirma B362 por 5ta
+vez. webChart sigue siendo la ruta más barata (heredas el motor, forkeas una capa), pero NO porque las bandas sean
+nativas. Orden de costo: webChart-fork < BChart-subclass < headless-desde-cero. **La pregunta de charting queda
+CERRADA.**
+
 Cola disponible sin re-bootstrap (§16): `niagara-network-supervisor` (planned 0/5, N1), `px-tail`
-(planned 0/3, P1 webEditors), `oem-honeywell-tail` (paused 9/17, U10-U15+U1b/U1c). Próximo bloque global: **B366**.
+(planned 0/3, P1 webEditors), `oem-honeywell-tail` (paused 9/17, U10-U15+U1b/U1c). Opcional no-encolado: focus
+`webChart` completo (el framework solo fue tocado en B199; el motor de capas/modelo de series queda sin mapear en
+amplitud — pero nada de eso cambia el veredicto de la banda). Próximo bloque global: **B368**.
 
 **(cerrado)** — `electronicSignature` CERRADO 7/7 el 2026-08-05 (B350-B356).
 
