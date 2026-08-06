@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **360 blocks**
+Total: **361 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -366,3 +366,4 @@ Total: **360 blocks**
 | 362 | [niagara-mental-model-bloque362.md](niagara-mental-model-bloque362.md) | Niagara N4 — Bloque 362: the `report` module (VI, SYNTHESIS) — the client deliverable is a 4-piece composition where the stock module contributes only the schedule+delivery wrapper; the three data legs are all custom |
 | 363 | [niagara-mental-model-bloque363.md](niagara-mental-model-bloque363.md) | Niagara N4 — Bloque 363: the `report` module (VII) — the table export is CSV/text only, every cell stringified to `BString`, with a UTF-8 BOM for Excel; native `.xlsx` is PROVEN ABSENT (custom if required) |
 | 364 | [niagara-mental-model-bloque364.md](niagara-mental-model-bloque364.md) | Niagara N4 — Bloque 364: the `report` module (VIII) — the ux/web layer is a read-only grid-table viewer: client-side pagination capped at 3000 BQL rows, sort disabled, zero chart rendering |
+| 365 | [niagara-mental-model-bloque365.md](niagara-mental-model-bloque365.md) | Niagara N4 — Bloque 365: the `report` module (IX) — the Workbench builder authors component grids; its query editor hardcodes `select ordInSession`, so the client's history-sample table is NOT authorable through stock UI (confirms B359 from the tooling side) |
