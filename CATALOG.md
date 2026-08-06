@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **375 bloques**
+Total: **376 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -380,6 +380,7 @@ Total: **375 bloques**
 | 375 | [niagara-mental-model-bloque375.md](niagara-mental-model-bloque375.md) | `webChart` (W8) — the chart-factory extension is a two-sided contract (Java marker `BIChartFactory extends BIJavaScript` registered as an agent tagged `webChart:IChartFactory`, JS `BaseChartFactory.factory()` returning a Promise of series) and charting is NOT license-gated; but the seam adds a SERIES for a data type, not a new DRAW primitive — a band still needs the closed DataLayer of B368 |
 | 376 | [niagara-mental-model-bloque376.md](niagara-mental-model-bloque376.md) | `webChart` (W9) — the `.chart` file is a JSON `BDataFile` holding the chart DEFINITION (series ORDs + settings) opened by `ChartWidget`; the time range is a 12-value frozen enum (default `today`, only `timeRange` absolute); and the tab machinery is a generic settings-editor container, not a multi-chart feature (closes the focus 9/9) |
 | 377 | [niagara-mental-model-bloque377.md](niagara-mental-model-bloque377.md) | `webChart` (SÍNTESIS) — a capable but LEGACY-D3, hand-built chart engine that is open at the series/factory layer and closed at the draw layer; free of license, read-gated (with one servlet defect), and — like every Niagara charting surface — blind to alarm limits, so the client's banded PSI chart stays custom on the cheapest path too |
+| 378 | [niagara-mental-model-bloque378.md](niagara-mental-model-bloque378.md) | alarm escalation & filtering is FOUR mechanisms across THREE modules — core AlarmClass level-timers (B34) + a core BQL *query* filter for display, and two OEM add-ons: bacnetAlarmRouter's wiresheet *routing* filters (a level-gate + an A/B divert switch, one carrying an index bug) and honAlarmExt's DELAYED/SENT/IGNORED hold — so the declarative "route escalated alarms to this recipient" gate is not core |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
