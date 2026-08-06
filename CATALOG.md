@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **358 blocks**
+Total: **359 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -364,3 +364,4 @@ Total: **358 blocks**
 | 360 | [niagara-mental-model-bloque360.md](niagara-mental-model-bloque360.md) | Niagara N4 — Bloque 360: the `report` module (IV) — alarm-records-in-a-report: the DB is fully BQL-queryable and carries every limit-crossing field, but the SAME `ordInSession` wall blocks `BBqlGrid` |
 | 361 | [niagara-mental-model-bloque361.md](niagara-mental-model-bloque361.md) | Niagara N4 — Bloque 361: the `report` module (V) — chart-in-a-report is blocked at the PROFILE boundary: the station generates only CSV/text; the only chart path is a manual Workbench PDF, and alarm bands are custom in either case |
 | 362 | [niagara-mental-model-bloque362.md](niagara-mental-model-bloque362.md) | Niagara N4 — Bloque 362: the `report` module (VI, SYNTHESIS) — the client deliverable is a 4-piece composition where the stock module contributes only the schedule+delivery wrapper; the three data legs are all custom |
+| 363 | [niagara-mental-model-bloque363.md](niagara-mental-model-bloque363.md) | Niagara N4 — Bloque 363: the `report` module (VII) — the table export is CSV/text only, every cell stringified to `BString`, with a UTF-8 BOM for Excel; native `.xlsx` is PROVEN ABSENT (custom if required) |
