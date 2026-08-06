@@ -21,10 +21,10 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 359
-gaps_closed: 7
+covered_blocks: 360
+gaps_closed: 8
 known_gaps: 9
-investigable_open: 2
+investigable_open: 1
 requires_execution_open: 0
 blocked_open: 0
 deferred_open: 0
@@ -59,7 +59,7 @@ resolution confirmation.
 | R4 | History in a report — does a `history:...|bql:` query resolve through BBqlGrid's BatchResolve (records vs navigable ORDs)? | B359 | closed (NO — structural) |
 | R5 | Alarm records in a report — BQL over the alarm db, available AlarmRecord columns, alarm-specific source/grid | B360 | closed (CONDITIONAL — YES w/ custom cursor) |
 | R6 | Chart-in-report — no chart renderer in-module; PDF is wb-only; how the PSI-vs-time chart with bands composes externally | B361 | closed (NO for scheduled; wb PDF only; bands custom) |
-| R7 | ux/web layer — BUxReportPane, BHTML5BqlGridTable, pagination/sort, browser view | — | open |
+| R7 | ux/web layer — BUxReportPane, BHTML5BqlGridTable, pagination/sort, browser view | B364 | closed |
 | R8 | wb builder — BComponentGridEditor, BReportPxMedia, the engineering workflow | — | open |
 | R9 | SYNTHESIS — the client-need composition: report(table) + chart(plot+bands) + alarm(markers) + range glue | B362 | closed |
 
@@ -72,7 +72,7 @@ resolution confirmation.
 | high | R4 history-in-report feasibility | CLOSED B359: NO (structural). BBqlGrid force-prepends `select ordInSession,` + slurps + BatchResolves col-0 to component targets — it is a COMPONENT viewer. BHistoryRecord extends BStruct (no ordInSession) → null col-0 → NPE → resolveError. 0 history grids in module. Feasible only via custom BExportSource cursoring BIHistory directly, or the webChart/history path | closed |
 | medium | R5 alarm records in a report | CLOSED B360: CONDITIONAL (YES w/ custom code). Alarm DB is a first-class BQL source (`alarm:\|bql:...from openAlarms`, BAlarmDatabase Queryable, operator-read gate). All fields available: timestamp/source/sourceState/normalTime typed columns; highLimit/lowLimit/presentValue in the alarmData facet bag (getAlarmFacet, not BQL columns). BUT BAlarmRecord extends BStruct → same ordInSession wall as R4 → BBqlGrid NPEs. Feasible via custom cursor over BITable<BAlarmRecord> (BExportSource/AlarmDbTableModel pattern). Report module itself has 0 alarm code | closed |
 | medium | R6 chart-in-report gap | CLOSED B361: scheduled/station-side chart = NO (platform boundary — report-wb + chart-wb are runtimeProfile=wb, not loaded on station; rt emits only CSV/text; a PDF-exporter config NPEs). Only chart path = MANUAL Workbench PDF (BPdfReportPane expands BPxInclude→BChartPane→BPdfChartPane). chart-rt dep is DEAD in report-rt (0 refs). Stock chart has NO band/threshold API (0 hits) → the <12/>28 bands + crossing markers are CUSTOM doPaint in every path. Production path = custom rt-profile module with a headless chart renderer (JFreeChart/iText) | closed |
-| medium | R7 ux/web grid table | BUxReportPane + BHTML5BqlGridTable + pagination/sort | pending |
+| medium | R7 ux/web grid table | CLOSED B364: read-only grid-table viewer. BUxReportPane = spandrel layout container delegating to kids; 3 grid widgets (BHTML5{,Bql,Component}GridTable) split only by @AgentOn, all load GridTableContainer.js. Pagination CLIENT-side over a fully-materialized array; BQL hard cap 3000 rows (bqlQueryLimit); sort DISABLED (setSortable(false)). ZERO chart/canvas/svg in report-ux (grid tables only — confirms B361 path c). requiredPermissions="r" (read-only); only BExportSourceInfoEditor writes (export config). Wide range truncates at 3000 in web view (not a generation limit) | closed |
 | low | R8 wb builder | BComponentGridEditor template-query workflow + BReportPxMedia | pending |
 | low | R9 synthesis | CLOSED B362: client deliverable = 4-piece composition. Stock report contributes ONLY schedule (BTimeTrigger) + file/email delivery wrapper. All 3 data legs CUSTOM rt-profile: (1) history-table cursor over BIHistory bypassing BBqlGrid [B359], (2) alarm-crossing query over alarm DB [B360], (3) banded PSI chart via headless rt renderer (JFreeChart/iText) drawing <12/>28 bands + crossing markers [B361]. Range glue: relative preset zero-code, arbitrary user range custom [B358]. Dominant cost = the banded chart (blocked twice: profile boundary + no band API). Interactive webChart path = cheaper but different (on-demand, no push, no table). Thesis B357§357.8 confirmed+sharpened | closed |
 
@@ -87,6 +87,7 @@ resolution confirmation.
 | B361 | R6 | yes · sonnet (structural sweep, 31 tool-uses) + inline token-verify (profile split + bands re-measured) | R6 = chart-in-report NO for the scheduled use case. Platform boundary: report-wb + chart-wb are runtimeProfile=wb, NOT loaded on the station; rt exporters = CSV/text only (BExportSource agent lookup); a PDF-exporter config NPEs on station. Only chart path = MANUAL Workbench PDF (BPdfReportPane:79,85,87 expands BPxInclude→PdfUtil.getWidget→BPdfChartPane). BReportPxMedia = wb new-file scaffolding, not a pipeline. chart-rt dep DEAD in report-rt (0 refs). Stock chart has 0 band/threshold API → <12/>28 bands + crossing markers are custom doPaint everywhere. Production path = custom rt-profile module w/ headless chart lib. Dramatic negative re-measured 2 ways. [CERT]×7 + 2 mixed + [INFER]×1, ratio 0.46 (EVIDENCE). |
 | B362 | R9 | no · inline synthesis (constraint: reasoning over already-verified blocks B357-B361, no new sweep) | R9 SYNTHESIS. Client deliverable = 4-piece composition; stock report = schedule+delivery wrapper ONLY; 3 data legs all custom rt-profile (history cursor B359 / alarm query B360 / banded chart B361). Reference architecture: 2 stock end-caps (schedule, deliver) + 5 custom middle steps. Root causes reused: BBqlGrid is a component viewer (records NPE) + rt/wb profile boundary. Dominant cost = banded chart renderer (blocked twice). Interactive webChart = cheaper different need. xlsx=custom, CSV=stock. Thesis B357§357.8 confirmed+sharpened. SYNTHESIS/DESIGN block, [CERT] remittance×4 + [INFER]×5, ratio 1.5 (expected). |
 | B363 | R3 | no · inline (constraint: narrow — 2 exporter classes + 1 measured absence) | R3 export leg. Two rt exporters share makeTable → every column BString.TYPE (no typed cells). BGridToCsv: UTF-8 + BOM 0xFEFF (:66,69, the Excel-encoding mechanism) + encodeToString mode; BGridToText → BITableToText. xlsx/poi/workbook = 0 in module (proven absent) → Excel-like = BOM CSV zero-code, native .xlsx = custom. PDF wb-only. Runtime delivery = CSV/text. [CERT]×5, [INFER]×1+1 mixed, ratio 0.35 (EVIDENCE). |
+| B364 | R7 | yes · sonnet (ux sweep, 21 tool-uses) + inline token-verify (3000 cap, setSortable, slice, perms, chart-absence) | R7 ux/web = read-only grid-table viewer. BUxReportPane spandrel container → ReportPane.js; 3 grid widgets → 1 GridTableContainer.js. Pagination client-side over materialized array; BQL cap 3000 (GridTableContainer.js:36-37,285); sort disabled (GridColumn.js:32); 0 chart/canvas/svg in ux (measured); read-only (requiredPermissions="r" BHTML5*GridTable.java:32); only BExportSourceInfoEditor writes config. [CERT]×8, [INFER]×1+1 mixed, ratio 0.13 (EVIDENCE). |
 
 ## Dismissed file types
 
