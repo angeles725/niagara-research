@@ -21,10 +21,10 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 357
-gaps_closed: 5
+covered_blocks: 358
+gaps_closed: 6
 known_gaps: 9
-investigable_open: 4
+investigable_open: 3
 requires_execution_open: 0
 blocked_open: 0
 deferred_open: 0
@@ -36,7 +36,8 @@ status: paused
 bootstrapped_on: 2026-08-05
 paused_on: 2026-08-05 (session end after R1/R2; NEXT = R4 history-in-report, the load-bearing client-feasibility gap; R3 export/xlsx also pending)
 resumed_on: 2026-08-05 (R4+R5 closed → B359/B360; both data legs need custom cursor code, stock BBqlGrid blocked)
-resumed_on: 2026-08-05 (R6 closed → B361; scheduled chart-in-report blocked at the rt/wb profile boundary, bands always custom; all 3 data legs need custom code; NEXT = R9 synthesis, then R3/R7/R8)
+resumed_on: 2026-08-05 (R6 closed → B361; scheduled chart-in-report blocked at the rt/wb profile boundary, bands always custom; all 3 data legs need custom code)
+resumed_on: 2026-08-05 (R9 client-composition synthesis closed → B362; load-bearing feasibility question fully answered — report module contributes only schedule+delivery wrapper, all 3 data legs custom rt-profile; banded chart = dominant cost. Focus 6/9; only SECONDARY detail gaps R3/R7/R8 remain, none changes the composition answer)
 block_prefix: niagara-mental-model-bloqueN.md (global numbering; next free after B357: B358)
 
 ## Pre-flight e2 — existence + MEASURED size
@@ -60,7 +61,7 @@ resolution confirmation.
 | R6 | Chart-in-report — no chart renderer in-module; PDF is wb-only; how the PSI-vs-time chart with bands composes externally | B361 | closed (NO for scheduled; wb PDF only; bands custom) |
 | R7 | ux/web layer — BUxReportPane, BHTML5BqlGridTable, pagination/sort, browser view | — | open |
 | R8 | wb builder — BComponentGridEditor, BReportPxMedia, the engineering workflow | — | open |
-| R9 | SYNTHESIS — the client-need composition: report(table) + chart(plot+bands) + alarm(markers) + range glue | — | open |
+| R9 | SYNTHESIS — the client-need composition: report(table) + chart(plot+bands) + alarm(markers) + range glue | B362 | closed |
 
 ## Backlog (investigable)
 
@@ -73,7 +74,7 @@ resolution confirmation.
 | medium | R6 chart-in-report gap | CLOSED B361: scheduled/station-side chart = NO (platform boundary — report-wb + chart-wb are runtimeProfile=wb, not loaded on station; rt emits only CSV/text; a PDF-exporter config NPEs). Only chart path = MANUAL Workbench PDF (BPdfReportPane expands BPxInclude→BChartPane→BPdfChartPane). chart-rt dep is DEAD in report-rt (0 refs). Stock chart has NO band/threshold API (0 hits) → the <12/>28 bands + crossing markers are CUSTOM doPaint in every path. Production path = custom rt-profile module with a headless chart renderer (JFreeChart/iText) | closed |
 | medium | R7 ux/web grid table | BUxReportPane + BHTML5BqlGridTable + pagination/sort | pending |
 | low | R8 wb builder | BComponentGridEditor template-query workflow + BReportPxMedia | pending |
-| low | R9 synthesis | Focus-closing composition answering the client deliverable end-to-end | pending |
+| low | R9 synthesis | CLOSED B362: client deliverable = 4-piece composition. Stock report contributes ONLY schedule (BTimeTrigger) + file/email delivery wrapper. All 3 data legs CUSTOM rt-profile: (1) history-table cursor over BIHistory bypassing BBqlGrid [B359], (2) alarm-crossing query over alarm DB [B360], (3) banded PSI chart via headless rt renderer (JFreeChart/iText) drawing <12/>28 bands + crossing markers [B361]. Range glue: relative preset zero-code, arbitrary user range custom [B358]. Dominant cost = the banded chart (blocked twice: profile boundary + no band API). Interactive webChart path = cheaper but different (on-demand, no push, no table). Thesis B357§357.8 confirmed+sharpened | closed |
 
 ## Iteration history
 
@@ -84,6 +85,7 @@ resolution confirmation.
 | B359 | R4 | yes · sonnet (structural sweep, 51 tool-uses) + inline token-verify (10 citations re-resolved) | R4 = NO (structural). BBqlGrid is a COMPONENT viewer: bans `select *`, force-prepends `select ordInSession,`, eager-slurps, extracts col-0 as ORD, BatchResolves to component targets, renders each cell against `targets[row]`. BHistoryRecord extends BStruct → no `ordInSession` → BQL field null → NPE → `Report.gridTable.bql.resolveError`. BatchResolve fast-path only `slot:/virtual:/h:`. 0 history grids in module (re-measured). Dramatic negative re-measured 2 independent ways. Feasible path = custom BExportSource cursoring BIHistory directly, or webChart/history. [CERT]×9, [INFER]×2, ratio 0.50 (EVIDENCE). |
 | B360 | R5 | yes · sonnet (structural sweep, 57 tool-uses) + inline token-verify (proven-absence + columns re-resolved) | R5 = CONDITIONAL (YES w/ custom cursor). Report module has 0 alarm code (proven absent). Alarm DB IS a first-class BQL source: BAlarmDatabase implements Queryable, ordInSession `alarm:`, bqlQuery→BAlarmDbQueryResult, relations openAlarms/ackPendingAlarms, ORD form `alarm:\|bql:...`; throws if run on engine thread (report runs off-engine, OK); gate hasOperatorRead (not super-user). All client fields present: timestamp/source(BOrdList)/sourceState/normalTime typed columns; highLimit/lowLimit/presentValue in alarmData facet bag via getAlarmFacet (not BQL cols). BUT BAlarmRecord extends BStruct → same ordInSession NPE wall as R4. Feasible via custom cursor (BExportSource / AlarmDbTableModel pattern, the latter is wb-side). [CERT]×7, [INFER]×1 + 2 mixed, ratio 0.50 (EVIDENCE). |
 | B361 | R6 | yes · sonnet (structural sweep, 31 tool-uses) + inline token-verify (profile split + bands re-measured) | R6 = chart-in-report NO for the scheduled use case. Platform boundary: report-wb + chart-wb are runtimeProfile=wb, NOT loaded on the station; rt exporters = CSV/text only (BExportSource agent lookup); a PDF-exporter config NPEs on station. Only chart path = MANUAL Workbench PDF (BPdfReportPane:79,85,87 expands BPxInclude→PdfUtil.getWidget→BPdfChartPane). BReportPxMedia = wb new-file scaffolding, not a pipeline. chart-rt dep DEAD in report-rt (0 refs). Stock chart has 0 band/threshold API → <12/>28 bands + crossing markers are custom doPaint everywhere. Production path = custom rt-profile module w/ headless chart lib. Dramatic negative re-measured 2 ways. [CERT]×7 + 2 mixed + [INFER]×1, ratio 0.46 (EVIDENCE). |
+| B362 | R9 | no · inline synthesis (constraint: reasoning over already-verified blocks B357-B361, no new sweep) | R9 SYNTHESIS. Client deliverable = 4-piece composition; stock report = schedule+delivery wrapper ONLY; 3 data legs all custom rt-profile (history cursor B359 / alarm query B360 / banded chart B361). Reference architecture: 2 stock end-caps (schedule, deliver) + 5 custom middle steps. Root causes reused: BBqlGrid is a component viewer (records NPE) + rt/wb profile boundary. Dominant cost = banded chart renderer (blocked twice). Interactive webChart = cheaper different need. xlsx=custom, CSV=stock. Thesis B357§357.8 confirmed+sharpened. SYNTHESIS/DESIGN block, [CERT] remittance×4 + [INFER]×5, ratio 1.5 (expected). |
 
 ## Dismissed file types
 
