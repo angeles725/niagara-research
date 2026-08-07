@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **386 blocks**
+Total: **387 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -392,3 +392,4 @@ Total: **386 blocks**
 | 388 | [niagara-mental-model-bloque388.md](niagara-mental-model-bloque388.md) | license-diff L3: the module inventory delta is VENDOR + VERSION + user-content — 86 Honeywell OEM modules, 42 4.15-base modules, ~66 user/3rd-party — and NOT ONE module is added or removed by licensing |
 | 389 | [niagara-mental-model-bloque389.md](niagara-mental-model-bloque389.md) | license-diff L4+L5: the `bin/` and `defaults/` deltas are VENDOR + VERSION + install-local — and the native launcher core (`nre`/`njre`/`station`/`plat`) is byte-IDENTICAL across 4.13→4.14 |
 | 390 | [niagara-mental-model-bloque390.md](niagara-mental-model-bloque390.md) | license-diff addendum: japicmp API diff 4.14→4.15 — the release is ADDITIVE and backward-compatible (zero classes removed, baja core binary-compatible), a pure VERSION-axis result |
+| 391 | [niagara-mental-model-bloque391.md](niagara-mental-model-bloque391.md) | what N4.15 added to the BACnet driver: 73 new `bacnet-rt` classes = a jump to a newer ASHRAE 135 revision (BACnet/SC datatypes, Elevator/Lift objects, Timer + Value_Source, COV-Multiple, BBMD/routing), all additive |

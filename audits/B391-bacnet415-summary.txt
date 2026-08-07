@@ -1,0 +1,7 @@
+== B391 evidence: what 4.15 added to bacnet-rt (73 new classes, japicmp 4.14->4.15) ==
+THEME 1 BACnet/SC (~10): BBacnetSc{ConnectionState,DirectConnection,HubConnection,HubFunctionConnection,FailedConnectionRequest}, BBacnetHostAddress(Choice), BBacnetNetworkPort{Command,Descriptor,PendingChanges}
+THEME 2 Elevator/Lift (~17): BBacnetLiftCar{Mode,Direction,DoorCommand,DriveStatus,CallList,CallListEntry}, BBacnetLift{Fault,GroupMode}, BBacnetEscalator{Fault,Mode,OperationDirection}, BBacnetLandingCallStatus(+CommandChoice), BBacnetLandingDoorStatus(+Entry), BBacnetAssignedLandingCall(s/Entry) + enums.elevator/datatypes.elevator packages
+THEME 3 COV-Multiple/Event-sub (4): BBacnetCovMultipleSubscription(+CovReference,+Specification), BBacnetEventNotificationSubscription
+THEME 4 other (~42): Timer object (BBacnetTimer{State,Transition,StateChangeValue,StateChangeValueChoice}), BBacnetValueSource(+Choice) [135-2016 Value_Source], BBacnetOptional* value wrappers (Date/Time/DateTime/Integer/Double/BitString/OctetString/DoorValue/BinaryLightingPv...), network layer (BBacnet{BdtEntry,FdtEntry,VmacEntry,RoutingTableEntry,IpServerPort,IpMode,NetworkType,ProtocolLevel,RouterStatus,HostNPort}, BacnetIpInterface), BBacnetChangeOfValueCriteria(+Choice), BBacnetExtendedParameter(+Choice), BBacnetPortPermission, BBacnetSecurityDashboardProvider
+
+ALL ADDITIVE (0 classes removed in bacnet-rt). 4.15 = jump to a newer ASHRAE 135 revision. Axis: VERSION.

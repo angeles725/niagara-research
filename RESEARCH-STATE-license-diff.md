@@ -26,7 +26,7 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 5
+covered_blocks: 6
 gaps_closed: 6
 known_gaps: 6
 investigable_open: 0
@@ -65,3 +65,4 @@ blocked_open: 0
 | 3 | 2026-08-07 | L3 module delta | B388 | no · inline | 0 new. A=684 B=574 modules; only-A 152 = 86 Honeywell OEM (vendor) + ~66 user/3rd-party (chihuahua/nmodsreflow/electronicSignature); only-B 42 = 4.15 base (entsec/accessControl/cloudLink); 532 common differ by version. NO module license-gated — confirms B387 from disk. |
 | 4 | 2026-08-07 | L4+L5 bin/config delta | B389 | no · inline | 0 new. bin/: nre/njre/station/plat byte-IDENTICAL 4.13↔4.14 (launcher core stable, B124-B385 generalizes); common.dll+nverify version-bumped; OEM adds honImport.dll/libciper.so. defaults/: system.properties 1180 lines diff (version+vendor honeywellcloud branding). Zero license signal. FOCUS COMPLETE 6/6. |
 | 5 | 2026-08-07 | (addendum, version-axis) japicmp 4.14->4.15 | B390 | no · inline | 0. baja core: 0 removed, 0 binary-incompatible, 4 new, 29 additive-mod; bacnet-rt +74 new; control-rt unchanged. 4.14->4.15 = additive backward-compatible. japicmp 0.23.1 acquired. Focus stays 6/6. |
+| 6 | 2026-08-07 | (addendum, version-axis) 4.15 BACnet additions | B391 | no · inline | 0. bacnet-rt +73 new classes = jump to newer ASHRAE 135: BACnet/SC datatypes (gates bacnetSc feature B387), Elevator/Lift objects, Timer+Value_Source, COV-Multiple, BBMD/routing, Optional* wrappers. All additive. Protocols-line, not license. |
