@@ -1,0 +1,13 @@
+== B389 (L4+L5) evidence: bin/ + defaults/ delta A(4.14 Honeywell) vs iC(4.13 base) ==
+(B=4.15 EMEA is an installer w/o bin/defaults, so re-paired vs installed iC-Niagara-4.13.2.18)
+
+== L4 bin/: A=38 iC=33 ==
+only-in-A bin: dataExportTool.exe(Honeywell NSIS,B130) honImport.dll(Honeywell OEM native) libciper.so+.sig(Spyder QNX,B382/B126) msvcr120.dll(VC runtime)
+key launchers 4.13 vs 4.14:
+  nre.dll 117016=117016 SAME | njre.dll 70424=70424 SAME | station.exe 24344=24344 SAME | plat.exe 50968=50968 SAME
+  common.dll 192792 vs 191768 DIFF (version) | nverify.exe 529176 vs 523032 DIFF (Mocana version)
+
+== L5 defaults/: system.properties differs 1180 lines (version+vendor); Honeywell branding honeywellcloud.com in urlWhitelist ==
+only-in-A defaults: platform_backup_260807_0935.bog (install-local station backup, not product)
+
+AXIS: all deltas = VENDOR (honImport.dll, libciper.so, honeywellcloud URLs) + VERSION (common.dll/nverify bump; nre/njre/station/plat STABLE) + install-local (.bog). Zero license signal.

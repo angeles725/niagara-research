@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **384 blocks**
+Total: **385 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -390,3 +390,4 @@ Total: **384 blocks**
 | 386 | [niagara-mental-model-bloque386.md](niagara-mental-model-bloque386.md) | license-diff L1: what a Niagara license changes on disk is the ENTIRE `security/` subtree — an unlicensed installed instance has no `security/licenses`, `security/certificates`, or `truststore.jks` at all |
 | 387 | [niagara-mental-model-bloque387.md](niagara-mental-model-bloque387.md) | license-diff L6: the runtime feature-gate map — a license is a signature-verified set of named features with numeric limits, and an UNLICENSED station runs UNCAPPED (limits → MAX_VALUE), not disabled |
 | 388 | [niagara-mental-model-bloque388.md](niagara-mental-model-bloque388.md) | license-diff L3: the module inventory delta is VENDOR + VERSION + user-content — 86 Honeywell OEM modules, 42 4.15-base modules, ~66 user/3rd-party — and NOT ONE module is added or removed by licensing |
+| 389 | [niagara-mental-model-bloque389.md](niagara-mental-model-bloque389.md) | license-diff L4+L5: the `bin/` and `defaults/` deltas are VENDOR + VERSION + install-local — and the native launcher core (`nre`/`njre`/`station`/`plat`) is byte-IDENTICAL across 4.13→4.14 |

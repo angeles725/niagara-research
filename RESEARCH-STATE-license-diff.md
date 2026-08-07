@@ -26,10 +26,10 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 3
-gaps_closed: 3
+covered_blocks: 4
+gaps_closed: 6
 known_gaps: 6
-investigable_open: 3
+investigable_open: 0
 requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
@@ -46,10 +46,10 @@ blocked_open: 0
 | Pr. | ID | Gap | Artifact / source | Status |
 |---|---|---|---|---|
 | high | **L1** | Inventory + classification + license-axis answer | manifests A,B,iC | **covered → B386** |
-| high | L2 | (mostly ABSORBED by B386) licensed `security/` structure vs corpus [B126]/[B2] — B has no security/, so not a byte-diff | A security/ | partial → B386 |
+| high | L2 | ABSORBED by B386 (B has no security/ to diff) | A security/ | **covered → B386** |
 | med | **L3** | Module inventory delta (86 OEM + 66 user + 42/532 version); NO module license-gated | A/B modules/ | **covered → B388** |
 | med | L4 | `bin/` native binaries diff — do the native launchers/DLLs differ 4.14 vs 4.15 (version axis; ties to platform-native B124-B385)? | A/B bin/ | pending |
-| med | L5 | Config / system / generated-state diff — defaults, daemon config, registry-mirrored files, `system.properties` etc. | A/B (config) | pending |
+| med | **L5** | Config/defaults diff (version+vendor branding; no license signal) | A/iC defaults/ | **covered → B389** |
 | low | **L6** | Runtime feature-gate map + enforcement + signature chain | corpus + license files | **covered → B387** |
 
 ## Iteration history
@@ -61,5 +61,6 @@ blocked_open: 0
 
 ## Stop control
 
-- Bootstrapped 2026-08-07. L1 CLOSED (B386). Investigable = 5 (L2 partial, L3 modules-version, L4 bin, L5 config, L6 feature-gate). NEXT = L3 (module version delta 4.14↔4.15 with japicmp) OR L6 (feature-gate map). Not at STOP.
+- Bootstrapped 2026-08-07. **ALL 6 GAPS COVERED (L1 B386, L6 B387, L3 B388, L4+L5 B389, L2 absorbed B386). investigable=0. STOPPED.** Answer: a license changes ONLY security/ (on-disk B386) + runtime feature gates (B387); modules/bin/config differ by vendor/version/user (B388/B389). Remaining depth = japicmp per-jar API diffs (VERSION-axis, deferred).
 | 3 | 2026-08-07 | L3 module delta | B388 | no · inline | 0 new. A=684 B=574 modules; only-A 152 = 86 Honeywell OEM (vendor) + ~66 user/3rd-party (chihuahua/nmodsreflow/electronicSignature); only-B 42 = 4.15 base (entsec/accessControl/cloudLink); 532 common differ by version. NO module license-gated — confirms B387 from disk. |
+| 4 | 2026-08-07 | L4+L5 bin/config delta | B389 | no · inline | 0 new. bin/: nre/njre/station/plat byte-IDENTICAL 4.13↔4.14 (launcher core stable, B124-B385 generalizes); common.dll+nverify version-bumped; OEM adds honImport.dll/libciper.so. defaults/: system.properties 1180 lines diff (version+vendor honeywellcloud branding). Zero license signal. FOCUS COMPLETE 6/6. |
