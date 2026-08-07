@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **378 blocks**
+Total: **379 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -384,3 +384,4 @@ Total: **378 blocks**
 | 380 | [niagara-mental-model-bloque380.md](niagara-mental-model-bloque380.md) | The rest of the njre JVM launcher, decompiled (Ghidra grade): `java()` orchestrator, `initPaths` classpath/JVM-selection, dynamic `loadDLL`, a hardcoded `-Xmx48M`, and the FIPS-gated Bouncy-Castle provider swap |
 | 381 | [niagara-mental-model-bloque381.md](niagara-mental-model-bloque381.md) | `plat.exe` installdaemon + setsystempw decompiled (Ghidra grade): the daemon runs as LocalSystem/auto-start, and the System Passphrase is an argv-passed, complexity-checked, DPAPI-sealed REG_BINARY under HKLM |
 | 382 | [niagara-mental-model-bloque382.md](niagara-mental-model-bloque382.md) | `libciper.so` decompiled with DWARF (Ghidra grade): the QNX-ARM Sylk masterslave file-transfer protocol — 496-byte records, ≤485-byte blocks, dual CRC-16-CCITT + CRC-32 integrity, no crypto |
+| 383 | [niagara-mental-model-bloque383.md](niagara-mental-model-bloque383.md) | SYNTHESIS of the platform-native Ghidra sub-pass (B379–B382): decompiling the function bodies the strings-grade blocks read from the outside, and the security facts only the decompiler could reach |
