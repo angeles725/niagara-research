@@ -26,10 +26,10 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 0
-gaps_closed: 0
+covered_blocks: 1
+gaps_closed: 1
 known_gaps: 6
-investigable_open: 6
+investigable_open: 5
 requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
@@ -45,8 +45,8 @@ blocked_open: 0
 
 | Pr. | ID | Gap | Artifact / source | Status |
 |---|---|---|---|---|
-| high | **L1** | Inventory + manifest classification: the changed set (only-in-A / only-in-B / same-path-diff-bytes), first attribution by axis (license/version/vendor) | sha256 manifests A,B | **pending (NEXT)** |
-| high | L2 | `security/` diff — the license artifacts themselves: `.license`/`.certificate`, the per-host license `db/`, DSA/RSA sig structure. What a license IS on disk (license axis; remit [B126]/[B2] for the format) | A/B security/ | pending |
+| high | **L1** | Inventory + classification + license-axis answer | manifests A,B,iC | **covered → B386** |
+| high | L2 | (mostly ABSORBED by B386) licensed `security/` structure vs corpus [B126]/[B2] — B has no security/, so not a byte-diff | A security/ | partial → B386 |
 | med | L3 | Modules delta — which `.jar` are present only-in-licensed (Honeywell OEM `opt*`/`hon*`) vs only-in-unlicensed; is any module LICENSE-gated vs merely vendor/version? | A/B modules/ | pending |
 | med | L4 | `bin/` native binaries diff — do the native launchers/DLLs differ 4.14 vs 4.15 (version axis; ties to platform-native B124-B385)? | A/B bin/ | pending |
 | med | L5 | Config / system / generated-state diff — defaults, daemon config, registry-mirrored files, `system.properties` etc. | A/B (config) | pending |
@@ -56,8 +56,8 @@ blocked_open: 0
 
 | # | Date | Gap closed | Block | Delegated? · tier | New gaps |
 |---|---|---|---|---|---|
+| 1 | 2026-08-07 | L1 inventory + license-axis answer | B386 | no · inline | 0 new. B(4.15 EMEA)=INSTALLER not install (908 vs 66559); re-paired vs iC-Niagara-4.13.2.18 (installed unlicensed). LICENSE AXIS: unlicensed has NO security/; a license materializes security/licenses+db/<HostId>+certificates+truststore.jks. diffoscope 327 validated. |
 
 ## Stop control
 
-- Bootstrapped 2026-08-07. Investigable = 6. NEXT = L1 (inventory classification, running SHA-256 manifest).
-- Not yet at STOP.
+- Bootstrapped 2026-08-07. L1 CLOSED (B386). Investigable = 5 (L2 partial, L3 modules-version, L4 bin, L5 config, L6 feature-gate). NEXT = L3 (module version delta 4.14↔4.15 with japicmp) OR L6 (feature-gate map). Not at STOP.
