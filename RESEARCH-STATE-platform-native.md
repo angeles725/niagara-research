@@ -8,10 +8,10 @@
 > Mirrored in engram: `research/niagara/platform-native-gaps`, `research/niagara/platform-native-progress`.
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 266
-gaps_closed: 7
-known_gaps: 7
-investigable_open: 0
+covered_blocks: 8
+gaps_closed: 8
+known_gaps: 11
+investigable_open: 4
 requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
@@ -24,6 +24,22 @@ blocked_open: 0
 - **Last iteration**: 2026‑06‑29 (it.7, FINAL static) — closed **N7** (migration & platform tools) with B130, and **DECLARED the platform‑native STATIC loop STOPPED** (static‑investigable native gaps = 0). The 6 remaining `bin/` tool EXEs split into three classes: **thin `NreLauncher` Java launchers** (`n4mig.exe`=`Tridium.Niagara.MigrateAXtoN4` "AX to N4 Migration Tool" → Bootstrap profile `migrator:com.tridium.migrator.Migrate`; `hdbt.exe`=`Tridium.Niagara.HistoryDbTool` "History DB Tool" → `migrator:com.tridium.migrator.history.HistoryDbTool` — both structurally identical to station.exe/wb.exe of B128, so the migration/history logic is **Java**, no new native surface — already on the B124/B128 boot path); **standalone native (no JVM)** (`console.exe`=`Tridium.Niagara.Console` "Console for Niagara Environment" — pure C, sets `niagara_home`+PATH+console props then CRT `system()` = the native Niagara command prompt; sibling of `plat.exe` B129); **dual native+Java** (`test.exe`=`Tridium.Niagara.Test` "Niagara Test Runner" — links `cppunit.dll`+`common.dll`+`nre.dll` for native CppUnit + boots Java BTest via Bootstrap profile `test:javax.baja.test.TestRunner` = dev/QA harness). `nverify.exe` re‑confirmed already covered by B126 (Mocana EC_P* exports, `--unsigned *` bypass). **Outlier scoped out**: `dataExportTool.exe` is NOT a Tridium native — `Nullsoft.NSIS.exehead` "NSIS v3.04", Honeywell Inc., PE32 32‑bit GUI, Dec 2018, 78.6 MB = a Honeywell NSIS installer for a separate product. Self‑verify 16/16 tokens ✓, tally ≈33 [CERT]/4 [INFER] (ratio ≈0.12).
 - **Prior iteration**: 2026‑06‑29 (it.6) — closed **N6‑static** (platform daemon, static) with B129: `plat.exe` is the `plat` multi‑command native CLI (RTTI `NativePlatformCommand` subclasses + verbatim verbs `installdaemon`/`uninstalldaemon`/`restartdaemon`/`stopdaemon`/`setsystempw`/`setdaemonuserhome`), **refining B124 §124.5** ("just an installer"→ a command launcher that (a) registers/controls the SCM service via *dynamically‑loaded* Advapi32, (b) DPAPI‑sets the system passphrase via Crypt32→`SOFTWARE\Niagara4\systempw`, (c) sets daemon user home, and (d) `LoadLibrary nre.dll → launchNre → Bootstrap → com.tridium.platform.command.BPlat` to run Java platform commands — so it *can* launch the JVM, contra B124). `plat installdaemon` `CreateServiceA`s `niagarad.exe` as service `Niagara` (display "Niagara Platform", deps FltMgr/CryptSvc/Tcpip, EventLog source) — the registration half of B125's `daemonize0`/`StartServiceCtrlDispatcherA("Niagara")` run‑time half. **Decisive negative [CERT]: ports 3011/5011 are absent from ALL 5 native binaries** — the platform TCP service is **Java** (`platDaemon-rt` 18 `B*Command` classes + `platform-rt` `BDaemonScheme ordScheme="platform"`/`BDaemonSession`/`platform.fox` MessageClient+Chunked streams, dep fox‑rt), with port model grounded in shipped `PlatformDaemon.java` (default **3011** plaintext, `secure = port != 3011` → 5011 TLS). Live‑wire framing decode = deferred requires‑execution. Self‑verify 13/13 tokens ✓, tally 37 [CERT]/8 [INFER] (ratio ≈0.22).
 - **Prior iteration**: 2026‑06‑29 (it.5) — closed N5 (Workbench native shell: `wb.exe`/`wb_w.exe` + `trayIcon.dll`/`alarmDialog.dll`) with rabin2 `-I/-i/-l/-E` + strings + diff. Findings: wb*.exe are the SAME `NreLauncher`@nre.dll EXE as station.exe (identical `getInstance` import + 4 exports); `wb.exe`=console (CUI) / `wb_w.exe`=windowed (GUI) are pure subsystem/CRT‑entry twins (java.exe vs javaw.exe pattern); real JVM main is `com.tridium.nre.bootstrap.Bootstrap` for ALL launchers (refines B124), Bootstrap dispatches `workbench:com.tridium.workbench.shell.WbMain` by profile; `trayIcon.dll`=`BTrayIcon` 5 JNI natives (Shell_NotifyIcon system‑tray + hidden `TrayIconHandlerClass` msg window) and `alarmDialog.dll`=`BAlarmDialog` 4 JNI natives (USER32/GDI32 force alarm pop‑up topmost/foreground) — both desktop‑client‑only, name‑mangling JNI bind (B125), linking neither nre.dll nor common.dll. No new gaps.
+
+## Ghidra‑grade sub‑pass (REOPENED 2026‑08‑07)
+
+The STATIC loop (B124–B130) was declared closed, but B124/B127–B130 worked at radare2/strings/RTTI grade;
+only B125/B126 ran the Ghidra decompiler, and **B126 read `nverify.exe` purely from `strings`**. This
+sub‑pass decompiles the FUNCTION BODIES the earlier blocks described from the outside — genuinely new
+instruction‑grade evidence, not re‑derivation. Tool added: `tools/ghidra-scripts/DecompileByString.java`
+(string‑anchored decompile for symbol‑stripped binaries; the kit's `ExportDecompiledC` filters by name only).
+
+| Pr. | ID | Gap | Artifact | Status |
+|---|---|---|---|---|
+| high | **NG1** | `nverify.exe` verify pipeline decompiled (arg parser, cert‑chain, TPK pin, per‑entry, manifest, sig‑file) | nverify.exe | **covered → B379** |
+| high | NG1‑G1 | place the 3 untraced `skip-*` gate sites (`skip-signature-check`/`skip-cert-validity`/`require-timestamp`) via call‑graph from `main` | nverify.exe | pending |
+| high | NG2 | `nre.dll launchNre` + `common.dll createVM`/`buildArgs` BODIES decompiled (B124/B125 saw imports/RTTI) | nre.dll, common.dll | pending |
+| med | NG3 | `plat.exe` decompiled: DPAPI `systempw` write (Crypt32) + `CreateServiceA niagarad` daemon registration (B129 RTTI/strings) | plat.exe | pending |
+| med | NG4 | `libciper.so` QNX‑ARM function bodies (B126 read symbols only): Sylk masterslave file‑transfer + CRC state machine | libciper.so | pending |
 
 ## Gap‑backlog (prioritized)
 
@@ -39,9 +55,11 @@ blocked_open: 0
 
 ## Iteration history
 
-| # | Date | Gap closed | Block | New gaps uncovered |
-|---|---|---|---|---|
-| 1 | 2026‑06‑28 | N1 runtime‑core boot path | B124 | 0 new (N2–N7 were pre‑seeded; N2/N3/N6 sharpened by B124 findings) |
+| # | Date | Gap closed | Block | Delegated? · tier | New gaps uncovered |
+|---|---|---|---|---|---|
+| 8 | 2026‑08‑07 | **NG1** `nverify.exe` verify pipeline decompiled (Ghidra sub‑pass) | B379 | no · inline (security exploitability = driver‑model per MODEL TIER) | 4 new: NG1‑G1 (untraced skip gate sites), NG2 (nre/common bodies), NG3 (plat.exe), NG4 (libciper.so). **Corrects B126 §126.4**: 11 options incl. 4 `skip-*` bypasses (B126 listed 5); TPK = 270‑byte RSA‑2048 pin via memcmp (absent from B126). New tool `DecompileByString.java`. |
+| # | Date | Gap closed | Block | | New gaps uncovered |
+| 1 | 2026‑06‑28 | N1 runtime‑core boot path | B124 | | 0 new (N2–N7 were pre‑seeded; N2/N3/N6 sharpened by B124 findings) |
 | 2 | 2026‑06‑28 | N2 native↔Java JNI bridge | B125 | 0 new (N3 sharpened: `LicenseUtil::isFeaturePresent` agent gate seen in createVM; Ghidra 12.1 headless confirmed available for N3/N4) |
 | 3 | 2026‑06‑28 | N3 licensing / signature verification / crypto | B126 | 0 new gaps; 1 CORRECTION (`libciper.so` is the Spyder/Sylk serial‑comm JNI lib for QNX‑ARM, NOT a cipher lib → ties to B106/B120/B121, not crypto). N4 sharpened: `dsfspi.dll` is the Mocana DSF JCE provider also usable by drivers. |
 | 4 | 2026‑06‑28 | N4 native driver DLLs (lon/opc/pcapBacEther) | B127 | 1 new artifact placed (`bin/x86/ldvProxy.exe` = the 32‑bit LON proxy, named‑pipe server, loads Echelon `wldv32`). `dsfspi.dll` dropped from N4's target list (covered in B126). No new gaps; N5/N6/N7 unchanged. Note: deeper LON/OPC/BACnet driver behavior is now **requires‑execution** (live LON adapter / OPC server / BACnet‑Ethernet segment), not static. |
@@ -54,9 +72,14 @@ blocked_open: 0
 - N6 (platform TCP wire protocol) — the *static* binary analysis is **done (B129)**: `plat.exe` + SCM service model documented, and the wire proven to be Java (`platDaemon`/`platform.fox`, 3011 plaintext / 5011 TLS via `secure = port != 3011`), absent from native binaries. Capturing the **live 3011/5011 framing/handshake** still needs a running daemon + client → requires‑execution / DYNAMIC phase.
 - (none hard‑blocked on missing tools. **Ghidra 12.1 headless IS available** at `/home/linuxbrew/.linuxbrew/Cellar/ghidra/12.1` via `decompile-native.sh ghidra` — used in B125; gotcha: import `nre.dll` in isolation, its export cache crashes Ghidra's library‑lookup writer on a 0x04‑byte export name.)
 
-## Stop control — STATIC LOOP STOPPED (primary = read‑only‑investigable exhaustion, METHODOLOGY §8)
+## Stop control — REOPENED 2026‑08‑07 (Ghidra‑grade sub‑pass, investigable = 4)
 
-**STOP DECLARED — 2026‑06‑29 (it.7).** The primary stopping criterion is met: **read‑only‑investigable native gaps = 0.** Every remaining open gap is requires‑execution / DYNAMIC. The Capa 25 native‑platform STATIC loop is complete: **7 blocks B124–B130** (N1 boot path, N2 JNI bridge, N3 licensing/crypto, N4 native driver shims, N5 Workbench shell, N6‑static daemon, N7 migration & tools).
+**REOPENED — 2026‑08‑07.** The strings/RTTI‑grade STATIC loop (B124–B130) is complete, but decompiling
+the FUNCTION BODIES is a distinct, richer grade (proven by B379 correcting B126). Investigable now = 4
+(NG1‑G1, NG2, NG3, NG4). NEXT = NG2 (`nre.dll launchNre` + `common.dll createVM` bodies). The dynamic gaps
+(N4/N5/N6 live) remain requires‑execution.
+
+**(prior) STOP DECLARED — 2026‑06‑29 (it.7).** The primary stopping criterion is met: **read‑only‑investigable native gaps = 0.** Every remaining open gap is requires‑execution / DYNAMIC. The Capa 25 native‑platform STATIC loop is complete: **7 blocks B124–B130** (N1 boot path, N2 JNI bridge, N3 licensing/crypto, N4 native driver shims, N5 Workbench shell, N6‑static daemon, N7 migration & tools).
 
 - **Open gaps — read‑only investigable**: **0** ✅ (N1–N7 all closed at static grade)
 - **Open gaps — requires‑execution / DYNAMIC** (deferred — each tagged with what it needs):

@@ -1,0 +1,50 @@
+== B379 evidence: nverify.exe Ghidra-grade decompilation ==
+binary: /mnt/c/Honeywell/OptimizerSupervisor-N4.14.0.162/bin/nverify.exe
+sha256:
+b03589268452a0b8c659c7ba0e72ddb0af29cc76c0f781a0fd8f7fe82b9b1326  /mnt/c/Honeywell/OptimizerSupervisor-N4.14.0.162/bin/nverify.exe
+
+== option strings (rabin2 -z) ==
+79   0x000386b0 0x14003a0b0 13  14   .rdata  ascii   Signed by TPK
+80   0x000386c0 0x14003a0c0 17  18   .rdata  ascii   Not signed by TPK
+142  0x00039780 0x14003b180 23  24   .rdata  ascii   validate-all-signatures
+145  0x00039820 0x14003b220 17  18   .rdata  ascii   require-timestamp
+148  0x00039898 0x14003b298 20  21   .rdata  ascii   trusted-certificates
+150  0x000398e0 0x14003b2e0 184 185  .rdata  ascii   Should be a list of .pem (PEM encoded) or .cer (DER/raw encoded) files. Multiple certificates can be separated by a comma or by passing the --trusted-certificates option multiple times
+151  0x000399a0 0x14003b3a0 20  21   .rdata  ascii   skip-signature-check
+152  0x000399b8 0x14003b3b8 25  26   .rdata  ascii   Skip checking signatures.
+153  0x000399d8 0x14003b3d8 42  43   .rdata  ascii   Skip all signature and certificate checks.
+154  0x00039a08 0x14003b408 14  15   .rdata  ascii   skip-tpk-check
+155  0x00039a18 0x14003b418 29  30   .rdata  ascii   Skip checking against the TPK
+156  0x00039a40 0x14003b440 139 140  .rdata  ascii   If specified, only the validity of a certificate chain will be checked; the additional check against the Tridium Public Key will be skipped
+157  0x00039ad0 0x14003b4d0 14  15   .rdata  ascii   skip-root-cert
+158  0x00039ae0 0x14003b4e0 30  31   .rdata  ascii   Skip checking root certificate
+159  0x00039b00 0x14003b500 37  38   .rdata  ascii   Skip checking root certificate trust.
+160  0x00039b28 0x14003b528 18  19   .rdata  ascii   skip-cert-validity
+162  0x00039b60 0x14003b560 49  50   .rdata  ascii   Skip checking the validity dates of certificates.
+163  0x00039b98 0x14003b598 24  25   .rdata  ascii   unsigned-entry-whitelist
+164  0x00039bb8 0x14003b5b8 29  30   .rdata  ascii   Whitelist of unsigned entries
+165  0x00039be0 0x14003b5e0 88  89   .rdata  ascii   Comma separated list of entry names that are allowed to be unsigned. Use * for wildcard.
+166  0x00039c40 0x14003b640 23  24   .rdata  ascii   removed-entry-whitelist
+167  0x00039c58 0x14003b658 28  29   .rdata  ascii   Whitelist of removed entries
+168  0x00039c80 0x14003b680 88  89   .rdata  ascii    Comma separated list of entry names that are allowed to be removed. Use * for wildcard.
+178  0x00039df0 0x14003b7f0 27  28   .rdata  ascii   rel.albatross.6.5.2.u7.hf23
+179  0x00039e10 0x14003b810 33  34   .rdata  ascii   nverify version %s (Mocana: %s)\r\n
+
+== skip-flag getters (r2 pdf) ==
+-- FUN_0x140009200 --
+│           0x140009200      0fb605372e..   movzx eax, byte [0x14007c03e] ; [0x14007c03e:1]=0
+└           0x140009207      c3             ret
+-- FUN_0x140009220 --
+│           0x140009220      0fb605162e..   movzx eax, byte [0x14007c03d] ; [0x14007c03d:1]=0
+└           0x140009227      c3             ret
+-- FUN_0x140009240 --
+│           0x140009240      488b05012e..   mov rax, qword [0x14007c048] ; [0x14007c048:8]=0
+└           0x140009247      c3             ret
+-- FUN_0x140009250 --
+│           0x140009250      0fb605e32d..   movzx eax, byte [0x14007c03a] ; [0x14007c03a:1]=0
+└           0x140009257      c3             ret
+
+== TPK memcmp site (FUN_140002b50) ==
+     ││││   0x140002ffb      48817ddf0e..   cmp qword [rbp - 0x21], 0x10e
+    │││││   0x140003009      41b80e010000   mov r8d, 0x10e             ; 270
+    │││││   0x14000300f      488d15aafe..   lea rdx, [0x140072ec0]
