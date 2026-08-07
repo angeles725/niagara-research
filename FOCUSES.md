@@ -9,7 +9,7 @@
 |---|---|---|---|---|
 | (base) | stopped | `RESEARCH-STATE.md` | Framework Niagara N4.14 completo (Capas 1-25) + audit Reflow v1.7.5 + OEM Honeywell/Spyder + native platform RE | B1–B130 |
 | optimizersupervisor | paused | `RESEARCH-STATE-optimizersupervisor.md` | Install vivo OptimizerSupervisor N4.14.0.162 (config.bog de stations vivas) | B123 |
-| platform-native | stopped | `RESEARCH-STATE-platform-native.md` | RE nativo de la plataforma (launchers, JNI, licensing/crypto, driver DLLs, daemon) | B124–B130 |
+| platform-native | **reabierto (11/12)** | `RESEARCH-STATE-platform-native.md` | RE nativo de la plataforma (launchers, JNI, licensing/crypto, driver DLLs, daemon). Base estática B124-B130 (grado strings/RTTI). **Sub-pass Ghidra-grade 2026-08-07 (B379-B383)**: decompilación de CUERPOS de función — nverify (4 flags skip-* + pin TPK RSA-2048 por memcmp), njre launcher (provider FIPS-gated + gate anti-agente), plat.exe (daemon LocalSystem/auto-start + passphrase argv + policy + DPAPI REG_BINARY/HKLM), libciper.so (Sylk masterslave file-transfer + dual CRC, no crypto), síntesis B383. Quedan NG1-G1 + NG2b (bajo valor) | B124–B130, **B379–B383** |
 | protocols | stopped | `RESEARCH-STATE-protocols.md` | Wire-level de protocolos (Modbus/OPC/BACnet/Fox/LON/Sox) + integración LOGO!8 | B131–B137 |
 | **modbus** | **stopped (22/22)** | `RESEARCH-STATE-modbus.md` | El **driver** Modbus completo de N4 (6 módulos Tridium + 2 OEM Honeywell, 188 clases medidas): árbol de componentes, config, modelo de puntos, lado servidor/esclavo, motor de adquisición, escritura/presets/file-records, diagnóstico, licencia, workflow de Workbench, capa OEM, migrador. **NO reabre `protocols`**: ese cerró el wire (B131), este el driver. Primeras citas del corpus a `docModbus` (87 topics) y a la guía TR100 Modbus (2082 líneas). Síntesis en B315 | B294–B315 |
 | nmodsreflow | stopped | `RESEARCH-STATE-nmodsreflow.md` | Arquitectura backend del módulo OEM NiagaraMods Reflow v1.7.7 `-rt` (service, HTTP/WS, subsistemas) — CERRADO, hilo de seguridad consolidado | B138–B150 |
@@ -34,7 +34,22 @@
 
 ## Focus activo
 
-**`webChart`** (stopped 9/9) — BOOTSTRAPEADO y CERRADO 2026-08-05 en una sesión (W1-W9, B368-B376). El framework de
+**`platform-native`** (reabierto 11/12) — **Sub-pass Ghidra-grade, 2026-08-07, B379-B383.** Nace del pedido
+del usuario de "investigar internals con descompiladores, lo más profundo posible". El focus estaba declarado
+STATIC-closed (B124-B130) pero la mayoría a grado strings/RTTI; solo B125/B126 usaron Ghidra, y B126 leyó
+nverify/libciper por strings. Este sub-pass decompiló los CUERPOS de función de los 4 binarios nativos núcleo,
+revelando hechos de seguridad que el grado-strings no podía: **B379** nverify (11 opciones incl. 4 flags `skip-*`
+de bypass + pin TPK RSA-2048 de 270B por `memcmp`; corrige B126 §126.4), **B380** njre launcher (provider BC
+gated por licencia FIPS, gate anti-`-javaagent`, `loadDLL` sube B125 INFER→CERT; remite buildArgs/createVM a
+B125), **B381** plat.exe (daemon = **LocalSystem + auto-start**; setsystempw passphrase por argv + policy de
+complejidad nativa + DPAPI sin entropía + REG_BINARY bajo HKLM; refina B129 §129.3), **B382** libciper.so
+(protocolo Sylk masterslave file-transfer QNX-ARM con DWARF: 496B records/485B blocks, dual CRC-16-CCITT+CRC-32,
+sin cripto; sube B126 §126.5 a grado-cuerpo), **B383** síntesis. Método disciplinado: PRIOR-COVERAGE → REMIT →
+DEEPEN (atrapó 2 premisas falsas antes de re-derivar). Tool nuevo: `tools/ghidra-scripts/DecompileByString.java`
+(decompilación anclada por string para binarios sin símbolos). Quedan investigables NG1-G1 (gate sites nverify)
++ NG2b (~104 native bodies de nre.dll) — bajo valor. Retro §18 en curso. Próximo bloque global: **B384**.
+
+**(previo)** **`webChart`** (stopped 9/9) — BOOTSTRAPEADO y CERRADO 2026-08-05 en una sesión (W1-W9, B368-B376). El framework de
 charting moderno como subsistema en amplitud (71 artefactos: 12 Java + 59 JS). Nace del hilo de charting de reports (B366/B367): tras probar que la
 banda de alarma es custom en las 4 rutas, el usuario eligió documentar el framework completo. 9 gaps audit-first
 W1-W9 en `RESEARCH-STATE-webChart.md`. **W1 CERRADO B368** — el motor de render es un sistema de capas hecho a mano
