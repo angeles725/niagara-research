@@ -26,3 +26,10 @@ is ALREADY installed + kit-wrapped. The following are NEW and belong to OTHER fo
 | Recaf | Col-E/Recaf | bytecode view when vineflower/cfr disagree | not yet acquired |
 | arthas / btrace / byte-buddy | alibaba/btraceio/raphw | DYNAMIC JVM (§12 live-station phase) — attach to running station | not yet acquired |
 | tridium/code-samples, summit18-building-niagara | tridium | reference "ground truth" for legit module structure vs decompiled | reference only |
+| find-sec-bugs + spotbugs | SAST over Niagara module .jar bytecode (injection, crypto, auth defects) | chihuahua/nmodsreflow/electronicSignature/jsonToolkit security focuses | not yet acquired |
+| dependency-check (OWASP) | CVE scan of bundled 3rd-party jars (Gson 2.9.0, JavaMail, jayway-jsonpath, d3, Vue) | any module with vendored deps | not yet acquired |
+| semgrep + codeql | pattern/dataflow SAST over decompiled Java or JS (webChart/Reflow ES5) | cross-cutting security | not yet acquired |
+| gitleaks | secret scan (twin of kit scan-secrets.sh) over corpus/config | live-install / analizador-licencias | not yet acquired |
+| angr / qiling / frida / btrace / x64dbg | symbolic exec / emulation / dynamic instrumentation | NG1-G1 dataflow (angr), §12 live-station dynamic phase (frida/btrace) | not installed (angr/frida heavy pip; note before use) |
+| Detect-It-Easy / pe-bear / cutter | packer/compiler ID + PE structure + Ghidra-GUI-lite | native triage (complements radare2/rabin2) | not yet acquired |
+| ILSpy / dnSpyEx | .NET decompilers | only if a .NET assembly appears (none found so far; ilspycmd is UNUSABLE per detect-tools) | not yet acquired |

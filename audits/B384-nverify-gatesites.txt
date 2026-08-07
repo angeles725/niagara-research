@@ -1,0 +1,70 @@
+== B384 evidence: nverify.exe skip-* gate sites (r2 full-analysis xrefs) ==
+binary: /mnt/c/Honeywell/OptimizerSupervisor-N4.14.0.162/bin/nverify.exe
+b03589268452a0b8c659c7ba0e72ddb0af29cc76c0f781a0fd8f7fe82b9b1326  /mnt/c/Honeywell/OptimizerSupervisor-N4.14.0.162/bin/nverify.exe
+
+== getter bank (stride 0x10, each: movzx eax,[DAT]; ret) ==
+0x1400091e0 -> c03b require-timestamp | 0x1400091f0 -> c03f skip-cert-validity | 0x140009200 -> c03e skip-root-cert
+0x140009210 -> c03c skip-signature-check | 0x140009220 -> c03d skip-tpk-check | 0x140009230 -> c040 trusted-certs*
+0x140009240 -> c048 unsigned-wl* | 0x140009250 -> c03a validate-all-signatures
+
+== gate-site xrefs ==
+=== full analysis + xrefs to the 3 globals + their getters ===
+fcn.140009210 0x140009210 [DATA:r--] movzx eax, byte [0x14007c03c]
+fcn.140009260 0x14000929c [DATA:-w-] mov byte [0x14007c03c], 0
+fcn.140009260 0x140009560 [DATA:-w-] mov byte [0x14007c03c], dil
+--- c03f ---
+fcn.1400091f0 0x1400091f0 [DATA:r--] movzx eax, byte [0x14007c03f]
+fcn.140009260 0x1400092b1 [DATA:-w-] mov byte [0x14007c03f], 0
+fcn.140009260 0x140009541 [DATA:-w-] mov byte [0x14007c03f], dil
+--- c03b ---
+fcn.1400091e0 0x1400091e0 [DATA:r--] movzx eax, byte [0x14007c03b]
+fcn.140009260 0x140009285 [DATA:-w-] mov byte [0x14007c03b], 0
+fcn.140009260 0x1400095e3 [DATA:r--] movzx ecx, byte [0x14007c03b]
+fcn.140009260 0x1400095ef [DATA:-w-] mov byte [0x14007c03b], cl
+--- getter FUN_140009210 callers (skip-sig) ---
+fcn.140005070 0x14000508e [CALL:--x] call fcn.140009210
+
+== callers + fcn.140005070 orchestrator disasm ==
+=== callers of require-timestamp getter 0x1400091e0 ===
+fcn.140002500 0x140002a69 [CALL:--x] call fcn.1400091e0
+=== callers of skip-cert-validity getter 0x1400091f0 ===
+fcn.140001cc0 0x140001d5e [CALL:--x] call fcn.1400091f0
+=== fcn.140005070 = the gate site: what strings/calls around the skip-sig gate 0x14000508e ===
+            ; CALL XREF from fcn.1400050f0 @ 0x140005179(x)
+            ; CALL XREF from fcn.1400051b0 @ 0x140005236(x)
+│           0x140005070      48895c2410     mov qword [var_10h], rbx
+│           0x140005075      57             push rdi
+│           0x140005076      4883ec30       sub rsp, 0x30
+│           0x14000507a      488b05576f..   mov rax, qword [0x14007bfd8] ; [0x14007bfd8:8]=0x2b992ddfa232 ; "2\xa2\xdf-\x99+"
+│           0x140005081      4833c4         xor rax, rsp
+│           0x140005084      4889442428     mov qword [var_28h], rax
+│           0x140005089      488bf9         mov rdi, rcx               ; arg1
+│           0x14000508c      33db           xor ebx, ebx
+│           0x14000508e      e87d410000     call fcn.140009210
+│           0x140005093      84c0           test al, al
+│       ┌─< 0x140005095      7531           jne 0x1400050c8
+│       │   0x140005097      488bd7         mov rdx, rdi               ; int64_t arg2
+│       │   0x14000509a      488d4c2420     lea rcx, [var_20h]         ; int64_t arg1
+│       │   0x14000509f      e86c5b0000     call fcn.14000ac10
+│       │   0x1400050a4      85c0           test eax, eax
+│      ┌──< 0x1400050a6      7522           jne 0x1400050ca
+│      ││   0x1400050a8      488b4c2420     mov rcx, qword [var_20h]
+│      ││   0x1400050ad      4885c9         test rcx, rcx
+│     ┌───< 0x1400050b0      7505           jne 0x1400050b7
+│     │││   0x1400050b2      8d43ff         lea eax, [rbx - 1]
+│    ┌────< 0x1400050b5      eb13           jmp 0x1400050ca
+│    ││││   ; CODE XREF from fcn.140005070 @ 0x1400050b0(x)
+│    │└───> 0x1400050b7      e8c4540000     call fcn.14000a580
+│    │ ││   0x1400050bc      488d4c2420     lea rcx, [var_20h]         ; int64_t arg1
+│    │ ││   0x1400050c1      8bd8           mov ebx, eax
+│    │ ││   0x1400050c3      e8d85a0000     call fcn.14000aba0
+│    │ ││   ; CODE XREF from fcn.140005070 @ 0x140005095(x)
+│    │ │└─> 0x1400050c8      8bc3           mov eax, ebx
+│    │ │    ; CODE XREFS from fcn.140005070 @ 0x1400050a6(x), 0x1400050b5(x)
+│    └─└──> 0x1400050ca      488b4c2428     mov rcx, qword [var_28h]
+│           0x1400050cf      4833cc         xor rcx, rsp
+│           0x1400050d2      e829220300     call fcn.140037300
+│           0x1400050d7      488b5c2448     mov rbx, qword [var_10h]
+│           0x1400050dc      4883c430       add rsp, 0x30
+│           0x1400050e0      5f             pop rdi
+└           0x1400050e1      c3             ret

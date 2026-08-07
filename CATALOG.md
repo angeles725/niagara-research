@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **379 blocks**
+Total: **380 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -385,3 +385,4 @@ Total: **379 blocks**
 | 381 | [niagara-mental-model-bloque381.md](niagara-mental-model-bloque381.md) | `plat.exe` installdaemon + setsystempw decompiled (Ghidra grade): the daemon runs as LocalSystem/auto-start, and the System Passphrase is an argv-passed, complexity-checked, DPAPI-sealed REG_BINARY under HKLM |
 | 382 | [niagara-mental-model-bloque382.md](niagara-mental-model-bloque382.md) | `libciper.so` decompiled with DWARF (Ghidra grade): the QNX-ARM Sylk masterslave file-transfer protocol — 496-byte records, ≤485-byte blocks, dual CRC-16-CCITT + CRC-32 integrity, no crypto |
 | 383 | [niagara-mental-model-bloque383.md](niagara-mental-model-bloque383.md) | SYNTHESIS of the platform-native Ghidra sub-pass (B379–B382): decompiling the function bodies the strings-grade blocks read from the outside, and the security facts only the decompiler could reach |
+| 384 | [niagara-mental-model-bloque384.md](niagara-mental-model-bloque384.md) | `nverify.exe` NG1-G1 closed: the three untraced `skip-*` flags placed at their enforcement gates — `--skip-signature-check` jumps past the ENTIRE verify |
