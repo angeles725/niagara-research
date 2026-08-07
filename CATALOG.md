@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **375 blocks**
+Total: **376 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -381,3 +381,4 @@ Total: **375 blocks**
 | 377 | [niagara-mental-model-bloque377.md](niagara-mental-model-bloque377.md) | Niagara N4 — Bloque 377: `webChart` (SÍNTESIS) — a capable but LEGACY-D3, hand-built chart engine that is open at the series/factory layer and closed at the draw layer; free of license, read-gated (with one servlet defect), and — like every Niagara charting surface — blind to alarm limits, so the client's banded PSI chart stays custom on the cheapest path too |
 | 378 | [niagara-mental-model-bloque378.md](niagara-mental-model-bloque378.md) | Niagara N4 — Bloque 378: alarm escalation & filtering is FOUR mechanisms across THREE modules — core AlarmClass level-timers (B34) + a core BQL *query* filter for display, and two OEM add-ons: bacnetAlarmRouter's wiresheet *routing* filters (a level-gate + an A/B divert switch, one carrying an index bug) and honAlarmExt's DELAYED/SENT/IGNORED hold — so the declarative "route escalated alarms to this recipient" gate is not core |
 | 379 | [niagara-mental-model-bloque379.md](niagara-mental-model-bloque379.md) | `nverify.exe` decompiled (Ghidra grade): the signed-archive verifier is a JAR-signing state machine with FOUR independent `skip-*` bypass flags and a hard-pinned 270-byte Tridium Public Key |
+| 380 | [niagara-mental-model-bloque380.md](niagara-mental-model-bloque380.md) | The rest of the njre JVM launcher, decompiled (Ghidra grade): `java()` orchestrator, `initPaths` classpath/JVM-selection, dynamic `loadDLL`, a hardcoded `-Xmx48M`, and the FIPS-gated Bouncy-Castle provider swap |
