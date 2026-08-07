@@ -1,0 +1,11 @@
+== B390 evidence: japicmp API diff 4.14(A) -> 4.15(B), representative modules ==
+tool: japicmp 0.23.1 (Maven Central), java 21, --ignore-missing-classes
+baja.jar    : 950 unchanged · 29 modified · 4 new · 0 removed · binary-incompatible=0
+  new: com.tridium.security.RdbPermissionGroup, StationUserLoginHistoryStoreFactory, util.PxUtil$UxBuilder, util.SpyUtil
+bacnet-rt.jar : 579 unchanged · 89 modified · 74 new · 0 removed  (largest delta; BACnet additions)
+control-rt.jar: 31 unchanged · 0 changed  (fully stable)
+driver-rt.jar : 76 unchanged · 1 new · 0 removed
+alarm-rt.jar  : 120 unchanged · 3 modified · 0 removed
+
+PATTERN: zero classes REMOVED in any module; changes additive (new classes/methods) + non-breaking mods; baja core binary-COMPATIBLE. 4.14->4.15 = additive backward-compatible release at module-API level.
+AXIS: pure VERSION (not license/vendor). japicmp acquired: /home/cristian/.local/share/research-sdd-tools/jars/japicmp-jar-with-dependencies.jar

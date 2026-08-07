@@ -21,7 +21,7 @@ is ALREADY installed + kit-wrapped. The following are NEW and belong to OTHER fo
 | diffoscope 327 | /home/cristian/.local/share/research-sdd-tools/venv/bin/diffoscope | ACQUIRED 2026-08-07 (kit venv) — deep file/tree diff for license-diff focus (licensed 4.14 vs unlicensed 4.15) |
 | pybog | bbartling/pybog | optimizersupervisor (.bog/.dist parse + diff two stations) | not yet acquired |
 | diffoscope | reproducible-builds | **licensed-vs-unlicensed two-install diff** (analizador-licencias) | not yet acquired |
-| japicmp | siom79/japicmp | jar version diff (N4.13 vs 4.14 module compare) | not yet acquired |
+| japicmp 0.23.1 | /home/cristian/.local/share/research-sdd-tools/jars/japicmp-jar-with-dependencies.jar | ACQUIRED 2026-08-07 — jar-to-jar API diff; used in B390 (4.14->4.15 additive/backward-compat) |
 | foxdissector | MartinoTommasini/foxdissector | protocols (FOX Wireshark dissector; FOXS/TLS needs keys) | not yet acquired |
 | SootUp | soot-oss/SootUp | Java callgraph across modules (who-calls-X) | not yet acquired |
 | Recaf | Col-E/Recaf | bytecode view when vineflower/cfr disagree | not yet acquired |
