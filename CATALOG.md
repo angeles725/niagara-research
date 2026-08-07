@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **376 blocks**
+Total: **377 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -382,3 +382,4 @@ Total: **376 blocks**
 | 378 | [niagara-mental-model-bloque378.md](niagara-mental-model-bloque378.md) | Niagara N4 — Bloque 378: alarm escalation & filtering is FOUR mechanisms across THREE modules — core AlarmClass level-timers (B34) + a core BQL *query* filter for display, and two OEM add-ons: bacnetAlarmRouter's wiresheet *routing* filters (a level-gate + an A/B divert switch, one carrying an index bug) and honAlarmExt's DELAYED/SENT/IGNORED hold — so the declarative "route escalated alarms to this recipient" gate is not core |
 | 379 | [niagara-mental-model-bloque379.md](niagara-mental-model-bloque379.md) | `nverify.exe` decompiled (Ghidra grade): the signed-archive verifier is a JAR-signing state machine with FOUR independent `skip-*` bypass flags and a hard-pinned 270-byte Tridium Public Key |
 | 380 | [niagara-mental-model-bloque380.md](niagara-mental-model-bloque380.md) | The rest of the njre JVM launcher, decompiled (Ghidra grade): `java()` orchestrator, `initPaths` classpath/JVM-selection, dynamic `loadDLL`, a hardcoded `-Xmx48M`, and the FIPS-gated Bouncy-Castle provider swap |
+| 381 | [niagara-mental-model-bloque381.md](niagara-mental-model-bloque381.md) | `plat.exe` installdaemon + setsystempw decompiled (Ghidra grade): the daemon runs as LocalSystem/auto-start, and the System Passphrase is an argv-passed, complexity-checked, DPAPI-sealed REG_BINARY under HKLM |

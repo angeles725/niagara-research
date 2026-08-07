@@ -1,0 +1,1926 @@
+/* DecompileByString over plat.exe
+   needles : systempw|SOFTWARE\Niagara4|CryptProtectData|CreateServiceA|installdaemon|setsystempw|setdaemonuserhome|Niagara Platform|FltMgr|launchNre|cannot open service manager|successfully installed
+   strings : 33 matched of 677 defined
+   functions anchored: 25 */
+
+/* ==== FUN_140001080 @ 140001080 ==== */
+      anchor @1400011e7 -> "launchNre"
+
+void FUN_140001080(int param_1,undefined8 *param_2)
+
+{
+  char *pcVar1;
+  undefined1 auVar2 [16];
+  bool bVar3;
+  longlong lVar4;
+  size_t sVar5;
+  undefined8 *puVar6;
+  HMODULE hModule;
+  FARPROC pFVar7;
+  longlong lVar8;
+  longlong lVar9;
+  longlong lVar10;
+  undefined8 *puVar11;
+  longlong lVar12;
+  int iVar13;
+  undefined1 auStack_58 [48];
+  undefined8 local_28;
+  ulonglong local_20;
+  
+  local_20 = DAT_14000b038 ^ (ulonglong)auStack_58;
+  lVar12 = 0;
+  bVar3 = false;
+  local_28 = 0;
+  FUN_1400016c0(&local_28);
+  lVar4 = lVar12;
+  if (0 < param_1) {
+    do {
+      pcVar1 = (char *)param_2[lVar4];
+      lVar10 = lVar12;
+      if (((*pcVar1 == '-') && (pcVar1[1] == '?')) && (pcVar1[2] == '\0')) {
+LAB_1400010f4:
+        bVar3 = true;
+        break;
+      }
+      while (lVar8 = lVar10 + 1, lVar9 = lVar12, pcVar1[lVar10] == (&DAT_140007420)[lVar10]) {
+        lVar10 = lVar8;
+        if (lVar8 == 6) goto LAB_1400010f4;
+      }
+      while (lVar10 = lVar9 + 1, pcVar1[lVar9] == "-usage"[lVar9]) {
+        lVar9 = lVar10;
+        if (lVar10 == 7) goto LAB_1400010f4;
+      }
+      lVar4 = lVar4 + 1;
+    } while (lVar4 < param_1);
+  }
+  if ((param_1 < 2) || (lVar4 = FUN_1400012a0(&local_28,(char *)param_2[1]), lVar4 == 0)) {
+    iVar13 = param_1 + 1;
+    auVar2._8_8_ = 0;
+    auVar2._0_8_ = (longlong)param_1 + 1;
+    sVar5 = SUB168(ZEXT816(8) * auVar2,0);
+    if (SUB168(ZEXT816(8) * auVar2,8) != 0) {
+      sVar5 = 0xffffffffffffffff;
+    }
+    puVar6 = (undefined8 *)thunk_FUN_140005534(sVar5);
+    *puVar6 = *param_2;
+    puVar6[1] = "platform:com.tridium.platform.command.BPlat";
+    if (2 < (longlong)iVar13) {
+      puVar11 = puVar6 + 2;
+      lVar4 = (longlong)iVar13 + -2;
+      do {
+        *puVar11 = *(undefined8 *)((longlong)param_2 + (-8 - (longlong)puVar6) + (longlong)puVar11);
+        puVar11 = puVar11 + 1;
+        lVar4 = lVar4 + -1;
+      } while (lVar4 != 0);
+    }
+    hModule = LoadLibraryA("nre.dll");
+    if (hModule != (HMODULE)0x0) {
+      pFVar7 = GetProcAddress(hModule,"launchNre");
+      if (pFVar7 == (FARPROC)0x0) {
+        FreeLibrary(hModule);
+      }
+      else {
+        (*(code *)PTR__guard_dispatch_icall_1400072f8)
+                  ("com/tridium/nre/bootstrap/Bootstrap",iVar13,puVar6,3);
+        FreeLibrary(hModule);
+      }
+    }
+  }
+  else if (bVar3) {
+    (*(code *)PTR__guard_dispatch_icall_1400072f8)();
+  }
+  else {
+    (*(code *)PTR__guard_dispatch_icall_1400072f8)(lVar4,param_1,param_2);
+  }
+  FUN_140005510(local_20 ^ (ulonglong)auStack_58);
+  return;
+}
+
+
+
+/* ==== FUN_140001320 @ 140001320 ==== */
+      anchor @14000144f -> "CreateServiceA"
+      anchor @140001590 -> "CryptProtectData"
+
+undefined8 *
+FUN_140001320(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
+{
+  HMODULE pHVar1;
+  undefined8 uVar2;
+  FARPROC pFVar3;
+  
+  param_1[0x12] = 0;
+  param_1[0x13] = 0;
+  param_1[2] = 0;
+  param_1[5] = 0;
+  param_1[6] = 0;
+  param_1[9] = 0;
+  param_1[8] = 0;
+  *param_1 = 0;
+  param_1[1] = 0;
+  param_1[3] = 0;
+  param_1[4] = 0;
+  param_1[7] = 0;
+  param_1[10] = 0;
+  param_1[0xb] = 0;
+  param_1[0xc] = 0;
+  param_1[0xd] = 0;
+  param_1[0xe] = 0;
+  param_1[0xf] = 0;
+  param_1[0x10] = 0;
+  param_1[0x11] = 0;
+  pHVar1 = LoadLibraryA("Advapi32.dll");
+  param_1[0x12] = pHVar1;
+  if (pHVar1 == (HMODULE)0x0) {
+    uVar2 = __acrt_iob_func(2);
+    FUN_140001610(uVar2,"SEVERE: Failed to load Advapi32.dll, AdvApi instance unavailable\n",param_3
+                  ,param_4);
+    return param_1;
+  }
+  pFVar3 = GetProcAddress(pHVar1,"CloseServiceHandle");
+  param_1[2] = pFVar3;
+  pFVar3 = GetProcAddress((HMODULE)param_1[0x12],"DeleteService");
+  param_1[5] = pFVar3;
+  pFVar3 = GetProcAddress((HMODULE)param_1[0x12],"QueryServiceStatus");
+  param_1[6] = pFVar3;
+  pFVar3 = GetProcAddress((HMODULE)param_1[0x12],"RegCloseKey");
+  param_1[9] = pFVar3;
+  pFVar3 = GetProcAddress((HMODULE)param_1[0x12],"ControlService");
+  param_1[8] = pFVar3;
+  pFVar3 = GetProcAddress((HMODULE)param_1[0x12],"ChangeServiceConfig2A");
+  *param_1 = pFVar3;
+  pFVar3 = GetProcAddress((HMODULE)param_1[0x12],"CreateServiceA");
+  param_1[1] = pFVar3;
+  pFVar3 = GetProcAddress((HMODULE)param_1[0x12],"OpenServiceA");
+  param_1[3] = pFVar3;
+  pFVar3 = GetProcAddress((HMODULE)param_1[0x12],"OpenSCManagerA");
+  param_1[4] = pFVar3;
+  pFVar3 = GetProcAddress((HMODULE)param_1[0x12],"StartServiceA");
+  param_1[7] = pFVar3;
+  pFVar3 = GetProcAddress((HMODULE)param_1[0x12],"RegSetValueExA");
+  param_1[10] = pFVar3;
+  pFVar3 = GetProcAddress((HMODULE)param_1[0x12],"RegCreateKeyA");
+  param_1[0xb] = pFVar3;
+  pFVar3 = GetProcAddress((HMODULE)param_1[0x12],"RegCreateKeyExA");
+  param_1[0xc] = pFVar3;
+  pFVar3 = GetProcAddress((HMODULE)param_1[0x12],"RegQueryValueExA");
+  param_1[0xd] = pFVar3;
+  pFVar3 = GetProcAddress((HMODULE)param_1[0x12],"RegDeleteKeyA");
+  param_1[0xe] = pFVar3;
+  pFVar3 = GetProcAddress((HMODULE)param_1[0x12],"RegisterEventSourceA");
+  param_1[0xf] = pFVar3;
+  pFVar3 = GetProcAddress((HMODULE)param_1[0x12],"ReportEventA");
+  param_1[0x10] = pFVar3;
+  pHVar1 = LoadLibraryA("Crypt32.dll");
+  param_1[0x13] = pHVar1;
+  if (pHVar1 == (HMODULE)0x0) {
+    uVar2 = __acrt_iob_func(2);
+    FUN_140001610(uVar2,"SEVERE: Failed to load Crypt32.dll, AdvApi instance unavailable\n",param_3,
+                  param_4);
+    return param_1;
+  }
+  pFVar3 = GetProcAddress(pHVar1,"CryptProtectData");
+  param_1[0x11] = pFVar3;
+  return param_1;
+}
+
+
+
+/* ==== FUN_140001b30 @ 140001b30 ==== */
+      anchor @140001b30 -> "installdaemon"
+
+char * FUN_140001b30(void)
+
+{
+  return "installdaemon";
+}
+
+
+
+/* ==== FUN_140001ac0 @ 140001ac0 ==== */
+      anchor @140001ac0 -> "Install the Niagara Platform service"
+
+char * FUN_140001ac0(void)
+
+{
+  return "Install the Niagara Platform service";
+}
+
+
+
+/* ==== FUN_140001b80 @ 140001b80 ==== */
+      anchor @140001b80 -> "uninstalldaemon"
+
+char * FUN_140001b80(void)
+
+{
+  return "uninstalldaemon";
+}
+
+
+
+/* ==== FUN_140001b20 @ 140001b20 ==== */
+      anchor @140001b20 -> "Remove the Niagara Platform service"
+
+char * FUN_140001b20(void)
+
+{
+  return "Remove the Niagara Platform service";
+}
+
+
+
+/* ==== FUN_140001ae0 @ 140001ae0 ==== */
+      anchor @140001ae0 -> "Restart the Niagara Platform service"
+
+char * FUN_140001ae0(void)
+
+{
+  return "Restart the Niagara Platform service";
+}
+
+
+
+/* ==== FUN_140001b10 @ 140001b10 ==== */
+      anchor @140001b10 -> "Stop the Niagara Platform service"
+
+char * FUN_140001b10(void)
+
+{
+  return "Stop the Niagara Platform service";
+}
+
+
+
+/* ==== FUN_140001b60 @ 140001b60 ==== */
+      anchor @140001b60 -> "setsystempw"
+
+char * FUN_140001b60(void)
+
+{
+  return "setsystempw";
+}
+
+
+
+/* ==== FUN_140001b00 @ 140001b00 ==== */
+      anchor @140001b00 -> "Set the Niagara Platform System Passphrase"
+
+char * FUN_140001b00(void)
+
+{
+  return "Set the Niagara Platform System Passphrase";
+}
+
+
+
+/* ==== FUN_140001b50 @ 140001b50 ==== */
+      anchor @140001b50 -> "setdaemonuserhome"
+
+char * FUN_140001b50(void)
+
+{
+  return "setdaemonuserhome";
+}
+
+
+
+/* ==== FUN_140004e60 @ 140004e60 ==== */
+      anchor @140004e72 -> "Usage: plat uninstalldaemon\n"
+
+void FUN_140004e60(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
+{
+  undefined8 uVar1;
+  
+  uVar1 = __acrt_iob_func(1);
+  FUN_140001610(uVar1,"Usage: plat uninstalldaemon\n",param_3,param_4);
+  return;
+}
+
+
+
+/* ==== FUN_140002cd0 @ 140002cd0 ==== */
+      anchor @140002cee -> "Usage: plat uninstalldaemon\n"
+      anchor @140002d19 -> "uninstalldaemon: Niagara service successfully removed."
+      anchor @140002d2c -> "uninstalldaemon: Niagara service could not be removed."
+
+undefined8 FUN_140002cd0(undefined8 param_1,int param_2,longlong param_3,undefined8 param_4)
+
+{
+  char cVar1;
+  undefined8 uVar2;
+  char local_res20 [8];
+  
+  if ((2 < param_2) && (*(longlong *)(param_3 + 0x10) != 0)) {
+    uVar2 = __acrt_iob_func(1);
+    FUN_140001610(uVar2,"Usage: plat uninstalldaemon\n",param_3,param_4);
+    return 0xffffffff;
+  }
+  cVar1 = FUN_140002dd0(local_res20);
+  if (cVar1 != '\0') {
+    FUN_140002d50(DAT_14000b340,"uninstalldaemon: Niagara service successfully removed.");
+    return 0;
+  }
+  FUN_140001a40(DAT_14000b340,"uninstalldaemon: Niagara service could not be removed.");
+  return 0xffffffff;
+}
+
+
+
+/* ==== FUN_140002830 @ 140002830 ==== */
+      anchor @140002866 -> "Usage: plat setsystempw [/option] newpass\n"
+      anchor @1400028f7 -> "SOFTWARE\Niagara4"
+      anchor @140002a89 -> "SOFTWARE\Niagara4"
+      anchor @140002947 -> "systempw"
+      anchor @140002b27 -> "systempw"
+
+void FUN_140002830(undefined8 param_1,int param_2,longlong param_3,undefined8 param_4)
+
+{
+  byte bVar1;
+  byte *pbVar2;
+  int iVar3;
+  int iVar4;
+  undefined8 uVar5;
+  ulonglong uVar6;
+  ulonglong uVar7;
+  int iVar8;
+  ulonglong uVar9;
+  byte *pbVar10;
+  uint uVar11;
+  int iVar12;
+  ulonglong uVar13;
+  ulonglong uVar14;
+  undefined1 auStack_c8 [32];
+  HLOCAL local_a8;
+  undefined8 local_a0;
+  undefined4 *local_98;
+  undefined8 *local_90;
+  undefined1 *local_88;
+  undefined8 local_78;
+  undefined4 local_70 [2];
+  HLOCAL local_68;
+  undefined4 local_60 [2];
+  undefined *local_58;
+  undefined4 local_50 [2];
+  byte *local_48;
+  undefined1 local_40 [8];
+  ulonglong local_38;
+  
+  local_38 = DAT_14000b038 ^ (ulonglong)auStack_c8;
+  if (param_2 == 3) {
+    pbVar2 = *(byte **)(param_3 + 0x10);
+    local_88 = local_40;
+    local_90 = &local_78;
+    uVar9 = 0;
+    iVar12 = 0;
+    local_98 = (undefined4 *)0x0;
+    local_a0 = CONCAT44(local_a0._4_4_,0x20119);
+    iVar8 = 0;
+    local_a8 = (HLOCAL)((ulonglong)local_a8 & 0xffffffff00000000);
+    iVar4 = -1;
+    iVar3 = (*(code *)PTR__guard_dispatch_icall_1400072f8)
+                      (0xffffffff80000002,"SOFTWARE\\Niagara4",0,0);
+    uVar7 = uVar9;
+    if (iVar3 == 0) {
+      local_a0 = 0;
+      local_a8 = (HLOCAL)0x0;
+      iVar3 = (*(code *)PTR__guard_dispatch_icall_1400072f8)(local_78,"systempw",0,0);
+      iVar4 = -1;
+      if (iVar3 == 2) {
+        iVar4 = iVar12;
+      }
+      (*(code *)PTR__guard_dispatch_icall_1400072f8)(local_78);
+    }
+    do {
+      uVar6 = uVar7 + 1;
+      if ("/check"[uVar7] != pbVar2[uVar7]) {
+        if (iVar4 == 0) {
+          uVar7 = 0xffffffffffffffff;
+          do {
+            uVar7 = uVar7 + 1;
+          } while (pbVar2[uVar7] != 0);
+          pbVar10 = pbVar2;
+          uVar6 = uVar9;
+          uVar13 = uVar9;
+          uVar14 = uVar9;
+          iVar4 = iVar12;
+          if (uVar7 != 0) {
+            do {
+              bVar1 = *pbVar10;
+              iVar4 = isalpha((uint)bVar1);
+              if (iVar4 == 0) {
+                iVar4 = isdigit((uint)bVar1);
+                if (iVar4 != 0) {
+                  uVar13 = (ulonglong)((int)uVar13 + 1);
+                }
+              }
+              else {
+                iVar4 = isupper((uint)bVar1);
+                if (iVar4 == 0) {
+                  uVar14 = (ulonglong)((int)uVar14 + 1);
+                }
+                else {
+                  uVar6 = (ulonglong)((int)uVar6 + 1);
+                }
+              }
+              iVar4 = (int)uVar6;
+              iVar8 = (int)uVar14;
+              iVar12 = (int)uVar13;
+              uVar11 = (int)uVar9 + 1;
+              uVar9 = (ulonglong)uVar11;
+              pbVar10 = pbVar10 + 1;
+            } while ((ulonglong)(longlong)(int)uVar11 < uVar7);
+          }
+          if ((((9 < uVar7) && (iVar12 != 0)) && (iVar8 != 0)) && (iVar4 != 0)) {
+            local_88 = local_40;
+            local_90 = &local_78;
+            local_98 = (undefined4 *)0x0;
+            local_a0 = CONCAT44(local_a0._4_4_,0xf013f);
+            local_a8 = (HLOCAL)((ulonglong)local_a8 & 0xffffffff00000000);
+            iVar4 = (*(code *)PTR__guard_dispatch_icall_1400072f8)
+                              (0xffffffff80000002,"SOFTWARE\\Niagara4",0,0);
+            if (iVar4 == 0) {
+              local_58 = &DAT_14000b000;
+              local_60[0] = DAT_14000b020;
+              local_98 = local_70;
+              local_50[0] = (undefined4)uVar7;
+              local_a0 = CONCAT44(local_a0._4_4_,0x14);
+              local_a8 = (HLOCAL)0x0;
+              local_48 = pbVar2;
+              iVar4 = (*(code *)PTR__guard_dispatch_icall_1400072f8)(local_50,0,local_60,0);
+              if (iVar4 != 0) {
+                local_a0 = CONCAT44(local_a0._4_4_,local_70[0]);
+                local_a8 = local_68;
+                (*(code *)PTR__guard_dispatch_icall_1400072f8)(local_78,"systempw",0,3);
+                LocalFree(local_68);
+              }
+              (*(code *)PTR__guard_dispatch_icall_1400072f8)(local_78);
+            }
+          }
+        }
+        break;
+      }
+      uVar7 = uVar6;
+    } while (uVar6 != 7);
+  }
+  else {
+    uVar5 = __acrt_iob_func(1);
+    FUN_140001610(uVar5,"Usage: plat setsystempw [/option] newpass\n",param_3,param_4);
+    uVar5 = __acrt_iob_func(1);
+    FUN_140001610(uVar5,"\nArguments:\n",param_3,param_4);
+    uVar5 = __acrt_iob_func(1);
+    FUN_140001610(uVar5,"  newpass     - new system passphrase\n",param_3,param_4);
+    uVar5 = __acrt_iob_func(1);
+    FUN_140001610(uVar5,"\nOptions:\n",param_3,param_4);
+    uVar5 = __acrt_iob_func(1);
+    FUN_140001610(uVar5,"  check       - return 0 if and only if a password is currently set\n",
+                  param_3,param_4);
+  }
+  FUN_140005510(local_38 ^ (ulonglong)auStack_c8);
+  return;
+}
+
+
+
+/* ==== FUN_140004da0 @ 140004da0 ==== */
+      anchor @140004db2 -> "Usage: plat setsystempw [/option] newpass\n"
+
+void FUN_140004da0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
+{
+  undefined8 uVar1;
+  
+  uVar1 = __acrt_iob_func(1);
+  FUN_140001610(uVar1,"Usage: plat setsystempw [/option] newpass\n",param_3,param_4);
+  uVar1 = __acrt_iob_func(1);
+  FUN_140001610(uVar1,"\nArguments:\n",param_3,param_4);
+  uVar1 = __acrt_iob_func(1);
+  FUN_140001610(uVar1,"  newpass     - new system passphrase\n",param_3,param_4);
+  uVar1 = __acrt_iob_func(1);
+  FUN_140001610(uVar1,"\nOptions:\n",param_3,param_4);
+  uVar1 = __acrt_iob_func(1);
+  FUN_140001610(uVar1,"  check       - return 0 if and only if a password is currently set\n",
+                param_3,param_4);
+  return;
+}
+
+
+
+/* ==== FUN_140002510 @ 140002510 ==== */
+      anchor @140002549 -> "Usage: plat setdaemonuserhome newuserhome\n"
+
+void FUN_140002510(undefined8 param_1,int param_2,longlong param_3,undefined8 param_4)
+
+{
+  char *pcVar1;
+  longlong lVar2;
+  DWORD DVar3;
+  int iVar4;
+  undefined8 uVar5;
+  size_t sVar6;
+  undefined8 uVar7;
+  ulonglong uVar8;
+  ulonglong uVar9;
+  longlong lVar10;
+  CHAR *_Src;
+  undefined1 auStack_298 [32];
+  char *local_278;
+  int local_270;
+  char *local_258;
+  undefined8 local_250;
+  undefined8 local_248;
+  size_t local_240;
+  CHAR local_238;
+  char acStack_237 [271];
+  char local_128 [272];
+  ulonglong local_18;
+  
+  local_18 = DAT_14000b038 ^ (ulonglong)auStack_298;
+  if (param_2 == 3) {
+    lVar2 = *(longlong *)(param_3 + 0x10);
+    memset(local_128,0,0x104);
+    local_258 = (char *)0x0;
+    local_240 = 0;
+    _dupenv_s(&local_258,&local_240,"niagara_home");
+    if ((((local_258 == (char *)0x0) || (sVar6 = strnlen(local_258,0x104), 0x103 < sVar6)) ||
+        (local_258 == (char *)0x0)) ||
+       (sVar6 = strnlen(local_258,0x104), _Src = local_258, sVar6 == 0)) {
+      memset(&local_238,0,0x104);
+      uVar5 = 0x104;
+      DVar3 = GetModuleFileNameA((HMODULE)0x0,&local_238,0x104);
+      if (DVar3 == 0) {
+        uVar7 = __acrt_iob_func(2);
+        FUN_140001610(uVar7,
+                      "SEVERE: Failed to initialize niagara_home, can not set Niagara Daemon User Home\n"
+                      ,uVar5,param_4);
+        goto LAB_1400027f0;
+      }
+      uVar9 = 0xffffffffffffffff;
+      do {
+        uVar8 = uVar9 + 1;
+        pcVar1 = acStack_237 + uVar9;
+        uVar9 = uVar8;
+      } while (*pcVar1 != '\0');
+      lVar10 = (longlong)(int)uVar8;
+      if (0 < (int)uVar8) {
+        do {
+          iVar4 = (int)uVar8;
+          if ((&local_238)[lVar10] == '\\') {
+            if (0x103 < (ulonglong)(longlong)iVar4) goto LAB_140002826;
+            (&local_238)[iVar4] = '\0';
+            break;
+          }
+          uVar8 = (ulonglong)(iVar4 - 1);
+          lVar10 = lVar10 + -1;
+        } while (0 < lVar10);
+      }
+      uVar9 = 0xffffffffffffffff;
+      do {
+        uVar8 = uVar9 + 1;
+        pcVar1 = acStack_237 + uVar9;
+        uVar9 = uVar8;
+      } while (*pcVar1 != '\0');
+      lVar10 = (longlong)(int)uVar8;
+      if (0 < (int)uVar8) {
+        do {
+          iVar4 = (int)uVar8;
+          if ((&local_238)[lVar10] == '\\') {
+            if (0x103 < (ulonglong)(longlong)iVar4) {
+LAB_140002826:
+                    /* WARNING: Subroutine does not return */
+              FUN_1400058d4();
+            }
+            (&local_238)[iVar4] = '\0';
+            break;
+          }
+          uVar8 = (ulonglong)(iVar4 - 1);
+          lVar10 = lVar10 + -1;
+        } while (0 < lVar10);
+      }
+      _Src = &local_238;
+    }
+    lVar10 = -1;
+    strncpy_s(local_128,0x104,_Src,0xffffffffffffffff);
+    iVar4 = (*(code *)PTR__guard_dispatch_icall_1400072f8)
+                      (0xffffffff80000000,"Applications\\wb.exe",&local_248);
+    if (iVar4 == 0) {
+      iVar4 = (*(code *)PTR__guard_dispatch_icall_1400072f8)(local_248,"installations",&local_250);
+      if (iVar4 == 0) {
+        memset(&local_238,0,0x104);
+        local_278 = local_128;
+        FUN_140004f10(&local_238,0x104,0xffffffffffffffff,"%s-nduh");
+        do {
+          lVar10 = lVar10 + 1;
+        } while (*(char *)(lVar2 + lVar10) != '\0');
+        local_270 = (int)lVar10 + 1;
+        local_278 = (char *)lVar2;
+        (*(code *)PTR__guard_dispatch_icall_1400072f8)(local_250,&local_238,0,1);
+        (*(code *)PTR__guard_dispatch_icall_1400072f8)(local_250);
+      }
+      (*(code *)PTR__guard_dispatch_icall_1400072f8)(local_248);
+    }
+  }
+  else {
+    uVar5 = __acrt_iob_func(1);
+    FUN_140001610(uVar5,"Usage: plat setdaemonuserhome newuserhome\n",param_3,param_4);
+    uVar5 = __acrt_iob_func(1);
+    FUN_140001610(uVar5,"\nArguments:\n",param_3,param_4);
+    uVar5 = __acrt_iob_func(1);
+    FUN_140001610(uVar5,"  newuserhome - new Niagara Daemon User Home directory\n",param_3,param_4);
+  }
+LAB_1400027f0:
+  FUN_140005510(local_18 ^ (ulonglong)auStack_298);
+  return;
+}
+
+
+
+/* ==== FUN_140004d40 @ 140004d40 ==== */
+      anchor @140004d52 -> "Usage: plat setdaemonuserhome newuserhome\n"
+
+void FUN_140004d40(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
+{
+  undefined8 uVar1;
+  
+  uVar1 = __acrt_iob_func(1);
+  FUN_140001610(uVar1,"Usage: plat setdaemonuserhome newuserhome\n",param_3,param_4);
+  uVar1 = __acrt_iob_func(1);
+  FUN_140001610(uVar1,"\nArguments:\n",param_3,param_4);
+  uVar1 = __acrt_iob_func(1);
+  FUN_140001610(uVar1,"  newuserhome - new Niagara Daemon User Home directory\n",param_3,param_4);
+  return;
+}
+
+
+
+/* ==== FUN_140002260 @ 140002260 ==== */
+      anchor @1400022cf -> "Usage: plat installdaemon [/option]\n"
+      anchor @140002347 -> "installdaemon: Niagara service successfully installed."
+      anchor @140002391 -> "installdaemon: Niagara service startup initiated."
+      anchor @1400023a3 -> "installdaemon: Niagara service could not be started."
+      anchor @1400023b5 -> "installdaemon: Niagara service could not be installed."
+
+PCNZCH FUN_140002260(undefined8 param_1,int param_2,PCNZCH param_3,undefined8 param_4)
+
+{
+  char cVar1;
+  int iVar2;
+  undefined8 uVar3;
+  PCNZCH lpString1;
+  PCNZCH pCVar4;
+  char local_res20 [8];
+  
+  if (param_2 < 2) {
+LAB_1400022c1:
+    uVar3 = __acrt_iob_func(1);
+    FUN_140001610(uVar3,"Usage: plat installdaemon [/option]\n",param_3,param_4);
+    uVar3 = __acrt_iob_func(1);
+    FUN_140001610(uVar3,"\nOptions:\n",param_3,param_4);
+    uVar3 = __acrt_iob_func(1);
+    FUN_140001610(uVar3,"  nostart - unless specified, the service is started\n",param_3,param_4);
+    uVar3 = __acrt_iob_func(1);
+    FUN_140001610(uVar3,"            once it\'s installed\n",param_3,param_4);
+    pCVar4 = (PCNZCH)0xffffffff;
+  }
+  else {
+    pCVar4 = (PCNZCH)0x0;
+    lpString1 = pCVar4;
+    if ((2 < param_2) && (lpString1 = *(PCNZCH *)(param_3 + 0x10), lpString1 != (PCNZCH)0x0)) {
+      param_4 = 0xffffffff;
+      param_3 = lpString1;
+      iVar2 = CompareStringA(0x409,1,lpString1,-1,"/nostart",-1);
+      if (iVar2 != 2) goto LAB_1400022c1;
+    }
+    cVar1 = FUN_140001b90(local_res20);
+    if (cVar1 == '\0') {
+      FUN_140001a40(DAT_14000b340,"installdaemon: Niagara service could not be installed.");
+      pCVar4 = (PCNZCH)0xffffffff;
+    }
+    else {
+      FUN_140002d50(DAT_14000b340,"installdaemon: Niagara service successfully installed.");
+      if ((lpString1 == (PCNZCH)0x0) ||
+         (iVar2 = CompareStringA(0x409,1,lpString1,-1,"/nostart",-1), iVar2 != 2)) {
+        cVar1 = FUN_140003380(local_res20);
+        if (cVar1 == '\0') {
+          FUN_140001a40(DAT_14000b340,"installdaemon: Niagara service could not be started.");
+          pCVar4 = (PCNZCH)0xffffffff;
+        }
+        else {
+          FUN_140002d50(DAT_14000b340,"installdaemon: Niagara service startup initiated.");
+        }
+      }
+    }
+  }
+  return pCVar4;
+}
+
+
+
+/* ==== FUN_140004c90 @ 140004c90 ==== */
+      anchor @140004ca2 -> "Usage: plat installdaemon [/option]\n"
+
+void FUN_140004c90(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
+{
+  undefined8 uVar1;
+  
+  uVar1 = __acrt_iob_func(1);
+  FUN_140001610(uVar1,"Usage: plat installdaemon [/option]\n",param_3,param_4);
+  uVar1 = __acrt_iob_func(1);
+  FUN_140001610(uVar1,"\nOptions:\n",param_3,param_4);
+  uVar1 = __acrt_iob_func(1);
+  FUN_140001610(uVar1,"  nostart - unless specified, the service is started\n",param_3,param_4);
+  uVar1 = __acrt_iob_func(1);
+  FUN_140001610(uVar1,"            once it\'s installed\n",param_3,param_4);
+  return;
+}
+
+
+
+/* ==== FUN_140001b90 @ 140001b90 ==== */
+      anchor @1400021ab -> "installdaemon: unexpected error when opening %s service."
+      anchor @140002157 -> "installdaemon: cannot open service manager."
+      anchor @140002204 -> "installdaemon: cannot open service manager."
+      anchor @140001f1a -> "FltMgr"
+      anchor @140001f5d -> "FltMgr"
+
+void FUN_140001b90(char *param_1)
+
+{
+  char cVar1;
+  DWORD DVar2;
+  int iVar3;
+  char *pcVar4;
+  char *pcVar5;
+  void *pvVar6;
+  longlong lVar7;
+  undefined8 uVar8;
+  undefined8 uVar9;
+  HANDLE pvVar10;
+  longlong lVar11;
+  char **ppcVar12;
+  char *pcVar13;
+  undefined8 uVar14;
+  char *_Memory;
+  undefined1 auStack_758 [32];
+  char *local_738;
+  char *local_730;
+  undefined4 local_728;
+  void *local_720;
+  undefined8 local_718;
+  undefined8 local_710;
+  char *local_708;
+  undefined8 local_700;
+  undefined8 local_6f8;
+  char *local_6e8;
+  char *local_6e0;
+  char *local_6d8;
+  void *local_6d0;
+  char *local_6c8;
+  char local_6c0 [8];
+  undefined8 local_6b8;
+  undefined8 uStack_6b0;
+  undefined8 local_6a8;
+  undefined8 uStack_6a0;
+  undefined8 local_698;
+  undefined8 uStack_690;
+  undefined8 local_688;
+  undefined8 uStack_680;
+  undefined8 local_678;
+  undefined8 uStack_670;
+  undefined8 local_668;
+  undefined8 uStack_660;
+  undefined8 local_658;
+  undefined8 uStack_650;
+  undefined8 local_648;
+  undefined8 uStack_640;
+  CHAR local_638;
+  char acStack_637 [511];
+  CHAR local_438;
+  char acStack_437 [511];
+  undefined1 local_238 [512];
+  ulonglong local_38;
+  
+  local_38 = DAT_14000b038 ^ (ulonglong)auStack_758;
+  cVar1 = FUN_140002dd0(param_1);
+  if ((cVar1 == '\0') || (DVar2 = GetModuleFileNameA((HMODULE)0x0,&local_638,0x200), DVar2 == 0))
+  goto LAB_14000222f;
+  lVar11 = -1;
+  do {
+    lVar7 = lVar11;
+    lVar11 = lVar7 + 1;
+  } while (acStack_637[lVar7] != '\0');
+  pcVar4 = acStack_637 + lVar7;
+  if (lVar7 + 1 == 0) {
+LAB_140001c30:
+    if (pcVar4 == &local_638) goto LAB_140001c39;
+    *pcVar4 = '\0';
+    lVar11 = -1;
+    do {
+      lVar7 = lVar11;
+      lVar11 = lVar7 + 1;
+    } while (acStack_637[lVar7] != '\0');
+    pcVar4 = (char *)thunk_FUN_140005534(lVar7 + 0xf);
+    lVar11 = -1;
+    do {
+      lVar7 = lVar11;
+      lVar11 = lVar7 + 1;
+    } while (acStack_637[lVar7] != '\0');
+    local_730 = "niagarad.exe";
+    local_738 = &local_638;
+    local_6e0 = pcVar4;
+    FUN_140004f10(pcVar4,lVar7 + 0xf,0xffffffffffffffff,"%s\\%s");
+  }
+  else {
+    do {
+      if ((*pcVar4 == '\\') || (*pcVar4 == '/')) goto LAB_140001c30;
+      pcVar4 = pcVar4 + -1;
+    } while (pcVar4 != &local_638);
+LAB_140001c39:
+    pcVar4 = (char *)thunk_FUN_140005534(0xd);
+    local_6e0 = pcVar4;
+    strncpy_s(pcVar4,0xd,"niagarad.exe",0xffffffffffffffff);
+  }
+  if (pcVar4 == (char *)0x0) goto LAB_14000222f;
+  DVar2 = GetModuleFileNameA((HMODULE)0x0,&local_438,0x200);
+  if (DVar2 == 0) {
+    pcVar5 = (char *)0x0;
+    local_6e8 = (char *)0x0;
+LAB_140001de7:
+    _Memory = pcVar4;
+  }
+  else {
+    lVar11 = -1;
+    do {
+      lVar7 = lVar11;
+      lVar11 = lVar7 + 1;
+    } while (acStack_437[lVar7] != '\0');
+    pcVar5 = acStack_437 + lVar7;
+    if (lVar7 + 1 == 0) {
+LAB_140001d36:
+      if (pcVar5 == &local_438) goto LAB_140001d42;
+      *pcVar5 = '\0';
+      lVar11 = -1;
+      do {
+        lVar7 = lVar11;
+        lVar11 = lVar7 + 1;
+      } while (acStack_437[lVar7] != '\0');
+      pcVar5 = (char *)thunk_FUN_140005534(lVar7 + 3);
+      lVar11 = -1;
+      do {
+        lVar7 = lVar11;
+        lVar11 = lVar7 + 1;
+      } while (acStack_437[lVar7] != '\0');
+      local_730 = "";
+      local_738 = &local_438;
+      local_6e8 = pcVar5;
+      FUN_140004f10(pcVar5,lVar7 + 3,0xffffffffffffffff,"%s\\%s");
+    }
+    else {
+      do {
+        if ((*pcVar5 == '\\') || (*pcVar5 == '/')) goto LAB_140001d36;
+        pcVar5 = pcVar5 + -1;
+      } while (pcVar5 != &local_438);
+LAB_140001d42:
+      pcVar5 = (char *)thunk_FUN_140005534(1);
+      local_6e8 = pcVar5;
+      strncpy_s(pcVar5,1,"",0xffffffffffffffff);
+    }
+    _Memory = pcVar5;
+    if (pcVar5 == (char *)0x0) goto LAB_140001de7;
+  }
+  lVar11 = -1;
+  do {
+    lVar7 = lVar11;
+    lVar11 = lVar7 + 1;
+  } while (pcVar4[lVar11] != '\0');
+  local_6d8 = _Memory;
+  pvVar6 = (void *)thunk_FUN_140005534(lVar7 + 4);
+  lVar11 = -1;
+  do {
+    lVar7 = lVar11;
+    lVar11 = lVar7 + 1;
+  } while (pcVar4[lVar11] != '\0');
+  local_738 = pcVar4;
+  local_6d0 = pvVar6;
+  FUN_140004f10(pvVar6,lVar7 + 4,0xffffffffffffffff,&DAT_140007d90);
+  local_6b8 = 0;
+  uStack_6b0 = 0;
+  local_6a8 = 0;
+  uStack_6a0 = 0;
+  local_698 = 0;
+  uStack_690 = 0;
+  local_688 = 0;
+  uStack_680 = 0;
+  local_678 = 0;
+  uStack_670 = 0;
+  local_668 = 0;
+  uStack_660 = 0;
+  local_658 = 0;
+  uStack_650 = 0;
+  local_648 = 0;
+  uStack_640 = 0;
+  while (lVar11 = (*(code *)PTR__guard_dispatch_icall_1400072f8)(0,0,0xf003f), lVar11 != 0) {
+    lVar7 = (*(code *)PTR__guard_dispatch_icall_1400072f8)(lVar11,"Niagara",0xf01ff);
+    if (lVar7 == 0) {
+      DVar2 = GetLastError();
+      if (DVar2 == 0x424) {
+        (*(code *)PTR__guard_dispatch_icall_1400072f8)();
+        lVar11 = (*(code *)PTR__guard_dispatch_icall_1400072f8)(0,0,0xf003f);
+        pvVar6 = local_6d0;
+        if (lVar11 == 0) {
+          pvVar10 = GetStdHandle(0xfffffff5);
+          FUN_140001980(param_1,pvVar10);
+          FUN_140001a40(DAT_14000b340,"installdaemon: cannot open service manager.");
+        }
+        else {
+          DVar2 = 0;
+          while( true ) {
+            local_6f8 = 0;
+            local_700 = 0;
+            local_708 = "FltMgr";
+            local_710 = 0;
+            local_718 = 0;
+            local_720 = pvVar6;
+            local_728 = 1;
+            local_730 = (char *)CONCAT44(local_730._4_4_,2);
+            local_738 = (char *)CONCAT44(local_738._4_4_,0x10);
+            lVar7 = (*(code *)PTR__guard_dispatch_icall_1400072f8)
+                              (lVar11,"Niagara","Niagara",0xf01ff);
+            if (lVar7 == 0) {
+              DVar2 = GetLastError();
+            }
+            else {
+              if (DAT_14000b2a0 != 0) {
+                local_6c8 = "Platform management service for Niagara tools";
+                (*(code *)PTR__guard_dispatch_icall_1400072f8)(lVar7,1,&local_6c8);
+              }
+              (*(code *)PTR__guard_dispatch_icall_1400072f8)(lVar7);
+            }
+            if (DVar2 != 0x430) break;
+            Sleep(1000);
+          }
+          (*(code *)PTR__guard_dispatch_icall_1400072f8)(lVar11);
+          lVar11 = -1;
+          local_738 = "Niagara";
+          pcVar13 = "SYSTEM\\CurrentControlSet\\Services\\EventLog\\Application\\%s";
+          FUN_140004f10(local_238,0x200,0xffffffffffffffff,
+                        "SYSTEM\\CurrentControlSet\\Services\\EventLog\\Application\\%s");
+          ppcVar12 = &local_6c8;
+          iVar3 = (*(code *)PTR__guard_dispatch_icall_1400072f8)(0xffffffff80000002,local_238);
+          _Memory = local_6d8;
+          pcVar4 = local_6e0;
+          pcVar5 = local_6e8;
+          if (iVar3 == 0) {
+            do {
+              lVar11 = lVar11 + 1;
+            } while (local_6d8[lVar11] != '\0');
+            local_730 = (char *)CONCAT44(local_730._4_4_,(int)lVar11 + 1);
+            uVar14 = 2;
+            uVar8 = 0;
+            local_738 = local_6d8;
+            iVar3 = (*(code *)PTR__guard_dispatch_icall_1400072f8)(local_6c8,"EventMessageFile");
+            if (iVar3 == 0) {
+              local_738 = local_6c0;
+              local_730 = (char *)CONCAT44(local_730._4_4_,4);
+              uVar14 = 4;
+              uVar8 = 0;
+              local_6c0[0] = '\a';
+              local_6c0[1] = '\0';
+              local_6c0[2] = '\0';
+              local_6c0[3] = '\0';
+              iVar3 = (*(code *)PTR__guard_dispatch_icall_1400072f8)(local_6c8,"TypesSupported");
+              if (iVar3 != 0) {
+                uVar9 = __acrt_iob_func(1);
+                pcVar13 = "Warning: Could not update registry. Errors may not be logged.\n";
+                goto LAB_1400020cc;
+              }
+            }
+            else {
+              uVar9 = __acrt_iob_func(1);
+              pcVar13 = "Warning: Could not update registry. Errors will not be logged.\n";
+LAB_1400020cc:
+              FUN_140001610(uVar9,pcVar13,uVar8,uVar14);
+            }
+            (*(code *)PTR__guard_dispatch_icall_1400072f8)(local_6c8);
+          }
+          else {
+            uVar8 = __acrt_iob_func(1);
+            FUN_140001610(uVar8,"Warning: Could not update registry. Errors will not be logged.\n",
+                          ppcVar12,pcVar13);
+          }
+        }
+        free(local_6d0);
+        free(pcVar4);
+        if (pcVar5 != (char *)0x0) {
+          free(_Memory);
+        }
+        goto LAB_14000222f;
+      }
+      pvVar10 = GetStdHandle(0xfffffff5);
+      FUN_140001980(param_1,pvVar10);
+      local_738 = "Niagara";
+      FUN_140004f10(&local_6b8,0x80,0xffffffffffffffff,
+                    "installdaemon: unexpected error when opening %s service.");
+      FUN_140001a40(DAT_14000b340,&local_6b8);
+      (*(code *)PTR__guard_dispatch_icall_1400072f8)(lVar11);
+      goto LAB_140002210;
+    }
+    (*(code *)PTR__guard_dispatch_icall_1400072f8)(lVar7);
+    (*(code *)PTR__guard_dispatch_icall_1400072f8)(lVar11);
+    Sleep(1000);
+  }
+  pvVar10 = GetStdHandle(0xfffffff5);
+  FUN_140001980(param_1,pvVar10);
+  FUN_140001a40(DAT_14000b340,"installdaemon: cannot open service manager.");
+LAB_140002210:
+  free(pvVar6);
+  free(pcVar4);
+  if (pcVar5 != (char *)0x0) {
+    free(_Memory);
+  }
+LAB_14000222f:
+  FUN_140005510(local_38 ^ (ulonglong)auStack_758);
+  return;
+}
+
+
+
+/* ==== FUN_140003380 @ 140003380 ==== */
+      anchor @140003584 -> "installdaemon: cannot open service manager."
+      anchor @14000358b -> "installdaemon: cannot open service manager."
+      anchor @1400035ca -> "installdaemon: cannot open service manager."
+      anchor @1400034ae -> "installdaemon: cannot open %s service."
+
+void FUN_140003380(undefined8 param_1)
+
+{
+  int iVar1;
+  DWORD DVar2;
+  longlong lVar3;
+  longlong lVar4;
+  HANDLE pvVar5;
+  undefined8 uVar6;
+  undefined8 uVar7;
+  undefined1 auStack_f8 [32];
+  char *local_d8;
+  undefined2 local_d0;
+  undefined4 local_c8;
+  char **local_c0;
+  undefined8 local_b8;
+  char *local_a8 [2];
+  char local_98 [128];
+  ulonglong local_18;
+  
+  local_18 = DAT_14000b038 ^ (ulonglong)auStack_f8;
+  local_98[0] = '\0';
+  local_98[1] = '\0';
+  local_98[2] = '\0';
+  local_98[3] = '\0';
+  local_98[4] = '\0';
+  local_98[5] = '\0';
+  local_98[6] = '\0';
+  local_98[7] = '\0';
+  local_98[8] = '\0';
+  local_98[9] = '\0';
+  local_98[10] = '\0';
+  local_98[0xb] = '\0';
+  local_98[0xc] = '\0';
+  local_98[0xd] = '\0';
+  local_98[0xe] = '\0';
+  local_98[0xf] = '\0';
+  local_98[0x10] = '\0';
+  local_98[0x11] = '\0';
+  local_98[0x12] = '\0';
+  local_98[0x13] = '\0';
+  local_98[0x14] = '\0';
+  local_98[0x15] = '\0';
+  local_98[0x16] = '\0';
+  local_98[0x17] = '\0';
+  local_98[0x18] = '\0';
+  local_98[0x19] = '\0';
+  local_98[0x1a] = '\0';
+  local_98[0x1b] = '\0';
+  local_98[0x1c] = '\0';
+  local_98[0x1d] = '\0';
+  local_98[0x1e] = '\0';
+  local_98[0x1f] = '\0';
+  local_98[0x20] = '\0';
+  local_98[0x21] = '\0';
+  local_98[0x22] = '\0';
+  local_98[0x23] = '\0';
+  local_98[0x24] = '\0';
+  local_98[0x25] = '\0';
+  local_98[0x26] = '\0';
+  local_98[0x27] = '\0';
+  local_98[0x28] = '\0';
+  local_98[0x29] = '\0';
+  local_98[0x2a] = '\0';
+  local_98[0x2b] = '\0';
+  local_98[0x2c] = '\0';
+  local_98[0x2d] = '\0';
+  local_98[0x2e] = '\0';
+  local_98[0x2f] = '\0';
+  local_98[0x30] = '\0';
+  local_98[0x31] = '\0';
+  local_98[0x32] = '\0';
+  local_98[0x33] = '\0';
+  local_98[0x34] = '\0';
+  local_98[0x35] = '\0';
+  local_98[0x36] = '\0';
+  local_98[0x37] = '\0';
+  local_98[0x38] = '\0';
+  local_98[0x39] = '\0';
+  local_98[0x3a] = '\0';
+  local_98[0x3b] = '\0';
+  local_98[0x3c] = '\0';
+  local_98[0x3d] = '\0';
+  local_98[0x3e] = '\0';
+  local_98[0x3f] = '\0';
+  local_98[0x40] = '\0';
+  local_98[0x41] = '\0';
+  local_98[0x42] = '\0';
+  local_98[0x43] = '\0';
+  local_98[0x44] = '\0';
+  local_98[0x45] = '\0';
+  local_98[0x46] = '\0';
+  local_98[0x47] = '\0';
+  local_98[0x48] = '\0';
+  local_98[0x49] = '\0';
+  local_98[0x4a] = '\0';
+  local_98[0x4b] = '\0';
+  local_98[0x4c] = '\0';
+  local_98[0x4d] = '\0';
+  local_98[0x4e] = '\0';
+  local_98[0x4f] = '\0';
+  local_98[0x50] = '\0';
+  local_98[0x51] = '\0';
+  local_98[0x52] = '\0';
+  local_98[0x53] = '\0';
+  local_98[0x54] = '\0';
+  local_98[0x55] = '\0';
+  local_98[0x56] = '\0';
+  local_98[0x57] = '\0';
+  local_98[0x58] = '\0';
+  local_98[0x59] = '\0';
+  local_98[0x5a] = '\0';
+  local_98[0x5b] = '\0';
+  local_98[0x5c] = '\0';
+  local_98[0x5d] = '\0';
+  local_98[0x5e] = '\0';
+  local_98[0x5f] = '\0';
+  local_98[0x60] = '\0';
+  local_98[0x61] = '\0';
+  local_98[0x62] = '\0';
+  local_98[99] = '\0';
+  local_98[100] = '\0';
+  local_98[0x65] = '\0';
+  local_98[0x66] = '\0';
+  local_98[0x67] = '\0';
+  local_98[0x68] = '\0';
+  local_98[0x69] = '\0';
+  local_98[0x6a] = '\0';
+  local_98[0x6b] = '\0';
+  local_98[0x6c] = '\0';
+  local_98[0x6d] = '\0';
+  local_98[0x6e] = '\0';
+  local_98[0x6f] = '\0';
+  local_98[0x70] = '\0';
+  local_98[0x71] = '\0';
+  local_98[0x72] = '\0';
+  local_98[0x73] = '\0';
+  local_98[0x74] = '\0';
+  local_98[0x75] = '\0';
+  local_98[0x76] = '\0';
+  local_98[0x77] = '\0';
+  local_98[0x78] = '\0';
+  local_98[0x79] = '\0';
+  local_98[0x7a] = '\0';
+  local_98[0x7b] = '\0';
+  local_98[0x7c] = '\0';
+  local_98[0x7d] = '\0';
+  local_98[0x7e] = '\0';
+  local_98[0x7f] = '\0';
+  lVar3 = (*(code *)PTR__guard_dispatch_icall_1400072f8)(0,0);
+  if (lVar3 == 0) {
+    pvVar5 = GetStdHandle(0xfffffff5);
+    FUN_140001980(param_1,pvVar5);
+    local_c0 = local_a8;
+    local_a8[0] = "installdaemon: cannot open service manager.";
+    uVar6 = 0;
+    local_b8 = 0;
+    uVar7 = 0xc0000003;
+    local_c8 = 0;
+    local_d0 = 1;
+    local_d8 = (char *)0x0;
+    (*(code *)PTR__guard_dispatch_icall_1400072f8)(*DAT_14000b340,1);
+    FUN_140004f80("ERROR: %s\n",local_a8[0],uVar6,uVar7);
+  }
+  else {
+    lVar4 = (*(code *)PTR__guard_dispatch_icall_1400072f8)(lVar3,"Niagara",0xf01ff);
+    if (lVar4 == 0) {
+      pvVar5 = GetStdHandle(0xfffffff5);
+      FUN_140001980(param_1,pvVar5);
+      local_d8 = "Niagara";
+      FUN_140004f10(local_98,0x80,0xffffffffffffffff,"installdaemon: cannot open %s service.");
+      local_c0 = local_a8;
+      local_a8[0] = local_98;
+      uVar6 = 0;
+      local_b8 = 0;
+      uVar7 = 0xc0000003;
+      local_c8 = 0;
+      local_d0 = 1;
+      local_d8 = (char *)0x0;
+      (*(code *)PTR__guard_dispatch_icall_1400072f8)(*DAT_14000b340,1);
+      FUN_140004f80("ERROR: %s\n",local_a8[0],uVar6,uVar7);
+    }
+    else {
+      iVar1 = (*(code *)PTR__guard_dispatch_icall_1400072f8)(lVar4,0,0);
+      (*(code *)PTR__guard_dispatch_icall_1400072f8)(lVar4);
+      if ((iVar1 == 0) && (DVar2 = GetLastError(), DVar2 != 0x420)) {
+        pvVar5 = GetStdHandle(0xfffffff5);
+        FUN_140001980(param_1,pvVar5);
+      }
+    }
+    (*(code *)PTR__guard_dispatch_icall_1400072f8)(lVar3);
+  }
+  FUN_140005510(local_18 ^ (ulonglong)auStack_f8);
+  return;
+}
+
+
+
+/* ==== FUN_140002dd0 @ 140002dd0 ==== */
+      anchor @1400030c0 -> "Niagara Platform"
+      anchor @140003104 -> "Niagara Platform"
+      anchor @14000313c -> "Niagara Platform"
+      anchor @140003220 -> "Niagara Platform"
+      anchor @140003233 -> "Niagara Platform"
+      anchor @1400032f3 -> "daemonservice: cannot open service manager."
+      anchor @1400032fa -> "daemonservice: cannot open service manager."
+      anchor @140003341 -> "daemonservice: cannot open service manager."
+
+void FUN_140002dd0(char *param_1)
+
+{
+  bool bVar1;
+  bool bVar2;
+  int iVar3;
+  DWORD DVar4;
+  longlong lVar5;
+  longlong lVar6;
+  HANDLE pvVar7;
+  int iVar8;
+  int iVar9;
+  undefined8 uVar10;
+  undefined8 uVar11;
+  undefined1 auStack_338 [32];
+  char *local_318;
+  undefined2 local_310;
+  undefined4 local_308;
+  char **local_300;
+  undefined8 local_2f8;
+  char *local_2e8;
+  char *local_2e0;
+  undefined1 local_2d8 [4];
+  int local_2d4;
+  undefined8 local_2b8;
+  undefined8 uStack_2b0;
+  undefined8 local_2a8;
+  undefined8 uStack_2a0;
+  undefined8 local_298;
+  undefined8 uStack_290;
+  undefined8 local_288;
+  undefined8 uStack_280;
+  undefined8 local_278;
+  undefined8 uStack_270;
+  undefined8 local_268;
+  undefined8 uStack_260;
+  undefined8 local_258;
+  undefined8 uStack_250;
+  undefined8 local_248;
+  undefined8 uStack_240;
+  undefined1 local_238 [512];
+  ulonglong local_38;
+  
+  local_38 = DAT_14000b038 ^ (ulonglong)auStack_338;
+  bVar2 = true;
+  local_2b8 = 0;
+  uStack_2b0 = 0;
+  local_2a8 = 0;
+  uStack_2a0 = 0;
+  local_298 = 0;
+  uStack_290 = 0;
+  local_288 = 0;
+  uStack_280 = 0;
+  local_278 = 0;
+  uStack_270 = 0;
+  local_268 = 0;
+  uStack_260 = 0;
+  local_258 = 0;
+  uStack_250 = 0;
+  local_248 = 0;
+  uStack_240 = 0;
+  local_2e0 = param_1;
+  lVar5 = (*(code *)PTR__guard_dispatch_icall_1400072f8)(0,0);
+  if (lVar5 == 0) {
+    pvVar7 = GetStdHandle(0xfffffff5);
+    FUN_140001980(param_1,pvVar7);
+    local_2e0 = "daemonservice: cannot open service manager.";
+    local_2f8 = 0;
+    local_300 = &local_2e0;
+    uVar10 = 0;
+    local_308 = 0;
+    uVar11 = 0xc0000003;
+    local_310 = 1;
+    local_318 = (char *)0x0;
+    (*(code *)PTR__guard_dispatch_icall_1400072f8)(*DAT_14000b340,1);
+    FUN_140004f80("ERROR: %s\n",local_2e0,uVar10,uVar11);
+    goto LAB_140003354;
+  }
+  lVar6 = (*(code *)PTR__guard_dispatch_icall_1400072f8)(lVar5,"Niagara",0xf01ff);
+  iVar8 = 0;
+  iVar9 = 0;
+  if (lVar6 == 0) {
+    DVar4 = GetLastError();
+    if (DVar4 != 0x424) {
+      pvVar7 = GetStdHandle(0xfffffff5);
+      FUN_140001980(param_1,pvVar7);
+      local_318 = "Niagara";
+      FUN_140004f10(&local_2b8,0x80,0xffffffffffffffff,"daemonservice: cannot open %s service.");
+      local_2e8 = (char *)&local_2b8;
+      uVar10 = 0;
+      local_2f8 = 0;
+      local_300 = &local_2e8;
+      uVar11 = 0xc0000003;
+      local_308 = 0;
+      local_310 = 1;
+      local_318 = (char *)0x0;
+      (*(code *)PTR__guard_dispatch_icall_1400072f8)(*DAT_14000b340,1);
+      FUN_140004f80("ERROR: %s\n",local_2e8,uVar10,uVar11);
+      bVar2 = false;
+    }
+  }
+  else {
+    (*(code *)PTR__guard_dispatch_icall_1400072f8)(lVar6,local_2d8);
+    if (local_2d4 == 1) {
+LAB_140002f99:
+      iVar8 = (*(code *)PTR__guard_dispatch_icall_1400072f8)(lVar6);
+      if (iVar8 == 0) {
+        pvVar7 = GetStdHandle(0xfffffff5);
+        FUN_140001980(param_1,pvVar7);
+        local_318 = "Niagara";
+        FUN_140004f10(&local_2b8,0x80,0xffffffffffffffff,"daemonservice: cannot delete %s service.")
+        ;
+        FUN_140001a40(DAT_14000b340,&local_2b8);
+        goto LAB_140002ffb;
+      }
+    }
+    else {
+      do {
+        if (4 < iVar8) break;
+        iVar3 = (*(code *)PTR__guard_dispatch_icall_1400072f8)(lVar6,1,local_2d8);
+        if (iVar3 == 0) {
+          local_318 = "Niagara";
+          FUN_140004f10(&local_2b8,0x80,0xffffffffffffffff,
+                        "daemonservice: cannot stop %s service, retrying.");
+          local_2e8 = (char *)&local_2b8;
+          uVar10 = 0;
+          local_2f8 = 0;
+          local_300 = &local_2e8;
+          uVar11 = 0x80000002;
+          local_308 = 0;
+          local_310 = 1;
+          local_318 = (char *)0x0;
+          (*(code *)PTR__guard_dispatch_icall_1400072f8)(*DAT_14000b340,2);
+          FUN_140004f80("WARNING: %s\n",local_2e8,uVar10,uVar11);
+        }
+        iVar8 = iVar8 + 1;
+        (*(code *)PTR__guard_dispatch_icall_1400072f8)(lVar6,local_2d8);
+        Sleep(1000);
+      } while (local_2d4 != 1);
+      param_1 = local_2e0;
+      if (iVar8 < 6) goto LAB_140002f99;
+LAB_140002ffb:
+      bVar2 = false;
+    }
+    (*(code *)PTR__guard_dispatch_icall_1400072f8)(lVar6);
+  }
+  lVar6 = (*(code *)PTR__guard_dispatch_icall_1400072f8)(lVar5,"Niagara Platform",0xf01ff);
+  bVar1 = bVar2;
+  if (lVar6 != 0) {
+    (*(code *)PTR__guard_dispatch_icall_1400072f8)(lVar6,local_2d8);
+    for (; (local_2d4 != 1 && (param_1 = local_2e0, iVar9 < 5)); iVar9 = iVar9 + 1) {
+      iVar8 = (*(code *)PTR__guard_dispatch_icall_1400072f8)(lVar6,1,local_2d8);
+      if (iVar8 == 0) {
+        local_318 = "Niagara Platform";
+        FUN_140004f10(&local_2b8,0x80,0xffffffffffffffff,
+                      "daemonservice: cannot stop %s service, retrying.");
+        local_2e8 = (char *)&local_2b8;
+        uVar10 = 0;
+        local_2f8 = 0;
+        local_300 = &local_2e8;
+        uVar11 = 0x80000002;
+        local_308 = 0;
+        local_310 = 1;
+        local_318 = (char *)0x0;
+        (*(code *)PTR__guard_dispatch_icall_1400072f8)(*DAT_14000b340,2);
+        FUN_140004f80("WARNING: %s\n",local_2e8,uVar10,uVar11);
+      }
+      (*(code *)PTR__guard_dispatch_icall_1400072f8)(lVar6,local_2d8);
+      Sleep(1000);
+      param_1 = local_2e0;
+    }
+    bVar1 = false;
+    if (iVar9 < 6) {
+      bVar1 = bVar2;
+    }
+    if ((bVar1) && (iVar9 = (*(code *)PTR__guard_dispatch_icall_1400072f8)(lVar6), iVar9 == 0)) {
+      pvVar7 = GetStdHandle(0xfffffff5);
+      FUN_140001980(param_1,pvVar7);
+      local_318 = "Niagara Platform";
+      FUN_140004f10(&local_2b8,0x80,0xffffffffffffffff,"daemonservice: cannot delete %s service.");
+      FUN_140001a40(DAT_14000b340,&local_2b8);
+      bVar1 = false;
+    }
+    (*(code *)PTR__guard_dispatch_icall_1400072f8)(lVar6);
+  }
+  (*(code *)PTR__guard_dispatch_icall_1400072f8)(lVar5);
+  if (bVar1) {
+    local_318 = "Niagara";
+    FUN_140004f10(local_238,0x200,0xffffffffffffffff,
+                  "SYSTEM\\CurrentControlSet\\Services\\EventLog\\Application\\%s");
+    (*(code *)PTR__guard_dispatch_icall_1400072f8)(0xffffffff80000002,local_238);
+  }
+LAB_140003354:
+  FUN_140005510(local_38 ^ (ulonglong)auStack_338);
+  return;
+}
+
+
+
+/* ==== FUN_140003600 @ 140003600 ==== */
+      anchor @140003864 -> "restartdaemon: cannot open service manager."
+      anchor @14000386b -> "restartdaemon: cannot open service manager."
+      anchor @1400038aa -> "restartdaemon: cannot open service manager."
+
+void FUN_140003600(longlong *param_1,undefined8 param_2)
+
+{
+  int iVar1;
+  DWORD DVar2;
+  longlong lVar3;
+  longlong lVar4;
+  HANDLE pvVar5;
+  undefined8 uVar6;
+  undefined8 uVar7;
+  undefined1 auStack_108 [32];
+  undefined8 local_e8;
+  undefined2 local_e0;
+  undefined4 local_d8;
+  char **local_d0;
+  undefined8 local_c8;
+  char *local_b8 [2];
+  char local_a8 [128];
+  ulonglong local_28;
+  
+  local_28 = DAT_14000b038 ^ (ulonglong)auStack_108;
+  local_a8[0] = '\0';
+  local_a8[1] = '\0';
+  local_a8[2] = '\0';
+  local_a8[3] = '\0';
+  local_a8[4] = '\0';
+  local_a8[5] = '\0';
+  local_a8[6] = '\0';
+  local_a8[7] = '\0';
+  local_a8[8] = '\0';
+  local_a8[9] = '\0';
+  local_a8[10] = '\0';
+  local_a8[0xb] = '\0';
+  local_a8[0xc] = '\0';
+  local_a8[0xd] = '\0';
+  local_a8[0xe] = '\0';
+  local_a8[0xf] = '\0';
+  local_a8[0x10] = '\0';
+  local_a8[0x11] = '\0';
+  local_a8[0x12] = '\0';
+  local_a8[0x13] = '\0';
+  local_a8[0x14] = '\0';
+  local_a8[0x15] = '\0';
+  local_a8[0x16] = '\0';
+  local_a8[0x17] = '\0';
+  local_a8[0x18] = '\0';
+  local_a8[0x19] = '\0';
+  local_a8[0x1a] = '\0';
+  local_a8[0x1b] = '\0';
+  local_a8[0x1c] = '\0';
+  local_a8[0x1d] = '\0';
+  local_a8[0x1e] = '\0';
+  local_a8[0x1f] = '\0';
+  local_a8[0x20] = '\0';
+  local_a8[0x21] = '\0';
+  local_a8[0x22] = '\0';
+  local_a8[0x23] = '\0';
+  local_a8[0x24] = '\0';
+  local_a8[0x25] = '\0';
+  local_a8[0x26] = '\0';
+  local_a8[0x27] = '\0';
+  local_a8[0x28] = '\0';
+  local_a8[0x29] = '\0';
+  local_a8[0x2a] = '\0';
+  local_a8[0x2b] = '\0';
+  local_a8[0x2c] = '\0';
+  local_a8[0x2d] = '\0';
+  local_a8[0x2e] = '\0';
+  local_a8[0x2f] = '\0';
+  local_a8[0x30] = '\0';
+  local_a8[0x31] = '\0';
+  local_a8[0x32] = '\0';
+  local_a8[0x33] = '\0';
+  local_a8[0x34] = '\0';
+  local_a8[0x35] = '\0';
+  local_a8[0x36] = '\0';
+  local_a8[0x37] = '\0';
+  local_a8[0x38] = '\0';
+  local_a8[0x39] = '\0';
+  local_a8[0x3a] = '\0';
+  local_a8[0x3b] = '\0';
+  local_a8[0x3c] = '\0';
+  local_a8[0x3d] = '\0';
+  local_a8[0x3e] = '\0';
+  local_a8[0x3f] = '\0';
+  local_a8[0x40] = '\0';
+  local_a8[0x41] = '\0';
+  local_a8[0x42] = '\0';
+  local_a8[0x43] = '\0';
+  local_a8[0x44] = '\0';
+  local_a8[0x45] = '\0';
+  local_a8[0x46] = '\0';
+  local_a8[0x47] = '\0';
+  local_a8[0x48] = '\0';
+  local_a8[0x49] = '\0';
+  local_a8[0x4a] = '\0';
+  local_a8[0x4b] = '\0';
+  local_a8[0x4c] = '\0';
+  local_a8[0x4d] = '\0';
+  local_a8[0x4e] = '\0';
+  local_a8[0x4f] = '\0';
+  local_a8[0x50] = '\0';
+  local_a8[0x51] = '\0';
+  local_a8[0x52] = '\0';
+  local_a8[0x53] = '\0';
+  local_a8[0x54] = '\0';
+  local_a8[0x55] = '\0';
+  local_a8[0x56] = '\0';
+  local_a8[0x57] = '\0';
+  local_a8[0x58] = '\0';
+  local_a8[0x59] = '\0';
+  local_a8[0x5a] = '\0';
+  local_a8[0x5b] = '\0';
+  local_a8[0x5c] = '\0';
+  local_a8[0x5d] = '\0';
+  local_a8[0x5e] = '\0';
+  local_a8[0x5f] = '\0';
+  local_a8[0x60] = '\0';
+  local_a8[0x61] = '\0';
+  local_a8[0x62] = '\0';
+  local_a8[99] = '\0';
+  local_a8[100] = '\0';
+  local_a8[0x65] = '\0';
+  local_a8[0x66] = '\0';
+  local_a8[0x67] = '\0';
+  local_a8[0x68] = '\0';
+  local_a8[0x69] = '\0';
+  local_a8[0x6a] = '\0';
+  local_a8[0x6b] = '\0';
+  local_a8[0x6c] = '\0';
+  local_a8[0x6d] = '\0';
+  local_a8[0x6e] = '\0';
+  local_a8[0x6f] = '\0';
+  local_a8[0x70] = '\0';
+  local_a8[0x71] = '\0';
+  local_a8[0x72] = '\0';
+  local_a8[0x73] = '\0';
+  local_a8[0x74] = '\0';
+  local_a8[0x75] = '\0';
+  local_a8[0x76] = '\0';
+  local_a8[0x77] = '\0';
+  local_a8[0x78] = '\0';
+  local_a8[0x79] = '\0';
+  local_a8[0x7a] = '\0';
+  local_a8[0x7b] = '\0';
+  local_a8[0x7c] = '\0';
+  local_a8[0x7d] = '\0';
+  local_a8[0x7e] = '\0';
+  local_a8[0x7f] = '\0';
+  lVar3 = (*(code *)PTR__guard_dispatch_icall_1400072f8)(0,0);
+  if (lVar3 == 0) {
+    pvVar5 = GetStdHandle(0xfffffff5);
+    FUN_140001980((longlong)*(int *)(*param_1 + 4) + (longlong)param_1,pvVar5);
+    local_d0 = local_b8;
+    local_b8[0] = "restartdaemon: cannot open service manager.";
+    uVar6 = 0;
+    local_c8 = 0;
+    uVar7 = 0xc0000003;
+    local_d8 = 0;
+    local_e0 = 1;
+    local_e8 = 0;
+    (*(code *)PTR__guard_dispatch_icall_1400072f8)(*DAT_14000b340,1);
+    FUN_140004f80("ERROR: %s\n",local_b8[0],uVar6,uVar7);
+  }
+  else {
+    lVar4 = (*(code *)PTR__guard_dispatch_icall_1400072f8)(lVar3,param_2,0xf01ff);
+    if (lVar4 == 0) {
+      pvVar5 = GetStdHandle(0xfffffff5);
+      FUN_140001980((longlong)*(int *)(*param_1 + 4) + (longlong)param_1,pvVar5);
+      local_e8 = param_2;
+      FUN_140004f10(local_a8,0x80,0xffffffffffffffff,"restartdaemon: cannot open %s service.");
+      local_d0 = local_b8;
+      local_b8[0] = local_a8;
+      uVar6 = 0;
+      local_c8 = 0;
+      uVar7 = 0xc0000003;
+      local_d8 = 0;
+      local_e0 = 1;
+      local_e8 = 0;
+      (*(code *)PTR__guard_dispatch_icall_1400072f8)(*DAT_14000b340,1);
+      FUN_140004f80("ERROR: %s\n",local_b8[0],uVar6,uVar7);
+    }
+    else {
+      iVar1 = (*(code *)PTR__guard_dispatch_icall_1400072f8)(lVar4,0,0);
+      (*(code *)PTR__guard_dispatch_icall_1400072f8)(lVar4);
+      if ((iVar1 == 0) && (DVar2 = GetLastError(), DVar2 != 0x420)) {
+        pvVar5 = GetStdHandle(0xfffffff5);
+        FUN_140001980((longlong)*(int *)(*param_1 + 4) + (longlong)param_1,pvVar5);
+        local_e8 = param_2;
+        FUN_140004f10(local_a8,0x80,0xffffffffffffffff,"restartdaemon: cannot start %s service.");
+        FUN_140001a40(DAT_14000b340,local_a8);
+      }
+      (*(code *)PTR__guard_dispatch_icall_1400072f8)(lVar3);
+    }
+  }
+  FUN_140005510(local_28 ^ (ulonglong)auStack_108);
+  return;
+}
+
+
+
+/* ==== FUN_1400038d0 @ 1400038d0 ==== */
+      anchor @140003bdd -> "restartdaemon: cannot open service manager."
+      anchor @140003be4 -> "restartdaemon: cannot open service manager."
+      anchor @140003c24 -> "restartdaemon: cannot open service manager."
+
+void FUN_1400038d0(longlong *param_1,undefined8 param_2)
+
+{
+  int iVar1;
+  longlong lVar2;
+  longlong lVar3;
+  HANDLE pvVar4;
+  undefined8 uVar5;
+  undefined8 uVar6;
+  undefined1 auStack_138 [32];
+  undefined8 local_118;
+  undefined2 local_110;
+  undefined4 local_108;
+  char **local_100;
+  undefined8 local_f8;
+  char *local_e8;
+  undefined1 local_e0 [4];
+  int local_dc;
+  undefined8 local_b8;
+  undefined8 uStack_b0;
+  undefined8 local_a8;
+  undefined8 uStack_a0;
+  undefined8 local_98;
+  undefined8 uStack_90;
+  undefined8 local_88;
+  undefined8 uStack_80;
+  undefined8 local_78;
+  undefined8 uStack_70;
+  undefined8 local_68;
+  undefined8 uStack_60;
+  undefined8 local_58;
+  undefined8 uStack_50;
+  undefined8 local_48;
+  undefined8 uStack_40;
+  ulonglong local_38;
+  
+  local_38 = DAT_14000b038 ^ (ulonglong)auStack_138;
+  local_b8 = 0;
+  uStack_b0 = 0;
+  local_a8 = 0;
+  uStack_a0 = 0;
+  local_98 = 0;
+  uStack_90 = 0;
+  local_88 = 0;
+  uStack_80 = 0;
+  local_78 = 0;
+  uStack_70 = 0;
+  local_68 = 0;
+  uStack_60 = 0;
+  local_58 = 0;
+  uStack_50 = 0;
+  local_48 = 0;
+  uStack_40 = 0;
+  local_118 = param_2;
+  FUN_140004f10(&local_b8,0x80,0xffffffffffffffff,"restartdaemon: stopping %s service.");
+  local_e8 = (char *)&local_b8;
+  local_f8 = 0;
+  local_100 = &local_e8;
+  uVar5 = 0;
+  uVar6 = 0x40000001;
+  local_108 = 0;
+  local_110 = 1;
+  local_118 = 0;
+  (*(code *)PTR__guard_dispatch_icall_1400072f8)(*DAT_14000b340,4);
+  FUN_140004f80(&DAT_140007980,local_e8,uVar5,uVar6);
+  lVar2 = (*(code *)PTR__guard_dispatch_icall_1400072f8)(0,0);
+  if (lVar2 == 0) {
+    pvVar4 = GetStdHandle(0xfffffff5);
+    FUN_140001980((longlong)*(int *)(*param_1 + 4) + (longlong)param_1,pvVar4);
+    local_e8 = "restartdaemon: cannot open service manager.";
+    uVar5 = 0;
+    local_f8 = 0;
+    local_100 = &local_e8;
+    uVar6 = 0xc0000003;
+    local_108 = 0;
+    local_110 = 1;
+    local_118 = 0;
+    (*(code *)PTR__guard_dispatch_icall_1400072f8)(*DAT_14000b340,1);
+    FUN_140004f80("ERROR: %s\n",local_e8,uVar5,uVar6);
+  }
+  else {
+    lVar3 = (*(code *)PTR__guard_dispatch_icall_1400072f8)(lVar2,param_2,0xf01ff);
+    if (lVar3 == 0) {
+      pvVar4 = GetStdHandle(0xfffffff5);
+      FUN_140001980((longlong)*(int *)(*param_1 + 4) + (longlong)param_1,pvVar4);
+      local_118 = param_2;
+      FUN_140004f10(&local_b8,0x80,0xffffffffffffffff,"restartdaemon: cannot open %s service.");
+      local_e8 = (char *)&local_b8;
+      uVar5 = 0;
+      local_f8 = 0;
+      local_100 = &local_e8;
+      uVar6 = 0xc0000003;
+      local_108 = 0;
+      local_110 = 1;
+      local_118 = 0;
+      (*(code *)PTR__guard_dispatch_icall_1400072f8)(*DAT_14000b340,1);
+      FUN_140004f80("ERROR: %s\n",local_e8,uVar5,uVar6);
+    }
+    else {
+      (*(code *)PTR__guard_dispatch_icall_1400072f8)(lVar3,local_e0);
+      while (local_dc != 1) {
+        iVar1 = (*(code *)PTR__guard_dispatch_icall_1400072f8)(lVar3,1,local_e0);
+        if (iVar1 == 0) {
+          local_118 = param_2;
+          FUN_140004f10(&local_b8,0x80,0xffffffffffffffff,
+                        "restartdaemon: cannot stop %s service, retrying.");
+          local_e8 = (char *)&local_b8;
+          uVar5 = 0;
+          local_f8 = 0;
+          local_100 = &local_e8;
+          uVar6 = 0x80000002;
+          local_108 = 0;
+          local_110 = 1;
+          local_118 = 0;
+          (*(code *)PTR__guard_dispatch_icall_1400072f8)(*DAT_14000b340,2);
+          FUN_140004f80("WARNING: %s\n",local_e8,uVar5,uVar6);
+        }
+        (*(code *)PTR__guard_dispatch_icall_1400072f8)(lVar3,local_e0);
+        Sleep(1000);
+      }
+      (*(code *)PTR__guard_dispatch_icall_1400072f8)(lVar3);
+    }
+    (*(code *)PTR__guard_dispatch_icall_1400072f8)(lVar2);
+  }
+  FUN_140005510(local_38 ^ (ulonglong)auStack_138);
+  return;
+}
+
+
+
+/* ==== FUN_140003c60 @ 140003c60 ==== */
+      anchor @140003ebe -> "stopdaemon: cannot open service manager."
+      anchor @140003ec5 -> "stopdaemon: cannot open service manager."
+      anchor @140003f04 -> "stopdaemon: cannot open service manager."
+
+void FUN_140003c60(longlong *param_1)
+
+{
+  int iVar1;
+  longlong lVar2;
+  longlong lVar3;
+  HANDLE pvVar4;
+  undefined8 uVar5;
+  undefined8 uVar6;
+  undefined1 auStack_128 [32];
+  char *local_108;
+  undefined2 local_100;
+  undefined4 local_f8;
+  char **local_f0;
+  undefined8 local_e8;
+  char *local_d8;
+  undefined1 local_d0 [4];
+  int local_cc;
+  undefined8 local_a8;
+  undefined8 uStack_a0;
+  undefined8 local_98;
+  undefined8 uStack_90;
+  undefined8 local_88;
+  undefined8 uStack_80;
+  undefined8 local_78;
+  undefined8 uStack_70;
+  undefined8 local_68;
+  undefined8 uStack_60;
+  undefined8 local_58;
+  undefined8 uStack_50;
+  undefined8 local_48;
+  undefined8 uStack_40;
+  undefined8 local_38;
+  undefined8 uStack_30;
+  ulonglong local_28;
+  
+  local_28 = DAT_14000b038 ^ (ulonglong)auStack_128;
+  local_108 = "Niagara";
+  local_a8 = 0;
+  uStack_a0 = 0;
+  local_98 = 0;
+  uStack_90 = 0;
+  local_88 = 0;
+  uStack_80 = 0;
+  local_78 = 0;
+  uStack_70 = 0;
+  local_68 = 0;
+  uStack_60 = 0;
+  local_58 = 0;
+  uStack_50 = 0;
+  local_48 = 0;
+  uStack_40 = 0;
+  local_38 = 0;
+  uStack_30 = 0;
+  FUN_140004f10(&local_a8,0x80,0xffffffffffffffff,"stopdaemon: stopping %s service.");
+  local_d8 = (char *)&local_a8;
+  local_e8 = 0;
+  local_f0 = &local_d8;
+  uVar5 = 0;
+  uVar6 = 0x40000001;
+  local_f8 = 0;
+  local_100 = 1;
+  local_108 = (char *)0x0;
+  (*(code *)PTR__guard_dispatch_icall_1400072f8)(*DAT_14000b340,4);
+  FUN_140004f80(&DAT_140007980,local_d8,uVar5,uVar6);
+  lVar2 = (*(code *)PTR__guard_dispatch_icall_1400072f8)(0,0);
+  if (lVar2 == 0) {
+    pvVar4 = GetStdHandle(0xfffffff5);
+    FUN_140001980((longlong)*(int *)(*param_1 + 4) + (longlong)param_1,pvVar4);
+    local_d8 = "stopdaemon: cannot open service manager.";
+    uVar5 = 0;
+    local_e8 = 0;
+    local_f0 = &local_d8;
+    uVar6 = 0xc0000003;
+    local_f8 = 0;
+    local_100 = 1;
+    local_108 = (char *)0x0;
+    (*(code *)PTR__guard_dispatch_icall_1400072f8)(*DAT_14000b340,1);
+    FUN_140004f80("ERROR: %s\n",local_d8,uVar5,uVar6);
+  }
+  else {
+    lVar3 = (*(code *)PTR__guard_dispatch_icall_1400072f8)(lVar2,"Niagara",0xf01ff);
+    if (lVar3 != 0) {
+      (*(code *)PTR__guard_dispatch_icall_1400072f8)(lVar3,local_d0);
+      while (local_cc != 1) {
+        iVar1 = (*(code *)PTR__guard_dispatch_icall_1400072f8)(lVar3,1,local_d0);
+        if (iVar1 == 0) {
+          local_108 = "Niagara";
+          FUN_140004f10(&local_a8,0x80,0xffffffffffffffff,
+                        "stopdaemon: cannot stop %s service, retrying.");
+          local_d8 = (char *)&local_a8;
+          uVar5 = 0;
+          local_e8 = 0;
+          local_f0 = &local_d8;
+          uVar6 = 0x80000002;
+          local_f8 = 0;
+          local_100 = 1;
+          local_108 = (char *)0x0;
+          (*(code *)PTR__guard_dispatch_icall_1400072f8)(*DAT_14000b340,2);
+          FUN_140004f80("WARNING: %s\n",local_d8,uVar5,uVar6);
+        }
+        (*(code *)PTR__guard_dispatch_icall_1400072f8)(lVar3,local_d0);
+        Sleep(1000);
+      }
+      (*(code *)PTR__guard_dispatch_icall_1400072f8)(lVar3);
+    }
+    (*(code *)PTR__guard_dispatch_icall_1400072f8)(lVar2);
+  }
+  FUN_140005510(local_28 ^ (ulonglong)auStack_128);
+  return;
+}
+
+
+
+/* total: 25 decompiled, 0 failed */

@@ -9,7 +9,7 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 covered_blocks: 8
-gaps_closed: 9
+gaps_closed: 10
 known_gaps: 11
 investigable_open: 3
 requires_execution_open: 0
@@ -39,7 +39,7 @@ instruction‑grade evidence, not re‑derivation. Tool added: `tools/ghidra-scr
 | high | NG1‑G1 | place the 3 untraced `skip-*` gate sites (`skip-signature-check`/`skip-cert-validity`/`require-timestamp`) via call‑graph from `main` | nverify.exe | pending |
 | high | **NG2** | njre `JavaLauncherWin32` launch path — the functions B125 §125.2 did NOT open (`java()` orchestrator, `initPaths`, `loadDLL`, `buildVMOptions`) + FIPS/agent/Windows gates | njre.dll | **covered → B380** (`buildArgs`/`createVM`/`invokeJava` = REMITTANCE to B125) |
 | low | NG2b | `nre.dll` NativePlatformProvider native BODIES beyond B125's 3 samples (~104 more) | nre.dll (isolation-import gotcha) | pending |
-| med | NG3 | `plat.exe` decompiled: DPAPI `systempw` write (Crypt32) + `CreateServiceA niagarad` daemon registration (B129 RTTI/strings) | plat.exe | pending |
+| med | **NG3** | `plat.exe` decompiled: DPAPI `systempw` + `CreateServiceA` daemon registration | plat.exe | **covered → B381** |
 | med | NG4 | `libciper.so` QNX‑ARM function bodies (B126 read symbols only): Sylk masterslave file‑transfer + CRC state machine | libciper.so | pending |
 
 ## Gap‑backlog (prioritized)
@@ -59,6 +59,7 @@ instruction‑grade evidence, not re‑derivation. Tool added: `tools/ghidra-scr
 | # | Date | Gap closed | Block | Delegated? · tier | New gaps uncovered |
 |---|---|---|---|---|---|
 | 8 | 2026‑08‑07 | **NG1** `nverify.exe` verify pipeline decompiled (Ghidra sub‑pass) | B379 | no · inline (security exploitability = driver‑model per MODEL TIER) | 4 new: NG1‑G1 (untraced skip gate sites), NG2 (nre/common bodies), NG3 (plat.exe), NG4 (libciper.so). **Corrects B126 §126.4**: 11 options incl. 4 `skip-*` bypasses (B126 listed 5); TPK = 270‑byte RSA‑2048 pin via memcmp (absent from B126). New tool `DecompileByString.java`. |
+| 10 | 2026‑08‑07 | **NG3** `plat.exe` installdaemon + setsystempw (Ghidra) | B381 | no · inline | 0 new. **Refines B129 §129.3** (which deferred decompile as "not load-bearing" — REFUTED §14): daemon = LocalSystem + SERVICE_AUTO_START; setsystempw passphrase on argv + native complexity policy (≥10, upper+lower+digit) + DPAPI no-entropy + REG_BINARY under HKLM. |
 | 9 | 2026‑08‑07 | **NG2** njre `JavaLauncherWin32` launch path (Ghidra) | B380 | no · inline | 1 new (NG2b nre native bodies). **REMITS `buildArgs`/`createVM`/`invokeJava` to B125** (premise "B125 only saw imports/RTTI" REFUTED — §14). NEW: `java()` orchestrator (Win10 gate + isProductionBuild banner), `initPaths` (FIPS-gated bcstd/bcfips provider swap, NIAGARA_JRE_HOME, classpath+exit(0xf9)), `loadDLL` (upgrades B125's GetProcAddress INFER→CERT), `buildVMOptions` (-Xmx48M/-Xms48M), agent-injection gate decompiled. |
 | # | Date | Gap closed | Block | | New gaps uncovered |
 | 1 | 2026‑06‑28 | N1 runtime‑core boot path | B124 | | 0 new (N2–N7 were pre‑seeded; N2/N3/N6 sharpened by B124 findings) |
