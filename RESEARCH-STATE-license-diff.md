@@ -26,10 +26,10 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 1
-gaps_closed: 1
+covered_blocks: 2
+gaps_closed: 2
 known_gaps: 6
-investigable_open: 5
+investigable_open: 4
 requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
@@ -50,13 +50,14 @@ blocked_open: 0
 | med | L3 | Modules delta — which `.jar` are present only-in-licensed (Honeywell OEM `opt*`/`hon*`) vs only-in-unlicensed; is any module LICENSE-gated vs merely vendor/version? | A/B modules/ | pending |
 | med | L4 | `bin/` native binaries diff — do the native launchers/DLLs differ 4.14 vs 4.15 (version axis; ties to platform-native B124-B385)? | A/B bin/ | pending |
 | med | L5 | Config / system / generated-state diff — defaults, daemon config, registry-mirrored files, `system.properties` etc. | A/B (config) | pending |
-| low | L6 | What a license ENABLES — feature-gate map: does the unlicensed run demo-limited? (remit [B126] `isFeaturePresent`, [B2] `LicenseManager`, [B380] `fips140-2`/`developer` gates) — attribute which behaviors are license-gated | corpus + license files | pending |
+| low | **L6** | Runtime feature-gate map + enforcement + signature chain | corpus + license files | **covered → B387** |
 
 ## Iteration history
 
 | # | Date | Gap closed | Block | Delegated? · tier | New gaps |
 |---|---|---|---|---|---|
 | 1 | 2026-08-07 | L1 inventory + license-axis answer | B386 | no · inline | 0 new. B(4.15 EMEA)=INSTALLER not install (908 vs 66559); re-paired vs iC-Niagara-4.13.2.18 (installed unlicensed). LICENSE AXIS: unlicensed has NO security/; a license materializes security/licenses+db/<HostId>+certificates+truststore.jks. diffoscope 327 validated. |
+| 2 | 2026-08-07 | L6 runtime feature-gate map | B387 | yes · sonnet (gate-site sweep) + inline verify | 0 new. 178 grants (27 Hon+1 CL+150 Webs demo, developer skipModuleValidation=true). API LicenseManager.get/checkFeature; unlicensed→limits MAX_VALUE (UNCAPPED not disabled); heap.limit exceed→System.exit(-3); SMA=checkModuleReleaseDate at module load; signature-verified via hardcoded DSA+ECDSA master keys — CONFIRMS B126 §126.6 inference (native isFeaturePresent=text-match, Java=real verify). |
 
 ## Stop control
 

@@ -1,0 +1,35 @@
+== B387 (L6) evidence: feature-gate inventory from the licensed install ==
+SECRETS DISCIPLINE: feature names + limit STRUCTURE only; hostId/signature redacted.
+
+### Honeywell.license — vendor vendor="Honeywell"  (features: 27)
+CSEasyOnboard EMonN4TenantBilling HBDashboard LCDProgrammable SpyderVAVApp SylkActuatorAnalytics XL10Wizards ascBAC ascLON bport clBacnetUtil honAlarmConsole honBeatsUnitaryProgrammingTool honConnectedPower honConnectedPowerEasyOnboard honConnectedPowerOpenADR honEasyBinding honEasyDatabaseManager honEasyTemplate honEdgeDriver honHit honNiagaraApi honPointListView maxproVideo redLink spyderBacnetProgrammable spyderProgrammable 
+
+### HoneywellCentraLine.license — vendor vendor="HoneywellCentraLine"  (features: 1)
+clCbus 
+
+### Webs.license — vendor vendor="Tridium"  (features: 150)
+aaphp aapup about accessControl ace adr adrsmart alarm alarmArchive analytics andoverAC256 andoverInfinity appFramework ascBAC ascLON axisVideo axvelocity bacnet bacnetAws bacnetEde bacnetOws bacnetSc bacnetws box brand bulkCertSigner ccn ccnl certSigningService cloudBackupService cloudIotHubConnector cloudLink cloudSentienceConnector crypto csmgr dali dedMicrosDvr demoStation developer deviceAppliance eSignature eas egld eibnetIp email entSecurity entsecIsom entsecLDAP ethernetIP eventService fileDriver flexSerial flr forms ftpClient gcpGatewaySup genericAppliance helvar hierarchy hisWeather historyArchive horstmann http httpxml ibmj9j2me ieee8021x inet intrusion jen6lp jennic jsonToolkit knxnetIp ldapv3 lonIp lonworks maxHeap maxpro mbus mcquay microsFidelio milestoneCorporate milestoneVideo mobile modbusAsync modbusSlave modbusTcp modbusTcpSlave modem mqtt mqttToolkit mstp nCloudDriver ndio niagaraDriver none nre nrio obixDriver opc opcServerSupport opcUaClient opcUaServer opcae openADR2b pansheet profinet protec provisioning rapidEyeDrv rdbDb2 rdbHistoryArchive rdbHsqlDb rdbMySQL rdbOracle rdbSqlServer remoteVideo resolVBus samlDP search secPhotoId securityDashboard sedonaProvisioning sedonaSurvey sedonanet serial sineVisitorManagement skype smDeveloperMode smartKey sms snmp sox spectrum station stationAzul syslog systemDb systemIndex tableDriver tabs tags template tenantBilling tls tunneling videoDriver web workbench workbenchAzul x10 zwave 
+
+== notable gate-bearing attributes (this install) ==
+developer: <feature name="developer" expiration="2027-03-31" moduleDev="true" skipModuleValidation="true"/>
+demoStation: <feature name="demoStation" expiration="2027-03-31" historyExt.limit="10000" historyRecord.limit="10000"/>
+about: <feature name="about" owner="Syscom" project="00 HW - DEMO LICENSES"/>
+eSignature: <feature name="eSignature" expiration="2027-03-31" point.limit="500"/>
+crypto: <feature name="crypto" expiration="2027-03-31" ssl="true"/>
+brand: <feature name="brand" accept.station.out="*" accept.wb.in="*" accept.wb.out="*" brandId="<Webs>" accept.station.in="*"/>
+== SMA present? ==
+expiration="2027-03-31"
+sma.exempt="false"
+sma.exempt="true"
+
+== VERIFICATION (grep-confirmed, B387) ==
+API: LicenseManager.getFeature/checkFeature/getFeatures @ baja/.../javax/baja/license/LicenseManager.java:11-15
+Master keys (LicenseUtil.java:39-41,223-224): masterPublicKeyData=DSA (DER 30 82 01 b8, OID 1.2.840.10040.4.1); version2PublicKeyData=ECDSA P-256 (OID prime256v1)
+SMA: LicenseFile.maintenanceExpiration @ LicenseFile.java:38; VendorLicense.java:111 getDateAttributeValue('maintenanceExpiration')
+NFeature.java:100: expiration==Long.MAX_VALUE ? 'never' (confirms 'none'->MAX_VALUE unlimited pattern)
+
+== unlicensed->uncapped + heap hard-kill (sub-agent cited, spot-check) ==
+/home/cristian/modules/Prototipos/modulos/organized/baja/baja/decompiled/javax/baja/sys/BLink.java:160:            log.severe("Exceeded link limit for globalCapacity");
+/home/cristian/modules/Prototipos/modulos/organized/baja/baja/decompiled/com/tridium/sys/metrics/Metrics.java:313:            report.put("globalCapacity.networks", String.format("%s (Limit: %s)", Metrics.getDisplayUsed(Metrics.global.networks), Metrics.getDisplayLimit(Metrics.global.networks)));
+/home/cristian/modules/Prototipos/modulos/organized/baja/baja/decompiled/com/tridium/sys/metrics/Metrics.java:314:            report.put("globalCapacity.devices", String.format("%s (Limit: %s)", Metrics.getDisplayUsed(Metrics.global.devices), Metrics.getDisplayLimit(Metrics.global.devices)));
+/home/cristian/modules/Prototipos/modulos/organized/baja/baja/decompiled/com/tridium/sys/metrics/Metrics.java:315:            report.put("globalCapacity.points", String.format("%s (Limit: %s)", Metrics.getDisplayUsed(Metrics.global.points), Metrics.getDisplayLimit(Metrics.global.points)));
