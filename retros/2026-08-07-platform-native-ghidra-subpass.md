@@ -97,3 +97,19 @@ as hypotheses but never a prior block's *scoping* judgment, and §8 names reopen
 reopen-to-raise-grade. One concrete tool gap (PN-C) stalled the run until a script was hand-written. The rest of the
 run was textbook kit discipline (PRIOR-COVERAGE → REMIT → DEEPEN, tiers declared), which is why the "Already covered"
 list is long and the new-delta list is short and load-bearing — as a healthy retro should be.
+
+---
+
+## Addendum (2026-08-07, post-retro) — B384 + B385 closed the sub-pass
+
+After this retro was written (it covered B379–B383), the user asked to finish the remaining investigable gaps:
+- **B384 (NG1-G1)** — placed nverify's 3 untraced `skip-*` gate sites by r2 call-graph; confirmed
+  `--skip-signature-check` jumps past the ENTIRE verify (gate-level confirmation of B379's "total bypass").
+- **B385 (NG2b)** — full 107-native `NativePlatformProvider` taxonomy; KEY corrective finding:
+  `executeNativeDiagnosticsCommand0`/`addUserAccount0`/`getSystemPassword0` are **return-0 STUBS** on the
+  Windows supervisor (embedded-only) — a textbook RE-MEASURE-A-DRAMATIC-NEGATIVE (PROMPT-LOOP already covers
+  this rule; B385 is a clean instance, no new delta). Live natives = DPAPI encrypt/decrypt + AuthenticationUtil.
+
+Neither block changes the 4 proposed deltas. **PN-A (grade-upgrade reopen)** and **PN-B (a prior block's
+"not load-bearing" is a hypothesis)** remain the load-bearing finds. **PN-C (ship/register DecompileByString)**
+is reinforced — it drove B379/B380/B381/B382. Focus platform-native sub-pass: **investigable = 0, STOPPED.**
