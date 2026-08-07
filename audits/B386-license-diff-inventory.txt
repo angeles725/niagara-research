@@ -1,0 +1,37 @@
+== B386 (L1) evidence: licensed-vs-unlicensed install inventory ==
+A (licensed)   = /mnt/c/Honeywell/OptimizerSupervisor-N4.14.0.162 (N4.14.0.162, Honeywell OEM)
+B (user-picked)= /mnt/c/Users/equipo/Downloads/Tridium_EMEA_N4_Supervisor-4.15.3.28.2 (N4.15.3.28.2)
+iC (re-pair)   = /mnt/c/Niagara/iC-Niagara-4.13.2.18 (N4.13.2.18, base, installed, UNLICENSED)
+
+== path+size inventory classification (A vs B) ==
+A files=66559  B files=908
+only-in-A=65844  only-in-B=193  common=715  common-same-size=1  common-diff-size=714
+
+== B is an INSTALLER package, not an installed instance ==
+B top-level: Installer_x64.exe Uninstaller_x64.exe dist/ modules/(776) dev/(SDK examples) install-data/ overlay/ Z9_Flex_Server
+B bin/=0 security/=0 defaults/=0  -> never installed/licensed
+
+== LICENSE AXIS (categorical): security/ present licensed, ABSENT unlicensed ==
+A security/ (13 files):
+security/certificates/Honeywell.certificate
+security/certificates/HoneywellCentraLine.certificate
+security/certificates/Tridium.certificate
+security/licenses/Honeywell.license
+security/licenses/HoneywellCentraLine.license
+security/licenses/Webs.license
+security/licenses/db/Qnx-TITAN-BB4C-D480-3C70-ACE4/Honeywell.license
+security/licenses/db/Qnx-TITAN-BB4C-D480-3C70-ACE4/HoneywellCentraLine.license
+security/licenses/db/Qnx-TITAN-BB4C-D480-3C70-ACE4/Webs.license
+security/licenses/db/Win-6E6E-10AC-D1DD-8276/Honeywell.license
+security/licenses/db/Win-6E6E-10AC-D1DD-8276/HoneywellCentraLine.license
+security/licenses/db/Win-6E6E-10AC-D1DD-8276/Webs.license
+security/truststore.jks
+iC-Niagara-4.13.2.18 security/ dir: ABSENT (unlicensed installed instance, has bin/28 defaults/11 modules/742)
+
+== diffoscope 327 validation (defaults/system.properties A vs iC) — tool works ==
+--- /mnt/c/Niagara/iC-Niagara-4.13.2.18/defaults/system.properties
++++ /mnt/c/Honeywell/OptimizerSupervisor-N4.14.0.162/defaults/system.properties
+@@ -1,589 +1,589 @@
+-########################################################
+-#
+-# File:  system.properties

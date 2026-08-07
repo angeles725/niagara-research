@@ -1,0 +1,40 @@
+--- /mnt/c/Niagara/iC-Niagara-4.13.2.18/defaults/system.properties
++++ /mnt/c/Honeywell/OptimizerSupervisor-N4.14.0.162/defaults/system.properties
+@@ -1,589 +1,589 @@
+-########################################################
+-#
+-# File:  system.properties
+-# 
+-#   This file contains properties which are loaded
+-#   into System.getProperties() during NRE boot.
+-#
+-# Revision History
+-#   7 Dec 01    Brian     Original
+-#
+-########################################################
+-
+-# This system property is used to override the the default locale.
+-# If not specified, then the VM will attempt to use a default based
+-# on the current operating system settings.  This value should map
+-# to a lexicon directory.
+-#niagara.lang=en
+-
+-# milliseconds to wait after station start 
+-# before invoking the steady state callback
+-niagara.steadystate=10000
+-
+-# The default virtual cache life maximum in milliseconds.
+-# This value should never be less than or equal to zero.
+-# Changes to this value require a station restart.
+-#niagara.virtual.cache.maxLifeDefault=45000
+-
+-# The default virtual cache life minimum in milliseconds.
+-# In general, this value should be greater than 
+-# the niagara.nav.touch.scanRate
+-# This value should never be less than or equal to zero.
+-# Changes to this value require a station restart.
+-#niagara.virtual.cache.minLifeDefault=25000
+-
+-# The maximum number of worker threads that the virtual cache
+-# can have in its thread pool.
+-# This value should never be less than or equal to zero.
