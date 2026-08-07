@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **383 blocks**
+Total: **384 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -389,3 +389,4 @@ Total: **383 blocks**
 | 385 | [niagara-mental-model-bloque385.md](niagara-mental-model-bloque385.md) | `nre.dll` NG2b: the NativePlatformProvider is a 107-native platform-services API — and on the Windows supervisor the account-mutation AND native-command-exec natives are return-0 STUBS |
 | 386 | [niagara-mental-model-bloque386.md](niagara-mental-model-bloque386.md) | license-diff L1: what a Niagara license changes on disk is the ENTIRE `security/` subtree — an unlicensed installed instance has no `security/licenses`, `security/certificates`, or `truststore.jks` at all |
 | 387 | [niagara-mental-model-bloque387.md](niagara-mental-model-bloque387.md) | license-diff L6: the runtime feature-gate map — a license is a signature-verified set of named features with numeric limits, and an UNLICENSED station runs UNCAPPED (limits → MAX_VALUE), not disabled |
+| 388 | [niagara-mental-model-bloque388.md](niagara-mental-model-bloque388.md) | license-diff L3: the module inventory delta is VENDOR + VERSION + user-content — 86 Honeywell OEM modules, 42 4.15-base modules, ~66 user/3rd-party — and NOT ONE module is added or removed by licensing |
