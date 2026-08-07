@@ -18,6 +18,7 @@ is ALREADY installed + kit-wrapped. The following are NEW and belong to OTHER fo
 
 | Tool | Repo | Focus it serves | Status |
 |---|---|---|---|
+| diffoscope 327 | /home/cristian/.local/share/research-sdd-tools/venv/bin/diffoscope | ACQUIRED 2026-08-07 (kit venv) — deep file/tree diff for license-diff focus (licensed 4.14 vs unlicensed 4.15) |
 | pybog | bbartling/pybog | optimizersupervisor (.bog/.dist parse + diff two stations) | not yet acquired |
 | diffoscope | reproducible-builds | **licensed-vs-unlicensed two-install diff** (analizador-licencias) | not yet acquired |
 | japicmp | siom79/japicmp | jar version diff (N4.13 vs 4.14 module compare) | not yet acquired |
