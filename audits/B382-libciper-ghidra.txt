@@ -1,0 +1,35 @@
+== B382 evidence: libciper.so QNX-ARM Sylk masterslave file-transfer (Ghidra + DWARF) ==
+binary: /mnt/c/Honeywell/OptimizerSupervisor-N4.14.0.162/bin/libciper.so
+5cc591843a0c5b0303675987614510d4e8d719cf81affb75440e5bf69b7411d2  /mnt/c/Honeywell/OptimizerSupervisor-N4.14.0.162/bin/libciper.so
+
+== identity (rabin2 -I) ==
+arch     arm
+bits     16
+canary   true
+class    ELF32
+compiler GCC: (GNU) 5.4.0 [qnx700 1233] GCC: (GNU) 5.4.0 [qnx700 1234]
+lang     c
+machine  ARM
+nx       false
+os       linux
+pic      true
+stripped false
+
+== DWARF build flags (from ghidra log) ==
+INFO  DWARF producers: [GNU C11 5.4.0 [qnx700 1234] -g2 -O0 -fstack-protector-strong -march=armv7-a -mfloat-abi=hard -mfpu=vfpv3 -mthumb -mlittle-endian -march=armv7-a -mfpu=vfpv3 -mfloat-abi=hard -mthumb -Asystem(unix) -fmessage-length=0 -fno-builtin -fPIC] (DWARFImportSummary)  
+INFO  DWARF source languages: [DW_LANG_C99] (DWARFImportSummary)  
+
+== JNI exports sample ==
+58  0x00003884 0x00003884 GLOBAL FUNC   24       Java_com_honeywell_comm_JNIRequest_jniEndBuildFileBlockRecord
+64  0x000051dc 0x000051dc GLOBAL FUNC   208      buildFileBlockCRCRecord
+65  0x00005060 0x00005060 GLOBAL FUNC   380      buildFileBlockRecord
+86  0x00003f90 0x00003f90 GLOBAL FUNC   444      Java_com_honeywell_comm_JNIRequest_jniReadSylkFileData
+100 0x00003850 0x00003850 GLOBAL FUNC   50       Java_com_honeywell_comm_JNIRequest_jniBeginBuildFileBlockCRCRecord
+105 0x000052ac 0x000052ac GLOBAL FUNC   14       endBuildFileBlockRecord
+117 0x000082b0 0x000082b0 GLOBAL FUNC   428      masterslavefileclosev2
+146 0x00007004 0x00007004 GLOBAL FUNC   788      masterslaveReadSylkFileData
+157 0x0000845c 0x0000845c GLOBAL FUNC   108      crc_ccitt_add
+159 0x00008104 0x00008104 GLOBAL FUNC   428      masterslavefilestatus
+
+== FLOSS NOTE: attempted, low value ==
+libciper.so ships DWARF (-g2) + plain strings, crypto=false (B126). FLOSS stack/decoded-string extraction adds nothing over static strings on an unobfuscated lib. Registered as a near-zero tool result, not a finding.
