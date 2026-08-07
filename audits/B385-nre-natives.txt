@@ -1,0 +1,18 @@
+== B385 evidence: nre.dll NativePlatformProvider 107-native API + DpapiUtil crypto (Ghidra) ==
+binary: /mnt/c/Honeywell/OptimizerSupervisor-N4.14.0.162/bin/nre.dll
+606ff1c6a79d8bc4c52e21ff706e92a976c08edebc558053c4432645b64b2a69  /mnt/c/Honeywell/OptimizerSupervisor-N4.14.0.162/bin/nre.dll
+
+== 107 natives, bucketed ==
+crypto(9): encrypt0 decrypt0 get/setKeyMaterial0 get/setEncryptedRegistryString0 checkForKeyMaterialUpgrade0 supportsKeyMaterialRecovery0 getKeyMaterialLastModified0
+cred/account(20): addUserAccount0 removeUserAccount0 changeUserPassword0 get/setSystemPassword0 synchronizeUsers0 isPasswordValid0 getPasswordHash0 getDefaultPassword0 getDomainGroupsXml0 providesAccountManagement0 ...
+exec/daemon/watchdog(15): executeNativeDiagnosticsCommand0 getNativeDiagnosticsCommands0 restartPlatformDaemon0 reboot0 createWatchdog0 updateWatchdog0 daemonize0 ...
+identity(16): getHostId0 getHostSerialNumber0 getHostModel0 SSHPort isEmbedded0 isLicenseReadonly0 ...
+info-getters(rest): getCpuTime0 getOsName0 getComputerName0 memory pools ...
+
+== shared return-0 stubs @ 0x180002520 (Windows-supervisor no-ops) ==
+0x180002520 Java_com_tridium_nre_platform_NativePlatformProvider_addUserAccount0
+0x180002520 Java_com_tridium_nre_platform_NativePlatformProvider_executeNativeDiagnosticsCommand0
+0x180002520 Java_com_tridium_nre_platform_NativePlatformProvider_getNativeDiagnosticsCommands0
+0x180002520 Java_com_tridium_nre_platform_NativePlatformProvider_getSystemPassword0
+
+== implemented natives: isPasswordValid0->AuthenticationUtil; DpapiUtil.encrypt0/decrypt0->DpapiHelper (CRYPTOAPI_BLOB, cap 0x1000, zeroize, SecurityException) ==

@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **380 blocks**
+Total: **381 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -386,3 +386,4 @@ Total: **380 blocks**
 | 382 | [niagara-mental-model-bloque382.md](niagara-mental-model-bloque382.md) | `libciper.so` decompiled with DWARF (Ghidra grade): the QNX-ARM Sylk masterslave file-transfer protocol — 496-byte records, ≤485-byte blocks, dual CRC-16-CCITT + CRC-32 integrity, no crypto |
 | 383 | [niagara-mental-model-bloque383.md](niagara-mental-model-bloque383.md) | SYNTHESIS of the platform-native Ghidra sub-pass (B379–B382): decompiling the function bodies the strings-grade blocks read from the outside, and the security facts only the decompiler could reach |
 | 384 | [niagara-mental-model-bloque384.md](niagara-mental-model-bloque384.md) | `nverify.exe` NG1-G1 closed: the three untraced `skip-*` flags placed at their enforcement gates — `--skip-signature-check` jumps past the ENTIRE verify |
+| 385 | [niagara-mental-model-bloque385.md](niagara-mental-model-bloque385.md) | `nre.dll` NG2b: the NativePlatformProvider is a 107-native platform-services API — and on the Windows supervisor the account-mutation AND native-command-exec natives are return-0 STUBS |
