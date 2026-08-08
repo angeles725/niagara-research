@@ -139,6 +139,13 @@ IKeyStore   getKeyStore();             // :15  ← claves privadas (firmar, no v
 
 ### 113.2.2 — Dónde vive en disco y quién lo sirve `[CERT]`
 
+> **⚠ CORREGIDO por [B392 §392.3-4] (evidencia de disco, 2026-08-07):** en el install vivo el trust anchor
+> de **code-signing de módulos** es `security/truststore.jks` (JKS estándar, password `changeit`), con una
+> sola entrada **SEJOFA VIVA** (alias `niagaramoduledev`), **no** "Angeles"; **`cacerts.bks` no existe** —
+> lo que aquí se llamó `.bks` es `jre/lib/security/cacerts.bcfks` (BC-FKS FIPS, dominio **TLS**, no módulos).
+> "Angeles" y el ".bks de code-signing" fueron sobre-lectura del decompilado; el `ssl.tks`/`keystore.bks` de
+> abajo son del dominio **TLS/keys**, distinto del code-signing (ver los 3 dominios en [B392 §392.1]).
+
 **On-disk** (refinamiento al scoping: **`.bks`/`.tks`, NO `truststore.jks`**) `[CERT]`. El backup-set de seguridad lo enumera literal en `BAxOfflineBackup.java:96-110`:
 ```java
 BOrd.make("file:!security/ssl.tks"),       // :98  SSL truststore (BouncyCastle)
