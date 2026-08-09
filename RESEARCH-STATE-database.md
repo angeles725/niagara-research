@@ -24,10 +24,10 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 396
-gaps_closed: 0
+covered_blocks: 398
+gaps_closed: 1
 known_gaps: 10
-investigable_open: 10
+investigable_open: 9
 requires_execution_open: 0
 blocked_open: 0
 deferred_open: 0
@@ -59,9 +59,9 @@ Conteo sobre el pipeline **vineflower** (canónico), raíz
 
 ## Coverage
 
-- **Covered blocks**: 396 (corpus-wide, shared-global)
-- **Coverage metric**: 0 / 10 closed
-- **Last iteration**: 2026-08-09 — bootstrap (audit-first sweep)
+- **Covered blocks**: 398 (corpus-wide, shared-global)
+- **Coverage metric**: 1 / 10 closed
+- **Last iteration**: 2026-08-09 — B402 (DB1: station-save trigger + dirty-flag propagation)
 
 ## Gap-backlog (prioritized)
 
@@ -69,7 +69,7 @@ Formato canónico de 4 columnas exigido por `research-sdd-status.sh`.
 
 | Priority | Gap | Type | Status |
 |---|---|---|---|
-| high | DB1 BStationSaveJob — qué dispara el guardado del BOG y cómo se propaga el dirty flag desde un write de property hasta un flush programado | decompiled-java | pending |
+| high | DB1 BStationSaveJob — qué dispara el guardado del BOG y cómo se propaga el dirty flag desde un write de property hasta un flush programado | decompiled-java | closed (B402) |
 | high | DB2 rdb-rt — pipeline completo de export a RDBMS externo: BRdbmsHistoryExport lee .hdb y escribe SQL, dialectos MS-SQL/MySQL/Oracle, selección de driver JDBC, esquema de columnas | decompiled-java | pending |
 | high | DB3 alarmOrion — backend RDB de alarmas: esquema SQL de BOrionAlarmDatabase, paginación de OrionAlarmCursor, BArchiveAlarmProvider.execute() moviendo alarmas cleared de .adb a Orion | decompiled-java | pending |
 | medium | DB4 migration-rt — migración de BOG entre versiones: BIBogElementConverter/MigratorRegistry/BFileMigrator transformando un .bog viejo al cargar (rename/removal de tipos) | decompiled-java | pending |
@@ -91,6 +91,7 @@ Formato canónico de 4 columnas exigido por `research-sdd-status.sh`.
 | # | Date | Gap closed | Block | Delegated? · model tier | New gaps uncovered |
 |---|---|---|---|---|---|
 | — | 2026-08-09 | (bootstrap — audit-first) | — | yes · sonnet (audit sweep) | 10 seeded |
+| 1 | 2026-08-09 | DB1 | B402 | yes · sonnet (delegated iteration) | 0 |
 
 ## Blocked gaps (each tagged with what it needs)
 
@@ -98,7 +99,7 @@ Formato canónico de 4 columnas exigido por `research-sdd-status.sh`.
 
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 10   ← el loop ESTÁTICO para cuando esto llega a 0
+- **Open gaps — read-only investigable**: 9   ← el loop ESTÁTICO para cuando esto llega a 0
 - **Open gaps — requires-execution**: 0
 - **Open gaps — blocked**: 0
 - Consecutive iterations with empty backlog (secondary): 0/2
