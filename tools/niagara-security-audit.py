@@ -233,10 +233,84 @@ def audit(home, station_bog, host, rep):
                 rep.add(f"SEC-14:{port}", "med", f"{name} port {port}", f"{port} open",
                         "TLS-only (4911/443)", "FAIL", blk, "station comms/UI in cleartext")
 
+    # SEC-15 med — KeyRingPermission wildcard in an UNSIGNED module (secret-store read)
+    moddir = os.path.join(home, "modules")
+    if os.path.isdir(moddir):
+        total, wild, wild_unsigned = scan_keyring_perms(moddir)
+        risk = len(wild_unsigned) > 0
+        rep.add("SEC-15", "med", "KeyRingPermission wildcard in unsigned module",
+                f"{len(total)} modules declare it, {len(wild)} wildcard(name=*), "
+                f"{len(wild_unsigned)} of those UNSIGNED",
+                "no wildcard KeyRingPermission in an unsigned/attacker module",
+                "FAIL" if risk else "PASS", "B114",
+                ("unsigned wildcard holders: " + ", ".join(wild_unsigned)) if risk else
+                "all wildcard holders are signed; risk only if an UNSIGNED module (SEC-01/06) declares name=*")
+
     # SEC-16 (informational) — data record is unsigned by design
     rep.add("SEC-16", "med", "local data record integrity (audit/history/backup/.bog)",
             "unsigned by design (architectural)", "syslog offload (SEC-10) = resistance, not evidence",
             "FAIL", "B393/B396", "Niagara signs code, not data; no toggle fixes this - audit via SEC-10")
+
+
+# Forensic IOC set (B112 / B75) — signature-bypass & unsigned-load evidence that persists
+# in logs even after Sys.setAuditor(null) erases the in-station audit.
+LOG_IOCS = [
+    ("crit", "module-validation-disabled banner", re.compile(r"Module validation has been DISABLED", re.I)),
+    ("crit", "module validation is disabled", re.compile(r"module validation is disabled", re.I)),
+    ("high", "unsigned module loaded (No code signers)", re.compile(r"No code signers for entry", re.I)),
+    ("high", "unsigned BProgram executed", re.compile(r"program\.notSigned|is not signed", re.I)),
+    ("med", "signature validation failure", re.compile(r"failed signature validation|Invalid signature", re.I)),
+    ("med", "self-signed cert not permitted", re.compile(r"Self signed signing certificate not permitted", re.I)),
+    ("med", "cert path validation failure", re.compile(r"CERT_PATH_VALIDATION_FAILURE|Error validating cert path", re.I)),
+]
+
+
+def scan_logs(logroot):
+    """Harvest signature/verification IOCs from Niagara console/station logs (B112).
+    Returns list of (severity, ioc_label, file, lineno, line)."""
+    hits = []
+    for dirp, _, files in os.walk(logroot):
+        for fn in files:
+            if not re.search(r"(console|station|nre|daemon).*\.(log|txt)$|\.log(\.\d+)?$", fn, re.I):
+                continue
+            p = os.path.join(dirp, fn)
+            try:
+                for i, line in enumerate(open(p, encoding="utf-8", errors="replace"), 1):
+                    for sev, label, rx in LOG_IOCS:
+                        if rx.search(line):
+                            hits.append((sev, label, p, i, line.strip()[:160]))
+            except Exception:
+                continue
+    return hits
+
+
+def scan_keyring_perms(moddir):
+    """Scan modules/*.jar META-INF/module.xml for KeyRingPermission. Returns
+    (all_holders, wildcard_holders, wildcard_AND_unsigned)."""
+    import zipfile
+    all_h, wild, wild_uns = [], [], []
+    for f in sorted(os.listdir(moddir)):
+        if not f.endswith(".jar"):
+            continue
+        try:
+            z = zipfile.ZipFile(os.path.join(moddir, f))
+            names = z.namelist()
+            if "META-INF/module.xml" not in names:
+                continue
+            xml = z.read("META-INF/module.xml").decode("utf-8", "replace")
+        except Exception:
+            continue
+        if "KeyRingPermission" not in xml:
+            continue
+        all_h.append(f)
+        vals = re.findall(r'KeyRingPermission"[^>]*?(?:name|target)="([^"]*)"', xml)
+        if "*" in vals:
+            wild.append(f)
+            signed = any(n.startswith("META-INF/") and n.upper().endswith((".RSA", ".DSA", ".EC"))
+                         for n in names)
+            if not signed:
+                wild_uns.append(f)
+    return all_h, wild, wild_uns
 
 
 def to_winpath(p):
@@ -254,8 +328,22 @@ def main():
     ap.add_argument("niagara_home")
     ap.add_argument("--station", default=None)
     ap.add_argument("--host", default=None)
+    ap.add_argument("--scan-logs", default=None, metavar="DIR",
+                    help="forensic mode: harvest signature/verification IOCs from a log tree (B112)")
     ap.add_argument("--json", action="store_true")
     a = ap.parse_args()
+    if a.scan_logs:
+        hits = scan_logs(a.scan_logs)
+        if a.json:
+            print(json.dumps([dict(sev=s, ioc=l, file=f, line=n, text=t) for s, l, f, n, t in hits], indent=2))
+        else:
+            print(f"\n  Log-IOC harvest — {len(hits)} indicator(s) in {a.scan_logs}\n")
+            for s, l, f, n, t in sorted(hits, key=lambda x: -SEV[x[0]]):
+                print(f"  {C[s]}[{s}]{C['off']} {l}  {f}:{n}\n         {t}")
+            if not hits:
+                print("  no signature-bypass / unsigned-load IOCs found (clean).")
+            print()
+        return
     if not os.path.isdir(a.niagara_home):
         sys.exit(f"ERROR: not a directory: {a.niagara_home}")
     rep = Report()

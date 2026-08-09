@@ -3,10 +3,10 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 399
-gaps_closed: 1
+covered_blocks: 401
+gaps_closed: 3
 known_gaps: 4
-investigable_open: 2
+investigable_open: 0
 requires_execution_open: 1
 blocked_open: 0
 deferred_open: 0
@@ -14,7 +14,7 @@ undocumented_findings: 0
 <!-- /research-state.v1 -->
 
 focus: security-audit
-status: active
+status: stopped
 bootstrapped_on: 2026-08-07 (user chose "focus de seguridad + herramienta de auditoría" after the signing-pki arc)
 block_prefix: niagara-mental-model-bloqueN.md (global numbering; next free: B398)
 
@@ -44,8 +44,8 @@ not just documentation.
 | Priority | Gap | Type | Status |
 |---|---|---|---|
 | — | **SA-G4** — threat-model narrative (attack trees) | investigable | **CLOSED B399** (4 attack trees T1-T4; B75 kill-chain shown live-present; mitigation map) |
-| 1 (NEXT) | **SA-G1** — automate SEC-15 (module.xml KeyRingPermission scan) | investigable | open |
-| 3 | **SA-G3** — log-IOC harvester (module-validation-disabled banner, program.notSigned, daemon console.log) [B112] | investigable | open |
+| — | **SA-G1** — automate SEC-15 (module.xml KeyRingPermission scan) | investigable | **CLOSED B400** (17 holders, 11 wildcard, ALL signed → PASS; SEC-15 = downstream amplifier of T1, FAIL gated on wildcard AND unsigned) |
+| — | **SA-G3** — log-IOC harvester [B112] | investigable | **CLOSED B401** (--scan-logs mode; live 103 logs = 0 IOCs clean; matcher sanity-verified) |
 | 4 | **SA-G2** — consume native SecurityDashboard JSON (BSecurityService.getStationDashboardData) as live source | requires-execution | open |
 
 ## Iteration history
@@ -54,3 +54,5 @@ not just documentation.
 |---|---|---|---|
 | 1 | B398 | bootstrap + tool + live audit | DELIVERED tools/niagara-security-audit.py (SEC-01..18); live audit of PRODUCTION supervisor = 13 findings (5 crit/4 high/4 med); confirmed live B316(ACLs)/B18(Webs.license skipModuleValidation)/B397/B75. 4 gaps seeded |
 | 2 | B399 | SA-G4 threat model | CLOSED: 4 attack trees (T1 run-code/B75, T2 destroy-evidence, T3 steal-secrets, T4 inject-trust); all B75 preconditions live-present; mitigation map (moduleVerificationMode/ACLs/TLS = kill-chain trunk) |
+| 3 | B400 | SA-G1 SEC-15 automation | CLOSED: 17 KeyRingPermission holders (11 wildcard, all signed → PASS); amplifier of T1 not standalone; tool now 16 automated checks |
+| 4 | B401 | SA-G3 log-IOC harvester | CLOSED: forensic --scan-logs mode (B112 IOC set); live logs clean (0 IOCs); investigable=0 -> focus STOPPED. Tool final: 16 posture checks + forensic mode |

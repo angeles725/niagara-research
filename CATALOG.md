@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **397 bloques**
+Total: **399 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -402,6 +402,8 @@ Total: **397 bloques**
 | 397 | [niagara-mental-model-bloque397.md](niagara-mental-model-bloque397.md) | Block 397 — §12 dynamic-phase validation of the signing-pki findings against the LIVE platform: changeit+SEJOFA confirmed live, the license verifier proven to reject tampering (executed), and why the destructive boot-test was declined on the production supervisor |
 | 398 | [niagara-mental-model-bloque398.md](niagara-mental-model-bloque398.md) | Block 398 — `security-audit` focus (bootstrap): the consolidated Niagara N4 hardening checklist (SEC-01..SEC-18) + an operational auditor (`tools/niagara-security-audit.py`), validated live against the production supervisor — 13 findings (5 critical) |
 | 399 | [niagara-mental-model-bloque399.md](niagara-mental-model-bloque399.md) | Block 399 — SA-G4: the Niagara N4 threat model — four attack trees rooted in the live posture, with the B75 kill-chain shown present on the production supervisor |
+| 400 | [niagara-mental-model-bloque400.md](niagara-mental-model-bloque400.md) | Block 400 — SA-G1: SEC-15 automated — the 17 KeyRingPermission holders enumerated, 11 hold `name="*"`, ALL signed; the wildcard is a downstream amplifier of T1, not a standalone flaw |
+| 401 | [niagara-mental-model-bloque401.md](niagara-mental-model-bloque401.md) | Block 401 — SA-G3: the log-IOC harvester — a forensic mode that hunts signature-bypass evidence in the logs that survive `Sys.setAuditor(null)`; live logs are clean (0 IOCs) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
