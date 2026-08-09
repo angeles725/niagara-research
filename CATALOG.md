@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **400 bloques**
+Total: **401 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -405,6 +405,7 @@ Total: **400 bloques**
 | 400 | [niagara-mental-model-bloque400.md](niagara-mental-model-bloque400.md) | Block 400 — SA-G1: SEC-15 automated — the 17 KeyRingPermission holders enumerated, 11 hold `name="*"`, ALL signed; the wildcard is a downstream amplifier of T1, not a standalone flaw |
 | 401 | [niagara-mental-model-bloque401.md](niagara-mental-model-bloque401.md) | Block 401 — SA-G3: the log-IOC harvester — a forensic mode that hunts signature-bypass evidence in the logs that survive `Sys.setAuditor(null)`; live logs are clean (0 IOCs) |
 | 402 | [niagara-mental-model-bloque402.md](niagara-mental-model-bloque402.md) | Block 402 — Station Save Trigger and Dirty-Flag Propagation: BStationSaveJob, StationManager, and BBogSpace |
+| 403 | [niagara-mental-model-bloque403.md](niagara-mental-model-bloque403.md) | Block 403 — rdb-rt: External RDBMS History Export Pipeline (Write Path) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
