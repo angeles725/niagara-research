@@ -1,4 +1,4 @@
-# RESEARCH-STATE — focus: database (STOPPED — 11/11)
+# RESEARCH-STATE — focus: database (STOPPED — 11/11 + synthesis B413)
 
 > Multi-focus corpus (METHODOLOGY §16). Focus **BOOTSTRAPEADO 2026-08-09** a pedido explícito del usuario
 > ("documentar todo lo relacionado a la base de datos de Niagara N4"). Surge del hilo del pedido de un
@@ -24,7 +24,7 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 408
+covered_blocks: 409
 gaps_closed: 11
 known_gaps: 11
 investigable_open: 0
@@ -35,9 +35,9 @@ undocumented_findings: 0
 <!-- /research-state.v1 -->
 
 focus: database
-status: stopped (read-only-investigable exhausted — 11/11 gaps closed 2026-08-09)
+status: stopped (read-only-investigable exhausted — 11/11 gaps closed + synthesis B413 written 2026-08-09)
 bootstrapped_on: 2026-08-09
-block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libre: B413)
+block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libre: B414)
 
 ## Pre-flight e2 — existencia + tamaño MEDIDO
 
@@ -60,7 +60,7 @@ Conteo sobre el pipeline **vineflower** (canónico), raíz
 
 ## Coverage
 
-- **Covered blocks**: 408 (corpus-wide, shared-global)
+- **Covered blocks**: 409 (corpus-wide, shared-global; includes B413 synthesis)
 - **Coverage metric**: 11 / 11 closed
 - **Last iteration**: 2026-08-09 — B412 (DB11: orion-rt ORM framework — annotation model @NiagaraOrionType/@OrionProperty/@OrionIndex, BOrionObject base + facet vocabulary, BOrionSpace/BOrionService/BOrionDatabase service layer, BLocalOrionDatabase boot sequence + no-pool createSession, OrionSession interface + DbOrionSession JDBC impl, DDL whitelist, schema versioning ISchemaUpgrader/OrionAppSchemaManager greedy step-walk, BOrionSysTables/BOrionAppVersion system tables, BatchStatement, BOrionMigrator data-migration tool)
 
@@ -104,6 +104,7 @@ Formato canónico de 4 columnas exigido por `research-sdd-status.sh`.
 | 9 | 2026-08-09 | DB9 | B410 | no · sonnet-4.6 (inline; 9 files: 5 vineflower + 4 docSource) | 0 |
 | 10 | 2026-08-09 | DB10 | B411 | no · sonnet-4.6 (inline; 3 files: Station.java + BBogSpace.java + FileUtil.java docSource) | 0 |
 | 11 | 2026-08-09 | DB11 | B412 | yes · haiku (mechanical enumeration; 16 files) + sonnet-4.6 fork (structural comprehension; 12 files) | 0 |
+| — | 2026-08-09 | focus synthesis | B413 | sonnet-4.6 | 0 |
 
 ## Blocked gaps (each tagged with what it needs)
 

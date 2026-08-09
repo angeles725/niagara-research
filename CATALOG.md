@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **410 bloques**
+Total: **411 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -415,6 +415,7 @@ Total: **410 bloques**
 | 410 | [niagara-mental-model-bloque410.md](niagara-mental-model-bloque410.md) | Block 410 — .hdb Retention and Rollover Policy: In-Place Circular Eviction, Not File Rotation |
 | 411 | [niagara-mental-model-bloque411.md](niagara-mental-model-bloque411.md) | Block 411 — BOG Boot-Time Crash Recovery: `checkForWorkingFile`, Backup Naming, and Rename Semantics |
 | 412 | [niagara-mental-model-bloque412.md](niagara-mental-model-bloque412.md) | Block 412 — orion-rt: Niagara's Generic ORM Framework — Annotations, Schema Manager, Session, and DDL Layer |
+| 413 | [niagara-mental-model-bloque413.md](niagara-mental-model-bloque413.md) | Block 413 — SYNTHESIS of the `database` focus (B402–B412): two persistence worlds, an unindexed query engine, a triple SQL stack, and a pervasive absence of integrity guarantees |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
