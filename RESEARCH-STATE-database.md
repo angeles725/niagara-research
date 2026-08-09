@@ -24,10 +24,10 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 400
-gaps_closed: 4
+covered_blocks: 401
+gaps_closed: 5
 known_gaps: 11
-investigable_open: 7
+investigable_open: 6
 requires_execution_open: 0
 blocked_open: 0
 deferred_open: 0
@@ -37,7 +37,7 @@ undocumented_findings: 0
 focus: database
 status: bootstrapped
 bootstrapped_on: 2026-08-09
-block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libre: B406)
+block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libre: B407)
 
 ## Pre-flight e2 — existencia + tamaño MEDIDO
 
@@ -60,9 +60,9 @@ Conteo sobre el pipeline **vineflower** (canónico), raíz
 
 ## Coverage
 
-- **Covered blocks**: 400 (corpus-wide, shared-global)
-- **Coverage metric**: 4 / 11 closed
-- **Last iteration**: 2026-08-09 — B405 (DB4: BOG version migration converters)
+- **Covered blocks**: 401 (corpus-wide, shared-global)
+- **Coverage metric**: 5 / 11 closed
+- **Last iteration**: 2026-08-09 — B406 (DB5: BLocalBqlResolver execution path, BogCursor DFS walk, TOP N, ORDER BY materialization, SKIP M absence)
 
 ## Gap-backlog (prioritized)
 
@@ -74,7 +74,7 @@ Formato canónico de 4 columnas exigido por `research-sdd-status.sh`.
 | high | DB2 rdb-rt — pipeline completo de export a RDBMS externo: BRdbmsHistoryExport lee .hdb y escribe SQL, dialectos MS-SQL/MySQL/Oracle, selección de driver JDBC, esquema de columnas | decompiled-java | closed (B403) |
 | high | DB3 alarmOrion — backend RDB de alarmas: esquema SQL de BOrionAlarmDatabase, paginación de OrionAlarmCursor, BArchiveAlarmProvider.execute() moviendo alarmas cleared de .adb a Orion | decompiled-java | closed (B404) |
 | medium | DB4 migration-rt — migración de BOG entre versiones: BIBogElementConverter/MigratorRegistry/BFileMigrator transformando un .bog viejo al cargar (rename/removal de tipos) | decompiled-java | closed (B405) |
-| medium | DB5 BLocalBqlResolver — ejecución de una consulta BQL contra el component space: hay índice o walk lineal, cómo se implementan TOP N SKIP M y ORDER BY a nivel cursor | decompiled-java | pending |
+| medium | DB5 BLocalBqlResolver — ejecución de una consulta BQL contra el component space: hay índice o walk lineal, cómo se implementan TOP N SKIP M y ORDER BY a nivel cursor | decompiled-java | closed (B406) |
 | medium | DB6 BArchiveHistoryProvider — cadena de archival de history (local .hdb → RDB): qué dispara el archival (cron/capacidad), batching, fallo/retry, integración con BRdbmsHistoryExport | decompiled-java | pending |
 | medium | DB7 BComponentSpace — ciclo de vida interno: LoadCallbacks/SubscribeCallbacks/TrapCallbacks durante deserialización BOG y operación viva, qué agrega AuditableSpace, cuándo se consulta BHandleScheme | decompiled-java | pending |
 | low | DB8 HSQLDB embebido — rol de rdbHsqlDb-rt/nHsqlDb-rt: backend del driver rdb-rt, servidor SQL embebido para uso de station, o solo features opcionales | decompiled-java | pending |
@@ -97,6 +97,7 @@ Formato canónico de 4 columnas exigido por `research-sdd-status.sh`.
 | 2 | 2026-08-09 | DB2 | B403 | yes · sonnet (structural) + haiku (mechanical enumeration) | 0 |
 | 3 | 2026-08-09 | DB3 | B404 | yes · sonnet (structural) + haiku (mechanical enumeration) | 0 |
 | 4 | 2026-08-09 | DB4 | B405 | yes · sonnet (inline; ~13 files; no delegation needed) | 0 |
+| 5 | 2026-08-09 | DB5 | B406 | no · sonnet-4.6 (inline; 16 files; no delegation) | 0 |
 
 ## Blocked gaps (each tagged with what it needs)
 
@@ -104,7 +105,7 @@ Formato canónico de 4 columnas exigido por `research-sdd-status.sh`.
 
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 7   ← el loop ESTÁTICO para cuando esto llega a 0
+- **Open gaps — read-only investigable**: 6   ← el loop ESTÁTICO para cuando esto llega a 0
 - **Open gaps — requires-execution**: 0
 - **Open gaps — blocked**: 0
 - Consecutive iterations with empty backlog (secondary): 0/2
