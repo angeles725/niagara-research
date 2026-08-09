@@ -24,10 +24,10 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 398
-gaps_closed: 2
+covered_blocks: 400
+gaps_closed: 3
 known_gaps: 10
-investigable_open: 8
+investigable_open: 7
 requires_execution_open: 0
 blocked_open: 0
 deferred_open: 0
@@ -37,7 +37,7 @@ undocumented_findings: 0
 focus: database
 status: bootstrapped
 bootstrapped_on: 2026-08-09
-block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libre: B404)
+block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libre: B405)
 
 ## Pre-flight e2 — existencia + tamaño MEDIDO
 
@@ -59,9 +59,9 @@ Conteo sobre el pipeline **vineflower** (canónico), raíz
 
 ## Coverage
 
-- **Covered blocks**: 398 (corpus-wide, shared-global)
-- **Coverage metric**: 2 / 10 closed
-- **Last iteration**: 2026-08-09 — B403 (DB2: rdb-rt external RDBMS export pipeline)
+- **Covered blocks**: 400 (corpus-wide, shared-global)
+- **Coverage metric**: 3 / 10 closed
+- **Last iteration**: 2026-08-09 — B404 (DB3: alarmOrion Orion ORM alarm backend)
 
 ## Gap-backlog (prioritized)
 
@@ -71,7 +71,7 @@ Formato canónico de 4 columnas exigido por `research-sdd-status.sh`.
 |---|---|---|---|
 | high | DB1 BStationSaveJob — qué dispara el guardado del BOG y cómo se propaga el dirty flag desde un write de property hasta un flush programado | decompiled-java | closed (B402) |
 | high | DB2 rdb-rt — pipeline completo de export a RDBMS externo: BRdbmsHistoryExport lee .hdb y escribe SQL, dialectos MS-SQL/MySQL/Oracle, selección de driver JDBC, esquema de columnas | decompiled-java | closed (B403) |
-| high | DB3 alarmOrion — backend RDB de alarmas: esquema SQL de BOrionAlarmDatabase, paginación de OrionAlarmCursor, BArchiveAlarmProvider.execute() moviendo alarmas cleared de .adb a Orion | decompiled-java | pending |
+| high | DB3 alarmOrion — backend RDB de alarmas: esquema SQL de BOrionAlarmDatabase, paginación de OrionAlarmCursor, BArchiveAlarmProvider.execute() moviendo alarmas cleared de .adb a Orion | decompiled-java | closed (B404) |
 | medium | DB4 migration-rt — migración de BOG entre versiones: BIBogElementConverter/MigratorRegistry/BFileMigrator transformando un .bog viejo al cargar (rename/removal de tipos) | decompiled-java | pending |
 | medium | DB5 BLocalBqlResolver — ejecución de una consulta BQL contra el component space: hay índice o walk lineal, cómo se implementan TOP N SKIP M y ORDER BY a nivel cursor | decompiled-java | pending |
 | medium | DB6 BArchiveHistoryProvider — cadena de archival de history (local .hdb → RDB): qué dispara el archival (cron/capacidad), batching, fallo/retry, integración con BRdbmsHistoryExport | decompiled-java | pending |
@@ -93,6 +93,7 @@ Formato canónico de 4 columnas exigido por `research-sdd-status.sh`.
 | — | 2026-08-09 | (bootstrap — audit-first) | — | yes · sonnet (audit sweep) | 10 seeded |
 | 1 | 2026-08-09 | DB1 | B402 | yes · sonnet (delegated iteration) | 0 |
 | 2 | 2026-08-09 | DB2 | B403 | yes · sonnet (structural) + haiku (mechanical enumeration) | 0 |
+| 3 | 2026-08-09 | DB3 | B404 | yes · sonnet (structural) + haiku (mechanical enumeration) | 0 |
 
 ## Blocked gaps (each tagged with what it needs)
 
@@ -100,7 +101,7 @@ Formato canónico de 4 columnas exigido por `research-sdd-status.sh`.
 
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 8   ← el loop ESTÁTICO para cuando esto llega a 0
+- **Open gaps — read-only investigable**: 7   ← el loop ESTÁTICO para cuando esto llega a 0
 - **Open gaps — requires-execution**: 0
 - **Open gaps — blocked**: 0
 - Consecutive iterations with empty backlog (secondary): 0/2
