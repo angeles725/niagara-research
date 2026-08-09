@@ -24,7 +24,7 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 398
+covered_blocks: 397
 gaps_closed: 1
 known_gaps: 10
 investigable_open: 9
@@ -37,7 +37,7 @@ undocumented_findings: 0
 focus: database
 status: bootstrapped
 bootstrapped_on: 2026-08-09
-block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libre: B402)
+block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libre: B403)
 
 ## Pre-flight e2 — existencia + tamaño MEDIDO
 
@@ -59,7 +59,7 @@ Conteo sobre el pipeline **vineflower** (canónico), raíz
 
 ## Coverage
 
-- **Covered blocks**: 398 (corpus-wide, shared-global)
+- **Covered blocks**: 397 (corpus-wide, shared-global)
 - **Coverage metric**: 1 / 10 closed
 - **Last iteration**: 2026-08-09 — B402 (DB1: station-save trigger + dirty-flag propagation)
 

@@ -466,6 +466,12 @@ if (!partialLoad) {
 2. Station enumera dirty components.
 3. `ValueDocEncoder.encodeDocument()` → `.bog.tmp`.
 4. **Atomic rename**: `.bog` → `.bog.bak`, `.bog.tmp` → `.bog`.
+
+> **[Corregido por B402 (§14)]** Los pasos 1-2 aplican a `BBogSpace` (platform.bog / palettes / BOG montado),
+> NO a `config.bog`: la station corre sobre un `BComponentSpace` cuyo `modified()` es no-op — no hay dirty flag
+> ni enumeración de dirty components. El guardado de `config.bog` lo dispara `StationManager` por TIEMPO
+> (`stationAutoSaveFrequency`, default `BRelTime.HOUR` = 1 h), no por cambio. El temp file real es
+> `.bog.working`, no `.bog.tmp`. Detalle completo de ambos paths en **[Block 402]**.
 5. `.bog.bak` preserva versión anterior para recovery.
 
 **Clases**:
