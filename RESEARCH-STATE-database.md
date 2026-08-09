@@ -24,7 +24,7 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 399
+covered_blocks: 398
 gaps_closed: 2
 known_gaps: 10
 investigable_open: 8
@@ -59,7 +59,7 @@ Conteo sobre el pipeline **vineflower** (canónico), raíz
 
 ## Coverage
 
-- **Covered blocks**: 399 (corpus-wide, shared-global)
+- **Covered blocks**: 398 (corpus-wide, shared-global)
 - **Coverage metric**: 2 / 10 closed
 - **Last iteration**: 2026-08-09 — B403 (DB2: rdb-rt external RDBMS export pipeline)
 
