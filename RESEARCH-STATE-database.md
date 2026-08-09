@@ -24,10 +24,10 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 404
-gaps_closed: 7
+covered_blocks: 405
+gaps_closed: 8
 known_gaps: 11
-investigable_open: 4
+investigable_open: 3
 requires_execution_open: 0
 blocked_open: 0
 deferred_open: 0
@@ -37,7 +37,7 @@ undocumented_findings: 0
 focus: database
 status: active
 bootstrapped_on: 2026-08-09
-block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libre: B408)
+block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libre: B410)
 
 ## Pre-flight e2 — existencia + tamaño MEDIDO
 
@@ -60,9 +60,9 @@ Conteo sobre el pipeline **vineflower** (canónico), raíz
 
 ## Coverage
 
-- **Covered blocks**: 404 (corpus-wide, shared-global)
-- **Coverage metric**: 7 / 11 closed
-- **Last iteration**: 2026-08-09 — B408 (DB7: BComponentSpace load/subscribe/trap lifecycle; LoadCallbacks lazy-load trigger; SubscribeCallbacks COV hook; TrapCallbacks change interception; @AuditableSpace annotation gate; BHandleScheme "h:" scheme resolution)
+- **Covered blocks**: 405 (corpus-wide, shared-global)
+- **Coverage metric**: 8 / 11 closed
+- **Last iteration**: 2026-08-09 — B409 (DB8: rdbHsqlDb-rt role = 4th rdb-rt dialect, controller-resident embedded file-backed HSQLDB; BHsqlDatabase→BRdbms; no pool; JDBC URL jdbc:hsqldb:file:; nHsqlDb-rt proven absent)
 
 ## Gap-backlog (prioritized)
 
@@ -77,7 +77,7 @@ Formato canónico de 4 columnas exigido por `research-sdd-status.sh`.
 | medium | DB5 BLocalBqlResolver — ejecución de una consulta BQL contra el component space: hay índice o walk lineal, cómo se implementan TOP N SKIP M y ORDER BY a nivel cursor | decompiled-java | closed (B406) |
 | medium | DB6 BArchiveHistoryProvider — cadena de archival de history (local .hdb → RDB): qué dispara el archival (cron/capacidad), batching, fallo/retry, integración con BRdbmsHistoryExport | decompiled-java | closed (B407) |
 | medium | DB7 BComponentSpace — ciclo de vida interno: LoadCallbacks/SubscribeCallbacks/TrapCallbacks durante deserialización BOG y operación viva, qué agrega AuditableSpace, cuándo se consulta BHandleScheme | decompiled-java | closed (B408) |
-| low | DB8 HSQLDB embebido — rol de rdbHsqlDb-rt/nHsqlDb-rt: backend del driver rdb-rt, servidor SQL embebido para uso de station, o solo features opcionales | decompiled-java | pending |
+| low | DB8 HSQLDB embebido — rol de rdbHsqlDb-rt/nHsqlDb-rt: backend del driver rdb-rt, servidor SQL embebido para uso de station, o solo features opcionales | decompiled-java | closed (B409) |
 | low | DB9 .hdb retención/rollover — a nivel formato: al llegar a BCapacity, FullPolicy borra del page más viejo (trimToCapacity) o rota archivo; comportamiento al cambiar collection-interval con records existentes | decompiled-java | pending |
 | low | DB10 BOG crash-recovery — path bog.tmp→bog.bak→bog en Windows vs POSIX: si el NRE verifica .bog.bak al boot y recupera, edge case MoveFileEx en NTFS | decompiled-java | pending |
 | medium | DB11 orion-rt ORM — mapeo objeto-relacional genérico de Niagara sobre RDBMS: BOrionDatabase/BOrionSpace, generación de esquema desde @NiagaraOrionType, OrionCursor, versionado/upgrade (ISchemaUpgrader/BSchemaVersion), sesión/transacción. SURGIÓ en B404 (alarmOrion y lonOrion se apoyan acá) | decompiled-java | pending |
@@ -100,6 +100,7 @@ Formato canónico de 4 columnas exigido por `research-sdd-status.sh`.
 | 5 | 2026-08-09 | DB5 | B406 | no · sonnet-4.6 (inline; 16 files; no delegation) | 0 |
 | 6 | 2026-08-09 | DB6 | B407 | yes · sonnet-4.6 (fork sub-sweep; 11 files read) | 0 |
 | 7 | 2026-08-09 | DB7 | B408 | yes · sonnet-4.6 (fork sub-sweep; 12 docSource + 2 vineflower) | 0 |
+| 8 | 2026-08-09 | DB8 | B409 | no · sonnet-4.6 (inline; 3 adapter files + module.xml + 3 help guides) | 0 |
 
 ## Blocked gaps (each tagged with what it needs)
 
@@ -107,7 +108,7 @@ Formato canónico de 4 columnas exigido por `research-sdd-status.sh`.
 
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 4   ← el loop ESTÁTICO para cuando esto llega a 0
+- **Open gaps — read-only investigable**: 3   ← el loop ESTÁTICO para cuando esto llega a 0
 - **Open gaps — requires-execution**: 0
 - **Open gaps — blocked**: 0
 - Consecutive iterations with empty backlog (secondary): 0/2
