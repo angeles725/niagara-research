@@ -1,4 +1,4 @@
-# RESEARCH-STATE — focus: database (ACTIVE, 6/11)
+# RESEARCH-STATE — focus: database (STOPPED — 11/11)
 
 > Multi-focus corpus (METHODOLOGY §16). Focus **BOOTSTRAPEADO 2026-08-09** a pedido explícito del usuario
 > ("documentar todo lo relacionado a la base de datos de Niagara N4"). Surge del hilo del pedido de un
@@ -24,10 +24,10 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 407
-gaps_closed: 10
+covered_blocks: 408
+gaps_closed: 11
 known_gaps: 11
-investigable_open: 1
+investigable_open: 0
 requires_execution_open: 0
 blocked_open: 0
 deferred_open: 0
@@ -35,9 +35,9 @@ undocumented_findings: 0
 <!-- /research-state.v1 -->
 
 focus: database
-status: active
+status: stopped (read-only-investigable exhausted — 11/11 gaps closed 2026-08-09)
 bootstrapped_on: 2026-08-09
-block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libre: B412)
+block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libre: B413)
 
 ## Pre-flight e2 — existencia + tamaño MEDIDO
 
@@ -60,9 +60,9 @@ Conteo sobre el pipeline **vineflower** (canónico), raíz
 
 ## Coverage
 
-- **Covered blocks**: 407 (corpus-wide, shared-global)
-- **Coverage metric**: 10 / 11 closed
-- **Last iteration**: 2026-08-09 — B411 (DB10: boot-time recovery via checkForWorkingFile() fires only when config.bog absent; backup format = config_backup_yyMMdd_HHmm.bog not .bog.bak; orphan-working-file scenario unhandled; BBogSpace.save() has no recovery; B32 §32.9.5 open Windows edge case closed)
+- **Covered blocks**: 408 (corpus-wide, shared-global)
+- **Coverage metric**: 11 / 11 closed
+- **Last iteration**: 2026-08-09 — B412 (DB11: orion-rt ORM framework — annotation model @NiagaraOrionType/@OrionProperty/@OrionIndex, BOrionObject base + facet vocabulary, BOrionSpace/BOrionService/BOrionDatabase service layer, BLocalOrionDatabase boot sequence + no-pool createSession, OrionSession interface + DbOrionSession JDBC impl, DDL whitelist, schema versioning ISchemaUpgrader/OrionAppSchemaManager greedy step-walk, BOrionSysTables/BOrionAppVersion system tables, BatchStatement, BOrionMigrator data-migration tool)
 
 ## Gap-backlog (prioritized)
 
@@ -80,7 +80,7 @@ Formato canónico de 4 columnas exigido por `research-sdd-status.sh`.
 | low | DB8 HSQLDB embebido — rol de rdbHsqlDb-rt/nHsqlDb-rt: backend del driver rdb-rt, servidor SQL embebido para uso de station, o solo features opcionales | decompiled-java | closed (B409) |
 | low | DB9 .hdb retención/rollover — a nivel formato: al llegar a BCapacity, FullPolicy borra del page más viejo (trimToCapacity) o rota archivo; comportamiento al cambiar collection-interval con records existentes | decompiled-java | closed (B410) |
 | low | DB10 BOG crash-recovery — path bog.tmp→bog.bak→bog en Windows vs POSIX: si el NRE verifica .bog.bak al boot y recupera, edge case MoveFileEx en NTFS | decompiled-java | closed (B411) |
-| medium | DB11 orion-rt ORM — mapeo objeto-relacional genérico de Niagara sobre RDBMS: BOrionDatabase/BOrionSpace, generación de esquema desde @NiagaraOrionType, OrionCursor, versionado/upgrade (ISchemaUpgrader/BSchemaVersion), sesión/transacción. SURGIÓ en B404 (alarmOrion y lonOrion se apoyan acá) | decompiled-java | pending |
+| medium | DB11 orion-rt ORM — mapeo objeto-relacional genérico de Niagara sobre RDBMS: BOrionDatabase/BOrionSpace, generación de esquema desde @NiagaraOrionType, OrionCursor, versionado/upgrade (ISchemaUpgrader/BSchemaVersion), sesión/transacción. SURGIÓ en B404 (alarmOrion y lonOrion se apoyan acá) | decompiled-java | closed (B412) |
 
 ### Remittance (no son gaps — ya cubiertos)
 
@@ -103,6 +103,7 @@ Formato canónico de 4 columnas exigido por `research-sdd-status.sh`.
 | 8 | 2026-08-09 | DB8 | B409 | no · sonnet-4.6 (inline; 3 adapter files + module.xml + 3 help guides) | 0 |
 | 9 | 2026-08-09 | DB9 | B410 | no · sonnet-4.6 (inline; 9 files: 5 vineflower + 4 docSource) | 0 |
 | 10 | 2026-08-09 | DB10 | B411 | no · sonnet-4.6 (inline; 3 files: Station.java + BBogSpace.java + FileUtil.java docSource) | 0 |
+| 11 | 2026-08-09 | DB11 | B412 | yes · haiku (mechanical enumeration; 16 files) + sonnet-4.6 fork (structural comprehension; 12 files) | 0 |
 
 ## Blocked gaps (each tagged with what it needs)
 
@@ -110,10 +111,10 @@ Formato canónico de 4 columnas exigido por `research-sdd-status.sh`.
 
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 1   ← el loop ESTÁTICO para cuando esto llega a 0
+- **Open gaps — read-only investigable**: 0   ← STOP criterion PRIMARY fired (2026-08-09)
 - **Open gaps — requires-execution**: 0
 - **Open gaps — blocked**: 0
-- Consecutive iterations with empty backlog (secondary): 0/2
+- Consecutive iterations with empty backlog (secondary): N/A — stopped by primary criterion
 - Budget cap: none
 
 ## Dismissed file types
