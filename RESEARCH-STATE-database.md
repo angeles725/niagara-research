@@ -24,10 +24,10 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 400
+covered_blocks: 399
 gaps_closed: 3
-known_gaps: 10
-investigable_open: 7
+known_gaps: 11
+investigable_open: 8
 requires_execution_open: 0
 blocked_open: 0
 deferred_open: 0
@@ -56,11 +56,12 @@ Conteo sobre el pipeline **vineflower** (canónico), raíz
 | DB8 | `rdbHsqlDb/rdbHsqlDb-rt/vineflower/` (lib HSQLDB) + `nHsqlDb-rt` (adapter, vía module-nav) | lib 3rd-party + adapter |
 | DB9 | `docSource/.../history-rt/javax/baja/history/` (BCapacity/BFullPolicy/…) + history file layer | 4 clases policy |
 | DB10 | `baja/.../BStationSaveJob.java` + `file-rt/.../BBogFile.java`, `BBogSpace.java` | < 10 archivos |
+| DB11 | `orion/orion-rt/vineflower/com/tridium/orion/` (BOrionDatabase/BOrionSpace/OrionCursor/OrionAppSchemaManager/ISchemaUpgrader) | 136 `.java` |
 
 ## Coverage
 
-- **Covered blocks**: 400 (corpus-wide, shared-global)
-- **Coverage metric**: 3 / 10 closed
+- **Covered blocks**: 399 (corpus-wide, shared-global)
+- **Coverage metric**: 3 / 11 closed
 - **Last iteration**: 2026-08-09 — B404 (DB3: alarmOrion Orion ORM alarm backend)
 
 ## Gap-backlog (prioritized)
@@ -79,6 +80,7 @@ Formato canónico de 4 columnas exigido por `research-sdd-status.sh`.
 | low | DB8 HSQLDB embebido — rol de rdbHsqlDb-rt/nHsqlDb-rt: backend del driver rdb-rt, servidor SQL embebido para uso de station, o solo features opcionales | decompiled-java | pending |
 | low | DB9 .hdb retención/rollover — a nivel formato: al llegar a BCapacity, FullPolicy borra del page más viejo (trimToCapacity) o rota archivo; comportamiento al cambiar collection-interval con records existentes | decompiled-java | pending |
 | low | DB10 BOG crash-recovery — path bog.tmp→bog.bak→bog en Windows vs POSIX: si el NRE verifica .bog.bak al boot y recupera, edge case MoveFileEx en NTFS | decompiled-java | pending |
+| medium | DB11 orion-rt ORM — mapeo objeto-relacional genérico de Niagara sobre RDBMS: BOrionDatabase/BOrionSpace, generación de esquema desde @NiagaraOrionType, OrionCursor, versionado/upgrade (ISchemaUpgrader/BSchemaVersion), sesión/transacción. SURGIÓ en B404 (alarmOrion y lonOrion se apoyan acá) | decompiled-java | pending |
 
 ### Remittance (no son gaps — ya cubiertos)
 
@@ -97,11 +99,11 @@ Formato canónico de 4 columnas exigido por `research-sdd-status.sh`.
 
 ## Blocked gaps (each tagged with what it needs)
 
-- none — los 10 gaps son read-only investigable (fuente confirmada en disco, e2 2026-08-09).
+- none — los 11 gaps son read-only investigable (fuente confirmada en disco, e2 2026-08-09).
 
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 7   ← el loop ESTÁTICO para cuando esto llega a 0
+- **Open gaps — read-only investigable**: 8   ← el loop ESTÁTICO para cuando esto llega a 0
 - **Open gaps — requires-execution**: 0
 - **Open gaps — blocked**: 0
 - Consecutive iterations with empty backlog (secondary): 0/2
