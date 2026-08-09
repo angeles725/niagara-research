@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **408 bloques**
+Total: **409 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -413,6 +413,7 @@ Total: **408 bloques**
 | 408 | [niagara-mental-model-bloque408.md](niagara-mental-model-bloque408.md) | Block 408 — BComponentSpace Internal Lifecycle: LoadCallbacks, SubscribeCallbacks, TrapCallbacks, AuditableSpace Annotation, and BHandleScheme Resolution |
 | 409 | [niagara-mental-model-bloque409.md](niagara-mental-model-bloque409.md) | Block 409 — Embedded HSQLDB in Niagara N4: BHsqlDatabase as the Controller-Resident rdb-rt Dialect |
 | 410 | [niagara-mental-model-bloque410.md](niagara-mental-model-bloque410.md) | Block 410 — .hdb Retention and Rollover Policy: In-Place Circular Eviction, Not File Rotation |
+| 411 | [niagara-mental-model-bloque411.md](niagara-mental-model-bloque411.md) | Block 411 — BOG Boot-Time Crash Recovery: `checkForWorkingFile`, Backup Naming, and Rename Semantics |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

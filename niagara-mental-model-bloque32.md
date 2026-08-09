@@ -509,6 +509,16 @@ Pero si crash durante `BOG save`:
 2. Si crash ANTES del rename → BOG viejo intacto (por eso Baja usa patrón de tmp file)
 3. Si crash DURANTE rename en Windows → NTFS marker files posibles corruption edge case (raro pero documentado en issue trackers Tridium)
 
+> **[§14 back-pointer — completado en B411]** El edge case del punto 3 fue investigado con código
+> real en **[Block 411]** §411.1–411.7. Hallazgos: (a) el recovery es APPLICATION-level vía
+> `Station.checkForWorkingFile()` (Station.java:582-589), que actúa ANTES de cargar el BOG;
+> (b) no hay "NTFS marker files corruption" en el código — NTFS journal maneja la atomicidad de
+> rename de forma transparente; (c) el temp file real es `.bog.working` (no `.bog.tmp`) y el backup
+> real es `config_backup_yyMMdd_HHmm.bog` (no `.bog.bak`); (d) el caso realmente no cubierto es el
+> "orphan working file" — crash ANTES del rename de backup, no DURANTE el rename. El concern de
+> `MoveFileEx(REPLACE_EXISTING)` de §32.9.3 no aplica al save path (el destino siempre está
+> ausente cuando se llama `renameTo()`). Ver **[Block 411]** para el análisis completo.
+
 ---
 
 ## 32.10 Module lifecycle hooks (gap #3)
