@@ -1346,6 +1346,19 @@ Hooks `java.util.logging` root → filter por severity → write `BLogRecord` a 
 | 33.3.4 (clock drift) | **Bloque 24.14** | Aplica a historical timestamps — gap/duplicate semantics |
 | 33.17 (audit) | **Bloque 31.8** (audit queue unbounded) | Confirma `syslogAuditHandler` es side-channel, main sink es `.hdb` append |
 
+### 33.N.2a Correcciones recibidas de bloques posteriores
+
+**[Block 410] (2026-08-09) corrige dos afirmaciones de este bloque:**
+
+1. **§33.5.3 — DIRTY_CACHE_SIZE real = 5 (no ~16).**
+   El bloque 33 estimó `"~16 páginas"` (javap -p sin cuerpo). El cuerpo Vineflower muestra
+   `private static final int DIRTY_CACHE_SIZE = 5;` (`RecordStore.java:27`).
+
+2. **§33.6.2 — ROLL cost O(1), NO O(page_size); secuencia es append-then-evict.**
+   El bloque 33 afirmó `"Cost O(page_size)"`. El cuerpo de `Page.trimFromStart(int)` muestra
+   `this.first += trimCount;` — O(1). Además, en ROLL el nuevo record se escribe PRIMERO
+   y luego se evicta el más viejo (no evict-then-append).
+
 ### 33.N.2 Hallazgos que actualizan bloques previos
 
 **Debe reflejarse en actualización INDEX/bloques**:
