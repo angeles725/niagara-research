@@ -472,6 +472,11 @@ if (!partialLoad) {
 > ni enumeración de dirty components. El guardado de `config.bog` lo dispara `StationManager` por TIEMPO
 > (`stationAutoSaveFrequency`, default `BRelTime.HOUR` = 1 h), no por cambio. El temp file real es
 > `.bog.working`, no `.bog.tmp`. Detalle completo de ambos paths en **[Block 402]**.
+>
+> **[Corregido por B411 (§14)]** El paso 4 tampoco usa `.bog.bak`: NO existe ningún backup con ese nombre.
+> El rename atómico real es `config.bog` → `config.bog.working` → `config.bog` (vía `File.renameTo()`, no
+> `ATOMIC_MOVE`); los backups versionados se llaman `config_backup_yyMMdd_HHmm.bog`. El recovery al boot es
+> `Station.checkForWorkingFile()` (renombra `.working` → `config.bog` solo si `config.bog` falta). Ver **[Block 411]**.
 5. `.bog.bak` preserva versión anterior para recovery.
 
 **Clases**:
