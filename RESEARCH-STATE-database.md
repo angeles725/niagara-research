@@ -28,8 +28,8 @@ covered_blocks: 409
 gaps_closed: 11
 known_gaps: 11
 investigable_open: 0
-requires_execution_open: 0
-blocked_open: 0
+requires_execution_open: 2
+blocked_open: 1
 deferred_open: 0
 undocumented_findings: 0
 <!-- /research-state.v1 -->
@@ -106,15 +106,28 @@ Formato canónico de 4 columnas exigido por `research-sdd-status.sh`.
 | 11 | 2026-08-09 | DB11 | B412 | yes · haiku (mechanical enumeration; 16 files) + sonnet-4.6 fork (structural comprehension; 12 files) | 0 |
 | — | 2026-08-09 | focus synthesis | B413 | sonnet-4.6 | 0 |
 
-## Blocked gaps (each tagged with what it needs)
+## Child gaps surfaced at close (named per §8 — NOT read-only investigable within scope)
 
-- none — los 11 gaps son read-only investigable (fuente confirmada en disco, e2 2026-08-09).
+Surgieron en B412/B413. Ninguno es un gap read-only investigable NUEVO dentro del scope del focus; se
+registran nombrados y clasificados (una sospecha descartada con evidencia vale como hallazgo).
+
+- **DB-G1 lonOrion consumer tables** — `blocked-on-source-missing` + `re-scope`.
+  `tried:` `fd -e java/-e class` sobre `organized/lonOrion/{decompiled,extracted,pipeline}` = **0** (jar `lonOrion-rt.jar`
+  30 KB SIN decompilar en el corpus; el protocolo NO re-decompila el corpus). Conceptualmente es un CONSUMIDOR LON
+  del ORM (simétrico a alarmOrion/B404); el ORM genérico ya está en **[Block 412]**. Pertenece a un focus LON-driver,
+  no a la capa de BD core. `needs:` decompilar el jar (vineflower) si se promueve.
+- **DB-G2 BRdbmsWorker contention bajo carga** — `requires-execution` (§12).
+  El MODELO de threading (maxThreads=1, CoalesceQueue, postAsync) ya está por remittance en **[Block 403]** y
+  **[Block 407]**; el comportamiento REAL bajo contención concurrente necesita una prueba en vivo. `tried:` remittance
+  a B403/B407 cubre el modelo estático.
+- **DB-G3 BBogSpace threading / concurrencia** — `requires-execution` (§12).
+  El modelo dirty-flag/save de BBogSpace ya está en **[Block 402]**; probar una race real necesita ejecución en vivo.
 
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
 - **Open gaps — read-only investigable**: 0   ← STOP criterion PRIMARY fired (2026-08-09)
-- **Open gaps — requires-execution**: 0
-- **Open gaps — blocked**: 0
+- **Open gaps — requires-execution**: 2 (DB-G2 BRdbmsWorker contention, DB-G3 BBogSpace threading)
+- **Open gaps — blocked**: 1 (DB-G1 lonOrion — source-missing + re-scope)
 - Consecutive iterations with empty backlog (secondary): N/A — stopped by primary criterion
 - Budget cap: none
 
