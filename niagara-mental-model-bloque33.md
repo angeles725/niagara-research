@@ -514,7 +514,7 @@ Decompilado `javax.baja.history.db.BArchiveHistoryProvider` (abstract, license-g
 ```java
 public abstract class BArchiveHistoryProvider extends BComponent implements BIRestrictedComponent {
   public static final Property enabled;
-  public static final Property maxArchiveResultsPerQuery;         // int, default empírico 10000
+  public static final Property maxArchiveResultsPerQuery;         // int, default empírico 10000  // [CORREGIDO por B407 (§14): el default REAL es 50000 (cuerpo vineflower); "10000" provino de javap -p sin cuerpo. Ver Block 407]
   public static final Property archiveLimitNotifications;         // BArchiveLimitNotificationBehavior enum
 
   public abstract boolean isLikelyToContainArchivedHistory(BHistoryConfig, Context);
