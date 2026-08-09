@@ -1,4 +1,4 @@
-# RESEARCH-STATE — focus: database (BOOTSTRAPPED, 0/10)
+# RESEARCH-STATE — focus: database (ACTIVE, 6/11)
 
 > Multi-focus corpus (METHODOLOGY §16). Focus **BOOTSTRAPEADO 2026-08-09** a pedido explícito del usuario
 > ("documentar todo lo relacionado a la base de datos de Niagara N4"). Surge del hilo del pedido de un
@@ -24,10 +24,10 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 401
-gaps_closed: 5
+covered_blocks: 403
+gaps_closed: 6
 known_gaps: 11
-investigable_open: 6
+investigable_open: 5
 requires_execution_open: 0
 blocked_open: 0
 deferred_open: 0
@@ -35,9 +35,9 @@ undocumented_findings: 0
 <!-- /research-state.v1 -->
 
 focus: database
-status: bootstrapped
+status: active
 bootstrapped_on: 2026-08-09
-block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libre: B407)
+block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libre: B408)
 
 ## Pre-flight e2 — existencia + tamaño MEDIDO
 
@@ -60,9 +60,9 @@ Conteo sobre el pipeline **vineflower** (canónico), raíz
 
 ## Coverage
 
-- **Covered blocks**: 401 (corpus-wide, shared-global)
-- **Coverage metric**: 5 / 11 closed
-- **Last iteration**: 2026-08-09 — B406 (DB5: BLocalBqlResolver execution path, BogCursor DFS walk, TOP N, ORDER BY materialization, SKIP M absence)
+- **Covered blocks**: 403 (corpus-wide, shared-global)
+- **Coverage metric**: 6 / 11 closed
+- **Last iteration**: 2026-08-09 — B407 (DB6: BTimeTrigger archival trigger, BRdbmsHistoryExport doExecute/insertRecords, high-watermark idempotency, no-retry failure, BRdbArchiveHistoryProvider read-back chain)
 
 ## Gap-backlog (prioritized)
 
@@ -75,7 +75,7 @@ Formato canónico de 4 columnas exigido por `research-sdd-status.sh`.
 | high | DB3 alarmOrion — backend RDB de alarmas: esquema SQL de BOrionAlarmDatabase, paginación de OrionAlarmCursor, BArchiveAlarmProvider.execute() moviendo alarmas cleared de .adb a Orion | decompiled-java | closed (B404) |
 | medium | DB4 migration-rt — migración de BOG entre versiones: BIBogElementConverter/MigratorRegistry/BFileMigrator transformando un .bog viejo al cargar (rename/removal de tipos) | decompiled-java | closed (B405) |
 | medium | DB5 BLocalBqlResolver — ejecución de una consulta BQL contra el component space: hay índice o walk lineal, cómo se implementan TOP N SKIP M y ORDER BY a nivel cursor | decompiled-java | closed (B406) |
-| medium | DB6 BArchiveHistoryProvider — cadena de archival de history (local .hdb → RDB): qué dispara el archival (cron/capacidad), batching, fallo/retry, integración con BRdbmsHistoryExport | decompiled-java | pending |
+| medium | DB6 BArchiveHistoryProvider — cadena de archival de history (local .hdb → RDB): qué dispara el archival (cron/capacidad), batching, fallo/retry, integración con BRdbmsHistoryExport | decompiled-java | closed (B407) |
 | medium | DB7 BComponentSpace — ciclo de vida interno: LoadCallbacks/SubscribeCallbacks/TrapCallbacks durante deserialización BOG y operación viva, qué agrega AuditableSpace, cuándo se consulta BHandleScheme | decompiled-java | pending |
 | low | DB8 HSQLDB embebido — rol de rdbHsqlDb-rt/nHsqlDb-rt: backend del driver rdb-rt, servidor SQL embebido para uso de station, o solo features opcionales | decompiled-java | pending |
 | low | DB9 .hdb retención/rollover — a nivel formato: al llegar a BCapacity, FullPolicy borra del page más viejo (trimToCapacity) o rota archivo; comportamiento al cambiar collection-interval con records existentes | decompiled-java | pending |
@@ -98,6 +98,7 @@ Formato canónico de 4 columnas exigido por `research-sdd-status.sh`.
 | 3 | 2026-08-09 | DB3 | B404 | yes · sonnet (structural) + haiku (mechanical enumeration) | 0 |
 | 4 | 2026-08-09 | DB4 | B405 | yes · sonnet (inline; ~13 files; no delegation needed) | 0 |
 | 5 | 2026-08-09 | DB5 | B406 | no · sonnet-4.6 (inline; 16 files; no delegation) | 0 |
+| 6 | 2026-08-09 | DB6 | B407 | yes · sonnet-4.6 (fork sub-sweep; 11 files read) | 0 |
 
 ## Blocked gaps (each tagged with what it needs)
 
@@ -105,7 +106,7 @@ Formato canónico de 4 columnas exigido por `research-sdd-status.sh`.
 
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 6   ← el loop ESTÁTICO para cuando esto llega a 0
+- **Open gaps — read-only investigable**: 5   ← el loop ESTÁTICO para cuando esto llega a 0
 - **Open gaps — requires-execution**: 0
 - **Open gaps — blocked**: 0
 - Consecutive iterations with empty backlog (secondary): 0/2

@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **404 bloques**
+Total: **405 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -409,6 +409,7 @@ Total: **404 bloques**
 | 404 | [niagara-mental-model-bloque404.md](niagara-mental-model-bloque404.md) | Block 404 — alarmOrion: Orion ORM Alarm Backend — Schema, Cursor, and Archive Move |
 | 405 | [niagara-mental-model-bloque405.md](niagara-mental-model-bloque405.md) | Block 405 — BOG Version Migration: BIBogElementConverter, ConverterRegistry, BBogMigrator, and MigratorRegistry |
 | 406 | [niagara-mental-model-bloque406.md](niagara-mental-model-bloque406.md) | Block 406 — BQL Execution Path: BLocalBqlResolver, SelectQuery Pipeline, BogCursor DFS Walk, TOP N, ORDER BY, and the Absence of SKIP M |
+| 407 | [niagara-mental-model-bloque407.md](niagara-mental-model-bloque407.md) | Block 407 — History Archive Provider Chain: BTimeTrigger Scheduling, `BRdbmsHistoryExport` Write Path, High-Watermark Idempotency, No-Retry Failure, and `BRdbArchiveHistoryProvider` Read-Back |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
