@@ -14,12 +14,14 @@
 
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 266
-gaps_closed: 0
-known_gaps: 5
+covered_blocks: 410
+gaps_closed: 1
+known_gaps: 6
 investigable_open: 4
-requires_execution_open: 1
+requires_execution_open: 0
 blocked_open: 1
+block_scope: shared-global
+undocumented_findings: 0
 <!-- /research-state.v1 -->
 
 focus: niagara-network-supervisor
@@ -46,11 +48,12 @@ driver `niagaraDriver` que ambos usan.
 
 | Priority | Gap | Type | Status |
 |---|---|---|---|
-| high | N1 el riesgo BSubstitutePxView wb-vs-rt | decompiled-java | pending (NEXT) |
-| high | N2 niagaraDriver el driver que sostiene el join | decompiled-java | pending |
+| high | N1 el riesgo BSubstitutePxView wb-vs-rt | decompiled-java | **closed (B414)** |
+| high | N2 niagaraDriver el driver que sostiene el join | decompiled-java | pending (NEXT) |
 | medium | N3 la guia oficial de exportTags | external-doc | pending |
 | medium | N4 seguridad del canal de join | decompiled-java | pending |
 | low | N5 reproducir el fallo de tipo en un JACE | requires-execution | blocked |
+| low | N6 cómo Niagara maneja tipos no resueltos en BOG de la propia station | decompiled-java | pending |
 
 ### Detalle por gap
 
@@ -74,22 +77,25 @@ driver `niagaraDriver` que ambos usan.
   antes de escribirse (4 de 4 fallaron en el focus `tags`).
 - **N5 (BLOQUEADO, requires-execution)** — reproducir el fallo de N1 exige una station viva sin el jar `-wb`.
   **No cuenta como investigable** (§8).
+- **N6 (LOW, pendiente)** — B414 §414.5 no pudo resolver read-only qué hace Niagara cuando una station
+  propia carga su BOG con un tipo no resuelto (p.ej. `exportTags:PxViewTag` en un JACE). Requiere encontrar
+  `ValueDocDecoder` o el mecanismo de arranque de estación en las fuentes decompiladas de `baja`/`nre`.
 
 ## Blocked gaps
 
-- N5 — needs: station viva (JACE sin perfil `-wb`) para reproducir el fallo de resolución de tipo.
+- N5 — needs: station viva (JACE-class supervisor sin perfil `-wb`) · tried: análisis estático de BlacklistTypeResolver (B414 §414.4) → confirma omisión silenciosa lógicamente, pero no produce fallo observado; hardware inaccesible.
 
 ## Clasificación (§8)
 
-- **read-only-investigable**: **4** (N1-N4). **requires-execution / blocked**: 1 (N5 — necesita una station
-  viva sin el perfil `-wb`; cuenta en ambas categorías porque el bloqueo ES la falta de hardware).
-- **Coverage metric**: **0 / 5** (planned, 0 bloques).
-- **Próximo gap**: **N1**.
+- **read-only-investigable**: **3** (N2, N3, N4 + N6). **requires-execution / blocked**: 1 (N5).
+- **Coverage metric**: **1 / 6** (1 bloque escrito, N1 cerrado).
+- **Próximo gap**: **N2**.
 
 ## Historia de iteración
 
 | It | Fecha | Gap | Bloque | Hallazgo | Delegado? · tier |
 |---|---|---|---|---|---|
-| (ninguna — focus PLANNED 2026-07-24) | | | | | |
+| (bootstrap) | 2026-07-24 | — | — | focus PLANNED | — |
+| 1 | 2026-08-09 | N1 | B414 | riesgo B267 MITIGADO por diseño: BSubstitutePxView en árbol del SUPERVISOR (no BOG del JACE); riesgo real = SUPERVISOR sin wb | no · inline |
 
-**Resume condition**: focus PLANNED, NO re-bootstrapear. Tomar N1 y correr el NORMAL CYCLE.
+**Resume condition**: focus ACTIVE desde It 1. Próximo: N2 (niagaraDriver).

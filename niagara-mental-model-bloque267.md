@@ -81,6 +81,12 @@ verificado en la ubicación de las clases**, no como incidente observado. Es exa
 [Bloque 258] §258.1 hizo explícito para el chart —qué vive en `-rt` y qué en `-wb`— aplicado acá a un caso
 donde la separación parece violada.
 
+> **§14 — corrección parcial por [Bloque 414] §414.3 (2026-08-09)**: la premisa de §267.3 de que
+> `BSubstitutePxView` se persiste en el BOG del JACE (destino) es incorrecta. `doJoin()` crea ese slot
+> en el espacio virtual del SUPERVISOR (dentro de su proxy `BNiagaraStation`), no en el BOG del JACE.
+> El JACE no necesita resolver `exportTags:SubstitutePxView`. El riesgo real es en el SUPERVISOR (si no
+> tiene perfil wb). Ver B414 §414.3 y §414.6 para el veredicto completo.
+
 ## 267.4 — Gotchas de la UI `[CERT]`
 
 - **Contraseña como columna de tabla**: `BJoinProfileManager` declara
