@@ -344,6 +344,12 @@ public interface IOrdConverter {
 
 **Critical distinction:** `ValueDocDecoder.BogTypeResolver.newInstance()` — the resolver used during normal N4 station startup — does NOT consult `ConverterRegistry`. When a type is missing:
 - `TypeNotFoundException` → `warningAndSkip("Type 'X' not found: propName")` → returns `null` → property is silently dropped from the BOG.
+
+> **[Corrected by B418 (§14)]** "silently dropped" is imprecise: `warningAndSkip()` first emits
+> `log.warning("Type \"...\" not found: propName [line:col]")` at WARNING level, then skips — the drop is
+> **logged, not silent**, and the station still boots (recoverable). B418 also splits the two resolvers:
+> `BogTypeResolver` (native, a station loading its OWN BOG) vs `BlacklistTypeResolver` (B414, supervisor
+> decoding a subordinate's BOG). See [Block 418].
 `[CERT]` `ValueDocDecoder.java:1679-1684` (TypeNotFoundException catch in BogTypeResolver.newInstance)
 
 The only type-swap mechanism in the standard load path is a static `typeSwapMap` with a SINGLE hardcoded entry:
