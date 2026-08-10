@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **431 blocks**
+Total: **432 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -437,3 +437,4 @@ Total: **431 blocks**
 | 433 | [niagara-mental-model-bloque433.md](niagara-mental-model-bloque433.md) | The Hx framework: BHxView is a servlet view, not a Swing view — buffered HTML, header-keyed events, and poll-based live values |
 | 434 | [niagara-mental-model-bloque434.md](niagara-mental-model-bloque434.md) | devkit-wb is NOT an SDK: it is the Niagara Developer Kit tooling — module/driver wizards, Slotomatic, and lexicon tools, Workbench-only |
 | 435 | [niagara-mental-model-bloque435.md](niagara-mental-model-bloque435.md) | wbutil-wb is not a passive util jar: it hosts the user/role/permission UI, the primitive cell editors, and the credential/license tools |
+| 436 | [niagara-mental-model-bloque436.md](niagara-mental-model-bloque436.md) | The platform admin UI: platform-wb connects, platDaemon-wb is the client of the plat.exe daemon over the 3011/5011 wire |

@@ -10,9 +10,9 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 covered_blocks: 422
-gaps_closed: 9
+gaps_closed: 10
 known_gaps: 12
-investigable_open: 3
+investigable_open: 2
 requires_execution_open: 0
 blocked_open: 0
 block_scope: shared-global
@@ -68,7 +68,7 @@ bajaui-wb 536, workbench-wb 505, wiresheet-wb 68, hx-wb 122, devkit-wb 683, wbut
 | medium | WB07 workbench-wb — command + wizard + transfer (seams de extensión) | decompiled-java | closed (B432) |
 | medium | WB08 devkit-wb — dev tooling (NO SDK): wizards New Module/Driver + Slotomatic + lexicon tools | decompiled-java | closed (B434) |
 | low | WB09 wbutil-wb — capa de servicios UI transversales (user/role/perm UI + cell editors + credential/license tools) | decompiled-java | closed (B435) |
-| low | WB10 platform-wb + platDaemon-wb — UI de administración de plataforma | decompiled-java | pending |
+| low | WB10 platform-wb + platDaemon-wb — UI de administración de plataforma (cliente del daemon plat.exe) | decompiled-java | closed (B436) |
 | low | WB11 driver-wb + ndriver-wb — framework genérico de UI de driver (BAbstractDiscovery, BDeviceManager) | decompiled-java | pending |
 | low | WB12 cola larga de UI de drivers (51 módulos, bucket — tras WB11) | decompiled-java | pending |
 
@@ -81,9 +81,9 @@ WB08 desbloquea los seams de extensión; WB06 (Hx) es ortogonal.
 
 ## Clasificación (§8)
 
-- **read-only-investigable**: **3** abiertos (9 cerrados: WB01-WB09). **requires-execution**: 0. **blocked**: 0.
-- **Coverage metric**: 9 / 12. + wbutil (B435).
-- **Próximo libre**: B436. NEXT = WB10 (platform-wb UI). Siguen WB10, WB11, WB12.
+- **read-only-investigable**: **2** abiertos (10 cerrados: WB01-WB10). **requires-execution**: 0. **blocked**: 0.
+- **Coverage metric**: 10 / 12. + platform UI (B436).
+- **Próximo libre**: B437. NEXT = WB11 (driver-wb framework). Sigue WB12 (bucket).
 
 ## Historia de iteración
 
@@ -99,3 +99,4 @@ WB08 desbloquea los seams de extensión; WB06 (Hx) es ortogonal.
 | 7 | 2026-08-10 | WB06 Hx render framework | B433 | BHxView extends BServletView (NO BWbView) — Hx=profile de servlet/HTML, no Swing. Sin BHxServlet: la view ES el handler; /ord?target→BServletView agent→doGet→profile.writeDocument→view.write(HxOp)→HtmlWriter buffer→page shell (DOCTYPE/head/form + CSRF). Eventos: registerEvent server-side + dispatch header-keyed (EVENT_PATH/EVENT_ID)→process→event.handle; Command extends Event (evento web, NO el Command de undo). Hx-vs-Wb: HxFilter agent filter + translate() swap al peer Hx del registry. State: stateless por request; live values POLL-based (hx.poll.freq 5000ms), sin push/HxSession. Legacy: @Deprecated 4.13/5.0, BHTML5HxProfile=sucesor. | yes · sonnet |
 | 8 | 2026-08-10 | WB08 devkit-wb | B434 | PREMISA "SDK" REFUTADA: devkit-wb = módulo de HERRAMIENTAS de desarrollo (Niagara Developers Kit), NO un SDK ni ejemplos. De 683 clases, 506 son JavaParser embebido; ~177 Tridium. runtimeProfile="wb" (NUNCA en station), autoload, permisos <<ALL FILES>>+exitVM. 4 subsistemas: New Module Wizard (Velocity/Gradle scaffolding), New Driver Wizard (NDriver/Video .vm templates), Slotomatic (slot code-gen del // AUTO-GENERATED, el mismo del Gradle plugin, tie a B426), Lexicon tools (BLexiconTool extends BWbNavNodeTool, tie a B428) + PaletteGenerator. No hookea el build lifecycle de la station. | yes · sonnet |
 | 9 | 2026-08-10 | WB09 wbutil-wb | B435 | NO es librería pasiva: capa de servicios UI transversales que registra @AgentOn views en ~15 tipos core. 84 clases/8 dominios. Aquí vive la UI de user/role/permission: BUserManager (@AgentOn baja:UserService, extends BAbstractManager), BPermissionsBrowser (ACL RoleService+UserService). Cell editors (12 primitivos), field editors (gx color/brush/ORD), BColorChooser HSV. Security-adjacent: BManageCredentialsTool (creds remotas via AuthUtil), BRequestLicenseTool (reflection a portalApi). Password FE mangleados (token n, parent BWbFieldEditor real). Pull Fox+authn = módulo required. | yes · sonnet |
+| 10 | 2026-08-10 | WB10 platform-wb + platDaemon-wb | B436 | platform-wb=capa de conexión (scheme platform:, BDaemonCnxHandler plain/BDaemonSecureCnxHandler TLS); platDaemon-wb=UI de tools (SoftwareManager/StationCopier/ApplicationDirector/LicenseManager/TcpIp/DistInstaller/Commissioning). Es el CLIENTE del daemon plat.exe (B381): envía messages del wire que plat.exe implementa (3011/5011, REMITTANCE B129). Creds de plataforma = OS/file-domain (BUsernameAndPassword), distintas de station users; DaemonCredentialsManager guarda en 2 realms. TLS settings version-gated (key passphrase ≥4.13). Commissioning AuthStep negocia SCRAM/native/file. Sin license gate: el gate es la auth del daemon. VERIFY atrapó mangling en BDaemonCnxHandler (port 3011→n) y BPlatformConnectionOptions ausente → downgrade honesto. | yes · sonnet |
