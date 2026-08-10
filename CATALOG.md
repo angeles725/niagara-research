@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **420 blocks**
+Total: **421 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -426,3 +426,4 @@ Total: **420 blocks**
 | 422 | [niagara-mental-model-bloque422.md](niagara-mental-model-bloque422.md) | `kitPxBuilding`: BComponents como agregadores de estado multi-input (la excepción del pack) |
 | 423 | [niagara-mental-model-bloque423.md](niagara-mental-model-bloque423.md) | `galileoKitPx`: kitPx OEM Honeywell Galileo — PIN-based access control sobre widgets PX (license-gated, ZKM obfuscado) |
 | 424 | [niagara-mental-model-bloque424.md](niagara-mental-model-bloque424.md) | NreWin32::getHostId: the Niagara Host ID is a non-cryptographic 8-byte XOR fold of four host inputs |
+| 425 | [niagara-mental-model-bloque425.md](niagara-mental-model-bloque425.md) | dsfspi.dll: the DSF crypto SPI is a thin JCE provider over statically-linked Mocana NanoCrypto |

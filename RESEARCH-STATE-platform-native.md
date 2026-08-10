@@ -11,7 +11,7 @@ schema: research-state.v1
 covered_blocks: 8
 gaps_closed: 13
 known_gaps: 13
-investigable_open: 1
+investigable_open: 0
 requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
@@ -42,7 +42,7 @@ instruction‑grade evidence, not re‑derivation. Tool added: `tools/ghidra-scr
 | med | **NG3** | `plat.exe` decompiled: DPAPI `systempw` + `CreateServiceA` daemon registration | plat.exe | **covered → B381** |
 | med | **NG4** | `libciper.so` QNX‑ARM bodies (DWARF): Sylk masterslave file‑transfer + dual CRC | libciper.so | **covered → B382** |
 | high | **NG5** | `NreWin32::getHostId` COMPUTATION body (the algorithm B124 only INFERred): the 4 host inputs + the byte fold + rendering | njre.dll (twin in nre.dll) | **covered → B424** |
-| high | **NG6** | DSF crypto SPI bodies (`DsfDsaKeyPairGenerator`/digest/cipher/RNG): own impl vs delegation | dsfspi.dll | **pending → NEXT** |
+| high | **NG6** | DSF crypto SPI bodies (`DsfDsaKeyPairGenerator`/digest/cipher/RNG): own impl vs delegation | dsfspi.dll | **covered → B425** (total delegation to static Mocana NanoCrypto; AES-256-CBC; CTR-DRBG timer-seeded) |
 
 ## Gap‑backlog (prioritized)
 
@@ -60,6 +60,7 @@ instruction‑grade evidence, not re‑derivation. Tool added: `tools/ghidra-scr
 
 | # | Date | Gap closed | Block | Delegated? · tier | New gaps uncovered |
 |---|---|---|---|---|---|
+| 15 | 2026‑08‑10 | **NG6** DSF crypto SPI bodies (`dsfspi.dll`) | B425 | yes · sonnet (Ghidra sweep) + inline token-verify | 0 new. **Closes B126 §126.2 residual**: DSF = JCE provider `com.tridium.dsf.provider` whose native SPIs TOTALLY delegate to statically-linked **Mocana NanoCrypto** (no OpenSSL/BSAFE/BCrypt). DSA/RSA keygen via Mocana+DER; AES-256-**CBC** (no GCM); SecureRandom = NIST CTR-DRBG seeded ONLY from KERNEL32 timers (no BCryptGenRandom) = seed-quality concern. `nre.dll` consumes exactly 1 export (`checkFileSignature`). Ties to B380 FIPS gate. **investigable back to 0.** |
 | 14 | 2026‑08‑10 | **NG5** `NreWin32::getHostId` computation body (Ghidra + r2 varargs recovery) | B424 | no · inline + sonnet (dsfspi sweep for NG6 prep) | 1 new (NG6 dsfspi SPI bodies). **UPGRADES B124 INFER→CERT + CORRECTS scope**: HostId = non‑crypto 8‑byte XOR/shift fold of 4 inputs (hidden key `lk`, RegisteredOwner registry, cached product id, C: volume serial), rendered `<tridium/Win>-XXXX‑…`; volume serial is 1 of 4, not the whole derivation. `disableHostIdGeneration` gate → `exit(0xf9)`. GROUND‑TRUTH: body in njre.dll (twin in nre.dll); Ghidra dump offsets are the twin image — anchored to njre.dll sha256 + r2 xrefs. |
 | 8 | 2026‑08‑07 | **NG1** `nverify.exe` verify pipeline decompiled (Ghidra sub‑pass) | B379 | no · inline (security exploitability = driver‑model per MODEL TIER) | 4 new: NG1‑G1 (untraced skip gate sites), NG2 (nre/common bodies), NG3 (plat.exe), NG4 (libciper.so). **Corrects B126 §126.4**: 11 options incl. 4 `skip-*` bypasses (B126 listed 5); TPK = 270‑byte RSA‑2048 pin via memcmp (absent from B126). New tool `DecompileByString.java`. |
 | 13 | 2026‑08‑07 | **NG2b** nre.dll 107-native API taxonomy + DPAPI crypto bodies | B385 | no · inline | 0 new. **KEY**: addUserAccount0/executeNativeDiagnosticsCommand0/getNativeDiagnosticsCommands0/getSystemPassword0 = shared return-0 STUB @0x180002520 on Windows supervisor (embedded-only); changeUser/removeUser @0x180002530. LIVE: DpapiUtil.encrypt0/decrypt0 (DPAPI, cap 4096, zeroize), isPasswordValid0→AuthenticationUtil. Upgrades B125 §125.4. **SUB-PASS EXHAUSTED (investigable=0)**. |
@@ -81,14 +82,18 @@ instruction‑grade evidence, not re‑derivation. Tool added: `tools/ghidra-scr
 - N6 (platform TCP wire protocol) — the *static* binary analysis is **done (B129)**: `plat.exe` + SCM service model documented, and the wire proven to be Java (`platDaemon`/`platform.fox`, 3011 plaintext / 5011 TLS via `secure = port != 3011`), absent from native binaries. Capturing the **live 3011/5011 framing/handshake** still needs a running daemon + client → requires‑execution / DYNAMIC phase.
 - (none hard‑blocked on missing tools. **Ghidra 12.1 headless IS available** at `/home/linuxbrew/.linuxbrew/Cellar/ghidra/12.1` via `decompile-native.sh ghidra` — used in B125; gotcha: import `nre.dll` in isolation, its export cache crashes Ghidra's library‑lookup writer on a 0x04‑byte export name.)
 
-## Stop control — REOPENED 2026‑08‑10 (uncaptured body-grade dumps, investigable = 1)
+## Stop control — RE‑STOPPED 2026‑08‑10 (uncaptured dumps captured, investigable = 0)
 
-**REOPENED — 2026‑08‑10.** A coverage audit found two Aug‑1 Ghidra body dumps (`decomp-hostid.txt`,
-`decomp-dsfspi.txt`) that were NEVER captured into blocks — so the 2026‑08‑07 `investigable = 0` was false
-for two real body-grade seams: (a) `getHostId` COMPUTATION (only the JNI shim + INFER were documented, B124/
-B125) and (b) the DSF crypto SPI bodies (only symbol/vtable inventory, B126 §126.2). NG5 (getHostId) CLOSED
-by B424. NEXT = **NG6** (`dsfspi.dll` DSF SPI bodies — keypair/digest/cipher/RNG delegation). Investigable = 1.
-The three dynamic gaps (N4/N5/N6 live) remain requires‑execution.
+**STOP DECLARED — 2026‑08‑10.** The 2026‑08‑10 reopening captured the two uncaptured Aug‑1 body dumps:
+NG5 (`getHostId`, B424) and NG6 (DSF crypto SPI, B425). Both were real body-grade seams the 2026‑08‑07
+`investigable = 0` had missed. With them closed, **read‑only static‑investigable native gaps = 0 again.**
+The remaining `tools/ghidra-scripts/` Aug‑1 dumps are already covered (`decomp-checkfile.txt`=checkFileSignature
+B126 §126.3 · `decomp-out.txt`=isFeaturePresent B126 §126.6 · `decomp-callers.txt`=createVM B125 §125.2) —
+no further uncaptured seam. The three dynamic gaps (N4/N5/N6 live) remain requires‑execution.
+
+**REOPENED — 2026‑08‑10 (now closed):** coverage audit found `decomp-hostid.txt`/`decomp-dsfspi.txt` never
+captured; (a) `getHostId` computation (only JNI shim + INFER, B124/B125) → B424, (b) DSF SPI bodies (only
+symbol inventory, B126 §126.2) → B425.
 
 **(prior) REOPENED — 2026‑08‑07** (Ghidra‑grade sub‑pass): NG1‑G1/NG2/NG3/NG4 closed → B384/B380/B385/B381/
 B382. Declared investigable = 0 on 2026‑08‑07 — corrected on 2026‑08‑10 (see above).
