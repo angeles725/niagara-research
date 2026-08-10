@@ -1,0 +1,92 @@
+# RESEARCH-STATE — focus: workbench (BOOTSTRAPPING)
+
+> Focus **BOOTSTRAPEADO** el 2026-08-10 a pedido del usuario tras confirmar que el Workbench está lejos de
+> cubierto: de **202 módulos `-wb`** en el install, solo 2 subsistemas están a fondo (edición PX y charting);
+> 120 módulos no se mencionan ni una vez. §16 multi-focus: focus nuevo sobre target maduro.
+>
+> Corpus en **Español (bloques en EN, convención desde B115)**. Numeración global; próximo libre: **B427**.
+> Engram topic key: `research/niagara/workbench/{gaps,progress}`.
+
+<!-- research-state.v1 -->
+schema: research-state.v1
+covered_blocks: 422
+gaps_closed: 0
+known_gaps: 12
+investigable_open: 12
+requires_execution_open: 0
+blocked_open: 0
+block_scope: shared-global
+<!-- /research-state.v1 -->
+
+focus: workbench
+status: active
+planned_on: 2026-08-10
+started_on:
+
+## Ángulo declarado (§b2)
+
+La infraestructura del **Workbench Swing** como herramienta de ingeniería — el core UI (`bajaui`/`gx`/
+`workbench-wb`), el framework de **managers/views/tablas**, el **wire sheet**, el **property sheet**, el
+**nav tree**, y el framework de **field editors** (no-PX). **EXCLUYE por REMITTANCE** lo ya profundo:
+edición PX (`px-*`, `pxEditor`, `kitPx*`, `webEditors`, `galileoKitPx`) y charting (`chart*`, `webChart`).
+No es re-derivar lo documentado — es abrir la infraestructura sobre la que esos focuses se apoyaron sin
+nunca abrirla.
+
+## Coverage matrix (§13 audit-first, sembrado por sweep delegado 2026-08-10)
+
+202 módulos `-wb` en 15 clusters. Verificado por el driver: dirs vineflower presentes (gx-wb 1075 `.java`,
+bajaui-wb 536, workbench-wb 505, wiresheet-wb 68, hx-wb 122, devkit-wb 683, wbutil-wb 84).
+
+| Subsistema | # | Profundidad actual | Veredicto |
+|---|---|---|---|
+| PX editing + charting | 9 | **deep** B179-215/251-259/289-293/421-423 | REMITTANCE |
+| Core UI toolkit (gx/bajaui) | 4 | **partial** (B22 runtime, B38 forms, B183/190 gx-PX) — modelo BWidget/BPane Swing SIN abrir | **GAP WB01** |
+| Workbench shell/framework | 3 | **partial** (B9/B15 conceptual) — shell, nav tree, sidebars, commands SIN abrir | **GAP WB02/04/05/07** |
+| Wiresheet editor | 1 | **named-only** (B15 título) | **GAP WB03** |
+| Hx/mobile/browser | 4 | **named-only** (B9/B194 mención) | **GAP WB06** |
+| Platform admin UIs | 15 | partial (rt-level B10/B129/B392-395) | WB10 (low) |
+| Core app domain UIs | 11 | partial (rt-level B8/B24/B34) | capa tool -wb no documentada (low) |
+| Manager/table/grid | 8 | partial (B267/B365) — celltable/BWManager SIN abrir | **GAP WB05** |
+| Dev & test tools | 5 | **none** (devkit-wb sin cubrir) | **GAP WB08** |
+| Security/auth/cert UIs | 7 | eSignature **deep** B350-356; resto **none** | low |
+| Provisioning/backup/cloud | 9 | partial (B39) | low |
+| Content/data/report/misc | 20 | report B357-365/email B331/json B347 deep; resto none | low |
+| Protocol driver UI long tail | 51 | modbus-wb deep B304; bacnet/lon/knx partial; resto none | **GAP WB11 (framework) + WB12 (bucket)** |
+| OEM UIs (Hon/Centraline/Galileo) | 46 | mayormente deep B77-122/241-250 | residuo bajo valor |
+| Video/surveillance UIs | 9 | **none** | fuera de scope del ángulo |
+
+## Gap-backlog (priorizado)
+
+| Priority | Gap | Type | Status |
+|---|---|---|---|
+| high | WB01 gx-wb + bajaui-wb — modelo BWidget/BPane/BComponent-UI + layout + event dispatch + theming Palladium | decompiled-java | pending |
+| high | WB02 workbench-wb — shell + nav tree (BNavTree) + sidebars + console | decompiled-java | pending |
+| high | WB03 wiresheet-wb — canvas BSheet + BLink + drag/drop palette + routing + undo | decompiled-java | pending |
+| high | WB04 workbench-wb propsheet + slotsheet + dispatch de field editors Swing (no-PX) | decompiled-java | pending |
+| medium | WB05 workbench-wb celltable/cellmini + patrón BWManager (device/point managers) | decompiled-java | pending |
+| medium | WB06 hx-wb — framework de render Hx por servlet (BHxView, pipeline HTML/JS) | decompiled-java | pending |
+| medium | WB07 workbench-wb — command + wizard + transfer (seams de extensión) | decompiled-java | pending |
+| medium | WB08 devkit-wb — SDK de extensión del Workbench (view agents, palette, manager custom) | decompiled-java | pending |
+| low | WB09 wbutil-wb — librería de utilidades compartida del Workbench | decompiled-java | pending |
+| low | WB10 platform-wb + platDaemon-wb — UI de administración de plataforma | decompiled-java | pending |
+| low | WB11 driver-wb + ndriver-wb — framework genérico de UI de driver (BAbstractDiscovery, BDeviceManager) | decompiled-java | pending |
+| low | WB12 cola larga de UI de drivers (51 módulos, bucket — tras WB11) | decompiled-java | pending |
+
+Orden recomendado: WB01 → WB02 → WB03 → WB04 → WB05 → WB07 (modelo completo del framework Swing);
+WB08 desbloquea los seams de extensión; WB06 (Hx) es ortogonal.
+
+## Blocked gaps
+
+- none
+
+## Clasificación (§8)
+
+- **read-only-investigable**: **12** (todos con fuente vineflower confirmada). **requires-execution**: 0. **blocked**: 0.
+- **Coverage metric**: 0 / 12.
+- **Próximo libre**: B427. NEXT = WB01.
+
+## Historia de iteración
+
+| It | Fecha | Gap | Bloque | Hallazgo | Delegado? · tier |
+|---|---|---|---|---|---|
+| 0 | 2026-08-10 | (bootstrap) audit-first coverage matrix | — | 202 módulos `-wb`; matrix + backlog sembrados por sweep delegado (sonnet) | yes · sonnet (audit) |
