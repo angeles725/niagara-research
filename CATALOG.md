@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **427 blocks**
+Total: **428 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -433,3 +433,4 @@ Total: **427 blocks**
 | 429 | [niagara-mental-model-bloque429.md](niagara-mental-model-bloque429.md) | The wire sheet editor: glyphs mirror the component tree, layout persists as a hidden slot, links delegate to workbench commands |
 | 430 | [niagara-mental-model-bloque430.md](niagara-mental-model-bloque430.md) | The property sheet and Swing field-editor dispatch: @AgentOn on the value's type, committed in a Transaction |
 | 431 | [niagara-mental-model-bloque431.md](niagara-mental-model-bloque431.md) | The manager framework: BAbstractManager maps a container's children to permission-filtered rows, with a BJob-driven learn/discovery pane |
+| 432 | [niagara-mental-model-bloque432.md](niagara-mental-model-bloque432.md) | Commands, undo, transfer, and wizards: the Workbench extension seams and the undo model every editor plugs into |

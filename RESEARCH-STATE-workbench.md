@@ -10,9 +10,9 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 covered_blocks: 422
-gaps_closed: 5
+gaps_closed: 6
 known_gaps: 12
-investigable_open: 7
+investigable_open: 6
 requires_execution_open: 0
 blocked_open: 0
 block_scope: shared-global
@@ -65,7 +65,7 @@ bajaui-wb 536, workbench-wb 505, wiresheet-wb 68, hx-wb 122, devkit-wb 683, wbut
 | high | WB04 workbench-wb propsheet + slotsheet + dispatch de field editors Swing (no-PX) | decompiled-java | closed (B430) |
 | medium | WB05 workbench-wb celltable/cellmini + patrón BWManager (device/point managers) | decompiled-java | closed (B431) |
 | medium | WB06 hx-wb — framework de render Hx por servlet (BHxView, pipeline HTML/JS) | decompiled-java | pending |
-| medium | WB07 workbench-wb — command + wizard + transfer (seams de extensión) | decompiled-java | pending |
+| medium | WB07 workbench-wb — command + wizard + transfer (seams de extensión) | decompiled-java | closed (B432) |
 | medium | WB08 devkit-wb — SDK de extensión del Workbench (view agents, palette, manager custom) | decompiled-java | pending |
 | low | WB09 wbutil-wb — librería de utilidades compartida del Workbench | decompiled-java | pending |
 | low | WB10 platform-wb + platDaemon-wb — UI de administración de plataforma | decompiled-java | pending |
@@ -95,3 +95,4 @@ WB08 desbloquea los seams de extensión; WB06 (Hx) es ortogonal.
 | 3 | 2026-08-10 | WB03 wire sheet editor | B429 | BWireSheet @AgentOn(baja:Component,W)→BWireSheetPane(BEdgePane)→BScrollPane→BWsCanvas (BTransferWidget, NO BCanvasPane). RootGlyph 2 capas (componentLayer/linkLayer); ComponentGlyph=live BComponent+handle; StdComponentGlyph=titleBar+SlotBarGlyph/slot (terminals)+footer. Links=LinkSnakeGlyph ruteo ortogonal wixel-grid. CLAVE: creación de link/component DELEGADA a javax.baja.workbench.commands.LinkCommand/RelateCommand (el sheet NO escribe el BLink). Layout persiste como slot HIDDEN wsAnnotation (BWsAnnotation p/q/w) en el componente mismo (flag 1, en Transaction) → vive en el BOG, no side-car. Undo=WsCommand extends Command. VERIFY: cita LinkCommand estaba en states/ y token mangleado ln→resuelto en copia preservada. | yes · sonnet |
 | 4 | 2026-08-10 | WB04 property sheet + field editor dispatch | B430 | BPropertySheet @AgentOn(baja:Component,r)=Property rows curados (filtra hidden/action/topic/wsAnnotation); BSlotSheet @AgentOn(W)=getSlotsArray raw schema. FE base BWbFieldEditor extends BWbEditor (doLoadValue/doSaveValue). DISPATCH 2 niveles: TIER1 facet "fieldEditor" override → TIER2 kid.getAgents().filter(FE).getDefault() keyed en el TIPO DEL VALOR (mismo @AgentOn que views B428/web FE B421/PX FE B214). Concretos: baja:Boolean→BBooleanFE, baja:Complex→BPropertySheetFE (recursivo). Commit: dirty→shell Save→1 Transaction→complex.set(prop, saveValue(), tx). | yes · sonnet |
 | 5 | 2026-08-10 | WB05 manager/table framework | B431 | 2 PREMISAS REFUTADAS: no existe BWManager (base=BAbstractManager extends BWbComponentView); BCellTable/cellmini NO es la tabla del manager (es grid de edición live separado, la tabla es BMgrTable). Manager 2-pane (BSplitPane: learn arriba/table abajo). BMgrTable.reload mapea children vía SlotCursor (o BQL deep, B406) filtrado por model.accept AND hasOperatorRead (seguridad row-level). MgrColumn abstract (display/edit/editor, flags EDITABLE/UNSEEN/READONLY). MgrLearn (default null, override por driver) = discovery async por BJob. New/Add→MgrEdit.invoke→BMgrEditDialog batch→commit→addInstances→Mark.moveTo. | yes · sonnet |
+| 6 | 2026-08-10 | WB07 command + wizard + transfer | B432 | CAPSTONE del framework. Command (concreto) doInvoke→CommandArtifact→UndoManager (undo stack max 10) = el modelo de undo de TODO el Workbench (WsCommand B429, MgrCommand B431, Save B430 lo obedecen). Contribución: BWbView.getViewMenus/getViewToolBar (sin CommandSet type); shell merge en activación. Edit IDs (CUT=0..PASTE_SPECIAL=11)→PluginCommand→invokeCommand(id)→BTransferWidget. Transfer: BTransferWidget (3 abstract), clipboard=Mark (BObject[]+names) @TransferFormat.mark; TransferArtifact implements CommandArtifact async+undoable. Wizard: BWizardView+WizardViewModel (step via StepModel). 4 seams de extensión, todos @AgentOn. Cierra arc WB01-WB07 (B427-B432). | yes · sonnet |
