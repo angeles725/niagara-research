@@ -14,9 +14,9 @@
 
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 416
-gaps_closed: 3
-known_gaps: 6
+covered_blocks: 413
+gaps_closed: 4
+known_gaps: 7
 investigable_open: 2
 requires_execution_open: 0
 blocked_open: 1
@@ -51,9 +51,10 @@ driver `niagaraDriver` que ambos usan.
 | high | N1 el riesgo BSubstitutePxView wb-vs-rt | decompiled-java | **closed (B414)** |
 | high | N2 niagaraDriver el driver que sostiene el join | decompiled-java | **closed (B415)** |
 | medium | N3 la guia oficial de exportTags | external-doc | **closed (B416)** |
-| medium | N4 seguridad del canal de join | decompiled-java | pending |
+| medium | N4 seguridad del canal de join | decompiled-java | **closed (B417)** |
 | low | N5 reproducir el fallo de tipo en un JACE | requires-execution | blocked |
 | low | N6 cómo Niagara maneja tipos no resueltos en BOG de la propia station | decompiled-java | pending |
+| low | N7 mecanismo de key exchange de la clave compartida Fox (¿DH o estático?) | decompiled-java | pending |
 
 ### Detalle por gap
 
@@ -70,26 +71,27 @@ driver `niagaraDriver` que ambos usan.
 - **N3 (MED)** — los 86 apartados de `docExportTags-N4.14-guide.md`, **ya preservados y con gate e3 pasado**.
   Aplicar el patrón de [Bloque 269]: RESUELVE / MATIZA / AGREGA / **lo que la doc NO resuelve**. Hacer el
   back-fill de la celda de bloque citante en `SOURCES.md`.
-- **N4 (MED)** — el canal de join como superficie de seguridad: `BConnectInfo` transporta credenciales como
-  **parámetro de acción serializado** sobre Fox ([Bloque 266] §266.5), y con `useFoxs=false` viaja sin TLS.
-  Además la contraseña es una columna `Prop` normal en `BJoinProfileManager` ([Bloque 267] §267.4).
-  **Aplicar la regla adoptada**: todo claim de permisos se verifica contra la semántica real del framework
-  antes de escribirse (4 de 4 fallaron en el focus `tags`).
-- **N5 (BLOQUEADO, requires-execution)** — reproducir el fallo de N1 exige una station viva sin el jar `-wb`.
-  **No cuenta como investigable** (§8).
+- **N4 (MED)** — **CERRADO (B417)** — canal de join como superficie de seguridad: BPassword mitiga
+  riesgo en reposo y en UI (BPassword.toString()="--password--" refuta B267§267.4); riesgo real =
+  transporte plain Fox (useFoxs=false default) donde la clave compartida Fox se negocia sin TLS
+  (→ [INFER] N7). Acción join es admin-only (OPERATOR flag ausente). Framework-semantic: 1/2 confirmados.
 - **N6 (LOW, pendiente)** — B414 §414.5 no pudo resolver read-only qué hace Niagara cuando una station
   propia carga su BOG con un tipo no resuelto (p.ej. `exportTags:PxViewTag` en un JACE). Requiere encontrar
   `ValueDocDecoder` o el mecanismo de arranque de estación en las fuentes decompiladas de `baja`/`nre`.
-
+- **N7 (LOW, pendiente, NUEVO)** — mecanismo de intercambio de clave compartida Fox: ¿DH (efímero, por sesión)
+  o derivado del hello en plaintext? Determina si el cifrado del canal `"point"` ofrece confidencialidad real
+  sin TLS. Fuente: `fox-rt/BFoxSession.java` + handshake hello Fox. Registrado en B417 §417.8.
+- **N5 (BLOQUEADO, requires-execution)** — reproducir el fallo de N1 exige una station viva sin el jar `-wb`.
+  **No cuenta como investigable** (§8).
 ## Blocked gaps
 
 - N5 — needs: station viva (JACE-class supervisor sin perfil `-wb`) · tried: análisis estático de BlacklistTypeResolver (B414 §414.4) → confirma omisión silenciosa lógicamente, pero no produce fallo observado; hardware inaccesible.
 
 ## Clasificación (§8)
 
-- **read-only-investigable**: **2** (N4, N6). **requires-execution / blocked**: 1 (N5).
-- **Coverage metric**: **3 / 6** (3 bloques escritos, N1, N2 y N3 cerrados).
-- **Próximo gap**: **N4**.
+- **read-only-investigable**: **2** (N6, N7). **requires-execution / blocked**: 1 (N5).
+- **Coverage metric**: **4 / 7** (4 bloques escritos, N1, N2, N3 y N4 cerrados).
+- **Próximo gap**: **N6**.
 
 ## Historia de iteración
 
@@ -100,5 +102,6 @@ driver `niagaraDriver` que ambos usan.
 | 2 | 2026-08-09 | N2 | B415 | niagaraDriver-rt: 106 clases; BNiagaraNetwork→BNiagaraStation (device-proxy)→BNiagaraProxyExt (pointId+mid)+BPointChannel (sub batch Fox); imports history/file/schedule por canal Fox nombrado | no · inline (sonnet) |
 
 | 3 | 2026-08-09 | N3 | B416 | guía oficial exportTags: RESUELVE flujo Join+credenciales, MATIZA SubstitutePxView supervisor-side y merge-inteligente, AGREGA workflow commissioning+BFormat+licencia virtual-points+CategoryFilter top-down; la doc NO resuelve BlacklistTypeResolver ni credenciales-en-claro ni worker/cola | no · inline |
+| 4 | 2026-08-09 | N4 | B417 | Seguridad canal join: BPassword mitiga UI+reposo (refuta B267§267.4 [INFER]); riesgo real=transport plain Fox (useFoxs=false default); join action=admin-only; framework-semantic check 1/2; N7 nuevo (Fox key exchange) | no · inline (sonnet) |
 
-**Resume condition**: focus ACTIVE desde It 1. Próximo: N4 (seguridad canal de join).
+**Resume condition**: focus ACTIVE desde It 1. Próximo: N6 (tipos no resueltos en BOG).

@@ -94,6 +94,8 @@ donde la separación parece violada.
   `[CERT]`. El flag `1` la deja oculta por defecto en el selector de columnas, pero **el enmascarado no se
   impone en esta capa**: depende de que la propiedad tenga su propio field editor de password.
   `[INFER]` Un operador que active esa columna podría ver la credencial de join en una tabla.
+  **[corrected in B417 §417.4]** — `BPassword.toString()` retorna `"--password--"`: la celda NO
+  muestra plaintext. El riesgo de exposición visual en el manager está mitigado por diseño.
 - **Dos managers compiten por el mismo tipo**: `BExportTagSummaryManager` y `BJoinProfileManager` son ambos
   agentes sobre `SubordinateExportTagNetworkExt` — el usuario elige cuál abrir desde el selector de vistas.
 - `JobTracker` ofrece exportar el log del join a archivo tras completarse.

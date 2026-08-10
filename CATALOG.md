@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **414 bloques**
+Total: **415 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -419,6 +419,7 @@ Total: **414 bloques**
 | 414 | [niagara-mental-model-bloque414.md](niagara-mental-model-bloque414.md) | Niagara Network Supervisor (I): resolución wb-vs-rt de `BSubstitutePxView` — veredicto N1 |
 | 415 | [niagara-mental-model-bloque415.md](niagara-mental-model-bloque415.md) | Niagara Network Supervisor (II): niagaraDriver — modelo device/proxy del join |
 | 416 | [niagara-mental-model-bloque416.md](niagara-mental-model-bloque416.md) | Niagara Network Supervisor (III): la guía oficial de Export Tags — lo que resuelve, lo que matiza y lo que agrega |
+| 417 | [niagara-mental-model-bloque417.md](niagara-mental-model-bloque417.md) | Niagara Network Supervisor (V): seguridad del canal de join — credenciales, transporte y permisos |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
