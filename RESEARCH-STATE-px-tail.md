@@ -12,17 +12,19 @@
 
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 266
-gaps_closed: 0
+covered_blocks: 417
+gaps_closed: 1
 known_gaps: 3
-investigable_open: 3
+investigable_open: 2
 requires_execution_open: 0
 blocked_open: 0
+block_scope: shared-global
 <!-- /research-state.v1 -->
 
 focus: px-tail
-status: planned
+status: active
 planned_on: 2026-07-24
+started_on: 2026-08-09
 
 ## Ángulo declarado (§b2)
 
@@ -45,8 +47,8 @@ el error **dos veces** (chart: 134 vs 67 real; estos tres módulos: 190/57/30 vs
 
 | Priority | Gap | Type | Status |
 |---|---|---|---|
-| high | P1 webEditors la capa ux de field editors web | decompiled-java | pending (NEXT) |
-| medium | P2 kitPxBuilding componentes de equipo tipados | decompiled-java | pending |
+| high | P1 webEditors la capa ux de field editors web | decompiled-java | closed (B421) |
+| medium | P2 kitPxBuilding componentes de equipo tipados | decompiled-java | pending (NEXT) |
 | low | P3 galileoKitPx el kitPx de otro OEM | decompiled-java | pending |
 
 ### Detalle por gap
@@ -71,13 +73,13 @@ el error **dos veces** (chart: 134 vs 67 real; estos tres módulos: 190/57/30 vs
 ## Clasificación (§8)
 
 - **read-only-investigable**: **3** (P1-P3). **requires-execution**: 0. **blocked**: 0.
-- **Coverage metric**: **0 / 3** (planned, 0 bloques).
-- **Próximo gap**: **P1**.
+- **Coverage metric**: **1 / 3** (1 bloque escrito).
+- **Próximo gap**: **P2**.
 
 ## Historia de iteración
 
 | It | Fecha | Gap | Bloque | Hallazgo | Delegado? · tier |
 |---|---|---|---|---|---|
-| (ninguna — focus PLANNED 2026-07-24) | | | | | |
+| 1 | 2026-08-09 | P1 webEditors | B421 | Patrón BSingleton+BIJavaScript+@AgentOn+JsInfo; 95 clases, 49 FE-baja, 66 tipos; BPropertySheet=vista principal; Wb↔Web: BWbFieldEditor vs BIJavaScript | No · sonnet |
 
-**Resume condition**: focus PLANNED, NO re-bootstrapear. Tomar P1 y correr el NORMAL CYCLE.
+**Resume condition**: 1/3 gaps closed. Tomar P2 y correr el NORMAL CYCLE.
