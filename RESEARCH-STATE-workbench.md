@@ -10,9 +10,9 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 covered_blocks: 422
-gaps_closed: 7
+gaps_closed: 8
 known_gaps: 12
-investigable_open: 5
+investigable_open: 4
 requires_execution_open: 0
 blocked_open: 0
 block_scope: shared-global
@@ -66,7 +66,7 @@ bajaui-wb 536, workbench-wb 505, wiresheet-wb 68, hx-wb 122, devkit-wb 683, wbut
 | medium | WB05 workbench-wb celltable/cellmini + patrón BWManager (device/point managers) | decompiled-java | closed (B431) |
 | medium | WB06 hx-wb — framework de render Hx por servlet (BHxView, pipeline HTML/JS) | decompiled-java | closed (B433) |
 | medium | WB07 workbench-wb — command + wizard + transfer (seams de extensión) | decompiled-java | closed (B432) |
-| medium | WB08 devkit-wb — SDK de extensión del Workbench (view agents, palette, manager custom) | decompiled-java | pending |
+| medium | WB08 devkit-wb — dev tooling (NO SDK): wizards New Module/Driver + Slotomatic + lexicon tools | decompiled-java | closed (B434) |
 | low | WB09 wbutil-wb — librería de utilidades compartida del Workbench | decompiled-java | pending |
 | low | WB10 platform-wb + platDaemon-wb — UI de administración de plataforma | decompiled-java | pending |
 | low | WB11 driver-wb + ndriver-wb — framework genérico de UI de driver (BAbstractDiscovery, BDeviceManager) | decompiled-java | pending |
@@ -81,9 +81,9 @@ WB08 desbloquea los seams de extensión; WB06 (Hx) es ortogonal.
 
 ## Clasificación (§8)
 
-- **read-only-investigable**: **5** abiertos (7 cerrados: WB01-WB07). **requires-execution**: 0. **blocked**: 0.
-- **Coverage metric**: 7 / 12. Framework Swing (B427-B432) + Hx (B433).
-- **Próximo libre**: B434. NEXT = WB08 (devkit SDK). Usuario pidió cerrar los 12: siguen WB08, WB09, WB10, WB11, WB12.
+- **read-only-investigable**: **4** abiertos (8 cerrados: WB01-WB08). **requires-execution**: 0. **blocked**: 0.
+- **Coverage metric**: 8 / 12. Framework Swing (B427-B432) + Hx (B433) + devkit (B434).
+- **Próximo libre**: B435. NEXT = WB09 (wbutil). Siguen WB09, WB10, WB11, WB12 (los 4 LOW).
 
 ## Historia de iteración
 
@@ -97,3 +97,4 @@ WB08 desbloquea los seams de extensión; WB06 (Hx) es ortogonal.
 | 5 | 2026-08-10 | WB05 manager/table framework | B431 | 2 PREMISAS REFUTADAS: no existe BWManager (base=BAbstractManager extends BWbComponentView); BCellTable/cellmini NO es la tabla del manager (es grid de edición live separado, la tabla es BMgrTable). Manager 2-pane (BSplitPane: learn arriba/table abajo). BMgrTable.reload mapea children vía SlotCursor (o BQL deep, B406) filtrado por model.accept AND hasOperatorRead (seguridad row-level). MgrColumn abstract (display/edit/editor, flags EDITABLE/UNSEEN/READONLY). MgrLearn (default null, override por driver) = discovery async por BJob. New/Add→MgrEdit.invoke→BMgrEditDialog batch→commit→addInstances→Mark.moveTo. | yes · sonnet |
 | 6 | 2026-08-10 | WB07 command + wizard + transfer | B432 | CAPSTONE del framework. Command (concreto) doInvoke→CommandArtifact→UndoManager (undo stack max 10) = el modelo de undo de TODO el Workbench (WsCommand B429, MgrCommand B431, Save B430 lo obedecen). Contribución: BWbView.getViewMenus/getViewToolBar (sin CommandSet type); shell merge en activación. Edit IDs (CUT=0..PASTE_SPECIAL=11)→PluginCommand→invokeCommand(id)→BTransferWidget. Transfer: BTransferWidget (3 abstract), clipboard=Mark (BObject[]+names) @TransferFormat.mark; TransferArtifact implements CommandArtifact async+undoable. Wizard: BWizardView+WizardViewModel (step via StepModel). 4 seams de extensión, todos @AgentOn. Cierra arc WB01-WB07 (B427-B432). | yes · sonnet |
 | 7 | 2026-08-10 | WB06 Hx render framework | B433 | BHxView extends BServletView (NO BWbView) — Hx=profile de servlet/HTML, no Swing. Sin BHxServlet: la view ES el handler; /ord?target→BServletView agent→doGet→profile.writeDocument→view.write(HxOp)→HtmlWriter buffer→page shell (DOCTYPE/head/form + CSRF). Eventos: registerEvent server-side + dispatch header-keyed (EVENT_PATH/EVENT_ID)→process→event.handle; Command extends Event (evento web, NO el Command de undo). Hx-vs-Wb: HxFilter agent filter + translate() swap al peer Hx del registry. State: stateless por request; live values POLL-based (hx.poll.freq 5000ms), sin push/HxSession. Legacy: @Deprecated 4.13/5.0, BHTML5HxProfile=sucesor. | yes · sonnet |
+| 8 | 2026-08-10 | WB08 devkit-wb | B434 | PREMISA "SDK" REFUTADA: devkit-wb = módulo de HERRAMIENTAS de desarrollo (Niagara Developers Kit), NO un SDK ni ejemplos. De 683 clases, 506 son JavaParser embebido; ~177 Tridium. runtimeProfile="wb" (NUNCA en station), autoload, permisos <<ALL FILES>>+exitVM. 4 subsistemas: New Module Wizard (Velocity/Gradle scaffolding), New Driver Wizard (NDriver/Video .vm templates), Slotomatic (slot code-gen del // AUTO-GENERATED, el mismo del Gradle plugin, tie a B426), Lexicon tools (BLexiconTool extends BWbNavNodeTool, tie a B428) + PaletteGenerator. No hookea el build lifecycle de la station. | yes · sonnet |

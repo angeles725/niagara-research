@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **429 blocks**
+Total: **430 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -435,3 +435,4 @@ Total: **429 blocks**
 | 431 | [niagara-mental-model-bloque431.md](niagara-mental-model-bloque431.md) | The manager framework: BAbstractManager maps a container's children to permission-filtered rows, with a BJob-driven learn/discovery pane |
 | 432 | [niagara-mental-model-bloque432.md](niagara-mental-model-bloque432.md) | Commands, undo, transfer, and wizards: the Workbench extension seams and the undo model every editor plugs into |
 | 433 | [niagara-mental-model-bloque433.md](niagara-mental-model-bloque433.md) | The Hx framework: BHxView is a servlet view, not a Swing view — buffered HTML, header-keyed events, and poll-based live values |
+| 434 | [niagara-mental-model-bloque434.md](niagara-mental-model-bloque434.md) | devkit-wb is NOT an SDK: it is the Niagara Developer Kit tooling — module/driver wizards, Slotomatic, and lexicon tools, Workbench-only |

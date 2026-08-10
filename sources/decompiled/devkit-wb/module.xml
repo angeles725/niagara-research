@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="devkit-wb" bajaVersion="0" vendor="Tridium" vendorVersion="4.14.0.162" description="Niagara Developers Kit" preferredSymbol="dev" nre="true" autoload="true" installable="true" buildMillis="1718363024528" buildHost="ee033fd13409" moduleName="devkit" runtimeProfile="wb" releaseDate="2024-05-28">
+ <dependencies>
+  <dependency name="alarm-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="axvelocity-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="baja" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="bajaScript-ux" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="bajaui-ux" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="bajaui-wb" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="bajaux-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="bajaux-ux" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="box-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="bql-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="chart-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="commonsLang-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="control-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="converters-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="converters-ux" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="driver-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="entityIo-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="export-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="export-ux" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="export-wb" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="file-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="fox-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="gx-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="gx-ux" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="gx-wb" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="help-wb" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="history-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="html-wb" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="hx-wb" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="jetty-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="js-ux" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="neql-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="net-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="nsh-wb" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="pdf-wb" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="platform-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="platform-wb" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="query-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="schedule-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="search-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="tagdictionary-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="template-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="uxBuilder-ux" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="wbutil-wb" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="web-rt" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="webEditors-ux" vendor="Tridium" vendorVersion="4.14.0"/>
+  <dependency name="workbench-wb" vendor="Tridium" vendorVersion="4.14.0"/>
+ </dependencies>
+ <dirs/>
+ <installation/>
+ <types>
+  <type class="com.tridium.devkit.wizards.BNewDriverTool" name="NewDriverTool"/>
+  <type class="com.tridium.devkit.ui.lexicon.BLexiconTool" name="LexiconTool"/>
+  <type class="com.tridium.devkit.ui.lexicon.BLexiconModuleMigrator" name="LexiconModuleMigrator">
+   <agent>
+    <on type="devkit:LexiconTool"/>
+   </agent>
+  </type>
+  <type class="com.tridium.devkit.ui.lexicon.BLexiconModuleBuilder" name="LexiconModuleBuilder">
+   <agent>
+    <on type="devkit:LexiconTool"/>
+   </agent>
+  </type>
+  <type class="com.tridium.devkit.ui.lexicon.BLexiconEditor" name="LexiconEditor">
+   <agent>
+    <on type="devkit:LexiconTool"/>
+   </agent>
+  </type>
+  <type class="com.tridium.devkit.ui.lexicon.BLexiconReport" name="LexiconReport">
+   <agent>
+    <on type="devkit:LexiconTool"/>
+   </agent>
+  </type>
+  <type class="com.tridium.devkit.ui.lexicon.BLexiconEditorOptions" name="LexiconEditorOptions"/>
+  <type class="com.tridium.devkit.ui.lexicon.BLexiconEditorValueFilterEnum" name="LexiconEditorValueFilterEnum"/>
+  <type class="com.tridium.devkit.wizards.BWizardOptions" name="WizardOptions"/>
+  <type class="com.tridium.devkit.wizards.BNewModuleTool" name="NewModuleTool"/>
+ </types>
+ <permissions>
+  <java-permissions type="workbench">
+   <java-permission action="read,write,delete" class="java.io.FilePermission" name="&lt;&lt;ALL FILES&gt;&gt;"/>
+   <java-permission class="java.lang.RuntimePermission" name="getenv.*"/>
+   <java-permission class="java.lang.RuntimePermission" name="exitVM.*"/>
+   <java-permission class="java.lang.RuntimePermission" name="accessClassInPackage.sun.util.logging.resources"/>
+   <java-permission action="connect,resolve" class="com.tridium.nre.security.NiagaraSocketPermission" name="*:1-100000"/>
+   <java-permission class="java.awt.AWTPermission" name="accessClipboard"/>
+   <java-permission class="java.awt.AWTPermission" name="showWindowWithoutWarningBanner"/>
+   <java-permission class="com.tridium.nre.security.NiagaraBasicPermission" name="GET_MANAGER"/>
+   <java-permission class="java.lang.RuntimePermission" name="accessUserInformation"/>
+   <java-permission class="java.lang.RuntimePermission" name="getFileStoreAttributes"/>
+   <java-permission class="java.lang.RuntimePermission" name="getClassLoader"/>
+   <java-permission class="java.lang.RuntimePermission" name="setContextClassLoader"/>
+   <java-permission class="java.lang.reflect.ReflectPermission" name="suppressAccessChecks"/>
+  </java-permissions>
+  <java-permissions type="station">
+   <java-permission action="read,write" class="java.io.FilePermission" name="${niagara.user.home}${/}logging"/>
+   <java-permission action="read,write" class="java.io.FilePermission" name="${niagara.user.home}${/}logging${/}-"/>
+   <java-permission action="accept,connect,listen,resolve" class="com.tridium.nre.security.NiagaraSocketPermission" name="*:1-100000"/>
+   <java-permission class="java.lang.RuntimePermission" name="setIO"/>
+   <java-permission class="java.lang.RuntimePermission" name="modifyThread"/>
+   <java-permission class="java.lang.RuntimePermission" name="modifyThreadGroup"/>
+   <java-permission class="java.lang.RuntimePermission" name="shutdownHooks"/>
+  </java-permissions>
+  <java-permissions type="all">
+   <java-permission action="read" class="java.util.PropertyPermission" name="*"/>
+   <java-permission class="java.util.logging.LoggingPermission" name="control"/>
+  </java-permissions>
+ </permissions>
+</module>
