@@ -1,4 +1,4 @@
-# RESEARCH-STATE — focus: px-tail (PLANNED)
+# RESEARCH-STATE — focus: px-tail (STOPPED 3/3)
 
 > Focus **PLANIFICADO** el 2026-07-24. **0 bloques escritos.** §16: focus *planned* — **el loop NO debe
 > re-BOOTSTRAPEARLO**; toma este estado y escribe su primer bloque.
@@ -22,7 +22,7 @@ block_scope: shared-global
 <!-- /research-state.v1 -->
 
 focus: px-tail
-status: active
+status: stopped
 planned_on: 2026-07-24
 started_on: 2026-08-09
 
