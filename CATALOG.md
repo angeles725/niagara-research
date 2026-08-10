@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **423 blocks**
+Total: **424 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -429,3 +429,4 @@ Total: **423 blocks**
 | 425 | [niagara-mental-model-bloque425.md](niagara-mental-model-bloque425.md) | dsfspi.dll: the DSF crypto SPI is a thin JCE provider over statically-linked Mocana NanoCrypto |
 | 426 | [niagara-mental-model-bloque426.md](niagara-mental-model-bloque426.md) | How the `program` module compiles a Program: a spawned `bin/javac` subprocess, with tools.jar one level removed |
 | 427 | [niagara-mental-model-bloque427.md](niagara-mental-model-bloque427.md) | The Workbench Swing widget model: BWidget is a BComponent, painted through gx, hosted on an AWT shell |
+| 428 | [niagara-mental-model-bloque428.md](niagara-mental-model-bloque428.md) | The Workbench shell: BWbShell hosts views in a tabbed pane, nav-tree selection hyperlinks an ORD to a @AgentOn view |

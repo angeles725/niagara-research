@@ -10,9 +10,9 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 covered_blocks: 422
-gaps_closed: 1
+gaps_closed: 2
 known_gaps: 12
-investigable_open: 11
+investigable_open: 10
 requires_execution_open: 0
 blocked_open: 0
 block_scope: shared-global
@@ -60,7 +60,7 @@ bajaui-wb 536, workbench-wb 505, wiresheet-wb 68, hx-wb 122, devkit-wb 683, wbut
 | Priority | Gap | Type | Status |
 |---|---|---|---|
 | high | WB01 gx-wb + bajaui-wb — modelo BWidget/BPane/BComponent-UI + layout + event dispatch + theming Palladium | decompiled-java | closed (B427) |
-| high | WB02 workbench-wb — shell + nav tree (BNavTree) + sidebars + console | decompiled-java | pending |
+| high | WB02 workbench-wb — shell + nav tree (BNavTree) + sidebars + console | decompiled-java | closed (B428) |
 | high | WB03 wiresheet-wb — canvas BSheet + BLink + drag/drop palette + routing + undo | decompiled-java | pending |
 | high | WB04 workbench-wb propsheet + slotsheet + dispatch de field editors Swing (no-PX) | decompiled-java | pending |
 | medium | WB05 workbench-wb celltable/cellmini + patrón BWManager (device/point managers) | decompiled-java | pending |
@@ -81,9 +81,9 @@ WB08 desbloquea los seams de extensión; WB06 (Hx) es ortogonal.
 
 ## Clasificación (§8)
 
-- **read-only-investigable**: **12** (todos con fuente vineflower confirmada). **requires-execution**: 0. **blocked**: 0.
-- **Coverage metric**: 1 / 12.
-- **Próximo libre**: B428. NEXT = WB02.
+- **read-only-investigable**: **10** abiertos (2 cerrados: WB01/WB02). **requires-execution**: 0. **blocked**: 0.
+- **Coverage metric**: 2 / 12.
+- **Próximo libre**: B429. NEXT = WB03.
 
 ## Historia de iteración
 
@@ -91,3 +91,4 @@ WB08 desbloquea los seams de extensión; WB06 (Hx) es ortogonal.
 |---|---|---|---|---|---|
 | 0 | 2026-08-10 | (bootstrap) audit-first coverage matrix | — | 202 módulos `-wb`; matrix + backlog sembrados por sweep delegado (sonnet) | yes · sonnet (audit) |
 | 1 | 2026-08-10 | WB01 gx/bajaui widget model | B427 | BWidget extends BComponent (widgets viven en el slot tree); layout deferido relayout→doLayout→setBounds baked per-BPane; gx = interface Graphics + value types (impl AWT en gx-wb); eventos BWidgetEvent+Topic; theming 3 familias (Palladium/Curium/Custom) × ~40 widget themes device-selected; AWT bridge (AwtShellManager=Panel, BSwingWidget=JRootPane) mangleado→INFER. VERIFY atrapó citas limpias del sweep sobre bodies mangleados → downgrade a INFER. | yes · sonnet |
+| 2 | 2026-08-10 | WB02 shell + nav tree + sidebars + console | B428 | BWbShell(abstract)→BNiagaraWbShell; root=BWbPane (views BViewTabbedPane + sideBar + console + splits); active view=tab. BNavTree extends BTree/NavListener, ordMap O(1), expansión lazy; selección→shell.hyperlink(node.getNavOrd()) (hyperlinkea un ORD, no una view). Sidebars auto-descubiertos por type registry (sin registro explícito). BConsole extends BEdgePane (panel persistente, el canal de compile de B426). ORD→view: NHyperlinkInfo resolve→getViewAgentsList→getInstance; @AgentOn(types) + filtro por perfil (WbSys.getFilteredViewList). NavMonitor poll 20s. Sweep anidó sub-agente→pedí Q1-Q5 consolidados vía SendMessage; drift de línea WbSys 111→88 corregido en verify. | yes · sonnet |
