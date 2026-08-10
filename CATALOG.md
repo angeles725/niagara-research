@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **420 bloques**
+Total: **421 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -425,6 +425,7 @@ Total: **420 bloques**
 | 420 | [niagara-mental-model-bloque420.md](niagara-mental-model-bloque420.md) | SÍNTESIS del focus `niagara-network-supervisor` (B414–B419): join seguro en tránsito, frágil en el borde del perfil, y la lección de verificar antes de alarmar |
 | 421 | [niagara-mental-model-bloque421.md](niagara-mental-model-bloque421.md) | `webEditors-ux`: la capa web de field editors en Niagara N4 |
 | 422 | [niagara-mental-model-bloque422.md](niagara-mental-model-bloque422.md) | `kitPxBuilding`: BComponents como agregadores de estado multi-input (la excepción del pack) |
+| 423 | [niagara-mental-model-bloque423.md](niagara-mental-model-bloque423.md) | `galileoKitPx`: kitPx OEM Honeywell Galileo — PIN-based access control sobre widgets PX (license-gated, ZKM obfuscado) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

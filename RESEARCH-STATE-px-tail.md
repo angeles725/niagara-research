@@ -13,9 +13,9 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 covered_blocks: 419
-gaps_closed: 2
+gaps_closed: 3
 known_gaps: 3
-investigable_open: 1
+investigable_open: 0
 requires_execution_open: 0
 blocked_open: 0
 block_scope: shared-global
@@ -49,7 +49,7 @@ el error **dos veces** (chart: 134 vs 67 real; estos tres módulos: 190/57/30 vs
 |---|---|---|---|
 | high | P1 webEditors la capa ux de field editors web | decompiled-java | closed (B421) |
 | medium | P2 kitPxBuilding componentes de equipo tipados | decompiled-java | closed (B422) |
-| low | P3 galileoKitPx el kitPx de otro OEM | decompiled-java | pending (NEXT) |
+| low | P3 galileoKitPx el kitPx de otro OEM | decompiled-java | closed (B423) |
 
 ### Detalle por gap
 
@@ -72,9 +72,9 @@ el error **dos veces** (chart: 134 vs 67 real; estos tres módulos: 190/57/30 vs
 
 ## Clasificación (§8)
 
-- **read-only-investigable**: **1** (P3). **requires-execution**: 0. **blocked**: 0.
-- **Coverage metric**: **2 / 3** (2 bloques escritos).
-- **Próximo gap**: **P3**.
+- **read-only-investigable**: **0**. **requires-execution**: 0. **blocked**: 0.
+- **Coverage metric**: **3 / 3** (3 bloques escritos). STOP: investigable_open = 0.
+- **Próximo libre**: B424.
 
 ## Historia de iteración
 
@@ -83,4 +83,6 @@ el error **dos veces** (chart: 134 vs 67 real; estos tres módulos: 190/57/30 vs
 | 1 | 2026-08-09 | P1 webEditors | B421 | Patrón BSingleton+BIJavaScript+@AgentOn+JsInfo; 95 clases, 49 FE-baja, 66 tipos; BPropertySheet=vista principal; Wb↔Web: BWbFieldEditor vs BIJavaScript | No · sonnet |
 | 2 | 2026-08-09 | P2 kitPxBuilding | B422 | BComponent changed() como agregador multi-input; BKitPxBuildingBaseEnum extends BComponent+BIEnum; 5 state machines + 6 enums en -rt; BBajaScriptTypeExt (no BIJavaScript) en -ux; -wb = 0 Java; BOG puro imposible por multi-input con prioridad | No · sonnet |
 
-**Resume condition**: 2/3 gaps closed. Tomar P3 y correr el NORMAL CYCLE.
+| 3 | 2026-08-09 | P3 galileoKitPx | B423 | Honeywell Galileo; ZKM obfuscado; license-gated XOR (solo assets); propósito RBAC PIN (actionPin/visibilityPin) — distinto de easyBinding (auto-binding); converters de estado enriquecidos (9 estados vs 2); coexistencia con easyBinding (ignore list); 0 gaps nuevos | No · sonnet |
+
+**STOP**: investigable_open = 0. Focus `px-tail` completado. 3/3 gaps cerrados.
