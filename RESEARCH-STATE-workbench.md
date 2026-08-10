@@ -10,9 +10,9 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 covered_blocks: 422
-gaps_closed: 10
+gaps_closed: 11
 known_gaps: 12
-investigable_open: 2
+investigable_open: 1
 requires_execution_open: 0
 blocked_open: 0
 block_scope: shared-global
@@ -69,7 +69,7 @@ bajaui-wb 536, workbench-wb 505, wiresheet-wb 68, hx-wb 122, devkit-wb 683, wbut
 | medium | WB08 devkit-wb — dev tooling (NO SDK): wizards New Module/Driver + Slotomatic + lexicon tools | decompiled-java | closed (B434) |
 | low | WB09 wbutil-wb — capa de servicios UI transversales (user/role/perm UI + cell editors + credential/license tools) | decompiled-java | closed (B435) |
 | low | WB10 platform-wb + platDaemon-wb — UI de administración de plataforma (cliente del daemon plat.exe) | decompiled-java | closed (B436) |
-| low | WB11 driver-wb + ndriver-wb — framework genérico de UI de driver (BAbstractDiscovery, BDeviceManager) | decompiled-java | pending |
+| low | WB11 driver-wb + ndriver-wb — framework genérico de UI de driver (BDeviceManager/NMgrLearn reflection-driven) | decompiled-java | closed (B437) |
 | low | WB12 cola larga de UI de drivers (51 módulos, bucket — tras WB11) | decompiled-java | pending |
 
 Orden recomendado: WB01 → WB02 → WB03 → WB04 → WB05 → WB07 (modelo completo del framework Swing);
@@ -81,9 +81,9 @@ WB08 desbloquea los seams de extensión; WB06 (Hx) es ortogonal.
 
 ## Clasificación (§8)
 
-- **read-only-investigable**: **2** abiertos (10 cerrados: WB01-WB10). **requires-execution**: 0. **blocked**: 0.
-- **Coverage metric**: 10 / 12. + platform UI (B436).
-- **Próximo libre**: B437. NEXT = WB11 (driver-wb framework). Sigue WB12 (bucket).
+- **read-only-investigable**: **1** abierto (11 cerrados: WB01-WB11). **requires-execution**: 0. **blocked**: 0.
+- **Coverage metric**: 11 / 12. + driver framework (B437).
+- **Próximo libre**: B438. NEXT = WB12 (bucket driver long-tail) — el ÚLTIMO.
 
 ## Historia de iteración
 
@@ -100,3 +100,4 @@ WB08 desbloquea los seams de extensión; WB06 (Hx) es ortogonal.
 | 8 | 2026-08-10 | WB08 devkit-wb | B434 | PREMISA "SDK" REFUTADA: devkit-wb = módulo de HERRAMIENTAS de desarrollo (Niagara Developers Kit), NO un SDK ni ejemplos. De 683 clases, 506 son JavaParser embebido; ~177 Tridium. runtimeProfile="wb" (NUNCA en station), autoload, permisos <<ALL FILES>>+exitVM. 4 subsistemas: New Module Wizard (Velocity/Gradle scaffolding), New Driver Wizard (NDriver/Video .vm templates), Slotomatic (slot code-gen del // AUTO-GENERATED, el mismo del Gradle plugin, tie a B426), Lexicon tools (BLexiconTool extends BWbNavNodeTool, tie a B428) + PaletteGenerator. No hookea el build lifecycle de la station. | yes · sonnet |
 | 9 | 2026-08-10 | WB09 wbutil-wb | B435 | NO es librería pasiva: capa de servicios UI transversales que registra @AgentOn views en ~15 tipos core. 84 clases/8 dominios. Aquí vive la UI de user/role/permission: BUserManager (@AgentOn baja:UserService, extends BAbstractManager), BPermissionsBrowser (ACL RoleService+UserService). Cell editors (12 primitivos), field editors (gx color/brush/ORD), BColorChooser HSV. Security-adjacent: BManageCredentialsTool (creds remotas via AuthUtil), BRequestLicenseTool (reflection a portalApi). Password FE mangleados (token n, parent BWbFieldEditor real). Pull Fox+authn = módulo required. | yes · sonnet |
 | 10 | 2026-08-10 | WB10 platform-wb + platDaemon-wb | B436 | platform-wb=capa de conexión (scheme platform:, BDaemonCnxHandler plain/BDaemonSecureCnxHandler TLS); platDaemon-wb=UI de tools (SoftwareManager/StationCopier/ApplicationDirector/LicenseManager/TcpIp/DistInstaller/Commissioning). Es el CLIENTE del daemon plat.exe (B381): envía messages del wire que plat.exe implementa (3011/5011, REMITTANCE B129). Creds de plataforma = OS/file-domain (BUsernameAndPassword), distintas de station users; DaemonCredentialsManager guarda en 2 realms. TLS settings version-gated (key passphrase ≥4.13). Commissioning AuthStep negocia SCRAM/native/file. Sin license gate: el gate es la auth del daemon. VERIFY atrapó mangling en BDaemonCnxHandler (port 3011→n) y BPlatformConnectionOptions ausente → downgrade honesto. | yes · sonnet |
+| 11 | 2026-08-10 | WB11 driver-wb + ndriver-wb framework | B437 | driver-wb=base managers genéricos (BDeviceManager extends BFolderManager extends BAbstractManager B431, sin @AgentOn); ndriver-wb=capa N-driver (BNDeviceManager/BNPointManager + NMgrLearn). CLAVE reflection-driven: un driver declara @AgentOn + anota proxy-ext con @MgrInclude → obtiene device+point manager con discover-and-add GRATIS (NMgrColumnUtil reflexiona columnas, NMgrLearn subscribe live a BNDiscoveryJob). No hay BAbstractDiscovery (premisa): la base es MgrLearn (B431). FEs config: BIpPortFE/BTuningPolicyNameFE/BProxyConversionFE (mangleados, parent real). Spot-check: BFileDeviceManager extends BDeviceManager (mismo patrón que modbus B304). | yes · sonnet |
