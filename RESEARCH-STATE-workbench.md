@@ -81,9 +81,9 @@ WB08 desbloquea los seams de extensión; WB06 (Hx) es ortogonal.
 
 ## Clasificación (§8)
 
-- **read-only-investigable**: **7** abiertos (5 cerrados: WB01-WB05). **requires-execution**: 0. **blocked**: 0.
-- **Coverage metric**: 5 / 12.
-- **Próximo libre**: B432. NEXT = WB07 (último de los 6 del framework).
+- **read-only-investigable**: **6** abiertos (6 cerrados: WB01-WB05 + WB07 = los 6 del framework). **requires-execution**: 0. **blocked**: 0.
+- **Coverage metric**: 6 / 12. **Arc del framework Swing COMPLETA** (B427-B432).
+- **Próximo libre**: B433. NEXT = WB06 (Hx, MED) — pendiente decisión del usuario si se sigue con WB06/WB08/WB09-12.
 
 ## Historia de iteración
 
