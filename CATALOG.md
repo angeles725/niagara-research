@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **416 bloques**
+Total: **417 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -421,6 +421,7 @@ Total: **416 bloques**
 | 416 | [niagara-mental-model-bloque416.md](niagara-mental-model-bloque416.md) | Niagara Network Supervisor (III): la guía oficial de Export Tags — lo que resuelve, lo que matiza y lo que agrega |
 | 417 | [niagara-mental-model-bloque417.md](niagara-mental-model-bloque417.md) | Niagara Network Supervisor (V): seguridad del canal de join — credenciales, transporte y permisos |
 | 418 | [niagara-mental-model-bloque418.md](niagara-mental-model-bloque418.md) | Niagara Network Supervisor (VI): tipos no resueltos en el BOG propio del JACE — REMITTANCE a B405 + delta N6 |
+| 419 | [niagara-mental-model-bloque419.md](niagara-mental-model-bloque419.md) | Niagara Network Supervisor (VII): mecanismo de intercambio de clave Fox en canal plain (SRP6 post-SCRAM) — REFUTA el [INFER] de B417 |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

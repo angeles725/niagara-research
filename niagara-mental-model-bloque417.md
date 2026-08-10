@@ -189,6 +189,11 @@ sobre TCP sin cifrar.
 y descifrar el payload del canal `"point"`, obteniendo el `BConnectInfo` con las credenciales. El cifrado
 de capa de canal Fox **no sustituye TLS** cuando la sesión de transporte es plain Fox.
 
+> **`[B417 §417.5 — INFER REFUTADO en B419]`**: el mecanismo de key exchange es SRP6 post-SCRAM
+> (no un valor estático ni recoverable del handshake). En plain Fox N4-a-N4, la `sessionKey` deriva
+> de SRP6 y sus exponentes privados (`a`, `b`) nunca se transmiten → la clave AES del canal `"point"`
+> NO es recuperable por un interceptor pasivo (PLD). Ver [Bloque 419] §419.7 para la refutación completa.
+
 ---
 
 ## 417.6 — Permisos sobre la acción de join: framework-semantic check `[CERT]`
