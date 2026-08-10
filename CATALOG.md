@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **417 bloques**
+Total: **418 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -422,6 +422,7 @@ Total: **417 bloques**
 | 417 | [niagara-mental-model-bloque417.md](niagara-mental-model-bloque417.md) | Niagara Network Supervisor (V): seguridad del canal de join — credenciales, transporte y permisos |
 | 418 | [niagara-mental-model-bloque418.md](niagara-mental-model-bloque418.md) | Niagara Network Supervisor (VI): tipos no resueltos en el BOG propio del JACE — REMITTANCE a B405 + delta N6 |
 | 419 | [niagara-mental-model-bloque419.md](niagara-mental-model-bloque419.md) | Niagara Network Supervisor (VII): mecanismo de intercambio de clave Fox en canal plain (SRP6 post-SCRAM) — REFUTA el [INFER] de B417 |
+| 420 | [niagara-mental-model-bloque420.md](niagara-mental-model-bloque420.md) | SÍNTESIS del focus `niagara-network-supervisor` (B414–B419): join seguro en tránsito, frágil en el borde del perfil, y la lección de verificar antes de alarmar |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

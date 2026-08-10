@@ -1,20 +1,19 @@
-# RESEARCH-STATE — focus: niagara-network-supervisor (PLANNED)
+# RESEARCH-STATE — focus: niagara-network-supervisor (STOPPED)
 
-> Focus **PLANIFICADO** el 2026-07-24 al cerrar el focus `tags`. **0 bloques escritos.**
-> §16: un focus *planned* ya tiene su RESEARCH-STATE y su backlog commiteados — **el loop NO debe
-> re-BOOTSTRAPEARLO**: toma este estado y escribe su primer bloque contra el gap de mayor prioridad.
+> Focus **STOPPED** 2026-08-09 — 6/7 gaps cerrados (N1–N4, N6, N7) + síntesis B420.
+> N5 queda como `requires-execution / blocked` (hardware inaccesible). `investigable_open = 0`.
 >
 > **Origen**: [Bloque 266] §266.1 probó que `exportTags` **NO pertenece al subsistema de tags** (0 de 28
 > clases importan nada del diccionario) — es un mecanismo de **join supervisor↔subordinada** por Fox.
 > Se documentó de urgencia en B266/B267 porque los gaps ya estaban abiertos en el focus `tags`, pero el
 > módulo pide su propio eje bajo **Niagara Network / supervisor**.
 >
-> Corpus en **Español (técnico EN)**. Numeración global de bloques; próximo libre al planificar: **B271**.
+> Corpus en **Español (técnico EN)**. Numeración global de bloques; próximo libre: **B421**.
 > Engram topic key: `research/niagara/niagara-network-supervisor/{gaps,progress}`.
 
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 419
+covered_blocks: 420
 gaps_closed: 6
 known_gaps: 7
 investigable_open: 0
@@ -25,8 +24,9 @@ undocumented_findings: 0
 <!-- /research-state.v1 -->
 
 focus: niagara-network-supervisor
-status: planned
+status: stopped
 planned_on: 2026-07-24
+stopped_on: 2026-08-09
 
 ## Ángulo declarado (§b2)
 
@@ -93,7 +93,7 @@ driver `niagaraDriver` que ambos usan.
 - **read-only-investigable**: **0** (todos cerrados). **requires-execution / blocked**: 1 (N5).
 - **Coverage metric**: **6 / 7** (6 bloques escritos, N1, N2, N3, N4, N6, N7 cerrados; N5 blocked).
 - **STOP**: investigable_open = 0. N5 requiere ejecución en hardware — no investigable en modo READ-ONLY.
-- **Próximo libre**: **B420**.
+- **Próximo libre**: **B421**.
 
 ## Historia de iteración
 
@@ -102,11 +102,10 @@ driver `niagaraDriver` que ambos usan.
 | (bootstrap) | 2026-07-24 | — | — | focus PLANNED | — |
 | 1 | 2026-08-09 | N1 | B414 | riesgo B267 MITIGADO por diseño: BSubstitutePxView en árbol del SUPERVISOR (no BOG del JACE); riesgo real = SUPERVISOR sin wb | no · inline |
 | 2 | 2026-08-09 | N2 | B415 | niagaraDriver-rt: 106 clases; BNiagaraNetwork→BNiagaraStation (device-proxy)→BNiagaraProxyExt (pointId+mid)+BPointChannel (sub batch Fox); imports history/file/schedule por canal Fox nombrado | no · inline (sonnet) |
-
 | 3 | 2026-08-09 | N3 | B416 | guía oficial exportTags: RESUELVE flujo Join+credenciales, MATIZA SubstitutePxView supervisor-side y merge-inteligente, AGREGA workflow commissioning+BFormat+licencia virtual-points+CategoryFilter top-down; la doc NO resuelve BlacklistTypeResolver ni credenciales-en-claro ni worker/cola | no · inline |
 | 4 | 2026-08-09 | N4 | B417 | Seguridad canal join: BPassword mitiga UI+reposo (refuta B267§267.4 [INFER]); riesgo real=transport plain Fox (useFoxs=false default); join action=admin-only; framework-semantic check 1/2; N7 nuevo (Fox key exchange) | no · inline (sonnet) |
-
 | 5 | 2026-08-09 | N6 | B418 | REMITTANCE a B405 §405.10: TypeNotFoundException → warningAndSkip (WARNING en log, no silent) → null → drop; ruta por newSwapInstance; distinción BlacklistTypeResolver (B414) vs BogTypeResolver nativo | no · inline (sonnet) |
 | 6 | 2026-08-09 | N7 | B419 | SRP6 post-SCRAM en plain Fox N4-a-N4 (Tuner:559-563 + FoxScramShaUtil:75-242); sessionKey efímera (PLD); sharedEncodingKey=SHA-512(salt\|\|sessionKey)/AES-GCM; BPointChannel cifra joinStation. REFUTA [INFER] B417§417.5 — interceptor pasivo NO descifra credenciales. Nuevos gaps: ninguno. | no · inline (sonnet) |
+| — | 2026-08-09 | síntesis focus | B420 | síntesis focus: 4 hilos (veredicto seguridad, cadena de correcciones, modelo device-proxy+bog, dos rutas de tipo no resuelto); 3 correcciones documentadas; STOPPED 6/7 | no · sonnet · 0 |
 
-**STOP**: investigable_open = 0. Focus cerrado en modo READ-ONLY. N5 queda como `requires-execution / blocked`.
+**STOP**: investigable_open = 0. Focus CERRADO en modo READ-ONLY. N5 queda como `requires-execution / blocked`. Síntesis en B420. Próximo libre: **B421**.
