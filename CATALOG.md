@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **415 bloques**
+Total: **416 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -420,6 +420,7 @@ Total: **415 bloques**
 | 415 | [niagara-mental-model-bloque415.md](niagara-mental-model-bloque415.md) | Niagara Network Supervisor (II): niagaraDriver — modelo device/proxy del join |
 | 416 | [niagara-mental-model-bloque416.md](niagara-mental-model-bloque416.md) | Niagara Network Supervisor (III): la guía oficial de Export Tags — lo que resuelve, lo que matiza y lo que agrega |
 | 417 | [niagara-mental-model-bloque417.md](niagara-mental-model-bloque417.md) | Niagara Network Supervisor (V): seguridad del canal de join — credenciales, transporte y permisos |
+| 418 | [niagara-mental-model-bloque418.md](niagara-mental-model-bloque418.md) | Niagara Network Supervisor (VI): tipos no resueltos en el BOG propio del JACE — REMITTANCE a B405 + delta N6 |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

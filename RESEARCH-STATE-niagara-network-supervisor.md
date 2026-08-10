@@ -14,10 +14,10 @@
 
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 413
-gaps_closed: 4
+covered_blocks: 418
+gaps_closed: 5
 known_gaps: 7
-investigable_open: 2
+investigable_open: 1
 requires_execution_open: 0
 blocked_open: 1
 block_scope: shared-global
@@ -53,7 +53,7 @@ driver `niagaraDriver` que ambos usan.
 | medium | N3 la guia oficial de exportTags | external-doc | **closed (B416)** |
 | medium | N4 seguridad del canal de join | decompiled-java | **closed (B417)** |
 | low | N5 reproducir el fallo de tipo en un JACE | requires-execution | blocked |
-| low | N6 cómo Niagara maneja tipos no resueltos en BOG de la propia station | decompiled-java | pending |
+| low | N6 cómo Niagara maneja tipos no resueltos en BOG de la propia station | decompiled-java | **closed (B418 — REMITTANCE a B405)** |
 | low | N7 mecanismo de key exchange de la clave compartida Fox (¿DH o estático?) | decompiled-java | pending |
 
 ### Detalle por gap
@@ -75,9 +75,12 @@ driver `niagaraDriver` que ambos usan.
   riesgo en reposo y en UI (BPassword.toString()="--password--" refuta B267§267.4); riesgo real =
   transporte plain Fox (useFoxs=false default) donde la clave compartida Fox se negocia sin TLS
   (→ [INFER] N7). Acción join es admin-only (OPERATOR flag ausente). Framework-semantic: 1/2 confirmados.
-- **N6 (LOW, pendiente)** — B414 §414.5 no pudo resolver read-only qué hace Niagara cuando una station
-  propia carga su BOG con un tipo no resuelto (p.ej. `exportTags:PxViewTag` en un JACE). Requiere encontrar
-  `ValueDocDecoder` o el mecanismo de arranque de estación en las fuentes decompiladas de `baja`/`nre`.
+- **N6 (LOW, CERRADO — B418, REMITTANCE a B405)** — El mecanismo fue verificado en `BogTypeResolver.newInstance()`:
+  módulo exportTags carga como `-rt` (sin ModuleException); PxViewTag no encontrado en ningún part → `newSwapInstance`
+  → `TypeNotFoundException` → `warningAndSkip("Type \"exportTags:PxViewTag\" not found: <propName> [line:col]")` → null.
+  Station continúa arrancando. El WARNING es visible en el log de Niagara (no silencioso). Sin stub. Delta sobre B405 §405.10:
+  (a) ruta interna por `newSwapInstance`; (b) `warningAndSkip` = WARNING en log + skip (no verdaderamente silent);
+  (c) distinción con `BlacklistTypeResolver` supervisor-side (B414 §414.4).
 - **N7 (LOW, pendiente, NUEVO)** — mecanismo de intercambio de clave compartida Fox: ¿DH (efímero, por sesión)
   o derivado del hello en plaintext? Determina si el cifrado del canal `"point"` ofrece confidencialidad real
   sin TLS. Fuente: `fox-rt/BFoxSession.java` + handshake hello Fox. Registrado en B417 §417.8.
@@ -89,9 +92,9 @@ driver `niagaraDriver` que ambos usan.
 
 ## Clasificación (§8)
 
-- **read-only-investigable**: **2** (N6, N7). **requires-execution / blocked**: 1 (N5).
-- **Coverage metric**: **4 / 7** (4 bloques escritos, N1, N2, N3 y N4 cerrados).
-- **Próximo gap**: **N6**.
+- **read-only-investigable**: **1** (N7). **requires-execution / blocked**: 1 (N5).
+- **Coverage metric**: **5 / 7** (5 bloques escritos, N1, N2, N3, N4 y N6 cerrados).
+- **Próximo gap**: **N7**.
 
 ## Historia de iteración
 
@@ -104,4 +107,6 @@ driver `niagaraDriver` que ambos usan.
 | 3 | 2026-08-09 | N3 | B416 | guía oficial exportTags: RESUELVE flujo Join+credenciales, MATIZA SubstitutePxView supervisor-side y merge-inteligente, AGREGA workflow commissioning+BFormat+licencia virtual-points+CategoryFilter top-down; la doc NO resuelve BlacklistTypeResolver ni credenciales-en-claro ni worker/cola | no · inline |
 | 4 | 2026-08-09 | N4 | B417 | Seguridad canal join: BPassword mitiga UI+reposo (refuta B267§267.4 [INFER]); riesgo real=transport plain Fox (useFoxs=false default); join action=admin-only; framework-semantic check 1/2; N7 nuevo (Fox key exchange) | no · inline (sonnet) |
 
-**Resume condition**: focus ACTIVE desde It 1. Próximo: N6 (tipos no resueltos en BOG).
+| 5 | 2026-08-09 | N6 | B418 | REMITTANCE a B405 §405.10: TypeNotFoundException → warningAndSkip (WARNING en log, no silent) → null → drop; ruta por newSwapInstance; distinción BlacklistTypeResolver (B414) vs BogTypeResolver nativo | no · inline (sonnet) |
+
+**Resume condition**: focus ACTIVE desde It 1. Próximo: N7 (Fox key exchange DH vs estático).
