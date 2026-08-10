@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **428 blocks**
+Total: **429 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -434,3 +434,4 @@ Total: **428 blocks**
 | 430 | [niagara-mental-model-bloque430.md](niagara-mental-model-bloque430.md) | The property sheet and Swing field-editor dispatch: @AgentOn on the value's type, committed in a Transaction |
 | 431 | [niagara-mental-model-bloque431.md](niagara-mental-model-bloque431.md) | The manager framework: BAbstractManager maps a container's children to permission-filtered rows, with a BJob-driven learn/discovery pane |
 | 432 | [niagara-mental-model-bloque432.md](niagara-mental-model-bloque432.md) | Commands, undo, transfer, and wizards: the Workbench extension seams and the undo model every editor plugs into |
+| 433 | [niagara-mental-model-bloque433.md](niagara-mental-model-bloque433.md) | The Hx framework: BHxView is a servlet view, not a Swing view — buffered HTML, header-keyed events, and poll-based live values |
