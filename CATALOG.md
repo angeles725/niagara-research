@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **412 bloques**
+Total: **413 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -417,6 +417,7 @@ Total: **412 bloques**
 | 412 | [niagara-mental-model-bloque412.md](niagara-mental-model-bloque412.md) | Block 412 — orion-rt: Niagara's Generic ORM Framework — Annotations, Schema Manager, Session, and DDL Layer |
 | 413 | [niagara-mental-model-bloque413.md](niagara-mental-model-bloque413.md) | Block 413 — SYNTHESIS of the `database` focus (B402–B412): two persistence worlds, an unindexed query engine, a triple SQL stack, and a pervasive absence of integrity guarantees |
 | 414 | [niagara-mental-model-bloque414.md](niagara-mental-model-bloque414.md) | Niagara Network Supervisor (I): resolución wb-vs-rt de `BSubstitutePxView` — veredicto N1 |
+| 415 | [niagara-mental-model-bloque415.md](niagara-mental-model-bloque415.md) | Niagara Network Supervisor (II): niagaraDriver — modelo device/proxy del join |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

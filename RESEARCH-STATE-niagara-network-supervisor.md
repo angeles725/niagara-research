@@ -14,10 +14,10 @@
 
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 410
-gaps_closed: 1
+covered_blocks: 415
+gaps_closed: 2
 known_gaps: 6
-investigable_open: 4
+investigable_open: 3
 requires_execution_open: 0
 blocked_open: 1
 block_scope: shared-global
@@ -49,7 +49,7 @@ driver `niagaraDriver` que ambos usan.
 | Priority | Gap | Type | Status |
 |---|---|---|---|
 | high | N1 el riesgo BSubstitutePxView wb-vs-rt | decompiled-java | **closed (B414)** |
-| high | N2 niagaraDriver el driver que sostiene el join | decompiled-java | pending (NEXT) |
+| high | N2 niagaraDriver el driver que sostiene el join | decompiled-java | **closed (B415)** |
 | medium | N3 la guia oficial de exportTags | external-doc | pending |
 | medium | N4 seguridad del canal de join | decompiled-java | pending |
 | low | N5 reproducir el fallo de tipo en un JACE | requires-execution | blocked |
@@ -87,9 +87,9 @@ driver `niagaraDriver` que ambos usan.
 
 ## Clasificación (§8)
 
-- **read-only-investigable**: **3** (N2, N3, N4 + N6). **requires-execution / blocked**: 1 (N5).
-- **Coverage metric**: **1 / 6** (1 bloque escrito, N1 cerrado).
-- **Próximo gap**: **N2**.
+- **read-only-investigable**: **3** (N3, N4, N6). **requires-execution / blocked**: 1 (N5).
+- **Coverage metric**: **2 / 6** (2 bloques escritos, N1 y N2 cerrados).
+- **Próximo gap**: **N3**.
 
 ## Historia de iteración
 
@@ -97,5 +97,6 @@ driver `niagaraDriver` que ambos usan.
 |---|---|---|---|---|---|
 | (bootstrap) | 2026-07-24 | — | — | focus PLANNED | — |
 | 1 | 2026-08-09 | N1 | B414 | riesgo B267 MITIGADO por diseño: BSubstitutePxView en árbol del SUPERVISOR (no BOG del JACE); riesgo real = SUPERVISOR sin wb | no · inline |
+| 2 | 2026-08-09 | N2 | B415 | niagaraDriver-rt: 106 clases; BNiagaraNetwork→BNiagaraStation (device-proxy)→BNiagaraProxyExt (pointId+mid)+BPointChannel (sub batch Fox); imports history/file/schedule por canal Fox nombrado | no · inline (sonnet) |
 
-**Resume condition**: focus ACTIVE desde It 1. Próximo: N2 (niagaraDriver).
+**Resume condition**: focus ACTIVE desde It 1. Próximo: N3 (guía oficial exportTags).
