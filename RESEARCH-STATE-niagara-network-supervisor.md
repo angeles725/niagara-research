@@ -14,10 +14,10 @@
 
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 415
-gaps_closed: 2
+covered_blocks: 416
+gaps_closed: 3
 known_gaps: 6
-investigable_open: 3
+investigable_open: 2
 requires_execution_open: 0
 blocked_open: 1
 block_scope: shared-global
@@ -50,7 +50,7 @@ driver `niagaraDriver` que ambos usan.
 |---|---|---|---|
 | high | N1 el riesgo BSubstitutePxView wb-vs-rt | decompiled-java | **closed (B414)** |
 | high | N2 niagaraDriver el driver que sostiene el join | decompiled-java | **closed (B415)** |
-| medium | N3 la guia oficial de exportTags | external-doc | pending |
+| medium | N3 la guia oficial de exportTags | external-doc | **closed (B416)** |
 | medium | N4 seguridad del canal de join | decompiled-java | pending |
 | low | N5 reproducir el fallo de tipo en un JACE | requires-execution | blocked |
 | low | N6 cómo Niagara maneja tipos no resueltos en BOG de la propia station | decompiled-java | pending |
@@ -87,9 +87,9 @@ driver `niagaraDriver` que ambos usan.
 
 ## Clasificación (§8)
 
-- **read-only-investigable**: **3** (N3, N4, N6). **requires-execution / blocked**: 1 (N5).
-- **Coverage metric**: **2 / 6** (2 bloques escritos, N1 y N2 cerrados).
-- **Próximo gap**: **N3**.
+- **read-only-investigable**: **2** (N4, N6). **requires-execution / blocked**: 1 (N5).
+- **Coverage metric**: **3 / 6** (3 bloques escritos, N1, N2 y N3 cerrados).
+- **Próximo gap**: **N4**.
 
 ## Historia de iteración
 
@@ -99,4 +99,6 @@ driver `niagaraDriver` que ambos usan.
 | 1 | 2026-08-09 | N1 | B414 | riesgo B267 MITIGADO por diseño: BSubstitutePxView en árbol del SUPERVISOR (no BOG del JACE); riesgo real = SUPERVISOR sin wb | no · inline |
 | 2 | 2026-08-09 | N2 | B415 | niagaraDriver-rt: 106 clases; BNiagaraNetwork→BNiagaraStation (device-proxy)→BNiagaraProxyExt (pointId+mid)+BPointChannel (sub batch Fox); imports history/file/schedule por canal Fox nombrado | no · inline (sonnet) |
 
-**Resume condition**: focus ACTIVE desde It 1. Próximo: N3 (guía oficial exportTags).
+| 3 | 2026-08-09 | N3 | B416 | guía oficial exportTags: RESUELVE flujo Join+credenciales, MATIZA SubstitutePxView supervisor-side y merge-inteligente, AGREGA workflow commissioning+BFormat+licencia virtual-points+CategoryFilter top-down; la doc NO resuelve BlacklistTypeResolver ni credenciales-en-claro ni worker/cola | no · inline |
+
+**Resume condition**: focus ACTIVE desde It 1. Próximo: N4 (seguridad canal de join).

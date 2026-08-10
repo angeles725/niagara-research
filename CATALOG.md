@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **413 bloques**
+Total: **414 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -418,6 +418,7 @@ Total: **413 bloques**
 | 413 | [niagara-mental-model-bloque413.md](niagara-mental-model-bloque413.md) | Block 413 — SYNTHESIS of the `database` focus (B402–B412): two persistence worlds, an unindexed query engine, a triple SQL stack, and a pervasive absence of integrity guarantees |
 | 414 | [niagara-mental-model-bloque414.md](niagara-mental-model-bloque414.md) | Niagara Network Supervisor (I): resolución wb-vs-rt de `BSubstitutePxView` — veredicto N1 |
 | 415 | [niagara-mental-model-bloque415.md](niagara-mental-model-bloque415.md) | Niagara Network Supervisor (II): niagaraDriver — modelo device/proxy del join |
+| 416 | [niagara-mental-model-bloque416.md](niagara-mental-model-bloque416.md) | Niagara Network Supervisor (III): la guía oficial de Export Tags — lo que resuelve, lo que matiza y lo que agrega |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
