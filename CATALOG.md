@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **424 blocks**
+Total: **425 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -430,3 +430,4 @@ Total: **424 blocks**
 | 426 | [niagara-mental-model-bloque426.md](niagara-mental-model-bloque426.md) | How the `program` module compiles a Program: a spawned `bin/javac` subprocess, with tools.jar one level removed |
 | 427 | [niagara-mental-model-bloque427.md](niagara-mental-model-bloque427.md) | The Workbench Swing widget model: BWidget is a BComponent, painted through gx, hosted on an AWT shell |
 | 428 | [niagara-mental-model-bloque428.md](niagara-mental-model-bloque428.md) | The Workbench shell: BWbShell hosts views in a tabbed pane, nav-tree selection hyperlinks an ORD to a @AgentOn view |
+| 429 | [niagara-mental-model-bloque429.md](niagara-mental-model-bloque429.md) | The wire sheet editor: glyphs mirror the component tree, layout persists as a hidden slot, links delegate to workbench commands |
