@@ -12,10 +12,10 @@
 
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 417
-gaps_closed: 1
+covered_blocks: 419
+gaps_closed: 2
 known_gaps: 3
-investigable_open: 2
+investigable_open: 1
 requires_execution_open: 0
 blocked_open: 0
 block_scope: shared-global
@@ -48,8 +48,8 @@ el error **dos veces** (chart: 134 vs 67 real; estos tres módulos: 190/57/30 vs
 | Priority | Gap | Type | Status |
 |---|---|---|---|
 | high | P1 webEditors la capa ux de field editors web | decompiled-java | closed (B421) |
-| medium | P2 kitPxBuilding componentes de equipo tipados | decompiled-java | pending (NEXT) |
-| low | P3 galileoKitPx el kitPx de otro OEM | decompiled-java | pending |
+| medium | P2 kitPxBuilding componentes de equipo tipados | decompiled-java | closed (B422) |
+| low | P3 galileoKitPx el kitPx de otro OEM | decompiled-java | pending (NEXT) |
 
 ### Detalle por gap
 
@@ -72,14 +72,15 @@ el error **dos veces** (chart: 134 vs 67 real; estos tres módulos: 190/57/30 vs
 
 ## Clasificación (§8)
 
-- **read-only-investigable**: **3** (P1-P3). **requires-execution**: 0. **blocked**: 0.
-- **Coverage metric**: **1 / 3** (1 bloque escrito).
-- **Próximo gap**: **P2**.
+- **read-only-investigable**: **1** (P3). **requires-execution**: 0. **blocked**: 0.
+- **Coverage metric**: **2 / 3** (2 bloques escritos).
+- **Próximo gap**: **P3**.
 
 ## Historia de iteración
 
 | It | Fecha | Gap | Bloque | Hallazgo | Delegado? · tier |
 |---|---|---|---|---|---|
 | 1 | 2026-08-09 | P1 webEditors | B421 | Patrón BSingleton+BIJavaScript+@AgentOn+JsInfo; 95 clases, 49 FE-baja, 66 tipos; BPropertySheet=vista principal; Wb↔Web: BWbFieldEditor vs BIJavaScript | No · sonnet |
+| 2 | 2026-08-09 | P2 kitPxBuilding | B422 | BComponent changed() como agregador multi-input; BKitPxBuildingBaseEnum extends BComponent+BIEnum; 5 state machines + 6 enums en -rt; BBajaScriptTypeExt (no BIJavaScript) en -ux; -wb = 0 Java; BOG puro imposible por multi-input con prioridad | No · sonnet |
 
-**Resume condition**: 1/3 gaps closed. Tomar P2 y correr el NORMAL CYCLE.
+**Resume condition**: 2/3 gaps closed. Tomar P3 y correr el NORMAL CYCLE.
