@@ -10,9 +10,9 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 covered_blocks: 422
-gaps_closed: 0
+gaps_closed: 1
 known_gaps: 12
-investigable_open: 12
+investigable_open: 11
 requires_execution_open: 0
 blocked_open: 0
 block_scope: shared-global
@@ -59,7 +59,7 @@ bajaui-wb 536, workbench-wb 505, wiresheet-wb 68, hx-wb 122, devkit-wb 683, wbut
 
 | Priority | Gap | Type | Status |
 |---|---|---|---|
-| high | WB01 gx-wb + bajaui-wb — modelo BWidget/BPane/BComponent-UI + layout + event dispatch + theming Palladium | decompiled-java | pending |
+| high | WB01 gx-wb + bajaui-wb — modelo BWidget/BPane/BComponent-UI + layout + event dispatch + theming Palladium | decompiled-java | closed (B427) |
 | high | WB02 workbench-wb — shell + nav tree (BNavTree) + sidebars + console | decompiled-java | pending |
 | high | WB03 wiresheet-wb — canvas BSheet + BLink + drag/drop palette + routing + undo | decompiled-java | pending |
 | high | WB04 workbench-wb propsheet + slotsheet + dispatch de field editors Swing (no-PX) | decompiled-java | pending |
@@ -82,11 +82,12 @@ WB08 desbloquea los seams de extensión; WB06 (Hx) es ortogonal.
 ## Clasificación (§8)
 
 - **read-only-investigable**: **12** (todos con fuente vineflower confirmada). **requires-execution**: 0. **blocked**: 0.
-- **Coverage metric**: 0 / 12.
-- **Próximo libre**: B427. NEXT = WB01.
+- **Coverage metric**: 1 / 12.
+- **Próximo libre**: B428. NEXT = WB02.
 
 ## Historia de iteración
 
 | It | Fecha | Gap | Bloque | Hallazgo | Delegado? · tier |
 |---|---|---|---|---|---|
 | 0 | 2026-08-10 | (bootstrap) audit-first coverage matrix | — | 202 módulos `-wb`; matrix + backlog sembrados por sweep delegado (sonnet) | yes · sonnet (audit) |
+| 1 | 2026-08-10 | WB01 gx/bajaui widget model | B427 | BWidget extends BComponent (widgets viven en el slot tree); layout deferido relayout→doLayout→setBounds baked per-BPane; gx = interface Graphics + value types (impl AWT en gx-wb); eventos BWidgetEvent+Topic; theming 3 familias (Palladium/Curium/Custom) × ~40 widget themes device-selected; AWT bridge (AwtShellManager=Panel, BSwingWidget=JRootPane) mangleado→INFER. VERIFY atrapó citas limpias del sweep sobre bodies mangleados → downgrade a INFER. | yes · sonnet |

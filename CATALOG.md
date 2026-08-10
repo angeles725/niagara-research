@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **422 blocks**
+Total: **423 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -428,3 +428,4 @@ Total: **422 blocks**
 | 424 | [niagara-mental-model-bloque424.md](niagara-mental-model-bloque424.md) | NreWin32::getHostId: the Niagara Host ID is a non-cryptographic 8-byte XOR fold of four host inputs |
 | 425 | [niagara-mental-model-bloque425.md](niagara-mental-model-bloque425.md) | dsfspi.dll: the DSF crypto SPI is a thin JCE provider over statically-linked Mocana NanoCrypto |
 | 426 | [niagara-mental-model-bloque426.md](niagara-mental-model-bloque426.md) | How the `program` module compiles a Program: a spawned `bin/javac` subprocess, with tools.jar one level removed |
+| 427 | [niagara-mental-model-bloque427.md](niagara-mental-model-bloque427.md) | The Workbench Swing widget model: BWidget is a BComponent, painted through gx, hosted on an AWT shell |
