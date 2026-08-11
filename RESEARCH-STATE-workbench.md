@@ -9,7 +9,7 @@
 
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 422
+covered_blocks: 434
 gaps_closed: 12
 known_gaps: 12
 investigable_open: 0
@@ -83,7 +83,7 @@ WB08 desbloquea los seams de extensión; WB06 (Hx) es ortogonal.
 
 - **read-only-investigable**: **0** ✅ (12/12 cerrados: WB01-WB12). **requires-execution**: 0. **blocked**: 0.
 - **Coverage metric**: **12 / 12 — FOCUS STOPPED**. Framework Swing (B427-B432) + Hx (B433) + devkit (B434) + wbutil (B435) + platform UI (B436) + driver framework (B437) + driver tail bucket (B438).
-- **Próximo libre**: B439 (síntesis opcional del focus).
+- **Síntesis del focus**: B439 (escrita — mapa + 2 tesis transversales). **Próximo libre**: B440.
 
 ## Stop control — STOPPED 2026-08-10 (12/12, investigable=0)
 
