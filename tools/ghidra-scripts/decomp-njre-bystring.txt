@@ -1,0 +1,813 @@
+/* DecompileByString over njre.dll
+   needles : createVM()|buildArgs()|JNI_CreateJavaVM|CreateJavaVM failed|jvm.dll|-Djava.class.path|-Djava.library.path|-Djava.security.manager|-Djava.security.properties|classPath|extPath to classpath|-Xmx
+   strings : 13 matched of 1263 defined
+   functions anchored: 6 */
+
+/* ==== java @ 180004470 ==== */
+      anchor @18000462f -> "java> buildArgs()\n"
+      anchor @180004678 -> "java> createVM()\n"
+
+/* public: virtual int __cdecl JavaLauncherWin32::java(char const * __ptr64,int,char * __ptr64 *
+   __ptr64,bool) __ptr64 */
+
+int __thiscall
+JavaLauncherWin32::java
+          (JavaLauncherWin32 *this,char *param_1,int param_2,char **param_3,bool param_4)
+
+{
+  bool bVar1;
+  BOOL BVar2;
+  int iVar3;
+  errno_t eVar4;
+  undefined8 uVar5;
+  DWORDLONG dwlConditionMask;
+  char *_PBufferSizeInBytes;
+  ulonglong uVar6;
+  char *pcVar7;
+  char **ppcVar8;
+  undefined1 auStack_188 [32];
+  char *local_168;
+  size_t local_160;
+  _OSVERSIONINFOEXW local_158;
+  ulonglong local_38;
+  
+                    /* 0x4470  88  ?java@JavaLauncherWin32@@UEAAHPEBDHPEAPEAD_N@Z */
+  local_38 = DAT_18000f178 ^ (ulonglong)auStack_188;
+  uVar6 = (ulonglong)(uint)param_2;
+  local_158.dwOSVersionInfoSize = 0x11c;
+  local_158.dwBuildNumber = 0;
+  local_158.dwPlatformId = 0;
+  ppcVar8 = param_3;
+  memset(local_158.szCSDVersion,0,0x100);
+  local_158.wServicePackMinor = 0;
+  local_158.wSuiteMask = 0;
+  local_158.wProductType = '\0';
+  local_158.wReserved = '\0';
+  uVar5 = VerSetConditionMask(0,2,3);
+  uVar5 = VerSetConditionMask(uVar5,1,3);
+  dwlConditionMask = VerSetConditionMask(uVar5,0x20,3);
+  local_158.dwMajorVersion = 10;
+  local_158.dwMinorVersion = 0;
+  local_158.wServicePackMajor = 0;
+  BVar2 = VerifyVersionInfoW(&local_158,0x23,dwlConditionMask);
+  if (BVar2 == 0) {
+    uVar5 = __acrt_iob_func(2);
+    FUN_1800049f0(uVar5,
+                  "FATAL: This version of Windows is not supported by Niagara 4. Please refer to your documentation for supported platforms.\n"
+                  ,dwlConditionMask,ppcVar8);
+  }
+  else {
+    pcVar7 = "java_debug";
+    _PBufferSizeInBytes = (char *)&local_160;
+    eVar4 = _dupenv_s(&local_168,(size_t *)_PBufferSizeInBytes,"java_debug");
+    if ((eVar4 == 0) && (local_168 != (char *)0x0)) {
+      *(undefined4 *)(this + 8) = 1;
+      free(local_168);
+    }
+    if (*(int *)(this + 8) != 0) {
+      FUN_180004a40("java> debug = true\n",_PBufferSizeInBytes,pcVar7,ppcVar8);
+    }
+    bVar1 = SignatureUtil::isProductionBuild();
+    if (!bVar1) {
+      uVar5 = __acrt_iob_func(2);
+      FUN_1800049f0(uVar5,"*******************************************************\n",pcVar7,ppcVar8
+                   );
+      uVar5 = __acrt_iob_func(2);
+      FUN_1800049f0(uVar5,"**** DEVELOPER BUILD FOR INTERNAL TRIDIUM USE ONLY ****\n",pcVar7,ppcVar8
+                   );
+      uVar5 = __acrt_iob_func(2);
+      _PBufferSizeInBytes = "*******************************************************\n";
+      FUN_1800049f0(uVar5,"*******************************************************\n",pcVar7,ppcVar8
+                   );
+    }
+    this[0xc] = (JavaLauncherWin32)param_4;
+    if (*(int *)(this + 8) != 0) {
+      FUN_180004a40("java> initPaths()\n",_PBufferSizeInBytes,pcVar7,ppcVar8);
+    }
+    iVar3 = initPaths(this);
+    if (-1 < iVar3) {
+      if (*(int *)(this + 8) != 0) {
+        FUN_180004a40("java> buildArgs()\n",_PBufferSizeInBytes,pcVar7,ppcVar8);
+      }
+      iVar3 = buildArgs(this,param_2,param_3);
+      if (-1 < iVar3) {
+        if (*(int *)(this + 8) != 0) {
+          FUN_180004a40("java> loadDLL()\n",uVar6,param_3,ppcVar8);
+        }
+        iVar3 = loadDLL(this);
+        if (-1 < iVar3) {
+          if (*(int *)(this + 8) != 0) {
+            FUN_180004a40("java> createVM()\n",uVar6,param_3,ppcVar8);
+          }
+          iVar3 = createVM(this);
+          if (-1 < iVar3) {
+            if (*(int *)(this + 8) != 0) {
+              FUN_180004a40("java> invokeJava()\n",uVar6,param_3,ppcVar8);
+            }
+            iVar3 = invokeJava(this,param_1);
+            if (-1 < iVar3) {
+              if (*(int *)(this + 8) != 0) {
+                FUN_180004a40("java> cleanup()\n",param_1,param_3,ppcVar8);
+              }
+              cleanup(this);
+            }
+          }
+        }
+      }
+    }
+  }
+  iVar3 = FUN_180007d40(local_38 ^ (ulonglong)auStack_188);
+  return iVar3;
+}
+
+
+
+/* ==== initPaths @ 180003ad0 ==== */
+      anchor @180003cab -> "\bin\server\jvm.dll"
+      anchor @180003ce7 -> "\bin\client\jvm.dll"
+      anchor @180003fc2 -> "FATAL: Failed to append all items in extPath to classpath, i..."
+      anchor @18000413d -> "java>   classPath                = %s\n"
+
+/* WARNING: Function: _alloca_probe replaced with injection: alloca_probe */
+/* private: int __cdecl JavaLauncherWin32::initPaths(void) __ptr64 */
+
+int __thiscall JavaLauncherWin32::initPaths(JavaLauncherWin32 *this)
+
+{
+  JavaLauncherWin32 *_Src;
+  longlong lVar1;
+  errno_t eVar2;
+  int iVar3;
+  Nre *pNVar4;
+  char *pcVar5;
+  char *pcVar6;
+  JavaLauncherWin32 *pJVar7;
+  longlong lVar8;
+  undefined8 uVar10;
+  size_t sVar11;
+  undefined8 uVar12;
+  char *pcVar13;
+  JavaLauncherWin32 *_Src_00;
+  rsize_t rVar14;
+  undefined1 *puVar15;
+  bool bVar16;
+  undefined1 auStack_fee8 [32];
+  JavaLauncherWin32 *local_fec8;
+  JavaLauncherWin32 *local_fec0;
+  JavaLauncherWin32 *local_feb8;
+  char local_fea8;
+  JavaLauncherWin32 *local_fea0;
+  char *local_fe98;
+  size_t local_fe90 [3];
+  JavaLauncherWin32 local_fe78 [272];
+  JavaLauncherWin32 local_fd68 [272];
+  undefined1 local_fc58 [272];
+  char local_fb48 [272];
+  char local_fa38 [32000];
+  char local_7d38 [32000];
+  ulonglong local_38;
+  longlong lVar9;
+  
+                    /* 0x3ad0  79  ?initPaths@JavaLauncherWin32@@AEAAHXZ */
+  local_38 = DAT_18000f178 ^ (ulonglong)auStack_fee8;
+  if (*(int *)(this + 0x1012c) != 0) goto LAB_180004183;
+  pNVar4 = Nre::getInstance();
+  _Src = this + 0xd;
+  (*(code *)PTR__guard_dispatch_icall_180009398)(pNVar4,_Src,0x104);
+  pNVar4 = Nre::getInstance();
+  (*(code *)PTR__guard_dispatch_icall_180009398)(pNVar4,this + 0x111,0x104);
+  FileUtil::verifyPath((char *)(this + 0x111));
+  pNVar4 = Nre::getInstance();
+  local_fea8 = (*(code *)PTR__guard_dispatch_icall_180009398)(pNVar4);
+  pNVar4 = Nre::getInstance();
+  (*(code *)PTR__guard_dispatch_icall_180009398)(pNVar4,this + 0x215,0x104);
+  pNVar4 = Nre::getInstance();
+  (*(code *)PTR__guard_dispatch_icall_180009398)(pNVar4,this + 0x319,0x104);
+  local_fe98 = (char *)0x0;
+  local_fe90[1] = 0;
+  eVar2 = _dupenv_s(&local_fe98,local_fe90 + 1,"NIAGARA_JRE_HOME");
+  if ((eVar2 == 0) && (local_fe98 != (char *)0x0)) {
+    strncpy_s((char *)(this + 0x41d),0x104,local_fe98,0xffffffffffffffff);
+    free(local_fe98);
+  }
+  else {
+    strncpy_s((char *)(this + 0x41d),0x104,(char *)_Src,0xffffffffffffffff);
+    strncat_s((char *)(this + 0x41d),0x104,"\\jre",0xffffffffffffffff);
+  }
+  _Src_00 = this + 0x41d;
+  strncpy_s((char *)(this + 0x521),0x104,(char *)_Src_00,0xffffffffffffffff);
+  strncat_s((char *)(this + 0x521),0x104,"\\bin\\server\\jvm.dll",0xffffffffffffffff);
+  strncpy_s((char *)(this + 0x625),0x104,(char *)_Src_00,0xffffffffffffffff);
+  strncat_s((char *)(this + 0x625),0x104,"\\bin\\client\\jvm.dll",0xffffffffffffffff);
+  memset(local_fe78,0,0x104);
+  local_fec8 = _Src_00;
+  FUN_180004980(local_fe78,0x104,0xffffffffffffffff,"%s\\bin");
+  memset(local_fa38,0,32000);
+  memset(local_fd68,0,0x104);
+  local_fec8 = _Src;
+  FUN_180004980(local_fd68,0x104,0xffffffffffffffff,"%s\\bin");
+  local_fea0 = (JavaLauncherWin32 *)0x0;
+  local_fe90[0] = 0;
+  _dupenv_s((char **)&local_fea0,local_fe90,"PATH");
+  if (local_fea0 == (JavaLauncherWin32 *)0x0) {
+    pJVar7 = local_fe78;
+LAB_180003e6b:
+    local_fec8 = local_fd68;
+    local_fec0 = pJVar7;
+LAB_180003e77:
+    FUN_180004980(local_fa38,32000,0xffffffffffffffff,"%s;%s");
+  }
+  else {
+    pcVar5 = strstr((char *)local_fea0,(char *)local_fd68);
+    pcVar6 = strstr((char *)local_fea0,(char *)local_fe78);
+    bVar16 = pcVar6 != (char *)0x0;
+    if ((pcVar5 != (char *)0x0) || (bVar16)) {
+      if (pcVar5 == (char *)0x0) {
+        pJVar7 = local_fea0;
+        if (bVar16) goto LAB_180003e6b;
+      }
+      else if (!bVar16) {
+        local_fec0 = local_fea0;
+        local_fec8 = local_fe78;
+        goto LAB_180003e77;
+      }
+      strncpy_s(local_fa38,32000,(char *)local_fea0,0xffffffffffffffff);
+    }
+    else {
+      local_feb8 = local_fea0;
+      local_fec0 = local_fe78;
+      local_fec8 = local_fd68;
+      FUN_180004980(local_fa38,32000,0xffffffffffffffff,"%s;%s;%s");
+    }
+  }
+  pJVar7 = this + 0x729;
+  memset(pJVar7,0,32000);
+  strncpy_s((char *)pJVar7,32000,local_fa38,0xffffffffffffffff);
+  memset(local_fb48,0,0x104);
+  local_fec8 = _Src;
+  FUN_180004980(local_fb48,0x104,0xffffffffffffffff,"%s\\bin\\ext");
+  memset(local_fc58,0,0x104);
+  bVar16 = LicenseUtil::isFeaturePresent("Tridium","fips140-2");
+  pcVar5 = "%s\\bin\\ext\\bcstd";
+  if (!bVar16) {
+    pcVar5 = "%s\\bin\\ext\\bcfips";
+  }
+  local_fec8 = _Src;
+  FUN_180004980(local_fc58,0x104,0xffffffffffffffff,pcVar5);
+  memset(this + 0x8429,0,32000);
+  lVar9 = -1;
+  do {
+    lVar8 = lVar9 + 1;
+    lVar1 = lVar9 + 0x842a;
+    lVar9 = lVar8;
+  } while (this[lVar1] != (JavaLauncherWin32)0x0);
+  puVar15 = local_fc58;
+  rVar14 = 32000 - lVar8;
+  iVar3 = FUN_180003730(local_fb48,(char *)(this + 0x8429),rVar14,(longlong)puVar15);
+  if (iVar3 != 0) {
+    uVar10 = __acrt_iob_func(2);
+    FUN_1800049f0(uVar10,
+                  "FATAL: Failed to append all items in extPath to classpath, insufficient buffer size\n"
+                  ,rVar14,puVar15);
+                    /* WARNING: Subroutine does not return */
+    exit(0xf9);
+  }
+  local_fe90[0] = 0xffffffffffffffff;
+  do {
+    sVar11 = local_fe90[0];
+    local_fe90[0] = sVar11 + 1;
+  } while (this[sVar11 + 0x842a] != (JavaLauncherWin32)0x0);
+  if (this[sVar11 + 0x8429] == (JavaLauncherWin32)0x3b) {
+    this[sVar11 + 0x8429] = (JavaLauncherWin32)0x0;
+  }
+  memset(local_7d38,0,32000);
+  pcVar5 = "path=%s";
+  uVar10 = 0xffffffffffffffff;
+  local_fec8 = pJVar7;
+  FUN_180004980(local_7d38,32000,0xffffffffffffffff,"path=%s");
+  iVar3 = _putenv(local_7d38);
+  if (iVar3 != 0) {
+    uVar12 = __acrt_iob_func(2);
+    FUN_1800049f0(uVar12,"WARNING: Failed to update path environment variable\n",uVar10,pcVar5);
+  }
+  if (*(int *)(this + 8) != 0) {
+    pcVar6 = "";
+    if (local_fea8 != '\0') {
+      pcVar6 = " (read-only)";
+    }
+    FUN_180004a40("java>   niagaraHome              = %s%s\n",_Src,pcVar6,pcVar5);
+    FUN_180004a40("java>   niagaraUserHome          = %s\n",this + 0x111,pcVar6,pcVar5);
+    FUN_180004a40("java>   supportedRuntimeProfiles = %s\n",this + 0x215,pcVar6,pcVar5);
+    FUN_180004a40("java>   requiredRuntimeProfiles  = %s\n",this + 0x319,pcVar6,pcVar5);
+    FUN_180004a40("java>   jreHome                  = %s\n",_Src_00,pcVar6,pcVar5);
+    FUN_180004a40("java>   jvmDll_0                 = %s\n",this + 0x521,pcVar6,pcVar5);
+    FUN_180004a40("java>   jvmDll_1                 = %s\n",this + 0x625,pcVar6,pcVar5);
+    FUN_180004a40("java>   libPath                  = %s\n",pJVar7,pcVar6,pcVar5);
+    pcVar13 = "false";
+    if (bVar16) {
+      pcVar13 = "true";
+    }
+    FUN_180004a40("java>   fips                     = %s\n",pcVar13,pcVar6,pcVar5);
+    FUN_180004a40("java>   classPath                = %s\n",this + 0x8429,pcVar6,pcVar5);
+  }
+  *(undefined4 *)(this + 0x1012c) = 1;
+LAB_180004183:
+  iVar3 = FUN_180007d40(local_38 ^ (ulonglong)auStack_fee8);
+  return iVar3;
+}
+
+
+
+/* ==== buildArgs @ 180002b10 ==== */
+      anchor @180002f8a -> "-Djava.library.path=%s"
+      anchor @180002ff1 -> "-Djava.class.path=%s"
+      anchor @180003053 -> "-Djava.security.properties==%s\bin\policy\java.security"
+      anchor @180003090 -> "-Djava.security.manager"
+
+/* WARNING: Function: _alloca_probe replaced with injection: alloca_probe */
+/* private: int __cdecl JavaLauncherWin32::buildArgs(int,char * __ptr64 * __ptr64) __ptr64 */
+
+int __thiscall JavaLauncherWin32::buildArgs(JavaLauncherWin32 *this,int param_1,char **param_2)
+
+{
+  JavaLauncherWin32 *pJVar1;
+  undefined8 *puVar2;
+  int iVar3;
+  ulonglong uVar4;
+  char *pcVar5;
+  JavaVMOption *pJVar6;
+  ulonglong uVar7;
+  uint uVar8;
+  ulonglong uVar9;
+  undefined8 in_R9;
+  char *pcVar10;
+  undefined1 auStack_10708 [32];
+  JavaLauncherWin32 *pJStack_106e8;
+  char acStack_106d8 [272];
+  char acStack_105c8 [272];
+  char acStack_104b8 [272];
+  char acStack_103a8 [272];
+  char acStack_10298 [272];
+  char acStack_10188 [272];
+  char acStack_10078 [800];
+  char local_fd58 [800];
+  char local_fa38 [32000];
+  char local_7d38 [32000];
+  ulonglong local_38;
+  
+  pJVar6 = DAT_18000f390;
+                    /* 0x2b10  36  ?buildArgs@JavaLauncherWin32@@AEAAHHPEAPEAD@Z */
+  puVar2 = DAT_18000f388;
+  local_38 = DAT_18000f178 ^ (ulonglong)auStack_10708;
+  uVar7 = 0;
+  *(undefined8 *)DAT_18000f390 = 0;
+  *puVar2 = 0;
+  *(undefined8 *)(pJVar6 + 0x10) = 0;
+  puVar2[1] = 0;
+  *(undefined8 *)(pJVar6 + 0x20) = 0;
+  puVar2[2] = 0;
+  *(undefined8 *)(pJVar6 + 0x30) = 0;
+  puVar2[3] = 0;
+  *(undefined8 *)(pJVar6 + 0x40) = 0;
+  puVar2[4] = 0;
+  *(undefined8 *)(pJVar6 + 0x50) = 0;
+  puVar2[5] = 0;
+  *(undefined8 *)(pJVar6 + 0x60) = 0;
+  puVar2[6] = 0;
+  *(undefined8 *)(pJVar6 + 0x70) = 0;
+  puVar2[7] = 0;
+  *(undefined8 *)(pJVar6 + 0x80) = 0;
+  puVar2[8] = 0;
+  *(undefined8 *)(pJVar6 + 0x90) = 0;
+  puVar2[9] = 0;
+  *(undefined8 *)(pJVar6 + 0xa0) = 0;
+  puVar2[10] = 0;
+  *(undefined8 *)(pJVar6 + 0xb0) = 0;
+  puVar2[0xb] = 0;
+  *(undefined8 *)(pJVar6 + 0xc0) = 0;
+  puVar2[0xc] = 0;
+  *(undefined8 *)(pJVar6 + 0xd0) = 0;
+  puVar2[0xd] = 0;
+  *(undefined8 *)(pJVar6 + 0xe0) = 0;
+  puVar2[0xe] = 0;
+  *(undefined8 *)(pJVar6 + 0xf0) = 0;
+  puVar2[0xf] = 0;
+  *(undefined8 *)(pJVar6 + 0x100) = 0;
+  puVar2[0x10] = 0;
+  *(undefined8 *)(pJVar6 + 0x110) = 0;
+  puVar2[0x11] = 0;
+  *(undefined8 *)(pJVar6 + 0x120) = 0;
+  puVar2[0x12] = 0;
+  *(undefined8 *)(pJVar6 + 0x130) = 0;
+  puVar2[0x13] = 0;
+  *(undefined8 *)(pJVar6 + 0x140) = 0;
+  puVar2[0x14] = 0;
+  *(undefined8 *)(pJVar6 + 0x150) = 0;
+  puVar2[0x15] = 0;
+  *(undefined8 *)(pJVar6 + 0x160) = 0;
+  puVar2[0x16] = 0;
+  *(undefined8 *)(pJVar6 + 0x170) = 0;
+  puVar2[0x17] = 0;
+  *(undefined8 *)(pJVar6 + 0x180) = 0;
+  puVar2[0x18] = 0;
+  *(undefined8 *)(pJVar6 + 400) = 0;
+  puVar2[0x19] = 0;
+  *(undefined8 *)(pJVar6 + 0x1a0) = 0;
+  puVar2[0x1a] = 0;
+  *(undefined8 *)(pJVar6 + 0x1b0) = 0;
+  puVar2[0x1b] = 0;
+  *(undefined8 *)(pJVar6 + 0x1c0) = 0;
+  puVar2[0x1c] = 0;
+  *(undefined8 *)(pJVar6 + 0x1d0) = 0;
+  puVar2[0x1d] = 0;
+  *(undefined8 *)(pJVar6 + 0x1e0) = 0;
+  puVar2[0x1e] = 0;
+  *(undefined8 *)(pJVar6 + 0x1f0) = 0;
+  puVar2[0x1f] = 0;
+  *(undefined8 *)(pJVar6 + 0x200) = 0;
+  puVar2[0x20] = 0;
+  *(undefined8 *)(pJVar6 + 0x210) = 0;
+  puVar2[0x21] = 0;
+  *(undefined8 *)(pJVar6 + 0x220) = 0;
+  puVar2[0x22] = 0;
+  *(undefined8 *)(pJVar6 + 0x230) = 0;
+  puVar2[0x23] = 0;
+  *(undefined8 *)(pJVar6 + 0x240) = 0;
+  puVar2[0x24] = 0;
+  *(undefined8 *)(pJVar6 + 0x250) = 0;
+  puVar2[0x25] = 0;
+  *(undefined8 *)(pJVar6 + 0x260) = 0;
+  puVar2[0x26] = 0;
+  *(undefined8 *)(pJVar6 + 0x270) = 0;
+  puVar2[0x27] = 0;
+  *(undefined8 *)(pJVar6 + 0x280) = 0;
+  puVar2[0x28] = 0;
+  *(undefined8 *)(pJVar6 + 0x290) = 0;
+  puVar2[0x29] = 0;
+  *(undefined8 *)(pJVar6 + 0x2a0) = 0;
+  puVar2[0x2a] = 0;
+  *(undefined8 *)(pJVar6 + 0x2b0) = 0;
+  puVar2[0x2b] = 0;
+  *(undefined8 *)(pJVar6 + 0x2c0) = 0;
+  puVar2[0x2c] = 0;
+  *(undefined8 *)(pJVar6 + 0x2d0) = 0;
+  puVar2[0x2d] = 0;
+  *(undefined8 *)(pJVar6 + 0x2e0) = 0;
+  puVar2[0x2e] = 0;
+  *(undefined8 *)(pJVar6 + 0x2f0) = 0;
+  puVar2[0x2f] = 0;
+  *(undefined8 *)(pJVar6 + 0x300) = 0;
+  puVar2[0x30] = 0;
+  *(undefined8 *)(pJVar6 + 0x310) = 0;
+  puVar2[0x31] = 0;
+  *(undefined8 *)(pJVar6 + 800) = 0;
+  puVar2[0x32] = 0;
+  *(undefined8 *)(pJVar6 + 0x330) = 0;
+  puVar2[0x33] = 0;
+  *(undefined8 *)(pJVar6 + 0x340) = 0;
+  puVar2[0x34] = 0;
+  *(undefined8 *)(pJVar6 + 0x350) = 0;
+  puVar2[0x35] = 0;
+  *(undefined8 *)(pJVar6 + 0x360) = 0;
+  puVar2[0x36] = 0;
+  *(undefined8 *)(pJVar6 + 0x370) = 0;
+  puVar2[0x37] = 0;
+  *(undefined8 *)(pJVar6 + 0x380) = 0;
+  puVar2[0x38] = 0;
+  *(undefined8 *)(pJVar6 + 0x390) = 0;
+  puVar2[0x39] = 0;
+  *(undefined8 *)(pJVar6 + 0x3a0) = 0;
+  puVar2[0x3a] = 0;
+  *(undefined8 *)(pJVar6 + 0x3b0) = 0;
+  puVar2[0x3b] = 0;
+  *(undefined8 *)(pJVar6 + 0x3c0) = 0;
+  puVar2[0x3c] = 0;
+  *(undefined8 *)(pJVar6 + 0x3d0) = 0;
+  puVar2[0x3d] = 0;
+  *(undefined8 *)(pJVar6 + 0x3e0) = 0;
+  puVar2[0x3e] = 0;
+  *(undefined8 *)(pJVar6 + 0x3f0) = 0;
+  puVar2[0x3f] = 0;
+  if (1 < param_1) {
+    uVar8 = 1;
+    do {
+      param_2 = param_2 + 1;
+      pcVar5 = *param_2;
+      if (*(int *)(this + 8) != 0) {
+        FUN_180004a40("java>   argv[%d] = \"%s\"\n",(ulonglong)uVar8,pcVar5,in_R9);
+      }
+      uVar4 = 0xffffffffffffffff;
+      do {
+        uVar4 = uVar4 + 1;
+      } while (pcVar5[uVar4] != '\0');
+      if (((uVar4 < 4) || (*pcVar5 != '-')) || (pcVar5[1] != '@')) {
+        pcVar5 = _strdup(pcVar5);
+        pJVar6 = DAT_18000f390;
+        DAT_18000f388[DAT_18000f3b4] = pcVar5;
+        DAT_18000f3b4 = DAT_18000f3b4 + 1;
+      }
+      else {
+        pcVar5[1] = '-';
+        pcVar5 = _strdup(pcVar5 + 1);
+        pJVar6 = DAT_18000f390;
+        *(char **)(DAT_18000f390 + (longlong)DAT_18000f3b0 * 0x10) = pcVar5;
+        DAT_18000f3b0 = DAT_18000f3b0 + 1;
+      }
+      uVar8 = uVar8 + 1;
+    } while ((int)uVar8 < param_1);
+  }
+  buildVMOptions(this,pJVar6,&DAT_18000f3b0,*(int *)(this + 8));
+  memset(local_fa38,0,32000);
+  pJStack_106e8 = this + 0x729;
+  FUN_180004980(local_fa38,32000,0xffffffffffffffff,"-Djava.library.path=%s");
+  pcVar5 = _strdup(local_fa38);
+  *(char **)(DAT_18000f390 + (longlong)DAT_18000f3b0 * 0x10) = pcVar5;
+  DAT_18000f3b0 = DAT_18000f3b0 + 1;
+  memset(local_7d38,0,32000);
+  pJStack_106e8 = this + 0x8429;
+  FUN_180004980(local_7d38,32000,0xffffffffffffffff,"-Djava.class.path=%s");
+  pcVar5 = _strdup(local_7d38);
+  *(char **)(DAT_18000f390 + (longlong)DAT_18000f3b0 * 0x10) = pcVar5;
+  DAT_18000f3b0 = DAT_18000f3b0 + 1;
+  memset(acStack_106d8,0,0x104);
+  pJVar1 = this + 0xd;
+  pJStack_106e8 = pJVar1;
+  FUN_180004980(acStack_106d8,0x104,0xffffffffffffffff,
+                "-Djava.security.properties==%s\\bin\\policy\\java.security");
+  pcVar5 = _strdup(acStack_106d8);
+  *(char **)(DAT_18000f390 + (longlong)DAT_18000f3b0 * 0x10) = pcVar5;
+  DAT_18000f3b0 = DAT_18000f3b0 + 1;
+  pcVar5 = _strdup("-Djava.security.manager");
+  *(char **)(DAT_18000f390 + (longlong)DAT_18000f3b0 * 0x10) = pcVar5;
+  DAT_18000f3b0 = DAT_18000f3b0 + 1;
+  memset(acStack_105c8,0,0x104);
+  pJStack_106e8 = pJVar1;
+  FUN_180004980(acStack_105c8,0x104,0xffffffffffffffff,"-Dniagara.home=%s");
+  pcVar5 = _strdup(acStack_105c8);
+  *(char **)(DAT_18000f390 + (longlong)DAT_18000f3b0 * 0x10) = pcVar5;
+  DAT_18000f3b0 = DAT_18000f3b0 + 1;
+  memset(acStack_10078,0,0x314);
+  FileUtil::pathToUrl((char *)pJVar1,acStack_10078,0x314);
+  memset(local_fd58,0,0x314);
+  pJStack_106e8 = (JavaLauncherWin32 *)acStack_10078;
+  FUN_180004980(local_fd58,0x314,0xffffffffffffffff,"-Dniagara.home.url=%s");
+  pcVar5 = _strdup(local_fd58);
+  *(char **)(DAT_18000f390 + (longlong)DAT_18000f3b0 * 0x10) = pcVar5;
+  DAT_18000f3b0 = DAT_18000f3b0 + 1;
+  memset(acStack_104b8,0,0x104);
+  pJStack_106e8 = this + 0x111;
+  FUN_180004980(acStack_104b8,0x104,0xffffffffffffffff,"-Dniagara.user.home=%s");
+  pcVar5 = _strdup(acStack_104b8);
+  *(char **)(DAT_18000f390 + (longlong)DAT_18000f3b0 * 0x10) = pcVar5;
+  DAT_18000f3b0 = DAT_18000f3b0 + 1;
+  memset(acStack_103a8,0,0x104);
+  pJStack_106e8 = (JavaLauncherWin32 *)0x18000a088;
+  FUN_180004980(acStack_103a8,0x104,0xffffffffffffffff,"-Dniagara.platform.provider=%s");
+  pcVar5 = _strdup(acStack_103a8);
+  *(char **)(DAT_18000f390 + (longlong)DAT_18000f3b0 * 0x10) = pcVar5;
+  DAT_18000f3b0 = DAT_18000f3b0 + 1;
+  memset(acStack_10298,0,0x104);
+  pJStack_106e8 = this + 0x215;
+  FUN_180004980(acStack_10298,0x104,0xffffffffffffffff,"-Dniagara.supported.runtime.profiles=%s");
+  pcVar5 = _strdup(acStack_10298);
+  *(char **)(DAT_18000f390 + (longlong)DAT_18000f3b0 * 0x10) = pcVar5;
+  DAT_18000f3b0 = DAT_18000f3b0 + 1;
+  memset(acStack_10188,0,0x104);
+  pJStack_106e8 = this + 0x319;
+  pcVar10 = "-Dniagara.required.runtime.profiles=%s";
+  FUN_180004980(acStack_10188,0x104,0xffffffffffffffff,"-Dniagara.required.runtime.profiles=%s");
+  pcVar5 = _strdup(acStack_10188);
+  *(char **)(DAT_18000f390 + (longlong)DAT_18000f3b0 * 0x10) = pcVar5;
+  DAT_18000f3b0 = DAT_18000f3b0 + 1;
+  pcVar5 = _strdup("exit");
+  pJVar6 = DAT_18000f390;
+  *(char **)(DAT_18000f390 + (longlong)DAT_18000f3b0 * 0x10) = pcVar5;
+  *(code **)(pJVar6 + (longlong)DAT_18000f3b0 * 0x10 + 8) = FUN_180004730;
+  DAT_18000f3b0 = DAT_18000f3b0 + 1;
+  if (*(int *)(this + 8) != 0) {
+    uVar4 = uVar7;
+    uVar9 = uVar7;
+    if (0 < DAT_18000f3b4) {
+      do {
+        FUN_180004a40("java>   javaArgs[%d] = \"%s\"\n",uVar9,
+                      *(undefined8 *)(uVar4 + (longlong)DAT_18000f388),pcVar10);
+        uVar8 = (int)uVar9 + 1;
+        uVar4 = uVar4 + 8;
+        uVar9 = (ulonglong)uVar8;
+        pJVar6 = DAT_18000f390;
+      } while ((int)uVar8 < DAT_18000f3b4);
+    }
+    uVar4 = uVar7;
+    if (0 < DAT_18000f3b0) {
+      do {
+        FUN_180004a40("java>   javaOption[%d] = \"%s\"\n",uVar7,*(undefined8 *)(pJVar6 + uVar4),
+                      pcVar10);
+        uVar8 = (int)uVar7 + 1;
+        uVar7 = (ulonglong)uVar8;
+        uVar4 = uVar4 + 0x10;
+        pJVar6 = DAT_18000f390;
+      } while ((int)uVar8 < DAT_18000f3b0);
+    }
+  }
+  iVar3 = FUN_180007d40(local_38 ^ (ulonglong)auStack_10708);
+  return iVar3;
+}
+
+
+
+/* ==== loadDLL @ 180004740 ==== */
+      anchor @1800048e6 -> "JNI_CreateJavaVM"
+
+/* private: int __cdecl JavaLauncherWin32::loadDLL(void) __ptr64 */
+
+int __thiscall JavaLauncherWin32::loadDLL(JavaLauncherWin32 *this)
+
+{
+  DWORD DVar1;
+  BOOL BVar2;
+  int iVar3;
+  HMODULE hModule;
+  ulonglong uVar4;
+  char *pcVar5;
+  JavaLauncherWin32 *pJVar6;
+  undefined8 uVar7;
+  undefined8 in_R9;
+  char *pcVar8;
+  undefined1 auStack_268 [32];
+  JavaLauncherWin32 *local_248;
+  JavaLauncherWin32 local_238 [272];
+  CHAR local_128 [272];
+  ulonglong local_18;
+  
+                    /* 0x4740  89  ?loadDLL@JavaLauncherWin32@@AEAAHXZ */
+  local_18 = DAT_18000f178 ^ (ulonglong)auStack_268;
+  memset(local_238,0,0x104);
+  uVar7 = 0x104;
+  memset(local_128,0,0x104);
+  pJVar6 = local_238;
+  DVar1 = GetCurrentDirectoryA(0x104,(LPSTR)pJVar6);
+  if (DVar1 == 0) {
+    FUN_180004a40("Error: Cannot get current directory, function failed.",pJVar6,uVar7,in_R9);
+  }
+  else {
+    uVar4 = 0xffffffffffffffff;
+    do {
+      uVar4 = uVar4 + 1;
+    } while (local_238[uVar4] != (JavaLauncherWin32)0x0);
+    if (DVar1 == uVar4) {
+      local_248 = this + 0x41d;
+      pcVar8 = "%s\\bin";
+      uVar7 = 0xffffffffffffffff;
+      FUN_180004980(local_128,0x104,0xffffffffffffffff,"%s\\bin");
+      BVar2 = SetCurrentDirectoryA(local_128);
+      if (BVar2 == 0) {
+        FUN_180004a40("Error: Cannot set current directory to %s\n",local_128,uVar7,pcVar8);
+      }
+      else {
+        pJVar6 = this + 0x521;
+        hModule = LoadLibraryA((LPCSTR)(this + 0x521));
+        if (hModule == (HMODULE)0x0) {
+          pJVar6 = this + 0x625;
+          hModule = LoadLibraryA((LPCSTR)pJVar6);
+          if (hModule == (HMODULE)0x0) {
+            FUN_180004a40("Error: Cannot load: %s or %s\n",this + 0x521,pJVar6,pcVar8);
+            SetCurrentDirectoryA((LPCSTR)local_238);
+            goto LAB_18000493b;
+          }
+        }
+        BVar2 = SetCurrentDirectoryA((LPCSTR)local_238);
+        if (BVar2 == 0) {
+          pJVar6 = local_238;
+          pcVar5 = "Error: Cannot set current directory back to %s";
+        }
+        else {
+          if (*(int *)(this + 8) != 0) {
+            FUN_180004a40("java>   Using dll = %s\n",pJVar6,uVar7,pcVar8);
+          }
+          DAT_18000f398 = GetProcAddress(hModule,"JNI_CreateJavaVM");
+          if (DAT_18000f398 != (FARPROC)0x0) goto LAB_18000493b;
+          pcVar5 = "Error: Cannot find JNI functions in %s\n";
+        }
+        FUN_180004a40(pcVar5,pJVar6,uVar7,pcVar8);
+        FreeLibrary(hModule);
+      }
+    }
+    else {
+      FUN_180004a40("Error: Cannot get current directory, buffer too short.",local_238,uVar7,in_R9);
+    }
+  }
+LAB_18000493b:
+  iVar3 = FUN_180007d40(local_18 ^ (ulonglong)auStack_268);
+  return iVar3;
+}
+
+
+
+/* ==== createVM @ 1800034d0 ==== */
+      anchor @18000362a -> "Error: CreateJavaVM failed %d\n"
+
+/* private: int __cdecl JavaLauncherWin32::createVM(void) __ptr64 */
+
+int __thiscall JavaLauncherWin32::createVM(JavaLauncherWin32 *this)
+
+{
+  bool bVar1;
+  int iVar2;
+  char *pcVar3;
+  undefined8 uVar4;
+  undefined8 in_RDX;
+  uint uVar5;
+  ulonglong uVar6;
+  ulonglong uVar7;
+  ulonglong uVar8;
+  undefined8 in_R8;
+  undefined4 *puVar9;
+  undefined8 in_R9;
+  undefined1 auStack_58 [32];
+  char *local_38;
+  undefined4 local_28;
+  int local_24;
+  longlong local_20;
+  undefined1 local_18;
+  ulonglong local_10;
+  
+                    /* 0x34d0  41  ?createVM@JavaLauncherWin32@@AEAAHXZ */
+  local_10 = DAT_18000f178 ^ (ulonglong)auStack_58;
+  uVar7 = 0;
+  if (*(int *)(this + 8) != 0) {
+    FUN_180004a40("java>   VM options:\n",in_RDX,in_R8,in_R9);
+    uVar6 = uVar7;
+    uVar8 = uVar7;
+    if (DAT_18000f3b0 < 1) goto LAB_1800035e7;
+    do {
+      FUN_180004a40("java>     javaOption[%d] = \"%s\"\n",uVar6,
+                    *(undefined8 *)(uVar8 + DAT_18000f390),in_R9);
+      uVar5 = (int)uVar6 + 1;
+      uVar6 = (ulonglong)uVar5;
+      uVar8 = uVar8 + 0x10;
+    } while ((int)uVar5 < DAT_18000f3b0);
+  }
+  uVar6 = uVar7;
+  if (0 < DAT_18000f3b0) {
+    do {
+      pcVar3 = strstr(*(char **)(uVar7 + DAT_18000f390),"javaagent");
+      if ((((pcVar3 != (char *)0x0) ||
+           (pcVar3 = strstr(*(char **)(uVar7 + DAT_18000f390),"agentpath"), pcVar3 != (char *)0x0))
+          || (pcVar3 = strstr(*(char **)(uVar7 + DAT_18000f390),"agentlib"), pcVar3 != (char *)0x0))
+         && (bVar1 = LicenseUtil::isFeaturePresent("Tridium","developer"), !bVar1)) {
+        uVar4 = __acrt_iob_func(2);
+        local_38 = "Tridium";
+        FUN_1800049f0(uVar4,
+                      "FATAL: Can not use Java agent argument \'%s\' without a \'%s\' feature in \'%s\' license.\n"
+                      ,*(undefined8 *)(DAT_18000f390 + (longlong)(int)uVar6 * 0x10),"developer");
+        goto LAB_18000367d;
+      }
+      uVar5 = (int)uVar6 + 1;
+      uVar7 = uVar7 + 0x10;
+      uVar6 = (ulonglong)uVar5;
+    } while ((int)uVar5 < DAT_18000f3b0);
+  }
+LAB_1800035e7:
+  puVar9 = &local_28;
+  local_20 = DAT_18000f390;
+  local_28 = 0x10008;
+  local_18 = 0;
+  local_24 = DAT_18000f3b0;
+  uVar5 = (*(code *)PTR__guard_dispatch_icall_180009398)(&DAT_18000f3a0,&DAT_18000f3a8);
+  if ((int)uVar5 < 0) {
+    FUN_180004a40("Error: CreateJavaVM failed %d\n",(ulonglong)uVar5,puVar9,in_R9);
+  }
+LAB_18000367d:
+  iVar2 = FUN_180007d40(local_10 ^ (ulonglong)auStack_58);
+  return iVar2;
+}
+
+
+
+/* ==== buildVMOptions @ 180004b00 ==== */
+      anchor @180004b0a -> "-Xmx48M"
+
+/* private: int __cdecl JavaLauncherWin32::buildVMOptions(struct JavaVMOption * __ptr64,int *
+   __ptr64,int) __ptr64 */
+
+int __thiscall
+JavaLauncherWin32::buildVMOptions
+          (JavaLauncherWin32 *this,JavaVMOption *param_1,int *param_2,int param_3)
+
+{
+  char *pcVar1;
+  
+                    /* 0x4b00  37  ?buildVMOptions@JavaLauncherWin32@@AEAAHPEAUJavaVMOption@@PEAHH@Z
+                        */
+  pcVar1 = _strdup("-Xmx48M");
+  *(char **)(param_1 + (longlong)*param_2 * 0x10) = pcVar1;
+  *param_2 = *param_2 + 1;
+  pcVar1 = _strdup("-Xms48M");
+  *(char **)(param_1 + (longlong)*param_2 * 0x10) = pcVar1;
+  *param_2 = *param_2 + 1;
+  return 0;
+}
+
+
+
+/* total: 6 decompiled, 0 failed */

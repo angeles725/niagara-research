@@ -3,12 +3,12 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 397
-gaps_closed: 4
-known_gaps: 8
+covered_blocks: 441
+gaps_closed: 5
+known_gaps: 11
 investigable_open: 0
-requires_execution_open: 3
-blocked_open: 1
+requires_execution_open: 4
+blocked_open: 2
 deferred_open: 0
 undocumented_findings: 0
 <!-- /research-state.v1 -->
@@ -16,7 +16,7 @@ undocumented_findings: 0
 focus: signing-pki
 status: stopped
 bootstrapped_on: 2026-08-07 (B392 capstone — reconciliation of the module trust anchor against the live install)
-block_prefix: niagara-mental-model-bloqueN.md (global numbering; next free: B393)
+block_prefix: niagara-mental-model-bloqueN.md (global numbering; next free: B441)
 
 ## Scope
 
@@ -33,6 +33,22 @@ the three trust domains, the real Honeywell-rooted RSA module chain, and the cor
   `truststore.jks` password `changeit` + single self-signed SEJOFA dev anchor; `.certificate` = DSA-1024 XML
   wrapper (Tridium root 2003, Sun default params, never-expires); `System.exit(-6)` on failed required
   verification; corrects [B113] SEJOFA/".bks"; corrected answer to "any N4 accepts Tridium modules".
+- **B441** (SP-G9 settled + [B440] §14 correction) — the provider-registration mechanism is neither a
+  runtime `insertProviderAt(1)` nor a trailing `addProvider()`: `njre` launches the JVM with
+  `-Djava.security.properties==bin/policy/java.security` (**double-`==` full override**, semantics per the
+  install's own master file), and that effective file lists `provider.1=BCFKSWrap`,
+  `provider.2=BouncyCastleFipsProvider`, `provider.3=Sun` — **BC ahead of Sun by static config**. Corrects
+  [B440] claims 6/7/8 (it read the overridden stock JRE file). Verdict split: provider-priority is ENFORCED
+  (shipped/declarative); approved-only STRICT mode is NOT enabled (`-Dorg.bouncycastle.fips.approved_only`
+  absent everywhere) → FIPS-certified provider is primary but runs in general mode. Reconciles [B26] (shipped
+  baseline, already had this) vs [B30] (strict-FIPS migration delta). Spawns SP-G9a/SP-G9b.
+- **B440** (crypto-provider reconciliation) — BouncyCastle (general JCE/JSSE) vs Mocana/DSF (narrow
+  native, [B425]) are two axes, not rivals. `njre` swaps `bcstd`↔`bcfips` by the `fips140-2` license
+  feature ([B380] §380.2): PRESENT→bcstd, ABSENT→bcfips (`bcfips` is the forced default). This install
+  has NO `fips140-2` feature in any of the 3 licenses → **runs `bcfips`** (corrects an in-session
+  inference that read it as `bcstd`). JRE `java.security` is stock (BC registered dynamically at boot,
+  confirms [B17]); B26/B30 FIPS provider files are a hardening template, not the shipped default. Spawns
+  SP-G9 (registration priority: `insertProviderAt(1)` vs trailing `addProvider`).
 
 ## Gap backlog (prioritized)
 
@@ -46,6 +62,9 @@ the three trust domains, the real Honeywell-rooted RSA module chain, and the cor
 | 4 | **SP-G3** — Native `LicenseUtil::isFeaturePresent` is a text match, not a DSA verify [B126 §126.6]; confirm Java `LicenseManager` rejects a bad DSA signature. | requires-execution | **PARTIAL (2026-08-07)** — executed offline: the real verifier (LicenseUtil.verify replica, validated B323/B395) returns VALID on intact Honeywell.license, INVALID on 1-byte signature flip, INVALID on payload change (feature attr). Java-side DSA verify is a real crypto check [CERT], contrasting the native text-match gate [B126 §126.6]. PENDING [CERT-live]: running-station fail-closed on boot with a tampered license (needs the Windows station started + a throwaway station). |
 | 5 | **SP-G6** — CRL/revocation enforcement for BACnet/SC + TLS (`BIssuerCertAndCrl` [B287]) — modelled, enforcement [INFER]. | requires-execution | open |
 | 6 | **SP-G4** — Reproduce a Tridium-rooted (non-OEM) `baja.jar` chain to settle §392.7 empirically. | blocked (requires-artifact: a stock non-OEM install) | open |
+| — | **SP-G9** — Does daemon boot `insertProviderAt(1)` or trailing `addProvider()`? enforced vs shipped. | requires-execution / code-read | **CLOSED B441** (neither: static override `-Djava.security.properties==bin/policy/java.security`, BC at provider.1/2 ahead of Sun; priority ENFORCED, approved-only strict NOT enabled; corrects B440 6/7/8) |
+| 4 | **SP-G9a** — Live `Security.getProviders()` on the running station to confirm the effective order matches `bin/policy/java.security` (upgrade §441.4 to [CERT-live]). | requires-execution | open (B441) |
+| 6 | **SP-G9b** — Licensed-`bcstd` branch names `provider.2=BouncyCastleFipsProvider`, a class absent from standard BC. Second policy variant, or daemon rewrites the line when `fips140-2` present? | blocked (requires-artifact: a `fips140-2`-licensed install) | open (B441) |
 
 ## Iteration history
 
@@ -57,3 +76,5 @@ the three trust domains, the real Honeywell-rooted RSA module chain, and the cor
 | 4 | B395 | SP-G5 vendor-cert chaining | CLOSED (independent crypto verify): all 3 vendor certs signed by hidden embedded DSA-1024 root in baja.jar; Tridium.certificate NOT self-signed; corrects B392 §392.4; dual embedded roots DSA+ECDSA(v2) |
 | 5 | B396 | SP-G7 optional integrity channel | CLOSED: syslog offload is the only channel (UDP/TCP/TLS, default TCP), record is plaintext string, no HMAC/RFC5848; tamper-resistance not evidence. investigable=0 → focus STOPPED |
 | 6 (§12) | B397 | dynamic-phase live validation | [CERT-live]: changeit+SEJOFA confirmed on RUNNING platform (upgrades B392/B395); SP-G3 verifier proven to reject sig+payload tampering (executed [CERT]); live-boot fail-closed DECLINED on production supervisor (needs throwaway); TLS default cert remitted to B156/158/162 |
+| 7 | B440 | crypto-provider reconciliation | BC (JCE/JSSE) vs Mocana/DSF (native) = two axes not rivals; `njre` swaps bcstd↔bcfips by `fips140-2` feature; install has NO fips140-2 → runs **bcfips** (corrects in-session bcstd inference); java.security stock ⇒ dynamic registration; spawns SP-G9 |
+| 8 | B441 | SP-G9 provider-registration | CLOSED: neither runtime call — `njre` `-Djava.security.properties==bin/policy/java.security` (double-`==` full override) puts BC at provider.1/2 ahead of Sun by static config. Priority ENFORCED; approved-only strict NOT enabled (flag absent). §14-corrects B440 6/7/8 (read overridden stock JRE file); reconciles B26 (baseline) vs B30 (strict migration). investigable=0 again → focus STAYS STOPPED. Spawns SP-G9a (live getProviders), SP-G9b (bcstd policy variant, blocked) |
