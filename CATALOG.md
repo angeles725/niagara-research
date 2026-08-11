@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **440 bloques**
+Total: **441 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -445,6 +445,7 @@ Total: **440 bloques**
 | 440 | [niagara-mental-model-bloque440.md](niagara-mental-model-bloque440.md) | Block 440 — The Java crypto provider stack, reconciled against disk: BouncyCastle and Mocana are two layers, not two rivals — and this install runs `bcfips`, not `bcstd` |
 | 441 | [niagara-mental-model-bloque441.md](niagara-mental-model-bloque441.md) | Block 441 — SP-G9 settled: BouncyCastle is registered **statically** at `provider.1/.2` ahead of Sun via an **overriding** `bin/policy/java.security` (`==` full override), not a runtime `insertProviderAt(1)`/`addProvider()` — the FIPS provider is primary, but approved-only strict mode is **off**. Corrects [B440]. |
 | 442 | [niagara-mental-model-bloque442.md](niagara-mental-model-bloque442.md) | Block 442 — license-diff corrective addendum: a present `security/` tree does not prove licensing; `nre -licenses` is the authoritative read-only oracle, and the 4.10 implementation spans seven runtime JAR boundaries plus the signing plugin |
+| 443 | [niagara-mental-model-bloque443.md](niagara-mental-model-bloque443.md) | Block 443 — authorization differential: the first proven A/B divergence is license discovery, and B's station denial is the expected `tridium:nre` consumer result |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

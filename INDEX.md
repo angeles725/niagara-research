@@ -14,6 +14,11 @@ Cobertura final estimada: **~99.95%** del framework Niagara N4.14 conceptualment
 
 ## Recent corrective addendum
 
+- **B443 — authorization differential:** resolves A as licensed Honeywell OptimizerSupervisor 4.14.0.162
+  and B as unlicensed iC-Niagara 4.10.9.14; the first proven divergence is license discovery (3 valid
+  licenses/178 features vs 0/0), which yields `tridium:nre` present vs absent and explains B's station/platform
+  denial. Workbench continuation is consumer-specific, not proof of authorization. Cross-build binaries remain
+  an explicit version/vendor confounder; no A/B binary hash is attributed to licensing.
 - **B442 — license-diff live 4.10 correction:** `nre -licenses` is the authoritative read-only license
   oracle; an unlicensed 4.10 install retains certificate/policy/signing baseline, so parent `security/`
   presence is not a cross-version license test. Includes the SHA-256/class-entry inventory of seven runtime

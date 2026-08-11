@@ -26,7 +26,7 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 438
+covered_blocks: 439
 gaps_closed: 6
 known_gaps: 6
 investigable_open: 0
@@ -38,7 +38,7 @@ undocumented_findings: 0
 
 ## Coverage
 
-- **Focus block artifacts**: 7 — B386-B391 + corrective addendum B442.
+- **Focus block artifacts**: 8 — B386-B391 + corrective addenda B442-B443.
 - **Coverage metric**: 6 / 6 seeded gaps; B442 is a correction/addendum, not a new gap.
 - **Method**: SHA-256 manifest of both trees → classify changed set (only-in-A / only-in-B / same-path-diff)
   → `diffoscope` ONLY on the license-axis subset (never diffoscope 30 GB of mostly-identical product bytes).
@@ -65,7 +65,8 @@ undocumented_findings: 0
 | 5 | 2026-08-07 | addendum: japicmp 4.14→4.15 | B390 | no · inline | 0 new. Additive, binary-compatible version-axis result. |
 | 6 | 2026-08-07 | addendum: 4.15 BACnet additions | B391 | no · inline | 0 new. Protocol/version axis, not license. |
 | 7 | 2026-08-11 | corrective addendum: 4.10 live state + principal JAR ownership | B442 | no · inline (§12 read-only live probe) | 0 new. `nre -licenses` confirms none/none while baseline `security/` exists; corrects B386's cross-version wording. 800-JAR census maps seven runtime boundaries + signing plugin. Focus remains STOPPED 6/6. |
+| 8 | 2026-08-11 | corrective synthesis: first authorization divergence + A provenance | B443 | no · inline (§12 read-only diagnostics; user prohibited delegation) | 0 new. A=licensed Honeywell 4.14 (3 valid licenses/178 features); B=iC 4.10 (0/0). First divergence is license discovery; B station/platform denial is the expected missing `tridium:nre` consumer result. Cross-build binaries remain confounded. |
 
 ## Stop control
 
-- Bootstrapped 2026-08-07. **ALL 6 GAPS COVERED (L1 B386, L6 B387, L3 B388, L4+L5 B389, L2 absorbed B386). investigable=0. STOPPED.** Corrected by B442: validated HostId-bound `.license` records and loaded runtime features define license state; parent `security/` presence is version-dependent. Modules/bin/config remain vendor/version/user axes (B388/B389).
+- Bootstrapped 2026-08-07. **ALL 6 GAPS COVERED (L1 B386, L6 B387, L3 B388, L4+L5 B389, L2 absorbed B386). investigable=0. STOPPED.** Corrected by B442 and synthesized by B443: validated HostId-bound `.license` records and loaded runtime features define license state; parent `security/` presence is version-dependent. The first observed A/B divergence is discovery (A 3 valid licenses, B 0), producing `tridium:nre` present vs absent and the expected B station/platform denial. Modules/bin/config remain vendor/version/user axes (B388/B389); same-build licensed 4.10 control remains unavailable.
