@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **433 blocks**
+Total: **434 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -439,3 +439,4 @@ Total: **433 blocks**
 | 435 | [niagara-mental-model-bloque435.md](niagara-mental-model-bloque435.md) | wbutil-wb is not a passive util jar: it hosts the user/role/permission UI, the primitive cell editors, and the credential/license tools |
 | 436 | [niagara-mental-model-bloque436.md](niagara-mental-model-bloque436.md) | The platform admin UI: platform-wb connects, platDaemon-wb is the client of the plat.exe daemon over the 3011/5011 wire |
 | 437 | [niagara-mental-model-bloque437.md](niagara-mental-model-bloque437.md) | The driver UI framework: a reflection-driven device/point manager where a driver author only declares @AgentOn + @MgrInclude |
+| 438 | [niagara-mental-model-bloque438.md](niagara-mental-model-bloque438.md) | The driver-UI long tail is pattern-repetition over B437: 48 modules extend the same device/point manager framework |
