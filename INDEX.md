@@ -12,6 +12,13 @@ Cobertura final estimada: **~99.95%** del framework Niagara N4.14 conceptualment
 
 ---
 
+## Recent corrective addendum
+
+- **B442 — license-diff live 4.10 correction:** `nre -licenses` is the authoritative read-only license
+  oracle; an unlicensed 4.10 install retains certificate/policy/signing baseline, so parent `security/`
+  presence is not a cross-version license test. Includes the SHA-256/class-entry inventory of seven runtime
+  licensing/security JAR boundaries plus the Niagara signing plugin. Corrects B386's generalized wording.
+
 ## Mapa completo
 
 ### Capa 1 — Infraestructura (Bloques 1-3)

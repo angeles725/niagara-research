@@ -1,5 +1,10 @@
 # Block 386 — license-diff L1: what a Niagara license changes on disk is the ENTIRE `security/` subtree — an unlicensed installed instance has no `security/licenses`, `security/certificates`, or `truststore.jks` at all
 
+> **CORRECTED by [B442] (2026-08-11):** this is a true observation for the sampled unlicensed 4.13.2.18
+> install, not a release-independent invariant. The live unlicensed 4.10.9.14 host has a baseline
+> `security/` tree (valid Tridium certificate, empty `licenses/{db,inbox}`, policy, custom signer registry).
+> Across versions, use validated `.license` records / `nre -licenses`, not parent-directory presence.
+
 > **Focus `license-diff` (bootstrapped 2026-08-07) — L1 inventory + the license-axis answer.** The user asked
 > to diff a LICENSED vs an UNLICENSED install with `diffoscope` to document what a license changes on disk.
 > This first block builds the inventory, corrects the artifact framing (the user-selected "unlicensed" B is
@@ -82,12 +87,12 @@ Re-pairing A against a genuinely installed-but-unlicensed instance — `iC-Niaga
   `[CERT]` **LICENSE axis** (SECRETS DISCIPLINE: HostId format + structure cited, license internals remitted
   to [B126 §126.1/§126.6] and [B2] — DSA-1024/SHA-1 sig, `hostId=` binding, `<feature>` gates).
 
-**The answer to the focus question:** what a Niagara license changes on disk is not a scatter of edited
-files — it is the *creation of the entire `security/{licenses,certificates}` + `truststore.jks` subtree*,
-HostId-keyed, that is wholly ABSENT on an unlicensed instance. Nothing in `modules/`, `bin/`, or `defaults/`
-is added or removed by licensing; the license lives entirely under `security/`. `[CERT]/[INFER]` (CERT: the
-subtree present/absent split; INFER: that no module/bin is license-gated on disk — consistent with [B126]'s
-finding that enforcement is runtime `LicenseManager`/`isFeaturePresent`, not file-presence).
+**Corrected scope [B442]:** in this 4.13.2.18 sample, licensing correlates with creation of
+`security/{licenses,certificates}` + `truststore.jks`; the comparison remains valid for this pair. It is not
+a cross-version invariant: unlicensed 4.10.9.14 retains baseline security/certificate/signing material.
+Nothing in `modules/`, `bin/`, or `defaults/` is added or removed by licensing; the portable indicator is a
+validated HostId-bound `.license` / loaded feature set, not existence of the parent `security/` directory.
+`[CERT]/[INFER]` (CERT: this pair's subtree split; INFER: cross-version mechanism, corrected by B442 live data).
 
 ---
 
@@ -104,8 +109,9 @@ Honeywell), not license. `[CERT]`
 
 1. **A license is a HostId-bound artifact set, not a code change** `[CERT]` (§386.3): moving/copying a
    licensed install to a different machine leaves `security/licenses/db/<HostId>/` pointing at the OLD host
-   ids; the license only validates on the hosts it names (ties to [B2]/[B126] HostId binding). This is why an
-   unlicensed instance is simply "missing `security/`", recoverable only by re-licensing for its own HostId.
+   ids; the license only validates on the hosts it names (ties to [B2]/[B126] HostId binding). [B442] corrects
+   the filesystem diagnostic: an unlicensed instance may retain baseline `security/`; authoritative state is
+   the validated HostId-bound license/feature set, recoverable only by legitimate licensing for its HostId.
 2. **The `.license`/`.certificate` files are public** (`[B126]`): public keys + DSA/RSA signatures — safe to
    inventory by structure; no private key material is in the licensed `security/` tree read here (the private
    signing keys live at Tridium, not on the install). `[CERT]`
@@ -137,8 +143,8 @@ corollary). Ratio ≈ 0.12 — low; EVIDENCE block (inventory). This L1 also ABS
 - **[B126]** — the `.license`/`.certificate` internals (DSA-1024/SHA-1, HostId binding, feature gates) this
   block inventories from the outside; §386.3 is the on-disk container of B126's format findings.
 - **[B2]** — licensing/HostId model: L1 shows its on-disk footprint is the `security/licenses/db/<HostId>/` tree.
-- **[B380]/[B381]** — runtime license enforcement (`fips140-2`/`developer` gates, DPAPI systempw) reads these
-  files; the unlicensed instance simply has none to read.
+- **[B380]/[B381]** — runtime license enforcement (`fips140-2`/`developer` gates, DPAPI systempw) reads license
+  records; [B442] shows an unlicensed 4.10 install can still retain non-license security baseline files.
 - **Forward (this focus)**: L2 (licensed `security/` structure vs corpus — mostly absorbed here), L3 (module
   version delta 4.14↔4.15, VERSION axis — needs the `japicmp` tool for API-level), L5 (config/defaults diff),
   L6 (feature-gate map — what a license ENABLES at runtime). **Re-pair note:** for a same-version license

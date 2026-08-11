@@ -26,31 +26,33 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 6
+covered_blocks: 438
 gaps_closed: 6
 known_gaps: 6
 investigable_open: 0
 requires_execution_open: 0
 blocked_open: 0
+deferred_open: 0
+undocumented_findings: 0
 <!-- /research-state.v1 -->
 
 ## Coverage
 
-- **Covered blocks (this focus)**: 0 — bootstrapped 2026-08-07.
-- **Coverage metric**: 0 / 6 seeded gaps.
+- **Focus block artifacts**: 7 — B386-B391 + corrective addendum B442.
+- **Coverage metric**: 6 / 6 seeded gaps; B442 is a correction/addendum, not a new gap.
 - **Method**: SHA-256 manifest of both trees → classify changed set (only-in-A / only-in-B / same-path-diff)
   → `diffoscope` ONLY on the license-axis subset (never diffoscope 30 GB of mostly-identical product bytes).
 
 ## Gap-backlog (prioritized)
 
-| Pr. | ID | Gap | Artifact / source | Status |
-|---|---|---|---|---|
-| high | **L1** | Inventory + classification + license-axis answer | manifests A,B,iC | **covered → B386** |
-| high | L2 | ABSORBED by B386 (B has no security/ to diff) | A security/ | **covered → B386** |
-| med | **L3** | Module inventory delta (86 OEM + 66 user + 42/532 version); NO module license-gated | A/B modules/ | **covered → B388** |
-| med | L4 | `bin/` native binaries diff — do the native launchers/DLLs differ 4.14 vs 4.15 (version axis; ties to platform-native B124-B385)? | A/B bin/ | pending |
-| med | **L5** | Config/defaults diff (version+vendor branding; no license signal) | A/iC defaults/ | **covered → B389** |
-| low | **L6** | Runtime feature-gate map + enforcement + signature chain | corpus + license files | **covered → B387** |
+| Priority | Gap | Artifact / source | Status |
+|---|---|---|---|
+| — | **L1** Inventory + classification + license-axis answer | manifests A,B,iC | ✅ B386; scope corrected by B442 |
+| — | **L2** Security artifact structure | A security/ | ✅ absorbed by B386 |
+| — | **L3** Module inventory delta | A/B modules/ | ✅ B388 |
+| — | **L4** Native binary diff | A/B bin/ | ✅ B389 |
+| — | **L5** Config/defaults diff | A/iC defaults/ | ✅ B389 |
+| — | **L6** Runtime feature gates + signature chain | corpus + license files | ✅ B387 |
 
 ## Iteration history
 
@@ -58,11 +60,12 @@ blocked_open: 0
 |---|---|---|---|---|---|
 | 1 | 2026-08-07 | L1 inventory + license-axis answer | B386 | no · inline | 0 new. B(4.15 EMEA)=INSTALLER not install (908 vs 66559); re-paired vs iC-Niagara-4.13.2.18 (installed unlicensed). LICENSE AXIS: unlicensed has NO security/; a license materializes security/licenses+db/<HostId>+certificates+truststore.jks. diffoscope 327 validated. |
 | 2 | 2026-08-07 | L6 runtime feature-gate map | B387 | yes · sonnet (gate-site sweep) + inline verify | 0 new. 178 grants (27 Hon+1 CL+150 Webs demo, developer skipModuleValidation=true). API LicenseManager.get/checkFeature; unlicensed→limits MAX_VALUE (UNCAPPED not disabled); heap.limit exceed→System.exit(-3); SMA=checkModuleReleaseDate at module load; signature-verified via hardcoded DSA+ECDSA master keys — CONFIRMS B126 §126.6 inference (native isFeaturePresent=text-match, Java=real verify). |
+| 3 | 2026-08-07 | L3 module delta | B388 | no · inline | 0 new. A=684 B=574 modules; only-A 152 = Honeywell OEM + user/third-party; only-B 42 = 4.15 base; common differences are version-axis. |
+| 4 | 2026-08-07 | L4+L5 bin/config delta | B389 | no · inline | 0 new. Native launcher core stable across 4.13→4.14; defaults delta is version/vendor. Focus complete 6/6. |
+| 5 | 2026-08-07 | addendum: japicmp 4.14→4.15 | B390 | no · inline | 0 new. Additive, binary-compatible version-axis result. |
+| 6 | 2026-08-07 | addendum: 4.15 BACnet additions | B391 | no · inline | 0 new. Protocol/version axis, not license. |
+| 7 | 2026-08-11 | corrective addendum: 4.10 live state + principal JAR ownership | B442 | no · inline (§12 read-only live probe) | 0 new. `nre -licenses` confirms none/none while baseline `security/` exists; corrects B386's cross-version wording. 800-JAR census maps seven runtime boundaries + signing plugin. Focus remains STOPPED 6/6. |
 
 ## Stop control
 
-- Bootstrapped 2026-08-07. **ALL 6 GAPS COVERED (L1 B386, L6 B387, L3 B388, L4+L5 B389, L2 absorbed B386). investigable=0. STOPPED.** Answer: a license changes ONLY security/ (on-disk B386) + runtime feature gates (B387); modules/bin/config differ by vendor/version/user (B388/B389). Remaining depth = japicmp per-jar API diffs (VERSION-axis, deferred).
-| 3 | 2026-08-07 | L3 module delta | B388 | no · inline | 0 new. A=684 B=574 modules; only-A 152 = 86 Honeywell OEM (vendor) + ~66 user/3rd-party (chihuahua/nmodsreflow/electronicSignature); only-B 42 = 4.15 base (entsec/accessControl/cloudLink); 532 common differ by version. NO module license-gated — confirms B387 from disk. |
-| 4 | 2026-08-07 | L4+L5 bin/config delta | B389 | no · inline | 0 new. bin/: nre/njre/station/plat byte-IDENTICAL 4.13↔4.14 (launcher core stable, B124-B385 generalizes); common.dll+nverify version-bumped; OEM adds honImport.dll/libciper.so. defaults/: system.properties 1180 lines diff (version+vendor honeywellcloud branding). Zero license signal. FOCUS COMPLETE 6/6. |
-| 5 | 2026-08-07 | (addendum, version-axis) japicmp 4.14->4.15 | B390 | no · inline | 0. baja core: 0 removed, 0 binary-incompatible, 4 new, 29 additive-mod; bacnet-rt +74 new; control-rt unchanged. 4.14->4.15 = additive backward-compatible. japicmp 0.23.1 acquired. Focus stays 6/6. |
-| 6 | 2026-08-07 | (addendum, version-axis) 4.15 BACnet additions | B391 | no · inline | 0. bacnet-rt +73 new classes = jump to newer ASHRAE 135: BACnet/SC datatypes (gates bacnetSc feature B387), Elevator/Lift objects, Timer+Value_Source, COV-Multiple, BBMD/routing, Optional* wrappers. All additive. Protocols-line, not license. |
+- Bootstrapped 2026-08-07. **ALL 6 GAPS COVERED (L1 B386, L6 B387, L3 B388, L4+L5 B389, L2 absorbed B386). investigable=0. STOPPED.** Corrected by B442: validated HostId-bound `.license` records and loaded runtime features define license state; parent `security/` presence is version-dependent. Modules/bin/config remain vendor/version/user axes (B388/B389).

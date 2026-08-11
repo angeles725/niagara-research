@@ -1,0 +1,73 @@
+# B442 read-only remote evidence — iC-Niagara 4.10.9.14
+# Acquired: 2026-08-11T07:09:49Z..07:13:18Z over the authorized SSH identity.
+# Remote command shape: powershell.exe -NoProfile -NonInteractive -EncodedCommand <UTF-16LE base64>
+# Safety: metadata, ZIP central-directory entries, hashes, and documented nre diagnostics only.
+# Redaction: HostId and other sensitive identifiers replaced before leaving the host.
+
+## E1 — Runtime identity and HostId source
+install=C:\Niagara\iC-Niagara-4.10.9.14
+nreVersion.xml=name:nre-core-win-x64;version:4.10.9.14
+nre -version exit=0
+java.version=1.8.0_412;java.vendor=Azul Systems, Inc.;java.home=C:\Niagara\iC-Niagara-4.10.9.14\jre
+niagara.home=C:\Niagara\iC-Niagara-4.10.9.14
+niagara.user.home=C:\Users\ASUS\Niagara4.10\iSMA CONTROLLI
+niagara.platform.provider=com.tridium.nre.platform.NativePlatformProviderTridium
+nre.hostId=<HOSTID_REDACTED>;format=Win-XXXX-XXXX-XXXX-XXXX;source=nre -hostid and nre -version
+nre.hostModel=Workstation;nre.vendor=Tridium;nre.vendorVersion=4.10.9.14
+
+## E2 — Authoritative license diagnostic
+nre -licenses exit=0
+HostId=<HOSTID_REDACTED>
+Certificates: Tridium.certificate <Tridium> [expires: never] {valid}
+Licenses (node-locked): none
+Features: none
+Brand: empty
+
+## E3 — Storage census (independent of nre output)
+install security exists=true
+security/certificates: children=1
+security/certificates/Tridium.certificate: bytes=833;sha256=9E1D3F6D9E66DE4020171FA9D3DFA66F0B75036DDA5B1732A49F7973A4965211
+security/licenses: children=2
+security/licenses/db: children=0
+security/licenses/inbox: children=0
+security/policy: children=3 (java.policy, java.security, signing.properties)
+security/signing: children=1
+security/signing/signers: bytes=129124;sha256=81999902D01421BF5FFFD72A81BB98D40177309FB2F9491AFB5A1AC93380D085
+install recursive *.license count=0
+C:\Users\ASUS\Niagara4.10 recursive files=10;license/security artifact matches=0
+C:\Users\ASUS\Niagara4.10\iSMA CONTROLLI recursive files=10;license/security artifact matches=0
+C:\ProgramData\Niagara4 exists=false
+C:\ProgramData\Tridium exists=false
+
+## E4 — Principal licensing/security JAR inventory
+install recursive JAR count=800
+# All Niagara JAR manifests below report Implementation-Version 4.10.9.14 and vendor Tridium unless noted.
+bin/ext/niagarad.jar;bytes=520370;sha256=7A3B467A31C40D515991A5D3D2E86EA02D8472CCBD557FA8A6EB32E2B2FEFB44;matching_entries=6
+  com/tridium/niagarad/license/{LicenseManager,LicenseFile,LicenseUtil,Feature,Brand}.class
+bin/ext/nre.jar;bytes=984181;sha256=8C868784D759F9F3D839BE7B77367141042D600FF10AA68059A6F1B72F6BBD3F;matching_entries=22
+  com/tridium/crypto/core/cert/{JarSignatureRegistry,CertificateChainValidator,ASN1HostId}.class
+  com/tridium/crypto/core/io/{ICoreTrustStore,CoreTrustStore}.class;com/tridium/nre/security/TextFileSignatureVerifier.class
+modules/baja.jar;bytes=2371720;sha256=8F8351B226A2E1C7D92F4639E6D3282AB6CCC0E04DC0D27B256B050F7FE746B1;matching_entries=40
+  javax/baja/license/{LicenseManager,Feature,FeatureNotLicensedException,FeatureLicenseExpiredException}.class
+  com/tridium/sys/license/{NLicenseManager,LicenseUtil}.class and com/tridium/sys/license/dom/{LicenseDatabase,HostLicenseSet,VendorLicense,VendorCertificate}.class
+modules/file-rt.jar;bytes=117561;sha256=9F5C33F1945023EE3FB3CA118478EA83F8F0465ED85ABD1974237E32869D05B2;matching_entries=3
+  com/tridium/file/types/text/{BLicenseFile,BCertificateFile}.class;com/tridium/file/util/LicenseGenerator.class
+modules/platform-rt.jar;bytes=1014371;sha256=3C8ABA5B279EC2DA9EEF74101A912267729D98461B8585AE18817F9531358125;matching_entries=21
+  javax/baja/platform/PlatformLicenseManager.class;com/tridium/platform/license/{BLicensePlatformService,LicenseInfo,LicenseModel,LicenseSync}.class
+  com/tridium/platform/daemon/{NiagaraLicenseManager,message/ReloadLicenseMessage}.class;com/tridium/platform/fox/BLicenseChannel.class
+modules/platDaemon-wb.jar;bytes=3861442;sha256=2F80C1F45F6A12FF54D71C4F20095137A0C5BBC359C47C702330DDC52C55772B;matching_entries=53
+  com/tridium/platDaemon/ui/commissioningwizard/LicenseStep*.class;com/tridium/platDaemon/ui/licenseinstall/BLicenseManager*.class
+modules/platCrypto-rt.jar;bytes=131297;sha256=9E41F846ADC22FC22E3FB24E776B38FFF57074B7D3E01B2C95FA449BA3FCFE0B;matching_entries=16
+  com/tridium/platcrypto/core/NTrustStore.class;com/tridium/platcrypto/daemon/BPlatTrustStore.class;certificate message classes
+etc/m2/repository/com/tridium/niagara-signing-plugin/1.0.10/niagara-signing-plugin-1.0.10.jar;bytes=143688;sha256=CB4F76757F236E80D200F31A6F9D3A6D98BBBF4853170BFD9B7EFC4E1ED9D2B5;matching_entries=37
+  com/tridium/signing/{SigningProfile,RestrictedSigningProfile,LocalSigningProfile}.class;SignPolicyFilesTask*.class;SignThirdPartyJarsTask*.class
+
+## E5 — Signer-store format boundary
+security/signing/signers is a custom 129124-byte binary, not a JKS readable by bundled keytool (keytool exit=1).
+No private-key or credential material was requested or emitted.
+The prior corpus observation about its public trust entry was not independently re-decoded in this run; B442 treats it as prior coverage, not fresh evidence.
+
+## E6 — Local decompiled validation path used for architectural reconciliation
+sources/probes/B317-pentest-2026-08-01/native/jars/LicenseFile.java:38-74 records load failure and logs "License file not loaded".
+sources/probes/B317-pentest-2026-08-01/native/jars/LicenseFile.java:77-88 resolves the vendor certificate and checks HostId.
+sources/probes/B317-pentest-2026-08-01/native/jars/LicenseFile.java:172-198 removes the signature element, verifies the canonical XML, and rejects invalid/missing signatures.
