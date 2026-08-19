@@ -9,7 +9,7 @@
 |---|---|---|---|---|
 | (base) | stopped | `RESEARCH-STATE.md` | Framework Niagara N4.14 completo (Capas 1-25) + audit Reflow v1.7.5 + OEM Honeywell/Spyder + native platform RE | B1–B130 |
 | **video** | **document 4/4** | `RESEARCH-STATE-video.md` | DOCUMENT-mode (§20): 4 how-to de integración de cámara AXIS (M2025-LE homelab propio) en N4 — V1 driver nativo `naxisVideo` licenciado, V2 embed relay MJPEG en Web Widget, V3 PxImage snapshot, V5 módulo propio (gate=firma, no feature). Cross-finding: N4 "Digest"=SCRAM≠RFC7616. Secuencias `[INFER]` (4 gaps de validación en vivo). Deliverable `docs/video-axis-n4-integration.md` | B453–B456 |
-| **jace8000** | **stopped (11/11 + synthesis B470, investigable=0)** | `RESEARCH-STATE-jace8000.md` | The JACE-8000 as a **live embedded QNX controller** (`192.168.1.140`, `live-install` §12). Angle: architecture (QNX Neutrino / ARM Cortex-A8 NPM6xx / HotSpot JVM — **not Linux/Windows**), accessing the station (SCRAM live), entering the QNX filesystem, the platform daemon (:3011/:5011, 403-to-GET), **platform entry without Workbench + RE the platform protocol to pull the station `.bog`**, and station recovery when platform access is lost (USB clone backup / Factory Recovery / serial console). Reuses B457 SCRAM tool. B459 = architecture bootstrap. **Operator action: rotate exposed `admin` creds** | B459– |
+| **jace8000** | **stopped (16/23 gaps, investigable=0; B459-B474)** | `RESEARCH-STATE-jace8000.md` | The JACE-8000 as a **live embedded QNX controller** (`192.168.1.140`, `live-install` §12). Angle: architecture (QNX Neutrino / ARM Cortex-A8 NPM6xx / HotSpot JVM — **not Linux/Windows**), accessing the station (SCRAM live), entering the QNX filesystem, the platform daemon (:3011/:5011, 403-to-GET), **platform entry without Workbench + RE the platform protocol to pull the station `.bog`**, and station recovery when platform access is lost (USB clone backup / Factory Recovery / serial console). Reuses B457 SCRAM tool. B459 = architecture bootstrap. **Operator action: rotate exposed `admin` creds** | B459– |
 | **api-access** | **document 2/2** | `RESEARCH-STATE-api-access.md` | DOCUMENT-mode (§20): acceso programático legítimo a una estación N4 viva (estación propia del operador, cuenta `API2`). B457 = login (SCRAM-SHA-256 + acceptEula); B458 = extracción oBIX (op query History POST/GET, paginación, delta incremental, config dump). `[CERT]` código + `[CERT-live]` cross-session. Tools en `sources/probes/B457-n4-login/`. Acción: rotar credenciales expuestas | B457–B458 |
 | **database** | **stopped (11/11 + synthesis B413)** | `RESEARCH-STATE-database.md` | La capa de PERSISTENCIA de N4 como subsistema — no el formato de cada archivo (ya en B5/B33/B34/B114/B393) sino la mecánica viva que el corpus nunca abrió: ciclo de guardado del BOG (trigger/dirty flag), modelo BComponentSpace/BSpace, ejecución BQL contra el space, migración de BOG entre versiones, y sobre todo el EXPORT a RDBMS externo (rdb-rt, alarmOrion, HSQLDB embebido) — el puente base-interna↔SQL-externa. 11 gaps DB1-DB11 cerrados (B402-B412) + síntesis B413. STOPPED 2026-08-09 | B402–B413 |
 | optimizersupervisor | paused | `RESEARCH-STATE-optimizersupervisor.md` | Install vivo OptimizerSupervisor N4.14.0.162 (config.bog de stations vivas) | B123 |
@@ -62,7 +62,20 @@ la lectura por un operador autorizado — instancia viva de la tesis B392. **Pos
 (SSH/telnet/Fox-1911 off, TLS1.3+HSTS) minado por certs default (platform expirado 2022, ForRecoveryPurposes) +
 **credencial admin expuesta → ROTAR** (B468). Quedan **7 gaps hijo requires-execution** (J8-G1 cliente Fox para el
 .dist, J3-G1 bytes del handshake platform, J11-G1 nmap TLS, etc.). SOURCES §5: 15 guías niagara-help registradas.
-Próximo bloque global: **B471**.
+
+**BREAKTHROUGH Fox (B471-B474, §12 live, 2026-08-19):** se construyó desde cero un **cliente Fox** (stdlib) y se
+demostró J8 **end-to-end contra el JACE vivo**: (B471) login SCRAM-SHA-256 por foxs:4911 con auth mutua
+verificada (`app.name=Station`, method `n4digest`); (B472) RE del mecanismo de backup-over-Fox (canal `backup`
+→ circuito → `{save=false}` read-only → stream ZIP; gate = permiso bit 48); (B473) **se extrajo el
+`config.bog` vivo** (`.dist` 200.680 B, sha256 805139cf…, 43 entradas, station `JACE_UMBRELLA/config.bog` 7367 B)
+**sin Workbench, read-only, solo con admin de station** — SECRETS DISCIPLINE: el `.dist` quedó en scratchpad,
+solo se commiteó un manifiesto estructural (nombres+tamaños, Host ID enmascarado). El 2º hello **refinó** B459/B465
+en vivo: **QNX 7.0.X + OpenJDK 25.412** (no HotSpot), station `JACE_UMBRELLA`, `hostId=Qnx-TITAN-44A2-****-****-363E`
+(cierra J10-G1), `app.version=4.14.0.162`. (B474) J11-G1 cerrado: station **TLS 1.3-ONLY** (el server rechaza 1.2),
+§14 refina B468. Tools nuevos: `sources/probes/B471-fox-client/{niagara-fox-client.py, niagara-fox-backup.py}`.
+**Veredicto J8 probado:** con admin de station se obtiene el `.bog` sin Workbench; los secretos siguen cifrados
+en reposo (clave-máquina/passphrase, B466). Quedan 5 gaps hijo requires-execution (J8-G3 rol no-super, J3-G1,
+J5-G1, J7-G1, J2-G1). Próximo bloque global: **B475**.
 
 **(previo)** **`signing-pki`** (**STOPPED, investigable=0**, B392-B396) — **BOOTSTRAPEADO y CERRADO 2026-08-07** en una
 corrida `/loop`. Nace del pedido del usuario de entender "cómo funcionan las firmas de los módulos y cómo
