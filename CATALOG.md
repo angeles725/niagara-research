@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **457 bloques**
+Total: **458 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -462,6 +462,7 @@ Total: **457 bloques**
 | 457 | [niagara-mental-model-bloque457.md](niagara-mental-model-bloque457.md) | Block 457 — Programmatic login to a live Niagara N4 station: the real SCRAM-SHA-256 handshake + the acceptEula commit step (reusable recipe) |
 | 458 | [niagara-mental-model-bloque458.md](niagara-mental-model-bloque458.md) | Block 458 — Bulk data extraction from a live N4 station over oBIX: the History `query` op (POST + GET forms), pagination, incremental delta, and config dump |
 | 459 | [niagara-mental-model-bloque459.md](niagara-mental-model-bloque459.md) | B459 — JACE-8000 architecture: a QNX/ARM embedded controller, not Linux or Windows (focus jace8000 bootstrap, J1) |
+| 460 | [niagara-mental-model-bloque460.md](niagara-mental-model-bloque460.md) | B460 — The JACE-8000 platform daemon (niagarad): what listens on :3011/:5011, why GET is 403, and how the platform connection differs from the station (focus jace8000, J3) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
