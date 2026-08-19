@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **455 bloques**
+Total: **456 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -460,6 +460,7 @@ Total: **455 bloques**
 | 455 | [niagara-mental-model-bloque455.md](niagara-mental-model-bloque455.md) | Block 455 — AXIS live-video runbook V3: PxImage snapshot refresh (lightest, license-free) |
 | 456 | [niagara-mental-model-bloque456.md](niagara-mental-model-bloque456.md) | Block 456 — AXIS live-video runbook V5: a custom N4 module (own driver), no commercial video feature |
 | 457 | [niagara-mental-model-bloque457.md](niagara-mental-model-bloque457.md) | Block 457 — Programmatic login to a live Niagara N4 station: the real SCRAM-SHA-256 handshake + the acceptEula commit step (reusable recipe) |
+| 458 | [niagara-mental-model-bloque458.md](niagara-mental-model-bloque458.md) | Block 458 — Bulk data extraction from a live N4 station over oBIX: the History `query` op (POST + GET forms), pagination, incremental delta, and config dump |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

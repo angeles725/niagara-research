@@ -6,12 +6,17 @@
 > legítimo por el protocolo real, equivalente a Workbench; NO bypass). Trabajo cruzado con la sesión "camara"
 > (que hizo la verificación en vivo); corroborado desde el código por este lado.
 >
-> **Bloque:** B457 — GET /prelogin → SCRAM-SHA-256 (client-first / server-first r,s,i / client-final con
-> proof + verificación de v=) → `POST action=acceptEula` (commit de sesión) → autenticado (JSESSIONID +
-> niagara_userid), listo para oBIX/BQL.
+> **Bloques:**
+> - **B457** — get IN (login): GET /prelogin → SCRAM-SHA-256 (client-first / server-first r,s,i / client-final
+>   con proof + verificación de v=) → `POST action=acceptEula` (commit de sesión) → autenticado (JSESSIONID +
+>   niagara_userid), listo para oBIX/BQL.
+> - **B458** — get DATA OUT (extracción oBIX): op `query` de History (dos vías — POST HistoryFilter y GET
+>   `~historyQuery?params`), HistoryQueryOut → HistoryRecord (timestamp+value), paginación (start=lastTs+1ms),
+>   delta incremental, y recorrido de config/. Contrato `[CERT]` en `sources/decompiled/obix-contracts/`.
 >
-> **Artefactos [CERT-live]:** `sources/probes/B457-n4-login/niagara-n4-client.py` (impl de referencia, stdlib,
-> sin secretos) + `http-digest.py` (cliente Digest/Basic RFC 7616 para cámaras/IoT, NO para N4).
+> **Artefactos [CERT-live]:** `sources/probes/B457-n4-login/` — `niagara-n4-client.py` (login),
+> `niagara-n4-export.py` (extracción masiva: histories→CSV, paginación, delta, config dump), `http-digest.py`
+> (cliente Digest/Basic RFC 7616 para cámaras/IoT, NO para N4). Todos stdlib, sin secretos.
 >
 > **Base de evidencia:** SCRAM/SHA-256 `[CERT]` código (`BDigestAuthenticationScheme:44`→`DigestLoginModule:26`→
 > `ScramServer`; `UserKeyFactory:14` PBKDF2-HMAC-SHA256) + `[CERT-live]` cross-session (handshake, acceptEula,
@@ -24,11 +29,11 @@
 schema: research-state.v1
 method: document-cycle-external
 block_scope: shared-global
-covered_blocks: 457
+covered_blocks: 458
 gaps_closed: 0
-known_gaps: 2
-investigable_open: 2
-requires_execution_open: 2
+known_gaps: 4
+investigable_open: 4
+requires_execution_open: 4
 blocked_open: 0
 deferred_open: 0
 undocumented_findings: 0
@@ -36,6 +41,7 @@ undocumented_findings: 0
 
 ## Coverage / open items
 
-Outline cubierto 1/1 (el método de login). Gaps abiertos: **B457-G1** (recetas BQL/history sobre oBIX
-autenticado) y **B457-G2** (lifecycle de sesión `niagara_userid` + CSRF/token en writes — este bloque solo
-ejerció lecturas). Acción de seguridad (no-gap): rotar credenciales API2.
+Outline cubierto 2/2 (login + extracción). Gaps abiertos: **B457-G1** (recetas BQL sobre oBIX autenticado),
+**B457-G2** (lifecycle `niagara_userid` + CSRF en writes), **B458-G1** (contrato del op `rollup` para
+downsample server-side), **B458-G2** (paths de write/commit oBIX — el método actual es solo lectura).
+Acción de seguridad (no-gap): rotar credenciales API2 expuestas.
