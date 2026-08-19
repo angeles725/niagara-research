@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **460 bloques**
+Total: **461 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -465,6 +465,7 @@ Total: **460 bloques**
 | 460 | [niagara-mental-model-bloque460.md](niagara-mental-model-bloque460.md) | B460 — The JACE-8000 platform daemon (niagarad): what listens on :3011/:5011, why GET is 403, and how the platform connection differs from the station (focus jace8000, J3) |
 | 461 | [niagara-mental-model-bloque461.md](niagara-mental-model-bloque461.md) | B461 — Accessing the JACE-8000 station: SCRAM login → the bajaux ORD navigator browses the whole component tree; the module set is minimal (no oBIX/Hx/help) (focus jace8000, J4) |
 | 462 | [niagara-mental-model-bloque462.md](niagara-mental-model-bloque462.md) | B462 — Entering the JACE-8000 filesystem: the QNX tree (/opt/niagara, /home/niagara) and its four access routes, each with a different privilege and scope (focus jace8000, J5) |
+| 463 | [niagara-mental-model-bloque463.md](niagara-mental-model-bloque463.md) | B463 — Recovering a JACE-8000 station without platform access: three hardware routes, and why credential reset needs a Tridium-signed key (focus jace8000, J7) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
