@@ -74,8 +74,10 @@ en vivo: **QNX 7.0.X + OpenJDK 25.412** (no HotSpot), station `JACE_UMBRELLA`, `
 (cierra J10-G1), `app.version=4.14.0.162`. (B474) J11-G1 cerrado: station **TLS 1.3-ONLY** (el server rechaza 1.2),
 §14 refina B468. Tools nuevos: `sources/probes/B471-fox-client/{niagara-fox-client.py, niagara-fox-backup.py}`.
 **Veredicto J8 probado:** con admin de station se obtiene el `.bog` sin Workbench; los secretos siguen cifrados
-en reposo (clave-máquina/passphrase, B466). Quedan 5 gaps hijo requires-execution (J8-G3 rol no-super, J3-G1,
-J5-G1, J7-G1, J2-G1). Próximo bloque global: **B475**.
+en reposo (clave-máquina/passphrase, B466). J8-G3 cerrado disk-first (B475: bit48=ADMIN_READ|ADMIN_WRITE, operador denegado). **Quedan 4 gaps hijo
+DIFERIDOS a próxima sesión — solo cerrables con acceso físico al puerto serial Debug** (J7-G1 menú Alternate
+Boot, J2-G1 tabla de montaje QNX, J3-G1 bytes del handshake niagarad, J5-G1 ACL por-archivo /file). Set
+investigable-por-red EXHAUSTO. Próximo bloque global: **B476**.
 
 **(previo)** **`signing-pki`** (**STOPPED, investigable=0**, B392-B396) — **BOOTSTRAPEADO y CERRADO 2026-08-07** en una
 corrida `/loop`. Nace del pedido del usuario de entender "cómo funcionan las firmas de los módulos y cómo
