@@ -24,9 +24,9 @@ schema: research-state.v1
 method: dynamic-live
 block_scope: shared-global
 covered_blocks: 458
-gaps_closed: 8
-known_gaps: 17
-investigable_open: 4
+gaps_closed: 9
+known_gaps: 18
+investigable_open: 3
 requires_execution_open: 1
 blocked_open: 0
 deferred_open: 0
@@ -35,7 +35,7 @@ undocumented_findings: 0
 
 ## Coverage / open items
 
-Coverage: 8/17 gaps closed. Next gap: **J10** (B467).
+Coverage: 9/18 gaps closed. Next gap: **J11** (B468).
 
 | Priority | Gap | Detail | Status |
 |---|---|---|---|
@@ -49,8 +49,8 @@ Coverage: 8/17 gaps closed. Next gap: **J10** (B467).
 | medium | J2 QNX filesystem layout & boot | QNX Neutrino from flash; niagarad→JVM→stations as separate OS procs; factory image in RO NVRAM; /opt/niagara+/home/niagara writable; SRAM playback each boot; ESC→Alternate Boot recovery | **covered B465** |
 | medium | J6 platform auth, System Passphrase & at-rest secrets | Two encryption domains: daemon-home=machine-only random key (un-decryptable off-box); portable/.dist=passphrase-derived key. §14 refines B464. Reset=serial+Tridium | **covered B466** |
 | medium | J9 backup / distribution / cloning | Station backup .dist/.bog, BackupService, cloning a JACE, host-id binding as a clone blocker | pending |
-| medium | J10 Host ID & licensing on QNX/ARM (NEXT B467) | getHostId on the JACE vs the Windows fold-XOR (B424), Host ID format, .license location, recovery implications | pending |
-| medium | J11 live security posture | Certs (expired default platform, ForRecoveryPurposes), open/closed ports, hardening (SSH/telnet/Fox-plaintext off) — measured live | pending |
+| medium | J10 Host ID & licensing on QNX/ARM | Host ID = Qnx-TITAN-XXXX (hardware-bound) vs Windows fold-XOR; .license vendor-signed + host-pinned → station portable, license not (clone needs new license) | **covered B467** |
+| medium | J11 live security posture (NEXT B468) | Certs (expired default platform, ForRecoveryPurposes), open/closed ports, hardening (SSH/telnet/Fox-plaintext off) — measured live | pending |
 
 ## Iteration history
 
@@ -64,3 +64,4 @@ Coverage: 8/17 gaps closed. Next gap: **J10** (B467).
 | B464 | J8 | no·inline (§12 live+analysis) | .bog routes: BackupService vs Station Copier; passphrase wall |
 | B465 | J2 | no·inline (doc+corpus) | QNX boot chain + flash layout + SRAM playback |
 | B466 | J6 | no·inline (doc) | System Passphrase: two encryption domains; §14→B464 |
+| B467 | J10 | no·inline (corpus+doc) | Host ID Qnx-TITAN hardware-bound; license host-pinned |

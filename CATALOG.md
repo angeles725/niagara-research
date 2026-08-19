@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **464 bloques**
+Total: **465 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -469,6 +469,7 @@ Total: **464 bloques**
 | 464 | [niagara-mental-model-bloque464.md](niagara-mental-model-bloque464.md) | B464 — Obtaining the station .bog without Workbench: two routes (platform File Transfer vs station BackupService), their RE cost, and the passphrase wall that limits what a copy yields (focus jace8000, J8) |
 | 465 | [niagara-mental-model-bloque465.md](niagara-mental-model-bloque465.md) | B465 — JACE-8000 QNX boot sequence and on-flash layout: factory image in read-only NVRAM, /opt/niagara + /home/niagara, niagarad → JVM → stations, and SRAM playback on every boot (focus jace8000, J2) |
 | 466 | [niagara-mental-model-bloque466.md](niagara-mental-model-bloque466.md) | B466 — The JACE-8000 System Passphrase and the two at-rest encryption domains: daemon-home secrets are sealed with a machine-only random key (not the passphrase), portable copies with a passphrase-derived key — and why that refines the .bog verdict (focus jace8000, J6; §14 refines B464) |
+| 467 | [niagara-mental-model-bloque467.md](niagara-mental-model-bloque467.md) | B467 — JACE-8000 Host ID and licensing: a hardware-bound `Qnx-TITAN-…` ID (not the Windows fold-XOR), .license files pinned to it, and why that blocks cloning a station to another JACE (focus jace8000, J10) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
