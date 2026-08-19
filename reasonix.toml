@@ -1,0 +1,2 @@
+[permissions]
+allow = ["Bash=git -C /home/cristian/niagara-research log --oneline -10 2>/dev/null; echo \"---\"; ls -la /home/cristian/niagara-research", "Bash=engram --help 2>&1 | head -60"]

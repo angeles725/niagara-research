@@ -1,0 +1,6 @@
+/* DecompileByString over nre.dll
+   needles : executeNativeDiagnosticsCommand|getNativeDiagnosticsCommands|getEncryptedRegistryString|checkForKeyMaterialUpgrade|getKeyMaterial
+   strings : 6 matched of 2358 defined
+   functions anchored: 0 */
+
+/* total: 0 decompiled, 0 failed */

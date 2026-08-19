@@ -1,4 +1,4 @@
-<!-- review-status: pending -->
+<!-- review-status: applied 2026-07-29 · kit cc5e13a -->
 # Retro — niagara-research · px-chart-classic · 2026-07-24 · Research-SDD self-retrospective
 
 > Run reviewed: focus `px-chart-classic`, B251-B259 (8 evidence blocks + B259 closing synthesis). Bootstrap

@@ -1,4 +1,4 @@
-<!-- review-status: pending -->
+<!-- review-status: applied 2026-07-15 · kit 41f9ee0 -->
 # Retro — niagara-research · nmodsreflow-builder · 2026-07-12 · Research-SDD self-retrospective
 
 > Run reviewed: focus `nmodsreflow-builder`, B216-B227 (12 blocks, 12/12 gaps closed, FOCUS COMPLETE). Trigger:

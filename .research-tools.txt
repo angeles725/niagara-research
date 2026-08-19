@@ -1,0 +1,60 @@
+== Research-SDD tool capability report ==
+host: Linux 5.15.167.4-microsoft-standard-WSL2 x86_64 · date: 2026-08-18T23:01:56Z · brew: /home/linuxbrew/.linuxbrew
+
+[ native / binary ]
+  Ghidra headless        AVAILABLE   /home/linuxbrew/.linuxbrew/opt/ghidra/libexec/support/analyzeHeadless
+  radare2                AVAILABLE   /home/linuxbrew/.linuxbrew/bin/r2
+  objdump                AVAILABLE   /usr/bin/objdump
+  readelf                AVAILABLE   /usr/bin/readelf
+  nm                     AVAILABLE   /usr/bin/nm
+  strings                AVAILABLE   /usr/bin/strings
+
+[ dynamic / network / emulation ]
+  tshark                 AVAILABLE   /usr/bin/tshark
+  tcpdump                AVAILABLE   /usr/bin/tcpdump
+  gdb                    AVAILABLE   /usr/bin/gdb
+  gdb-multiarch          AVAILABLE   /usr/bin/gdb-multiarch
+  strace                 AVAILABLE   /usr/bin/strace
+  ltrace                 AVAILABLE   /usr/bin/ltrace
+  QEMU system            AVAILABLE   /usr/bin/qemu-system-x86_64
+  QEMU user-static       AVAILABLE   /usr/bin/qemu-arm-static
+  QEMU image             AVAILABLE   /usr/bin/qemu-img
+
+[ java ]
+  Java 21                AVAILABLE   /home/linuxbrew/.linuxbrew/opt/openjdk@21/bin/java
+  javap 21               AVAILABLE   /home/linuxbrew/.linuxbrew/opt/openjdk@21/bin/javap
+  Vineflower (jar)       AVAILABLE   /home/cristian/modules/Prototipos/Reflow/vineflower.jar (sha256=a615d07ddbbcd489369674f40e42df639c32be95410890b38f173d5c1e2ea39c)
+  CFR (jar)              AVAILABLE   /home/cristian/modules/Prototipos/Reflow/cfr.jar (sha256=f686e8f3ded377d7bc87d216a90e9e9512df4156e75b06c655a16648ae8765b2)
+  Procyon (jar)          MISSING     (jar not found; set the matching env var)
+
+[ android ]
+  jadx                   MISSING     (not on PATH nor known install dirs)
+  apktool                MISSING     (not on PATH nor known install dirs)
+
+[ .net ]
+  ilspycmd               UNUSABLE    /home/cristian/.dotnet/tools/ilspycmd (smoke test failed)
+
+[ firmware ]
+  binwalk                AVAILABLE   /usr/bin/binwalk
+  yara                   AVAILABLE   /home/linuxbrew/.linuxbrew/bin/yara
+  Hyperscan pkg-config   AVAILABLE   libhs 5.4.2 (command-local system pkg-config path)
+
+[ docs / web ]
+  pdftotext              AVAILABLE   /home/linuxbrew/.linuxbrew/bin/pdftotext
+  pdfinfo                AVAILABLE   /home/linuxbrew/.linuxbrew/bin/pdfinfo
+  tesseract              AVAILABLE   /home/linuxbrew/.linuxbrew/bin/tesseract
+  pandoc                 AVAILABLE   /home/linuxbrew/.linuxbrew/bin/pandoc
+  pymupdf4llm            AVAILABLE   /home/cristian/.local/share/research-sdd-tools/venv/bin/python
+  ocrmypdf               AVAILABLE   /home/cristian/.local/share/research-sdd-tools/venv/bin/ocrmypdf
+  marker                 AVAILABLE   /home/cristian/.local/share/research-sdd-tools/venv/bin/marker_single
+  docling                AVAILABLE   /home/cristian/.local/share/research-sdd-tools/venv/bin/docling
+
+[ python bytecode ]
+  pycdc                  MISSING     (not on PATH nor known install dirs)
+
+[ dynamic / instrumentation ]
+  frida                  MISSING     (not on PATH nor known install dirs)
+  frida-trace            MISSING     (not on PATH nor known install dirs)
+
+Note: AVAILABLE means the resolver found the tool AND its bounded validation passed.
+UNUSABLE means found but not runnable; MISSING means not detected.

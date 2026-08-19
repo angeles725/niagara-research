@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'\\\\wsl.localhost\\Ubuntu\\home\\cristian\\niagara-research\\.codex\\hooks\\niagara-research-protocol.sh'",
+            "timeout": 10,
+            "statusMessage": "Loading Niagara research protocol..."
+          }
+        ]
+      }
+    ]
+  }
+}

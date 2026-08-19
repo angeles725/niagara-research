@@ -1,0 +1,267 @@
+%==============================================================================
+%  PLANTILLA — ACUERDO OEM / DISTRIBUCION Y LICENCIA DE SOFTWARE
+%
+%  Objeto: licenciamiento de MODULOS y SOFTWARE PROPIOS del Licenciante.
+%  El Licenciante es el titular de la propiedad intelectual que aqui se licencia.
+%  NO acredita derechos sobre software, plataformas o subsistemas de terceros.
+%
+%  Compilar:  pdflatex acuerdo-oem-licencia.tex   (2 pasadas por el ToC)
+%         o:  tectonic acuerdo-oem-licencia.tex
+%
+%  Los campos entre <<...>> son placeholders: reemplazarlos antes de firmar.
+%==============================================================================
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-noindentfirst]{babel}
+\usepackage{csquotes}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+
+%------------------------------------------------------------------ parametros
+% Editar UNA sola vez aqui; se propagan a todo el documento.
+\newcommand{\Licenciante}{<<RAZON SOCIAL DEL LICENCIANTE>>}
+\newcommand{\LicencianteAbrev}{el Licenciante}
+\newcommand{\Licenciatario}{<<RAZON SOCIAL DEL LICENCIATARIO / OEM>>}
+\newcommand{\LicenciatarioAbrev}{el Licenciatario}
+\newcommand{\Producto}{<<NOMBRE DEL PRODUCTO / SUITE DE MODULOS>>}
+\newcommand{\Jurisdiccion}{<<CIUDAD / PAIS>>}
+\newcommand{\LeyAplicable}{<<PAIS>>}
+\newcommand{\Fecha}{<<DD>> de <<MES>> de <<AAAA>>}
+\newcommand{\Version}{v1.0 --- borrador}
+
+%------------------------------------------------------------------ estilo
+\definecolor{tinta}{HTML}{1A2332}
+\definecolor{acento}{HTML}{2C5F8A}
+\definecolor{tenue}{HTML}{6B7280}
+
+\titleformat{\section}
+  {\normalfont\large\bfseries\color{tinta}}
+  {\thesection.}{0.6em}{}
+\titleformat{\subsection}
+  {\normalfont\normalsize\bfseries\color{acento}}
+  {\thesubsection}{0.6em}{}
+\titlespacing*{\section}{0pt}{1.4em}{0.6em}
+
+\setlist[enumerate]{itemsep=0.25em,topsep=0.3em,leftmargin=1.6em}
+\setlist[itemize]{itemsep=0.25em,topsep=0.3em,leftmargin=1.6em}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyhead[L]{\footnotesize\color{tenue}Acuerdo OEM y Licencia --- \Producto}
+\fancyhead[R]{\footnotesize\color{tenue}\Version}
+\fancyfoot[L]{\footnotesize\color{tenue}Confidencial}
+\fancyfoot[C]{\footnotesize\color{tenue}\thepage\ de \pageref{LastPage}}
+\fancyfoot[R]{\footnotesize\color{tenue}Iniciales: \underline{\hspace{1.2cm}}}
+
+% Firma reutilizable
+\newcommand{\bloquefirma}[2]{%
+  \begin{minipage}[t]{0.46\textwidth}
+    \vspace{2.2em}
+    \noindent\hrulefill\\[0.2em]
+    \textbf{#1}\\[0.1em]
+    {\footnotesize\color{tenue}#2}\\[0.6em]
+    {\footnotesize Nombre: \underline{\hspace{4.5cm}}}\\[0.5em]
+    {\footnotesize Cargo: \underline{\hspace{4.7cm}}}\\[0.5em]
+    {\footnotesize Fecha: \underline{\hspace{4.6cm}}}
+  \end{minipage}%
+}
+
+%==============================================================================
+\begin{document}
+
+%------------------------------------------------------------------ portada
+\begin{titlepage}
+\centering
+\vspace*{2.5cm}
+{\color{acento}\rule{\textwidth}{2pt}}\\[1.2em]
+{\Huge\bfseries\color{tinta} Acuerdo de Licenciamiento OEM\par}
+\vspace{0.4em}
+{\Large\color{tinta} y Distribucion de Software\par}
+\vspace{1.0em}
+{\large\color{tenue} \Producto\par}
+{\color{acento}\rule{\textwidth}{2pt}}\\[3em]
+
+\begin{tabularx}{0.85\textwidth}{@{}l X@{}}
+\textbf{Licenciante:}   & \Licenciante \\[0.6em]
+\textbf{Licenciatario:} & \Licenciatario \\[0.6em]
+\textbf{Objeto:}        & Licencia de uso, integracion y distribucion OEM de los modulos y el software propiedad del Licenciante. \\[0.6em]
+\textbf{Fecha:}         & \Fecha \\[0.6em]
+\textbf{Version:}       & \Version \\
+\end{tabularx}
+
+\vfill
+{\footnotesize\color{tenue}
+Documento confidencial. Contiene los terminos propuestos entre las partes.\\
+El presente instrumento versa exclusivamente sobre la propiedad intelectual del Licenciante.\par}
+\end{titlepage}
+
+%------------------------------------------------------------------ preambulo
+\section*{Comparecientes}
+\addcontentsline{toc}{section}{Comparecientes}
+
+En \Jurisdiccion, a \Fecha, comparecen:
+
+\begin{enumerate}[label=(\alph*)]
+  \item \textbf{\Licenciante}, en adelante \enquote{\LicencianteAbrev}, titular de la
+        propiedad intelectual sobre el software objeto del presente acuerdo; y
+  \item \textbf{\Licenciatario}, en adelante \enquote{\LicenciatarioAbrev}, interesado
+        en integrar y/o distribuir dicho software bajo modalidad OEM.
+\end{enumerate}
+
+\noindent Ambas partes se reconocen capacidad legal suficiente para contratar y obligarse,
+y \textbf{ACUERDAN} lo siguiente.
+
+\vspace{0.8em}
+\hrule
+\vspace{0.4em}
+{\footnotesize\color{tenue}\textbf{Nota de uso de la plantilla.} Este documento regula
+unicamente derechos que ostenta \LicencianteAbrev\ sobre software de su autoria. No debe
+emplearse para atribuir derechos sobre plataformas, formatos, subsistemas de licenciamiento
+o propiedad intelectual de terceros, cuyo uso se rige por sus propias licencias.}
+\vspace{0.4em}
+\hrule
+
+%------------------------------------------------------------------ clausulas
+\section{Definiciones}
+A los efectos de este acuerdo:
+\begin{itemize}
+  \item \textbf{Software:} el conjunto de modulos, bibliotecas, componentes, ejecutables,
+        codigo fuente y/o codigo objeto identificados como \Producto, cuya autoria y
+        titularidad corresponden a \LicencianteAbrev.
+  \item \textbf{Producto del Licenciatario:} la solucion, equipo o servicio del
+        \LicenciatarioAbrev\ en el que se integra o con el que se distribuye el Software.
+  \item \textbf{Distribucion OEM:} la incorporacion del Software dentro del Producto del
+        Licenciatario para su comercializacion a usuarios finales bajo la marca del
+        \LicenciatarioAbrev\ o de forma conjunta.
+  \item \textbf{Usuario Final:} tercero que adquiere o utiliza el Producto del Licenciatario.
+  \item \textbf{Clave de Licencia:} mecanismo tecnico emitido por \LicencianteAbrev\ que
+        habilita el uso autorizado del Software.
+\end{itemize}
+
+\section{Objeto y Titularidad}
+\begin{enumerate}
+  \item \LicencianteAbrev\ declara y garantiza ser el autor y titular exclusivo de todos
+        los derechos de propiedad intelectual sobre el Software.
+  \item El presente acuerdo no transfiere la titularidad del Software; unicamente concede
+        una licencia en los terminos aqui pactados.
+  \item Toda mejora, correccion o derivado del Software desarrollado por \LicencianteAbrev\
+        permanece de su exclusiva titularidad.
+\end{enumerate}
+
+\section{Concesion de Licencia}
+\begin{enumerate}
+  \item \LicencianteAbrev\ concede al \LicenciatarioAbrev\ una licencia
+        \textbf{no exclusiva}, \textbf{intransferible} y \textbf{revocable} para:
+        \begin{enumerate}[label=\arabic{enumi}.\arabic*]
+          \item integrar el Software en el Producto del Licenciatario;
+          \item reproducir y distribuir el Software, en formato codigo objeto, como parte
+                del Producto del Licenciatario a Usuarios Finales;
+          \item aplicar la marca del \LicenciatarioAbrev\ conforme a la clausula de marcas.
+        \end{enumerate}
+  \item El alcance territorial de la licencia es: <<TERRITORIO>>.
+  \item La licencia se otorga por el plazo indicado en la clausula de Vigencia.
+\end{enumerate}
+
+\section{Restricciones}
+El \LicenciatarioAbrev\ se obliga a NO:
+\begin{itemize}
+  \item realizar ingenieria inversa, descompilar o desensamblar el Software, salvo en la
+        medida imperativa que la ley permita;
+  \item eludir, desactivar o alterar la Clave de Licencia ni los controles tecnicos del Software;
+  \item sublicenciar, ceder o revender el Software de forma independiente al Producto del
+        Licenciatario;
+  \item suprimir avisos de autoria, copyright o marcas de \LicencianteAbrev.
+\end{itemize}
+
+\section{Contraprestacion y Regalias}
+\begin{enumerate}
+  \item El \LicenciatarioAbrev\ abonara a \LicencianteAbrev:
+        \begin{itemize}
+          \item Canon inicial: <<MONTO>> (<<MONEDA>>), pagadero a la firma.
+          \item Regalia por unidad distribuida: <<MONTO / PORCENTAJE>>.
+        \end{itemize}
+  \item El \LicenciatarioAbrev\ remitira un reporte de distribucion con periodicidad
+        <<MENSUAL / TRIMESTRAL>>.
+  \item \LicencianteAbrev\ podra auditar dichos reportes con preaviso razonable.
+\end{enumerate}
+
+\section{Soporte, Mantenimiento y Actualizaciones}
+\begin{enumerate}
+  \item \LicencianteAbrev\ prestara soporte de nivel <<N>> segun el anexo de servicio.
+  \item Las actualizaciones correctivas se entregaran sin costo durante la vigencia; las
+        evolutivas podran estar sujetas a contraprestacion adicional.
+\end{enumerate}
+
+\section{Propiedad Intelectual y Marcas}
+\begin{enumerate}
+  \item Cada parte conserva la titularidad de sus respectivas marcas.
+  \item El \LicenciatarioAbrev\ podra usar las marcas de \LicencianteAbrev\ unicamente para
+        identificar el Software integrado, conforme a las guias que este provea.
+\end{enumerate}
+
+\section{Garantia y Limitacion de Responsabilidad}
+\begin{enumerate}
+  \item \LicencianteAbrev\ garantiza que el Software se ajusta sustancialmente a su
+        documentacion durante <<PERIODO>>.
+  \item Salvo lo anterior, el Software se provee \enquote{tal cual}. En la maxima medida
+        permitida por la ley, la responsabilidad agregada de \LicencianteAbrev\ se limita a
+        los importes efectivamente percibidos en los <<12>> meses previos al hecho generador.
+\end{enumerate}
+
+\section{Confidencialidad}
+Cada parte protegera la informacion confidencial de la otra con el mismo cuidado que aplica
+a la propia, y no menor al razonable, durante la vigencia y <<N>> anos posteriores.
+
+\section{Vigencia y Terminacion}
+\begin{enumerate}
+  \item El acuerdo entra en vigor en la fecha de firma y tendra una duracion de <<N>>
+        anos, renovable por periodos iguales salvo denuncia con <<N>> dias de preaviso.
+  \item Cualquiera de las partes podra resolver por incumplimiento no subsanado en <<30>> dias.
+  \item A la terminacion, el \LicenciatarioAbrev\ cesara la distribucion; las licencias ya
+        entregadas a Usuarios Finales subsistiran conforme a sus terminos.
+\end{enumerate}
+
+\section{Ley Aplicable y Resolucion de Controversias}
+Este acuerdo se rige por las leyes de \LeyAplicable. Las controversias se someteran a
+<<ARBITRAJE / TRIBUNALES>> de \Jurisdiccion.
+
+\section{Disposiciones Generales}
+\begin{itemize}
+  \item \textbf{Integridad:} este documento constituye el acuerdo completo entre las partes.
+  \item \textbf{Independencia:} la nulidad de una clausula no afecta a las demas.
+  \item \textbf{Notificaciones:} se cursaran a las direcciones indicadas en los anexos.
+  \item \textbf{No agencia:} las partes actuan como contratantes independientes.
+\end{itemize}
+
+%------------------------------------------------------------------ firmas
+\vspace{1.5em}
+\section*{Firmas}
+\addcontentsline{toc}{section}{Firmas}
+\noindent En prueba de conformidad, las partes suscriben el presente acuerdo en la fecha
+indicada en el encabezado.
+
+\vspace{1.5em}
+\noindent
+\bloquefirma{\Licenciante}{\LicencianteAbrev}
+\hfill
+\bloquefirma{\Licenciatario}{\LicenciatarioAbrev}
+
+\vspace{2.5em}
+\noindent{\footnotesize\color{tenue}\textbf{Anexos:} (A) Descripcion tecnica de \Producto \quad
+(B) Tarifas y regalias \quad (C) Niveles de soporte \quad (D) Datos de notificacion.}
+
+\end{document}

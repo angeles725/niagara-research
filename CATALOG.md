@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **456 bloques**
+Total: **457 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -461,6 +461,7 @@ Total: **456 bloques**
 | 456 | [niagara-mental-model-bloque456.md](niagara-mental-model-bloque456.md) | Block 456 — AXIS live-video runbook V5: a custom N4 module (own driver), no commercial video feature |
 | 457 | [niagara-mental-model-bloque457.md](niagara-mental-model-bloque457.md) | Block 457 — Programmatic login to a live Niagara N4 station: the real SCRAM-SHA-256 handshake + the acceptEula commit step (reusable recipe) |
 | 458 | [niagara-mental-model-bloque458.md](niagara-mental-model-bloque458.md) | Block 458 — Bulk data extraction from a live N4 station over oBIX: the History `query` op (POST + GET forms), pagination, incremental delta, and config dump |
+| 459 | [niagara-mental-model-bloque459.md](niagara-mental-model-bloque459.md) | B459 — JACE-8000 architecture: a QNX/ARM embedded controller, not Linux or Windows (focus jace8000 bootstrap, J1) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
