@@ -102,3 +102,5 @@ Ratio ≈ 0. RE-MEASURE applied: the TLS-1.0/1.1 result was re-tested and downgr
 
 New child **J11-G1** (requires-execution): enumerate accepted TLS versions/ciphers with `nmap
 ssl-enum-ciphers`/`sslscan` (this client cannot offer legacy TLS). Queued: J9.
+
+> **§14 refined in [Block 474]:** J11-G1 closed — the station :443 is **TLS 1.3 ONLY** (the server refuses TLS 1.2 with a protocol-version alert). The "1.0/1.1 unverified" caveat above is tightened: a 1.3-only server rejects all older versions. The weak-TLS worry is retired; the cert weakness (§468.3) stands.
