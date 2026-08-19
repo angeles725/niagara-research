@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **470 bloques**
+Total: **471 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -475,6 +475,7 @@ Total: **470 bloques**
 | 470 | [niagara-mental-model-bloque470.md](niagara-mental-model-bloque470.md) | B470 — jace8000 focus synthesis: the JACE-8000 is a QNX appliance with two front doors, two encryption domains, and hardware-plus-vendor-signature-gated recovery — what that means for accessing, entering, and copying a station (focus jace8000 capstone) |
 | 471 | [niagara-mental-model-bloque471.md](niagara-mental-model-bloque471.md) | B471 — A working hand-rolled Fox client authenticates to the live JACE-8000 over foxs:4911 (SCRAM-SHA-256, mutual-auth verified) — J8-G1 done, the sys-channel path to the .bog identified (focus jace8000, J8-G1) |
 | 472 | [niagara-mental-model-bloque472.md](niagara-mental-model-bloque472.md) | B472 — The backup-over-Fox mechanism fully reverse-engineered: the `backup` Fox channel streams a `config.bog` ZIP; `save=false` makes it read-only; the gate is permission bit 48 (focus jace8000, J8-G2 spec) |
+| 473 | [niagara-mental-model-bloque473.md](niagara-mental-model-bloque473.md) | B473 — J8 DEMONSTRATED END-TO-END: a hand-rolled Fox client pulled the live station's config.bog over foxs:4911 with no Workbench (read-only save=false) — plus live corrections: the JACE runs QNX 7.0, OpenJDK, Host ID Qnx-TITAN-… (focus jace8000, J8-G2 impl; §14 live-refines B459/B465) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

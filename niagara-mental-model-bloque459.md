@@ -170,3 +170,5 @@ J2 (QNX fs layout & boot) · J3 (platform daemon) · J4 (accessing the station) 
 · J6 (platform auth / passphrase) · J7 (recovery without platform) · J8 (platform-protocol RE → .bog without
 Workbench) · J9 (backup/dist/cloning) · J10 (Host ID & licensing) · J11 (live security posture).
 **J1-follow:** preserve the JACE-8000 / WEB-8000 hardware datasheet to promote §459.2 specifics to [CERT-doc].
+
+> **§14 live-refined in [Block 473]:** a live Fox handshake this focus measured the running JACE — **QNX 7.0.X** (this block said only "QNX Neutrino") and **OpenJDK Client VM 25.412** (the cited doc says "Oracle HotSpot"). Refinement, not a refuted claim; the QNX-vs-Linux/Windows answer stands.

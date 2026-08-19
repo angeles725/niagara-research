@@ -24,9 +24,9 @@ schema: research-state.v1
 method: dynamic-live
 block_scope: shared-global
 covered_blocks: 458
-gaps_closed: 13
-known_gaps: 22
-investigable_open: 1
+gaps_closed: 15
+known_gaps: 23
+investigable_open: 0
 requires_execution_open: 7
 blocked_open: 0
 deferred_open: 0
@@ -70,3 +70,4 @@ Coverage: **12/21 gaps closed; investigable_open=0**. **J8-G1 CLOSED live (B471)
 | B470 | synthesis | no·inline | focus capstone; STOPPED investigable=0 |
 | B471 | J8-G1 | no·inline (§12 live) | WORKING Fox client authenticated live to JACE (foxs:4911, mutual-auth) → J8-G2 |
 | B472 | J8-G2 spec | no·inline (source RE) | backup-over-Fox mechanism: 'backup' channel, circuit, save=false read-only, bit-48 gate |
+| B473 | J8-G2+J10-G1 | no·inline (§12 live) | PULLED config.bog live over Fox (no WB, read-only); QNX7/OpenJDK/hostId live |

@@ -1,0 +1,46 @@
+# Fox backup .dist structural manifest (names + sizes ONLY — no file bodies). Host ID masked.
+# Source: live foxs:4911 backup(save=false) pull from JACE_UMBRELLA 2026-08-19. SECRETS DISCIPLINE: structure only.
+
+     22983  META-INF/dist.xml
+    123533  niagara_home/defaults/bacnetObjectTypes.xml
+      1946  niagara_home/defaults/colorCoding.properties
+      8166  niagara_home/defaults/lonStandardConversion.xml
+      1635  niagara_home/defaults/migrator.properties
+      2512  niagara_home/defaults/niagaraAxBacnetObjectTypes.xml
+      1606  niagara_home/defaults/nre.properties
+     31900  niagara_home/defaults/system.properties
+      2407  niagara_home/defaults/unitConversion.xml
+       478  niagara_home/defaults/unitDifferentialConversion.xml
+     30180  niagara_home/defaults/units.xml
+      1014  niagara_home/etc/brand.properties
+      2913  niagara_home/etc/extensions.properties
+      8832  niagara_home/etc/loading-splash.gif
+     40491  niagara_home/lib/licenseAgreement.txt
+    319294  niagara_home/lib/readmeLicenses.txt
+      1683  niagara_home/platform/dhcpd/dhcpd.conf
+         0  niagara_home/platform/dhcpd/dhcpd_adapters_list
+       752  niagara_home/platform/wifi/dhclient.conf
+      1066  niagara_home/platform/wifi/hostapd_ti18xx.conf
+       232  niagara_home/platform/wifi/sap_to
+       391  niagara_home/platform/wifi/wifi_net.cfg
+       628  niagara_home/platform/wifi/wpa_supplicant_ti18xx.conf
+       835  niagara_home/security/certificates/Honeywell.certificate
+       845  niagara_home/security/certificates/HoneywellCentraLine.certificate
+       833  niagara_home/security/certificates/Tridium.certificate
+      1286  niagara_home/security/licenses/Honeywell.license
+       421  niagara_home/security/licenses/HoneywellCentraLine.license
+      6000  niagara_home/security/licenses/Webs.license
+      1286  niagara_home/security/licenses/db/Qnx-TITAN-XXXX-XXXX-XXXX-XXXX/Honeywell.license
+       421  niagara_home/security/licenses/db/Qnx-TITAN-XXXX-XXXX-XXXX-XXXX/HoneywellCentraLine.license
+      6000  niagara_home/security/licenses/db/Qnx-TITAN-XXXX-XXXX-XXXX-XXXX/Webs.license
+       387  niagara_user_home/daemon/daemon.properties
+       145  niagara_user_home/daemon/daemonlog.properties
+       624  niagara_user_home/logging/logging.properties
+       459  niagara_user_home/logging/syslog.properties
+       383  niagara_user_home/security/.kr
+        32  niagara_user_home/security/cacerts.jceks
+        52  niagara_user_home/security/exemptions.tes
+      4476  niagara_user_home/security/keystore.jceks
+     33021  niagara_user_home/security/signing/signers
+        32  niagara_user_home/security/untrusted.jceks
+      7367  niagara_user_home/stations/JACE_UMBRELLA/config.bog

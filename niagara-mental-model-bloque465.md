@@ -87,3 +87,5 @@ symbol chain is stated as such). **Block type: EVIDENCE.** Ratio ≈ 0.
 
 Queued: J6, J10, J11, J9, and the child gaps J3-G1/J5-G1/J7-G1/J8-G1 (requires-execution). New child
 **J2-G1** (requires-execution): the exact QNX partition/mount table (`/mnt*`) — a live serial-console capture.
+
+> **§14 live-refined in [Block 473]:** the running JACE reports **os.version=QNX 7.0.X** (this block said only "QNX Neutrino kernel") — the boot chain is confirmed on QNX 7.0.
