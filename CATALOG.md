@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **442 bloques**
+Total: **450 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -447,6 +447,14 @@ Total: **442 bloques**
 | 442 | [niagara-mental-model-bloque442.md](niagara-mental-model-bloque442.md) | Block 442 — license-diff corrective addendum: a present `security/` tree does not prove licensing; `nre -licenses` is the authoritative read-only oracle, and the 4.10 implementation spans seven runtime JAR boundaries plus the signing plugin |
 | 443 | [niagara-mental-model-bloque443.md](niagara-mental-model-bloque443.md) | Block 443 — authorization differential: the first proven A/B divergence is license discovery, and B's station denial is the expected `tridium:nre` consumer result |
 | 444 | [niagara-mental-model-bloque444.md](niagara-mental-model-bloque444.md) | Block 444 — BACnet/IP device addressing and dynamic address binding: the MAC is `IP:0xBAC0`, the stable key is the Device Instance, and Niagara re-resolves the MAC by Who-Is/I-Am |
+| 445 | [niagara-mental-model-bloque445.md](niagara-mental-model-bloque445.md) | Block 445 — Connecting a JACE-8000 to VYKON IO-R remote I/O modules (nrio driver): physical RS-485 wiring + station-side NrioNetwork configuration |
+| 446 | [niagara-mental-model-bloque446.md](niagara-mental-model-bloque446.md) | Block 446 — nrio conversion subsystem (gap B445-G1): the three device→proxy conversions, kitIo thermistor-curve XML, and the NDIO→NRIO migration tool |
+| 447 | [niagara-mental-model-bloque447.md](niagara-mental-model-bloque447.md) | Block 447 — IO-R firmware images and the upgrade path (gap B445-G2): plaintext Intel HEX (MSP430) shipped in the jar, flashed over RS-485 with no cryptographic integrity |
+| 448 | [niagara-mental-model-bloque448.md](niagara-mental-model-bloque448.md) | Block 448 — The nrio wire protocol and the actrld daemon (gap B445-G3): 115200-baud RS-485 master/slave framing, UID-keyed logical addressing, and the native poller controlled over Thrift |
+| 449 | [niagara-mental-model-bloque449.md](niagara-mental-model-bloque449.md) | Block 449 — The actrld native poller and poll-health machine (gaps B448-G2 + B448-G1): platNrio spawns /proc/boot/actrld, drives /dev/ser2 @115200 over JNI, and marks a device down after 3 failed pings |
+| 450 | [niagara-mental-model-bloque450.md](niagara-mental-model-bloque450.md) | Block 450 — nrio data-handling loose ends (gaps B446-G1 + B447-G1, partial B447-G2): table interpolation clamps at both ends, device-type→firmware-image map, and the MSP430 reset vector |
+| 451 | [niagara-mental-model-bloque451.md](niagara-mental-model-bloque451.md) | Block 451 — IO-R-16 firmware, decompiled (gap B447-G2): a 60-function MSP430 slave — config in info-flash, an RS-485 RX-ring main loop, and a 4×12-bit packed-AO update handler |
+| 452 | [niagara-mental-model-bloque452.md](niagara-mental-model-bloque452.md) | Block 452 — IO-R-34 firmware vs IO-R-16 (gap B451-G1): 83.5% byte-identical shared codebase, same 57-function skeleton, I/O loops scaled to 16 UI / 8 AO |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
