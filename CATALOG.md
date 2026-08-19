@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **468 bloques**
+Total: **469 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -473,6 +473,7 @@ Total: **468 bloques**
 | 468 | [niagara-mental-model-bloque468.md](niagara-mental-model-bloque468.md) | B468 — Live security posture of the JACE-8000: strong hardening (SSH/telnet/plaintext-Fox off, platform 403-to-GET, TLS 1.3, HSTS) undercut by default/expired certs and an exposed admin credential (focus jace8000, J11) |
 | 469 | [niagara-mental-model-bloque469.md](niagara-mental-model-bloque469.md) | B469 — JACE-8000 backup, distribution, and cloning: clone-backup vs BackupService .dist, the Distribution File Installer, and the two pins (Host ID + passphrase) that gate cloning (focus jace8000, J9) |
 | 470 | [niagara-mental-model-bloque470.md](niagara-mental-model-bloque470.md) | B470 — jace8000 focus synthesis: the JACE-8000 is a QNX appliance with two front doors, two encryption domains, and hardware-plus-vendor-signature-gated recovery — what that means for accessing, entering, and copying a station (focus jace8000 capstone) |
+| 471 | [niagara-mental-model-bloque471.md](niagara-mental-model-bloque471.md) | B471 — A working hand-rolled Fox client authenticates to the live JACE-8000 over foxs:4911 (SCRAM-SHA-256, mutual-auth verified) — J8-G1 done, the sys-channel path to the .bog identified (focus jace8000, J8-G1) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

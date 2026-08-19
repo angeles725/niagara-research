@@ -24,8 +24,8 @@ schema: research-state.v1
 method: dynamic-live
 block_scope: shared-global
 covered_blocks: 458
-gaps_closed: 11
-known_gaps: 20
+gaps_closed: 12
+known_gaps: 21
 investigable_open: 0
 requires_execution_open: 7
 blocked_open: 0
@@ -35,7 +35,7 @@ undocumented_findings: 0
 
 ## Coverage / open items
 
-Coverage: **11/20 gaps closed; investigable_open=0 → STOP**. 7 requires-execution child gaps remain (J3-G1/J5-G1/J7-G1/J8-G1/J10-G1/J11-G1/J2-G1).
+Coverage: **12/21 gaps closed; investigable_open=0**. **J8-G1 CLOSED live (B471): a hand-rolled Fox client authenticates to the live JACE.** 7 requires-execution child gaps remain (J8-G2 niagaraRpc→backup, J3-G1, J5-G1, J7-G1, J10-G1, J11-G1, J2-G1).
 
 | Priority | Gap | Detail | Status |
 |---|---|---|---|
@@ -68,3 +68,4 @@ Coverage: **11/20 gaps closed; investigable_open=0 → STOP**. 7 requires-execut
 | B468 | J11 | no·inline (§12 live) | posture: hardened vs weak default certs; RE-MEASURE TLS |
 | B469 | J9 | no·inline (doc+corpus) | backup/clone/dist; 2 pins gate cloning → STOP |
 | B470 | synthesis | no·inline | focus capstone; STOPPED investigable=0 |
+| B471 | J8-G1 | no·inline (§12 live) | WORKING Fox client authenticated live to JACE (foxs:4911, mutual-auth) → J8-G2 |
