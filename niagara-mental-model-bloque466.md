@@ -5,7 +5,7 @@
 > **Phase:** §12 + `[CERT-doc]`. Read-only. `live-install` → SECRETS DISCIPLINE.
 > **§14:** this block **refines [Block 464] §464.4** — a raw copy of the *running* `config.bog` is sealed with
 > a **machine-only key**, a stronger wall than the passphrase I described there (noted back in B464).
-> **Sources:** `[CERT-doc]` niagara-help (`Platform/aPlatformSystemPassword`, `J8Startup/J8Specifying…`) ·
+> **Sources:** `[CERT-doc]` niagara-help (`Platform/aPlatformSystemPassword`, `J8Startup/J8SpecifyingAStationDatabaseToInstall-9D4C67CE.txt`) ·
 > [Block 462]/[Block 463]/[Block 464] (this focus).
 >
 > **Bottom line:** the **System Passphrase** encrypts sensitive values (stored client passwords in `.bog`, and
@@ -45,7 +45,7 @@ Tridium-signed operation of [Block 463] §463.2.
 - "**CAUTION: Do not use Windows Explorer to copy files** … without the proper encryption those files **may
   not be readable**."
 - "If the file passphrase and system passphrase are the same, a station copy proceeds without prompting"; else
-  you are prompted for the file passphrase (`J8Startup/J8Specifying…:` passphrase-mismatch prompt).
+  you are prompted for the file passphrase (`J8Startup/J8SpecifyingAStationDatabaseToInstall-9D4C67CE.txt:` passphrase-mismatch prompt).
 
 | Location | Holds | Sealed with | Decryptable off-box? |
 |---|---|---|---|
