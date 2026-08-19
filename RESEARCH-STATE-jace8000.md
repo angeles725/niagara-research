@@ -24,9 +24,9 @@ schema: research-state.v1
 method: dynamic-live
 block_scope: shared-global
 covered_blocks: 458
-gaps_closed: 7
+gaps_closed: 8
 known_gaps: 17
-investigable_open: 5
+investigable_open: 4
 requires_execution_open: 1
 blocked_open: 0
 deferred_open: 0
@@ -35,7 +35,7 @@ undocumented_findings: 0
 
 ## Coverage / open items
 
-Coverage: 7/17 gaps closed. Next gap: **J6** (B466).
+Coverage: 8/17 gaps closed. Next gap: **J10** (B467).
 
 | Priority | Gap | Detail | Status |
 |---|---|---|---|
@@ -47,9 +47,9 @@ Coverage: 7/17 gaps closed. Next gap: **J6** (B466).
 | high | J7 station recovery WITHOUT platform access | 3 routes: USB clone restore / Factory Defaults (button, wipe) / Platform Account Recovery (serial opt-8, keeps data, Tridium-signed key, 24h). Recovery≠bypass | **covered B463** |
 | high | J8 platform-protocol RE → obtain station .bog without Workbench | 2 routes: station BackupService (station admin, Fox client=J8-G1, RE-friendly) vs platform Station Copier (platform login, harder). Both hit passphrase wall. BackupService live-confirmed present | **covered B464** |
 | medium | J2 QNX filesystem layout & boot | QNX Neutrino from flash; niagarad→JVM→stations as separate OS procs; factory image in RO NVRAM; /opt/niagara+/home/niagara writable; SRAM playback each boot; ESC→Alternate Boot recovery | **covered B465** |
-| medium | J6 platform auth, System Passphrase & at-rest secrets (NEXT B466) | Platform accounts vs station users, System Passphrase role (encrypts sensitive .bog data), where credentials live, factory defaults | pending |
+| medium | J6 platform auth, System Passphrase & at-rest secrets | Two encryption domains: daemon-home=machine-only random key (un-decryptable off-box); portable/.dist=passphrase-derived key. §14 refines B464. Reset=serial+Tridium | **covered B466** |
 | medium | J9 backup / distribution / cloning | Station backup .dist/.bog, BackupService, cloning a JACE, host-id binding as a clone blocker | pending |
-| medium | J10 Host ID & licensing on QNX/ARM | getHostId on the JACE vs the Windows fold-XOR (B424), Host ID format, .license location, recovery implications | pending |
+| medium | J10 Host ID & licensing on QNX/ARM (NEXT B467) | getHostId on the JACE vs the Windows fold-XOR (B424), Host ID format, .license location, recovery implications | pending |
 | medium | J11 live security posture | Certs (expired default platform, ForRecoveryPurposes), open/closed ports, hardening (SSH/telnet/Fox-plaintext off) — measured live | pending |
 
 ## Iteration history
@@ -63,3 +63,4 @@ Coverage: 7/17 gaps closed. Next gap: **J6** (B466).
 | B463 | J7 | no·inline (doc) | recovery: USB clone / factory / Platform Account Recovery (Tridium-signed) |
 | B464 | J8 | no·inline (§12 live+analysis) | .bog routes: BackupService vs Station Copier; passphrase wall |
 | B465 | J2 | no·inline (doc+corpus) | QNX boot chain + flash layout + SRAM playback |
+| B466 | J6 | no·inline (doc) | System Passphrase: two encryption domains; §14→B464 |

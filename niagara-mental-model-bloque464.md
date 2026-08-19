@@ -80,6 +80,13 @@ So "a copy of the `.bog`" ≠ "the station's secrets." You get the engineering (
 usually wants), not the sealed credential material — a deliberate at-rest protection, consistent with the
 corpus thesis that Niagara encrypts *who-can-do-what* strongly ([Block 392] signing/at-rest).
 
+> **§14 refined in [Block 466]:** this section says "passphrase-encrypted," which is exact for a
+> **backup/exported** copy (portable domain, decryptable with the passphrase). But a **raw copy of the
+> *running* `config.bog`** in the daemon User Home is sealed with a **machine-only random key that never
+> leaves the JACE** — a *stronger* wall than the passphrase, un-decryptable off-box even with the passphrase.
+> See [Block 466] §466.3. Net: the **BackupService route re-encrypts to the passphrase key** (recoverable with
+> the passphrase); a raw daemon-home grab is not.
+
 ## §464.5 — Verdict
 
 - **Without Workbench, with station admin:** obtainable via **Route 2** (station BackupService over a ported
