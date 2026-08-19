@@ -9,7 +9,7 @@
 |---|---|---|---|---|
 | (base) | stopped | `RESEARCH-STATE.md` | Framework Niagara N4.14 completo (Capas 1-25) + audit Reflow v1.7.5 + OEM Honeywell/Spyder + native platform RE | B1–B130 |
 | **video** | **document 4/4** | `RESEARCH-STATE-video.md` | DOCUMENT-mode (§20): 4 how-to de integración de cámara AXIS (M2025-LE homelab propio) en N4 — V1 driver nativo `naxisVideo` licenciado, V2 embed relay MJPEG en Web Widget, V3 PxImage snapshot, V5 módulo propio (gate=firma, no feature). Cross-finding: N4 "Digest"=SCRAM≠RFC7616. Secuencias `[INFER]` (4 gaps de validación en vivo). Deliverable `docs/video-axis-n4-integration.md` | B453–B456 |
-| **jace8000** | **active (1/11)** | `RESEARCH-STATE-jace8000.md` | The JACE-8000 as a **live embedded QNX controller** (`192.168.1.140`, `live-install` §12). Angle: architecture (QNX Neutrino / ARM Cortex-A8 NPM6xx / HotSpot JVM — **not Linux/Windows**), accessing the station (SCRAM live), entering the QNX filesystem, the platform daemon (:3011/:5011, 403-to-GET), **platform entry without Workbench + RE the platform protocol to pull the station `.bog`**, and station recovery when platform access is lost (USB clone backup / Factory Recovery / serial console). Reuses B457 SCRAM tool. B459 = architecture bootstrap. **Operator action: rotate exposed `admin` creds** | B459– |
+| **jace8000** | **stopped (11/11 + synthesis B470, investigable=0)** | `RESEARCH-STATE-jace8000.md` | The JACE-8000 as a **live embedded QNX controller** (`192.168.1.140`, `live-install` §12). Angle: architecture (QNX Neutrino / ARM Cortex-A8 NPM6xx / HotSpot JVM — **not Linux/Windows**), accessing the station (SCRAM live), entering the QNX filesystem, the platform daemon (:3011/:5011, 403-to-GET), **platform entry without Workbench + RE the platform protocol to pull the station `.bog`**, and station recovery when platform access is lost (USB clone backup / Factory Recovery / serial console). Reuses B457 SCRAM tool. B459 = architecture bootstrap. **Operator action: rotate exposed `admin` creds** | B459– |
 | **api-access** | **document 2/2** | `RESEARCH-STATE-api-access.md` | DOCUMENT-mode (§20): acceso programático legítimo a una estación N4 viva (estación propia del operador, cuenta `API2`). B457 = login (SCRAM-SHA-256 + acceptEula); B458 = extracción oBIX (op query History POST/GET, paginación, delta incremental, config dump). `[CERT]` código + `[CERT-live]` cross-session. Tools en `sources/probes/B457-n4-login/`. Acción: rotar credenciales expuestas | B457–B458 |
 | **database** | **stopped (11/11 + synthesis B413)** | `RESEARCH-STATE-database.md` | La capa de PERSISTENCIA de N4 como subsistema — no el formato de cada archivo (ya en B5/B33/B34/B114/B393) sino la mecánica viva que el corpus nunca abrió: ciclo de guardado del BOG (trigger/dirty flag), modelo BComponentSpace/BSpace, ejecución BQL contra el space, migración de BOG entre versiones, y sobre todo el EXPORT a RDBMS externo (rdb-rt, alarmOrion, HSQLDB embebido) — el puente base-interna↔SQL-externa. 11 gaps DB1-DB11 cerrados (B402-B412) + síntesis B413. STOPPED 2026-08-09 | B402–B413 |
 | optimizersupervisor | paused | `RESEARCH-STATE-optimizersupervisor.md` | Install vivo OptimizerSupervisor N4.14.0.162 (config.bog de stations vivas) | B123 |
@@ -42,7 +42,29 @@
 
 ## Focus activo
 
-**`signing-pki`** (**STOPPED, investigable=0**, B392-B396) — **BOOTSTRAPEADO y CERRADO 2026-08-07** en una
+**`jace8000`** (**STOPPED, investigable=0**, B459–B470) — **BOOTSTRAPEADO y CERRADO 2026-08-19** en una corrida
+`/research-sdd` heavy contra el **JACE-8000 VIVO** en `192.168.1.140` (fase §12 dinámica, `live-install` →
+SECRETS DISCIPLINE). Nace del pedido del usuario de documentar TODO sobre un JACE-8000: arquitectura, acceso a
+la station, entrar al filesystem/sistema, entrar al platform (y sin Workbench), RE del protocolo platform para
+copiar el `.bog`, y recuperación sin acceso al platform. 11 gaps J1-J11 + síntesis B470. **7 siete hilos (B470):**
+(1) es un **appliance QNX** (QNX Neutrino / ARM Cortex-A8 NPM6xx / HotSpot JVM — **ni Linux ni Windows**, B459);
+(2) **dos puertas, dos almacenes de credenciales** — station (:443 SCRAM users, :4911 Fox) vs platform daemon
+niagarad (:3011/:5011, 403-to-GET, cuentas OS + passphrase) (B460/B461); (3) **dos dominios de cifrado en reposo**
+— daemon-home = clave-solo-de-la-máquina (config.bog vivo **indescifrable fuera del equipo**) vs portable/.dist =
+clave derivada de la passphrase (B466, §14 refina B464); (4) **filesystem QNX** /opt/niagara + /home/niagara, 4
+rutas desiguales (File Transfer platform / /file station / consola serial / SSH-off) (B462); (5) **recuperación =
+hardware + firma de Tridium** — USB clone / factory defaults / Platform Account Recovery (serial opt-8, conserva
+datos, **key firmada por Tridium** atada al Host ID, 24h) → recovery≠bypass (B463); (6) **copiar el `.bog` sin
+Workbench** es posible vía **BackupService station-side** (admin + cliente Fox = J8-G1) pero ningún RE vence el
+cifrado/firma (B464); (7) **clonar está doblemente clavado** — Host ID (licencia) + passphrase (secretos) (B467/
+B469). **Tesis:** Niagara protege "quién puede correr/poseer qué" con hardware+firmas vendor mucho más fuerte que
+la lectura por un operador autorizado — instancia viva de la tesis B392. **Postura viva:** hardening fuerte
+(SSH/telnet/Fox-1911 off, TLS1.3+HSTS) minado por certs default (platform expirado 2022, ForRecoveryPurposes) +
+**credencial admin expuesta → ROTAR** (B468). Quedan **7 gaps hijo requires-execution** (J8-G1 cliente Fox para el
+.dist, J3-G1 bytes del handshake platform, J11-G1 nmap TLS, etc.). SOURCES §5: 15 guías niagara-help registradas.
+Próximo bloque global: **B471**.
+
+**(previo)** **`signing-pki`** (**STOPPED, investigable=0**, B392-B396) — **BOOTSTRAPEADO y CERRADO 2026-08-07** en una
 corrida `/loop`. Nace del pedido del usuario de entender "cómo funcionan las firmas de los módulos y cómo
 cualquier N4 acepta módulos firmados con dichas firmas" + "la parte de seguridad". El hilo de firmas estaba
 DISPERSO sin focus propio; ahora formalizado. 5 bloques, 4 gaps investigables cerrados (SP-G1/G2/G5/G7); los
