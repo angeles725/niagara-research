@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **466 bloques**
+Total: **467 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -471,6 +471,7 @@ Total: **466 bloques**
 | 466 | [niagara-mental-model-bloque466.md](niagara-mental-model-bloque466.md) | B466 — The JACE-8000 System Passphrase and the two at-rest encryption domains: daemon-home secrets are sealed with a machine-only random key (not the passphrase), portable copies with a passphrase-derived key — and why that refines the .bog verdict (focus jace8000, J6; §14 refines B464) |
 | 467 | [niagara-mental-model-bloque467.md](niagara-mental-model-bloque467.md) | B467 — JACE-8000 Host ID and licensing: a hardware-bound `Qnx-TITAN-…` ID (not the Windows fold-XOR), .license files pinned to it, and why that blocks cloning a station to another JACE (focus jace8000, J10) |
 | 468 | [niagara-mental-model-bloque468.md](niagara-mental-model-bloque468.md) | B468 — Live security posture of the JACE-8000: strong hardening (SSH/telnet/plaintext-Fox off, platform 403-to-GET, TLS 1.3, HSTS) undercut by default/expired certs and an exposed admin credential (focus jace8000, J11) |
+| 469 | [niagara-mental-model-bloque469.md](niagara-mental-model-bloque469.md) | B469 — JACE-8000 backup, distribution, and cloning: clone-backup vs BackupService .dist, the Distribution File Installer, and the two pins (Host ID + passphrase) that gate cloning (focus jace8000, J9) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

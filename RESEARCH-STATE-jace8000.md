@@ -24,10 +24,10 @@ schema: research-state.v1
 method: dynamic-live
 block_scope: shared-global
 covered_blocks: 458
-gaps_closed: 10
-known_gaps: 19
-investigable_open: 2
-requires_execution_open: 2
+gaps_closed: 11
+known_gaps: 20
+investigable_open: 0
+requires_execution_open: 7
 blocked_open: 0
 deferred_open: 0
 undocumented_findings: 0
@@ -35,7 +35,7 @@ undocumented_findings: 0
 
 ## Coverage / open items
 
-Coverage: 10/19 gaps closed. Next gap: **J9** (B469, last investigable).
+Coverage: **11/20 gaps closed; investigable_open=0 → STOP**. 7 requires-execution child gaps remain (J3-G1/J5-G1/J7-G1/J8-G1/J10-G1/J11-G1/J2-G1).
 
 | Priority | Gap | Detail | Status |
 |---|---|---|---|
@@ -48,7 +48,7 @@ Coverage: 10/19 gaps closed. Next gap: **J9** (B469, last investigable).
 | high | J8 platform-protocol RE → obtain station .bog without Workbench | 2 routes: station BackupService (station admin, Fox client=J8-G1, RE-friendly) vs platform Station Copier (platform login, harder). Both hit passphrase wall. BackupService live-confirmed present | **covered B464** |
 | medium | J2 QNX filesystem layout & boot | QNX Neutrino from flash; niagarad→JVM→stations as separate OS procs; factory image in RO NVRAM; /opt/niagara+/home/niagara writable; SRAM playback each boot; ESC→Alternate Boot recovery | **covered B465** |
 | medium | J6 platform auth, System Passphrase & at-rest secrets | Two encryption domains: daemon-home=machine-only random key (un-decryptable off-box); portable/.dist=passphrase-derived key. §14 refines B464. Reset=serial+Tridium | **covered B466** |
-| medium | J9 backup / distribution / cloning (NEXT B469) | Station backup .dist/.bog, BackupService, cloning a JACE, host-id binding as a clone blocker | pending |
+| medium | J9 backup / distribution / cloning | Clone-backup (full image, USB) vs BackupService .dist (module pointers + Distribution File Installer); cloning gated by 2 pins (Host ID + passphrase) | **covered B469** |
 | medium | J10 Host ID & licensing on QNX/ARM | Host ID = Qnx-TITAN-XXXX (hardware-bound) vs Windows fold-XOR; .license vendor-signed + host-pinned → station portable, license not (clone needs new license) | **covered B467** |
 | medium | J11 live security posture | Strong hardening (SSH/telnet/Fox-1911 off, platform 403, TLS1.3+HSTS) vs weak defaults (expired platform cert, ForRecoveryPurposes, admin exposed). TLS1.0/1.1=J11-G1 | **covered B468** |
 
@@ -66,3 +66,4 @@ Coverage: 10/19 gaps closed. Next gap: **J9** (B469, last investigable).
 | B466 | J6 | no·inline (doc) | System Passphrase: two encryption domains; §14→B464 |
 | B467 | J10 | no·inline (corpus+doc) | Host ID Qnx-TITAN hardware-bound; license host-pinned |
 | B468 | J11 | no·inline (§12 live) | posture: hardened vs weak default certs; RE-MEASURE TLS |
+| B469 | J9 | no·inline (doc+corpus) | backup/clone/dist; 2 pins gate cloning → STOP |
