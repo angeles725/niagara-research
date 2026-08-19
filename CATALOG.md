@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **472 bloques**
+Total: **473 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -477,6 +477,7 @@ Total: **472 bloques**
 | 472 | [niagara-mental-model-bloque472.md](niagara-mental-model-bloque472.md) | B472 — The backup-over-Fox mechanism fully reverse-engineered: the `backup` Fox channel streams a `config.bog` ZIP; `save=false` makes it read-only; the gate is permission bit 48 (focus jace8000, J8-G2 spec) |
 | 473 | [niagara-mental-model-bloque473.md](niagara-mental-model-bloque473.md) | B473 — J8 DEMONSTRATED END-TO-END: a hand-rolled Fox client pulled the live station's config.bog over foxs:4911 with no Workbench (read-only save=false) — plus live corrections: the JACE runs QNX 7.0, OpenJDK, Host ID Qnx-TITAN-… (focus jace8000, J8-G2 impl; §14 live-refines B459/B465) |
 | 474 | [niagara-mental-model-bloque474.md](niagara-mental-model-bloque474.md) | B474 — The JACE station is TLS 1.3-ONLY: the server refuses TLS 1.2 with a protocol-version alert (J11-G1 closed; §14 refines B468) |
+| 475 | [niagara-mental-model-bloque475.md](niagara-mental-model-bloque475.md) | B475 — The Fox backup gate decoded: permission bit 48 = ADMIN_READ|ADMIN_WRITE on BackupService, so the .bog pull needs admin-write — a plain operator cannot do it (focus jace8000, J8-G3 closed from disk) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

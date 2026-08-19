@@ -24,7 +24,7 @@ schema: research-state.v1
 method: dynamic-live
 block_scope: shared-global
 covered_blocks: 458
-gaps_closed: 16
+gaps_closed: 17
 known_gaps: 23
 investigable_open: 0
 requires_execution_open: 7
@@ -72,3 +72,4 @@ Coverage: **12/21 gaps closed; investigable_open=0**. **J8-G1 CLOSED live (B471)
 | B472 | J8-G2 spec | no·inline (source RE) | backup-over-Fox mechanism: 'backup' channel, circuit, save=false read-only, bit-48 gate |
 | B473 | J8-G2+J10-G1 | no·inline (§12 live) | PULLED config.bog live over Fox (no WB, read-only); QNX7/OpenJDK/hostId live |
 | B474 | J11-G1 | no·inline (§12 live) | station TLS 1.3-ONLY (server refuses 1.2); §14 refines B468 |
+| B475 | J8-G3 | no·inline (disk-first) | backup gate bit48=ADMIN_READ|ADMIN_WRITE; operator denied |
