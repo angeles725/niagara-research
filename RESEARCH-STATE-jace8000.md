@@ -67,3 +67,4 @@ Coverage: **11/20 gaps closed; investigable_open=0 → STOP**. 7 requires-execut
 | B467 | J10 | no·inline (corpus+doc) | Host ID Qnx-TITAN hardware-bound; license host-pinned |
 | B468 | J11 | no·inline (§12 live) | posture: hardened vs weak default certs; RE-MEASURE TLS |
 | B469 | J9 | no·inline (doc+corpus) | backup/clone/dist; 2 pins gate cloning → STOP |
+| B470 | synthesis | no·inline | focus capstone; STOPPED investigable=0 |
