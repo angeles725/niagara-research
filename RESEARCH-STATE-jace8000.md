@@ -24,9 +24,9 @@ schema: research-state.v1
 method: dynamic-live
 block_scope: shared-global
 covered_blocks: 458
-gaps_closed: 2
-known_gaps: 12
-investigable_open: 10
+gaps_closed: 3
+known_gaps: 13
+investigable_open: 9
 requires_execution_open: 0
 blocked_open: 0
 deferred_open: 0
@@ -35,15 +35,15 @@ undocumented_findings: 0
 
 ## Coverage / open items
 
-Coverage: 0/11 gaps closed. Next block global: **B459**.
+Coverage: 3/13 gaps closed (J1, J3, J4). Next gap: **J5** (B462).
 
 | Priority | Gap | Detail | Status |
 |---|---|---|---|
 | high | J1 hardware & OS architecture | TI Sitara ARM Cortex-A8 (NPM6xx module) + QNX Neutrino RTOS + Oracle HotSpot JVM — NOT Linux/Windows | **covered B459** |
 | high | J3 platform daemon (niagarad) | :3011 (HTTP) / :5011 (TLS 1.3) both 403-to-all-methods, no auth challenge; platform account ≠ station user; daemon = highest-privilege niagarad | **covered B460** |
-| high | J4 accessing the station | SCRAM-SHA-256 web login (live-confirmed), Fox :4911, oBIX (disabled here), /file, /ord — what is reachable with station creds and how | pending — NEXT (B461) |
+| high | J4 accessing the station | SCRAM login → bajaux ORD navigator browses whole tree; minimal module set (no oBIX/Hx/help); Fox :4911 TLS; PlatformServices visible station-side | **covered B461** |
 | medium | J3-G1 platform-protocol handshake bytes | Exact digest scheme / nonce / servlet path Workbench POSTs to the daemon — deferred to J8 RE | pending |
-| high | J5 entering the JACE filesystem | The routes into the QNX tree: platform File Transfer (:5011), station file space (/file, ^/! roots), serial QNX console (micro-DEBUG USB), SSH (disabled). Tree + privilege each yields | pending |
+| high | J5 entering the JACE filesystem (NEXT B462) | The routes into the QNX tree: platform File Transfer (:5011), station file space (/file, ^/! roots), serial QNX console (micro-DEBUG USB), SSH (disabled). Tree + privilege each yields | pending |
 | high | J7 station recovery WITHOUT platform access | Factory Recovery button, USB clone backup/restore (no Workbench), serial recovery, dist reinstall + station restore, passphrase-lost scenario — what each recovers/loses | pending |
 | high | J8 platform-protocol RE → obtain station .bog without Workbench | The operator's explicit ask: can the platform File Transfer / Station Copier protocol (or a station-side Backup) be driven without Workbench to pull the `.bog`? Auth required, feasibility, RE path from platform-native corpus | pending |
 | medium | J2 QNX filesystem layout & boot | Partition/mount tree, niagarad boot sequence, where the station & niagara live on flash, RAM-disk vs persistent, factory image | pending |
@@ -58,3 +58,4 @@ Coverage: 0/11 gaps closed. Next block global: **B459**.
 |---|---|---|---|
 | B459 | J1 | no·inline (§12 live) | architecture: QNX + ARM + JVM |
 | B460 | J3 | no·inline (§12 live) | platform daemon: 403-to-all, platform≠station creds |
+| B461 | J4 | no·inline (§12 live) | station access: bajaux ORD navigator, minimal modules |
