@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **450 bloques**
+Total: **454 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -455,6 +455,10 @@ Total: **450 bloques**
 | 450 | [niagara-mental-model-bloque450.md](niagara-mental-model-bloque450.md) | Block 450 — nrio data-handling loose ends (gaps B446-G1 + B447-G1, partial B447-G2): table interpolation clamps at both ends, device-type→firmware-image map, and the MSP430 reset vector |
 | 451 | [niagara-mental-model-bloque451.md](niagara-mental-model-bloque451.md) | Block 451 — IO-R-16 firmware, decompiled (gap B447-G2): a 60-function MSP430 slave — config in info-flash, an RS-485 RX-ring main loop, and a 4×12-bit packed-AO update handler |
 | 452 | [niagara-mental-model-bloque452.md](niagara-mental-model-bloque452.md) | Block 452 — IO-R-34 firmware vs IO-R-16 (gap B451-G1): 83.5% byte-identical shared codebase, same 57-function skeleton, I/O loops scaled to 16 UI / 8 AO |
+| 453 | [niagara-mental-model-bloque453.md](niagara-mental-model-bloque453.md) | Block 453 — AXIS live-video runbook V1: native `naxisVideo` driver on the Supervisor (licensed path) |
+| 454 | [niagara-mental-model-bloque454.md](niagara-mental-model-bloque454.md) | Block 454 — AXIS live-video runbook V2: embed the MJPEG relay in a Px Web Widget (license-free path) |
+| 455 | [niagara-mental-model-bloque455.md](niagara-mental-model-bloque455.md) | Block 455 — AXIS live-video runbook V3: PxImage snapshot refresh (lightest, license-free) |
+| 456 | [niagara-mental-model-bloque456.md](niagara-mental-model-bloque456.md) | Block 456 — AXIS live-video runbook V5: a custom N4 module (own driver), no commercial video feature |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
