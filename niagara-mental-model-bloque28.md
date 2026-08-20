@@ -534,7 +534,13 @@ Modbus es la **excepción confirmatoria** del framework: el código base NO obli
 
 ---
 
-## 28.6 SNMP MIB Walk (v1/v2c, NO v3 en este install)
+## 28.6 SNMP MIB Walk (v1/v2c en el módulo CLÁSICO `snmp`)
+
+> **CORRECCIÓN DE ALCANCE ([Block 476]).** Todo este §28.6 mide `snmp-rt.jar`, el módulo SNMP **clásico**. El título
+> original decía "NO v3 en este install" — eso es un error de alcance: el mismo install trae además el módulo **`nSnmp`**
+> ("SNMP Driver with NDriver Framework"), y ESE **sí** tiene SNMPv3 USM completo (SHA + AES), recepción de traps nativa y
+> proxy exts tipados. La station VIVA corre `ns:SnmpNetwork` = `nSnmp`, no el clásico. Lo de §28.6 vale para `snmp`
+> clásico; para el comportamiento del deployment real ver [Block 476].
 
 ### 28.6.1 Clases pivote
 
@@ -591,7 +597,13 @@ $ unzip -l snmp-rt.jar | grep -iE "v3|usm|auth|priv"
 # minimal matches — no BSnmpV3SecurityModel, no USM
 ```
 
-SNMPv3 con USM (User Security Model) auth/priv no aparece en el distro Honeywell. Confirmado Bloque 7.3.6. Implicación: en redes que requieren SNMPv3 (enterprise security), este driver no sirve — requiere módulo third-party o nativo extensión.
+SNMPv3 con USM (User Security Model) auth/priv no aparece **en `snmp-rt.jar` (el módulo clásico)**. Confirmado Bloque 7.3.6.
+
+> **CORREGIDO ([Block 476] §476.5):** esta ausencia es SOLO del módulo clásico `snmp`. El módulo **`nSnmp`** del mismo
+> install SÍ trae USM v3 completo — `BSnmpDevice` con `snmpVersion` (1-3), `securityLevel`, `authenticationProtocol`
+> (SOLO `sha`, sin MD5), `privacyProtocol` (`des`/`aes128`/`aes192`/`aes256`), `engineID` + el paquete
+> `com.tridium.nSnmp.version3.*`. La implicación "este driver no sirve para redes SNMPv3" queda acotada al clásico; el
+> deployment real usa `nSnmp` y sí soporta v3 (gate de interop: el device debe hablar SHA auth + AES priv).
 
 ---
 

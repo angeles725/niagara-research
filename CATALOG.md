@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **473 bloques**
+Total: **474 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -478,6 +478,7 @@ Total: **473 bloques**
 | 473 | [niagara-mental-model-bloque473.md](niagara-mental-model-bloque473.md) | B473 — J8 DEMONSTRATED END-TO-END: a hand-rolled Fox client pulled the live station's config.bog over foxs:4911 with no Workbench (read-only save=false) — plus live corrections: the JACE runs QNX 7.0, OpenJDK, Host ID Qnx-TITAN-… (focus jace8000, J8-G2 impl; §14 live-refines B459/B465) |
 | 474 | [niagara-mental-model-bloque474.md](niagara-mental-model-bloque474.md) | B474 — The JACE station is TLS 1.3-ONLY: the server refuses TLS 1.2 with a protocol-version alert (J11-G1 closed; §14 refines B468) |
 | 475 | [niagara-mental-model-bloque475.md](niagara-mental-model-bloque475.md) | B475 — The Fox backup gate decoded: permission bit 48 = ADMIN_READ|ADMIN_WRITE on BackupService, so the .bog pull needs admin-write — a plain operator cannot do it (focus jace8000, J8-G3 closed from disk) |
+| 476 | [niagara-mental-model-bloque476.md](niagara-mental-model-bloque476.md) | Block 476 — The install ships two SNMP modules, and the live station runs the newer `nSnmp` (NDriver): it has SNMPv3 USM, native traps, and typed proxy exts — scoping [Block 28] §28.6's install-wide "no v3" to the classic `snmp` module |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
