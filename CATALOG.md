@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **507 blocks**
+Total: **508 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -513,3 +513,4 @@ Total: **507 blocks**
 | 509 | [niagara-mental-model-bloque509.md](niagara-mental-model-bloque509.md) | `apis` API3: the oBIX SERVER — N4 as an oBIX host (`BObixServer` = `BWebServlet`+`Soaplet` at `/obix`), the lobby-agent map that publishes the WHOLE station tree (`/obix/config`, `/obix/ord`) with no export allowlist, per-user server Watches, and RBAC-gated writes but no per-object read ACL |
 | 510 | [niagara-mental-model-bloque510.md](niagara-mental-model-bloque510.md) | `apis` API5: the `BAuthenticationScheme` SPI — the framework contract for AUTHORING a custom N4 auth scheme (abstract methods + two-level registration + `BUser` binding + the `BAuthenticationService.authenticate()` JAAS orchestration + `NiagaraLoginModule`/`BCallbackHandler` wiring) |
 | 511 | [niagara-mental-model-bloque511.md](niagara-mental-model-bloque511.md) | `apis` API7: the `BJob` / `BJobService` API — N4's background-job framework (a job is a live `BComponent`, run on a `ForkJoinPool`, tracked by a 6-state lifecycle + incremental log, retained 3-per-type/10-min, and observable over Fox at its ORD) |
+| 512 | [niagara-mental-model-bloque512.md](niagara-mental-model-bloque512.md) | `apis` API4: the BOX protocol wire — N4's live-subscription substrate (`BBoxServlet` at `/box`, **JSON** frames not binary, a `ProxyBroker`-backed sub/event model, HTTP-poll v1 + WebSocket-push v2 that coexist, and the wire that `@NiagaraRpc`'s `box` transport and the WebSocket layer both ride on) |
