@@ -18,20 +18,20 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 11
-gaps_closed: 10
-known_gaps: 10
+covered_blocks: 12
+gaps_closed: 11
+known_gaps: 11
 investigable_open: 0
 requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
 
 focus: framework-drivers
-status: stopped (10/10 investigable closed)
+status: stopped (11/11; FD11 basicDriver added from recorded sub-item)
 seeded_from: AUDIT-FIRST coverage sweep 2026-08-25 (delegated sonnet; verified inline)
 seeded_on: 2026-08-25
 gaps_total: 10 investigable (FD1–FD10)
-gaps_closed: 10 (FD1→B496 … FD10→B504, FD8→B505)
+gaps_closed: 11 (FD1→B496 … FD8→B505, FD11→B517)
 blocks_written: B496–B505 (FD1–FD10) + B506 (focus synthesis)
 block_prefix: niagara-mental-model-bloqueN.md (shared global numbering)
 
@@ -96,3 +96,4 @@ using any count as a denominator (GAP NUMBERS ARE HYPOTHESES). All 8 candidate d
 | it.9 | 2026-08-25 | **FD10** abstractMqttDriver — 59/1975 Tridium (3%); MULTI-SDK shaded fat jar (3rd bundling archetype: Paho 1.2.5 + AWS IoT SDK 1.3.11 + Jackson 2.16.1 + Joda 2.8.1 + JJWT 0.11.2); multi-cloud abstract base over 2 backends (Paho generic/GCP/Azure + AWS IoT), 5 pluggable authenticators (generic/AWS/JITP/GCP-JWT/Azure-SAS); MQTT 3.1.1 only, TCP/TLS no-WS, no-Sparkplug; FOOTGUN default connectionType=UserLoginOverSSL(TLS) but brokerPort default 1883(plaintext); license tridium:mqtt FINAL on network (inherited by all concrete drivers); payloads plain UTF-8. `sonnet` sweep (28 tool-uses), all load-bearing + SDK versions re-verified inline (count 1978→1975 RE-MEASURED). verify-block exit 0, ratio 0.31. | **B504** | none net-new · yes · sonnet |
 | it.10 | 2026-08-25 | **FD8** weather — core Tridium NWS/EPA weather Service (BAbstractService, NOT a driver); data as component slots (no point proxies); hardcoded US-gov XML feeds (graphical/www/alerts.weather.gov + airnowapi) fetched over PLAINTEXT HTTP by default (FeedReader secure=false); poll 1h/min15m; AirNow apiKey = CLEARTEXT String (NOT BPassword) in URL query → weakest at-rest in focus; NO license gate (grep=0, only FD module without one). §11 **DE-ESCALATION**: sweep claimed NWS endpoints "decommissioned 2023 / forecast broken by default"; WebSearch (FALSIFY-BEFORE-REPORTING) found NDFD XML service MIGRATED to AWS (WSDL changes affect legacy SOAP), endpoint still referenced active → downgraded to UNVERIFIED external-dependency durability risk ([CERT-web] NWS notices, registered SOURCES.md). `sonnet` sweep (19 tool-uses) + inline web-falsification by driver. verify-block exit 0, ratio 0.32. | **B505** | none net-new (live-fetch status of NWS feeds = §12 requires-execution, not registered blocking) · yes · sonnet + web |
 | it.11 (synthesis) | 2026-08-25 | focus-close SYNTHESIS — 5 cross-cutting axes over FD1–FD10: (1) SDK-bundling spectrum [1-AS-IS / none-handrolled / N-shaded]; (2) driver-network vs Service split [openAdr+weather=Service]; (3) five-tier security-posture ladder + BPassword-at-rest-except-weather; (4) license-shape zoo [boolean/sub-key/per-role/foreign-limit/capacity-quota/ven.limit/inherited/none]; (5) three provenance namespaces [tridium/tridiumps/tridiumX]. Consolidated SEC feed to B398/B490. Written inline (synthesis, no sweep). verify-block exit 0, ratio 1.00 (SYNTHESIS, healthy). | **B506** | none — focus CLOSED; recorded-not-seeded UPDATE 2026-08-25: BObixServer export → CLOSED by apis/API3 [B509]; com.tridiumX packaging → RESOLVED = Tridium Europe [B503 §503.9]; basicDriver ref → under investigation (FD11); 2 optional §12 live checks remain · no·inline |
+| it.12 | 2026-08-25 | **FD11** basicDriver — the SHARED serial-driver base (recorded sub-item from B500). REMITTANCE-checked genuine vs B7 (generic framework). Adds over B7: BBasicNetwork (BLoadableNetwork, abstract makeComm, dispatcher/worker/writeWorker + Comm/CommTransactionManager retry-timeout engine, sendSync/Async), BSerialNetwork (BSerialHelper serialPortConfig + interMessageDelay; SerialComm rx-thread + performInterMessageDelay=fixed-ms gap B309), BBasicDevice (getNetworkType→BBasicNetwork.TYPE), BBasicProxyExt (readSubscribed poll-sub + async postWrite off poll thread), BBasicPollScheduler (doPoll gates on !disabled/!down/!fault + auto-unsub on NotRunningException), BCommPlugIn (swappable Comm). 12 modules ride it (mbus/aaphp/aapup/mcquay/andoverAC256/flexSerial via BSerialNetwork; modbusCore/ccn/nrio/tls/clPanelBus/honPlantControllerHMI via BBasicNetwork). NO TCP in basicDriver (grep=0): transport-agnostic makeComm, TCP per-driver (explains B500 mbus dual serial+MbusSocketComm). `sonnet` sweep (16 tool-uses), all load-bearing re-verified inline (count RE-MEASURED 12 modules). verify-block exit 0, ratio 0.27. | **B517** | none net-new · yes · sonnet |

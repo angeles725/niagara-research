@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **512 blocks**
+Total: **513 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -518,3 +518,4 @@ Total: **512 blocks**
 | 514 | [niagara-mental-model-bloque514.md](niagara-mental-model-bloque514.md) | `apis` API8: the BQL/NEQL CALL contracts + over-HTTP surfaces — the `bql:`/`neql:` ORD schemes (Java call → `BITable`/cursor), the ONE query-execution-over-HTTP face (oBIX `/obix/bql`, read-only-gated), the BOX `BqlRpc` AST-only utility, and the absence of a `/bql` servlet or any NEQL wire surface |
 | 515 | [niagara-mental-model-bloque515.md](niagara-mental-model-bloque515.md) | `apis` SYNTHESIS: the Niagara N4 API map as one system — four transports (web/Fox/BOX/oBIX) over one ORD address space and one auth spine, the `niagaraRpc` verb that spans three of them, and the security asymmetry between the closed RPC layer and the broad oBIX read surface |
 | 516 | [niagara-mental-model-bloque516.md](niagara-mental-model-bloque516.md) | `apis` API9: the Fox `BSysChannel` command set — what the "sys" channel actually carries (summary / space enumeration / nav-event push / `stationCall` / `niagaraRpc`), and the key structural fact that it holds **no slot read/write primitives** — those bootstrap a separate `BBrokerChannel` (the ProxyBroker/BOG sync of [B512], over Fox) |
+| 517 | [niagara-mental-model-bloque517.md](niagara-mental-model-bloque517.md) | `framework-drivers` FD11: `basicDriver` — the shared serial-driver base that 12 drivers ride, layering a message-dispatch/transaction engine (`BBasicNetwork`) + a serial binding (`BSerialNetwork`/`SerialComm`) + a network-state-gated poll scheduler on top of the generic driver framework, with a transport-agnostic `makeComm()` and NO built-in TCP |

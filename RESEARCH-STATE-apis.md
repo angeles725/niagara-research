@@ -70,7 +70,7 @@ The audit flagged several surfaces as PARTIAL because the corpus covers their AR
 call-site cookbook: Control/Point write API (`BControlPoint`/`BNumericWritable` from Java; arch in [B6]/[B8]),
 History query API (`HistorySpaceConnection.timeQuery`; arch in [B8]/[B410]), Tag/NEQL Java API (arch in
 [B21]/[B263]), `Sys`/service-container call patterns (arch in [B20]), BProgram scripting (context in [B344]).
-These risk being REMITTANCE re-hashes — NOT seeded as gaps; revisit only if API1–API8 close early.
+These risk being REMITTANCE re-hashes — NOT seeded as gaps. **RESOLVED 2026-08-25 (D4 REMITTANCE-verdict sweep): all three = REMITTANCE, NO block.** Control/Point write→[B6 §6.2.6] (override/auto/emergencyOverride/set actions + BComponent.post); History query→[B8 §8.2.8] (has the exact HistorySpaceConnection.timeQuery+cursor code block); Tag/NEQL→[B21]/[B260]/[B514] (getImpliedTags + neql: scheme). Audit's premise classes BHistoryFilter/BTagQuery do NOT exist in source.
 
 ## Stop control (METHODOLOGY §8)
 
