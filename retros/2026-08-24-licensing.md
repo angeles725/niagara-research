@@ -111,3 +111,76 @@ misattribution in the candidate evidence. Candidate C is correctly NOT a kit del
 RE work itself was textbook kit discipline — corroboration before citation, §21 fallback walked correctly,
 existing wrappers reused without hand-rolling — which is why the "Already covered" list is substantial and the
 new-delta list is short and specific, as a healthy §18 retro should be.
+
+## Tooling report (§10)
+
+> READ-ONLY / DEFENSIVE ONLY. No bypass, patch, signing, rehost, or rehost-adjacent tooling is proposed or
+> recommended here. HARD SCOPE NOTE: the target's `tools/niagara-license-tool.py` (B323) has a SIGNER side
+> (`sign` / `rehost` / `gen`, DSA-1024/SHA-1 re-encode) that MUST NOT be extended — only its READ-ONLY
+> `verify` subcommand (offline signature check + license-attribute dump) is in scope for anything below.
+> Each item tagged `[KIT delta]` (kit `toolbelt/`) or `[TARGET tool]` (this corpus's `tools/`), with priority.
+
+### (a) Tool-usage lessons (this session)
+
+- **`decompile-java.sh` (Vineflower) on `bin/ext/nre.jar` → 437 files** cleanly closed the
+  entitlement-server `[INFER]` boundary that B442/B443 had named but never opened. This is the concrete
+  proof that **D1 (name-the-jar ⇒ open-the-jar) is worth operationalizing** — the source was one Vineflower
+  run away the whole time, and the wrapper needed no adaptation. `[KIT delta → D1]` HIGH.
+- **`corroborate-native.sh` (native-static.v1) worked on all 3 DLLs; `decompile-native.sh ghidra-evidence`
+  capped out on the symbol-rich DLLs; `ExportDecompiledC.java` (raw `--script`) was the working decompiled-C
+  route.** Confirms **D3** — corroborate-native for bounded static evidence + ExportDecompiledC for bodies is
+  the right pairing on symbol-rich targets; ghidra-evidence (curated static-model, `--max-files` default 64)
+  is not the decompiled-body tool. `[KIT delta → D3]` LOW. Already-covered discipline: RE
+  corroboration-before-citation (§5) was followed — no new delta.
+- **8-way parallel mapper fan-out for a document-mode §20 consolidation of ~20 blocks + code was effective.**
+  This is a MAPPING/READING fan-out (compress existing corpus+code into a consolidated capture), distinct from
+  the LARGE-SCALE §20 pattern, which pre-extracts SOURCE material per section for AUTHORING. Mostly already
+  covered by `PROMPT-LOOP.md` DOCUMENT CYCLE LARGE-SCALE + `METHODOLOGY.md §16` (driver owns shared writes);
+  the only genuinely-new sliver is a one-line note that fan-out also pays off for CONSOLIDATION runs (read-many
+  → synthesize), not only discovery/authoring. `[KIT delta]` LOW (one-line §20 clarification; do not over-build).
+
+### (b) Recommended tools for the Niagara licensing / RE domain (READ-ONLY §10 report)
+
+- **Read-only `.license` / `.certificate` INSPECTOR — ALREADY EXISTS, register it, do NOT rebuild.**
+  `tools/niagara-license-tool.py verify <license.xml> <certificate.xml>` already parses the XML, verifies the
+  DSA-1024/SHA-1 signature OFFLINE against `{vendor}.certificate`, and reports `vendor / hostId / expires /
+  generated` (B323). Recommendation: **document/register the `verify` subcommand in `toolbelt/tool-registry.md`**
+  (Niagara licensing row) so the next run reaches for it instead of re-deriving — NOT a new tool. `[TARGET tool
+  → register in KIT registry]` MED.
+  · *Genuine gap in `verify` (read-only extension, in scope):* it does NOT dump the per-feature FEATURES/LIMITS
+  rows, nor report the certificate's OWN chain to `baja.jar`'s embedded `masterPublicKeyData` root (B322). A
+  read-only extension of `verify` to (1) list feature/limit entries and (2) print the cert→root chain result
+  stays entirely on the inspect side — no signer surface touched. `[TARGET tool]` MED.
+- **Read-only MODULE-SIGNATURE auditor — LARGELY ALREADY COVERED; only a thin cross-check is missing.**
+  `tools/niagara-security-audit.py` already checks the module-trust POSTURE read-only: SEC-01
+  `moduleVerificationMode`, SEC-02 `truststore.jks` default `changeit` password, and the
+  `skipModuleValidation` / `ignoreVerificationMode` / developer-flag launch bypasses (B398). The native
+  `nverify.exe` (B126/B379/B384) performs the actual per-module CodeSigner signature check. What NEITHER does
+  is a purely-static, on-disk **report of each module `.jar`'s embedded CodeSigner cert chained against the
+  `truststore.jks` anchors** (a describe-only cross-check, no enforcement, no signing). That is the only
+  genuine gap, and it OVERLAPS `nverify.exe`, so priority is LOW and it belongs as a read-only subcheck of
+  `niagara-security-audit.py`, not a new tool. `[TARGET tool]` LOW. **No signer / rehost recommendation is made.**
+
+### (c) Own-tool / adaptation proposals (small, read-only, propose-only)
+
+- **Operationalize D1 as a read-only "decompile-me worklist" scanner.** A small script that scans corpus
+  blocks for `[CERT]` (and `[INFER]`-boundary) citations naming a `.jar` / native-binary path, cross-checks
+  each against what is actually present under the decompiled-source tree (`sources/decompiled/` or the
+  focus's decompile output dir), and emits the jars cited-as-authority-but-never-opened as a worklist. Pure
+  read-only over the corpus; it decompiles nothing itself — it just surfaces the D1 obligation mechanically so
+  a named authority jar cannot sit as `[INFER]` across sessions again. Incubate as `[TARGET tool]` first
+  (`tools/decompile-me-worklist.py`), promote to `toolbelt/` once generalised — the same incubation path
+  `ExportDecompiledC.java` / `DecompileByString.java` followed. `[TARGET tool → KIT promote candidate]` MED.
+- **No other adaptation was genuinely needed this session.** Vineflower, corroborate-native, and
+  ExportDecompiledC all ran as-is; the lessons were ROUTING (D3) and PROCESS (D1), not missing tooling.
+  Honesty clause: nothing else invented.
+
+### Tooling-report dedupe (already covered — not re-proposed)
+
+- Read-only offline license signature check + attribute dump → **already `tools/niagara-license-tool.py
+  verify`** (recommend registering, not rebuilding).
+- moduleVerificationMode / truststore-`changeit` / skipModuleValidation posture → **already
+  `tools/niagara-security-audit.py`** (SEC-01/02 + bypass-flag checks).
+- Per-module native signature verification → **already `nverify.exe`** (B126/B379/B384) — do not re-implement.
+- Parallel per-section fan-out for §20 large-scale runs → **already DOCUMENT CYCLE LARGE-SCALE + §16**.
+- `gen-catalog.py` local fork → **already tracked** (retro template T2; not licensing-related).
