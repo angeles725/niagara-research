@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **519 bloques**
+Total: **520 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -524,6 +524,7 @@ Total: **519 bloques**
 | 519 | [niagara-mental-model-bloque519.md](niagara-mental-model-bloque519.md) | B519 — signing-pki: licensing vs module-integrity are two EVENT-TRIGGERED gates in one host process; live posture (`moduleVerificationMode=low`) and the interposition surface |
 | 520 | [niagara-mental-model-bloque520.md](niagara-mental-model-bloque520.md) | B520 — signing-pki SP-G10: the interposition ("mirror") surface, mapped statically — `dsfspi.dll` is the single native crypto chokepoint; dynamic PoC refused by harness |
 | 521 | [niagara-mental-model-bloque521.md](niagara-mental-model-bloque521.md) | B521 — signing-pki: module verification is PER-MODULE with an independent verdict each — dynamic confirmation (§12, live tool observation) |
+| 522 | [niagara-mental-model-bloque522.md](niagara-mental-model-bloque522.md) | B522 — signing-pki: defensive hardening synthesis — turning the live license/module-integrity findings (B518–B521, B398) into operator actions |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
