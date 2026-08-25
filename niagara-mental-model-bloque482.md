@@ -109,7 +109,9 @@ as an RSA public key (`CoreCryptoManager.java:900-917`). Also defines `AES_TRANS
 - **Deepens** [B392] (module signing) with the ACTUAL verifier path, [B395] (master keys) with the TPK's role,
   [B480] (at-rest) with the KeyRing two-level mechanism, [B323]/[B477] (encode canonicalization).
 - **Native counterpart:** @Segundo's `dsfspi` pass documents the byte-level DER/DSA/RSA that JCA hides here.
-- **B482-G1** reconcile the module trust store: [B392] `truststore.jks` vs this block's system+user `cacerts`
-  + RSA-2048 TPK — do both exist / which path validates modules? (do NOT overwrite B392 until confirmed).
+- **B482-G1** ~~reconcile the module trust store~~ **CLOSED by [B489]:** native `nverify.exe` (Segundo) confirms
+  the module-verify store = embedded **cacerts P12 (`changeit`, ~99 roots) + RSA-2048 TPK memcmp pin**, NOT a
+  dedicated `truststore.jks`. Two independent code reads (this Java block + B489 native) agree → B392 corrected
+  with certainty (see [B489 §489.4]).
 - **B482-G2** `JarVerifier.getCodeSigners`/manifest logic (referenced, not read); `com/tridium/nre/security/km/**`
   (how `.km` KeyMaterial itself is protected — possibly host/QNX-bound).

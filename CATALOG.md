@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **486 bloques**
+Total: **487 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -491,6 +491,7 @@ Total: **486 bloques**
 | 486 | [niagara-mental-model-bloque486.md](niagara-mental-model-bloque486.md) | Block 486 — The license BRAND system: one `tridium:brand` feature (brandId + four `PatternFilter` accept-lists) gates station↔station and Workbench↔station interoperability at the Fox handshake and the platform-daemon HTTP header — the OEM interop-lock mechanism |
 | 487 | [niagara-mental-model-bloque487.md](niagara-mental-model-bloque487.md) | Block 487 — Silent-watcher audit: no covert/undocumented monitor in the licensing path (node-locked fully passive; subscription's only background actors are the two VISIBLE, alarmed check-ins) — plus one genuinely-silent thread that lives in the CRYPTO subsystem, not licensing |
 | 488 | [niagara-mental-model-bloque488.md](niagara-mental-model-bloque488.md) | Block 488 — The license limit-enforcement map: two tiers (global-capacity `Metrics` vs per-network driver Feature), what each `*.limit` does on exceed (System.exit(-3) / hard block / silent block-add / component fatalFault), and a §14 correction of B14's counting API |
+| 489 | [niagara-mental-model-bloque489.md](niagara-mental-model-bloque489.md) | Block 489 — `nverify.exe`, the native module/dist signature verifier: a C reimplementation of Java JAR-signing (SHA-256 manifest + PKCS#7) whose trust store is an embedded cacerts PKCS#12 (`changeit`, 99 roots) plus an RSA-2048 TPK memcmp pin — closing B482-G1 and reconciling B392 vs B482 with certainty |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

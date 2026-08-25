@@ -1,5 +1,11 @@
 # Block 126 — Native licensing, signature verification & the DSF crypto provider (`dsfspi.dll` Mocana JCE · `nverify.exe` · `LicenseUtil` · the four signing schemes)
 
+> **⚠ §14 REFINEMENT (B489, 2026-08-24):** §126.4's "`nverify.exe` validates against a DigiCert trust anchor"
+> is refined by a full-body RE ([B489]): "DigiCert Trusted Root G4" is nverify's OWN Authenticode signing chain
+> (in the PE Security Directory), AND it is present as 1 of ~99 stock CA roots in an embedded cacerts PKCS#12
+> (`changeit`) — but the REAL Tridium module pin is an embedded **RSA-2048 TPK** the verifier `memcmp`s against
+> the signer's public key ("Signed by TPK"/"Not signed by TPK"), not DigiCert. See [B489 §489.2].
+
 > Research of the **Niagara N4 NATIVE security/trust layer** on the installed OptimizerSupervisor‑N4.14.0.162: HOW a signed module/file is verified at the native level (`DsfUtil::checkFileSignature` decompiled), WHAT `dsfspi.dll` actually is (the **Mocana DSF crypto library exposed as a Java security provider** — full primitive inventory), HOW the standalone `nverify.exe` CLI validates a signed archive against a DigiCert trust anchor, HOW native licensing works (`LicenseUtil::isFeaturePresent` decompiled + the on‑disk `.license`/`.certificate` format and its HostId binding), and a hard **correction**: `libciper.so` is **NOT** a cipher/crypto library at all. This closes gap **N3** and grounds [Block 113]'s code‑signing model and [Block 2]'s licensing model in native CERT evidence.
 >
 > Sources (primary, READ‑ONLY):

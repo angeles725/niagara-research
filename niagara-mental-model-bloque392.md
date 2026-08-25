@@ -1,5 +1,12 @@
 # Block 392 — The module-signing trust anchor, reconciled against the live install: three trust domains (not one), the real Honeywell-rooted RSA chain, and why "any N4 accepts Tridium modules" is conditional
 
+> **⚠ §14 CORRECTION (B489/B482, 2026-08-24):** where this block names the module trust store as
+> `security/truststore.jks` (`changeit`), two independent code reads correct it: the Java `CertificateChainValidator`
+> ([B482]) and the native `nverify.exe` ([B489]) both show the module-verify store is a **cacerts (P12/JKS) with
+> ~99 stock CA roots** and the real Tridium-specific control is an **embedded RSA-2048 TPK pin** (byte-equality
+> memcmp on the signer's public key), NOT a dedicated `truststore.jks`. The `changeit` password was right; the
+> store identity and the "pin" mechanism are corrected. See [B489 §489.4].
+
 > **Focus:** `signing-pki` (BOOTSTRAP + capstone). The signature/PKI surface of Niagara N4 as a
 > subsystem. This block resolves the four-way trust-anchor contradiction that the corpus left open and
 > that [Block 113 §113.5] explicitly flagged as "living in the live install, not in the decompiled corpus".
