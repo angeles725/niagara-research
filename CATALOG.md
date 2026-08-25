@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **492 bloques**
+Total: **493 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -497,6 +497,7 @@ Total: **492 bloques**
 | 492 | [niagara-mental-model-bloque492.md](niagara-mental-model-bloque492.md) | Block 492 — signing-pki reopen capstone: the reconciled module-signing trust model after the 2026-08-24 native+Java deep-dive — RSA-2048 detached `.sig` verified against cacerts (P12, `changeit`, 99 roots) + an embedded RSA-2048 TPK memcmp pin, NOT a dedicated `truststore.jks` |
 | 493 | [niagara-mental-model-bloque493.md](niagara-mental-model-bloque493.md) | Block 493 — `oem-honeywell-tail` U1b+U1c: the honIrmConfig Workbench/UX layer adds no IRM-specific auth gate (stock `ri` + three `unrestricted` RPCs), and Nano-command authentication is UNIFORM transport-AES keyed on the device password — not per-opcode — bottoming out at the hardcoded `irmn4encryption1`⊕serial default key |
 | 494 | [niagara-mental-model-bloque494.md](niagara-mental-model-bloque494.md) | Block 494 — `oem-honeywell-tail` U14: the pluggable authentication schemes beyond RBAC+Fox (SAML, LDAP/Kerberos, gauth TOTP, clientCertAuth, and oauth2-as-a-client) — architecture and security posture |
+| 495 | [niagara-mental-model-bloque495.md](niagara-mental-model-bloque495.md) | Block 495 — `oem-honeywell-tail` U10: breadth survey of the other-vendor OEM drivers (Andover, Carrier CCN, McQuay, American AutoMatrix, MAXPRO, BACnetFFT) — license-feature map, two scope corrections, and the driver-level security standouts (McQuay hardcoded password, MAXPRO RTSP, axvelocity SSTI, BACnetFFT ungated firmware push) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
