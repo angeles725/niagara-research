@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **501 blocks**
+Total: **502 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -507,3 +507,4 @@ Total: **501 blocks**
 | 503 | [niagara-mental-model-bloque503.md](niagara-mental-model-bloque503.md) | `framework-drivers` FD9: `knxnetIp` — a fully Tridium-authored KNXnet/IP stack (no vendored SDK), tunneling + routing transport (UDP 3671 / multicast 224.0.23.12), a data-driven single-class DPT codec, capacity-quota licensing, and NO KNX Secure (plaintext-only) |
 | 504 | [niagara-mental-model-bloque504.md](niagara-mental-model-bloque504.md) | `framework-drivers` FD10: `abstractMqttDriver` — a multi-cloud MQTT base that is 97% vendored SDK (59 Tridium classes over Eclipse Paho 1.2.5 + AWS IoT SDK 1.3.11 + Jackson/Joda/JJWT, shaded), MQTT 3.1.1 TCP/TLS, five pluggable cloud authenticators, and a TLS-default-but-port-1883 misconfiguration footgun |
 | 505 | [niagara-mental-model-bloque505.md](niagara-mental-model-bloque505.md) | `framework-drivers` FD8: `weather` — the Tridium NWS/EPA weather Service (not a driver): hardcoded US-gov XML feeds fetched over plaintext HTTP by default, weather data exposed as component slots (no point proxies), a cleartext-String AirNow API key, NO license gate, and an external-dependency durability risk (de-escalated from the sweep's "dead endpoint" claim) |
+| 506 | [niagara-mental-model-bloque506.md](niagara-mental-model-bloque506.md) | `framework-drivers` SYNTHESIS: the ten Tridium framework protocol drivers as one system — the SDK-bundling spectrum, the driver-vs-Service split, a five-tier security-posture ladder, the license-shape zoo, and the consolidated SEC feed |

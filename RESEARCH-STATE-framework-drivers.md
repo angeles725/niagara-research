@@ -18,7 +18,7 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 10
+covered_blocks: 11
 gaps_closed: 10
 known_gaps: 10
 investigable_open: 0
@@ -32,7 +32,7 @@ seeded_from: AUDIT-FIRST coverage sweep 2026-08-25 (delegated sonnet; verified i
 seeded_on: 2026-08-25
 gaps_total: 10 investigable (FD1–FD10)
 gaps_closed: 10 (FD1→B496 … FD10→B504, FD8→B505)
-blocks_written: B496–B505 (FD1–FD10; note FD8→B505 last)
+blocks_written: B496–B505 (FD1–FD10) + B506 (focus synthesis)
 block_prefix: niagara-mental-model-bloqueN.md (shared global numbering)
 
 ## Gap-backlog (prioritized) — from the AUDIT-FIRST coverage matrix
@@ -74,7 +74,7 @@ using any count as a denominator (GAP NUMBERS ARE HYPOTHESES). All 8 candidate d
 - **requires-execution / blocked**: 0. (Optional §12 live-confirm of server writable-node exposure noted in
   B498 §498.8 — NOT registered as blocking; the investigable set stands.)
 - **Coverage metric**: 10 / 10 investigable gaps closed. SYNTHESIS + §18 retro pending.
-- **NEXT**: focus-closing SYNTHESIS block + §18 retrospective + push. No investigable driver gaps remain.
+- **DONE**: SYNTHESIS = [B506]. NEXT: §18 retrospective + push. No investigable driver gaps remain.
 - **POSSIBLE future gap (recorded, NOT seeded):** dedicated `obix-rt` transport/`Obj` model + `BObixServer`
   export block — out of FD4's driver scope (B499 §499.8).
 - **RESOLVED (was REVERSE-BACKLOG from B496 §496.6):** OPC UA license split confirmed per-role —
@@ -95,3 +95,4 @@ using any count as a denominator (GAP NUMBERS ARE HYPOTHESES). All 8 candidate d
 | it.8 | 2026-08-25 | **FD9** knxnetIp — 189 com.tridiumX classes, FULLY Tridium-authored KNXnet/IP stack, NO vendored SDK (calimero grep=0) = pole opposite of FD1; tunneling+routing transport (UDP 3671 / multicast 224.0.23.12, tunneling-CLIENT-only, inbound CONNECT "not implemented"); DPT codec = single data-driven BDataValueTypeDef (defs stored as components in station tree, NOT XML/per-DPT class); address styles individual 4/4/8 + group free/2-level/3-level; SEARCH_REQUEST discovery; license dynamic module-name feature + NUMERICAL capacity quotas (installations/interfaces); SEC: NO KNX Secure, plaintext-only (crypto grep=0). `sonnet` sweep (nested), all load-bearing re-verified inline (count 325→189 RE-MEASURED; namespace com.tridiumX flagged for packaging follow-up). verify-block exit 0, ratio 0.33. | **B503** | none net-new (com.tridiumX packaging = open sub-point) · yes · sonnet |
 | it.9 | 2026-08-25 | **FD10** abstractMqttDriver — 59/1975 Tridium (3%); MULTI-SDK shaded fat jar (3rd bundling archetype: Paho 1.2.5 + AWS IoT SDK 1.3.11 + Jackson 2.16.1 + Joda 2.8.1 + JJWT 0.11.2); multi-cloud abstract base over 2 backends (Paho generic/GCP/Azure + AWS IoT), 5 pluggable authenticators (generic/AWS/JITP/GCP-JWT/Azure-SAS); MQTT 3.1.1 only, TCP/TLS no-WS, no-Sparkplug; FOOTGUN default connectionType=UserLoginOverSSL(TLS) but brokerPort default 1883(plaintext); license tridium:mqtt FINAL on network (inherited by all concrete drivers); payloads plain UTF-8. `sonnet` sweep (28 tool-uses), all load-bearing + SDK versions re-verified inline (count 1978→1975 RE-MEASURED). verify-block exit 0, ratio 0.31. | **B504** | none net-new · yes · sonnet |
 | it.10 | 2026-08-25 | **FD8** weather — core Tridium NWS/EPA weather Service (BAbstractService, NOT a driver); data as component slots (no point proxies); hardcoded US-gov XML feeds (graphical/www/alerts.weather.gov + airnowapi) fetched over PLAINTEXT HTTP by default (FeedReader secure=false); poll 1h/min15m; AirNow apiKey = CLEARTEXT String (NOT BPassword) in URL query → weakest at-rest in focus; NO license gate (grep=0, only FD module without one). §11 **DE-ESCALATION**: sweep claimed NWS endpoints "decommissioned 2023 / forecast broken by default"; WebSearch (FALSIFY-BEFORE-REPORTING) found NDFD XML service MIGRATED to AWS (WSDL changes affect legacy SOAP), endpoint still referenced active → downgraded to UNVERIFIED external-dependency durability risk ([CERT-web] NWS notices, registered SOURCES.md). `sonnet` sweep (19 tool-uses) + inline web-falsification by driver. verify-block exit 0, ratio 0.32. | **B505** | none net-new (live-fetch status of NWS feeds = §12 requires-execution, not registered blocking) · yes · sonnet + web |
+| it.11 (synthesis) | 2026-08-25 | focus-close SYNTHESIS — 5 cross-cutting axes over FD1–FD10: (1) SDK-bundling spectrum [1-AS-IS / none-handrolled / N-shaded]; (2) driver-network vs Service split [openAdr+weather=Service]; (3) five-tier security-posture ladder + BPassword-at-rest-except-weather; (4) license-shape zoo [boolean/sub-key/per-role/foreign-limit/capacity-quota/ven.limit/inherited/none]; (5) three provenance namespaces [tridium/tridiumps/tridiumX]. Consolidated SEC feed to B398/B490. Written inline (synthesis, no sweep). verify-block exit 0, ratio 1.00 (SYNTHESIS, healthy). | **B506** | none — focus CLOSED; recorded-not-seeded: obix-rt/BObixServer, basicDriver ref, com.tridiumX packaging, 2 optional §12 live checks · no·inline |
