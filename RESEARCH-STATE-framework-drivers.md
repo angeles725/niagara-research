@@ -18,10 +18,10 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 7
-gaps_closed: 7
+covered_blocks: 8
+gaps_closed: 8
 known_gaps: 10
-investigable_open: 3
+investigable_open: 2
 requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
@@ -31,8 +31,8 @@ status: active
 seeded_from: AUDIT-FIRST coverage sweep 2026-08-25 (delegated sonnet; verified inline)
 seeded_on: 2026-08-25
 gaps_total: 10 investigable (FD1–FD10)
-gaps_closed: 7 (FD1→B496 … FD6→B501, FD7→B502)
-blocks_written: B496–B501 (FD1–FD6), B502 (FD7)
+gaps_closed: 8 (FD1→B496 … FD7→B502, FD9→B503)
+blocks_written: B496–B502 (FD1–FD7), B503 (FD9)
 block_prefix: niagara-mental-model-bloqueN.md (shared global numbering)
 
 ## Gap-backlog (prioritized) — from the AUDIT-FIRST coverage matrix
@@ -52,7 +52,7 @@ using any count as a denominator (GAP NUMBERS ARE HYPOTHESES). All 8 candidate d
 | medium | **FD6 openAdr** — OpenADR 2.0 demand-response client: VEN/VTN model, event handling, energy-grid signalling (distinct from every existing focus) | `openAdr-rt` (85 vf) | **COVERED → B501** (TridiumPS add-on com.tridiumps.openadr; Service-tier NOT driver; both 2.0a/2.0b hand-rolled XElem no-SDK; HTTP-pull-only simpleHttp/oadrPoll poll 60s no-XMPP; event FSM→BActiveEiEventSignal.currentValue [integrator links]; SEC: TLSv1.2-min + client-cert-optional + UNCONDITIONAL Basic auth [http+https] + VTNPassword=BPassword; NO XMLDSig payload signing; license Tridium:openADR2b+ven.limit) |
 | medium | **FD7 opc (classic DA)** — the Java driver-component layer of classic OPC DA (point-proxy model, COM/DCOM session lifecycle). The NATIVE side (opc.dll/opcproxy JNI shim, COM boundary) is already in [B127]/[B132] — this is the uncovered Java tree | `opc-rt,-wb` (53 rt) | **COVERED → B502** (53 com.tridium.opc classes; network→device→group→item over the opc.dll JNI shim [System.loadLibrary("opc"), ComObjectClient COM wrapper] = Java side of B127/B132 native boundary; local-ProgID vs remote-CLSID/DCOM; full IOPCBrowse; SEC: NT changeUser/private logon natives, creds=BPassword, auth DELEGATED to Windows/DCOM, no in-band security; license tridium:opc; only Windows-only/JNI module in FD) |
 | low | **FD8 weather** — Tridium weather integration driver (lower security relevance; architecturally clean; completeness) | `weather-rt,-ux,-wb` (52 vf) | pending |
-| medium | **FD9 knxnetIp** — KNXnet/IP building-automation driver (BEYOND original U12 list — surfaced by the audit; fits the framework-driver theme, sizeable) | `knxnetIp-rt,-wb` (325 vf) | pending |
+| medium | **FD9 knxnetIp** — KNXnet/IP building-automation driver (BEYOND original U12 list — surfaced by the audit; fits the framework-driver theme, sizeable) | `knxnetIp-rt,-wb` (189 rt) | **COVERED → B503** (189 com.tridiumX classes, FULLY Tridium-authored, NO vendored SDK [pole opposite of FD1]; tunneling+routing, UDP 3671 / multicast 224.0.23.12, tunneling-client-only; DPT codec = single data-driven BDataValueTypeDef, defs stored in station tree NOT XML/per-DPT; license dynamic module-name feature + numerical capacity quotas; SEC: NO KNX Secure, plaintext-only [crypto grep=0]) |
 | medium | **FD10 abstractMqttDriver** — MQTT driver base (BEYOND original U12 list): likely bundles an MQTT SDK the way opcUaCore bundles Prosys — verify the Tridium-vs-SDK split first | `abstractMqttDriver-rt,-wb` (1978 vf) | pending |
 
 ### REMITTANCE (already covered — will NOT be opened)
@@ -69,12 +69,12 @@ using any count as a denominator (GAP NUMBERS ARE HYPOTHESES). All 8 candidate d
 
 ## Stop control (METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: **3** (FD9, FD10, FD8). All existence-verified; source present.
-- **Gaps closed**: 7 (FD1→B496 … FD6→B501, FD7→B502).
+- **Open gaps — read-only investigable**: **2** (FD10, FD8). All existence-verified; source present.
+- **Gaps closed**: 8 (FD1→B496 … FD7→B502, FD9→B503).
 - **requires-execution / blocked**: 0. (Optional §12 live-confirm of server writable-node exposure noted in
   B498 §498.8 — NOT registered as blocking; the investigable set stands.)
-- **Coverage metric**: 7 / 10 investigable gaps closed.
-- **NEXT**: FD9 `knxnetIp`. Then FD10 → FD8.
+- **Coverage metric**: 8 / 10 investigable gaps closed.
+- **NEXT**: FD10 `abstractMqttDriver`. Then FD8 (last).
 - **POSSIBLE future gap (recorded, NOT seeded):** dedicated `obix-rt` transport/`Obj` model + `BObixServer`
   export block — out of FD4's driver scope (B499 §499.8).
 - **RESOLVED (was REVERSE-BACKLOG from B496 §496.6):** OPC UA license split confirmed per-role —
@@ -92,3 +92,4 @@ using any count as a denominator (GAP NUMBERS ARE HYPOTHESES). All 8 candidate d
 | it.5 | 2026-08-25 | **FD5** mbus — M-Bus (EN 13757) meter driver over the shared `basicDriver` base (BSerialNetwork/BBasicDevice/BBasicProxyExt); serial 8E1/300-baud + TCP gateway; SND_NKE(0x40)/REQ_UD2(0x5B, FCB toggle)→RSP_UD, DIF/VIF decoder in Java arrays (NOT XML); poll 30/45/90s + primary/secondary-wildcard/live-point discovery; license tridium:mbus + serial/tcpip sub-keys; SEC headline: plaintext-only, ZERO EN 13757-3 encryption (crypto grep=0), "password" VIF=data-descriptor not credential, icmpPing stub. `sonnet` sweep (29 tool-uses, decompiled/), all load-bearing re-verified inline. verify-block exit 0, ratio 0.12. | **B500** | none net-new (basicDriver reference block = possible future gap, recorded not seeded) · yes · sonnet |
 | it.6 | 2026-08-25 | **FD6** openAdr — TridiumPS add-on (com.tridiumps.openadr, sibling of electronicSignature B350); OpenADR 2.0 VEN modelled as a Service (BOadrService/BOadrVen=BAbstractService), NOT a driver; both 2.0a/2.0b hand-rolled XElem, no JAXB/SDK; HTTP-pull-only (simpleHttp/oadrPoll, poll 60s), no XMPP; event FSM (far/near/active/…) via ActiveEventUpdateThread → writes BActiveEiEventSignal.currentValue (integrator links to a point). SEC: TLSv1.2-min forced, client-cert optional, HTTP Basic UNCONDITIONAL (http+https paths), VTNPassword=BPassword; **NO XMLDSig payload signing** (oadrSignedObject=plain wrapper) → integrity channel-only. License Tridium:openADR2b + ven.limit. `sonnet` sweep (nested sub-sweeps), all load-bearing re-verified inline (vineflower). verify-block exit 0, ratio 0.40. | **B501** | none net-new · yes · sonnet |
 | it.7 | 2026-08-25 | **FD7** opc (classic OPC DA) — 53 com.tridium.opc classes; network→device→group→item Baja tree over the `opc.dll` JNI shim (OpcEnv System.loadLibrary("opc"), ComObjectClient COM/IUnknown wrapper, native createLocal/RemoteServer/addGroup/addItems/read/write/browse) = the JAVA side of the [B127]/[B132] native boundary (meets at loadLibrary); local-ProgID vs remote-CLSID/DCOM activation; full IOPCBrowseServerAddressSpace + server discovery; SEC: NT changeUser + private logon natives, creds=BPassword via doPrivileged, auth DELEGATED to Windows/DCOM (no in-band security) — only Windows-only/JNI module in FD; license tridium:opc. `sonnet` sweep (21 tool-uses), all load-bearing re-verified inline (count 64→53 RE-MEASURED). verify-block exit 0, ratio 0.36. | **B502** | none net-new · yes · sonnet |
+| it.8 | 2026-08-25 | **FD9** knxnetIp — 189 com.tridiumX classes, FULLY Tridium-authored KNXnet/IP stack, NO vendored SDK (calimero grep=0) = pole opposite of FD1; tunneling+routing transport (UDP 3671 / multicast 224.0.23.12, tunneling-CLIENT-only, inbound CONNECT "not implemented"); DPT codec = single data-driven BDataValueTypeDef (defs stored as components in station tree, NOT XML/per-DPT class); address styles individual 4/4/8 + group free/2-level/3-level; SEARCH_REQUEST discovery; license dynamic module-name feature + NUMERICAL capacity quotas (installations/interfaces); SEC: NO KNX Secure, plaintext-only (crypto grep=0). `sonnet` sweep (nested), all load-bearing re-verified inline (count 325→189 RE-MEASURED; namespace com.tridiumX flagged for packaging follow-up). verify-block exit 0, ratio 0.33. | **B503** | none net-new (com.tridiumX packaging = open sub-point) · yes · sonnet |

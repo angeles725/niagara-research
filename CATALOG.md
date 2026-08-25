@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **498 blocks**
+Total: **499 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -504,3 +504,4 @@ Total: **498 blocks**
 | 500 | [niagara-mental-model-bloque500.md](niagara-mental-model-bloque500.md) | `framework-drivers` FD5: `mbus` — the M-Bus (EN 13757) meter-reading driver over `basicDriver` (serial `MbusSerialComm` 8E1/300-baud + TCP `MbusSocketComm` gateway), the SND_NKE/REQ_UD2→RSP_UD telegram cycle with a Java-array DIF/VIF decoder, and its plaintext-only posture (zero EN 13757-3 encryption) |
 | 501 | [niagara-mental-model-bloque501.md](niagara-mental-model-bloque501.md) | `framework-drivers` FD6: `openAdr` — the TridiumPS OpenADR 2.0 VEN (a Service-tier, not a driver-network; hand-rolled XElem for both 2.0a/2.0b, HTTP-pull-only), its event state machine writing `BActiveEiEventSignal.currentValue`, and its security posture: TLSv1.2-min + unconditional HTTP Basic + **no XMLDSig payload signing** |
 | 502 | [niagara-mental-model-bloque502.md](niagara-mental-model-bloque502.md) | `framework-drivers` FD7: `opc` (classic OPC DA) — the Java driver-component layer over the `opc.dll` JNI shim (network→device→group→item, ItemID→serverHandle), local-ProgID vs remote-CLSID/DCOM activation, and its Windows-delegated security (NT `changeUser` / private `logon`, creds held as `BPassword`) |
+| 503 | [niagara-mental-model-bloque503.md](niagara-mental-model-bloque503.md) | `framework-drivers` FD9: `knxnetIp` — a fully Tridium-authored KNXnet/IP stack (no vendored SDK), tunneling + routing transport (UDP 3671 / multicast 224.0.23.12), a data-driven single-class DPT codec, capacity-quota licensing, and NO KNX Secure (plaintext-only) |
