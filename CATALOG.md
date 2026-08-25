@@ -529,6 +529,7 @@ Total: **523 bloques**
 | 524 | [niagara-mental-model-bloque524.md](niagara-mental-model-bloque524.md) | B524 — signing-pki SP-G10 CLOSED: the interposition mirror, executed live — the license verify is BC-FIPS Java-side (NOT dsfspi), and the module-verify chokepoint CAN be flipped in-process |
 | 525 | [niagara-mental-model-bloque525.md](niagara-mental-model-bloque525.md) | B525 — signing-pki: the DYNAMIC verification & hardening runbook (document mode §20) — consolidating B518–B524's live findings into operator procedures |
 | 526 | [niagara-mental-model-bloque526.md](niagara-mental-model-bloque526.md) | B526 — signing-pki: dynamic-vs-static consistency verification of B518–B525 (kit toolbelt audit §11/§14) |
+| 527 | [niagara-mental-model-bloque527.md](niagara-mental-model-bloque527.md) | B527 — signing-pki SP-G10: full step-by-step session ledger — what was tried, what fired, what did NOT fire, and who/what says each verdict is right |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
