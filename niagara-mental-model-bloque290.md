@@ -71,6 +71,12 @@ respond to. The `Authorization: Basic` header a client sends unprompted is simpl
 sees a redirect that looks like "wrong password". It is not a wrong password and it is not a
 misconfiguration — it is the default N4 posture. `[INFER]`
 
+> **§14 REFINED in [B508]:** the web-tier confirms this is a station-CONFIG default, not an in-code disable —
+> `BWebHTTPBasicCallbackHandler` (`@AgentOn baja:HTTPBasicAuthenticationScheme`) is a real, functional RFC-7617
+> Basic handler that runs iff the Basic scheme is enabled in the Authentication Service. The N4 "Digest" it
+> defaults to is `BHttpDigestCallbackHandler` whose HTTP wire scheme is literally `SCRAM`-SHA-256 (not RFC 2617
+> MD5). See [B508] §508.4–§508.5.
+
 A user created in Workbench inherits `DigestScheme` unless told otherwise, which is what produces this. The
 station already ships the scheme instances needed to change it — none has to be created: `[CERT]`
 
