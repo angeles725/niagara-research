@@ -41,7 +41,7 @@ license feature. Disk evidence settles the open question: **this install runs `b
 
 | Dir | Contents | BC line |
 |---|---|---|
-| `bin/ext/bcstd/` | `bcprov-`, `bcpkix-`, `bctls-`, `bcutil-jdk18on-1.78.1.jar` | BouncyCastle **standard** 1.78.1 |
+| `bin/ext/bcstd/` | `bcprov-jdk18on-1.78.1.jar`, `bcpkix-`, `bctls-`, `bcutil-jdk18on-1.78.1.jar` | BouncyCastle **standard** 1.78.1 |
 | `bin/ext/bcfips/` | `bc-fips-1.0.2.5.jar`, `bcpkix-fips-1.0.7.jar`, `bctls-fips-1.0.19.jar`, `bc-bcfkswrapprov-1.0.0.jar` | BouncyCastle **FIPS** 1.0.2.5 (certified) |
 
 [B380 §380.2] decompiled the selector inside `JavaLauncherWin32::initPaths` (`0x180003ad0`, `:250-256`):

@@ -73,7 +73,7 @@ Two independent code reads now AGREE, so this is corrected with certainty (not a
   (DigiCert G4 is nverify's own Authenticode chain + 1-of-99 stock CA, not the module pin). Both get §14 pointers.
 - Native counterpart of [B482] (Java module verifiers); with [B484] (dsfspi crypto) + [B485] (launcher gates)
   the native licensing/signing surface is now covered.
-- **B489-G1** persist the carved evidence (`embedded_p12.der`, `allcerts.pem` = 99 roots, chain/PKCS7/digest
-  disasm) to `sources/native-corroboration/` for SOURCES (Segundo to persist + sha256).
+- **B489-G1** persist the carved evidence (`nverify.embedded_p12.der`, `allcerts.pem` = 99 roots, the chain/PKCS7/digest
+  disasm incl. `nverify.chain-tpk.disasm.txt`) to `sources/native-corroboration/` for SOURCES (Segundo to persist + sha256). **DONE** — both registered in `sources/SOURCES.md`.
 - **B478-G1** native watchdog `shmem` (createWatchdog0 in nre.dll, backend common.dll+nre.dll) — liveness, not
   licensing; Segundo scouted it, closes on request.
