@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **492 blocks**
+Total: **494 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -498,3 +498,5 @@ Total: **492 blocks**
 | 494 | [niagara-mental-model-bloque494.md](niagara-mental-model-bloque494.md) | `oem-honeywell-tail` U14: the pluggable authentication schemes beyond RBAC+Fox (SAML, LDAP/Kerberos, gauth TOTP, clientCertAuth, and oauth2-as-a-client) — architecture and security posture |
 | 495 | [niagara-mental-model-bloque495.md](niagara-mental-model-bloque495.md) | `oem-honeywell-tail` U10: breadth survey of the other-vendor OEM drivers (Andover, Carrier CCN, McQuay, American AutoMatrix, MAXPRO, BACnetFFT) — license-feature map, two scope corrections, and the driver-level security standouts (McQuay hardcoded password, MAXPRO RTSP, axvelocity SSTI, BACnetFFT ungated firmware push) |
 | 496 | [niagara-mental-model-bloque496.md](niagara-mental-model-bloque496.md) | `framework-drivers` FD1: `opcUaCore-rt` — the OPC UA stack anchor (16 Tridium type-shim classes bundling Prosys OPC UA Java SDK 5.1.0-116 + Apache HttpCore NIO 4.4.13 AS-IS), its inherited security surface, and four config-default footguns (Basic128Rsa15 on, TLS 1.0/1.1 on, `ALL`≡username-only, self-signed accepted if trust-store-enrolled) |
+| 497 | [niagara-mental-model-bloque497.md](niagara-mental-model-bloque497.md) | `framework-drivers` FD2: `opcUaClient` — the OPC UA client driver (network→device→point over the Prosys `UaClient`), its security-config surface (single-select `BSecurityMode` enum, NOT the B496 bitstrings), plaintext-recoverable `BPassword` credentials, the `tridium:opcUaClient` license gate, and a one-dialog operator downgrade to None/anonymous |
+| 498 | [niagara-mental-model-bloque498.md](niagara-mental-model-bloque498.md) | `framework-drivers` FD3: `opcUaServer` — N4 as an OPC UA server (address space from the component space, endpoint :52520), the server-side security exposure (writable-by-default nodes, username token under `SecurityPolicy.NONE`, anonymous fall-through, cert sessions with NO Niagara RBAC), and the `tridium:opcUaServer` gate |

@@ -102,6 +102,12 @@ Verified DEFAULT constants (real lines):
    **only the three legacy TCP policies**; the Prosys `SecurityMode` class defines AES128/AES256 modes that
    `BOpcTcpSecurityPolicies` gives no path to select `[CERT]` (`SecurityMode.java` in the SDK vs the 3-bit Baja enum).
 
+> **§14 REFINED in [B497]/[B498]:** the DEFAULT constants above are the **SERVER endpoint** config surface
+> ([B498] `BOpcTcpEndpoint`) — Basic128Rsa15/TLS1.0-1.1-on and the `make(true)`≡6 mode apply there. The
+> **CLIENT** ([B497]) does NOT read these bitstrings at all; it uses the single-select `BSecurityMode` enum
+> whose `DEFAULT = signEncryptBasic256Sha256` (STRONG), so the client's out-of-box crypto is Basic256Sha256,
+> not Basic128Rsa15. Only the hardcoded HTTPS TLS-1.0/1.1 reaches the client.
+
 ## §496.6 — No license gate in the core `[CERT negative]`
 
 grep for `getFeature|license|License|Feature(` across all 16 Tridium classes = **0 hits**. The OPC UA license
