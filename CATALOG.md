@@ -527,6 +527,7 @@ Total: **521 bloques**
 | 522 | [niagara-mental-model-bloque522.md](niagara-mental-model-bloque522.md) | B522 — signing-pki: defensive hardening synthesis — turning the live license/module-integrity findings (B518–B521, B398) into operator actions |
 | 523 | [niagara-mental-model-bloque523.md](niagara-mental-model-bloque523.md) | B523 — signing-pki: the module DEVELOPER's threat model — how you know your own module is intact, how a signature is stripped/replaced, and why enforcement (not the signature) is the real control |
 | 524 | [niagara-mental-model-bloque524.md](niagara-mental-model-bloque524.md) | B524 — signing-pki SP-G10 CLOSED: the interposition mirror, executed live — license verify is BC-FIPS Java-side (NOT dsfspi), and the module-verify chokepoint CAN be flipped in-process |
+| 525 | [niagara-mental-model-bloque525.md](niagara-mental-model-bloque525.md) | B525 — signing-pki: the DYNAMIC verification & hardening runbook (document mode §20) — consolidating B518–B524's live findings into operator procedures |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
