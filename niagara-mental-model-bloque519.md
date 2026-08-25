@@ -4,7 +4,7 @@
 
 **Scope.** Answer three operator questions with live evidence on this host: (1) are license-check and module-check the **same service or different**? (2) **when** do the "watchers" fire — always, or on events? (3) what is the **live module-integrity posture** and its interposition ("mirror") surface? Corroborates/extends [B392]/[B398]/[B482]/[B489] on the operator's actual supervisor (OptimizerSupervisor N4.14.0.162; 11 station configs; a live station on :443). SECRETS DISCIPLINE: no secret values; credentials never persisted.
 
-**Markers:** `[CERT-live]` observed on this running host; `[CERT]` code/prior block; `[INFER]` reasoned. Evidence: `sources/probes/B519-module-verify-live-2026-08-25/`.
+**Markers:** `[CERT-live]` observed on this running host; `[CERT]` code/prior block; `[INFER]` reasoned. Evidence: `sources/probes/B519-module-verify-live-2026-08-25/RUN-module-verify.md`.
 
 ---
 

@@ -4,7 +4,7 @@
 
 **Scope.** Answer empirically: does the module "watcher" verify **one module or many** — atomically, or one-by-one? Observed by driving the vendor's own `nverify.exe` (read-only verification utility) against single and multiple targets on the operator's live host. This is the legitimate dynamic half of the module-integrity thread; the interposition **execution** PoC remains refused ([B520] §6) — only the vendor verifier is exercised here. SECRETS DISCIPLINE observed.
 
-**Markers:** `[CERT-live]` observed running `nverify.exe`; `[CERT]` code/prior block; `[INFER]` reasoned. Evidence: `sources/probes/B521-module-verify-granularity-2026-08-25/`.
+**Markers:** `[CERT-live]` observed running `nverify.exe`; `[CERT]` code/prior block; `[INFER]` reasoned. Evidence: `sources/probes/B521-module-verify-granularity-2026-08-25/nverify-multi.txt`.
 
 ---
 

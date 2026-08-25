@@ -9,7 +9,7 @@
 - FUENTE 2 (niagara-help): licensing is documented as workflow (License Manager), not as a verify-internals surface — no runtime tamper-behavior topic (consistent with prior signing-pki passes; the fail-behavior is a code/runtime fact, not a doc one).
 - FUENTE 3 (live runtime, §12): the real `nre.exe` runtime executed via WSL→Windows interop against the operator's own isolated OptimizerSupervisor N4.14.0.162 install, station LIVE at the time (`https://localhost/`=302, platform daemon `:5011`=403).
 
-**Evidence markers:** `[CERT-live]` = observed against the running Niagara runtime; `[CERT]` = verbatim in local code/prior block; `[INFER]` = reasoned. **SECRETS DISCIPLINE (live-install):** HostId is shown structurally as `Win-XXXX-XXXX-XXXX-XXXX`; no secret values; test credentials never persisted to corpus/memory/git.
+**Evidence markers:** `[CERT-live]` = observed against the running Niagara runtime; `[CERT]` = verbatim in local code/prior block; `[INFER]` = reasoned. **SECRETS DISCIPLINE (live-install):** HostId is shown structurally as `Win-XXXX-XXXX-XXXX-XXXX`; no secret values; test credentials never persisted to corpus/memory/git. Preserved probe evidence: `sources/probes/B518-sp-g3-live-2026-08-25/RUN-sp-g3-live.md` (+ `oracle-01-baseline.txt`, `oracle-02-wronghost.txt`).
 
 ---
 

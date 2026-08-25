@@ -3,7 +3,7 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 449
+covered_blocks: 450
 gaps_closed: 7
 known_gaps: 14
 investigable_open: 0
@@ -83,3 +83,4 @@ the three trust domains, the real Honeywell-rooted RSA module chain, and the cor
 | 8 | B441 | SP-G9 provider-registration | CLOSED: neither runtime call — `njre` `-Djava.security.properties==bin/policy/java.security` (double-`==` full override) puts BC at provider.1/2 ahead of Sun by static config. Priority ENFORCED; approved-only strict NOT enabled (flag absent). §14-corrects B440 6/7/8 (read overridden stock JRE file); reconciles B26 (baseline) vs B30 (strict migration). investigable=0 again → focus STAYS STOPPED. Spawns SP-G9a (live getProviders), SP-G9b (bcstd policy variant, blocked) |
 | 9 | B524 | SP-G10 mirror (operator-authorized Frida run) | CLOSED: license DSA verify = BC-FIPS Java-side (dsfspi DSA unused live — §14-corrects B520 §1); module verify flipped in-process either way (`checkFileSignature` force-valid→0 FATAL / force-invalid→`FATAL failed signature check` abort). Zero install mutation; sha256+PID invariants hold. Java bridge absent on this host (blocked-on-tool) → spawns SP-G10a |
 | 10 | B525 | document mode §20 — dynamic hardening runbook | CAPTURED: `docs/niagara-signing-hardening-guide.md` consolidates B518–B524's live findings into operator procedures (re-verify commands + H1–H7 actions + toolchain map). No new gap |
+| 11 | B526 | dynamic-vs-static consistency audit | VERIFIED: B524 license/module findings agree with static anchors (LicenseUtil.java:172-181 JCE + provider.2=BCFips + bcfips branch); §14 backlink restored on B520; 3 SOURCES.md fabricated-cites fixed (verify-sources exit 0); verify-block B518–B525 clean |

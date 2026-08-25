@@ -13,6 +13,11 @@
 `rabin2 -E/-i` over `dsfspi.dll` / `nre.dll`, re-anchored by export table: `[CERT]`
 - **`dsfspi.dll` is the ONLY native crypto chokepoint.** Only `nre.dll` and `njre.dll` import from it, and each imports **exactly one** symbol: `?checkFileSignature@DsfUtil` (the RSA verify for module/dist `.sig` sidecars).
 - **The license DSA verify is reached ONLY via JNI**, not by a native caller: `dsfspi` exports 54 `Java_com_tridium_dsf_provider_*` natives (`DsfSecurityProvider`, `DsfDsaKeyPairGeneratorSpi`, …). Path = `baja.jar` `LicenseManager` → JCE `DsfSecurityProvider` → JNI → `dsfspi` `?verify@DsfSha1WithDsaSignature` @ `0x1800296b0`. Confirmed live: `nre.exe -licenses` **loads `dsfspi.dll`** at runtime. `[CERT]`/`[CERT-live]`
+  > **Corrected in B524** (§14): on this `bcfips` install the license DSA verify does **not** enter the
+  > native `DsfSha1WithDsaSignature` — it is `BouncyCastleFipsProvider` Java-side (`LicenseUtil.java:172-181`
+  > `Signature.getInstance`; provider order [B441]). The JNI/DsfSecurityProvider path exists in the binary
+  > but is not the license-verify path on this branch (live census: 0 `DsfSha1WithDsaSignature` hits during
+  > `nre -licenses`). The corrected dynamic behavior is recorded in [B524] F1.
 - The native text-match gate `?isFeaturePresent@LicenseUtil` (`nre.dll` @ `0x180001f90`) calls **neither** — it verifies nothing ([B518] asymmetry). `[CERT]`
 - **`dsfspi.dll` is Authenticode-signed** (cert table ~10.5 KB), but **standard Windows DLL loading does not enforce Authenticode by default** → a patched/proxy `dsfspi` is loadable unless a loader enforces it. `[CERT]`/`[INFER]`
 
