@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **474 bloques**
+Total: **475 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -479,6 +479,7 @@ Total: **474 bloques**
 | 474 | [niagara-mental-model-bloque474.md](niagara-mental-model-bloque474.md) | B474 — The JACE station is TLS 1.3-ONLY: the server refuses TLS 1.2 with a protocol-version alert (J11-G1 closed; §14 refines B468) |
 | 475 | [niagara-mental-model-bloque475.md](niagara-mental-model-bloque475.md) | B475 — The Fox backup gate decoded: permission bit 48 = ADMIN_READ|ADMIN_WRITE on BackupService, so the .bog pull needs admin-write — a plain operator cannot do it (focus jace8000, J8-G3 closed from disk) |
 | 476 | [niagara-mental-model-bloque476.md](niagara-mental-model-bloque476.md) | Block 476 — The install ships two SNMP modules, and the live station runs the newer `nSnmp` (NDriver): it has SNMPv3 USM, native traps, and typed proxy exts — scoping [Block 28] §28.6's install-wide "no v3" to the classic `snmp` module |
+| 477 | [niagara-mental-model-bloque477.md](niagara-mental-model-bloque477.md) | Block 477 — The subscription-licensing layer decompiled from `nre.jar`: two license managers, the Honeywell entitlement server, and the JWT/clone watchdog — plus native RE corroboration of the Host-ID/feature/signature primitives (licensing consolidation capstone) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
