@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **495 blocks**
+Total: **496 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -501,3 +501,4 @@ Total: **495 blocks**
 | 497 | [niagara-mental-model-bloque497.md](niagara-mental-model-bloque497.md) | `framework-drivers` FD2: `opcUaClient` — the OPC UA client driver (network→device→point over the Prosys `UaClient`), its security-config surface (single-select `BSecurityMode` enum, NOT the B496 bitstrings), plaintext-recoverable `BPassword` credentials, the `tridium:opcUaClient` license gate, and a one-dialog operator downgrade to None/anonymous |
 | 498 | [niagara-mental-model-bloque498.md](niagara-mental-model-bloque498.md) | `framework-drivers` FD3: `opcUaServer` — N4 as an OPC UA server (address space from the component space, endpoint :52520), the server-side security exposure (writable-by-default nodes, username token under `SecurityPolicy.NONE`, anonymous fall-through, cert sessions with NO Niagara RBAC), and the `tridium:opcUaServer` gate |
 | 499 | [niagara-mental-model-bloque499.md](niagara-mental-model-bloque499.md) | `framework-drivers` FD4: `obixDriver` — the oBIX REST/HTTP driver (network→client→proxy over the shared `obix-rt` `ObixSession`), the Watch subscription model, and its headline security posture: HTTP Basic auth over a default `http://` lobby (credentials base64-in-the-clear unless the operator opts into HTTPS) |
+| 500 | [niagara-mental-model-bloque500.md](niagara-mental-model-bloque500.md) | `framework-drivers` FD5: `mbus` — the M-Bus (EN 13757) meter-reading driver over `basicDriver` (serial `MbusSerialComm` 8E1/300-baud + TCP `MbusSocketComm` gateway), the SND_NKE/REQ_UD2→RSP_UD telegram cycle with a Java-array DIF/VIF decoder, and its plaintext-only posture (zero EN 13757-3 encryption) |
