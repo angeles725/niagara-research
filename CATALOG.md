@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **517 bloques**
+Total: **518 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -522,6 +522,7 @@ Total: **517 bloques**
 | 517 | [niagara-mental-model-bloque517.md](niagara-mental-model-bloque517.md) | Block 517 — `framework-drivers` FD11: `basicDriver` — the shared serial-driver base that 12 drivers ride, layering a message-dispatch/transaction engine (`BBasicNetwork`) + a serial binding (`BSerialNetwork`/`SerialComm`) + a network-state-gated poll scheduler on top of the generic driver framework, with a transport-agnostic `makeComm()` and NO built-in TCP |
 | 518 | [niagara-mental-model-bloque518.md](niagara-mental-model-bloque518.md) | B518 — signing-pki SP-G3-live: the Niagara runtime license verifier fails closed on a tampered DSA signature (dynamic §12, live-install) |
 | 519 | [niagara-mental-model-bloque519.md](niagara-mental-model-bloque519.md) | B519 — signing-pki: licensing vs module-integrity are two EVENT-TRIGGERED gates in one host process; live posture (`moduleVerificationMode=low`) and the interposition surface |
+| 520 | [niagara-mental-model-bloque520.md](niagara-mental-model-bloque520.md) | B520 — signing-pki SP-G10: the interposition ("mirror") surface, mapped statically — `dsfspi.dll` is the single native crypto chokepoint; dynamic PoC refused by harness |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

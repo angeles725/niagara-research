@@ -3,7 +3,7 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 443
+covered_blocks: 444
 gaps_closed: 6
 known_gaps: 13
 investigable_open: 0
@@ -61,7 +61,7 @@ the three trust domains, the real Honeywell-rooted RSA module chain, and the cor
 | 3 | **SP-G8** — Does the PanelBus/HMI OTA receive path ([B242] `honIrmConfig`) enforce the ECDSA chain, or trust the jar-unpacked image? | requires-execution | open |
 | — | **SP-G3** — Native `LicenseUtil::isFeaturePresent` is a text match, not a DSA verify [B126 §126.6]; confirm Java `LicenseManager` rejects a bad DSA signature. | requires-execution | **CLOSED B518** (§12 live, isolated test host, reversible byte-identical): real `nre` runtime rejects a 1-byte signature flip fail-closed `{invalid: Invalid signature}` [CERT-live]; HostId gate isolated (valid-sig/wrong-host license → `moved file`, features withheld) [CERT-live]; native half re-anchored read-only by peer session — `isFeaturePresent` text-scan invariant to any signature-region tamper → **asymmetry confirmed both sides on the same file**. Spawns SP-G3a. |
 | 3 | **SP-G3a** — Does a *required-but-missing* feature force station `System.exit(-3/-6)` at full boot ([B488]) vs graceful feature-withholding? SP-G3 proved verifier rejection, not the process-exit path. | blocked (requires-artifact: isolated station/VM) | **RE-TYPED B519** — read-first showed the live host is the operator's WORKING supervisor (11 station configs incl. customer-named + a live station on :443); a blind second-station boot risks port collision/collateral. Needs a truly isolated station/VM, not this shared host. |
-| 4 | **SP-G10** — Live in-process interposition ("mirror") PoC: can a shim / rogue JCE provider make the license or module verifier return "valid"? Feasibility ∝ `moduleVerificationMode` (=low live, B519). | requires-execution | open (needs Windows-side JVM instrumentation — Frida-Windows/JVMTI; installed Frida is Linux-only, can't inject the Win PE) |
+| 4 | **SP-G10** — Live in-process interposition ("mirror") PoC: can a shim / rogue JCE provider make the license or module verifier return "valid"? Feasibility ∝ `moduleVerificationMode` (=low live, B519). | requires-execution | **SURFACE MAPPED [CERT] B520** (dsfspi.dll = single native chokepoint; hook targets frozen: `verify@DsfSha1WithDsaSignature`@0x1800296b0 + `checkFileSignature`; Authenticode load-unenforced; 2 routes A/B). **Frida provisioned live (frida-python 17.17.0 Windows).** Runtime PoC BUILT but **REFUSED by harness auto-mode classifier** (typed `refused` §21, our side not target). Runtime confirmation open pending explicit operator permission. |
 | 5 | **SP-G6** — CRL/revocation enforcement for BACnet/SC + TLS (`BIssuerCertAndCrl` [B287]) — modelled, enforcement [INFER]. | requires-execution | open |
 | 6 | **SP-G4** — Reproduce a Tridium-rooted (non-OEM) `baja.jar` chain to settle §392.7 empirically. | blocked (requires-artifact: a stock non-OEM install) | open |
 | — | **SP-G9** — Does daemon boot `insertProviderAt(1)` or trailing `addProvider()`? enforced vs shipped. | requires-execution / code-read | **CLOSED B441** (neither: static override `-Djava.security.properties==bin/policy/java.security`, BC at provider.1/2 ahead of Sun; priority ENFORCED, approved-only strict NOT enabled; corrects B440 6/7/8) |
