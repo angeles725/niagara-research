@@ -15,21 +15,21 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 9
-gaps_closed: 8
-known_gaps: 8
+covered_blocks: 10
+gaps_closed: 9
+known_gaps: 9
 investigable_open: 0
 requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
 
 focus: apis
-status: stopped (8/8 investigable closed)
+status: stopped (9/9; API9 added from recorded sub-item)
 seeded_from: AUDIT-FIRST 2-agent coverage sweep 2026-08-25 (delegated sonnet ×2; pre-flight verified inline)
 seeded_on: 2026-08-25
 gaps_total: 8 investigable (API1–API8)
-gaps_closed: 8 (API1→B507 … API6→B513, API8→B514)
-blocks_written: B507–B514 (API1–API8) + B515 (focus synthesis)
+gaps_closed: 9 (API1→B507 … API8→B514, API9→B516)
+blocks_written: B507–B515 + B516 (API9, reopened from B513 sub-item)
 block_prefix: niagara-mental-model-bloqueN.md (shared global numbering)
 
 ## REMITTANCE — API surfaces ALREADY covered (will NOT be opened)
@@ -62,6 +62,7 @@ orion ORM [B412] · migration [B25].
 | medium | ~~**API6 Fox CLIENT programmatic API**~~ — the public Java Fox-session surface for module authors (open session, remote slot read/write, channel types), distinct from the WIRE [B134] and the hand-rolled JACE client [B471–B473]. Pre-flight: NOT in docSource → locate the real package (baja jar / `com.tridium.fox`) | `fox/fox-rt/…javax/baja/fox` + `com/tridium/fox/sys` | **COVERED → B513** (REMITTANCE-checked genuine vs B134/B414-420/B471; public BFoxProxySession.make(host,port,useFoxs,creds), impl BFoxSession/BFoxClientConnection [port 1911, useFoxs=TLS, shared-connection engage interest model]; BFoxChannelRegistry typed getSys/File/UserChannel + get(name,type); BFoxChannel makeRequest[one-shot]/openCircuit[streaming]; rpc(ord,method,args)→sysChannel.niagaraRpc = FOX face of niagaraRpc verb [box face=B512, web=B507]; users maxpro/exportTags beyond BNiagaraStation) |
 | medium | ~~**API7 BJob / JobService API**~~ — the background-job authoring surface: `javax.baja.job.BJob`/`BJobService`, how a module submits/tracks a long-running job (used by provisioning/discovery). No dedicated block | `baja/…/javax/baja/job/` | **COVERED → B511** (BJob=abstract BComponent [not Runnable], doRun/doCancel hooks + BSimpleJob/BRunnableJob; BJobState 6-state unknown/running/canceling/canceled/success/failed; submit→doSubmitAction mounts TRANSIENT dynamic slot, ForkJoinPool threadsPerCPU=2; progress(-1..100)+heartbeat TRANSIENT|READONLY not-BOG, readLogFrom incremental; retention 3-per-type+10min; live at /Services/JobService Fox-observable + /spy; ~237 subclasses [B500/B39]; no job-specific RBAC) |
 | low | ~~**API8 BQL/NEQL programmatic + over-HTTP**~~ — the CALL contracts (not the grammar, which is [B5]/[B21]): the Java `BIBqlQuery`/`BLocalBqlResolver` call site AND the BQL-over-HTTP query endpoint | `bql/bql-rt/…`, `neql/…`, `obixDriver` | **COVERED → B514** (REMITTANCE-checked genuine vs B406/B5/B21; BQL called via `bql:` ORD scheme BBqlScheme→BIBqlResolver→BITable/cursor; over-HTTP: oBIX /obix/bql = ONLY full-execution face [gated r, compounds B509], BOX BqlRpc = AST-only utility, NO /bql servlet; NEQL via neql: scheme BQueryScheme, NO over-HTTP surface) |
+| low | **API9 BSysChannel Fox command set** (recorded sub-item from [B513]) | `fox/fox-rt/…com/tridium/fox/sys/BSysChannel.java` | **COVERED → B516** (sys command set summary/listLocalSpaces/makeBrokerChannel/nav-events/stationCall/stationEvent/niagaraRpc; NO slot read/write on sys → makeBrokerChannel bootstraps a separate BBrokerChannel [ProxyBroker/BOG sync=B512 over Fox]; niagaraRpc over Fox → NiagaraRpcUtil.rpc(TransportType.fox)=B507 handler; summary carries hostId/version/time; keepalive on BUserChannel) |
 
 ### Recorded-not-seeded (PARTIAL "call-site cookbook" — open only if the above run dry)
 
@@ -94,3 +95,4 @@ These risk being REMITTANCE re-hashes — NOT seeded as gaps; revisit only if AP
 | it.7 | 2026-08-25 | **API6** Fox CLIENT programmatic API — source LOCATED in fox-rt, REMITTANCE-checked GENUINE (B134=wire, B414-420=BNiagaraStation-internal, B471=hand-rolled python; none document the public API). javax.baja.fox.BFoxProxySession.make(host,port,useFoxs,BIUserCredentials) (:56, NOT driver-locked); impl com.tridium.fox.sys.BFoxSession; BFoxClientConnection (port default 1911 :135, useFoxs=Foxs/TLS :136, retryPeriod 5min, credentialStore; engageNoRetry/engageRetry SHARED-connection interest model; connect() :350). BFoxChannelRegistry via session.getConnection().getChannels(): typed getSysChannel/getFileChannel/getUserChannel + generic get(name,type) (:46-58). BFoxChannel makeRequest(cmd)→FoxRequest one-shot (:253) / openCircuit(cmd,meta)→FoxCircuit streaming (:267). rpc(ord,method,args)→getSysChannel().niagaraRpc (:90-91) = FOX-transport face of the niagaraRpc verb → unifies with box face serverSideCall (B512) + web /rpc (B507) = the TransportType.fox/box/web of @NiagaraRpc. Users beyond BNiagaraStation: maxpro Helper.rpc, exportTags join jobs. Recorded-not-seeded: BSysChannel read/write/invoke internals. `sonnet` sweep (47 tool-uses), all load-bearing re-verified inline. verify-block exit 0, ratio 0.33. | **B513** | none net-new (BSysChannel internals recorded) · yes · sonnet |
 | it.8 | 2026-08-25 | **API8** BQL/NEQL call contracts + over-HTTP — REMITTANCE-checked genuine (B406=engine, B5/B21=grammar, B263=NEQL algebra; none document the CALL/wire). BQL invoked as ORD scheme: BBqlScheme @NiagaraType(ordScheme=bql) (:40), parse→BqlQuery.make (:57), resolve→toSession(base)+BIBqlResolver agent (:65-66, default BLocalBqlResolver=B406 engine) → OrdTarget wraps BITable; consume table.cursor()→next()→row.cell (BqlRow:30). Supply side BIRelational.getRelation→BITable. OVER-HTTP 3 faces: (A) oBIX /obix/bql BBqlLobbyAgent (:47) = ONLY full-execution [builds station:|slot:/|bql:+uri :54, gated requiredPermissions=r :30]; (B) BOX BBqlRpc toSelect/toBqlBody @NiagaraRpc unrestricted box+web = AST parse/serialize ONLY not execution (:46-56); (C) NO /bql web servlet (confirms B508). NEQL: neql: scheme BNeqlScheme extends BQueryScheme (:22-38), entity-set not BITable, NO over-HTTP surface (absent). SEC: oBIX BQL read-only-gated → read account runs arbitrary station-wide BQL over HTTP — COMPOUNDS B509 whole-tree exposure. `sonnet` REMITTANCE-aware sweep (20 tool-uses), all load-bearing re-verified inline. verify-block exit 0, ratio 0.23. | **B514** | none net-new · yes · sonnet |
 | it.9 (synthesis) | 2026-08-25 | focus-close SYNTHESIS — 5 axes over API1-API8: (1) FOUR transports web/Fox/BOX/oBIX over ONE ORD address space; (2) the niagaraRpc verb spans 3 client transports (web /rpc + box serverSideCall + fox sys-channel) under one @NiagaraRpc; (3) ONE auth spine = SCRAM(=N4 Digest) + BAuthenticationScheme SPI; (4) functional roles rpc/subscribe(BOX)/rest(oBIX)/query(BQL)/async(BJob); (5) SEC asymmetry closed-RPC vs broad-oBIX-read/query. REMITTANCE ~30 surfaces cited not re-derived; nHaystack/BACnet-WS absent. Cross-run: §14 refine B290, corrected BOX=binary myth, extended B494. Written inline. verify-block exit 0. | **B515** | none — focus CLOSED; recorded-not-seeded: BSysChannel internals, call-site-cookbook PARTIALs · no·inline |
+| it.10 | 2026-08-25 | **API9** BSysChannel Fox command set (reopened recorded sub-item from B513) — REMITTANCE-checked genuine vs B134/B513. sys commands: summary/listLocalSpaces/makeBrokerChannel/subNavEvents+navEvent/stationCall/stationEvent/niagaraRpc (BSysChannel.java:151-175). KEY: NO slot read/write/invoke on sys (grep=0) — makeBrokerChannel (:334,348) bootstraps a SEPARATE BBrokerChannel (station/virt_/gw_) running ProxyBroker/BOG sync = the B512 engine over Fox. niagaraRpc over Fox: version-gate ≥4.1, JSON args (double-encoded), ord.relativizeToSession, server NiagaraRpcUtil.rpc(TransportType.fox,...) (:578) = same B507 handler. summary carries hostId/niagaraVersion/currentTime (:207-217); keepalive on BUserChannel not sys. Completes RPC verb Fox leg (B515). `sonnet` sweep (6 tool-uses), all load-bearing re-verified inline. verify-block exit 0, ratio 0.36. | **B516** | none net-new · yes · sonnet |
