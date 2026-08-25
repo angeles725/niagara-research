@@ -1,0 +1,4 @@
+INFO    [2026-08-25 15:19:58][nverify] Verifying archive C:\Honeywell\OptimizerSupervisor-N4.14.0.162\modules\abstractMqttDriver-rt.jar
+INFO    [2026-08-25 15:19:58][nverify] Verifying archive C:\Honeywell\OptimizerSupervisor-N4.14.0.162\modules\weather-rt.jar
+SEVERE  [2026-08-25 15:19:58][nverify] Error opening file: C:\Honeywell\OptimizerSupervisor-N4.14.0.162\modules\opcUaCore-rt.jar
+SEVERE  [2026-08-25 15:19:58][nverify] Verification failed for C:\Honeywell\OptimizerSupervisor-N4.14.0.162\modules\opcUaCore-rt.jar
