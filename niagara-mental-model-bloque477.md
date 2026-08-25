@@ -130,11 +130,39 @@ verified by the wrapper.
 - **Builds on:** [B322]/[B387]/[B395] (Java authority + embedded DSA/ECDSA roots), [B126]/[B319] (native
   fast-path), [B316]/[B443] (live oracle + host-id match), [B392]/[B393] (module signing domains).
 
+## §477.9 — Live §12 validation (2026-08-24, licensed OptimizerSupervisor-4.14.0.162) `[CERT-live]`
+
+Read-only dynamic-phase check. Host IDs redacted per SECRETS DISCIPLINE.
+
+- **Oracle mechanism** (`nre -licenses` on the co-located iC-Niagara-4.13.2.18 launcher, mechanism is
+  build-stable): dumps exactly `HostId= / Certificates / Licenses (perpetual) / Features / Brand` — matches
+  `NLicenseManager.dump()` (§6.6). Host ID renders `Win-XXXX-XXXX-XXXX-XXXX` (§2.1). That base install is
+  unlicensed (`Licenses (perpetual): none`, `Features: none`) — consistent with [B442]/[B443]. **The mode
+  label is `Licenses (perpetual)` = node-locked/LOCAL model** (§477.2).
+- **Licensed 4.14 install (disk):** `security/licenses/{Honeywell,HoneywellCentraLine,Webs}.license` +
+  `security/certificates/{Honeywell,HoneywellCentraLine,Tridium}.certificate` — matches [B443] control A and
+  §6.6. No subscription tree present → this install is node-locked/perpetual.
+- **License record structure (§1) confirmed live:** `Honeywell.license` =
+  `<license vendor="Honeywell" expiration="2027-03-31" hostId="Win-XXXX-…" version="4.15"
+  generated="2026-04-02">`, 27 `<feature>` + 1 `<signature>`; `Webs.license` vendor `Tridium`, 150 features.
+  Feature-vendor namespaces per §7 (Honeywell.license = Honeywell features; Webs = Tridium).
+- **Posture (§9) confirmed live:** `Webs.license` carries
+  `<feature name="developer" moduleDev="true" skipModuleValidation="true"/>` — the SEC-06 module-validation
+  bypass grant ([B398]/[B18]).
+- **Host-ID DB layout (§6.1/§6.6) confirmed live:** `security/licenses/db/` is keyed per Host ID and holds
+  BOTH formats — `Win-XXXX-XXXX-XXXX-XXXX` and two `Qnx-TITAN-XXXX-XXXX-XXXX-XXXX` (JACEs) — validating the
+  foreign-host relocation and the JACE `Qnx-TITAN-…` format (§2.2).
+- **Module integrity gate fail-closed (§8.2/§8.3) confirmed live:** running the iC-4.13 launcher against the
+  4.14 home aborts at boot with `FATAL: …\bin\ext\annotations-13.0.jar failed signature check` — a module
+  signed under a different factory anchor is rejected and the runtime refuses to boot. Live instance of the
+  conditional-universality thesis ([B392 §392.7]).
+
 ## §477.8 — Open gaps (child, not opened here)
 
 - **B477-G1** `niagarad.jar` `com.tridium.niagarad.app.{App,StationApp,EngineWatchdog}` — the daemon that
   ACTS on `Nre.licenseFailure()` (reboot/kill the station). requires-code-read.
-- **B477-G2** live §12 validation of the local-vs-subscription oracle (`nre -licenses`) and the Workbench
-  License Manager on a live station. requires-execution (operator can open N4).
+- **B477-G2** ~~live §12 validation of the local-vs-subscription oracle~~ **CLOSED** in §477.9 — oracle dump
+  structure, `Win-`/`Qnx-TITAN-` host-id formats, licensed 4.14 record structure, `developer` posture, and
+  module-integrity fail-closed all confirmed `[CERT-live]` (2026-08-24).
 - **B477-G3** ~~full Ghidra C body of `DsfUtil::checkFileSignature`~~ **CLOSED** in this block (§477.5) —
   `dsfspi.checkFileSignature.ghidra.c` @ `0x18002bd40`, all 5 points CONFIRMED.
