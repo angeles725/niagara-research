@@ -18,10 +18,10 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 8
-gaps_closed: 8
+covered_blocks: 9
+gaps_closed: 9
 known_gaps: 10
-investigable_open: 2
+investigable_open: 1
 requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
@@ -31,8 +31,8 @@ status: active
 seeded_from: AUDIT-FIRST coverage sweep 2026-08-25 (delegated sonnet; verified inline)
 seeded_on: 2026-08-25
 gaps_total: 10 investigable (FD1–FD10)
-gaps_closed: 8 (FD1→B496 … FD7→B502, FD9→B503)
-blocks_written: B496–B502 (FD1–FD7), B503 (FD9)
+gaps_closed: 9 (FD1→B496 … FD9→B503, FD10→B504)
+blocks_written: B496–B502 (FD1–FD7), B503 (FD9), B504 (FD10)
 block_prefix: niagara-mental-model-bloqueN.md (shared global numbering)
 
 ## Gap-backlog (prioritized) — from the AUDIT-FIRST coverage matrix
@@ -53,7 +53,7 @@ using any count as a denominator (GAP NUMBERS ARE HYPOTHESES). All 8 candidate d
 | medium | **FD7 opc (classic DA)** — the Java driver-component layer of classic OPC DA (point-proxy model, COM/DCOM session lifecycle). The NATIVE side (opc.dll/opcproxy JNI shim, COM boundary) is already in [B127]/[B132] — this is the uncovered Java tree | `opc-rt,-wb` (53 rt) | **COVERED → B502** (53 com.tridium.opc classes; network→device→group→item over the opc.dll JNI shim [System.loadLibrary("opc"), ComObjectClient COM wrapper] = Java side of B127/B132 native boundary; local-ProgID vs remote-CLSID/DCOM; full IOPCBrowse; SEC: NT changeUser/private logon natives, creds=BPassword, auth DELEGATED to Windows/DCOM, no in-band security; license tridium:opc; only Windows-only/JNI module in FD) |
 | low | **FD8 weather** — Tridium weather integration driver (lower security relevance; architecturally clean; completeness) | `weather-rt,-ux,-wb` (52 vf) | pending |
 | medium | **FD9 knxnetIp** — KNXnet/IP building-automation driver (BEYOND original U12 list — surfaced by the audit; fits the framework-driver theme, sizeable) | `knxnetIp-rt,-wb` (189 rt) | **COVERED → B503** (189 com.tridiumX classes, FULLY Tridium-authored, NO vendored SDK [pole opposite of FD1]; tunneling+routing, UDP 3671 / multicast 224.0.23.12, tunneling-client-only; DPT codec = single data-driven BDataValueTypeDef, defs stored in station tree NOT XML/per-DPT; license dynamic module-name feature + numerical capacity quotas; SEC: NO KNX Secure, plaintext-only [crypto grep=0]) |
-| medium | **FD10 abstractMqttDriver** — MQTT driver base (BEYOND original U12 list): likely bundles an MQTT SDK the way opcUaCore bundles Prosys — verify the Tridium-vs-SDK split first | `abstractMqttDriver-rt,-wb` (1978 vf) | pending |
+| medium | **FD10 abstractMqttDriver** — MQTT driver base (BEYOND original U12 list): likely bundles an MQTT SDK the way opcUaCore bundles Prosys — verify the Tridium-vs-SDK split first | `abstractMqttDriver-rt,-wb` (1975 rt) | **COVERED → B504** (59/1975 Tridium=3%; MULTI-SDK shaded fat jar: Eclipse Paho 1.2.5 + AWS IoT SDK 1.3.11 + Jackson 2.16.1 + Joda 2.8.1 + JJWT 0.11.2; MQTT 3.1.1 only, TCP/TLS no-WS; 5 cloud authenticators generic/AWS/JITP/GCP-JWT/Azure-SAS; FOOTGUN default connectionType=UserLoginOverSSL[TLS] but default brokerPort=1883[plaintext]; license tridium:mqtt final-on-network inherited by concrete drivers; payloads plain UTF-8 no-Sparkplug) |
 
 ### REMITTANCE (already covered — will NOT be opened)
 
@@ -69,12 +69,12 @@ using any count as a denominator (GAP NUMBERS ARE HYPOTHESES). All 8 candidate d
 
 ## Stop control (METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: **2** (FD10, FD8). All existence-verified; source present.
-- **Gaps closed**: 8 (FD1→B496 … FD7→B502, FD9→B503).
+- **Open gaps — read-only investigable**: **1** (FD8). Existence-verified; source present.
+- **Gaps closed**: 9 (FD1→B496 … FD9→B503, FD10→B504).
 - **requires-execution / blocked**: 0. (Optional §12 live-confirm of server writable-node exposure noted in
   B498 §498.8 — NOT registered as blocking; the investigable set stands.)
-- **Coverage metric**: 8 / 10 investigable gaps closed.
-- **NEXT**: FD10 `abstractMqttDriver`. Then FD8 (last).
+- **Coverage metric**: 9 / 10 investigable gaps closed.
+- **NEXT**: FD8 `weather` (last). Then focus-closing synthesis + §18 retro + push.
 - **POSSIBLE future gap (recorded, NOT seeded):** dedicated `obix-rt` transport/`Obj` model + `BObixServer`
   export block — out of FD4's driver scope (B499 §499.8).
 - **RESOLVED (was REVERSE-BACKLOG from B496 §496.6):** OPC UA license split confirmed per-role —
@@ -93,3 +93,4 @@ using any count as a denominator (GAP NUMBERS ARE HYPOTHESES). All 8 candidate d
 | it.6 | 2026-08-25 | **FD6** openAdr — TridiumPS add-on (com.tridiumps.openadr, sibling of electronicSignature B350); OpenADR 2.0 VEN modelled as a Service (BOadrService/BOadrVen=BAbstractService), NOT a driver; both 2.0a/2.0b hand-rolled XElem, no JAXB/SDK; HTTP-pull-only (simpleHttp/oadrPoll, poll 60s), no XMPP; event FSM (far/near/active/…) via ActiveEventUpdateThread → writes BActiveEiEventSignal.currentValue (integrator links to a point). SEC: TLSv1.2-min forced, client-cert optional, HTTP Basic UNCONDITIONAL (http+https paths), VTNPassword=BPassword; **NO XMLDSig payload signing** (oadrSignedObject=plain wrapper) → integrity channel-only. License Tridium:openADR2b + ven.limit. `sonnet` sweep (nested sub-sweeps), all load-bearing re-verified inline (vineflower). verify-block exit 0, ratio 0.40. | **B501** | none net-new · yes · sonnet |
 | it.7 | 2026-08-25 | **FD7** opc (classic OPC DA) — 53 com.tridium.opc classes; network→device→group→item Baja tree over the `opc.dll` JNI shim (OpcEnv System.loadLibrary("opc"), ComObjectClient COM/IUnknown wrapper, native createLocal/RemoteServer/addGroup/addItems/read/write/browse) = the JAVA side of the [B127]/[B132] native boundary (meets at loadLibrary); local-ProgID vs remote-CLSID/DCOM activation; full IOPCBrowseServerAddressSpace + server discovery; SEC: NT changeUser + private logon natives, creds=BPassword via doPrivileged, auth DELEGATED to Windows/DCOM (no in-band security) — only Windows-only/JNI module in FD; license tridium:opc. `sonnet` sweep (21 tool-uses), all load-bearing re-verified inline (count 64→53 RE-MEASURED). verify-block exit 0, ratio 0.36. | **B502** | none net-new · yes · sonnet |
 | it.8 | 2026-08-25 | **FD9** knxnetIp — 189 com.tridiumX classes, FULLY Tridium-authored KNXnet/IP stack, NO vendored SDK (calimero grep=0) = pole opposite of FD1; tunneling+routing transport (UDP 3671 / multicast 224.0.23.12, tunneling-CLIENT-only, inbound CONNECT "not implemented"); DPT codec = single data-driven BDataValueTypeDef (defs stored as components in station tree, NOT XML/per-DPT class); address styles individual 4/4/8 + group free/2-level/3-level; SEARCH_REQUEST discovery; license dynamic module-name feature + NUMERICAL capacity quotas (installations/interfaces); SEC: NO KNX Secure, plaintext-only (crypto grep=0). `sonnet` sweep (nested), all load-bearing re-verified inline (count 325→189 RE-MEASURED; namespace com.tridiumX flagged for packaging follow-up). verify-block exit 0, ratio 0.33. | **B503** | none net-new (com.tridiumX packaging = open sub-point) · yes · sonnet |
+| it.9 | 2026-08-25 | **FD10** abstractMqttDriver — 59/1975 Tridium (3%); MULTI-SDK shaded fat jar (3rd bundling archetype: Paho 1.2.5 + AWS IoT SDK 1.3.11 + Jackson 2.16.1 + Joda 2.8.1 + JJWT 0.11.2); multi-cloud abstract base over 2 backends (Paho generic/GCP/Azure + AWS IoT), 5 pluggable authenticators (generic/AWS/JITP/GCP-JWT/Azure-SAS); MQTT 3.1.1 only, TCP/TLS no-WS, no-Sparkplug; FOOTGUN default connectionType=UserLoginOverSSL(TLS) but brokerPort default 1883(plaintext); license tridium:mqtt FINAL on network (inherited by all concrete drivers); payloads plain UTF-8. `sonnet` sweep (28 tool-uses), all load-bearing + SDK versions re-verified inline (count 1978→1975 RE-MEASURED). verify-block exit 0, ratio 0.31. | **B504** | none net-new · yes · sonnet |
