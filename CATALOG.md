@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **481 bloques**
+Total: **483 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -486,6 +486,8 @@ Total: **481 bloques**
 | 481 | [niagara-mental-model-bloque481.md](niagara-mental-model-bloque481.md) | Block 481 — Who watches a license change/tamper, and how licensing gates security posture: node-locked has NO runtime watcher (tamper-evident at load only), subscription has a live entitlement watchdog + operator alarm, there is NO tamper-evident audit trail, and licensing gates FIPS/developer/802.1X |
 | 482 | [niagara-mental-model-bloque482.md](niagara-mental-model-bloque482.md) | Block 482 — The Java crypto/trust internals behind licensing: the module-signature verifiers (JarSignatureRegistry → CertificateChainValidator PKIX + the embedded RSA-2048 TPK), the KeyRing/AES-256-GCM at-rest envelope, and LicenseUtil.verify/encode byte-exact canonicalization |
 | 483 | [niagara-mental-model-bloque483.md](niagara-mental-model-bloque483.md) | Block 483 — The anatomy of a Niagara license: the complete `<license>` / `<feature>` / `<signature>` / `<certificate>` composition, every parsed attribute and its field, the open-ended limit/attribute key set, and the four file variants |
+| 484 | [niagara-mental-model-bloque484.md](niagara-mental-model-bloque484.md) | Block 484 — The native crypto core (`dsfspi.dll`): Mocana-backed PKCS#1 RSA verify/sign, the DSA-1024/SHA-1 license/cert verifier, the DER parsers, and the reconciliation that ECDSA P-256 v2.0 is NOT native (it runs through JCA) |
+| 485 | [niagara-mental-model-bloque485.md](niagara-mental-model-bloque485.md) | Block 485 — The native launcher license gates (`nre.dll`/`njre.dll` `createVM`): `-javaagent`/`-agentpath` is refuse-to-launch gated on the `developer` feature, FIPS is a `fips140-2`-gated boolean (not a VM option), and there is NO silent flag injection |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
