@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **494 blocks**
+Total: **495 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -500,3 +500,4 @@ Total: **494 blocks**
 | 496 | [niagara-mental-model-bloque496.md](niagara-mental-model-bloque496.md) | `framework-drivers` FD1: `opcUaCore-rt` — the OPC UA stack anchor (16 Tridium type-shim classes bundling Prosys OPC UA Java SDK 5.1.0-116 + Apache HttpCore NIO 4.4.13 AS-IS), its inherited security surface, and four config-default footguns (Basic128Rsa15 on, TLS 1.0/1.1 on, `ALL`≡username-only, self-signed accepted if trust-store-enrolled) |
 | 497 | [niagara-mental-model-bloque497.md](niagara-mental-model-bloque497.md) | `framework-drivers` FD2: `opcUaClient` — the OPC UA client driver (network→device→point over the Prosys `UaClient`), its security-config surface (single-select `BSecurityMode` enum, NOT the B496 bitstrings), plaintext-recoverable `BPassword` credentials, the `tridium:opcUaClient` license gate, and a one-dialog operator downgrade to None/anonymous |
 | 498 | [niagara-mental-model-bloque498.md](niagara-mental-model-bloque498.md) | `framework-drivers` FD3: `opcUaServer` — N4 as an OPC UA server (address space from the component space, endpoint :52520), the server-side security exposure (writable-by-default nodes, username token under `SecurityPolicy.NONE`, anonymous fall-through, cert sessions with NO Niagara RBAC), and the `tridium:opcUaServer` gate |
+| 499 | [niagara-mental-model-bloque499.md](niagara-mental-model-bloque499.md) | `framework-drivers` FD4: `obixDriver` — the oBIX REST/HTTP driver (network→client→proxy over the shared `obix-rt` `ObixSession`), the Watch subscription model, and its headline security posture: HTTP Basic auth over a default `http://` lobby (credentials base64-in-the-clear unless the operator opts into HTTPS) |
