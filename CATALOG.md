@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **476 bloques**
+Total: **477 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -481,6 +481,7 @@ Total: **476 bloques**
 | 476 | [niagara-mental-model-bloque476.md](niagara-mental-model-bloque476.md) | Block 476 — The install ships two SNMP modules, and the live station runs the newer `nSnmp` (NDriver): it has SNMPv3 USM, native traps, and typed proxy exts — scoping [Block 28] §28.6's install-wide "no v3" to the classic `snmp` module |
 | 477 | [niagara-mental-model-bloque477.md](niagara-mental-model-bloque477.md) | Block 477 — The subscription-licensing layer decompiled from `nre.jar`: two license managers, the Honeywell entitlement server, and the JWT/clone watchdog — plus native RE corroboration of the Host-ID/feature/signature primitives (licensing consolidation capstone) |
 | 478 | [niagara-mental-model-bloque478.md](niagara-mental-model-bloque478.md) | Block 478 — Who enforces licensing at runtime: the `niagarad` platform daemon supervises stations, treats license-failure exit codes (-3/-6) as non-recoverable, runs its OWN platform-feature license manager — and the §14 reconciliation that `com.tridium.niagarad.license.*` DOES exist (closes B477-G1) |
+| 479 | [niagara-mental-model-bloque479.md](niagara-mental-model-bloque479.md) | Block 479 — Platform-side license delivery/install/sync: the Workbench License Manager pushes plain license files over the daemon TLS session, and the platform install path performs NO cryptographic verification — trust is deferred to the station (closes B479) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
