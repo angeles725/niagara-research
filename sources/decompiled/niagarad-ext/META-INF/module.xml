@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="niagarad" bajaVersion="0" vendor="Tridium" vendorVersion="4.14.0.162" description="Niagara Platform Daemon" preferredSymbol="niagarad" nre="false" autoload="true" installable="false" buildMillis="1718362546959" buildHost="ee033fd13409" moduleName="niagarad" runtimeProfile="rt" releaseDate="2024-05-28">
+ <dirs/>
+ <installation/>
+ <types/>
+</module>

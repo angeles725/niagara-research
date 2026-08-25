@@ -1,0 +1,229 @@
+html, body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  text-align: center;
+}
+
+#login-logo-container {
+  text-align: center;
+  padding: 10px;
+}
+
+#login-form-container, .login-input, #login-submit {
+  font: 1.0em arial,sans-serif;
+}
+
+#login-form-container {
+  padding: 0;
+  margin: 0;
+  border: solid 1px #69707a;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -moz-box-shadow: 0 0 9px #69707a;
+  -webkit-box-shadow: 0 0 9px #69707a;
+  box-shadow: 0 0 9px #69707a;
+}
+
+#login-title-container {
+  background-color: #69707a;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+#login-failed {
+  display: none;
+  border: 1px solid red;
+  padding: 5px;
+  margin: 2px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  max-width: 395px;
+}
+
+#login-title {
+  padding: 5px;
+  color: white;
+}
+
+#login-credentials {
+  padding: 25px 10px 25px 10px;
+  float: right;
+}
+
+#login-form {
+  text-align: left;
+  display: inline-block;
+  padding: 20px; 
+  width: auto;
+}
+
+.login-label {
+  display: table-cell; 
+  text-align: right;
+}
+
+.login-input {
+  display: table-cell; 
+  margin: 5px 2px;
+}
+
+.login-group {
+  display: table-row;
+}
+
+#login-submit {
+  float: right;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+#yes-submit {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+
+#no-submit {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+#pass-exp-submit {
+  float: right;
+}
+
+#login-image {
+  float: left;
+  padding: 25px 0px 25px 10px;
+}
+
+.pass-reset {
+  display: block;
+  border: 1px solid red;
+  padding: 5px;
+  margin: 2px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  max-width: 395px;
+}
+
+#password-expiration {
+  display: block;
+  border: 1px solid red;
+  padding: 5px;
+  margin: 2px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  max-width: 250px;
+}
+
+#licenseAgreements {
+  text-align: center;
+  margin-top: 15px;
+  font: 0.8em arial,sans-serif;
+  color: /* @fg-color */ #4d4d4d;
+}
+
+#blanket {
+  background: rgba(255, 255, 255, 0.5);
+  position: fixed;
+  z-index: 9001;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  white-space: nowrap;
+  padding: 15px;
+}
+
+#licenseDiv {
+  background-color:#fff;
+  z-index: 9002;
+  width: 75%;
+  height: 75%;
+  margin: 0 auto;
+  max-width: 100%;
+  max-height: 100%;
+  border: solid 1px #69707a;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -moz-box-shadow: 0 0 9px #69707a;
+  -webkit-box-shadow: 0 0 9px #69707a;
+  box-shadow: 0 0 9px #69707a;
+}
+
+#licenseTitle {
+  background-color:#69707a;
+  color: #fff;
+  font: 1.0em arial,sans-serif;
+  text-align: left;
+  padding: 5px;
+  display: block;
+  height: 1.0em;
+}
+
+#licenseFileName {
+  display: inline-block;
+  float: left;
+}
+
+#closeButton {
+  float: right;
+  white-space: nowrap;  
+  background-color: #fff;
+}
+
+#licenseFile {
+  color: /* @fg-color */ #4d4d4d;
+  width: 100%;
+  width: calc(100% - 1px);
+  height: 95%;
+  height: calc(100% - 1.0em - 10px);
+  overflow: auto;
+  max-width: 100%;
+  max-height: 100%;
+  border: none;
+  white-space: pre-wrap;
+}
+
+pre { 
+  white-space: pre-wrap !important; 
+  word-wrap: break-word !important;
+  word-break: keep-all;
+  text-align: left;
+  padding: 5px;
+  width: 98%;
+  width: calc(100% - 10px);  
+}
+
+#licenseFooter {
+  background-color:#fff;
+  color: #fff;
+  font: 1.0em arial,sans-serif;
+  text-align: center;
+  padding: 5px;
+}
+
+@media screen and (max-width: 480px) {
+  #login-image {
+    display: none;
+  }
+
+  #login-form { 
+    padding: 5px;
+  }
+
+  .login-group { 
+    display: block; 
+    padding-bottom: 20px;
+  }
+
+  .login-input, #login-submit {
+    font-size: 1.5em;
+  }
+}

@@ -68,17 +68,17 @@ Separate tree `NiagaraFiles.getSubscriptionPath()` + `/licenses`,`/certificates`
   OAuth device-code, hardcoded client id). `[CERT]` `EntitlementUtil.java:47-59`. NOT `axlicensing.tridium.com`
   (that is the Workbench-side `PortalApi`, a different class not present in `nre.jar`).
 
-## §477.4 — §14 correction of [B442]: no `niagarad.license` package exists `[CERT]`
+## §477.4 — ⚠ RETRACTED and corrected by [B478]
 
-[B442 §442.3] listed `bin/ext/niagarad.jar` as carrying `com.tridium.niagarad.license.{LicenseManager,
-LicenseFile,LicenseUtil}`. The full `nre.jar` decompile + inspection of `niagarad.jar` show **no
-`com.tridium.niagarad.license.*` package exists anywhere**. The license managers live solely in `baja.jar`
-(`com.tridium.sys.license.*`). The daemon's tie to licensing is a **runtime switch, not a code copy**: it sets
-`-DNiagaraDaemon=true`, which makes `RetrieveEntitlements.isLicenseValid()` skip in-process signature
-validation and delegate to `baja`'s `SubscriptionLicenseManager.isLicenseSignatureValid(...)`. `[CERT]`
-`nre-ext/com/tridium/nre/subscription/RetrieveEntitlements.java:246-275`. (The rest of §442.3 — nre.jar
-`JarSignatureRegistry`/`CertificateChainValidator`/`CoreTrustStore`, plus baja/file/platform boundaries —
-stands.) B442 edited with a pointer.
+An earlier draft of this section claimed "no `com.tridium.niagarad.license.*` package exists" and used it to
+"correct" [B442]. **That claim was WRONG** — it came from an agent that decompiled only `nre.jar` and asserted
+an unverified negative about `niagarad.jar`. A first-hand decompile of `bin/ext/niagarad.jar`
+(`sources/decompiled/niagarad-ext/`, sha256 `8d295b6d…`) CONFIRMS `com.tridium.niagarad.license.*` EXISTS with
+5 classes (`Brand, Feature, LicenseFile, LicenseManager, LicenseUtil`) — a platform-feature license manager
+with a fixed `FEATURE_WHITELIST` (`LicenseManager.java:201-215`). **B442 §442.3 was correct.** The one true
+sub-claim that survives: the daemon sets `-DNiagaraDaemon=true` (`NiagaraDaemon.java:201`), read station-side
+by `nre.jar RetrieveEntitlements` to skip in-process module-signature validation. See **[B478]** for the full
+enforcement picture and the reconciliation.
 
 ## §477.5 — Native RE corroboration (fresh Ghidra/r2 this pass) `[CERT]`
 
@@ -115,7 +115,7 @@ verified by the wrapper.
 | 6 | EntitlementCheck 6h+30min+rand, retry 3 → `Nre.licenseFailure()`; KeyRotation daily/90d | `[CERT]` | `SubscriptionLicenseManager.java:63-70,165-201,266-307` | PASS |
 | 7 | Clone: 409 → `.cloned` + wipe + licenseFailure; `Nre.licenseFailure()`→`System.exit(-3)` | `[CERT]` | `SubscriptionLicenseManager.java:291-303,601-621`; `Nre.java:1147-1167` | PASS |
 | 8 | Registration portal `niagara-community.com` (OAuth), NOT `axlicensing.tridium.com` | `[CERT]` | `EntitlementUtil.java:47-59` | PASS |
-| 9 | No `com.tridium.niagarad.license.*` package; daemon uses `-DNiagaraDaemon` to skip in-process verify | `[CERT]` | `RetrieveEntitlements.java:246-275` | PASS (corrects B442) |
+| 9 | ~~No `com.tridium.niagarad.license.*` package~~ **RETRACTED (§477.4): the package DOES exist; B442 was right.** True part: daemon sets `-DNiagaraDaemon=true`, read station-side to skip in-process verify | `[CERT]` | `NiagaraDaemon.java:201`; `RetrieveEntitlements.java:246-275`; see B478 | CORRECTED |
 | 10 | `getHostId` @0x180004ec0 = non-crypto XOR fold of 4 inputs, no SHA/MD5/HMAC | `[CERT]` | `sources/native-corroboration/…/njre.getHostId.ghidra.c` | PASS (refines B424) |
 | 11 | `isFeaturePresent` @0x180001f90 = two-strstr text match, no sig verify | `[CERT]` | `sources/native-corroboration/…/nre.isFeaturePresent.ghidra.c` | PASS |
 | 12 | `dsfspi` Mocana-static, checkFileSignature streams 10 KiB vs detached `.sig` | `[CERT]` | `sources/native-corroboration/…/dsfspi.native-static.v1.json` | PASS |

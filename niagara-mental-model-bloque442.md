@@ -5,17 +5,15 @@
 > inferring state from one directory, and which shipped JARs own each boundary? This does not reopen L1-L6;
 > it corrects [B386]'s version-independent wording and inventories the actual 4.10 implementation.
 >
-> **⚠ §14 CORRECTION (2026-08-24, `docs/niagara-licensing.md`):** §442.3's "seven runtime JAR boundaries"
-> listed `bin/ext/niagarad.jar` as carrying `com.tridium.niagarad.license.{LicenseManager,LicenseFile,
-> LicenseUtil}`. A full Vineflower decompile of `bin/ext/nre.jar` (this pass, `sources/decompiled/nre-ext/`)
-> and inspection of `niagarad.jar` found **NO `com.tridium.niagarad.license.*` package exists** — the license
-> managers live SOLELY in `baja.jar` (`com.tridium.sys.license.*`). The daemon's tie to licensing is a
-> RUNTIME SWITCH, not a code copy: it sets `-DNiagaraDaemon=true`, which makes
-> `com.tridium.nre.subscription.RetrieveEntitlements.isLicenseValid()` skip in-process signature validation
-> and delegate to `baja`'s `SubscriptionLicenseManager.isLicenseSignatureValid(...)` `[CERT]`
-> `sources/decompiled/nre-ext/com/tridium/nre/subscription/RetrieveEntitlements.java:246-275`. The rest of
-> §442.3 (nre.jar `JarSignatureRegistry`/`CertificateChainValidator`/`CoreTrustStore`; baja/file/platform
-> boundaries) stands.
+> **✅ §442.3 STANDS (2026-08-24 correction RETRACTED, see B478).** An intermediate 2026-08-24 note here
+> wrongly claimed `com.tridium.niagarad.license.*` does not exist. That was an unverified negative from an
+> agent that decompiled only `nre.jar`. A first-hand Vineflower decompile of `bin/ext/niagarad.jar`
+> (`sources/decompiled/niagarad-ext/`, sha256 `8d295b6d…`) CONFIRMS the package EXISTS with 5 classes
+> (`Brand, Feature, LicenseFile, LicenseManager, LicenseUtil`) — a **platform-feature** license manager with a
+> fixed `FEATURE_WHITELIST` (`jre8qnx, qnx7, globalCapacity, fips140-2, station, brand, syslog, fips…`). So
+> B442 §442.3 was right all along. Separately-true fact: the daemon sets `-DNiagaraDaemon=true`
+> (`NiagaraDaemon.java:201`), which the STATION-side `nre.jar RetrieveEntitlements` reads to skip in-process
+> module-signature validation. Full reconciliation in **B478**.
 >
 > **Subject version:** iC-Niagara **4.10.9.14**, live Windows mini-PC, observed 2026-08-11.
 > **Sources:** redacted read-only SSH evidence

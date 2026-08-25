@@ -471,11 +471,15 @@ install-distribution parts, not station data. `[CERT]` [B393 §393.3].
 ## 10. Corrections this pass produced (§14) and evidence index
 
 **Corrections:**
-- **[B442] → refined:** there is **no `com.tridium.niagarad.license.*` package**; `niagarad.jar` has no
-  `license` subpackage. The license managers live **solely in `baja.jar`** (`com.tridium.sys.license`). The
-  daemon's relationship to licensing is a **runtime switch, not a code duplicate**: it sets
-  `-DNiagaraDaemon=true`, which makes `RetrieveEntitlements.isLicenseValid()` **skip in-process signature
-  validation** and delegate to `baja`'s `SubscriptionLicenseManager.isLicenseSignatureValid(...)`. `[CERT]`
+- **[B442] CONFIRMED (an earlier "correction" here was RETRACTED — see [B478]):** a first-hand decompile of
+  `bin/ext/niagarad.jar` (`sources/decompiled/niagarad-ext/`, sha256 `8d295b6d…`) confirms
+  `com.tridium.niagarad.license.*` **DOES exist** — 5 classes (`Brand, Feature, LicenseFile, LicenseManager,
+  LicenseUtil`), a **platform-feature** license manager with a fixed `FEATURE_WHITELIST` (`jre8qnx, qnx7,
+  globalCapacity, fips140-2, station, brand, syslog, smDeveloperMode, ieee8021x`; `LicenseManager.java:201-215`).
+  So B442 §442.3 was right; my intermediate claim that the package didn't exist was a wrong unverified negative
+  (it came from an agent that decompiled only `nre.jar`). The TRUE sub-fact: the daemon sets
+  `-DNiagaraDaemon=true` (`NiagaraDaemon.java:201`), read station-side by `RetrieveEntitlements` to **skip
+  in-process module-signature validation** and delegate that to `baja`'s `SubscriptionLicenseManager` `[CERT]`
   `nre-ext/…/subscription/RetrieveEntitlements.java:246-275`.
 - **[B424] → refined:** `getHostId` body is @ `0x180004ec0` (not `~0x180004a70`); product-id cache reads
   `HKLM\SOFTWARE\Niagara4`; CRYPT32 usage is DPAPI-at-rest only. `[CERT]` this pass.

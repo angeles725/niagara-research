@@ -1,0 +1,573 @@
+Signature-Version: 1.0
+Created-By: 21.0.3 (Azul Systems, Inc.)
+SHA-256-Digest-Manifest: 2rKbzwwoE0oPvA5iB0P9lD5GLgtDRl6VitMsTx36r+s=
+SHA-256-Digest-Manifest-Main-Attributes: ar8VEqdMTyCJ9h3TAl5BTu0svU3e9mv
+ rvoBoztxHJ3E=
+
+Name: com/tridium/niagarad/log/MessageBundle.class
+SHA-256-Digest: O+vhIYEsXBXfPttD+qhwPdLdyhJFjcFcT/JE+qnFcLU=
+
+Name: com/tridium/niagarad/io/OutputBufferList$InstanceHolder.class
+SHA-256-Digest: 6TE/vt/cLM1ijXVJF+bLCVFDM7XFRbuMBx6Wc/gm9NQ=
+
+Name: com/tridium/niagarad/log/NiagaraDaemonLogSettings.class
+SHA-256-Digest: Bq3Bjd9IOfgH78/AEqDoL1jwBMX8aArg0yhVrFvNqEg=
+
+Name: com/tridium/niagarad/http/rc/plat-login.css
+SHA-256-Digest: uBGV1jt0JrKPEFVb5w09IOK3iH5/NLLvWJVi5e2Rv60=
+
+Name: com/tridium/niagarad/servlet/PlatformLoginFileServlet.class
+SHA-256-Digest: mdTplLBOBUiod/hsMSy3ywQVWPkjoZuoNkI0fIyp6rY=
+
+Name: com/tridium/niagarad/servlet/qnx/QnxWiFiServlet.class
+SHA-256-Digest: ytbLFKh3euJVnD3QiqhJ/81EuFSTpsG0elzO53Oo8uM=
+
+Name: com/tridium/niagarad/NiagaraDaemon$QueueRestartWebserverThread.cla
+ ss
+SHA-256-Digest: fD/NhQcSBV/+ao2pFhcZEpI2tvV54XUbLxT459vKZzw=
+
+Name: com/tridium/niagarad/app/App$StopAppThread.class
+SHA-256-Digest: gmeuDAMdjQQbtVyyeTbKovGmolYfAY+7YuuptL78Aso=
+
+Name: com/tridium/niagarad/servlet/qnx/QnxServlet.class
+SHA-256-Digest: F9Bm1Kip1IWeG0Zjb+G0roe04VEW/kW1cvtSOUyTSIA=
+
+Name: com/tridium/niagarad/http/BasicAuthenticator$1.class
+SHA-256-Digest: AtAPWHm2FJwcjdZL9/p8/xQ4KxJMdFx/7/FaYDvE7Bg=
+
+Name: com/tridium/niagarad/security/os/NativeAuthIdentity.class
+SHA-256-Digest: qsFHBXVap+sGcPJMAS+zkF/oieKw8nMthEgP4QG777o=
+
+Name: com/tridium/niagarad/servlet/DebugServlet.class
+SHA-256-Digest: LJUD5RY2OPWD42YYgNSN9n0wNyu/0qlQj98kvDq/P10=
+
+Name: com/tridium/niagarad/servlet/DefaultServlet.class
+SHA-256-Digest: EIZ+REllB4sY/PsbbwRQcG8a2JlDCBtTUXf9fu0mp/s=
+
+Name: com/tridium/niagarad/http/WebServer$NiagaraRequestHandler.class
+SHA-256-Digest: yM4wn8fg3lEf2hmeUuJ390CbxNwGdTgph0pwilOeqdI=
+
+Name: com/tridium/niagarad/servlet/CryptoServlet.class
+SHA-256-Digest: lY5gJIjtb1xcoVpvl418XOK2Ba+4BtWndb7ZkV/zYBo=
+
+Name: com/tridium/niagarad/servlet/AppServlet$1.class
+SHA-256-Digest: nmnClR+p43bpMAC8P8tvGF/OkcWAX5oGjAf6cEwDNks=
+
+Name: com/tridium/niagarad/util/RequestState.class
+SHA-256-Digest: fXfSxC2W2GIVLmQ9FWMngs5l0bK4y+YcuSoykrK/AGE=
+
+Name: com/tridium/niagarad/security/AuthenticationInfo.class
+SHA-256-Digest: ptLcBRYYnDwiec2rj0e4Nnzu+QB+a0s/8K1mLbE2oH4=
+
+Name: com/tridium/niagarad/servlet/BatchServlet$Item.class
+SHA-256-Digest: 1JkDPzIqyZv3RJeZAsH0/lxPGcufUc4fTZYOHIDs1Qg=
+
+Name: com/tridium/niagarad/file/KeyRingImportFileStoreElement.class
+SHA-256-Digest: 7yvHop4X+ZCgwKPK+CI5QYtP2s7QgAPSVAJjACo9ESY=
+
+Name: com/tridium/niagarad/security/SimpleAuthenticationDomain.class
+SHA-256-Digest: lE1UVFjnBy+65oQAur/jYjI6vAYsY8FKPWY+1AdL6jE=
+
+Name: com/tridium/niagarad/platform/PlatformInfo.class
+SHA-256-Digest: xFB2aS0uJaggFi/6iSsquW5bdPxawIbHdcKipW/SxoY=
+
+Name: com/tridium/niagarad/servlet/GetDaemonOutputServlet.class
+SHA-256-Digest: dQwjfSjzIN20FI2L1tAB5aUD+1gV2nIPKFsB2FWiUWk=
+
+Name: com/tridium/niagarad/license/LicenseFile.class
+SHA-256-Digest: ofjElrMZveUZffNXramhihJzkeSr3t3K8W1pe3fLi2g=
+
+Name: com/tridium/niagarad/http/WebServer$NiagaraCustomConnector$1.class
+SHA-256-Digest: OhPjxUX/X5QoRcv8sx+cb1jawvh3xT2GQtt2tOGRgZ0=
+
+Name: com/tridium/niagarad/io/PipedOutputBuffer.class
+SHA-256-Digest: jHhoOApgaZJ8OHZ6By469MB+6eI0JlvR3VgiHT6wO8Y=
+
+Name: com/tridium/niagarad/util/PatternFilter$Condition$1.class
+SHA-256-Digest: vFJLwHjukYNUNCypgqi1FXwAa9JFuAMw+skUhk9Ry0k=
+
+Name: com/tridium/niagarad/NiagaraDaemon$1.class
+SHA-256-Digest: vP0UN3TWjOxcPXmuZEwqHhhKajuKQbKg5hkjDzwBhoE=
+
+Name: com/tridium/niagarad/http/rc/plat-login.js
+SHA-256-Digest: A3Ei4DzLvZco+4RdIp687KouW2y/ZsQ0Gzbxn4/Ytwo=
+
+Name: com/tridium/niagarad/http/WebServer$NiagaraManagedSelector.class
+SHA-256-Digest: mm7aWMsGOk4B58E7YJ26Wn6ngCOV28cxIwto6fw4aOI=
+
+Name: com/tridium/niagarad/app/StationApp.class
+SHA-256-Digest: MgwMRa3llM2/g0oFsTPQQJ/pY8yLgnzz3ewz1O2/NWs=
+
+Name: com/tridium/niagarad/util/DaemonAuthUtil.class
+SHA-256-Digest: I7tjPg1/wFAZGrgMgWKjCkUXSGwSuFRuY+4njosLafU=
+
+Name: com/tridium/niagarad/servlet/FileServlet.class
+SHA-256-Digest: jJfFh+l08564mh9bJBhjQYvFCw/uIpF2z1WyM6Wj1bU=
+
+Name: com/tridium/niagarad/servlet/RebootServlet.class
+SHA-256-Digest: ueihzvVzd01V2y5tUsNvU008DV4VkxoAcm70IDJN99k=
+
+Name: com/tridium/niagarad/http/WebServer$1.class
+SHA-256-Digest: FzX6AGch8TZYo7oXVYQ/RXG+1tOhtAVJo3dcohwpAgQ=
+
+Name: com/tridium/niagarad/log/MulticastLogger.class
+SHA-256-Digest: f19rGRFQ0x2t1vt6XMFfRmYOERyBzgmIz/MxE0ajSno=
+
+Name: com/tridium/niagarad/log/MessageBundle$LexiconArgument.class
+SHA-256-Digest: Wwv39MaDwbgvZfoNRkHzSb+lujWlWzYxRwrCqWQhqMo=
+
+Name: com/tridium/niagarad/NiagaraDaemon$ExternalMonitorThreadNpsdk$Netw
+ orkInterfaceEventFileHolder.class
+SHA-256-Digest: qZB7tWBGUzqz8yrnhnkaT1fWy0QijoDt8URVFkoiBEc=
+
+Name: com/tridium/niagarad/servlet/FilteredLogServlet.class
+SHA-256-Digest: nhm5wUCVlk0ADe8iWXhquEPNiRZWHb/n7u6qOeHMm6A=
+
+Name: com/tridium/niagarad/util/CsrfTokenUtil.class
+SHA-256-Digest: 0RNGdm04yGLp5KFmaSL6kqJEwqVecgxANBdTs0E/kX8=
+
+Name: com/tridium/niagarad/platform/PlatformInfo$PlatformInfoHolder.clas
+ s
+SHA-256-Digest: mt3vU31cwEOOPienEbGOtyte5V+0i8ne90dHxiqjpCA=
+
+Name: com/tridium/niagarad/servlet/DhcpdServlet.class
+SHA-256-Digest: sgyepnWAWQDD61Cl4JXxkJZieG76TtPKyjUOCxHEzBE=
+
+Name: com/tridium/niagarad/servlet/SyslogServlet.class
+SHA-256-Digest: NGPgP2h54vP6mQvmoghdccX2y8/r8KyO7YRXb016NUc=
+
+Name: com/tridium/niagarad/servlet/AccountManagementServlet.class
+SHA-256-Digest: oI1MuPZLUxvT9pA5N8prRpNfEDYkMKxGsvR4P/rqVG4=
+
+Name: com/tridium/niagarad/util/RequestState$InstanceHolder.class
+SHA-256-Digest: EfexT3feKnRAoLS6fJjH/UfYKhrGGqdPjMAbgy3QVA0=
+
+Name: niagarad.lexicon
+SHA-256-Digest: 9TkCUtdEUNws4eXM+4kqvc2JhVdv9NAq/H7KRMcbiao=
+
+Name: com/tridium/niagarad/servlet/SharedKeyServlet$SessionKeyLRUCache.c
+ lass
+SHA-256-Digest: NchqL3kO0+52+kq2pJKRVq2w6S5oR+REzVTlxmo2r+Y=
+
+Name: com/tridium/niagarad/servlet/GetDaemonOutputServlet$1.class
+SHA-256-Digest: +nC4lGVDjbycj9avoe8yPC89oWn5H51peAjYEY3+dbU=
+
+Name: rc/niagara-policy.xml
+SHA-256-Digest: vaFHRfO/D7rrQQ3FwA0qBF2VLpMTHG35yMaY5mcE6yY=
+
+Name: com/tridium/niagarad/log/NiagaraDaemonFormatter$1.class
+SHA-256-Digest: t4bD0qnZSNPrBiL1KfYAKRS/2Kov5SnQFrdQnNqnjkM=
+
+Name: com/tridium/niagarad/servlet/DiagnosticServlet.class
+SHA-256-Digest: 0j+n+pbQUZ2YT4iMYlLLlKr/detdr2DDR6K0Con8ur0=
+
+Name: com/tridium/niagarad/app/AppRegistry.class
+SHA-256-Digest: JU+ZeTfLP3N2bnV53xfEuDI2bVbxig88dPYgcrBghBM=
+
+Name: com/tridium/niagarad/servlet/SystemLogServlet.class
+SHA-256-Digest: 1m7k9DJIf8VtSlEKMhdYC1hv6/pTkjMe+cw92+N3cuw=
+
+Name: com/tridium/niagarad/http/DigestAuthenticator$1.class
+SHA-256-Digest: T9/9QTVZXiWd+B62SnPI1GLO+F+e3TuMZTs/dD4vOh8=
+
+Name: com/tridium/niagarad/http/WebServer$RestartSelectorTask.class
+SHA-256-Digest: vc773m/OTkNYdFTsD1s/cDIP+G+C+tot9x4bG/KR1tA=
+
+Name: com/tridium/niagarad/NiagaraDaemon$ExternalMonitorThreadNpsdk.clas
+ s
+SHA-256-Digest: 0TRluMNkA2XZ297OYbynVgI834qO+YVzp+0lMv1whl8=
+
+Name: com/tridium/niagarad/servlet/qnx/QnxUsbBackupServlet.class
+SHA-256-Digest: Q5n3Fxj7X0ZNqcHleZQihZUIiiqOtQ1XwsDz6h32mJ0=
+
+Name: com/tridium/niagarad/http/WebServer$PrerequisiteServletHandler$2.c
+ lass
+SHA-256-Digest: Iz/HUjfmao+EUigSFYyoxGMkXpds+Z3IL7qp96OS5RY=
+
+Name: com/tridium/niagarad/servlet/Servlet.class
+SHA-256-Digest: MGZyFzdvKeUx9IrljXmTrPH9Wt3l2xBA9Pd5+/tIwQU=
+
+Name: com/tridium/niagarad/file/RenameFileStoreElement.class
+SHA-256-Digest: pDk3E5rISICNVQjLLlb5+fNiWOKGDBgPMUCGQp8j1M8=
+
+Name: com/tridium/niagarad/servlet/ClearDaemonOutputServlet.class
+SHA-256-Digest: +yiz8LerJ6V3OGDA2iuvM0EZuKh/ZWMZSv4xWS1rGXk=
+
+Name: com/tridium/niagarad/log/LogBufferHandler.class
+SHA-256-Digest: bGDLZxrjFIY4T8FPyXrI62SlqqDqs+mrSqC8ZNdOD2Q=
+
+Name: com/tridium/niagarad/security/SimpleAuthenticationInfo.class
+SHA-256-Digest: vyT9Fk/osM6uc31nTDNwydRRRl3fQG0txXoOJXl1+Dg=
+
+Name: com/tridium/niagarad/security/os/NativeAuthenticationDomain.class
+SHA-256-Digest: OfsldmWWoLooIMts6Xm/UrJeE9zAXgJiOVoQMV5u+rI=
+
+Name: com/tridium/niagarad/log/NullLogger.class
+SHA-256-Digest: FAya96SF43W9IYE9YinbQKzlhSgQRYp1L9hF37MDa6k=
+
+Name: com/tridium/niagarad/license/LicenseFile$PlatformProviderHolder.cl
+ ass
+SHA-256-Digest: 5nYrPRqVioAAoVR1o7kFNk9rFsOJqUefA3X7g8gjcYM=
+
+Name: com/tridium/niagarad/file/DeleteFileStoreElement.class
+SHA-256-Digest: ejwFPxwTNHemICQmz/6Xmiym7uY096yqen60Zju3i7E=
+
+Name: com/tridium/niagarad/servlet/AppListServlet.class
+SHA-256-Digest: FJ3sC3epqzJ0zNGjCmYyAK032J6FG9vRXYIUOKYjY7Y=
+
+Name: com/tridium/niagarad/io/OutputBufferList$1.class
+SHA-256-Digest: fQE2iJciWsQeEYTwvZxYAL9MHk5cHRWaPaXW/DaoVp8=
+
+Name: com/tridium/niagarad/http/Http.class
+SHA-256-Digest: zxU4A8QWJoLMP/oMT1fK9gmbWc7iQiH/eP5If0puXTA=
+
+Name: com/tridium/niagarad/http/WebServer$NiagaraConnectionLimit.class
+SHA-256-Digest: XywRBZ7zy3fg8RPbY1M4vayO0QbSPMY/x4aXu1m2uaM=
+
+Name: com/tridium/niagarad/io/OutputBufferList$OutputBufferListThread.cl
+ ass
+SHA-256-Digest: xSgxqs7bttq7v/tCzrdjgjhCH+nwKxmdo2N/zwi7rhE=
+
+Name: com/tridium/niagarad/log/HttpLogger.class
+SHA-256-Digest: UV9eZxkHd4d2om4hozT3VMGfPY8cffJi7UngUeIXgZA=
+
+Name: com/tridium/niagarad/http/DigestAuthenticator$DigestServer.class
+SHA-256-Digest: LZi/iXELWoVn1Be1dWptlfM9l9TtPle0K7IjOYmRHoI=
+
+Name: com/tridium/niagarad/servlet/qnx/QnxOsUpdateServlet.class
+SHA-256-Digest: e1GYSqNAUxattn5STR+KFrzaH4h7kOHUUlL2+x5t0qw=
+
+Name: com/tridium/niagarad/http/Authenticator.class
+SHA-256-Digest: 5P/q6YrkeeKotlcFNZLa86XiGibwq55z6iTfguGzsM4=
+
+Name: com/tridium/niagarad/license/Brand.class
+SHA-256-Digest: cDxsk7SUuYeRA5pqsQipBMAr5IgePXA4LnUHuMCsEdE=
+
+Name: com/tridium/niagarad/http/PlatformSessionIdManager.class
+SHA-256-Digest: dV4Vhkn5Aw/r3h0DmW5oFgneNTNhe/zR1QRvdnSZ4sY=
+
+Name: com/tridium/niagarad/io/OutputBufferList.class
+SHA-256-Digest: CCvCEk+QWanQ/SQoBTtAAniTfc0diGfOXrbnIeJ9r7w=
+
+Name: com/tridium/niagarad/app/EngineWatchdog$EngineWatchdogThread.class
+SHA-256-Digest: RJ4C811VWoWB+V8yJcEDAo71NGI98LOVcuMExLd8TRA=
+
+Name: com/tridium/niagarad/log/NiagaraDaemonFormatter$NiagaraDaemonForma
+ tterHolder.class
+SHA-256-Digest: f18NR0GdP/VufBf0l+wJNAoSxx07ZgQ5G2D3Z5a82Qk=
+
+Name: com/tridium/niagarad/servlet/PlatformInfoServlet.class
+SHA-256-Digest: /k9HHVaUSllv81KB2RubeGKwbq3JEcE4Iev4XV6WLoQ=
+
+Name: com/tridium/niagarad/http/ScramAuthenticator$1.class
+SHA-256-Digest: T0qn9+jjkJelnX2FesQft5zT6nXiksa3IF9Ji0AwF9o=
+
+Name: com/tridium/niagarad/crypto/NDaemonCryptoManager.class
+SHA-256-Digest: H7+regBYHZJPuH8s6DSPFVbFtKQl9Qcbts0oTSv3fiI=
+
+Name: com/tridium/niagarad/servlet/SystemPasswordServlet.class
+SHA-256-Digest: qutFMKgY/fDU+3UzNe5DiqN//rezGOVRNZhCN6ez1Pk=
+
+Name: com/tridium/niagarad/http/WebServer$PrerequisiteServletHandler.cla
+ ss
+SHA-256-Digest: Q+ieBZDfwIB3k22E19Un1Izk+XNts1DXKN7TZ9v1pnU=
+
+Name: com/tridium/niagarad/servlet/RequestStateServlet.class
+SHA-256-Digest: 2alP5AylkHEakHQFbaJBAiYPpCS0B3nXh4o/1xB7MLw=
+
+Name: com/tridium/niagarad/servlet/AppServlet.class
+SHA-256-Digest: cZ0qACJgQzTnO0Vtu8Q5RnBF+5k7JlPZAmImGlxtOQE=
+
+Name: com/tridium/niagarad/file/FileCachedFileStoreElement.class
+SHA-256-Digest: 9MCGEN+RwZy4e/5ZZKWWBomBc0GI9/DuTwjJgPDS6dk=
+
+Name: com/tridium/niagarad/log/SystemLogHandler.class
+SHA-256-Digest: 4dxWNPoat+bGh54po42ILN/Eysej2Ut8SoFQ4Y+Qyg8=
+
+Name: com/tridium/niagarad/servlet/qnx/QnxWiFiServlet$Ccinfo.class
+SHA-256-Digest: Gn0GTahPCLq4noVry223GQnEIUweY0RJssrUCbNpKZ4=
+
+Name: com/tridium/niagarad/servlet/IEEE8021XServlet.class
+SHA-256-Digest: K6WhJ3mhuNfBZk8o1ak6TEZjlyymZYUgpT64TgSE/vE=
+
+Name: com/tridium/niagarad/servlet/ModuleInfoServlet.class
+SHA-256-Digest: YXw7XSB3vRnlbsb0UPWvWLN5oZxAXJwGSsjZJCZi1HM=
+
+Name: com/tridium/niagarad/http/Authenticator$RequestCredentials.class
+SHA-256-Digest: HYhTLEMTEDyvNoYHZYODOTJ7w1rnFyo6i50o6f9gXlk=
+
+Name: com/tridium/niagarad/http/ScramAuthenticator.class
+SHA-256-Digest: RXTyBmE6iiFNWerfZQASzK0Jh4k7vsFoofKTZOqYSGQ=
+
+Name: com/tridium/niagarad/util/XModuleInfoParser.class
+SHA-256-Digest: CrGgn+goBZ5yNFu0AAIoAD2FGeVbIX9PJH+DGSVIAcc=
+
+Name: com/tridium/niagarad/servlet/JarServlet.class
+SHA-256-Digest: W6EIIFdnyYdT94WLoOqrlaT010NyfRg9OCaIAUArL9E=
+
+Name: com/tridium/niagarad/app/EngineWatchdog.class
+SHA-256-Digest: GxgGPuZFsZgAe5VUNxftKC04qcSmyu44HWFaMcc7eb0=
+
+Name: com/tridium/niagarad/license/Brand$AcceptList.class
+SHA-256-Digest: WbEy4nSmIKxbBK03vhl9GVLHltzJtipbTX0lhuBwbdM=
+
+Name: com/tridium/niagarad/servlet/LinkServlet.class
+SHA-256-Digest: EfWoVKYKqAnTzMENvyVpjczlteF7NfsFbKIXYdTWog8=
+
+Name: com/tridium/niagarad/io/TimeoutInputStream$TimeoutInputStreamThrea
+ dFactory.class
+SHA-256-Digest: NBOy7LUkXPFDflVZt+r2uAGHRLWEekxIE+UoxCXD5bk=
+
+Name: com/tridium/niagarad/servlet/UpdateDaemonServlet.class
+SHA-256-Digest: ntU09957msqD/w1zoBfdlvzIdMB0cQxHKXpq5jPGdCM=
+
+Name: com/tridium/niagarad/log/ErrorHandler.class
+SHA-256-Digest: IWQnOIL1F3vVI5jOh+76H3yVBFsjvwTyvvSt+0rr0rM=
+
+Name: com/tridium/niagarad/app/App.class
+SHA-256-Digest: 3scQJhi7P47SyD3I0JZ28M3Zpyge8F8hmtsGe6splwU=
+
+Name: com/tridium/niagarad/file/UncachedFileStoreElement.class
+SHA-256-Digest: xYx1gMLUL91B9JQJoiTwO6uqZ1eF9DgOKFg8uJi0uGk=
+
+Name: com/tridium/niagarad/io/MulticastWriter.class
+SHA-256-Digest: +6F6yMVasInDoEtdiEJQrluWVYo0DieHnoYx26+4ryk=
+
+Name: com/tridium/niagarad/http/HttpDateFormat$1.class
+SHA-256-Digest: 9fy2OWbV7g4kz4caYoapuDYFtmMZdIo4QHJN+XXgOGg=
+
+Name: com/tridium/niagarad/util/KeyedList$Tuple.class
+SHA-256-Digest: jB4GmWbB6wlAvlL6FPH2tM2vUcarHxSgrHkZ4yOKQoo=
+
+Name: com/tridium/niagarad/servlet/PlatformLoginServlet.class
+SHA-256-Digest: 5PfdJDL4BhM3mSx5KofSeHP5i5sPKfLKFHrtjS5q56A=
+
+Name: com/tridium/niagarad/http/WebServer$DecayResetThread.class
+SHA-256-Digest: GfnoOD4hjXLxJ89v/6C3yDaUiFip6vVKQqMu4sSKSns=
+
+Name: com/tridium/niagarad/crypto/DaemonCryptoManager.class
+SHA-256-Digest: NQOA7XFciiK5xZvTKTmHk8OJSyaQpfRk8In2+61iPVM=
+
+Name: com/tridium/niagarad/NiagaraDaemon$SigUsr2SignalHandler.class
+SHA-256-Digest: 8z+/NQfZ81UUVR1CiDC6SPT7ettXCzXI4PJDDwsNmNg=
+
+Name: com/tridium/niagarad/io/TimeoutInputStream.class
+SHA-256-Digest: bXjXpMZvxiX8Kv+CSUZmHe4VtTV5UTSKXgw0t2Hu/JQ=
+
+Name: com/tridium/niagarad/util/PatternFilter$Condition$2.class
+SHA-256-Digest: EtuBJduxazJjaTIkq+yV5z/wgXISmzhRtCb12vKnLAs=
+
+Name: com/tridium/niagarad/util/PatternFilter$State.class
+SHA-256-Digest: Q6pkXSIW/O9vyuUenxc+vZUIAUGt44ZvalHFVv0N8wg=
+
+Name: com/tridium/niagarad/http/WebServer$NiagaraQoSFilter.class
+SHA-256-Digest: mxVUQgNt6mCGpx4NVQRXcckHViw6N6CikunXI+sI+TU=
+
+Name: com/tridium/niagarad/util/PatternFilter.class
+SHA-256-Digest: yzHvdc0WTA6425g0ox4W/hLbBUzcVpNUUeBSTQIOwg8=
+
+Name: com/tridium/niagarad/http/WebServer$PrerequisiteServletHandler$1.c
+ lass
+SHA-256-Digest: PLwyYDh6Rrlyu6H0zQIOSH9onlUsiIRwP0yXJoJ66vI=
+
+Name: com/tridium/niagarad/io/OutputSocket$1.class
+SHA-256-Digest: 94NGKXa78XRlBrx1VkQGP7/FrnX62/i2V5usZU8WINQ=
+
+Name: com/tridium/niagarad/servlet/BatchServlet.class
+SHA-256-Digest: ddDElSWdSRVVHICVgNmu1ClZtdkO2P4cejb+5eHEi0Y=
+
+Name: com/tridium/niagarad/app/App$ApplicationPipeThread.class
+SHA-256-Digest: akIndwKmY06sTl/FDea44s6QpwII2ErxQ0mxBBHXoHo=
+
+Name: com/tridium/niagarad/log/NiagaraDaemonFormatter.class
+SHA-256-Digest: h9iSBYpMqmBZKs64DD6yMzljNegVGGEConb8hG4RL18=
+
+Name: com/tridium/niagarad/NiagaraDaemon$ExternalMonitorThreadTridium.cl
+ ass
+SHA-256-Digest: S11fHj0xxjdqHeIOPpdOSdelAJZvANMt4ljQ8jAfymU=
+
+Name: com/tridium/niagarad/license/Feature.class
+SHA-256-Digest: hGdCbjKeUefeJHhXF5xHoLPbTk8eZYjkJGhXftqmtec=
+
+Name: com/tridium/niagarad/servlet/NreConfigurationServlet$1.class
+SHA-256-Digest: BeYtisgMyZN7Ns0CnDks018wYCE7YIKHCAiMkwSa9mk=
+
+Name: com/tridium/niagarad/io/OutputBuffer.class
+SHA-256-Digest: LNmiHBEh5sVgxLImbZD3JFQYzrh514vlvXgPDrAQLDU=
+
+Name: com/tridium/niagarad/file/FileStore.class
+SHA-256-Digest: 9oqzws0yhECsaeNr3CHGcpVbx9KyVB7P31I2KI16FAw=
+
+Name: com/tridium/niagarad/app/WatchdogShmem.class
+SHA-256-Digest: Wqe8WezKhlA67V/LyuPCYy2VP9wlDCancMk5sZ688tY=
+
+Name: com/tridium/niagarad/http/BasicAuthenticator$BasicServer.class
+SHA-256-Digest: /MJ/aCpzHVecPQyNWcbqkarOdAwNjSEcjlt5McpB9Ts=
+
+Name: com/tridium/niagarad/util/RequestState$1.class
+SHA-256-Digest: vQUZYwqBL0vA0UmbYnybrPR20FP7bKQ+TxqFhoQqylQ=
+
+Name: com/tridium/niagarad/servlet/TcpIpServlet.class
+SHA-256-Digest: 3WzHW19gOuqTchR+AMKVOZtsETcFU5WAWnJn4S+DGiA=
+
+Name: com/tridium/niagarad/http/ScramAuthenticator$KeyExchangeSettings.c
+ lass
+SHA-256-Digest: GS0PGUKBIAfasEIly+Thm/Eujb1yTEeq7iewVJXnRuQ=
+
+Name: com/tridium/niagarad/http/WebServer.class
+SHA-256-Digest: GgVdjJX+mRYBjeymLnZm1KZt83dBjwYyMt6Aa+yVgvw=
+
+Name: com/tridium/niagarad/http/HeaderField.class
+SHA-256-Digest: F8XINK1f1KHcTdBOcjn8Nhq8pr+N+IqMrHhZwv+UrPk=
+
+Name: com/tridium/niagarad/file/FileStoreElement.class
+SHA-256-Digest: LQVMetuFcDs+WH0P3Oc4wbtEncMAYT0NPe3dL0PXBWk=
+
+Name: com/tridium/niagarad/servlet/OutputServlet.class
+SHA-256-Digest: QUmcyS/D8/7trYzzebbT2bWvgWas4/v+SzQsLOP0OLE=
+
+Name: com/tridium/niagarad/NiagaraDaemon.class
+SHA-256-Digest: WLzeFtuxHK3j8R6XZWv0PbEFG/4RzPhgmexMPz3aCIE=
+
+Name: com/tridium/niagarad/io/TimeoutInputStream$1.class
+SHA-256-Digest: KBNMqVe8XEwDE7T0n0Kt20GheeV6FkXWs6WqGgwwy9A=
+
+Name: com/tridium/niagarad/servlet/NreConfigurationServlet$HasAnyHasAll.
+ class
+SHA-256-Digest: nN/xo2kHQl1cnzkgXFOxJn1m45060kE/vPzL/C5ZQiI=
+
+Name: com/tridium/niagarad/servlet/CheckServlet.class
+SHA-256-Digest: MMswGl0Pu6QGFW++KNORYhK1rRmwjeO387pH3fC3BbA=
+
+Name: com/tridium/niagarad/http/HttpDateFormat.class
+SHA-256-Digest: fujngTrm3rEK2aIfPXXG7svmflGhq1i+qtgPgDRsCjs=
+
+Name: com/tridium/niagarad/io/SessionList.class
+SHA-256-Digest: 3ro6T1YttTFPcZx+R5C27QzIFappOoHCPoqqUPA/6/c=
+
+Name: com/tridium/niagarad/http/WebServer$NiagaraInetAccessHandler.class
+SHA-256-Digest: KYaM4QmBiAK1CNaptskgoS2g3wROP81plFzawJnoq/4=
+
+Name: com/tridium/niagarad/http/WebServer$NiagaraCustomConnector.class
+SHA-256-Digest: iXDaWVp3W/32BuJp9YxE/gi9IqI2NOB+DjAwaBHgWao=
+
+Name: com/tridium/niagarad/http/ScramAuthenticator$HttpUserKeyFactory.cl
+ ass
+SHA-256-Digest: 1T3FDCmd8Zjo4i68c88jq1odCNBUXxCxTr9Yt8guphw=
+
+Name: com/tridium/niagarad/http/DigestAuthenticator.class
+SHA-256-Digest: xsFByraTzNMKAmaLNjidksCtUDaz9/i/l43AHmtCELY=
+
+Name: com/tridium/niagarad/app/App$StopKillParameters.class
+SHA-256-Digest: qrTC9SmOEwb9RHk09nhy/9o7qM1AdhwUMWNhKM5ORw0=
+
+Name: com/tridium/niagarad/file/InvalidFileStoreElement.class
+SHA-256-Digest: BU72JrO5ql4MJiWo9o9pDb6VcSwKcn7HshaBI60kYPo=
+
+Name: com/tridium/niagarad/app/AppRegistry$LocalMetaDataHolder.class
+SHA-256-Digest: /aHSkh/XFbn12QcqdSy2VuQTTun/BNMRihIJWCHAvOM=
+
+Name: com/tridium/niagarad/NiagaraDaemon$ExternalMonitorThread.class
+SHA-256-Digest: fAd/ISkugjWu4RNTFYjMf6o3ba29Jm0Mn0Ng5o4NxiY=
+
+Name: com/tridium/niagarad/util/PatternFilter$Condition.class
+SHA-256-Digest: M/ieNmc2U/TayzVJ8cwm7Ll5JjhfNsNtG7Bo29KCvR4=
+
+Name: com/tridium/niagarad/NiagaraDaemon$QueueStopThread.class
+SHA-256-Digest: sj/hvU8LbiQt37IdTRd52zxq9nEkUCK4jo01NN+dfPo=
+
+Name: com/tridium/niagarad/security/policy/NoOpPermissionGroupStore.clas
+ s
+SHA-256-Digest: raoWSUVTuAi6IE8pzSA3M/rCyReAAwlQVuWtKQosdvw=
+
+Name: com/tridium/niagarad/http/WebServer$GCTimerTask.class
+SHA-256-Digest: yRfA2KGmjgM71fHbh2miahj0e70bpx441RdIezXiIcw=
+
+Name: com/tridium/niagarad/util/PatternFilter$1.class
+SHA-256-Digest: W9XwhkFt4LD9+N4yKYol0DG6yujQyCph32c1Ssg7+W8=
+
+Name: com/tridium/niagarad/NiagaraDaemon$ShutdownSignalHandler.class
+SHA-256-Digest: 2azijCNiH6aBWK6TI5fStbD4gRrgL6VlArrJlCR1uyo=
+
+Name: com/tridium/niagarad/servlet/SshdServlet.class
+SHA-256-Digest: K4/Viuyxvhwv5xE/lSxSPzdjmjfEGfVpugAQUBtYseU=
+
+Name: com/tridium/niagarad/security/os/NativeAuthenticationInfo.class
+SHA-256-Digest: JtcDSbbB6y5TwqEdbj7Eqw6Qph2ZFHk75+8ntSdBI8s=
+
+Name: com/tridium/niagarad/servlet/DaemonServlet.class
+SHA-256-Digest: FfCN37UbFgtyhKQncexUtG5rNzomPRgbJlino1qpo3g=
+
+Name: com/tridium/niagarad/servlet/StopServlet.class
+SHA-256-Digest: A4PwzMYnJQgnwPjnk2Tqzu3Nmdb6KZ2RJoUM8WdHW4o=
+
+Name: com/tridium/niagarad/servlet/SharedKeyServlet.class
+SHA-256-Digest: NLO186P/5bD9j08yNhudYhIAis1VlImC5J76sIHhJfE=
+
+Name: com/tridium/niagarad/util/KeyedList.class
+SHA-256-Digest: a+hL4l+gID9+LdPzA9DV7iyNqo+5i0/k/fks4sZNXJ4=
+
+Name: com/tridium/niagarad/file/MkDirFileStoreElement.class
+SHA-256-Digest: YZlO+qkOAO3UffZPwy2ZQHXI77bZWBjLJGmmGJpfDEM=
+
+Name: com/tridium/niagarad/servlet/TimeServlet.class
+SHA-256-Digest: zpQ3RCw64dKVU2vXNDujYVANmGo9oji4wdE9dn+1x3c=
+
+Name: META-INF/module.xml
+SHA-256-Digest: LcaVoToND2pbu2cTCvrmdiSW9HMRdd5SZm1Ftpr5g9Y=
+
+Name: com/tridium/niagarad/http/HttpDateFormat$DateTimeInfo.class
+SHA-256-Digest: QRndJ6rnzO34ehlsRyt7dtUbk/EmIseRpIJAA+HGKKc=
+
+Name: com/tridium/niagarad/http/BasicAuthenticator.class
+SHA-256-Digest: R/jwE7A8riw+oZHYibigicqZYb9Knz5slLTtce8ccL4=
+
+Name: com/tridium/niagarad/io/PipedOutputBuffer$PipedOutputBufferThread.
+ class
+SHA-256-Digest: 5QVSrQD8+nmLPC00ESoB6EyfHeb8Q+eXgo92JlRJuYs=
+
+Name: com/tridium/niagarad/app/App$RunAppThread.class
+SHA-256-Digest: nA05U+r8vLuy0PpkKjSffPvGH1b3du8p8KLOjNBIrvE=
+
+Name: com/tridium/niagarad/license/LicenseUtil.class
+SHA-256-Digest: YlIDStIK2Teev6q+UtRTN9GqhoQrK+uHiT/KBiAMiS0=
+
+Name: com/tridium/niagarad/log/SimpleErrorHandler.class
+SHA-256-Digest: YTk8kZNGzOr2qpNedrrHm76KdP87I8WP/zBerLDVl1w=
+
+Name: com/tridium/niagarad/license/LicenseManager.class
+SHA-256-Digest: ueGManYwbrRER9eb4ZUi4T3Dy0R3U2cnZmKhMh4A4ck=
+
+Name: com/tridium/niagarad/servlet/NreConfigurationServlet.class
+SHA-256-Digest: ORVTSmyMPfrZ/nEv3BRB1MfXG6rXefBXWkkAfvL5M3M=
+
+Name: com/tridium/niagarad/NiagaraDaemon$QueueRebootThread.class
+SHA-256-Digest: C6WSMdOb/uDAOJ+y1KgLt8lxMNcJLQdbxJiTZRRO3Zw=
+
+Name: com/tridium/niagarad/http/WebServer$PrerequisiteServlet.class
+SHA-256-Digest: rjFslI1fD8YVFsJzBZZ2wdmjxHJwZPNDJMwfK6/dC8Q=
+
+Name: com/tridium/niagarad/app/AppRegistry$WatchDirectoryThread.class
+SHA-256-Digest: ik51pcPQakFEOvJNmKl8LeUkGedabZAda42y/sia6zY=
+
+Name: com/tridium/niagarad/io/OutputSocket.class
+SHA-256-Digest: CUm54xH0cdQb2indbg0hZRSsN+xPBdmrKVHa1VF97t0=
+
+Name: com/tridium/niagarad/app/App$KillAppThread.class
+SHA-256-Digest: HMQWC0/Ro81a/W1bazv6o4YoUaRANSEmU9i95iCH7+M=
+
+Name: com/tridium/niagarad/security/AuthenticationDomain.class
+SHA-256-Digest: oJgp4Sy+5GjRv1sZG1pITiDkVmxutAKoGo6+hZenJJY=
+
+Name: com/tridium/niagarad/servlet/AuthServlet.class
+SHA-256-Digest: NW5ZIk6ytMkO/+nZuTYtaH2V3Xdd7cW7k6kwBo95zRA=
+
+Name: com/tridium/niagarad/io/OutputBuffer$OutputBufferCursor.class
+SHA-256-Digest: TsQmAyySdboKhEL1y6ia/W4OGbE5zuD9EI1OGf+SQCM=
+
+Name: com/tridium/niagarad/servlet/CryptoServlet$1.class
+SHA-256-Digest: 0biUV1aobUPyMWBtwPZgYnbbYS0HcEpyd7/Y3A1Mnss=
+
+Name: com/tridium/niagarad/servlet/ReportServlet.class
+SHA-256-Digest: hk180PZFsagZ4VJAXKzrxqXoLpdE9oFknqsfyrk5g6s=
+

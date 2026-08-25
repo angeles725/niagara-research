@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ Copyright 2019 Tridium, Inc. All Rights Reserved.
+  -->
+<!--
+  This file contains all the permissions granted jars in bin/ext when running
+  niagarad on a supervisor.
+  -->
+<policy>
+  <permissions codesource="file:${niagara.home}/bin/ext/*">
+    <java-permissions type="daemon">
+      <java-permission class="com.tridium.nre.security.NiagaraBasicPermission" name="GET_PLATFORM_PROVIDER"/>
+      <java-permission class="com.tridium.nre.security.NiagaraBasicPermission" name="GET_KEY_RING"/>
+      <java-permission class="com.tridium.nre.security.NiagaraBasicPermission" name="GET_SECURITY_INFO_PROVIDER"/>
+      <java-permission class="com.tridium.nre.security.NiagaraBasicPermission" name="SET_HTTP_SESSION_KEY"/>
+      <java-permission class="com.tridium.nre.security.NiagaraBasicPermission" name="SYSTEM_PASSWORD"/>
+      <java-permission class="com.tridium.nre.security.NiagaraBasicPermission" name="TRANSCODE_KEY_RING"/>
+      <java-permission class="com.tridium.nre.security.NiagaraBasicPermission" name="DISABLE_SECURITY_MANAGER"/>
+      <java-permission class="com.tridium.nre.security.NiagaraBasicPermission" name="KEY_MATERIAL"/>
+      <java-permission class="com.tridium.nre.security.NiagaraBasicPermission" name="ROLL_KEY_MATERIAL"/>
+      <java-permission class="com.tridium.nre.security.NiagaraBasicPermission" name="ENTITLEMENT_WORKFLOW"/>
+      <java-permission class="com.tridium.nre.security.NiagaraBasicPermission" name="GET_ENTITLEMENT_PRIVATE_KEY"/>
+      <java-permission class="com.tridium.nre.security.NiagaraBasicPermission" name="ROTATE_ENTITLEMENT_KEYS"/>
+      <java-permission class="com.tridium.nre.security.NiagaraBasicPermission" name="RESET_ENTITLEMENT"/>
+      <java-permission class="java.lang.RuntimePermission" name="getenv.NIAGARA_JRE_HOME"/>
+      <java-permission class="java.lang.RuntimePermission" name="getenv.JETTY_AVAILABLE_PROCESSORS"/>
+      <java-permission class="java.lang.RuntimePermission" name="getenv.JETTY_WORKER_INSTANCE"/>
+      <java-permission class="java.lang.RuntimePermission" name="shutdownHooks"/>
+      <java-permission class="java.lang.RuntimePermission" name="setContextClassLoader"/>
+      <java-permission class="java.lang.RuntimePermission" name="accessClassInPackage.sun.misc"/>
+      <java-permission class="java.lang.RuntimePermission" name="accessClassInPackage.sun.security.util"/>
+      <java-permission class="java.lang.RuntimePermission" name="accessClassInPackage.sun.security.x509"/>
+      <java-permission class="java.lang.RuntimePermission" name="modifyThread"/>
+      <java-permission class="java.lang.RuntimePermission" name="exitVM.*"/>
+      <java-permission class="java.lang.RuntimePermission" name="accessDeclaredMembers"/>
+      <java-permission class="java.lang.RuntimePermission" name="getFileSystemAttributes"/>
+      <java-permission class="java.lang.RuntimePermission" name="modifyThreadGroup"/>
+      <java-permission class="java.lang.RuntimePermission" name="getStackTrace"/>
+      <java-permission class="com.tridium.nre.di.NreSupplierPermission" name="com.tridium.nre.security.ISecurityInitializer"/>
+      <java-permission class="com.tridium.nre.di.NreInstancePermission" name="com.tridium.nre.security.ISecurityInitializer"/>
+      <java-permission class="java.lang.reflect.ReflectPermission" name="suppressAccessChecks"/>
+      <java-permission class="java.security.SecurityPermission" name="getProperty.ssl.TrustManagerFactory.algorithm"/>
+      <java-permission class="java.security.SecurityPermission" name="getProperty.ssl.KeyManagerFactory.algorithm"/>
+      <java-permission class="java.net.SocketPermission" name="*:*" action="connect,resolve,listen,accept"/>
+      <java-permission class="java.util.PropertyPermission" name="*" action="write"/>
+      <java-permission class="java.util.logging.LoggingPermission" name="control"/>
+      <java-permission class="com.tridium.nre.security.KeyRingPermission" name="*"/>
+      <java-permission class="java.io.FilePermission" name="${niagara.home}${/}" action="read"/>
+      <java-permission class="java.io.FilePermission" name="${niagara.home}${/}-" action="read,write,delete"/>
+      <java-permission class="java.io.FilePermission" name="${niagara.home}${/}bin${/}station" action="execute"/>
+      <java-permission class="java.io.FilePermission" name="${niagara.home}${/}bin${/}nre" action="execute"/>
+      <java-permission class="java.io.FilePermission" name="${niagara.user.home}${/}" action="read"/>
+      <java-permission class="java.io.FilePermission" name="${niagara.user.home}${/}-" action="read,write,delete"/>
+      <java-permission class="java.io.FilePermission" name="${java.io.tmpdir}${/}" action="read,write"/>
+      <java-permission class="java.io.FilePermission" name="${java.io.tmpdir}${/}-" action="read,write,delete"/>
+      <java-permission class="java.io.FilePermission" name="${java.home}${/}" action="read"/>
+      <java-permission class="java.io.FilePermission" name="${java.home}${/}-" action="read"/>
+      <java-permission class="java.io.FilePermission" name="${/}var${/}cookies${/}roll-key-material" action="read"/>
+      <java-permission class="java.net.NetPermission" name="getProxySelector"/>
+      <java-permission class="org.bouncycastle.crypto.CryptoServicesPermission" name="exportPrivateKey" action="[exportPrivateKey]"/>
+      <java-permission class="com.tridium.nre.security.KeyStorePermission" name="*" action="all"/>
+    </java-permissions>
+  </permissions>
+</policy>
