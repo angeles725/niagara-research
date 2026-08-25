@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **487 bloques**
+Total: **489 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -492,6 +492,8 @@ Total: **487 bloques**
 | 487 | [niagara-mental-model-bloque487.md](niagara-mental-model-bloque487.md) | Block 487 — Silent-watcher audit: no covert/undocumented monitor in the licensing path (node-locked fully passive; subscription's only background actors are the two VISIBLE, alarmed check-ins) — plus one genuinely-silent thread that lives in the CRYPTO subsystem, not licensing |
 | 488 | [niagara-mental-model-bloque488.md](niagara-mental-model-bloque488.md) | Block 488 — The license limit-enforcement map: two tiers (global-capacity `Metrics` vs per-network driver Feature), what each `*.limit` does on exceed (System.exit(-3) / hard block / silent block-add / component fatalFault), and a §14 correction of B14's counting API |
 | 489 | [niagara-mental-model-bloque489.md](niagara-mental-model-bloque489.md) | Block 489 — `nverify.exe`, the native module/dist signature verifier: a C reimplementation of Java JAR-signing (SHA-256 manifest + PKCS#7) whose trust store is an embedded cacerts PKCS#12 (`changeit`, 99 roots) plus an RSA-2048 TPK memcmp pin — closing B482-G1 and reconciling B392 vs B482 with certainty |
+| 490 | [niagara-mental-model-bloque490.md](niagara-mental-model-bloque490.md) | Block 490 — security-audit consolidation: the licensing/trust internals (B478/B481/B482/B487/B489) folded into the SEC checklist — four new items (SEC-19 revocation-off, SEC-20 TPK-pin relaxation, SEC-21 no license-change audit, SEC-22 non-recoverable license failure) and a client-facing threat re-cut |
+| 491 | [niagara-mental-model-bloque491.md](niagara-mental-model-bloque491.md) | Block 491 — secrets-at-rest: the three-layer KeyMaterial(`.km`)→KeyRing(`.kr`)→secret AES-256-GCM chain, and how the root `.km` is protected per-OS (Windows DPAPI machine-scope vs QNX/Linux plaintext) — closing B482-G2 and answering the "can a copied station's secrets be read off-box" question |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
