@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **490 bloques**
+Total: **491 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -495,6 +495,7 @@ Total: **490 bloques**
 | 490 | [niagara-mental-model-bloque490.md](niagara-mental-model-bloque490.md) | Block 490 — security-audit consolidation: the licensing/trust internals (B478/B481/B482/B487/B489) folded into the SEC checklist — four new items (SEC-19 revocation-off, SEC-20 TPK-pin relaxation, SEC-21 no license-change audit, SEC-22 non-recoverable license failure) and a client-facing threat re-cut |
 | 491 | [niagara-mental-model-bloque491.md](niagara-mental-model-bloque491.md) | Block 491 — secrets-at-rest: the three-layer KeyMaterial(`.km`)→KeyRing(`.kr`)→secret AES-256-GCM chain, and how the root `.km` is protected per-OS (Windows DPAPI machine-scope vs QNX/Linux plaintext) — closing B482-G2 and answering the "can a copied station's secrets be read off-box" question |
 | 492 | [niagara-mental-model-bloque492.md](niagara-mental-model-bloque492.md) | Block 492 — signing-pki reopen capstone: the reconciled module-signing trust model after the 2026-08-24 native+Java deep-dive — RSA-2048 detached `.sig` verified against cacerts (P12, `changeit`, 99 roots) + an embedded RSA-2048 TPK memcmp pin, NOT a dedicated `truststore.jks` |
+| 493 | [niagara-mental-model-bloque493.md](niagara-mental-model-bloque493.md) | Block 493 — `oem-honeywell-tail` U1b+U1c: the honIrmConfig Workbench/UX layer adds no IRM-specific auth gate (stock `ri` + three `unrestricted` RPCs), and Nano-command authentication is UNIFORM transport-AES keyed on the device password — not per-opcode — bottoming out at the hardcoded `irmn4encryption1`⊕serial default key |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

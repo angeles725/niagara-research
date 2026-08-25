@@ -86,10 +86,35 @@ All resolve through `KeyRingFactory` → `Aes256PasswordManager`:
 
 **Tally:** 6 claims, all `[CERT]` (1 `[INFER]` sub-part = DPAPI scope semantics; Segundo confirming native flags).
 
-## §491.7 — Connections & open gaps
+## §491.7 — Native DPAPI confirmation (B491-G1 CLOSED) — by sibling session Segundo `[CERT]`
 
-- Closes [B482-G2]; extends [B480] (subscription secrets), [B466] (JACE two domains), [B424] (Windows hidden key).
-- **B491-G1** native DPAPI flag confirmation (`CryptProtectData` `CRYPTPROTECT_LOCAL_MACHINE`, the wrapped blob) —
-  Segundo's native pass. **B491-G2** the `.sp` System-Passphrase chain in depth (its own focus-worthy surface).
+Ghidra+r2 on `nre.dll` (sha256 `606ff1c6…`) confirms the Windows at-rest binding is **DPAPI machine-scope, not
+portable**:
+- The native root secret is the **HostId hidden key** (`getOrCreateHiddenKey` @0x180009f40, [B424]), stored in
+  the **Windows Registry `HKLM\SOFTWARE\Niagara4` value `hid3` (REG_BINARY)** — not a `.km`/`.kr` file (migrated
+  from `HKLM\SOFTWARE\Classes\AppID`).
+- `saveHiddenKey` @0x18000b140: `CryptProtectData(rawKey, NULL, entropy, …, dwFlags=0x14, out)` → `RegSetValueExA`
+  REG_BINARY; `readHiddenKey` @0x18000acb0: `RegQueryValueExA` + `CryptUnprotectData`. **`dwFlags=0x14 =
+  CRYPTPROTECT_LOCAL_MACHINE(0x4) | CRYPTPROTECT_AUDIT(0x10) → SCOPE = MACHINE** (verbatim @0x18000b364).
+- `pOptionalEntropy` = a **hardcoded 32-byte blob** @0x18001a150 embedded in `nre.dll` (identical across installs)
+  → it only isolates from other DPAPI apps, does NOT add machine binding; the real binding is the machine DPAPI
+  master key.
+- **Consequence:** copying `HKLM\...\Niagara4\hid3` to another machine → `CryptUnprotectData` FAILS. Machine-scope
+  (not user) → any account/service on that host unwraps (fits the daemon). Generic `DpapiHelper::encrypt`
+  @0x18000b660 selects machine(0x14)/user(0x10) + 1 of 2 hardcoded entropies, exposed to Java via
+  `DpapiUtil.encrypt0` + `RegistryUtil.get/setEncryptedRegistryString0`. `njre.dll` mirrors the same imports.
+- **Two independent DPAPI-protected roots on Windows** (both machine-scope): (1) the KeyRing KeyMaterial (`.km`
+  file, DPAPI-wrapped `isKeyMaterial=true`, §491.2) and (2) this HostId hidden key (`hid3` registry). `[CERT]` for
+  both being machine-bound; **no evidence found that `.km` DERIVES from the HostId** — they are independent random
+  secrets, each DPAPI-machine-bound. So the at-rest chain is machine-bound on Windows via DPAPI on both roots.
+
+## §491.8 — Connections & open gaps
+
+- Closes [B482-G2] and **B491-G1**; extends [B480] (subscription secrets), [B466] (JACE two domains),
+  [B424] (Windows hidden key `hid3`).
+- **B491-G2** the `.sp` System-Passphrase chain in depth (its own focus-worthy surface). **B478-G1** native
+  watchdog `shmem` = named Win32 file-mapping (`CreateFileMappingA`/`MapViewOfFile`) + `CreateMutexA`, 3 ints
+  (timeout/policy/engineCycles) — closed by Segundo (liveness, not licensing; recordable as a small block).
 - Security tie-in: on QNX/JACE and Linux the at-rest secret protection is **file-permission-deep, not
-  crypto-deep** — a disk image / backup / root read yields all station secrets ([B490] SEC-12 scoping).
+  crypto-deep** — a disk image / backup / root read yields all station secrets ([B490] SEC-12 scoping); on
+  Windows it is DPAPI-machine-deep (§491.7).

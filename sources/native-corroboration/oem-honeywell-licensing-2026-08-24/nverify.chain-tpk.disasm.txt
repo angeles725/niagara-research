@@ -1,0 +1,1132 @@
+            ; CALL XREF from fcn.140002500 @ 0x140002a3b(x)
+            ; CALL XREF from fcn.140003210 @ 0x140003644(x)
+┌ 1714: fcn.140002b50 (int64_t arg1, int64_t arg2, uint32_t arg3, int64_t arg4, uint32_t arg_7fh);
+│ `- args(rcx, rdx, r8, r9) vars(19:sp[0x50..0x110])
+│           0x140002b50      4055           push rbp
+│           0x140002b52      53             push rbx
+│           0x140002b53      57             push rdi
+│           0x140002b54      4156           push r14
+│           0x140002b56      488d6c24c9     lea rbp, [rsp - 0x37]
+│           0x140002b5b      4881ece800..   sub rsp, 0xe8
+│           0x140002b62      0f29b424b0..   movaps xmmword [var_b0h], xmm6
+│           0x140002b6a      488b056794..   mov rax, qword [0x14007bfd8] ; [0x14007bfd8:8]=0x2b992ddfa232 ; "2\xa2\xdf-\x99+"
+│           0x140002b71      4833c4         xor rax, rsp
+│           0x140002b74      488945ef       mov qword [var_11h], rax
+│           0x140002b78      0f1031         movups xmm6, xmmword [rcx] ; arg1
+│           0x140002b7b      498bf8         mov rdi, r8                ; arg3
+│           0x140002b7e      488955d7       mov qword [var_29h], rdx   ; arg2
+│           0x140002b82      4c8bf2         mov r14, rdx               ; arg2
+│           0x140002b85      4c8d054c73..   lea r8, str.validating_root_cert ; 0x140039ed8 ; "validating root cert"
+│           0x140002b8c      ba01000000     mov edx, 1
+│           0x140002b91      33c9           xor ecx, ecx
+│           0x140002b93      498bd9         mov rbx, r9                ; arg4
+│           0x140002b96      e845220000     call fcn.140004de0
+│           0x140002b9b      4c8d054e73..   lea r8, str.initializing_certs_list ; 0x140039ef0 ; "initializing certs list"
+│           0x140002ba2      ba01000000     mov edx, 1
+│           0x140002ba7      33c9           xor ecx, ecx
+│           0x140002ba9      e832220000     call fcn.140004de0
+│           0x140002bae      488d4dcf       lea rcx, [var_31h]
+│           0x140002bb2      e8391d0000     call fcn.1400048f0
+│           0x140002bb7      48837dcf00     cmp qword [var_31h], 0
+│       ┌─< 0x140002bbc      742c           je 0x140002bea
+│       │   0x140002bbe      4c8d054373..   lea r8, str.initializing_list_cursor ; 0x140039f08 ; "initializing list cursor"
+│       │   0x140002bc5      ba01000000     mov edx, 1
+│       │   0x140002bca      33c9           xor ecx, ecx
+│       │   0x140002bcc      e80f220000     call fcn.140004de0
+│       │   0x140002bd1      488d4dc7       lea rcx, [var_39h]
+│       │   0x140002bd5      e8e61a0000     call fcn.1400046c0
+│       │   0x140002bda      48837dc700     cmp qword [var_39h], 0
+│      ┌──< 0x140002bdf      7513           jne 0x140002bf4
+│      ││   0x140002be1      488d4dcf       lea rcx, [var_31h]         ; uint32_t *arg1
+│      ││   0x140002be5      e8961c0000     call fcn.140004880
+│      ││   ; CODE XREF from fcn.140002b50 @ 0x140002bbc(x)
+│      │└─> 0x140002bea      b82be8ffff     mov eax, 0xffffe82b
+│      │┌─< 0x140002bef      e9a3050000     jmp 0x140003197
+│      ││   ; CODE XREF from fcn.140002b50 @ 0x140002bdf(x)
+│      └──> 0x140002bf4      4889b424e0..   mov qword [var_e0h], rsi
+│       │   0x140002bfc      4c89ac24d0..   mov qword [var_d0h], r13
+│       │   0x140002c04      4532ed         xor r13b, r13b
+│       │   0x140002c07      4c89bc24c8..   mov qword [var_c8h], r15
+│       │   0x140002c0f      4533ff         xor r15d, r15d
+│       │   0x140002c12      4885ff         test rdi, rdi
+│      ┌──< 0x140002c15      0f84f5000000   je 0x140002d10
+│      ││   0x140002c1b      0f1f440000     nop dword [rax + rax]
+│      ││   ; CODE XREF from fcn.140002b50 @ 0x140002d06(x)
+│     ┌───> 0x140002c20      4c8d0d0173..   lea r9, str.checking_if_certificate_is_root ; 0x140039f28 ; "checking if certificate is root"
+│     ╎││   0x140002c27      660f7f75df     movdqa xmmword [var_21h], xmm6
+│     ╎││   0x140002c2c      4c8bc7         mov r8, rdi
+│     ╎││   0x140002c2f      c644242001     mov byte [var_20h], 1
+│     ╎││   0x140002c34      488d55df       lea rdx, [var_21h]
+│     ╎││   0x140002c38      b902000000     mov ecx, 2
+│     ╎││   0x140002c3d      e8ee1d0000     call fcn.140004a30
+│     ╎││   0x140002c42      488d55df       lea rdx, [var_21h]
+│     ╎││   0x140002c46      660f7f75df     movdqa xmmword [var_21h], xmm6
+│     ╎││   0x140002c4b      488bcf         mov rcx, rdi
+│     ╎││   0x140002c4e      e8ade00000     call fcn.140010d00
+│     ╎││   0x140002c53      8bc8           mov ecx, eax
+│     ╎││   0x140002c55      448bf0         mov r14d, eax
+│     ╎││   0x140002c58      e8e3f40000     call fcn.140012140
+│     ╎││   0x140002c5d      4c8bc8         mov r9, rax
+│     ╎││   0x140002c60      4c8d05e172..   lea r8, str.X509_isRootCertificate_status:__s ; 0x140039f48 ; "X509_isRootCertificate status: %s"
+│     ╎││   0x140002c67      ba01000000     mov edx, 1
+│     ╎││   0x140002c6c      33c9           xor ecx, ecx
+│     ╎││   0x140002c6e      e86d210000     call fcn.140004de0
+│     ╎││   0x140002c73      4585f6         test r14d, r14d
+│    ┌────< 0x140002c76      7429           je 0x140002ca1
+│    │╎││   0x140002c78      4181fe85e8..   cmp r14d, 0xffffe885
+│   ┌─────< 0x140002c7f      7420           je 0x140002ca1
+│   ││╎││   0x140002c81      418bce         mov ecx, r14d
+│   ││╎││   0x140002c84      e8b7f40000     call fcn.140012140
+│   ││╎││   0x140002c89      4c8bc8         mov r9, rax
+│   ││╎││   0x140002c8c      4c8d05fd72..   lea r8, [0x140039f90]      ; "%s"
+│   ││╎││   0x140002c93      ba01000000     mov edx, 1
+│   ││╎││   0x140002c98      33c9           xor ecx, ecx
+│   ││╎││   0x140002c9a      e841210000     call fcn.140004de0
+│  ┌──────< 0x140002c9f      eb5e           jmp 0x140002cff
+│  │││╎││   ; CODE XREFS from fcn.140002b50 @ 0x140002c76(x), 0x140002c7f(x)
+│  │└└────> 0x140002ca1      b928000000     mov ecx, 0x28              ; '(' ; 40 ; size_t size
+│  │  ╎││   0x140002ca6      ff1584640300   call qword [sym.imp.api_ms_win_crt_heap_l1_1_0.dll_malloc] ; [0x140039130:8]=0x53fd0 reloc.api_ms_win_crt_heap_l1_1_0.dll_malloc ;  void *malloc(size_t size)
+│  │  ╎││   0x140002cac      488bf0         mov rsi, rax
+│  │  ╎││   0x140002caf      4885c0         test rax, rax
+│  │ ┌────< 0x140002cb2      0f84e2010000   je 0x140002e9a
+│  │ │╎││   0x140002cb8      4c8d05b172..   lea r8, str.adding_cert_to_cert_chain_list ; 0x140039f70 ; "adding cert to cert chain list"
+│  │ │╎││   0x140002cbf      488938         mov qword [rax], rdi
+│  │ │╎││   0x140002cc2      ba01000000     mov edx, 1
+│  │ │╎││   0x140002cc7      33c9           xor ecx, ecx
+│  │ │╎││   0x140002cc9      0f117008       movups xmmword [rax + 8], xmm6
+│  │ │╎││   0x140002ccd      e80e210000     call fcn.140004de0
+│  │ │╎││   0x140002cd2      488b4dcf       mov rcx, qword [var_31h]
+│  │ │╎││   0x140002cd6      488bd6         mov rdx, rsi
+│  │ │╎││   0x140002cd9      e8d2180000     call fcn.1400045b0
+│  │ │╎││   0x140002cde      418d7701       lea esi, [r15 + 1]
+│  │ │╎││   0x140002ce2      448bfe         mov r15d, esi
+│  │ │╎││   0x140002ce5      4585f6         test r14d, r14d
+│  │┌─────< 0x140002ce8      7515           jne 0x140002cff
+│  │││╎││   0x140002cea      4c8d05a772..   lea r8, str.found_root     ; 0x140039f98 ; "found root"
+│  │││╎││   0x140002cf1      33c9           xor ecx, ecx
+│  │││╎││   0x140002cf3      418d5601       lea edx, [r14 + 1]
+│  │││╎││   0x140002cf7      e8e4200000     call fcn.140004de0
+│  │││╎││   0x140002cfc      41b501         mov r13b, 1
+│  │││╎││   ; CODE XREFS from fcn.140002b50 @ 0x140002c9f(x), 0x140002ce8(x)
+│  └└─────> 0x140002cff      488b7f10       mov rdi, qword [rdi + 0x10]
+│    │╎││   0x140002d03      4885ff         test rdi, rdi
+│    │└───< 0x140002d06      0f8514ffffff   jne 0x140002c20
+│    │ ││   0x140002d0c      4c8b75d7       mov r14, qword [var_29h]
+│    │ ││   ; CODE XREF from fcn.140002b50 @ 0x140002c15(x)
+│    │ └──> 0x140002d10      4c8d059172..   lea r8, str.sorting_cert_chain_list ; 0x140039fa8 ; "sorting cert chain list"
+│    │  │   0x140002d17      4c89a424d8..   mov qword [var_d8h], r12
+│    │  │   0x140002d1f      ba01000000     mov edx, 1
+│    │  │   0x140002d24      33c9           xor ecx, ecx
+│    │  │   0x140002d26      e8b5200000     call fcn.140004de0
+│    │  │   0x140002d2b      488b4dcf       mov rcx, qword [var_31h]   ; int64_t arg1
+│    │  │   0x140002d2f      e84ce9ffff     call fcn.140001680
+│    │  │   0x140002d34      488d4dcf       lea rcx, [var_31h]         ; uint32_t *arg1
+│    │  │   0x140002d38      488945bf       mov qword [var_41h], rax
+│    │  │   0x140002d3c      e83f1b0000     call fcn.140004880
+│    │  │   0x140002d41      4532e4         xor r12b, r12b
+│    │  │   0x140002d44      e8b7640000     call fcn.140009200
+│    │  │   0x140002d49      84c0           test al, al
+│    │ ┌──< 0x140002d4b      0f851d010000   jne 0x140002e6e
+│    │ ││   0x140002d51      4584ed         test r13b, r13b
+│    │┌───< 0x140002d54      0f8574010000   jne 0x140002ece
+│    ││││   0x140002d5a      4c8d055f72..   lea r8, str.search_trust_store_for_root_cert ; 0x140039fc0 ; "search trust store for root cert"
+│    ││││   0x140002d61      ba01000000     mov edx, 1
+│    ││││   0x140002d66      33c9           xor ecx, ecx
+│    ││││   0x140002d68      e873200000     call fcn.140004de0
+│    ││││   0x140002d6d      488b4dbf       mov rcx, qword [var_41h]
+│    ││││   0x140002d71      e8ba1b0000     call fcn.140004930
+│    ││││   0x140002d76      4c8d45df       lea r8, [var_21h]          ; int64_t arg3
+│    ││││   0x140002d7a      488bf8         mov rdi, rax
+│    ││││   0x140002d7d      488d55d7       lea rdx, [var_29h]         ; int64_t arg2
+│    ││││   0x140002d81      488b08         mov rcx, qword [rax]       ; int64_t arg1
+│    ││││   0x140002d84      e887dd0000     call fcn.140010b10
+│    ││││   0x140002d89      85c0           test eax, eax
+│   ┌─────< 0x140002d8b      0f85e5010000   jne 0x140002f76
+│   │││││   0x140002d91      0f104708       movups xmm0, xmmword [rdi + 8]
+│   │││││   0x140002d95      4c8b45d7       mov r8, qword [var_29h]
+│   │││││   0x140002d99      4c8d0d4872..   lea r9, str.extracted_issuer_from_certificate ; 0x140039fe8 ; "extracted issuer from certificate"
+│   │││││   0x140002da0      488d559f       lea rdx, [var_61h]
+│   │││││   0x140002da4      4488642420     mov byte [var_20h], r12b
+│   │││││   0x140002da9      8d4802         lea ecx, [rax + 2]
+│   │││││   0x140002dac      0f29459f       movaps xmmword [var_61h], xmm0
+│   │││││   0x140002db0      e87b1c0000     call fcn.140004a30
+│   │││││   0x140002db5      0f104708       movups xmm0, xmmword [rdi + 8]
+│   │││││   0x140002db9      4c8b45df       mov r8, qword [var_21h]
+│   │││││   0x140002dbd      4c8d0d4c72..   lea r9, str.extracted_sn_from_certificate ; 0x14003a010 ; "extracted sn from certificate"
+│   │││││   0x140002dc4      488d559f       lea rdx, [var_61h]
+│   │││││   0x140002dc8      4488642420     mov byte [var_20h], r12b
+│   │││││   0x140002dcd      b902000000     mov ecx, 2
+│   │││││   0x140002dd2      0f29459f       movaps xmmword [var_61h], xmm0
+│   │││││   0x140002dd6      e8551c0000     call fcn.140004a30
+│   │││││   0x140002ddb      0f104708       movups xmm0, xmmword [rdi + 8]
+│   │││││   0x140002ddf      488b4dd7       mov rcx, qword [var_29h]   ; int64_t arg1
+│   │││││   0x140002de3      488d559f       lea rdx, [var_61h]         ; int64_t arg2
+│   │││││   0x140002de7      0f29459f       movaps xmmword [var_61h], xmm0
+│   │││││   0x140002deb      e8b0840000     call fcn.14000b2a0
+│   │││││   0x140002df0      488bf0         mov rsi, rax
+│   │││││   0x140002df3      4885c0         test rax, rax
+│  ┌──────< 0x140002df6      0f847a010000   je 0x140002f76
+│  ││││││   0x140002dfc      0f104008       movups xmm0, xmmword [rax + 8]
+│  ││││││   0x140002e00      4c8b00         mov r8, qword [rax]
+│  ││││││   0x140002e03      4c8d0d2672..   lea r9, str.retrieved_root_from_trust_store ; 0x14003a030 ; "retrieved root from trust store"
+│  ││││││   0x140002e0a      488d559f       lea rdx, [var_61h]
+│  ││││││   0x140002e0e      c644242001     mov byte [var_20h], 1
+│  ││││││   0x140002e13      b902000000     mov ecx, 2
+│  ││││││   0x140002e18      0f29459f       movaps xmmword [var_61h], xmm0
+│  ││││││   0x140002e1c      e80f1c0000     call fcn.140004a30
+│  ││││││   0x140002e21      0f104608       movups xmm0, xmmword [rsi + 8]
+│  ││││││   0x140002e25      4c8b06         mov r8, qword [rsi]
+│  ││││││   0x140002e28      4c8d4d9f       lea r9, [var_61h]
+│  ││││││   0x140002e2c      0f104f08       movups xmm1, xmmword [rdi + 8]
+│  ││││││   0x140002e30      488b0f         mov rcx, qword [rdi]
+│  ││││││   0x140002e33      488d55af       lea rdx, [var_51h]
+│  ││││││   0x140002e37      0f29459f       movaps xmmword [var_61h], xmm0
+│  ││││││   0x140002e3b      0f294daf       movaps xmmword [var_51h], xmm1
+│  ││││││   0x140002e3f      e83cb80000     call fcn.14000e680
+│  ││││││   0x140002e44      85c0           test eax, eax
+│ ┌───────< 0x140002e46      0f852a010000   jne 0x140002f76
+│ │││││││   0x140002e4c      488b4dbf       mov rcx, qword [var_41h]
+│ │││││││   0x140002e50      488bd6         mov rdx, rsi
+│ │││││││   0x140002e53      e858170000     call fcn.1400045b0
+│ │││││││   0x140002e58      4c8d05f171..   lea r8, str.Found_trusted_root_certificate ; 0x14003a050 ; "Found trusted root certificate"
+│ │││││││   0x140002e5f      ba03000000     mov edx, 3
+│ │││││││   0x140002e64      33c9           xor ecx, ecx
+│ │││││││   0x140002e66      41b401         mov r12b, 1
+│ │││││││   0x140002e69      e8721f0000     call fcn.140004de0
+│ │││││││   ; CODE XREFS from fcn.140002b50 @ 0x140002d4b(x), 0x140002f71(x)
+│ ─────└──> 0x140002e6e      488b55bf       mov rdx, qword [var_41h]
+│ │││││ │   0x140002e72      488b4dc7       mov rcx, qword [var_39h]
+│ │││││ │   0x140002e76      e875190000     call fcn.1400047f0
+│ │││││ │   0x140002e7b      488bf0         mov rsi, rax
+│ │││││ │   0x140002e7e      4885c0         test rax, rax
+│ │││││┌──< 0x140002e81      0f850d010000   jne 0x140002f94
+│ │││││││   0x140002e87      488d4dc7       lea rcx, [var_39h]
+│ │││││││   0x140002e8b      e800180000     call fcn.140004690
+│ │││││││   0x140002e90      b88fe8ffff     mov eax, 0xffffe88f
+│ ────────< 0x140002e95      e9dd020000     jmp 0x140003177
+│ │││││││   ; CODE XREF from fcn.140002b50 @ 0x140002cb2(x)
+│ │││└────> 0x140002e9a      b902000000     mov ecx, 2
+│ │││ │││   0x140002e9f      ff15b3630300   call qword [sym.imp.api_ms_win_crt_stdio_l1_1_0.dll___acrt_iob_func] ; [0x140039258:8]=0x53fec reloc.api_ms_win_crt_stdio_l1_1_0.dll___acrt_iob_func
+│ │││ │││   0x140002ea5      488bc8         mov rcx, rax
+│ │││ │││   0x140002ea8      4c8d0df165..   lea r9, str.Could_not_allocate_memory ; 0x1400394a0 ; "Could not allocate memory"
+│ │││ │││   0x140002eaf      4c8d050a66..   lea r8, str.nverify        ; 0x1400394c0 ; "nverify"
+│ │││ │││   0x140002eb6      488d150b66..   lea rdx, str.FATAL_____s___s_r_n ; 0x1400394c8 ; "FATAL [][%s] %s\r\n"
+│ │││ │││   0x140002ebd      e8aeedffff     call fcn.140001c70
+│ │││ │││   0x140002ec2      b901000000     mov ecx, 1
+│ │││ │││   0x140002ec7      ff15c3620300   call qword [sym.imp.api_ms_win_crt_runtime_l1_1_0.dll_exit] ; [0x140039190:8]=0x53fe4 reloc.api_ms_win_crt_runtime_l1_1_0.dll_exit
+│ │││ │││   0x140002ecd      cc             int3
+│ │││ │││   ; CODE XREF from fcn.140002b50 @ 0x140002d54(x)
+│ │││ └───> 0x140002ece      488b4dbf       mov rcx, qword [var_41h]
+│ │││  ││   0x140002ed2      e8591a0000     call fcn.140004930
+│ │││  ││   0x140002ed7      4c8d45d7       lea r8, [var_29h]          ; int64_t arg3
+│ │││  ││   0x140002edb      488bf8         mov rdi, rax
+│ │││  ││   0x140002ede      488d55df       lea rdx, [var_21h]         ; int64_t arg2
+│ │││  ││   0x140002ee2      488b08         mov rcx, qword [rax]       ; int64_t arg1
+│ │││  ││   0x140002ee5      e826dc0000     call fcn.140010b10
+│ │││  ││   0x140002eea      85c0           test eax, eax
+│ │││ ┌───< 0x140002eec      0f8584000000   jne 0x140002f76
+│ │││ │││   0x140002ef2      0f104708       movups xmm0, xmmword [rdi + 8]
+│ │││ │││   0x140002ef6      488b4ddf       mov rcx, qword [var_21h]   ; int64_t arg1
+│ │││ │││   0x140002efa      488d55af       lea rdx, [var_51h]         ; int64_t arg2
+│ │││ │││   0x140002efe      0f2945af       movaps xmmword [var_51h], xmm0
+│ │││ │││   0x140002f02      e899830000     call fcn.14000b2a0
+│ │││ │││   0x140002f07      4885c0         test rax, rax
+│ │││┌────< 0x140002f0a      746a           je 0x140002f76
+│ │││││││   0x140002f0c      0f104008       movups xmm0, xmmword [rax + 8]
+│ │││││││   0x140002f10      4c8b00         mov r8, qword [rax]        ; int64_t arg3
+│ │││││││   0x140002f13      4c8d4daf       lea r9, [var_51h]
+│ │││││││   0x140002f17      0f104f08       movups xmm1, xmmword [rdi + 8]
+│ │││││││   0x140002f1b      488b0f         mov rcx, qword [rdi]       ; int64_t arg1
+│ │││││││   0x140002f1e      488d559f       lea rdx, [var_61h]         ; int64_t arg2
+│ │││││││   0x140002f22      48895c2448     mov qword [var_48h], rbx
+│ │││││││   0x140002f27      c744244001..   mov dword [var_40h], 1
+│ │││││││   0x140002f2f      c744243801..   mov dword [var_38h], 1
+│ │││││││   0x140002f37      c744243001..   mov dword [var_30h], 1
+│ │││││││   0x140002f3f      44897c2428     mov dword [var_28h], r15d
+│ │││││││   0x140002f44      c744242000..   mov dword [var_20h], 0
+│ │││││││   0x140002f4c      0f2945af       movaps xmmword [var_51h], xmm0
+│ │││││││   0x140002f50      0f294d9f       movaps xmmword [var_61h], xmm1
+│ │││││││   0x140002f54      e867edffff     call fcn.140001cc0
+│ │││││││   0x140002f59      85c0           test eax, eax
+│ ────────< 0x140002f5b      7519           jne 0x140002f76
+│ │││││││   0x140002f5d      4c8d05ec70..   lea r8, str.Found_trusted_root_certificate ; 0x14003a050 ; "Found trusted root certificate"
+│ │││││││   0x140002f64      33c9           xor ecx, ecx
+│ │││││││   0x140002f66      8d5003         lea edx, [rax + 3]
+│ │││││││   0x140002f69      e8721e0000     call fcn.140004de0
+│ │││││││   0x140002f6e      41b401         mov r12b, 1
+│ ────────< 0x140002f71      e9f8feffff     jmp 0x140002e6e
+│ │││││││   ; XREFS: CODE 0x140002d8b  CODE 0x140002df6  CODE 0x140002e46  
+│ │││││││   ; XREFS: CODE 0x140002eec  CODE 0x140002f0a  CODE 0x140002f5b  
+│ └└└└└───> 0x140002f76      4c8d05f370..   lea r8, str.No_ultimately_trusted_cert_found ; 0x14003a070 ; "No ultimately trusted cert found"
+│      ││   0x140002f7d      ba06000000     mov edx, 6
+│      ││   0x140002f82      33c9           xor ecx, ecx
+│      ││   0x140002f84      e8571e0000     call fcn.140004de0
+│      ││   0x140002f89      41be46e2ffff   mov r14d, 0xffffe246
+│     ┌───< 0x140002f8f      e98a010000     jmp 0x14000311e
+│     │││   ; CODE XREF from fcn.140002b50 @ 0x140002e81(x)
+│     │└──> 0x140002f94      488b08         mov rcx, qword [rax]
+│     │ │   0x140002f97      4c397108       cmp qword [rcx + 8], r14
+│     │┌──< 0x140002f9b      7505           jne 0x140002fa2
+│     │││   0x140002f9d      4533f6         xor r14d, r14d
+│    ┌────< 0x140002fa0      eb20           jmp 0x140002fc2
+│    ││││   ; CODE XREF from fcn.140002b50 @ 0x140002f9b(x)
+│    ││└──> 0x140002fa2      0f104008       movups xmm0, xmmword [rax + 8]
+│    ││ │   0x140002fa6      4c8d4daf       lea r9, [var_51h]          ; int64_t arg4
+│    ││ │   0x140002faa      4d8bc6         mov r8, r14                ; int64_t arg3
+│    ││ │   0x140002fad      488d559f       lea rdx, [var_61h]         ; int64_t arg2
+│    ││ │   0x140002fb1      660f7f75af     movdqa xmmword [var_51h], xmm6
+│    ││ │   0x140002fb6      0f29459f       movaps xmmword [var_61h], xmm0
+│    ││ │   0x140002fba      e8f1990000     call fcn.14000c9b0
+│    ││ │   0x140002fbf      448bf0         mov r14d, eax
+│    ││ │   ; CODE XREF from fcn.140002b50 @ 0x140002fa0(x)
+│    └────> 0x140002fc2      e859620000     call fcn.140009220
+│     │ │   0x140002fc7      84c0           test al, al
+│     │┌──< 0x140002fc9      7575           jne 0x140003040
+│     │││   0x140002fcb      38457f         cmp byte [arg_7fh], al
+│    ┌────< 0x140002fce      7570           jne 0x140003040
+│    ││││   0x140002fd0      4c8d05c170..   lea r8, str.checking_public_key ; 0x14003a098 ; "checking public key"
+│    ││││   0x140002fd7      ba01000000     mov edx, 1
+│    ││││   0x140002fdc      33c9           xor ecx, ecx
+│    ││││   0x140002fde      e8fd1d0000     call fcn.140004de0
+│    ││││   0x140002fe3      488d55df       lea rdx, [var_21h]         ; int64_t arg2
+│    ││││   0x140002fe7      488bce         mov rcx, rsi               ; int64_t arg1
+│    ││││   0x140002fea      e8d1e8ffff     call fcn.1400018c0
+│    ││││   0x140002fef      488bf8         mov rdi, rax
+│    ││││   0x140002ff2      4885c0         test rax, rax
+│   ┌─────< 0x140002ff5      0f84c6010000   je 0x1400031c1
+│   │││││   0x140002ffb      48817ddf0e..   cmp qword [var_21h], 0x10e
+│  ┌──────< 0x140003003      0f85af010000   jne 0x1400031b8
+│  ││││││   0x140003009      41b80e010000   mov r8d, 0x10e             ; 270 ; size_t n
+│  ││││││   0x14000300f      488d15aafe..   lea rdx, [0x140072ec0]     ; const void *s2
+│  ││││││   0x140003016      488bc8         mov rcx, rax               ; const void *s1
+│  ││││││   0x140003019      e866500300     call sub.VCRUNTIME140.dll_memcmp ; int memcmp(const void *s1, const void *s2, size_t n)
+│  ││││││   0x14000301e      85c0           test eax, eax
+│ ┌───────< 0x140003020      0f8592010000   jne 0x1400031b8
+│ │││││││   0x140003026      4c8d058370..   lea r8, str.Signed_by_TPK  ; 0x14003a0b0 ; "Signed by TPK"
+│ │││││││   0x14000302d      33c9           xor ecx, ecx
+│ │││││││   0x14000302f      8d5003         lea edx, [rax + 3]
+│ │││││││   0x140003032      e8a91d0000     call fcn.140004de0
+│ │││││││   0x140003037      488bcf         mov rcx, rdi               ; void *ptr
+│ │││││││   0x14000303a      ff1508610300   call qword [sym.imp.api_ms_win_crt_heap_l1_1_0.dll_free] ; [0x140039148:8]=0x53fc8 reloc.api_ms_win_crt_heap_l1_1_0.dll_free ; void free(void *ptr)
+│ │││││││   ; CODE XREFS from fcn.140002b50 @ 0x140002fc9(x), 0x140002fce(x)
+│ │││└─└──> 0x140003040      4585f6         test r14d, r14d
+│ │││ │┌──< 0x140003043      0f85d3000000   jne 0x14000311c
+│ │││ │││   0x140003049      488b4dc7       mov rcx, qword [var_39h]
+│ │││ │││   0x14000304d      e8ae160000     call fcn.140004700
+│ │││ │││   0x140003052      488bf8         mov rdi, rax
+│ │││ │││   0x140003055      4885c0         test rax, rax
+│ │││┌────< 0x140003058      7474           je 0x1400030ce
+│ │││││││   0x14000305a      660f1f440000   nop word [rax + rax]
+│ │││││││   ; CODE XREF from fcn.140002b50 @ 0x1400030c7(x)
+│ ────────> 0x140003060      0f104708       movups xmm0, xmmword [rdi + 8]
+│ │││││││   0x140003064      4c8b07         mov r8, qword [rdi]        ; int64_t arg3
+│ │││││││   0x140003067      33c0           xor eax, eax
+│ │││││││   0x140003069      0f104e08       movups xmm1, xmmword [rsi + 8]
+│ │││││││   0x14000306d      488b0e         mov rcx, qword [rsi]       ; int64_t arg1
+│ │││││││   0x140003070      4c8d4daf       lea r9, [var_51h]
+│ │││││││   0x140003074      48895c2448     mov qword [var_48h], rbx
+│ │││││││   0x140003079      488d559f       lea rdx, [var_61h]         ; int64_t arg2
+│ │││││││   0x14000307d      c744244001..   mov dword [var_40h], 1
+│ │││││││   0x140003085      c744243801..   mov dword [var_38h], 1
+│ │││││││   0x14000308d      89442430       mov dword [var_30h], eax
+│ │││││││   0x140003091      c744242801..   mov dword [var_28h], 1
+│ │││││││   0x140003099      89442420       mov dword [var_20h], eax
+│ │││││││   0x14000309d      0f2945af       movaps xmmword [var_51h], xmm0
+│ │││││││   0x1400030a1      0f294d9f       movaps xmmword [var_61h], xmm1
+│ │││││││   0x1400030a5      e816ecffff     call fcn.140001cc0
+│ │││││││   0x1400030aa      448bf0         mov r14d, eax
+│ │││││││   0x1400030ad      85c0           test eax, eax
+│ ────────< 0x1400030af      0f882a010000   js 0x1400031df
+│ │││││││   0x1400030b5      488b4dc7       mov rcx, qword [var_39h]
+│ │││││││   0x1400030b9      488bf7         mov rsi, rdi
+│ │││││││   0x1400030bc      e83f160000     call fcn.140004700
+│ │││││││   0x1400030c1      488bf8         mov rdi, rax
+│ │││││││   0x1400030c4      4885c0         test rax, rax
+│ ────────< 0x1400030c7      7597           jne 0x140003060
+│ │││││││   0x1400030c9      4585f6         test r14d, r14d
+│ ────────< 0x1400030cc      756e           jne 0x14000313c
+│ │││││││   ; CODE XREF from fcn.140002b50 @ 0x140003058(x)
+│ │││└────> 0x1400030ce      0f104608       movups xmm0, xmmword [rsi + 8]
+│ │││ │││   0x1400030d2      488b0e         mov rcx, qword [rsi]       ; int64_t arg1
+│ │││ │││   0x1400030d5      4c8d4daf       lea r9, [var_51h]
+│ │││ │││   0x1400030d9      48895c2448     mov qword [var_48h], rbx
+│ │││ │││   0x1400030de      488d559f       lea rdx, [var_61h]         ; int64_t arg2
+│ │││ │││   0x1400030e2      c744244001..   mov dword [var_40h], 1
+│ │││ │││   0x1400030ea      4c8bc1         mov r8, rcx                ; int64_t arg3
+│ │││ │││   0x1400030ed      c744243801..   mov dword [var_38h], 1
+│ │││ │││   0x1400030f5      c744243001..   mov dword [var_30h], 1
+│ │││ │││   0x1400030fd      44897c2428     mov dword [var_28h], r15d
+│ │││ │││   0x140003102      c744242000..   mov dword [var_20h], 0
+│ │││ │││   0x14000310a      0f2945af       movaps xmmword [var_51h], xmm0
+│ │││ │││   0x14000310e      0f29459f       movaps xmmword [var_61h], xmm0
+│ │││ │││   0x140003112      e8a9ebffff     call fcn.140001cc0
+│ │││ │││   0x140003117      448bf0         mov r14d, eax
+│ │││ │││   0x14000311a      85c0           test eax, eax
+│ │││ │││   ; CODE XREF from fcn.140002b50 @ 0x140003043(x)
+│ │││┌─└──> 0x14000311c      791e           jns 0x14000313c
+│ │││││ │   ; CODE XREFS from fcn.140002b50 @ 0x140002f8f(x), 0x1400031da(x), 0x1400031fd(x)
+│ ────└┌──> 0x14000311e      418bce         mov ecx, r14d
+│ ││││ ╎│   0x140003121      e81af00000     call fcn.140012140
+│ ││││ ╎│   0x140003126      4c8bc8         mov r9, rax
+│ ││││ ╎│   0x140003129      4c8d05d86f..   lea r8, str.Certificate_chain_validation_failed:__s ; 0x14003a108 ; "Certificate chain validation failed: %s"
+│ ││││ ╎│   0x140003130      ba06000000     mov edx, 6
+│ ││││ ╎│   0x140003135      33c9           xor ecx, ecx
+│ ││││ ╎│   0x140003137      e8a41c0000     call fcn.140004de0
+│ ││││ ╎│   ; CODE XREFS from fcn.140002b50 @ 0x1400030cc(x), 0x14000311c(x)
+│ ───└────> 0x14000313c      4584ed         test r13b, r13b
+│ │││ ┌───< 0x14000313f      750e           jne 0x14000314f
+│ │││ │╎│   0x140003141      4584e4         test r12b, r12b
+│ │││┌────< 0x140003144      7409           je 0x14000314f
+│ │││││╎│   0x140003146      488b4dbf       mov rcx, qword [var_41h]   ; int64_t arg1
+│ │││││╎│   0x14000314a      e821180000     call fcn.140004970
+│ │││││╎│   ; CODE XREFS from fcn.140002b50 @ 0x14000313f(x), 0x140003144(x)
+│ │││└└───> 0x14000314f      488b4dbf       mov rcx, qword [var_41h]   ; uint32_t arg1
+│ │││  ╎│   0x140003153      488d1576f3..   lea rdx, [0x1400024d0]     ; int64_t arg2
+│ │││  ╎│   0x14000315a      4533c0         xor r8d, r8d               ; int64_t arg3
+│ │││  ╎│   0x14000315d      e8be160000     call fcn.140004820
+│ │││  ╎│   0x140003162      488d4dc7       lea rcx, [var_39h]
+│ │││  ╎│   0x140003166      e825150000     call fcn.140004690
+│ │││  ╎│   0x14000316b      488d4dbf       lea rcx, [var_41h]         ; uint32_t *arg1
+│ │││  ╎│   0x14000316f      e80c170000     call fcn.140004880
+│ │││  ╎│   0x140003174      418bc6         mov eax, r14d
+│ │││  ╎│   ; CODE XREF from fcn.140002b50 @ 0x140002e95(x)
+│ ────────> 0x140003177      4c8ba424d8..   mov r12, qword [var_d8h]
+│ │││  ╎│   0x14000317f      4c8bac24d0..   mov r13, qword [var_d0h]
+│ │││  ╎│   0x140003187      488bb424e0..   mov rsi, qword [var_e0h]
+│ │││  ╎│   0x14000318f      4c8bbc24c8..   mov r15, qword [var_c8h]
+│ │││  ╎│   ; CODE XREF from fcn.140002b50 @ 0x140002bef(x)
+│ │││  ╎└─> 0x140003197      488b4def       mov rcx, qword [var_11h]
+│ │││  ╎    0x14000319b      4833cc         xor rcx, rsp
+│ │││  ╎    0x14000319e      e85d410300     call fcn.140037300
+│ │││  ╎    0x1400031a3      0f28b424b0..   movaps xmm6, xmmword [var_b0h]
+│ │││  ╎    0x1400031ab      4881c4e800..   add rsp, 0xe8
+│ │││  ╎    0x1400031b2      415e           pop r14
+│ │││  ╎    0x1400031b4      5f             pop rdi
+│ │││  ╎    0x1400031b5      5b             pop rbx
+│ │││  ╎    0x1400031b6      5d             pop rbp
+│ │││  ╎    0x1400031b7      c3             ret
+│ │││  ╎    ; CODE XREFS from fcn.140002b50 @ 0x140003003(x), 0x140003020(x)
+│ └└──────> 0x1400031b8      488bcf         mov rcx, rdi               ; void *ptr
+│   │  ╎    0x1400031bb      ff15875f0300   call qword [sym.imp.api_ms_win_crt_heap_l1_1_0.dll_free] ; [0x140039148:8]=0x53fc8 reloc.api_ms_win_crt_heap_l1_1_0.dll_free ; void free(void *ptr)
+│   │  ╎    ; CODE XREF from fcn.140002b50 @ 0x140002ff5(x)
+│   └─────> 0x1400031c1      4c8d05f86e..   lea r8, str.Not_signed_by_TPK ; 0x14003a0c0 ; "Not signed by TPK"
+│      ╎    0x1400031c8      ba06000000     mov edx, 6
+│      ╎    0x1400031cd      33c9           xor ecx, ecx
+│      ╎    0x1400031cf      e80c1c0000     call fcn.140004de0
+│      ╎    0x1400031d4      41be47e2ffff   mov r14d, 0xffffe247
+│ ────────< 0x1400031da      e93fffffff     jmp 0x14000311e
+│      ╎    ; CODE XREF from fcn.140002b50 @ 0x1400030af(x)
+│ ────────> 0x1400031df      418bce         mov ecx, r14d
+│      ╎    0x1400031e2      e859ef0000     call fcn.140012140
+│      ╎    0x1400031e7      4c8bc8         mov r9, rax
+│      ╎    0x1400031ea      4c8d05e76e..   lea r8, str.Failed_to_validate_certificate_in_chain:__s ; 0x14003a0d8 ; "Failed to validate certificate in chain: %s"
+│      ╎    0x1400031f1      ba06000000     mov edx, 6
+│      ╎    0x1400031f6      33c9           xor ecx, ecx
+│      ╎    0x1400031f8      e8e31b0000     call fcn.140004de0
+└      └──< 0x1400031fd      e91cffffff     jmp 0x14000311e
+=====TRUSTSTOREBUILDER=====
+            ; CALL XREF from main @ 0x140005453(x)
+┌ 1961: fcn.14000b330 ();
+│ afv: vars(21:sp[0x10..0xd0])
+│           0x14000b330      4055           push rbp
+│           0x14000b332      488d6c24a9     lea rbp, [rsp - 0x57]
+│           0x14000b337      4881ecc000..   sub rsp, 0xc0
+│           0x14000b33e      488b05930c..   mov rax, qword [0x14007bfd8] ; [0x14007bfd8:8]=0x2b992ddfa232 ; "2\xa2\xdf-\x99+"
+│           0x14000b345      4833c4         xor rax, rsp
+│           0x14000b348      48894527       mov qword [var_27h], rax
+│           0x14000b34c      ba10000000     mov edx, 0x10              ; 16 ; int64_t arg2
+│           0x14000b351      4c8d0548fe..   lea r8, [0x14000b1a0]
+│           0x14000b358      488d0d090d..   lea rcx, [0x14007c068]     ; int64_t arg1
+│           0x14000b35f      e83c90ffff     call fcn.1400043a0
+│           0x14000b364      48833dfc0c..   cmp qword [0x14007c068], 0 ; [0x14007c068:8]=0
+│       ┌─< 0x14000b36c      7534           jne 0x14000b3a2
+│       │   0x14000b36e      b902000000     mov ecx, 2
+│       │   0x14000b373      ff15dfde0200   call qword [sym.imp.api_ms_win_crt_stdio_l1_1_0.dll___acrt_iob_func] ; [0x140039258:8]=0x53fec reloc.api_ms_win_crt_stdio_l1_1_0.dll___acrt_iob_func
+│       │   0x14000b379      488bc8         mov rcx, rax
+│       │   0x14000b37c      4c8d0d9de1..   lea r9, str.Cannot_allocate_memory ; 0x140039520 ; "Cannot allocate memory"
+│       │   0x14000b383      4c8d0536e1..   lea r8, str.nverify        ; 0x1400394c0 ; "nverify"
+│       │   0x14000b38a      488d1537e1..   lea rdx, str.FATAL_____s___s_r_n ; 0x1400394c8 ; "FATAL [][%s] %s\r\n"
+│       │   0x14000b391      e8da68ffff     call fcn.140001c70
+│       │   0x14000b396      b901000000     mov ecx, 1
+│       │   0x14000b39b      ff15efdd0200   call qword [sym.imp.api_ms_win_crt_runtime_l1_1_0.dll_exit] ; [0x140039190:8]=0x53fe4 reloc.api_ms_win_crt_runtime_l1_1_0.dll_exit
+│       │   0x14000b3a1      cc             int3
+│       │   ; CODE XREF from fcn.14000b330 @ 0x14000b36c(x)
+│       └─> 0x14000b3a2      488d0dc70c..   lea rcx, [0x14007c070]
+│           0x14000b3a9      e84295ffff     call fcn.1400048f0
+│           0x14000b3ae      488d0dc30c..   lea rcx, [0x14007c078]
+│           0x14000b3b5      e83695ffff     call fcn.1400048f0
+│           0x14000b3ba      48833dae0c..   cmp qword [0x14007c070], 0 ; [0x14007c070:8]=0
+│       ┌─< 0x14000b3c2      0f84e0060000   je 0x14000baa8
+│       │   0x14000b3c8      48833da80c..   cmp qword [0x14007c078], 0 ; [0x14007c078:8]=0
+│      ┌──< 0x14000b3d0      0f84d2060000   je 0x14000baa8
+│      ││   0x14000b3d6      8b15e07a0600   mov edx, dword [0x140072ebc] ; [0x140072ebc:4]=0x1debc ; int64_t arg2
+│      ││   0x14000b3dc      4c8d051d9c..   lea r8, section..data      ; 0x140055000 ; "0\x83\x01\u07b7\x02\x01\x030\x83\x01\xdeo\x06\t*\x86H\x86\xf7\r\x01\a\x01\xa0\x83\x01\xde_\x04\x83\x01\xdeZ0\x83\x01\xdeU0\x83\x01\xdeP\x06\t*\x86H\x86\xf7\r\x01\a\x06\xa0\x83\x01\xde@0\x83\x01\xde;\x02\x01" ; int64_t arg3
+│      ││   0x14000b3e3      48899c24d0..   mov qword [var_d0h], rbx
+│      ││   0x14000b3eb      488d4d17       lea rcx, [var_17h]         ; int64_t arg1
+│      ││   0x14000b3ef      4889bc24e0..   mov qword [var_e0h], rdi
+│      ││   0x14000b3f7      e8246d0000     call fcn.140012120
+│      ││   0x14000b3fc      488d4517       lea rax, [var_17h]
+│      ││   0x14000b400      488d3db910..   lea rdi, [0x14003c4c0]
+│      ││   0x14000b407      488945f7       mov qword [var_9h], rax
+│      ││   0x14000b40b      488d5507       lea rdx, [var_7h]          ; int64_t arg2
+│      ││   0x14000b40f      48897dff       mov qword [var_1h], rdi
+│      ││   0x14000b413      488d4df7       lea rcx, [var_9h]          ; int64_t arg1
+│      ││   0x14000b417      e8e41e0000     call fcn.14000d300
+│      ││   0x14000b41c      85c0           test eax, eax
+│     ┌───< 0x14000b41e      7573           jne 0x14000b493
+│     │││   0x14000b420      488b5d07       mov rbx, qword [var_7h]
+│     │││   0x14000b424      488d4517       lea rax, [var_17h]
+│     │││   0x14000b428      488945f7       mov qword [var_9h], rax
+│     │││   0x14000b42c      4c8d051509..   lea r8, [0x14003bd48]      ; int64_t arg3
+│     │││   0x14000b433      488d0586fb..   lea rax, [0x14000afc0]
+│     │││   0x14000b43a      48897dff       mov qword [var_1h], rdi
+│     │││   0x14000b43e      4889442438     mov qword [var_38h], rax
+│     │││   0x14000b443      488d55f7       lea rdx, [var_9h]          ; int64_t arg2
+│     │││   0x14000b447      48c7442430..   mov qword [var_30h], 0
+│     │││   0x14000b450      41b912000000   mov r9d, 0x12              ; 18
+│     │││   0x14000b456      48c7442428..   mov qword [var_28h], 0
+│     │││   0x14000b45f      488bcb         mov rcx, rbx               ; int64_t arg1
+│     │││   0x14000b462      48c7442420..   mov qword [var_20h], 0
+│     │││   0x14000b46b      e8a0850100     call fcn.140023a10
+│     │││   0x14000b470      8bf8           mov edi, eax
+│     │││   0x14000b472      4885db         test rbx, rbx
+│    ┌────< 0x14000b475      7408           je 0x14000b47f
+│    ││││   0x14000b477      488bcb         mov rcx, rbx               ; uint32_t arg1
+│    ││││   0x14000b47a      e831710000     call fcn.1400125b0
+│    ││││   ; CODE XREF from fcn.14000b330 @ 0x14000b475(x)
+│    └────> 0x14000b47f      85ff           test edi, edi
+│    ┌────< 0x14000b481      792d           jns 0x14000b4b0
+│    ││││   0x14000b483      8bcf           mov ecx, edi               ; uint32_t arg1
+│    ││││   0x14000b485      e8b66c0000     call fcn.140012140
+│    ││││   0x14000b48a      4c8d05cf08..   lea r8, str.Error_parsing_PKCS12_trust_store:__s ; 0x14003bd60 ; "Error parsing PKCS12 trust store: %s"
+│   ┌─────< 0x14000b491      eb0e           jmp 0x14000b4a1
+│   │││││   ; CODE XREF from fcn.14000b330 @ 0x14000b41e(x)
+│   ││└───> 0x14000b493      8bc8           mov ecx, eax               ; uint32_t arg1
+│   ││ ││   0x14000b495      e8a66c0000     call fcn.140012140
+│   ││ ││   0x14000b49a      4c8d05e708..   lea r8, str.Error_parsing_ASN1_trust_store:__s ; 0x14003bd88 ; "Error parsing ASN1 trust store: %s"
+│   ││ ││   ; CODE XREF from fcn.14000b330 @ 0x14000b491(x)
+│   └─────> 0x14000b4a1      4c8bc8         mov r9, rax                ; char *arg4
+│    │ ││   0x14000b4a4      ba06000000     mov edx, 6                 ; int64_t arg2
+│    │ ││   0x14000b4a9      33c9           xor ecx, ecx               ; int64_t arg1
+│    │ ││   0x14000b4ab      e83099ffff     call fcn.140004de0
+│    │ ││   ; CODE XREF from fcn.14000b330 @ 0x14000b481(x)
+│    └────> 0x14000b4b0      e87bddffff     call fcn.140009230
+│      ││   0x14000b4b5      488bc8         mov rcx, rax               ; uint32_t arg1
+│      ││   0x14000b4b8      488bd8         mov rbx, rax
+│      ││   0x14000b4bb      e85093ffff     call fcn.140004810
+│      ││   0x14000b4c0      84c0           test al, al
+│     ┌───< 0x14000b4c2      0f8587050000   jne 0x14000ba4f
+│     │││   0x14000b4c8      488d4def       lea rcx, [var_11h]         ; int64_t arg1
+│     │││   0x14000b4cc      e8ef91ffff     call fcn.1400046c0
+│     │││   0x14000b4d1      488b4def       mov rcx, qword [var_11h]
+│     │││   0x14000b4d5      4885c9         test rcx, rcx
+│    ┌────< 0x14000b4d8      7534           jne 0x14000b50e
+│    ││││   0x14000b4da      b902000000     mov ecx, 2
+│    ││││   0x14000b4df      ff1573dd0200   call qword [sym.imp.api_ms_win_crt_stdio_l1_1_0.dll___acrt_iob_func] ; [0x140039258:8]=0x53fec reloc.api_ms_win_crt_stdio_l1_1_0.dll___acrt_iob_func
+│    ││││   0x14000b4e5      488bc8         mov rcx, rax
+│    ││││   0x14000b4e8      4c8d0db1df..   lea r9, str.Could_not_allocate_memory ; 0x1400394a0 ; "Could not allocate memory"
+│    ││││   0x14000b4ef      4c8d05cadf..   lea r8, str.nverify        ; 0x1400394c0 ; "nverify"
+│    ││││   0x14000b4f6      488d15cbdf..   lea rdx, str.FATAL_____s___s_r_n ; 0x1400394c8 ; "FATAL [][%s] %s\r\n"
+│    ││││   0x14000b4fd      e86e67ffff     call fcn.140001c70
+│    ││││   0x14000b502      b901000000     mov ecx, 1
+│    ││││   0x14000b507      ff1583dc0200   call qword [sym.imp.api_ms_win_crt_runtime_l1_1_0.dll_exit] ; [0x140039190:8]=0x53fe4 reloc.api_ms_win_crt_runtime_l1_1_0.dll_exit
+│    ││││   0x14000b50d      cc             int3
+│    ││││   ; CODE XREF from fcn.14000b330 @ 0x14000b4d8(x)
+│    └────> 0x14000b50e      4889b424d8..   mov qword [var_d8h], rsi
+│     │││   0x14000b516      488bd3         mov rdx, rbx               ; int64_t arg2
+│     │││   0x14000b519      4c89a424b8..   mov qword [var_b8h], r12
+│     │││   0x14000b521      4c89ac24b0..   mov qword [var_b0h], r13
+│     │││   0x14000b529      4c89b424a8..   mov qword [var_a8h], r14
+│     │││   0x14000b531      4c89bc24a0..   mov qword [var_a0h], r15
+│     │││   0x14000b539      e8b292ffff     call fcn.1400047f0
+│     │││   0x14000b53e      4c8be8         mov r13, rax
+│     │││   0x14000b541      4885c0         test rax, rax
+│    ┌────< 0x14000b544      0f84d4040000   je 0x14000ba1e
+│    ││││   0x14000b54a      660f1f440000   nop word [rax + rax]
+│    ││││   ; CODE XREF from fcn.14000b330 @ 0x14000ba18(x)
+│   ┌─────> 0x14000b550      498bcd         mov rcx, r13               ; LPCSTR lpFileName
+│   ╎││││   0x14000b553      e898bc0200     call fcn.1400371f0
+│   ╎││││   0x14000b558      84c0           test al, al
+│  ┌──────< 0x14000b55a      0f8493040000   je 0x14000b9f3
+│  │╎││││   0x14000b560      498bcd         mov rcx, r13               ; LPCSTR lpFileName
+│  │╎││││   0x14000b563      e8d8bc0200     call fcn.140037240
+│  │╎││││   0x14000b568      84c0           test al, al
+│ ┌───────< 0x14000b56a      0f8483040000   je 0x14000b9f3
+│ ││╎││││   0x14000b570      48c7c3ffff..   mov rbx, 0xffffffffffffffff
+│ ││╎││││   0x14000b577      660f1f8400..   nop word [rax + rax]
+│ ││╎││││   ; CODE XREF from fcn.14000b330 @ 0x14000b588(x)
+│ ────────> 0x14000b580      48ffc3         inc rbx
+│ ││╎││││   0x14000b583      42803c2b00     cmp byte [rbx + r13], 0
+│ ────────< 0x14000b588      75f6           jne 0x14000b580
+│ ││╎││││   0x14000b58a      4883fb04       cmp rbx, 4                 ; 4
+│ ────────< 0x14000b58e      0f8275040000   jb 0x14000ba09
+│ ││╎││││   0x14000b594      498bcd         mov rcx, r13               ; int64_t arg1
+│ ││╎││││   0x14000b597      e8848affff     call fcn.140004020
+│ ││╎││││   0x14000b59c      488945e7       mov qword [var_19h], rax
+│ ││╎││││   0x14000b5a0      4885c0         test rax, rax
+│ ────────< 0x14000b5a3      0f8460040000   je 0x14000ba09
+│ ││╎││││   0x14000b5a9      420fb64c2bfd   movzx ecx, byte [rbx + r13 - 3]
+│ ││╎││││   0x14000b5af      80f964         cmp cl, 0x64               ; 'd' ; 100
+│ ────────< 0x14000b5b2      0f8592000000   jne 0x14000b64a
+│ ││╎││││   0x14000b5b8      42807c2bfe65   cmp byte [rbx + r13 - 2], 0x65 ; 'e'
+│ ────────< 0x14000b5be      0f850e040000   jne 0x14000b9d2
+│ ││╎││││   0x14000b5c4      42807c2bff72   cmp byte [rbx + r13 - 1], 0x72 ; 'r'
+│ ────────< 0x14000b5ca      0f8502040000   jne 0x14000b9d2
+│ ││╎││││   0x14000b5d0      488b5018       mov rdx, qword [rax + 0x18] ; int64_t arg2
+│ ││╎││││   0x14000b5d4      488b4810       mov rcx, qword [rax + 0x10] ; int64_t arg1
+│ ││╎││││   0x14000b5d8      e80365ffff     call fcn.140001ae0
+│ ││╎││││   0x14000b5dd      4889450f       mov qword [var_fh], rax
+│ ││╎││││   0x14000b5e1      4885c0         test rax, rax
+│ ────────< 0x14000b5e4      7437           je 0x14000b61d
+│ ││╎││││   0x14000b5e6      488bc8         mov rcx, rax               ; int64_t arg1
+│ ││╎││││   0x14000b5e9      e8c2faffff     call fcn.14000b0b0
+│ ││╎││││   0x14000b5ee      84c0           test al, al
+│ ────────< 0x14000b5f0      742b           je 0x14000b61d
+│ ││╎││││   0x14000b5f2      4d8bcd         mov r9, r13                ; char *arg4
+│ ││╎││││   0x14000b5f5      4c8d05c407..   lea r8, str.Adding_cert_to_trust_store:__s ; 0x14003bdc0 ; "Adding cert to trust store: %s" ; int64_t arg3
+│ ││╎││││   0x14000b5fc      ba03000000     mov edx, 3                 ; int64_t arg2
+│ ││╎││││   0x14000b601      33c9           xor ecx, ecx               ; int64_t arg1
+│ ││╎││││   0x14000b603      e8d897ffff     call fcn.140004de0
+│ ││╎││││   0x14000b608      488b55e7       mov rdx, qword [var_19h]   ; int64_t arg2
+│ ││╎││││   0x14000b60c      488b0d5d0a..   mov rcx, qword [0x14007c070] ; [0x14007c070:8]=0 ; uint32_t arg1
+│ ││╎││││   0x14000b613      e80890ffff     call fcn.140004620
+│ ────────< 0x14000b618      e9ec030000     jmp 0x14000ba09
+│ ││╎││││   ; CODE XREFS from fcn.14000b330 @ 0x14000b5e4(x), 0x14000b5f0(x)
+│ ────────> 0x14000b61d      4d8bcd         mov r9, r13                ; char *arg4
+│ ││╎││││   0x14000b620      4c8d05b907..   lea r8, str.Cannot_add_cert_to_trust_store:__s ; 0x14003bde0 ; "Cannot add cert to trust store: %s" ; int64_t arg3
+│ ││╎││││   0x14000b627      ba06000000     mov edx, 6                 ; int64_t arg2
+│ ││╎││││   0x14000b62c      33c9           xor ecx, ecx               ; int64_t arg1
+│ ││╎││││   0x14000b62e      e8ad97ffff     call fcn.140004de0
+│ ││╎││││   0x14000b633      488d4d0f       lea rcx, [var_fh]          ; int64_t arg1
+│ ││╎││││   0x14000b637      e81462ffff     call fcn.140001850
+│ ││╎││││   0x14000b63c      488d4de7       lea rcx, [var_19h]         ; uint32_t *arg1
+│ ││╎││││   0x14000b640      e84b89ffff     call fcn.140003f90
+│ ────────< 0x14000b645      e9bf030000     jmp 0x14000ba09
+│ ││╎││││   ; CODE XREF from fcn.14000b330 @ 0x14000b5b2(x)
+│ ────────> 0x14000b64a      80f970         cmp cl, 0x70               ; 'p' ; 112
+│ ────────< 0x14000b64d      0f857f030000   jne 0x14000b9d2
+│ ││╎││││   0x14000b653      42807c2bfe65   cmp byte [rbx + r13 - 2], 0x65 ; 'e'
+│ ────────< 0x14000b659      0f8573030000   jne 0x14000b9d2
+│ ││╎││││   0x14000b65f      42807c2bff6d   cmp byte [rbx + r13 - 1], 0x6d ; 'm'
+│ ────────< 0x14000b665      0f8567030000   jne 0x14000b9d2
+│ ││╎││││   0x14000b66b      4c8b7010       mov r14, qword [rax + 0x10]
+│ ││╎││││   0x14000b66f      33f6           xor esi, esi
+│ ││╎││││   0x14000b671      8b7818         mov edi, dword [rax + 0x18]
+│ ││╎││││   0x14000b674      4533c0         xor r8d, r8d
+│ ││╎││││   0x14000b677      33d2           xor edx, edx
+│ ││╎││││   0x14000b679      4d85f6         test r14, r14
+│ ────────< 0x14000b67c      0f8410030000   je 0x14000b992
+│ ││╎││││   0x14000b682      85ff           test edi, edi
+│ ────────< 0x14000b684      745c           je 0x14000b6e2
+│ ││╎││││   0x14000b686      66660f1f84..   nop word [rax + rax]
+│ ││╎││││   ; CODE XREF from fcn.14000b330 @ 0x14000b6d6(x)
+│ ────────> 0x14000b690      418d4001       lea eax, [r8 + 1]
+│ ││╎││││   0x14000b694      8bca           mov ecx, edx
+│ ││╎││││   0x14000b696      4903ce         add rcx, r14
+│ ││╎││││   0x14000b699      80392d         cmp byte [rcx], 0x2d       ; '-'
+│ ││╎││││   0x14000b69c      410f45c0       cmovne eax, r8d
+│ ││╎││││   0x14000b6a0      448bc0         mov r8d, eax
+│ ││╎││││   0x14000b6a3      3bfa           cmp edi, edx
+│ ────────< 0x14000b6a5      7631           jbe 0x14000b6d8
+│ ││╎││││   ; CODE XREF from fcn.14000b330 @ 0x14000b6b9(x)
+│ ────────> 0x14000b6a7      0fb601         movzx eax, byte [rcx]
+│ ││╎││││   0x14000b6aa      3c0d           cmp al, 0xd                ; 13
+│ ────────< 0x14000b6ac      7412           je 0x14000b6c0
+│ ││╎││││   0x14000b6ae      3c0a           cmp al, 0xa                ; 10
+│ ────────< 0x14000b6b0      740e           je 0x14000b6c0
+│ ││╎││││   0x14000b6b2      ffc2           inc edx
+│ ││╎││││   0x14000b6b4      48ffc1         inc rcx
+│ ││╎││││   0x14000b6b7      3bd7           cmp edx, edi
+│ ────────< 0x14000b6b9      72ec           jb 0x14000b6a7
+│ ────────< 0x14000b6bb      eb17           jmp 0x14000b6d4
+..
+│ ││╎││││   ; CODE XREFS from fcn.14000b330 @ 0x14000b6ac(x), 0x14000b6b0(x), 0x14000b6d2(x)
+│ ────────> 0x14000b6c0      0fb601         movzx eax, byte [rcx]
+│ ││╎││││   0x14000b6c3      3c0d           cmp al, 0xd                ; 13
+│ ────────< 0x14000b6c5      7404           je 0x14000b6cb
+│ ││╎││││   0x14000b6c7      3c0a           cmp al, 0xa                ; 10
+│ ────────< 0x14000b6c9      7509           jne 0x14000b6d4
+│ ││╎││││   ; CODE XREF from fcn.14000b330 @ 0x14000b6c5(x)
+│ ────────> 0x14000b6cb      ffc2           inc edx
+│ ││╎││││   0x14000b6cd      48ffc1         inc rcx
+│ ││╎││││   0x14000b6d0      3bd7           cmp edx, edi
+│ ────────< 0x14000b6d2      72ec           jb 0x14000b6c0
+│ ││╎││││   ; CODE XREFS from fcn.14000b330 @ 0x14000b6bb(x), 0x14000b6c9(x)
+│ ────────> 0x14000b6d4      3bfa           cmp edi, edx
+│ ────────< 0x14000b6d6      77b8           ja 0x14000b690
+│ ││╎││││   ; CODE XREF from fcn.14000b330 @ 0x14000b6a5(x)
+│ ────────> 0x14000b6d8      41f6c001       test r8b, 1                ; 1
+│ ────────< 0x14000b6dc      0f85b0020000   jne 0x14000b992
+│ ││╎││││   ; CODE XREF from fcn.14000b330 @ 0x14000b684(x)
+│ ────────> 0x14000b6e2      41d1e8         shr r8d, 1
+│ ││╎││││   0x14000b6e5      438d1c40       lea ebx, [r8 + r8*2]
+│ ││╎││││   0x14000b6e9      c1e304         shl ebx, 4
+│ ││╎││││   0x14000b6ec      8bcb           mov ecx, ebx               ; size_t size
+│ ││╎││││   0x14000b6ee      e89d6a0000     call fcn.140012190
+│ ││╎││││   0x14000b6f3      4c8be0         mov r12, rax
+│ ││╎││││   0x14000b6f6      4885c0         test rax, rax
+│ ────────< 0x14000b6f9      0f8493020000   je 0x14000b992
+│ ││╎││││   0x14000b6ff      448bc3         mov r8d, ebx               ; size_t n
+│ ││╎││││   0x14000b702      33d2           xor edx, edx               ; int c
+│ ││╎││││   0x14000b704      488bc8         mov rcx, rax               ; int64_t arg1
+│ ││╎││││   0x14000b707      e8846d0000     call fcn.140012490
+│ ││╎││││   0x14000b70c      33c9           xor ecx, ecx
+│ ││╎││││   0x14000b70e      4533ff         xor r15d, r15d
+│ ││╎││││   0x14000b711      41803e2d       cmp byte [r14], 0x2d       ; '-'
+│ ────────< 0x14000b715      0f8409010000   je 0x14000b824
+│ ││╎││││   0x14000b71b      85ff           test edi, edi
+│ ────────< 0x14000b71d      744e           je 0x14000b76d
+│ ││╎││││   0x14000b71f      90             nop
+│ ││╎││││   ; CODE XREF from fcn.14000b330 @ 0x14000b76b(x)
+│ ────────> 0x14000b720      8bc1           mov eax, ecx
+│ ││╎││││   0x14000b722      4903c6         add rax, r14
+│ ││╎││││   0x14000b725      3bcf           cmp ecx, edi
+│ ────────< 0x14000b727      7335           jae 0x14000b75e
+│ ││╎││││   0x14000b729      0f1f800000..   nop dword [rax]
+│ ││╎││││   ; CODE XREF from fcn.14000b330 @ 0x14000b744(x)
+│ ────────> 0x14000b730      0fb610         movzx edx, byte [rax]
+│ ││╎││││   0x14000b733      80fa0d         cmp dl, 0xd                ; 13
+│ ────────< 0x14000b736      7410           je 0x14000b748
+│ ││╎││││   0x14000b738      80fa0a         cmp dl, 0xa                ; 10
+│ ────────< 0x14000b73b      740b           je 0x14000b748
+│ ││╎││││   0x14000b73d      ffc1           inc ecx
+│ ││╎││││   0x14000b73f      48ffc0         inc rax
+│ ││╎││││   0x14000b742      3bcf           cmp ecx, edi
+│ ────────< 0x14000b744      72ea           jb 0x14000b730
+│ ────────< 0x14000b746      eb16           jmp 0x14000b75e
+│ ││╎││││   ; CODE XREFS from fcn.14000b330 @ 0x14000b736(x), 0x14000b73b(x), 0x14000b75c(x)
+│ ────────> 0x14000b748      0fb610         movzx edx, byte [rax]
+│ ││╎││││   0x14000b74b      80fa0d         cmp dl, 0xd                ; 13
+│ ────────< 0x14000b74e      7405           je 0x14000b755
+│ ││╎││││   0x14000b750      80fa0a         cmp dl, 0xa                ; 10
+│ ────────< 0x14000b753      7509           jne 0x14000b75e
+│ ││╎││││   ; CODE XREF from fcn.14000b330 @ 0x14000b74e(x)
+│ ────────> 0x14000b755      ffc1           inc ecx
+│ ││╎││││   0x14000b757      48ffc0         inc rax
+│ ││╎││││   0x14000b75a      3bcf           cmp ecx, edi
+│ ────────< 0x14000b75c      72ea           jb 0x14000b748
+│ ││╎││││   ; CODE XREFS from fcn.14000b330 @ 0x14000b727(x), 0x14000b746(x), 0x14000b753(x)
+│ ────────> 0x14000b75e      42803c312d     cmp byte [rcx + r14], 0x2d ; '-'
+│ ────────< 0x14000b763      0f84bb000000   je 0x14000b824
+│ ││╎││││   0x14000b769      3bf9           cmp edi, ecx
+│ ────────< 0x14000b76b      77b3           ja 0x14000b720
+│ ││╎││││   ; CODE XREFS from fcn.14000b330 @ 0x14000b71d(x), 0x14000b826(x), 0x14000b8a3(x), 0x14000b8f5(x), 0x14000b902(x)
+│ ────────> 0x14000b76d      418bdf         mov ebx, r15d
+│ ││╎││││   0x14000b770      4c8965df       mov qword [var_21h], r12
+│ ││╎││││   0x14000b774      895dd7         mov dword [var_29h], ebx
+│ ││╎││││   0x14000b777      4d8bfc         mov r15, r12
+│ ││╎││││   ; CODE XREF from fcn.14000b330 @ 0x14000b933(x)
+│ ────────> 0x14000b77a      85f6           test esi, esi
+│ ────────< 0x14000b77c      0f8814020000   js 0x14000b996
+│ ││╎││││   0x14000b782      85db           test ebx, ebx
+│ ────────< 0x14000b784      0f840c020000   je 0x14000b996
+│ ││╎││││   0x14000b78a      488b55e7       mov rdx, qword [var_19h]   ; int64_t arg2
+│ ││╎││││   0x14000b78e      488b0ddb08..   mov rcx, qword [0x14007c070] ; [0x14007c070:8]=0 ; uint32_t arg1
+│ ││╎││││   0x14000b795      e8868effff     call fcn.140004620
+│ ││╎││││   0x14000b79a      4533f6         xor r14d, r14d
+│ ││╎││││   0x14000b79d      8bf3           mov esi, ebx
+│ ││╎││││   0x14000b79f      85db           test ebx, ebx
+│ ────────< 0x14000b7a1      0f84b6010000   je 0x14000b95d
+│ ││╎││││   0x14000b7a7      498d5f08       lea rbx, [r15 + 8]
+│ ││╎││││   0x14000b7ab      0f1f440000     nop dword [rax + rax]
+│ ││╎││││   ; CODE XREF from fcn.14000b330 @ 0x14000b954(x)
+│ ────────> 0x14000b7b0      8b0b           mov ecx, dword [rbx]       ; size_t size
+│ ││╎││││   0x14000b7b2      ff1578d90200   call qword [sym.imp.api_ms_win_crt_heap_l1_1_0.dll_malloc] ; [0x140039130:8]=0x53fd0 reloc.api_ms_win_crt_heap_l1_1_0.dll_malloc ;  void *malloc(size_t size)
+│ ││╎││││   0x14000b7b8      488bf8         mov rdi, rax
+│ ││╎││││   0x14000b7bb      4885c0         test rax, rax
+│ ────────< 0x14000b7be      0f84b0020000   je 0x14000ba74
+│ ││╎││││   0x14000b7c4      448b03         mov r8d, dword [rbx]       ; size_t n
+│ ││╎││││   0x14000b7c7      488bc8         mov rcx, rax               ; void *s1
+│ ││╎││││   0x14000b7ca      488b53f8       mov rdx, qword [rbx - 8]   ; const void *s2
+│ ││╎││││   0x14000b7ce      e8abc80200     call sub.VCRUNTIME140.dll_memcpy ; void *memcpy(void *s1, const void *s2, size_t n)
+│ ││╎││││   0x14000b7d3      8b13           mov edx, dword [rbx]       ; int64_t arg2
+│ ││╎││││   0x14000b7d5      488bcf         mov rcx, rdi               ; int64_t arg1
+│ ││╎││││   0x14000b7d8      e80363ffff     call fcn.140001ae0
+│ ││╎││││   0x14000b7dd      488945f7       mov qword [var_9h], rax
+│ ││╎││││   0x14000b7e1      4885c0         test rax, rax
+│ ────────< 0x14000b7e4      0f844e010000   je 0x14000b938
+│ ││╎││││   0x14000b7ea      488bc8         mov rcx, rax               ; int64_t arg1
+│ ││╎││││   0x14000b7ed      e8bef8ffff     call fcn.14000b0b0
+│ ││╎││││   0x14000b7f2      84c0           test al, al
+│ ────────< 0x14000b7f4      0f843e010000   je 0x14000b938
+│ ││╎││││   0x14000b7fa      4d8bcd         mov r9, r13                ; char *arg4
+│ ││╎││││   0x14000b7fd      4c8d050406..   lea r8, str.Adding_cert_from__s_to_trust_store ; 0x14003be08 ; "Adding cert from %s to trust store" ; int64_t arg3
+│ ││╎││││   0x14000b804      ba03000000     mov edx, 3                 ; int64_t arg2
+│ ││╎││││   0x14000b809      33c9           xor ecx, ecx               ; int64_t arg1
+│ ││╎││││   0x14000b80b      e8d095ffff     call fcn.140004de0
+│ ││╎││││   0x14000b810      488b0d6108..   mov rcx, qword [0x14007c078] ; [0x14007c078:8]=0 ; uint32_t arg1
+│ ││╎││││   0x14000b817      488bd7         mov rdx, rdi               ; int64_t arg2
+│ ││╎││││   0x14000b81a      e8018effff     call fcn.140004620
+│ ────────< 0x14000b81f      e926010000     jmp 0x14000b94a
+│ ││╎││││   ; CODE XREFS from fcn.14000b330 @ 0x14000b715(x), 0x14000b763(x)
+│ ────────> 0x14000b824      3bcf           cmp ecx, edi
+│ ────────< 0x14000b826      0f8341ffffff   jae 0x14000b76d
+│ ││╎││││   0x14000b82c      0f1f4000       nop dword [rax]
+│ ││╎││││   ; CODE XREF from fcn.14000b330 @ 0x14000b8fc(x)
+│ ────────> 0x14000b830      8bd9           mov ebx, ecx
+│ ││╎││││   ; CODE XREF from fcn.14000b330 @ 0x14000b879(x)
+│ ────────> 0x14000b832      8bc3           mov eax, ebx
+│ ││╎││││   0x14000b834      4903c6         add rax, r14
+│ ││╎││││   0x14000b837      3bdf           cmp ebx, edi
+│ ────────< 0x14000b839      7333           jae 0x14000b86e
+│ ││╎││││   0x14000b83b      0f1f440000     nop dword [rax + rax]
+│ ││╎││││   ; CODE XREF from fcn.14000b330 @ 0x14000b854(x)
+│ ────────> 0x14000b840      0fb610         movzx edx, byte [rax]
+│ ││╎││││   0x14000b843      80fa0d         cmp dl, 0xd                ; 13
+│ ────────< 0x14000b846      7410           je 0x14000b858
+│ ││╎││││   0x14000b848      80fa0a         cmp dl, 0xa                ; 10
+│ ────────< 0x14000b84b      740b           je 0x14000b858
+│ ││╎││││   0x14000b84d      ffc3           inc ebx
+│ ││╎││││   0x14000b84f      48ffc0         inc rax
+│ ││╎││││   0x14000b852      3bdf           cmp ebx, edi
+│ ────────< 0x14000b854      72ea           jb 0x14000b840
+│ ────────< 0x14000b856      eb16           jmp 0x14000b86e
+│ ││╎││││   ; CODE XREFS from fcn.14000b330 @ 0x14000b846(x), 0x14000b84b(x), 0x14000b86c(x)
+│ ────────> 0x14000b858      0fb610         movzx edx, byte [rax]
+│ ││╎││││   0x14000b85b      80fa0d         cmp dl, 0xd                ; 13
+│ ────────< 0x14000b85e      7405           je 0x14000b865
+│ ││╎││││   0x14000b860      80fa0a         cmp dl, 0xa                ; 10
+│ ────────< 0x14000b863      7509           jne 0x14000b86e
+│ ││╎││││   ; CODE XREF from fcn.14000b330 @ 0x14000b85e(x)
+│ ────────> 0x14000b865      ffc3           inc ebx
+│ ││╎││││   0x14000b867      48ffc0         inc rax
+│ ││╎││││   0x14000b86a      3bdf           cmp ebx, edi
+│ ────────< 0x14000b86c      72ea           jb 0x14000b858
+│ ││╎││││   ; CODE XREFS from fcn.14000b330 @ 0x14000b839(x), 0x14000b856(x), 0x14000b863(x)
+│ ────────> 0x14000b86e      8bc3           mov eax, ebx
+│ ││╎││││   0x14000b870      42803c302d     cmp byte [rax + r14], 0x2d ; '-'
+│ ────────< 0x14000b875      7404           je 0x14000b87b
+│ ││╎││││   0x14000b877      3bfb           cmp edi, ebx
+│ ────────< 0x14000b879      77b7           ja 0x14000b832
+│ ││╎││││   ; CODE XREF from fcn.14000b330 @ 0x14000b875(x)
+│ ────────> 0x14000b87b      8bd3           mov edx, ebx               ; int64_t arg2
+│ ││╎││││   0x14000b87d      4f8d047f       lea r8, [r15 + r15*2]
+│ ││╎││││   0x14000b881      49c1e004       shl r8, 4
+│ ││╎││││   0x14000b885      2bd1           sub edx, ecx
+│ ││╎││││   0x14000b887      4d03c4         add r8, r12                ; int64_t arg3
+│ ││╎││││   0x14000b88a      4903ce         add rcx, r14               ; int64_t arg1
+│ ││╎││││   0x14000b88d      4d8d4808       lea r9, [r8 + 8]           ; int64_t arg4
+│ ││╎││││   0x14000b891      e88a420100     call fcn.14001fb20
+│ ││╎││││   0x14000b896      8bf0           mov esi, eax
+│ ││╎││││   0x14000b898      85c0           test eax, eax
+│ ────────< 0x14000b89a      786b           js 0x14000b907
+│ ││╎││││   0x14000b89c      41ffc7         inc r15d
+│ ││╎││││   0x14000b89f      8bcb           mov ecx, ebx
+│ ││╎││││   0x14000b8a1      3bfb           cmp edi, ebx
+│ ────────< 0x14000b8a3      0f86c4feffff   jbe 0x14000b76d
+│ ││╎││││   0x14000b8a9      0f1f800000..   nop dword [rax]
+│ ││╎││││   ; CODE XREF from fcn.14000b330 @ 0x14000b8f3(x)
+│ ────────> 0x14000b8b0      8bd1           mov edx, ecx
+│ ││╎││││   0x14000b8b2      4903d6         add rdx, r14
+│ ││╎││││   0x14000b8b5      3bcf           cmp ecx, edi
+│ ────────< 0x14000b8b7      7331           jae 0x14000b8ea
+│ ││╎││││   0x14000b8b9      0f1f800000..   nop dword [rax]
+│ ││╎││││   ; CODE XREF from fcn.14000b330 @ 0x14000b8d2(x)
+│ ────────> 0x14000b8c0      0fb602         movzx eax, byte [rdx]
+│ ││╎││││   0x14000b8c3      3c0d           cmp al, 0xd                ; 13
+│ ────────< 0x14000b8c5      740f           je 0x14000b8d6
+│ ││╎││││   0x14000b8c7      3c0a           cmp al, 0xa                ; 10
+│ ────────< 0x14000b8c9      740b           je 0x14000b8d6
+│ ││╎││││   0x14000b8cb      ffc1           inc ecx
+│ ││╎││││   0x14000b8cd      48ffc2         inc rdx
+│ ││╎││││   0x14000b8d0      3bcf           cmp ecx, edi
+│ ────────< 0x14000b8d2      72ec           jb 0x14000b8c0
+│ ────────< 0x14000b8d4      eb14           jmp 0x14000b8ea
+│ ││╎││││   ; CODE XREFS from fcn.14000b330 @ 0x14000b8c5(x), 0x14000b8c9(x), 0x14000b8e8(x)
+│ ────────> 0x14000b8d6      0fb602         movzx eax, byte [rdx]
+│ ││╎││││   0x14000b8d9      3c0d           cmp al, 0xd                ; 13
+│ ────────< 0x14000b8db      7404           je 0x14000b8e1
+│ ││╎││││   0x14000b8dd      3c0a           cmp al, 0xa                ; 10
+│ ────────< 0x14000b8df      7509           jne 0x14000b8ea
+│ ││╎││││   ; CODE XREF from fcn.14000b330 @ 0x14000b8db(x)
+│ ────────> 0x14000b8e1      ffc1           inc ecx
+│ ││╎││││   0x14000b8e3      48ffc2         inc rdx
+│ ││╎││││   0x14000b8e6      3bcf           cmp ecx, edi
+│ ────────< 0x14000b8e8      72ec           jb 0x14000b8d6
+│ ││╎││││   ; CODE XREFS from fcn.14000b330 @ 0x14000b8b7(x), 0x14000b8d4(x), 0x14000b8df(x)
+│ ────────> 0x14000b8ea      42803c312d     cmp byte [rcx + r14], 0x2d ; '-'
+│ ────────< 0x14000b8ef      7409           je 0x14000b8fa
+│ ││╎││││   0x14000b8f1      3bf9           cmp edi, ecx
+│ ────────< 0x14000b8f3      77bb           ja 0x14000b8b0
+│ ────────< 0x14000b8f5      e973feffff     jmp 0x14000b76d
+│ ││╎││││   ; CODE XREF from fcn.14000b330 @ 0x14000b8ef(x)
+│ ────────> 0x14000b8fa      3bcf           cmp ecx, edi
+│ ────────< 0x14000b8fc      0f822effffff   jb 0x14000b830
+│ ────────< 0x14000b902      e966feffff     jmp 0x14000b76d
+│ ││╎││││   ; CODE XREF from fcn.14000b330 @ 0x14000b89a(x)
+│ ────────> 0x14000b907      4585ff         test r15d, r15d
+│ ────────< 0x14000b90a      7418           je 0x14000b924
+│ ││╎││││   0x14000b90c      498bdc         mov rbx, r12
+│ ││╎││││   0x14000b90f      418bff         mov edi, r15d
+│ ││╎││││   ; CODE XREF from fcn.14000b330 @ 0x14000b922(x)
+│ ────────> 0x14000b912      488bcb         mov rcx, rbx               ; int64_t arg1
+│ ││╎││││   0x14000b915      e866430100     call fcn.14001fc80
+│ ││╎││││   0x14000b91a      4883c330       add rbx, 0x30              ; 48
+│ ││╎││││   0x14000b91e      4883ef01       sub rdi, 1
+│ ────────< 0x14000b922      75ee           jne 0x14000b912
+│ ││╎││││   ; CODE XREF from fcn.14000b330 @ 0x14000b90a(x)
+│ ────────> 0x14000b924      498bcc         mov rcx, r12               ; int64_t arg1
+│ ││╎││││   0x14000b927      e854680000     call fcn.140012180
+│ ││╎││││   0x14000b92c      4c8b7ddf       mov r15, qword [var_21h]
+│ ││╎││││   0x14000b930      8b5dd7         mov ebx, dword [var_29h]
+│ ────────< 0x14000b933      e942feffff     jmp 0x14000b77a
+│ ││╎││││   ; CODE XREFS from fcn.14000b330 @ 0x14000b7e4(x), 0x14000b7f4(x)
+│ ────────> 0x14000b938      488bcf         mov rcx, rdi               ; void *ptr
+│ ││╎││││   0x14000b93b      ff1507d80200   call qword [sym.imp.api_ms_win_crt_heap_l1_1_0.dll_free] ; [0x140039148:8]=0x53fc8 reloc.api_ms_win_crt_heap_l1_1_0.dll_free ; void free(void *ptr)
+│ ││╎││││   0x14000b941      488d4df7       lea rcx, [var_9h]          ; int64_t arg1
+│ ││╎││││   0x14000b945      e8065fffff     call fcn.140001850
+│ ││╎││││   ; CODE XREF from fcn.14000b330 @ 0x14000b81f(x)
+│ ────────> 0x14000b94a      49ffc6         inc r14
+│ ││╎││││   0x14000b94d      4883c330       add rbx, 0x30              ; 48
+│ ││╎││││   0x14000b951      4c3bf6         cmp r14, rsi
+│ ────────< 0x14000b954      0f8256feffff   jb 0x14000b7b0
+│ ││╎││││   0x14000b95a      8b5dd7         mov ebx, dword [var_29h]
+│ ││╎││││   ; CODE XREF from fcn.14000b330 @ 0x14000b7a1(x)
+│ ────────> 0x14000b95d      4d85ff         test r15, r15
+│ ────────< 0x14000b960      0f84a3000000   je 0x14000ba09
+│ ││╎││││   0x14000b966      85db           test ebx, ebx
+│ ────────< 0x14000b968      7418           je 0x14000b982
+│ ││╎││││   0x14000b96a      498bdf         mov rbx, r15
+│ ││╎││││   0x14000b96d      0f1f00         nop dword [rax]
+│ ││╎││││   ; CODE XREF from fcn.14000b330 @ 0x14000b980(x)
+│ ────────> 0x14000b970      488bcb         mov rcx, rbx               ; int64_t arg1
+│ ││╎││││   0x14000b973      e808430100     call fcn.14001fc80
+│ ││╎││││   0x14000b978      4883c330       add rbx, 0x30              ; 48
+│ ││╎││││   0x14000b97c      4883ee01       sub rsi, 1
+│ ────────< 0x14000b980      75ee           jne 0x14000b970
+│ ││╎││││   ; CODE XREF from fcn.14000b330 @ 0x14000b968(x)
+│ ────────> 0x14000b982      498bcf         mov rcx, r15               ; int64_t arg1
+│ ││╎││││   0x14000b985      e8f6670000     call fcn.140012180
+│ ││╎││││   0x14000b98a      33c0           xor eax, eax
+│ ││╎││││   0x14000b98c      488945df       mov qword [var_21h], rax
+│ ────────< 0x14000b990      eb77           jmp 0x14000ba09
+│ ││╎││││   ; CODE XREFS from fcn.14000b330 @ 0x14000b67c(x), 0x14000b6dc(x), 0x14000b6f9(x)
+│ ────────> 0x14000b992      4c8b7ddf       mov r15, qword [var_21h]
+│ ││╎││││   ; CODE XREFS from fcn.14000b330 @ 0x14000b77c(x), 0x14000b784(x)
+│ ────────> 0x14000b996      4d85ff         test r15, r15
+│ ────────< 0x14000b999      742c           je 0x14000b9c7
+│ ││╎││││   0x14000b99b      8b45d7         mov eax, dword [var_29h]
+│ ││╎││││   0x14000b99e      85c0           test eax, eax
+│ ────────< 0x14000b9a0      7417           je 0x14000b9b9
+│ ││╎││││   0x14000b9a2      498bdf         mov rbx, r15
+│ ││╎││││   0x14000b9a5      8bf8           mov edi, eax
+│ ││╎││││   ; CODE XREF from fcn.14000b330 @ 0x14000b9b7(x)
+│ ────────> 0x14000b9a7      488bcb         mov rcx, rbx               ; int64_t arg1
+│ ││╎││││   0x14000b9aa      e8d1420100     call fcn.14001fc80
+│ ││╎││││   0x14000b9af      4883c330       add rbx, 0x30              ; 48
+│ ││╎││││   0x14000b9b3      4883ef01       sub rdi, 1
+│ ────────< 0x14000b9b7      75ee           jne 0x14000b9a7
+│ ││╎││││   ; CODE XREF from fcn.14000b330 @ 0x14000b9a0(x)
+│ ────────> 0x14000b9b9      498bcf         mov rcx, r15               ; int64_t arg1
+│ ││╎││││   0x14000b9bc      e8bf670000     call fcn.140012180
+│ ││╎││││   0x14000b9c1      33c0           xor eax, eax
+│ ││╎││││   0x14000b9c3      488945df       mov qword [var_21h], rax
+│ ││╎││││   ; CODE XREF from fcn.14000b330 @ 0x14000b999(x)
+│ ────────> 0x14000b9c7      488d4de7       lea rcx, [var_19h]         ; uint32_t *arg1
+│ ││╎││││   0x14000b9cb      e8c085ffff     call fcn.140003f90
+│ ────────< 0x14000b9d0      eb37           jmp 0x14000ba09
+│ ││╎││││   ; CODE XREFS from fcn.14000b330 @ 0x14000b5be(x), 0x14000b5ca(x), 0x14000b64d(x), 0x14000b659(x), 0x14000b665(x)
+│ ────────> 0x14000b9d2      4d8bcd         mov r9, r13                ; char *arg4
+│ ││╎││││   0x14000b9d5      4c8d055404..   lea r8, str.Cannot_add_cert_to_trust_store__unsupported_format_:__s ; 0x14003be30 ; "Cannot add cert to trust store (unsupported format): %s" ; int64_t arg3
+│ ││╎││││   0x14000b9dc      ba06000000     mov edx, 6                 ; int64_t arg2
+│ ││╎││││   0x14000b9e1      33c9           xor ecx, ecx               ; int64_t arg1
+│ ││╎││││   0x14000b9e3      e8f893ffff     call fcn.140004de0
+│ ││╎││││   0x14000b9e8      488d4de7       lea rcx, [var_19h]         ; uint32_t *arg1
+│ ││╎││││   0x14000b9ec      e89f85ffff     call fcn.140003f90
+│ ────────< 0x14000b9f1      eb16           jmp 0x14000ba09
+│ ││╎││││   ; CODE XREFS from fcn.14000b330 @ 0x14000b55a(x), 0x14000b56a(x)
+│ └└──────> 0x14000b9f3      4d8bcd         mov r9, r13                ; char *arg4
+│   ╎││││   0x14000b9f6      4c8d05b303..   lea r8, str._s_not_found   ; 0x14003bdb0 ; "%s not found" ; int64_t arg3
+│   ╎││││   0x14000b9fd      ba03000000     mov edx, 3                 ; int64_t arg2
+│   ╎││││   0x14000ba02      33c9           xor ecx, ecx               ; int64_t arg1
+│   ╎││││   0x14000ba04      e8d793ffff     call fcn.140004de0
+│   ╎││││   ; XREFS: CODE 0x14000b58e  CODE 0x14000b5a3  CODE 0x14000b618  
+│   ╎││││   ; XREFS: CODE 0x14000b645  CODE 0x14000b960  CODE 0x14000b990  
+│   ╎││││   ; XREFS: CODE 0x14000b9d0  CODE 0x14000b9f1  
+│ ────────> 0x14000ba09      488b4def       mov rcx, qword [var_11h]   ; uint32_t arg1
+│   ╎││││   0x14000ba0d      e8ee8cffff     call fcn.140004700
+│   ╎││││   0x14000ba12      4c8be8         mov r13, rax
+│   ╎││││   0x14000ba15      4885c0         test rax, rax
+│   └─────< 0x14000ba18      0f8532fbffff   jne 0x14000b550
+│    ││││   ; CODE XREF from fcn.14000b330 @ 0x14000b544(x)
+│    └────> 0x14000ba1e      488d4def       lea rcx, [var_11h]         ; uint32_t *arg1
+│     │││   0x14000ba22      e8698cffff     call fcn.140004690
+│     │││   0x14000ba27      4c8bb424a8..   mov r14, qword [var_a8h]
+│     │││   0x14000ba2f      4c8bac24b0..   mov r13, qword [var_b0h]
+│     │││   0x14000ba37      4c8ba424b8..   mov r12, qword [var_b8h]
+│     │││   0x14000ba3f      488bb424d8..   mov rsi, qword [var_d8h]
+│     │││   0x14000ba47      4c8bbc24a0..   mov r15, qword [var_a0h]
+│     │││   ; CODE XREF from fcn.14000b330 @ 0x14000b4c2(x)
+│     └───> 0x14000ba4f      488b9c24d0..   mov rbx, qword [var_d0h]
+│      ││   0x14000ba57      488bbc24e0..   mov rdi, qword [var_e0h]
+│      ││   0x14000ba5f      488b4d27       mov rcx, qword [var_27h]
+│      ││   0x14000ba63      4833cc         xor rcx, rsp               ; uint32_t arg1
+│      ││   0x14000ba66      e895b80200     call fcn.140037300
+│      ││   0x14000ba6b      4881c4c000..   add rsp, 0xc0
+│      ││   0x14000ba72      5d             pop rbp
+│      ││   0x14000ba73      c3             ret
+│      ││   ; CODE XREF from fcn.14000b330 @ 0x14000b7be(x)
+│ ────────> 0x14000ba74      b902000000     mov ecx, 2
+│      ││   0x14000ba79      ff15d9d70200   call qword [sym.imp.api_ms_win_crt_stdio_l1_1_0.dll___acrt_iob_func] ; [0x140039258:8]=0x53fec reloc.api_ms_win_crt_stdio_l1_1_0.dll___acrt_iob_func
+│      ││   0x14000ba7f      488bc8         mov rcx, rax
+│      ││   0x14000ba82      4c8d0d17da..   lea r9, str.Could_not_allocate_memory ; 0x1400394a0 ; "Could not allocate memory"
+│      ││   0x14000ba89      4c8d0530da..   lea r8, str.nverify        ; 0x1400394c0 ; "nverify"
+│      ││   0x14000ba90      488d1531da..   lea rdx, str.FATAL_____s___s_r_n ; 0x1400394c8 ; "FATAL [][%s] %s\r\n"
+│      ││   0x14000ba97      e8d461ffff     call fcn.140001c70
+│      ││   0x14000ba9c      b901000000     mov ecx, 1
+│      ││   0x14000baa1      ff15e9d60200   call qword [sym.imp.api_ms_win_crt_runtime_l1_1_0.dll_exit] ; [0x140039190:8]=0x53fe4 reloc.api_ms_win_crt_runtime_l1_1_0.dll_exit
+│      ││   0x14000baa7      cc             int3
+│      ││   ; CODE XREFS from fcn.14000b330 @ 0x14000b3c2(x), 0x14000b3d0(x)
+│      └└─> 0x14000baa8      b902000000     mov ecx, 2
+│           0x14000baad      ff15a5d70200   call qword [sym.imp.api_ms_win_crt_stdio_l1_1_0.dll___acrt_iob_func] ; [0x140039258:8]=0x53fec reloc.api_ms_win_crt_stdio_l1_1_0.dll___acrt_iob_func
+│           0x14000bab3      488bc8         mov rcx, rax
+│           0x14000bab6      4c8d0d63da..   lea r9, str.Cannot_allocate_memory ; 0x140039520 ; "Cannot allocate memory"
+│           0x14000babd      4c8d05fcd9..   lea r8, str.nverify        ; 0x1400394c0 ; "nverify"
+│           0x14000bac4      488d15fdd9..   lea rdx, str.FATAL_____s___s_r_n ; 0x1400394c8 ; "FATAL [][%s] %s\r\n"
+│           0x14000bacb      e8a061ffff     call fcn.140001c70
+│           0x14000bad0      b901000000     mov ecx, 1
+│           0x14000bad5      ff15b5d60200   call qword [sym.imp.api_ms_win_crt_runtime_l1_1_0.dll_exit] ; [0x140039190:8]=0x53fe4 reloc.api_ms_win_crt_runtime_l1_1_0.dll_exit
+└           0x14000badb      cc             int3
+=====MANIFESTCHK=====
+            ; CALL XREF from fcn.14000ac10 @ 0x14000adde(x)
+┌ 496: fcn.140009ed0 (int64_t arg1, int64_t arg2, uint32_t arg3, uint32_t arg4);
+│ `- args(rcx, rdx, r8, r9) vars(6:sp[0x58..0x90])
+│           0x140009ed0      4885c9         test rcx, rcx              ; arg1
+│       ┌─< 0x140009ed3      0f84e6010000   je 0x14000a0bf
+│       │   0x140009ed9      53             push rbx
+│       │   0x140009eda      55             push rbp
+│       │   0x140009edb      56             push rsi
+│       │   0x140009edc      57             push rdi
+│       │   0x140009edd      4883ec68       sub rsp, 0x68
+│       │   0x140009ee1      488b05f020..   mov rax, qword [0x14007bfd8] ; [0x14007bfd8:8]=0x2b992ddfa232 ; "2\xa2\xdf-\x99+"
+│       │   0x140009ee8      4833c4         xor rax, rsp
+│       │   0x140009eeb      4889442458     mov qword [var_58h], rax
+│       │   0x140009ef0      498be9         mov rbp, r9                ; arg4
+│       │   0x140009ef3      498bf0         mov rsi, r8                ; arg3
+│       │   0x140009ef6      488bfa         mov rdi, rdx               ; arg2
+│       │   0x140009ef9      488bd9         mov rbx, rcx
+│       │   0x140009efc      4885d2         test rdx, rdx
+│      ┌──< 0x140009eff      0f84a5010000   je 0x14000a0aa
+│      ││   0x140009f05      4d85c9         test r9, r9
+│     ┌───< 0x140009f08      0f849c010000   je 0x14000a0aa
+│     │││   0x140009f0e      488d4c2420     lea rcx, [var_20h]
+│     │││   0x140009f13      e8a8a7ffff     call fcn.1400046c0
+│     │││   0x140009f18      48837c242000   cmp qword [var_20h], 0
+│    ┌────< 0x140009f1e      7534           jne 0x140009f54
+│    ││││   0x140009f20      b902000000     mov ecx, 2
+│    ││││   0x140009f25      ff152df30200   call qword [sym.imp.api_ms_win_crt_stdio_l1_1_0.dll___acrt_iob_func] ; [0x140039258:8]=0x53fec reloc.api_ms_win_crt_stdio_l1_1_0.dll___acrt_iob_func
+│    ││││   0x140009f2b      488bc8         mov rcx, rax
+│    ││││   0x140009f2e      4c8d0d6bf5..   lea r9, str.Could_not_allocate_memory ; 0x1400394a0 ; "Could not allocate memory"
+│    ││││   0x140009f35      4c8d0584f5..   lea r8, str.nverify        ; 0x1400394c0 ; "nverify"
+│    ││││   0x140009f3c      488d1585f5..   lea rdx, str.FATAL_____s___s_r_n ; 0x1400394c8 ; "FATAL [][%s] %s\r\n"
+│    ││││   0x140009f43      e8287dffff     call fcn.140001c70
+│    ││││   0x140009f48      b901000000     mov ecx, 1
+│    ││││   0x140009f4d      ff153df20200   call qword [sym.imp.api_ms_win_crt_runtime_l1_1_0.dll_exit] ; [0x140039190:8]=0x53fe4 reloc.api_ms_win_crt_runtime_l1_1_0.dll_exit
+│    ││││   0x140009f53      cc             int3
+│    ││││   ; CODE XREF from fcn.140009ed0 @ 0x140009f1e(x)
+│    └────> 0x140009f54      8b5318         mov edx, dword [rbx + 0x18]
+│     │││   0x140009f57      4c8d442438     lea r8, [s2]
+│     │││   0x140009f5c      488b4b10       mov rcx, qword [rbx + 0x10]
+│     │││   0x140009f60      0f57c0         xorps xmm0, xmm0
+│     │││   0x140009f63      0f11442438     movups xmmword [s2], xmm0
+│     │││   0x140009f68      0f11442448     movups xmmword [var_48h], xmm0
+│     │││   0x140009f6d      e88ea50200     call fcn.140034500
+│     │││   0x140009f72      85c0           test eax, eax
+│    ┌────< 0x140009f74      7922           jns 0x140009f98
+│    ││││   0x140009f76      8bc8           mov ecx, eax
+│    ││││   0x140009f78      e8c3810000     call fcn.140012140
+│    ││││   0x140009f7d      4c8bc8         mov r9, rax
+│    ││││   0x140009f80      4c8d05291d..   lea r8, str.Error_computing_checksum_for_manifest:__s ; 0x14003bcb0 ; "Error computing checksum for manifest: %s"
+│    ││││   0x140009f87      ba07000000     mov edx, 7
+│    ││││   0x140009f8c      33c9           xor ecx, ecx
+│    ││││   0x140009f8e      e84daeffff     call fcn.140004de0
+│   ┌─────< 0x140009f93      e908010000     jmp 0x14000a0a0
+│   │││││   ; CODE XREF from fcn.140009ed0 @ 0x140009f74(x)
+│   │└────> 0x140009f98      488b4c2420     mov rcx, qword [var_20h]
+│   │ │││   0x140009f9d      488bd7         mov rdx, rdi
+│   │ │││   0x140009fa0      e84ba8ffff     call fcn.1400047f0
+│   │ │││   0x140009fa5      488bd8         mov rbx, rax
+│   │ │││   0x140009fa8      4885c0         test rax, rax
+│   │┌────< 0x140009fab      0f84ef000000   je 0x14000a0a0
+│   │││││   ; CODE XREF from fcn.140009ed0 @ 0x14000a09a(x)
+│  ┌──────> 0x140009fb1      488bcb         mov rcx, rbx
+│  ╎│││││   0x140009fb4      e8c7b8ffff     call fcn.140005880
+│  ╎│││││   0x140009fb9      4885c0         test rax, rax
+│ ┌───────< 0x140009fbc      0f84c8000000   je 0x14000a08a
+│ │╎│││││   0x140009fc2      488b4810       mov rcx, qword [rax + 0x10]
+│ │╎│││││   0x140009fc6      488d15131d..   lea rdx, str.SHA_256_Digest_Manifest ; 0x14003bce0 ; "SHA-256-Digest-Manifest"
+│ │╎│││││   0x140009fcd      41b818000000   mov r8d, 0x18              ; 24
+│ │╎│││││   0x140009fd3      e8b8bfffff     call fcn.140005f90
+│ │╎│││││   0x140009fd8      4885c0         test rax, rax
+│ ────────< 0x140009fdb      0f84a9000000   je 0x14000a08a
+│ │╎│││││   0x140009fe1      48c7c2ffff..   mov rdx, 0xffffffffffffffff
+│ │╎│││││   0x140009fe8      0f1f840000..   nop dword [rax + rax]
+│ │╎│││││   ; CODE XREF from fcn.140009ed0 @ 0x140009ff7(x)
+│ ────────> 0x140009ff0      48ffc2         inc rdx
+│ │╎│││││   0x140009ff3      803c1000       cmp byte [rax + rdx], 0
+│ ────────< 0x140009ff7      75f7           jne 0x140009ff0
+│ │╎│││││   0x140009ff9      4c8d4c2430     lea r9, [var_30h]
+│ │╎│││││   0x140009ffe      488bc8         mov rcx, rax
+│ │╎│││││   0x14000a001      4c8d442428     lea r8, [s1]
+│ │╎│││││   0x14000a006      e8e5580100     call fcn.14001f8f0
+│ │╎│││││   0x14000a00b      85c0           test eax, eax
+│ ────────< 0x14000a00d      791f           jns 0x14000a02e
+│ │╎│││││   0x14000a00f      8bc8           mov ecx, eax
+│ │╎│││││   0x14000a011      e82a810000     call fcn.140012140
+│ │╎│││││   0x14000a016      4c8bc8         mov r9, rax
+│ │╎│││││   0x14000a019      4c8d05081d..   lea r8, str.Base64_decode_failed:__s ; 0x14003bd28 ; "Base64 decode failed: %s"
+│ │╎│││││   0x14000a020      ba03000000     mov edx, 3
+│ │╎│││││   0x14000a025      33c9           xor ecx, ecx
+│ │╎│││││   0x14000a027      e8b4adffff     call fcn.140004de0
+│ ────────< 0x14000a02c      eb3e           jmp 0x14000a06c
+│ │╎│││││   ; CODE XREF from fcn.140009ed0 @ 0x14000a00d(x)
+│ ────────> 0x14000a02e      837c243020     cmp dword [var_30h], 0x20
+│ ────────< 0x14000a033      752d           jne 0x14000a062
+│ │╎│││││   0x14000a035      488b4c2428     mov rcx, qword [s1]        ; const void *s1
+│ │╎│││││   0x14000a03a      488d542438     lea rdx, [s2]              ; const void *s2
+│ │╎│││││   0x14000a03f      41b820000000   mov r8d, 0x20              ; 32 ; size_t n
+│ │╎│││││   0x14000a045      e83ae00200     call sub.VCRUNTIME140.dll_memcmp ; int memcmp(const void *s1, const void *s2, size_t n)
+│ │╎│││││   0x14000a04a      85c0           test eax, eax
+│ ────────< 0x14000a04c      7514           jne 0x14000a062
+│ │╎│││││   0x14000a04e      488d4c2428     lea rcx, [s1]
+│ │╎│││││   0x14000a053      e8885a0100     call fcn.14001fae0
+│ │╎│││││   0x14000a058      4885f6         test rsi, rsi
+│ ────────< 0x14000a05b      742d           je 0x14000a08a
+│ │╎│││││   0x14000a05d      488bce         mov rcx, rsi
+│ ────────< 0x14000a060      eb20           jmp 0x14000a082
+│ │╎│││││   ; CODE XREFS from fcn.140009ed0 @ 0x14000a033(x), 0x14000a04c(x)
+│ ────────> 0x14000a062      488d4c2428     lea rcx, [s1]
+│ │╎│││││   0x14000a067      e8745a0100     call fcn.14001fae0
+│ │╎│││││   ; CODE XREF from fcn.140009ed0 @ 0x14000a02c(x)
+│ ────────> 0x14000a06c      4c8d05851c..   lea r8, str.Checksum_for_manifest_does_not_match_signature ; 0x14003bcf8 ; "Checksum for manifest does not match signature"
+│ │╎│││││   0x14000a073      ba06000000     mov edx, 6
+│ │╎│││││   0x14000a078      33c9           xor ecx, ecx
+│ │╎│││││   0x14000a07a      e861adffff     call fcn.140004de0
+│ │╎│││││   0x14000a07f      488bcd         mov rcx, rbp
+│ │╎│││││   ; CODE XREF from fcn.140009ed0 @ 0x14000a060(x)
+│ ────────> 0x14000a082      488bd3         mov rdx, rbx
+│ │╎│││││   0x14000a085      e826a5ffff     call fcn.1400045b0
+│ │╎│││││   ; CODE XREFS from fcn.140009ed0 @ 0x140009fbc(x), 0x140009fdb(x), 0x14000a05b(x)
+│ └───────> 0x14000a08a      488b4c2420     mov rcx, qword [var_20h]
+│  ╎│││││   0x14000a08f      e86ca6ffff     call fcn.140004700
+│  ╎│││││   0x14000a094      488bd8         mov rbx, rax
+│  ╎│││││   0x14000a097      4885c0         test rax, rax
+│  └──────< 0x14000a09a      0f8511ffffff   jne 0x140009fb1
+│   │││││   ; CODE XREFS from fcn.140009ed0 @ 0x140009f93(x), 0x140009fab(x)
+│   └└────> 0x14000a0a0      488d4c2420     lea rcx, [var_20h]
+│     │││   0x14000a0a5      e8e6a5ffff     call fcn.140004690
+│     │││   ; CODE XREFS from fcn.140009ed0 @ 0x140009eff(x), 0x140009f08(x)
+│     └└──> 0x14000a0aa      488b4c2458     mov rcx, qword [var_58h]
+│       │   0x14000a0af      4833cc         xor rcx, rsp
+│       │   0x14000a0b2      e849d20200     call fcn.140037300
+│       │   0x14000a0b7      4883c468       add rsp, 0x68
+│       │   0x14000a0bb      5f             pop rdi
+│       │   0x14000a0bc      5e             pop rsi
+│       │   0x14000a0bd      5d             pop rbp
+│       │   0x14000a0be      5b             pop rbx
+│       │   ; CODE XREF from fcn.140009ed0 @ 0x140009ed3(x)
+└       └─> 0x14000a0bf      c3             ret
+=====CALLERS_b330=====
+main 0x140005453 [CALL:--x] call fcn.14000b330
+=====CALLERS_2290=====
+fcn.14000a130 0x14000a345 [CALL:--x] call fcn.140002290
