@@ -2,6 +2,8 @@
 
 Parte del mental model. Ver [INDEX.md](INDEX.md) para el mapa completo. Relacionado con Bloques 2 (licensing alto nivel), 7 (drivers framework), 13.1 (federation), y referencia forward al Bloque 16 (Provisioning Service Supervisor-scale).
 
+> **⚠ §14 CORRECTION (B488, 2026-08-24):** the `NLicenseManager.getPointCount/getDeviceCount/getHistoryCount/getScheduleCount` API described here is GONE in the N4.14 build. Live counters are static in `com.tridium.sys.metrics.Metrics` (`getGlobalPointsUsed/DevicesUsed/…`), incremented on component `fwStarted()`/`BLink.activate()`/`doCreateHistory()` with NO decrement-on-remove and a periodic `Metrics.Recount` thread (every 300 000 ms) reconciling removals. Full limit-enforcement map + exceed behaviors in **[B488]**.
+
 Este bloque cubre la **operación y escala de dev/ops**: reglas de conteo de puntos para licensing, limits por feature, templates en las 4 formas que coexisten en el framework (Niagara core, EasyTemplates Honeywell, palettes, station templates), Batch Editor Workbench, y el workflow Template/Match/Bind originado en LON pero generalizable a otros drivers.
 
 ---

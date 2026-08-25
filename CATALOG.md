@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **484 bloques**
+Total: **486 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -489,6 +489,8 @@ Total: **484 bloques**
 | 484 | [niagara-mental-model-bloque484.md](niagara-mental-model-bloque484.md) | Block 484 — The native crypto core (`dsfspi.dll`): Mocana-backed PKCS#1 RSA verify/sign, the DSA-1024/SHA-1 license/cert verifier, the DER parsers, and the reconciliation that ECDSA P-256 v2.0 is NOT native (it runs through JCA) |
 | 485 | [niagara-mental-model-bloque485.md](niagara-mental-model-bloque485.md) | Block 485 — The native launcher license gates (`nre.dll`/`njre.dll` `createVM`): `-javaagent`/`-agentpath` is refuse-to-launch gated on the `developer` feature, FIPS is a `fips140-2`-gated boolean (not a VM option), and there is NO silent flag injection |
 | 486 | [niagara-mental-model-bloque486.md](niagara-mental-model-bloque486.md) | Block 486 — The license BRAND system: one `tridium:brand` feature (brandId + four `PatternFilter` accept-lists) gates station↔station and Workbench↔station interoperability at the Fox handshake and the platform-daemon HTTP header — the OEM interop-lock mechanism |
+| 487 | [niagara-mental-model-bloque487.md](niagara-mental-model-bloque487.md) | Block 487 — Silent-watcher audit: no covert/undocumented monitor in the licensing path (node-locked fully passive; subscription's only background actors are the two VISIBLE, alarmed check-ins) — plus one genuinely-silent thread that lives in the CRYPTO subsystem, not licensing |
+| 488 | [niagara-mental-model-bloque488.md](niagara-mental-model-bloque488.md) | Block 488 — The license limit-enforcement map: two tiers (global-capacity `Metrics` vs per-network driver Feature), what each `*.limit` does on exceed (System.exit(-3) / hard block / silent block-add / component fatalFault), and a §14 correction of B14's counting API |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
