@@ -1,0 +1,2343 @@
+Signature-Version: 1.0
+Created-By: 21.0.3 (Azul Systems, Inc.)
+SHA-256-Digest-Manifest: EFubtXFjKu5XUrE6U2t2ptZxP3G5Rqn5WjUkMmVU7oU=
+SHA-256-Digest-Manifest-Main-Attributes: ar8VEqdMTyCJ9h3TAl5BTu0svU3e9mv
+ rvoBoztxHJ3E=
+
+Name: com/tridium/crypto/core/cert/ext/NBasicConstraints.class
+SHA-256-Digest: k0iP7AMyJI62j+ojCUqG4R1FKtlZGwlEldn60uOH/Y8=
+
+Name: com/tridium/crypto/core/cert/ext/NSubjectDirectoryAttributes.class
+SHA-256-Digest: MOplJAR7AwjP09lNREutT235dgUbN5W4i/UK/qqjdpA=
+
+Name: javax/baja/nre/function/FunctionCanThrowException.class
+SHA-256-Digest: CI0pk2ZOszT58GBJGZe3NKPx3SdjOk5CYX+kk2B4GAs=
+
+Name: com/tridium/nre/security/policy/JavaPermissionsFactory.class
+SHA-256-Digest: vOQ7Emmt91/5kxZuLUiXhUW57rjC/pm85rcj4+haZpM=
+
+Name: javax/baja/nre/util/IntHashMap.class
+SHA-256-Digest: iJ9PWa1yfHBP4ZeRaturzZL/ifznWJlmzfwnaoWuACs=
+
+Name: javax/baja/nre/annotations/AgentOn$Preference.class
+SHA-256-Digest: PZV4qa05Qt2q95QtpXGfkb8l9HweNIx8eUABpkXc+hg=
+
+Name: com/tridium/nre/util/SupportLevel.class
+SHA-256-Digest: tyv7Xonn4h3QZ0303JAXx6oapIf5Wzo0JUCFPzEypCA=
+
+Name: com/tridium/json/JSONTokener.class
+SHA-256-Digest: yv+5uo5qwMqxzgjQp5VSE4d7NqcL+Tr/0/vLU87F8XA=
+
+Name: com/tridium/crypto/core/io/CoreClientTrustManager$ExpectedHostInfo
+ .class
+SHA-256-Digest: X3ctWQlbYI8avneojE3IB8WwztT4uYmNe9yLaDBjugo=
+
+Name: javax/baja/nre/annotations/processors/slot/BajaUnit.class
+SHA-256-Digest: GDR+xFGn2+eBqXc4xODCdKD6NWSw5cUwQKELrrCzp1c=
+
+Name: com/tridium/crypto/core/cert/ext/NCertificatePolicies.class
+SHA-256-Digest: 2QtLhGRFNocg3UXEuyvyOe0y3gQq4RswgL3Syqv2n5g=
+
+Name: com/tridium/crypto/core/io/ICoreExemptionStore.class
+SHA-256-Digest: nqbEipK/nyDFaogKGaBxCtz/idppMkvJeBe4aYO8xWc=
+
+Name: com/tridium/nre/util/FileLockException.class
+SHA-256-Digest: Tcn0djNPR8Nznjxx+yirB4jJz2Q7pVsokldNuQ5Dtug=
+
+Name: com/tridium/nre/firewall/FirewallRule$RuleType.class
+SHA-256-Digest: PBKEAAWXY35BlPYGPRwNh8K2d3O8IXYre/WXS+NXzEk=
+
+Name: com/tridium/nre/util/RegistryUtil.class
+SHA-256-Digest: QKqo3A0zLkahSHvuABbXA/ewirVadvTfaAP+QBAmGSI=
+
+Name: com/tridium/nre/platform/NJavaPlatformProvider.class
+SHA-256-Digest: iMLhhBg7hrQxcRNG8CwE/2FjmzlUQE3v67gX1SWs6K4=
+
+Name: com/tridium/nre/security/SystemPassphrase$PlatformProviderHolder.c
+ lass
+SHA-256-Digest: OHfycglNiZmBvvijWHGbwggALZKahVGCjjQ17E3nvP4=
+
+Name: com/tridium/nre/auth/SnapUserManager.class
+SHA-256-Digest: bBjT7UmPLotzDfAYlOYbVpgP5cekCsOGsEhwNjqAVOo=
+
+Name: com/tridium/nre/subscription/RefreshIncrement.class
+SHA-256-Digest: r7Tx5wpK6fhgMzMFYuOGag97CZh4Jm3ZYRBZ5IdgJL8=
+
+Name: com/tridium/json/JSONObject$Null.class
+SHA-256-Digest: nf/0nqvGMIynBUQylMGZUlSbO2w9kYOOzcFubr4nLig=
+
+Name: javax/baja/nre/function/BiFunctionCanThrowException.class
+SHA-256-Digest: FK7HRpqzAyMtmPABmCwY/J9eK8Ui/Mw0HiPf6iSA3U0=
+
+Name: com/tridium/nre/security/SessionKey.class
+SHA-256-Digest: utGsn6+0/EnpV4nGeiLhisTEWZuHgxd7TM29G2hfZTs=
+
+Name: com/tridium/json/JSONObject$1.class
+SHA-256-Digest: /r/ToBixaSAyKONaH3eFBMlVgeo2gw5r3IAdgw4xDkE=
+
+Name: com/tridium/nre/security/KeyRingFactory.class
+SHA-256-Digest: 19jYOBOuCezNf4vW0a205u/IE/PfG7YdDFD+CZvkPZw=
+
+Name: com/tridium/nre/syslog/Facility.class
+SHA-256-Digest: TRngNkVJoRjwcVTBHmYb0kw/9sfuZB8gwRVL4ce7lN0=
+
+Name: com/tridium/nre/security/PBEEncodingInfo.class
+SHA-256-Digest: C/Ol9RXC3H9+aM4rSBQDqYwmmlvWy92SjvJR5Ai5WG4=
+
+Name: com/tridium/nre/util/Version.class
+SHA-256-Digest: Rwzm3vWAnosoZglooxpXAXxT0N8lWY8wXMM6Ecvw4iQ=
+
+Name: com/tridium/nre/subscription/SubscriptionLicenseUtil$LocalHostMeta
+ DataHolder.class
+SHA-256-Digest: ygW2jGSm6AxFYzz/YjuC2gvVuPjIysOPVJtr6qMINQc=
+
+Name: com/tridium/nre/auth/SnapUserManager$AsyncProcessor$removeUserFrom
+ Group$1.class
+SHA-256-Digest: eHjuVjDh06qPmOWgapfK1xDR/HnUBfiFpZ8ko87Itkg=
+
+Name: com/tridium/nre/subscription/EntitlementApi$EntitlementState$9.cla
+ ss
+SHA-256-Digest: 9bPzVqHDYW5KKCC0O4rPiNZdfS9hhbYkP+3AT2UzkqA=
+
+Name: com/tridium/nre/util/LegacyStorageUtil.class
+SHA-256-Digest: UXLcOccZSYRZKOjX6NVBy2Kn4bkHT4ajRiUrxo4dnic=
+
+Name: javax/baja/nre/annotations/NiagaraSlots.class
+SHA-256-Digest: h+YLZgd28YtjxExe0ZgYtmgCy7szRHrNKdpxmW3E7uY=
+
+Name: com/tridium/nre/auth/SnapUserManager$Processor$removeUserFromGroup
+ .class
+SHA-256-Digest: TRbuhdfrUqVrLE2tJzye7jRwiBFUtA81MyiVZbja2AE=
+
+Name: com/tridium/nre/util/BogModUtil$1.class
+SHA-256-Digest: jx7IN7Fon5IS6mtWpP2/2K6yk6MXIPfGid44o6VwcO0=
+
+Name: com/tridium/nre/security/SimpleKeyRing$SimpleKeyRingLock.class
+SHA-256-Digest: TO1WNyWJXyflZ24CjFQDQxsEI0p6ZEgj5vTLaui9H1M=
+
+Name: com/tridium/nre/security/Aes256PasswordManager.class
+SHA-256-Digest: YdWwpDqNdqlA6vZqgiO5Cih2sEcQlxFhoULMCbZ+Ijc=
+
+Name: com/tridium/nre/auth/NiagaraStationAlgorithmBundle.class
+SHA-256-Digest: JBd842VZ8187R4sg53Ds7Jl4d5DDRiwZqRoUWelXaT4=
+
+Name: javax/baja/nre/security/HsmManager.class
+SHA-256-Digest: H7UIcFnN2bYkW2zbDItQa9NwxjwYu+4gl48jmGQ3UqQ=
+
+Name: com/tridium/nre/auth/SnapUserManager$addUserToGroup_result.class
+SHA-256-Digest: u/u36umG4pKNzlvAY9Hx2Zd7TK6KwG7a3Dcm7JShVMw=
+
+Name: com/tridium/nre/syslog/Transport.class
+SHA-256-Digest: IJbtyiwfrktftdcxYu3PlLPS9ewPeBJSS+Db7Xp9qEY=
+
+Name: com/tridium/crypto/core/cert/PrivateKeyDecryptionException.class
+SHA-256-Digest: 8HsYlGWONkPQ6jrntsJrVvKq+lnaJUMt2JQyJFvJnYI=
+
+Name: com/tridium/crypto/core/exchange/SRP6KeyExchangerClient$1.class
+SHA-256-Digest: YrV9Qqt9MiKtgTRoVt7vBfIppaHNpNmDsnUgn5srE7M=
+
+Name: com/tridium/crypto/core/io/CoreClientTrustManager.class
+SHA-256-Digest: OZrzCXApi6BUA88u/Jbcm4B2MCXXJUg3ibOCbYPGBgI=
+
+Name: com/tridium/nre/util/IPAddressUtil$FindLocalHostNameAction.class
+SHA-256-Digest: WX1Y3sqC2XONvWW37KoK8HIpqrvR1ACpexWTxXX6in4=
+
+Name: com/tridium/nre/auth/SnapUserManager$AsyncClient$removeUserFromGro
+ up_call.class
+SHA-256-Digest: Y/YZXJ7PUEMxB2sMd5PIY5zrvxZwGR2O3G/yvtKzbag=
+
+Name: com/tridium/nre/subscription/IHttpMessage.class
+SHA-256-Digest: XqWLk8RQNvCuGpd8OV1bGY2rw0mmk4D2uKK4Fus7Y90=
+
+Name: com/tridium/nre/auth/SnapUserManager$AsyncIface.class
+SHA-256-Digest: ZWS0vK+Z9h7y6Xs45nBkmxbkJ1bJ6K0Jbm+6HOwBSDA=
+
+Name: META-INF/services/javax.annotation.processing.Processor
+SHA-256-Digest: E/BGlwx6j8ommnYcFWB3udBNfNMZdRnya/DAOiL6wRE=
+
+Name: com/tridium/nre/auth/SnapUserManager$AsyncClient.class
+SHA-256-Digest: GlR4V/MCOJPpHnB8uRzycBDoR1MX4uw9ebtN0kx2IpM=
+
+Name: com/tridium/json/quick/QuickJSONWriter$QuickStringJSONWriter.class
+SHA-256-Digest: TT27IEA04T5SfLNJudndPPcbHp+3N3KkVlj3X7x8Oh0=
+
+Name: com/tridium/nre/diagnostics/DiagnosticUtil.class
+SHA-256-Digest: 6+YfwjUmX3jIGa2rPBB8BG2bFb4yQUmAS0wrp3Uvv+8=
+
+Name: com/tridium/json/HTTP.class
+SHA-256-Digest: 3Tmb3g7uFnSohCKfnT7/XQegDNsMmsheVlONsJI6ykc=
+
+Name: com/tridium/nre/jetty/rc/auth/sjcl/codecString.js
+SHA-256-Digest: Zz2WZ63+1pBS6UNM+HxZ9FRFbWo/reYVSjNBQsRKbYE=
+
+Name: com/tridium/nre/auth/SnapUserManager$AsyncClient$addUserAccount_ca
+ ll.class
+SHA-256-Digest: UWCZn+sXn1Hec9K26N36bbSJjZn2R3ZwBkIw4pn1uh8=
+
+Name: com/tridium/json/quick/QuickJSONWriter.class
+SHA-256-Digest: oTnNDnByHLPU9RDBEq7cdHG4pGs8xEcEegA1xhNYqLY=
+
+Name: com/tridium/nre/security/ISecurityInitializer.class
+SHA-256-Digest: ZYicaMzFwWBWSMofnYVQf7DhnQBkSOFXl+sNtHP9hMI=
+
+Name: com/tridium/nre/platform/NativePlatformProvider$UserManagerPropert
+ yHolder.class
+SHA-256-Digest: u9yt2MXxHmqhZrc7ew9NTLlNHn8sS1orLMgQDjrq9Go=
+
+Name: com/tridium/nre/security/km/KeyMaterialFactory$KeyMaterialParamete
+ rs.class
+SHA-256-Digest: T/oyYlISUjY4U4efeyw5REV6qZWiUKy/bj6MptDQ1U4=
+
+Name: com/tridium/nre/security/provider/XMLDSigRI.class
+SHA-256-Digest: 1qw2vaSv0xGFGS6qTnCdTtUMn7wcsxeYsw8ov7WbfA4=
+
+Name: com/tridium/nre/security/policy/ICodeSourceInfo.class
+SHA-256-Digest: 0ojcgBBKaVTQTh9WPzRusHcliNbp4fRP3Yv0qxJwfvs=
+
+Name: javax/baja/nre/util/FileUtil$ReaderLineSpliterator.class
+SHA-256-Digest: deZ+YXNfWW+Hk5S24fB2kpCtYA96pMe6DZr8QHzsebU=
+
+Name: com/tridium/nre/security/io/AESStreamEncryption$StreamEncryptionDe
+ tails.class
+SHA-256-Digest: sjYnmm/uFv9qLxGBaH0dGG8BEHDB1s4aRdLLwpFEkCs=
+
+Name: com/tridium/nre/diagnostics/DiagnosticStats$KeyStat$1.class
+SHA-256-Digest: rCxLwTOozI3s9g9FaljiNnbuiMyBcyIsMcDyPwibabI=
+
+Name: com/tridium/nre/security/NiagaraSocketPermission$PortRange.class
+SHA-256-Digest: A6nuWMSEP2nvAFGln4gWHC0gRFHIFJg9IHXgfnhRFac=
+
+Name: com/tridium/crypto/core/cert/ext/NInhibitAnyPolicy.class
+SHA-256-Digest: XH0vdv7NBIsmdUAZON73PHlPH6VzQ3seCcjR99DXjDY=
+
+Name: com/tridium/nre/security/km/PlatformKeyMaterial.class
+SHA-256-Digest: YAHen7AeeRSjD7CUriWdv9VKCtNinSptA7S3WDOAE0g=
+
+Name: com/tridium/nre/syslog/Message.class
+SHA-256-Digest: 54JOKmoPM5fNrbiUomguRKvHQF2RWuF8jdTRZvY7szc=
+
+Name: com/tridium/nre/auth/SnapUserManager$AsyncClient$Factory.class
+SHA-256-Digest: 8w5opOONmscKouewqi5osnU6xfNYBzoau9rKoE1IoBM=
+
+Name: javax/baja/nre/annotations/processors/ModuleInclude$1.class
+SHA-256-Digest: SpbdgE3slKUnEHNPQek/Iivddu9JeXKw0sFT7PHNEWI=
+
+Name: com/tridium/json/JSONPointer.class
+SHA-256-Digest: 0C3iCsrIj3U0jEntKglWSkJeoaFNed6JohKGPN2LPWI=
+
+Name: com/tridium/nre/auth/SnapUserManager$removeUserAccount_args$remove
+ UserAccount_argsTupleSchemeFactory.class
+SHA-256-Digest: SlyW+NJPUO1BhVLsS7AJ8pBW0XZU6aVfe721QiHhltA=
+
+Name: com/tridium/crypto/core/cert/JarSignatureRegistry$PlatformProvider
+ Holder.class
+SHA-256-Digest: I2X7K95Xm0Pp/6S60K+rmy8ptjcEQSbT5g47b7k/vtw=
+
+Name: com/tridium/crypto/core/cert/CertificateChainValidator.class
+SHA-256-Digest: HAachHKZIwztRZkXmSZ0OVFTFiiqQpkwMYWSDI/o16c=
+
+Name: com/tridium/nre/firewall/NullFirewallProcessor$1.class
+SHA-256-Digest: 2d57jvXxZxBhxc4H7ycsvvUQO6zCKzX93DSvzvrxBhM=
+
+Name: com/tridium/nre/diagnostics/DiagnosticStats.class
+SHA-256-Digest: Yo7xVHUHvV1jpTFTskuJMRY/GkeXSHG8GauPbz94cXw=
+
+Name: com/tridium/nre/subscription/EntitlementApi$EntitlementState$4.cla
+ ss
+SHA-256-Digest: cnxeMnjWS0CF3rWp1s+Ew9iDUCIxU3hyuFX0TUh/ADM=
+
+Name: com/tridium/crypto/core/util/OidMap.class
+SHA-256-Digest: ToUYa1rmjENXqUV3WBNjYhs2sqLi2jM4Kx7S5Pw8JVw=
+
+Name: com/tridium/nre/security/KeyRingFactory$KeyRingParameters.class
+SHA-256-Digest: 0cZnAArfs8cS4PMQUdKX2HBCaHD44BDOcq6X6V0lvF0=
+
+Name: com/tridium/nre/subscription/JwtSignatureKeys$KeyRotation.class
+SHA-256-Digest: BRmbDAXW+YGwBP0YmfoArQcNg5RSVB0C4hwLhmXeYXU=
+
+Name: com/tridium/crypto/core/cert/ext/NExtendedKeyUsage.class
+SHA-256-Digest: F9IMwhw38qIFUXbXYUWfady7djykEMjv54Dftc1Zmfs=
+
+Name: com/tridium/nre/syslog/ISyslogStatusListener.class
+SHA-256-Digest: /g/N6dFQxP0AhnqjxYsIAlNusdjI68kv5YOG4QwRGGk=
+
+Name: com/tridium/crypto/core/exchange/SRP6KeyExchangerServer.class
+SHA-256-Digest: J5f+vEkE8tYo/Fo5/h4Ig3yQVp7XYVZDFUmUFU501WI=
+
+Name: javax/baja/nre/annotations/processors/NiagaraAbstractProcessor.cla
+ ss
+SHA-256-Digest: hUSwwkRo0lZyM1VqQ58phG45jb0R0mmzG1/gekB/rPk=
+
+Name: com/tridium/crypto/core/io/ICoreStore.class
+SHA-256-Digest: 3G4f7EpdYwbwCV985TA5umfhvIbiq/1dgW4LlGKRULc=
+
+Name: com/tridium/crypto/core/bundle/CryptographicAlgorithmBundle.class
+SHA-256-Digest: hraetkYyHZECfPWh5swHeS2fVD7q5CySLbbRaUUSD90=
+
+Name: com/tridium/crypto/core/async/AsyncCertGeneration$PlatformProvider
+ Holder.class
+SHA-256-Digest: FPh40bgwm+0+Ik+xFxHEOkmbKxhsc77zTtYtp6raTiQ=
+
+Name: com/tridium/nre/util/IPAddressUtil$FindAllLocalInterfaceSettings.c
+ lass
+SHA-256-Digest: HrPF3sTdjOHZIr9nccWyf4dhZwLKuoKnwXGa4aBJU6M=
+
+Name: com/tridium/nre/security/policy/NiagaraPolicy.class
+SHA-256-Digest: OZhvHss6GTM3cnZrib1zICjkZkGQeZOh5T59uCUT1R4=
+
+Name: com/tridium/nre/security/io/KeyRingEncryptingInputStream.class
+SHA-256-Digest: QvNIOqjLrknU1qYNpLPhATtFIIYGXVjeOJJDsCv4nSQ=
+
+Name: com/tridium/crypto/core/io/NiagaraSslContextFactory.class
+SHA-256-Digest: u3wQfzvJPijbV+1b+tVfzFBual7Om07//OL3QsdMHoY=
+
+Name: com/tridium/nre/util/NreForkJoinWorkerThread.class
+SHA-256-Digest: IxUsYGivGwHlNbXXS9330S5iitc9uJDJbj9fGJMrMEc=
+
+Name: com/tridium/nre/platform/NativePlatformProviderTridium.class
+SHA-256-Digest: XW7ZSVfJxzvRFwl3MZYZA1agtGHWNvii9yIybO2NGRI=
+
+Name: com/tridium/nre/platform/PlatformUtil.class
+SHA-256-Digest: PvaFvCUEoBMtDjtfqHvMSr/fftXz7GDhURI7/Xb+cHI=
+
+Name: com/tridium/nre/util/FileLock$PlatformProviderHolder.class
+SHA-256-Digest: rLrh1HoLaRkIaFhmxdlxzW2QPP9PNeas6kZINlzYn0U=
+
+Name: com/tridium/crypto/core/cert/SigningUtil.class
+SHA-256-Digest: tycf9PBo9wP4K8UpYih0u7wntDrQW77c/10q0rMMI3A=
+
+Name: com/tridium/nre/jetty/rc/auth/sjcl/sha512.js
+SHA-256-Digest: 8QpiWYApUiOkPyf6MJzo75ZJGMQ9poz73B7KDedC7yI=
+
+Name: com/tridium/nre/firewall/pf/PfFirewallProcessor$1.class
+SHA-256-Digest: +74YkgG6VVcqLAsryDChNZfB64ZDgaSVPtVSfBkjCzM=
+
+Name: com/tridium/nre/jetty/rc/auth/sjcl/sha1.js
+SHA-256-Digest: cEyfoUp7sDf0NWNeSF40K3a/vhh7Y0uERuoVD2GVsHw=
+
+Name: com/tridium/crypto/core/exchange/SRP6Pbkdf2Server.class
+SHA-256-Digest: Hd/Fk/PrxDUYzbRkkVv1zwDeYxved6qThFIzBk9HOvk=
+
+Name: com/tridium/nre/security/km/SimpleKeyMaterial.class
+SHA-256-Digest: j92W+ewjoq3R4BMitU7hyANjPpkijVC+opq3Cb64efY=
+
+Name: com/tridium/nre/auth/SnapUserManager$Client.class
+SHA-256-Digest: F3D4EuKeimynr6RBLfSvjgZp3LFG7km0nmvC23r+XCg=
+
+Name: com/tridium/crypto/core/cert/ASN1HostId.class
+SHA-256-Digest: 1lPH5uMRcjTwLwXAi1tk3t+HmwtWeyHHl5FiAu5buFA=
+
+Name: com/tridium/nre/syslog/LogAdapter.class
+SHA-256-Digest: Gd0Nn2CSqs9HbrSOcfGR2uU9qmyk2t0YO/QDDscZVb0=
+
+Name: com/tridium/nre/auth/SnapUserManager$AsyncClient$removeUserAccount
+ _call.class
+SHA-256-Digest: YO3B7ygJ+ofyN2YTDxnIp9sHYQmOxTrxGmc+E7HatWc=
+
+Name: javax/baja/nre/annotations/processors/NiagaraSlotProcessor.class
+SHA-256-Digest: k9nMZjOm9DnXLM4JA+B0x/Md1qJ4W+HeGnc4wdafjBU=
+
+Name: com/tridium/nre/jetty/rc/auth.min.js
+SHA-256-Digest: DDLWrQbhFsNEP+JKq15ZuD/i3UaISjhpTDcYQjIcBe4=
+
+Name: com/tridium/nre/util/LicenseMode.class
+SHA-256-Digest: 5DxH5Oxm5fVzxKriBDWnyDI5c8Y4sjKSVnM/OhDpMz0=
+
+Name: com/tridium/crypto/core/cert/DefaultExemptionApprover.class
+SHA-256-Digest: ZYgq3X7L8RmYeMobiSdD3uE3b7pqlhKM6U0MzcyhPaY=
+
+Name: com/tridium/nre/auth/SnapUserManager$changeUserPassword_args$chang
+ eUserPassword_argsTupleSchemeFactory.class
+SHA-256-Digest: twqUR6wboGOrPP2GORT5/eI06QfsVNNEV5RhqMZ1tzg=
+
+Name: javax/baja/nre/annotations/NiagaraActions.class
+SHA-256-Digest: TGNw3T4n9oQprzvh2eT3zZSCnLRUfFOD/W9zC7N20n8=
+
+Name: com/tridium/json/quick/QuickJSONWriter$1.class
+SHA-256-Digest: s+AW/9omOz0T7LJiYVXHey1j1Q+8jfEG711qJ/a6sjo=
+
+Name: com/tridium/nre/security/km/BadKeyMaterialException.class
+SHA-256-Digest: 4SiBegbfx1twInTQj3sPt5XgjalUXqW93TTDk62GFbA=
+
+Name: com/tridium/nre/auth/SnapUserManager$removeUserFromGroup_result.cl
+ ass
+SHA-256-Digest: bz+CyXTX+MDD1Q7yYnDBN+/S1Ymhvb0omg3TU9mbrYo=
+
+Name: com/tridium/crypto/core/io/TrustManagerBuilder.class
+SHA-256-Digest: VnvzHNRpqbfi4+vsD0yKTlViR+nAvXweCHRhlp3Ot0c=
+
+Name: com/tridium/nre/firewall/FirewallException.class
+SHA-256-Digest: K1x9bQDCzEL9ViFLROg7t88b7RD35RqruZ8I5CDTSRc=
+
+Name: com/tridium/nre/auth/SnapUserManager$AsyncProcessor$addUserToGroup
+ .class
+SHA-256-Digest: u9GdWrP03VjqjmRNnPfACe8zQEWnIExirZiCd+DT+SI=
+
+Name: javax/baja/xml/XContent.class
+SHA-256-Digest: PrSHng10aX3VYeC03wanfD97fCEkvaPTuBuvGAghZA8=
+
+Name: javax/baja/nre/annotations/processors/NiagaraSlotProcessorOptions.
+ class
+SHA-256-Digest: nddvaeo0GbxcqM0fJrAUW19wiGUSFanq0y4+PJSm61s=
+
+Name: com/tridium/crypto/core/cert/NKeyPairGenerator.class
+SHA-256-Digest: 3GBCgGxEmWftSU5e7dMmq4lwVwvLCEIkrPAQuczZsH8=
+
+Name: com/tridium/nre/security/BouncyCastleCryptoProvider.class
+SHA-256-Digest: TZD1BwgKVId4A6iB1G3RvPkOug7pDDViZvepq1gQWOI=
+
+Name: com/tridium/crypto/core/io/CertificateStatusEnum.class
+SHA-256-Digest: hZ9G60K9OEKNW1Xw+giAqJFrVqtpw3pZ1b3S0nPM55s=
+
+Name: javax/baja/nre/util/IFilter.class
+SHA-256-Digest: 99JJ+wX4fGIlSteVXs9muz0fxzZi+45Yj48i/jC5riM=
+
+Name: javax/baja/nre/util/ByteBuffer$1.class
+SHA-256-Digest: j9A7yBt3bmFY5k7tWpi9sqSHKFkjwN3/AKTMcPC9nDI=
+
+Name: com/tridium/nre/security/NiagaraBasicPermission.class
+SHA-256-Digest: bF4o1UjC1En9yZoHZMwiy3VBT+xmzsTDroMTJbYqOk0=
+
+Name: javax/baja/nre/security/ExemptionHandler.class
+SHA-256-Digest: 5UxCsXJI5uRVUb1ulqMmSfPa5LeGh6YzCfMEtkgItxM=
+
+Name: com/tridium/nre/security/FipsInformation.class
+SHA-256-Digest: cMz5R8NUTegYY+UDm2WBZtYIgN3xyLBvK6/yiQvAE3M=
+
+Name: com/tridium/nre/security/NiagaraLoadLibraryPermission.class
+SHA-256-Digest: 7EKmFt7FwKvmjc8JS0gUvfjmWdaTFfdeYOPBi/3isqc=
+
+Name: javax/baja/xml/XPath$AbstractXPathMatcher.class
+SHA-256-Digest: ZFksGIA6H3kAPeV9kG4YI26YmNJk40HdDviRHaE+uSA=
+
+Name: com/tridium/nre/security/SigningPasswordPermission.class
+SHA-256-Digest: fcEiFIiEuNWTK9LlKUHOLNvzo0Z/FyUc7/0dQP5wXVA=
+
+Name: javax/baja/nre/util/KeyValueTuple.class
+SHA-256-Digest: tpH2b93h2P6r2KxaUIpOJhvAns+OAcZq5tNBfArKP78=
+
+Name: com/tridium/nre/auth/SnapUserManager$addUserToGroup_result$addUser
+ ToGroup_resultTupleScheme.class
+SHA-256-Digest: r5nAniNnwhFhaaHZjL/y2SFZk+pa3K6+ZnT4x1gh1ro=
+
+Name: com/tridium/nre/jetty/JettyUtil.class
+SHA-256-Digest: NpfWUBXOuuk/GmVfR06MSL7X7c15PT/8gefJ44jbULc=
+
+Name: com/tridium/crypto/core/io/RecurringCertEntry.class
+SHA-256-Digest: NBexVckVsPFcIFHQVjuq01l69/UIhH0NVAyQu6hsdws=
+
+Name: javax/baja/nre/function/UnaryOperatorCanThrowException.class
+SHA-256-Digest: 5hgId5XFQcCGTOY2/VQDVAymiFIER3h6EwaCrDeLkKQ=
+
+Name: com/tridium/crypto/core/io/CoreCryptoManager$RecurringCertManagerI
+ mpl.class
+SHA-256-Digest: AZSdQ154gu20l85PPC22HsgpITXW7QPBrdWdYSn2FiM=
+
+Name: com/tridium/nre/auth/SnapUserManager$AsyncProcessor$changeUserPass
+ word$1.class
+SHA-256-Digest: 9fqqEEqYx5EIW2InxkE8AE0PhCIrjIQuISdThepqfMk=
+
+Name: com/tridium/nre/security/SharedKeyConst.class
+SHA-256-Digest: 8YKT3BkguY442biyKUd12pet5ZYO2ccrBA2Vxk7SkWY=
+
+Name: com/tridium/json/JSONUtil$2$1.class
+SHA-256-Digest: t8C/I9dlWTYrUXIgCYIvmRP39rm3haa9TMow7b3hSo8=
+
+Name: com/tridium/crypto/core/cert/NX509CertificateBuilder$1.class
+SHA-256-Digest: k3VIcjO3Ik/+YxabmSfRFFnEaSJdW+xC7BKSLn4bAM4=
+
+Name: com/tridium/nre/auth/SnapUserManager$addUserAccount_result$addUser
+ Account_resultStandardSchemeFactory.class
+SHA-256-Digest: dTxF2lip2EZwjntDqBWN5gjumK2fxErpNjqS8HP5Bk4=
+
+Name: com/tridium/nre/auth/SnapUserManager$Iface.class
+SHA-256-Digest: o51yvLMR9Eslh0JxdMtUeUXB4OemDMlJSadxI2sFn/s=
+
+Name: com/tridium/json/JSONPropertyIgnore.class
+SHA-256-Digest: QPATo5aoKH144057Zt6Z7e/aSZUwUsmPNOCsQ37zAQQ=
+
+Name: com/tridium/nre/security/PBEValidator$1.class
+SHA-256-Digest: dgRptzfJZot4L/BzIxdo6qlEPInyYwSOjOgaFsoE0L4=
+
+Name: com/tridium/nre/security/AesAlgorithmBundle.class
+SHA-256-Digest: X26QCXUVHryVNu1RfqllkwC7bF1tCH66h3D3ElfkuuA=
+
+Name: javax/baja/nre/annotations/processors/slot/ActionAnnotation.class
+SHA-256-Digest: wnjNBbRqQ9VdJoWnWqMsr8OyQPDZxNF7L933/ND6FqE=
+
+Name: com/tridium/json/XML$1$1.class
+SHA-256-Digest: 6A7I3jvVOJUy2UFSxqWpu3HuL+e89brso0qD8KnW/p0=
+
+Name: com/tridium/nre/auth/SnapUserManager$removeUserFromGroup_args$remo
+ veUserFromGroup_argsTupleSchemeFactory.class
+SHA-256-Digest: yHrVW+DLUE5xcDnScbIyI04Gix94UAkB7LccflSrtDI=
+
+Name: com/tridium/crypto/core/cert/NX509CertificateBuilder.class
+SHA-256-Digest: kzd/WHmm/Qrv8b6mRZfNRi9mzqdmlhUR4LeYcHTDHvw=
+
+Name: javax/baja/nre/util/FileUtil.class
+SHA-256-Digest: JcugZetMJc5X06bOgz5jvRn0J2i9LekewWvxjQ8cOq8=
+
+Name: com/tridium/nre/util/NreForkJoinWorkerThreadFactory.class
+SHA-256-Digest: tE601CdoJpFT00n5mutIs2oGdDj4Mr8pWd8bgRaj+h4=
+
+Name: com/tridium/crypto/core/cert/KeyPurpose.class
+SHA-256-Digest: pOSmWfL0yC1KBFIOFdx8I8AD8seU/65ZXCNafjFST6A=
+
+Name: com/tridium/crypto/core/io/ICoreKeyStore.class
+SHA-256-Digest: Fvk6Ec+fcKLBAszF7KS3ZixkrKI0J2XO//BrZJeGwAE=
+
+Name: com/tridium/nre/auth/SnapUserManager$removeUserAccount_result$remo
+ veUserAccount_resultTupleSchemeFactory.class
+SHA-256-Digest: 5vumGlgvsOdMNhxhV7x2xzoD9S8Mj8ds3SWr/RNTYLc=
+
+Name: com/tridium/nre/subscription/LicenseRefreshToken.class
+SHA-256-Digest: YQrCkrwLo0ueKt6KC8EPJ8YvnzfEpVM0bqcIT4OSlMM=
+
+Name: com/tridium/nre/auth/SnapUserManager$addUserAccount_result$addUser
+ Account_resultTupleScheme.class
+SHA-256-Digest: WS/SrycVo0MN2PHGXmQ2n46ERd0Tp3jFMbaZ49Uyyig=
+
+Name: com/tridium/crypto/core/cert/KeySpecUtil.class
+SHA-256-Digest: bd2KYBTaeDkz0bkdiSAyi6BoQOnhFsk26kI2lGkApNQ=
+
+Name: com/tridium/nre/security/EncryptionKeySource.class
+SHA-256-Digest: IDnJ1bOzyLVJnyT/6jhgzl4OsjJzkpgAFGuDTlHCPAs=
+
+Name: com/tridium/nre/security/PasswordStrength.class
+SHA-256-Digest: 3/AvDZw4UAdrGzDPG+s2k9jRWaCY4SD8RVsfJ2xyruY=
+
+Name: com/tridium/nre/security/io/AESStreamEncryption.class
+SHA-256-Digest: TvrmVaI8YEET2eXxi4H6nJJ0/4blll9ObLgMCCJ7OVo=
+
+Name: com/tridium/crypto/core/provider/NProviderEntry.class
+SHA-256-Digest: lLVY9xkf28rEFF8U+cslaD2kRa+QHbi21Gk6x/A5oy4=
+
+Name: com/tridium/nre/auth/SnapUserManager$addUserAccount_result.class
+SHA-256-Digest: 59+pRG0OkpHtq3VDUqp1c6des/VWnqNZFJGtBn+nNEU=
+
+Name: com/tridium/nre/platform/NativePlatformProvider$FileSystemInfo.cla
+ ss
+SHA-256-Digest: 97vriNQrkTSRwAduH40mvRakFQazHpXihEK+QV3Qxj8=
+
+Name: javax/baja/nre/security/IClientCertSelector.class
+SHA-256-Digest: VZLNzj3HVXjch5rM3u/KEzqEzijlxU7YejWkOpnTs1I=
+
+Name: com/tridium/crypto/core/io/TrustAnchorProvider.class
+SHA-256-Digest: VjeDprx/zwyQhobsQAYCC+U0ll41Dr2D+Dt1j0oTRpo=
+
+Name: com/tridium/nre/platform/NativePlatformProvider$NetworkManagerProp
+ ertyHolder.class
+SHA-256-Digest: X54zgzDeJGelk9reua6fUk/zcz8k8fkuaC3yof4KTzk=
+
+Name: com/tridium/nre/subscription/AccessTokenApi$Poll.class
+SHA-256-Digest: ywx48RzhNBkw6nQljEvf22dZIAubfH7aDTFHrpH+Hbk=
+
+Name: com/tridium/nre/security/SimpleKeyRing$1.class
+SHA-256-Digest: 1s4iGfVs1Eo2JGXFlSM2wR3H00toed2h8fOPApsYKKM=
+
+Name: com/tridium/nre/security/io/AESEncryptingOutputStream.class
+SHA-256-Digest: zIBH5cSUyD1t91cDN3BZmK9zWCWO22WFSUwgSelRJXI=
+
+Name: com/tridium/nre/util/BogModUtil.class
+SHA-256-Digest: BuRlvwaFb2kRjqY1PVnyOTSeLizdbLR+5v0tb6Ljgiw=
+
+Name: com/tridium/crypto/core/cert/CertUtils$1.class
+SHA-256-Digest: zMvRiITtlUzDwoRSbU+H+dDoFaFKKzsTr10uCZ9qMKs=
+
+Name: META-INF/module.xml
+SHA-256-Digest: O5++dNLqr7YYZaf7Vg9fCGoStrJQYIVniB7zP9bhSOg=
+
+Name: com/tridium/nre/subscription/EntitlementApi$EntitlementState$7.cla
+ ss
+SHA-256-Digest: uDIM9UNR6CTdUrrVxe7/gJvL9tYAxjba/Am85KMuwsU=
+
+Name: com/tridium/nre/security/BouncyCastleFipsCryptoProvider.class
+SHA-256-Digest: MbfHFGlAP865ecktjNVl0Bt2cu4IIrrIBdfqFifWSrU=
+
+Name: com/tridium/nre/util/tuple/Single.class
+SHA-256-Digest: dNiKoGy5SAxCTTVor0pJjf/hfEbWyHVXjonD8k8+QHg=
+
+Name: com/tridium/nre/util/InterfaceNetworkSettings$InterfaceIPv4Network
+ Settings.class
+SHA-256-Digest: H1cD2ZJvL31ggFRYIaF1ZV3UcpEwNFNqFFajhu3Wl/E=
+
+Name: com/tridium/crypto/core/cert/JarSignatureRegistry$LoadReport.class
+SHA-256-Digest: oOcf4A2hshsilX3Qqn7xP0M57mdn8tj9mt9FWLdfAdI=
+
+Name: com/tridium/nre/auth/SnapUserManager$ThriftClientHolder.class
+SHA-256-Digest: Jj0Js5PjKUxMDjjbyHYfVDfYrI8y/a/7pYHRppbHKJM=
+
+Name: com/tridium/nre/auth/SnapUserManager$AsyncProcessor$changeUserPass
+ word.class
+SHA-256-Digest: L7tzSH9IIpZoglGodib21zJdungZxBmDITCKUhe+DKs=
+
+Name: com/tridium/nre/security/AbstractAesAlgorithmBundle.class
+SHA-256-Digest: 2u3p44ZhOKSnyaYIDmBLJVInBzZ6MCYH2uIggkYkfO0=
+
+Name: com/tridium/nre/auth/SnapUserManager$removeUserAccount_args$remove
+ UserAccount_argsStandardScheme.class
+SHA-256-Digest: uXUd6jsuWP+NSwGtr2vPnaI3s64+9P8SpFeAxbZsdGo=
+
+Name: com/tridium/nre/security/NiagaraGatedPermission.class
+SHA-256-Digest: frv6fwMJ5TyWbi40HveL0iuE76gIL7V5PlhYDbm7Aa8=
+
+Name: com/tridium/crypto/core/cert/TridiumHostnameVerifier.class
+SHA-256-Digest: H9hwY08StNYL9abAPtOiqY7TiYbrrXc2VqkHzw3Ssos=
+
+Name: javax/baja/nre/annotations/processors/ModuleInclude.class
+SHA-256-Digest: GFy/qAPuj8zb8nl3gucJB42EibOmrsH9LnhxIEArHV4=
+
+Name: com/tridium/json/HTTPTokener.class
+SHA-256-Digest: NO2w40c5421N5BeVUUsJ+CG+UeGe5EAk3eTCwy/pk3Q=
+
+Name: com/tridium/nre/security/km/KeyMaterial.class
+SHA-256-Digest: TqlYTC7JEVb6LgvemDQpNDB2fgOE8nM2Me3SEsSrFyU=
+
+Name: com/tridium/nre/RunnableWithException.class
+SHA-256-Digest: CeScjXBDwJLrHsYU5gEqeCHMRzOq/I9XCgaV4rpHXTY=
+
+Name: com/tridium/nre/subscription/KeyRotationException.class
+SHA-256-Digest: AMnHKlkCPqFXRcWFUdHa3Q7e9drYMOK8UHgLVf0//2s=
+
+Name: javax/baja/xml/XParserEventGenerator.class
+SHA-256-Digest: TYyF/Xs1QVTWxexZYvEmh7Gkv3TtBO622oG/my+QxJA=
+
+Name: javax/baja/nre/util/TextUtil.class
+SHA-256-Digest: rPtHPNJ5+ZR4Ci/He2PB1sUffvwpNZYHHljX/3Wxnl4=
+
+Name: com/tridium/nre/util/Normalizer.class
+SHA-256-Digest: 70eUM87dzbsVuiKVPqtMC9A691/uXQIqWW+hTnJKuiM=
+
+Name: com/tridium/nre/security/policy/NiagaraPolicy$EmptyPermissionsColl
+ ection.class
+SHA-256-Digest: wewLfPIOQ5yqlihrP9kVQGqhifldx0HkNKlyxX061K8=
+
+Name: com/tridium/json/XML.class
+SHA-256-Digest: 22MxkH3V9vRGz8e5gkbm4D1XYXSX3657TnSxikr/Sno=
+
+Name: com/tridium/crypto/core/async/ResetUserKeyStoreEntry.class
+SHA-256-Digest: W0+NSstReYGdzdDEPUAo34p89j47u7S+N3LFmEg6g0M=
+
+Name: com/tridium/nre/auth/SnapUserManager$addUserAccount_result$_Fields
+ .class
+SHA-256-Digest: 1bUM6xDo7v6G3A376ZOCYTHzd5v1BT+3jB3KYvijHhM=
+
+Name: com/tridium/nre/subscription/RotateKeys.class
+SHA-256-Digest: MgddA9XUSONIy5Xc/qpZCHx6X8G2oGzKH0WaumPBZC0=
+
+Name: com/tridium/nre/security/SecurityInitializer$InitializePrivilegedA
+ ction.class
+SHA-256-Digest: zBsCDrme2cibBAhpVqxWUhARP5oEo7MwQdefECBjFW0=
+
+Name: com/tridium/nre/security/policy/NiagaraPermissionGroup$RiskLevel.c
+ lass
+SHA-256-Digest: Q+0NddwG7dbkw+g99RX1pwzpW60xYlkgOZsakmzAoBE=
+
+Name: com/tridium/nre/platform/FileLockUtil$FileLockObject.class
+SHA-256-Digest: FUYz5Iyh/a4BoLft4uo3Y/PsJ0irMjzK05zzYRFVhcc=
+
+Name: javax/baja/xml/XText.class
+SHA-256-Digest: 7NDYMIkPklDpolZIEjccgGBL62r/+4fTK8U/J2Vf8Q4=
+
+Name: com/tridium/crypto/core/io/CryptoCoreClientSocketFactory$ContextCa
+ che.class
+SHA-256-Digest: 2AcVSn9CPGXz6vTXGXQ79cS3Zwyiyw3Fdd/NYv4FHNg=
+
+Name: com/tridium/nre/util/InterfaceNetworkSettings$1.class
+SHA-256-Digest: mHOUZbgefB1pPfhfJOeQ8VGfecLUBOVrosKDaRjgUBs=
+
+Name: com/tridium/crypto/core/io/CryptoCoreServerSocketFactory.class
+SHA-256-Digest: LrSi6KhbES9u66wwXTdJfXc8zttGWwWXXY6IxtCbF5A=
+
+Name: com/tridium/nre/security/KeyRing$1.class
+SHA-256-Digest: T3CvnuiYgwBM7YMxPf5UYYXZhwkyPyljNa2oieGeUrM=
+
+Name: javax/baja/nre/platform/RuntimeProfile.class
+SHA-256-Digest: +mjUXGFaNy3YiauPv4xYbh7zhmzZ38/P7/Ypv8RAJpE=
+
+Name: com/tridium/crypto/core/io/CryptoCoreSecureSocket.class
+SHA-256-Digest: h3Be0Juumee4VQl6Kas7hbbRzR6++L0P2oifGeKiLwM=
+
+Name: javax/baja/xml/XParserEventGenerator$XParserEventImpl.class
+SHA-256-Digest: b1gzNiye7CGgr7f3xa5BUAoZJ8b4vT4KO4CVgZhcRrY=
+
+Name: com/tridium/json/JSONUtil$2$1$1.class
+SHA-256-Digest: DgDpSR1s6ytpY1r10qo96Ww/OZYipY+vxwUvv4WRX5c=
+
+Name: com/tridium/crypto/core/cert/CertificateChainValidator$Certificate
+ Entry.class
+SHA-256-Digest: X3q/ju2G3PFVWLPEe60e+KrspVKQt+GPpKQaXrFZTME=
+
+Name: javax/baja/nre/util/FileUtil$FileInfo.class
+SHA-256-Digest: aSgx3zI5n7HVJkAiHBv93656GO/4TpO2T+UVlElKN9Q=
+
+Name: com/tridium/nre/security/KeyStorePermission$1.class
+SHA-256-Digest: DKykKcngaZNWtovoQtP8QtafxPFAMLF/J5LXQAVeIW0=
+
+Name: com/tridium/nre/auth/SnapUserManager$changeUserPassword_result$cha
+ ngeUserPassword_resultTupleSchemeFactory.class
+SHA-256-Digest: 8RWs3hSowHksNkBRP3F1LkolT5lvS2YVEN9nAHygOEw=
+
+Name: com/tridium/nre/subscription/RetrieveEntitlements.class
+SHA-256-Digest: YyFyLfO+YtwPP10SE1WXLL+0sIQLrk6aHhzTo3wGEXw=
+
+Name: javax/baja/nre/function/ConsumerCanThrowException.class
+SHA-256-Digest: JDgz5n9H3sp4HYHUzdYD862XmLGt900SAPm6N1bsZik=
+
+Name: com/tridium/nre/util/tuple/Triple.class
+SHA-256-Digest: iIMHiBXzvqsbSVwuvScBoZBdyZlyrwC3ML9GA6o3HeQ=
+
+Name: com/tridium/nre/syslog/SyslogManager.class
+SHA-256-Digest: sPBDTWi0ZvUMtSWQ5KphA2NhsFcZZBjjy5cIrS6uT7c=
+
+Name: com/tridium/crypto/core/cert/TridiumCertValidator.class
+SHA-256-Digest: zS//9gMgZDTjPf5i0GcBYlF0ySbmqKQ6SZsMKUHyZCc=
+
+Name: com/tridium/nre/util/SyspwUtil.class
+SHA-256-Digest: c6bHJJXlJ+Sk84idUqKPU5ugU4bjbfjPhFNtqv08/Fs=
+
+Name: com/tridium/nre/di/NreInstantiator.class
+SHA-256-Digest: 4bwBxaGbZFXRR9tYgF3KWg4VBy3Ibt4e3pZ1qmxrDlQ=
+
+Name: com/tridium/crypto/core/async/AsyncCertGeneration$AsyncCertRequest
+ .class
+SHA-256-Digest: rMgYMMMy7h6ly7kueuOXvbHNKWCSFv0OC7WTD1gVLrg=
+
+Name: com/tridium/nre/util/InterfaceNetworkSettings$InterfaceIPv6Network
+ Settings.class
+SHA-256-Digest: hLsv+pB5uh/YD6XKDjIwfdnq/+gfGf95Eaqcmhs4Vok=
+
+Name: com/tridium/nre/security/policy/NiagaraPermissionGroup$Flags.class
+SHA-256-Digest: 7oUcajg1BCI73d9rS9PFUz/bY76ZhTcRPXzyf4yNnpc=
+
+Name: javax/baja/nre/util/DefaultFileCopy.class
+SHA-256-Digest: lQo8Z2DZjs/hSPNNw9d1sUs9dTwXtcEEt5s4GiSpxcc=
+
+Name: com/tridium/nre/auth/SnapUserManager$removeUserFromGroup_result$_F
+ ields.class
+SHA-256-Digest: mD9wJbjc6fJdBYsBFgg9mFdgmvaqq54WHqnB9mJLlXE=
+
+Name: javax/baja/nre/util/Array.class
+SHA-256-Digest: jxyyDlHFgF4JTBtV9s4tFIAo2K/8BA8LDnBHb43pHjw=
+
+Name: com/tridium/nre/di/NreSupplierPermission.class
+SHA-256-Digest: NaPFngkufdqlwO3bcecf4zPDhg7Fp4A/jfSp4Zlspqk=
+
+Name: com/tridium/nre/jetty/rc/auth/sjcl/aes.js
+SHA-256-Digest: eyiDOF3sIx02oG+cf6NRSWSjtPJvT45fL5uiEDofSOQ=
+
+Name: com/tridium/nre/subscription/HttpResponseMessage.class
+SHA-256-Digest: FtMooW12xMZDAbySa7chga5LLH5dkv4DC4Go8CoYPoU=
+
+Name: javax/baja/nre/util/LongHashMap$Entry.class
+SHA-256-Digest: opGpqfGldydAIMo4Z8oZttVMSVfUAjd7AoD2UpFY30Q=
+
+Name: com/tridium/nre/di/TypeSupplier.class
+SHA-256-Digest: +S75mihITMMeaJoEtIfavDHQgW/iRYImSqOlmti0+pQ=
+
+Name: com/tridium/nre/security/KeyRingPermission.class
+SHA-256-Digest: grGa1+gJ6xA3vcC82dRQElnR1o2XkF+k3anWRppX9Q0=
+
+Name: com/tridium/nre/subscription/HttpMessageWrapper.class
+SHA-256-Digest: xBEbKWW7lJuEh/iWEuqaWKCG2G2XASW7kkTeZUUET5Y=
+
+Name: com/tridium/nre/auth/SnapUserManager$changeUserPassword_args.class
+SHA-256-Digest: ytVPgu3TTxc7nRk6m2B9fy/INTGHGkt5jj4sFN0iBqo=
+
+Name: com/tridium/nre/auth/SnapUserManager$AsyncProcessor$addUserAccount
+ .class
+SHA-256-Digest: 5jQpifb43h0F/ZEIqr1wvFzOD42x4mrE8tejmRzIN8s=
+
+Name: com/tridium/nre/jetty/log/NullLogger.class
+SHA-256-Digest: SAJ1Dpa2uaz4sRT7Asfe3AXtN9UQQj9ADQJQ0gsD/ZA=
+
+Name: com/tridium/nre/syslog/SyslogManager$PlatformProviderHolder.class
+SHA-256-Digest: cHOJeTgiMUSQYjCq2/Qpu3qLavJKLtXRuSamSBNjDhI=
+
+Name: javax/baja/nre/annotations/NiagaraProperty.class
+SHA-256-Digest: nHcN2WXVik3Merlf/qYSTgdh7pTljls81CFUmHVXTo0=
+
+Name: com/tridium/nre/security/NiagaraSocketPermission$AddressType.class
+SHA-256-Digest: RrZNvPLMDph6eP6QFI9B4M+uS1UP8fk/3vsu+dCyEvs=
+
+Name: com/tridium/json/JSONStringer.class
+SHA-256-Digest: zwiOIuwO3gskU5t/QpTCm52gmuIo/uliAc+IeA/ihi4=
+
+Name: com/tridium/crypto/core/cert/CertUtils.class
+SHA-256-Digest: 22pH5v/8Ydhz9yhUnSfo7HZ8Dur2C6LdYNLqucGBHp4=
+
+Name: com/tridium/nre/auth/GlibcSha512CryptAlgorithmBundle.class
+SHA-256-Digest: oLSp8dmzb5kim/rNtUR68WIglYoJ6y4pq7fgHRglrZU=
+
+Name: javax/baja/nre/annotations/Range.class
+SHA-256-Digest: jeii1iS95lxsCVKTe+XHi3dbyFfIVTYln9tiyPOu8Uw=
+
+Name: com/tridium/nre/auth/SnapUserManager$addUserAccount_result$addUser
+ Account_resultTupleSchemeFactory.class
+SHA-256-Digest: XNNcl7WyonJR/btN+Uqn1g4TXUyDTT9LrZ5xI4Wuj6U=
+
+Name: com/tridium/crypto/core/cert/NRsaKeyPairGenerator.class
+SHA-256-Digest: hleL0en+1FoMSR1cxGuyF+jG6X5su5uPBhoBOcZyMWk=
+
+Name: javax/baja/nre/util/SortUtil.class
+SHA-256-Digest: O93yijJgY8mGIh0jNPzkcwRhLeF5UdyRceQaQN/qYLE=
+
+Name: com/tridium/nre/firewall/NullFirewallProcessor.class
+SHA-256-Digest: lPGwOulsKWMTEpOz9fX/zZLCdNdNtLHtUfTi2dlZBQk=
+
+Name: com/tridium/nre/subscription/EntitlementApi$EntitlementState$6.cla
+ ss
+SHA-256-Digest: G7Y56RrieoB+Rwj3T71bkFA/20oE9+BH3ROU1qPJLFo=
+
+Name: com/tridium/nre/di/RequiresInstantiator.class
+SHA-256-Digest: tFtjmYn1z1+4WGyFYtQxtKt1P7j+qJvGy0H6yxCWl2M=
+
+Name: com/tridium/nre/jetty/rc/auth/sha512crypt/lib/sha512.js
+SHA-256-Digest: An0ACQHOjU846fI+2uJz62zmuMpDXcNPz5WU+ZzdTFI=
+
+Name: javax/baja/xml/XException.class
+SHA-256-Digest: 9Oo7xoKWR9mFrvDNNG9k3Y2Ev1pnrLS9aCatJ/4xN9w=
+
+Name: com/tridium/nre/util/IElement.class
+SHA-256-Digest: NULpfmvD6D5a4fhmBWsSfxYi9E+Aq0efgpn94HiUtH8=
+
+Name: com/tridium/nre/util/Normalizer$Form.class
+SHA-256-Digest: ZL0zWrsNI5Yk6XmHzE28XZxLirhHroYQV9jsjvGRiGI=
+
+Name: com/tridium/nre/UnaryOperatorWithException.class
+SHA-256-Digest: FocTcHUyUedRiNzYinP3ay4ZC0G+/UNbcvOlPp+bjcs=
+
+Name: com/tridium/crypto/core/io/CoreTrustStore.class
+SHA-256-Digest: 5YetqRNItJaQ760yxzTPRAob0sNdA0jN/Ts68hpAov4=
+
+Name: com/tridium/nre/security/CryptoProvider.class
+SHA-256-Digest: FYNBk07lpKoCHNlMIUmxCJeIUg2z5ApwQJ2Wy9pEZl0=
+
+Name: javax/baja/xml/XElem.class
+SHA-256-Digest: 3Y71LsN2YLHDYYIuY7qlwQBuTgVvS4WxYO+dUuAzbX4=
+
+Name: com/tridium/nre/util/MqUtil.class
+SHA-256-Digest: p1dIgTNUsxqFRxZbTqbfsNVnA8GSUQE0MWWSSmQo5kQ=
+
+Name: com/tridium/crypto/core/cert/ext/NKeyUsage.class
+SHA-256-Digest: 2gOtqR+JMv+73z96EtLl3YzaaG4mlFFPKS/6BRw18FM=
+
+Name: javax/baja/xml/XNs.class
+SHA-256-Digest: zO+nOb1Ywj2qLEMMKVeW93Vf2j43QHTUIQ+PJxFvsIQ=
+
+Name: javax/baja/nre/util/SystemFiles.class
+SHA-256-Digest: JpQU1DfbvRirqxFuYqBQs03aY6Ssa1CVXyQlXjHl03I=
+
+Name: com/tridium/crypto/core/async/AsyncCertGeneration$CertificateReque
+ stProcessor.class
+SHA-256-Digest: ZpODFujRSH1eF3sD0ElLOpmyqWqxGZ/bZaSxnTgQaOA=
+
+Name: com/tridium/nre/security/PBEEncodingInfo$1.class
+SHA-256-Digest: Hb/pzr9BPwdJd6pxU9+07Z8AusHbp0cae1sHVBNZQz0=
+
+Name: com/tridium/json/Property.class
+SHA-256-Digest: 5xWMrHSmM1XsOBVJGkW5+EFulyvs6JwXiF9hw7/J25U=
+
+Name: com/tridium/nre/security/policy/XmlPolicyParser.class
+SHA-256-Digest: Qb+QWiJKIBKtxoreXqGByxsuiVcSBAE/O+mYXQTL7sg=
+
+Name: com/tridium/crypto/core/io/CryptoCoreServerSocketFactory$NSSLServe
+ rSocket.class
+SHA-256-Digest: mICo8W6AR/m/X1iEr+TTJI+xO303a1TeZaXFxUKx5lA=
+
+Name: com/tridium/nre/security/PBEEncodingKey.class
+SHA-256-Digest: fTW+hU2GCLlFv7SRGbICcii5qdFtA88pl2ocI/BXLQk=
+
+Name: com/tridium/json/XML$1.class
+SHA-256-Digest: ndBg7sO55LiIZjmjStlkgK49TkeBHDRG04006+5UU2U=
+
+Name: com/tridium/json/JSONException.class
+SHA-256-Digest: hGa5DoJH3M+7WS2Bi5szlkLuufod8Cvk2Krl+lSR2X8=
+
+Name: com/tridium/json/CookieList.class
+SHA-256-Digest: 6uiHD/6ICLUfCn/FyIgRdzlgaM59tBHMahF1aG61spM=
+
+Name: com/tridium/nre/security/Aes256PasswordEncoderUtil.class
+SHA-256-Digest: 0L12gEJjCpNjQ/NA/y9AL/pmte9cu60atwKRxDD31EQ=
+
+Name: com/tridium/crypto/core/util/FriendlyPemReader.class
+SHA-256-Digest: 6S4WP13fpREtWPjV83OPBwF8+kFvtv/avDBwhjDdf/8=
+
+Name: com/tridium/nre/auth/SnapUserManager$addUserToGroup_args$_Fields.c
+ lass
+SHA-256-Digest: wZg1N6g6rjPwmPgVbSy3irJ09wyx6ucv3rPbd2vEn9U=
+
+Name: com/tridium/nre/syslog/UdpSender.class
+SHA-256-Digest: 79PmCaopI7jPaXe7sfmUduVYW9Wb3v6VnyVNUJcoZQQ=
+
+Name: com/tridium/crypto/core/provider/IProviderSection.class
+SHA-256-Digest: PQKKLWut3q76XWv7MyKc8wRH8BSdcCiQYeolnSJaIXs=
+
+Name: com/tridium/crypto/core/io/CoreTrustStore$NotifyListenersRunnable.
+ class
+SHA-256-Digest: Adibu71FIzr4v3L0JSpdRGWzEvWU8vgp3Tio1p6aU38=
+
+Name: com/tridium/crypto/core/cert/NPKCS10CertificationRequest.class
+SHA-256-Digest: AFTK4Wa56PlYNS/K4CYJuVOm01OS10HuFyB00dl+U8U=
+
+Name: com/tridium/nre/auth/ScramServer$IUserKeyFactory.class
+SHA-256-Digest: Xthc8k3CAOpHoPSudMXXidcX+KrlAC9oqzIs9azZ4vA=
+
+Name: com/tridium/crypto/core/cert/CertChangedException.class
+SHA-256-Digest: VLvl5TyIzT5oIZuG94yZholxpY8QkUEhdWvEdYiULfk=
+
+Name: com/tridium/nre/subscription/EntitlementApi$EntitlementStatus.clas
+ s
+SHA-256-Digest: 7nCnlugEL8vSbAXCON7fYrwL/ZgX0eVAREN69n4U7yY=
+
+Name: com/tridium/nre/security/KeyRing$KeyRingEntry.class
+SHA-256-Digest: y+qVaCQpBChMLVPCG35Lv21mDuRMt1c1S/X4iDLtSwQ=
+
+Name: javax/baja/xml/XParserEvent.class
+SHA-256-Digest: zOMy8hspyq9pVw8MvhY4jkbGkP328x+1g/mk2AgyGys=
+
+Name: com/tridium/nre/security/policy/NiagaraPermissionGroup.class
+SHA-256-Digest: Ff48qCiMqs+nVtN1oGrHFnIzikbUwrOAfzX0/9ZpWBI=
+
+Name: com/tridium/nre/auth/Sha256Crypt.class
+SHA-256-Digest: E92Zx0OgvT/xjpjDqXfO6ZFurFLDf0fFuOshNWoG94k=
+
+Name: com/tridium/crypto/core/exchange/KeyExchange$LocalMetaDataHolder.c
+ lass
+SHA-256-Digest: HaAz7V8lIklsm+60UoErnuOjnHzvOHJe6/cvy0Eo7jQ=
+
+Name: com/tridium/nre/security/HsmManagerImpl.class
+SHA-256-Digest: GW2AO0LgwOyq78hCYBqA8tlmn0zDAmjBAX0YklmC6n8=
+
+Name: com/tridium/crypto/core/io/CoreExemptionStore.class
+SHA-256-Digest: 4me3Fr/OIQa7PSJCbL/qWgN90SrKyl2748/wlXhf+vk=
+
+Name: com/tridium/json/quick/QuickJSONWriter$RegularStringJSONWriter.cla
+ ss
+SHA-256-Digest: KwPKqhZVAZEEiIEsRqEvR7if+kMuc+GjvjIRhmaZl1c=
+
+Name: com/tridium/crypto/core/cert/ext/NSubjectInfoAccess.class
+SHA-256-Digest: KDGsvC2F6BQC2/LAYZAtBw+hLibBldnRDLsvqDOjOUw=
+
+Name: com/tridium/json/JSONML.class
+SHA-256-Digest: 4fTaGHX8dXcA7U3dtBfVOYHrHFJQ36oXce7WPb6pcD4=
+
+Name: com/tridium/nre/security/policy/NiagaraPolicy$CachedPermissionMapp
+ er.class
+SHA-256-Digest: JmcsT/9I4QDiPmnc2B49rWg6gVOaYsze5G289mAMWjQ=
+
+Name: com/tridium/crypto/core/cert/ext/NPolicyMappings.class
+SHA-256-Digest: mqARXKK/BIE2rvmZphIpOiLVi61jirW5XCNUEspaaHI=
+
+Name: com/tridium/nre/util/BogModUtil$3.class
+SHA-256-Digest: aCDzKAi7QAfBUV/x1WQRcK9XzW7SH+YmypmsU3ImRBk=
+
+Name: com/tridium/nre/util/BogModUtil$2.class
+SHA-256-Digest: ETNe1m0fcFfmZBq7iHTQexPzHH4mi0s6CRM/9kYPkkI=
+
+Name: javax/baja/nre/annotations/AgentOn.class
+SHA-256-Digest: df0ZGdTYuwDg6/Mly5IVyvtpAsHMBYnWdgc1E+QII8Q=
+
+Name: com/tridium/crypto/core/cert/ext/NCRLDistributionPoints.class
+SHA-256-Digest: kV2HowfPWnoj4Sc5yvEfqpBpY+3DvfcUpn/JL+yJvlc=
+
+Name: com/tridium/crypto/core/cert/ext/NSubjectKeyIdentifier.class
+SHA-256-Digest: i/xK5PbNO8Wvx8g8/mv+AUo4UnlQiQ86bIm9QVvAmyQ=
+
+Name: com/tridium/crypto/core/exchange/SRP6Pbkdf2Client.class
+SHA-256-Digest: 2C2b6RjSN5GygPyzFPLmpLFn9UMgTLuBwQoifVdkPqY=
+
+Name: com/tridium/nre/CachedPredicate$1.class
+SHA-256-Digest: WyALN9mioH/c4Uc11gI4adGqvZEetcuZp9e/lWtjVRs=
+
+Name: com/tridium/nre/BiConsumerWithException.class
+SHA-256-Digest: GslL23oeDeyUbkQOIL7daVMPayoEt3IQ1dbjMz2OibY=
+
+Name: com/tridium/nre/subscription/EntitlementApi$1.class
+SHA-256-Digest: O/sLVOPgNKiHjmcjVrhHpeQKMoTro15ShnExWpYj0JA=
+
+Name: javax/baja/nre/util/IntHashMap$Iterator.class
+SHA-256-Digest: H6nhWxEGEdxeUAijK+prL+liZAz+ASv6j8aLp55aauI=
+
+Name: com/tridium/nre/security/PBEDecryptFunction.class
+SHA-256-Digest: hJKPY8tRQaScYTPeVzXcR+UDjSsX/+9fSGf99uQWRfs=
+
+Name: com/tridium/nre/diagnostics/DiagnosticStats$KeyStat.class
+SHA-256-Digest: pg0dksJ6sIp/rAn5mOdBM0BaX5BXGYz5NAWhf/fxrkg=
+
+Name: javax/baja/nre/platform/RuntimeProfile$1.class
+SHA-256-Digest: RrwRUi/DWpag5MY948cJm8d+aFXOhDP2h98Ge/qp4Gs=
+
+Name: com/tridium/nre/diagnostics/DiagnosticStats$TimedStackTrace.class
+SHA-256-Digest: 9yKFO+6cO8K4Ps+a1J0DfyGUPhtLlg9kipRQZrkkHpQ=
+
+Name: com/tridium/crypto/core/io/JettySniSelector.class
+SHA-256-Digest: 6+LDKJVAK3ArVg68J0di+CEkzQq264Qf14DQ0LFDkNQ=
+
+Name: com/tridium/nre/security/io/KeyRingEncryptingOutputStream.class
+SHA-256-Digest: AXrQTbev07nSSM0vy1kmCefZZTraCNPUCie5bqzessU=
+
+Name: com/tridium/nre/auth/GlibcSha256CryptAlgorithmBundle.class
+SHA-256-Digest: KSaHiqAjyRINWDNvK8nKOGkKuWlTcoc5CX/XNaI0Fcc=
+
+Name: com/tridium/nre/security/policy/ParsingException.class
+SHA-256-Digest: wQoIRRAg8O27pAtsxdiPthWhKNk6QTEx9MaKGYSv4eU=
+
+Name: com/tridium/nre/util/NiagaraFiles$LocalMetaDataHolder.class
+SHA-256-Digest: tXvq67ZHZxKXTAL+GrIq/aSZg5LAcnOgMcdoYkVXdw8=
+
+Name: com/tridium/crypto/core/cert/ext/NBaseInfoAccess.class
+SHA-256-Digest: A2X6jWpSjkJMhunpE/sxNNv+druRQ7EwuyYQ2P25x8s=
+
+Name: com/tridium/nre/jetty/log/JavaUtilLogger.class
+SHA-256-Digest: m2VDWHd1ZwqlGckGtrSwNXhE60TQugrhJaK7jhVePKs=
+
+Name: com/tridium/nre/subscription/EntitlementApi$EntitlementState$2.cla
+ ss
+SHA-256-Digest: b3AM7AW/H/II1SOVIpfE59/6dhiMHvnPleo7ibF1UFM=
+
+Name: com/tridium/nre/auth/SnapUserManager$removeUserAccount_result$remo
+ veUserAccount_resultStandardSchemeFactory.class
+SHA-256-Digest: R1IomRVzxzS/CWTnRyUeTvj4IpHVpbVrCLazhmh3G2o=
+
+Name: com/tridium/nre/auth/SnapUserManager$addUserAccount_args$addUserAc
+ count_argsStandardScheme.class
+SHA-256-Digest: nhAetdheW9nf90BbOBLfXFQfJ1Cd2wIxsRIy5b4g/p4=
+
+Name: com/tridium/nre/security/KeyStorePermission$KeyStorePermissionColl
+ ection.class
+SHA-256-Digest: bJ8fH69icHPLlW7tflaWA497mlgkcsHQkB/V8vjQlK0=
+
+Name: com/tridium/crypto/core/io/CryptoSupport.class
+SHA-256-Digest: l0xGa35QqnfAcoMNQlVidu2ixE//edK0yoPF9VRR1ZI=
+
+Name: com/tridium/nre/platform/NativePlatformProvider$1.class
+SHA-256-Digest: y5zonI2Eokjo7G3HsfYoInAyeKYM3gLlXNUI8vi6aRg=
+
+Name: com/tridium/json/XMLTokener.class
+SHA-256-Digest: Sm0RjPu2q4owIvUzjW2J/XW6+S4TJjSBhbppz5igGY4=
+
+Name: com/tridium/nre/subscription/JwtSignatureKeys$KeyPairFile.class
+SHA-256-Digest: qSJB40Icr9jz3XpllV5/4y340DtC+dHKnMlSpbEDTd4=
+
+Name: com/tridium/crypto/core/cert/ValidationException.class
+SHA-256-Digest: WBrWVTwM9T753cGj7Zn/GKS8Z+u8JFv9pqr5mfbXbO8=
+
+Name: com/tridium/nre/security/NiagaraSocketPermission$Action.class
+SHA-256-Digest: ukQhGTL4dAlX1Gg2CwLSLOifi7SUcYWIsCVP1+e2qdE=
+
+Name: com/tridium/crypto/core/cert/ext/NPolicyConstraints.class
+SHA-256-Digest: QUjDN+4FSV1rWY2Ma1whC/ZVclVLiUA46vu0bibvOzY=
+
+Name: com/tridium/nre/bootstrap/BootstrapClassLoader.class
+SHA-256-Digest: 0o10HOiQw4/sKPB46CDpQl8A/0414sIsI6Yx78nusao=
+
+Name: com/tridium/nre/util/tuple/Pair.class
+SHA-256-Digest: gGP1hUGMwhKTDePNj4rtZG+HggkeQFDcUDE25/1VeSE=
+
+Name: com/tridium/nre/subscription/HttpConnectionlessTransport$AlwaysTru
+ stManager.class
+SHA-256-Digest: AuOysi3PwZcbNg2BfxYaAjPvQ3dsAwR2bBKtB+dzhO4=
+
+Name: com/tridium/nre/security/policy/PermissionMapper.class
+SHA-256-Digest: QXZOnAXfHOVLHbPjTz3K3rrgImc5OoGhqSzs8YROSjw=
+
+Name: com/tridium/crypto/core/cert/CertificateParseException.class
+SHA-256-Digest: MUEB1b4i88PwaVAC9oNlAvYENEIQJB3P7ySw3mrCHJg=
+
+Name: com/tridium/nre/platform/NativePlatformProvider.class
+SHA-256-Digest: 6z4ZS1gNiKCb7MdkgLQgWHr70A9jw+dr43lT04o7QxQ=
+
+Name: com/tridium/nre/subscription/RequestCertificates.class
+SHA-256-Digest: zPhpgd5rWJeK5sbUdYjJCJJVoiAnJY9iZM69fESbriM=
+
+Name: com/tridium/nre/auth/SnapUserManager$Processor$changeUserPassword.
+ class
+SHA-256-Digest: xIjwFj2BHB5TTryFwWnK3uPIg2bk05YdIrzKSl9/htQ=
+
+Name: com/tridium/nre/util/CacheMap.class
+SHA-256-Digest: 7ZnYmtjUjV3EtYbycOyjEorr0kNgXORqtvSDw1kp6VQ=
+
+Name: com/tridium/nre/platform/NativePlatformProviderNpsdk.class
+SHA-256-Digest: UNZaV/r0l6pHbxWdhiqhvPsB65wLpRwJwI1c7I7Q9lQ=
+
+Name: com/tridium/json/XMLXsiTypeConverter.class
+SHA-256-Digest: 588iopuTj6q9/zxGC9YJqZdOouBYH/Ie0H8xcJdGIsY=
+
+Name: com/tridium/nre/security/io/PBEEncryptingOutputStream.class
+SHA-256-Digest: jpa3WWwCH9r8/dosvyXXebSBuXRBQXg2Fj8co19Kty4=
+
+Name: com/tridium/nre/security/SecurityInitializer.class
+SHA-256-Digest: VeKZfcMIisNMf/SlmJnQ4JPAQODsWwZpj5GtTwmwmcU=
+
+Name: com/tridium/nre/diagnostics/DiagnosticStats$1.class
+SHA-256-Digest: hqtG/r/txp4Fal+XjDG2wezXg5o0MC3vxB08Si1rBnc=
+
+Name: com/tridium/nre/syslog/SyslogLogHandler.class
+SHA-256-Digest: HwZrX4PdafgcHykzYRJVf93eYYdFRToFif87furpVdA=
+
+Name: com/tridium/nre/auth/SnapUserManager$AsyncClient$addUserToGroup_ca
+ ll.class
+SHA-256-Digest: sYYxhttDmnGiaAUe1g1d96ONCsW+sEe7CuC+WQecvyE=
+
+Name: com/tridium/crypto/core/io/CRLConsumer.class
+SHA-256-Digest: GNbPxuT0Qbmyk5DlH3RpmFyufO7P37w+soI3erPPHco=
+
+Name: com/tridium/nre/auth/SnapUserManager$addUserToGroup_result$_Fields
+ .class
+SHA-256-Digest: gjVK0qSY5TrdY4s7FsgEenoIU6jQR8ylsvpjLC7DdOY=
+
+Name: com/tridium/nre/auth/KeyDeriver.class
+SHA-256-Digest: du5O5cMErmrKUzFAY2LYhHgy2EuKGbP5k97ANfwJ8dw=
+
+Name: com/tridium/nre/diagnostics/DiagnosticStats$IDiagnosticListener.cl
+ ass
+SHA-256-Digest: aWP5rP4N3RmVOgDtaWrEIrJmzhrmDq48Ks1kX15xizw=
+
+Name: javax/baja/nre/annotations/NiagaraType.class
+SHA-256-Digest: iUfNFivhtqnaV+8P8F6Ugpvnlb6OjEHTuc2osXFkm8Y=
+
+Name: com/tridium/nre/auth/SnapUserManager$addUserToGroup_args$addUserTo
+ Group_argsStandardScheme.class
+SHA-256-Digest: kXrWm9+ZeNDzk0Gc6eilqAFHd2yQkPvJt9AiIwgAftg=
+
+Name: com/tridium/crypto/core/provider/IProvider.class
+SHA-256-Digest: 11UMOQ/BaC8MODZ063GQLgz5gtTsOLbSl0FQXwsrbUA=
+
+Name: com/tridium/crypto/core/exchange/SRP6KeyExchangerClient$State.clas
+ s
+SHA-256-Digest: ELdmd2WRUVVf7yaEYYjo14FGER+7g8f57FvdEgzpe1o=
+
+Name: com/tridium/nre/security/km/PlatformKeyMaterial$PlatformProviderHo
+ lder.class
+SHA-256-Digest: KOnny4DIy5A+KD+2g5OLeWCVKnbHH+kSE4pEbG0L+BE=
+
+Name: com/tridium/nre/security/policy/PermissionsCache.class
+SHA-256-Digest: gH1mCX7rQUKSFyHJrLZ5Xc/7RLC+wCkmOUohZA0cODc=
+
+Name: com/tridium/nre/util/PrivilegedRunnable.class
+SHA-256-Digest: wJ8gFuxlbf0wv1HZXFFR5/x3lrjJ/ddNUyJYm9HuAqA=
+
+Name: com/tridium/nre/auth/SnapUserManager$removeUserFromGroup_result$re
+ moveUserFromGroup_resultTupleSchemeFactory.class
+SHA-256-Digest: XyzORT4ilHuH/LZOxpqkOm2BJ6pgHTp6tticQfpNRBE=
+
+Name: com/tridium/nre/util/BogTranscoderInputStream.class
+SHA-256-Digest: wrxE1AUf6lNxRPKCT4nV6EafsuMYGLPb0DrQWV+21Ug=
+
+Name: com/tridium/crypto/core/cert/NHostExemption.class
+SHA-256-Digest: yVZiZsKW7UOaVQ+la15RKEOkHproPZQ+36u8fwkZYhE=
+
+Name: com/tridium/nre/firewall/pf/PfFirewallProcessor$StreamGobbler.clas
+ s
+SHA-256-Digest: /4F01eR3K80B13YXTKVwX6erKKd3qqL4MhGG6rkOPWc=
+
+Name: com/tridium/nre/auth/SnapUserManager$removeUserFromGroup_args$remo
+ veUserFromGroup_argsTupleScheme.class
+SHA-256-Digest: uDXc7yj42+nyMbKp+tHjYhtxfxEFCRW+b6AnxcodiDc=
+
+Name: com/tridium/nre/auth/SnapUserManager$removeUserFromGroup_result$re
+ moveUserFromGroup_resultStandardScheme.class
+SHA-256-Digest: MBbPY/N6fmNtlBd2GyfLtyGe6JNgioZMnEpbaMjeqY4=
+
+Name: javax/baja/nre/util/ByteArrayUtil.class
+SHA-256-Digest: XZcujAWu1vUFY0ORAsCt1Oi4cRIi5x0/4YW479GmHDc=
+
+Name: com/tridium/nre/auth/SnapUserManager$removeUserAccount_args$remove
+ UserAccount_argsTupleScheme.class
+SHA-256-Digest: jXmmnN8hiKEs+3mUB0vcbU67NOfKiR67nXvTc0DpjtA=
+
+Name: com/tridium/crypto/core/exchange/SRP6KeyExchangerServer$State.clas
+ s
+SHA-256-Digest: s7erx/4EA+KXUq/NTflMLLg0qGOigwCo2Q5hxruoWWM=
+
+Name: javax/baja/nre/annotations/processors/slot/PropertyAnnotation.clas
+ s
+SHA-256-Digest: 5AM/EGdYaQ/Y4d6NuPy/iI+9EFw45z2XabYBf+5AK5c=
+
+Name: com/tridium/crypto/core/io/CryptoStoreId.class
+SHA-256-Digest: 2OJHEvx0WUCOjpU4kq3s8GgKgxJzawAIv7yUpFRKM7U=
+
+Name: com/tridium/nre/security/ISecretBytesSupplier.class
+SHA-256-Digest: 8kJT+goqgMiwMbQ0oqyjHHQIZ3+cOmaMxHzn+nnLQxI=
+
+Name: com/tridium/nre/util/InputStreamInfo.class
+SHA-256-Digest: PYyA88e7iqBwYW0AUY1GJxGwIBU1FL6GK7rN/OKQi14=
+
+Name: com/tridium/nre/jetty/rc/auth/sjcl/hmac.js
+SHA-256-Digest: rn3wpcVkAoTw1zyJOiRvP06+gvf1VRbsqaHDIejEc1I=
+
+Name: com/tridium/crypto/core/async/IAsyncCertRequestEntry.class
+SHA-256-Digest: tmMvIvFi5RpDhsXFk6EK1PoGNKoHViD7ImLFVWmdqLY=
+
+Name: com/tridium/json/Cookie.class
+SHA-256-Digest: 7dreB7Bh2fo6UGY5y7ANfRqOSW7+kvIOs+kKj70XO10=
+
+Name: com/tridium/nre/security/PBEEncryptFunction.class
+SHA-256-Digest: S+E8cTHogSwdDynVRyyaoxUVqy1JSLiKpD92j7AhNCQ=
+
+Name: com/tridium/nre/security/km/KeyMaterialFactory.class
+SHA-256-Digest: yaZdDHoZxHBusrnobAf/aju8P2h3ngVeWFSzurO19mg=
+
+Name: com/tridium/nre/syslog/TcpSender.class
+SHA-256-Digest: +Qo99LwOG7iqy7SuiiKRGhCLnerdAWFyTH0p/K19FNc=
+
+Name: com/tridium/nre/auth/SnapUserManager$changeUserPassword_args$chang
+ eUserPassword_argsStandardSchemeFactory.class
+SHA-256-Digest: z9Bbw58l6opbaSo6UU/MaJYpGxyIFPhcdHlSFAOA6Kw=
+
+Name: com/tridium/nre/subscription/EntitlementApi$EntitlementState$1.cla
+ ss
+SHA-256-Digest: zjl+4fGKKl25kOJiboL6c8GCc0NICSuqvODaovZfP8A=
+
+Name: com/tridium/json/JSONPointerException.class
+SHA-256-Digest: 8wosrwaBOKDVLkvezZS/XXoLkoLlO8ZNVKvuCdF1wlA=
+
+Name: com/tridium/nre/util/NiagaraFiles.class
+SHA-256-Digest: +CICqNOgV3ZcvoodW6kKs6bpGQ8UTc2fIgYTxdrebMg=
+
+Name: com/tridium/nre/security/KeyStorePermission.class
+SHA-256-Digest: jqxi64RpXyC+qe+HuAHcY80MkzxyQ+5PK6Ml5rd1Ak4=
+
+Name: com/tridium/nre/security/ISecretBytesSupplier$1.class
+SHA-256-Digest: GmOeQ+IEw45OTw6qAaafsdJCaBaP8AXYJ6lbQJiqD8g=
+
+Name: com/tridium/nre/security/io/BogPasswordObjectEncoder.class
+SHA-256-Digest: ByuKKRoay8L9tqGVucU/mSa/e+OYeHLtwHjZHsOj9PA=
+
+Name: com/tridium/nre/auth/SnapUserManager$addUserToGroup_args$addUserTo
+ Group_argsTupleScheme.class
+SHA-256-Digest: xrhb/yb3wQUH9yZ2duLAZU41B/O9erva8nXt0WtTRd4=
+
+Name: com/tridium/nre/security/policy/SimplePermissionCollection.class
+SHA-256-Digest: JyFzIiz66ElrF7ooNLbeTSqeDVUTRtqApBipC9jfSO8=
+
+Name: com/tridium/crypto/core/io/CryptoSupport$1.class
+SHA-256-Digest: UBzifigsOYRIh4tWt05J+BZrJI+IpFTDiJqp7/cIYM8=
+
+Name: com/tridium/nre/security/policy/JavaPermissionsFactory$1.class
+SHA-256-Digest: +z59ykCTFkQ33+re1XCZ0s7ssMD15OE8izCLhRsr7Gw=
+
+Name: com/tridium/nre/subscription/EntitlementException.class
+SHA-256-Digest: 6DpDJ8oswc+koLlZFqSPE0wzxwh6ZQNi8lj9SeoUfi0=
+
+Name: javax/baja/xml/XPath$DynamicXPathMatcher.class
+SHA-256-Digest: Er9Ci0Z4zUmGSslLMIdLM8mc5ICkwPE3KJROyCtB8Lw=
+
+Name: com/tridium/crypto/core/cert/NEcdsaKeyPairGenerator.class
+SHA-256-Digest: qc1UCj7nYnfMPYaesuEmYYTLRhashAjf5764316ErWA=
+
+Name: com/tridium/crypto/core/cert/NoOpCertificateChainValidator.class
+SHA-256-Digest: cWT7cNq1lNmvoYw2gSSiZO726EtJIaQIm60QQhpK04o=
+
+Name: com/tridium/nre/auth/SnapUserManager$addUserAccount_args$addUserAc
+ count_argsStandardSchemeFactory.class
+SHA-256-Digest: B7Nm8QOgdKMdbTrDZHAauw7Edb5O8XEe+9nRzTqdMM8=
+
+Name: javax/baja/nre/security/IX509Extension.class
+SHA-256-Digest: 0Yg5Tur5TI4OkUSuPTIgWX0wY1xZGPpW0Z6mKVP9I+4=
+
+Name: com/tridium/nre/security/TextFileSignatureVerifier.class
+SHA-256-Digest: mDEzgYvFT/M+jdMYiqtdCmK+1Wxaa8GuRq42Omhr55E=
+
+Name: com/tridium/nre/auth/SnapUserManager$addUserAccount_args$addUserAc
+ count_argsTupleSchemeFactory.class
+SHA-256-Digest: QEK0Ls+W2ucjqM3CJJoBnmf+NArmun34If3zSpg/oFA=
+
+Name: com/tridium/nre/security/SystemPassphrase.class
+SHA-256-Digest: Vaftkq0aKZaLoZ5s+qy4Fx4tV8Bjm/D8o751OyOwyIE=
+
+Name: javax/baja/nre/annotations/NoSlotomatic.class
+SHA-256-Digest: TCD7Gi4IVXqwUlO5X3sIVkz5+Z7mHFOszjgr8w3vFqQ=
+
+Name: com/tridium/crypto/core/cert/NX509Certificate$PlatformProviderHold
+ er.class
+SHA-256-Digest: Jmm8zlyZCeVzyHHP3p18NlUgvUwv7LdJVRgb4L3ADq4=
+
+Name: com/tridium/nre/syslog/Severity.class
+SHA-256-Digest: Lbr9Jt/iyKPqyLLuqhhmldgSBPccLBSsjCPPGCANr5s=
+
+Name: com/tridium/nre/security/policy/PermissionsCache$PermissionEnumera
+ tion.class
+SHA-256-Digest: wYKpv5XQHp6et1qSFdrm8Q7n0jFDyWf3l+t/lLiof4k=
+
+Name: com/tridium/crypto/core/exchange/SRP6KeyExchangerServer$1.class
+SHA-256-Digest: wYkQwRfEVTd4hBxryg5YVAxAjlKgkRLky+b65l/5rJ8=
+
+Name: com/tridium/crypto/core/cert/ext/NPrivateKeyUsagePeriod.class
+SHA-256-Digest: Ir+K2CWEQqYt/3kyydphMe3JYScEqZHrWuNyTythuGA=
+
+Name: javax/baja/nre/annotations/NiagaraEnum.class
+SHA-256-Digest: LyQhAdO789b+Z0ZIEsV8ZJpRyTVFz1Le5K+86v1Zvxk=
+
+Name: com/tridium/nre/security/policy/NiagaraPolicy$ImpliesAction.class
+SHA-256-Digest: THp7vkyfeLULgCn5rZlESeSyytiieKW+z1u2vDHd1fI=
+
+Name: com/tridium/nre/security/SecretChars.class
+SHA-256-Digest: 8ja+vS9nZ1pwkTRvUzfhsoKNxCjhNbygWgwQBHpqV2Q=
+
+Name: javax/baja/nre/annotations/processors/ModuleInclude$XmlException.c
+ lass
+SHA-256-Digest: h1c8LOR0eb1GntUSkrrPZLnntE1IcO8xBM9bmENXt5A=
+
+Name: com/tridium/crypto/core/cert/NSigningParameters.class
+SHA-256-Digest: lacP3w8VtMZ/XZngjR8GC1fErPl3rzoObn35F6v8gEE=
+
+Name: javax/baja/nre/util/Array$AsList.class
+SHA-256-Digest: e1MjD1auFC3P+OYwg29JKvV6E+/FFyEj+ePCRCpYXNM=
+
+Name: javax/baja/nre/annotations/NiagaraAction.class
+SHA-256-Digest: /mZ2FxEYP0TG3MfaEdlqXHUG6vsCeg8irCG+p0HFu4Q=
+
+Name: com/tridium/json/XMLParserConfiguration.class
+SHA-256-Digest: xLHsCxbLYxkG1BGWmSVG6j+E5JoBPbHcN28jHV1bkZk=
+
+Name: com/tridium/nre/security/KeyParameters.class
+SHA-256-Digest: c0w/ooFeCbWYaxTi0ItDWcRcCnpI8bkfA0ZbpB4Xzk4=
+
+Name: com/tridium/crypto/core/cert/CertificateKeyAlgorithm.class
+SHA-256-Digest: fMA63Vv+g7K7mBirADh7VjAWzqpCqeLs/ys2TodDheM=
+
+Name: javax/baja/xml/XElemLocation.class
+SHA-256-Digest: 6AF8G9FOq/L9SDIavlzuMqLntlCwXKZD8NTBZMnCRwU=
+
+Name: com/tridium/nre/auth/Sha512Crypt.class
+SHA-256-Digest: eFewlydz5rVSUik6g4cFH6IqRc6+0/UfsW6Sb75uRgI=
+
+Name: com/tridium/nre/auth/SnapUserManager$addUserToGroup_result$addUser
+ ToGroup_resultTupleSchemeFactory.class
+SHA-256-Digest: 9VDr5B8v8oKKwIbZu54ohlVetCcF01iFIiz/FUimrCk=
+
+Name: javax/baja/nre/security/ExemptionApprover.class
+SHA-256-Digest: U7Xb/CGkP9NoMAejd1Pgbk8m/ZlC0eRPt0Uu4PaAPS0=
+
+Name: com/tridium/crypto/core/cert/JarVerifier$ManifestParser.class
+SHA-256-Digest: ZqS5EbyXF9l3V1icnX3hokJhpULF5hZUq0L26jkJwz4=
+
+Name: com/tridium/nre/firewall/pf/PfFirewallProcessor.class
+SHA-256-Digest: zOE5ARXEQyZwUyfjC0wgHx1LDyseKq+1reT+9iu/ZTQ=
+
+Name: com/tridium/nre/auth/Pbkdf2$EncodingCalculationCache.class
+SHA-256-Digest: +Esn42rsF9NwgmozfXuKgNcb5dbhsorBjqlDpamtHHQ=
+
+Name: com/tridium/nre/util/NiagaraErrorCode.class
+SHA-256-Digest: JaEEENFOamFRlZNhbmh6JPywFalndQMJ2+0rm2aezFU=
+
+Name: com/tridium/nre/security/KeyDerivationAlgorithmBundle.class
+SHA-256-Digest: C3jqVLim9UpUPhKM2xGhLnQawJB1CeOuoHHbkrLXE+4=
+
+Name: com/tridium/nre/util/IPAddressUtil$1.class
+SHA-256-Digest: xh/3aPrDU1pkNJf6W7tWkrB+WzBsj2TcAL0JIpI3MyY=
+
+Name: javax/baja/xml/XPathMatcher.class
+SHA-256-Digest: MPWoceq1gNXmuFxr3igHnVN8Ldw9pr4/XyJ+vTEIHAk=
+
+Name: com/tridium/json/JSONMLParserConfiguration.class
+SHA-256-Digest: pEf4JOme/pqooG2meRS0xenZ4e8UCqp/CxapiL6Pdfo=
+
+Name: com/tridium/nre/subscription/EntitlementApi$EntitlementState$3.cla
+ ss
+SHA-256-Digest: PJ3Cm4+PcibQGuoYLj9HN+ci04AZEBvwCo7GSs3GOTM=
+
+Name: com/tridium/nre/firewall/IpProtocol.class
+SHA-256-Digest: 9gOit0XsI+9EfkGnyRKnTPDaIOQaQIk87gTMB4Rp0+Y=
+
+Name: com/tridium/nre/auth/SnapUserManager$AsyncProcessor$addUserAccount
+ $1.class
+SHA-256-Digest: uD2uXbvtZAoxDsmOPLzeh7zQCyZk2bAcmwLVyUYTCD8=
+
+Name: com/tridium/nre/auth/SnapUserManager$Processor$addUserToGroup.clas
+ s
+SHA-256-Digest: horQMlARxE7hW4kg1XFVbxrLYPoWgkm8eW6LvM+UjTw=
+
+Name: com/tridium/crypto/core/provider/NProvider.class
+SHA-256-Digest: ArTWtj6+4U7CuvCPNROBIOqWhENojFZsWh/jeOIrRFg=
+
+Name: com/tridium/nre/auth/SnapUserManager$changeUserPassword_args$_Fiel
+ ds.class
+SHA-256-Digest: QkVhNr5J/MpvYEHC+HY1h73dw/KwxJZrx2gH+5QsKb4=
+
+Name: com/tridium/nre/SupplierWithException.class
+SHA-256-Digest: /2ubcpJCvQ3wISpp981kvfGBYU7v5Cau2WtPBgsIyqQ=
+
+Name: com/tridium/crypto/core/io/ICoreTrustStore.class
+SHA-256-Digest: zIfETi7YfbLQbYlzpXIbnUthpjL05OvRG0jsMg04pJY=
+
+Name: javax/baja/nre/function/RunnableCanThrowException.class
+SHA-256-Digest: 8nKd8i3k2IoAFs5oUqrxfMKyJPUHC9HDGqU3lBCghlk=
+
+Name: javax/baja/nre/annotations/Facet.class
+SHA-256-Digest: lZ7j5eKYE6VBXBKZLHtkX30leShdoPCkRjGqE0oY6oY=
+
+Name: com/tridium/crypto/core/async/CertGenerationEntry.class
+SHA-256-Digest: 8WLdrNzg5JNudk47aBRI5qAiJ/V7g+OpTJBn0HwmJ3s=
+
+Name: javax/baja/nre/security/TlsParameters.class
+SHA-256-Digest: IixmPe8P1NGtVQpfeHktUE7Pci1QQ1qjUlISvDOqYOg=
+
+Name: com/tridium/nre/security/policy/NiagaraPolicy$1.class
+SHA-256-Digest: z1q3uUYlehzu/T9wCqw95C1YlePyXuk8p3kwR2SzbqY=
+
+Name: com/tridium/nre/security/SimpleKeyRing$SimpleKeyRingParameters.cla
+ ss
+SHA-256-Digest: kST4V+qgVpbnhfj54fzYxF9y0/bJVdLE7SQEpNThiCY=
+
+Name: com/tridium/json/CDL.class
+SHA-256-Digest: lBlYJ+5XWHC7F9lgCUL2LngOxAXWl9gUPyrmgq3q/4w=
+
+Name: com/tridium/nre/di/BaseSupplier.class
+SHA-256-Digest: D0+mBtu5KrsA3+gOEuw1/EQIOV4uCvR73+h4zA1nRqg=
+
+Name: com/tridium/nre/subscription/HttpConnectionlessTransport.class
+SHA-256-Digest: WKc9ILuEhSFUTEqCdVoaGtQ1UD+vqwtAVrW67VMw6LE=
+
+Name: com/tridium/nre/firewall/pf/InvalidRuleException.class
+SHA-256-Digest: qowXt5rUPgIbe+bkeLC1P38MVVunI7Pz79iZwbihl/o=
+
+Name: javax/baja/xml/XParserEventGenerator$1.class
+SHA-256-Digest: JT2ZFZBmx4pyDSr1q2shkTaxr+ZObwpqVGBPfeXdt60=
+
+Name: com/tridium/nre/auth/SnapUserManager$addUserToGroup_result$addUser
+ ToGroup_resultStandardScheme.class
+SHA-256-Digest: 6NMLarArRJYP6WshezBTrZjQASdN5T01+KK4hJwdGAg=
+
+Name: com/tridium/crypto/core/io/CoreProviderInfo.class
+SHA-256-Digest: f0hSg6VVPDT2nbMtSW3SuxDJIY2LsNCl5V0rT+XZyLk=
+
+Name: com/tridium/nre/auth/SnapUserManager$removeUserAccount_args.class
+SHA-256-Digest: yX52JHlbNtJWs+8xpMIZB19zBubkFPSfpCZRLQPtwfA=
+
+Name: com/tridium/nre/jetty/JettyThreadUtil.class
+SHA-256-Digest: Q+dSUTGmu/sTVLAWd5nFZXDBNyNZ+GWwxtxsUtBhtSY=
+
+Name: com/tridium/nre/subscription/SubscriptionLicenseUtil$PlatformProvi
+ derHolder.class
+SHA-256-Digest: npsaeOG3wJOWnuKsO4wXMu7jQuH6NW2x/ReMvFu7ZME=
+
+Name: com/tridium/crypto/core/cert/ext/NAuthorityKeyIdentifier.class
+SHA-256-Digest: oVmY3+AU3m004aLTf4/IpcItPb/AmVktckxhtu1Bdy4=
+
+Name: com/tridium/nre/platform/NativePlatformProvider$NREConfigurationDa
+ taHolder.class
+SHA-256-Digest: oWLE1smR586qLNGCk7xk77duYmjtxQeq5sxf1NXxICo=
+
+Name: javax/baja/nre/security/ClientTlsParameters.class
+SHA-256-Digest: 9VgSg3ehOtBHiy/TcKMqwJdpxhCEj6lRpv5QIZeK/Dc=
+
+Name: com/tridium/nre/subscription/EntitlementStatusListener.class
+SHA-256-Digest: DN+Ue62DFo5FnUa3DxYuf+sy/yu8NISTETWIt11rp1Y=
+
+Name: com/tridium/nre/security/provider/XMLDSigRI$ProviderService.class
+SHA-256-Digest: P3BUSzdAtQgvs6Uo7gAio59uI9l/Vc0Fv4uf3Jy1Sj0=
+
+Name: com/tridium/nre/protocol/program/Handler.class
+SHA-256-Digest: f9nrl6b6iv04/v25BWSalSeDcNkl8wB0O8NEUuKCTA0=
+
+Name: javax/baja/xml/XInputStreamReader.class
+SHA-256-Digest: qh2i4EJDBfZLl5WPm9JIN0pEpYCT/178oJDHdZGp4U0=
+
+Name: com/tridium/nre/diagnostics/DiagnosticSecurityManager.class
+SHA-256-Digest: m/RDcMyesnB0FAY4rjh7RMuRV+Zykuk0xEYYzTxNSRM=
+
+Name: com/tridium/nre/subscription/HttpConnectionlessTransport$1.class
+SHA-256-Digest: 1Vrf/g7M8Ucf0bexX0C9IJ6yOm+JVbosakbVYAmcASE=
+
+Name: com/tridium/nre/subscription/HttpStatusException.class
+SHA-256-Digest: JcF1HGR+4txtqwCJo+SSlRMdGBCXqUdppfntUDcxVX8=
+
+Name: com/tridium/crypto/core/io/ExemptionStoreUtil.class
+SHA-256-Digest: zoyvxSVQycqXT3JKNyXHirFVYi7G3tQqT/ZPYQ3sN8s=
+
+Name: com/tridium/nre/jetty/rc/auth/sjcl/codecBase32.js
+SHA-256-Digest: e6rbZUAhDacZ9aqgpnbCl5KugcHIh22JmON42qCJHA8=
+
+Name: com/tridium/nre/auth/PasswordHashAlgorithm.class
+SHA-256-Digest: EJNZyhlYyUvA50oJHDhBfzXkO9XdmFDhUdZaj4vFfus=
+
+Name: com/tridium/nre/auth/SnapUserManager$addUserAccount_result$addUser
+ Account_resultStandardScheme.class
+SHA-256-Digest: 1FPaNlYASns3lkRyqz2u4G4mNpZ6CDSm+Yx/IwNGHd4=
+
+Name: javax/baja/nre/annotations/processors/slot/SlotAnnotation.class
+SHA-256-Digest: AWw+zklwLgCWHr7Qyb6ZnEH1I04ftGya7PuR1sdvxwk=
+
+Name: com/tridium/nre/subscription/RestoreId.class
+SHA-256-Digest: qKNUfBrQ23mnw02vcqamnAGDbGGdgg2rGHc3Z9Uq8BQ=
+
+Name: com/tridium/nre/auth/SnapUserManager$removeUserAccount_args$remove
+ UserAccount_argsStandardSchemeFactory.class
+SHA-256-Digest: fSjsXuCcGUcmeMDHWFdenG2xLDWgZh1XUvRNW7kxEqg=
+
+Name: com/tridium/crypto/core/exchange/SRP6KeyExchanger.class
+SHA-256-Digest: cD+96kxBc4pts4Ypz8EONQV9eGb/rbF1wTcT08Gi52g=
+
+Name: com/tridium/nre/util/ArrayIterator.class
+SHA-256-Digest: f2vaq6BmTwncBaYsoZdSbrTOz/TEpCM+H204G141+mc=
+
+Name: com/tridium/nre/util/NamedThreadFactory.class
+SHA-256-Digest: WBUGNUrgy/qRImjfINarnHkkBtDRTrumg8r0rP3Tj/E=
+
+Name: com/tridium/nre/security/KeyRingFactory$1.class
+SHA-256-Digest: hJkIG0jyhgc44o+BsXdCa8O2IGjYeRuoMUN6HW4U7y4=
+
+Name: com/tridium/nre/diagnostics/DiagnosticStats$DiagnosticException.cl
+ ass
+SHA-256-Digest: UIGusyWxpoXIqRJ/k6aEHxEqBqfzXP6V56jvsCKmE2Q=
+
+Name: com/tridium/nre/security/KeyRing.class
+SHA-256-Digest: RebfUYBkmNn2Jx0f0BJmeIN81IoH/LnKCK8f114s7BE=
+
+Name: com/tridium/crypto/core/cert/CertificateNotTrustedException.class
+SHA-256-Digest: 8xFxpOyY7nuatrIkIB+LTwprgrmOR30mCp9swLuzDHk=
+
+Name: com/tridium/nre/auth/Scram.class
+SHA-256-Digest: coNsuq8gWxHyXWAkx41Flo4cQ/YDW8M4hBwFP1WDvfA=
+
+Name: javax/baja/xml/XPath$SimpleXPathMatcher.class
+SHA-256-Digest: IWPBwQBJhNdDUAwsKOA/Qa0WdSDaTd/sW1Cz/lwRhgM=
+
+Name: com/tridium/nre/ConsumerWithException.class
+SHA-256-Digest: JwRR+0FFznC9CCcG6dPEqb5IK5FI37TOW+l3Fqxghs8=
+
+Name: com/tridium/nre/subscription/EntitlementApi$EntitlementState$5.cla
+ ss
+SHA-256-Digest: O/jDzOgC/JfrsR1PkMIDN2aavx4ZuTX2yMFS5dkjFDI=
+
+Name: com/tridium/nre/jetty/rc/auth/scramsha.js
+SHA-256-Digest: 6UAzvyyxvMXJJ0MtKWZT3lUJJ65/+tGbeNnZkQluhz4=
+
+Name: com/tridium/nre/security/RecoverableKeyData.class
+SHA-256-Digest: ACq9hhVtjlsw/qNNHg46PoUN0duNpeuCThIwUbZQQeM=
+
+Name: com/tridium/nre/security/ModuleVerificationMode.class
+SHA-256-Digest: ZUHMZploY8HL8i/twtt0FZDnDK4Q3witLNLK/2od5BY=
+
+Name: com/tridium/nre/security/CryptoProvider$CryptoError.class
+SHA-256-Digest: KkundSkdT2dXEM4wx4CGpwemKcA0e1q8JiI13nPyCjQ=
+
+Name: javax/baja/nre/security/IX509CertificateEntry.class
+SHA-256-Digest: c769ZMvB9hplePhmRivYzePAVivrj9iM+UYzkoLIW7s=
+
+Name: com/tridium/nre/auth/QnxPlatformAlgorithmBundle.class
+SHA-256-Digest: 9D9CEwmMwyc2Ua4AijEcFrZIndghWqO/geLMwu3CHz0=
+
+Name: javax/baja/nre/security/IKeyPurpose.class
+SHA-256-Digest: +DbW9/5qm3DnnFnPwV4DK5eOadvd6gHPslZGYIN0cMo=
+
+Name: com/tridium/nre/jetty/rc/auth/xmlhttprequestheader.js
+SHA-256-Digest: BifnLGho7tC/jxbo6PEdAfZXS3DwcgSjrQJddGe75Ag=
+
+Name: com/tridium/nre/auth/SnapUserManager$1.class
+SHA-256-Digest: LjrtDfkD7tJFnXe4uHXr78n+ImcBib53X4+rGH0azl4=
+
+Name: com/tridium/crypto/core/io/ICoreCryptoManager.class
+SHA-256-Digest: ebLhnr3nfWHgYu3URuj0LmlwajWDjcd+inBvoYfPgLk=
+
+Name: com/tridium/crypto/core/exchange/SRP6KeyExchangerClient.class
+SHA-256-Digest: zctBRShOWRbzTHGb/MSU4Le0PrXSsTtDSSswPnLDd7Y=
+
+Name: com/tridium/nre/security/AliasedAesAlgorithmBundle.class
+SHA-256-Digest: NaUf5gC7VpFBWATPtI7BJXk8zNvVziSl1bZsgHcMJOw=
+
+Name: com/tridium/nre/syslog/SyslogSender.class
+SHA-256-Digest: nADbvq1lNf+oc7oSOWXH9VVMHIRpQmbbfLQzK4AFxEA=
+
+Name: com/tridium/nre/jetty/rc/auth/xmlhttprequest.js
+SHA-256-Digest: +CHEtotOZ2PguiVc8LNpvk0K7jG5ohVSBXyr3o8900g=
+
+Name: com/tridium/nre/auth/SnapUserManager$AsyncClient$changeUserPasswor
+ d_call.class
+SHA-256-Digest: jc9qtkVK1+S9CwZxFiZ3nz5FIkRjarg7nRhuVaToAWk=
+
+Name: com/tridium/nre/security/policy/NiagaraPermission.class
+SHA-256-Digest: 5q4NBZ9PkUoADu6dXPKauZR0UIs1dOp1nEZ5Y02RkuU=
+
+Name: javax/baja/nre/util/LongHashMap$Iterator.class
+SHA-256-Digest: QFF+qA0tpvv0YUNW8aHvePEsBHcJleamGCsVagiOVnY=
+
+Name: com/tridium/crypto/core/cert/NX509Certificate$1.class
+SHA-256-Digest: LqupCTNtWvOuefvtcs3kXH9uITFK7N64E/wy0tY/8+I=
+
+Name: com/tridium/crypto/core/cert/CertValidationResult.class
+SHA-256-Digest: s+pn99xRYD3KYOOR1eLW9xhuCfKs8GRCd1sPLOisirE=
+
+Name: com/tridium/nre/security/SecretBytes.class
+SHA-256-Digest: MjIE5NWXMAcNchJRU2c6DhYjCqIzESEA/Ct7g7NiJxI=
+
+Name: com/tridium/crypto/core/cert/PemSource.class
+SHA-256-Digest: oOHzDqq349OXdQT22wrPBIkEyJnsyTeQx6a6Ewhqj/c=
+
+Name: com/tridium/crypto/core/io/CoreKeyStore.class
+SHA-256-Digest: BBkfVBZoDUmPaBQI2bcGdYfGMNtGjeS3hzWl3YLGM4Y=
+
+Name: com/tridium/nre/util/InterfaceNetworkSettings.class
+SHA-256-Digest: 3VYKhvbeKvuFXSI0js3lQHwIU33TvwQzAB8abpHCBXo=
+
+Name: com/tridium/nre/security/EncryptionAlgorithmBundle.class
+SHA-256-Digest: bvdf6sldQMzyGZxrUoNWVQSCSm/jPbU380r3fX50oqU=
+
+Name: com/tridium/crypto/core/cert/NCertificateParameters.class
+SHA-256-Digest: Dvx0aNXQlRZf6ytgZm68m4pcmEL4+ARM44Mn9rWysYg=
+
+Name: com/tridium/crypto/core/io/AliasedKeyManagerBuilder.class
+SHA-256-Digest: Lf+deXw1XI2yz0w27sEePEHOQKbGXY9MpNheeuolAQs=
+
+Name: com/tridium/nre/auth/Pbkdf2AlgorithmBundle.class
+SHA-256-Digest: 3eP8sJzf9fClpBPKOGih2pFwSawzGUiOV1akEWI4DC4=
+
+Name: com/tridium/nre/jetty/rc/auth/sjcl/sha256.js
+SHA-256-Digest: m0Nl4P28HppFIWYITYQWZTpFx6QOzCWNOo7BzwM6f8k=
+
+Name: javax/baja/nre/util/FileUtil$PlatformProviderHolder.class
+SHA-256-Digest: Cx9P8pMljpc8fBHJ/d3xaKUwx9t4KLH1F+Zh2xeBPQc=
+
+Name: com/tridium/nre/security/policy/NiagaraPolicy$PlatformProviderHold
+ er.class
+SHA-256-Digest: uMQN1Vh6XLcsNZ0pIFVDsg35M8YdZqZvSZi1x8lblBA=
+
+Name: javax/baja/xml/XPathElem.class
+SHA-256-Digest: 5hxZV0LQqIK4pR03NIFHVaKr87m3ZrmHqHuaVEKZGKk=
+
+Name: com/tridium/nre/auth/SnapUserManager$removeUserFromGroup_args$remo
+ veUserFromGroup_argsStandardSchemeFactory.class
+SHA-256-Digest: pylJtDErXs4F/adqyxfxSQ6CJOBIzi4+IaJdtEYc2hs=
+
+Name: com/tridium/nre/security/SimpleKeyRing$2.class
+SHA-256-Digest: yAW2lIBl62vUfY3fqHwkbBQZFT9lMU9JOTX5w3AcrEk=
+
+Name: com/tridium/nre/platform/EtcUtil.class
+SHA-256-Digest: s91fZOuhW4rJMwRJq3YUWCiNv7lAuWaOP5thcBT8lOY=
+
+Name: com/tridium/nre/subscription/EntitlementApi.class
+SHA-256-Digest: beCtAWh0zgdDsK2jmfDYExEvTMpWGGBN8N4Elk1cZjA=
+
+Name: com/tridium/crypto/core/cert/NKey.class
+SHA-256-Digest: uIpCKkn4r5cVszSa5Dg5e4QTXQcq0EDY1TuNlxBWejo=
+
+Name: com/tridium/nre/jetty/rc/auth/sha512crypt/sha512crypt.js
+SHA-256-Digest: v/rm+GODhopwRw04MCADgfd41emmk9uuTKkIymdiAkM=
+
+Name: com/tridium/crypto/core/cert/NGeneralName.class
+SHA-256-Digest: IPQjzE+rIR9VtsrRwhhyrSzRzFuqq4fk61upYyybYMo=
+
+Name: com/tridium/nre/auth/BCrypt.class
+SHA-256-Digest: knE/UAMHGdTpyiCWdrBJaAfeJDO6W2qyu/KLWiexKXY=
+
+Name: com/tridium/nre/auth/Pbkdf2.class
+SHA-256-Digest: zTrgRHH30v6waAmwp4CTeWr0L5c5oyR4OvKdVJv3qLo=
+
+Name: javax/baja/nre/util/LongHashMap.class
+SHA-256-Digest: hgH+JxrZLTlmnh0FE7T9WE05JMDWd6N8O0WQu/LsFIk=
+
+Name: javax/baja/nre/util/SecurityUtil.class
+SHA-256-Digest: UnTqJL2Ibk6ZRd7Y1Y+TmR1lCeVBxORoB2iHsj4fIMk=
+
+Name: com/tridium/nre/firewall/FirewallRule.class
+SHA-256-Digest: SVNmN6BEKpX94H+Oveh5YyNPldJursmsVomcbW3ZPQo=
+
+Name: com/tridium/nre/auth/SnapUserManager$addUserToGroup_args.class
+SHA-256-Digest: cO7oFozXn93LYGi/qcl315wQR4a8b46lUdXosLkeqYc=
+
+Name: com/tridium/nre/security/io/AESDecryptingInputStream.class
+SHA-256-Digest: WVRHIrm2ZJqAvBGsE1iIV/2h7vY8FTouyEQfC8NhkO8=
+
+Name: com/tridium/nre/util/JavaTimeUtil.class
+SHA-256-Digest: R6A7sbBNAFtaE6p7etx+z67YnsKJsyX6/31BAeTWvxk=
+
+Name: javax/baja/nre/util/ByteBuffer.class
+SHA-256-Digest: kM6m0Ho/J5BoxSEL6S9tqBvbNf8lsS8Mj1sIDScSrK4=
+
+Name: com/tridium/nre/di/RequiresConfiguration.class
+SHA-256-Digest: S35aCx3Wp+lF8jlqRzWf+rSD8kwmc8sFqy3C1A87QDE=
+
+Name: com/tridium/nre/subscription/EntitlementUtil.class
+SHA-256-Digest: tIB2Dgp+9kJsZEUeJk16CcmgpJMnoyubOESr3iPLz/M=
+
+Name: com/tridium/nre/subscription/RegistrationApi.class
+SHA-256-Digest: H6BoRIFgOZwKYxyI5gpW7sTkKRivKfG2VHco+ixnP2I=
+
+Name: com/tridium/json/JSONUtil.class
+SHA-256-Digest: 4MCHY7A5nQCJ5I3zy4Yrfx9eqsQsJraGkTnKUEp7Ytg=
+
+Name: com/tridium/json/JSONPropertyName.class
+SHA-256-Digest: OLlKu2/PQ1MUXEVj4xOqf6d0Gi1zjlrY41nlGIFeeRg=
+
+Name: com/tridium/crypto/core/async/AsyncCertGeneration.class
+SHA-256-Digest: qYg3qsxyrKKFvEEK/tR7/V3M9Ed1Nbrrz43ScOApIeo=
+
+Name: com/tridium/nre/security/ISecurityInfoProvider.class
+SHA-256-Digest: ODvD0PFBquIv4qcoY6J9oheqZjgSgb90Dx34r5x0830=
+
+Name: com/tridium/nre/subscription/SubscriptionLicenseUtil.class
+SHA-256-Digest: FsuAsWJVzqaEZpmU2UUTd5iTOw0W4rYWrKnHYHmxSxA=
+
+Name: com/tridium/crypto/core/cert/ext/NBaseCRLDistributionPoints.class
+SHA-256-Digest: Exp5xY9N5aaNXTP/G9KRAvroLPMKzCjfft+jJIwv62k=
+
+Name: com/tridium/nre/auth/SnapUserManager$removeUserFromGroup_result$re
+ moveUserFromGroup_resultStandardSchemeFactory.class
+SHA-256-Digest: lX9+dB0+oCTsA//QIV4n5z805Y/yV2gwdeOzKWREibw=
+
+Name: com/tridium/crypto/core/io/ServerCertificateHealth.class
+SHA-256-Digest: Lbyq5aqIyPwRNdgKHm8a8fKRAqHEdE3yvp1GPYVG8c4=
+
+Name: com/tridium/crypto/core/exchange/SRP6AlgorithmBundle.class
+SHA-256-Digest: kUEstEgP+xMHfJLSmtxs5iJIihYpYI3drnda3jVZsLA=
+
+Name: com/tridium/nre/security/AESEncryptFunction.class
+SHA-256-Digest: UIW9C8I9C4syqBA3+8aEsx+aIrpfr7hT8yR88Fs2dzg=
+
+Name: com/tridium/nre/jetty/rc/auth/sjcl/codecBase64.js
+SHA-256-Digest: dal0ZOxqa17gcE5hM4K2z/1JHCgYIk7QPX7yAND45pY=
+
+Name: javax/baja/nre/security/TlsCipherSuiteGroup$1.class
+SHA-256-Digest: CjY3pnWlsJLkarkHw2/GHfR+IomuqqKykBbzLfRrHA4=
+
+Name: com/tridium/nre/security/policy/AbstractPermissionGroupStore.class
+SHA-256-Digest: J6rYYbINLou/EbeWLwB4dAB/UPxkazBjLlEa8RJ8lrk=
+
+Name: com/tridium/nre/auth/SnapUserManager$addUserToGroup_args$addUserTo
+ Group_argsTupleSchemeFactory.class
+SHA-256-Digest: dA7vAxbsStLPbMUzEaMGs3tym0bb4qoA1do+YljNB+0=
+
+Name: com/tridium/nre/platform/NREMemoryPool.class
+SHA-256-Digest: zJ51AKDXDVrCtOEN+3yrNHSUkv9xihniLULpJ5J5BXg=
+
+Name: com/tridium/nre/auth/SnapUserManager$AsyncProcessor$removeUserFrom
+ Group.class
+SHA-256-Digest: RJg/sAI6DeJYRIVA0AnIW0fX4GBg4AH4i4nhAarWHeQ=
+
+Name: com/tridium/nre/util/DpapiUtil.class
+SHA-256-Digest: zpTZgESd8TrlTszypH1trDJXLtvrVu9sZc7yvM1odKI=
+
+Name: com/tridium/nre/protocol/program/ProgramConnection.class
+SHA-256-Digest: L1STH0PxTRcfSNznPMkyHxhlhSeXhDXtJcTkzo2NHYQ=
+
+Name: com/tridium/nre/util/SecurityManagerUtil.class
+SHA-256-Digest: LWxNxZpuVhmDT3xqA8YSygaj9VHx+y2hurWg0uYetsE=
+
+Name: javax/baja/nre/security/IX509Certificate.class
+SHA-256-Digest: mmDAuOHAGVQ+L0SmlHeWeR4NQohupTAzd/kwawjv/uU=
+
+Name: javax/baja/nre/annotations/processors/NullProcessor.class
+SHA-256-Digest: VxhvAWTiZf7rIbnS/dvKRm+JfpG+usZPFPXCSmTo+FU=
+
+Name: com/tridium/nre/auth/SnapUserManager$changeUserPassword_args$chang
+ eUserPassword_argsStandardScheme.class
+SHA-256-Digest: qUpbTFQ3OcgnJEbQiS4/n+403S9RtCzzPYCKQykZiWg=
+
+Name: com/tridium/nre/security/policy/DefaultCodeSource.class
+SHA-256-Digest: /P4jwwjWKbpV5NdZfgVP0INwB2+dnjtWwyG4yF9O6rE=
+
+Name: com/tridium/nre/subscription/EntitlementApi$EntitlementState$8.cla
+ ss
+SHA-256-Digest: yspWs7cxtqC132ubb7G6eBnHgGjGP1CATAurrgI3JoU=
+
+Name: javax/baja/nre/util/ByteBuffer$2.class
+SHA-256-Digest: XPYwY52QfYt58V4LR34rEufcPpC2DM2ZcA8E5mNSIDQ=
+
+Name: com/tridium/nre/security/AESDecryptFunction.class
+SHA-256-Digest: A64RZk6v94NjgBl/LdJoSvM4VptW/lTMFjUaZG+lkog=
+
+Name: com/tridium/nre/security/km/KeyMaterialFactory$PlatformProviderHol
+ der.class
+SHA-256-Digest: 6BJbJOb7NsIf8ltGt0CgP+82jV6z/9cAWKGXyXhskck=
+
+Name: com/tridium/nre/util/SnapNetconvertManager.class
+SHA-256-Digest: LvBsfiFuzdNdyOuqnXxct51x+H6C5H8Fs4mbTepZzLY=
+
+Name: com/tridium/json/JSONArray.class
+SHA-256-Digest: Xv7IoIa/sR18cR+xe3f095YDRpR9692HdkA50cdJzXc=
+
+Name: com/tridium/nre/auth/SnapUserManager$addUserToGroup_args$addUserTo
+ Group_argsStandardSchemeFactory.class
+SHA-256-Digest: yKI7a+zXH9xWJKg9wYRt5yANiPtMQeV1kNBvUuzODx8=
+
+Name: com/tridium/crypto/core/cert/CertUtils$PlatformProviderHolder.clas
+ s
+SHA-256-Digest: f1gEmvfj3wCJf1Ci+AbaastJ+Gs6P5TptIftoAIpR9g=
+
+Name: com/tridium/nre/platform/FileLockUtil.class
+SHA-256-Digest: KHzM2uCFTuMoywY0+2JtN3EjYMXSjYa56Zju5qX+mpw=
+
+Name: com/tridium/nre/platform/IPlatformProvider.class
+SHA-256-Digest: /ydcze/xAbfcW1tKAHjkdiCWaqlWLD/jAbuW7EOXY5U=
+
+Name: com/tridium/json/JSONUtil$2.class
+SHA-256-Digest: j1YOlYze6bYrfA7JmX2DllNsbFHY3rh+vhc92MZ+N9s=
+
+Name: com/tridium/nre/subscription/SubscriptionLicenseUtil$SubscriptionL
+ icenseUtilHolder.class
+SHA-256-Digest: d5JBk9MNxHUhusAWrKgIyZnrWkcaDlHNHew7wWo5CSI=
+
+Name: com/tridium/crypto/core/provider/IProviderEntry.class
+SHA-256-Digest: PyFTrEMomvR24zJ13uozSmRM9V04eRPocTH8VQMSvdA=
+
+Name: com/tridium/nre/security/NiagaraSocketPermission$NiagaraSocketPerm
+ issionCollection.class
+SHA-256-Digest: RGOeWmasGu/TZOKsYVQdVOobfXAHw4YCc9c5F49d/rM=
+
+Name: com/tridium/json/JSONObject.class
+SHA-256-Digest: J6S7yTAHFij5rBKOq1nkuKeihNCOmae/j3Py9kg8F0w=
+
+Name: com/tridium/nre/security/io/AESStreamEncryption$1.class
+SHA-256-Digest: dJyc9sOazNSRDqR2ifpJSJWMeaABzJgPNZrgtR+PSlE=
+
+Name: com/tridium/nre/security/NiagaraSocketPermission$1.class
+SHA-256-Digest: hJBs9qftl1hiJO4WKz/v8qAgegZQH7uteY1A1oKrxis=
+
+Name: com/tridium/nre/auth/SnapUserManager$changeUserPassword_result$_Fi
+ elds.class
+SHA-256-Digest: 6w+EMYPrrqeFQ1jkSah/SM9JhxD/kbMzg2GNFjG1MCo=
+
+Name: com/tridium/nre/util/NreRuntime.class
+SHA-256-Digest: Zi2+zLV3SLp3AGeg8JlY5JJFraKB/DJ2biNpq9znn+I=
+
+Name: com/tridium/crypto/core/cert/JarVerifier.class
+SHA-256-Digest: gAkhhTWVA3DF9rVBnYudvuPJ5VyqVAZHWi1Xgj749fM=
+
+Name: com/tridium/nre/subscription/HttpRequestMessage.class
+SHA-256-Digest: 02qM7sVO1J6piERrqLxxIZjnhDzfYlL5siOB5ynsP2M=
+
+Name: com/tridium/crypto/core/cert/ext/NFreshestCRL.class
+SHA-256-Digest: ODozJirsRVgSx+tFnsGBuC3UBGniU1ZHmreyz+4XjrM=
+
+Name: com/tridium/nre/auth/SnapUserManager$Processor$removeUserAccount.c
+ lass
+SHA-256-Digest: Zon691EqDQKgDgUNTtOUXavrOqEXTafn3dn868d8Csc=
+
+Name: javax/baja/xml/XParserEventGenerator$EventListenerRegistration.cla
+ ss
+SHA-256-Digest: QB62ggigfnkWrRamDe0esLPkG076V6jL+tDI3Sfbhf8=
+
+Name: javax/baja/nre/annotations/Adapter.class
+SHA-256-Digest: LLycBRSoce7d3OqdJC0UTzGh3milSekVcKWxg+vwq3w=
+
+Name: javax/baja/nre/function/BiConsumerCanThrowException.class
+SHA-256-Digest: j8oi5ABe91QkJxruDQi+dlPJwCpFJuxejcYYp2NE60o=
+
+Name: com/tridium/json/JSONString.class
+SHA-256-Digest: X0o/2/4g+D26AohXD9VAvqEf8RntW4CSOBjltMmkNUs=
+
+Name: com/tridium/crypto/core/io/CryptoSupport$CipherSuiteComparator.cla
+ ss
+SHA-256-Digest: GL9L7CnPWr+TKdjY93VQIe3DGarWxuK1dSFVyalOMT0=
+
+Name: javax/baja/nre/util/ILambda.class
+SHA-256-Digest: xzF6YR0+hpTH3KZlmd8o4ztcacXAakCYEyMS4XAX5SA=
+
+Name: javax/baja/nre/annotations/NiagaraProperties.class
+SHA-256-Digest: Tlt2v7pEoqjAF3rh4zxByoNCDaGAPKJxYP05pmf4iIY=
+
+Name: com/tridium/nre/bootstrap/Bootstrap.class
+SHA-256-Digest: Xvm0ofnzIEje987nmi7vFadmQA8mPY7+ClWuwCljNEM=
+
+Name: com/tridium/nre/auth/BCryptAlgorithmBundle.class
+SHA-256-Digest: HPhUKJ04qnZQgap3LxQTrCGK05e32dG+KizaHk08D68=
+
+Name: com/tridium/nre/jetty/rc/auth/sjcl/codecHex.js
+SHA-256-Digest: we9hHYpBTiSUBge0vpZWDIGgfGc8Cf8LIGhUgNg6fkQ=
+
+Name: com/tridium/nre/subscription/JwtSignatureKeys.class
+SHA-256-Digest: KWMeVDpyFUQEGfGvFmxov+HpiJdACUdFFLC3kN0zBLA=
+
+Name: com/tridium/nre/util/TextExpander.class
+SHA-256-Digest: uvC4aXFQoKJmjYSVeqTtrke65CC0lG8Z923fEPGOZNs=
+
+Name: com/tridium/nre/security/policy/PermissionsCache$PermissionCollect
+ ionSet.class
+SHA-256-Digest: 9U4ljU+gBOrucCUDDfMYl6uzQKrq7sifC4A+Idujrzg=
+
+Name: com/tridium/nre/auth/SnapUserManager$changeUserPassword_result$cha
+ ngeUserPassword_resultStandardSchemeFactory.class
+SHA-256-Digest: wzcP8AhX6CBm8TjcSJPHay4eEsX7OY2k6fksXecchOw=
+
+Name: com/tridium/crypto/core/cert/NGeneralName$PlatformProviderHolder.c
+ lass
+SHA-256-Digest: yDL6JOxKZklnXXX7kAeCgT06fhV3yQqXoH/LlJavfw8=
+
+Name: com/tridium/nre/subscription/SubscriptionLicenseUtil$1.class
+SHA-256-Digest: yw1fPj4XiuilXm7wTdmC8/gHJBweY7vSHFVz9mCVxwc=
+
+Name: com/tridium/nre/security/PBEDecryptingInputStream.class
+SHA-256-Digest: Sv8/9TTQG1hn8A3B9htFzgDVEDTLw2f4yKwkjUgjyF4=
+
+Name: com/tridium/nre/util/SimpleKeyValueUtil.class
+SHA-256-Digest: KzPDf1no3PWtXCKzr3Z35UGou4hFkHtXVVMjHblKKq0=
+
+Name: com/tridium/nre/security/SimpleKeyRing$SimpleKeyRingEntry.class
+SHA-256-Digest: LEfFg0me4bilwvePdK3J8kBWLZGTgFCsLATr/qVRNT0=
+
+Name: javax/baja/nre/util/CertificateUtils.class
+SHA-256-Digest: vy3PXlEDWuO4PQWHeGvt0redXVZc7ahPerIFp/DyMvk=
+
+Name: com/tridium/nre/auth/SnapUserManager$addUserAccount_args$_Fields.c
+ lass
+SHA-256-Digest: qlLtLqRvzJ6cIrudLCXFc+HVSJCGkmnb/AEOvIf0h0E=
+
+Name: com/tridium/nre/firewall/RedirectRule.class
+SHA-256-Digest: vipmrLBEsNChi5/HScRZucEMxPcPL2X83ggEe1jO6iw=
+
+Name: javax/baja/nre/security/SharedSecretKey.class
+SHA-256-Digest: UJi3KXk1QOcy6fW3Ed8iSfDdc95Fz8X/E20iiL0oAP4=
+
+Name: com/tridium/crypto/core/io/TrustAnchorConsumer.class
+SHA-256-Digest: +l3eOrQdwyUobxE9DMAqpbJYrhOSKedD8Tl3msCzfXk=
+
+Name: com/tridium/nre/security/km/KeyMaterial$LocalMetaDataHolder.class
+SHA-256-Digest: NWCoc97vuTl4LyGmEq/i9j/9FUMTcRvbF9iqsG2RhRQ=
+
+Name: com/tridium/nre/jetty/rc/auth/sjcl/sjcl.js
+SHA-256-Digest: FbQnZw8uxoG/m09AipPhD4bKPfKWIUoiCge1CCnkbLA=
+
+Name: com/tridium/nre/security/PBEValidator.class
+SHA-256-Digest: aMAjt7xq7RLZwqAnsbOyVt+I9/5V2MWV5mHKAZGbrWg=
+
+Name: com/tridium/nre/platform/OperatingSystemEnum.class
+SHA-256-Digest: cttUvLKKEZGuFs6ytwcpqqrUP4p9LDFS3BQza6Mq44Y=
+
+Name: com/tridium/nre/auth/SnapUserManager$Processor$addUserAccount.clas
+ s
+SHA-256-Digest: dly1q10ZYdTwmpa9ACGD4cv+Ivx3lNEWe24Nx1no2OE=
+
+Name: com/tridium/nre/auth/GroupAccount.class
+SHA-256-Digest: fMhlekDkJQTbJSOwyMFPiKJQ1zWlr30USRmadQJrcw0=
+
+Name: com/tridium/nre/subscription/SubscriptionMetadataUtil.class
+SHA-256-Digest: wdtW1K1h2j1DozcqbUsV6gBcmYvm5UQze2T0A6ayM3I=
+
+Name: javax/baja/nre/annotations/NiagaraSingleton.class
+SHA-256-Digest: qM60TyW4kIJFsYfOBcwCh9MjqAQIDyRDryxNC6dLuak=
+
+Name: com/tridium/crypto/core/io/NAliasedKeyManager.class
+SHA-256-Digest: 02493jZf0sJxxk4Srih02k5x2J0W7uN5J1XYH9tGBLg=
+
+Name: com/tridium/nre/auth/ScramClient$1.class
+SHA-256-Digest: +0vVIBOj8hND3EnyXgwss52jiSquZjUyr0WL+PvKguM=
+
+Name: com/tridium/crypto/core/io/CoreTrustStore$CertificateAddedListener
+ .class
+SHA-256-Digest: o/jPoQrKaQzFasFoLKmw2TL4xAeuFvZ81xwYpnwVWM0=
+
+Name: com/tridium/crypto/core/cert/ext/NNameConstraints.class
+SHA-256-Digest: KpisnvXt0NWEGLl5+dWO2Qkyiqc4yJ0XuQ1kiv+dEOY=
+
+Name: com/tridium/crypto/core/cert/NX509CertificateEntry.class
+SHA-256-Digest: xfo+gbuxFPza0NnC9hJIufZewyYI4kMgqrh8KyJSFVw=
+
+Name: com/tridium/nre/security/KeyRing$PlainKeyRingEntry.class
+SHA-256-Digest: m8Wff7AGgp9Mn0jtqSbNb5T3ssCn4P5kqX6rvp8pQKY=
+
+Name: com/tridium/nre/auth/SnapUserManager$removeUserAccount_result.clas
+ s
+SHA-256-Digest: LvN5UZJfB4induBMJuMRqbsWhsJFcCMWzdfGfnZ81fI=
+
+Name: com/tridium/nre/syslog/MessageType.class
+SHA-256-Digest: tmwEl9yZoj9WWfWXp/sFpz8MOloS6oDzgJMzJqI+Va8=
+
+Name: com/tridium/nre/auth/NativeAccount.class
+SHA-256-Digest: fumgzUWv3MKyPCV74+nlVl41Gn4aaZ7ltg+LzTXk164=
+
+Name: com/tridium/nre/auth/SnapUserManager$removeUserFromGroup_result$re
+ moveUserFromGroup_resultTupleScheme.class
+SHA-256-Digest: ZsYI1JYJl3l6eydS/1H1mEfDUYGXR4oTZBXuO7cMHjA=
+
+Name: com/tridium/nre/security/SecurityInitializer$SecurityInfoProvider.
+ class
+SHA-256-Digest: UFEWNf0ZvG7ZKYKggGvZ+Vkz5dNrxohBh8s0/mR7rwY=
+
+Name: com/tridium/nre/auth/UserAccount.class
+SHA-256-Digest: 98v9l0CZYZiP0s3MgAnmIuuXGaLg5RFby6+Hpu/tsIc=
+
+Name: com/tridium/crypto/core/cert/ext/NX509Extension.class
+SHA-256-Digest: otxmxbZJamu33ZBOpIk7TAvYTg9kBGHIHZbjczmHvxY=
+
+Name: com/tridium/crypto/core/exchange/KeyExchange.class
+SHA-256-Digest: lW99L/BO3pAKyMR5M4d70M5b47w4d27tzD2cRZLn4VM=
+
+Name: com/tridium/nre/security/DefaultSecurityInitializerConfig.class
+SHA-256-Digest: r6Ui3dnAXsUM1x2PG+kD307rMR6qLPVlAZXnrYhtEvA=
+
+Name: javax/baja/nre/util/Base64.class
+SHA-256-Digest: p0l95nDfK9O68ksxtP53kpeH1SEuAK/6nbnZ92wyu8A=
+
+Name: com/tridium/nre/auth/SnapUserManager$Client$Factory.class
+SHA-256-Digest: 9mzddBiiZOP7haMOXKzFVsmppnIj9cv0p4h6W1hK5Eg=
+
+Name: com/tridium/crypto/core/io/IRecurringCertManager.class
+SHA-256-Digest: c5gLQRjVm4IfSZj2zj3c0NFHO74jywBGoHbdZgEQ3m4=
+
+Name: com/tridium/nre/auth/ScramServer.class
+SHA-256-Digest: s0xmysx4Whm5LiY7QUKEoQKOl1qSWNR4Sr5VcyRtFaI=
+
+Name: com/tridium/crypto/core/io/CoreClientTrustManager$1.class
+SHA-256-Digest: 2gZHKg8UOvt90H/TJG1fNyKx6iXxA4lIIYRza/fuZuA=
+
+Name: com/tridium/nre/auth/SnapUserManager$removeUserAccount_result$remo
+ veUserAccount_resultTupleScheme.class
+SHA-256-Digest: WizOR1pIKt68RCkp9lwyCsXkboOMWcbW92ahkrbkSmk=
+
+Name: com/tridium/nre/auth/SnapUserManager$Processor.class
+SHA-256-Digest: mGiCd3ea5sf2r03egt+vruAgqZJMYl/2wBJZChFe+Lg=
+
+Name: com/tridium/nre/auth/SnapUserManager$removeUserAccount_result$_Fie
+ lds.class
+SHA-256-Digest: 2yAeTE+7IGA0yEj/rcgTrNYZv2duGfPPY5gLdb1YH+s=
+
+Name: com/tridium/nre/auth/QnxUserManager.class
+SHA-256-Digest: RRAfvpmuSLDdafQni7XoBDxI93h7OVfGGotrUNqUJIs=
+
+Name: com/tridium/nre/firewall/FirewallProcessor.class
+SHA-256-Digest: N9laVmvu+Ub8tcJI/LBkWZh/ZNjiAPa6h9TvaMUZOgo=
+
+Name: javax/baja/xml/XParserEventListener.class
+SHA-256-Digest: 5Th7Jx9/llf/WCxOy90ZtPL8vz4TgbjSf2vrOFa/WlU=
+
+Name: javax/baja/xml/XPath.class
+SHA-256-Digest: VmOtFcZdOPg51e6nFOU8gq7VHUeG7nOK/gYzxbGVM9k=
+
+Name: com/tridium/nre/auth/SnapUserManager$changeUserPassword_args$chang
+ eUserPassword_argsTupleScheme.class
+SHA-256-Digest: pO6rSzjxSgGJzkfJkhRg1F9FA+L47omx/x2KM4lIzN0=
+
+Name: com/tridium/nre/security/NullAlgorithmBundle.class
+SHA-256-Digest: +7FIt+7LPXliwPUJ02DtOs4J2TZlfXgIk6zYxrsWK/Q=
+
+Name: com/tridium/nre/diagnostics/DiagnosticUtil$PlatformProviderHolder.
+ class
+SHA-256-Digest: b1D2vg1343ynd5uVsaJrfB7NQYwZafDGXO8saqhrF9w=
+
+Name: javax/baja/nre/function/SupplierCanThrowException.class
+SHA-256-Digest: 9la7X3pvpayUlnbxlfHgVjr/HZdy0SZiPA9vBd0R1z8=
+
+Name: com/tridium/nre/util/SnapNetconvertManager$NetconvertExecutablePat
+ hHolder.class
+SHA-256-Digest: G7fnIabUc9Sn2fLkhQMOsfALDk9bXtsrFaY6LAYWYU4=
+
+Name: com/tridium/nre/security/SecurityConstants.class
+SHA-256-Digest: anzBKxXHrxurcMCKPvL6cUcJAD9X67LJ03AwLPH5bcM=
+
+Name: com/tridium/nre/auth/SnapUserManager$AsyncProcessor$addUserToGroup
+ $1.class
+SHA-256-Digest: oh7hv0FD5DbxyTICqNgNO7T9FpbH2BVQDmS1RDjU/1E=
+
+Name: javax/baja/nre/security/IClientCertSelectorHandler.class
+SHA-256-Digest: mC7JPqopDEu12iWjpOOwvwgy6828WH1nUbI3X6QaeZ8=
+
+Name: com/tridium/json/JSONPointer$Builder.class
+SHA-256-Digest: e0dTdibUqLMfX9d94VbBtnpXYiJ1vMaHTlJzLcb9W/M=
+
+Name: com/tridium/crypto/core/cert/JarSignatureRegistry$JarSignatureEntr
+ y.class
+SHA-256-Digest: atZRJqKYTdPkTka+aALqea82WSnkUonu+MRDxEz6d3k=
+
+Name: com/tridium/nre/auth/SnapUserManager$AsyncProcessor$removeUserAcco
+ unt$1.class
+SHA-256-Digest: m84p/9WApbI+O3DDgrbr2Cic+6Cla9e+4OrOZO9fiCE=
+
+Name: javax/baja/nre/annotations/processors/NiagaraTypeAnnotationProcess
+ or.class
+SHA-256-Digest: tPG+kTxHjP9UxYmEtDOdwc2fZ58vAueqgoBWLO2/9Wo=
+
+Name: com/tridium/nre/syslog/SyslogManager$1.class
+SHA-256-Digest: daksle2DvoNEkgAU8JnvEeYzLDEBYV/rXfdQM00xGcE=
+
+Name: com/tridium/nre/subscription/AccessTokenApi.class
+SHA-256-Digest: zJTkS8Ux2kQyu4vWtvBzA9iW6lHE9HrOAQ7MNWUjgAM=
+
+Name: com/tridium/crypto/core/cert/NoOpHostnameVerifier.class
+SHA-256-Digest: 5l1s+viwrQZgJu6KqkzT2qZ3TeX0XSPpacP93Uaa3Wo=
+
+Name: javax/baja/nre/annotations/FileExt.class
+SHA-256-Digest: qL+MVwgs6ZdxKwBed06rwBVh+anuAwAOxuvOJ1774F0=
+
+Name: com/tridium/nre/platform/PlatformUtil$PlatformProviderHolder.class
+SHA-256-Digest: KSGi7UyUjK/uWziFxzRWXXTpO3v+B8abp7QcjFGQh9c=
+
+Name: com/tridium/nre/security/SecurityInitializer$1.class
+SHA-256-Digest: Hg5TCC5F2F1MbLJ7uz5wcNjL8/od5Lm+1T4mWII+E6k=
+
+Name: javax/baja/nre/util/IntHashMap$Entry.class
+SHA-256-Digest: jsx87kYJvFX2mNT2jsSdY0WAtDjTwsHRAYKY/Gg/S+s=
+
+Name: com/tridium/crypto/core/cert/ext/NSubjectAlternativeName.class
+SHA-256-Digest: WUzDsw04pE/rLpTTAeAtcz6jX61AmGztk9CxzBtOKUQ=
+
+Name: com/tridium/nre/auth/SnapUserManager$removeUserFromGroup_args$remo
+ veUserFromGroup_argsStandardScheme.class
+SHA-256-Digest: rLpEaICsfoFwsCJ6EnYept9QkDDf4+Qr6zuS6xHCxG8=
+
+Name: com/tridium/nre/auth/SnapUserManager$AsyncProcessor$removeUserAcco
+ unt.class
+SHA-256-Digest: Q6APnBVm730Sh9Ramn6y+EB0RRyscdPvxvrTmkDSyAs=
+
+Name: com/tridium/nre/util/IPAddressUtil$FindBestLocalAddressAction.clas
+ s
+SHA-256-Digest: MVRsgfTptqq+COWo4rBPGZ7iRg4ccCTvHUZ0flx/yVw=
+
+Name: javax/baja/nre/annotations/NiagaraTopic.class
+SHA-256-Digest: /qXj4ngJV1u3dH2aUgJg6Nw0aSLrdu63SXbCdFJ0mLc=
+
+Name: com/tridium/nre/util/SystemPropertiesUtil.class
+SHA-256-Digest: MGa600Dx5o44u8VW6NXVT1tdOgE6ID2jaB8NBEeqC44=
+
+Name: javax/baja/xml/XParserEventElementWriter.class
+SHA-256-Digest: 3l7dmw5hHQjNiuofHXxg/PkL9cDgM2brJVk/61dJp8s=
+
+Name: com/tridium/nre/security/policy/NiagaraPolicyUtil.class
+SHA-256-Digest: rwbEnWcZbLzdERqdhTMOhzaP5biQpzQLNQf20KyK5O0=
+
+Name: com/tridium/nre/security/io/KeyRingDecryptingInputStream.class
+SHA-256-Digest: hwV1jiTLcvgJdDU9RwCmkf9XV/bgu9OkuBzaBfk1ONU=
+
+Name: javax/baja/nre/security/TlsCipherSuiteGroup.class
+SHA-256-Digest: JABWaREVM9E6WQbpcu4ouejhd43ivFPsvVHLBLKGPK0=
+
+Name: com/tridium/json/ParserConfiguration.class
+SHA-256-Digest: FfQd+dBi6vFiaElrNQnuOnUysDFiSyG10L7KLAaIvdk=
+
+Name: com/tridium/nre/security/policy/NiagaraPolicy$PolicyType.class
+SHA-256-Digest: 5rDBv3uNA7/r4WlFZJ53rwKtZ0qV/1N5/iqpZIc9Vu4=
+
+Name: com/tridium/crypto/core/io/CryptoCoreClientSocketFactory.class
+SHA-256-Digest: hF+LerSJ3fZuzYopzLwX2ik9OJZA9W8PQ3svKhjlUOk=
+
+Name: com/tridium/nre/auth/SnapUserManager$removeUserFromGroup_args$_Fie
+ lds.class
+SHA-256-Digest: hbh2nvseHkGYTTqsXwRHvwubP4XFxTLToZfmMr9SVTM=
+
+Name: com/tridium/nre/security/policy/JavaPermissionsFactory$IgnoredNoSu
+ chElementException.class
+SHA-256-Digest: TpEgXZ7V1Ug25nBMAX5g71Go4bXgGN6gN3YCRy9k0is=
+
+Name: com/tridium/json/JSONWriter.class
+SHA-256-Digest: ZCBfzW/zj/duz01DA9sWkIAgzAPaWdMy8X+VqL5+RCs=
+
+Name: com/tridium/nre/auth/SnapUserManager$addUserToGroup_result$addUser
+ ToGroup_resultStandardSchemeFactory.class
+SHA-256-Digest: iKsdLyz6Z39iQ+lK4+gOG1P5LUpe1fZb1/+dOCdnGo8=
+
+Name: com/tridium/crypto/core/io/CoreCryptoManager.class
+SHA-256-Digest: auYtosqQoL6YDMogUU+Y45qEV20e6eARrbDzerWbloA=
+
+Name: com/tridium/nre/auth/ScramAlgorithmBundle.class
+SHA-256-Digest: lfyIIrx7wRr9RHeK9DeiLi+MiV3X9NlihltUf4ATB/U=
+
+Name: com/tridium/nre/subscription/DeviceCodeApi.class
+SHA-256-Digest: lH3nOrWdY8n68p8B9h8cGY453BzP5MGVuuAewIrPKXQ=
+
+Name: com/tridium/crypto/core/cert/JarSignatureRegistry.class
+SHA-256-Digest: AZgULJiaH/gnG1nO1PQcZk4aHQoYSpLEJfa1e2UoMF4=
+
+Name: com/tridium/nre/auth/SnapUserManager$addUserAccount_args$addUserAc
+ count_argsTupleScheme.class
+SHA-256-Digest: v3q2DRpkJ3ClJvviVkQLt4pDMWbDoTu+vdWr77EDiSA=
+
+Name: javax/baja/xml/XParser.class
+SHA-256-Digest: if/rGEVM2KzLdrUM7B6FAyCw+Vjc67u1ukzIH0gKoQ8=
+
+Name: com/tridium/crypto/core/provider/NProviderSection.class
+SHA-256-Digest: QnN1ZcmA8kk40QfbT4gkYizVB9YaTydw9w5vjfabw5I=
+
+Name: com/tridium/nre/util/BogTranscoderInputStream$1.class
+SHA-256-Digest: AUBF3yE0OcCqG739T+9CwnZUWBoaGtFIDd9crc7eQ8A=
+
+Name: com/tridium/crypto/core/cert/NX509CertificateBuilderBundle.class
+SHA-256-Digest: MroCb8NrDgM+UzLResgeS1z7CKOOiftyNW4o36jFLLg=
+
+Name: com/tridium/nre/security/KeyRingFactory$GetKeyRingPrivilegedAction
+ .class
+SHA-256-Digest: c4reKjmjbueL8REWYY8xjAZ4F76dOKbUrWyTcTYJVmU=
+
+Name: com/tridium/nre/auth/ScramClient.class
+SHA-256-Digest: ZPfySjiIli2anVL18u9NYd/kN+NOsg2cLXAxx5DSiYo=
+
+Name: com/tridium/json/pretty/PrettyJSONStringer.class
+SHA-256-Digest: Sc+ObtY3cx2ckbuk1B+cgHQ9mYvnEJ6BDyBkYaSMVOg=
+
+Name: com/tridium/nre/auth/SnapUserManager$removeUserFromGroup_args.clas
+ s
+SHA-256-Digest: 6THYHjeipN6kKMGYFcy6lX3s6WB7OzTxI72t3VY09ZI=
+
+Name: com/tridium/nre/security/SimpleKeyRing.class
+SHA-256-Digest: zkY4WFEqlmiuIOtGSzYISVYvnP6oBjRTUKI/p83izCU=
+
+Name: com/tridium/nre/security/DefaultClientCertSelector.class
+SHA-256-Digest: TqCuw32GrQkjYc67CFtx2Vhvc61NNDBbv9Z8hhy6cxE=
+
+Name: com/tridium/nre/security/KeyRing$KeyRingLock.class
+SHA-256-Digest: b57txidHtuwQ+Ccp7gqzArWFN4WA6xcYfr+R9wkuIt8=
+
+Name: com/tridium/nre/di/IConfiguration.class
+SHA-256-Digest: 0Co5B/VH3M1U2I6B33qlHl/+TQ/HR6sTjbw1YhGP+GE=
+
+Name: javax/baja/nre/annotations/processors/slot/TopicAnnotation.class
+SHA-256-Digest: UqjAKNF0FoTv6zpWfktVS1I/8LT4vYLe0HLrsyIB7BQ=
+
+Name: com/tridium/nre/auth/SnapUserManager$changeUserPassword_result.cla
+ ss
+SHA-256-Digest: Id/G4iPL1PprpiFlo5J+0ZAppARW4awFODhF5xMgAA0=
+
+Name: com/tridium/nre/jetty/rc/auth/sjcl/pbkdf2.js
+SHA-256-Digest: 1AYA4xOnj59Me4+ldwn9ZULz/PV6ZrZV7C5hc8J6GBc=
+
+Name: com/tridium/crypto/core/cert/JarVerifier$ManifestByteParser.class
+SHA-256-Digest: /DvRoRomPX6AlvYqTaNK1DWLcP8gzuqGCtwF0cKAf8g=
+
+Name: com/tridium/nre/security/NiagaraSocketPermission.class
+SHA-256-Digest: /6w+mKHnoHKAjGB4KQy6BH1dS/EbUWorzqHbxy0ljpc=
+
+Name: com/tridium/nre/util/FileLock.class
+SHA-256-Digest: QojmYJaoiTJNYX9U4Nj0/THHnTdd5h9IeRaRbEJNatY=
+
+Name: com/tridium/nre/security/io/PBEEncryptingInputStream.class
+SHA-256-Digest: q1nxpweainUuUYUsW4+7NENxWkYuzEOQwuxJcqWPKYc=
+
+Name: com/tridium/nre/platform/NativePlatformProvider$HostMetaDataHolder
+ .class
+SHA-256-Digest: faVqRnTPj6PlxBy6Qp+gfHJQsYMm3zH3bWKJxxqXvxw=
+
+Name: javax/baja/xml/XPath$1.class
+SHA-256-Digest: zEyd3+JUazR+dnFyAgJgg56PHhzgLiSpzWHQXzD7G5I=
+
+Name: com/tridium/nre/auth/SnapUserManager$removeUserAccount_result$remo
+ veUserAccount_resultStandardScheme.class
+SHA-256-Digest: UM82cB5a5eu/KuUwXiq43TaQfUfko0BbrUo2B3anRXY=
+
+Name: com/tridium/nre/security/NiagaraBasicPermission$AllBasicPermission
+ s.class
+SHA-256-Digest: rrZjWfA9TaH9mr9yv/kGSefTopSz0J8FV20QYqtqSVY=
+
+Name: javax/baja/xml/XWriter.class
+SHA-256-Digest: VddjBrYBOC7Kx+D/2vSPbHoNfVTBMCS0KyZ3yKEQWb8=
+
+Name: com/tridium/nre/di/NreInstancePermission.class
+SHA-256-Digest: 6GBgBAp8SaukeG8DuDLX3LDlaTT3Xqqa7t0Qecey9wg=
+
+Name: com/tridium/nre/util/IPAddressUtil$PlatformProviderHolder.class
+SHA-256-Digest: eODI9QQJ95arJOcAUNYfP+BqB6iZxOqFOLCeQafft6I=
+
+Name: com/tridium/nre/security/TextFileSignatureVerifier$CommentLine.cla
+ ss
+SHA-256-Digest: JDvbZVP/5kwAZqXEjGlax3exKse8SQ6EpqUasMIC35g=
+
+Name: com/tridium/nre/di/NreInstantiationException.class
+SHA-256-Digest: 8oHgMIiJ7CoCNjAdhk6lhAc8X4EN9lTLY3Hbz50KKss=
+
+Name: com/tridium/nre/jetty/rc/auth/sjcl/random.js
+SHA-256-Digest: ARyVzAqsj9FQ3Eg9fS2bmXgo4IoNBNAq7VAgjnM3Oqc=
+
+Name: com/tridium/nre/auth/SnapUserManager$removeUserAccount_args$_Field
+ s.class
+SHA-256-Digest: d/T8WLO4ecU6Q6+dWXav67XlBwzjZ8o1ePIbpLBpv3w=
+
+Name: com/tridium/crypto/core/cert/ext/NIssuerAlternativeName.class
+SHA-256-Digest: 7KIrCpZuGZQKqsO5xv4Iihr/dfi2SCEA06tZpP0pO8A=
+
+Name: com/tridium/crypto/core/io/CoreStore.class
+SHA-256-Digest: YtlpzkkY0Qf6GLx5RYUxlDQyckckgKvuw9UTT3D8GJA=
+
+Name: com/tridium/crypto/core/cert/ext/NAuthorityInfoAccess.class
+SHA-256-Digest: l+WurM3i2VkmXNOIJDWWDdbXf2JjYi+kFOE2SHxJ76g=
+
+Name: com/tridium/nre/security/ISecurityInitializerConfig.class
+SHA-256-Digest: YJZFNUHD4kyzKMt3xoX0yUIam+wDoS/u1jZhpIWtnOM=
+
+Name: com/tridium/nre/jetty/rc/auth/sjcl/pbkdf2Async.js
+SHA-256-Digest: 2i3efgoUBnkyC555BNr87h15OJEbpSHEB+Wyf0PZX0c=
+
+Name: com/tridium/crypto/core/cert/NX509Certificate.class
+SHA-256-Digest: Jo69fJQOnpoEqt7dwRH+/FGYnogoPH3/mtyTtOd7pao=
+
+Name: com/tridium/nre/security/io/AESEncryptingInputStream.class
+SHA-256-Digest: 6T5vs70P42sqXL6ATpf+dAm8NmtJVszzQ69qT/sUlwM=
+
+Name: com/tridium/nre/auth/SnapUserManager$addUserAccount_args.class
+SHA-256-Digest: dxx27cHAmfxPcUcpr1SLX8xXwsNz1mQcnnKBMHJgP6M=
+
+Name: com/tridium/nre/di/SingletonSupplier.class
+SHA-256-Digest: tgOkQpHQ1Z1JHepRQhDsu35QyjYGmzm/N1KRkCFoMi8=
+
+Name: com/tridium/crypto/core/io/CRLProvider.class
+SHA-256-Digest: LNUb0Qo79dd7glofdEE6vHSAVxbXxZgyvw2ImT+IpJY=
+
+Name: com/tridium/json/JSONUtil$2$1$1$1.class
+SHA-256-Digest: +1OY4wbSic02EVEq9WyNIni1L7WsCtbLvlI2C+/4MYU=
+
+Name: com/tridium/crypto/core/io/ICoreProviderInfo.class
+SHA-256-Digest: hv/sdECOt9DkypUWXq/7ZHG+2hkCpqHC5B1+yZlaS7g=
+
+Name: com/tridium/nre/platform/JavaPlatformProvider.class
+SHA-256-Digest: FwZdFY9GsVXjc76wR0X//59RRZUkL08UbqWmOum5638=
+
+Name: com/tridium/nre/util/BogModUtil$SlotInfo.class
+SHA-256-Digest: j9aEmJzEjbTNpgHsirwRb2jqUCP3KuHrPmei5vScrm8=
+
+Name: com/tridium/nre/subscription/EntitlementApi$EntitlementState.class
+SHA-256-Digest: hpuSU7I8JqEIfnOs+YWXi4DCBV4Oq/xyqPQhUQ+hUa4=
+
+Name: com/tridium/json/JSONUtil$1.class
+SHA-256-Digest: pnJD8KEpNftFlx5VuhGZHeND7FwrFqlQlqtqRKrUUrM=
+
+Name: com/tridium/nre/auth/SnapUserManager$changeUserPassword_result$cha
+ ngeUserPassword_resultStandardScheme.class
+SHA-256-Digest: Y1IggpMbzZE8Pq3J0sT9y+u/4gWJz+SeMUBqhP40bI4=
+
+Name: javax/baja/nre/annotations/NiagaraTopics.class
+SHA-256-Digest: tGuK3PPvMpEDXfhCbtfMhW7m0ic6pmw/CADDhZBfVUw=
+
+Name: com/tridium/crypto/core/util/BouncyCastleHelper.class
+SHA-256-Digest: FMHfK+s8MmQQ6xGZljLSwCfX1UGXD2jWzbbNoZ+TfjI=
+
+Name: com/tridium/nre/security/DeveloperSecurityManager.class
+SHA-256-Digest: pRe0Sm6UrL9Wc8AQGdXqVis5igtiyf8Z/NKfFPfS6Q0=
+
+Name: com/tridium/nre/util/IPAddressUtil.class
+SHA-256-Digest: z/Do2AR3gccxjsoo8eBTJBba9nKb7byGlEM+wMd2yY8=
+
+Name: com/tridium/crypto/core/cert/NPKIXCertPathChecker.class
+SHA-256-Digest: UB+aQxzm1eJK1rrfeJLTOtcmL0lgfnTC9WKVTnQv47U=
+
+Name: com/tridium/nre/CachedPredicate.class
+SHA-256-Digest: zI/fFYp760E2KPCJpvJlLzWgfRPywQ1TaPxuMYtZkYc=
+
+Name: javax/baja/nre/security/ServerTlsParameters.class
+SHA-256-Digest: fAGEwHXWpxTXRy/7ERpD6oXHRf7eMIttujrNwId6C9g=
+
+Name: com/tridium/nre/security/SystemPassphrase$LocalMetaDataHolder.clas
+ s
+SHA-256-Digest: 2bP91ZH9ys5BTiwTT8flNcSLjm8PUiE/tpfUBsurdOA=
+
+Name: com/tridium/crypto/core/exchange/IKeyExchanger.class
+SHA-256-Digest: rWGcgimYh2EsKgIWPEDQ7ANhdd+camYQ729qvRcuzng=
+
+Name: com/tridium/nre/auth/SnapUserManager$changeUserPassword_result$cha
+ ngeUserPassword_resultTupleScheme.class
+SHA-256-Digest: AWc4PIwKB4EVCBDKr5VNqWmPdb0PT9mUfZjOZEcNEAg=
+
+Name: com/tridium/nre/subscription/HttpRequestMessage$Method.class
+SHA-256-Digest: FfJ94aez0dPVur8kUUkptEU7PLRqv3RKaE2NzGFspqQ=
+
+Name: com/tridium/nre/security/PBEValidator$ValidationFault.class
+SHA-256-Digest: mm/Ethcydb5+4YgEYM3DFBqR9YFutpOoRDagZI/6fRo=
+
+Name: com/tridium/nre/security/policy/WildcardPermissionMapper.class
+SHA-256-Digest: alSSU4XsAGDYEQ+WaxRucJuimhA0Bk8dzghnJQ+gR90=
+
+Name: com/tridium/nre/jetty/rc/auth/sjcl/bitArray.js
+SHA-256-Digest: QCvbKqc1+1WbaHEG5HLy+39Z+HqbtAOeHDfjTGZ5cZ4=
+
+Name: com/tridium/nre/util/PrivilegedNamedThreadFactory.class
+SHA-256-Digest: otnPd0LCilVca6+p5wrgID+PChgS8DSCSEBFNRelSeM=
+
+Name: com/tridium/nre/auth/SnapUserManager$AsyncProcessor.class
+SHA-256-Digest: BT90UecM5GOpZVb64uPrmtGRgLXK7jTszqEwM6jWn2s=
+
+Name: com/tridium/nre/syslog/SyslogManager$SyslogManagerInstance.class
+SHA-256-Digest: 1WSte6eixzRXb2NkTsLvynQEZsS/tcPmk7TV0T/TcD0=
+
+Name: com/tridium/nre/subscription/HttpConnectionlessTransport$TrustingH
+ ostnameVerifier.class
+SHA-256-Digest: NxoCl4SzsoxLfh/4lmXWdunnmEw+OVedWM4iaYNaC+c=
+

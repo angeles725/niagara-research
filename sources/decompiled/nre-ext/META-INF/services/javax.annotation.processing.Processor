@@ -1,0 +1,3 @@
+javax.baja.nre.annotations.processors.NiagaraSlotProcessor
+javax.baja.nre.annotations.processors.NiagaraTypeAnnotationProcessor
+javax.baja.nre.annotations.processors.NullProcessor

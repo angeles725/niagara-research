@@ -5,6 +5,18 @@
 > inferring state from one directory, and which shipped JARs own each boundary? This does not reopen L1-L6;
 > it corrects [B386]'s version-independent wording and inventories the actual 4.10 implementation.
 >
+> **⚠ §14 CORRECTION (2026-08-24, `docs/niagara-licensing.md`):** §442.3's "seven runtime JAR boundaries"
+> listed `bin/ext/niagarad.jar` as carrying `com.tridium.niagarad.license.{LicenseManager,LicenseFile,
+> LicenseUtil}`. A full Vineflower decompile of `bin/ext/nre.jar` (this pass, `sources/decompiled/nre-ext/`)
+> and inspection of `niagarad.jar` found **NO `com.tridium.niagarad.license.*` package exists** — the license
+> managers live SOLELY in `baja.jar` (`com.tridium.sys.license.*`). The daemon's tie to licensing is a
+> RUNTIME SWITCH, not a code copy: it sets `-DNiagaraDaemon=true`, which makes
+> `com.tridium.nre.subscription.RetrieveEntitlements.isLicenseValid()` skip in-process signature validation
+> and delegate to `baja`'s `SubscriptionLicenseManager.isLicenseSignatureValid(...)` `[CERT]`
+> `sources/decompiled/nre-ext/com/tridium/nre/subscription/RetrieveEntitlements.java:246-275`. The rest of
+> §442.3 (nre.jar `JarSignatureRegistry`/`CertificateChainValidator`/`CoreTrustStore`; baja/file/platform
+> boundaries) stands.
+>
 > **Subject version:** iC-Niagara **4.10.9.14**, live Windows mini-PC, observed 2026-08-11.
 > **Sources:** redacted read-only SSH evidence
 > `sources/probes/B442-license-inventory-2026-08-11/remote-evidence.txt`; decompiled 4.10

@@ -1,0 +1,10 @@
+package com.tridium.nre.util;
+
+import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.ForkJoinWorkerThread;
+
+public class NreForkJoinWorkerThread extends ForkJoinWorkerThread {
+   public NreForkJoinWorkerThread(ForkJoinPool pool) {
+      super(pool);
+   }
+}
