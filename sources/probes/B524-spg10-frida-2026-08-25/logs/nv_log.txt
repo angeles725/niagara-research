@@ -1,0 +1,15 @@
+﻿[run] nverify mirror mode=log force=0 target=C:\Users\equipo\AppData\Local\Temp\spg10-probe\tamper\aaphp-rt-unsigned.jar
+[run] spawned nverify pid=133900
+[frida] {'ev': 'wait', 'note': 'nre.dll not loaded yet'}
+[run] resumed
+[frida] {'ev': 'wait', 'note': 'nre.dll not loaded yet'}
+[frida] {'ev': 'wait', 'note': 'nre.dll not loaded yet'}
+[frida] {'ev': 'wait', 'note': 'nre.dll not loaded yet'}
+[frida] {'ev': 'wait', 'note': 'nre.dll not loaded yet'}
+INFO    [2026-08-25 17:27:28][nverify] Verifying archive C:\Users\equipo\AppData\Local\Temp\spg10-probe\tamper\aaphp-rt-unsigned.jar
+
+WARNING [2026-08-25 17:27:28][nverify] No signed manifests found for archive
+
+SEVERE  [2026-08-25 17:27:28][nverify] Verification failed for C:\Users\equipo\AppData\Local\Temp\spg10-probe\tamper\aaphp-rt-unsigned.jar
+
+[run] done

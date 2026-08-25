@@ -1,0 +1,654 @@
+﻿[run] mode=log force=1
+[run] spawned pid=128920
+[frida] {'ev': 'hook', 'mod': 'dsfspi.dll', 'fn': 'DsfSha1WithDsaSignature::verify', 'addrs': ['0x7ff9bdee96b0', '0x7ff9bdee9720']}
+[frida] {'ev': 'hook', 'mod': 'dsfspi.dll', 'fn': 'DsfSha1WithDsaSignature::sign', 'addrs': ['0x7ff9bdee9130', '0x7ff9bdee93c0', '0x7ff9bdee9500']}
+[frida] {'ev': 'hook', 'mod': 'dsfspi.dll', 'fn': 'Java_com_tridium_dsf_provider_spi_DsfSha1WithDsaSignatureSpi_engineVerify0___3B', 'addrs': ['0x7ff9bdee9d50']}
+[frida] {'ev': 'hook', 'mod': 'dsfspi.dll', 'fn': 'Java_com_tridium_dsf_provider_spi_DsfSha1WithDsaSignatureSpi_engineVerify0___3BII', 'addrs': ['0x7ff9bdee9dd0']}
+[run] resumed; waiting for nre to exit
+py : INFO [nre] Launching Niagara Runtime Environment
+En línea: 1 Carácter: 62
++ ... .14.0.162'; py 'C:\Users\equipo\AppData\Local\Temp\spg10-probe\run.py ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (INFO [nre] Laun...ime Environment:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+INFORMACIËN [17:13:58 25-ago-26 CST][nre] Booting
+INFORMACIËN [17:14:04 25-ago-26 CST][sys.registry] Up-to-date [157ms]
+INFORMACIËN [17:14:04 25-ago-26 CST][sys.registry] Loaded [61ms]
+
+Niagara Licensing
+HostId=Win-6E6E-10AC-D1DD-8276
+
+Certificates
+  Honeywell.certificate <Honeywell> [expires: never] {valid}
+  HoneywellCentraLine.certificate <HoneywellCentraLine> [expires: never] {valid}
+  Tridium.certificate <Tridium> [expires: never] {valid}
+
+Licenses (perpetual)
+  Honeywell.license <Honeywell> [expires: 2027-03-31] {valid}
+  HoneywellCentraLine.license <HoneywellCentraLine> [expires: 2027-03-31] {valid}
+  Webs.license <Tridium> [expires: 2027-03-31] {valid}
+
+Features
+  honeywell:ascbac [expires: 2027-03-31]
+    device.limit=none
+  honeywell:asclon [expires: 2027-03-31]
+    device.limit=none
+  honeywell:bport [expires: 2027-03-31]
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  honeywell:clbacnetutil [expires: 2027-03-31]
+  honeywell:cseasyonboard [expires: 2027-03-31]
+  honeywell:emonn4tenantbilling [expires: 2027-03-31]
+  honeywell:hbdashboard [expires: 2027-03-31]
+    zone.limit=none
+  honeywell:honalarmconsole [expires: 2027-03-31]
+  honeywell:honbeatsunitaryprogrammingtool [expires: 2027-03-31]
+  honeywell:honconnectedpower [expires: 2027-03-31]
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  honeywell:honconnectedpowereasyonboard [expires: 2027-03-31]
+  honeywell:honconnectedpoweropenadr [expires: 2027-03-31]
+  honeywell:honeasybinding [expires: 2027-03-31]
+  honeywell:honeasydatabasemanager [expires: 2027-03-31]
+  honeywell:honeasytemplate [expires: 2027-03-31]
+  honeywell:honedgedriver [expires: 2027-03-31]
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  honeywell:honhit [expires: 2027-03-31]
+  honeywell:honniagaraapi [expires: 2027-03-31]
+  honeywell:honpointlistview [expires: 2027-03-31]
+    device.limit=none
+  honeywell:lcdprogrammable [expires: 2027-03-31]
+  honeywell:maxprovideo [expires: 2027-03-31]
+    foxStream.limit=none
+    camera.limit=16
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  honeywell:redlink [expires: 2027-03-31]
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  honeywell:spyderbacnetprogrammable [expires: 2027-03-31]
+  honeywell:spyderprogrammable [expires: 2027-03-31]
+  honeywell:spydervavapp [expires: 2027-03-31]
+  honeywell:sylkactuatoranalytics [expires: 2027-03-31]
+  honeywell:xl10wizards [expires: 2027-03-31]
+  honeywellcentraline:clcbus [expires: 2027-03-31]
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  tridium:aaphp [expires: 2027-03-31]
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  tridium:aapup [expires: 2027-03-31]
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+    ports=none
+  tridium:about [expires: 2027-03-31]
+    owner=Syscom
+    project=00 HW - DEMO LICENSES
+  tridium:accesscontrol [expires: 2027-03-31]
+    ada=true
+    reader.limit=32
+    nrioDevice.limit=none
+    bacnetWrite=true
+    point.limit=none
+    elevator.limit=none
+    device.limit=none
+  tridium:ace [expires: 2027-03-31]
+    component.limit=none
+    point.limit=none
+    device.limit=none
+  tridium:adr [expires: 2027-03-31]
+    point.limit=none
+    history.limit=none
+    device.limit=1
+  tridium:adrsmart [expires: 2027-03-31]
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  tridium:alarm [expires: 2027-03-31]
+    console.limit=none
+    type=basic
+  tridium:alarmarchive [expires: 2027-03-31]
+  tridium:analytics [expires: 2027-03-31]
+    alert.limit=none
+    proxyext.limit=none
+    algorithms=none
+    point.limit=none
+    algorithm.limit=none
+    device.limit=none
+    alerts=none
+  tridium:andoverac256 [expires: 2027-03-31]
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+    ports=none
+  tridium:andoverinfinity [expires: 2027-03-31]
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  tridium:appframework [expires: 2027-03-31]
+    app.limit=none
+  tridium:ascbac [expires: 2027-03-31]
+    Device=none
+  tridium:asclon [expires: 2027-03-31]
+    Device=none
+  tridium:axisvideo [expires: 2027-03-31]
+    foxStream.limit=none
+    camera.limit=32
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  tridium:axvelocity [expires: 2027-03-31]
+  tridium:bacnet [expires: 2027-03-31]
+    schedule.limit=none
+    point.limit=none
+    export=true
+    history.limit=none
+    device.limit=none
+    ports=none
+  tridium:bacnetaws [expires: 2027-03-31]
+  tridium:bacnetede [expires: 2027-03-31]
+  tridium:bacnetows [expires: 2027-03-31]
+  tridium:bacnetsc [expires: 2027-03-31]
+    nodeSwitch.canAccept=true
+    nodeSwitch.canInitiate=true
+    nodeSwitchConnections.limit=none
+    hubConnections.limit=none
+  tridium:bacnetws [expires: 2027-03-31]
+    point.limt=none
+    schedule.limit=none
+    history.limit=none
+    device.limit=none
+  tridium:box [expires: 2027-03-31]
+    session.limit=none
+  tridium:brand [expires: 2027-03-31]
+    accept.station.out=*
+    accept.wb.out=*
+    accept.wb.in=*
+    brandId=Webs
+    accept.station.in=*
+  tridium:bulkcertsigner [expires: 2027-03-31]
+  tridium:ccn [expires: 2027-03-31]
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  tridium:ccnl [expires: 2027-03-31]
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  tridium:certsigningservice [expires: 2027-03-31]
+  tridium:cloudbackupservice [expires: 2027-03-31]
+    limitsPolicy=basic
+  tridium:cloudiothubconnector [expires: 2027-03-31]
+  tridium:cloudlink [expires: 2027-03-31]
+    sma.exempt=false
+  tridium:cloudsentienceconnector [expires: 2027-03-31]
+    systemType=n4-station
+  tridium:crypto [expires: 2027-03-31]
+    ssl=true
+  tridium:csmgr [expires: 2027-03-31]
+    device.limit=none
+  tridium:dali [expires: 2027-03-31]
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  tridium:dedmicrosdvr [expires: 2027-03-31]
+    foxStream.limit=none
+    camera.limit=32
+    schedule.limit=none
+    point.limit=none
+    display.limit=none
+    history.limit=none
+    device.limit=none
+  tridium:demostation [expires: 2027-03-31]
+    historyExt.limit=10000
+    historyRecord.limit=10000
+  tridium:developer [expires: 2027-03-31]
+    skipModuleValidation=true
+    moduleDev=true
+  tridium:deviceappliance [expires: 2027-03-31]
+    logs=true
+    templates=true
+    enterprise=true
+  tridium:eas [expires: 2027-03-31]
+    allE2Reports=true
+    costMeter.limit=none
+    dataPoint.limit=0
+    station.limit=0
+    allCostReports=true
+  tridium:egld [expires: 2027-03-31]
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+    ports=none
+  tridium:eibnetip [expires: 2027-03-31]
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  tridium:email [expires: 2027-03-31]
+  tridium:entsecisom [expires: 2027-03-31]
+    Enabled=true
+    DBConnections=1
+  tridium:entsecldap [expires: 2027-03-31]
+    device.limit=2
+  tridium:entsecurity [expires: 2027-03-31]
+    accessZone.limit=none
+    reader.limit=32
+    schedule.limit=none
+    threatGroup.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+    credential.limit=none
+  tridium:esignature [expires: 2027-03-31]
+    point.limit=500
+  tridium:ethernetip [expires: 2027-03-31]
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  tridium:eventservice [expires: 2027-03-31]
+  tridium:filedriver [expires: 2027-03-31]
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  tridium:flexserial [expires: 2027-03-31]
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+    ports=none
+  tridium:flr [expires: 2027-03-31]
+  tridium:forms [expires: 2027-03-31]
+  tridium:ftpclient [expires: 2027-03-31]
+    file.limit=none
+    fileLimit=none
+    serverLimit=none
+    device.limit=none
+  tridium:gcpgatewaysup [expires: 2027-03-31]
+  tridium:genericappliance [expires: 2027-03-31]
+    vendor.name=none
+  tridium:helvar [expires: 2027-03-31]
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  tridium:hierarchy [expires: 2027-03-31]
+    hierarchy.limit=none
+    local=true
+  tridium:historyarchive [expires: 2027-03-31]
+  tridium:hisweather [expires: 2027-03-31]
+  tridium:horstmann [expires: 2027-03-31]
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  tridium:http [expires: 2027-03-31]
+    sma.exempt=true
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  tridium:httpxml [expires: 2027-03-31]
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  tridium:ibmj9j2me [expires: 2027-03-31]
+    rev=none
+  tridium:ieee8021x [expires: 2027-03-31]
+  tridium:inet [expires: 2027-03-31]
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  tridium:intrusion [expires: 2027-03-31]
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  tridium:jen6lp [expires: 2027-03-31]
+    schedule.limit=none
+    point.limit=none
+    export=true
+    device.limit=none
+  tridium:jennic [expires: 2027-03-31]
+  tridium:jsontoolkit [expires: 2027-03-31]
+    sma.exempt=true
+    import=true
+    export=true
+  tridium:knxnetip [expires: 2027-03-31]
+    interface.limit=none
+    schedule.limit=none
+    point.limit=none
+    installation.limit=none
+    history.limit=none
+    device.limit=none
+  tridium:ldapv3 [expires: 2027-03-31]
+    kerberos=true
+  tridium:lonip [expires: 2027-03-31]
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  tridium:lonworks [expires: 2027-03-31]
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  tridium:maxheap [expires: 2027-03-31]
+  tridium:maxpro [expires: 2027-03-31]
+    camera.limit=32
+    point.limit=none
+    device.limit=32
+  tridium:mbus [expires: 2027-03-31]
+    serial=false
+    tcpip=true
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  tridium:mcquay [expires: 2027-03-31]
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  tridium:microsfidelio [expires: 2027-03-31]
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  tridium:milestonecorporate [expires: 2027-03-31]
+    foxStream.limit=none
+    camera.limit=none
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  tridium:milestonevideo [expires: 2027-03-31]
+    foxStream.limit=none
+    camera.limit=32
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  tridium:mobile [expires: 2027-03-31]
+    propsheet=true
+    session.limit=none
+    px=true
+    history=true
+    schedule=true
+    alarm=true
+  tridium:modbusasync [expires: 2027-03-31]
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  tridium:modbusslave [expires: 2027-03-31]
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  tridium:modbustcp [expires: 2027-03-31]
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  tridium:modbustcpslave [expires: 2027-03-31]
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  tridium:modem [expires: 2027-03-31]
+    device.limit=none
+  tridium:mqtt [expires: 2027-03-31]
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  tridium:mqtttoolkit [expires: 2027-03-31]
+  tridium:mstp [expires: 2027-03-31]
+    port.limit=none
+  tridium:nclouddriver [expires: 2027-03-31]
+    point.limit=1000
+    history.limit=500
+    device.limit=1
+  tridium:ndio [expires: 2027-03-31]
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  tridium:niagaradriver [expires: 2027-03-31]
+    edgeLite1_schedule.limit=none
+    edgeLite1_device.percentage=10
+    virtual=true
+    edgeLite1_history.limit=none
+    history.limit=none
+    point.limit=none
+    device.limit=none
+    schedule.limit=none
+    edgeLite1_point.limit=none
+  tridium:nre [expires: 2027-03-31]
+  tridium:nrio [expires: 2027-03-31]
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  tridium:obixdriver [expires: 2027-03-31]
+    foreignSchedule.limit=none
+    foreignHistory.limit=none
+    history.limit=none
+    point.limit=none
+    device.limit=none
+    export=true
+    foreignDevice.limit=none
+    schedule.limit=none
+    foreignPoint.limit=none
+  tridium:opc [expires: 2027-03-31]
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  tridium:opcae [expires: 2027-03-31]
+    alarm.limit=none
+    device.limit=none
+  tridium:opcserversupport [expires: 2027-03-31]
+    points.limit=none
+  tridium:opcuaclient [expires: 2027-03-31]
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  tridium:opcuaserver [expires: 2027-03-31]
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  tridium:openadr2b [expires: 2027-03-31]
+    ven.limit=2
+  tridium:pansheet [expires: 2027-03-31]
+  tridium:profinet [expires: 2027-03-31]
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  tridium:protec [expires: 2027-03-31]
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  tridium:provisioning [expires: 2027-03-31]
+  tridium:rapideyedrv [expires: 2027-03-31]
+    foxStream.limit=none
+    camera.limit=32
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  tridium:rdbdb2 [expires: 2027-03-31]
+    history.limit=none
+    historyImport=true
+  tridium:rdbhistoryarchive [expires: 2027-03-31]
+  tridium:rdbhsqldb [expires: 2027-03-31]
+    history.limit=none
+    historyImport=true
+  tridium:rdbmysql [expires: 2027-03-31]
+    history.limit=none
+    historyImport=true
+  tridium:rdboracle [expires: 2027-03-31]
+    history.limit=10
+    historyImport=true
+  tridium:rdbsqlserver [expires: 2027-03-31]
+    history.limit=none
+    historyImport=true
+  tridium:remotevideo [expires: 2027-03-31]
+    dvr.limit=none
+    nvr.limit=none
+    camera.limit=none
+    device.limit=none
+  tridium:resolvbus [expires: 2027-03-31]
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  tridium:samldp [expires: 2027-03-31]
+    OnOff=true
+  tridium:search [expires: 2027-03-31]
+    local=true
+  tridium:secphotoid [expires: 2027-03-31]
+    asureId.limit=1
+    device.limit=1
+  tridium:securitydashboard [expires: 2027-03-31]
+    system=true
+  tridium:sedonanet [expires: 2027-03-31]
+    schedule.limit=none
+    point.limit=none
+    export=true
+    device.limit=none
+  tridium:sedonaprovisioning [expires: 2027-03-31]
+  tridium:sedonasurvey [expires: 2027-03-31]
+    sox=true
+    history.limit=none
+    device.limit=none
+  tridium:serial [expires: 2027-03-31]
+  tridium:sinevisitormanagement [expires: 2027-03-31]
+  tridium:skype [expires: 2027-03-31]
+  tridium:smartkey [expires: 2027-03-31]
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=6
+  tridium:smdevelopermode [expires: 2027-03-31]
+  tridium:sms [expires: 2027-03-31]
+    point.limit=none
+    device.limit=none
+  tridium:snmp [expires: 2027-03-31]
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  tridium:sox [expires: 2027-03-31]
+  tridium:spectrum [expires: 2027-03-31]
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  tridium:station [expires: 2027-03-31]
+    guestEnabled=true
+    station.limit=128
+    resource.limit=none
+  tridium:stationazul [expires: 2027-03-31]
+    guestEnabled=true
+    station.limit=128
+    resource.limit=none
+  tridium:syslog [expires: 2027-03-31]
+  tridium:systemdb [expires: 2027-03-31]
+    orientDb=true
+  tridium:systemindex [expires: 2027-03-31]
+    edgeLite1_station.entity.limit=none
+    station.limit=none
+    edgeLite1_station.limit=none
+    local.entity.limit=none
+    station.entity.limit=none
+  tridium:tabledriver [expires: 2027-03-31]
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  tridium:tabs [expires: 2027-03-31]
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  tridium:tags [expires: 2027-03-31]
+    dictionary.limit=none
+  tridium:template [expires: 2027-03-31]
+  tridium:tenantbilling [expires: 2027-03-31]
+    tenant.limit=none
+    utility.limit=none
+    module=none
+  tridium:tls [expires: 2027-03-31]
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+    ports=none
+  tridium:tunneling [expires: 2027-03-31]
+    fox=true
+    http=true
+    sox=true
+  tridium:videodriver [expires: 2027-03-31]
+    dvr.limit=none
+    nvr.limit=none
+    camera.limit=none
+    manufacturer=false
+    display.limit=none
+    device.limit=none
+  tridium:web [expires: 2027-03-31]
+    ui.wb=true
+    ui.wb.admin=true
+    ui=true
+  tridium:workbench [expires: 2027-03-31]
+    admin=true
+  tridium:workbenchazul [expires: 2027-03-31]
+    admin=true
+  tridium:x10 [expires: 2027-03-31]
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+  tridium:zwave [expires: 2027-03-31]
+    schedule.limit=none
+    point.limit=none
+    history.limit=none
+    device.limit=none
+
+Brand
+  brandId            = Webs
+  accept.station.in  = *
+  accept.station.out = *
+  accept.wb.in       = *
+  accept.wb.out      = *
+[run] done

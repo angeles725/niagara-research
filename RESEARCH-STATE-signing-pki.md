@@ -3,9 +3,9 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 447
-gaps_closed: 6
-known_gaps: 13
+covered_blocks: 448
+gaps_closed: 7
+known_gaps: 14
 investigable_open: 0
 requires_execution_open: 4
 blocked_open: 3
@@ -61,12 +61,13 @@ the three trust domains, the real Honeywell-rooted RSA module chain, and the cor
 | 3 | **SP-G8** — Does the PanelBus/HMI OTA receive path ([B242] `honIrmConfig`) enforce the ECDSA chain, or trust the jar-unpacked image? | requires-execution | open |
 | — | **SP-G3** — Native `LicenseUtil::isFeaturePresent` is a text match, not a DSA verify [B126 §126.6]; confirm Java `LicenseManager` rejects a bad DSA signature. | requires-execution | **CLOSED B518** (§12 live, isolated test host, reversible byte-identical): real `nre` runtime rejects a 1-byte signature flip fail-closed `{invalid: Invalid signature}` [CERT-live]; HostId gate isolated (valid-sig/wrong-host license → `moved file`, features withheld) [CERT-live]; native half re-anchored read-only by peer session — `isFeaturePresent` text-scan invariant to any signature-region tamper → **asymmetry confirmed both sides on the same file**. Spawns SP-G3a. |
 | 3 | **SP-G3a** — Does a *required-but-missing* feature force station `System.exit(-3/-6)` at full boot ([B488]) vs graceful feature-withholding? SP-G3 proved verifier rejection, not the process-exit path. | blocked (requires-artifact: isolated station/VM) | **RE-TYPED B519** — read-first showed the live host is the operator's WORKING supervisor (11 station configs incl. customer-named + a live station on :443); a blind second-station boot risks port collision/collateral. Needs a truly isolated station/VM, not this shared host. |
-| 4 | **SP-G10** — Live in-process interposition ("mirror") PoC: can a shim / rogue JCE provider make the license or module verifier return "valid"? Feasibility ∝ `moduleVerificationMode` (=low live, B519). | requires-execution | **SURFACE MAPPED [CERT] B520** (dsfspi.dll = single native chokepoint; hook targets frozen: `verify@DsfSha1WithDsaSignature`@0x1800296b0 + `checkFileSignature`; Authenticode load-unenforced; 2 routes A/B). **Frida provisioned live (frida-python 17.17.0 Windows).** Runtime PoC BUILT but **REFUSED by harness auto-mode classifier** (typed `refused` §21, our side not target). Runtime confirmation open pending explicit operator permission. |
+| 4 | **SP-G10** — Live in-process interposition ("mirror") PoC: can a shim / rogue JCE provider make the license or module verifier return "valid"? Feasibility ∝ `moduleVerificationMode` (=low live, B519). | requires-execution | **CLOSED B524** (operator-authorized Frida run): license DSA verify is **BC-FIPS Java-side** (§14-corrects B520 §1 — dsfspi DSA unused on this bcfips install); module verify **flipped in-process either way** (`checkFileSignature` force-valid → 0 FATAL; force-invalid → `FATAL failed signature check` abort). Java-layer license mirror **blocked-on-tool** (no Java bridge on this host's bare-bone agent) → spawned **SP-G10a**. |
 | 5 | **SP-G6** — CRL/revocation enforcement for BACnet/SC + TLS (`BIssuerCertAndCrl` [B287]) — modelled, enforcement [INFER]. | requires-execution | open |
 | 6 | **SP-G4** — Reproduce a Tridium-rooted (non-OEM) `baja.jar` chain to settle §392.7 empirically. | blocked (requires-artifact: a stock non-OEM install) | open |
 | — | **SP-G9** — Does daemon boot `insertProviderAt(1)` or trailing `addProvider()`? enforced vs shipped. | requires-execution / code-read | **CLOSED B441** (neither: static override `-Djava.security.properties==bin/policy/java.security`, BC at provider.1/2 ahead of Sun; priority ENFORCED, approved-only strict NOT enabled; corrects B440 6/7/8) |
 | 4 | **SP-G9a** — Live `Security.getProviders()` on the running station to confirm the effective order matches `bin/policy/java.security` (upgrade §441.4 to [CERT-live]). | requires-execution | open (B441) |
 | 6 | **SP-G9b** — Licensed-`bcstd` branch names `provider.2=BouncyCastleFipsProvider`, a class absent from standard BC. Second policy variant, or daemon rewrites the line when `fips140-2` present? | blocked (requires-artifact: a `fips140-2`-licensed install) | open (B441) |
+| 4 | **SP-G10a** — License-side mirror runtime confirm: re-run the Java-layer hook (`LicenseUtil.verify`/`Signature.verify` → force true) with a FULL frida agent (Java bridge) on a disposable `nre.exe`. Static Java path is pinned (B524 F1); the runtime forcing is the remaining unproven half. | requires-execution | open (B524) |
 
 ## Iteration history
 
@@ -80,3 +81,4 @@ the three trust domains, the real Honeywell-rooted RSA module chain, and the cor
 | 6 (§12) | B397 | dynamic-phase live validation | [CERT-live]: changeit+SEJOFA confirmed on RUNNING platform (upgrades B392/B395); SP-G3 verifier proven to reject sig+payload tampering (executed [CERT]); live-boot fail-closed DECLINED on production supervisor (needs throwaway); TLS default cert remitted to B156/158/162 |
 | 7 | B440 | crypto-provider reconciliation | BC (JCE/JSSE) vs Mocana/DSF (native) = two axes not rivals; `njre` swaps bcstd↔bcfips by `fips140-2` feature; install has NO fips140-2 → runs **bcfips** (corrects in-session bcstd inference); java.security stock ⇒ dynamic registration; spawns SP-G9 |
 | 8 | B441 | SP-G9 provider-registration | CLOSED: neither runtime call — `njre` `-Djava.security.properties==bin/policy/java.security` (double-`==` full override) puts BC at provider.1/2 ahead of Sun by static config. Priority ENFORCED; approved-only strict NOT enabled (flag absent). §14-corrects B440 6/7/8 (read overridden stock JRE file); reconciles B26 (baseline) vs B30 (strict migration). investigable=0 again → focus STAYS STOPPED. Spawns SP-G9a (live getProviders), SP-G9b (bcstd policy variant, blocked) |
+| 9 | B524 | SP-G10 mirror (operator-authorized Frida run) | CLOSED: license DSA verify = BC-FIPS Java-side (dsfspi DSA unused live — §14-corrects B520 §1); module verify flipped in-process either way (`checkFileSignature` force-valid→0 FATAL / force-invalid→`FATAL failed signature check` abort). Zero install mutation; sha256+PID invariants hold. Java bridge absent on this host (blocked-on-tool) → spawns SP-G10a |

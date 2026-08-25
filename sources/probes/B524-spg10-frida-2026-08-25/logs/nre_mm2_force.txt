@@ -1,0 +1,15 @@
+﻿[run] mirror via nre mode=force_invalid_all
+[run] spawned pid=134468
+[frida] {'ev': 'hooked', 'addr': '0x7ff9db335350'}
+[run] resumed
+[frida] {'ev': 'call', 'n': 1, 'file': 'C:\\Honeywell\\OptimizerSupervisor-N4.14.0.162\\bin\\ext\\annotations-13.0.jar'}
+py : FATAL: C:\Honeywell\OptimizerSupervisor-N4.14.0.162\bin\ext\annotations-13.0.jar failed signature check
+En línea: 1 Carácter: 62
++ ... .14.0.162'; py 'C:\Users\equipo\AppData\Local\Temp\spg10-probe\nre_mm ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (FATAL: C:\Honey...signature check:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+[frida] {'ev': 'forced', 'n': 1, 'val': 1, 'orig': 0}
+[frida] {'ev': 'ret', 'n': 1, 'val': 0}
+[run] done
