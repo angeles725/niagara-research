@@ -7,6 +7,11 @@
 
 ## §494.1 — Shared framework `[CERT]`
 
+> **Extended in [B510] (apis/API5):** this section is a one-paragraph summary of the plug model; the full
+> AUTHORING contract — the abstract-method set, two-level registration (type registry + service folder),
+> `BUser.authenticationSchemeName` binding, the `BAuthenticationService.authenticate()` JAAS orchestration,
+> `NiagaraLoginModule`, and `BCallbackHandler` transport discovery — is documented in [B510].
+
 Base `javax.baja.authn.BAuthenticationScheme` (`getSchemeName`, `getLoginConfiguration`→JAAS `Configuration`,
 `getDefaultAuthenticator`→`BAbstractAuthenticator`); intermediates `BSSOAuthenticationScheme`
 (`getLoginRedirectURL`) and `BPasswordAuthenticationScheme`. `com.tridium.authn.BAuthenticationService` holds the
