@@ -67,7 +67,7 @@ value-add Service over free public feeds, not a metered protocol driver).
 The sweep asserted the NWS NDFD/current-obs XML endpoints were "decommissioned in early 2023 → forecast broken by
 default on every live N4.14." **A web check does NOT support that operational conclusion** and it is DOWNGRADED:
 - `[CERT]` the module hardcodes the legacy NWS XML feeds (§505.2) and was built 2024-05-28.
-- `[CERT-web]` (NWS notification pages, retrieved 2026-08-25) NWS has **migrated the NDFD XML Web Service onto new
+- `[CERT-web]` (NWS notification pages, `https://www.weather.gov/notification/`, retrieved 2026-08-25) NWS has **migrated the NDFD XML Web Service onto new
   AWS architecture with WSDL differences affecting legacy SOAP users**, and `ndfdBrowserClientByDay.php` is still
   referenced as an active interface — i.e. **not a confirmed decommission**, but a migrated/changed service.
 - `[INFER]` therefore the real finding is an **external-dependency durability RISK**: a hardcoded dependency on
