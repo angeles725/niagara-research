@@ -96,3 +96,22 @@ This is a DRIVER-level step, before delegating. When the PRIOR COVERAGE CHECK is
 > REMITTANCE-RISK FLAG: when the PRIOR COVERAGE CHECK finds partial corpus coverage for a gap but cannot determine whether genuine new substance exists, flag the gap as REMITTANCE-risk in the backlog and include this flag in the sweep prompt: "check REMITTANCE FIRST — state whether this gap is fully answered by [Block N] §N.x with no new substance, BEFORE any tool use." A sweep that returns 'REMITTANCE — no new substance, cite [Block N] §N.x' is a valid closure; the driver closes without authoring a block. This prevents wasted investigation if the gap is remittance at fine grain even when the audit cleared it at coarse grain. (Evidence: apis focus API5/API6/API8, 2026-08-25: 3/8 gaps REMITTANCE-risk; all 3 turned out genuine.)
 
 **Priority:** LOW — PRIOR COVERAGE CHECK and REMITTANCE as closure category already cover the principle; this addition makes the sweep-prompt protocol explicit for the ambiguous-at-driver-level case.
+
+---
+
+## Addendum 2026-08-25 — D5 (kit delta surfaced by `research-sdd-archive --dry-run`)
+
+**D5 — HIGH — `verify-state` / `research-sdd-archive` do not support SHARED-GLOBAL multi-focus corpora**
+- Kit target: `toolbelt/verify-state.sh` (covered_blocks check) + `research-sdd-archive.sh` gate.
+- Evidence: `verify-state.sh` counts a focus's blocks by FOCUS PREFIX (`<focus>-blockN.md`). This corpus uses
+  shared-global numbering (`niagara-mental-model-bloqueN.md`) across ALL 34 focuses (METHODOLOGY §16 permits
+  this). Consequence: there is NO `covered_blocks` value that passes — the focus's real count (e.g. 12) fails
+  both the prefix count (0 focus-prefixed files) and the total (513 on-disk). Declaring `block_scope:
+  shared-global` in the envelope did NOT make the check pass (framework-drivers/apis still FAIL
+  `covered_blocks=12 != 513`). 14 focuses FAIL identically → `research-sdd-archive` REFUSES on every close for
+  this corpus, which is why manual close is used here.
+- Proposed: `verify-state` should, when `block_scope: shared-global` is declared, TRUST the declared
+  `covered_blocks` (or derive it from the iteration-history block list) instead of prefix/total counting; and
+  the archive gate should treat a shared-global focus as passing when its envelope is internally consistent.
+- NOTE: the `verify-sources` FABRICATED-CITE gate WAS reconcilable and was fixed this session (8 pre-existing
+  rows → verify-sources exit 0). Only the `verify-state` structural limitation remains.
