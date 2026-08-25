@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **483 bloques**
+Total: **484 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -488,6 +488,7 @@ Total: **483 bloques**
 | 483 | [niagara-mental-model-bloque483.md](niagara-mental-model-bloque483.md) | Block 483 — The anatomy of a Niagara license: the complete `<license>` / `<feature>` / `<signature>` / `<certificate>` composition, every parsed attribute and its field, the open-ended limit/attribute key set, and the four file variants |
 | 484 | [niagara-mental-model-bloque484.md](niagara-mental-model-bloque484.md) | Block 484 — The native crypto core (`dsfspi.dll`): Mocana-backed PKCS#1 RSA verify/sign, the DSA-1024/SHA-1 license/cert verifier, the DER parsers, and the reconciliation that ECDSA P-256 v2.0 is NOT native (it runs through JCA) |
 | 485 | [niagara-mental-model-bloque485.md](niagara-mental-model-bloque485.md) | Block 485 — The native launcher license gates (`nre.dll`/`njre.dll` `createVM`): `-javaagent`/`-agentpath` is refuse-to-launch gated on the `developer` feature, FIPS is a `fips140-2`-gated boolean (not a VM option), and there is NO silent flag injection |
+| 486 | [niagara-mental-model-bloque486.md](niagara-mental-model-bloque486.md) | Block 486 — The license BRAND system: one `tridium:brand` feature (brandId + four `PatternFilter` accept-lists) gates station↔station and Workbench↔station interoperability at the Fox handshake and the platform-daemon HTTP header — the OEM interop-lock mechanism |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
