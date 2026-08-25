@@ -18,10 +18,10 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 6
-gaps_closed: 6
+covered_blocks: 7
+gaps_closed: 7
 known_gaps: 10
-investigable_open: 4
+investigable_open: 3
 requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
@@ -31,8 +31,8 @@ status: active
 seeded_from: AUDIT-FIRST coverage sweep 2026-08-25 (delegated sonnet; verified inline)
 seeded_on: 2026-08-25
 gaps_total: 10 investigable (FD1–FD10)
-gaps_closed: 6 (FD1→B496 … FD5→B500, FD6→B501)
-blocks_written: B496–B500 (FD1–FD5), B501 (FD6)
+gaps_closed: 7 (FD1→B496 … FD6→B501, FD7→B502)
+blocks_written: B496–B501 (FD1–FD6), B502 (FD7)
 block_prefix: niagara-mental-model-bloqueN.md (shared global numbering)
 
 ## Gap-backlog (prioritized) — from the AUDIT-FIRST coverage matrix
@@ -50,7 +50,7 @@ using any count as a denominator (GAP NUMBERS ARE HYPOTHESES). All 8 candidate d
 | high | **FD4 obixDriver** — oBIX REST/HTTP BAS-protocol driver (largest fully-uncovered module): component/point model, session + auth surface, XML/JSON encoding. NOT the oBIX *usage* in Reflow/chihuahua (that is app-level) | `obixDriver-rt,-wb` (141 vf) | **COVERED → B499** (network→client→proxy over shared obix-rt ObixSession; REST GET/PUT/POST + Watch model 2s; HEADLINE: HTTP Basic over default http:// lobby → creds base64-in-clear unless operator sets https; authPass=BPassword at rest; license tridium:obixDriver + foreignDevice/foreignPoint.limit + export; XXE unconfirmed [baja-rt XParser]; dual role incl. BObixServer export) |
 | medium | **FD5 mbus** — M-Bus (EN 13757) energy-metering driver: serial/IP transport, device/point model, decode of metering telegrams | `mbus-rt,-wb` (118 vf) | **COVERED → B500** (rides basicDriver base; serial MbusSerialComm 8E1/300-baud + TCP MbusSocketComm gateway 192.168.1.10:6021; SND_NKE/REQ_UD2→RSP_UD cycle, Java-array DIF/VIF decoder NOT XML; poll 30/45/90s + primary/secondary/live-point discovery; license tridium:mbus + serial/tcpip sub-keys; SEC: plaintext-only, ZERO EN 13757-3 encryption [crypto grep=0], icmpPing stub) |
 | medium | **FD6 openAdr** — OpenADR 2.0 demand-response client: VEN/VTN model, event handling, energy-grid signalling (distinct from every existing focus) | `openAdr-rt` (85 vf) | **COVERED → B501** (TridiumPS add-on com.tridiumps.openadr; Service-tier NOT driver; both 2.0a/2.0b hand-rolled XElem no-SDK; HTTP-pull-only simpleHttp/oadrPoll poll 60s no-XMPP; event FSM→BActiveEiEventSignal.currentValue [integrator links]; SEC: TLSv1.2-min + client-cert-optional + UNCONDITIONAL Basic auth [http+https] + VTNPassword=BPassword; NO XMLDSig payload signing; license Tridium:openADR2b+ven.limit) |
-| medium | **FD7 opc (classic DA)** — the Java driver-component layer of classic OPC DA (point-proxy model, COM/DCOM session lifecycle). The NATIVE side (opc.dll/opcproxy JNI shim, COM boundary) is already in [B127]/[B132] — this is the uncovered Java tree | `opc-rt,-wb` (64 vf) | pending |
+| medium | **FD7 opc (classic DA)** — the Java driver-component layer of classic OPC DA (point-proxy model, COM/DCOM session lifecycle). The NATIVE side (opc.dll/opcproxy JNI shim, COM boundary) is already in [B127]/[B132] — this is the uncovered Java tree | `opc-rt,-wb` (53 rt) | **COVERED → B502** (53 com.tridium.opc classes; network→device→group→item over the opc.dll JNI shim [System.loadLibrary("opc"), ComObjectClient COM wrapper] = Java side of B127/B132 native boundary; local-ProgID vs remote-CLSID/DCOM; full IOPCBrowse; SEC: NT changeUser/private logon natives, creds=BPassword, auth DELEGATED to Windows/DCOM, no in-band security; license tridium:opc; only Windows-only/JNI module in FD) |
 | low | **FD8 weather** — Tridium weather integration driver (lower security relevance; architecturally clean; completeness) | `weather-rt,-ux,-wb` (52 vf) | pending |
 | medium | **FD9 knxnetIp** — KNXnet/IP building-automation driver (BEYOND original U12 list — surfaced by the audit; fits the framework-driver theme, sizeable) | `knxnetIp-rt,-wb` (325 vf) | pending |
 | medium | **FD10 abstractMqttDriver** — MQTT driver base (BEYOND original U12 list): likely bundles an MQTT SDK the way opcUaCore bundles Prosys — verify the Tridium-vs-SDK split first | `abstractMqttDriver-rt,-wb` (1978 vf) | pending |
@@ -69,12 +69,12 @@ using any count as a denominator (GAP NUMBERS ARE HYPOTHESES). All 8 candidate d
 
 ## Stop control (METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: **4** (FD7–FD10). All existence-verified; source present.
-- **Gaps closed**: 6 (FD1→B496 … FD5→B500, FD6→B501).
+- **Open gaps — read-only investigable**: **3** (FD9, FD10, FD8). All existence-verified; source present.
+- **Gaps closed**: 7 (FD1→B496 … FD6→B501, FD7→B502).
 - **requires-execution / blocked**: 0. (Optional §12 live-confirm of server writable-node exposure noted in
   B498 §498.8 — NOT registered as blocking; the investigable set stands.)
-- **Coverage metric**: 6 / 10 investigable gaps closed.
-- **NEXT**: FD7 `opc` (classic DA). Then FD9 → FD10 → FD8.
+- **Coverage metric**: 7 / 10 investigable gaps closed.
+- **NEXT**: FD9 `knxnetIp`. Then FD10 → FD8.
 - **POSSIBLE future gap (recorded, NOT seeded):** dedicated `obix-rt` transport/`Obj` model + `BObixServer`
   export block — out of FD4's driver scope (B499 §499.8).
 - **RESOLVED (was REVERSE-BACKLOG from B496 §496.6):** OPC UA license split confirmed per-role —
@@ -91,3 +91,4 @@ using any count as a denominator (GAP NUMBERS ARE HYPOTHESES). All 8 candidate d
 | it.4 | 2026-08-25 | **FD4** obixDriver — network→client→proxy over shared obix-rt ObixSession (REST GET/PUT/POST, lobby-ref discovery, Obj↔XML 1:1); Watch model default 2s + polling fallback; HEADLINE: HTTP Basic auth over default `http://` lobby → creds base64-in-clear unless operator opts https; authPass=BPassword at rest (not plaintext); license tridium:obixDriver + foreignDevice/foreignPoint.limit + export; XXE unconfirmed (baja-rt XParser); dual role (BObixServer export noted). `sonnet` sweep (24 tool-uses, decompiled/ + obix-rt vineflower), all load-bearing re-verified inline. verify-block exit 0, ratio 0.24. | **B499** | none net-new (obix-rt/BObixServer = possible future gap, recorded not seeded) · yes · sonnet |
 | it.5 | 2026-08-25 | **FD5** mbus — M-Bus (EN 13757) meter driver over the shared `basicDriver` base (BSerialNetwork/BBasicDevice/BBasicProxyExt); serial 8E1/300-baud + TCP gateway; SND_NKE(0x40)/REQ_UD2(0x5B, FCB toggle)→RSP_UD, DIF/VIF decoder in Java arrays (NOT XML); poll 30/45/90s + primary/secondary-wildcard/live-point discovery; license tridium:mbus + serial/tcpip sub-keys; SEC headline: plaintext-only, ZERO EN 13757-3 encryption (crypto grep=0), "password" VIF=data-descriptor not credential, icmpPing stub. `sonnet` sweep (29 tool-uses, decompiled/), all load-bearing re-verified inline. verify-block exit 0, ratio 0.12. | **B500** | none net-new (basicDriver reference block = possible future gap, recorded not seeded) · yes · sonnet |
 | it.6 | 2026-08-25 | **FD6** openAdr — TridiumPS add-on (com.tridiumps.openadr, sibling of electronicSignature B350); OpenADR 2.0 VEN modelled as a Service (BOadrService/BOadrVen=BAbstractService), NOT a driver; both 2.0a/2.0b hand-rolled XElem, no JAXB/SDK; HTTP-pull-only (simpleHttp/oadrPoll, poll 60s), no XMPP; event FSM (far/near/active/…) via ActiveEventUpdateThread → writes BActiveEiEventSignal.currentValue (integrator links to a point). SEC: TLSv1.2-min forced, client-cert optional, HTTP Basic UNCONDITIONAL (http+https paths), VTNPassword=BPassword; **NO XMLDSig payload signing** (oadrSignedObject=plain wrapper) → integrity channel-only. License Tridium:openADR2b + ven.limit. `sonnet` sweep (nested sub-sweeps), all load-bearing re-verified inline (vineflower). verify-block exit 0, ratio 0.40. | **B501** | none net-new · yes · sonnet |
+| it.7 | 2026-08-25 | **FD7** opc (classic OPC DA) — 53 com.tridium.opc classes; network→device→group→item Baja tree over the `opc.dll` JNI shim (OpcEnv System.loadLibrary("opc"), ComObjectClient COM/IUnknown wrapper, native createLocal/RemoteServer/addGroup/addItems/read/write/browse) = the JAVA side of the [B127]/[B132] native boundary (meets at loadLibrary); local-ProgID vs remote-CLSID/DCOM activation; full IOPCBrowseServerAddressSpace + server discovery; SEC: NT changeUser + private logon natives, creds=BPassword via doPrivileged, auth DELEGATED to Windows/DCOM (no in-band security) — only Windows-only/JNI module in FD; license tridium:opc. `sonnet` sweep (21 tool-uses), all load-bearing re-verified inline (count 64→53 RE-MEASURED). verify-block exit 0, ratio 0.36. | **B502** | none net-new · yes · sonnet |
