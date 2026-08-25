@@ -3,9 +3,9 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 441
-gaps_closed: 5
-known_gaps: 11
+covered_blocks: 442
+gaps_closed: 6
+known_gaps: 12
 investigable_open: 0
 requires_execution_open: 4
 blocked_open: 2
@@ -59,7 +59,8 @@ the three trust domains, the real Honeywell-rooted RSA module chain, and the cor
 | — | **SP-G5** — Vendor-cert chaining. | investigable | **CLOSED B395** (all 3 vendor certs incl. Tridium verify against a hidden embedded DSA root in baja.jar; NOT self-signed; corrects B392) |
 | — | **SP-G7** — Optional integrity channel for local record. | investigable | **CLOSED B396** (only syslog offload: TLS transport but plaintext record, no per-message sig; resistance not evidence; nothing signs local record) |
 | 3 | **SP-G8** — Does the PanelBus/HMI OTA receive path ([B242] `honIrmConfig`) enforce the ECDSA chain, or trust the jar-unpacked image? | requires-execution | open |
-| 4 | **SP-G3** — Native `LicenseUtil::isFeaturePresent` is a text match, not a DSA verify [B126 §126.6]; confirm Java `LicenseManager` rejects a bad DSA signature. | requires-execution | **PARTIAL (2026-08-07)** — executed offline: the real verifier (LicenseUtil.verify replica, validated B323/B395) returns VALID on intact Honeywell.license, INVALID on 1-byte signature flip, INVALID on payload change (feature attr). Java-side DSA verify is a real crypto check [CERT], contrasting the native text-match gate [B126 §126.6]. PENDING [CERT-live]: running-station fail-closed on boot with a tampered license (needs the Windows station started + a throwaway station). |
+| — | **SP-G3** — Native `LicenseUtil::isFeaturePresent` is a text match, not a DSA verify [B126 §126.6]; confirm Java `LicenseManager` rejects a bad DSA signature. | requires-execution | **CLOSED B518** (§12 live, isolated test host, reversible byte-identical): real `nre` runtime rejects a 1-byte signature flip fail-closed `{invalid: Invalid signature}` [CERT-live]; HostId gate isolated (valid-sig/wrong-host license → `moved file`, features withheld) [CERT-live]; native half re-anchored read-only by peer session — `isFeaturePresent` text-scan invariant to any signature-region tamper → **asymmetry confirmed both sides on the same file**. Spawns SP-G3a. |
+| 3 | **SP-G3a** — Does a *required-but-missing* feature force station `System.exit(-3/-6)` at full boot ([B488]) vs graceful feature-withholding? SP-G3 proved verifier rejection, not the process-exit path. | requires-execution | open (needs a throwaway-station full boot with a required feature tampered) |
 | 5 | **SP-G6** — CRL/revocation enforcement for BACnet/SC + TLS (`BIssuerCertAndCrl` [B287]) — modelled, enforcement [INFER]. | requires-execution | open |
 | 6 | **SP-G4** — Reproduce a Tridium-rooted (non-OEM) `baja.jar` chain to settle §392.7 empirically. | blocked (requires-artifact: a stock non-OEM install) | open |
 | — | **SP-G9** — Does daemon boot `insertProviderAt(1)` or trailing `addProvider()`? enforced vs shipped. | requires-execution / code-read | **CLOSED B441** (neither: static override `-Djava.security.properties==bin/policy/java.security`, BC at provider.1/2 ahead of Sun; priority ENFORCED, approved-only strict NOT enabled; corrects B440 6/7/8) |
