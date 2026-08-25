@@ -15,10 +15,10 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 2
-gaps_closed: 2
+covered_blocks: 3
+gaps_closed: 3
 known_gaps: 8
-investigable_open: 6
+investigable_open: 5
 requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
@@ -28,8 +28,8 @@ status: active
 seeded_from: AUDIT-FIRST 2-agent coverage sweep 2026-08-25 (delegated sonnet ×2; pre-flight verified inline)
 seeded_on: 2026-08-25
 gaps_total: 8 investigable (API1–API8)
-gaps_closed: 2 (API1→B507, API2→B508)
-blocks_written: B507 (API1), B508 (API2)
+gaps_closed: 3 (API1→B507, API2→B508, API3→B509)
+blocks_written: B507 (API1), B508 (API2), B509 (API3)
 block_prefix: niagara-mental-model-bloqueN.md (shared global numbering)
 
 ## REMITTANCE — API surfaces ALREADY covered (will NOT be opened)
@@ -56,7 +56,7 @@ orion ORM [B412] · migration [B25].
 |---|---|---|---|
 | high | ~~**API1 NiagaraRpc / NiagaraRpcServlet**~~ — the N4 HTTP RPC API: `javax.baja.rpc.NiagaraRpc` + the `NiagaraRpcServlet` web endpoint (how modules expose server-side calls over HTTP; request/response envelope; auth). This is the concrete "general N4 web API" the audit flagged as a GAP | `baja/baja/vineflower/javax/baja/rpc/`, `web/web-rt/…/javax/baja/web/servlets/NiagaraRpcServlet.java` | **COVERED → B507** (method annotation @NiagaraRpc: transports web/box/fox, permissions default "I"=Invoke, isSecure; NiagaraRpcServlet POST /rpc/{method}/{ord}+batch, JSON {"value":..}; marshalling com.tridium.json + Context tail-arg + legacy fox-only whitelist; 4-layer auth session+CSRF(/rpc/*)+HTTPS+RBAC CLOSED-by-default [unrestricted=open]; used widely by OEM UX RPC classes B245/B493/B244) |
 | high | ~~**API2 web-tier ORD-over-HTTP routing**~~ — the `/ord`, `/file`, `/px` servlet contract: how an ORD in a URL becomes an HTTP response (WebServlet/OrdServlet/FileServlet), the WWW-Authenticate negotiation (N4 "Digest"=SCRAM, why Basic is ignored [B290]) | `web/web-rt/…/javax/baja/web/`, servlets | **COVERED → B508** (servlet mount table /ord→OrdServlet //file→FileServlet //wb //rpc; ORD dispatch OrdTargetFilter→WebOpFilter→ViewFilter[profile]→render; /file traversal guard + .bog block; AUTH: N4 Digest=SCRAM-SHA-256 WWW-Authenticate 3-leg handshake via ScramServer; Basic scheme-gated NOT in-code-disabled §14-refines-B290; profile=per-account hx default) |
-| high | **API3 oBIX server-side (`obix-rt`)** — N4 AS an oBIX host: the servlet the module registers, component→oBIX-object mapping, the server-side Watch contract. Closes the future-gap flagged in [B499 §499.8] | `obix/obix-rt/…` | pending |
+| high | ~~**API3 oBIX server-side (`obix-rt`)**~~ — N4 AS an oBIX host: the servlet the module registers, component→oBIX-object mapping, the server-side Watch contract. Closes the future-gap flagged in [B499 §499.8] | `obixDriver-rt/…javax/baja/obix/driver/` | **COVERED → B509** (BObixServer=BWebServlet+Soaplet at /obix +soap/wsdl/xsd, child of BObixNetwork, license export→403; lobby-agent map; REST GET/PUT/POST + SOAP read/write/invoke; server Watch BObixWatchService per-user checkUser lease30s; writes RBAC-gated set(..,user)→PermissionErr; SEC: /obix/config=whole tree + /obix/ord=arbitrary ORD, NO read allowlist [only continuousControl curated], corroborated live by B458) |
 | medium | **API4 BOX protocol wire** — the binary subscription wire BajaScript uses browser↔station: framing, opcodes, the subscribe/poll contract. Named-in-passing in [B19]/[B36]/[B42] but no dedicated wire block | `bajaScript*`, `bajaux*`, `web/web-rt` (BOX servlet) | pending |
 | medium | **API5 BAuthenticationScheme SPI (framework side)** — the N4 contract for AUTHORING a custom auth scheme: `javax.baja.security.authn` SPI, scheme registration, the JAAS/session contract. [B494] covered OEM *implementations*; this is the platform framework | `baja/…/javax/baja/security/authn*` | pending |
 | medium | **API6 Fox CLIENT programmatic API** — the public Java Fox-session surface for module authors (open session, remote slot read/write, channel types), distinct from the WIRE [B134] and the hand-rolled JACE client [B471–B473]. Pre-flight: NOT in docSource → locate the real package (baja jar / `com.tridium.fox`) | TBD (locate `javax.baja.fox`/`com.tridium.fox`) | pending — source-locate first |
@@ -73,11 +73,11 @@ These risk being REMITTANCE re-hashes — NOT seeded as gaps; revisit only if AP
 
 ## Stop control (METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: **6** (API3–API8). Source-confirmed except API6 (source-locate first).
-- **Gaps closed**: 2 (API1→B507, API2→B508).
+- **Open gaps — read-only investigable**: **5** (API5, API7, API4, API6, API8). Source-confirmed except API6.
+- **Gaps closed**: 3 (API1→B507, API2→B508, API3→B509).
 - **requires-execution / blocked**: nHaystack REST + full BACnet-WS = blocked-on-source (absent), NOT counted.
-- **Coverage metric**: 2 / 8.
-- **NEXT**: API3 (oBIX server). Order: API3 (oBIX server) → API5 (auth SPI) → API7 (jobs)
+- **Coverage metric**: 3 / 8.
+- **NEXT**: API5 (auth SPI — REMITTANCE-check vs B494). Order: API5 (auth SPI) → API7 (jobs)
   → API4 (BOX) → API6 (Fox client, locate first) → API8 (BQL contracts).
 
 ## Iteration history
@@ -87,3 +87,4 @@ These risk being REMITTANCE re-hashes — NOT seeded as gaps; revisit only if AP
 | it.0 (bootstrap) | 2026-08-25 | — (AUDIT-FIRST seed) | — | 2 parallel `sonnet` audits (network/web/auth + programmatic/client/platform) mapped ~40 API surfaces; MOST already have dedicated blocks (REMITTANCE list above). 8 genuine uncovered surfaces seeded (API1–API8); nHaystack/BACnet-WS proven-absent; call-site-cookbook PARTIALs recorded-not-seeded. Pre-flight §e2 confirmed source for API1/API3/API5/API7/API8; API6 needs source-locate. |
 | it.1 | 2026-08-25 | **API1** @NiagaraRpc — N4's annotation-driven HTTP RPC API. @NiagaraRpc method annotation (transports web/box/fox, permissions default "I"=Invoke, protectedTargets, isSecure); NiagaraRpcServlet POST /rpc/{method}/{ord}+batch, JSON in/out {"value":..}; marshalling com.tridium.json + implicit Context tail-arg + legacy fox-only whitelist (=replacement for pre-annotation RPC); 4-layer auth (session ctx + CsrfProtectedFilter on /rpc/* + isSecure HTTPS gate + RBAC), CLOSED-by-default (unrestricted=open); used widely by OEM UX RPC classes. `sonnet` sweep (15 tool-uses), all load-bearing re-verified inline (offsets discarded). verify-block exit 0, ratio 0.25. | **B507** | none net-new · yes · sonnet |
 | it.2 | 2026-08-25 | **API2** N4 web-tier routing + auth negotiation. Servlet mount table (web.xml): /ord→OrdServlet //file+/module→FileServlet //wb→WbServlet //view/all/ord //rpc→NiagaraRpcServlet[API1]. ORD dispatch pipeline: OrdTargetFilter(parse+BOrd.resolve, sql blocked)→WebOpFilter→ViewFilter(profile+viewid override)→OrdServlet render(hx/bajaux servletview vs px/wb via WbServlet). /file traversal guard (| ../) + canRead blocks dirs/.bog/.bog.gz; no /px mount. AUTH HEADLINE: N4 Digest=SCRAM-SHA-256 (BHttpDigestCallbackHandler SCHEME_NAME=SCRAM, hash SHA-256), WWW-Authenticate 3-leg handshake via com.tridium.nre.auth.ScramServer. Basic handler present+functional but scheme-GATED (not in-code disable) → §14 REFINE of B290 (back-pointer added). Profile=per-account BWebProfileConfig default hx:HTML5HxProfile. `sonnet` sweep (36 tool-uses), all load-bearing re-verified inline. verify-block exit 0, ratio 0.38. | **B508** | none net-new (§14 refine B290) · yes · sonnet |
+| it.3 | 2026-08-25 | **API3** oBIX SERVER (N4 as oBIX host) — CLOSES future-gap B499 §499.8. BObixServer extends BWebServlet implements Soaplet, mounts /obix (+/obix/soap/wsdl/xsd), child of BObixNetwork; license export sub-key gates→403. Lobby-agent map (@AgentOn obixDriver:ObixLobby): about/config/ord/continuousControl/histories/alarms/bql/contract/units/watchService. REST GET(encode)/PUT(serviceWrite parent.set(..,user))/POST(serviceInvoke) + SOAP XElemTunnel read/write/invoke. Server Watch BObixWatchService.make→BObixWatch per-user (checkUser reference-identity, lease 30s/15s, Subscriber change-detect). SEC HEADLINE: /obix/config=whole station tree (station:|slot:), /obix/ord=arbitrary BOrd.resolve — NO oBIX read allowlist (only requiredPermissions=r metadata); only /obix/continuousControl curated (BObixExportFolder). Writes RBAC-enforced; reads bounded by read-RBAC but whole-tree enumerable — corroborated live by B458 [CERT-live]. `sonnet` sweep (22 tool-uses), all load-bearing re-verified inline. verify-block exit 0, ratio 0.35. | **B509** | none net-new · yes · sonnet |

@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **504 blocks**
+Total: **505 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -510,3 +510,4 @@ Total: **504 blocks**
 | 506 | [niagara-mental-model-bloque506.md](niagara-mental-model-bloque506.md) | `framework-drivers` SYNTHESIS: the ten Tridium framework protocol drivers as one system — the SDK-bundling spectrum, the driver-vs-Service split, a five-tier security-posture ladder, the license-shape zoo, and the consolidated SEC feed |
 | 507 | [niagara-mental-model-bloque507.md](niagara-mental-model-bloque507.md) | `apis` API1: `@NiagaraRpc` — N4's annotation-driven server-side RPC API (`POST /rpc/{method}/{ord}`, JSON in/out, three transports web/box/fox, four-layer auth: session + CSRF + HTTPS + RBAC-default-`Invoke`) |
 | 508 | [niagara-mental-model-bloque508.md](niagara-mental-model-bloque508.md) | `apis` API2: the N4 web-tier routing + auth-negotiation surface — the servlet mount table, the ORD→view dispatch pipeline (`/ord/*` → parse → resolve → profile-filter → render), the `WWW-Authenticate: SCRAM` HTTP handshake (N4 "Digest" = SCRAM-SHA-256, not RFC 2617), and the Basic-is-scheme-gated refinement of [B290] |
+| 509 | [niagara-mental-model-bloque509.md](niagara-mental-model-bloque509.md) | `apis` API3: the oBIX SERVER — N4 as an oBIX host (`BObixServer` = `BWebServlet`+`Soaplet` at `/obix`), the lobby-agent map that publishes the WHOLE station tree (`/obix/config`, `/obix/ord`) with no export allowlist, per-user server Watches, and RBAC-gated writes but no per-object read ACL |
