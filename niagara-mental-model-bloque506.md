@@ -79,11 +79,12 @@ free for the weather value-add).
 
 ## §506.6 — Provenance is not uniform `[CERT]`
 
-Three publisher namespaces appear: **core `com.tridium.*`** (most), **`com.tridiumps.*` = TridiumPS** add-on
-(openAdr [B501], sibling of [B350] electronicSignature), and **`com.tridiumX.*`** (knxnetIp [B503] — capital-X,
-distinct from the lowercase `com.tridiumx` add-on family of [B335]/[B350]). `[INFER]`: "a Tridium framework driver"
-spans core, professional-services, and separately-packaged tiers — a packaging distinction invisible from the
-module list alone.
+Three publisher namespaces appear: **core `com.tridium.*` = Tridium US** (most), **`com.tridiumps.*` = TridiumPS**
+professional-services add-on (openAdr [B501], sibling of [B350] electronicSignature), and **`com.tridiumX.*` =
+Tridium Europe** — the KNX product line (knxnetIp [B503] + knxStationConverter), `vendor="Tridium Europe"` with its
+own version cadence `4.14.9.2` (RESOLVED 2026-08-25, [B503 §503.9]); distinct from the lowercase `com.tridiumx`
+add-on family of [B335]/[B350]. `[INFER]`: "a Tridium framework driver" spans three real dev orgs — US core,
+professional services, and Europe — a packaging distinction invisible from the module list alone.
 
 ## §506.7 — Consolidated SEC feed (to [B398]/[B490]) `[INFER]`
 

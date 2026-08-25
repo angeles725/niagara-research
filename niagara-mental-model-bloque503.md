@@ -102,5 +102,11 @@ load-bearing tokens re-verified inline.
   from the OPC-UA/oBIX/OpenADR blocks which at least have TLS. Feed to [B398]/[B490].
 - **License:** the capacity-quota shape (two numerical sub-limits) is the strictest license model in the focus so
   far (vs boolean FD5/FD7, foreign-limit FD4).
-- **Namespace:** `com.tridiumX` — flagged for a possible packaging/OEM-family follow-up (recorded, not seeded).
+- **Namespace `com.tridiumX` — RESOLVED 2026-08-25 `[CERT]`:** it is **Tridium Europe**. `knxnetIp-rt/META-INF/module.xml`
+  declares `vendor="Tridium Europe"` with its OWN version line **`4.14.9.2`** (≠ core `4.14.0.162`), build host, and
+  `releaseDate="2024-04-10"`. The capital-X namespace is used by exactly two modules — `knxnetIp` and
+  `knxStationConverter` (a KNX station-migration tool) — i.e. the European KNX product line. So N4's Tridium code
+  spans **three org namespaces**: core `com.tridium` (Tridium US), `com.tridiumps` (TridiumPS professional services,
+  [B501]), and **`com.tridiumX` (Tridium Europe, KNX line)**. Distinct build/version cadence confirms a separate
+  regional dev org, not a decompiler artifact. (Closes this block's open sub-point.)
 - **Focus status:** `framework-drivers` 8/10 (FD1–FD7, FD9 closed). NEXT = FD10 `abstractMqttDriver` (then FD8).
