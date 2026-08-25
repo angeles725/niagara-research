@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **479 bloques**
+Total: **480 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -484,6 +484,7 @@ Total: **479 bloques**
 | 479 | [niagara-mental-model-bloque479.md](niagara-mental-model-bloque479.md) | Block 479 — Platform-side license delivery/install/sync: the Workbench License Manager pushes plain license files over the daemon TLS session, and the platform install path performs NO cryptographic verification — trust is deferred to the station (closes B479) |
 | 480 | [niagara-mental-model-bloque480.md](niagara-mental-model-bloque480.md) | Block 480 — Subscription onboarding and the trust model: OAuth device-code at niagara-community, register + entitlement at niagaracentralapis.honeywell, on-device ES256 JWT auth, vendor-cert signature verification of returned licenses, and monotonic-increment clone protection (closes B479-G1) |
 | 481 | [niagara-mental-model-bloque481.md](niagara-mental-model-bloque481.md) | Block 481 — Who watches a license change/tamper, and how licensing gates security posture: node-locked has NO runtime watcher (tamper-evident at load only), subscription has a live entitlement watchdog + operator alarm, there is NO tamper-evident audit trail, and licensing gates FIPS/developer/802.1X |
+| 482 | [niagara-mental-model-bloque482.md](niagara-mental-model-bloque482.md) | Block 482 — The Java crypto/trust internals behind licensing: the module-signature verifiers (JarSignatureRegistry → CertificateChainValidator PKIX + the embedded RSA-2048 TPK), the KeyRing/AES-256-GCM at-rest envelope, and LicenseUtil.verify/encode byte-exact canonicalization |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
