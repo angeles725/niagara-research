@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **510 blocks**
+Total: **511 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -516,3 +516,4 @@ Total: **510 blocks**
 | 512 | [niagara-mental-model-bloque512.md](niagara-mental-model-bloque512.md) | `apis` API4: the BOX protocol wire — N4's live-subscription substrate (`BBoxServlet` at `/box`, **JSON** frames not binary, a `ProxyBroker`-backed sub/event model, HTTP-poll v1 + WebSocket-push v2 that coexist, and the wire that `@NiagaraRpc`'s `box` transport and the WebSocket layer both ride on) |
 | 513 | [niagara-mental-model-bloque513.md](niagara-mental-model-bloque513.md) | `apis` API6: the Fox CLIENT programmatic API — `javax.baja.fox.BFoxProxySession` (+ `BFoxSession`/`BFoxClientConnection`/`BFoxChannelRegistry`), the public Java surface a module uses to open a Fox session to a remote station, its shared-connection interest model, named typed channels, and `rpc()` — the Fox-transport face of the `niagaraRpc` verb |
 | 514 | [niagara-mental-model-bloque514.md](niagara-mental-model-bloque514.md) | `apis` API8: the BQL/NEQL CALL contracts + over-HTTP surfaces — the `bql:`/`neql:` ORD schemes (Java call → `BITable`/cursor), the ONE query-execution-over-HTTP face (oBIX `/obix/bql`, read-only-gated), the BOX `BqlRpc` AST-only utility, and the absence of a `/bql` servlet or any NEQL wire surface |
+| 515 | [niagara-mental-model-bloque515.md](niagara-mental-model-bloque515.md) | `apis` SYNTHESIS: the Niagara N4 API map as one system — four transports (web/Fox/BOX/oBIX) over one ORD address space and one auth spine, the `niagaraRpc` verb that spans three of them, and the security asymmetry between the closed RPC layer and the broad oBIX read surface |
