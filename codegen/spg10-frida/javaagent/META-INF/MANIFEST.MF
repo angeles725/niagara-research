@@ -1,0 +1,3 @@
+Premain-Class: spg10.LicenseMirrorAgent
+Can-Retransform-Classes: true
+

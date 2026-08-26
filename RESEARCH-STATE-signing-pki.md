@@ -3,12 +3,12 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 523
-gaps_closed: 7
+covered_blocks: 524
+gaps_closed: 8
 known_gaps: 14
 investigable_open: 0
-requires_execution_open: 3
-blocked_open: 4
+requires_execution_open: 2
+blocked_open: 3
 deferred_open: 0
 undocumented_findings: 0
 <!-- /research-state.v1 -->
@@ -67,14 +67,13 @@ the three trust domains, the real Honeywell-rooted RSA module chain, and the cor
 | — | **SP-G9** — Does daemon boot `insertProviderAt(1)` or trailing `addProvider()`? enforced vs shipped. | requires-execution / code-read | **CLOSED B441** (neither: static override `-Djava.security.properties==bin/policy/java.security`, BC at provider.1/2 ahead of Sun; priority ENFORCED, approved-only strict NOT enabled; corrects B440 6/7/8) |
 | 4 | **SP-G9a** — Live `Security.getProviders()` on the running station to confirm the effective order matches `bin/policy/java.security` (upgrade §441.4 to [CERT-live]). | requires-execution | open (B441) |
 | 6 | **SP-G9b** — Licensed-`bcstd` branch names `provider.2=BouncyCastleFipsProvider`, a class absent from standard BC. Second policy variant, or daemon rewrites the line when `fips140-2` present? | blocked (requires-artifact: a `fips140-2`-licensed install) | open (B441) |
-| 4 | **SP-G10a** — License-side mirror runtime confirm: re-run the Java-layer hook (`LicenseUtil.verify`/`Signature.verify` → force true) with a FULL frida agent (Java bridge) on a disposable `nre.exe`. Static Java path is pinned (B524 F1); the runtime forcing is the remaining unproven half. | blocked-on-tool (frida agent built WITHOUT the Java bridge — `frida-java-bridge` is build-time, not pip-installable; `jvm.dll` IS loaded but `Java` never appears) | open (B524) — §21.4 rulers A/B in `sources/probes/B524-spg10-frida-2026-08-25/SP-G10a-blocked-on-tool.md` |
+| 4 | **SP-G10a** — License-side mirror runtime confirm: re-run the Java-layer hook (`LicenseUtil.verify`/`Signature.verify` → force true) with a FULL frida agent (Java bridge) on a disposable `nre.exe`. Static Java path is pinned (B524 F1); the runtime forcing is the remaining unproven half. | requires-execution | **CLOSED B528** (Frida-independent: `nre -@javaagent` + ASM rewrote the 6 `LicenseUtil.verify` overloads to `return true`; tampered `Webs.license` flipped `{invalid}` → `{valid}`; reversible, byte-identical restore, PIDs unchanged). Retracts the blocked-on-tool verdict — the wall was tool-choice, not capability. |
 
 ## Blocked gaps
 
 - SP-G3a — needs: a truly isolated station/VM (live host is the operator's working supervisor); tried: read-first on the live host → 11 station configs + live station on :443, so a blind second-station boot risks port collision/collateral (B519) — see B519
 - SP-G4 — needs: a stock non-OEM (Tridium-rooted) install to reproduce the chain empirically; tried: on-disk chain decode (B392/B395) proves the OEM anchor but not the non-OEM ancestor — see B395
 - SP-G9b — needs: a `fips140-2`-licensed install (bcstd branch policy variant); tried: grep of this install's 3 licenses → no `fips140-2` feature string → bcfips only — see B441/B440
-- SP-G10a — needs: a frida agent built with the Java bridge (`frida-java-bridge`); tried: standard wheel reinstall (full gumjs, no bridge), 45s `Java` poll post-boot, `java.exe` spawn probe, `frida-java-bridge` pip availability — see B524 + §21.4 rulers
 
 ## Iteration history
 
@@ -92,3 +91,4 @@ the three trust domains, the real Honeywell-rooted RSA module chain, and the cor
 | 10 | B525 | document mode §20 — dynamic hardening runbook | CAPTURED: `docs/niagara-signing-hardening-guide.md` consolidates B518–B524's live findings into operator procedures (re-verify commands + H1–H7 actions + toolchain map). No new gap |
 | 11 | B526 | dynamic-vs-static consistency audit | VERIFIED: B524 license/module findings agree with static anchors (LicenseUtil.java:172-181 JCE + provider.2=BCFips + bcfips branch); §14 backlink restored on B520; 3 SOURCES.md fabricated-cites fixed (verify-sources exit 0); verify-block B518–B525 clean |
 | 12 | B527 | SP-G10 session ledger | RECORDED: 10 instruments (8 ran / 1 partial / 1 blocked-on-tool), verdict provenance (target process FATAL line + static code + sha256/PID invariants), unfinished license-side half = SP-G10a |
+| 13 | B528 | SP-G10a license mirror (Frida-independent) | CLOSED: `nre -@javaagent` + ASM (COMPUTE_FRAMES) rewrote the 6 `LicenseUtil.verify` → `return true`; tampered `Webs.license` flipped `{invalid}`→`{valid}`; reversible, PIDs unchanged. Retracts the blocked-on-tool verdict |
