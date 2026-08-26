@@ -532,6 +532,7 @@ Total: **523 bloques**
 | 527 | [niagara-mental-model-bloque527.md](niagara-mental-model-bloque527.md) | B527 — signing-pki SP-G10: full step-by-step session ledger — what was tried, what fired, what did NOT fire, and who/what says each verdict is right |
 | 528 | [niagara-mental-model-bloque528.md](niagara-mental-model-bloque528.md) | B528 — signing-pki SP-G10a CLOSED: the license mirror executed WITHOUT Frida — `nre -@javaagent` + ASM rewrites `LicenseUtil.verify` to `true`, tampered license reports `{valid}` |
 | 529 | [niagara-mental-model-bloque529.md](niagara-mental-model-bloque529.md) | B529 — signing-pki SP-G9a CLOSED: live provider order — `DSA`/`SHA1withDSA` resolve to BC (bcstd 1.7801), NOT BouncyCastleFipsProvider; §14-refines B441/B524 |
+| 530 | [niagara-mental-model-bloque530.md](niagara-mental-model-bloque530.md) | B530 — signing-pki SP-G8 CLOSED: OTA receive path trusts the unpacked `.fw` image — no signature enforcement, header CRC never validated (`crcValid=true` hardcoded) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

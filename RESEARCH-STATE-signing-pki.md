@@ -3,11 +3,11 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 525
-gaps_closed: 9
+covered_blocks: 526
+gaps_closed: 10
 known_gaps: 14
 investigable_open: 0
-requires_execution_open: 1
+requires_execution_open: 0
 blocked_open: 3
 deferred_open: 0
 undocumented_findings: 0
@@ -58,7 +58,7 @@ the three trust domains, the real Honeywell-rooted RSA module chain, and the cor
 | — | **SP-G1** — Firmware supply-chain byte-level. | investigable | **CLOSED B394** (3 postures: HMI ECDSA-signed→Honeywell Product PKI; PanelBus raw unsigned; standalone AES-encrypted) |
 | — | **SP-G5** — Vendor-cert chaining. | investigable | **CLOSED B395** (all 3 vendor certs incl. Tridium verify against a hidden embedded DSA root in baja.jar; NOT self-signed; corrects B392) |
 | — | **SP-G7** — Optional integrity channel for local record. | investigable | **CLOSED B396** (only syslog offload: TLS transport but plaintext record, no per-message sig; resistance not evidence; nothing signs local record) |
-| 3 | **SP-G8** — Does the PanelBus/HMI OTA receive path ([B242] `honIrmConfig`) enforce the ECDSA chain, or trust the jar-unpacked image? | requires-execution | open |
+| 3 | **SP-G8** — Does the PanelBus/HMI OTA receive path ([B242] `honIrmConfig`) enforce the ECDSA chain, or trust the jar-unpacked image? | investigable | **CLOSED B530** (DISK-FIRST static): the OTA receive path is `honeywellDeviceManager` (not honIrmConfig) — `.fw` ZIP unpacked, header `CRC` computed but NEVER validated (`crcValid=true` hardcoded, 3 decompilers agree), zero signature/gate. Receiver trusts the unpacked image. |
 | — | **SP-G3** — Native `LicenseUtil::isFeaturePresent` is a text match, not a DSA verify [B126 §126.6]; confirm Java `LicenseManager` rejects a bad DSA signature. | requires-execution | **CLOSED B518** (§12 live, isolated test host, reversible byte-identical): real `nre` runtime rejects a 1-byte signature flip fail-closed `{invalid: Invalid signature}` [CERT-live]; HostId gate isolated (valid-sig/wrong-host license → `moved file`, features withheld) [CERT-live]; native half re-anchored read-only by peer session — `isFeaturePresent` text-scan invariant to any signature-region tamper → **asymmetry confirmed both sides on the same file**. Spawns SP-G3a. |
 | 3 | **SP-G3a** — Does a *required-but-missing* feature force station `System.exit(-3/-6)` at full boot ([B488]) vs graceful feature-withholding? SP-G3 proved verifier rejection, not the process-exit path. | blocked (requires-artifact: isolated station/VM) | **RE-TYPED B519** — read-first showed the live host is the operator's WORKING supervisor (11 station configs incl. customer-named + a live station on :443); a blind second-station boot risks port collision/collateral. Needs a truly isolated station/VM, not this shared host. |
 | 4 | **SP-G10** — Live in-process interposition ("mirror") PoC: can a shim / rogue JCE provider make the license or module verifier return "valid"? Feasibility ∝ `moduleVerificationMode` (=low live, B519). | requires-execution | **CLOSED B524** (operator-authorized Frida run): license DSA verify is **BC-FIPS Java-side** (§14-corrects B520 §1 — dsfspi DSA unused on this bcfips install); module verify **flipped in-process either way** (`checkFileSignature` force-valid → 0 FATAL; force-invalid → `FATAL failed signature check` abort). Java-layer license mirror **blocked-on-tool** (no Java bridge on this host's bare-bone agent) → spawned **SP-G10a**. |
