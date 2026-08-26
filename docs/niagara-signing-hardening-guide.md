@@ -158,3 +158,40 @@ The question "can a shim make the verifier return valid" now has a live answer:
 | Is `bin/` protected against DLL interposition? | WDAC/AppLocker policy | [B522] H4 |
 | Is `security/`+`modules/` tamper detected between triggers? | FIM | [B522] H6 |
 | Did a change actually land (hash-identity)? | `sha256sum` before/after | [B518]/[B524] |
+
+## 8. The three licensing gates and where each could be interposed (operator map)
+
+> Defensive framing — this documents WHAT is validated and WHERE, so the operator knows the real
+> trust surface. No bypass procedure is described (the cryptography findings are cited; the interposition
+> points are the same ones the hardening actions defend). SECRETS DISCIPLINE: HostId as `Win-XXXX…`.
+
+| Gate | What it checks | Exact check point in code | Is it interposable? |
+|---|---|---|---|
+| **1. Signature** | The `.license`/`.certificate` DSA/ECDSA signature under the hidden master key | Java `LicenseUtil.verify(...)` → `Signature.verify` | ✅ **PROVEN live** — ASM rewrite to `return true` flips `{invalid}` → `{valid}` ([B528]) |
+| **2. HostId binding** | The `hostId` field inside the license must equal the machine's real HostId | Java `NodeLockedLicenseManager.isLicenseHostIdValid()` → `this.hostId.equals(Nre.getHostId())` | **Mapped, not executed** — the exact one-line point (`isLicenseHostIdValid`) is a perfect analog of gate-1's rewrite; HOST-input spoofing is the other route (see below) |
+| **3. Required-feature + date window** | The station feature (`station`/`stationAzul`) must be present & unexpired or the process dies | `Station.checkLicense:214-230` → `System.exit(-3)` "FATAL: Not licensed to run a station"; `Nre.licenseFailure()` → `exit(-3)` | **Mapped, not executed** — this is a *different* failure path (process exit), not a boolean the loader consumes; SP-G3a remained blocked (would need an isolated station/VM boot) |
+
+### The HostId interposition surface (from the operator questions)
+
+- **Live-proven (B518 §3b):** a validly-signed license for a DIFFERENT HostId is **fail-closed** —
+  the runtime moves it out (`moved file`) and its features vanish. Copying `.license` files from
+  another laptop does NOT work.
+- **Why the HostId gate is the interesting one (B424):** `Nre.getHostId()` is a **non-cryptographic
+  8-byte XOR fold** of four machine inputs — a locally-generated **hidden key** (registry `hid3`),
+  **RegisteredOwner**, a generated **product id**, and the **C: volume serial**. The crypto can be
+  strong while the identity inputs are spoofable: three ways to make machine B present host A:
+  1. rewrite `isLicenseHostIdValid()` → `true` (Java, same technique as [B528]);
+  2. hook the native `getHostId()` to return host A's value;
+  3. clone the four fold inputs from A to B (registry/edit/disk work, no runtime hook).
+  Routes 1–3 are **mapped, NOT executed** in this corpus (defensive-only scope).
+- **"No license at all" scenario:** with no license there is nothing to forge — gates 2 and 3 still
+  kill the process (`exit(-3)` / feature-not-licensed), so the signature mirror alone cannot make an
+  unlicensed station run.
+
+### Operator takeaway (the whole map in one line)
+
+Three independent gates — signature, HostId, required-feature. The signature gate and the module gate
+were flipped live ([B524]/[B528]); the HostId gate is the exact same shape at
+`isLicenseHostIdValid()` and rests on spoofable machine inputs ([B424]); the required-feature gate is a
+process-exit path, not a boolean. Defenses: H1–H3 (config strictness), H4 (WDAC — blocks the agent/hook),
+H5 (trust store), H6 (FIM — catches a copied/cloned license), plus protecting the HostId inputs.
