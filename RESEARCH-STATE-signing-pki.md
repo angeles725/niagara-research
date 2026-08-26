@@ -3,7 +3,7 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 529
+covered_blocks: 530
 gaps_closed: 11
 known_gaps: 14
 investigable_open: 0
