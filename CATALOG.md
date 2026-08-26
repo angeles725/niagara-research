@@ -535,6 +535,7 @@ Total: **523 bloques**
 | 530 | [niagara-mental-model-bloque530.md](niagara-mental-model-bloque530.md) | B530 — signing-pki SP-G8 CLOSED: OTA receive path trusts the unpacked `.fw` image — no signature enforcement, header CRC never validated (`crcValid=true` hardcoded) |
 | 531 | [niagara-mental-model-bloque531.md](niagara-mental-model-bloque531.md) | B531 — signing-pki SP-G6 CLOSED: BACnet/SC peer-cert path sets PKIX `setRevocationEnabled(false)` — CRL infra modelled but revocation NOT enforced (B287 [INFER]→[CERT]) |
 | 532 | [niagara-mental-model-bloque532.md](niagara-mental-model-bloque532.md) | B532 — signing-pki: the licensing watch-map — processes, when/where gates fire, the boot call chain, and the three interposition points for a self-consistent mirror |
+| 533 | [niagara-mental-model-bloque533.md](niagara-mental-model-bloque533.md) | B533 — signing-pki: the PERSISTENT mirror — `station.java.options` as the always-on vector; verification protocol; 2 dynamic confirmations gated on isolated station |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

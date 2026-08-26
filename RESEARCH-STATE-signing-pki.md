@@ -3,7 +3,7 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 528
+covered_blocks: 529
 gaps_closed: 11
 known_gaps: 14
 investigable_open: 0
@@ -96,3 +96,4 @@ the three trust domains, the real Honeywell-rooted RSA module chain, and the cor
 | 15 | B530 | SP-G8 OTA receive path | CLOSED (DISK-FIRST): `.fw` ZIP trusted as-unpacked; header CRC never validated (`crcValid=true` hardcoded, 3 decompilers) |
 | 16 | B531 | SP-G6 CRL/revocation | CLOSED: BACnet/SC PKIX `setRevocationEnabled(false)`; CRL infra modelled, revocation NOT enforced (upgrades B287 [INFER]→[CERT]); TLS parity [B482] |
 | 17 | B532 | licensing watch-map (synthesis) | MAP: 2 long-lived processes + boot-only gates (no node-locked watcher); `Nre.postInit` call chain; 3 interposition points (license ✓B528, module ✓B524, HostId mapped); defensive read H4/H6 + HostId inputs |
+| 18 | B533 | persistent mirror | MAP: `station.java.options` (nre.properties:46) = always-on vector; agent = B528 + `isLicenseHostIdValid()`; verify via dual oracle + invariants; 2 dynamic follow-ups gated on SP-G3a isolate |
