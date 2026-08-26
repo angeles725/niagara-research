@@ -3,8 +3,8 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 526
-gaps_closed: 10
+covered_blocks: 527
+gaps_closed: 11
 known_gaps: 14
 investigable_open: 0
 requires_execution_open: 0
@@ -62,7 +62,7 @@ the three trust domains, the real Honeywell-rooted RSA module chain, and the cor
 | — | **SP-G3** — Native `LicenseUtil::isFeaturePresent` is a text match, not a DSA verify [B126 §126.6]; confirm Java `LicenseManager` rejects a bad DSA signature. | requires-execution | **CLOSED B518** (§12 live, isolated test host, reversible byte-identical): real `nre` runtime rejects a 1-byte signature flip fail-closed `{invalid: Invalid signature}` [CERT-live]; HostId gate isolated (valid-sig/wrong-host license → `moved file`, features withheld) [CERT-live]; native half re-anchored read-only by peer session — `isFeaturePresent` text-scan invariant to any signature-region tamper → **asymmetry confirmed both sides on the same file**. Spawns SP-G3a. |
 | 3 | **SP-G3a** — Does a *required-but-missing* feature force station `System.exit(-3/-6)` at full boot ([B488]) vs graceful feature-withholding? SP-G3 proved verifier rejection, not the process-exit path. | blocked (requires-artifact: isolated station/VM) | **RE-TYPED B519** — read-first showed the live host is the operator's WORKING supervisor (11 station configs incl. customer-named + a live station on :443); a blind second-station boot risks port collision/collateral. Needs a truly isolated station/VM, not this shared host. |
 | 4 | **SP-G10** — Live in-process interposition ("mirror") PoC: can a shim / rogue JCE provider make the license or module verifier return "valid"? Feasibility ∝ `moduleVerificationMode` (=low live, B519). | requires-execution | **CLOSED B524** (operator-authorized Frida run): license DSA verify is **BC-FIPS Java-side** (§14-corrects B520 §1 — dsfspi DSA unused on this bcfips install); module verify **flipped in-process either way** (`checkFileSignature` force-valid → 0 FATAL; force-invalid → `FATAL failed signature check` abort). Java-layer license mirror **blocked-on-tool** (no Java bridge on this host's bare-bone agent) → spawned **SP-G10a**. |
-| 5 | **SP-G6** — CRL/revocation enforcement for BACnet/SC + TLS (`BIssuerCertAndCrl` [B287]) — modelled, enforcement [INFER]. | requires-execution | open |
+| 5 | **SP-G6** — CRL/revocation enforcement for BACnet/SC + TLS (`BIssuerCertAndCrl` [B287]) — modelled, enforcement [INFER]. | investigable | **CLOSED B531** — BACnet/SC peer-cert path builds PKIX with `setRevocationEnabled(false)` (all 3 decompilers); CRL infra exists but revocation NOT enforced. TLS/module path parity ([B482]). Upgrades B287 [INFER]→[CERT]. |
 | 6 | **SP-G4** — Reproduce a Tridium-rooted (non-OEM) `baja.jar` chain to settle §392.7 empirically. | blocked (requires-artifact: a stock non-OEM install) | open |
 | — | **SP-G9** — Does daemon boot `insertProviderAt(1)` or trailing `addProvider()`? enforced vs shipped. | requires-execution / code-read | **CLOSED B441** (neither: static override `-Djava.security.properties==bin/policy/java.security`, BC at provider.1/2 ahead of Sun; priority ENFORCED, approved-only strict NOT enabled; corrects B440 6/7/8) |
 | 4 | **SP-G9a** — Live `Security.getProviders()` on the running station to confirm the effective order matches `bin/policy/java.security` (upgrade §441.4 to [CERT-live]). | requires-execution | **CLOSED B529** — live order: `BC 1.7801` (bcstd general) first, then SUN…; `DSA`/`SHA1withDSA`/`SHA256withDSA` → `org.bouncycastle.jce.provider.BouncyCastleProvider`, NOT FIPS. §14-refines B441/B524 (declared policy ≠ effective order). |
@@ -92,3 +92,6 @@ the three trust domains, the real Honeywell-rooted RSA module chain, and the cor
 | 11 | B526 | dynamic-vs-static consistency audit | VERIFIED: B524 license/module findings agree with static anchors (LicenseUtil.java:172-181 JCE + provider.2=BCFips + bcfips branch); §14 backlink restored on B520; 3 SOURCES.md fabricated-cites fixed (verify-sources exit 0); verify-block B518–B525 clean |
 | 12 | B527 | SP-G10 session ledger | RECORDED: 10 instruments (8 ran / 1 partial / 1 blocked-on-tool), verdict provenance (target process FATAL line + static code + sha256/PID invariants), unfinished license-side half = SP-G10a |
 | 13 | B528 | SP-G10a license mirror (Frida-independent) | CLOSED: `nre -@javaagent` + ASM (COMPUTE_FRAMES) rewrote the 6 `LicenseUtil.verify` → `return true`; tampered `Webs.license` flipped `{invalid}`→`{valid}`; reversible, PIDs unchanged. Retracts the blocked-on-tool verdict |
+| 14 | B529 | SP-G9a live provider order | CLOSED: `BC 1.7801` (bcstd general) first; `DSA`/`SHA1withDSA` → BouncyCastleProvider, NOT FIPS. §14-refines B441/B524 |
+| 15 | B530 | SP-G8 OTA receive path | CLOSED (DISK-FIRST): `.fw` ZIP trusted as-unpacked; header CRC never validated (`crcValid=true` hardcoded, 3 decompilers) |
+| 16 | B531 | SP-G6 CRL/revocation | CLOSED: BACnet/SC PKIX `setRevocationEnabled(false)`; CRL infra modelled, revocation NOT enforced (upgrades B287 [INFER]→[CERT]); TLS parity [B482] |
