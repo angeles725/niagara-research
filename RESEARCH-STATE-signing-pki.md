@@ -3,11 +3,11 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 524
-gaps_closed: 8
+covered_blocks: 525
+gaps_closed: 9
 known_gaps: 14
 investigable_open: 0
-requires_execution_open: 2
+requires_execution_open: 1
 blocked_open: 3
 deferred_open: 0
 undocumented_findings: 0
@@ -65,7 +65,7 @@ the three trust domains, the real Honeywell-rooted RSA module chain, and the cor
 | 5 | **SP-G6** — CRL/revocation enforcement for BACnet/SC + TLS (`BIssuerCertAndCrl` [B287]) — modelled, enforcement [INFER]. | requires-execution | open |
 | 6 | **SP-G4** — Reproduce a Tridium-rooted (non-OEM) `baja.jar` chain to settle §392.7 empirically. | blocked (requires-artifact: a stock non-OEM install) | open |
 | — | **SP-G9** — Does daemon boot `insertProviderAt(1)` or trailing `addProvider()`? enforced vs shipped. | requires-execution / code-read | **CLOSED B441** (neither: static override `-Djava.security.properties==bin/policy/java.security`, BC at provider.1/2 ahead of Sun; priority ENFORCED, approved-only strict NOT enabled; corrects B440 6/7/8) |
-| 4 | **SP-G9a** — Live `Security.getProviders()` on the running station to confirm the effective order matches `bin/policy/java.security` (upgrade §441.4 to [CERT-live]). | requires-execution | open (B441) |
+| 4 | **SP-G9a** — Live `Security.getProviders()` on the running station to confirm the effective order matches `bin/policy/java.security` (upgrade §441.4 to [CERT-live]). | requires-execution | **CLOSED B529** — live order: `BC 1.7801` (bcstd general) first, then SUN…; `DSA`/`SHA1withDSA`/`SHA256withDSA` → `org.bouncycastle.jce.provider.BouncyCastleProvider`, NOT FIPS. §14-refines B441/B524 (declared policy ≠ effective order). |
 | 6 | **SP-G9b** — Licensed-`bcstd` branch names `provider.2=BouncyCastleFipsProvider`, a class absent from standard BC. Second policy variant, or daemon rewrites the line when `fips140-2` present? | blocked (requires-artifact: a `fips140-2`-licensed install) | open (B441) |
 | 4 | **SP-G10a** — License-side mirror runtime confirm: re-run the Java-layer hook (`LicenseUtil.verify`/`Signature.verify` → force true) with a FULL frida agent (Java bridge) on a disposable `nre.exe`. Static Java path is pinned (B524 F1); the runtime forcing is the remaining unproven half. | requires-execution | **CLOSED B528** (Frida-independent: `nre -@javaagent` + ASM rewrote the 6 `LicenseUtil.verify` overloads to `return true`; tampered `Webs.license` flipped `{invalid}` → `{valid}`; reversible, byte-identical restore, PIDs unchanged). Retracts the blocked-on-tool verdict — the wall was tool-choice, not capability. |
 
