@@ -3,7 +3,7 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 451
+covered_blocks: 523
 gaps_closed: 7
 known_gaps: 14
 investigable_open: 0
@@ -68,6 +68,13 @@ the three trust domains, the real Honeywell-rooted RSA module chain, and the cor
 | 4 | **SP-G9a** — Live `Security.getProviders()` on the running station to confirm the effective order matches `bin/policy/java.security` (upgrade §441.4 to [CERT-live]). | requires-execution | open (B441) |
 | 6 | **SP-G9b** — Licensed-`bcstd` branch names `provider.2=BouncyCastleFipsProvider`, a class absent from standard BC. Second policy variant, or daemon rewrites the line when `fips140-2` present? | blocked (requires-artifact: a `fips140-2`-licensed install) | open (B441) |
 | 4 | **SP-G10a** — License-side mirror runtime confirm: re-run the Java-layer hook (`LicenseUtil.verify`/`Signature.verify` → force true) with a FULL frida agent (Java bridge) on a disposable `nre.exe`. Static Java path is pinned (B524 F1); the runtime forcing is the remaining unproven half. | blocked-on-tool (frida agent built WITHOUT the Java bridge — `frida-java-bridge` is build-time, not pip-installable; `jvm.dll` IS loaded but `Java` never appears) | open (B524) — §21.4 rulers A/B in `sources/probes/B524-spg10-frida-2026-08-25/SP-G10a-blocked-on-tool.md` |
+
+## Blocked gaps
+
+- SP-G3a — needs: a truly isolated station/VM (live host is the operator's working supervisor); tried: read-first on the live host → 11 station configs + live station on :443, so a blind second-station boot risks port collision/collateral (B519) — see B519
+- SP-G4 — needs: a stock non-OEM (Tridium-rooted) install to reproduce the chain empirically; tried: on-disk chain decode (B392/B395) proves the OEM anchor but not the non-OEM ancestor — see B395
+- SP-G9b — needs: a `fips140-2`-licensed install (bcstd branch policy variant); tried: grep of this install's 3 licenses → no `fips140-2` feature string → bcfips only — see B441/B440
+- SP-G10a — needs: a frida agent built with the Java bridge (`frida-java-bridge`); tried: standard wheel reinstall (full gumjs, no bridge), 45s `Java` poll post-boot, `java.exe` spawn probe, `frida-java-bridge` pip availability — see B524 + §21.4 rulers
 
 ## Iteration history
 
