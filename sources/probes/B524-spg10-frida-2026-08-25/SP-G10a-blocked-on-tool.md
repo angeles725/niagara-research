@@ -26,6 +26,23 @@ The `frida 17.17.0` wheel on this host ships a **gumjs-only agent (no Java runti
 bridge is a build-time component of the agent binary, not a flag or a separately installable
 package. No amount of polling or JVM detection makes `Java.perform` available.
 
+**Cross-check against the standard JVM (this pass):** spawning the install's own
+`jre/bin/java.exe` (`openjdk 1.8.0_412`, `jre/bin/server/jvm.dll` present) under the SAME frida
+agent gives `typeof Java === 'undefined'` on every poll tick — the bridge is absent regardless
+of the process. Evidence: `codegen/spg10-frida/java_exe_bridge_probe.py` (preserved).
+
+## Readiness items vs the environment
+- Item 1 (classpath/entry for `LicenseUtil.verify` under `java.exe`): **done** — the class lives
+  in `modules/baja.jar` (`com/tridium/sys/license/LicenseUtil`, deps `javax.baja.*` +
+  `NLicenseManager`/`Nre.getHostId()`); `java.exe` is runnable. BUT the harness has no Java bridge,
+  so running it adds no observation the static path ([B524] F1) does not already give.
+- Items 2/3/5 (`Java.available`, `java_mirror.py log`, `java_mirror.py force`): **blocked-on-tool**
+  — the agent has no Java bridge even against `java.exe` (probe above).
+- Items 4/6 (license tamper / restore / B528): **no-op under the blocked bridge** — B518 already
+  proved the fail-closed rejection of a tampered license on the real runtime, and a license-tamper
+  with no Java hook would produce no new signal. Not executed; the capability gap is the blocker,
+  not the lack of a reversible recipe (that recipe already exists in B518 and is cited).
+
 ## Provisioning ruler (what removes the wall)
 - **A (recommended):** obtain a frida distribution whose agent bundles the Java bridge — e.g.
   a frida version/build with `frida-core` + `frida-java-bridge` compiled in (custom agent build,
@@ -41,8 +58,9 @@ package. No amount of polling or JVM detection makes `Java.perform` available.
   (frida-java-bridge)`).
 - `tried:` — (a) bare-bone hypothesis → retracted; (b) `Java.perform` polling before/after resume
   (10s, 45s, both negative); (c) JVM-load probe (jvm.dll + java.dll ARE loaded post-boot);
-  (d) `frida-java-bridge` pip availability (no such distribution — bundled at agent build).
-  Final rung (§21.2): native `Interceptor` — already closed the module mirror ([B524] F2).
+  (d) `frida-java-bridge` pip availability (no such distribution — bundled at agent build);
+  (e) standard-`java.exe` spawn probe (Java still undefined). Final rung (§21.2): native
+  `Interceptor` — already closed the module mirror ([B524] F2).
 
 ## What ISN'T blocked (sibling progress)
 - Module-side mirror: DONE ([B524] F2 — both directions proven on the gumjs core).
