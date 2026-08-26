@@ -43,6 +43,23 @@ into `params`).
 (`validateCertChain = PKIX, revocation DISABLED`). BACnet/SC and the Niagara TLS/module chain therefore
 share the same gap: **trust-anchor + chain validation yes, revocation no.**
 
+## 3b. Is this the same as `moduleVerificationMode=low`? — NOT the same gate (operator clarification)
+
+The operator asked whether the disabled revocation is just the `moduleVerificationMode=low` posture. It
+is **not** — they are two independent verifiers with the same *style* of relaxed default:
+
+- `moduleVerificationMode` (`Nre.java:140`, default `low`; read from
+  `niagara.moduleVerificationMode` at `Nre.java:753-763`, blacklist-protected since the shipped
+  `DEFAULT_COMMAND_LINE_BLACKLIST` includes it) gates the **module JAR signature** check
+  (`checkFileSignature`, the [B524] mirror target). Raising it to `highSecurity` changes THAT gate only.
+- BACnet/SC revocation is `params.setRevocationEnabled(false)` **hardcoded in the bytecode** —
+  confirmed: it appears nowhere else in the `bacnet/` tree, reads no `System.getProperty`, and no
+  `defaults/*.properties` entry references `revocation`. Changing `moduleVerificationMode` will NOT
+  enable it; it would need a vendor code change (or a patch) to `true` plus the CRL `CertStore` wiring.
+
+The shared property is *design posture* (relaxed validation by default in this OEM build), not a shared
+code path. Recorded so the hardening runbook does not over-claim a fix.
+
 ## 4. Self-verify
 
 | # | Claim | Marker | Evidence |
@@ -51,6 +68,7 @@ share the same gap: **trust-anchor + chain validation yes, revocation no.**
 | 2 | PKIX verify disables revocation | `[CERT]` | BBacnetScAuthenticator.java:94 (vineflower) `params.setRevocationEnabled(false)` — same at :101 (cfr), :89 (procyon) |
 | 3 | TLS/module chain parity (also disabled) | `[CERT]` | [B482] validateCertChain revocation DISABLED |
 | 4 | Upgrades B287 [INFER]→[CERT] on enforcement | `[CERT]` | the code lines above vs B287 §2's "modelled, not just trust [CERT]/[INFER]" |
+| 5 | Disabled revocation ≠ moduleVerificationMode=low (two gates) | `[CERT]` | setRevocationEnabled(false) hardcoded, no property feed; moduleVerificationMode gates checkFileSignature only (Nre.java:140,753-763) |
 
 **Tally:** 4 `[CERT]`, 0 `[CERT-live]`, 0 `[INFER]`. No unmarked claims.
 
