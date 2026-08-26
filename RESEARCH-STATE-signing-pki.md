@@ -5,10 +5,10 @@ schema: research-state.v1
 block_scope: shared-global
 covered_blocks: 531
 gaps_closed: 11
-known_gaps: 14
+known_gaps: 15
 investigable_open: 0
 requires_execution_open: 0
-blocked_open: 3
+blocked_open: 4
 deferred_open: 0
 undocumented_findings: 0
 <!-- /research-state.v1 -->
@@ -68,8 +68,11 @@ the three trust domains, the real Honeywell-rooted RSA module chain, and the cor
 | 4 | **SP-G9a** — Live `Security.getProviders()` on the running station to confirm the effective order matches `bin/policy/java.security` (upgrade §441.4 to [CERT-live]). | requires-execution | **CLOSED B529** — live order: `BC 1.7801` (bcstd general) first, then SUN…; `DSA`/`SHA1withDSA`/`SHA256withDSA` → `org.bouncycastle.jce.provider.BouncyCastleProvider`, NOT FIPS. §14-refines B441/B524 (declared policy ≠ effective order). |
 | 6 | **SP-G9b** — Licensed-`bcstd` branch names `provider.2=BouncyCastleFipsProvider`, a class absent from standard BC. Second policy variant, or daemon rewrites the line when `fips140-2` present? | blocked (requires-artifact: a `fips140-2`-licensed install) | open (B441) |
 | 4 | **SP-G10a** — License-side mirror runtime confirm: re-run the Java-layer hook (`LicenseUtil.verify`/`Signature.verify` → force true) with a FULL frida agent (Java bridge) on a disposable `nre.exe`. Static Java path is pinned (B524 F1); the runtime forcing is the remaining unproven half. | requires-execution | **CLOSED B528** (Frida-independent: `nre -@javaagent` + ASM rewrote the 6 `LicenseUtil.verify` overloads to `return true`; tampered `Webs.license` flipped `{invalid}` → `{valid}`; reversible, byte-identical restore, PIDs unchanged). Retracts the blocked-on-tool verdict — the wall was tool-choice, not capability. |
+| 2 | **SP-G11** — Second-machine field test: reproduce the mirror (signature ✓ / HostId ✗) and/or the HostId clone (4 fold inputs) on a SECOND physical machine. Sub-tests: A = copy machine-A `.license` to B (expect `moved file`, fail-closed — maps to [B518 §3b]/[B534]); B = run the `full-mirror-agent.jar` on B (expect signature mirrored but HostId still native-fails — [B534]); C = clone the HostId fold inputs (hidden key `hid3` + RegisteredOwner + product id + C: volume serial) from A to B — **mapped [B424]/[B535], NOT executed, dual-use scope decision required**. | blocked (requires-artifact: a second/isolated machine + operator scope decision) | future (queued by operator 2026-08-26 — "esto dejalo pendiente como un futuro bloque"; artifacts ready: `full-mirror-agent.jar` + `hostid_hook.py`; procedure in the closing message) |
 
 ## Blocked gaps
+
+- SP-G11 — needs: a second/isolated machine (or a disposable VM) + an operator scope decision for sub-test C (HostId clone, dual-use); tried: on-this-host proof only (wrong-host license test B518 §3b executed; full mirror B534 executed → Java rewrite insufficient; fold re-anchored B535; native hook point demonstrated log-only). Sub-tests A/B/C procedure documented in the session closing message — see B534/B535
 
 - SP-G3a — needs: a truly isolated station/VM (live host is the operator's working supervisor); tried: read-first on the live host → 11 station configs + live station on :443, so a blind second-station boot risks port collision/collateral (B519) — see B519
 - SP-G4 — needs: a stock non-OEM (Tridium-rooted) install to reproduce the chain empirically; tried: on-disk chain decode (B392/B395) proves the OEM anchor but not the non-OEM ancestor — see B395
