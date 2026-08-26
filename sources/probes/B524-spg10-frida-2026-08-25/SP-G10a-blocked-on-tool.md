@@ -7,40 +7,42 @@ A Frida agent that exposes the **Java bridge** (`Java.perform` / `Java.use`), to
 `com.tridium.sys.license.LicenseUtil.verify` (and/or `java.security.Signature.verify`) and force
 `true`, confirming the license mirror on the live path.
 
-## Diagnosis (updated after standard frida reinstall, operator-authorized)
-1. Reinstalled the standard wheel (`frida 17.17.0 cp37-abi3-win_amd64`, 41.8 MB) — the agent surface
-   is now the FULL gumjs (`Frida, Script, Memory, Thread, ModuleMap, MemoryAccessMonitor, …`), so the
-   "bare-bone binding" hypothesis is RETRACTED.
-2. `Java` is still `undefined` for the whole `nre.exe -licenses` boot. Root cause (verified):
-   **`nre.exe` does not load a standard `jvm.dll`.** The tree has NO `jvm.dll`;
-   `nre.exe` (22,808 B) is a thin launcher → `nre.dll` (117 KB) → the JVM is embedded, and
-   `jre/bin/` only ships `java.dll` (not `jvm.dll`). Frida's Java bridge auto-attach keys off the
-   standard JVM (`JNI_GetCreatedJavaVMs` from `jvm.dll`); an embedded-JVM launcher never triggers it.
-3. Result: the Java bridge cannot auto-attach to Niagara's `nre.exe`. The standard `java.exe`
-   in `jre/bin` is NOT the process that runs the license verifier, so there is no standard-JVM
-   process to hook for the license mirror.
+## Diagnosis (FINAL — after standard reinstall + JVM-load probe + 45s bridge poll)
+1. Standard wheel reinstalled (`frida 17.17.0`, 41.8 MB) → agent surface is now the FULL gumjs
+   (`Frida, Script, Memory, Thread, ModuleMap, MemoryAccessMonitor, …`). The earlier "bare-bone
+   binding" hypothesis is RETRACTED.
+2. **`jvm.dll` IS loaded by `nre.exe`** — post-boot module list shows `jvm.dll` (8,851,456 B,
+   base 0x58f20000) AND `java.dll` (176,128 B). The standard JVM is present; this is NOT an
+   embedded-JVM-only launcher. (Earlier "no jvm.dll" was a stale `find -maxdepth 3` miss —
+   it lives at `jre/bin/server/jvm.dll` and exports `JNI_CreateJavaVM`/`JNI_GetCreatedJavaVMs`/
+   `JNI_GetDefaultJavaVMInitArgs`.)
+3. **`Java` never becomes available even 45 s after resume** (poll 2000+ ticks) with the JVM
+   fully booted. The `Java` global is absent from the agent's global surface regardless of JVM
+   state. `frida-java-bridge` is NOT pip-installable (no such distribution) — it is bundled
+   INSIDE a frida agent at build time, and this wheel's agent was built WITHOUT it.
+
+## Root cause (final)
+The `frida 17.17.0` wheel on this host ships a **gumjs-only agent (no Java runtime)**. The Java
+bridge is a build-time component of the agent binary, not a flag or a separately installable
+package. No amount of polling or JVM detection makes `Java.perform` available.
 
 ## Provisioning ruler (what removes the wall)
-The Java bridge cannot auto-attach to an embedded-JVM launcher. Two real options:
-- **A — attach manually to the embedded JVM's `java.dll`** (a custom `JNI_GetCreatedJavaVMs`
-  resolution in the Frida script, targeting `nre.dll`'s own JVM attach): advanced, not the standard
-  `Java.perform` auto path.
-- **B — run the verifier under the STANDARD `java.exe`** instead of `nre.exe` (e.g. `jre/bin/java.exe`
-  with the license-verification class `com.tridium.sys.license.LicenseUtil` on the classpath) — the
-  standard JVM would let `Java.perform` attach normally. This is the reversible/disposable path; the
-  station itself still uses `nre.exe`, so this validates the *Java class* (which is identical), not
-  the exact `nre.exe` process.
-Both are follow-ups; the static Java path is already pinned ([B524] F1), and the module mirror is
-already proven on the gumjs core ([B524] F2).
+- **A (recommended):** obtain a frida distribution whose agent bundles the Java bridge — e.g.
+  a frida version/build with `frida-core` + `frida-java-bridge` compiled in (custom agent build,
+  or a prebuilt `frida-agent` variant that includes the Java runtime). Then re-run
+  `codegen/spg10-frida/java_mirror.py {log|force}` against a disposable `nre.exe`.
+- **B (classpath, no runtime nre):** run `com.tridium.sys.license.LicenseUtil.verify` under the
+  standard `jre/bin/java.exe` with the Niagara classpath (baja.jar + nre.jar + libs). The standard
+  `java.exe` process loads `jvm.dll` BEFORE user code, so a Java-ready agent would attach normally.
+  This validates the *class*, not the exact `nre.exe` process.
 
 ## Typed state
-- SP-G10a stays **`blocked-on-tool`** (capability named: `frida Java bridge auto-attach to a
-  standard JVM` — Niagara's `nre.exe` embeds the JVM and never loads `jvm.dll`).
-- `tried:` — (a) bare-bone hypothesis → retracted by the standard reinstall (full gumjs surface
-  now present); (b) `Java.perform` polling before/after resume (negative); (c) `njre.dll`/`nre.dll`
-  import audit (no `jvm.dll`, no `JNI_CreateJavaVM` export path); (d) standard `jvm.dll` search
-  (absent from the whole install). Final rung (§21.2): native `Interceptor` — which already closed
-  the module mirror.
+- SP-G10a stays **`blocked-on-tool`** (capability named: `frida agent with the built-in Java bridge
+  (frida-java-bridge)`).
+- `tried:` — (a) bare-bone hypothesis → retracted; (b) `Java.perform` polling before/after resume
+  (10s, 45s, both negative); (c) JVM-load probe (jvm.dll + java.dll ARE loaded post-boot);
+  (d) `frida-java-bridge` pip availability (no such distribution — bundled at agent build).
+  Final rung (§21.2): native `Interceptor` — already closed the module mirror ([B524] F2).
 
 ## What ISN'T blocked (sibling progress)
 - Module-side mirror: DONE ([B524] F2 — both directions proven on the gumjs core).
