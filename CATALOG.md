@@ -537,6 +537,7 @@ Total: **523 bloques**
 | 532 | [niagara-mental-model-bloque532.md](niagara-mental-model-bloque532.md) | B532 — signing-pki: the licensing watch-map — processes, when/where gates fire, the boot call chain, and the three interposition points for a self-consistent mirror |
 | 533 | [niagara-mental-model-bloque533.md](niagara-mental-model-bloque533.md) | B533 — signing-pki: the PERSISTENT mirror — `station.java.options` as the always-on vector; verification protocol; 2 dynamic confirmations gated on isolated station |
 | 534 | [niagara-mental-model-bloque534.md](niagara-mental-model-bloque534.md) | B534 — signing-pki: HostId mirror EXECUTED — "moved file" gate is NATIVE so a Java `isLicenseHostIdValid` rewrite doesn't unseat a wrong-host license (honest negative) |
+| 535 | [niagara-mental-model-bloque535.md](niagara-mental-model-bloque535.md) | B535 — signing-pki: HostId fold re-anchored byte-exact in `nre.dll` (r2) + native `getHostId` proven hookable live — modelled surface → [CERT] |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
