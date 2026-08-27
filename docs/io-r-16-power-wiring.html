@@ -1,0 +1,513 @@
+<title>IO-R-16 Alimentación</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --bg:#eef0f1; --surface:#ffffff; --surface-2:#f6f7f8;
+    --ink:#1a2026; --muted:#5c666f; --faint:#8b959d;
+    --hair:#d5dade; --hair-strong:#bcc4c9;
+    --v24:#b4530a;      /* dominio 24 V  */
+    --v24-soft:#f4e4d5;
+    --v15:#0d7d85;      /* dominio 15 V  */
+    --v15-soft:#d6ecec;
+    --comm:#5a6470;     /* RS-485 comms  */
+    --bad:#c0342b; --bad-soft:#f6dedb;
+    --shadow:0 1px 2px rgba(26,32,38,.06),0 8px 24px rgba(26,32,38,.06);
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --bg:#12161a; --surface:#1a2026; --surface-2:#20272e;
+      --ink:#e7ecef; --muted:#9aa5ae; --faint:#727d86;
+      --hair:#2b333b; --hair-strong:#3a444d;
+      --v24:#f0a13a; --v24-soft:#3a2c18;
+      --v15:#33cabf; --v15-soft:#123231;
+      --comm:#9aa7b4;
+      --bad:#f0736a; --bad-soft:#3a1d1a;
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#12161a; --surface:#1a2026; --surface-2:#20272e;
+    --ink:#e7ecef; --muted:#9aa5ae; --faint:#727d86;
+    --hair:#2b333b; --hair-strong:#3a444d;
+    --v24:#f0a13a; --v24-soft:#3a2c18;
+    --v15:#33cabf; --v15-soft:#123231;
+    --comm:#9aa7b4;
+    --bad:#f0736a; --bad-soft:#3a1d1a;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:"IBM Plex Sans",system-ui,sans-serif;
+    line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:960px; margin:0 auto; padding:clamp(20px,5vw,56px) clamp(16px,4vw,32px)}
+  .cond{font-family:"IBM Plex Sans Condensed","IBM Plex Sans",sans-serif}
+  .mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
+
+  header.masthead{border-bottom:2px solid var(--ink); padding-bottom:18px; margin-bottom:8px}
+  .eyebrow{font-family:"IBM Plex Mono",monospace; font-size:.72rem; letter-spacing:.22em;
+    text-transform:uppercase; color:var(--v24); font-weight:600; margin:0 0 10px}
+  h1{font-family:"IBM Plex Sans Condensed",sans-serif; font-weight:700;
+    font-size:clamp(1.9rem,5vw,3rem); line-height:1.02; letter-spacing:-.01em;
+    margin:0; text-wrap:balance}
+  .sub{color:var(--muted); font-size:1.02rem; max-width:60ch; margin:14px 0 0}
+  .src{font-family:"IBM Plex Mono",monospace; font-size:.72rem; color:var(--faint);
+    margin-top:12px}
+
+  /* --- the governing rule --- */
+  .rule{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:30px 0 12px}
+  @media(max-width:620px){.rule{grid-template-columns:1fr}}
+  .rulecard{background:var(--surface); border:1px solid var(--hair); border-radius:12px;
+    padding:18px 20px; box-shadow:var(--shadow); position:relative; overflow:hidden}
+  .rulecard::before{content:""; position:absolute; left:0; top:0; bottom:0; width:5px}
+  .rulecard.c24::before{background:var(--v24)}
+  .rulecard.c15::before{background:var(--v15)}
+  .rulecard .v{font-family:"IBM Plex Mono",monospace; font-weight:600; font-size:1.5rem}
+  .rulecard.c24 .v{color:var(--v24)} .rulecard.c15 .v{color:var(--v15)}
+  .rulecard .who{font-weight:600; margin:2px 0 4px; font-size:1.05rem}
+  .rulecard p{margin:0; color:var(--muted); font-size:.92rem}
+
+  section{margin-top:44px}
+  h2{font-family:"IBM Plex Sans Condensed",sans-serif; font-weight:700;
+    font-size:1.55rem; letter-spacing:-.01em; margin:0 0 4px;
+    display:flex; align-items:baseline; gap:12px}
+  h2 .tag{font-family:"IBM Plex Mono",monospace; font-size:.7rem; font-weight:600;
+    letter-spacing:.12em; padding:3px 8px; border-radius:5px; white-space:nowrap;
+    color:var(--surface); background:var(--ink)}
+  h2 .tag.ok{background:var(--v15)} h2 .tag.no{background:var(--bad)}
+  .lead{color:var(--muted); margin:.2em 0 18px; max-width:66ch}
+
+  figure{margin:0; background:var(--surface); border:1px solid var(--hair);
+    border-radius:12px; padding:20px; box-shadow:var(--shadow)}
+  figure svg{display:block; width:100%; height:auto; max-width:100%}
+  .figscroll{overflow-x:auto}
+  figcaption{margin-top:14px; padding-top:12px; border-top:1px solid var(--hair);
+    font-size:.9rem; color:var(--muted)}
+  figcaption b{color:var(--ink); font-weight:600}
+
+  /* svg semantics */
+  .box{fill:var(--surface-2); stroke:var(--hair-strong); stroke-width:1.5}
+  .box-jace{fill:var(--surface-2); stroke:var(--comm); stroke-width:2}
+  .box-34{fill:var(--v15-soft); stroke:var(--v15); stroke-width:2}
+  .box-16{fill:var(--surface-2); stroke:var(--hair-strong); stroke-width:1.5}
+  .box-src{fill:var(--v24-soft); stroke:var(--v24); stroke-width:2}
+  .box-src15{fill:var(--v15-soft); stroke:var(--v15); stroke-width:2}
+  .box-bad{fill:var(--bad-soft); stroke:var(--bad); stroke-width:2}
+  .lbl{fill:var(--ink); font-family:"IBM Plex Sans Condensed",sans-serif; font-weight:600; font-size:15px}
+  .lbl-s{fill:var(--muted); font-family:"IBM Plex Mono",monospace; font-size:11px}
+  .pin{fill:var(--faint); font-family:"IBM Plex Mono",monospace; font-size:10.5px}
+  .w24{stroke:var(--v24); stroke-width:3; fill:none}
+  .w15{stroke:var(--v15); stroke-width:3; fill:none}
+  .wc{stroke:var(--comm); stroke-width:2; stroke-dasharray:2 5; stroke-linecap:round; fill:none}
+  .wbad{stroke:var(--bad); stroke-width:3; fill:none}
+  .wlab{font-family:"IBM Plex Mono",monospace; font-size:11px; font-weight:500}
+  .wlab.t24{fill:var(--v24)} .wlab.t15{fill:var(--v15)} .wlab.tc{fill:var(--comm)}
+  .xmark{stroke:var(--bad); stroke-width:3.5; stroke-linecap:round}
+
+  /* legend */
+  .legend{display:flex; flex-wrap:wrap; gap:10px 22px; margin:22px 0 0;
+    padding:14px 16px; background:var(--surface-2); border:1px solid var(--hair); border-radius:10px}
+  .lg{display:flex; align-items:center; gap:9px; font-size:.85rem; color:var(--muted)}
+  .lg .swatch{width:26px; height:0; border-top-width:3px; border-top-style:solid}
+  .lg.l24 .swatch{border-color:var(--v24)}
+  .lg.l15 .swatch{border-color:var(--v15)}
+  .lg.lc .swatch{border-top-style:dashed; border-color:var(--comm)}
+
+  table{width:100%; border-collapse:collapse; font-size:.9rem; margin-top:6px}
+  th,td{text-align:left; padding:10px 12px; border-bottom:1px solid var(--hair)}
+  thead th{font-family:"IBM Plex Sans Condensed",sans-serif; font-size:.78rem;
+    letter-spacing:.06em; text-transform:uppercase; color:var(--muted); border-bottom:2px solid var(--hair-strong)}
+  td.num{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums}
+  tbody tr:hover{background:var(--surface-2)}
+  /* voltage-drop table */
+  .vd th, .vd td{text-align:right}
+  .vd th:first-child, .vd td:first-child{text-align:left; font-weight:600}
+  .vd td{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums}
+  .vd td.over{color:var(--bad); font-weight:600}
+  .vd td.ex{background:var(--v15-soft); color:var(--v15); font-weight:700; box-shadow:inset 0 0 0 1.5px var(--v15)}
+  .vd tbody tr:hover{background:transparent}
+  .vd tbody tr:hover td:not(.over):not(.ex){background:var(--surface-2)}
+  .vdkey{display:flex; gap:20px; flex-wrap:wrap; margin-top:14px; font-size:.82rem; color:var(--muted)}
+  .vdkey span{display:inline-flex; align-items:center; gap:8px}
+  .vdkey i{width:15px; height:15px; border-radius:3px; display:inline-block; flex:none}
+  .vdkey i.k-over{background:var(--bad-soft); box-shadow:inset 0 0 0 1.5px var(--bad)}
+  .vdkey i.k-ex{background:var(--v15-soft); box-shadow:inset 0 0 0 1.5px var(--v15)}
+
+  .note{display:flex; gap:12px; background:var(--surface); border:1px solid var(--hair);
+    border-left:4px solid var(--v24); border-radius:8px; padding:14px 16px; margin-top:16px}
+  .note.warn{border-left-color:var(--bad)}
+  .note .k{font-family:"IBM Plex Mono",monospace; font-weight:600; font-size:.7rem;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--v24); white-space:nowrap; padding-top:3px}
+  .note.warn .k{color:var(--bad)}
+  .note p{margin:0; font-size:.92rem; color:var(--muted)}
+  .note b{color:var(--ink)}
+
+  footer{margin-top:52px; padding-top:18px; border-top:1px solid var(--hair);
+    font-family:"IBM Plex Mono",monospace; font-size:.74rem; color:var(--faint); line-height:1.7}
+</style>
+
+<div class="wrap">
+  <header class="masthead">
+    <p class="eyebrow">Niagara N4 · Remote IO · Guía de campo</p>
+    <h1>Cómo alimentar un IO-R-16</h1>
+    <p class="sub">Diagramas de conexión y las tres formas válidas de darle energía a un módulo
+      remoto IO-R-16, con la regla que decide todo: son <strong>dos dominios de voltaje distintos</strong>.</p>
+    <p class="src">Fuente: Tridium <span class="mono">IO-R-16_MtgWiring</span> · <span class="mono">IO-R-34_MtgWiring</span> · <span class="mono">JACE-8000_MtgWiringGuide</span> — verbatim [CERT-doc]</p>
+  </header>
+
+  <div class="rule">
+    <div class="rulecard c24">
+      <div class="v mono">24 Vac/dc</div>
+      <div class="who">JACE-8000 · IO-R-34</div>
+      <p>Se alimentan de un transformador 24 V dedicado (21.6–26.4 V). Pueden compartir el mismo
+        transformador — <b>solo estos dos</b>, nada más.</p>
+    </div>
+    <div class="rulecard c15">
+      <div class="v mono">15 Vdc</div>
+      <div class="who">IO-R-16</div>
+      <p>Nunca 24 V. Acepta 13.5–15.75 Vdc. Esos 15 V salen de un IO-R-34 o de una fuente
+        regulada de 15 V — jamás directo del bus de 24 V.</p>
+    </div>
+  </div>
+
+  <div class="legend" aria-hidden="true">
+    <span class="lg l24"><span class="swatch"></span> Energía 24 Vac/dc</span>
+    <span class="lg l15"><span class="swatch"></span> Energía 15 Vdc</span>
+    <span class="lg lc"><span class="swatch"></span> RS-485 (solo comunicación)</span>
+  </div>
+
+  <!-- ============ FIG 1 · concepto ============ -->
+  <section>
+    <h2>El principio: 24 V entra, 15 V sale</h2>
+    <p class="lead">El IO-R-34 es el puente entre los dos dominios. Todo el resto de las opciones
+      son variantes de esta idea.</p>
+    <figure>
+      <div class="figscroll">
+      <svg viewBox="0 0 760 250" role="img" aria-label="Un transformador de 24 V alimenta al JACE-8000 y al IO-R-34; el IO-R-34 convierte y entrega 15 V al IO-R-16.">
+        <!-- transformer -->
+        <rect class="box-src" x="24" y="92" width="118" height="66" rx="6"/>
+        <text class="lbl" x="83" y="118" text-anchor="middle">Transf.</text>
+        <text class="lbl-s" x="83" y="136" text-anchor="middle">24 Vac/dc</text>
+        <!-- JACE -->
+        <rect class="box-jace" x="250" y="24" width="150" height="60" rx="6"/>
+        <text class="lbl" x="325" y="52" text-anchor="middle">JACE-8000</text>
+        <text class="lbl-s" x="325" y="70" text-anchor="middle">controlador</text>
+        <!-- IO-R-34 -->
+        <rect class="box-34" x="250" y="150" width="150" height="66" rx="6"/>
+        <text class="lbl" x="325" y="178" text-anchor="middle">IO-R-34</text>
+        <text class="lbl-s" x="325" y="196" text-anchor="middle">24 V → 15 V</text>
+        <!-- IO-R-16 -->
+        <rect class="box-16" x="600" y="150" width="140" height="66" rx="6"/>
+        <text class="lbl" x="670" y="178" text-anchor="middle">IO-R-16</text>
+        <text class="lbl-s" x="670" y="196" text-anchor="middle">15 Vdc</text>
+
+        <!-- 24V lines -->
+        <path class="w24" d="M142 112 H200 V54 H250"/>
+        <path class="w24" d="M142 140 H200 V183 H250"/>
+        <text class="wlab t24" x="150" y="46">24 V</text>
+        <!-- 15V line -->
+        <path class="w15" d="M400 183 H600"/>
+        <text class="wlab t15" x="470" y="176">15 V salida</text>
+        <text class="pin" x="404" y="200">P+ / P−</text>
+      </svg>
+      </div>
+      <figcaption><b>El IO-R-34 hace la conversión.</b> Recibe los 24 V (igual que el JACE) y
+        entrega 15 Vdc regulados por sus terminales de salida hacia el IO-R-16. El IO-R-16
+        nunca toca el dominio de 24 V.</figcaption>
+    </figure>
+  </section>
+
+  <!-- ============ FIG 2 · Opción A ============ -->
+  <section>
+    <h2>Opción A · IO-R-34 alimenta hasta 4 IO-R-16 <span class="tag ok">recomendada</span></h2>
+    <p class="lead">Un transformador 24 V dedicado alimenta el JACE y el IO-R-34 (compartido, permitido).
+      El IO-R-34 entrega 15 V a un máximo de <strong>4</strong> IO-R-16.</p>
+    <figure>
+      <div class="figscroll">
+      <svg viewBox="0 0 760 360" role="img" aria-label="Transformador de 24 V compartido entre JACE-8000 e IO-R-34; el IO-R-34 entrega 15 V a cuatro módulos IO-R-16; el RS-485 sale del JACE hacia los módulos.">
+        <!-- transformer -->
+        <rect class="box-src" x="20" y="150" width="118" height="66" rx="6"/>
+        <text class="lbl" x="79" y="176" text-anchor="middle">Transf.</text>
+        <text class="lbl-s" x="79" y="194" text-anchor="middle">24 Vac/dc</text>
+        <!-- JACE -->
+        <rect class="box-jace" x="238" y="26" width="150" height="60" rx="6"/>
+        <text class="lbl" x="313" y="54" text-anchor="middle">JACE-8000</text>
+        <text class="lbl-s" x="313" y="72" text-anchor="middle">Com1 / Com2</text>
+        <!-- IO-R-34 -->
+        <rect class="box-34" x="238" y="150" width="150" height="66" rx="6"/>
+        <text class="lbl" x="313" y="178" text-anchor="middle">IO-R-34</text>
+        <text class="lbl-s" x="313" y="196" text-anchor="middle">24 V → 15 V</text>
+        <!-- four IO-R-16 -->
+        <rect class="box-16" x="600" y="18"  width="140" height="52" rx="6"/>
+        <rect class="box-16" x="600" y="96"  width="140" height="52" rx="6"/>
+        <rect class="box-16" x="600" y="192" width="140" height="52" rx="6"/>
+        <rect class="box-16" x="600" y="270" width="140" height="52" rx="6"/>
+        <text class="lbl" x="670" y="49"  text-anchor="middle">IO-R-16</text>
+        <text class="lbl" x="670" y="127" text-anchor="middle">IO-R-16</text>
+        <text class="lbl" x="670" y="223" text-anchor="middle">IO-R-16</text>
+        <text class="lbl" x="670" y="301" text-anchor="middle">IO-R-16</text>
+        <text class="lbl-s" x="670" y="255" text-anchor="middle" font-style="italic">…máx. 4</text>
+
+        <!-- 24V shared -->
+        <path class="w24" d="M138 168 H190 V56 H238"/>
+        <path class="w24" d="M138 198 H238"/>
+        <text class="wlab t24" x="146" y="48">24 V</text>
+        <text class="wlab t24" x="150" y="216">24 V</text>
+        <!-- 15V fan-out -->
+        <path class="w15" d="M388 183 H470"/>
+        <path class="w15" d="M470 44  H600"/>
+        <path class="w15" d="M470 122 H600"/>
+        <path class="w15" d="M470 218 H600"/>
+        <path class="w15" d="M470 296 H600"/>
+        <path class="w15" d="M470 44 V296"/>
+        <text class="wlab t15" x="396" y="176">15 V (máx. 4)</text>
+        <!-- RS-485 -->
+        <path class="wc" d="M388 56 H520 V44 H600"/>
+        <path class="wc" d="M520 56 V122 H600"/>
+        <path class="wc" d="M520 122 V218 H600"/>
+        <path class="wc" d="M520 218 V296 H600"/>
+        <path class="wc" d="M313 86 V150"/>
+        <text class="wlab tc" x="404" y="70">RS-485</text>
+      </svg>
+      </div>
+      <figcaption><b>24 V compartido, 15 V distribuido.</b> El JACE y el IO-R-34 cuelgan del mismo
+        transformador de 24 V; el IO-R-34 reparte 15 V a hasta 4 IO-R-16. El RS-485 (punteado)
+        sale del JACE y es <b>solo comunicación</b> — no lleva energía.</figcaption>
+    </figure>
+    <div class="note">
+      <span class="k">Regla</span>
+      <p>Del transformador de 24 V <b>solo</b> pueden colgar el JACE-8000 y los IO-R-34.
+        No cuelgues ahí ningún otro equipo. <span class="mono">[CERT-doc IO-R-34 L63-64, L430]</span></p>
+    </div>
+  </section>
+
+  <!-- ============ FIG 3 · Opción B ============ -->
+  <section>
+    <h2>Opción B · IO-R-16 con fuente propia de 15 V</h2>
+    <p class="lead">Para los módulos que exceden los 4 de un IO-R-34, o cuando no hay IO-R-34.
+      Fuente regulada de 13.5–15.75 Vdc directo a los terminales <span class="mono">P+ / P−</span>.</p>
+    <figure>
+      <div class="figscroll">
+      <svg viewBox="0 0 760 250" role="img" aria-label="Una fuente regulada de 15 V alimenta directamente al IO-R-16 por sus terminales P más y P menos; el RS-485 llega desde el JACE-8000.">
+        <!-- JACE -->
+        <rect class="box-jace" x="24" y="26" width="150" height="60" rx="6"/>
+        <text class="lbl" x="99" y="54" text-anchor="middle">JACE-8000</text>
+        <text class="lbl-s" x="99" y="72" text-anchor="middle">Com1 / Com2</text>
+        <!-- 15V supply -->
+        <rect class="box-src15" x="24" y="150" width="150" height="66" rx="6"/>
+        <text class="lbl" x="99" y="176" text-anchor="middle">Fuente 15 Vdc</text>
+        <text class="lbl-s" x="99" y="194" text-anchor="middle">13.5 – 15.75 V, ±4%</text>
+        <!-- IO-R-16 -->
+        <rect class="box-16" x="500" y="88" width="200" height="76" rx="6"/>
+        <text class="lbl" x="600" y="120" text-anchor="middle">IO-R-16</text>
+        <text class="pin" x="600" y="142" text-anchor="middle">P+  P−  ·  RS-485 A/B/S</text>
+
+        <!-- 15V -->
+        <path class="w15" d="M174 183 H360 V150 H500"/>
+        <text class="wlab t15" x="200" y="176">15 V → P+ / P−</text>
+        <!-- comms -->
+        <path class="wc" d="M174 56 H360 V112 H500"/>
+        <text class="wlab tc" x="200" y="48">RS-485</text>
+      </svg>
+      </div>
+      <figcaption><b>Energía y comunicación llegan por caminos separados.</b> La fuente de 15 V
+        entra por <b>P+ / P−</b>; el RS-485 llega del JACE. Ambos comparten el conector de 5 pines
+        del extremo del módulo, pero son circuitos distintos.</figcaption>
+    </figure>
+  </section>
+
+  <!-- ============ FIG 4 · sistema mixto ============ -->
+  <section>
+    <h2>Sistema mixto · escalar más allá de 4</h2>
+    <p class="lead">Un JACE soporta hasta <strong>16 IO-R-16 por bus RS-485</strong>. Como cada IO-R-34
+      cubre 4, el resto va con fuentes de 15 V. Ejemplo (Tabla 1, Opción 3): 2 IO-R-34 alimentan 8,
+      y 4 más van por fuente externa.</p>
+    <figure>
+      <div class="figscroll">
+      <svg viewBox="0 0 760 330" role="img" aria-label="Dos IO-R-34 alimentan ocho IO-R-16 con 15 V y cuatro IO-R-16 más se alimentan de una fuente externa de 15 V; todos comparten un bus RS-485 desde el JACE.">
+        <!-- transformer 24V -->
+        <rect class="box-src" x="20" y="26" width="112" height="58" rx="6"/>
+        <text class="lbl-s" x="76" y="50" text-anchor="middle">Transf.</text>
+        <text class="lbl-s" x="76" y="66" text-anchor="middle">24 V</text>
+        <!-- JACE -->
+        <rect class="box-jace" x="20" y="132" width="112" height="58" rx="6"/>
+        <text class="lbl" x="76" y="158" text-anchor="middle">JACE</text>
+        <text class="lbl-s" x="76" y="176" text-anchor="middle">-8000</text>
+        <!-- 15V ext supply -->
+        <rect class="box-src15" x="20" y="240" width="112" height="58" rx="6"/>
+        <text class="lbl-s" x="76" y="264" text-anchor="middle">Fuente</text>
+        <text class="lbl-s" x="76" y="280" text-anchor="middle">15 Vdc</text>
+
+        <!-- two IO-R-34 -->
+        <rect class="box-34" x="250" y="20" width="120" height="54" rx="6"/>
+        <text class="lbl" x="310" y="44" text-anchor="middle">IO-R-34</text>
+        <text class="lbl-s" x="310" y="62" text-anchor="middle">→ 4×</text>
+        <rect class="box-34" x="250" y="92" width="120" height="54" rx="6"/>
+        <text class="lbl" x="310" y="116" text-anchor="middle">IO-R-34</text>
+        <text class="lbl-s" x="310" y="134" text-anchor="middle">→ 4×</text>
+
+        <!-- IO-R-16 groups -->
+        <rect class="box-16" x="560" y="16"  width="180" height="30" rx="5"/>
+        <text class="lbl-s" x="650" y="36" text-anchor="middle">4 × IO-R-16  (por IO-R-34 #1)</text>
+        <rect class="box-16" x="560" y="88" width="180" height="30" rx="5"/>
+        <text class="lbl-s" x="650" y="108" text-anchor="middle">4 × IO-R-16  (por IO-R-34 #2)</text>
+        <rect class="box-16" x="560" y="252" width="180" height="30" rx="5"/>
+        <text class="lbl-s" x="650" y="272" text-anchor="middle">4 × IO-R-16  (fuente externa)</text>
+
+        <!-- 24V to JACE + both IO-R-34 -->
+        <path class="w24" d="M132 55 H180 V159 H160"/>
+        <path class="w24" d="M132 55 H210 V47 H250"/>
+        <path class="w24" d="M210 55 V119 H250"/>
+        <text class="wlab t24" x="150" y="18">24 V</text>
+        <!-- 15V from IO-R-34s -->
+        <path class="w15" d="M370 43 H460 V31 H560"/>
+        <path class="w15" d="M370 119 H460 V103 H560"/>
+        <text class="wlab t15" x="392" y="24">15 V</text>
+        <!-- 15V ext -->
+        <path class="w15" d="M132 269 H560"/>
+        <text class="wlab t15" x="360" y="262">15 V</text>
+        <!-- RS-485 bus spine -->
+        <path class="wc" d="M132 175 H500 V31 H560"/>
+        <path class="wc" d="M500 103 H560"/>
+        <path class="wc" d="M500 175 V267 H560"/>
+        <text class="wlab tc" x="360" y="190">RS-485 · un solo bus (máx. 16)</text>
+      </svg>
+      </div>
+      <figcaption><b>Dos redes superpuestas.</b> La energía se reparte entre IO-R-34 (15 V) y fuentes
+        externas (15 V); el <b>RS-485 es un único bus</b> que sale del JACE y recorre todos los módulos.
+        Máximo 16 IO-R-16 por bus. <span class="mono">[CERT-doc IO-R-16 L47, Tabla 1]</span></figcaption>
+    </figure>
+  </section>
+
+  <!-- ============ FIG 5 · prohibido ============ -->
+  <section>
+    <h2>Lo que NO se puede hacer <span class="tag no">daño</span></h2>
+    <p class="lead">Tu pregunta directa: los 24 VDC que alimentan el JACE <strong>no</strong> pueden ir
+      al IO-R-16. Es el error que mata el módulo.</p>
+    <figure>
+      <div class="figscroll">
+      <svg viewBox="0 0 760 210" role="img" aria-label="Diagrama prohibido: una fuente de 24 V conectada directamente a los terminales del IO-R-16, marcada con una equis roja porque el módulo solo admite 15 V.">
+        <!-- 24V source -->
+        <rect class="box-src" x="24" y="70" width="150" height="66" rx="6"/>
+        <text class="lbl" x="99" y="96" text-anchor="middle">Fuente 24 VDC</text>
+        <text class="lbl-s" x="99" y="114" text-anchor="middle">(la del JACE)</text>
+        <!-- IO-R-16 -->
+        <rect class="box-bad" x="540" y="70" width="180" height="66" rx="6"/>
+        <text class="lbl" x="630" y="96" text-anchor="middle">IO-R-16</text>
+        <text class="lbl-s" x="630" y="114" text-anchor="middle">solo 15 Vdc</text>
+        <!-- bad line -->
+        <path class="wbad" d="M174 103 H540"/>
+        <text class="wlab" fill="var(--bad)" x="250" y="94">24 V directo</text>
+        <!-- big X -->
+        <line class="xmark" x1="340" y1="83" x2="374" y2="123"/>
+        <line class="xmark" x1="374" y1="83" x2="340" y2="123"/>
+      </svg>
+      </div>
+      <figcaption><b>24 V a un IO-R-16 lo destruye.</b> El módulo admite 13.5–15.75 Vdc. Si necesitas
+        alimentarlo desde un sistema de 24 V, ese voltaje <b>tiene que pasar por un IO-R-34</b>
+        (que lo baja a 15 V) o usar una fuente de 15 V aparte.</figcaption>
+    </figure>
+    <div class="note warn">
+      <span class="k">Respuesta</span>
+      <p><b>IO-R-16 con la fuente de 24 V del JACE:</b> no, nunca directo. &nbsp;·&nbsp;
+        <b>IO-R-34 con esa misma fuente:</b> sí — es de 24 V y puede compartir el transformador del JACE.</p>
+    </div>
+  </section>
+
+  <!-- ============ tablas ============ -->
+  <section>
+    <h2>Referencia rápida</h2>
+    <div class="figscroll">
+    <table>
+      <thead><tr><th>Dispositivo</th><th>Entrada</th><th>Salida</th><th>Consumo</th><th>Alimenta a</th></tr></thead>
+      <tbody>
+        <tr><td>JACE-8000</td><td class="num">24 Vac/dc</td><td>—</td><td class="num">≥1 A / 24 W</td><td>—</td></tr>
+        <tr><td>IO-R-34</td><td class="num">24 Vac/dc<br>21.6–26.4 V</td><td class="num">15 Vdc</td><td class="num">≥916 mA / 22 W</td><td>hasta 4 IO-R-16</td></tr>
+        <tr><td>IO-R-16</td><td class="num">15 Vdc<br>13.5–15.75 V</td><td>—</td><td class="num">0.133 A / 2.00 W</td><td>—</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="note">
+      <span class="k">Diseño</span>
+      <p>Caída de tensión máxima permitida en el cableado: <b>1.5 V</b> entre la fuente y el módulo más
+        lejano. Se recomienda respaldo <b>UPS</b> — estos módulos no admiten baterías (el conector de
+        5 pines no tiene pin de batería). <span class="mono">[CERT-doc IO-R-16 L94-96, L149]</span></p>
+    </div>
+  </section>
+
+  <!-- ============ calibre vs caída ============ -->
+  <section>
+    <h2>Calibre de cable vs. caída de tensión</h2>
+    <p class="lead">En tiradas largas el cable de energía cae voltaje. El límite es <strong>1.5 V</strong>
+      entre <span class="mono">P+/P−</span> en la fuente y <span class="mono">P+/P−</span> en el módulo
+      más lejano. Si se pasa de ahí, el IO-R-16 remoto puede no operar bien.</p>
+
+    <figure>
+      <div class="figscroll">
+      <svg viewBox="0 0 760 132" role="img" aria-label="La caída de tensión es la diferencia entre el voltaje en los terminales de la fuente y el voltaje en los terminales del módulo más lejano; debe ser 1.5 voltios o menos.">
+        <rect class="box-src15" x="20" y="40" width="150" height="56" rx="6"/>
+        <text class="lbl" x="95" y="64" text-anchor="middle">Fuente 15 V</text>
+        <text class="pin" x="95" y="84" text-anchor="middle">P+ / P−</text>
+        <rect class="box-16" x="590" y="40" width="150" height="56" rx="6"/>
+        <text class="lbl" x="665" y="64" text-anchor="middle">IO-R-16 lejano</text>
+        <text class="pin" x="665" y="84" text-anchor="middle">P+ / P−</text>
+        <path class="w15" d="M170 60 H590"/>
+        <path class="w15" d="M170 76 H590"/>
+        <text class="wlab t15" x="330" y="52">par de cobre — tirada larga</text>
+        <text class="wlab" fill="var(--bad)" x="322" y="120" font-weight="600">ΔV = V(fuente) − V(módulo)  ≤  1.5 V</text>
+      </svg>
+      </div>
+      <figcaption><b>La caída se mide extremo a extremo.</b> Cada IO-R-16 consume 0.133 A; en un tronco
+        de N módulos la corriente del par es N × 0.133 A — usá esa suma para entrar a la tabla.</figcaption>
+    </figure>
+
+    <div class="figscroll" style="margin-top:18px">
+    <table class="vd">
+      <thead>
+        <tr>
+          <th>AWG</th><th>0.10 A</th><th>0.25 A</th><th>0.5 A</th>
+          <th>1.0 A</th><th>1.5 A</th><th>2.0 A</th><th>4.0 A</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>10</td><td>0.020</td><td>0.05</td><td>0.10</td><td>0.20</td><td>0.30</td><td>0.40</td><td>0.80</td></tr>
+        <tr><td>12</td><td>0.032</td><td>0.08</td><td>0.16</td><td>0.32</td><td>0.48</td><td>0.64</td><td>1.27</td></tr>
+        <tr><td>14</td><td>0.050</td><td>0.13</td><td>0.25</td><td>0.50</td><td>0.75</td><td>1.01</td><td class="over">2.02</td></tr>
+        <tr><td>16</td><td>0.080</td><td class="ex">0.20</td><td>0.40</td><td>0.80</td><td>1.20</td><td class="over">1.60</td><td class="over">3.20</td></tr>
+        <tr><td>18</td><td>0.127</td><td class="ex">0.32</td><td>0.64</td><td>1.27</td><td class="over">1.91</td><td class="over">2.54</td><td class="over">5.08</td></tr>
+        <tr><td>20</td><td>0.202</td><td>0.50</td><td>1.01</td><td class="over">2.02</td><td class="over">3.03</td><td class="over">4.03</td><td class="over">8.07</td></tr>
+        <tr><td>22</td><td>0.320</td><td>0.80</td><td class="over">1.60</td><td class="over">3.20</td><td class="over">4.80</td><td class="over">6.40</td><td class="over">12.81</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="vdkey" aria-hidden="true">
+      <span><i class="k-ex"></i> Celdas del ejemplo (#16 y #18 a 0.25 A)</span>
+      <span><i class="k-over"></i> Ya supera 1.5 V en un solo tramo de 100 ft (30 m)</span>
+    </div>
+    <p class="src" style="margin-top:10px">Caída en voltios por cada 100 ft (30 m) de par. Tabla 3 reconstruida y
+      validada contra el ejemplo resuelto del manual (#16/#18 a 500 ft). [CERT-doc IO-R-16 L154-170]</p>
+
+    <div class="note">
+      <span class="k">Ejemplo</span>
+      <p>Dos IO-R-16 a <b>500 ft (152 m)</b>, cada uno 0.133 A → se lee la columna <b>0.25 A</b>.
+        <b>#16 AWG</b>: 0.20 V/100 ft × 5 = <b>1.0 V</b> → dentro del límite, sirve.
+        <b>#18 AWG</b>: 0.32 V/100 ft × 5 = <b>1.6 V</b> → pasa de 1.5 V, no sirve.
+        <span class="mono">[CERT-doc L167-170]</span></p>
+    </div>
+    <div class="note">
+      <span class="k">Cómo leer</span>
+      <p>Elegí la columna por la <b>corriente total del tramo</b>, multiplicá el valor por
+        (largo en ft ÷ 100), y el resultado debe quedar <b>≤ 1.5 V</b>. Ante la duda, subí de calibre
+        (número AWG más chico = cable más grueso = menos caída).</p>
+    </div>
+  </section>
+
+  <footer>
+    Datos verbatim de la documentación oficial Tridium — marcador [CERT-doc].<br>
+    IO-R-16_MtgWiring · IO-R-34_MtgWiring · JACE-8000_MtgWiringGuide (N4.14) · proyecto niagara-research.
+  </footer>
+</div>
