@@ -1,4 +1,4 @@
-# RESEARCH-STATE — focus: template-wb (ACTIVE)
+# RESEARCH-STATE — focus: template-wb (STOPPED)
 
 > Multi-focus corpus (METHODOLOGY §16). SEEDED by an AUDIT-FIRST coverage sweep (§13) on 2026-08-28 (delegated
 > sonnet, prior-coverage reconciliation first, verified inline).
@@ -15,16 +15,16 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 3
-gaps_closed: 3
+covered_blocks: 4
+gaps_closed: 5
 known_gaps: 5
-investigable_open: 2
+investigable_open: 0
 requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
 
 focus: template-wb
-status: active (3/5; TW1→B591, TW2→B592, TW3→B593 DONE; NEXT TW4+TW5 collapsed tail)
+status: stopped (5/5, investigable=0; 4 blocks B591-B594; TW4+TW5 collapsed into B594). §18 retro pending.
 seeded_from: AUDIT-FIRST coverage sweep 2026-08-28 (delegated sonnet; B200 §200.6 verified inline)
 seeded_on: 2026-08-28
 gaps_total: 5 investigable (TW1–TW5); honest ceiling ~4-6 blocks (TW4/TW5 may collapse into one tail synthesis)
@@ -56,8 +56,8 @@ BTemplateRelationEditor (~600 L), BTemplatePxEditor (embeds BPxEditorPane → RE
 | high | ~~**TW1 binding editors (Config + IO)**~~ | Config editor = BTable over BConfigBindings (rows=exposed params, save keyed by HANDLE, legacy composite-link migration); IO editor = 3 BTables (I/O bindings + source/io tag panes via TagSupport); UI over same BConfigBinding model as rt/manifest | — | **CLOSED → B591** |
 | high | ~~**TW2 Excel IMPORT path**~~ | BulkDeployWorkbook (Closeable POI reader, optionally password-encrypted, doPrivileged) parses per-sheet Input/Output/Config/Relation/Optional/Tag rows→values; BulkDeploy = wizard reusing installapp flow (backup→compat→confirm→install) per sheet; closes export round-trip | — | **CLOSED → B592** |
 | medium | ~~**TW3 application-template wizard**~~ | guided StepWizardModel: select template→optional-components→compatibility→BACKUP(default on)→confirm; InstallingApplicationWorker runs backup-THEN-install (BBackupManager before the destructive B578 tree-swap); reused by bulk deploy | — | **CLOSED → B593** |
-| medium | **TW4 Relation editor** | BTemplateRelationEditor: two-table model (BRelationInfo rows + relate-info pairs); B200 §200.6 does not mention it | `template-wb/…/ui/BTemplateRelationEditor.java` | open (collapsible w/ TW5) |
-| low | **TW5 .ntpl WB file integration** | BWbDeployableNtplFile (how .ntpl shows as deployable in WB nav), BNtplFileMenuAgent (context menu), ExportApplication/ExportConfigsCommand, sidebar nav | `template-wb/…/ui/file/*`, `ui/sidebar/*` | open (collapsible w/ TW4) |
+| medium | ~~**TW4 Relation editor**~~ | BTemplateRelationEditor (BEdgePane, 2 BTables over BRelationInfo) = 3rd binding editor completing Config/IO/Relation trio | — | **CLOSED → B594** |
+| low | ~~**TW5 .ntpl WB file integration**~~ | BWbDeployableNtplFile (BIDeployable, deploy from browser), BNtplFileMenuAgent, Export commands, BTemplateSideBar w/ FindUsages + MakeModule | — | **CLOSED → B594** |
 
 ## Notes
 
@@ -68,6 +68,7 @@ BTemplateRelationEditor (~600 L), BTemplatePxEditor (embeds BPxEditorPane → RE
 
 ## Stop control (METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 3 (TW3–TW5). Focus ACTIVE.
-- **Gaps closed**: 2 (TW1→B591, TW2→B592).
-- **Coverage metric**: 0 / 5.
+- **Open gaps — read-only investigable**: **0** — ALL 5 closed (TW1–TW5; TW4+TW5 collapsed). Focus STOPPED (§8).
+- **Gaps closed**: 5 (TW1→B591, TW2→B592, TW3→B593, TW4+TW5→B594).
+- **Coverage metric**: 5 / 5 (100%), 4 blocks. Honest ceiling hit exactly (TW4+TW5 collapsed as predicted).
+- **Unopened tail**: BTemplateManager view internals (2705 L, mostly action dispatch in B200 §200.6), small dialogs — low value.
