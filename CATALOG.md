@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **537 bloques**
+Total: **538 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -542,6 +542,7 @@ Total: **537 bloques**
 | 537 | [niagara-mental-model-bloque537.md](niagara-mental-model-bloque537.md) | Block 537 — The kitControl function-block catalog: 151 classes → ~130 deployable blocks across 10 packages, with the PID loop, the latch/switch/select mux family, and the multi-input null contract decompiled |
 | 538 | [niagara-mental-model-bloque538.md](niagara-mental-model-bloque538.md) | Block 538 — The OFFICIAL control-logic programming rules: linking, wire-sheet, action, and composite rules from the Tridium guides, reconciled with the code kernel |
 | 539 | [niagara-mental-model-bloque539.md](niagara-mental-model-bloque539.md) | Block 539 — BLoopPoint deep: ramp-aware anti-windup, direct/reverse sign, the four disable actions, the deviation loop alarm, propagateFlags masking, and the official P/PI/PID tuning methodology |
+| 540 | [niagara-mental-model-bloque540.md](niagara-mental-model-bloque540.md) | Block 540 — clHVAC control sequences decompiled: the weather-compensated heating curve, the AHU mixing-damper/economizer gate, and 12-chiller runtime-equalized lead-lag — verifying B87 §87.3 from [CERT-a] to [CERT] |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

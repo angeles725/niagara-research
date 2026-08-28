@@ -9,6 +9,8 @@
 > Método: 2 sub-agentes + **verificación directa** de la clase base, el service de ejecución y una muestra de bloques de dominio (`grep ^public class`). `[CERT]` = verificado por mí; `[CERT-a]` = cita del sub-agente (algoritmos, parámetros, lexicon) no re-verificada; `[INFER]` = deducción.
 >
 > Capa 22 (OEM deofuscados), continúa [Bloque 86]. **Contrasta con [Bloques 14-15]** (kitControl/control framework Tridium) — es la alternativa Centraline. Conecta [Bloque 7] y [Bloque 86] (los puntos de I/O sobre los que opera esta lógica).
+>
+> **Actualizado por [Bloque 540]** (focus kitControl, KC5): §87.3/§87.4 (las secuencias de control HVAC) estaban en `[CERT-a]` (cita de sub-agente, no re-verificada). B540 las DECOMPILA y las eleva a `[CERT]` — curva de calefacción `BCmVTB_HtgCirc` (interpolación lineal 2-puntos OAT→Tsupply), damper de mezcla/economizer `BCmDMB_MixingDamper`, secuenciación lead-lag de 12 chillers `BCmSQA_ChillerSeq`. Aclara los conteos: "264 vf" = rt+wb; "103 function blocks" = las primitivas `BControlFunctionSupport` de `-rt` (250 clases); 83 bloques `BCm*` de dominio en los sub-módulos. Base class y engine (§87.2) CONFIRMADOS byte a byte.
 
 ---
 

@@ -21,21 +21,21 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 4
-gaps_closed: 4
+covered_blocks: 5
+gaps_closed: 5
 known_gaps: 12
-investigable_open: 8
+investigable_open: 7
 requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
 
 focus: kitControl
-status: active (4/12; KC1→B536, KC2→B537, KC3→B538, KC4→B539)
+status: active (5/12; KC1→B536, KC2→B537, KC3→B538, KC4→B539, KC5→B540)
 seeded_from: AUDIT-FIRST coverage sweep 2026-08-28 (delegated sonnet; verified inline)
 seeded_on: 2026-08-28
 gaps_total: 12 investigable (KC1–KC12)
-gaps_closed: 4 (KC1→B536, KC2→B537, KC3→B538, KC4→B539)
-blocks_written: B536 (KC1), B537 (KC2), B538 (KC3), B539 (KC4); next global block = B540
+gaps_closed: 5 (KC1→B536, KC2→B537, KC3→B538, KC4→B539, KC5→B540)
+blocks_written: B536 (KC1), B537 (KC2), B538 (KC3), B539 (KC4), B540 (KC5); next global block = B541
 block_prefix: niagara-mental-model-bloqueN.md (shared global numbering)
 
 ## Gap-backlog (prioritized) — from the AUDIT-FIRST coverage matrix
@@ -51,7 +51,7 @@ reference pages. All candidate dirs existence-verified 2026-08-28.
 | high | **KC2 kitControl FB catalog** — the native function-block library enumerated BY BLOCK (never done): the ~157 named blocks (math, logic, comparison, latches, timers, selectors, hvac, energy, conversion, string, util) with their inputs/outputs/facets, mapped against the 163-page official reference. B6 §6.3.3 gives only a by-category list | `kitControl-rt` (~207 vf) + `docKitControl` (163 HTML) | **COVERED → B537** (MEASURED 151 B*.java → ~130 deployable across 10 pkgs: math26/util37/conv20/logic13/energy10/hvac7/timer5/const4/root13/enums16-not-blocks; 116 doc block pages. BLoopPoint PID in ROOT pkg not hvac [error=SP−PV, anti-windup clamp maxOutput/kPkIconst, hold=NaN-guard]; latch clock=rising-edge vs latch-action=both-edges; switch/select invalid→hold+invalid-flag; multi-input null contract [BQuadMath nonNullCount, nulls skipped not zeroed, BAnd nullOnInactive]. CONFIRMS B6 §6.3.3 — all 7 HVAC/energy blocks exist, none hallucinated) |
 | high | **KC3 control-module programming RULES** — consolidated: link legality (which slot types may legally connect), knob/mark semantics, type coercion/conversion-link matrix, execution-order guarantees, and cycle/feedback handling. Today scattered in B6 §6.2 prose + 396 wire-sheet / 52 control-logic official guides — no single rules artifact | derived (B6 baja core) + niagara-help guides | **COVERED → B538** (RE-SCOPED to OFFICIAL Tridium rules layer since B6 §6.2 already covers the code kernel [REMITTANCE]. [CERT-doc]x55 from niagara-help guides: priority-link rules [1 link/level, In1/In8 unlinkable action-only — reconciles B536; Boolean In6 unlinkable=min on/off, refines B536], conversion links auto on type-mismatch, link owned-by-target, wire-sheet delete/pin/knob, execution=EVENT-DRIVEN no topo-order guarantee on standard sheet [ACE has Level/Order], actions sync-default/async-coalesce, composite AVOID-folder caution + resource cost, status propagate opt-in + NEVER into a point [BP2], Philosophy-B placement, naming rules. 7/12 rows token-verified inline) |
 | high | **KC4 PID / LoopPoint** — the core HVAC control primitive as a dedicated treatment: the kitControl loop/PID block(s), tuning params (P/I/D), direct vs reverse action, integral windup, ramp/rate, execution against the engine. Subset of KC2 but deserves its own depth | `kitControl-rt` (hvac/util pkgs) + `docKitControl` PID pages | **COVERED → B539** (ramp = rate limiter maxChange=rampConst·Δ/rampTime with ramp-aware anti-windup errorSum rescale; executeTime clamp [100ms,60s] def 500ms; direct negates PID sum [pv=-pv]=cooling, reverse=heating; disableAction max0/min1/hold2/zero3 [prop default zero, hold=NaN-hold] pre-loads errorSum for bumpless re-enable; BLoopAlarmAlgorithm extends BTwoStateAlgorithm = SP−PV deviation alarm w/ deadband hysteresis, grandparent-legal; propagateFlags=whitelist AND-mask default 0 [no input status to out, own fault survives]. OFFICIAL tuning: kP=(maxOut−minOut)/throttlingRange, PI RECOMMENDED [kI repeats/min start 0.5], PID SELDOM USED [kD in SECONDS start <10s]. niagara-help has NO PID tuning guide — only docKitControl) |
-| high | **KC5 clHVAC application library** — the Centraline Eagle HVAC control-sequence libraries, under-covered vs their mass (B87 is one concept-level block over ~756 classes): AHU/air-conditioning, heating, chiller, energy-management, room-control application blocks and the encoded control sequences | `clHVAC`, `clHVACAirConditioning`, `clHVACHeating`, `clHVACChiller`, `clHVACEnergyManagement`, `clHVACGeneral` (~756 vf · ~1,400 doc HTML) | **pending** |
+| high | **KC5 clHVAC application library** — the Centraline Eagle HVAC control-sequence libraries, under-covered vs their mass (B87 is one concept-level block over ~756 classes): AHU/air-conditioning, heating, chiller, energy-management, room-control application blocks and the encoded control sequences | `clHVAC`, `clHVACAirConditioning`, `clHVACHeating`, `clHVACChiller`, `clHVACEnergyManagement`, `clHVACGeneral` (~756 vf · ~1,400 doc HTML) | **COVERED → B540** (upgrades B87 §87.3 [CERT-a]→[CERT]. Structure: clHVAC-rt 250 vf/103 BControlFunctionSupport primitives; 83 BCm* domain blocks. Sequences decompiled: BCmVTB_HtgCirc weather-comp heating curve = 2-pt linear OAT→Tsupply [−10°C/65°C→10°C/85°C] + room correction + 5-way mode mux + CfPidPlus valve + CfValueRamp 25K/min + frost/heat-demand; BCmDMB_MixingDamper OAT-scheduled min OA-damper + CfWindow mode∈[20,30]→force 0% recirc [economizer shutoff]; BCmSQA_ChillerSeq 12-chiller runtime-equalized lead-lag [(N+1)/N add, (N−1)/N remove, 600s inter-stage, 100h rotation, 60s alarm lockout]; BCmDDA_DEGDAYS HDD/CDD base 15/22/20°C. Engine BControlProgramService extends BAbstractService confirmed. 80/83 domain blocks covered-by-sample) |
 | medium | **KC6 program module runtime** — B426 covers ONLY compilation (spawned javac). Uncovered: `BProgram` execution model, freeform vs robot program, program slots/wiring, program-ext lifecycle, the program-wb editor | `program-rt,-wb` (~55 vf) | **pending** |
 | medium | **KC7 honeywellFunctionBlocks per-FB catalog** — B103 covers the ENGINE (`BFunctionBlock`, converters); the ~158 DDC blocks themselves (math/control/analog/zonecontrol/logic/datafunction) are not catalogued against the 50-page official doc | `honeywellFunctionBlocks-rt` (158 vf · 50 doc HTML) | **pending** |
 | medium | **KC8 priority-array write arbitration end-to-end** — the consolidated write path: a kitControl block writes → writable point 16-level arbitration → relinquish default → driver proxy. B6 §6.2.6 + B46 touch pieces; no end-to-end arbitration-rules block | `control-rt` + `kitControl-rt` write blocks | **pending** |
@@ -84,11 +84,11 @@ reference pages. All candidate dirs existence-verified 2026-08-28.
 
 ## Stop control (METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: **8** (KC5–KC12). All source dirs existence-verified 2026-08-28.
-- **Gaps closed**: 4 (KC1→B536, KC2→B537, KC3→B538, KC4→B539).
+- **Open gaps — read-only investigable**: **7** (KC6–KC12). All source dirs existence-verified 2026-08-28.
+- **Gaps closed**: 5 (KC1→B536 … KC5→B540).
 - **requires-execution / blocked**: 0.
-- **Coverage metric**: 4 / 12 investigable gaps closed.
-- **NEXT**: KC5 (clHVAC application library — AHU/heating/chiller/energy/room control sequences) → B540.
+- **Coverage metric**: 5 / 12 investigable gaps closed.
+- **NEXT**: KC6 (program module runtime — BProgram execution, freeform/robot, program-wb editor) → B541.
 
 ## Iteration history
 
@@ -99,3 +99,4 @@ reference pages. All candidate dirs existence-verified 2026-08-28.
 | 2 | KC2 kitControl FB catalog (151 classes → ~130 blocks; PID/latch/switch/select; multi-input null contract) | B537 | yes · sonnet (sweep) + inline token-verify | none new (KC4 will deepen BLoopPoint) |
 | 3 | KC3 programming RULES (official Tridium rules layer, re-scoped; reconciled w/ code kernel B6 §6.2 + B536/B537) | B538 | yes · sonnet (doc sweep) + inline token-verify (7/12 rows) | none new; refines B536 (Boolean In6) |
 | 4 | KC4 PID/BLoopPoint deep (ramp, executeTime, direct/reverse, disableAction, loop alarm, propagateFlags, official tuning) | B539 | yes · sonnet (code+doc sweep) + inline token-verify (7/11 rows) | none new (alarm-ext chain out of focus) |
+| 5 | KC5 clHVAC control sequences (heating curve, mixing damper/economizer, 12-chiller lead-lag; upgrades B87 §87.3 [CERT-a]→[CERT]) | B540 | yes · sonnet (decompile sweep) + inline token-verify (5/10 rows) | none new (80/83 domain blocks covered-by-sample; degree-days window [INFER]) |
