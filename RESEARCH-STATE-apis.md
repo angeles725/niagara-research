@@ -15,8 +15,8 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 10
-gaps_closed: 9
+covered_blocks: 11
+gaps_closed: 10
 known_gaps: 9
 investigable_open: 0
 requires_execution_open: 0
@@ -24,12 +24,12 @@ blocked_open: 0
 <!-- /research-state.v1 -->
 
 focus: apis
-status: stopped (9/9; API9 added from recorded sub-item)
+status: stopped (10/10; API10 real-time/push transports + SSE-proven-absent added 2026-08-28 operator-requested)
 seeded_from: AUDIT-FIRST 2-agent coverage sweep 2026-08-25 (delegated sonnet ×2; pre-flight verified inline)
 seeded_on: 2026-08-25
 gaps_total: 8 investigable (API1–API8)
-gaps_closed: 9 (API1→B507 … API8→B514, API9→B516)
-blocks_written: B507–B515 + B516 (API9, reopened from B513 sub-item)
+gaps_closed: 10 (API1→B507 … API9→B516, API10→B553)
+blocks_written: B507–B516 (API1-9) + B553 (API10 real-time transports synthesis)
 block_prefix: niagara-mental-model-bloqueN.md (shared global numbering)
 
 ## REMITTANCE — API surfaces ALREADY covered (will NOT be opened)
