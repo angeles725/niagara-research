@@ -1,4 +1,4 @@
-# RESEARCH-STATE — focus: hierarchy (ACTIVE)
+# RESEARCH-STATE — focus: hierarchy (STOPPED)
 
 > Multi-focus corpus (METHODOLOGY §16). SEEDED by an AUDIT-FIRST coverage sweep (§13) on 2026-08-28 (delegated
 > sonnet, prior-coverage reconciliation first, verified inline).
@@ -16,20 +16,20 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 6
-gaps_closed: 6
+covered_blocks: 7
+gaps_closed: 7
 known_gaps: 7
-investigable_open: 1
+investigable_open: 0
 requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
 
 focus: hierarchy
-status: active (6/7; H1→B584 … H6→B589 DONE; NEXT H7 transport BOX+Fox)
+status: stopped (7/7, investigable=0; H1→B584 … H7→B590). §18 retro pending.
 seeded_from: AUDIT-FIRST coverage sweep 2026-08-28 (delegated sonnet; B5/B565/B387 verified inline)
 seeded_on: 2026-08-28
 gaps_total: 7 investigable (H1–H7)
-gaps_closed: 0
+gaps_closed: 7
 block_prefix: niagara-mental-model-bloqueN.md (shared global numbering)
 
 ## Surface (audit, scoped counts — verify inline)
@@ -60,7 +60,7 @@ BFoxHierarchySpace) + BHierarchyBoxChannel. `hierarchy-ux` ~8 + `hierarchy-wb` ~
 | medium | ~~**H4 BHierarchyScheme ORD resolution**~~ | hierarchy: = BSpaceScheme, HierarchyQuery extends SlotPath; resolve walks segments (name[0]=hierarchy); leaf = grouping name→BLevelElem OR escaped station:| →REAL component (user-checked); local vs Fox dispatch | — | **CLOSED → B587** |
 | medium | ~~**H5 on-demand tree gen + contextParams**~~ | STATELESS nav: BLevelElem carries contextParams (accumulated NEQL filter); expand = client echoes contextParams → cached walk (fw1300/1302) OR rebuild-parent + on-demand re-query; MakeElemUtil threads the filter | — | **CLOSED → B588** |
 | medium | ~~**H6 permission enforcement in the tree**~~ | entity applied BCategoryMask (AC3) baked on BLevelElem + OR-propagated up to group ancestors (group visible if any child is); fw(1302) read filters per-user hasOperatorRead (super-user all); orthogonal to role-scoping (B565); group name can leak | — | **CLOSED → B589** |
-| low | **H7 transport (BOX + Fox)** | BHierarchyBoxChannel load/resolve (web UX), BFoxHierarchyChannel getLevelElems circuit (remote station), BFoxHierarchySpace proxy | `com/tridium/hierarchy/BHierarchyBoxChannel.java`, `com/tridium/hierarchy/fox/{BFoxHierarchyChannel,BFoxHierarchySpace}.java` | **NEXT** |
+| low | ~~**H7 transport (BOX + Fox)**~~ | BHierarchyBoxChannel (JSON/BOX load+resolve, web), BFoxHierarchyChannel (getLevelElems circuit, cross-station, ValueDocEncoder), BFoxHierarchySpace proxy makes remote hierarchy local; both carry contextParams, call same service | — | **CLOSED → B590** |
 
 ## Proven-absent / notes
 
@@ -71,6 +71,7 @@ BFoxHierarchySpace) + BHierarchyBoxChannel. `hierarchy-ux` ~8 + `hierarchy-wb` ~
 
 ## Stop control (METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 1 (H7). Focus ACTIVE.
-- **Gaps closed**: 6 (H1→B584 … H6→B589).
-- **Coverage metric**: 0 / 7.
+- **Open gaps — read-only investigable**: **0** — ALL 7 closed (H1–H7). Focus STOPPED (§8).
+- **Gaps closed**: 7 (H1→B584, H2→B585, H3→B586, H4→B587, H5→B588, H6→B589, H7→B590).
+- **Coverage metric**: 7 / 7 (100%). First corpus use of `guides-clean/Hierarchies/` (32 official files).
+- **Unopened tail (out of engine angle)**: hierarchy-ux/-wb UI (~12 classes); HierarchyServlet; BHierarchyTags.
