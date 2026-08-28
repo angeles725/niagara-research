@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **577 bloques**
+Total: **578 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -582,6 +582,7 @@ Total: **577 bloques**
 | 577 | [niagara-mental-model-bloque577.md](niagara-mental-model-bloque577.md) | Block 577 — The programmatic template API: `NiagaraTemplate` (AutoCloseable façade) over a `TemplateSource` strategy hierarchy — a type-dispatched factory for CREATE vs OPEN, a fail-loud base, and a 5-step `.ntpl` save pipeline (opens what B200 named out-of-scope) |
 | 578 | [niagara-mental-model-bloque578.md](niagara-mental-model-bloque578.md) | Block 578 — `ApplicationTemplateInstaller`: the station-side install/upgrade engine — a module-compatibility gate, then a component-tree swap under a `ReplacingContext` (auto-start off) that clears the old app, installs the new, and preserves handles so relations survive; upgrade saves config first |
 | 579 | [niagara-mental-model-bloque579.md](niagara-mental-model-bloque579.md) | Block 579 — `UpgradeUtil`: the save→remove→deploy→restore upgrade transaction — it captures the template's internal AND external links/relations by HANDLE, does a `Mark`+`DeployToComp` physical bog-tree swap, then restores config + history names + rebuilds relations, excluding BRelation/BHistoryConfig/BPlatformService from the overwrite |
+| 580 | [niagara-mental-model-bloque580.md](niagara-mental-model-bloque580.md) | Block 580 — The template manifest schema: `<template>` + ten child arrays — the declarative index of a `.ntpl`, where `settings`/`links`/`bindings` are typed `Value` entries (num/bool/str/cfg/in/out/px) with req + slotPath + min/max/units — the full grammar behind B200's binding contract |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
