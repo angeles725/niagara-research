@@ -15,16 +15,16 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 1
-gaps_closed: 1
+covered_blocks: 2
+gaps_closed: 2
 known_gaps: 5
-investigable_open: 4
+investigable_open: 3
 requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
 
 focus: template-wb
-status: active (1/5; TW1→B591 DONE; NEXT TW2 Excel import path)
+status: active (2/5; TW1→B591, TW2→B592 DONE; NEXT TW3 application-template wizard)
 seeded_from: AUDIT-FIRST coverage sweep 2026-08-28 (delegated sonnet; B200 §200.6 verified inline)
 seeded_on: 2026-08-28
 gaps_total: 5 investigable (TW1–TW5); honest ceiling ~4-6 blocks (TW4/TW5 may collapse into one tail synthesis)
@@ -54,8 +54,8 @@ BTemplateRelationEditor (~600 L), BTemplatePxEditor (embeds BPxEditorPane → RE
 | Priority | Gap | Scope | Where (`organized/…`) | Status |
 |---|---|---|---|---|
 | high | ~~**TW1 binding editors (Config + IO)**~~ | Config editor = BTable over BConfigBindings (rows=exposed params, save keyed by HANDLE, legacy composite-link migration); IO editor = 3 BTables (I/O bindings + source/io tag panes via TagSupport); UI over same BConfigBinding model as rt/manifest | — | **CLOSED → B591** |
-| high | **TW2 Excel IMPORT path** | BulkDeploy + BulkDeployWorkbook: how a .xlsx is parsed row-by-row into binding values, password decryption, the deploy loop, the "Slot Path Scope" column — B200 §200.6 covered EXPORT only | `template-wb/…/ui/{BulkDeploy,BulkDeployWorkbook}.java` | **NEXT** |
-| medium | **TW3 application-template wizard** | installapp/ (13-class WidgetUiHandler multi-step: backup → compatibility gate → optional-components chooser → install worker) — deploys a BApplicationTemplate with a backup-before-install step | `template-wb/…/ui/installapp/` (13) | open |
+| high | ~~**TW2 Excel IMPORT path**~~ | BulkDeployWorkbook (Closeable POI reader, optionally password-encrypted, doPrivileged) parses per-sheet Input/Output/Config/Relation/Optional/Tag rows→values; BulkDeploy = wizard reusing installapp flow (backup→compat→confirm→install) per sheet; closes export round-trip | — | **CLOSED → B592** |
+| medium | **TW3 application-template wizard** | installapp/ (13-class WidgetUiHandler multi-step: backup → compatibility gate → optional-components chooser → install worker) — deploys a BApplicationTemplate with a backup-before-install step | `template-wb/…/ui/installapp/` (13) | **NEXT** |
 | medium | **TW4 Relation editor** | BTemplateRelationEditor: two-table model (BRelationInfo rows + relate-info pairs); B200 §200.6 does not mention it | `template-wb/…/ui/BTemplateRelationEditor.java` | open (collapsible w/ TW5) |
 | low | **TW5 .ntpl WB file integration** | BWbDeployableNtplFile (how .ntpl shows as deployable in WB nav), BNtplFileMenuAgent (context menu), ExportApplication/ExportConfigsCommand, sidebar nav | `template-wb/…/ui/file/*`, `ui/sidebar/*` | open (collapsible w/ TW4) |
 
@@ -68,6 +68,6 @@ BTemplateRelationEditor (~600 L), BTemplatePxEditor (embeds BPxEditorPane → RE
 
 ## Stop control (METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 4 (TW2–TW5). Focus ACTIVE.
-- **Gaps closed**: 1 (TW1→B591).
+- **Open gaps — read-only investigable**: 3 (TW3–TW5). Focus ACTIVE.
+- **Gaps closed**: 2 (TW1→B591, TW2→B592).
 - **Coverage metric**: 0 / 5.
