@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **560 bloques**
+Total: **561 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -565,6 +565,7 @@ Total: **560 bloques**
 | 560 | [niagara-mental-model-bloque560.md](niagara-mental-model-bloque560.md) | Block 560 — Remote access to a Niagara station over a Cloudflare Tunnel (`cloudflared`): what "connect + program" actually requires, the two tiers (browser HTTP vs Workbench TCP), and the mandatory security posture |
 | 561 | [niagara-mental-model-bloque561.md](niagara-mental-model-bloque561.md) | Block 561 — `BCategoryService` runtime: category enforcement is ORD-PREFIX inheritance recomputed on a 60 s periodic daemon over a fixed 256-slot space — not a live tree walk, and the cap is 256 (not 64) |
 | 562 | [niagara-mental-model-bloque562.md](niagara-mental-model-bloque562.md) | Block 562 — The password-encoder chain: N4 splits credentials into HASHED (login, one-way PBKDF2-HMAC-SHA256, 10k iterations) vs ENCRYPTED (replayable secrets, reversible AES-256) — the fork is `isReversible`, and the login iteration count is low by modern guidance |
+| 563 | [niagara-mental-model-bloque563.md](niagara-mental-model-bloque563.md) | Block 563 — The SecurityDashboard contributor SPI: an in-station PULL aggregation where each subsystem self-reports its posture as localized items on a 4-level status (info/ok/warning/alert) — the framework side of what [Block 112] saw as a consumer |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
