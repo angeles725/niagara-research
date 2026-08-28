@@ -17,16 +17,16 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 7
-gaps_closed: 7
+covered_blocks: 8
+gaps_closed: 8
 known_gaps: 10
-investigable_open: 3
+investigable_open: 2
 requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
 
 focus: provisioning
-status: active (7/10; PV1→B567 … PV7→B573 DONE; NEXT PV8 credentials batch management)
+status: active (8/10; PV1→B567 … PV8→B574 DONE; NEXT PV9 license management chain)
 seeded_from: AUDIT-FIRST coverage sweep 2026-08-28 (delegated sonnet; pre-flight verified inline)
 seeded_on: 2026-08-28
 gaps_total: 10 investigable (PV1–PV10)
@@ -70,8 +70,8 @@ module and no `javax/baja/provisioning` package (confirmed absent).
 | medium-high | ~~**PV5 async-action protocol**~~ | correlation-id async RPC on Fox topics (makeInvokeId→asyncActionComplete→BAsyncActionEvent result/error); inherited by Software/Template/License/Backup StationExts; distinct from BJob (network-wide vs per-op) | — | **CLOSED → B571** |
 | medium | ~~**PV6 BProvisioningRobot permission masking**~~ | robot = arbitrary Program (B541) run per-subordinate via BProgramService.runRobot; getPermissions masks non-super to READ-ONLY (super-user-only authoring); residual risk = station program.requireSigning posture | — | **CLOSED → B572** |
 | medium | ~~**PV7 template deployment pipeline**~~ | fleet wrapper over generic `template` module (BulkDeployUtil.installTemplateToStation); .ntpl in ^templateCache; Template vs Application flavors; BTemplateStationExt async | — | **CLOSED → B573** |
-| medium | **PV8 credentials batch management** | BSetPlatformCredentialsJobStep/BAddStationUserStep/BSetStationConnectionCredentialsStep — how creds are encrypted, transmitted via daemon session, persisted | `provisioningNiagara-wb/…/credentials/` (7) + `systempassphrase/` | **NEXT** |
-| low-medium | **PV9 license management chain** | BSupervisorLicenses/BLicenseStationExt/BUpdateLicensesJobStep — portal → supervisor DB → subordinate; BConvertToPerpetualLicenseModeJobStep | `provisioningNiagara-wb/…/license/` (5) + public API | open |
+| medium | ~~**PV8 credentials batch management**~~ | drives BOTH stores (station users via BUserService+AC1 policy / platform daemon users) + reversible connection BPassword (doPrivileged decode) + system passphrase (privileged, BPasswordStrength-checked); no batch shortcut | — | **CLOSED → B574** |
+| low-medium | **PV9 license management chain** | BSupervisorLicenses/BLicenseStationExt/BUpdateLicensesJobStep — portal → supervisor DB → subordinate; BConvertToPerpetualLicenseModeJobStep | `provisioningNiagara-wb/…/license/` (5) + public API | **NEXT** |
 | low | **PV10 ux RPC surface** | BProvisioningNiagaraRpcUtil @NiagaraRpc methods over BOX + BUx*Factory step-builder pattern + BNiagaraNetworkUxJobBuilder AgentOn entry | `provisioningNiagara-ux/…/ux/BProvisioningNiagaraRpcUtil.java` | open |
 
 ## Proven-absent / notes
@@ -85,7 +85,7 @@ module and no `javax/baja/provisioning` package (confirmed absent).
 
 ## Stop control (METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 3 (PV8–PV10). Focus ACTIVE.
-- **Gaps closed**: 7 (PV1→B567 … PV7→B573).
+- **Open gaps — read-only investigable**: 2 (PV9–PV10). Focus ACTIVE.
+- **Gaps closed**: 8 (PV1→B567 … PV8→B574).
 - **requires-execution / blocked**: 0.
 - **Coverage metric**: 0 / 10.
