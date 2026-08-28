@@ -15,16 +15,16 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 2
-gaps_closed: 2
+covered_blocks: 3
+gaps_closed: 3
 known_gaps: 5
-investigable_open: 3
+investigable_open: 2
 requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
 
 focus: sys-transfer
-status: active (2/5; ST1→B595, ST2→B596 DONE; NEXT ST3 component strategies)
+status: active (3/5; ST1→B595, ST2→B596, ST3→B597 DONE; NEXT ST4 file strategies + results)
 seeded_from: direct seed (structure self-evident) + prior-coverage reconciliation 2026-08-28
 seeded_on: 2026-08-28
 gaps_total: 5 investigable (ST1–ST5)
@@ -53,8 +53,8 @@ TransferArtifact}` (WB cut/copy/paste), `box/util/PasteRecord`, `fox/sys/broker/
 |---|---|---|---|---|
 | high | ~~**ST1 strategy factory + dispatch**~~ | make(action=COPY16/MOVE32, Mark[values+names], target); makeImpl dispatches by target-type then source-space×action; same-space MOVE→IntraCompSpaceMove(fw113), remote→RemoteIntraSpace, cross→CompToComp, BIDeployable→DeployToComp; one router for all transfer | — | **CLOSED → B595** |
 | high | ~~**ST2 DeployToComp + ReplacingContext**~~ | deploy is POLYMORPHIC (BIDeployable.getSteps supplies steps, strategy drives them; exact=TRUE for .ntpl); ReplacingContext IS the handle-preservation primitive (addAllHandles→restoreHandles), the mechanism B578/B579 relied on | — | **CLOSED → B596** |
-| medium | **ST3 component strategies** | CompToComp (copy/move within/between component spaces), IntraCompSpaceMove (reorder/move in-space), CompToBog (component→bog export), ToNavFolder, DeleteOp | `CompToComp.java`, `IntraCompSpaceMove.java`, `CompToBog.java`, `ToNavFolder.java`, `DeleteOp.java` | **NEXT** |
-| medium | **ST4 file strategies + results** | FileToFile/FileToComp/IntraFileSpaceMove (file-space transfers), TransferResult/CompTransferResult (outcome), TransferListener (progress/hook) | `File*.java`, `IntraFileSpaceMove.java`, `TransferResult.java`, `CompTransferResult.java`, `TransferListener.java` | open |
+| medium | ~~**ST3 component strategies**~~ | CompToComp (copy/move by copySource flag, cross-space); IntraCompSpaceMove (same-space re-parent, identity-preserving); CompToBog (export to fresh in-memory bog); ToNavFolder (nav bookmarks); DeleteOp (niagaraRemoveLinks facet) | — | **CLOSED → B597** |
+| medium | **ST4 file strategies + results** | FileToFile/FileToComp/IntraFileSpaceMove (file-space transfers), TransferResult/CompTransferResult (outcome), TransferListener (progress/hook) | `File*.java`, `IntraFileSpaceMove.java`, `TransferResult.java`, `CompTransferResult.java`, `TransferListener.java` | **NEXT** |
 | medium | **ST5 remote transfer + WB consumer** | RemoteIntraSpace/RemoteTransferSpace (cross-station cut/paste), fox TransferCodec wire, and the Workbench consumer (TransferUtil/TransferArtifact) that turns clipboard/drag-drop into a strategy | `Remote*.java` + `fox/…/TransferCodec.java` + `workbench-wb/…/transfer/{TransferUtil,TransferArtifact}.java` | open |
 
 ## Proven-absent / notes
@@ -64,6 +64,6 @@ TransferArtifact}` (WB cut/copy/paste), `box/util/PasteRecord`, `fox/sys/broker/
 
 ## Stop control (METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 3 (ST3–ST5). Focus ACTIVE.
-- **Gaps closed**: 2 (ST1→B595, ST2→B596).
+- **Open gaps — read-only investigable**: 2 (ST4,ST5). Focus ACTIVE.
+- **Gaps closed**: 3 (ST1→B595, ST2→B596, ST3→B597).
 - **Coverage metric**: 0 / 5.

@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **594 bloques**
+Total: **595 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -599,6 +599,7 @@ Total: **594 bloques**
 | 594 | [niagara-mental-model-bloque594.md](niagara-mental-model-bloque594.md) | Block 594 — The template-wb tail: the Relation editor completes the Config/IO/Relation authoring trio, and a `.ntpl` is a first-class Workbench file — deployable from the browser (`BWbDeployableNtplFile`), with a Templates sidebar offering Find-Usages and Make-Module — closing the template-wb focus |
 | 595 | [niagara-mental-model-bloque595.md](niagara-mental-model-bloque595.md) | Block 595 — `TransferStrategy`: the strategy-pattern factory behind ALL component/file transfer — one `make(action, Mark, target)` call dispatches by target type then source-space×action to the right concrete strategy, which is why Workbench cut/copy/paste, drag-drop, and template deploy all funnel through one engine |
 | 596 | [niagara-mental-model-bloque596.md](niagara-mental-model-bloque596.md) | Block 596 — `DeployToComp` + `ReplacingContext`: deploy is polymorphic (the `BIDeployable` supplies its own steps; the strategy just drives them), and `ReplacingContext` IS the handle-preservation primitive — it captures the old subtree's handles and restores them onto the replacement, the mechanism B578/B579 relied on |
+| 597 | [niagara-mental-model-bloque597.md](niagara-mental-model-bloque597.md) | Block 597 — The component transfer strategies: copy-vs-move is a flag on `CompToComp`, a same-space move is specialized to an identity-preserving re-parent (`IntraCompSpaceMove`), `CompToBog` exports to a fresh in-memory bog, `ToNavFolder` organizes bookmarks, and `DeleteOp` deletes with a link-cleanup facet |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
