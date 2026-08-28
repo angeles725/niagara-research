@@ -18,16 +18,16 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 1
-gaps_closed: 1
+covered_blocks: 2
+gaps_closed: 2
 known_gaps: 7
-investigable_open: 6
+investigable_open: 5
 requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
 
 focus: template
-status: active (1/7; T1→B577 DONE; NEXT T2 ApplicationTemplateInstaller)
+status: active (2/7; T1→B577, T2→B578 DONE; NEXT T5 UpgradeUtil transfer internals)
 seeded_from: AUDIT-FIRST coverage sweep 2026-08-28 (delegated sonnet; B200 coverage verified inline)
 seeded_on: 2026-08-28
 gaps_total: 7 investigable (T1–T7)
@@ -63,8 +63,8 @@ POI wrapper (`com/tridium/excel/impl/`, ~20) loaded reflectively — NO template
 | Priority | Gap | Scope | Where (`organized/…`) | Status |
 |---|---|---|---|---|
 | high | ~~**T1 api/impl TemplateSource strategy**~~ | NiagaraTemplate AutoCloseable façade + fail-loud TemplateSource strategy base (17 in api/impl); factory type-dispatch CREATE vs OPEN(Combined); 5-step .ntpl save pipeline | — | **CLOSED → B577** |
-| high | **T2 ApplicationTemplateInstaller** | station-side install/upgrade: reads the .ntpl, applies to the component tree via ReplacingContext, handles componentsToBeRemoved (NameTree) — the install path B200 excluded | `template-rt/…/application/{ApplicationTemplateInstaller,ApplicationTemplateUtil,BApplicationInstallSpecs}.java` | **NEXT** |
-| high | **T5 UpgradeUtil transfer internals** | UpgradeUtil.upgrade Mark/DeployToComp transfer layer (physical bog-tree move) + rebuildRelations cross-template dependency preservation + save-data contract for bound slots — B200 §200.7 excluded Mark/DeployToComp | `template-rt/…/UpgradeUtil.java` | open |
+| high | ~~**T2 ApplicationTemplateInstaller**~~ | module-compat gate (missing=hard fail), ReplacingContext swap (auto-start off) clear+install preserving handles (relations survive); install vs upgrade (config-save + optional diff); passwordNote | — | **CLOSED → B578** |
+| high | **T5 UpgradeUtil transfer internals** | UpgradeUtil.upgrade Mark/DeployToComp transfer layer (physical bog-tree move) + rebuildRelations cross-template dependency preservation + save-data contract for bound slots — B200 §200.7 excluded Mark/DeployToComp | `template-rt/…/UpgradeUtil.java` | **NEXT** |
 | medium | **T3 manifest XML grammar** | full template-manifest.xml grammar: root attrs + child elements (settings/links/bindings/resources/subtemplates/tags/dependencies/revisions/optionals) + Value attrs; deepens B200 §200.3 binding contract | `template-rt/…/manifest/{ManifestXMLReader,ManifestXMLWriter,TemplateManifest,TemplateFileSpec}.java` + guide `guides-clean/Templates/ExampleTemplate.manifest*` | open |
 | medium | **T4 subtemplate composition** | subtemplate nesting: TemplateManifest.Subtemplate[], how a parent tracks children + propagation when a subtemplate changes | `template-rt/…/manifest/TemplateManifest.java` + guide `guides-clean/Templates/UpdatingParentTemplate*` | open |
 | medium | **T6 BTemplateChannel wire** | the upgradeTemplate Fox circuit wire (request deployedSlotPath, streamed running→complete/failed/canceled job events); deepens B200 §200.4 existence-only | `template-rt/…/BTemplateChannel.java` | open |
@@ -80,7 +80,7 @@ POI wrapper (`com/tridium/excel/impl/`, ~20) loaded reflectively — NO template
 
 ## Stop control (METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 6 (T2–T7). Focus ACTIVE.
-- **Gaps closed**: 1 (T1→B577).
+- **Open gaps — read-only investigable**: 5 (T3–T7). Focus ACTIVE.
+- **Gaps closed**: 2 (T1→B577, T2→B578).
 - **requires-execution / blocked**: 0.
 - **Coverage metric**: 0 / 7.

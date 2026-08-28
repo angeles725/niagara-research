@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **575 bloques**
+Total: **576 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -580,6 +580,7 @@ Total: **575 bloques**
 | 575 | [niagara-mental-model-bloque575.md](niagara-mental-model-bloque575.md) | Block 575 — License distribution: the supervisor collects each subordinate's license summary by Host ID, fetches updates from the online Tridium portal OR the local license database (brand-gated), and pushes them back — licenses ride the software-installable inventory, and the objects are the DSA-signed vendor licenses of the PKI thread |
 | 576 | [niagara-mental-model-bloque576.md](niagara-mental-model-bloque576.md) | Block 576 — The provisioning ux/BOX RPC surface: five `permissions="unrestricted"` `@NiagaraRpc` methods that SELF-GATE on object-level `hasOperatorRead` — "unrestricted" means invocable, not ungated — closing the provisioning focus (and correcting the audit's ux class count) |
 | 577 | [niagara-mental-model-bloque577.md](niagara-mental-model-bloque577.md) | Block 577 — The programmatic template API: `NiagaraTemplate` (AutoCloseable façade) over a `TemplateSource` strategy hierarchy — a type-dispatched factory for CREATE vs OPEN, a fail-loud base, and a 5-step `.ntpl` save pipeline (opens what B200 named out-of-scope) |
+| 578 | [niagara-mental-model-bloque578.md](niagara-mental-model-bloque578.md) | Block 578 — `ApplicationTemplateInstaller`: the station-side install/upgrade engine — a module-compatibility gate, then a component-tree swap under a `ReplacingContext` (auto-start off) that clears the old app, installs the new, and preserves handles so relations survive; upgrade saves config first |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
