@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **552 bloques**
+Total: **553 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -557,6 +557,7 @@ Total: **552 bloques**
 | 552 | [niagara-mental-model-bloque552.md](niagara-mental-model-bloque552.md) | Block 552 — The control-point alarm + history extension chain: BAlarmSourceExt + the offnormal-algorithm family, interval-vs-COV history, and the confirmation that alarms are notification-only |
 | 553 | [niagara-mental-model-bloque553.md](niagara-mental-model-bloque553.md) | Block 553 — N4 real-time / push transports consolidated (API10): Fox, BOX (HTTP-poll v1 + WebSocket-push v2), WebSocket — and Server-Sent Events PROVEN-ABSENT |
 | 554 | [niagara-mental-model-bloque554.md](niagara-mental-model-bloque554.md) | Block 554 — The BOX fragment/mux protocol in detail: the `F;2.3;…` wire format, the fragmentation/reassembly engine, and the `u`/`r` push-vs-response marker (deepens B512) |
+| 555 | [niagara-mental-model-bloque555.md](niagara-mental-model-bloque555.md) | Block 555 — Reference: a multi-user live dashboard on N4 — the recommended API stack, the read/write split, and the multi-user pitfalls (API11, applied guide) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
