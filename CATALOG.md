@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **563 bloques**
+Total: **564 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -568,6 +568,7 @@ Total: **563 bloques**
 | 563 | [niagara-mental-model-bloque563.md](niagara-mental-model-bloque563.md) | Block 563 — The SecurityDashboard contributor SPI: an in-station PULL aggregation where each subsystem self-reports its posture as localized items on a 4-level status (info/ok/warning/alert) — the framework side of what [Block 112] saw as a consumer |
 | 564 | [niagara-mental-model-bloque564.md](niagara-mental-model-bloque564.md) | Block 564 — The audit-trail wiring: two parallel channels (config `AuditEvent` with a full old→new diff, security `SecurityAuditEvent` login-centric) through a PLUGGABLE `Sys.getAuditor()` singleton, landing in history-rt — rich content, but presence-gated and (per B393) tamper-evident-free |
 | 565 | [niagara-mental-model-bloque565.md](niagara-mental-model-bloque565.md) | Block 565 — `BRoleHierarchies`: the mixin that tags every role with a set of custom-hierarchy names — the seam where RBAC roles scope which navigation hierarchies a user sees |
+| 566 | [niagara-mental-model-bloque566.md](niagara-mental-model-bloque566.md) | Block 566 — `UserMonitor` + `BUserEvent`: the reactive user-space hook — a `userEvent` topic fires typed add/remove/rename/modify events, and the supervisor's user-replication device-ext is the real consumer (closes the access-control focus) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

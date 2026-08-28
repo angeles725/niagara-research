@@ -1,4 +1,4 @@
-# RESEARCH-STATE — focus: access-control (ACTIVE)
+# RESEARCH-STATE — focus: access-control (STOPPED)
 
 > Multi-focus corpus (METHODOLOGY §16). SEEDED by an AUDIT-FIRST coverage sweep (§13) on 2026-08-28 (delegated
 > sonnet, verified inline) that mapped the N4 RBAC/authorization subsystem against the corpus and separated
@@ -17,20 +17,20 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 7
-gaps_closed: 7
+covered_blocks: 8
+gaps_closed: 8
 known_gaps: 8
-investigable_open: 1
+investigable_open: 0
 requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
 
 focus: access-control
-status: active (7/8; AC1→B558, AC2→B559, AC3→B561, AC4→B562, AC5→B563, AC6→B564, AC7→B565 DONE; NEXT AC8 UserMonitor+BUserEvent). Note: B560 = cloudflared runbook (document-mode, not a gap).
+status: stopped (8/8, investigable=0; AC1→B558 … AC8→B566). B560 = cloudflared runbook (document-mode). §18 retro pending.. Note: B560 = cloudflared runbook (document-mode, not a gap).
 seeded_from: AUDIT-FIRST coverage sweep 2026-08-28 (delegated sonnet; pre-flight + AC1 verified inline)
 seeded_on: 2026-08-28
 gaps_total: 8 investigable (AC1–AC8)
-gaps_closed: 0
+gaps_closed: 8
 block_prefix: niagara-mental-model-bloqueN.md (shared global numbering)
 
 ## Class surface (audit, source-confirmed)
@@ -66,7 +66,7 @@ BUserPasswordConfiguration). Out of scope: `security.crypto` (8) + `authn` (12, 
 | medium | ~~**AC5 SecurityDashboard SPI**~~ | 2-level provider SPI (ItemProvider/Provider/Agent), 4-level status, versioned-JSON aggregate, broadly adopted (email/web/orion/program/bacnet-SC/mqtt) | — | **CLOSED → B563** |
 | medium | ~~**AC6 audit-trail wiring**~~ | two channels (AuditEvent diff / SecurityAuditEvent login) via pluggable Sys.getAuditor() singleton (null=silent); sink=history-rt; rich but tamper-evident-free (B393) | — | **CLOSED → B564** |
 | medium | ~~**AC7 BRoleHierarchies mixin**~~ | BIMixIn @AgentOn baja:IRole auto-attached to every role; stores comma-set of hierarchy names; seam = roles scope custom nav trees (orthogonal to category visibility) | — | **CLOSED → B565** |
-| low | **AC8 UserMonitor + BUserEvent** | framework hooks for reactive RBAC (userEvent topic on BUser slot changes; cache invalidation on role change) | `baja/…/javax/baja/user/UserMonitor.java`, `BUserEvent.java` | **NEXT** |
+| low | ~~**AC8 UserMonitor + BUserEvent**~~ | userEvent topic + typed BUserEvent (added/removed/renamed/modified); real consumer = supervisor user replication (BNiagaraUserDeviceExt) | — | **CLOSED → B566** |
 
 ## Proven-absent / notes
 
@@ -77,7 +77,8 @@ BUserPasswordConfiguration). Out of scope: `security.crypto` (8) + `authn` (12, 
 
 ## Stop control (METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 8 (AC1–AC8). Focus ACTIVE.
-- **Gaps closed**: 0.
+- **Open gaps — read-only investigable**: **0** — ALL 8 closed (AC1–AC8). Focus STOPPED (§8).
+- **Gaps closed**: 8 (AC1→B558, AC2→B559, AC3→B561, AC4→B562, AC5→B563, AC6→B564, AC7→B565, AC8→B566).
 - **requires-execution / blocked**: 0.
-- **Coverage metric**: 0 / 8.
+- **Coverage metric**: 8 / 8 (100%). Plus B560 (cloudflared remote-access runbook, document-mode).
+- **Child gaps surfaced (named, out-of-scope)**: hierarchy subsystem proper (BHierarchy/BHierarchyService, candidate focus); at-rest EncryptionKeySource enum ([B393]/[B466]); BAuditHistoryService record schema ([B8]).
