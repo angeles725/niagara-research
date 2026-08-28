@@ -17,16 +17,16 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 6
-gaps_closed: 6
+covered_blocks: 7
+gaps_closed: 7
 known_gaps: 8
-investigable_open: 2
+investigable_open: 1
 requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
 
 focus: access-control
-status: active (6/8; AC1→B558, AC2→B559, AC3→B561, AC4→B562, AC5→B563, AC6→B564 DONE; NEXT AC7 BRoleHierarchies mixin). Note: B560 = cloudflared runbook (document-mode, not a gap).
+status: active (7/8; AC1→B558, AC2→B559, AC3→B561, AC4→B562, AC5→B563, AC6→B564, AC7→B565 DONE; NEXT AC8 UserMonitor+BUserEvent). Note: B560 = cloudflared runbook (document-mode, not a gap).
 seeded_from: AUDIT-FIRST coverage sweep 2026-08-28 (delegated sonnet; pre-flight + AC1 verified inline)
 seeded_on: 2026-08-28
 gaps_total: 8 investigable (AC1–AC8)
@@ -65,8 +65,8 @@ BUserPasswordConfiguration). Out of scope: `security.crypto` (8) + `authn` (12, 
 | medium | ~~**AC4 password encoder chain**~~ | 10 encoders, two families: HASHED (PBKDF2 10k iter, login, one-way) vs ENCRYPTED (AES-256 reversible, replayable); fork=isReversible; plain.1 risk; 10k iter low | — | **CLOSED → B562** |
 | medium | ~~**AC5 SecurityDashboard SPI**~~ | 2-level provider SPI (ItemProvider/Provider/Agent), 4-level status, versioned-JSON aggregate, broadly adopted (email/web/orion/program/bacnet-SC/mqtt) | — | **CLOSED → B563** |
 | medium | ~~**AC6 audit-trail wiring**~~ | two channels (AuditEvent diff / SecurityAuditEvent login) via pluggable Sys.getAuditor() singleton (null=silent); sink=history-rt; rich but tamper-evident-free (B393) | — | **CLOSED → B564** |
-| medium | **AC7 BRoleHierarchies mixin** | `@AgentOn(baja:IRole)` mixin assigning hierarchy names to a role — RBAC↔hierarchy seam, undocumented | `hierarchy/hierarchy-rt/vineflower/javax/baja/hierarchy/BRoleHierarchies.java` | **NEXT** |
-| low | **AC8 UserMonitor + BUserEvent** | framework hooks for reactive RBAC (userEvent topic on BUser slot changes; cache invalidation on role change) | `baja/…/javax/baja/user/UserMonitor.java`, `BUserEvent.java` | open |
+| medium | ~~**AC7 BRoleHierarchies mixin**~~ | BIMixIn @AgentOn baja:IRole auto-attached to every role; stores comma-set of hierarchy names; seam = roles scope custom nav trees (orthogonal to category visibility) | — | **CLOSED → B565** |
+| low | **AC8 UserMonitor + BUserEvent** | framework hooks for reactive RBAC (userEvent topic on BUser slot changes; cache invalidation on role change) | `baja/…/javax/baja/user/UserMonitor.java`, `BUserEvent.java` | **NEXT** |
 
 ## Proven-absent / notes
 
