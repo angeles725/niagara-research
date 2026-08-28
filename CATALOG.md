@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **543 bloques**
+Total: **544 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -548,6 +548,7 @@ Total: **543 bloques**
 | 543 | [niagara-mental-model-bloque543.md](niagara-mental-model-bloque543.md) | Block 543 — HVAC control-logic SAFETY / fail-safe analysis: the five defensive layers, and the six default-UNSAFE gaps an engineer must close |
 | 544 | [niagara-mental-model-bloque544.md](niagara-mental-model-bloque544.md) | Block 544 — The priority-array WRITE path end-to-end: link → InN → arbitration → proxyExt → driver wire, and how the N4 16-level array maps onto the BACnet WriteProperty priority (but collapses for Modbus) |
 | 545 | [niagara-mental-model-bloque545.md](niagara-mental-model-bloque545.md) | Block 545 — Composites at the code level: a promoted slot is a Knob-backed mirror of a child slot, confirming "each exposed slot is a link" |
+| 546 | [niagara-mental-model-bloque546.md](niagara-mental-model-bloque546.md) | Block 546 — honIrmControl per-FB catalog: 140 factory FBs across 22 packages, and the HARDWARE-OFFLOAD execution model that makes it the fourth (and only device-executed) control ecosystem |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
