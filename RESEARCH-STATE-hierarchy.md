@@ -16,16 +16,16 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 1
-gaps_closed: 1
+covered_blocks: 2
+gaps_closed: 2
 known_gaps: 7
-investigable_open: 6
+investigable_open: 5
 requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
 
 focus: hierarchy
-status: active (1/7; H1→B584 DONE; NEXT H2 caching architecture)
+status: active (2/7; H1→B584, H2→B585 DONE; NEXT H3 scope + parallel executor)
 seeded_from: AUDIT-FIRST coverage sweep 2026-08-28 (delegated sonnet; B5/B565/B387 verified inline)
 seeded_on: 2026-08-28
 gaps_total: 7 investigable (H1–H7)
@@ -55,8 +55,8 @@ BFoxHierarchySpace) + BHierarchyBoxChannel. `hierarchy-ux` ~8 + `hierarchy-wb` ~
 | Priority | Gap | Scope | Where (`organized/…` + `guides-clean/Hierarchies/`) | Status |
 |---|---|---|---|---|
 | high | ~~**H1 level-definition model**~~ | hierarchy = tree of BLevelDefs (root BHierarchy is one); getElements(parent,cx) per level; 2 axes GROUP (tag/list folders) vs ENTITY (query/relation leaves); doc-corroborated | — | **CLOSED → B584** |
-| high | **H2 caching architecture** | HierarchyCacheBuilder.buildCache (processEntityDef recursion, 2 grouping strategies, BCategoryMask propagation), fw(1300–1304) server-cache protocol, BHierarchyCachingJob (BSimpleJob), sys props (caching.disabled/disableOnStationStarted) | `com/tridium/hierarchy/{HierarchyCacheBuilder,BHierarchyCachingJob}.java`, `javax/baja/hierarchy/BHierarchy.java` + `CachingHierarchies*` | **NEXT** |
-| high | **H3 scope + parallel executor** | BHierarchyScope (scopeOrd)/BHierarchyScopeContainer, license scope gate (local/system), QueryUtil ForkJoinPool (niagara.hierarchy.threadsPerCPU default 8), resolveQueryOnScopes fan-out+merge | `javax/baja/hierarchy/{BHierarchyScope,BHierarchyScopeContainer}.java`, `BHierarchyService.java`, `com/tridium/hierarchy/QueryUtil.java` + `HierarchyScopes*` | open |
+| high | ~~**H2 caching architecture**~~ | optional job-built tree materialization; buildCache gathering→processEntityDef (2 strategies via includeGroupingQueries); BCategoryMask baked up ancestors; cacheStatus/cacheOnStationStarted + 2 kill-switch sysprops + SystemDb exclusion; no auto-invalidation | — | **CLOSED → B585** |
+| high | **H3 scope + parallel executor** | BHierarchyScope (scopeOrd)/BHierarchyScopeContainer, license scope gate (local/system), QueryUtil ForkJoinPool (niagara.hierarchy.threadsPerCPU default 8), resolveQueryOnScopes fan-out+merge | `javax/baja/hierarchy/{BHierarchyScope,BHierarchyScopeContainer}.java`, `BHierarchyService.java`, `com/tridium/hierarchy/QueryUtil.java` + `HierarchyScopes*` | **NEXT** |
 | medium | **H4 BHierarchyScheme ORD resolution** | "hierarchy:/Name/seg…" parse via HierarchyQuery, dispatch local vs BFoxHierarchySpace, entity-vs-grouping last-segment detection, leaf → station component | `javax/baja/hierarchy/{BHierarchyScheme,HierarchyQuery,BHierarchySpace}.java` | open |
 | medium | **H5 on-demand tree gen + contextParams** | MakeElemUtil factories (makeHierarchy/Entity/Group/ListElem), contextParams BFacets (levelDefPath/childPredicate/groupingBase/entityOrd/hierarchyOrd) as filter-state thread; getChildElems on-demand vs fw(1302) cached | `com/tridium/hierarchy/{MakeElemUtil,HierarchyUtil}.java`, `BHierarchyService.java`, `javax/baja/hierarchy/BLevelElem.java` + `ContextParameters*` | open |
 | medium | **H6 permission enforcement in the tree** | BCategoryMask propagation through grouping ancestors (setElemAndAncestorPermissions), fw(1302) per-user filter (hasOperatorRead), category-visibility vs role-hierarchies orthogonality | `com/tridium/hierarchy/HierarchyCacheBuilder.java`, `javax/baja/hierarchy/BLevelElem.java` + `Permissions*` (cross-ref B565/B561) | open |
@@ -71,6 +71,6 @@ BFoxHierarchySpace) + BHierarchyBoxChannel. `hierarchy-ux` ~8 + `hierarchy-wb` ~
 
 ## Stop control (METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 6 (H2–H7). Focus ACTIVE.
-- **Gaps closed**: 1 (H1→B584).
+- **Open gaps — read-only investigable**: 5 (H3–H7). Focus ACTIVE.
+- **Gaps closed**: 2 (H1→B584, H2→B585).
 - **Coverage metric**: 0 / 7.
