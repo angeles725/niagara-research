@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **580 bloques**
+Total: **581 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -585,6 +585,7 @@ Total: **580 bloques**
 | 580 | [niagara-mental-model-bloque580.md](niagara-mental-model-bloque580.md) | Block 580 — The template manifest schema: `<template>` + ten child arrays — the declarative index of a `.ntpl`, where `settings`/`links`/`bindings` are typed `Value` entries (num/bool/str/cfg/in/out/px) with req + slotPath + min/max/units — the full grammar behind B200's binding contract |
 | 581 | [niagara-mental-model-bloque581.md](niagara-mental-model-bloque581.md) | Block 581 — Subtemplate composition: templates nest by CONTAINMENT (a subtemplate is a deployed `BTemplateConfig` subtree inside the parent), the manifest `<subtemplates>` array records child identity, and a parent upgrade cascades depth-first, re-deploying only version-stale children |
 | 582 | [niagara-mental-model-bloque582.md](niagara-mental-model-bloque582.md) | Block 582 — `BTemplateChannel`: a single-command Fox channel ("template") whose one circuit `upgradeTemplate` takes a `deployedSlotPath`, runs the UpgradeUtil job server-side, and STREAMS job-event "running" messages to a terminal complete/failed/canceled/error |
+| 583 | [niagara-mental-model-bloque583.md](niagara-mental-model-bloque583.md) | Block 583 — Template file resolution & staging: `TemplateManager` is a singleton that resolves a template by name/uID+vendor across THREE directories in priority order (user → module → application), and a `memory:` ORD scheme backs an in-memory file space for staging — closing the template focus |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
