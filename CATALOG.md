@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **557 bloques**
+Total: **558 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -562,6 +562,7 @@ Total: **557 bloques**
 | 557 | [niagara-mental-model-bloque557.md](niagara-mental-model-bloque557.md) | Block 557 — The two JVM control-engine schedulers decompiled: Eagle's Clock-timer scan vs Honeywell's dedicated-thread Sequenced Control Engine — completing the four-ecosystem execution model (locates the engine B542 could not find) |
 | 558 | [niagara-mental-model-bloque558.md](niagara-mental-model-bloque558.md) | Block 558 — N4 password-policy enforcement IS built-in: `BPasswordStrength` (an `IPropertyValidator`) wired through `BPasswordAuthenticator.checkPassword()` — correcting Block 11 §11.3.5 ("complexity NO built-in") |
 | 559 | [niagara-mental-model-bloque559.md](niagara-mental-model-bloque559.md) | Block 559 — `BUserPrototypes`: the built-in user-templating subsystem for auto-provisioning (LDAP/SAML) — per-property `overridable` locks + a merge policy whose defaults are security-conservative for everything EXCEPT roles (which UNIONS) |
+| 560 | [niagara-mental-model-bloque560.md](niagara-mental-model-bloque560.md) | Block 560 — Remote access to a Niagara station over a Cloudflare Tunnel (`cloudflared`): what "connect + program" actually requires, the two tiers (browser HTTP vs Workbench TCP), and the mandatory security posture |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
