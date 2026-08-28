@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **586 bloques**
+Total: **587 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -591,6 +591,7 @@ Total: **586 bloques**
 | 586 | [niagara-mental-model-bloque586.md](niagara-mental-model-bloque586.md) | Block 586 — Hierarchy scopes and the parallel executor: a hierarchy queries a set of scope ORDs (local subtree or cross-station), the `hierarchy` license gates scope KINDS by two flags (local/system), and `QueryUtil` fans each scope's NEQL across a dedicated ForkJoinPool sized CPUs × 8 by default |
 | 587 | [niagara-mental-model-bloque587.md](niagara-mental-model-bloque587.md) | Block 587 — The `hierarchy:` ORD scheme: a `BSpaceScheme` whose body is a slash-path (`/Hierarchy/seg/seg…`) resolved level-by-level — a grouping segment resolves to a `BLevelElem`, an escaped `station:|` leaf resolves to the REAL component — dispatched local or cross-station |
 | 588 | [niagara-mental-model-bloque588.md](niagara-mental-model-bloque588.md) | Block 588 — Stateless hierarchy navigation: every `BLevelElem` carries a `contextParams` BFacets that ACCUMULATES the NEQL filter down the tree, so expanding a node re-runs its query on-demand (or walks the cache) with no server session state — `MakeElemUtil` is the factory that threads the filter |
+| 589 | [niagara-mental-model-bloque589.md](niagara-mental-model-bloque589.md) | Block 589 — Permission enforcement in the nav tree: each entity's applied `BCategoryMask` is baked onto its `BLevelElem` and OR-propagated UP to group ancestors, then read-time `fw(1302)` filters children per-user by `hasOperatorRead` — category-visibility (AC3), orthogonal to the role-hierarchy scoping (B565) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

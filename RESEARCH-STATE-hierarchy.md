@@ -16,16 +16,16 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 5
-gaps_closed: 5
+covered_blocks: 6
+gaps_closed: 6
 known_gaps: 7
-investigable_open: 2
+investigable_open: 1
 requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
 
 focus: hierarchy
-status: active (5/7; H1→B584 … H5→B588 DONE; NEXT H6 permission enforcement in the tree)
+status: active (6/7; H1→B584 … H6→B589 DONE; NEXT H7 transport BOX+Fox)
 seeded_from: AUDIT-FIRST coverage sweep 2026-08-28 (delegated sonnet; B5/B565/B387 verified inline)
 seeded_on: 2026-08-28
 gaps_total: 7 investigable (H1–H7)
@@ -59,8 +59,8 @@ BFoxHierarchySpace) + BHierarchyBoxChannel. `hierarchy-ux` ~8 + `hierarchy-wb` ~
 | high | ~~**H3 scope + parallel executor**~~ | scope=BOrd (local subtree or cross-station); license 2 flags local/system (neither→configFatal, unlicensed dropped); QueryUtil dedicated ForkJoinPool CPUs×8 default (2 sysprop knobs); resolveQueryOnScopes parallel per-scope+merge | — | **CLOSED → B586** |
 | medium | ~~**H4 BHierarchyScheme ORD resolution**~~ | hierarchy: = BSpaceScheme, HierarchyQuery extends SlotPath; resolve walks segments (name[0]=hierarchy); leaf = grouping name→BLevelElem OR escaped station:| →REAL component (user-checked); local vs Fox dispatch | — | **CLOSED → B587** |
 | medium | ~~**H5 on-demand tree gen + contextParams**~~ | STATELESS nav: BLevelElem carries contextParams (accumulated NEQL filter); expand = client echoes contextParams → cached walk (fw1300/1302) OR rebuild-parent + on-demand re-query; MakeElemUtil threads the filter | — | **CLOSED → B588** |
-| medium | **H6 permission enforcement in the tree** | BCategoryMask propagation through grouping ancestors (setElemAndAncestorPermissions), fw(1302) per-user filter (hasOperatorRead), category-visibility vs role-hierarchies orthogonality | `com/tridium/hierarchy/HierarchyCacheBuilder.java`, `javax/baja/hierarchy/BLevelElem.java` + `Permissions*` (cross-ref B565/B561) | **NEXT** |
-| low | **H7 transport (BOX + Fox)** | BHierarchyBoxChannel load/resolve (web UX), BFoxHierarchyChannel getLevelElems circuit (remote station), BFoxHierarchySpace proxy | `com/tridium/hierarchy/BHierarchyBoxChannel.java`, `com/tridium/hierarchy/fox/{BFoxHierarchyChannel,BFoxHierarchySpace}.java` | open |
+| medium | ~~**H6 permission enforcement in the tree**~~ | entity applied BCategoryMask (AC3) baked on BLevelElem + OR-propagated up to group ancestors (group visible if any child is); fw(1302) read filters per-user hasOperatorRead (super-user all); orthogonal to role-scoping (B565); group name can leak | — | **CLOSED → B589** |
+| low | **H7 transport (BOX + Fox)** | BHierarchyBoxChannel load/resolve (web UX), BFoxHierarchyChannel getLevelElems circuit (remote station), BFoxHierarchySpace proxy | `com/tridium/hierarchy/BHierarchyBoxChannel.java`, `com/tridium/hierarchy/fox/{BFoxHierarchyChannel,BFoxHierarchySpace}.java` | **NEXT** |
 
 ## Proven-absent / notes
 
@@ -71,6 +71,6 @@ BFoxHierarchySpace) + BHierarchyBoxChannel. `hierarchy-ux` ~8 + `hierarchy-wb` ~
 
 ## Stop control (METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 2 (H6,H7). Focus ACTIVE.
-- **Gaps closed**: 5 (H1→B584 … H5→B588).
+- **Open gaps — read-only investigable**: 1 (H7). Focus ACTIVE.
+- **Gaps closed**: 6 (H1→B584 … H6→B589).
 - **Coverage metric**: 0 / 7.
