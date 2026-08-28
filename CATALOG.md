@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **542 bloques**
+Total: **543 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -547,6 +547,7 @@ Total: **542 bloques**
 | 542 | [niagara-mental-model-bloque542.md](niagara-mental-model-bloque542.md) | Block 542 — honeywellFunctionBlocks DDC catalog: 36 concrete FBs across 8 fbs/ packages, and the SCAN execution model (Sequenced Control Engine) that separates it from kitControl |
 | 543 | [niagara-mental-model-bloque543.md](niagara-mental-model-bloque543.md) | Block 543 — HVAC control-logic SAFETY / fail-safe analysis: the five defensive layers, and the six default-UNSAFE gaps an engineer must close |
 | 544 | [niagara-mental-model-bloque544.md](niagara-mental-model-bloque544.md) | Block 544 — The priority-array WRITE path end-to-end: link → InN → arbitration → proxyExt → driver wire, and how the N4 16-level array maps onto the BACnet WriteProperty priority (but collapses for Modbus) |
+| 545 | [niagara-mental-model-bloque545.md](niagara-mental-model-bloque545.md) | Block 545 — Composites at the code level: a promoted slot is a Knob-backed mirror of a child slot, confirming "each exposed slot is a link" |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

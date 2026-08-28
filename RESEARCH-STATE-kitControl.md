@@ -21,16 +21,16 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 9
-gaps_closed: 9
+covered_blocks: 10
+gaps_closed: 10
 known_gaps: 14
-investigable_open: 4
+investigable_open: 3
 requires_execution_open: 1
 blocked_open: 0
 <!-- /research-state.v1 -->
 
 focus: kitControl
-status: active (9/14; KC1→B536 … KC8→B544, KC13→B543; KC13-G1 requires-execution)
+status: active (10/14; KC1→B536 … KC9→B545, KC13→B543; KC13-G1 requires-execution)
 seeded_from: AUDIT-FIRST coverage sweep 2026-08-28 (delegated sonnet; verified inline)
 seeded_on: 2026-08-28
 gaps_total: 12 investigable (KC1–KC12)
@@ -55,7 +55,7 @@ reference pages. All candidate dirs existence-verified 2026-08-28.
 | medium | **KC6 program module runtime** — B426 covers ONLY compilation (spawned javac). Uncovered: `BProgram` execution model, freeform vs robot program, program slots/wiring, program-ext lifecycle, the program-wb editor | `program-rt,-wb` (~55 vf) | **COVERED → B541** (BProgram extends BComponent, doExecute→impl.onExecute [ProgramBase 3 hooks]; executeOnChange link-driven. Freeform=persisted slot-wired vs Robot=one-shot run() not persisted superUser-only. Slots→SourceWriter generated getters/setters, BProgramAction reflects on<Name>(). Source in BProgramCode.source + bytecode in BCode.classFile BBlob — ALL in .bog. SANDBOX: program.requireSigning gate [unsigned+off=warning only, ties B18/security-audit], ProgramProtectionDomain=untrusted perms [file:^ only, exec blocked], ProgramRuntime.exec gated allowProgramRuntimeExec=false+audited, edit superUser-only. program-wb 4-tab editor, ProgramCompiler extends B426 Compiler. Expr-over-Program [B538 BP6] runtime reason) |
 | medium | **KC7 honeywellFunctionBlocks per-FB catalog** — B103 covers the ENGINE (`BFunctionBlock`, converters); the ~158 DDC blocks themselves (math/control/analog/zonecontrol/logic/datafunction) are not catalogued against the 50-page official doc | `honeywellFunctionBlocks-rt` (158 vf · 50 doc HTML) | **COVERED → B542** (rt=146 classes [158=rt+ux+wb, clarifies B103], 36 concrete FBs across 8 fbs/ pkgs. KEY: SCAN execution model — BFunctionBlock.executeBlock(BExecutionParams.iterationInterval, default 1s) driven by Sequenced Control Engine in ExecutionOrder — vs kitControl event-driven; the 3rd control ecosystem. BPid DDC proportional-band Kp=100/tr + deadBand timer + revAct + bias [vs BLoopPoint gain]; BStager %demand→stage count w/ min-on/off; BStageDriver stage→N booleans lead-lag; BTemperatureSetpointCalculator occ/standby/unocc setpoints + TUNCOS recovery ramp. FB-level override) |
 | medium | **KC8 priority-array write arbitration end-to-end** — the consolidated write path: a kitControl block writes → writable point 16-level arbitration → relinquish default → driver proxy. B6 §6.2.6 + B46 touch pieces; no end-to-end arbitration-rules block | `control-rt` + `kitControl-rt` write blocks | **COVERED → B544** (chain: link out→InN [BLink.propagatePropertyToProperty→fwChanged→execute re-arbitrate B536] → out → proxyExt.onExecute [isWrite && changed\|\|forceWrite → Tuning.writeDesired, minWriteTime defers] → driver write. Force-write on level 1/8 action: writablePointActionInvoked→forceWrite(true), Modbus also execute() now. PUNCHLINE: N4 activeLevel facet → BACnet WriteProperty Priority param [16-level array survives 1:1 to remote BACnet object, relinquish null at old level]; Modbus/register drivers COLLAPSE arbitration to a single value before wire [priority is N4-internal]. Feedback: writeOk clears fault, writeFail sets fault bit→out status, BACnet pollNow re-reads) |
-| medium | **KC9 composites** — the composite as a REUSE/programming construct: glyph slot-promotion mechanics, how a composite interacts with links and execution, reuse of control logic. B24 mentions (26) + 52 official guides, no dedicated block | `wiresheet-wb` + niagara-help guides | **pending** |
+| medium | **KC9 composites** — the composite as a REUSE/programming construct: glyph slot-promotion mechanics, how a composite interacts with links and execution, reuse of control logic. B24 mentions (26) + 52 official guides, no dedicated block | `wiresheet-wb` + niagara-help guides | **COVERED → B545** (compact/inline. Code model: BCompositeAction extends BAction / BCompositeTopic extends BTopic = promoted slot BACKED BY A KNOB; getMirror() resolves child via slot's knob targetOrd/slotName, delegates paramType/default/facets to child; invoke() returns null [flow goes through knob/link]. CONFIRMS B538 R-C3 "each exposed slot is a link" at code level — composites reuse the same Knob/BLink machinery, not a separate primitive. Property-composite variant = workbench child gap [INFER]) |
 | low | **KC10 honIrmControl per-FB catalog** — engine covered (B105/B242/B493); the ~163 IRM Nano FBs vs 134 doc pages not enumerated block-by-block | `honIrmControl-rt` (218 vf · 134 doc HTML) | **pending** |
 | low | **KC11 kitControl enums / const tables** — packaged enum semantics (trigger modes, transition/latch types) + constants package not extracted | `kitControl-rt` enums+constants (module_nav resources) | **pending** |
 | low | **KC12 clHVAC Nordic + micro-modules** — the smallest clHVAC modules for completeness: `clHVACNordicAirCondition`, `clHVACNordicGeneral`, `clHVACEnergyManagement`, `clHVACRoomControl` | (~7+11+3 vf) | **pending** |
@@ -86,11 +86,11 @@ reference pages. All candidate dirs existence-verified 2026-08-28.
 
 ## Stop control (METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: **4** (KC9–KC12). All source dirs existence-verified 2026-08-28.
-- **Gaps closed**: 9 (KC1→B536 … KC8→B544, KC13→B543).
+- **Open gaps — read-only investigable**: **3** (KC10–KC12, all low). All source dirs existence-verified 2026-08-28.
+- **Gaps closed**: 10 (KC1→B536 … KC9→B545, KC13→B543).
 - **requires-execution / blocked**: 1 (KC13-G1 station-wide safety-config audit, §12 dynamic).
-- **Coverage metric**: 9 / 14 gaps closed (4 investigable open; 1 requires-execution).
-- **NEXT**: KC9 (composites as reuse/programming construct — slot promotion, resource cost) → B545.
+- **Coverage metric**: 10 / 14 gaps closed (3 investigable open; 1 requires-execution).
+- **NEXT**: KC10 (honIrmControl per-FB catalog — the 3rd OEM control library; B105=engine) → B546.
 
 ## Iteration history
 
@@ -106,3 +106,4 @@ reference pages. All candidate dirs existence-verified 2026-08-28.
 | 7 | KC7 honeywellFunctionBlocks catalog (36 FBs/8 pkgs; SCAN execution model + Sequenced Control Engine; BPid/BStager/BStageDriver/setpoint calc) | B542 | yes · sonnet (code+doc sweep) + inline token-verify (5/10 rows) | none new (clarifies B103 count 158=rt+ux+wb; Java-8 confirmed [class major 52]) |
 | 8 | KC13 HVAC control SAFETY/fail-safe (operator-requested; 5 layers, 7 safe-by-default, 6 unsafe-unless-configured gaps + operator recs) | B543 | yes · sonnet (safety sweep) + inline token-verify (6/9 operator-facing rows) | KC13-G1 requires-execution (live station-wide safety-config audit) |
 | 9 | KC8 priority-array write path end-to-end (link→InN→arbitration→proxyExt→Tuning→driver; N4 level→BACnet priority 1:1, Modbus collapses; write feedback→fault) | B544 | yes · sonnet (write-chain sweep) + inline token-verify (4/8 rows) | none new (BACnet Relinquish_Default interaction = bacnet child gap) |
+| 10 | KC9 composites code model (BCompositeAction/Topic = knob-backed mirror; confirms B538 R-C3 each-slot-is-a-link) | B545 | no · inline (constraint: narrow gap, bounded read) | none new (property-composite = workbench child gap) |
