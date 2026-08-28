@@ -1,4 +1,4 @@
-# RESEARCH-STATE — focus: provisioning (ACTIVE)
+# RESEARCH-STATE — focus: provisioning (STOPPED)
 
 > Multi-focus corpus (METHODOLOGY §16). SEEDED by an AUDIT-FIRST coverage sweep (§13) on 2026-08-28 (delegated
 > sonnet, verified inline) that mapped the `provisioningNiagara` fleet subsystem against the corpus and separated
@@ -17,20 +17,20 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 9
-gaps_closed: 9
+covered_blocks: 10
+gaps_closed: 10
 known_gaps: 10
-investigable_open: 1
+investigable_open: 0
 requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
 
 focus: provisioning
-status: active (9/10; PV1→B567 … PV9→B575 DONE; NEXT PV10 ux RPC surface)
+status: stopped (10/10, investigable=0; PV1→B567 … PV10→B576). §18 retro pending.
 seeded_from: AUDIT-FIRST coverage sweep 2026-08-28 (delegated sonnet; pre-flight verified inline)
 seeded_on: 2026-08-28
 gaps_total: 10 investigable (PV1–PV10)
-gaps_closed: 0
+gaps_closed: 10
 block_prefix: niagara-mental-model-bloqueN.md (shared global numbering)
 
 ## Surface (audit, source-confirmed)
@@ -72,7 +72,7 @@ module and no `javax/baja/provisioning` package (confirmed absent).
 | medium | ~~**PV7 template deployment pipeline**~~ | fleet wrapper over generic `template` module (BulkDeployUtil.installTemplateToStation); .ntpl in ^templateCache; Template vs Application flavors; BTemplateStationExt async | — | **CLOSED → B573** |
 | medium | ~~**PV8 credentials batch management**~~ | drives BOTH stores (station users via BUserService+AC1 policy / platform daemon users) + reversible connection BPassword (doPrivileged decode) + system passphrase (privileged, BPasswordStrength-checked); no batch shortcut | — | **CLOSED → B574** |
 | low-medium | ~~**PV9 license management chain**~~ | supervisor collects license summaries by hostId (niagaraProv channel), fetches from online portal OR local DB (brand-gated license.onlineRequest); DSA-signed VendorLicense (B392/B395); licenses ride installable inventory | — | **CLOSED → B575** |
-| low | **PV10 ux RPC surface** | BProvisioningNiagaraRpcUtil @NiagaraRpc methods over BOX + BUx*Factory step-builder pattern + BNiagaraNetworkUxJobBuilder AgentOn entry | `provisioningNiagara-ux/…/ux/BProvisioningNiagaraRpcUtil.java` | **NEXT** |
+| low | ~~**PV10 ux RPC surface**~~ | ux pkg = 3 classes (corrects audit's 48/40-factory); 5 @NiagaraRpc permissions="unrestricted" BOX methods that SELF-GATE on object hasOperatorRead (unrestricted=invocable not ungated) | — | **CLOSED → B576** |
 
 ## Proven-absent / notes
 
@@ -85,7 +85,9 @@ module and no `javax/baja/provisioning` package (confirmed absent).
 
 ## Stop control (METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 1 (PV10). Focus ACTIVE.
-- **Gaps closed**: 9 (PV1→B567 … PV9→B575).
+- **Open gaps — read-only investigable**: **0** — ALL 10 closed (PV1–PV10). Focus STOPPED (§8).
+- **Gaps closed**: 10 (PV1→B567, PV2→B568, PV3→B569, PV4→B570, PV5→B571, PV6→B572, PV7→B573, PV8→B574, PV9→B575, PV10→B576).
 - **requires-execution / blocked**: 0.
-- **Coverage metric**: 0 / 10.
+- **Coverage metric**: 10 / 10 (100%).
+- **Child gaps named (out-of-scope)**: `template` module engine (.ntpl/params — candidate focus), niagaraProv Fox open-permission bit (requires-execution), portal license wire (external-service), DHCP discovery wire (Edge10Startup).
+- **Audit corrections**: PV10 ux package = 3 classes (not 48; no *Factory). PV1 clarified provisioning = specialization of generic batchJob.
