@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **555 bloques**
+Total: **556 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -560,6 +560,7 @@ Total: **555 bloques**
 | 555 | [niagara-mental-model-bloque555.md](niagara-mental-model-bloque555.md) | Block 555 — Reference: a multi-user live dashboard on N4 — the recommended API stack, the read/write split, and the multi-user pitfalls (API11, applied guide) |
 | 556 | [niagara-mental-model-bloque556.md](niagara-mental-model-bloque556.md) | Block 556 — Cross-focus integration map: the end-to-end BMS-dashboard stack on N4 — how control programming, the database, history/alarms, the APIs, and the dashboard connect around the control-point spine |
 | 557 | [niagara-mental-model-bloque557.md](niagara-mental-model-bloque557.md) | Block 557 — The two JVM control-engine schedulers decompiled: Eagle's Clock-timer scan vs Honeywell's dedicated-thread Sequenced Control Engine — completing the four-ecosystem execution model (locates the engine B542 could not find) |
+| 558 | [niagara-mental-model-bloque558.md](niagara-mental-model-bloque558.md) | Block 558 — N4 password-policy enforcement IS built-in: `BPasswordStrength` (an `IPropertyValidator`) wired through `BPasswordAuthenticator.checkPassword()` — correcting Block 11 §11.3.5 ("complexity NO built-in") |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

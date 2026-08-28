@@ -311,6 +311,11 @@ Realidad:
 - `lockOutPeriod` (default 10s): tiempo bloqueo.
 
 **Password policy core**: complexity enforcement NO built-in. LDAP/AD hereda política del directorio. Custom policy requiere module custom con validation regex.
+> **⚠️ CORREGIDO por [Block 558] (§14, 2026-08-28):** esta afirmación es FALSA para N4.14 (y desde AX 3.8). La
+> enforcement de complejidad SÍ es built-in: `BPasswordStrength` (un `IPropertyValidator` con 6 knobs +
+> `maximumLength` desde 4.13, presets `DEFAULT`/`FIPS_1`/`OFF`) se invoca en `BPasswordAuthenticator.checkPassword()`
+> y RECHAZA el password débil al setearlo. NO requiere módulo custom ni regex. Lo único cierto: se puede APAGAR
+> (preset `OFF`, todos los mínimos 0), pero no es el default. Ver [Block 558] §558.5.
 
 ### 11.3.6 Audit log
 
