@@ -15,16 +15,16 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 2
-gaps_closed: 2
+covered_blocks: 3
+gaps_closed: 3
 known_gaps: 5
-investigable_open: 3
+investigable_open: 2
 requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
 
 focus: template-wb
-status: active (2/5; TW1→B591, TW2→B592 DONE; NEXT TW3 application-template wizard)
+status: active (3/5; TW1→B591, TW2→B592, TW3→B593 DONE; NEXT TW4+TW5 collapsed tail)
 seeded_from: AUDIT-FIRST coverage sweep 2026-08-28 (delegated sonnet; B200 §200.6 verified inline)
 seeded_on: 2026-08-28
 gaps_total: 5 investigable (TW1–TW5); honest ceiling ~4-6 blocks (TW4/TW5 may collapse into one tail synthesis)
@@ -55,7 +55,7 @@ BTemplateRelationEditor (~600 L), BTemplatePxEditor (embeds BPxEditorPane → RE
 |---|---|---|---|---|
 | high | ~~**TW1 binding editors (Config + IO)**~~ | Config editor = BTable over BConfigBindings (rows=exposed params, save keyed by HANDLE, legacy composite-link migration); IO editor = 3 BTables (I/O bindings + source/io tag panes via TagSupport); UI over same BConfigBinding model as rt/manifest | — | **CLOSED → B591** |
 | high | ~~**TW2 Excel IMPORT path**~~ | BulkDeployWorkbook (Closeable POI reader, optionally password-encrypted, doPrivileged) parses per-sheet Input/Output/Config/Relation/Optional/Tag rows→values; BulkDeploy = wizard reusing installapp flow (backup→compat→confirm→install) per sheet; closes export round-trip | — | **CLOSED → B592** |
-| medium | **TW3 application-template wizard** | installapp/ (13-class WidgetUiHandler multi-step: backup → compatibility gate → optional-components chooser → install worker) — deploys a BApplicationTemplate with a backup-before-install step | `template-wb/…/ui/installapp/` (13) | **NEXT** |
+| medium | ~~**TW3 application-template wizard**~~ | guided StepWizardModel: select template→optional-components→compatibility→BACKUP(default on)→confirm; InstallingApplicationWorker runs backup-THEN-install (BBackupManager before the destructive B578 tree-swap); reused by bulk deploy | — | **CLOSED → B593** |
 | medium | **TW4 Relation editor** | BTemplateRelationEditor: two-table model (BRelationInfo rows + relate-info pairs); B200 §200.6 does not mention it | `template-wb/…/ui/BTemplateRelationEditor.java` | open (collapsible w/ TW5) |
 | low | **TW5 .ntpl WB file integration** | BWbDeployableNtplFile (how .ntpl shows as deployable in WB nav), BNtplFileMenuAgent (context menu), ExportApplication/ExportConfigsCommand, sidebar nav | `template-wb/…/ui/file/*`, `ui/sidebar/*` | open (collapsible w/ TW4) |
 

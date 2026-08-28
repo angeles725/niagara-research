@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **590 bloques**
+Total: **591 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -595,6 +595,7 @@ Total: **590 bloques**
 | 590 | [niagara-mental-model-bloque590.md](niagara-mental-model-bloque590.md) | Block 590 — Hierarchy transport: two thin channels carrying the same `contextParams` filter — a `BHierarchyBoxChannel` (JSON over BOX, load/resolve) for the web nav tree and a `BFoxHierarchyChannel` (one `getLevelElems` circuit) for cross-station, with `BFoxHierarchySpace` making a subordinate's hierarchy look local — closing the hierarchy focus |
 | 591 | [niagara-mental-model-bloque591.md](niagara-mental-model-bloque591.md) | Block 591 — The template binding editors: `BTemplateConfigEditor` and `BTemplateIOEditor` — the Workbench tables where an engineer AUTHORS what a template exposes, writing `BConfigBinding` rows keyed by component HANDLE (with a legacy composite-link migration) |
 | 592 | [niagara-mental-model-bloque592.md](niagara-mental-model-bloque592.md) | Block 592 — The Excel bulk-deploy IMPORT path: `BulkDeployWorkbook` (a Closeable POI reader for an optionally-password-encrypted `.xlsx`) parses per-sheet binding rows, and `BulkDeploy` is a wizard that reuses the installapp flow to deploy a template to N targets — closing the round-trip B200 left at export |
+| 593 | [niagara-mental-model-bloque593.md](niagara-mental-model-bloque593.md) | Block 593 — The application-template install wizard: a guided flow (select → optional-components → compatibility → BACKUP → confirm) whose worker runs backup-THEN-install — because an application install replaces the station tree, a full station backup is offered by default and taken before the swap |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
