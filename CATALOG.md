@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **566 bloques**
+Total: **567 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -571,6 +571,7 @@ Total: **566 bloques**
 | 566 | [niagara-mental-model-bloque566.md](niagara-mental-model-bloque566.md) | Block 566 — `UserMonitor` + `BUserEvent`: the reactive user-space hook — a `userEvent` topic fires typed add/remove/rename/modify events, and the supervisor's user-replication device-ext is the real consumer (closes the access-control focus) |
 | 567 | [niagara-mental-model-bloque567.md](niagara-mental-model-bloque567.md) | Block 567 — `batchJob`: the generic, driver-agnostic device-network batch framework beneath provisioning — jobs are `BJob`s serialized one-at-a-time, per-device steps fan out in parallel (cap 2), and `@AgentOn driver:DeviceNetwork` puts a "batch job" on EVERY driver network |
 | 568 | [niagara-mental-model-bloque568.md](niagara-mental-model-bloque568.md) | Block 568 — `BNiagaraProvisioningChannel` (the "niagaraProv" Fox channel): the supervisor↔subordinate provisioning control plane — ~20 circuit commands over installables, platform-daemon station lifecycle, licenses, and filesystem — and it does NOT bypass platform auth (it delegates to a separately-authenticated daemon session) |
+| 569 | [niagara-mental-model-bloque569.md](niagara-mental-model-bloque569.md) | Block 569 — The software-distribution engine: a supervisor inventory mirrored from the local installable registry, plus software steps that COMBINE unconditionally (N module installs → one install transaction per station) and a passphrase-gated encrypted-dist install |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
