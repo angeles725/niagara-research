@@ -17,16 +17,16 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 1
-gaps_closed: 1
+covered_blocks: 2
+gaps_closed: 2
 known_gaps: 8
-investigable_open: 7
+investigable_open: 6
 requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
 
 focus: access-control
-status: active (1/8; AC1 → B558 DONE; NEXT AC2 BUserPrototypes)
+status: active (2/8; AC1→B558, AC2→B559 DONE; NEXT AC3 BCategoryService runtime)
 seeded_from: AUDIT-FIRST coverage sweep 2026-08-28 (delegated sonnet; pre-flight + AC1 verified inline)
 seeded_on: 2026-08-28
 gaps_total: 8 investigable (AC1–AC8)
@@ -60,8 +60,8 @@ BUserPasswordConfiguration). Out of scope: `security.crypto` (8) + `authn` (12, 
 | Priority | Gap | Scope | Where (`organized/…`) | Status |
 |---|---|---|---|---|
 | high | ~~**AC1 password policy enforcement**~~ | BPasswordStrength (built-in IPropertyValidator) + the checkPassword wiring + per-user BUserPasswordConfiguration; **CORRECTED B11 §11.3.5** ("complexity NO built-in" = FALSE) | — | **CLOSED → B558** |
-| high | **AC2 BUserPrototypes** | 8-class user-templating subsystem for auto-provisioning from LDAP/SAML; per-property override flags + 4 merge-mode enums; [B494] USES it, never documents it | `baja/…/javax/baja/user/BUserPrototype[s].java` (+ docSource) | **NEXT** |
-| high | **AC3 BCategoryService runtime** | category enforcement mechanics: BOrdToCategoryMap.resolve(), ORD→category-index, 64-category limit, history auto-categorization, propagation | `baja/…/javax/baja/category/BCategoryService.java`, `BOrdToCategoryMap.java`, `BCategoryMode.java` | open |
+| high | ~~**AC2 BUserPrototypes**~~ | 8-class user-templating subsystem for auto-provisioning from LDAP/SAML; per-property override lock + 4 merge-mode enums (roles=union expands, rest restrictive) | — | **CLOSED → B559** |
+| high | **AC3 BCategoryService runtime** | category enforcement mechanics: BOrdToCategoryMap.resolve(), ORD→category-index, 64-category limit, history auto-categorization, propagation | `baja/…/javax/baja/category/BCategoryService.java`, `BOrdToCategoryMap.java`, `BCategoryMode.java` | **NEXT** |
 | medium | **AC4 password encoder chain** | 8 encoders; default BPbkdf2HmacSha256; BReversible/BPlain risk; migration on upgrade; how BPassword stores encoded credentials | `baja/…/javax/baja/security/BPbkdf2HmacSha256PasswordEncoder.java`, `BPassword.java`, `BReversiblePasswordEncoder.java` | open |
 | medium | **AC5 SecurityDashboard SPI** | the CONTRIBUTOR side (BISecurityDashboardProvider/ItemProvider/ItemBuilder) — [B112] only covered the nss consumer | `baja/…/javax/baja/security/dashboard/` | open |
 | medium | **AC6 audit-trail wiring** | who calls Auditor.audit(), AuditEvent vs SecurityAuditEvent fields, path from authenticateFailed() to SecurityHistory | `baja/…/javax/baja/security/AuditEvent.java`, `SecurityAuditEvent.java`, `Auditor.java`, `SecurityAuditor.java` | open |
