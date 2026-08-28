@@ -35,7 +35,7 @@ seeded_from: AUDIT-FIRST coverage sweep 2026-08-28 (delegated sonnet; verified i
 seeded_on: 2026-08-28
 gaps_total: 13 investigable (KC1–KC13) + 1 requires-execution (KC13-G1)
 gaps_closed: 13 (KC1-KC13)
-blocks_written: B536–B548 (KC1-KC12) + B543 (KC13); next global block = B549 (focus synthesis)
+blocks_written: B536–B549 (KC1-KC13 + synthesis B549); next global block = B550
 block_prefix: niagara-mental-model-bloqueN.md (shared global numbering)
 
 ## Gap-backlog (prioritized) — from the AUDIT-FIRST coverage matrix
@@ -90,7 +90,7 @@ reference pages. All candidate dirs existence-verified 2026-08-28.
 - **Gaps closed**: 13 (KC1→B536 … KC12→B548, KC13→B543).
 - **requires-execution / blocked**: 1 (KC13-G1 station-wide safety-config audit, §12 dynamic — deferred, needs live station + operator auth).
 - **Coverage metric**: 13 / 13 investigable gaps closed (100%); 1 requires-execution deferred.
-- **NEXT**: focus SYNTHESIS block (B549) + §18 retrospective. Then push.
+- **DONE**: focus SYNTHESIS = [B549]. NEXT: §18 retrospective. Then push.
 
 ## Iteration history
 
