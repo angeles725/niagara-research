@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **588 bloques**
+Total: **589 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -593,6 +593,7 @@ Total: **588 bloques**
 | 588 | [niagara-mental-model-bloque588.md](niagara-mental-model-bloque588.md) | Block 588 — Stateless hierarchy navigation: every `BLevelElem` carries a `contextParams` BFacets that ACCUMULATES the NEQL filter down the tree, so expanding a node re-runs its query on-demand (or walks the cache) with no server session state — `MakeElemUtil` is the factory that threads the filter |
 | 589 | [niagara-mental-model-bloque589.md](niagara-mental-model-bloque589.md) | Block 589 — Permission enforcement in the nav tree: each entity's applied `BCategoryMask` is baked onto its `BLevelElem` and OR-propagated UP to group ancestors, then read-time `fw(1302)` filters children per-user by `hasOperatorRead` — category-visibility (AC3), orthogonal to the role-hierarchy scoping (B565) |
 | 590 | [niagara-mental-model-bloque590.md](niagara-mental-model-bloque590.md) | Block 590 — Hierarchy transport: two thin channels carrying the same `contextParams` filter — a `BHierarchyBoxChannel` (JSON over BOX, load/resolve) for the web nav tree and a `BFoxHierarchyChannel` (one `getLevelElems` circuit) for cross-station, with `BFoxHierarchySpace` making a subordinate's hierarchy look local — closing the hierarchy focus |
+| 591 | [niagara-mental-model-bloque591.md](niagara-mental-model-bloque591.md) | Block 591 — The template binding editors: `BTemplateConfigEditor` and `BTemplateIOEditor` — the Workbench tables where an engineer AUTHORS what a template exposes, writing `BConfigBinding` rows keyed by component HANDLE (with a legacy composite-link migration) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

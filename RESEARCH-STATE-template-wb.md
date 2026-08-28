@@ -1,4 +1,4 @@
-# RESEARCH-STATE — focus: template-wb (PLANNED)
+# RESEARCH-STATE — focus: template-wb (ACTIVE)
 
 > Multi-focus corpus (METHODOLOGY §16). SEEDED by an AUDIT-FIRST coverage sweep (§13) on 2026-08-28 (delegated
 > sonnet, prior-coverage reconciliation first, verified inline).
@@ -15,16 +15,16 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 0
-gaps_closed: 0
+covered_blocks: 1
+gaps_closed: 1
 known_gaps: 5
-investigable_open: 5
+investigable_open: 4
 requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
 
 focus: template-wb
-status: planned (0/5; queued behind hierarchy)
+status: active (1/5; TW1→B591 DONE; NEXT TW2 Excel import path)
 seeded_from: AUDIT-FIRST coverage sweep 2026-08-28 (delegated sonnet; B200 §200.6 verified inline)
 seeded_on: 2026-08-28
 gaps_total: 5 investigable (TW1–TW5); honest ceiling ~4-6 blocks (TW4/TW5 may collapse into one tail synthesis)
@@ -53,8 +53,8 @@ BTemplateRelationEditor (~600 L), BTemplatePxEditor (embeds BPxEditorPane → RE
 
 | Priority | Gap | Scope | Where (`organized/…`) | Status |
 |---|---|---|---|---|
-| high | **TW1 binding editors (Config + IO)** | BTemplateConfigEditor (1675 L) + BTemplateIOEditor (1853 L): BTable BindingModel over BConfigBinding rows, BindingSlot inner class, optional-component node tree, double-click column dispatch, BConfigBinding↔BInput/OutputBinding round-trip — the core UI for USING a deployed template | `template-wb/…/ui/{BTemplateConfigEditor,BTemplateIOEditor}.java`, `ui/tag/TagSupport.java` | open |
-| high | **TW2 Excel IMPORT path** | BulkDeploy + BulkDeployWorkbook: how a .xlsx is parsed row-by-row into binding values, password decryption, the deploy loop, the "Slot Path Scope" column — B200 §200.6 covered EXPORT only | `template-wb/…/ui/{BulkDeploy,BulkDeployWorkbook}.java` | open |
+| high | ~~**TW1 binding editors (Config + IO)**~~ | Config editor = BTable over BConfigBindings (rows=exposed params, save keyed by HANDLE, legacy composite-link migration); IO editor = 3 BTables (I/O bindings + source/io tag panes via TagSupport); UI over same BConfigBinding model as rt/manifest | — | **CLOSED → B591** |
+| high | **TW2 Excel IMPORT path** | BulkDeploy + BulkDeployWorkbook: how a .xlsx is parsed row-by-row into binding values, password decryption, the deploy loop, the "Slot Path Scope" column — B200 §200.6 covered EXPORT only | `template-wb/…/ui/{BulkDeploy,BulkDeployWorkbook}.java` | **NEXT** |
 | medium | **TW3 application-template wizard** | installapp/ (13-class WidgetUiHandler multi-step: backup → compatibility gate → optional-components chooser → install worker) — deploys a BApplicationTemplate with a backup-before-install step | `template-wb/…/ui/installapp/` (13) | open |
 | medium | **TW4 Relation editor** | BTemplateRelationEditor: two-table model (BRelationInfo rows + relate-info pairs); B200 §200.6 does not mention it | `template-wb/…/ui/BTemplateRelationEditor.java` | open (collapsible w/ TW5) |
 | low | **TW5 .ntpl WB file integration** | BWbDeployableNtplFile (how .ntpl shows as deployable in WB nav), BNtplFileMenuAgent (context menu), ExportApplication/ExportConfigsCommand, sidebar nav | `template-wb/…/ui/file/*`, `ui/sidebar/*` | open (collapsible w/ TW4) |
@@ -68,6 +68,6 @@ BTemplateRelationEditor (~600 L), BTemplatePxEditor (embeds BPxEditorPane → RE
 
 ## Stop control (METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 5 (TW1–TW5). Focus PLANNED (queued behind hierarchy).
-- **Gaps closed**: 0.
+- **Open gaps — read-only investigable**: 4 (TW2–TW5). Focus ACTIVE.
+- **Gaps closed**: 1 (TW1→B591).
 - **Coverage metric**: 0 / 5.
