@@ -17,16 +17,16 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 3
-gaps_closed: 3
+covered_blocks: 4
+gaps_closed: 4
 known_gaps: 8
-investigable_open: 5
+investigable_open: 4
 requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
 
 focus: access-control
-status: active (3/8; AC1→B558, AC2→B559, AC3→B561 DONE; NEXT AC4 password encoder chain). Note: B560 = cloudflared runbook (document-mode, not a gap).
+status: active (4/8; AC1→B558, AC2→B559, AC3→B561, AC4→B562 DONE; NEXT AC5 SecurityDashboard SPI). Note: B560 = cloudflared runbook (document-mode, not a gap).
 seeded_from: AUDIT-FIRST coverage sweep 2026-08-28 (delegated sonnet; pre-flight + AC1 verified inline)
 seeded_on: 2026-08-28
 gaps_total: 8 investigable (AC1–AC8)
@@ -62,8 +62,8 @@ BUserPasswordConfiguration). Out of scope: `security.crypto` (8) + `authn` (12, 
 | high | ~~**AC1 password policy enforcement**~~ | BPasswordStrength (built-in IPropertyValidator) + the checkPassword wiring + per-user BUserPasswordConfiguration; **CORRECTED B11 §11.3.5** ("complexity NO built-in" = FALSE) | — | **CLOSED → B558** |
 | high | ~~**AC2 BUserPrototypes**~~ | 8-class user-templating subsystem for auto-provisioning from LDAP/SAML; per-property override lock + 4 merge-mode enums (roles=union expands, rest restrictive) | — | **CLOSED → B559** |
 | high | ~~**AC3 BCategoryService runtime**~~ | ORD-prefix inheritance, 60s periodic daemon recompute, cap=**256** (not 64), union default, super-user gated | — | **CLOSED → B561** |
-| medium | **AC4 password encoder chain** | 8 encoders; default BPbkdf2HmacSha256; BReversible/BPlain risk; migration on upgrade; how BPassword stores encoded credentials | `baja/…/javax/baja/security/BPbkdf2HmacSha256PasswordEncoder.java`, `BPassword.java`, `BReversiblePasswordEncoder.java` | **NEXT** |
-| medium | **AC5 SecurityDashboard SPI** | the CONTRIBUTOR side (BISecurityDashboardProvider/ItemProvider/ItemBuilder) — [B112] only covered the nss consumer | `baja/…/javax/baja/security/dashboard/` | open |
+| medium | ~~**AC4 password encoder chain**~~ | 10 encoders, two families: HASHED (PBKDF2 10k iter, login, one-way) vs ENCRYPTED (AES-256 reversible, replayable); fork=isReversible; plain.1 risk; 10k iter low | — | **CLOSED → B562** |
+| medium | **AC5 SecurityDashboard SPI** | the CONTRIBUTOR side (BISecurityDashboardProvider/ItemProvider/ItemBuilder) — [B112] only covered the nss consumer | `baja/…/javax/baja/security/dashboard/` | **NEXT** |
 | medium | **AC6 audit-trail wiring** | who calls Auditor.audit(), AuditEvent vs SecurityAuditEvent fields, path from authenticateFailed() to SecurityHistory | `baja/…/javax/baja/security/AuditEvent.java`, `SecurityAuditEvent.java`, `Auditor.java`, `SecurityAuditor.java` | open |
 | medium | **AC7 BRoleHierarchies mixin** | `@AgentOn(baja:IRole)` mixin assigning hierarchy names to a role — RBAC↔hierarchy seam, undocumented | `hierarchy/hierarchy-rt/vineflower/javax/baja/hierarchy/BRoleHierarchies.java` | open |
 | low | **AC8 UserMonitor + BUserEvent** | framework hooks for reactive RBAC (userEvent topic on BUser slot changes; cache invalidation on role change) | `baja/…/javax/baja/user/UserMonitor.java`, `BUserEvent.java` | open |

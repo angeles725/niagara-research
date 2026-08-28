@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **559 bloques**
+Total: **560 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -564,6 +564,7 @@ Total: **559 bloques**
 | 559 | [niagara-mental-model-bloque559.md](niagara-mental-model-bloque559.md) | Block 559 — `BUserPrototypes`: the built-in user-templating subsystem for auto-provisioning (LDAP/SAML) — per-property `overridable` locks + a merge policy whose defaults are security-conservative for everything EXCEPT roles (which UNIONS) |
 | 560 | [niagara-mental-model-bloque560.md](niagara-mental-model-bloque560.md) | Block 560 — Remote access to a Niagara station over a Cloudflare Tunnel (`cloudflared`): what "connect + program" actually requires, the two tiers (browser HTTP vs Workbench TCP), and the mandatory security posture |
 | 561 | [niagara-mental-model-bloque561.md](niagara-mental-model-bloque561.md) | Block 561 — `BCategoryService` runtime: category enforcement is ORD-PREFIX inheritance recomputed on a 60 s periodic daemon over a fixed 256-slot space — not a live tree walk, and the cap is 256 (not 64) |
+| 562 | [niagara-mental-model-bloque562.md](niagara-mental-model-bloque562.md) | Block 562 — The password-encoder chain: N4 splits credentials into HASHED (login, one-way PBKDF2-HMAC-SHA256, 10k iterations) vs ENCRYPTED (replayable secrets, reversible AES-256) — the fork is `isReversible`, and the login iteration count is low by modern guidance |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
