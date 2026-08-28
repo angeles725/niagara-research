@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **553 bloques**
+Total: **554 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -558,6 +558,7 @@ Total: **553 bloques**
 | 553 | [niagara-mental-model-bloque553.md](niagara-mental-model-bloque553.md) | Block 553 — N4 real-time / push transports consolidated (API10): Fox, BOX (HTTP-poll v1 + WebSocket-push v2), WebSocket — and Server-Sent Events PROVEN-ABSENT |
 | 554 | [niagara-mental-model-bloque554.md](niagara-mental-model-bloque554.md) | Block 554 — The BOX fragment/mux protocol in detail: the `F;2.3;…` wire format, the fragmentation/reassembly engine, and the `u`/`r` push-vs-response marker (deepens B512) |
 | 555 | [niagara-mental-model-bloque555.md](niagara-mental-model-bloque555.md) | Block 555 — Reference: a multi-user live dashboard on N4 — the recommended API stack, the read/write split, and the multi-user pitfalls (API11, applied guide) |
+| 556 | [niagara-mental-model-bloque556.md](niagara-mental-model-bloque556.md) | Block 556 — Cross-focus integration map: the end-to-end BMS-dashboard stack on N4 — how control programming, the database, history/alarms, the APIs, and the dashboard connect around the control-point spine |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
