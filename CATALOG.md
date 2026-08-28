@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **568 bloques**
+Total: **569 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -573,6 +573,7 @@ Total: **568 bloques**
 | 568 | [niagara-mental-model-bloque568.md](niagara-mental-model-bloque568.md) | Block 568 — `BNiagaraProvisioningChannel` (the "niagaraProv" Fox channel): the supervisor↔subordinate provisioning control plane — ~20 circuit commands over installables, platform-daemon station lifecycle, licenses, and filesystem — and it does NOT bypass platform auth (it delegates to a separately-authenticated daemon session) |
 | 569 | [niagara-mental-model-bloque569.md](niagara-mental-model-bloque569.md) | Block 569 — The software-distribution engine: a supervisor inventory mirrored from the local installable registry, plus software steps that COMBINE unconditionally (N module installs → one install transaction per station) and a passphrase-gated encrypted-dist install |
 | 570 | [niagara-mental-model-bloque570.md](niagara-mental-model-bloque570.md) | Block 570 — Fleet onboarding: two discovery paths (DHCP for edge / Niagara-network scan), "privileged" bootstrap steps that run over the platform daemon and handle out-of-box DEFAULT credentials, and the reciprocal-connection step that makes a new subordinate dial back to the supervisor |
+| 571 | [niagara-mental-model-bloque571.md](niagara-mental-model-bloque571.md) | Block 571 — The async-action protocol: `BProvisioningStationExt`'s correlation-id completion pattern (`makeInvokeId` → `asyncActionComplete` topic → `BAsyncActionEvent` result-or-error) — a hand-rolled async RPC every provisioning station-ext inherits, distinct from BJob |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
