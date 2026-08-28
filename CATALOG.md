@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **584 bloques**
+Total: **585 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -589,6 +589,7 @@ Total: **584 bloques**
 | 584 | [niagara-mental-model-bloque584.md](niagara-mental-model-bloque584.md) | Block 584 — The hierarchy level-definition model: a hierarchy is a TREE of `BLevelDef`s (root `BHierarchy` is one) along two axes — GROUP levels (tag-grouping / named-list, structure folders) vs ENTITY levels (NEQL query / relation-follow, real components) — each level's `getElements(parent,cx)` producing that level's children |
 | 585 | [niagara-mental-model-bloque585.md](niagara-mental-model-bloque585.md) | Block 585 — Hierarchy caching: an OPTIONAL job-built server-side materialization of the whole tree — `HierarchyCacheBuilder` walks grouping-then-entity defs (two query strategies), bakes each node's `BCategoryMask` up its ancestors, delivers the root via `fw(1304)`, and is governed by cacheStatus + two kill-switch sysprops + a SystemDb exclusion |
 | 586 | [niagara-mental-model-bloque586.md](niagara-mental-model-bloque586.md) | Block 586 — Hierarchy scopes and the parallel executor: a hierarchy queries a set of scope ORDs (local subtree or cross-station), the `hierarchy` license gates scope KINDS by two flags (local/system), and `QueryUtil` fans each scope's NEQL across a dedicated ForkJoinPool sized CPUs × 8 by default |
+| 587 | [niagara-mental-model-bloque587.md](niagara-mental-model-bloque587.md) | Block 587 — The `hierarchy:` ORD scheme: a `BSpaceScheme` whose body is a slash-path (`/Hierarchy/seg/seg…`) resolved level-by-level — a grouping segment resolves to a `BLevelElem`, an escaped `station:|` leaf resolves to the REAL component — dispatched local or cross-station |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
