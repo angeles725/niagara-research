@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **570 bloques**
+Total: **571 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -575,6 +575,7 @@ Total: **570 bloques**
 | 570 | [niagara-mental-model-bloque570.md](niagara-mental-model-bloque570.md) | Block 570 — Fleet onboarding: two discovery paths (DHCP for edge / Niagara-network scan), "privileged" bootstrap steps that run over the platform daemon and handle out-of-box DEFAULT credentials, and the reciprocal-connection step that makes a new subordinate dial back to the supervisor |
 | 571 | [niagara-mental-model-bloque571.md](niagara-mental-model-bloque571.md) | Block 571 — The async-action protocol: `BProvisioningStationExt`'s correlation-id completion pattern (`makeInvokeId` → `asyncActionComplete` topic → `BAsyncActionEvent` result-or-error) — a hand-rolled async RPC every provisioning station-ext inherits, distinct from BJob |
 | 572 | [niagara-mental-model-bloque572.md](niagara-mental-model-bloque572.md) | Block 572 — `BProvisioningRobot`: the provisioning escape hatch — arbitrary Program code run on every subordinate via `BProgramService.runRobot(code)` — gated by a `getPermissions` mask that strips non-super-users to READ-ONLY, with fleet risk bounded by each station's program-signing posture |
+| 573 | [niagara-mental-model-bloque573.md](niagara-mental-model-bloque573.md) | Block 573 — Template deployment: provisioning is a fleet wrapper over the generic `template` module — `.ntpl` files cached in `^templateCache`, deploy/upgrade/update steps that call `BulkDeployUtil.installTemplateToStation`, and two flavors (Template vs Application) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

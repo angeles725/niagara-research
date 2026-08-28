@@ -17,16 +17,16 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 6
-gaps_closed: 6
+covered_blocks: 7
+gaps_closed: 7
 known_gaps: 10
-investigable_open: 4
+investigable_open: 3
 requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
 
 focus: provisioning
-status: active (6/10; PV1→B567 … PV6→B572 DONE; NEXT PV7 template deployment pipeline)
+status: active (7/10; PV1→B567 … PV7→B573 DONE; NEXT PV8 credentials batch management)
 seeded_from: AUDIT-FIRST coverage sweep 2026-08-28 (delegated sonnet; pre-flight verified inline)
 seeded_on: 2026-08-28
 gaps_total: 10 investigable (PV1–PV10)
@@ -69,8 +69,8 @@ module and no `javax/baja/provisioning` package (confirmed absent).
 | medium-high | ~~**PV4 bootstrap/discovery**~~ | 2 discovery paths (DHCP/edge + Niagara scan); privileged steps run over platform daemon + handle factory-DEFAULT creds (fetch SystemPasswordMessage); reciprocal step makes subordinate dial back to supervisor | — | **CLOSED → B570** |
 | medium-high | ~~**PV5 async-action protocol**~~ | correlation-id async RPC on Fox topics (makeInvokeId→asyncActionComplete→BAsyncActionEvent result/error); inherited by Software/Template/License/Backup StationExts; distinct from BJob (network-wide vs per-op) | — | **CLOSED → B571** |
 | medium | ~~**PV6 BProvisioningRobot permission masking**~~ | robot = arbitrary Program (B541) run per-subordinate via BProgramService.runRobot; getPermissions masks non-super to READ-ONLY (super-user-only authoring); residual risk = station program.requireSigning posture | — | **CLOSED → B572** |
-| medium | **PV7 template deployment pipeline** | BAbstractDeployStep → Deploy/Upgrade template + application, ProvisionTemplateManager, ProvisioningBulkDeployUtil — supervisor template → N subordinates | `provisioningNiagara-wb/…/template/` (9) | **NEXT** |
-| medium | **PV8 credentials batch management** | BSetPlatformCredentialsJobStep/BAddStationUserStep/BSetStationConnectionCredentialsStep — how creds are encrypted, transmitted via daemon session, persisted | `provisioningNiagara-wb/…/credentials/` (7) + `systempassphrase/` | open |
+| medium | ~~**PV7 template deployment pipeline**~~ | fleet wrapper over generic `template` module (BulkDeployUtil.installTemplateToStation); .ntpl in ^templateCache; Template vs Application flavors; BTemplateStationExt async | — | **CLOSED → B573** |
+| medium | **PV8 credentials batch management** | BSetPlatformCredentialsJobStep/BAddStationUserStep/BSetStationConnectionCredentialsStep — how creds are encrypted, transmitted via daemon session, persisted | `provisioningNiagara-wb/…/credentials/` (7) + `systempassphrase/` | **NEXT** |
 | low-medium | **PV9 license management chain** | BSupervisorLicenses/BLicenseStationExt/BUpdateLicensesJobStep — portal → supervisor DB → subordinate; BConvertToPerpetualLicenseModeJobStep | `provisioningNiagara-wb/…/license/` (5) + public API | open |
 | low | **PV10 ux RPC surface** | BProvisioningNiagaraRpcUtil @NiagaraRpc methods over BOX + BUx*Factory step-builder pattern + BNiagaraNetworkUxJobBuilder AgentOn entry | `provisioningNiagara-ux/…/ux/BProvisioningNiagaraRpcUtil.java` | open |
 
@@ -85,7 +85,7 @@ module and no `javax/baja/provisioning` package (confirmed absent).
 
 ## Stop control (METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 4 (PV7–PV10). Focus ACTIVE.
-- **Gaps closed**: 6 (PV1→B567 … PV6→B572).
+- **Open gaps — read-only investigable**: 3 (PV8–PV10). Focus ACTIVE.
+- **Gaps closed**: 7 (PV1→B567 … PV7→B573).
 - **requires-execution / blocked**: 0.
 - **Coverage metric**: 0 / 10.
