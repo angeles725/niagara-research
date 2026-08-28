@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **558 bloques**
+Total: **559 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -563,6 +563,7 @@ Total: **558 bloques**
 | 558 | [niagara-mental-model-bloque558.md](niagara-mental-model-bloque558.md) | Block 558 — N4 password-policy enforcement IS built-in: `BPasswordStrength` (an `IPropertyValidator`) wired through `BPasswordAuthenticator.checkPassword()` — correcting Block 11 §11.3.5 ("complexity NO built-in") |
 | 559 | [niagara-mental-model-bloque559.md](niagara-mental-model-bloque559.md) | Block 559 — `BUserPrototypes`: the built-in user-templating subsystem for auto-provisioning (LDAP/SAML) — per-property `overridable` locks + a merge policy whose defaults are security-conservative for everything EXCEPT roles (which UNIONS) |
 | 560 | [niagara-mental-model-bloque560.md](niagara-mental-model-bloque560.md) | Block 560 — Remote access to a Niagara station over a Cloudflare Tunnel (`cloudflared`): what "connect + program" actually requires, the two tiers (browser HTTP vs Workbench TCP), and the mandatory security posture |
+| 561 | [niagara-mental-model-bloque561.md](niagara-mental-model-bloque561.md) | Block 561 — `BCategoryService` runtime: category enforcement is ORD-PREFIX inheritance recomputed on a 60 s periodic daemon over a fixed 256-slot space — not a live tree walk, and the cap is 256 (not 64) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
