@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **561 bloques**
+Total: **562 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -566,6 +566,7 @@ Total: **561 bloques**
 | 561 | [niagara-mental-model-bloque561.md](niagara-mental-model-bloque561.md) | Block 561 — `BCategoryService` runtime: category enforcement is ORD-PREFIX inheritance recomputed on a 60 s periodic daemon over a fixed 256-slot space — not a live tree walk, and the cap is 256 (not 64) |
 | 562 | [niagara-mental-model-bloque562.md](niagara-mental-model-bloque562.md) | Block 562 — The password-encoder chain: N4 splits credentials into HASHED (login, one-way PBKDF2-HMAC-SHA256, 10k iterations) vs ENCRYPTED (replayable secrets, reversible AES-256) — the fork is `isReversible`, and the login iteration count is low by modern guidance |
 | 563 | [niagara-mental-model-bloque563.md](niagara-mental-model-bloque563.md) | Block 563 — The SecurityDashboard contributor SPI: an in-station PULL aggregation where each subsystem self-reports its posture as localized items on a 4-level status (info/ok/warning/alert) — the framework side of what [Block 112] saw as a consumer |
+| 564 | [niagara-mental-model-bloque564.md](niagara-mental-model-bloque564.md) | Block 564 — The audit-trail wiring: two parallel channels (config `AuditEvent` with a full old→new diff, security `SecurityAuditEvent` login-centric) through a PLUGGABLE `Sys.getAuditor()` singleton, landing in history-rt — rich content, but presence-gated and (per B393) tamper-evident-free |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
