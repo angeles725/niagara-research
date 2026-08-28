@@ -21,21 +21,21 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 13
-gaps_closed: 13
-known_gaps: 14
+covered_blocks: 15
+gaps_closed: 14
+known_gaps: 15
 investigable_open: 0
 requires_execution_open: 1
 blocked_open: 0
 <!-- /research-state.v1 -->
 
 focus: kitControl
-status: stopped (13/14 gaps closed, investigable=0; KC1-KC13 done; KC13-G1 requires-execution deferred)
+status: stopped (14/15 gaps closed, investigable=0; KC1-KC13 + KC13-G2 done; KC13-G1 requires-execution deferred)
 seeded_from: AUDIT-FIRST coverage sweep 2026-08-28 (delegated sonnet; verified inline)
 seeded_on: 2026-08-28
 gaps_total: 13 investigable (KC1–KC13) + 1 requires-execution (KC13-G1)
 gaps_closed: 13 (KC1-KC13)
-blocks_written: B536–B549 (KC1-KC13 + synthesis B549); next global block = B550
+blocks_written: B536–B550 (KC1-KC13 + synthesis B549 + KC13-G2 refinement B550); next global block = B551
 block_prefix: niagara-mental-model-bloqueN.md (shared global numbering)
 
 ## Gap-backlog (prioritized) — from the AUDIT-FIRST coverage matrix
@@ -60,6 +60,7 @@ reference pages. All candidate dirs existence-verified 2026-08-28.
 | low | **KC11 kitControl enums / const tables** — packaged enum semantics (trigger modes, transition/latch types) + constants package not extracted | `kitControl-rt` enums+constants (module_nav resources) | **COVERED → B547** (16 enum types catalogued incl. BReliability 9-state sensor-fault vocabulary [noSensor/overRange/underRange/openLoop/shortedLoop — ties KC13], BDisableAction/BLoopAction [B539], BNightPurgeMode/BOutsideAirOptimizationMode [B537], BResetLimitsExceededMode/BNullValueOverrideSelect null-handling. 4 constant blocks Numeric/Boolean/Enum/String = out+facets only) |
 | low | **KC12 clHVAC Nordic + micro-modules** — the smallest clHVAC modules for completeness: `clHVACNordicAirCondition`, `clHVACNordicGeneral`, `clHVACEnergyManagement`, `clHVACRoomControl` | (~7+11+3 vf) | **COVERED → B548** (all ride BControlFunctionSupport Eagle engine [B87/B540]. clHVACNordicAirCondition 12 BCm* cold-climate AHU [ERC efficiency/wheel, SPB/SPA airflow-static-pressure, PSA plant mode, SCA DX cooling, DMA damper, CSA const-supply/cascade, HCA heater, FNB/FNA fan]; NordicGeneral 3 [LIN 5-pt char, RSA man switch, SWM summer/winter]; RoomControl 2 [PRCC/PRCH pre-control]; EnergyMgmt 4 [DEGDAYS+TTB statistics/solar/pulse]. Completes the 9-module clHVAC family) |
 | high | **KC13 HVAC control-logic SAFETY / fail-safe behavior** (operator-requested 2026-08-28) — how control logic guards against acting on bad data so no erroneous/dangerous control action occurs: sensor-failure handling (the `999.0` absent-sensor sentinel in clHVAC + null-status relinquish in kitControl), fault propagation, safe defaults on disable/relinquish (loop `disableAction`, writable `fallback`), output clamps/limits, frost/freeze protection interlocks, hi/lo limit alarms, and the SAFE-vs-UNSAFE failure-mode distinction in the encoded HVAC logic. Consolidates + deepens the defensive-design thread across B536/B537/B539/B540. Also records the Java-8 bytecode fact [CERT, class major 52] | `control-rt`, `kitControl-rt`, `clHVAC*` (fail-safe paths) + docKitControl/clHVAC | **COVERED → B543** (5 defensive layers. SAFE-by-default: 999 sentinel+CmTempSenAvailable gate, writable Fallback≠null, disableAction=zero default, NaN/Inf→fault-abort, output clamp[0,100]+anti-windup, CmMinCntrFlowTemp frost @16°C, emergency level 1. SIX UNSAFE-unless-configured GAPS: disableAction=hold freezes last command; propagateFlags=0 default→bad sensor drives loop no fault; BLoopAlarmAlgorithm alarm-only no interlock; 999 is convention not framework guarantee; rampTime=0 default no anti-slam; clHVAC strips Baja status envelope. Operator recs: set disableAction/Fallback safe, propagateFlags=fault\|stale\|down, rampTime>0, emergency L1 for interlocks, BACnet Safety_Value. Uncovered KC13-G1) |
+| low | **KC13-G2 CmDamper_Control_Signal 999 handling** (resolves B543 §543.2 [INFER]) — does the damper block operate safely on an absent-sensor 999 setpoint | `clHVACAirConditioning-rt` | **COVERED → B550** (§14 refinement to B543: block GUARDS absent-sensor via input_69-selected branch, output clamped [0,100], fail-safe 0.0 on plant-disable, mode-gated. 999 does NOT propagate as garbage. Narrows B543 potential-gap #4 to 'guarded by convention'; generic gap #6 status-strip stands) |
 | deferred | **KC13-G1 station-wide safety-config audit** (requires-execution §12) — audit a LIVE station for loops on safety-relevant points that use `disableAction=hold`, unset `propagateFlags`, or `rampTime=0`; enumerate the actual unsafe-config exposure. Needs a live station + operator authorization | live station (§12 dynamic) | **requires-execution** |
 
 ### REMITTANCE (already covered — will NOT be opened)
@@ -86,11 +87,11 @@ reference pages. All candidate dirs existence-verified 2026-08-28.
 
 ## Stop control (METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: **0** — ALL 13 investigable gaps closed. Focus STOPPED (§8 investigable exhaustion).
-- **Gaps closed**: 13 (KC1→B536 … KC12→B548, KC13→B543).
+- **Open gaps — read-only investigable**: **0** — ALL investigable gaps closed (KC1-KC13 + KC13-G2). Focus RE-STOPPED (§8 investigable exhaustion) after reopening for the KC13-G2 residue.
+- **Gaps closed**: 14 (KC1→B536 … KC12→B548, KC13→B543, KC13-G2→B550).
 - **requires-execution / blocked**: 1 (KC13-G1 station-wide safety-config audit, §12 dynamic — deferred, needs live station + operator auth).
 - **Coverage metric**: 13 / 13 investigable gaps closed (100%); 1 requires-execution deferred.
-- **DONE**: focus SYNTHESIS = [B549]. NEXT: §18 retrospective. Then push.
+- **DONE**: focus SYNTHESIS = [B549]; §18 retro done; KC13-G2 residue closed ([B550], §14 refines B543). Re-STOP investigable=0. Only KC13-G1 (requires-execution) remains — needs live station + operator auth.
 
 ## Iteration history
 

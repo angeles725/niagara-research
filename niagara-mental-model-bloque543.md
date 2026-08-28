@@ -43,7 +43,10 @@ drive a demand computed from garbage. **GAP**: it BLOCKS the wrong action but do
 explicit safe position — the output then depends on the downstream mux/last value. And in `BCmDMB_MixingDamper`,
 an absent room sensor SUBSTITUTES `999` into the damper setpoint `parameter_27` `[CERT] BCmDMB_MixingDamper.java:256-259`
 (`func_64.input[1] = 999.0`), passing an out-of-range setpoint into `CmDamper_Control_Signal` whose own guard is
-not visible in the decompilation [INFER — potential gap].
+not visible in the decompilation [INFER — potential gap]. **RESOLVED by [Block 550]** (KC13-G2): that class IS
+decompiled and DOES guard the absent-sensor case (a dedicated `input_69`-selected branch, output clamped
+[0,100], fail-safe 0.0 on plant-disable) — the 999 does not propagate as garbage. This narrows potential-gap #4
+to "guarded by convention"; generic gap #6 (status-envelope strip) stands.
 
 kitControl's parallel is the **null-status relinquish** ([Block 536]): an invalid input is skipped, and a
 writable point with everything relinquished falls to Fallback (§543.3a). But **clHVAC strips the Baja status
