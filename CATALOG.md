@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **523 bloques**
+Total: **534 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -530,14 +530,15 @@ Total: **523 bloques**
 | 525 | [niagara-mental-model-bloque525.md](niagara-mental-model-bloque525.md) | B525 — signing-pki: the DYNAMIC verification & hardening runbook (document mode §20) — consolidating B518–B524's live findings into operator procedures |
 | 526 | [niagara-mental-model-bloque526.md](niagara-mental-model-bloque526.md) | B526 — signing-pki: dynamic-vs-static consistency verification of B518–B525 (kit toolbelt audit §11/§14) |
 | 527 | [niagara-mental-model-bloque527.md](niagara-mental-model-bloque527.md) | B527 — signing-pki SP-G10: full step-by-step session ledger — what was tried, what fired, what did NOT fire, and who/what says each verdict is right |
-| 528 | [niagara-mental-model-bloque528.md](niagara-mental-model-bloque528.md) | B528 — signing-pki SP-G10a CLOSED: the license mirror executed WITHOUT Frida — `nre -@javaagent` + ASM rewrites `LicenseUtil.verify` to `true`, tampered license reports `{valid}` |
-| 529 | [niagara-mental-model-bloque529.md](niagara-mental-model-bloque529.md) | B529 — signing-pki SP-G9a CLOSED: live provider order — `DSA`/`SHA1withDSA` resolve to BC (bcstd 1.7801), NOT BouncyCastleFipsProvider; §14-refines B441/B524 |
-| 530 | [niagara-mental-model-bloque530.md](niagara-mental-model-bloque530.md) | B530 — signing-pki SP-G8 CLOSED: OTA receive path trusts the unpacked `.fw` image — no signature enforcement, header CRC never validated (`crcValid=true` hardcoded) |
-| 531 | [niagara-mental-model-bloque531.md](niagara-mental-model-bloque531.md) | B531 — signing-pki SP-G6 CLOSED: BACnet/SC peer-cert path sets PKIX `setRevocationEnabled(false)` — CRL infra modelled but revocation NOT enforced (B287 [INFER]→[CERT]) |
-| 532 | [niagara-mental-model-bloque532.md](niagara-mental-model-bloque532.md) | B532 — signing-pki: the licensing watch-map — processes, when/where gates fire, the boot call chain, and the three interposition points for a self-consistent mirror |
-| 533 | [niagara-mental-model-bloque533.md](niagara-mental-model-bloque533.md) | B533 — signing-pki: the PERSISTENT mirror — `station.java.options` as the always-on vector; verification protocol; 2 dynamic confirmations gated on isolated station |
-| 534 | [niagara-mental-model-bloque534.md](niagara-mental-model-bloque534.md) | B534 — signing-pki: HostId mirror EXECUTED — "moved file" gate is NATIVE so a Java `isLicenseHostIdValid` rewrite doesn't unseat a wrong-host license (honest negative) |
-| 535 | [niagara-mental-model-bloque535.md](niagara-mental-model-bloque535.md) | B535 — signing-pki: HostId fold re-anchored byte-exact in `nre.dll` (r2) + native `getHostId` proven hookable live — modelled surface → [CERT] |
+| 528 | [niagara-mental-model-bloque528.md](niagara-mental-model-bloque528.md) | B528 — signing-pki SP-G10a CLOSED: the license mirror, executed WITHOUT Frida — `nre -@javaagent` + ASM rewrites `LicenseUtil.verify` to `true` and the tampered license reports `{valid}` |
+| 529 | [niagara-mental-model-bloque529.md](niagara-mental-model-bloque529.md) | B529 — signing-pki SP-G9a CLOSED: live provider order — `DSA`/`SHA1withDSA` resolve to BC (bcstd 1.7801, BouncyCastleProvider), NOT BouncyCastleFipsProvider; §14-refines B441/B524's FIPS attribution |
+| 530 | [niagara-mental-model-bloque530.md](niagara-mental-model-bloque530.md) | B530 — signing-pki SP-G8 CLOSED (static/DISK-FIRST): the OTA firmware receive path trusts the unpacked `.fw` image — no signature enforcement, and the header CRC is computed but NEVER validated (`crcValid = true` hardcoded) |
+| 531 | [niagara-mental-model-bloque531.md](niagara-mental-model-bloque531.md) | B531 — signing-pki SP-G6 CLOSED: BACnet/SC peer-cert path sets `PKIX … setRevocationEnabled(false)` — CRL infra is MODELLED but revocation is NOT enforced (upgrades B287's [INFER] to [CERT]) |
+| 532 | [niagara-mental-model-bloque532.md](niagara-mental-model-bloque532.md) | B532 — signing-pki: the licensing watch-map — which processes verify HostId/licenses/modules, when and where they fire, who calls them, and the three interposition ("mirror") points for a complete self-consistent view |
+| 533 | [niagara-mental-model-bloque533.md](niagara-mental-model-bloque533.md) | B533 — signing-pki: the PERSISTENT mirror — `station.java.options` is where a `-javaagent` becomes "always on" at station boot; plus the verification protocol for "is the mirror working" |
+| 534 | [niagara-mental-model-bloque534.md](niagara-mental-model-bloque534.md) | B534 — signing-pki: the HostId mirror EXECUTED — the "moved file" gate is NATIVE, so a Java `-javaagent` rewrite of `isLicenseHostIdValid()` does NOT unseat a wrong-host license (honest negative; the signature-only mirror still works) |
+| 535 | [niagara-mental-model-bloque535.md](niagara-mental-model-bloque535.md) | B535 — signing-pki: the HostId fold re-anchored in `nre.dll` at byte level (radare2) + the native interposition point proven hookable live — completes the "modelled surface" into `[CERT]` |
+| 536 | [niagara-mental-model-bloque536.md](niagara-mental-model-bloque536.md) | Block 536 — The `control` module writable-point model: `WritableSupport`, the 16-level priority-array arbitration, override actions, and the point-extension execution chain |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
