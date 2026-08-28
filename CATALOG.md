@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **534 bloques**
+Total: **535 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -539,6 +539,7 @@ Total: **534 bloques**
 | 534 | [niagara-mental-model-bloque534.md](niagara-mental-model-bloque534.md) | B534 — signing-pki: the HostId mirror EXECUTED — the "moved file" gate is NATIVE, so a Java `-javaagent` rewrite of `isLicenseHostIdValid()` does NOT unseat a wrong-host license (honest negative; the signature-only mirror still works) |
 | 535 | [niagara-mental-model-bloque535.md](niagara-mental-model-bloque535.md) | B535 — signing-pki: the HostId fold re-anchored in `nre.dll` at byte level (radare2) + the native interposition point proven hookable live — completes the "modelled surface" into `[CERT]` |
 | 536 | [niagara-mental-model-bloque536.md](niagara-mental-model-bloque536.md) | Block 536 — The `control` module writable-point model: `WritableSupport`, the 16-level priority-array arbitration, override actions, and the point-extension execution chain |
+| 537 | [niagara-mental-model-bloque537.md](niagara-mental-model-bloque537.md) | Block 537 — The kitControl function-block catalog: 151 classes → ~130 deployable blocks across 10 packages, with the PID loop, the latch/switch/select mux family, and the multi-input null contract decompiled |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
