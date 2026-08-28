@@ -1,4 +1,4 @@
-# RESEARCH-STATE — focus: provisioning (PLANNED)
+# RESEARCH-STATE — focus: provisioning (ACTIVE)
 
 > Multi-focus corpus (METHODOLOGY §16). SEEDED by an AUDIT-FIRST coverage sweep (§13) on 2026-08-28 (delegated
 > sonnet, verified inline) that mapped the `provisioningNiagara` fleet subsystem against the corpus and separated
@@ -17,16 +17,16 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 0
-gaps_closed: 0
+covered_blocks: 1
+gaps_closed: 1
 known_gaps: 10
-investigable_open: 10
+investigable_open: 9
 requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
 
 focus: provisioning
-status: planned (0/10; queued behind access-control)
+status: active (1/10; PV1→B567 DONE; NEXT PV2 BNiagaraProvisioningChannel)
 seeded_from: AUDIT-FIRST coverage sweep 2026-08-28 (delegated sonnet; pre-flight verified inline)
 seeded_on: 2026-08-28
 gaps_total: 10 investigable (PV1–PV10)
@@ -63,8 +63,8 @@ module and no `javax/baja/provisioning` package (confirmed absent).
 
 | Priority | Gap | Scope | Where (`organized/…`) | Status |
 |---|---|---|---|---|
-| high | **PV1 batchJob driver sub-framework** | BDeviceNetworkJob/BNetworkJobStage/BDeviceJobStep/DeviceNetworkJobOp/BNetworkBatchAgent — the device-network batch API every provisioning step calls | `batchJob/batchJob-rt/vineflower/javax/baja/batchJob/driver/` (13) + `BBatchJobService.java` | open (NEXT for this focus) |
-| high | **PV2 BNiagaraProvisioningChannel** | the custom Fox channel carrying daemon-session tasks, installable queries, license archive, platform file ops (≠ backup-over-Fox B472) | `provisioningNiagara-wb/…/com/tridium/provisioningNiagara/BNiagaraProvisioningChannel.java`, `BPlatformConnection.java` | open |
+| high | ~~**PV1 batchJob driver sub-framework**~~ | generic driver-agnostic batch engine (BBatchJob extends BJob); jobs serialized (queue=1), per-device fan-out parallel (cap 2); @AgentOn driver:DeviceNetwork = every driver; provisioning = specialization | — | **CLOSED → B567** |
+| high | **PV2 BNiagaraProvisioningChannel** | the custom Fox channel carrying daemon-session tasks, installable queries, license archive, platform file ops (≠ backup-over-Fox B472) | `provisioningNiagara-wb/…/com/tridium/provisioningNiagara/BNiagaraProvisioningChannel.java`, `BPlatformConnection.java` | **NEXT** |
 | high | **PV3 software distribution engine** | ProvisioningRegistry/BSoftwareContainer/BInstallableSummary + the adjacent-step combining algorithm | `provisioningNiagara-wb/…/software/` (18) + `NiagaraNetworkJobOp.java` | open |
 | medium-high | **PV4 bootstrap/discovery** | BDeviceBootstrapExt/BDhcpDiscoveryStep/BNiagaraNetworkDiscoveryStep/BEnableBootstrapStep/BSetupReciprocalConnectionStep — new-controller discover→bootstrap→rename→join | `provisioningNiagara-wb/…/bootstrap/` (10) + doc `Edge10Startup/DeviceProvisioning*` | open |
 | medium-high | **PV5 async-action protocol** | BProvisioningStationExt: cancelAsyncAction/makeInvokeId/asyncActionComplete — the long-running Fox op pattern all StationExts inherit | `provisioningNiagara-wb/…/BProvisioningStationExt.java`, `BAsyncActionEvent.java` | open |
@@ -85,7 +85,7 @@ module and no `javax/baja/provisioning` package (confirmed absent).
 
 ## Stop control (METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 10 (PV1–PV10). Focus PLANNED (queued behind access-control).
-- **Gaps closed**: 0.
+- **Open gaps — read-only investigable**: 9 (PV2–PV10). Focus ACTIVE.
+- **Gaps closed**: 1 (PV1→B567).
 - **requires-execution / blocked**: 0.
 - **Coverage metric**: 0 / 10.
