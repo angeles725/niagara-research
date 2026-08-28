@@ -18,16 +18,16 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 4
-gaps_closed: 4
+covered_blocks: 5
+gaps_closed: 5
 known_gaps: 7
-investigable_open: 3
+investigable_open: 2
 requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
 
 focus: template
-status: active (4/7; T1→B577, T2→B578, T5→B579, T3→B580 DONE; NEXT T4 subtemplate composition)
+status: active (5/7; T1→B577, T2→B578, T5→B579, T3→B580, T4→B581 DONE; NEXT T6 BTemplateChannel wire)
 seeded_from: AUDIT-FIRST coverage sweep 2026-08-28 (delegated sonnet; B200 coverage verified inline)
 seeded_on: 2026-08-28
 gaps_total: 7 investigable (T1–T7)
@@ -66,8 +66,8 @@ POI wrapper (`com/tridium/excel/impl/`, ~20) loaded reflectively — NO template
 | high | ~~**T2 ApplicationTemplateInstaller**~~ | module-compat gate (missing=hard fail), ReplacingContext swap (auto-start off) clear+install preserving handles (relations survive); install vs upgrade (config-save + optional diff); passwordNote | — | **CLOSED → B578** |
 | high | ~~**T5 UpgradeUtil transfer internals**~~ | save→remove→deploy→restore txn; captures internal+external wiring by HANDLE; Mark+DeployToComp physical swap; EXCLUDE_TYPES {Relation,HistoryConfig,PlatformService}; restore config+historyName+rebuildRelations | — | **CLOSED → B579** |
 | medium | ~~**T3 manifest XML grammar**~~ | `<template>` root metadata + 10 child arrays; settings/links/bindings = typed Value (num/bool/str/cfg/in/out/px) with req+slotPath+min/max/units (the parameter schema); manifest is authoritative grammar (format code-only) | — | **CLOSED → B580** |
-| medium | **T4 subtemplate composition** | subtemplate nesting: TemplateManifest.Subtemplate[], how a parent tracks children + propagation when a subtemplate changes | `template-rt/…/manifest/TemplateManifest.java` + guide `guides-clean/Templates/UpdatingParentTemplate*` | **NEXT** |
-| medium | **T6 BTemplateChannel wire** | the upgradeTemplate Fox circuit wire (request deployedSlotPath, streamed running→complete/failed/canceled job events); deepens B200 §200.4 existence-only | `template-rt/…/BTemplateChannel.java` | open |
+| medium | ~~**T4 subtemplate composition**~~ | composition by CONTAINMENT (subtemplate=deployed BTemplateConfig subtree); Subtemplate sub-bean=reference (name/vendor/version/ord); upgrade cascades depth-first, version-gated ("No need to update" if match) | — | **CLOSED → B581** |
+| medium | **T6 BTemplateChannel wire** | the upgradeTemplate Fox circuit wire (request deployedSlotPath, streamed running→complete/failed/canceled job events); deepens B200 §200.4 existence-only | `template-rt/…/BTemplateChannel.java` | **NEXT** |
 | low | **T7 TemplateManager resolution + memory scheme** | 3-dir resolution (templateDir/modDir/applicationDir), `file:~templates/` ORD rewrite, BMemoryScheme (`memory:` singleton) + BNewNtplFromTemporary lifecycle | `template-rt/…/file/{TemplateManager,BMemoryScheme,BMemoryFileSpace}.java` | open |
 
 ## Proven-absent / notes
@@ -80,7 +80,7 @@ POI wrapper (`com/tridium/excel/impl/`, ~20) loaded reflectively — NO template
 
 ## Stop control (METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 3 (T4,T6,T7). Focus ACTIVE.
-- **Gaps closed**: 4 (T1→B577, T2→B578, T5→B579, T3→B580).
+- **Open gaps — read-only investigable**: 2 (T6,T7). Focus ACTIVE.
+- **Gaps closed**: 5 (T1→B577, T2→B578, T5→B579, T3→B580, T4→B581).
 - **requires-execution / blocked**: 0.
 - **Coverage metric**: 0 / 7.

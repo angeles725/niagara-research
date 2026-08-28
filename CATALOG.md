@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **578 bloques**
+Total: **579 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -583,6 +583,7 @@ Total: **578 bloques**
 | 578 | [niagara-mental-model-bloque578.md](niagara-mental-model-bloque578.md) | Block 578 — `ApplicationTemplateInstaller`: the station-side install/upgrade engine — a module-compatibility gate, then a component-tree swap under a `ReplacingContext` (auto-start off) that clears the old app, installs the new, and preserves handles so relations survive; upgrade saves config first |
 | 579 | [niagara-mental-model-bloque579.md](niagara-mental-model-bloque579.md) | Block 579 — `UpgradeUtil`: the save→remove→deploy→restore upgrade transaction — it captures the template's internal AND external links/relations by HANDLE, does a `Mark`+`DeployToComp` physical bog-tree swap, then restores config + history names + rebuilds relations, excluding BRelation/BHistoryConfig/BPlatformService from the overwrite |
 | 580 | [niagara-mental-model-bloque580.md](niagara-mental-model-bloque580.md) | Block 580 — The template manifest schema: `<template>` + ten child arrays — the declarative index of a `.ntpl`, where `settings`/`links`/`bindings` are typed `Value` entries (num/bool/str/cfg/in/out/px) with req + slotPath + min/max/units — the full grammar behind B200's binding contract |
+| 581 | [niagara-mental-model-bloque581.md](niagara-mental-model-bloque581.md) | Block 581 — Subtemplate composition: templates nest by CONTAINMENT (a subtemplate is a deployed `BTemplateConfig` subtree inside the parent), the manifest `<subtemplates>` array records child identity, and a parent upgrade cascades depth-first, re-deploying only version-stale children |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
