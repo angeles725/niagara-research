@@ -54,7 +54,11 @@ run on a **periodic SCAN**:
   (integral accumulation, timer advance).
 - A separate **Sequenced Control Engine** component invokes `executeBlock` on each FB in `ExecutionOrder`
   sequence, once per scan tick `[CERT-doc] honeywellFunctionBlocks-Pid.html` ("Sequenced Control engine
-  stop/start"). Changing a tuning parameter at runtime requires stop/start of the engine to reinitialize block
+  stop/start"). **LOCATED + decompiled in [Block 557]** (KC16): the engine is `BSequencedControlProgram` +
+  `com.honeywell.ipccommbus.engine.EngineThread` in the **`ipcCommBus`** module (not `honeywellFunctionBlocks`)
+  — a DEDICATED real-time thread paced to `iterationInterval`, recursively walking the `BApplicationFolder`
+  tree and calling `executeHoneywellComponent(...)` DIRECTLY (not the `executeBlock` action) per cycle, skipping
+  override-locked blocks, with `performanceMissCount`/deviation metrics. Changing a tuning parameter at runtime requires stop/start of the engine to reinitialize block
   state (integrator reset) — a scan-firmware idiom, not event semantics.
 - Override is FB-level: `doExecuteBlock` skips a block whose OUTPUT slots are `isOverridden()` — coarser than
   kitControl's per-level priority array ([Block 536]).

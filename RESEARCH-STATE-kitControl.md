@@ -21,16 +21,16 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 17
-gaps_closed: 16
-known_gaps: 17
+covered_blocks: 18
+gaps_closed: 17
+known_gaps: 18
 investigable_open: 0
 requires_execution_open: 1
 blocked_open: 0
 <!-- /research-state.v1 -->
 
 focus: kitControl
-status: stopped (16/17 closed, investigable=0; KC15 done → re-STOP; KC13-G1 requires-execution deferred)
+status: stopped (17/18 closed, investigable=0; KC16 JVM-schedulers done → re-STOP; KC13-G1 requires-execution deferred)
 seeded_from: AUDIT-FIRST coverage sweep 2026-08-28 (delegated sonnet; verified inline)
 seeded_on: 2026-08-28
 gaps_total: 13 investigable (KC1–KC13) + 1 requires-execution (KC13-G1)
@@ -62,6 +62,7 @@ reference pages. All candidate dirs existence-verified 2026-08-28.
 | high | **KC13 HVAC control-logic SAFETY / fail-safe behavior** (operator-requested 2026-08-28) — how control logic guards against acting on bad data so no erroneous/dangerous control action occurs: sensor-failure handling (the `999.0` absent-sensor sentinel in clHVAC + null-status relinquish in kitControl), fault propagation, safe defaults on disable/relinquish (loop `disableAction`, writable `fallback`), output clamps/limits, frost/freeze protection interlocks, hi/lo limit alarms, and the SAFE-vs-UNSAFE failure-mode distinction in the encoded HVAC logic. Consolidates + deepens the defensive-design thread across B536/B537/B539/B540. Also records the Java-8 bytecode fact [CERT, class major 52] | `control-rt`, `kitControl-rt`, `clHVAC*` (fail-safe paths) + docKitControl/clHVAC | **COVERED → B543** (5 defensive layers. SAFE-by-default: 999 sentinel+CmTempSenAvailable gate, writable Fallback≠null, disableAction=zero default, NaN/Inf→fault-abort, output clamp[0,100]+anti-windup, CmMinCntrFlowTemp frost @16°C, emergency level 1. SIX UNSAFE-unless-configured GAPS: disableAction=hold freezes last command; propagateFlags=0 default→bad sensor drives loop no fault; BLoopAlarmAlgorithm alarm-only no interlock; 999 is convention not framework guarantee; rampTime=0 default no anti-slam; clHVAC strips Baja status envelope. Operator recs: set disableAction/Fallback safe, propagateFlags=fault\|stale\|down, rampTime>0, emergency L1 for interlocks, BACnet Safety_Value. Uncovered KC13-G1) |
 | high | **KC15 control-point EXTENSION chain (alarm + history)** (operator-requested 2026-08-28) | `alarm-rt`, `history-rt` | **COVERED → B552** (BAlarmSourceExt.onExecute→checkAlarms→offnormal/fault algorithm→AlarmService [newOffnormalAlarm/newFaultAlarm/toNormal + topics]; config timeDelay/ToNormal/alarmEnable/alarmClass/sourceName; ack = ext mirrors ackedTransitions+unackedAlarm bit, AlarmService authoritative. Algorithm family: BOutOfRangeAlgorithm [highLimit/lowLimit/deadband, 7-state machine, return-past-deadband chatter suppression], BFloatingLimitAlgorithm [limits=lastValidSetpoint±diffLimit, stale SP held], BTwoStateAlgorithm boolean [ChangeOfState, CommandFailure=cmd≠feedback]. History: BIntervalHistoryExt TIMER-driven [pointChanged no-op, schedulePeriodically, default 15min] vs BCovHistoryExt EXECUTION-driven [writes on isChange, BNumericCov changeTolerance deadband]. VERDICT: alarm ext = NOTIFICATION-ONLY [sets status bits+record, never writes value/priority-array] → confirms B543 §543.6, complements B551 frost-interlock) |
 | high | **KC14 additional clHVAC control sequences** (operator-requested 2026-08-28) — decompile HVAC sequences B540 left as covered-by-sample | `clHVACHeating`, `clHVACAirConditioning`, `clHVACChiller` | **COVERED → B551** (BCmBOA_StagedBoiler boiler cascade [add 100K/30s, remove 300s, max 3 stages, 100h rotation, 90°C high-limit, +modulation/pump-valve/VES-alarm vs chiller block]; BCmSPA_StatPressControl VAV duct static-pressure PID [setpoint 2500Pa, clamp 0-100%, MINIMUM-of-4 constraints, 10000Pa high-limit, fail-closed on sensor loss]; BCmCSA_CascContr room→SAT cascade [outer clamp 14-30°C, inner SAT clamp 6-35°C, output sequencing] w/ CmFrost_Protection = HARD interlock last override on all 5 outputs → REFINES B543 §543.6; BCmWBA_WetBulbTemp Twb=0.042611·RH+0.005·RH·Tdb+0.55·Tdb−4.57444; chiller demand chain LoadCalc→Seq→ChillerCmd. 76/83 still covered-by-sample) |
+| high | **KC16 JVM control-engine schedulers** (residue from B549; operator 'a fondo' 2026-08-28) — the two JVM roster/scan engines B549 named but never decompiled: clHVAC BControlProgramService + honeywell Sequenced Control Engine | `clHVAC-rt`, `ipcCommBus-rt` | **COVERED → B557** (Eagle BControlProgramService = Clock.schedulePeriodically(cycleTime) on ENGINE thread, flat functionList registration-order doExecute, 20ms cooperative yield per 100 blocks, overrun LOGGED not dropped, HIT-license. Honeywell BSequencedControlProgram + DEDICATED EngineThread [ipcCommBus, LOCATES the engine B542 couldn't find] paced to iterationInterval, recursive BApplicationFolder tree walk calling executeHoneywellComponent directly [not executeBlock action], skips override-locked, performanceMissCount+deviation metrics. Completes B549 four-ecosystem model; §14 back-pointer to B542) |
 | low | **KC13-G2 CmDamper_Control_Signal 999 handling** (resolves B543 §543.2 [INFER]) — does the damper block operate safely on an absent-sensor 999 setpoint | `clHVACAirConditioning-rt` | **COVERED → B550** (§14 refinement to B543: block GUARDS absent-sensor via input_69-selected branch, output clamped [0,100], fail-safe 0.0 on plant-disable, mode-gated. 999 does NOT propagate as garbage. Narrows B543 potential-gap #4 to 'guarded by convention'; generic gap #6 status-strip stands) |
 | deferred | **KC13-G1 station-wide safety-config audit** (requires-execution §12) — audit a LIVE station for loops on safety-relevant points that use `disableAction=hold`, unset `propagateFlags`, or `rampTime=0`; enumerate the actual unsafe-config exposure. Needs a live station + operator authorization | live station (§12 dynamic) | **requires-execution** |
 
@@ -89,8 +90,8 @@ reference pages. All candidate dirs existence-verified 2026-08-28.
 
 ## Stop control (METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: **0** — ALL investigable gaps closed (KC1-KC15 + KC13-G2). Focus RE-STOPPED (§8).
-- **Gaps closed**: 16 (KC1→B536 … KC14→B551, KC15→B552, KC13-G2→B550).
+- **Open gaps — read-only investigable**: **0** — ALL investigable gaps closed (KC1-KC16 + KC13-G2). Focus RE-STOPPED (§8).
+- **Gaps closed**: 17 (KC1→B536 … KC15→B552, KC16→B557, KC13-G2→B550).
 - **requires-execution / blocked**: 1 (KC13-G1 station-wide safety-config audit, §12 dynamic — deferred, needs live station + operator auth).
 - **Coverage metric**: 13 / 13 investigable gaps closed (100%); 1 requires-execution deferred.
 - **DONE**: focus SYNTHESIS = [B549]; §18 retro done; KC13-G2 residue closed ([B550], §14 refines B543). Re-STOP investigable=0. Only KC13-G1 (requires-execution) remains — needs live station + operator auth.
@@ -115,3 +116,4 @@ reference pages. All candidate dirs existence-verified 2026-08-28.
 | 13 | KC12 clHVAC Nordic + micro-modules (cold-climate AHU/room-prectrl/energy-stats; completes clHVAC family) | B548 | no · inline (constraint: completeness enumeration) | none new — STOP (investigable=0) |
 | 15 | KC14 additional clHVAC sequences (boiler cascade, VAV static-pressure, room→SAT cascade w/ hard frost interlock, wet-bulb; §14 refines B543 §543.6) | B551 | yes · sonnet (decompile sweep) + inline token-verify (4/8 falsifiable rows) | none new — re-STOP investigable=0 |
 | 16 | KC15 alarm+history point-extension chain (BAlarmSourceExt+offnormal-algorithm family, interval-vs-COV history, alarm=notification-only) | B552 | yes · sonnet (decompile sweep) + inline token-verify (7/10 rows) | none new — re-STOP investigable=0 |
+| 17 | KC16 JVM control-engine schedulers (Eagle Clock-scan vs honeywell dedicated-thread Sequenced Control Engine; completes B549, locates B542's engine) | B557 | no · inline (constraint: 2-class bounded read) | none new — re-STOP investigable=0 |
