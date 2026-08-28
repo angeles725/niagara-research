@@ -197,10 +197,17 @@ the focus (11 gaps remain).
 override/auto/set line offsets, BPriorityLevel ordinals) — all matched. Path correction applied:
 `BPriorityLevel` was sweep-cited to docSource but lives only in the decompiled `enums/` tree.
 
+> **Refined by [Block 538]** (KC3, official rules): on a **Boolean** writable, `In6` (level 6) is ALSO
+> unlinkable — reserved for the built-in minimum on/off timers (`[CERT-doc] aPriorityLinkRules.txt:23`). This
+> block was numeric-scoped and made no claim about Boolean level 6. B538 also adds the rule that status
+> **never propagates into a control point** (the point boundary stops kitControl status-OR).
+
 ## Connections
 
 - **[Block 6]** §6.3 — the taxonomy/proxyExt/facets this block deepens (REMITTANCE); §6.3.6 CONFIRMED +
   refined (level 1/8 persistence anchored to `READONLY` flags).
+- **[Block 538]** (KC3) — the official linking RULES that reconcile with this block's arbitration mechanics;
+  refines it with the Boolean level-6 reservation.
 - **[Block 46]** — priority-array writes from an external SPA (the transport-specific write path; KC8 will
   consolidate the generic arbitration end-to-end).
 - **[Block 37]** — kitControl↔virtual↔writeback via a KNX driver (proxyExt in a real driver chain).

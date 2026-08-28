@@ -21,21 +21,21 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 2
-gaps_closed: 2
+covered_blocks: 3
+gaps_closed: 3
 known_gaps: 12
-investigable_open: 10
+investigable_open: 9
 requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
 
 focus: kitControl
-status: active (2/12; KC1→B536, KC2→B537)
+status: active (3/12; KC1→B536, KC2→B537, KC3→B538)
 seeded_from: AUDIT-FIRST coverage sweep 2026-08-28 (delegated sonnet; verified inline)
 seeded_on: 2026-08-28
 gaps_total: 12 investigable (KC1–KC12)
-gaps_closed: 2 (KC1→B536, KC2→B537)
-blocks_written: B536 (KC1), B537 (KC2); next global block = B538
+gaps_closed: 3 (KC1→B536, KC2→B537, KC3→B538)
+blocks_written: B536 (KC1), B537 (KC2), B538 (KC3); next global block = B539
 block_prefix: niagara-mental-model-bloqueN.md (shared global numbering)
 
 ## Gap-backlog (prioritized) — from the AUDIT-FIRST coverage matrix
@@ -49,7 +49,7 @@ reference pages. All candidate dirs existence-verified 2026-08-28.
 |---|---|---|---|
 | high | **KC1 control module internals** — the WRITABLE-POINT control model that every control app writes to: `BControlPoint`/`BNumericWritable`/`BBooleanWritable`/`BEnumWritable`, WritableSupport, the 16-level priority array + relinquish-default + null propagation, point extensions (override/alarm/history), override lifecycle, action/trigger surface. B6 §6.3 gives only a concept table; B276 only the BACnet-writable slice | `control-rt,-ux,-wb` (~45 vf) + docSource `javax/baja/control` | **COVERED → B536** (WritableSupport.onExecute = 1→16 first-valid-wins scan, null-status=relinquished, fallback=ordinal 17 relinquish-default; only winning levels 1/8 raise OVERRIDDEN; in1/in8/fallback READONLY-persisted, other inN TRANSIENT [refines B6 §6.3.6]; BPriorityLevel enum has NO emergency/manual constant — semantics are convention; actions emergencyOverride→in1, override→in8+Clock.schedule TTL revert, set→fallback; proxyExt always first extension [confirms B6 §6.3.2]) |
 | high | **KC2 kitControl FB catalog** — the native function-block library enumerated BY BLOCK (never done): the ~157 named blocks (math, logic, comparison, latches, timers, selectors, hvac, energy, conversion, string, util) with their inputs/outputs/facets, mapped against the 163-page official reference. B6 §6.3.3 gives only a by-category list | `kitControl-rt` (~207 vf) + `docKitControl` (163 HTML) | **COVERED → B537** (MEASURED 151 B*.java → ~130 deployable across 10 pkgs: math26/util37/conv20/logic13/energy10/hvac7/timer5/const4/root13/enums16-not-blocks; 116 doc block pages. BLoopPoint PID in ROOT pkg not hvac [error=SP−PV, anti-windup clamp maxOutput/kPkIconst, hold=NaN-guard]; latch clock=rising-edge vs latch-action=both-edges; switch/select invalid→hold+invalid-flag; multi-input null contract [BQuadMath nonNullCount, nulls skipped not zeroed, BAnd nullOnInactive]. CONFIRMS B6 §6.3.3 — all 7 HVAC/energy blocks exist, none hallucinated) |
-| high | **KC3 control-module programming RULES** — consolidated: link legality (which slot types may legally connect), knob/mark semantics, type coercion/conversion-link matrix, execution-order guarantees, and cycle/feedback handling. Today scattered in B6 §6.2 prose + 396 wire-sheet / 52 control-logic official guides — no single rules artifact | derived (B6 baja core) + niagara-help guides | **pending** |
+| high | **KC3 control-module programming RULES** — consolidated: link legality (which slot types may legally connect), knob/mark semantics, type coercion/conversion-link matrix, execution-order guarantees, and cycle/feedback handling. Today scattered in B6 §6.2 prose + 396 wire-sheet / 52 control-logic official guides — no single rules artifact | derived (B6 baja core) + niagara-help guides | **COVERED → B538** (RE-SCOPED to OFFICIAL Tridium rules layer since B6 §6.2 already covers the code kernel [REMITTANCE]. [CERT-doc]x55 from niagara-help guides: priority-link rules [1 link/level, In1/In8 unlinkable action-only — reconciles B536; Boolean In6 unlinkable=min on/off, refines B536], conversion links auto on type-mismatch, link owned-by-target, wire-sheet delete/pin/knob, execution=EVENT-DRIVEN no topo-order guarantee on standard sheet [ACE has Level/Order], actions sync-default/async-coalesce, composite AVOID-folder caution + resource cost, status propagate opt-in + NEVER into a point [BP2], Philosophy-B placement, naming rules. 7/12 rows token-verified inline) |
 | high | **KC4 PID / LoopPoint** — the core HVAC control primitive as a dedicated treatment: the kitControl loop/PID block(s), tuning params (P/I/D), direct vs reverse action, integral windup, ramp/rate, execution against the engine. Subset of KC2 but deserves its own depth | `kitControl-rt` (hvac/util pkgs) + `docKitControl` PID pages | **pending** |
 | high | **KC5 clHVAC application library** — the Centraline Eagle HVAC control-sequence libraries, under-covered vs their mass (B87 is one concept-level block over ~756 classes): AHU/air-conditioning, heating, chiller, energy-management, room-control application blocks and the encoded control sequences | `clHVAC`, `clHVACAirConditioning`, `clHVACHeating`, `clHVACChiller`, `clHVACEnergyManagement`, `clHVACGeneral` (~756 vf · ~1,400 doc HTML) | **pending** |
 | medium | **KC6 program module runtime** — B426 covers ONLY compilation (spawned javac). Uncovered: `BProgram` execution model, freeform vs robot program, program slots/wiring, program-ext lifecycle, the program-wb editor | `program-rt,-wb` (~55 vf) | **pending** |
@@ -84,11 +84,11 @@ reference pages. All candidate dirs existence-verified 2026-08-28.
 
 ## Stop control (METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: **10** (KC3–KC12). All source dirs existence-verified 2026-08-28.
-- **Gaps closed**: 2 (KC1→B536, KC2→B537).
+- **Open gaps — read-only investigable**: **9** (KC4–KC12). All source dirs existence-verified 2026-08-28.
+- **Gaps closed**: 3 (KC1→B536, KC2→B537, KC3→B538).
 - **requires-execution / blocked**: 0.
-- **Coverage metric**: 2 / 12 investigable gaps closed.
-- **NEXT**: KC3 (control-module programming RULES — link legality, coercion, execution order) → B538.
+- **Coverage metric**: 3 / 12 investigable gaps closed.
+- **NEXT**: KC4 (PID / BLoopPoint deep — tuning, ramp, windup, loop alarm) → B539.
 
 ## Iteration history
 
@@ -97,3 +97,4 @@ reference pages. All candidate dirs existence-verified 2026-08-28.
 | seed | AUDIT-FIRST coverage sweep (control/kitControl/program/rules/HVAC) | — | yes · sonnet (verified inline) | KC1–KC12 seeded from the coverage matrix |
 | 1 | KC1 control module internals (writable-point model, arbitration, override, extensions) | B536 | yes · sonnet (sweep) + inline token-verify | none new (KC8 continuation noted) |
 | 2 | KC2 kitControl FB catalog (151 classes → ~130 blocks; PID/latch/switch/select; multi-input null contract) | B537 | yes · sonnet (sweep) + inline token-verify | none new (KC4 will deepen BLoopPoint) |
+| 3 | KC3 programming RULES (official Tridium rules layer, re-scoped; reconciled w/ code kernel B6 §6.2 + B536/B537) | B538 | yes · sonnet (doc sweep) + inline token-verify (7/12 rows) | none new; refines B536 (Boolean In6) |
