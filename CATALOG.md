@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **592 bloques**
+Total: **593 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -597,6 +597,7 @@ Total: **592 bloques**
 | 592 | [niagara-mental-model-bloque592.md](niagara-mental-model-bloque592.md) | Block 592 — The Excel bulk-deploy IMPORT path: `BulkDeployWorkbook` (a Closeable POI reader for an optionally-password-encrypted `.xlsx`) parses per-sheet binding rows, and `BulkDeploy` is a wizard that reuses the installapp flow to deploy a template to N targets — closing the round-trip B200 left at export |
 | 593 | [niagara-mental-model-bloque593.md](niagara-mental-model-bloque593.md) | Block 593 — The application-template install wizard: a guided flow (select → optional-components → compatibility → BACKUP → confirm) whose worker runs backup-THEN-install — because an application install replaces the station tree, a full station backup is offered by default and taken before the swap |
 | 594 | [niagara-mental-model-bloque594.md](niagara-mental-model-bloque594.md) | Block 594 — The template-wb tail: the Relation editor completes the Config/IO/Relation authoring trio, and a `.ntpl` is a first-class Workbench file — deployable from the browser (`BWbDeployableNtplFile`), with a Templates sidebar offering Find-Usages and Make-Module — closing the template-wb focus |
+| 595 | [niagara-mental-model-bloque595.md](niagara-mental-model-bloque595.md) | Block 595 — `TransferStrategy`: the strategy-pattern factory behind ALL component/file transfer — one `make(action, Mark, target)` call dispatches by target type then source-space×action to the right concrete strategy, which is why Workbench cut/copy/paste, drag-drop, and template deploy all funnel through one engine |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
