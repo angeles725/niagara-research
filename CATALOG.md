@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **540 bloques**
+Total: **541 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -545,6 +545,7 @@ Total: **540 bloques**
 | 540 | [niagara-mental-model-bloque540.md](niagara-mental-model-bloque540.md) | Block 540 — clHVAC control sequences decompiled: the weather-compensated heating curve, the AHU mixing-damper/economizer gate, and 12-chiller runtime-equalized lead-lag — verifying B87 §87.3 from [CERT-a] to [CERT] |
 | 541 | [niagara-mental-model-bloque541.md](niagara-mental-model-bloque541.md) | Block 541 — The `program` module runtime: BProgram execution, freeform vs Robot, source+bytecode stored in the `.bog`, and the code-signing/SecurityManager sandbox |
 | 542 | [niagara-mental-model-bloque542.md](niagara-mental-model-bloque542.md) | Block 542 — honeywellFunctionBlocks DDC catalog: 36 concrete FBs across 8 fbs/ packages, and the SCAN execution model (Sequenced Control Engine) that separates it from kitControl |
+| 543 | [niagara-mental-model-bloque543.md](niagara-mental-model-bloque543.md) | Block 543 — HVAC control-logic SAFETY / fail-safe analysis: the five defensive layers, and the six default-UNSAFE gaps an engineer must close |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

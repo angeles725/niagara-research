@@ -21,16 +21,16 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 7
-gaps_closed: 7
-known_gaps: 13
-investigable_open: 6
-requires_execution_open: 0
+covered_blocks: 8
+gaps_closed: 8
+known_gaps: 14
+investigable_open: 5
+requires_execution_open: 1
 blocked_open: 0
 <!-- /research-state.v1 -->
 
 focus: kitControl
-status: active (7/13; KC1→B536 … KC7→B542; KC13 in progress operator-requested safety)
+status: active (8/14; KC1→B536 … KC7→B542, KC13→B543; KC13-G1 requires-execution)
 seeded_from: AUDIT-FIRST coverage sweep 2026-08-28 (delegated sonnet; verified inline)
 seeded_on: 2026-08-28
 gaps_total: 12 investigable (KC1–KC12)
@@ -59,7 +59,8 @@ reference pages. All candidate dirs existence-verified 2026-08-28.
 | low | **KC10 honIrmControl per-FB catalog** — engine covered (B105/B242/B493); the ~163 IRM Nano FBs vs 134 doc pages not enumerated block-by-block | `honIrmControl-rt` (218 vf · 134 doc HTML) | **pending** |
 | low | **KC11 kitControl enums / const tables** — packaged enum semantics (trigger modes, transition/latch types) + constants package not extracted | `kitControl-rt` enums+constants (module_nav resources) | **pending** |
 | low | **KC12 clHVAC Nordic + micro-modules** — the smallest clHVAC modules for completeness: `clHVACNordicAirCondition`, `clHVACNordicGeneral`, `clHVACEnergyManagement`, `clHVACRoomControl` | (~7+11+3 vf) | **pending** |
-| high | **KC13 HVAC control-logic SAFETY / fail-safe behavior** (operator-requested 2026-08-28) — how control logic guards against acting on bad data so no erroneous/dangerous control action occurs: sensor-failure handling (the `999.0` absent-sensor sentinel in clHVAC + null-status relinquish in kitControl), fault propagation, safe defaults on disable/relinquish (loop `disableAction`, writable `fallback`), output clamps/limits, frost/freeze protection interlocks, hi/lo limit alarms, and the SAFE-vs-UNSAFE failure-mode distinction in the encoded HVAC logic. Consolidates + deepens the defensive-design thread across B536/B537/B539/B540. Also records the Java-8 bytecode fact [CERT, class major 52] | `control-rt`, `kitControl-rt`, `clHVAC*` (fail-safe paths) + docKitControl/clHVAC | **pending** |
+| high | **KC13 HVAC control-logic SAFETY / fail-safe behavior** (operator-requested 2026-08-28) — how control logic guards against acting on bad data so no erroneous/dangerous control action occurs: sensor-failure handling (the `999.0` absent-sensor sentinel in clHVAC + null-status relinquish in kitControl), fault propagation, safe defaults on disable/relinquish (loop `disableAction`, writable `fallback`), output clamps/limits, frost/freeze protection interlocks, hi/lo limit alarms, and the SAFE-vs-UNSAFE failure-mode distinction in the encoded HVAC logic. Consolidates + deepens the defensive-design thread across B536/B537/B539/B540. Also records the Java-8 bytecode fact [CERT, class major 52] | `control-rt`, `kitControl-rt`, `clHVAC*` (fail-safe paths) + docKitControl/clHVAC | **COVERED → B543** (5 defensive layers. SAFE-by-default: 999 sentinel+CmTempSenAvailable gate, writable Fallback≠null, disableAction=zero default, NaN/Inf→fault-abort, output clamp[0,100]+anti-windup, CmMinCntrFlowTemp frost @16°C, emergency level 1. SIX UNSAFE-unless-configured GAPS: disableAction=hold freezes last command; propagateFlags=0 default→bad sensor drives loop no fault; BLoopAlarmAlgorithm alarm-only no interlock; 999 is convention not framework guarantee; rampTime=0 default no anti-slam; clHVAC strips Baja status envelope. Operator recs: set disableAction/Fallback safe, propagateFlags=fault\|stale\|down, rampTime>0, emergency L1 for interlocks, BACnet Safety_Value. Uncovered KC13-G1) |
+| deferred | **KC13-G1 station-wide safety-config audit** (requires-execution §12) — audit a LIVE station for loops on safety-relevant points that use `disableAction=hold`, unset `propagateFlags`, or `rampTime=0`; enumerate the actual unsafe-config exposure. Needs a live station + operator authorization | live station (§12 dynamic) | **requires-execution** |
 
 ### REMITTANCE (already covered — will NOT be opened)
 
@@ -85,11 +86,11 @@ reference pages. All candidate dirs existence-verified 2026-08-28.
 
 ## Stop control (METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: **6** (KC8–KC13; KC13 in-flight). All source dirs existence-verified 2026-08-28.
-- **Gaps closed**: 7 (KC1→B536 … KC7→B542).
-- **requires-execution / blocked**: 0.
-- **Coverage metric**: 7 / 13 investigable gaps closed.
-- **NEXT**: KC13 (HVAC control-logic SAFETY / fail-safe — operator-requested, sweep in flight) → B543; then KC8 (priority-array write path).
+- **Open gaps — read-only investigable**: **5** (KC8–KC12). All source dirs existence-verified 2026-08-28.
+- **Gaps closed**: 8 (KC1→B536 … KC7→B542, KC13→B543).
+- **requires-execution / blocked**: 1 (KC13-G1 station-wide safety-config audit, §12 dynamic).
+- **Coverage metric**: 8 / 14 gaps closed (5 investigable open; 1 requires-execution).
+- **NEXT**: KC8 (priority-array write arbitration end-to-end — kitControl block → writable point → driver) → B544.
 
 ## Iteration history
 
@@ -103,3 +104,4 @@ reference pages. All candidate dirs existence-verified 2026-08-28.
 | 5 | KC5 clHVAC control sequences (heating curve, mixing damper/economizer, 12-chiller lead-lag; upgrades B87 §87.3 [CERT-a]→[CERT]) | B540 | yes · sonnet (decompile sweep) + inline token-verify (5/10 rows) | none new (80/83 domain blocks covered-by-sample; degree-days window [INFER]) |
 | 6 | KC6 program module runtime (BProgram exec, freeform/robot, slot wiring, .bog storage, signing+SecurityManager sandbox, program-wb editor) | B541 | yes · sonnet (code sweep) + inline token-verify (5/11 rows) | none new (batch/module ProgramModule pkg out of focus; ties B18/security-audit/signing-pki) |
 | 7 | KC7 honeywellFunctionBlocks catalog (36 FBs/8 pkgs; SCAN execution model + Sequenced Control Engine; BPid/BStager/BStageDriver/setpoint calc) | B542 | yes · sonnet (code+doc sweep) + inline token-verify (5/10 rows) | none new (clarifies B103 count 158=rt+ux+wb; Java-8 confirmed [class major 52]) |
+| 8 | KC13 HVAC control SAFETY/fail-safe (operator-requested; 5 layers, 7 safe-by-default, 6 unsafe-unless-configured gaps + operator recs) | B543 | yes · sonnet (safety sweep) + inline token-verify (6/9 operator-facing rows) | KC13-G1 requires-execution (live station-wide safety-config audit) |
