@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **545 bloques**
+Total: **546 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -550,6 +550,7 @@ Total: **545 bloques**
 | 545 | [niagara-mental-model-bloque545.md](niagara-mental-model-bloque545.md) | Block 545 — Composites at the code level: a promoted slot is a Knob-backed mirror of a child slot, confirming "each exposed slot is a link" |
 | 546 | [niagara-mental-model-bloque546.md](niagara-mental-model-bloque546.md) | Block 546 — honIrmControl per-FB catalog: 140 factory FBs across 22 packages, and the HARDWARE-OFFLOAD execution model that makes it the fourth (and only device-executed) control ecosystem |
 | 547 | [niagara-mental-model-bloque547.md](niagara-mental-model-bloque547.md) | Block 547 — kitControl enums and constants reference: the 16 packaged enum types (incl. the BReliability sensor-fault vocabulary) and the four constant-source blocks |
+| 548 | [niagara-mental-model-bloque548.md](niagara-mental-model-bloque548.md) | Block 548 — clHVAC Nordic + micro-modules: the cold-climate AHU family, room pre-control, and energy statistics — completing the clHVAC family enumeration |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

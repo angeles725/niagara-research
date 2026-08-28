@@ -1,4 +1,4 @@
-# RESEARCH-STATE — focus: kitControl (PLANNED)
+# RESEARCH-STATE — focus: kitControl (STOPPED — investigable exhausted)
 
 > Multi-focus corpus (METHODOLOGY §16). This focus was SEEDED by an AUDIT-FIRST coverage sweep (§13),
 > NOT hand-guessed — see the coverage matrix in the iteration history below (2026-08-28, delegated sonnet;
@@ -21,21 +21,21 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 12
-gaps_closed: 12
+covered_blocks: 13
+gaps_closed: 13
 known_gaps: 14
-investigable_open: 1
+investigable_open: 0
 requires_execution_open: 1
 blocked_open: 0
 <!-- /research-state.v1 -->
 
 focus: kitControl
-status: active (12/14; KC1→B536 … KC11→B547, KC13→B543; KC13-G1 requires-execution)
+status: stopped (13/14 gaps closed, investigable=0; KC1-KC13 done; KC13-G1 requires-execution deferred)
 seeded_from: AUDIT-FIRST coverage sweep 2026-08-28 (delegated sonnet; verified inline)
 seeded_on: 2026-08-28
-gaps_total: 12 investigable (KC1–KC12)
-gaps_closed: 6 (KC1→B536, KC2→B537, KC3→B538, KC4→B539, KC5→B540, KC6→B541)
-blocks_written: B536–B541 (KC1–KC6); next global block = B542
+gaps_total: 13 investigable (KC1–KC13) + 1 requires-execution (KC13-G1)
+gaps_closed: 13 (KC1-KC13)
+blocks_written: B536–B548 (KC1-KC12) + B543 (KC13); next global block = B549 (focus synthesis)
 block_prefix: niagara-mental-model-bloqueN.md (shared global numbering)
 
 ## Gap-backlog (prioritized) — from the AUDIT-FIRST coverage matrix
@@ -58,7 +58,7 @@ reference pages. All candidate dirs existence-verified 2026-08-28.
 | medium | **KC9 composites** — the composite as a REUSE/programming construct: glyph slot-promotion mechanics, how a composite interacts with links and execution, reuse of control logic. B24 mentions (26) + 52 official guides, no dedicated block | `wiresheet-wb` + niagara-help guides | **COVERED → B545** (compact/inline. Code model: BCompositeAction extends BAction / BCompositeTopic extends BTopic = promoted slot BACKED BY A KNOB; getMirror() resolves child via slot's knob targetOrd/slotName, delegates paramType/default/facets to child; invoke() returns null [flow goes through knob/link]. CONFIRMS B538 R-C3 "each exposed slot is a link" at code level — composites reuse the same Knob/BLink machinery, not a separate primitive. Property-composite variant = workbench child gap [INFER]) |
 | low | **KC10 honIrmControl per-FB catalog** — engine covered (B105/B242/B493); the ~163 IRM Nano FBs vs 134 doc pages not enumerated block-by-block | `honIrmControl-rt` (218 vf · 134 doc HTML) | **COVERED → B546** (203 vf classes/22 pkgs; 140 factory FBs + ~23 onboard IO [resolves B105 "163"]; 135 doc. FINDING: HARDWARE-OFFLOAD model — BNanoFunctionBlock extends BComponent NO execute() = passive proxy; runTeachToController downloads binary app to physical IRM controller via NanoCmd protocol; exec order = hardware scan via NanoCmdSetPredecessor. = 4TH control ecosystem, ONLY one executing OFF the station [contrast B103]. BPid/BPidA proportional-band on hardware + BOutSave; BFlowControl VAV damper OutSave fail-safe. Zero imports of kitControl/honeywellFunctionBlocks/clHVAC; deps honIrmConfig+Sylk. Four-ecosystem table) |
 | low | **KC11 kitControl enums / const tables** — packaged enum semantics (trigger modes, transition/latch types) + constants package not extracted | `kitControl-rt` enums+constants (module_nav resources) | **COVERED → B547** (16 enum types catalogued incl. BReliability 9-state sensor-fault vocabulary [noSensor/overRange/underRange/openLoop/shortedLoop — ties KC13], BDisableAction/BLoopAction [B539], BNightPurgeMode/BOutsideAirOptimizationMode [B537], BResetLimitsExceededMode/BNullValueOverrideSelect null-handling. 4 constant blocks Numeric/Boolean/Enum/String = out+facets only) |
-| low | **KC12 clHVAC Nordic + micro-modules** — the smallest clHVAC modules for completeness: `clHVACNordicAirCondition`, `clHVACNordicGeneral`, `clHVACEnergyManagement`, `clHVACRoomControl` | (~7+11+3 vf) | **pending** |
+| low | **KC12 clHVAC Nordic + micro-modules** — the smallest clHVAC modules for completeness: `clHVACNordicAirCondition`, `clHVACNordicGeneral`, `clHVACEnergyManagement`, `clHVACRoomControl` | (~7+11+3 vf) | **COVERED → B548** (all ride BControlFunctionSupport Eagle engine [B87/B540]. clHVACNordicAirCondition 12 BCm* cold-climate AHU [ERC efficiency/wheel, SPB/SPA airflow-static-pressure, PSA plant mode, SCA DX cooling, DMA damper, CSA const-supply/cascade, HCA heater, FNB/FNA fan]; NordicGeneral 3 [LIN 5-pt char, RSA man switch, SWM summer/winter]; RoomControl 2 [PRCC/PRCH pre-control]; EnergyMgmt 4 [DEGDAYS+TTB statistics/solar/pulse]. Completes the 9-module clHVAC family) |
 | high | **KC13 HVAC control-logic SAFETY / fail-safe behavior** (operator-requested 2026-08-28) — how control logic guards against acting on bad data so no erroneous/dangerous control action occurs: sensor-failure handling (the `999.0` absent-sensor sentinel in clHVAC + null-status relinquish in kitControl), fault propagation, safe defaults on disable/relinquish (loop `disableAction`, writable `fallback`), output clamps/limits, frost/freeze protection interlocks, hi/lo limit alarms, and the SAFE-vs-UNSAFE failure-mode distinction in the encoded HVAC logic. Consolidates + deepens the defensive-design thread across B536/B537/B539/B540. Also records the Java-8 bytecode fact [CERT, class major 52] | `control-rt`, `kitControl-rt`, `clHVAC*` (fail-safe paths) + docKitControl/clHVAC | **COVERED → B543** (5 defensive layers. SAFE-by-default: 999 sentinel+CmTempSenAvailable gate, writable Fallback≠null, disableAction=zero default, NaN/Inf→fault-abort, output clamp[0,100]+anti-windup, CmMinCntrFlowTemp frost @16°C, emergency level 1. SIX UNSAFE-unless-configured GAPS: disableAction=hold freezes last command; propagateFlags=0 default→bad sensor drives loop no fault; BLoopAlarmAlgorithm alarm-only no interlock; 999 is convention not framework guarantee; rampTime=0 default no anti-slam; clHVAC strips Baja status envelope. Operator recs: set disableAction/Fallback safe, propagateFlags=fault\|stale\|down, rampTime>0, emergency L1 for interlocks, BACnet Safety_Value. Uncovered KC13-G1) |
 | deferred | **KC13-G1 station-wide safety-config audit** (requires-execution §12) — audit a LIVE station for loops on safety-relevant points that use `disableAction=hold`, unset `propagateFlags`, or `rampTime=0`; enumerate the actual unsafe-config exposure. Needs a live station + operator authorization | live station (§12 dynamic) | **requires-execution** |
 
@@ -86,11 +86,11 @@ reference pages. All candidate dirs existence-verified 2026-08-28.
 
 ## Stop control (METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: **1** (KC12, low). All source dirs existence-verified 2026-08-28.
-- **Gaps closed**: 12 (KC1→B536 … KC11→B547, KC13→B543).
-- **requires-execution / blocked**: 1 (KC13-G1 station-wide safety-config audit, §12 dynamic).
-- **Coverage metric**: 12 / 14 gaps closed (1 investigable open; 1 requires-execution).
-- **NEXT**: KC12 (clHVAC Nordic micro-modules) → B548; then STOP + synthesis + §18 retro.
+- **Open gaps — read-only investigable**: **0** — ALL 13 investigable gaps closed. Focus STOPPED (§8 investigable exhaustion).
+- **Gaps closed**: 13 (KC1→B536 … KC12→B548, KC13→B543).
+- **requires-execution / blocked**: 1 (KC13-G1 station-wide safety-config audit, §12 dynamic — deferred, needs live station + operator auth).
+- **Coverage metric**: 13 / 13 investigable gaps closed (100%); 1 requires-execution deferred.
+- **NEXT**: focus SYNTHESIS block (B549) + §18 retrospective. Then push.
 
 ## Iteration history
 
@@ -109,3 +109,4 @@ reference pages. All candidate dirs existence-verified 2026-08-28.
 | 10 | KC9 composites code model (BCompositeAction/Topic = knob-backed mirror; confirms B538 R-C3 each-slot-is-a-link) | B545 | no · inline (constraint: narrow gap, bounded read) | none new (property-composite = workbench child gap) |
 | 11 | KC10 honIrmControl catalog (140 FBs/22 pkgs; HARDWARE-OFFLOAD model = 4th ecosystem, control runs on IRM device not station) | B546 | yes · sonnet (code+module.xml sweep) + inline token-verify (5/8 rows) | none new (NanoCmd protocol = honIrmConfig/B88 territory) |
 | 12 | KC11 kitControl enums/constants reference (16 enums incl. BReliability sensor-fault vocab; 4 constant blocks) | B547 | no · inline (constraint: narrow reference gap) | none new |
+| 13 | KC12 clHVAC Nordic + micro-modules (cold-climate AHU/room-prectrl/energy-stats; completes clHVAC family) | B548 | no · inline (constraint: completeness enumeration) | none new — STOP (investigable=0) |
