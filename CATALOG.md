@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **551 bloques**
+Total: **552 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -556,6 +556,7 @@ Total: **551 bloques**
 | 551 | [niagara-mental-model-bloque551.md](niagara-mental-model-bloque551.md) | Block 551 — Four more clHVAC control sequences: boiler cascade, VAV AHU static-pressure control, room→SAT cascade with a HARD frost interlock, and the wet-bulb formula (extends B540; refines B543 §543.6) |
 | 552 | [niagara-mental-model-bloque552.md](niagara-mental-model-bloque552.md) | Block 552 — The control-point alarm + history extension chain: BAlarmSourceExt + the offnormal-algorithm family, interval-vs-COV history, and the confirmation that alarms are notification-only |
 | 553 | [niagara-mental-model-bloque553.md](niagara-mental-model-bloque553.md) | Block 553 — N4 real-time / push transports consolidated (API10): Fox, BOX (HTTP-poll v1 + WebSocket-push v2), WebSocket — and Server-Sent Events PROVEN-ABSENT |
+| 554 | [niagara-mental-model-bloque554.md](niagara-mental-model-bloque554.md) | Block 554 — The BOX fragment/mux protocol in detail: the `F;2.3;…` wire format, the fragmentation/reassembly engine, and the `u`/`r` push-vs-response marker (deepens B512) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
