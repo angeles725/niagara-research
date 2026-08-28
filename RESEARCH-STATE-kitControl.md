@@ -21,16 +21,16 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 8
-gaps_closed: 8
+covered_blocks: 9
+gaps_closed: 9
 known_gaps: 14
-investigable_open: 5
+investigable_open: 4
 requires_execution_open: 1
 blocked_open: 0
 <!-- /research-state.v1 -->
 
 focus: kitControl
-status: active (8/14; KC1→B536 … KC7→B542, KC13→B543; KC13-G1 requires-execution)
+status: active (9/14; KC1→B536 … KC8→B544, KC13→B543; KC13-G1 requires-execution)
 seeded_from: AUDIT-FIRST coverage sweep 2026-08-28 (delegated sonnet; verified inline)
 seeded_on: 2026-08-28
 gaps_total: 12 investigable (KC1–KC12)
@@ -54,7 +54,7 @@ reference pages. All candidate dirs existence-verified 2026-08-28.
 | high | **KC5 clHVAC application library** — the Centraline Eagle HVAC control-sequence libraries, under-covered vs their mass (B87 is one concept-level block over ~756 classes): AHU/air-conditioning, heating, chiller, energy-management, room-control application blocks and the encoded control sequences | `clHVAC`, `clHVACAirConditioning`, `clHVACHeating`, `clHVACChiller`, `clHVACEnergyManagement`, `clHVACGeneral` (~756 vf · ~1,400 doc HTML) | **COVERED → B540** (upgrades B87 §87.3 [CERT-a]→[CERT]. Structure: clHVAC-rt 250 vf/103 BControlFunctionSupport primitives; 83 BCm* domain blocks. Sequences decompiled: BCmVTB_HtgCirc weather-comp heating curve = 2-pt linear OAT→Tsupply [−10°C/65°C→10°C/85°C] + room correction + 5-way mode mux + CfPidPlus valve + CfValueRamp 25K/min + frost/heat-demand; BCmDMB_MixingDamper OAT-scheduled min OA-damper + CfWindow mode∈[20,30]→force 0% recirc [economizer shutoff]; BCmSQA_ChillerSeq 12-chiller runtime-equalized lead-lag [(N+1)/N add, (N−1)/N remove, 600s inter-stage, 100h rotation, 60s alarm lockout]; BCmDDA_DEGDAYS HDD/CDD base 15/22/20°C. Engine BControlProgramService extends BAbstractService confirmed. 80/83 domain blocks covered-by-sample) |
 | medium | **KC6 program module runtime** — B426 covers ONLY compilation (spawned javac). Uncovered: `BProgram` execution model, freeform vs robot program, program slots/wiring, program-ext lifecycle, the program-wb editor | `program-rt,-wb` (~55 vf) | **COVERED → B541** (BProgram extends BComponent, doExecute→impl.onExecute [ProgramBase 3 hooks]; executeOnChange link-driven. Freeform=persisted slot-wired vs Robot=one-shot run() not persisted superUser-only. Slots→SourceWriter generated getters/setters, BProgramAction reflects on<Name>(). Source in BProgramCode.source + bytecode in BCode.classFile BBlob — ALL in .bog. SANDBOX: program.requireSigning gate [unsigned+off=warning only, ties B18/security-audit], ProgramProtectionDomain=untrusted perms [file:^ only, exec blocked], ProgramRuntime.exec gated allowProgramRuntimeExec=false+audited, edit superUser-only. program-wb 4-tab editor, ProgramCompiler extends B426 Compiler. Expr-over-Program [B538 BP6] runtime reason) |
 | medium | **KC7 honeywellFunctionBlocks per-FB catalog** — B103 covers the ENGINE (`BFunctionBlock`, converters); the ~158 DDC blocks themselves (math/control/analog/zonecontrol/logic/datafunction) are not catalogued against the 50-page official doc | `honeywellFunctionBlocks-rt` (158 vf · 50 doc HTML) | **COVERED → B542** (rt=146 classes [158=rt+ux+wb, clarifies B103], 36 concrete FBs across 8 fbs/ pkgs. KEY: SCAN execution model — BFunctionBlock.executeBlock(BExecutionParams.iterationInterval, default 1s) driven by Sequenced Control Engine in ExecutionOrder — vs kitControl event-driven; the 3rd control ecosystem. BPid DDC proportional-band Kp=100/tr + deadBand timer + revAct + bias [vs BLoopPoint gain]; BStager %demand→stage count w/ min-on/off; BStageDriver stage→N booleans lead-lag; BTemperatureSetpointCalculator occ/standby/unocc setpoints + TUNCOS recovery ramp. FB-level override) |
-| medium | **KC8 priority-array write arbitration end-to-end** — the consolidated write path: a kitControl block writes → writable point 16-level arbitration → relinquish default → driver proxy. B6 §6.2.6 + B46 touch pieces; no end-to-end arbitration-rules block | `control-rt` + `kitControl-rt` write blocks | **pending** |
+| medium | **KC8 priority-array write arbitration end-to-end** — the consolidated write path: a kitControl block writes → writable point 16-level arbitration → relinquish default → driver proxy. B6 §6.2.6 + B46 touch pieces; no end-to-end arbitration-rules block | `control-rt` + `kitControl-rt` write blocks | **COVERED → B544** (chain: link out→InN [BLink.propagatePropertyToProperty→fwChanged→execute re-arbitrate B536] → out → proxyExt.onExecute [isWrite && changed\|\|forceWrite → Tuning.writeDesired, minWriteTime defers] → driver write. Force-write on level 1/8 action: writablePointActionInvoked→forceWrite(true), Modbus also execute() now. PUNCHLINE: N4 activeLevel facet → BACnet WriteProperty Priority param [16-level array survives 1:1 to remote BACnet object, relinquish null at old level]; Modbus/register drivers COLLAPSE arbitration to a single value before wire [priority is N4-internal]. Feedback: writeOk clears fault, writeFail sets fault bit→out status, BACnet pollNow re-reads) |
 | medium | **KC9 composites** — the composite as a REUSE/programming construct: glyph slot-promotion mechanics, how a composite interacts with links and execution, reuse of control logic. B24 mentions (26) + 52 official guides, no dedicated block | `wiresheet-wb` + niagara-help guides | **pending** |
 | low | **KC10 honIrmControl per-FB catalog** — engine covered (B105/B242/B493); the ~163 IRM Nano FBs vs 134 doc pages not enumerated block-by-block | `honIrmControl-rt` (218 vf · 134 doc HTML) | **pending** |
 | low | **KC11 kitControl enums / const tables** — packaged enum semantics (trigger modes, transition/latch types) + constants package not extracted | `kitControl-rt` enums+constants (module_nav resources) | **pending** |
@@ -86,11 +86,11 @@ reference pages. All candidate dirs existence-verified 2026-08-28.
 
 ## Stop control (METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: **5** (KC8–KC12). All source dirs existence-verified 2026-08-28.
-- **Gaps closed**: 8 (KC1→B536 … KC7→B542, KC13→B543).
+- **Open gaps — read-only investigable**: **4** (KC9–KC12). All source dirs existence-verified 2026-08-28.
+- **Gaps closed**: 9 (KC1→B536 … KC8→B544, KC13→B543).
 - **requires-execution / blocked**: 1 (KC13-G1 station-wide safety-config audit, §12 dynamic).
-- **Coverage metric**: 8 / 14 gaps closed (5 investigable open; 1 requires-execution).
-- **NEXT**: KC8 (priority-array write arbitration end-to-end — kitControl block → writable point → driver) → B544.
+- **Coverage metric**: 9 / 14 gaps closed (4 investigable open; 1 requires-execution).
+- **NEXT**: KC9 (composites as reuse/programming construct — slot promotion, resource cost) → B545.
 
 ## Iteration history
 
@@ -105,3 +105,4 @@ reference pages. All candidate dirs existence-verified 2026-08-28.
 | 6 | KC6 program module runtime (BProgram exec, freeform/robot, slot wiring, .bog storage, signing+SecurityManager sandbox, program-wb editor) | B541 | yes · sonnet (code sweep) + inline token-verify (5/11 rows) | none new (batch/module ProgramModule pkg out of focus; ties B18/security-audit/signing-pki) |
 | 7 | KC7 honeywellFunctionBlocks catalog (36 FBs/8 pkgs; SCAN execution model + Sequenced Control Engine; BPid/BStager/BStageDriver/setpoint calc) | B542 | yes · sonnet (code+doc sweep) + inline token-verify (5/10 rows) | none new (clarifies B103 count 158=rt+ux+wb; Java-8 confirmed [class major 52]) |
 | 8 | KC13 HVAC control SAFETY/fail-safe (operator-requested; 5 layers, 7 safe-by-default, 6 unsafe-unless-configured gaps + operator recs) | B543 | yes · sonnet (safety sweep) + inline token-verify (6/9 operator-facing rows) | KC13-G1 requires-execution (live station-wide safety-config audit) |
+| 9 | KC8 priority-array write path end-to-end (link→InN→arbitration→proxyExt→Tuning→driver; N4 level→BACnet priority 1:1, Modbus collapses; write feedback→fault) | B544 | yes · sonnet (write-chain sweep) + inline token-verify (4/8 rows) | none new (BACnet Relinquish_Default interaction = bacnet child gap) |
