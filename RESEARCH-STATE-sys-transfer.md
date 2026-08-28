@@ -1,4 +1,4 @@
-# RESEARCH-STATE — focus: sys-transfer (ACTIVE)
+# RESEARCH-STATE — focus: sys-transfer (STOPPED)
 
 > Multi-focus corpus (METHODOLOGY §16). SEEDED directly (structure self-evident from class names + prior-coverage
 > reconciliation) on 2026-08-28 — no delegated sweep needed for a 16-class, clearly-factored package.
@@ -15,20 +15,20 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 4
-gaps_closed: 4
+covered_blocks: 5
+gaps_closed: 5
 known_gaps: 5
-investigable_open: 1
+investigable_open: 0
 requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
 
 focus: sys-transfer
-status: active (4/5; ST1→B595 … ST4→B598 DONE; NEXT ST5 remote transfer + WB consumer)
+status: stopped (5/5, investigable=0; ST1→B595 … ST5→B599). §18 retro pending.
 seeded_from: direct seed (structure self-evident) + prior-coverage reconciliation 2026-08-28
 seeded_on: 2026-08-28
 gaps_total: 5 investigable (ST1–ST5)
-gaps_closed: 0
+gaps_closed: 5
 block_prefix: niagara-mental-model-bloqueN.md (shared global numbering)
 
 ## Surface (16 classes, `organized/baja/baja/vineflower/com/tridium/sys/transfer/`)
@@ -55,7 +55,7 @@ TransferArtifact}` (WB cut/copy/paste), `box/util/PasteRecord`, `fox/sys/broker/
 | high | ~~**ST2 DeployToComp + ReplacingContext**~~ | deploy is POLYMORPHIC (BIDeployable.getSteps supplies steps, strategy drives them; exact=TRUE for .ntpl); ReplacingContext IS the handle-preservation primitive (addAllHandles→restoreHandles), the mechanism B578/B579 relied on | — | **CLOSED → B596** |
 | medium | ~~**ST3 component strategies**~~ | CompToComp (copy/move by copySource flag, cross-space); IntraCompSpaceMove (same-space re-parent, identity-preserving); CompToBog (export to fresh in-memory bog); ToNavFolder (nav bookmarks); DeleteOp (niagaraRemoveLinks facet) | — | **CLOSED → B597** |
 | medium | ~~**ST4 file strategies + results**~~ | FileToFile (stream copy)/IntraFileSpaceMove/FileToComp(→CompToComp); TransferResult abstract undo() = every transfer is an UNDO token; CompTransferResult undoCopy/undoMove (makes WB paste undoable, B432); TransferListener progress hook | — | **CLOSED → B598** |
-| medium | **ST5 remote transfer + WB consumer** | RemoteIntraSpace/RemoteTransferSpace (cross-station cut/paste), fox TransferCodec wire, and the Workbench consumer (TransferUtil/TransferArtifact) that turns clipboard/drag-drop into a strategy | `Remote*.java` + `fox/…/TransferCodec.java` + `workbench-wb/…/transfer/{TransferUtil,TransferArtifact}.java` | **NEXT** |
+| medium | ~~**ST5 remote transfer + WB consumer**~~ | RemoteIntraSpace delegates to RemoteTransferSpace; fox TransferCodec serializes Mark+params (cross-station cut/paste); TransferUtil = WB clipboard/drag entry → make().transfer() → undoable CommandArtifact | — | **CLOSED → B599** |
 
 ## Proven-absent / notes
 
@@ -64,6 +64,7 @@ TransferArtifact}` (WB cut/copy/paste), `box/util/PasteRecord`, `fox/sys/broker/
 
 ## Stop control (METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 1 (ST5). Focus ACTIVE.
-- **Gaps closed**: 4 (ST1→B595 … ST4→B598).
-- **Coverage metric**: 0 / 5.
+- **Open gaps — read-only investigable**: **0** — ALL 5 closed (ST1–ST5). Focus STOPPED (§8).
+- **Gaps closed**: 5 (ST1→B595, ST2→B596, ST3→B597, ST4→B598, ST5→B599).
+- **Coverage metric**: 5 / 5 (100%). Foundational primitive under the template thread (B578/B579), now opened.
+- **Note**: seeded WITHOUT a delegated sweep (16-class self-evident package) — direct seed worked.

@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **596 bloques**
+Total: **597 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -601,6 +601,7 @@ Total: **596 bloques**
 | 596 | [niagara-mental-model-bloque596.md](niagara-mental-model-bloque596.md) | Block 596 — `DeployToComp` + `ReplacingContext`: deploy is polymorphic (the `BIDeployable` supplies its own steps; the strategy just drives them), and `ReplacingContext` IS the handle-preservation primitive — it captures the old subtree's handles and restores them onto the replacement, the mechanism B578/B579 relied on |
 | 597 | [niagara-mental-model-bloque597.md](niagara-mental-model-bloque597.md) | Block 597 — The component transfer strategies: copy-vs-move is a flag on `CompToComp`, a same-space move is specialized to an identity-preserving re-parent (`IntraCompSpaceMove`), `CompToBog` exports to a fresh in-memory bog, `ToNavFolder` organizes bookmarks, and `DeleteOp` deletes with a link-cleanup facet |
 | 598 | [niagara-mental-model-bloque598.md](niagara-mental-model-bloque598.md) | Block 598 — File transfer strategies and the UNDO model: every transfer returns a `TransferResult` with an `undo()` — `CompTransferResult` knows to remove-what-it-added (copy) or move-it-back (move), which is what makes Workbench cut/copy/paste undoable; the file strategies mirror the component ones |
+| 599 | [niagara-mental-model-bloque599.md](niagara-mental-model-bloque599.md) | Block 599 — The two ends of the transfer engine: cross-station transfer (`RemoteIntraSpace` → `RemoteTransferSpace`, serialized by the Fox `TransferCodec`) and the Workbench consumer (`TransferUtil` wraps a `Mark`, runs the strategy, returns an undoable `CommandArtifact`) — closing the sys-transfer focus |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
