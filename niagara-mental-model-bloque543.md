@@ -93,7 +93,11 @@ warm value would defeat it (the status envelope is stripped, §543.2).
 `BLoopAlarmAlgorithm` `[CERT] BLoopAlarmAlgorithm.java:138-142` fires an off-normal alarm on `|SP−PV| >
 errorLimit` but **does NOT modify, clamp, or disable the control output** — a valve can sit at 100% while the
 deviation alarm is active. No `Interlock`/`Safety`/`Freeze`/`Emergency` CLASS implementing a hard control
-override exists in kitControl or clHVAC (searched). The one HARD override path is the writable point's
+override exists in kitControl or clHVAC (searched). **REFINED by [Block 551]** (KC14): that search was by
+TOP-LEVEL class name and missed EMBEDDED sub-functions — `CmFrost_Protection` (a `Cm*` sub-function inside the
+clHVAC AHU cascade `BCmCSA_CascContr`) IS a hard control override: every actuator output passes through it and
+it forces the heating valve open / dampers closed on freeze risk. So "alarm-only, no interlock" holds for the
+kitControl `BLoopAlarmAlgorithm`, but the clHVAC AHU cascade DOES embed a hard freeze interlock. The one HARD override path is the writable point's
 **priority level 1 (emergency)** `[CERT-doc] aWritablePoints` — an operator/safety action at level 1 wins the
 arbitration ([Block 536]). Beyond Niagara, the BACnet device offers a last-resort **Safety_Value** on comms
 loss `[CERT-doc] Safety_Value.html` — downstream of the station logic.

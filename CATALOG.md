@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **548 bloques**
+Total: **549 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -553,6 +553,7 @@ Total: **548 bloques**
 | 548 | [niagara-mental-model-bloque548.md](niagara-mental-model-bloque548.md) | Block 548 — clHVAC Nordic + micro-modules: the cold-climate AHU family, room pre-control, and energy statistics — completing the clHVAC family enumeration |
 | 549 | [niagara-mental-model-bloque549.md](niagara-mental-model-bloque549.md) | Block 549 — kitControl focus SYNTHESIS: the four control-programming ecosystems of N4, the writable-point spine, the programming rules, and the HVAC control-safety verdict |
 | 550 | [niagara-mental-model-bloque550.md](niagara-mental-model-bloque550.md) | Block 550 — Resolving the CmDamper_Control_Signal safety [INFER]: the mixing-damper block DOES guard the absent-sensor case (refines B543 §543.2) |
+| 551 | [niagara-mental-model-bloque551.md](niagara-mental-model-bloque551.md) | Block 551 — Four more clHVAC control sequences: boiler cascade, VAV AHU static-pressure control, room→SAT cascade with a HARD frost interlock, and the wet-bulb formula (extends B540; refines B543 §543.6) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
