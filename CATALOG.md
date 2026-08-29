@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **641 blocks**
+Total: **642 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -647,3 +647,4 @@ Total: **641 blocks**
 | 643 | [niagara-mental-model-bloque643.md](niagara-mental-model-bloque643.md) | Niagara N4 — own-modules-audit (OMA5): `mcpbridge` is a Model Context Protocol server exposing the station to AI agents (list/read/set/create/link component tools) via `BMcpServlet` — auth-gated (401 if unauthenticated) but per-tool RBAC granularity is unverified; 95% of its bulk is bundled Gson |
 | 644 | [niagara-mental-model-bloque644.md](niagara-mental-model-bloque644.md) | Niagara N4 — own-modules-audit (OMA4): `sdash` is the shop's most sophisticated dashboard (WebSocket sync, own ORD scheme, per-agent-permissioned command types) wrapped in a 2186-class uber-jar (96% Jackson + Apache Commons) still on the legacy SEJOFA_C signer |
 | 645 | [niagara-mental-model-bloque645.md](niagara-mental-model-bloque645.md) | Niagara N4 — own-modules-audit (OMA3): `datacenter-ux`'s "220 classes" are 99% bundled Gson, NOT misplaced business logic — the real payload is an `rc/` 3D dashboard (Three.js + Chart.js) with hardcoded rack data and a stray `CASINO` asset; profile placement is correct (corrects the OMA1 "heavy ux" worry) |
+| 646 | [niagara-mental-model-bloque646.md](niagara-mental-model-bloque646.md) | Niagara N4 — own-modules-audit (OMA7): the six small SEJOFA dashboards are one repeatable TEMPLATE — `com.sejofa.<mod>.components` with a `BXxxDashboardService` + domain `Monitor`s (rt) and a pure-web `-ux` — cloned per client site, carrying only the systemic deviations |

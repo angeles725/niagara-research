@@ -20,10 +20,10 @@
 
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 641
+covered_blocks: 642
 gaps_closed: 6
 known_gaps: 12
-investigable_open: 2
+investigable_open: 1
 requires_execution_open: 1
 blocked_open: 0
 deferred_open: 1
@@ -61,7 +61,7 @@ block_scope: shared-global
 | medium | OMA3 — `datacenter` (ux = 220 classes / 1 type): heavy Java in the BROWSER profile (chihuahua #5 taken to extreme) — what those 220 ux classes are and whether they belong in rt | direct-artifact + decompile · datacenter-ux.jar/-rt.jar | ✅ B645 — 220 classes = 99% bundled Gson (only 2 own BDtcrServlet+cache); REFUTES 'heavy ux=misplaced logic' (B640 P5/B636 #5) — real payload is rc/ 3D dashboard (Three.js+Chart.js bundled, floorplan/rack/map, HARDCODED racks-large.js/locations.js, stray CASINO asset x2). Profile ux CORRECT. Fixes: externalize data, share libs, prune CASINO. dev/demo |
 | medium | OMA6 — `httpClientGAngeles` (the "correct" one: permGroups=0, vendorVersion 4.14.0.162, 87 types, tri-profile): why it is the best-built, likely a fork/rebrand of Tridium `httpClient` — the positive exemplar | direct-artifact · httpClientGAngeles-{rt,ux,wb}.jar | ✅ B641 — REFRAME: NOT own-built exemplar; it is Tridium's com.tridiumx.httpClient add-on repackaged (vendor SEJOFA, all classes com/tridiumx/httpClient/*) with SMA license gate 'neutralized' + re-signed. Clean manifest (0 perms, real vendorVersion 4.14) is INHERITED from Tridium, not authored. Licensing/compliance exposure (runs unlicensed, enabled by moduleVerificationMode=low). Copy the SHAPE not the provenance |
 | medium | OMA2 — the ANGELES-namespace modules (`angeles`, `demoangeles`, `interfaz1`): grade the operator's direct-namespace modules vs [B636]; interfaz1 has 0-type/0-class ux+wb shells | direct-artifact · angeles/demoangeles/interfaz1 jars | ✅ B642 — clean equipment+Monitor model (angeles com.sejofa.angeles HVAC: Chiller/CoolingTower/DieselGenerator/…+Monitor twins; demoangeles=demo; interfaz1 com.angeles Dashboard+NotifierHoneywell); namespace split com.sejofa vs com.angeles under one ANGELES vendor; interfaz1-ux=pure-web (legit), interfaz1-wb=genuinely empty (drop); systemic deviations only |
-| low | OMA7 — the small SEJOFA dashboards (`electri`, `sanluis`, `sejofadashboard`, `tr3z`, `multivistaspersonalizados`, `dashboardups`): grouped grade vs [B636]; several have empty ux shells | direct-artifact · 6 jars | pending |
+| low | OMA7 — the small SEJOFA dashboards (`electri`, `sanluis`, `sejofadashboard`, `tr3z`, `multivistaspersonalizados`, `dashboardups`): grouped grade vs [B636]; several have empty ux shells | direct-artifact · 6 jars | ✅ B646 — ONE repeatable TEMPLATE cloned per site: BXxxDashboardService + domain Monitors (com.sejofa.<mod>.components) + pure-web -ux (9-26 rc/ assets, 0 Java, all six). sejofadashboard=richer base (BDashboardConfig+BSejoFaServlet). Same as chihuahua/angeles shape. Only systemic deviations (ver1.0, type=all) → fix TEMPLATE once + re-clone. No vendor forks, palettes shipped |
 | deferred | MCP-G2 — is a BMcpServlet instance actually MOUNTED/reachable in any running station? (config.bog / live check) — determines whether the B643 authz-bypass is live vs latent | requires-execution · config.bog / live station | requires-execution |
 | high | OMA8 — SYNTHESIS: the operator's module-building signature (recurring good + bad patterns across OMA1-OMA7), a consolidated prioritized remediation plan, and a corrected reference build template for the shop | design synthesis over OMA1-OMA7 + [B636] | pending |
 
@@ -79,6 +79,7 @@ block_scope: shared-global
 | 7 | 2026-08-29 | OMA5 mcpbridge MCP server + authz-bypass (MCP-G1 closed) | B643 | no·inline (artifact+javap decompile) | MCP-G2 |
 | 8 | 2026-08-29 | OMA4 sdash uber-jar (WebSocket/sync/scheme; Jackson+Commons) | B644 | yes·sonnet (anomaly sweep) + inline verify | 0 |
 | 9 | 2026-08-29 | OMA3 datacenter-ux (Gson uber-jar, 3D rc/; 'heavy ux' refuted) | B645 | yes·sonnet (anomaly sweep) + inline verify | 0 |
+| 10 | 2026-08-29 | OMA7 six small SEJOFA dashboards = one template | B646 | no·inline (manifest scan + verify) | 0 |
 
 ## Blocked gaps (each tagged with what it needs)
 
