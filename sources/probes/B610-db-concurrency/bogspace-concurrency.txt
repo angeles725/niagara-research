@@ -1,0 +1,8 @@
+baseline: {'NumericWritable5': '27.0', 'NumericWritable6': '19.0'}
+TEST A (same-point race): 200 writes / 0.81s = 246.1 writes/s · errors=0
+  final value = 24.0  (must be exactly one written value tid*1000+i, not corrupted)
+  consistency: final is a valid single written value? True
+TEST B (distinct points, 4x30 concurrent writes, 0.88s): finals={'NumericWritable': '111.0', 'NumericWritable1': '222.0', 'NumericWritable5': '555.0', 'NumericWritable6': '666.0'}
+  no cross-contamination (each point = its own value)? True  errors=0
+TEST C (20-thread heavy): 300 ok / 300 attempts in 0.82s = 364.9 w/s · errors=0
+RESTORE: NW5= 27.0  NW6= 19.0  NW= 22.0

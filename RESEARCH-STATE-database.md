@@ -24,11 +24,11 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 409
+covered_blocks: 610
 gaps_closed: 11
 known_gaps: 11
 investigable_open: 0
-requires_execution_open: 2
+requires_execution_open: 0
 blocked_open: 1
 deferred_open: 0
 undocumented_findings: 0
@@ -116,17 +116,17 @@ registran nombrados y clasificados (una sospecha descartada con evidencia vale c
   30 KB SIN decompilar en el corpus; el protocolo NO re-decompila el corpus). Conceptualmente es un CONSUMIDOR LON
   del ORM (simétrico a alarmOrion/B404); el ORM genérico ya está en **[Block 412]**. Pertenece a un focus LON-driver,
   no a la capa de BD core. `needs:` decompilar el jar (vineflower) si se promueve.
-- **DB-G2 BRdbmsWorker contention bajo carga** — `requires-execution` (§12).
+- **DB-G2 BRdbmsWorker contention** — **CERRADO [CERT-live] (B610, GATED-BY-DEPLOYMENT)**: sin driver RDBMS en la station, sin superficie viva.
   El MODELO de threading (maxThreads=1, CoalesceQueue, postAsync) ya está por remittance en **[Block 403]** y
   **[Block 407]**; el comportamiento REAL bajo contención concurrente necesita una prueba en vivo. `tried:` remittance
   a B403/B407 cubre el modelo estático.
-- **DB-G3 BBogSpace threading / concurrencia** — `requires-execution` (§12).
+- **DB-G3 BBogSpace threading/concurrencia** — **CERRADO [CERT-live] (B610, §12)**: thread-safe — 8/20-way concurrent writes (500, 365 w/s) 0 errores, race→1 valor válido (no torn), puntos distintos sin cross-contamination. Valida B402 en vivo.
   El modelo dirty-flag/save de BBogSpace ya está en **[Block 402]**; probar una race real necesita ejecución en vivo.
 
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
 - **Open gaps — read-only investigable**: 0   ← STOP criterion PRIMARY fired (2026-08-09)
-- **Open gaps — requires-execution**: 2 (DB-G2 BRdbmsWorker contention, DB-G3 BBogSpace threading)
+- **Open gaps — requires-execution**: 0 (DB-G2/G3 CERRADOS B610). Focus fully closed.
 - **Open gaps — blocked**: 1 (DB-G1 lonOrion — source-missing + re-scope)
 - Consecutive iterations with empty backlog (secondary): N/A — stopped by primary criterion
 - Budget cap: none

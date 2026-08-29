@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **607 bloques**
+Total: **608 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -612,6 +612,7 @@ Total: **607 bloques**
 | 607 | [niagara-mental-model-bloque607.md](niagara-mental-model-bloque607.md) | Block 607 — ⚠ CONFIG MUTATION — B458-G2 / B290-G2: the oBIX write surface is live and effective (`set`/`override`/`auto`/`emergency*` ops on a writable point), a `set` persists to the fallback/default level confirmed by an independent read, and the write requires NO CSRF token — settling B602's open `[INFER]`: oBIX is NOT behind the `CsrfProtectedFilter` |
 | 608 | [niagara-mental-model-bloque608.md](niagara-mental-model-bloque608.md) | Block 608 — jsonToolkit-G1 + G2 (merged): B341's inbound-trust defects (export-marker registration with NO ACL, and spoofable alarm-ack attribution) have ZERO live attack surface on this station — its jsonToolkit is configured OUTBOUND-ONLY (one `JsonSchemaQuery`, no inbound SetPoint/Ack/ExportMarker handler is instantiated anywhere in the component space). GATED-BY-DEPLOYMENT: the code defects stand, the deployment does not expose them |
 | 609 | [niagara-mental-model-bloque609.md](niagara-mental-model-bloque609.md) | Block 609 — W7-G1 code confirmed [CERT]: the `/schedule` and `/boxTable` handlers call `resp.sendError(404)` on `!target.canRead()` but DO NOT `return` — execution falls through to `target.get()` + `encodeSchedule`/`encodeTableData`, reading and writing the protected body; the sibling `encodeHistoryData` shows the CORRECT pattern (it `throw`s). Live leak-vs-no-leak verdict deferred: it fires only for a read-denied principal, which cannot be minted over the available surfaces |
+| 610 | [niagara-mental-model-bloque610.md](niagara-mental-model-bloque610.md) | Block 610 — ⚠ CONFIG MUTATION — DB-G3: BBogSpace is thread-safe under concurrent writes — 8-way and 20-way concurrent oBIX writes (500 total, up to 365 writes/s) all applied atomically with 0 errors, a same-point race resolved to ONE valid value (no torn writes), and distinct-point writes showed zero cross-contamination — validating B402's serialized-save model live; DB-G2 (BRdbmsWorker) has NO live surface (no RDBMS driver deployed) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
