@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **616 blocks**
+Total: **617 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -622,3 +622,4 @@ Total: **616 blocks**
 | 618 | [niagara-mental-model-bloque618.md](niagara-mental-model-bloque618.md) | graphql-admin (GQL-G7): BOX has an open channel-registration seam — a GraphQL subscription channel plugs in without a separate WebSocket |
 | 619 | [niagara-mental-model-bloque619.md](niagara-mental-model-bloque619.md) | graphql-admin (SYNTHESIS / GQL-G9): reference architecture and build-vs-buy verdict for a GraphQL admin layer over Niagara N4 |
 | 620 | [niagara-mental-model-bloque620.md](niagara-mental-model-bloque620.md) | ports (PO-G3): Modbus TCP Slave :502 — an unauthenticated read/write surface bounded only by the register map |
+| 621 | [niagara-mental-model-bloque621.md](niagara-mental-model-bloque621.md) | ports (PO-G2): SNMP agent :161/:162 — off by default, but community `public` on both read AND write when enabled |

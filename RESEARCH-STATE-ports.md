@@ -16,10 +16,10 @@
 
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 616
-gaps_closed: 1
+covered_blocks: 617
+gaps_closed: 2
 known_gaps: 7
-investigable_open: 6
+investigable_open: 5
 requires_execution_open: 1
 blocked_open: 1
 deferred_open: 2
@@ -30,8 +30,8 @@ block_scope: shared-global
 ## Coverage
 
 - **Covered blocks**: 0 in this focus (corpus-wide count synced by the tool; global prefix `niagara-mental-model-bloque`)
-- **Coverage metric**: 1 / 7 closed
-- **Last iteration**: 2026-08-29 — PO-G3 closed (B620: Modbus TCP Slave :502 auth-free read/write, bounded by register map)
+- **Coverage metric**: 2 / 7 closed
+- **Last iteration**: 2026-08-29 — PO-G2 closed (B621: SNMP :161 off-by-default; community public read+write when enabled)
 
 ## Remittances (protocol internals already covered — cite, do NOT re-derive)
 
@@ -52,7 +52,7 @@ block_scope: shared-global
 | Priority | Gap | Artifact type / source | Status |
 |---|---|---|---|
 | high | PO-G3 — Modbus TCP Slave :502 auth-free reach: which function codes accepted, what points are exposed via the register map, and the unauthenticated WRITE blast-radius (`maximumConnections=5`, zero auth) | Java · organized/modbusTcpSlave/modbusTcpSlave-rt/.../BModbusTcpSlaveNetwork.java + comm/ModbusTcpServer.java | ✅ B620 — accept() loop, ZERO auth/no principal; func codes read/write/write-read/file; exposure=register map (server proxyExts), NOT whole station; no Niagara RBAC on write; controls=loopback-bind/maxConn/license/network only |
-| high | PO-G2 — SNMP :161 agent auth-gate + reach: `readWriteCommunity="public"` default → unauthenticated write; the full set of exported MIB objects/points writable and any per-export ACL | Java · organized/nSnmp/nSnmp-rt/.../BSnmpNetwork.java + BSnmpAgent.java | pending |
+| high | PO-G2 — SNMP :161 agent auth-gate + reach: `readWriteCommunity="public"` default → unauthenticated write; the full set of exported MIB objects/points writable and any per-export ACL | Java · organized/nSnmp/nSnmp-rt/.../BSnmpNetwork.java + BSnmpAgent.java | ✅ B621 — agent OFF by default; v1/v2c gate=community (default public on read AND write), no source filter default; v3=USM+VACM (B476); reach=BSnmpExportTable, SET no Niagara RBAC; closes B476-G2 |
 | high | PO-G4 — BACnet/SC HubFunction on `:443/hub`: admission model of the `/hub` WebSocket upgrade — Niagara session/RBAC vs TLS-cert-only at the Jetty layer (bypassing session); reach on the SC virtual network | Java · organized/bacnet/bacnet-rt/.../stack/link/sc/BHubFunction.java + BJettyScWebSocketAcceptor | pending |
 | medium | PO-G1 — Fox multicast UDP :1911: what each announcement discloses (station name/IP/port/version), whether a passive subnet listener can enumerate all stations, and whether disabling `multicastEnabled` is a hardening step | Java · organized/fox/fox-rt/.../session/Fox.java + MulticastServer.java + sys/BFoxService.java | pending |
 | medium | PO-G5 — OPC-UA HTTPS endpoint :52443 (`BHttpsEndpoint`, enabled=true) auth model: does it share the :52520 user-auth (username/cert/anonymous) + Niagara RBAC, and how is it wired into `BOpcUaServer`? (B498 covered only :52520) | Java · organized/opcUaServer/opcUaServer-rt/.../BHttpsEndpoint.java + BOpcUaServer.java | pending |
@@ -67,6 +67,7 @@ block_scope: shared-global
 |---|---|---|---|---|---|
 | 0 | 2026-08-29 | (bootstrap) AUDIT-FIRST sweep + backlog seeded | — | yes · sonnet (coverage sweep) | 7 |
 | 1 | 2026-08-29 | PO-G3 Modbus TCP Slave :502 auth-free reach | B620 | inline (constraint: 4-file server read) | 0 |
+| 2 | 2026-08-29 | PO-G2 SNMP :161 agent auth-gate + reach | B621 | inline (constraint: 2-file config read) | 0 |
 
 ## Blocked gaps (each tagged with what it needs)
 
@@ -74,7 +75,7 @@ block_scope: shared-global
 
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 6   ← the STATIC loop STOPS when this hits 0
+- **Open gaps — read-only investigable**: 5   ← the STATIC loop STOPS when this hits 0
 - **Open gaps — requires-execution**: 1 (PO-G7w)
 - **Open gaps — blocked**: 0
 - Consecutive iterations with empty backlog (secondary): 0/2
