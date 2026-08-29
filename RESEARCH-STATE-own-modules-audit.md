@@ -19,9 +19,9 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 covered_blocks: 632
-gaps_closed: 4
+gaps_closed: 5
 known_gaps: 11
-investigable_open: 7
+investigable_open: 6
 requires_execution_open: 0
 blocked_open: 0
 deferred_open: 0
@@ -32,7 +32,7 @@ block_scope: shared-global
 ## Coverage
 
 - **Covered blocks**: 0 in this focus (corpus-wide count synced by the tool; global prefix `niagara-mental-model-bloque`)
-- **Coverage metric**: 4 / 11 closed
+- **Coverage metric**: 5 / 11 closed
 - **Last iteration**: 2026-08-29 — bootstrap (direct-artifact manifest scan + backlog seeded)
 
 ## Remittances (already covered — cite, do NOT re-derive)
@@ -57,7 +57,7 @@ block_scope: shared-global
 | high | OMA5 — `mcpbridge-rt` (206 classes, 1 type, rt-ONLY): what it is (an MCP bridge?), what it bundles, why 206 classes for 1 Baja type, and its architecture vs the reference | direct-artifact + decompile · mcpbridge-rt.jar | pending |
 | high | OMA4 — `sdash-rt` (2186 classes(!), 12 types, signer SEJOFA_C, permGroups=4): what is bundled (uberjar library?), the signer difference, and the size/packaging implications | direct-artifact + decompile · sdash-rt.jar | pending |
 | medium | OMA3 — `datacenter` (ux = 220 classes / 1 type): heavy Java in the BROWSER profile (chihuahua #5 taken to extreme) — what those 220 ux classes are and whether they belong in rt | direct-artifact + decompile · datacenter-ux.jar/-rt.jar | pending |
-| medium | OMA6 — `httpClientGAngeles` (the "correct" one: permGroups=0, vendorVersion 4.14.0.162, 87 types, tri-profile): why it is the best-built, likely a fork/rebrand of Tridium `httpClient` — the positive exemplar | direct-artifact · httpClientGAngeles-{rt,ux,wb}.jar | pending |
+| medium | OMA6 — `httpClientGAngeles` (the "correct" one: permGroups=0, vendorVersion 4.14.0.162, 87 types, tri-profile): why it is the best-built, likely a fork/rebrand of Tridium `httpClient` — the positive exemplar | direct-artifact · httpClientGAngeles-{rt,ux,wb}.jar | ✅ B641 — REFRAME: NOT own-built exemplar; it is Tridium's com.tridiumx.httpClient add-on repackaged (vendor SEJOFA, all classes com/tridiumx/httpClient/*) with SMA license gate 'neutralized' + re-signed. Clean manifest (0 perms, real vendorVersion 4.14) is INHERITED from Tridium, not authored. Licensing/compliance exposure (runs unlicensed, enabled by moduleVerificationMode=low). Copy the SHAPE not the provenance |
 | medium | OMA2 — the ANGELES-namespace modules (`angeles`, `demoangeles`, `interfaz1`): grade the operator's direct-namespace modules vs [B636]; interfaz1 has 0-type/0-class ux+wb shells | direct-artifact · angeles/demoangeles/interfaz1 jars | pending |
 | low | OMA7 — the small SEJOFA dashboards (`electri`, `sanluis`, `sejofadashboard`, `tr3z`, `multivistaspersonalizados`, `dashboardups`): grouped grade vs [B636]; several have empty ux shells | direct-artifact · 6 jars | pending |
 | high | OMA8 — SYNTHESIS: the operator's module-building signature (recurring good + bad patterns across OMA1-OMA7), a consolidated prioritized remediation plan, and a corrected reference build template for the shop | design synthesis over OMA1-OMA7 + [B636] | pending |
@@ -71,6 +71,7 @@ block_scope: shared-global
 | 2 | 2026-08-29 | OMB2 version-targeting via niagara_home SDK path (§14 B636) | B638 | no·inline (source map + verify) | 0 |
 | 3 | 2026-08-29 | OMB3 signing (angelessignerCA/ANGELES) + niagara-tools | B639 | no·inline (source + keystore struct + verify) | 0 |
 | 4 | 2026-08-29 | OMA1 systemic cross-module patterns (5) | B640 | no·inline (manifest scan synthesis) | 0 |
+| 5 | 2026-08-29 | OMA6 httpClientGAngeles = Tridium fork, SMA neutralized | B641 | no·inline (direct artifact + verify) | 0 |
 
 ## Blocked gaps (each tagged with what it needs)
 
@@ -78,7 +79,7 @@ block_scope: shared-global
 
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 7   ← the STATIC loop STOPS when this hits 0
+- **Open gaps — read-only investigable**: 6   ← the STATIC loop STOPS when this hits 0
 - **Open gaps — requires-execution**: 0
 - **Open gaps — blocked**: 0
 - Consecutive iterations with empty backlog (secondary): 0/2
