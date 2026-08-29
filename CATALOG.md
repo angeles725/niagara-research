@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **629 blocks**
+Total: **631 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -635,3 +635,5 @@ Total: **629 blocks**
 | 631 | [niagara-mental-model-bloque631.md](niagara-mental-model-bloque631.md) | Niagara N4 — module-anatomy (MA3): the type-registration pipeline — `<type>` in module-include.xml is READ (not written) by Slotomatic, baked into a `RegistryDatabase` of `NTypeInfo` (no Class), and the Class is loaded exactly once at `NModule.loadClass` via the `ModuleClassLoader` (§14 refines B12) |
 | 632 | [niagara-mental-model-bloque632.md](niagara-mental-model-bloque632.md) | Niagara N4 — module-anatomy (MA4): the physical module-jar skeleton — `META-INF/{MANIFEST.MF, NIAGARA4.SF, NIAGARA4.RSA, module.xml}` + classes-by-package + profile-specific payload (`module.palette`/`.lexicon` for rt, `rc/` icons+css for wb, `rc/` JS web-assets for ux) |
 | 633 | [niagara-mental-model-bloque633.md](niagara-mental-model-bloque633.md) | Niagara N4 — module-anatomy (MA5): the daemon-side module install — a signature-gated, station-stopping, overwrite-in-place stream of the jar to `$NIAGARA_HOME/modules/<name>.jar` (no backup, no atomic rename, no rollback) |
+| 634 | [niagara-mental-model-bloque634.md](niagara-mental-model-bloque634.md) | Niagara N4 — module-anatomy (MA6): the palette runtime reader — `module.palette` is discovered lazily from the module's `BZipSpace`, BOG-decoded into an ungated nav node (`BModulePaletteNode`), and cached per module |
+| 635 | [niagara-mental-model-bloque635.md](niagara-mental-model-bloque635.md) | Niagara N4 — module-anatomy (MA7): module `<permissions>` → Java security policy — two tracks (`<java-permissions>` enforced by the SecurityManager per-CodeSource, `<niagara-permission-groups>` granted by a DEFAULT grant-all store), atop an always-restricted base grant |
