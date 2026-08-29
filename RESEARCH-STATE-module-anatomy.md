@@ -17,10 +17,10 @@
 
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 625
-gaps_closed: 1
+covered_blocks: 626
+gaps_closed: 2
 known_gaps: 8
-investigable_open: 7
+investigable_open: 6
 requires_execution_open: 0
 blocked_open: 0
 deferred_open: 0
@@ -31,7 +31,7 @@ block_scope: shared-global
 ## Coverage
 
 - **Covered blocks**: 0 in this focus (corpus-wide count synced by the tool; global prefix `niagara-mental-model-bloque`)
-- **Coverage metric**: 1 / 8 closed
+- **Coverage metric**: 2 / 8 closed
 - **Last iteration**: 2026-08-29 — bootstrap (AUDIT-FIRST sweep + backlog seeded)
 
 ## Remittances (already covered — cite, do NOT re-derive)
@@ -57,7 +57,7 @@ block_scope: shared-global
 | Priority | Gap | Artifact type / source | Status |
 |---|---|---|---|
 | high | MA1 — the manifest READER: how `ModuleManifest(XElem)` parses `<types>`/`<dependencies>`/`<moduleParts>`/`<dirs>`/`<lexicons>` at install time, and how `BModulePart` (install-side) relates to `NModule` (runtime-side) — the install-vs-runtime dual representation of a module part | Java · organized/platform/platform-rt/.../install/installable/ModuleManifest.java + install/part/BModulePart.java | ✅ B629 — manifest parsed TWICE by independent readers: install-side ModuleManifest (platform-rt, Baja-serializable BModulePart; `<permissions>/<defs>/<lexicons>`→unknownElements) vs runtime-side NModule.readXml (baja); NO converter; BModule aggregates Map<RuntimeProfile,NModule> (first-part-wins header); type-res = literal `moduleName+":"+typeName` (NModule:226) |
-| high | MA2 — the module BOOT scan: how the `modules/` dir is enumerated (`BootEnv.findModuleFile(name,profile)`), filtered by RuntimeProfile, and dependency-ordered (`ModuleManager.resolve()`/`loadModuleParts`), with `ClassScanner.scan(InputStream)` reading class bytecode to populate the registry | Java · organized/baja/baja/.../sys/BootEnv.java + sys/module/ModuleManager.java + sys/registry/ClassScanner.java | pending |
+| high | MA2 — the module BOOT scan: how the `modules/` dir is enumerated (`BootEnv.findModuleFile(name,profile)`), filtered by RuntimeProfile, and dependency-ordered (`ModuleManager.resolve()`/`loadModuleParts`), with `ClassScanner.scan(InputStream)` reading class bytecode to populate the registry | Java · organized/baja/baja/.../sys/BootEnv.java + sys/module/ModuleManager.java + sys/registry/ClassScanner.java | ✅ B630 — modules/ enum by DefaultModulesFileManager; PROFILE from manifest `runtimeProfile` attr NOT filename (missing→ignored 'AX module?'); registry is PREBUILT binary (NRegistry.db reads .db file), ClassScanner is REBUILD-only (Builder), zero boot-time class scan; deps resolved recursive-DFS w/ pendingAdd visited-set, committed atomically; profile gate = Nre -rp: (rt always) |
 | high | MA3 — the TYPE-registration pipeline end-to-end: `@NiagaraType` → `NiagaraTypeProcessor` writes `<type>` in `module-include.xml` → boot `ClassScanner` populates `NModule.types[]` → runtime `NModule.loadType()` (`moduleName+':'+typeName`) / `BTypeSpec.getTypeInfo()` → `Registry.getType(spec)` | Java · organized/devkit/devkit-wb/.../annotation/processors/NiagaraTypeProcessor.java + baja/.../module/NModule.java + util/BTypeSpec.java + registry/Registry.java | pending |
 | medium | MA4 — the physical JAR layout SKELETON: the complete entry map of a real module jar (`META-INF/module.xml`, MANIFEST.MF+.SF+.RSA [remit mechanism], `.class` by package, `module.palette` root, `<mod>.lexicon` + `lexicon/<lang>/`, embedded `rc/` icons, `.bajadoc`) — assembled once as the reference skeleton; `BModule` wraps the jar as a `BZipSpace` | Java · organized/baja/baja/.../sys/BModule.java + a real jar (devkit-wb) | pending |
 | medium | MA5 — the daemon-side install command: how a module JAR moves from `!cleanDist`/registry to a station's `modules/` dir — `BModuleInstallable` (installable wrapper) → `BModuleInstallCommand` (platDaemon writes the jar) → restart handshake; continues [B569] past the supervisor transaction | Java · organized/platform/platform-rt/.../install/installable/BModuleInstallable.java + organized/platDaemon/platDaemon-rt/.../command/BModuleInstallCommand.java | pending |
@@ -71,6 +71,7 @@ block_scope: shared-global
 |---|---|---|---|---|---|
 | 0 | 2026-08-29 | (bootstrap) AUDIT-FIRST sweep + backlog seeded | — | yes · sonnet (coverage sweep, 76 calls) | 8 |
 | 1 | 2026-08-29 | MA1 manifest reader (install-vs-runtime dual) | B629 | yes · sonnet (4-class sweep) + inline verify | 0 |
+| 2 | 2026-08-29 | MA2 module boot scan (dir→profile→resolve→registry) | B630 | yes · sonnet (6-class sweep) + inline verify | 0 |
 
 ## Blocked gaps (each tagged with what it needs)
 
@@ -78,7 +79,7 @@ block_scope: shared-global
 
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 7   ← the STATIC loop STOPS when this hits 0
+- **Open gaps — read-only investigable**: 6   ← the STATIC loop STOPS when this hits 0
 - **Open gaps — requires-execution**: 0
 - **Open gaps — blocked**: 0
 - Consecutive iterations with empty backlog (secondary): 0/2
