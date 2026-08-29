@@ -14,10 +14,10 @@
 
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 643
-gaps_closed: 7
+covered_blocks: 651
+gaps_closed: 8
 known_gaps: 8
-investigable_open: 1
+investigable_open: 0
 requires_execution_open: 0
 blocked_open: 0
 deferred_open: 0
@@ -28,7 +28,7 @@ block_scope: shared-global
 ## Coverage
 
 - **Covered blocks**: 0 in this focus (corpus-wide count synced by the tool)
-- **Coverage metric**: 7 / 8 closed
+- **Coverage metric**: 8 / 8 closed (FOCUS CLOSED)
 - **Last iteration**: 2026-08-29 — bootstrap (source-tree orient)
 
 ## Remittances (already covered — cite, do NOT re-derive)
@@ -49,7 +49,7 @@ block_scope: shared-global
 | medium | CS4 — the ux data/query helpers: `ChiHistoryHelper`/`ChiAlarmHelper`/`ChiAlarmQueryHelper`/`ChiThresholdHelper`/`ChiScheduleHelper`/`ChiEquipmentReader`/`ChiJsonUtil` — BQL/history/alarm patterns + the N4.14 gotchas | Java · chihuahua-ux/src/.../*.java | ✅ B652 — INJECTION-SAFE + N4.14-gotcha-aware: history via History API not BBqlGrid (dodges B359 NPE), stride downsample (B369), alarm BQL from long epoch millis + fixed ackState + escaped ORD (no user-string), threshold writes allowlisted+value-guarded, ChiJsonUtil.escapeJson complete (ctrl+U2028/9). Clean (no System.out/TODO) |
 | medium | CS5 — the front-end architecture: the ES5 JS app (DashboardApp, stores/managers, AlarmLatchStore, CapabilityStore, Three.js/Chart.js), FRONTEND_ARCHITECTURE.md contract, cache-invalidation | JS · chihuahua-ux/src/rc/js/** + FRONTEND_ARCHITECTURE.md | ✅ B653 — strict-ES5 store/subscription SPA (window.MX60 IIFEs); live = BajaScript Fox subscriptions + 5s REST fallback (no SSE); optimistic-write+rollback; RBAC SERVER-AUTHORITATIVE (CapabilityStore DECORATIVE ADR D6, confirms B648); Three.js ES-module island + Chart.js UMD local-bundled. Production-quality |
 | low | CS7 — the wb Batch Link Editor: `BBatchLinkEditor` + PendingLink/LinkSlotName/Direction utils — the Workbench-view tooling | Java · chihuahua-wb/src/.../*.java | ✅ B654 — BBatchLinkEditor = proper BWbComponentView, @AgentOn baja:Component requiredPermissions=rwi; bulk-link workflow accumulate→dry-run checkLink→Save All per-space Transaction + unique slot names; DISTINCT from rt ChiLinkHelper (author vs backup/restore); pure-Java testable model. A productivity strength |
-| high | CS8 — SYNTHESIS: production-readiness verdict for chihuahua + the concrete fix list (from CS1-CS7 + [B647] remediation) — the deliverable | design synthesis over CS1-CS7 + [B647]/[B636] | pending |
+| high | CS8 — SYNTHESIS: production-readiness verdict for chihuahua + the concrete fix list (from CS1-CS7 + [B647] remediation) — the deliverable | design synthesis over CS1-CS7 + [B647]/[B636] | ✅ B655 — VERDICT: chihuahua is WELL-BUILT / production-grade (RBAC+audit+defensive+injection-safe+internal-QA), clearly best of fleet. ONE real fix (HIGH/safety): overload protection fails-to-danger on faulted amp sensor (extend P1 fault-discrim into readSlotVal/applyProtections). Then MED run slotomatic; LOW palette/dead-jacoco/empty-perms-scaffold/audit-polish. Fleet gap = process not capability; template should inherit chihuahua practices. FOCUS CLOSED |
 
 ## Iteration history
 
@@ -63,6 +63,7 @@ block_scope: shared-global
 | 5 | 2026-08-29 | CS4 ux data/query helpers (injection-safe, N4.14-aware) | B652 | yes·sonnet (combined) + inline security-verify | 0 |
 | 6 | 2026-08-29 | CS5 frontend ES5 SPA (RBAC server-authoritative) | B653 | yes·sonnet (combined) + inline verify | 0 |
 | 7 | 2026-08-29 | CS7 wb BatchLinkEditor (proper WB view) | B654 | yes·sonnet (combined) + inline verify | 0 |
+| 8 | 2026-08-29 | CS8 SYNTHESIS production-readiness verdict (FOCUS CLOSED) | B655 | no·inline (synthesis over B648-B654) | 0 |
 
 ## Blocked gaps (each tagged with what it needs)
 
@@ -70,9 +71,10 @@ block_scope: shared-global
 
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 1   ← the STATIC loop STOPS when this hits 0
+- **Open gaps — read-only investigable**: 0   ← the STATIC loop STOPS when this hits 0
 - **Open gaps — requires-execution**: 0
 - **Open gaps — blocked**: 0
+- **FOCUS STOPPED** 2026-08-29: 8/8 (CS1-CS8); requires-exec residues=overload-fix live-validation + MCP-G2 (need API2); §18 retro pending
 - Consecutive iterations with empty backlog (secondary): 0/2
 - Budget cap: none
 

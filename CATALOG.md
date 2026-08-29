@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **650 blocks**
+Total: **651 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -656,3 +656,4 @@ Total: **650 blocks**
 | 652 | [niagara-mental-model-bloque652.md](niagara-mental-model-bloque652.md) | Niagara N4 — chihuahua-source (CS4): the ux data/query helpers are injection-safe and N4.14-gotcha-aware — history via the History API (not BBqlGrid), alarm BQL built from `long` epoch millis (not user strings), allowlisted threshold writes, and a complete hand-rolled JSON escaper |
 | 653 | [niagara-mental-model-bloque653.md](niagara-mental-model-bloque653.md) | Niagara N4 — chihuahua-source (CS5): the frontend is a strict-ES5 store/subscription SPA (window.MX60 IIFEs) with BajaScript-Fox-subscription-primary + 5s-REST-fallback live data, optimistic-write-with-rollback stores, and a server-authoritative RBAC model (CapabilityStore is decorative) |
 | 654 | [niagara-mental-model-bloque654.md](niagara-mental-model-bloque654.md) | Niagara N4 — chihuahua-source (CS7): the wb `BBatchLinkEditor` is a proper Workbench authoring view (`BWbComponentView`, `@AgentOn baja:Component requiredPermissions="rwi"`) for bulk-creating links with per-space transactional commit — distinct from the rt-side `ChiLinkHelper` (backup/restore) |
+| 655 | [niagara-mental-model-bloque655.md](niagara-mental-model-bloque655.md) | Niagara N4 — chihuahua-source (CS8, SYNTHESIS): production-readiness verdict — chihuahua is genuinely well-built (RBAC + audit + defensive design + internal QA + injection-safety), clearly the production-grade module of the fleet; ONE real fix matters (overload protection fails-to-danger on sensor fault), the rest is polish |
