@@ -16,10 +16,10 @@
 
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 621
-gaps_closed: 6
+covered_blocks: 622
+gaps_closed: 7
 known_gaps: 7
-investigable_open: 1
+investigable_open: 0
 requires_execution_open: 1
 blocked_open: 1
 deferred_open: 2
@@ -30,8 +30,8 @@ block_scope: shared-global
 ## Coverage
 
 - **Covered blocks**: 0 in this focus (corpus-wide count synced by the tool; global prefix `niagara-mental-model-bloque`)
-- **Coverage metric**: 6 / 7 closed
-- **Last iteration**: 2026-08-29 — PO-G6 closed (B625: BServerPort = common port type + on-device pf firewall; not a remote discovery surface)
+- **Coverage metric**: 7 / 7 closed (investigable; PO-G8 synthesis at close; PO-G7w requires-execution)
+- **Last iteration**: 2026-08-29 — PO-G7 closed (B626: platform daemon platform-user username/password + BDaemonSSLStatus; full-host reach)
 
 ## Remittances (protocol internals already covered — cite, do NOT re-derive)
 
@@ -57,7 +57,7 @@ block_scope: shared-global
 | medium | PO-G1 — Fox multicast UDP :1911: what each announcement discloses (station name/IP/port/version), whether a passive subnet listener can enumerate all stations, and whether disabling `multicastEnabled` is a hardening step | Java · organized/fox/fox-rt/.../session/Fox.java + MulticastServer.java + sys/BFoxService.java | ✅ B623 — group 224.0.1.84/FF02::137:1911, multicastEnabled=true default TTL4; unauth rollcall→announce discloses hostName/hostAddress(v4+v6)/niagaraPlatformType; NOT station name/version/creds; disable via niagara.fox.multicastEnabled |
 | medium | PO-G5 — OPC-UA HTTPS endpoint :52443 (`BHttpsEndpoint`, enabled=true) auth model: does it share the :52520 user-auth (username/cert/anonymous) + Niagara RBAC, and how is it wired into `BOpcUaServer`? (B498 covered only :52520) | ✅ B624 — BHttpsEndpoint is a registered TYPE (module.xml) but UNWIRED into BOpcUaServer (only opcTcpEndpoint:52520 is a frozen prop + registered); ZERO usages → no :52443 listener on default install; refutes sweep 'two endpoints' |
 | medium | PO-G6 — Central port config: `javax.baja.firewall.BServerPort` as the common listening-port type + the `com.tridium.firewall` layer (FirewallRulesPage/ConcurrentFirewallProcessor) — is there a station-wide port enumeration/filter, and is it a discovery surface? | ✅ B625 — BServerPort = common port type (publicServerPort/bindingPort/loopback); programs a per-port RedirectRule into pluggable firewall (Pf on QNX JACE / Null on Win-Linux supervisor); getRuleList() enumerates all; NOT a remote discovery surface (Java API + authed WB page) |
-| medium | PO-G7 — Platform daemon :3011/:5011 auth MODEL (code): characterize the credential/admission model statically from `BDaemonSurrogate`/`BDaemonSSLStatus` (consolidating B129/B460); the live wire digest is the requires-execution child below | Java · organized/platDaemon/platDaemon-rt/.../BDaemonSurrogate.java + BDaemonSSLStatus.java | pending |
+| medium | PO-G7 — Platform daemon :3011/:5011 auth MODEL (code): characterize the credential/admission model statically from `BDaemonSurrogate`/`BDaemonSSLStatus` (consolidating B129/B460); the live wire digest is the requires-execution child below | ✅ B626 — platform username+password (platform users, separate from station BUsers), presented up-front (no 401); BDaemonSurrogate over BDaemonSession; BDaemonSSLStatus=disabled/enabled/sslOnly/notLicensed; reach=full host admin |
 | deferred | PO-G7w — platform daemon on-the-wire auth handshake/digest (nonce-response? Fox-SCRAM reuse?) — the live frame B129 §129.6 deferred as "N6-wire" | live probe | requires-execution → §19 (not read-only; remittance [B129] N6-wire) |
 | deferred | PO-G8 — SYNTHESIS: the master per-port reference table (all ports, covered+new: purpose · service+config · auth gate · reachability) — the focus deliverable, written at STOP | design synthesis over PO-G1..G7 + remittances | pending (parked; never NEXT — §8b) |
 
@@ -72,6 +72,7 @@ block_scope: shared-global
 | 4 | 2026-08-29 | PO-G1 Fox multicast :1911 discovery | B623 | inline (constraint: 3-file read) | 0 |
 | 5 | 2026-08-29 | PO-G5 OPC-UA :52443 proven-absent (unwired) | B624 | inline (RE-MEASURE negative) | 0 |
 | 6 | 2026-08-29 | PO-G6 BServerPort + firewall central port layer | B625 | inline (constraint: 2-file read) | 0 |
+| 7 | 2026-08-29 | PO-G7 platform daemon auth model | B626 | inline (constraint: 2-file + B129/B460 remittance) | 0 |
 
 ## Blocked gaps (each tagged with what it needs)
 
@@ -79,7 +80,8 @@ block_scope: shared-global
 
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 1   ← the STATIC loop STOPS when this hits 0
+- **Open gaps — read-only investigable**: 0   ← the STATIC loop STOPS when this hits 0
+- **FOCUS STOPPED** 2026-08-29: 7/7 investigable closed (PO-G1..G7); PO-G8 synthesis next; PO-G7w requires-execution deferred
 - **Open gaps — requires-execution**: 1 (PO-G7w)
 - **Open gaps — blocked**: 0
 - Consecutive iterations with empty backlog (secondary): 0/2

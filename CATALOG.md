@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **621 blocks**
+Total: **622 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -627,3 +627,4 @@ Total: **621 blocks**
 | 623 | [niagara-mental-model-bloque623.md](niagara-mental-model-bloque623.md) | ports (PO-G1): Fox multicast UDP :1911 — unauthenticated station discovery (host + platform disclosure), on by default |
 | 624 | [niagara-mental-model-bloque624.md](niagara-mental-model-bloque624.md) | ports (PO-G5): the OPC-UA HTTPS endpoint :52443 is a defined-but-UNWIRED type — the server exposes only the TCP binary endpoint :52520 |
 | 625 | [niagara-mental-model-bloque625.md](niagara-mental-model-bloque625.md) | ports (PO-G6): `BServerPort` is the common listening-port type and it programs an on-device firewall (pf) — the central port plumbing |
+| 626 | [niagara-mental-model-bloque626.md](niagara-mental-model-bloque626.md) | ports (PO-G7): platform daemon :3011/:5011 auth model — platform-user username/password, TLS-mode enum, full-host reach |
