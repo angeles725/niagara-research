@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **631 blocks**
+Total: **632 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -637,3 +637,4 @@ Total: **631 blocks**
 | 633 | [niagara-mental-model-bloque633.md](niagara-mental-model-bloque633.md) | Niagara N4 — module-anatomy (MA5): the daemon-side module install — a signature-gated, station-stopping, overwrite-in-place stream of the jar to `$NIAGARA_HOME/modules/<name>.jar` (no backup, no atomic rename, no rollback) |
 | 634 | [niagara-mental-model-bloque634.md](niagara-mental-model-bloque634.md) | Niagara N4 — module-anatomy (MA6): the palette runtime reader — `module.palette` is discovered lazily from the module's `BZipSpace`, BOG-decoded into an ungated nav node (`BModulePaletteNode`), and cached per module |
 | 635 | [niagara-mental-model-bloque635.md](niagara-mental-model-bloque635.md) | Niagara N4 — module-anatomy (MA7): module `<permissions>` → Java security policy — two tracks (`<java-permissions>` enforced by the SecurityManager per-CodeSource, `<niagara-permission-groups>` granted by a DEFAULT grant-all store), atop an always-restricted base grant |
+| 636 | [niagara-mental-model-bloque636.md](niagara-mental-model-bloque636.md) | Niagara N4 — module-anatomy (MA8, SYNTHESIS): the reference module skeleton + the `com.angeles.chihuahua` case study — how a well-built N4 module is shaped, and the concrete deviations to fix |

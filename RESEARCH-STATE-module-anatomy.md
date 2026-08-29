@@ -17,10 +17,10 @@
 
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 631
-gaps_closed: 7
+covered_blocks: 632
+gaps_closed: 8
 known_gaps: 8
-investigable_open: 1
+investigable_open: 0
 requires_execution_open: 0
 blocked_open: 0
 deferred_open: 0
@@ -31,7 +31,7 @@ block_scope: shared-global
 ## Coverage
 
 - **Covered blocks**: 0 in this focus (corpus-wide count synced by the tool; global prefix `niagara-mental-model-bloque`)
-- **Coverage metric**: 7 / 8 closed
+- **Coverage metric**: 8 / 8 closed (FOCUS CLOSED)
 - **Last iteration**: 2026-08-29 — bootstrap (AUDIT-FIRST sweep + backlog seeded)
 
 ## Remittances (already covered — cite, do NOT re-derive)
@@ -63,7 +63,7 @@ block_scope: shared-global
 | medium | MA5 — the daemon-side install command: how a module JAR moves from `!cleanDist`/registry to a station's `modules/` dir — `BModuleInstallable` (installable wrapper) → `BModuleInstallCommand` (platDaemon writes the jar) → restart handshake; continues [B569] past the supervisor transaction | Java · organized/platform/platform-rt/.../install/installable/BModuleInstallable.java + organized/platDaemon/platDaemon-rt/.../command/BModuleInstallCommand.java | ✅ B633 — install = signature-gated (getSignatureStatus vs verificationMode; low→weak, B398/B519), STOP-all-stations, streaming FileTransfer POST to $NIAGARA_HOME/modules/<partName>.jar (overwrite-in-place, NO backup/atomic/rollback), restart async; user-home fallback if NIAGARA_HOME readonly; partName=filename |
 | low | MA6 — the palette runtime reader: how Workbench discovers/exposes `module.palette` from a `BModule` via `BModulePaletteNode` (the nav node over the module zip space) — the load side of [B12] §12.3.2's format | Java · organized/baja/baja/.../sys/module/BModulePaletteNode.java | ✅ B634 — BModulePaletteNode extends BComponentSpace; discovered LAZILY from BModule.zipSpaceByRuntimeProfile (file 'module.palette') → ValueDocDecoder BOG decode w/ fault-tolerant ITypeResolver (why palettes validate only at load); cached per module; UNGATED (no license/permission) |
 | low | MA7 — module `<permissions>` → Java security policy: how a module.xml `<permissions>` declaration ([B434]: devkit-wb has FilePermission/RuntimePermission) is wired into `NiagaraPermissionGroup`/`NiagaraPolicy`/`NiagaraPolicyUtil` for that module's classloader | Java · organized/baja/baja/.../sys/module/NModule.java (NiagaraPermissionGroup imports) + devguide-clean/security/security.txt | ✅ B635 — readPermissions: always-on base grant (own props+keyring) + 2 tracks: <java-permissions>→real Permissions per-CodeSource (checkTpk=true), <niagara-permission-groups>→requested. ENFORCEMENT SOFT: default store=GrantAllPermissionGroupStore (grants all groups); SM swappable to logging DeveloperSecurityManager under smDeveloperMode (B398 live). Default (no <permissions>)=minimal. chihuahua over-declares type=all |
-| high | MA8 — SYNTHESIS + CHIHUAHUA CASE STUDY: the reference module skeleton (from MA1-MA7 + remittances) as a single "how to build/distribute a module" model, then the operator's `com.angeles.chihuahua` [B163-B177] measured against it — every deviation named as a concrete improvement (manifest completeness, profile split correctness, type/permission declarations, dist/versioning hygiene). The focus deliverable, written at STOP | design synthesis over MA1-MA7 + [B163]-[B177] | pending |
+| high | MA8 — SYNTHESIS + CHIHUAHUA CASE STUDY: the reference module skeleton (from MA1-MA7 + remittances) as a single "how to build/distribute a module" model, then the operator's `com.angeles.chihuahua` [B163-B177] measured against it — every deviation named as a concrete improvement (manifest completeness, profile split correctness, type/permission declarations, dist/versioning hygiene). The focus deliverable, written at STOP | design synthesis over MA1-MA7 + [B163]-[B177] | ✅ B636 — reference skeleton (build→sign→distribute→boot→resolve→load, 5 invariants) + chihuahua case study: 6 deviations ranked (MED: <perms> type=all over-declared·builds vs baja 4.13·profile buildMillis drift; LOW: no palette·53 ux classes; INFO: NIAGARA4 signer alias) + what it does right + portable checklist. FOCUS CLOSED 8/8 |
 
 ## Iteration history
 
@@ -77,6 +77,7 @@ block_scope: shared-global
 | 5 | 2026-08-29 | MA5 daemon install command (gate·stop·overwrite·restart) | B633 | yes · sonnet (6-class sweep) + inline verify | 0 |
 | 6 | 2026-08-29 | MA6 palette runtime reader (lazy·BOG·ungated) | B634 | yes · sonnet (combined MA6+MA7 sweep) + inline verify | 0 |
 | 7 | 2026-08-29 | MA7 module <permissions>→policy (2 tracks·grant-all default) | B635 | yes · sonnet (combined MA6+MA7 sweep) + inline verify | 0 |
+| 8 | 2026-08-29 | MA8 synthesis + chihuahua case study (FOCUS CLOSED) | B636 | no·inline (synthesis over B629-B635 + real jars) | 0 |
 
 ## Blocked gaps (each tagged with what it needs)
 
@@ -84,9 +85,10 @@ block_scope: shared-global
 
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 1   ← the STATIC loop STOPS when this hits 0
+- **Open gaps — read-only investigable**: 0   ← the STATIC loop STOPS when this hits 0
 - **Open gaps — requires-execution**: 0
 - **Open gaps — blocked**: 0
+- **FOCUS STOPPED** 2026-08-29: 8/8 investigable closed (MA1-MA8); §18 retro pending
 - Consecutive iterations with empty backlog (secondary): 0/2
 - Budget cap: none
 
