@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **614 blocks**
+Total: **615 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -620,3 +620,4 @@ Total: **614 blocks**
 | 616 | [niagara-mental-model-bloque616.md](niagara-mental-model-bloque616.md) | graphql-admin (GQL-G8): the Java-8 ceiling — a bundled GraphQL engine must be graphql-java ≤ v20 (or hand-rolled) |
 | 617 | [niagara-mental-model-bloque617.md](niagara-mental-model-bloque617.md) | graphql-admin (GQL-G5): module classloader isolation — a standalone module can safely bundle graphql-java |
 | 618 | [niagara-mental-model-bloque618.md](niagara-mental-model-bloque618.md) | graphql-admin (GQL-G7): BOX has an open channel-registration seam — a GraphQL subscription channel plugs in without a separate WebSocket |
+| 619 | [niagara-mental-model-bloque619.md](niagara-mental-model-bloque619.md) | graphql-admin (SYNTHESIS / GQL-G9): reference architecture and build-vs-buy verdict for a GraphQL admin layer over Niagara N4 |
