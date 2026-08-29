@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **618 blocks**
+Total: **619 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -624,3 +624,4 @@ Total: **618 blocks**
 | 620 | [niagara-mental-model-bloque620.md](niagara-mental-model-bloque620.md) | ports (PO-G3): Modbus TCP Slave :502 — an unauthenticated read/write surface bounded only by the register map |
 | 621 | [niagara-mental-model-bloque621.md](niagara-mental-model-bloque621.md) | ports (PO-G2): SNMP agent :161/:162 — off by default, but community `public` on both read AND write when enabled |
 | 622 | [niagara-mental-model-bloque622.md](niagara-mental-model-bloque622.md) | ports (PO-G4): BACnet/SC hub `/hub` shares :443 but is gated by a dedicated Niagara auth scheme, not TLS-cert bypass |
+| 623 | [niagara-mental-model-bloque623.md](niagara-mental-model-bloque623.md) | ports (PO-G1): Fox multicast UDP :1911 — unauthenticated station discovery (host + platform disclosure), on by default |
