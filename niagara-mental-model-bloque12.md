@@ -43,6 +43,8 @@ Ubicación: `modulePart/module-include.xml`. Contenido: `<types>` (desde `@Niaga
 
 Se actualiza automáticamente por annotation processor durante compilación. **No editar a mano**.
 
+> **§14 corregido en [B631] (MA3, 2026-08-29)**: la afirmación "annotation processor durante compilación" es IMPRECISA. En el corpus decompilado NO existe ningún `javax.annotation.processing.Processor` (grep vacío). `module-include.xml` es LEÍDO (no escrito) por la herramienta **Slotomatic** (`Compiler.java:67-99,270` lee el nodo `<types>` como INPUT y escribe solo los `.java`); las entradas `<type>` se generan por el **wizard** (`NewDriverWizard`) o se editan a mano. El plugin gradle `com.tridium.niagara-module` vive fuera del corpus (`$NIAGARA_HOME/etc/m2`), así que no se puede probar que la tarea gradle no reescriba el archivo — pero el mecanismo es la herramienta Slotomatic (modelo de fuente), NO un annotation processor JSR-269. Ver [B631] §631.1-2.
+
 Elementos `<defs>`, `<lexicons>`, `<installation>` migran ahora a `moduleManifest { }` en `build.gradle.kts`.
 
 ### 12.1.5 `niagara-module.xml`

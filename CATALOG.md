@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **626 blocks**
+Total: **627 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -632,3 +632,4 @@ Total: **626 blocks**
 | 628 | [niagara-mental-model-bloque628.md](niagara-mental-model-bloque628.md) | ports (PO-G7w): the platform daemon credential frame is HTTP Basic/Digest(MD5) + a shared-secret-key init — resolved from code, transport confirmed live |
 | 629 | [niagara-mental-model-bloque629.md](niagara-mental-model-bloque629.md) | Niagara N4 — module-anatomy (MA1): the module.xml manifest is parsed TWICE by two independent readers — install-side `ModuleManifest`/`BModulePart` and runtime-side `NModule` — with no converter between them |
 | 630 | [niagara-mental-model-bloque630.md](niagara-mental-model-bloque630.md) | Niagara N4 — module-anatomy (MA2): the module BOOT scan — `modules/` is enumerated by manifest `runtimeProfile` (not filename), dependency-resolved recursively, and loaded from a PREBUILT registry binary (`ClassScanner` runs only at rebuild) |
+| 631 | [niagara-mental-model-bloque631.md](niagara-mental-model-bloque631.md) | Niagara N4 — module-anatomy (MA3): the type-registration pipeline — `<type>` in module-include.xml is READ (not written) by Slotomatic, baked into a `RegistryDatabase` of `NTypeInfo` (no Class), and the Class is loaded exactly once at `NModule.loadClass` via the `ModuleClassLoader` (§14 refines B12) |
