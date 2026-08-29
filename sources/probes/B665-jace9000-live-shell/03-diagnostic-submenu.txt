@@ -1,0 +1,14 @@
+4
+[2J [2H[2J [2HATLAS System Diagnostic Menu 
+ 
+1   Display CPU Usage (Process)
+2   Display CPU Usage (Thread)
+3   Display System Log (Current)
+4   Display System Log (All)
+5   Trace Route To Host
+6   Display ARP Table
+7   Display Niagara Daemon Threads
+8   Display USB/CDC Port Info
+X   Exit System Diagnostic menu
+ 
+Enter Choice : 

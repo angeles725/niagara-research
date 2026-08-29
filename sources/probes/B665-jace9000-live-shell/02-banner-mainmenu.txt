@@ -1,0 +1,28 @@
+
+login : <platform-user>
+Password : 
+ 
+[2J [2H ATLAS System Shell 
+------------------------------------------------------------------------- 
+  hostid: ATLAS-1508-6000-2B0F-A7EA
+  serial number: 90073556
+  system time: Wed Dec  3 00:33:17 UTC 2025
+  niagara daemon port: https 5011
+
+  en0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc mq state DOWN group default qlen 1000
+    link/ether 00:01:f0:98:7e:a9 brd ff:ff:ff:ff:ff:ff
+  en1: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc mq state DOWN group default qlen 1000
+    link/ether 00:01:f0:98:7e:a8 brd ff:ff:ff:ff:ff:ff
+------------------------------------------------------------------------- 
+1   Update System Time
+2   Update Network Settings
+3   Ping Host
+4   System Diagnostic Options
+5   Change Current User Password
+6   Change System Passphrase
+7   Create SD Backup
+8   Restore SD Backup
+9   Reboot
+L   Logout
+ 
+Enter Choice : 

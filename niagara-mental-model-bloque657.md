@@ -44,6 +44,10 @@ for the JACE-9000 hardware platform, and `Npsdk` (the base class) is the non-QNX
 `[CERT-live]` The live shell corroborates Linux, not QNX: the shell banner lists network interfaces as
 `en0` / `en1` with `inet`/`inet6` fields (Linux `ip`-style naming), and the Host ID uses the `ATLAS-SD-…`
 prefix — neither the QNX `Qnx-TITAN-…` Host ID ([Block 467]) nor QNX `/dev/ser*` naming.
+> **⚠ §14 CORRECTED in [Block 665]:** the `ATLAS-SD-…` here was the *doc example*, not a live capture — the
+> diagnostics timed out before a real banner read this session. The actual live Host ID (captured in B665)
+> is **`ATLAS-1508-6000-2B0F-A7EA` = `ATLAS-…` (CPU-based, NO microSD)**. The Linux-not-QNX conclusion stands
+> (confirmed live in B665: kernel 5.4 / i.MX8MP); only the `-SD-` prefix was wrong.
 
 ## §657.2 — COM5/115200/8N1 = the USB-C DEBUG port, speaking the ATLAS System Shell
 
@@ -88,6 +92,12 @@ different transports to the same platform authority; on the JACE-9000 that daemo
 non-mutating. Everything else changes controller state: `1` time, `2` network (can drop the LAN), `5`/`6`
 credentials/passphrase, `7`/`8` SD backup/restore (`8` is destructive), `9` Reboot. `L` Logout ends the
 session.
+
+> **⚠ §14 CORRECTED in [Block 665]:** a real login capture (B665 §665.3) shows the live main menu **DOES
+> match the doc** (`3 = Ping Host`, `2 = Update Network Settings`). The "3 → Network Config" below was
+> option **2**, an operator screen mis-report — not a firmware numbering difference. The documented
+> read-only map (`3 Ping`, `4 Diagnostic`) is correct for this build. The paragraph below is retained for
+> the audit trail.
 
 `[CERT-live]` **The live unit's main-menu NUMBERING does not match the doc example.** In this session the
 operator selected the main-menu key documented as `3 Ping Host` and instead reached the **Network

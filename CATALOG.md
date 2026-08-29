@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **662 bloques**
+Total: **663 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -667,6 +667,7 @@ Total: **662 bloques**
 | 662 | [niagara-mental-model-bloque662.md](niagara-mental-model-bloque662.md) | B662 — JACE-9000 Host ID and the microSD card: two ID formats (ATLAS-SD-… vs ATLAS-…), a Tridium-secret CID validated at boot, license portability tied to the card, and a hard fail — a non-Tridium card means Niagara will not run (focus jace9000, J9K-11) |
 | 663 | [niagara-mental-model-bloque663.md](niagara-mental-model-bloque663.md) | B663 — JACE-9000 serial port map: COM1/COM2 are top-side RS-485 field-bus ports (screw terminals, 3-position bias/termination switch) — a separate thing from the front USB-C DEBUG console, even though both can run at 115200 (focus jace9000, J9K-12) |
 | 664 | [niagara-mental-model-bloque664.md](niagara-mental-model-bloque664.md) | B664 — jace9000 focus synthesis: the read-only serial-console mental model of a JACE-9000 (ATLAS System Shell over USB-C DEBUG), consolidated — and the four live-gated gaps left for the operator (focus jace9000, synthesis / STOP) |
+| 665 | [niagara-mental-model-bloque665.md](niagara-mental-model-bloque665.md) | B665 — JACE-9000 live serial session (§12): the ATLAS shell runs on Ubuntu Core Linux 5.4 on an i.MX8M Plus, the serial login takes user+password only (no passphrase), the live main-menu numbering MATCHES the doc, and this unit runs with NO microSD — closing J9K-1/2/9/10 and correcting B657 (focus jace9000, J9K-2/J9K-9/J9K-10, §14→B657) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

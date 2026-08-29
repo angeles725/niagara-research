@@ -1,0 +1,1462 @@
+1
+[2J [2H[2J [2Htop - 00:37:43 up 39 min,  0 users,  load average: 0.76, 0.82, 0.82
+Tasks: 138 total,   1 running, 137 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  3.5 us,  5.3 sy,  0.0 ni, 91.2 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :   1667.0 total,    878.6 free,    265.0 used,    523.4 buff/cache
+MiB Swap:      0.0 total,      0.0 free,      0.0 used.   1375.8 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+  12694 root      20   0    7480   2976   2624 R  11.8   0.2   0:00.07 top
+   4265 root       0 -20       0      0      0 I   5.9   0.0   0:57.28 kworker/u9:0-sdhci
+      1 root      20   0  168636  11456   7380 S   0.0   0.7   0:39.20 systemd
+      2 root      20   0       0      0      0 S   0.0   0.0   0:00.02 kthreadd
+      3 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 rcu_gp
+      4 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 rcu_par_gp
+      5 root      20   0       0      0      0 I   0.0   0.0   0:00.78 kworker/0:0-events
+      6 root       0 -20       0      0      0 I   0.0   0.0   0:00.37 kworker/0:0H-mmc_complete
+      8 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 mm_percpu_wq
+      9 root      20   0       0      0      0 S   0.0   0.0   0:00.34 ksoftirqd/0
+     10 root      20   0       0      0      0 I   0.0   0.0   0:02.36 rcu_preempt
+     11 root      rt   0       0      0      0 S   0.0   0.0   0:00.02 migration/0
+     12 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 idle_inject/0
+     14 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/0
+     15 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/1
+     16 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 idle_inject/1
+     17 root      rt   0       0      0      0 S   0.0   0.0   0:00.02 migration/1
+     18 root      20   0       0      0      0 S   0.0   0.0   0:00.24 ksoftirqd/1
+     20 root       0 -20       0      0      0 I   0.0   0.0   0:00.12 kworker/1:0H-kblockd
+     21 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/2
+     22 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 idle_inject/2
+     23 root      rt   0       0      0      0 S   0.0   0.0   0:00.02 migration/2
+     24 root      20   0       0      0      0 S   0.0   0.0   0:00.26 ksoftirqd/2
+     27 root      20   0       0      0      0 P   0.0   0.0   0:00.00 cpuhp/3
+     28 root     -51   0       0      0      0 P   0.0   0.0   0:00.00 idle_inject/3
+     29 root      rt   0       0      0      0 P   0.0   0.0   0:00.00 migration/3
+     30 root      20   0       0      0      0 P   0.0   0.0   0:00.12 ksoftirqd/3
+     31 root      20   0       0      0      0 I   0.0   0.0   0:00.01 kworker/3:0-events
+     32 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/3:0H-kblockd
+     33 root      20   0       0      0      0 S   0.0   0.0   0:00.01 kdevtmpfs
+     34 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 netns
+     35 root      20   0       0      0      0 S   0.0   0.0   0:00.00 rcu_tasks_kthre
+     39 root      20   0       0      0      0 S   0.0   0.0   0:00.01 kauditd
+     40 root      20   0       0      0      0 S   0.0   0.0   0:00.00 khungtaskd
+     41 root      20   0       0      0      0 S   0.0   0.0   0:00.00 oom_reaper
+     42 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 writeback
+     43 root      20   0       0      0      0 S   0.0   0.0   0:00.00 kcompactd0
+     44 root      25   5       0      0      0 S   0.0   0.0   0:00.00 ksmd
+     57 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 cryptd
+     93 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kintegrityd
+     94 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kblockd
+     95 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 blkcg_punt_bio
+     96 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 tpm_dev_wq
+     97 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 md
+     98 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 edac-poller
+     99 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 devfreq_wq
+    100 root      rt   0       0      0      0 S   0.0   0.0   0:00.00 watchdogd
+    148 root      20   0       0      0      0 S   0.0   0.0   0:00.00 kswapd0
+    150 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kthrotld
+    156 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 sdhci
+    157 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 irq/30-mmc2
+    218 root      20   0       0      0      0 S   0.0   0.0   0:00.00 ion_system_heap
+    219 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 ipv6_addrconf
+    228 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 dsa_ordered
+    229 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kstrp
+    237 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 sdhci
+    238 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 irq/29-mmc1
+    239 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 charger_manager
+    240 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 mmc_complete
+    244 root     -51   0       0      0      0 S   0.0   0.0   0:05.34 irq/87-30b50000
+    302 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/0:2H-mmc_complete
+    303 root       0 -20       0      0      0 I   0.0   0.0   0:00.11 kworker/2:3H-kblockd
+    304 root       0 -20       0      0      0 I   0.0   0.0   0:00.08 kworker/3:2H-kblockd
+    371 root      20   0       0      0      0 S   0.0   0.0   0:00.00 jbd2/mmcblk2p2-
+    372 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 ext4-rsv-conver
+    441 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kdmflush
+    446 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kcryptd_io/253:
+    447 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kcryptd/253:0
+    448 root      20   0       0      0      0 S   0.0   0.0   0:00.01 dmcrypt_write/2
+    458 root      20   0       0      0      0 S   0.0   0.0   0:00.02 jbd2/dm-0-8
+    459 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 ext4-rsv-conver
+    525 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kdmflush
+    526 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kcryptd_io/253:
+    527 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kcryptd/253:1
+    528 root      20   0       0      0      0 S   0.0   0.0   0:00.00 dmcrypt_write/2
+    536 root      20   0       0      0      0 S   0.0   0.0   0:00.00 jbd2/dm-1-8
+    537 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 ext4-rsv-conver
+    545 root      20   0       0      0      0 I   0.0   0.0   0:00.89 kworker/u8:4-events_freezable_power_
+    548 root       0 -20       0      0      0 S   0.0   0.0   0:00.25 loop0
+    551 root       0 -20       0      0      0 S   0.0   0.0   0:00.00 loop1
+    554 root       0 -20       0      0      0 S   0.0   0.0   0:00.02 loop2
+    804 root      19  -1   39188   7608   6516 S   0.0   0.4   0:00.74 systemd-journal
+    843 root      20   0   20196   4852   3408 S   0.0   0.3   0:13.21 systemd-udevd
+    851 root       0 -20       0      0      0 S   0.0   0.0   0:00.03 loop3
+    856 root       0 -20       0      0      0 S   0.0   0.0   0:00.20 loop4
+    869 root       0 -20       0      0      0 S   0.0   0.0   0:00.02 loop5
+    875 root       0 -20       0      0      0 S   0.0   0.0   0:00.03 loop6
+    877 root       0 -20       0      0      0 S   0.0   0.0   0:00.32 loop7
+    879 root       0 -20       0      0      0 S   0.0   0.0   0:00.08 loop8
+    880 root       0 -20       0      0      0 S   0.0   0.0   0:00.01 loop9
+    888 systemd+  20   0   24644  10992   6956 S   0.0   0.6   0:00.96 systemd-resolve
+    891 root      20   0       0      0      0 I   0.0   0.0   0:00.91 kworker/1:4-events
+    967 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 irq/40-32f10100
+    968 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 irq/41-32f10108
+   1004 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 irq/46-pca9450-
+   1005 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 irq/176-5-0053
+   1018 message+  20   0    7076   3728   3080 S   0.0   0.2   0:00.59 dbus-daemon
+   1039 root      20   0   16676   6044   5284 S   0.0   0.4   0:00.42 systemd-logind
+   1043 root      20   0   12404   5148   4580 S   0.0   0.3   0:00.37 wpa_supplicant
+   1053 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 stmmac_wq
+   1090 root      20   0 1466380  30780  18768 S   0.0   1.8   0:15.01 snapd
+   1161 root      20   0  332656  16196  13960 S   0.0   0.9   0:03.98 NetworkManager
+   1166 root      20   0   76340    664    564 S   0.0   0.0   0:00.31 tee-supplicant
+   1172 root      20   0 1230120   4780   3764 S   0.0   0.3   0:00.91 protod-server
+   1192 root      20   0    5500   3104   2636 S   0.0   0.2   0:16.40 hb.sh
+   1210 root      20   0    5368   2980   2700 S   0.0   0.2   0:03.39 resetMonitor.sh
+   1225 root      20   0    5632   3232   2732 S   0.0   0.2   0:02.30 niagara-wrapper
+   1229 root      20   0 1230424   4828   3804 S   0.0   0.3   0:00.92 usermgrd-server
+   1859 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 optee_bus_scan
+   1959 root      20   0    3664    200      0 S   0.0   0.0   0:00.00 p11-kit-server
+   1963 root      20   0    3664    200      0 S   0.0   0.0   0:00.00 p11-kit-server
+   1972 root      20   0    3664    200      0 S   0.0   0.0   0:00.00 p11-kit-server
+   1979 root      20   0    5500   2992   2648 S   0.0   0.2   0:00.22 platdbd.sh
+   2074 root      20   0       0      0      0 I   0.0   0.0   0:00.00 kworker/3:5-mm_percpu_wq
+   2118 root      20   0 1230456   6784   3940 S   0.0   0.4   0:02.33 platdbd
+   2285 root      20   0    2664   1856   1700 S   0.0   0.1   0:00.02 agetty
+   2343 root      20   0   11420   4792   4312 S   0.0   0.3   0:00.71 netplan-dbus
+   2642 root      20   0    5368   2840   2604 S   0.0   0.2   0:00.18 fpkeys-service.
+   2647 root      20   0    5632   3144   2692 S   0.0   0.2   0:01.65 serial_shell_st
+   2714 root      20   0    1792    460    396 S   0.0   0.0   0:00.00 fpkeys
+   2903 root      20   0 2844560 112468  19272 S   0.0   6.6   0:51.68 niagarad
+   2919 root      20   0 1231772   6772   5268 S   0.0   0.4   0:00.74 syssh
+   3210 root      20   0    5368   2860   2588 S   0.0   0.2   0:25.14 blink.sh
+   4451 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/2:0H
+   4559 root      20   0       0      0      0 D   0.0   0.0   1:43.02 kworker/2:1+events_freezable
+   6646 root      20   0       0      0      0 I   0.0   0.0   0:00.00 kworker/1:0-cgroup_destroy
+   6651 root      20   0       0      0      0 I   0.0   0.0   0:00.00 kworker/0:1
+   6673 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/1:1H
+   7962 root      20   0       0      0      0 I   0.0   0.0   0:00.30 kworker/u8:0-events_freezable_power_
+   8327 root      20   0       0      0      0 I   0.0   0.0   0:00.68 kworker/2:0-events
+   9529 root      20   0       0      0      0 I   0.0   0.0   0:00.12 kworker/u8:1-events_power_efficient
+  10845 root      20   0       0      0      0 I   0.0   0.0   0:00.48 kworker/2:2-events
+  10930 root       0 -20       0      0      0 I   0.0   0.0   0:08.19 kworker/u9:1-sdhci
+  11360 root      20   0       0      0      0 I   0.0   0.0   0:00.02 kworker/u8:2-kcryptd/253:0
+  12299 root       0 -20       0      0      0 I   0.0   0.0   0:02.85 kworker/u9:2-sdhci
+  12675 root      20   0    3696    464    400 S   0.0   0.0   0:00.00 sleep
+  12688 root      20   0    3696    448    384 S   0.0   0.0   0:00.00 sleep
+  12695 root      20   0    3696    460    396 S   0.0   0.0   0:00.00 sleep
+
+
+Press ENTER to continue 
+
+
+[2J [2HATLAS System Diagnostic Menu 
+ 
+1   Display CPU Usage (Process)
+2   Display CPU Usage (Thread)
+3   Display System Log (Current)
+4   Display System Log (All)
+5   Trace Route To Host
+6   Display ARP Table
+7   Display Niagara Daemon Threads
+8   Display USB/CDC Port Info
+X   Exit System Diagnostic menu
+ 
+Enter Choice : 3
+[2J [2H[2J [2H-- Logs begin at Fri 2024-04-12 16:13:11 UTC, end at Wed 2025-12-03 01:47:00 UTC. --
+Apr 12 16:13:11 ubuntu kernel: Booting Linux on physical CPU 0x0000000000 [0x410fd034]
+Apr 12 16:13:11 ubuntu kernel: Linux version 5.4.0-1052-shiner (buildd@bos01-arm64-007) (gcc version 9.4.0 (Ubuntu 9.4.0-1ubuntu1~20.04.2)) #63-Ubuntu SMP PREEMPT Fri Apr 12 10:25:31 UTC 2024 (Ubuntu 5.4.0-1052.63-shiner 5.4.268)
+Apr 12 16:13:11 ubuntu kernel: Machine model: Honeywell i.MX8MP X8High35 Atlas
+Apr 12 16:13:11 ubuntu kernel: Reserved memory: created CMA memory pool at 0x00000000ac000000, size 320 MiB
+Apr 12 16:13:11 ubuntu kernel: OF: reserved mem: initialized node linux,cma, compatible id shared-dma-pool
+Apr 12 16:13:11 ubuntu kernel: NUMA: No NUMA configuration found
+Apr 12 16:13:11 ubuntu kernel: NUMA: Faking a node at [mem 0x0000000040000000-0x00000000bfffffff]
+Apr 12 16:13:11 ubuntu kernel: NUMA: NODE_DATA [mem 0xabc5e800-0xabc5ffff]
+Apr 12 16:13:11 ubuntu kernel: Zone ranges:
+Apr 12 16:13:11 ubuntu kernel:   DMA32    [mem 0x0000000040000000-0x00000000bfffffff]
+Apr 12 16:13:11 ubuntu kernel:   Normal   empty
+Apr 12 16:13:11 ubuntu kernel: Movable zone start for each node
+Apr 12 16:13:11 ubuntu kernel: Early memory node ranges
+Apr 12 16:13:11 ubuntu kernel:   node   0: [mem 0x0000000040000000-0x0000000055ffffff]
+Apr 12 16:13:11 ubuntu kernel:   node   0: [mem 0x0000000058000000-0x00000000923fffff]
+Apr 12 16:13:11 ubuntu kernel:   node   0: [mem 0x00000000a4400000-0x00000000bfffffff]
+Apr 12 16:13:11 ubuntu kernel: Initmem setup node 0 [mem 0x0000000040000000-0x00000000bfffffff]
+Apr 12 16:13:11 ubuntu kernel: On node 0 totalpages: 442368
+Apr 12 16:13:11 ubuntu kernel:   DMA32 zone: 6912 pages used for memmap
+Apr 12 16:13:11 ubuntu kernel:   DMA32 zone: 0 pages reserved
+Apr 12 16:13:11 ubuntu kernel:   DMA32 zone: 442368 pages, LIFO batch:63
+Apr 12 16:13:11 ubuntu kernel: psci: probing for conduit method from DT.
+Apr 12 16:13:11 ubuntu kernel: psci: PSCIv1.1 detected in firmware.
+Apr 12 16:13:11 ubuntu kernel: psci: Using standard PSCI v0.2 function IDs
+Apr 12 16:13:11 ubuntu kernel: psci: Trusted OS migration not required
+Apr 12 16:13:11 ubuntu kernel: psci: SMC Calling Convention v1.1
+Apr 12 16:13:11 ubuntu kernel: percpu: Embedded 32 pages/cpu s92184 r8192 d30696 u131072
+Apr 12 16:13:11 ubuntu kernel: pcpu-alloc: s92184 r8192 d30696 u131072 alloc=32*4096
+Apr 12 16:13:11 ubuntu kernel: pcpu-alloc: [0] 0 [0] 1 [0] 2 [0] 3 
+Apr 12 16:13:11 ubuntu kernel: Detected VIPT I-cache on CPU0
+Apr 12 16:13:11 ubuntu kernel: CPU features: detected: ARM erratum 845719
+Apr 12 16:13:11 ubuntu kernel: CPU features: detected: GIC system register CPU interface
+Apr 12 16:13:11 ubuntu kernel: Speculative Store Bypass Disable mitigation not required
+Apr 12 16:13:11 ubuntu kernel: Built 1 zonelists, mobility grouping on.  Total pages: 435456
+Apr 12 16:13:11 ubuntu kernel: Policy zone: DMA32
+Apr 12 16:13:11 ubuntu kernel: Kernel command line: console=ttynull,115200 snapd_recovery_mode=run panic=-1 systemd.gpt_auto=0 rd.systemd.unit=basic.target snapd_system_disk=/dev/mmcblk2 cma=320M 
+Apr 12 16:13:11 ubuntu kernel: Dentry cache hash table entries: 262144 (order: 9, 2097152 bytes, linear)
+Apr 12 16:13:11 ubuntu kernel: Inode-cache hash table entries: 131072 (order: 8, 1048576 bytes, linear)
+Apr 12 16:13:11 ubuntu kernel: mem auto-init: stack:off, heap alloc:off, heap free:off
+Apr 12 16:13:11 ubuntu kernel: Memory: 1354800K/1769472K available (13822K kernel code, 1388K rwdata, 4964K rodata, 6144K init, 980K bss, 86992K reserved, 327680K cma-reserved)
+Apr 12 16:13:11 ubuntu kernel: SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=4, Nodes=1
+Apr 12 16:13:11 ubuntu kernel: ftrace: allocating 42718 entries in 167 pages
+Apr 12 16:13:11 ubuntu kernel: ftrace: allocated 167 pages with 5 groups
+Apr 12 16:13:11 ubuntu kernel: rcu: Preemptible hierarchical RCU implementation.
+Apr 12 16:13:11 ubuntu kernel:         Tasks RCU enabled.
+Apr 12 16:13:11 ubuntu kernel: rcu: RCU calculated value of scheduler-enlistment delay is 25 jiffies.
+Apr 12 16:13:11 ubuntu kernel: NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
+Apr 12 16:13:11 ubuntu kernel: GICv3: GIC: Using split EOI/Deactivate mode
+Apr 12 16:13:11 ubuntu kernel: GICv3: 160 SPIs implemented
+Apr 12 16:13:11 ubuntu kernel: GICv3: 0 Extended SPIs implemented
+Apr 12 16:13:11 ubuntu kernel: GICv3: Distributor has no Range Selector support
+Apr 12 16:13:11 ubuntu kernel: GICv3: 16 PPIs implemented
+Apr 12 16:13:11 ubuntu kernel: GICv3: no VLPI support, no direct LPI support
+Apr 12 16:13:11 ubuntu kernel: GICv3: CPU0: found redistributor 0 region 0:0x0000000038880000
+Apr 12 16:13:11 ubuntu kernel: ITS: No ITS available, not enabling LPIs
+Apr 12 16:13:11 ubuntu kernel: arch_timer: cp15 timer(s) running at 8.00MHz (phys).
+Apr 12 16:13:11 ubuntu kernel: clocksource: arch_sys_counter: mask: 0xffffffffffffff max_cycles: 0x1d854df40, max_idle_ns: 440795202120 ns
+Apr 12 16:13:11 ubuntu kernel: sched_clock: 56 bits at 8MHz, resolution 125ns, wraps every 2199023255500ns
+Apr 12 16:13:11 ubuntu kernel: Console: colour dummy device 80x25
+Apr 12 16:13:11 ubuntu kernel: Calibrating delay loop (skipped), value calculated using timer frequency.. 16.00 BogoMIPS (lpj=32000)
+Apr 12 16:13:11 ubuntu kernel: pid_max: default: 32768 minimum: 301
+Apr 12 16:13:11 ubuntu kernel: LSM: Security Framework initializing
+Apr 12 16:13:11 ubuntu kernel: Yama: becoming mindful.
+Apr 12 16:13:11 ubuntu kernel: AppArmor: AppArmor initialized
+Apr 12 16:13:11 ubuntu kernel: Mount-cache hash table entries: 4096 (order: 3, 32768 bytes, linear)
+Apr 12 16:13:11 ubuntu kernel: Mountpoint-cache hash table entries: 4096 (order: 3, 32768 bytes, linear)
+Apr 12 16:13:11 ubuntu kernel: *** VALIDATE tmpfs ***
+Apr 12 16:13:11 ubuntu kernel: *** VALIDATE proc ***
+Apr 12 16:13:11 ubuntu kernel: *** VALIDATE cgroup1 ***
+Apr 12 16:13:11 ubuntu kernel: *** VALIDATE cgroup2 ***
+Apr 12 16:13:11 ubuntu kernel: ASID allocator initialised with 32768 entries
+Apr 12 16:13:11 ubuntu kernel: rcu: Hierarchical SRCU implementation.
+Apr 12 16:13:11 ubuntu kernel: smp: Bringing up secondary CPUs ...
+Apr 12 16:13:11 ubuntu kernel: Detected VIPT I-cache on CPU1
+Apr 12 16:13:11 ubuntu kernel: GICv3: CPU1: found redistributor 1 region 0:0x00000000388a0000
+Apr 12 16:13:11 ubuntu kernel: CPU1: Booted secondary processor 0x0000000001 [0x410fd034]
+Apr 12 16:13:11 ubuntu kernel: Detected VIPT I-cache on CPU2
+Apr 12 16:13:11 ubuntu kernel: GICv3: CPU2: found redistributor 2 region 0:0x00000000388c0000
+Apr 12 16:13:11 ubuntu kernel: CPU2: Booted secondary processor 0x0000000002 [0x410fd034]
+Apr 12 16:13:11 ubuntu kernel: Detected VIPT I-cache on CPU3
+Apr 12 16:13:11 ubuntu kernel: GICv3: CPU3: found redistributor 3 region 0:0x00000000388e0000
+Apr 12 16:13:11 ubuntu kernel: CPU3: Booted secondary processor 0x0000000003 [0x410fd034]
+Apr 12 16:13:11 ubuntu kernel: smp: Brought up 1 node, 4 CPUs
+Apr 12 16:13:11 ubuntu kernel: SMP: Total of 4 processors activated.
+Apr 12 16:13:11 ubuntu kernel: CPU features: detected: 32-bit EL0 Support
+Apr 12 16:13:11 ubuntu kernel: CPU features: detected: CRC32 instructions
+Apr 12 16:13:11 ubuntu kernel: CPU features: emulated: Privileged Access Never (PAN) using TTBR0_EL1 switching
+Apr 12 16:13:11 ubuntu kernel: CPU: All CPU(s) started at EL2
+Apr 12 16:13:11 ubuntu kernel: alternatives: patching kernel code
+Apr 12 16:13:11 ubuntu kernel: devtmpfs: initialized
+Apr 12 16:13:11 ubuntu kernel: Registered cp15_barrier emulation handler
+Apr 12 16:13:11 ubuntu kernel: Registered setend emulation handler
+Apr 12 16:13:11 ubuntu kernel: clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645041785100000 ns
+Apr 12 16:13:11 ubuntu kernel: futex hash table entries: 1024 (order: 4, 65536 bytes, linear)
+Apr 12 16:13:11 ubuntu kernel: pinctrl core: initialized pinctrl subsystem
+Apr 12 16:13:11 ubuntu kernel: NET: Registered protocol family 16
+Apr 12 16:13:11 ubuntu kernel: DMA: preallocated 256 KiB pool for atomic allocations
+Apr 12 16:13:11 ubuntu kernel: audit: initializing netlink subsys (disabled)
+Apr 12 16:13:11 ubuntu kernel: audit: type=2000 audit(0.040:1): state=initialized audit_enabled=0 res=1
+Apr 12 16:13:11 ubuntu kernel: cpuidle: using governor ladder
+Apr 12 16:13:11 ubuntu kernel: cpuidle: using governor menu
+Apr 12 16:13:11 ubuntu kernel: hw-breakpoint: found 6 breakpoint and 4 watchpoint registers.
+Apr 12 16:13:11 ubuntu kernel: Serial: AMBA PL011 UART driver
+Apr 12 16:13:11 ubuntu kernel: imx mu driver is registered.
+Apr 12 16:13:11 ubuntu kernel: imx rpmsg driver is registered.
+Apr 12 16:13:11 ubuntu kernel: debugfs: Directory 'dummy-iomuxc-gpr@30340000' with parent 'regmap' already present!
+Apr 12 16:13:11 ubuntu kernel: imx8mp-pinctrl 30330000.pinctrl: initialized IMX pinctrl driver
+Apr 12 16:13:11 ubuntu kernel: cryptd: max_cpu_qlen set to 1000
+Apr 12 16:13:11 ubuntu kernel: iommu: Default domain type: Translated 
+Apr 12 16:13:11 ubuntu kernel: SCSI subsystem initialized
+Apr 12 16:13:11 ubuntu kernel: usbcore: registered new interface driver usbfs
+Apr 12 16:13:11 ubuntu kernel: usbcore: registered new interface driver hub
+Apr 12 16:13:11 ubuntu kernel: usbcore: registered new device driver usb
+Apr 12 16:13:11 ubuntu kernel: pps_core: LinuxPPS API ver. 1 registered
+Apr 12 16:13:11 ubuntu kernel: pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+Apr 12 16:13:11 ubuntu kernel: PTP clock support registered
+Apr 12 16:13:11 ubuntu kernel: EDAC MC: Ver: 3.0.0
+Apr 12 16:13:11 ubuntu kernel: NetLabel: Initializing
+Apr 12 16:13:11 ubuntu kernel: NetLabel:  domain hash size = 128
+Apr 12 16:13:11 ubuntu kernel: NetLabel:  protocols = UNLABELED CIPSOv4 CALIPSO
+Apr 12 16:13:11 ubuntu kernel: NetLabel:  unlabeled traffic allowed by default
+Apr 12 16:13:11 ubuntu kernel: clocksource: Switched to clocksource arch_sys_counter
+Apr 12 16:13:11 ubuntu kernel: *** VALIDATE bpf ***
+Apr 12 16:13:11 ubuntu kernel: VFS: Disk quotas dquot_6.6.0
+Apr 12 16:13:11 ubuntu kernel: VFS: Dquot-cache hash table entries: 512 (order 0, 4096 bytes)
+Apr 12 16:13:11 ubuntu kernel: *** VALIDATE ramfs ***
+Apr 12 16:13:11 ubuntu kernel: AppArmor: AppArmor Filesystem Enabled
+Apr 12 16:13:11 ubuntu kernel: thermal_sys: Registered thermal governor 'fair_share'
+Apr 12 16:13:11 ubuntu kernel: thermal_sys: Registered thermal governor 'bang_bang'
+Apr 12 16:13:11 ubuntu kernel: thermal_sys: Registered thermal governor 'step_wise'
+Apr 12 16:13:11 ubuntu kernel: thermal_sys: Registered thermal governor 'user_space'
+Apr 12 16:13:11 ubuntu kernel: thermal_sys: Registered thermal governor 'power_allocator'
+Apr 12 16:13:11 ubuntu kernel: NET: Registered protocol family 2
+Apr 12 16:13:11 ubuntu kernel: IP idents hash table entries: 32768 (order: 6, 262144 bytes, linear)
+Apr 12 16:13:11 ubuntu kernel: tcp_listen_portaddr_hash hash table entries: 1024 (order: 2, 16384 bytes, linear)
+Apr 12 16:13:11 ubuntu kernel: TCP established hash table entries: 16384 (order: 5, 131072 bytes, linear)
+Apr 12 16:13:11 ubuntu kernel: TCP bind hash table entries: 16384 (order: 6, 262144 bytes, linear)
+Apr 12 16:13:11 ubuntu kernel: TCP: Hash tables configured (established 16384 bind 16384)
+Apr 12 16:13:11 ubuntu kernel: UDP hash table entries: 1024 (order: 3, 32768 bytes, linear)
+Apr 12 16:13:11 ubuntu kernel: UDP-Lite hash table entries: 1024 (order: 3, 32768 bytes, linear)
+Apr 12 16:13:11 ubuntu kernel: NET: Registered protocol family 1
+Apr 12 16:13:11 ubuntu kernel: NET: Registered protocol family 44
+Apr 12 16:13:11 ubuntu kernel: PCI: CLS 0 bytes, default 64
+Apr 12 16:13:11 ubuntu kernel: Trying to unpack rootfs image as initramfs...
+Apr 12 16:13:11 ubuntu kernel: Freeing initrd memory: 18340K
+Apr 12 16:13:11 ubuntu kernel: hw perfevents: enabled with armv8_cortex_a53 PMU driver, 7 counters available
+Apr 12 16:13:11 ubuntu kernel: kvm [1]: IPA Size Limit: 40 bits
+Apr 12 16:13:11 ubuntu kernel: kvm [1]: GICv3: no GICV resource entry
+Apr 12 16:13:11 ubuntu kernel: kvm [1]: disabling GICv2 emulation
+Apr 12 16:13:11 ubuntu kernel: kvm [1]: GIC system register CPU interface enabled
+Apr 12 16:13:11 ubuntu kernel: kvm [1]: vgic interrupt IRQ1
+Apr 12 16:13:11 ubuntu kernel: kvm [1]: Hyp mode initialized successfully
+Apr 12 16:13:11 ubuntu kernel: Initialise system trusted keyrings
+Apr 12 16:13:11 ubuntu kernel: Key type blacklist registered
+Apr 12 16:13:11 ubuntu kernel: workingset: timestamp_bits=44 max_order=19 bucket_order=0
+Apr 12 16:13:11 ubuntu kernel: zbud: loaded
+Apr 12 16:13:11 ubuntu kernel: squashfs: version 4.0 (2009/01/31) Phillip Lougher
+Apr 12 16:13:11 ubuntu kernel: fuse: init (API version 7.31)
+Apr 12 16:13:11 ubuntu kernel: *** VALIDATE fuse ***
+Apr 12 16:13:11 ubuntu kernel: *** VALIDATE fuse ***
+Apr 12 16:13:11 ubuntu kernel: Platform Keyring initialized
+Apr 12 16:13:11 ubuntu kernel: Key type asymmetric registered
+Apr 12 16:13:11 ubuntu kernel: Asymmetric key parser 'x509' registered
+Apr 12 16:13:11 ubuntu kernel: Block layer SCSI generic (bsg) driver version 0.4 loaded (major 240)
+Apr 12 16:13:11 ubuntu kernel: io scheduler mq-deadline registered
+Apr 12 16:13:11 ubuntu kernel: clk: failed to reparent gic to sys_pll2_500m: -16
+Apr 12 16:13:11 ubuntu kernel: imx-sdma 30bd0000.dma-controller: loaded firmware 4.5
+Apr 12 16:13:11 ubuntu kernel: SoC: i.MX8MP revision 1.1
+Apr 12 16:13:11 ubuntu kernel: debugfs: Directory 'dummy-reset-controller@30390000' with parent 'regmap' already present!
+Apr 12 16:13:11 ubuntu kernel: 30880000.serial: ttymxc2 at MMIO 0x30880000 (irq = 21, base_baud = 1500000) is a IMX
+Apr 12 16:13:11 ubuntu kernel: 30890000.serial: ttymxc1 at MMIO 0x30890000 (irq = 22, base_baud = 1500000) is a IMX
+Apr 12 16:13:11 ubuntu kernel: 30a60000.serial: ttymxc3 at MMIO 0x30a60000 (irq = 26, base_baud = 1500000) is a IMX
+Apr 12 16:13:11 ubuntu kernel: i2c /dev entries driver
+Apr 12 16:13:11 ubuntu kernel: loop: module loaded
+Apr 12 16:13:11 ubuntu kernel: spi-nor spi0.0: mb85rq4ml (512 Kbytes)
+Apr 12 16:13:11 ubuntu kernel: tun: Universal TUN/TAP device driver, 1.6
+Apr 12 16:13:11 ubuntu kernel: pps pps0: new PPS source ptp0
+Apr 12 16:13:11 ubuntu kernel: libphy: PHY sw.0:00 not found
+Apr 12 16:13:11 ubuntu kernel: fec 30be0000.ethernet eth0: registered PHC device 0
+Apr 12 16:13:11 ubuntu kernel: PPP generic driver version 2.4.2
+Apr 12 16:13:11 ubuntu kernel: usbcore: registered new interface driver lan78xx
+Apr 12 16:13:11 ubuntu kernel: usbcore: registered new interface driver smsc95xx
+Apr 12 16:13:11 ubuntu kernel: ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+Apr 12 16:13:11 ubuntu kernel: ehci-pci: EHCI PCI platform driver
+Apr 12 16:13:11 ubuntu kernel: ohci_hcd: USB 1.1 'Open' Host Controller (OHCI) Driver
+Apr 12 16:13:11 ubuntu kernel: ohci-pci: OHCI PCI platform driver
+Apr 12 16:13:11 ubuntu kernel: uhci_hcd: USB Universal Host Controller Interface driver
+Apr 12 16:13:11 ubuntu kernel: mousedev: PS/2 mouse device common for all mice
+Apr 12 16:13:11 ubuntu kernel: input: 30370000.snvs:snvs-powerkey as /devices/platform/soc@0/30000000.bus/30370000.snvs/30370000.snvs:snvs-powerkey/input/input0
+Apr 12 16:13:11 ubuntu kernel: device-mapper: uevent: version 1.0.3
+Apr 12 16:13:11 ubuntu kernel: device-mapper: ioctl: 4.41.0-ioctl (2019-09-16) initialised: dm-devel@redhat.com
+Apr 12 16:13:11 ubuntu kernel: sdhci: Secure Digital Host Controller Interface driver
+Apr 12 16:13:11 ubuntu kernel: sdhci: Copyright(c) Pierre Ossman
+Apr 12 16:13:11 ubuntu kernel: sdhci-pltfm: SDHCI platform and OF driver helper
+Apr 12 16:13:11 ubuntu kernel: ledtrig-cpu: registered to indicate activity on CPUs
+Apr 12 16:13:11 ubuntu kernel: caam 30900000.crypto: device ID = 0x0a16040100000100 (Era 9)
+Apr 12 16:13:11 ubuntu kernel: caam 30900000.crypto: job rings = 1, qi = 0
+Apr 12 16:13:11 ubuntu kernel: caam algorithms registered in /proc/crypto
+Apr 12 16:13:11 ubuntu kernel: caam 30900000.crypto: caam pkc algorithms registered in /proc/crypto
+Apr 12 16:13:11 ubuntu kernel: caam 30900000.crypto: registering rng-caam
+Apr 12 16:13:11 ubuntu kernel: Device caam-keygen registered
+Apr 12 16:13:11 ubuntu kernel: hidraw: raw HID events driver (C) Jiri Kosina
+Apr 12 16:13:11 ubuntu kernel: optee: probing for conduit method.
+Apr 12 16:13:11 ubuntu kernel: optee: revision 3.19 (193f2e66)
+Apr 12 16:13:11 ubuntu kernel: optee: dynamic shared memory is enabled
+Apr 12 16:13:11 ubuntu kernel: mmc2: SDHCI controller on 30b60000.mmc [30b60000.mmc] using ADMA
+Apr 12 16:13:11 ubuntu kernel: optee: initialized driver
+Apr 12 16:13:11 ubuntu kernel: drop_monitor: Initializing network drop monitor service
+Apr 12 16:13:11 ubuntu kernel: NET: Registered protocol family 10
+Apr 12 16:13:11 ubuntu kernel: Segment Routing with IPv6
+Apr 12 16:13:11 ubuntu kernel: NET: Registered protocol family 17
+Apr 12 16:13:11 ubuntu kernel: bridge: filtering via arp/ip/ip6tables is no longer available by default. Update your scripts to load br_netfilter if you need this.
+Apr 12 16:13:11 ubuntu kernel: Key type dns_resolver registered
+Apr 12 16:13:11 ubuntu kernel: registered taskstats version 1
+Apr 12 16:13:11 ubuntu kernel: Loading compiled-in X.509 certificates
+Apr 12 16:13:11 ubuntu kernel: Loaded X.509 cert 'Build time autogenerated kernel key: c4a4435c6ccbd026524ef9f6fa1c07ab39e94f43'
+Apr 12 16:13:11 ubuntu kernel: Loaded X.509 cert 'Canonical Ltd. Live Patch Signing: 14df34d1a87cf37625abec039ef2bf521249b969'
+Apr 12 16:13:11 ubuntu kernel: Loaded X.509 cert 'Canonical Ltd. Kernel Module Signing: 88f752e560a1e0737e31163a466ad7b70a850c19'
+Apr 12 16:13:11 ubuntu kernel: blacklist: Loading compiled-in revocation X.509 certificates
+Apr 12 16:13:11 ubuntu kernel: Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing: 61482aa2830d0ab2ad5af10b7250da9033ddcef0'
+Apr 12 16:13:11 ubuntu kernel: Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (2017): 242ade75ac4a15e50d50c84b0d45ff3eae707a03'
+Apr 12 16:13:11 ubuntu kernel: Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (ESM 2018): 365188c1d374d6b07c3c8f240f8ef722433d6a8b'
+Apr 12 16:13:11 ubuntu kernel: Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (2019): c0746fd6c5da3ae827864651ad66ae47fe24b3e8'
+Apr 12 16:13:11 ubuntu kernel: Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (2021 v1): a8d54bbb3825cfb94fa13c9f8a594a195c107b8d'
+Apr 12 16:13:11 ubuntu kernel: Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (2021 v2): 4cf046892d6fd3c9a5b03f98d845f90851dc6a8c'
+Apr 12 16:13:11 ubuntu kernel: Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (2021 v3): 100437bb6de6e469b581e61cd66bce3ef4ed53af'
+Apr 12 16:13:11 ubuntu kernel: Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (Ubuntu Core 2019): c1d57b8f6b743f23ee41f4f7ee292f06eecadfb9'
+Apr 12 16:13:11 ubuntu kernel: zswap: loaded using pool lzo/zbud
+Apr 12 16:13:11 ubuntu kernel: Key type ._fscrypt registered
+Apr 12 16:13:11 ubuntu kernel: Key type .fscrypt registered
+Apr 12 16:13:11 ubuntu kernel: Key type big_key registered
+Apr 12 16:13:11 ubuntu kernel: Key type encrypted registered
+Apr 12 16:13:11 ubuntu kernel: AppArmor: AppArmor sha1 policy hashing enabled
+Apr 12 16:13:11 ubuntu kernel: ima: No TPM chip found, activating TPM-bypass!
+Apr 12 16:13:11 ubuntu kernel: ima: Allocated hash algorithm: sha1
+Apr 12 16:13:11 ubuntu kernel: ima: No architecture policies found
+Apr 12 16:13:11 ubuntu kernel: evm: Initialising EVM extended attributes:
+Apr 12 16:13:11 ubuntu kernel: evm: security.selinux
+Apr 12 16:13:11 ubuntu kernel: evm: security.SMACK64
+Apr 12 16:13:11 ubuntu kernel: evm: security.SMACK64EXEC
+Apr 12 16:13:11 ubuntu kernel: evm: security.SMACK64TRANSMUTE
+Apr 12 16:13:11 ubuntu kernel: evm: security.SMACK64MMAP
+Apr 12 16:13:11 ubuntu kernel: evm: security.apparmor
+Apr 12 16:13:11 ubuntu kernel: evm: security.ima
+Apr 12 16:13:11 ubuntu kernel: evm: security.capability
+Apr 12 16:13:11 ubuntu kernel: evm: HMAC attrs: 0x1
+Apr 12 16:13:11 ubuntu kernel: i2c i2c-0: IMX I2C adapter registered
+Apr 12 16:13:11 ubuntu kernel: i2c i2c-1: IMX I2C adapter registered
+Apr 12 16:13:11 ubuntu kernel: i2c i2c-5: IMX I2C adapter registered
+Apr 12 16:13:11 ubuntu kernel: gpio-wdt watchdog: gpio_wdt has started
+Apr 12 16:13:11 ubuntu kernel: sdhci-esdhc-imx 30b50000.mmc: Got CD GPIO
+Apr 12 16:13:11 ubuntu kernel: hctosys: unable to open rtc device (rtc0)
+Apr 12 16:13:11 ubuntu kernel: Warning: unable to open an initial console.
+Apr 12 16:13:11 ubuntu kernel: mmc2: new HS400 Enhanced strobe MMC card at address 0001
+Apr 12 16:13:11 ubuntu kernel: mmcblk2: mmc2:0001 8GUF4R 7.28 GiB 
+Apr 12 16:13:11 ubuntu kernel: mmcblk2boot0: mmc2:0001 8GUF4R partition 1 31.9 MiB
+Apr 12 16:13:11 ubuntu kernel: mmcblk2boot1: mmc2:0001 8GUF4R partition 2 31.9 MiB
+Apr 12 16:13:11 ubuntu kernel: mmcblk2rpmb: mmc2:0001 8GUF4R partition 3 4.00 MiB, chardev (238:0)
+Apr 12 16:13:11 ubuntu kernel:  mmcblk2: p1 p2 p3 p4 p5
+Apr 12 16:13:11 ubuntu kernel: mmc1: SDHCI controller on 30b50000.mmc [30b50000.mmc] using ADMA
+Apr 12 16:13:11 ubuntu kernel: Freeing unused kernel memory: 6144K
+Apr 12 16:13:11 ubuntu kernel: Checked W+X mappings: passed, no W+X pages found
+Apr 12 16:13:11 ubuntu kernel: Run /init as init process
+Apr 12 16:13:11 ubuntu systemd[1]: System time before build time, advancing clock.
+Apr 12 16:13:11 ubuntu systemd[1]: Inserted module 'autofs4'
+Apr 12 16:13:11 ubuntu systemd[1]: systemd 245 running in system mode. (+PAM +AUDIT +SELINUX -IMA +APPARMOR -SMACK -SYSVINIT -UTMP +LIBCRYPTSETUP -GCRYPT -GNUTLS +ACL -XZ +LZ4 +SECCOMP +BLKID -ELFUTILS +KMOD +IDN2 -IDN +PCRE2 default-hierarchy=hybrid)
+Apr 12 16:13:11 ubuntu systemd[1]: Detected architecture arm64.
+Apr 12 16:13:11 ubuntu systemd[1]: Running in initial RAM disk.
+Apr 12 16:13:11 ubuntu systemd[1]: No hostname configured.
+Apr 12 16:13:11 ubuntu systemd[1]: Set hostname to <ubuntu>.
+Apr 12 16:13:11 ubuntu kernel: random: systemd: uninitialized urandom read (16 bytes read)
+Apr 12 16:13:11 ubuntu systemd[1]: Initializing machine ID from random generator.
+Apr 12 16:13:11 ubuntu kernel: random: systemd: uninitialized urandom read (16 bytes read)
+Apr 12 16:13:11 ubuntu systemd[1]: Created slice system-fde\x2dhelper.slice.
+Apr 12 16:13:11 ubuntu kernel: random: systemd: uninitialized urandom read (16 bytes read)
+Apr 12 16:13:11 ubuntu systemd[1]: Started Dispatch Password Requests to Console Directory Watch.
+Apr 12 16:13:11 ubuntu systemd[1]: Reached target Local Encrypted Volumes.
+Apr 12 16:13:11 ubuntu systemd[1]: Reached target Paths.
+Apr 12 16:13:11 ubuntu systemd[1]: Reached target Slices.
+Apr 12 16:13:11 ubuntu systemd[1]: Reached target Swap.
+Apr 12 16:13:11 ubuntu systemd[1]: Listening on initctl Compatibility Named Pipe.
+Apr 12 16:13:11 ubuntu systemd[1]: Listening on Journal Audit Socket.
+Apr 12 16:13:11 ubuntu systemd[1]: Listening on Journal Socket (/dev/log).
+Apr 12 16:13:11 ubuntu systemd[1]: Listening on Journal Socket.
+Apr 12 16:13:11 ubuntu systemd[1]: Listening on udev Control Socket.
+Apr 12 16:13:11 ubuntu systemd[1]: Listening on udev Kernel Socket.
+Apr 12 16:13:11 ubuntu systemd[1]: Condition check resulted in Huge Pages File System being skipped.
+Apr 12 16:13:11 ubuntu systemd[1]: Mounting POSIX Message Queue File System...
+Apr 12 16:13:11 ubuntu systemd[1]: Mounting Kernel Debug File System...
+Apr 12 16:13:11 ubuntu systemd[1]: Mounting Kernel Trace File System...
+Apr 12 16:13:11 ubuntu systemd[1]: Mounting Temporary Directory (/tmp)...
+Apr 12 16:13:11 ubuntu systemd[1]: Starting Journal Service...
+Apr 12 16:13:11 ubuntu systemd[1]: Starting Create list of static device nodes for the current kernel...
+Apr 12 16:13:11 ubuntu systemd[1]: Condition check resulted in Boot Process Profiler being skipped.
+Apr 12 16:13:11 ubuntu systemd[1]: Condition check resulted in Rebuild Hardware Database being skipped.
+Apr 12 16:13:11 ubuntu systemd[1]: Starting Load Kernel Modules...
+Apr 12 16:13:11 ubuntu systemd[1]: Starting Create System Users...
+Apr 12 16:13:11 ubuntu systemd[1]: Starting udev Coldplug all Devices...
+Apr 12 16:13:11 ubuntu systemd[1]: Mounted POSIX Message Queue File System.
+Apr 12 16:13:11 ubuntu systemd[1]: Mounted Kernel Debug File System.
+Apr 12 16:13:11 ubuntu systemd[1]: Mounted Kernel Trace File System.
+Apr 12 16:13:11 ubuntu systemd[1]: Mounted Temporary Directory (/tmp).
+Apr 12 16:13:11 ubuntu systemd[1]: Finished Create list of static device nodes for the current kernel.
+Apr 12 16:13:11 ubuntu systemd[1]: Reached target Local File Systems.
+Apr 12 16:13:11 ubuntu systemd[1]: Condition check resulted in Store a System Token in an EFI Variable being skipped.
+Apr 12 16:13:11 ubuntu systemd[1]: Condition check resulted in Commit a transient machine-id on disk being skipped.
+Apr 12 16:13:11 ubuntu kernel: usbcore: registered new interface driver usbhid
+Apr 12 16:13:11 ubuntu kernel: usbhid: USB HID core driver
+Apr 12 16:13:11 ubuntu systemd[1]: Finished Create System Users.
+Apr 12 16:13:11 ubuntu systemd[1]: Starting Create Static Device Nodes in /dev...
+Apr 12 16:13:11 ubuntu kernel: usbcore: registered new interface driver usb-storage
+Apr 12 16:13:11 ubuntu kernel: NET: Registered protocol family 38
+Apr 12 16:13:11 ubuntu systemd[1]: Finished Create Static Device Nodes in /dev.
+Apr 12 16:13:11 ubuntu systemd[1]: Starting udev Kernel Device Manager...
+Apr 12 16:13:11 ubuntu kernel: rtc-m41t80 5-0068: Can't clear HT bit
+Apr 12 16:13:11 ubuntu systemd-journald[262]: Journal started
+Apr 12 16:13:11 ubuntu systemd-journald[262]: Runtime Journal (/run/log/journal/928bfc70ba0940f99d73044ce014c39d) is 2.0M, max 16.6M, 14.5M free.
+Apr 12 16:13:11 ubuntu systemd[1]: Started Journal Service.
+Apr 12 16:13:11 ubuntu systemd-modules-load[264]: Failed to find module 'i2c-bcm2708'
+Apr 12 16:13:11 ubuntu systemd-modules-load[264]: Failed to find module 'nvme'
+Apr 12 16:13:11 ubuntu systemd-modules-load[264]: Inserted module 'usbhid'
+Apr 12 16:13:11 ubuntu systemd-modules-load[264]: Inserted module 'hid_generic'
+Apr 12 16:13:11 ubuntu systemd-modules-load[264]: Module 'squashfs' is built in
+Apr 12 16:13:11 ubuntu systemd-modules-load[264]: Failed to find module 'ahci'
+Apr 12 16:13:11 ubuntu systemd-modules-load[264]: Failed to find module 'libahci'
+Apr 12 16:13:11 ubuntu systemd-modules-load[264]: Inserted module 'usb_storage'
+Apr 12 16:13:11 ubuntu systemd-modules-load[264]: Inserted module 'nls_iso8859_1'
+Apr 12 16:13:11 ubuntu systemd-modules-load[264]: Failed to find module 'kmod-nls-cp437'
+Apr 12 16:13:11 ubuntu systemd-modules-load[264]: Module 'sdhci' is built in
+Apr 12 16:13:11 ubuntu systemd-modules-load[264]: Failed to find module 'sdhci-pci'
+Apr 12 16:13:11 ubuntu systemd-modules-load[264]: Failed to find module 'sdhci-acpi'
+Apr 12 16:13:11 ubuntu systemd-modules-load[264]: Module 'mmc_block' is built in
+Apr 12 16:13:11 ubuntu systemd-modules-load[264]: Inserted module 'algif_skcipher'
+Apr 12 16:13:11 ubuntu systemd-modules-load[264]: Module 'dm_crypt' is built in
+Apr 12 16:13:11 ubuntu systemd-modules-load[264]: Module 'dm_mod' is built in
+Apr 12 16:13:11 ubuntu systemd-modules-load[264]: Failed to find module 'aes'
+Apr 12 16:13:11 ubuntu systemd-modules-load[264]: Module 'cbc' is built in
+Apr 12 16:13:11 ubuntu systemd-modules-load[264]: Inserted module 'echainiv'
+Apr 12 16:13:11 ubuntu systemd-modules-load[264]: Module 'cryptomgr' is built in
+Apr 12 16:13:11 ubuntu systemd-modules-load[264]: Failed to find module 'sha256'
+Apr 12 16:13:11 ubuntu systemd-modules-load[264]: Module 'xts' is built in
+Apr 12 16:13:11 ubuntu systemd-modules-load[264]: Failed to find module 'aesni-intel'
+Apr 12 16:13:11 ubuntu systemd-modules-load[264]: Inserted module 'phy_generic'
+Apr 12 16:13:11 ubuntu systemd-modules-load[264]: Failed to find module 'sdhci-iproc'
+Apr 12 16:13:11 ubuntu systemd-modules-load[264]: Module 'fixed' is built in
+Apr 12 16:13:11 ubuntu systemd-modules-load[264]: Module 'gpio_regulator' is built in
+Apr 12 16:13:11 ubuntu systemd-modules-load[264]: Module 'genet' is built in
+Apr 12 16:13:11 ubuntu systemd-modules-load[264]: Failed to find module 'vc4'
+Apr 12 16:13:11 ubuntu systemd-modules-load[264]: Inserted module 'rtc_ds1672'
+Apr 12 16:13:11 ubuntu systemd-modules-load[264]: Inserted module 'rtc_m41t80'
+Apr 12 16:13:11 ubuntu systemd-modules-load[264]: Inserted module 'rtc_snvs'
+Apr 12 16:13:11 ubuntu systemd-modules-load[264]: Module 'gpio_wdt' is built in
+Apr 12 16:13:11 ubuntu systemd[1]: Finished Load Kernel Modules.
+Apr 12 16:13:11 ubuntu systemd[1]: Mounting FUSE Control File System...
+Apr 12 16:13:11 ubuntu systemd[1]: Mounting Kernel Configuration File System...
+Apr 12 16:13:11 ubuntu systemd[1]: Starting Flush Journal to Persistent Storage...
+Apr 12 16:13:11 ubuntu systemd[1]: Starting Apply Kernel Variables...
+Apr 12 16:13:11 ubuntu systemd-journald[262]: Runtime Journal (/run/log/journal/928bfc70ba0940f99d73044ce014c39d) is 2.0M, max 16.6M, 14.5M free.
+Apr 12 16:13:11 ubuntu systemd[1]: Started udev Kernel Device Manager.
+Apr 12 16:13:11 ubuntu systemd[1]: Mounted FUSE Control File System.
+Apr 12 16:13:11 ubuntu systemd[1]: Mounted Kernel Configuration File System.
+Apr 12 16:13:11 ubuntu systemd[1]: Finished Flush Journal to Persistent Storage.
+Apr 12 16:13:11 ubuntu systemd-sysctl[283]: Not setting net/ipv4/conf/all/promote_secondaries (explicit setting exists).
+Apr 12 16:13:11 ubuntu systemd-sysctl[283]: Not setting net/ipv4/conf/default/promote_secondaries (explicit setting exists).
+Apr 12 16:13:11 ubuntu systemd-sysctl[283]: Couldn't write 'fq_codel' to 'net/core/default_qdisc', ignoring: No such file or directory
+Apr 12 16:13:11 ubuntu systemd[1]: Starting Create Volatile Files and Directories...
+Apr 12 16:13:11 ubuntu systemd[1]: Finished Apply Kernel Variables.
+Apr 12 16:13:11 ubuntu systemd-tmpfiles[288]: Failed to copy files to /etc/nsswitch.conf: No such file or directory
+Apr 12 16:13:11 ubuntu systemd-tmpfiles[288]: Failed to copy files to /etc/pam.d: No such file or directory
+Apr 12 16:13:11 ubuntu systemd-tmpfiles[288]: Failed to copy files to /etc/issue: No such file or directory
+Apr 12 16:13:11 ubuntu systemd[1]: Finished Create Volatile Files and Directories.
+Apr 12 16:13:11 ubuntu systemd[1]: Starting Rebuild Journal Catalog...
+Apr 12 16:13:11 ubuntu journalctl[289]: No items in catalog.
+Apr 12 16:13:11 ubuntu systemd[1]: Finished Rebuild Journal Catalog.
+Apr 12 16:13:11 ubuntu systemd[1]: Starting Update is Completed...
+Apr 12 16:13:11 ubuntu systemd[1]: Finished Update is Completed.
+Apr 12 16:13:11 ubuntu systemd[1]: Finished udev Coldplug all Devices.
+Apr 12 16:13:11 ubuntu systemd[1]: Starting udev Wait for Complete Device Initialization...
+Apr 12 16:13:11 ubuntu systemd-udevd[292]: Using default interface naming scheme 'v245'.
+Apr 12 16:13:12 ubuntu kernel: random: systemd: uninitialized urandom read (16 bytes read)
+Apr 12 16:13:12 ubuntu kernel: random: systemd: uninitialized urandom read (16 bytes read)
+Apr 12 16:13:12 ubuntu kernel: random: systemd: uninitialized urandom read (16 bytes read)
+Apr 12 16:13:12 ubuntu udevadm[296]: systemd-udev-settle.service is deprecated.
+Apr 12 16:13:12 ubuntu systemd[1]: Finished udev Wait for Complete Device Initialization.
+Apr 12 16:13:12 ubuntu systemd[1]: Reached target System Initialization.
+Apr 12 16:13:12 ubuntu systemd[1]: Started Daily Cleanup of Temporary Directories.
+Apr 12 16:13:12 ubuntu systemd[1]: Reached target Timers.
+Apr 12 16:13:12 ubuntu systemd[1]: Listening on D-Bus System Message Bus Socket.
+Apr 12 16:13:12 ubuntu systemd[1]: Reached target Sockets.
+Apr 12 16:13:12 ubuntu systemd[1]: Reached target Basic System.
+Apr 12 16:13:12 ubuntu systemd[1]: Condition check resulted in Automatic fde helper to encrypt custom partitions being skipped.
+Apr 12 16:13:12 ubuntu systemd[1]: Starting Wait for the Ubuntu Core chooser trigger...
+Apr 12 16:13:12 ubuntu systemd[1]: Starting the-tool.service...
+Apr 12 16:13:12 ubuntu snap-bootstrap[307]: cmd_recovery_chooser_trigger.go:91: trigger wait timeout 10s
+Apr 12 16:13:12 ubuntu snap-bootstrap[307]: cmd_recovery_chooser_trigger.go:92: device timeout 2s
+Apr 12 16:13:12 ubuntu snap-bootstrap[307]: cmd_recovery_chooser_trigger.go:93: marker file /run/snapd-recovery-chooser-triggered
+Apr 12 16:13:12 ubuntu the-tool[309]: 2024/04/12 16:13:12.812491 cmd_initramfs_mounts.go:84: snap-bootstrap version 2.62+20.04 starting
+Apr 12 16:13:12 ubuntu snap-bootstrap[307]: triggerwatch.go:108: waiting for trigger key: KEY_1
+Apr 12 16:13:13 ubuntu kernel: random: systemd: uninitialized urandom read (16 bytes read)
+Apr 12 16:13:13 ubuntu systemd[1]: Created slice system-systemd\x2dfsck.slice.
+Apr 12 16:13:13 ubuntu kernel: random: systemd: uninitialized urandom read (16 bytes read)
+Apr 12 16:13:13 ubuntu kernel: random: systemd: uninitialized urandom read (16 bytes read)
+Apr 12 16:13:13 ubuntu systemd[1]: Listening on fsck to fsckd communication Socket.
+Apr 12 16:13:13 ubuntu systemd[1]: Starting File System Check on /dev/mmcblk2p3...
+Apr 12 16:13:13 ubuntu systemd[1]: Started File System Check Daemon to report status.
+Apr 12 16:13:13 ubuntu systemd-fsck[342]: CP437: Invalid argument
+Apr 12 16:13:13 ubuntu systemd-fsck[342]: fsck.fat 4.1 (2017-01-24)
+Apr 12 16:13:13 ubuntu systemd-fsck[342]: /dev/mmcblk2p3: 10 files, 56709/1613162 clusters
+Apr 12 16:13:13 ubuntu systemd[1]: Finished File System Check on /dev/mmcblk2p3.
+Apr 12 16:13:13 ubuntu systemd[1]: Mounting /run/mnt/ubuntu-boot...
+Apr 12 16:13:13 ubuntu systemd[1]: Mounted /run/mnt/ubuntu-boot.
+Apr 12 16:13:13 ubuntu the-tool[309]: 2024/04/12 16:13:13.642608 cmd_initramfs_mounts.go:1909: generating mounts for Ubuntu Core system, run mode
+Apr 12 16:13:13 ubuntu systemd[1]: Starting File System Check on /dev/mmcblk2p2...
+Apr 12 16:13:14 ubuntu systemd-fsck[366]: ubuntu-seed: clean, 39/64000 files, 84293/256000 blocks
+Apr 12 16:13:14 ubuntu systemd[1]: Finished File System Check on /dev/mmcblk2p2.
+Apr 12 16:13:14 ubuntu systemd[1]: Mounting /run/mnt/ubuntu-seed...
+Apr 12 16:13:14 ubuntu kernel: EXT4-fs (mmcblk2p2): mounted filesystem with ordered data mode. Opts: (null)
+Apr 12 16:13:14 ubuntu systemd[1]: Mounted /run/mnt/ubuntu-seed.
+Apr 12 16:13:14 ubuntu systemd[1]: Started D-Bus System Message Bus.
+Apr 12 16:13:14 ubuntu dbus-daemon[374]: [system] AppArmor D-Bus mediation is enabled
+Apr 12 16:13:14 ubuntu systemd[1]: Starting /usr/sbin/fde-reveal-key...
+Apr 12 16:13:14 ubuntu systemd[1]: Started /usr/sbin/fde-reveal-key.
+Apr 12 16:13:14 ubuntu systemd[1]: run-u0.service: Succeeded.
+Apr 12 16:13:14 ubuntu kernel: random: systemd-cryptse: uninitialized urandom read (4 bytes read)
+Apr 12 16:13:14 ubuntu snap-bootstrap[307]: cmd_recovery_chooser_trigger.go:108: no matching input devices
+Apr 12 16:13:14 ubuntu systemd[1]: Finished Wait for the Ubuntu Core chooser trigger.
+Apr 12 16:13:14 ubuntu systemd[1]: Reached target Login Prompts (Pre).
+Apr 12 16:13:14 ubuntu the-tool[309]: 2024/04/12 16:13:14.867161 secboot_hooks.go:209: successfully activated encrypted device "/dev/disk/by-partuuid/578847ed-0b8c-9048-b74f-6380f023e67d" using FDE kernel hooks
+Apr 12 16:13:14 ubuntu systemd[1]: Mounting /sysroot...
+Apr 12 16:13:14 ubuntu systemd[1]: Starting File System Check on /dev/dm-0...
+Apr 12 16:13:14 ubuntu systemd[1]: Mounted /sysroot.
+Apr 12 16:13:14 ubuntu systemd-fsck[455]: ubuntu-data: clean, 1207/359040 files, 120271/1435387 blocks
+Apr 12 16:13:14 ubuntu systemd[1]: Finished File System Check on /dev/dm-0.
+Apr 12 16:13:14 ubuntu systemd[1]: Mounting /run/mnt/data...
+Apr 12 16:13:14 ubuntu kernel: EXT4-fs (dm-0): mounted filesystem with ordered data mode. Opts: (null)
+Apr 12 16:13:15 ubuntu systemd[1]: Mounted /run/mnt/data.
+Apr 12 16:13:15 ubuntu the-tool[309]: 2024/04/12 16:13:15.217751 secboot_sb.go:167: successfully activated encrypted device /dev/disk/by-partuuid/83080615-dcd0-d04d-8f31-0eb6d89b1bc8 using a key
+Apr 12 16:13:15 ubuntu systemd[1]: Starting File System Check on /dev/dm-1...
+Apr 12 16:13:15 ubuntu systemd-fsck[534]: ubuntu-save: clean, 67/2304 files, 1591/9216 blocks
+Apr 12 16:13:15 ubuntu systemd[1]: Finished File System Check on /dev/dm-1.
+Apr 12 16:13:15 ubuntu systemd[1]: Mounting /run/mnt/ubuntu-save...
+Apr 12 16:13:15 ubuntu kernel: EXT4-fs (dm-1): mounted filesystem with ordered data mode. Opts: (null)
+Apr 12 16:13:15 ubuntu kernel: ext4 filesystem being mounted at /run/mnt/ubuntu-save supports timestamps until 2038 (0x7fffffff)
+Apr 12 16:13:15 ubuntu systemd[1]: Mounted /run/mnt/ubuntu-save.
+Apr 12 16:13:15 ubuntu systemd[1]: Mounting /run/mnt/base...
+Apr 12 16:13:15 ubuntu systemd[1]: Mounted /run/mnt/base.
+Apr 12 16:13:15 ubuntu systemd[1]: Mounting /run/mnt/gadget...
+Apr 12 16:13:15 ubuntu systemd[1]: Mounted /run/mnt/gadget.
+Apr 12 16:13:15 ubuntu systemd[1]: Mounting /run/mnt/kernel...
+Apr 12 16:13:15 ubuntu systemd[1]: Mounted /run/mnt/kernel.
+Apr 12 16:13:15 ubuntu systemd[1]: Starting /usr/sbin/fde-reveal-key...
+Apr 12 16:13:15 ubuntu systemd[1]: Started /usr/sbin/fde-reveal-key.
+Apr 12 16:13:16 ubuntu systemd[1]: run-u2.service: Succeeded.
+Apr 12 16:13:16 ubuntu systemd[1]: Finished the-tool.service.
+Apr 12 16:13:16 ubuntu systemd[1]: Mounting /sysroot/writable...
+Apr 12 16:13:16 ubuntu systemd[1]: Mounted /sysroot/writable.
+Apr 12 16:13:16 ubuntu systemd[1]: Starting populate-writable.service...
+Apr 12 16:13:17 ubuntu the-modeenv[662]: /usr/libexec/core/get-mode: line 24: can't open /run/mnt/ubuntu-data/system-data/var/lib/snapd/modeenv: no such file
+Apr 12 16:13:17 ubuntu systemd[1]: sysroot-run-fstab.mount: Succeeded.
+Apr 12 16:13:17 ubuntu systemd[1]: sysroot-run.mount: Succeeded.
+Apr 12 16:13:17 ubuntu systemd[1]: Reached target Initrd Root Device.
+Apr 12 16:13:17 ubuntu systemd[1]: Condition check resulted in Huge Pages File System being skipped.
+Apr 12 16:13:17 ubuntu systemd[1]: Mounting /sysroot/usr/lib/firmware...
+Apr 12 16:13:17 ubuntu systemd[1]: Mounting /sysroot/usr/lib/modules...
+Apr 12 16:13:17 ubuntu systemd[1]: Stopping D-Bus System Message Bus...
+Apr 12 16:13:17 ubuntu systemd[1]: Condition check resulted in Automatic fde helper to encrypt custom partitions being skipped.
+Apr 12 16:13:17 ubuntu systemd[1]: Condition check resulted in Store a System Token in an EFI Variable being skipped.
+Apr 12 16:13:17 ubuntu systemd[1]: Condition check resulted in Boot Process Profiler being skipped.
+Apr 12 16:13:17 ubuntu systemd[1]: Stopping File System Check Daemon to report status...
+Apr 12 16:13:17 ubuntu systemd[1]: Condition check resulted in Rebuild Hardware Database being skipped.
+Apr 12 16:13:17 ubuntu systemd[1]: Condition check resulted in Commit a transient machine-id on disk being skipped.
+Apr 12 16:13:17 ubuntu systemd[1]: systemd-fsckd.service: Succeeded.
+Apr 12 16:13:17 ubuntu systemd[1]: Stopped File System Check Daemon to report status.
+Apr 12 16:13:17 ubuntu systemd[1]: Mounted /sysroot/usr/lib/firmware.
+Apr 12 16:13:17 ubuntu systemd[1]: Mounted /sysroot/usr/lib/modules.
+Apr 12 16:13:17 ubuntu systemd[1]: dbus.service: Succeeded.
+Apr 12 16:13:17 ubuntu systemd[1]: Stopped D-Bus System Message Bus.
+Apr 12 16:13:17 ubuntu systemd[1]: Finished populate-writable.service.
+Apr 12 16:13:17 ubuntu systemd[1]: Reached target Initrd Root File System.
+Apr 12 16:13:17 ubuntu systemd[1]: Starting Reload Configuration from the Real Root...
+Apr 12 16:13:17 ubuntu systemd[1]: Reloading.
+Apr 12 16:13:18 ubuntu systemd[1]: initrd-parse-etc.service: Succeeded.
+Apr 12 16:13:18 ubuntu systemd[1]: Finished Reload Configuration from the Real Root.
+Apr 12 16:13:18 ubuntu systemd[1]: Reached target Initrd File Systems.
+Apr 12 16:13:18 ubuntu systemd[1]: Reached target Initrd Default Target.
+Apr 12 16:13:18 ubuntu systemd[1]: Starting Cleaning Up and Shutting Down Daemons...
+Apr 12 16:13:18 ubuntu systemd[1]: Stopped target Login Prompts (Pre).
+Apr 12 16:13:18 ubuntu systemd[1]: Stopped target Initrd Default Target.
+Apr 12 16:13:18 ubuntu systemd[1]: Stopped target Initrd Root Device.
+Apr 12 16:13:18 ubuntu systemd[1]: Stopped target Timers.
+Apr 12 16:13:18 ubuntu systemd[1]: systemd-tmpfiles-clean.timer: Succeeded.
+Apr 12 16:13:18 ubuntu systemd[1]: Stopped Daily Cleanup of Temporary Directories.
+Apr 12 16:13:18 ubuntu systemd[1]: Condition check resulted in Huge Pages File System being skipped.
+Apr 12 16:13:18 ubuntu systemd[1]: snapd.recovery-chooser-trigger.service: Succeeded.
+Apr 12 16:13:18 ubuntu systemd[1]: Stopped Wait for the Ubuntu Core chooser trigger.
+Apr 12 16:13:18 ubuntu systemd[1]: Stopped target Basic System.
+Apr 12 16:13:18 ubuntu systemd[1]: Stopped target Paths.
+Apr 12 16:13:18 ubuntu systemd[1]: Stopped target Slices.
+Apr 12 16:13:18 ubuntu systemd[1]: Stopped target Sockets.
+Apr 12 16:13:18 ubuntu systemd[1]: systemd-initctl.socket: Succeeded.
+Apr 12 16:13:18 ubuntu systemd[1]: Closed initctl Compatibility Named Pipe.
+Apr 12 16:13:18 ubuntu systemd[1]: Condition check resulted in Store a System Token in an EFI Variable being skipped.
+Apr 12 16:13:18 ubuntu systemd[1]: Condition check resulted in Stop Boot Process Profiler being skipped.
+Apr 12 16:13:18 ubuntu systemd[1]: Condition check resulted in Boot Process Profiler being skipped.
+Apr 12 16:13:18 ubuntu systemd[1]: Condition check resulted in Commit a transient machine-id on disk being skipped.
+Apr 12 16:13:18 ubuntu systemd[1]: systemd-udev-settle.service: Succeeded.
+Apr 12 16:13:18 ubuntu systemd[1]: Stopped udev Wait for Complete Device Initialization.
+Apr 12 16:13:18 ubuntu systemd[1]: systemd-udev-trigger.service: Succeeded.
+Apr 12 16:13:18 ubuntu systemd[1]: Stopped udev Coldplug all Devices.
+Apr 12 16:13:18 ubuntu systemd[1]: Stopping udev Kernel Device Manager...
+Apr 12 16:13:18 ubuntu systemd[1]: initrd-cleanup.service: Succeeded.
+Apr 12 16:13:18 ubuntu systemd[1]: Finished Cleaning Up and Shutting Down Daemons.
+Apr 12 16:13:18 ubuntu systemd[1]: systemd-udevd.service: Succeeded.
+Apr 12 16:13:18 ubuntu systemd[1]: Stopped udev Kernel Device Manager.
+Apr 12 16:13:18 ubuntu systemd[1]: systemd-udevd-control.socket: Succeeded.
+Apr 12 16:13:18 ubuntu systemd[1]: Closed udev Control Socket.
+Apr 12 16:13:18 ubuntu systemd[1]: systemd-udevd-kernel.socket: Succeeded.
+Apr 12 16:13:18 ubuntu systemd[1]: Closed udev Kernel Socket.
+Apr 12 16:13:18 ubuntu systemd[1]: Starting Cleanup udevd DB...
+Apr 12 16:13:18 ubuntu systemd[1]: Condition check resulted in Rebuild Hardware Database being skipped.
+Apr 12 16:13:18 ubuntu systemd[1]: initrd-udevadm-cleanup-db.service: Succeeded.
+Apr 12 16:13:18 ubuntu systemd[1]: Finished Cleanup udevd DB.
+Apr 12 16:13:18 ubuntu systemd[1]: Reached target Switch Root.
+Apr 12 16:13:18 ubuntu systemd[1]: Starting Switch Root...
+Apr 12 16:13:19 ubuntu systemd[1]: Switching root.
+Apr 12 16:13:19 ubuntu systemd-journald[262]: Journal stopped
+Apr 12 16:13:22 atlashost systemd-journald[804]: Time spent on flushing to /var/log/journal/c7a07bb6da684e86b68573d071c7f3e9 is 42.266ms for 667 entries.
+Apr 12 16:13:22 atlashost systemd-journald[804]: System Journal (/var/log/journal/c7a07bb6da684e86b68573d071c7f3e9) is 10.0M, max 543.3M, 533.2M free.
+Apr 12 16:13:22 atlashost systemd-random-seed[864]: Kernel entropy pool is not initialized yet, waiting until it is.
+Apr 12 16:13:22 atlashost systemd[1]: Started udev Kernel Device Manager.
+Apr 12 16:13:22 atlashost systemd[1]: Finished udev Coldplug all Devices.
+Apr 12 16:13:22 atlashost systemd[1]: Mounted Mount unit for core20, revision 2267.
+Apr 12 16:13:22 atlashost systemd[1]: Mounted Mount unit for hbt-imx-kernel, revision 249.
+Apr 12 16:13:22 atlashost systemd[1]: Mounted Mount unit for network-manager, revision 895.
+Apr 12 16:13:22 atlashost systemd[1]: Mounted Mount unit for snapd, revision 21467.
+Apr 12 16:13:22 atlashost systemd[1]: Mounted Mount unit for tridium-atlas-gadget, revision 122.
+Apr 12 16:13:22 atlashost systemd[1]: Mounted Mount unit for tridium-atlas-protod, revision 298.
+Apr 12 16:13:22 atlashost systemd[1]: Mounted Mount unit for tridium-atlas-system, revision 725.
+Apr 12 16:13:22 atlashost systemd[1]: Mounted Mount unit for tridium-atlas-updatemgr, revision 296.
+Apr 12 16:13:22 atlashost systemd[1]: Mounted Mount unit for tridium-niagara, revision 3124.
+Apr 12 16:13:22 atlashost systemd[1]: Mounted /var/lib/snapd/save.
+Apr 12 16:13:22 atlashost systemd[1]: Mounted /var/lib/snapd/seed.
+Apr 12 16:13:22 atlashost systemd[1]: Finished Flush Journal to Persistent Storage.
+Apr 12 16:13:22 atlashost systemd[1]: Mounted Mount unit for tridium-usermgr, revision 229.
+Apr 12 16:13:22 atlashost systemd[1]: Reached target Mounted snaps.
+Apr 12 16:13:22 atlashost systemd[1]: Mounting Make the snapd snap tooling available for the system...
+Apr 12 16:13:22 atlashost systemd[1]: Mounted Make the snapd snap tooling available for the system.
+Apr 12 16:13:22 atlashost systemd[1]: Reached target Local File Systems.
+Apr 12 16:13:22 atlashost systemd[1]: Starting Load AppArmor profiles...
+Apr 12 16:13:22 atlashost systemd[1]: Starting Create final runtime dir for shutdown pivot root...
+Apr 12 16:13:22 atlashost systemd[1]: Condition check resulted in Commit a transient machine-id on disk being skipped.
+Apr 12 16:13:22 atlashost systemd[1]: Starting Create Volatile Files and Directories...
+Apr 12 16:13:22 atlashost systemd[1]: Finished Create final runtime dir for shutdown pivot root.
+Apr 12 16:13:22 atlashost apparmor.systemd[882]: Restarting AppArmor
+Apr 12 16:13:22 atlashost apparmor.systemd[882]: Reloading AppArmor profiles
+Apr 12 16:13:22 atlashost systemd[1]: Finished Create Volatile Files and Directories.
+Apr 12 16:13:22 atlashost systemd[1]: Starting Network Name Resolution...
+Apr 12 16:13:22 atlashost systemd[1]: Starting Network Time Synchronization...
+Apr 12 16:13:22 atlashost systemd[1]: Starting Update UTMP about System Boot/Shutdown...
+Apr 12 16:13:22 atlashost systemd[1]: Finished Update UTMP about System Boot/Shutdown.
+Apr 12 16:13:22 atlashost audit[894]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="nvidia_modprobe" pid=894 comm="apparmor_parser"
+Apr 12 16:13:22 atlashost audit[894]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="nvidia_modprobe//kmod" pid=894 comm="apparmor_parser"
+Apr 12 16:13:22 atlashost kernel: audit: type=1400 audit(1712938402.760:2): apparmor="STATUS" operation="profile_load" profile="unconfined" name="nvidia_modprobe" pid=894 comm="apparmor_parser"
+Apr 12 16:13:22 atlashost kernel: audit: type=1400 audit(1712938402.760:3): apparmor="STATUS" operation="profile_load" profile="unconfined" name="nvidia_modprobe//kmod" pid=894 comm="apparmor_parser"
+Apr 12 16:13:22 atlashost audit[893]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="lsb_release" pid=893 comm="apparmor_parser"
+Apr 12 16:13:22 atlashost kernel: audit: type=1400 audit(1712938402.768:4): apparmor="STATUS" operation="profile_load" profile="unconfined" name="lsb_release" pid=893 comm="apparmor_parser"
+Apr 12 16:13:22 atlashost audit[895]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="/usr/lib/NetworkManager/nm-dhcp-client.action" pid=895 comm="apparmor_parser"
+Apr 12 16:13:22 atlashost audit[895]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="/usr/lib/NetworkManager/nm-dhcp-helper" pid=895 comm="apparmor_parser"
+Apr 12 16:13:22 atlashost audit[895]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="/usr/lib/connman/scripts/dhclient-script" pid=895 comm="apparmor_parser"
+Apr 12 16:13:22 atlashost audit[895]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="/{,usr/}sbin/dhclient" pid=895 comm="apparmor_parser"
+Apr 12 16:13:22 atlashost kernel: audit: type=1400 audit(1712938402.784:5): apparmor="STATUS" operation="profile_load" profile="unconfined" name="/usr/lib/NetworkManager/nm-dhcp-client.action" pid=895 comm="apparmor_parser"
+Apr 12 16:13:22 atlashost kernel: audit: type=1400 audit(1712938402.784:6): apparmor="STATUS" operation="profile_load" profile="unconfined" name="/usr/lib/NetworkManager/nm-dhcp-helper" pid=895 comm="apparmor_parser"
+Apr 12 16:13:22 atlashost kernel: audit: type=1400 audit(1712938402.784:7): apparmor="STATUS" operation="profile_load" profile="unconfined" name="/usr/lib/connman/scripts/dhclient-script" pid=895 comm="apparmor_parser"
+Apr 12 16:13:22 atlashost kernel: audit: type=1400 audit(1712938402.784:8): apparmor="STATUS" operation="profile_load" profile="unconfined" name="/{,usr/}sbin/dhclient" pid=895 comm="apparmor_parser"
+Apr 12 16:13:22 atlashost systemd[1]: Finished Load AppArmor profiles.
+Apr 12 16:13:22 atlashost systemd[1]: Starting Load AppArmor profiles managed internally by snapd...
+Apr 12 16:13:23 atlashost systemd[1]: proc-sys-fs-binfmt_misc.automount: Got automount request for /proc/sys/fs/binfmt_misc, triggered by 896 (snapd-apparmor)
+Apr 12 16:13:23 atlashost systemd[1]: Mounting Arbitrary Executable File Formats File System...
+Apr 12 16:13:23 atlashost systemd[1]: Mounted Arbitrary Executable File Formats File System.
+Apr 12 16:13:23 atlashost systemd-timesyncd[890]: System clock time unset or jumped backwards, restoring from recorded timestamp: Tue 2025-12-02 23:58:08 UTC
+Dec 02 23:58:08 atlashost systemd[1]: Started Network Time Synchronization.
+Dec 02 23:58:08 atlashost systemd[1]: Reached target System Time Set.
+Dec 02 23:58:08 atlashost systemd[1]: Reached target System Time Synchronized.
+Dec 02 23:58:08 atlashost snapd-apparmor[896]: main.go:125: Loading profiles [/var/lib/snapd/apparmor/profiles/snap-confine.snapd.21467 /var/lib/snapd/apparmor/profiles/snap-update-ns.hbt-imx-kernel /var/lib/snapd/apparmor/profiles/snap-update-ns.network-manager /var/lib/snapd/apparmor/profiles/snap-update-ns.tridium-atlas-gadget /var/lib/snapd/apparmor/profiles/snap-update-ns.tridium-atlas-protod /var/lib/snapd/apparmor/profiles/snap-update-ns.tridium-atlas-system /var/lib/snapd/apparmor/profiles/snap-update-ns.tridium-atlas-updatemgr /var/lib/snapd/apparmor/profiles/snap-update-ns.tridium-niagara /var/lib/snapd/apparmor/profiles/snap-update-ns.tridium-usermgr /var/lib/snapd/apparmor/profiles/snap.hbt-imx-kernel.hook.fde-setup /var/lib/snapd/apparmor/profiles/snap.network-manager.hook.configure /var/lib/snapd/apparmor/profiles/snap.network-manager.hook.install /var/lib/snapd/apparmor/profiles/snap.network-manager.hook.post-refresh /var/lib/snapd/apparmor/profiles/snap.network-manager.hook.remove /var/lib/snapd/apparmor/profiles/snap.network-manager.networkmanager /var/lib/snapd/apparmor/profiles/snap.network-manager.nmcli /var/lib/snapd/apparmor/profiles/snap.network-manager.nmtui /var/lib/snapd/apparmor/profiles/snap.network-manager.nmtui-connect /var/lib/snapd/apparmor/profiles/snap.network-manager.nmtui-edit /var/lib/snapd/apparmor/profiles/snap.network-manager.nmtui-hostname /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-gadget.hook.configure /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-gadget.hook.install /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-gadget.hook.prepare-device /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-gadget.p11-kit-servers /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-gadget.p11tool-atecc /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-gadget.p11tool-optee /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-gadget.pkcs11-tool-atecc /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-gadget.pkcs11-tool-optee /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-gadget.tee-supplicant /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-protod.actrl-daemon1 /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-protod.actrl-daemon2 /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-protod.actrlc /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-protod.actrld /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-protod.hook.configure /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-protod.lonc /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-protod.lonifd /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-protod.lonservice /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-protod.protod-remote /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-protod.protod-server /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-protod.protod-service /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-system.backup /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-system.backup-timer /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-system.chronyc /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-system.chronyd-service /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-system.disable-ntp /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-system.factory-daemon /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-system.fpkeys /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-system.fpkeys-service /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-system.get-fixture-assert /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-system.get-fixture-snap /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-system.hb-service /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-system.hook.configure /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-system.hook.install /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-system.hook.post-refresh /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-system.hostid-mmcsd /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-system.niagara-shutdown /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-system.platdb-service /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-system.raw-erase-fixture-assert /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-system.raw-erase-fixture-snap /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-system.rtc-sync /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-system.startup /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-system.syssh /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-system.syssh-service /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-updatemgr.curl /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-updatemgr.dist-make /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-updatemgr.dist-mk-update /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-updatemgr.dist-prep /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-updatemgr.hook.configure /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-updatemgr.hook.install /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-updatemgr.init /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-updatemgr.jq /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-updatemgr.platform-hash /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-updatemgr.reset-monitor /var/lib/snapd/apparmor/profiles/snap.tridium-atlas-updatemgr.system-snaplist /var/lib/snapd/apparmor/profiles/snap.tridium-niagara.hook.configure /var/lib/snapd/apparmor/profiles/snap.tridium-niagara.hook.install /var/lib/snapd/apparmor/profiles/snap.tridium-niagara.niagarad /var/lib/snapd/apparmor/profiles/snap.tridium-niagara.niagarad-service /var/lib/snapd/apparmor/profiles/snap.tridium-niagara.test-provider-api /var/lib/snapd/apparmor/profiles/snap.tridium-usermgr.hook.connect-plug-npsdk-system /var/lib/snapd/apparmor/profiles/snap.tridium-usermgr.test-usermgr /var/lib/snapd/apparmor/profiles/snap.tridium-usermgr.test-usermgrd /var/lib/snapd/apparmor/profiles/snap.tridium-usermgr.usermgr /var/lib/snapd/apparmor/profiles/snap.tridium-usermgr.usermgrd-server /var/lib/snapd/apparmor/profiles/snap.tridium-usermgr.usermgrd-service]
+Dec 02 23:58:09 atlashost kernel: random: crng init done
+Dec 02 23:58:09 atlashost kernel: random: 960 urandom warning(s) missed due to ratelimiting
+Dec 02 23:58:09 atlashost systemd[1]: Finished Load/Save Random Seed.
+Dec 02 23:58:09 atlashost systemd[1]: Condition check resulted in Store a System Token in an EFI Variable being skipped.
+Dec 02 23:58:09 atlashost audit[910]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap-update-ns.hbt-imx-kernel" pid=910 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost kernel: audit: type=1400 audit(1764719889.185:9): apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap-update-ns.hbt-imx-kernel" pid=910 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[911]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap-update-ns.network-manager" pid=911 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[912]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap-update-ns.tridium-atlas-gadget" pid=912 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost kernel: audit: type=1400 audit(1764719889.189:10): apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap-update-ns.network-manager" pid=911 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost kernel: audit: type=1400 audit(1764719889.189:11): apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap-update-ns.tridium-atlas-gadget" pid=912 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[913]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap-update-ns.tridium-atlas-protod" pid=913 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[915]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap-update-ns.tridium-atlas-updatemgr" pid=915 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[914]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap-update-ns.tridium-atlas-system" pid=914 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[909]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="/snap/snapd/21467/usr/lib/snapd/snap-confine" pid=909 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[909]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="/snap/snapd/21467/usr/lib/snapd/snap-confine//mount-namespace-capture-helper" pid=909 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost systemd-resolved[888]: Positive Trust Anchors:
+Dec 02 23:58:09 atlashost systemd-resolved[888]: . IN DS 20326 8 2 e06d44b80b8f1d39a95c0b0d7c65d08458e880409bbc683457104237c7f8ec8d
+Dec 02 23:58:09 atlashost systemd-resolved[888]: Negative trust anchors: 10.in-addr.arpa 16.172.in-addr.arpa 17.172.in-addr.arpa 18.172.in-addr.arpa 19.172.in-addr.arpa 20.172.in-addr.arpa 21.172.in-addr.arpa 22.172.in-addr.arpa 23.172.in-addr.arpa 24.172.in-addr.arpa 25.172.in-addr.arpa 26.172.in-addr.arpa 27.172.in-addr.arpa 28.172.in-addr.arpa 29.172.in-addr.arpa 30.172.in-addr.arpa 31.172.in-addr.arpa 168.192.in-addr.arpa d.f.ip6.arpa corp home internal intranet lan local private test
+Dec 02 23:58:09 atlashost audit[916]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap-update-ns.tridium-niagara" pid=916 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[917]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap-update-ns.tridium-usermgr" pid=917 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[918]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.hbt-imx-kernel.hook.fde-setup" pid=918 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[920]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.network-manager.hook.install" pid=920 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[922]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.network-manager.hook.remove" pid=922 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[921]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.network-manager.hook.post-refresh" pid=921 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[919]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.network-manager.hook.configure" pid=919 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[924]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.network-manager.nmcli" pid=924 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[923]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.network-manager.networkmanager" pid=923 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[927]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.network-manager.nmtui-edit" pid=927 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[926]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.network-manager.nmtui-connect" pid=926 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[929]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-gadget.hook.configure" pid=929 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[925]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.network-manager.nmtui" pid=925 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[928]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.network-manager.nmtui-hostname" pid=928 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[931]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-gadget.hook.prepare-device" pid=931 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[930]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-gadget.hook.install" pid=930 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[933]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-gadget.p11tool-atecc" pid=933 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[932]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-gadget.p11-kit-servers" pid=932 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost systemd-resolved[888]: Using system hostname 'atlashost'.
+Dec 02 23:58:09 atlashost audit[934]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-gadget.p11tool-optee" pid=934 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[935]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-gadget.pkcs11-tool-atecc" pid=935 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[937]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-gadget.tee-supplicant" pid=937 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[936]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-gadget.pkcs11-tool-optee" pid=936 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[938]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-protod.actrl-daemon1" pid=938 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[939]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-protod.actrl-daemon2" pid=939 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[940]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-protod.actrlc" pid=940 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[942]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-protod.hook.configure" pid=942 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[941]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-protod.actrld" pid=941 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost systemd[1]: Started Network Name Resolution.
+Dec 02 23:58:09 atlashost systemd[1]: Reached target Host and Network Name Lookups.
+Dec 02 23:58:09 atlashost audit[944]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-protod.lonifd" pid=944 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[943]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-protod.lonc" pid=943 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[945]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-protod.lonservice" pid=945 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[946]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-protod.protod-remote" pid=946 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[948]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-protod.protod-service" pid=948 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[949]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-system.backup" pid=949 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[950]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-system.backup-timer" pid=950 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[947]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-protod.protod-server" pid=947 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost kernel: imx-cpufreq-dt imx-cpufreq-dt: cpu speed grade 7 mkt segment 2 supported-hw 0x80 0x4
+Dec 02 23:58:09 atlashost audit[951]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-system.chronyc" pid=951 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[952]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-system.chronyd-service" pid=952 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[953]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-system.disable-ntp" pid=953 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[954]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-system.factory-daemon" pid=954 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[955]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-system.fpkeys" pid=955 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[957]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-system.get-fixture-assert" pid=957 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[956]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-system.fpkeys-service" pid=956 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[958]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-system.get-fixture-snap" pid=958 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost kernel: input: shutdown_key as /devices/platform/shutdown_key/input/input1
+Dec 02 23:58:09 atlashost audit[960]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-system.hook.configure" pid=960 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[959]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-system.hb-service" pid=959 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[961]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-system.hook.install" pid=961 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[962]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-system.hook.post-refresh" pid=962 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[964]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-system.niagara-shutdown" pid=964 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[963]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-system.hostid-mmcsd" pid=963 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost kernel: imx8mq-usb-phy 381f0040.usb-phy: 381f0040.usb-phy supply vbus not found, using dummy regulator
+Dec 02 23:58:09 atlashost kernel: imx8mq-usb-phy 382f0040.usb-phy: 382f0040.usb-phy supply vbus not found, using dummy regulator
+Dec 02 23:58:09 atlashost audit[966]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-system.raw-erase-fixture-assert" pid=966 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[965]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-system.platdb-service" pid=965 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[969]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-system.raw-erase-fixture-snap" pid=969 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[970]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-system.rtc-sync" pid=970 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[971]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-system.startup" pid=971 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[972]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-system.syssh" pid=972 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[974]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-updatemgr.curl" pid=974 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[973]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-system.syssh-service" pid=973 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[975]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-updatemgr.dist-make" pid=975 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[976]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-updatemgr.dist-mk-update" pid=976 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[977]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-updatemgr.dist-prep" pid=977 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[979]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-updatemgr.hook.install" pid=979 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[978]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-updatemgr.hook.configure" pid=978 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[981]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-updatemgr.init" pid=981 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[983]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-updatemgr.jq" pid=983 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[984]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-updatemgr.platform-hash" pid=984 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[985]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-updatemgr.reset-monitor" pid=985 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[986]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-atlas-updatemgr.system-snaplist" pid=986 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[988]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-niagara.hook.install" pid=988 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[987]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-niagara.hook.configure" pid=987 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[994]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-usermgr.hook.connect-plug-npsdk-system" pid=994 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[990]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-niagara.niagarad" pid=990 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[993]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-niagara.test-provider-api" pid=993 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[991]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-niagara.niagarad-service" pid=991 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[996]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-usermgr.test-usermgr" pid=996 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[1000]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-usermgr.usermgr" pid=1000 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[999]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-usermgr.test-usermgrd" pid=999 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost audit[1002]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-usermgr.usermgrd-server" pid=1002 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost kernel: nxp-pca9450 0-0025: pca9450bc probed.
+Dec 02 23:58:09 atlashost audit[1003]: AVC apparmor="STATUS" operation="profile_load" profile="unconfined" name="snap.tridium-usermgr.usermgrd-service" pid=1003 comm="apparmor_parser"
+Dec 02 23:58:09 atlashost systemd[1]: Finished Load AppArmor profiles managed internally by snapd.
+Dec 02 23:58:09 atlashost systemd[1]: Reached target System Initialization.
+Dec 02 23:58:09 atlashost systemd[1]: Started Periodic ext4 Online Metadata Check for All Filesystems.
+Dec 02 23:58:09 atlashost systemd[1]: Started Discard unused blocks once a week.
+Dec 02 23:58:09 atlashost systemd[1]: Started Timer to automatically fetch and run repair assertions.
+Dec 02 23:58:09 atlashost systemd[1]: Started Daily Cleanup of Temporary Directories.
+Dec 02 23:58:09 atlashost systemd[1]: Reached target Timers.
+Dec 02 23:58:09 atlashost kernel: rtc-pcf2131-i2c 5-0053: oscillator stop detected, date/time is not reliable
+Dec 02 23:58:09 atlashost kernel: rtc-pcf2131-i2c 5-0053: registered as rtc0
+Dec 02 23:58:09 atlashost systemd-udevd[860]: Using default interface naming scheme 'v245'.
+Dec 02 23:58:09 atlashost systemd[1]: Listening on D-Bus System Message Bus Socket.
+Dec 02 23:58:09 atlashost systemd[1]: Starting Socket activation for snappy daemon.
+Dec 02 23:58:09 atlashost systemd[1]: Listening on Socket activation for snappy daemon.
+Dec 02 23:58:09 atlashost systemd[1]: Reached target Sockets.
+Dec 02 23:58:09 atlashost systemd[1]: Reached target Basic System.
+Dec 02 23:58:10 atlashost systemd[1]: Starting Start the snapd services from the snapd snap...
+Dec 02 23:58:10 atlashost systemd[1]: Started D-Bus System Message Bus.
+Dec 02 23:58:10 atlashost systemd[1]: Starting Remove Stale Online ext4 Metadata Check Snapshots...
+Dec 02 23:58:10 atlashost systemd[1]: Condition check resulted in getty on tty2-tty6 if dbus and logind are not available being skipped.
+Dec 02 23:58:10 atlashost run-snapd-from-snap[1016]: + set +e
+Dec 02 23:58:10 atlashost run-snapd-from-snap[1016]: + systemctl status snapd.service
+Dec 02 23:58:10 atlashost systemd[1]: Started Set the CPU Frequency Scaling governor.
+Dec 02 23:58:10 atlashost systemd[1]: Starting Automatically repair incorrect owner/permissions on core devices...
+Dec 02 23:58:10 atlashost systemd[1]: Starting Wait for the Ubuntu Core chooser trigger...
+Dec 02 23:58:10 atlashost systemd[1]: Starting Wait until snapd is fully seeded...
+Dec 02 23:58:10 atlashost systemd[1]: Starting Generate sshd host keys...
+Dec 02 23:58:10 atlashost systemd[1]: Started Create and use a swap file.
+Dec 02 23:58:10 atlashost systemd[1]: Starting Login Service...
+Dec 02 23:58:10 atlashost systemd[1]: Starting WPA supplicant...
+Dec 02 23:58:10 atlashost systemd[1]: Finished Automatically repair incorrect owner/permissions on core devices.
+Dec 02 23:58:10 atlashost systemd[1]: swapfile.service: Succeeded.
+Dec 02 23:58:10 atlashost kernel: imx-dwmac 30bf0000.ethernet: IRQ eth_lpi not found
+Dec 02 23:58:10 atlashost kernel: imx-dwmac 30bf0000.ethernet: no reset control found
+Dec 02 23:58:10 atlashost kernel: Honeywell honeywell_board_init EQOS DRIVER
+Dec 02 23:58:10 atlashost kernel: imx-dwmac 30bf0000.ethernet: User ID: 0x10, Synopsys ID: 0x51
+Dec 02 23:58:10 atlashost kernel: imx-dwmac 30bf0000.ethernet:         DWMAC4/5
+Dec 02 23:58:10 atlashost kernel: imx-dwmac 30bf0000.ethernet: DMA HW capability register supported
+Dec 02 23:58:10 atlashost kernel: imx-dwmac 30bf0000.ethernet: RX Checksum Offload Engine supported
+Dec 02 23:58:10 atlashost kernel: imx-dwmac 30bf0000.ethernet: TX Checksum insertion supported
+Dec 02 23:58:10 atlashost kernel: imx-dwmac 30bf0000.ethernet: Wake-Up On Lan supported
+Dec 02 23:58:10 atlashost kernel: imx-dwmac 30bf0000.ethernet: Enable RX Mitigation via HW Watchdog Timer
+Dec 02 23:58:10 atlashost kernel: imx-dwmac 30bf0000.ethernet: Enabling HW TC (entries=256, max_off=256)
+Dec 02 23:58:10 atlashost kernel: imx-dwmac 30bf0000.ethernet: Using 34 bits DMA width
+Dec 02 23:58:10 atlashost kernel: libphy: PHY sw.0:00 not found
+Dec 02 23:58:10 atlashost systemd[1]: Finished Generate sshd host keys.
+Dec 02 23:58:10 atlashost systemd-udevd[873]: ethtool: autonegotiation is unset or enabled, the speed and duplex are not writable.
+Dec 02 23:58:10 atlashost systemd[1]: Created slice system-snapd.autoimport\x2ddevice.slice.
+Dec 02 23:58:10 atlashost systemd[1]: Starting Snap Daemon...
+Dec 02 23:58:10 atlashost systemd-logind[1039]: Watching system buttons on /dev/input/event0 (30370000.snvs:snvs-powerkey)
+Dec 02 23:58:10 atlashost systemd-logind[1039]: New seat seat0.
+Dec 02 23:58:10 atlashost dbus-daemon[1018]: [system] AppArmor D-Bus mediation is enabled
+Dec 02 23:58:10 atlashost dbus-daemon[1018]: [system] Successfully activated service 'org.freedesktop.systemd1'
+Dec 02 23:58:10 atlashost systemd[1]: Started Login Service.
+Dec 02 23:58:10 atlashost systemd[1]: Listening on Load/Save RF Kill Switch Status /dev/rfkill Watch.
+Dec 02 23:58:10 atlashost run-snapd-from-snap[1023]: ● snapd.service - Snap Daemon
+Dec 02 23:58:10 atlashost run-snapd-from-snap[1023]:      Loaded: loaded (/etc/systemd/system/snapd.service; enabled; vendor preset: enabled)
+Dec 02 23:58:10 atlashost run-snapd-from-snap[1023]:      Active: activating (start) since Tue 2025-12-02 23:58:10 UTC; 204ms ago
+Dec 02 23:58:10 atlashost run-snapd-from-snap[1023]: TriggeredBy: ● snapd.socket
+Dec 02 23:58:10 atlashost run-snapd-from-snap[1023]:    Main PID: 1090 (snapd)
+Dec 02 23:58:10 atlashost run-snapd-from-snap[1023]:       Tasks: 1 (limit: 1587)
+Dec 02 23:58:10 atlashost run-snapd-from-snap[1023]:      Memory: 560.0K
+Dec 02 23:58:10 atlashost run-snapd-from-snap[1023]:      CGroup: /system.slice/snapd.service
+Dec 02 23:58:10 atlashost run-snapd-from-snap[1023]:              └─1090 /snap/snapd/21467/usr/lib/snapd/snapd
+Dec 02 23:58:10 atlashost run-snapd-from-snap[1023]: Dec 02 23:58:10 atlashost systemd[1]: Starting Snap Daemon...
+Dec 02 23:58:10 atlashost run-snapd-from-snap[1016]: + snapdExists=3
+Dec 02 23:58:10 atlashost run-snapd-from-snap[1016]: + [ ! -e /var/lib/snapd/state.json ]
+Dec 02 23:58:10 atlashost run-snapd-from-snap[1016]: + [ 3 = 4 ]
+Dec 02 23:58:10 atlashost run-snapd-from-snap[1016]: + set -e
+Dec 02 23:58:10 atlashost systemd[1]: Finished Start the snapd services from the snapd snap.
+Dec 02 23:58:10 atlashost systemd-udevd[860]: ethtool: autonegotiation is unset or enabled, the speed and duplex are not writable.
+Dec 02 23:58:10 atlashost kernel: fec 30be0000.ethernet en1: renamed from eth0
+Dec 02 23:58:11 atlashost systemd[1]: e2scrub_reap.service: Succeeded.
+Dec 02 23:58:11 atlashost systemd[1]: Finished Remove Stale Online ext4 Metadata Check Snapshots.
+Dec 02 23:58:11 atlashost systemd[1]: Started WPA supplicant.
+Dec 02 23:58:11 atlashost wpa_supplicant[1043]: Successfully initialized wpa_supplicant
+Dec 02 23:58:11 atlashost systemd[1]: Reached target Network.
+Dec 02 23:58:11 atlashost systemd[1]: Started Service for snap application network-manager.networkmanager.
+Dec 02 23:58:11 atlashost systemd[1]: Started Service for snap application tridium-atlas-gadget.tee-supplicant.
+Dec 02 23:58:11 atlashost systemd[1]: Starting Service for snap application tridium-atlas-gadget.p11-kit-servers...
+Dec 02 23:58:11 atlashost systemd[1]: Started Service for snap application tridium-atlas-protod.lonservice.
+Dec 02 23:58:11 atlashost systemd[1]: Started Service for snap application tridium-atlas-protod.protod-service.
+Dec 02 23:58:11 atlashost systemd[1]: Started Service for snap application tridium-atlas-system.hb-service.
+Dec 02 23:58:11 atlashost systemd[1]: Starting Service for snap application tridium-atlas-system.rtc-sync...
+Dec 02 23:58:11 atlashost systemd[1]: Started Service for snap application tridium-atlas-updatemgr.init.
+Dec 02 23:58:11 atlashost systemd[1]: Started Service for snap application tridium-atlas-updatemgr.reset-monitor.
+Dec 02 23:58:11 atlashost systemd[1]: Started Service for snap application tridium-niagara.niagarad-service.
+Dec 02 23:58:11 atlashost systemd[1]: Started Service for snap application tridium-usermgr.usermgrd-service.
+Dec 02 23:58:11 atlashost systemd[1]: Condition check resulted in OpenBSD Secure Shell server being skipped.
+Dec 02 23:58:11 atlashost systemd[1]: Starting Permit User Sessions...
+Dec 02 23:58:11 atlashost systemd[1]: Finished Permit User Sessions.
+Dec 02 23:58:12 atlashost snap-bootstrap[1031]: cmd_recovery_chooser_trigger.go:91: trigger wait timeout 10s
+Dec 02 23:58:12 atlashost snap-bootstrap[1031]: cmd_recovery_chooser_trigger.go:92: device timeout 2s
+Dec 02 23:58:12 atlashost snap-bootstrap[1031]: cmd_recovery_chooser_trigger.go:93: marker file /run/snapd-recovery-chooser-triggered
+Dec 02 23:58:12 atlashost systemd-udevd[871]: Using default interface naming scheme 'v245'.
+Dec 02 23:58:12 atlashost systemd-udevd[871]: ethtool: autonegotiation is unset or enabled, the speed and duplex are not writable.
+Dec 02 23:58:12 atlashost systemd-udevd[871]: ethtool: could not get ethtool features for eth1
+Dec 02 23:58:12 atlashost systemd-udevd[871]: Could not set offload features of eth1: Device or resource busy
+Dec 02 23:58:12 atlashost kernel: imx-dwmac 30bf0000.ethernet en0: renamed from eth1
+Dec 02 23:58:12 atlashost snap-bootstrap[1031]: triggerwatch.go:108: waiting for trigger key: KEY_1
+Dec 02 23:58:13 atlashost systemd-udevd[861]: Using default interface naming scheme 'v245'.
+Dec 02 23:58:13 atlashost systemd-udevd[861]: ethtool: autonegotiation is unset or enabled, the speed and duplex are not writable.
+Dec 02 23:58:13 atlashost kernel: xhci-hcd xhci-hcd.1.auto: xHCI Host Controller
+Dec 02 23:58:13 atlashost kernel: xhci-hcd xhci-hcd.1.auto: new USB bus registered, assigned bus number 1
+Dec 02 23:58:13 atlashost kernel: xhci-hcd xhci-hcd.1.auto: hcc params 0x0220fe6d hci version 0x110 quirks 0x0000000000010010
+Dec 02 23:58:13 atlashost kernel: xhci-hcd xhci-hcd.1.auto: irq 203, io mem 0x38100000
+Dec 02 23:58:13 atlashost kernel: xhci-hcd xhci-hcd.1.auto: xHCI Host Controller
+Dec 02 23:58:13 atlashost kernel: xhci-hcd xhci-hcd.1.auto: new USB bus registered, assigned bus number 2
+Dec 02 23:58:13 atlashost kernel: xhci-hcd xhci-hcd.1.auto: Host supports USB 3.0 SuperSpeed
+Dec 02 23:58:13 atlashost kernel: usb usb1: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 5.04
+Dec 02 23:58:13 atlashost kernel: usb usb1: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+Dec 02 23:58:13 atlashost kernel: usb usb1: Product: xHCI Host Controller
+Dec 02 23:58:13 atlashost kernel: usb usb1: Manufacturer: Linux 5.4.0-1052-shiner xhci-hcd
+Dec 02 23:58:13 atlashost kernel: usb usb1: SerialNumber: xhci-hcd.1.auto
+Dec 02 23:58:13 atlashost kernel: hub 1-0:1.0: USB hub found
+Dec 02 23:58:13 atlashost kernel: hub 1-0:1.0: 1 port detected
+Dec 02 23:58:13 atlashost kernel: usb usb2: We don't know the algorithms for LPM for this host, disabling LPM.
+Dec 02 23:58:13 atlashost kernel: usb usb2: New USB device found, idVendor=1d6b, idProduct=0003, bcdDevice= 5.04
+Dec 02 23:58:13 atlashost kernel: usb usb2: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+Dec 02 23:58:13 atlashost kernel: usb usb2: Product: xHCI Host Controller
+Dec 02 23:58:13 atlashost kernel: usb usb2: Manufacturer: Linux 5.4.0-1052-shiner xhci-hcd
+Dec 02 23:58:13 atlashost kernel: usb usb2: SerialNumber: xhci-hcd.1.auto
+Dec 02 23:58:13 atlashost kernel: hub 2-0:1.0: USB hub found
+Dec 02 23:58:13 atlashost kernel: hub 2-0:1.0: 1 port detected
+Dec 02 23:58:13 atlashost kernel: xhci-hcd xhci-hcd.2.auto: xHCI Host Controller
+Dec 02 23:58:13 atlashost kernel: xhci-hcd xhci-hcd.2.auto: new USB bus registered, assigned bus number 3
+Dec 02 23:58:13 atlashost kernel: xhci-hcd xhci-hcd.2.auto: hcc params 0x0220fe6d hci version 0x110 quirks 0x0000000000010010
+Dec 02 23:58:13 atlashost kernel: xhci-hcd xhci-hcd.2.auto: irq 204, io mem 0x38200000
+Dec 02 23:58:13 atlashost kernel: xhci-hcd xhci-hcd.2.auto: xHCI Host Controller
+Dec 02 23:58:13 atlashost kernel: xhci-hcd xhci-hcd.2.auto: new USB bus registered, assigned bus number 4
+Dec 02 23:58:13 atlashost kernel: xhci-hcd xhci-hcd.2.auto: Host supports USB 3.0 SuperSpeed
+Dec 02 23:58:13 atlashost kernel: usb usb3: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 5.04
+Dec 02 23:58:13 atlashost kernel: usb usb3: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+Dec 02 23:58:13 atlashost kernel: usb usb3: Product: xHCI Host Controller
+Dec 02 23:58:13 atlashost kernel: usb usb3: Manufacturer: Linux 5.4.0-1052-shiner xhci-hcd
+Dec 02 23:58:13 atlashost kernel: usb usb3: SerialNumber: xhci-hcd.2.auto
+Dec 02 23:58:13 atlashost kernel: hub 3-0:1.0: USB hub found
+Dec 02 23:58:13 atlashost kernel: hub 3-0:1.0: 1 port detected
+Dec 02 23:58:13 atlashost kernel: usb usb4: We don't know the algorithms for LPM for this host, disabling LPM.
+Dec 02 23:58:13 atlashost kernel: usb usb4: New USB device found, idVendor=1d6b, idProduct=0003, bcdDevice= 5.04
+Dec 02 23:58:13 atlashost kernel: usb usb4: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+Dec 02 23:58:13 atlashost kernel: usb usb4: Product: xHCI Host Controller
+Dec 02 23:58:13 atlashost kernel: usb usb4: Manufacturer: Linux 5.4.0-1052-shiner xhci-hcd
+Dec 02 23:58:13 atlashost kernel: usb usb4: SerialNumber: xhci-hcd.2.auto
+Dec 02 23:58:13 atlashost kernel: hub 4-0:1.0: USB hub found
+Dec 02 23:58:13 atlashost kernel: hub 4-0:1.0: 1 port detected
+Dec 02 23:58:13 atlashost systemd-udevd[867]: Using default interface naming scheme 'v245'.
+Dec 02 23:58:13 atlashost systemd-udevd[867]: ethtool: autonegotiation is unset or enabled, the speed and duplex are not writable.
+Dec 02 23:58:13 atlashost systemd-udevd[867]: ethtool: could not get ethtool features for en0
+Dec 02 23:58:13 atlashost systemd-udevd[867]: Could not set offload features of en0: Device or resource busy
+Dec 02 23:58:13 atlashost kernel: usb 1-1: new high-speed USB device number 2 using xhci-hcd
+Dec 02 23:58:13 atlashost kernel: usb 1-1: New USB device found, idVendor=1fc9, idProduct=4852, bcdDevice= 1.01
+Dec 02 23:58:13 atlashost kernel: usb 1-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+Dec 02 23:58:13 atlashost kernel: usb 1-1: Product: TridiumLPC485-2_r01
+Dec 02 23:58:13 atlashost kernel: usb 1-1: Manufacturer: NXP SEMICONDUCTORS
+Dec 02 23:58:13 atlashost kernel: usb 1-1: SerialNumber: 47AA8C78C711C053BF01831FA5DD3631
+Dec 02 23:58:14 atlashost kernel: cdc_acm 1-1:1.0: ttyACM0: USB ACM device
+Dec 02 23:58:14 atlashost kernel: cdc_acm 1-1:1.2: ttyACM1: USB ACM device
+Dec 02 23:58:14 atlashost kernel: usbcore: registered new interface driver cdc_acm
+Dec 02 23:58:14 atlashost kernel: cdc_acm: USB Abstract Control Model driver for USB modems and ISDN adapters
+Dec 02 23:58:14 atlashost snap-bootstrap[1031]: cmd_recovery_chooser_trigger.go:108: no matching input devices
+Dec 02 23:58:15 atlashost systemd[1]: Finished Wait for the Ubuntu Core chooser trigger.
+Dec 02 23:58:15 atlashost systemd[1]: Reached target Login Prompts (Pre).
+Dec 02 23:58:15 atlashost systemd[1]: Started Getty on tty1.
+Dec 02 23:58:15 atlashost systemd[1]: Reached target Login Prompts.
+Dec 02 23:58:16 atlashost set-cpufreq[1024]: Setting ondemand scheduler for all CPUs
+Dec 02 23:58:16 atlashost systemd[1]: ondemand.service: Succeeded.
+Dec 02 23:58:16 atlashost snapd[1090]: overlord.go:271: Acquiring state lock file
+Dec 02 23:58:16 atlashost snapd[1090]: overlord.go:276: Acquired state lock file
+Dec 02 23:58:16 atlashost network-manager.networkmanager[1161]: + mkdir -p /var/snap/network-manager/895/conf/system-connections
+Dec 02 23:58:16 atlashost tridium-atlas-updatemgr.reset-monitor[1210]: Reset monitor started
+Dec 02 23:58:16 atlashost network-manager.networkmanager[1161]: + mkdir -p /var/snap/network-manager/895/run
+Dec 02 23:58:16 atlashost network-manager.networkmanager[1161]: + mkdir -p /run/NetworkManager/dhcp
+Dec 02 23:58:16 atlashost network-manager.networkmanager[1161]: + mkdir -p /var/snap/network-manager/895/conf.d
+Dec 02 23:58:16 atlashost tridium-atlas-updatemgr.init[1206]: Removing /var/snap/tridium-atlas-updatemgr/296/update-meta/platform-hash
+
+Dec 02 23:58:16 atlashost network-manager.networkmanager[1161]: + mkdir -p /var/snap/network-manager/895/state
+Dec 02 23:58:16 atlashost tridium-atlas-updatemgr.init[1206]: Removing /var/snap/tridium-atlas-updatemgr/296/update-meta/platform-version
+Dec 02 23:58:16 atlashost network-manager.networkmanager[1161]: + mkdir -p /var/snap/network-manager/895/state/dhcp
+Dec 02 23:58:16 atlashost tridium-atlas-updatemgr.init[1206]: Removing /var/snap/tridium-atlas-updatemgr/296/update-meta/snap-list.xml
+Dec 02 23:58:16 atlashost network-manager.networkmanager[1161]: + mkdir -p /var/snap/network-manager/895/var/lib/misc
+Dec 02 23:58:16 atlashost root[1866]: No running p11-kit servers found
+Dec 02 23:58:16 atlashost tridium-atlas-updatemgr.init[1206]: call upgraded.sh
+Dec 02 23:58:16 atlashost network-manager.networkmanager[1161]: + mkdir -p /var/snap/network-manager/895/etc
+Dec 02 23:58:16 atlashost tridium-atlas-system.hb-service[1192]: Changing from STATE_INIT to STATE_WAIT_FOR_NIAGARAD
+Dec 02 23:58:16 atlashost tridium-atlas-updatemgr.init[1872]: upgraded: enter main
+Dec 02 23:58:16 atlashost network-manager.networkmanager[1161]: + mkdir -p /var/snap/network-manager/895/var/run
+Dec 02 23:58:16 atlashost kernel: rtc-pcf2131-i2c 5-0053: oscillator stop detected, date/time is not reliable
+Dec 02 23:58:16 atlashost network-manager.networkmanager[1161]: + . /snap/network-manager/895/bin/snap-config.sh
+Dec 02 23:58:16 atlashost network-manager.networkmanager[1161]: + . /snap/network-manager/895/bin/snap-prop.sh
+Dec 02 23:58:16 atlashost network-manager.networkmanager[1161]: + apply_snap_config
+Dec 02 23:58:16 atlashost network-manager.networkmanager[1880]: + get_wifi_powersave
+Dec 02 23:58:16 atlashost network-manager.networkmanager[1881]: + snapctl get wifi.powersave
+Dec 02 23:58:16 atlashost root[1879]: Handling provider: atecc
+Dec 02 23:58:16 atlashost kernel: rtc-pcf2131-i2c 5-0053: oscillator stop detected, date/time is not reliable
+Dec 02 23:58:16 atlashost tridium-atlas-system.rtc-sync[1868]: hwclock: ioctl(RTC_RD_TIME) to /dev/rtc0 to read the time failed: Invalid argument
+Dec 02 23:58:16 atlashost kernel: rtc-pcf2131-i2c 5-0053: oscillator stop detected, date/time is not reliable
+Dec 02 23:58:16 atlashost systemd[1]: snap.tridium-atlas-system.rtc-sync.service: Succeeded.
+Dec 02 23:58:16 atlashost systemd[1]: Finished Service for snap application tridium-atlas-system.rtc-sync.
+Dec 02 23:58:16 atlashost systemd[1]: Starting Service for snap application tridium-atlas-system.disable-ntp...
+Dec 02 23:58:16 atlashost audit[1885]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-gadget.p11-kit-servers" name="/usr/sbin/" pid=1885 comm="p11tool" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:16 atlashost kernel: kauditd_printk_skb: 83 callbacks suppressed
+Dec 02 23:58:16 atlashost kernel: audit: type=1400 audit(1764719896.693:95): apparmor="DENIED" operation="open" profile="snap.tridium-atlas-gadget.p11-kit-servers" name="/usr/sbin/" pid=1885 comm="p11tool" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:16 atlashost tridium-atlas-updatemgr.init[1206]: Waiting for system seed...
+Dec 02 23:58:16 atlashost audit[1885]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-gadget.p11-kit-servers" name="/usr/sbin/" pid=1885 comm="p11tool" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:16 atlashost kernel: audit: type=1400 audit(1764719896.701:96): apparmor="DENIED" operation="open" profile="snap.tridium-atlas-gadget.p11-kit-servers" name="/usr/sbin/" pid=1885 comm="p11tool" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:16 atlashost kernel: audit: type=1400 audit(1764719896.701:97): apparmor="DENIED" operation="open" profile="snap.tridium-atlas-gadget.p11-kit-servers" name="/usr/games/" pid=1885 comm="p11tool" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:16 atlashost audit[1885]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-gadget.p11-kit-servers" name="/usr/games/" pid=1885 comm="p11tool" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:16 atlashost snapd[1090]: daemon.go:247: started snapd/2.62 (series 16) ubuntu-core/20 (arm64) linux/5.4.0-1052-shiner.
+Dec 02 23:58:16 atlashost tridium-atlas-gadget.p11-kit-servers[1885]: /home/ubuntu/host/src/atlas-gadget-bldr/build/prod/parts/cryptoauthlib/src/lib/calib/calib_read.c:103:f0:calib_read_zone - execution failed
+Dec 02 23:58:16 atlashost tridium-atlas-gadget.p11-kit-servers[1885]: /home/ubuntu/host/src/atlas-gadget-bldr/build/prod/parts/cryptoauthlib/src/lib/calib/calib_read.c:619:f0:calib_read_zone - falied
+Dec 02 23:58:16 atlashost snapd[1090]: daemon.go:340: adjusting startup timeout by 1m20s (pessimistic estimate of 30s plus 5s per snap)
+Dec 02 23:58:16 atlashost tridium-atlas-system.disable-ntp[1891]: Disable default NTP service
+Dec 02 23:58:16 atlashost tridium-atlas-gadget.p11-kit-servers[1885]: /home/ubuntu/host/src/atlas-gadget-bldr/build/prod/parts/cryptoauthlib/src/lib/calib/calib_read.c:103:f0:calib_read_zone - execution failed
+Dec 02 23:58:16 atlashost tridium-atlas-gadget.p11-kit-servers[1885]: /home/ubuntu/host/src/atlas-gadget-bldr/build/prod/parts/cryptoauthlib/src/lib/calib/calib_read.c:619:f0:calib_read_zone - falied
+Dec 02 23:58:17 atlashost snapd[1090]: backends.go:58: AppArmor status: apparmor is enabled and all features are available (using snapd provided apparmor_parser)
+Dec 02 23:58:17 atlashost audit[1936]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-system.disable-ntp" name="/proc/1/sched" pid=1936 comm="timedatectl.rea" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:17 atlashost audit[1936]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-system.disable-ntp" name="/proc/1/sched" pid=1936 comm="timedatectl.rea" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:17 atlashost kernel: audit: type=1400 audit(1764719897.033:98): apparmor="DENIED" operation="open" profile="snap.tridium-atlas-system.disable-ntp" name="/proc/1/sched" pid=1936 comm="timedatectl.rea" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:17 atlashost kernel: audit: type=1400 audit(1764719897.033:99): apparmor="DENIED" operation="open" profile="snap.tridium-atlas-system.disable-ntp" name="/proc/1/sched" pid=1936 comm="timedatectl.rea" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:17 atlashost dbus-daemon[1018]: [system] Activating via systemd: service name='org.freedesktop.timedate1' unit='dbus-org.freedesktop.timedate1.service' requested by ':1.5' (uid=0 pid=1936 comm="/usr/bin/timedatectl.real set-ntp false " label="snap.tridium-atlas-system.disable-ntp (enforce)")
+Dec 02 23:58:17 atlashost systemd[1]: tmp-syscheck\x2dmountpoint\x2d58571376.mount: Succeeded.
+Dec 02 23:58:17 atlashost tridium-atlas-gadget.p11-kit-servers[1885]: /home/ubuntu/host/src/atlas-gadget-bldr/build/prod/parts/cryptoauthlib/src/lib/calib/calib_read.c:103:f0:calib_read_zone - execution failed
+Dec 02 23:58:17 atlashost tridium-atlas-gadget.p11-kit-servers[1885]: /home/ubuntu/host/src/atlas-gadget-bldr/build/prod/parts/cryptoauthlib/src/lib/calib/calib_read.c:619:f0:calib_read_zone - falied
+Dec 02 23:58:17 atlashost tridium-atlas-gadget.p11-kit-servers[1885]: pkcs11_add_provider: PKCS #11 error in device
+Dec 02 23:58:17 atlashost root[1950]: Handling provider: optee
+Dec 02 23:58:17 atlashost audit[1952]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-gadget.p11-kit-servers" name="/usr/sbin/" pid=1952 comm="p11tool" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:17 atlashost kernel: audit: type=1400 audit(1764719897.117:100): apparmor="DENIED" operation="open" profile="snap.tridium-atlas-gadget.p11-kit-servers" name="/usr/sbin/" pid=1952 comm="p11tool" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:17 atlashost audit[1952]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-gadget.p11-kit-servers" name="/usr/sbin/" pid=1952 comm="p11tool" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:17 atlashost kernel: audit: type=1400 audit(1764719897.121:101): apparmor="DENIED" operation="open" profile="snap.tridium-atlas-gadget.p11-kit-servers" name="/usr/sbin/" pid=1952 comm="p11tool" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:17 atlashost audit[1952]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-gadget.p11-kit-servers" name="/usr/games/" pid=1952 comm="p11tool" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:17 atlashost kernel: audit: type=1400 audit(1764719897.125:102): apparmor="DENIED" operation="open" profile="snap.tridium-atlas-gadget.p11-kit-servers" name="/usr/games/" pid=1952 comm="p11tool" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:17 atlashost systemd[1]: Starting Time & Date Service...
+Dec 02 23:58:17 atlashost root[1957]: p11-kit server --provider /snap/tridium-atlas-gadget/122/usr/lib/aarch64-linux-gnu/libckteec.so --name /run/p11-kit/optee-slot-0 pkcs11:model=OP-TEE%20TA;manufacturer=Linaro;serial=0000000000000000
+Dec 02 23:58:17 atlashost tridium-usermgr.usermgrd-service[1229]: *thrift.TServerSocket
+Dec 02 23:58:17 atlashost tridium-usermgr.usermgrd-service[1229]: Starting the simple server... on  localhost:9091
+Dec 02 23:58:17 atlashost tridium-atlas-protod.protod-service[1172]: *thrift.TServerSocket
+Dec 02 23:58:17 atlashost tridium-atlas-protod.protod-service[1172]: Starting the simple server... on  localhost:9090
+Dec 02 23:58:17 atlashost root[1960]: p11-kit server --provider /snap/tridium-atlas-gadget/122/usr/lib/aarch64-linux-gnu/libckteec.so --name /run/p11-kit/optee-slot-1 pkcs11:model=OP-TEE%20TA;manufacturer=Linaro;serial=0000000000000001
+Dec 02 23:58:17 atlashost root[1968]: p11-kit server --provider /snap/tridium-atlas-gadget/122/usr/lib/aarch64-linux-gnu/libckteec.so --name /run/p11-kit/optee-slot-2 pkcs11:model=OP-TEE%20TA;manufacturer=Linaro;serial=0000000000000002
+Dec 02 23:58:17 atlashost systemd[1]: Started Service for snap application tridium-atlas-gadget.p11-kit-servers.
+Dec 02 23:58:17 atlashost snapd[1090]: devicemgr.go:340: save already mounted under /var/lib/snapd/save
+Dec 02 23:58:17 atlashost systemd[1]: Started Snap Daemon.
+Dec 02 23:58:17 atlashost dbus-daemon[1018]: [system] Successfully activated service 'org.freedesktop.timedate1'
+Dec 02 23:58:17 atlashost systemd[1]: Started Time & Date Service.
+Dec 02 23:58:17 atlashost systemd-timedated[1954]: Set NTP to disabled.
+Dec 02 23:58:17 atlashost systemd[1]: Stopping Network Time Synchronization...
+Dec 02 23:58:17 atlashost systemd[1]: systemd-timesyncd.service: Succeeded.
+Dec 02 23:58:17 atlashost systemd[1]: Stopped Network Time Synchronization.
+Dec 02 23:58:17 atlashost systemd[1]: snap.tridium-atlas-system.disable-ntp.service: Succeeded.
+Dec 02 23:58:17 atlashost systemd[1]: Finished Service for snap application tridium-atlas-system.disable-ntp.
+Dec 02 23:58:17 atlashost systemd[1]: Started Service for snap application tridium-atlas-system.platdb-service.
+Dec 02 23:58:17 atlashost systemd[1]: Starting Service for snap application tridium-atlas-system.startup...
+Dec 02 23:58:17 atlashost systemd[1]: Finished Wait until snapd is fully seeded.
+Dec 02 23:58:17 atlashost systemd[1]: Starting Auto import assertions from block devices...
+Dec 02 23:58:17 atlashost network-manager.networkmanager[1880]: + value=disabled
+Dec 02 23:58:17 atlashost network-manager.networkmanager[1880]: + [ -z disabled ]
+Dec 02 23:58:17 atlashost network-manager.networkmanager[1880]: + echo disabled
+Dec 02 23:58:17 atlashost network-manager.networkmanager[1161]: + _switch_wifi_powersave disabled
+Dec 02 23:58:17 atlashost network-manager.networkmanager[1161]: + path=/var/snap/network-manager/895/conf.d/wifi-powersave.conf
+Dec 02 23:58:17 atlashost network-manager.networkmanager[1997]: + printf [connection]\nwifi.powersave = 2
+Dec 02 23:58:17 atlashost network-manager.networkmanager[1161]: + content=[connection]
+Dec 02 23:58:17 atlashost network-manager.networkmanager[1161]: wifi.powersave = 2
+Dec 02 23:58:17 atlashost network-manager.networkmanager[1161]: + _replace_file_if_diff /var/snap/network-manager/895/conf.d/wifi-powersave.conf [connection]
+Dec 02 23:58:17 atlashost network-manager.networkmanager[1161]: wifi.powersave = 2
+Dec 02 23:58:17 atlashost network-manager.networkmanager[1161]: + old_content=
+Dec 02 23:58:17 atlashost network-manager.networkmanager[1161]: + [ -e /var/snap/network-manager/895/conf.d/wifi-powersave.conf ]
+Dec 02 23:58:17 atlashost network-manager.networkmanager[1999]: + cat /var/snap/network-manager/895/conf.d/wifi-powersave.conf
+Dec 02 23:58:17 atlashost network-manager.networkmanager[1161]: + old_content=[connection]
+Dec 02 23:58:17 atlashost network-manager.networkmanager[1161]: wifi.powersave = 2
+Dec 02 23:58:17 atlashost network-manager.networkmanager[1161]: + [ [connection]
+Dec 02 23:58:17 atlashost network-manager.networkmanager[1161]: wifi.powersave = 2 != [connection]
+Dec 02 23:58:17 atlashost network-manager.networkmanager[1161]: wifi.powersave = 2 ]
+Dec 02 23:58:17 atlashost network-manager.networkmanager[2003]: + get_wifi_wake_on_wlan
+Dec 02 23:58:17 atlashost network-manager.networkmanager[2008]: + snapctl get wifi.wake-on-wlan
+Dec 02 23:58:17 atlashost network-manager.networkmanager[2003]: + value=disabled
+Dec 02 23:58:17 atlashost network-manager.networkmanager[2003]: + [ -z disabled ]
+Dec 02 23:58:17 atlashost network-manager.networkmanager[2003]: + echo disabled
+Dec 02 23:58:17 atlashost network-manager.networkmanager[2026]: + get_wifi_wake_on_password
+Dec 02 23:58:17 atlashost network-manager.networkmanager[2026]: + snapctl get wifi.wake-on-wlan-password
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + _switch_wifi_wake_on_wlan disabled
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + value=0
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + value=0
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + password=
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + path=/var/snap/network-manager/895/conf.d/wifi-wowlan.conf
+Dec 02 23:58:18 atlashost network-manager.networkmanager[2049]: + printf [connection]
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + content=[connection]
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + [ -n 0 ]
+Dec 02 23:58:18 atlashost network-manager.networkmanager[2050]: + printf %s\nwifi.wake-on-wlan=%s [connection] 0
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + content=[connection]
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: wifi.wake-on-wlan=0
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + [ -n  ]
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + _replace_file_if_diff /var/snap/network-manager/895/conf.d/wifi-wowlan.conf [connection]
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: wifi.wake-on-wlan=0
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + old_content=
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + [ -e /var/snap/network-manager/895/conf.d/wifi-wowlan.conf ]
+Dec 02 23:58:18 atlashost network-manager.networkmanager[2051]: + cat /var/snap/network-manager/895/conf.d/wifi-wowlan.conf
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + old_content=[connection]
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: wifi.wake-on-wlan=0
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + [ [connection]
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: wifi.wake-on-wlan=0 != [connection]
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: wifi.wake-on-wlan=0 ]
+Dec 02 23:58:18 atlashost network-manager.networkmanager[2054]: + get_debug_enable
+Dec 02 23:58:18 atlashost network-manager.networkmanager[2055]: + snapctl get debug.enable
+Dec 02 23:58:18 atlashost systemd[1]: snapd.autoimport.service: Succeeded.
+Dec 02 23:58:18 atlashost systemd[1]: Finished Auto import assertions from block devices.
+Dec 02 23:58:18 atlashost systemd[1]: Starting Auto import assertions from a specific block device...
+Dec 02 23:58:18 atlashost systemd[1]: Starting Auto import assertions from a specific block device...
+Dec 02 23:58:18 atlashost systemd[1]: Starting Auto import assertions from a specific block device...
+Dec 02 23:58:18 atlashost network-manager.networkmanager[2054]: + value=false
+Dec 02 23:58:18 atlashost network-manager.networkmanager[2054]: + [ -z false ]
+Dec 02 23:58:18 atlashost network-manager.networkmanager[2054]: + echo false
+Dec 02 23:58:18 atlashost systemd[1]: Starting Auto import assertions from a specific block device...
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + _switch_debug_enable false
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + DEBUG_FILE=/var/snap/network-manager/895/.debug_enabled
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + [ false = true ]
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + rm -f /var/snap/network-manager/895/.debug_enabled
+Dec 02 23:58:18 atlashost network-manager.networkmanager[2107]: + get_property connectivity.uri
+Dec 02 23:58:18 atlashost network-manager.networkmanager[2107]: + snapctl get connectivity.uri
+Dec 02 23:58:18 atlashost snap[2072]: cmd_auto_import.go:206: error: cannot mount /dev/dm-0: mount: /tmp/snapd-auto-import-mount-2819824069: /dev/mapper/ubuntu-data-a37b27d9-6dba-49ea-8191-efc2c7727521 already mounted on /writable.
+Dec 02 23:58:18 atlashost systemd[1]: snapd.autoimport-device@dm-0.service: Succeeded.
+Dec 02 23:58:18 atlashost systemd[1]: Finished Auto import assertions from a specific block device.
+Dec 02 23:58:18 atlashost snap[2088]: cmd_auto_import.go:206: error: cannot mount /dev/mmcblk2p2: mount: /tmp/snapd-auto-import-mount-95383202: /dev/mmcblk2p2 already mounted on /writable/system-data/var/lib/snapd/seed.
+Dec 02 23:58:18 atlashost snap[2075]: cmd_auto_import.go:206: error: cannot mount /dev/dm-1: mount: /tmp/snapd-auto-import-mount-580938453: /dev/mapper/ubuntu-save-17baf996-4413-4329-bf63-4c70bd5244c3 already mounted on /writable/system-data/var/lib/snapd/save.
+Dec 02 23:58:18 atlashost snap[2091]: cmd_auto_import.go:206: error: cannot mount /dev/mmcblk2p3: mount: /tmp/snapd-auto-import-mount-4045767943: /dev/mmcblk2p3 already mounted on /run/mnt/ubuntu-boot.
+Dec 02 23:58:18 atlashost systemd[1]: snapd.autoimport-device@mmcblk2p3.service: Succeeded.
+Dec 02 23:58:18 atlashost systemd[1]: Finished Auto import assertions from a specific block device.
+Dec 02 23:58:18 atlashost network-manager.networkmanager[2130]: + get_property connectivity.interval
+Dec 02 23:58:18 atlashost network-manager.networkmanager[2130]: + snapctl get connectivity.interval
+Dec 02 23:58:18 atlashost systemd[1]: snapd.autoimport-device@dm-1.service: Succeeded.
+Dec 02 23:58:18 atlashost systemd[1]: Finished Auto import assertions from a specific block device.
+Dec 02 23:58:18 atlashost systemd[1]: snapd.autoimport-device@mmcblk2p2.service: Succeeded.
+Dec 02 23:58:18 atlashost systemd[1]: Finished Auto import assertions from a specific block device.
+Dec 02 23:58:18 atlashost network-manager.networkmanager[2142]: + get_property connectivity.response
+Dec 02 23:58:18 atlashost network-manager.networkmanager[2142]: + snapctl get connectivity.response
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + _switch_connectivity_check
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + path=/var/snap/network-manager/895/conf.d/connectivity.conf
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + [ -z  ]
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + rm -f /var/snap/network-manager/895/conf.d/connectivity.conf
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + return
+Dec 02 23:58:18 atlashost network-manager.networkmanager[2160]: + get_defaultrenderer
+Dec 02 23:58:18 atlashost network-manager.networkmanager[2161]: + snapctl get defaultrenderer
+Dec 02 23:58:18 atlashost network-manager.networkmanager[2160]: + value=true
+Dec 02 23:58:18 atlashost network-manager.networkmanager[2160]: + [ -z true ]
+Dec 02 23:58:18 atlashost network-manager.networkmanager[2160]: + echo true
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + _switch_defaultrenderer true
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + path=/etc/netplan/00-default-nm-renderer.yaml
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + rm -f /var/snap/network-manager/895/conf.d/disable-ethernet.conf
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + [ true = true ]
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + [ ! -f /etc/netplan/00-default-nm-renderer.yaml ]
+Dec 02 23:58:18 atlashost network-manager.networkmanager[2180]: + get_plugins
+Dec 02 23:58:18 atlashost network-manager.networkmanager[2181]: + snapctl get plugins
+Dec 02 23:58:18 atlashost network-manager.networkmanager[2180]: + value=keyfile
+Dec 02 23:58:18 atlashost network-manager.networkmanager[2180]: + [ -z keyfile ]
+Dec 02 23:58:18 atlashost network-manager.networkmanager[2180]: + [ keyfile = netplan ]
+Dec 02 23:58:18 atlashost network-manager.networkmanager[2180]: + echo keyfile
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + _switch_plugins keyfile
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + [ ! -f /var/snap/network-manager/895/NetworkManager.conf ]
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + sed -i s/^plugins=.*/plugins=keyfile/ /var/snap/network-manager/895/NetworkManager.conf
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + NM_CONF=/snap/network-manager/895/etc/NetworkManager/NetworkManager.conf
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + [ -e /var/snap/network-manager/895/NetworkManager.conf ]
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + NM_CONF=/var/snap/network-manager/895/NetworkManager.conf
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + . /snap/network-manager/895/bin/utils.sh
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + . /etc/lsb-release
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + DISTRIB_ID=Ubuntu
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + DISTRIB_RELEASE=20.04
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + DISTRIB_CODENAME=focal
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + DISTRIB_DESCRIPTION=Ubuntu 20.04.6 LTS
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + dns_conf_file=/var/snap/network-manager/895/conf.d/10-dns.conf
+X
+Dec 02 23:58:18 atlashost network-manager.networkmanager[2196]: + get_series_major_version
+Dec 02 23:58:18 atlashost network-manager.networkmanager[2196]: + printf %s\n 20
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + [ 20 = 16 ]
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + printf [main]\ndns=systemd-resolved\nrc-manager=symlink\n
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + LOG_LEVEL=INFO
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + [ -f /var/snap/network-manager/895/.debug_enabled ]
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + [ -x /snap/network-manager/895/startup-hooks/99-wol-by-default.sh ]
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + /bin/sh -x /snap/network-manager/895/startup-hooks/99-wol-by-default.sh
+Dec 02 23:58:18 atlashost network-manager.networkmanager[2197]: + [ ! -e /var/snap/network-manager/895/conf.d/enable-wol.conf ]
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + export LD_LIBRARY_PATH=/var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd/void:/snap/network-manager/895/lib:/snap/network-manager/895/usr/lib:/snap/network-manager/895/lib/aarch64-linux-gnu:/snap/network-manager/895/usr/lib/aarch64-linux-gnu:/snap/network-manager/895/usr/lib/NetworkManager
+Dec 02 23:58:18 atlashost network-manager.networkmanager[1161]: + exec /snap/network-manager/895/usr/sbin/NetworkManager --config-dir=/var/snap/network-manager/895/conf.d/ --config=/var/snap/network-manager/895/NetworkManager.conf --log-level=INFO --no-daemon
+Dec 02 23:58:18 atlashost tridium-atlas-system.platdb-service[2118]: *thrift.TServerSocket
+Dec 02 23:58:18 atlashost tridium-atlas-system.platdb-service[2118]: Starting the simple server... on  localhost:9093
+Dec 02 23:58:19 atlashost audit[1996]: AVC apparmor="DENIED" operation="create" profile="snap.tridium-atlas-updatemgr.init" pid=1996 comm="curl" family="inet6" sock_type="dgram" protocol=0 requested_mask="create" denied_mask="create"
+Dec 02 23:58:19 atlashost kernel: audit: type=1400 audit(1764719899.025:103): apparmor="DENIED" operation="create" profile="snap.tridium-atlas-updatemgr.init" pid=1996 comm="curl" family="inet6" sock_type="dgram" protocol=0 requested_mask="create" denied_mask="create"
+Dec 02 23:58:19 atlashost tridium-atlas-system.platdb-service[2118]: ping()
+Dec 02 23:58:19 atlashost tridium-niagara.niagarad-service[1225]: Waiting for system startup to complete
+Dec 02 23:58:19 atlashost NetworkManager[1161]: <info>  [1764719899.6974] NetworkManager (version 1.22.10) is starting... (for the first time)
+Dec 02 23:58:19 atlashost audit[1161]: SECCOMP auid=4294967295 uid=0 gid=0 ses=4294967295 pid=1161 comm="NetworkManager" exe="/snap/network-manager/895/usr/sbin/NetworkManager" sig=0 arch=c00000b7 syscall=274 compat=0 ip=0xffff9e7a1a54 code=0x50000
+Dec 02 23:58:19 atlashost NetworkManager[1161]: <info>  [1764719899.6977] Read config: /var/snap/network-manager/895/NetworkManager.conf (run: 10-globally-managed-devices.conf) (etc: 10-dns.conf, enable-wol.conf, wifi-powersave.conf, wifi-wowlan.conf)
+Dec 02 23:58:19 atlashost kernel: audit: type=1326 audit(1764719899.693:104): auid=4294967295 uid=0 gid=0 ses=4294967295 pid=1161 comm="NetworkManager" exe="/snap/network-manager/895/usr/sbin/NetworkManager" sig=0 arch=c00000b7 syscall=274 compat=0 ip=0xffff9e7a1a54 code=0x50000
+Dec 02 23:58:19 atlashost NetworkManager[1161]: <info>  [1764719899.7057] bus-manager: acquired D-Bus service "org.freedesktop.NetworkManager"
+Dec 02 23:58:19 atlashost audit[1161]: AVC apparmor="DENIED" operation="capable" profile="snap.network-manager.networkmanager" pid=1161 comm="NetworkManager" capability=1  capname="dac_override"
+Dec 02 23:58:19 atlashost NetworkManager[1161]: <info>  [1764719899.7489] manager[0xaaaaf0269020]: monitoring kernel firmware directory '/lib/firmware'.
+Dec 02 23:58:19 atlashost NetworkManager[1161]: <info>  [1764719899.7492] monitoring ifupdown state file '/run/network/ifstate'.
+Dec 02 23:58:19 atlashost dbus-daemon[1018]: [system] Activating via systemd: service name='org.freedesktop.hostname1' unit='dbus-org.freedesktop.hostname1.service' requested by ':1.8' (uid=0 pid=1161 comm="/snap/network-manager/895/usr/sbin/NetworkManager " label="snap.network-manager.networkmanager (enforce)")
+Dec 02 23:58:19 atlashost systemd[1]: Starting Hostname Service...
+Dec 02 23:58:19 atlashost tridium-atlas-updatemgr.init[1206]: System seed loaded: true
+Dec 02 23:58:20 atlashost tridium-atlas-updatemgr.init[1206]: Generating snap-list.xml
+Dec 02 23:58:20 atlashost dbus-daemon[1018]: [system] Successfully activated service 'org.freedesktop.hostname1'
+Dec 02 23:58:20 atlashost systemd[1]: Started Hostname Service.
+Dec 02 23:58:20 atlashost NetworkManager[1161]: <info>  [1764719900.3186] hostname: hostname: using hostnamed
+Dec 02 23:58:20 atlashost NetworkManager[1161]: <info>  [1764719900.3188] hostname: hostname changed from (none) to "atlashost"
+Dec 02 23:58:20 atlashost NetworkManager[1161]: <info>  [1764719900.3226] dns-mgr[0xaaaaf024f240]: init: dns=systemd-resolved rc-manager=symlink, plugin=systemd-resolved
+Dec 02 23:58:20 atlashost NetworkManager[1161]: <info>  [1764719900.3244] manager[0xaaaaf0269020]: rfkill: Wi-Fi hardware radio set enabled
+Dec 02 23:58:20 atlashost NetworkManager[1161]: <info>  [1764719900.3245] manager[0xaaaaf0269020]: rfkill: WWAN hardware radio set enabled
+Dec 02 23:58:20 atlashost tridium-niagara.niagarad-service[1225]: Waiting for system startup to complete
+Dec 02 23:58:20 atlashost NetworkManager[1161]: <info>  [1764719900.3993] Loaded device plugin: NMTeamFactory (/usr/lib/NetworkManager/1.22.10/libnm-device-plugin-team.so)
+Dec 02 23:58:20 atlashost NetworkManager[1161]: <info>  [1764719900.4159] Loaded device plugin: NMWifiFactory (/usr/lib/NetworkManager/1.22.10/libnm-device-plugin-wifi.so)
+Dec 02 23:58:20 atlashost NetworkManager[1161]: <info>  [1764719900.4536] Loaded device plugin: NMWwanFactory (/usr/lib/NetworkManager/1.22.10/libnm-device-plugin-wwan.so)
+Dec 02 23:58:20 atlashost NetworkManager[1161]: <info>  [1764719900.4540] manager: rfkill: Wi-Fi enabled by radio killswitch; enabled by state file
+Dec 02 23:58:20 atlashost NetworkManager[1161]: <info>  [1764719900.4545] manager: rfkill: WWAN enabled by radio killswitch; enabled by state file
+Dec 02 23:58:20 atlashost NetworkManager[1161]: <info>  [1764719900.4549] manager: Networking is enabled by state file
+Dec 02 23:58:20 atlashost NetworkManager[1161]: <info>  [1764719900.4553] dhcp-init: Using DHCP client 'internal'
+Dec 02 23:58:20 atlashost NetworkManager[1161]: <info>  [1764719900.4579] settings: Loaded settings plugin: keyfile (internal)
+Dec 02 23:58:21 atlashost systemd[1]: Created slice system-console\x2dconf.slice.
+Dec 02 23:58:21 atlashost systemd[1]: Condition check resulted in Ubuntu Core Firstboot Configuration tty1 being skipped.
+Dec 02 23:58:21 atlashost tridium-niagara.niagarad-service[1225]: Waiting for system startup to complete
+Dec 02 23:58:21 atlashost audit[2297]: AVC apparmor="DENIED" operation="create" profile="snap.tridium-atlas-updatemgr.init" pid=2297 comm="curl" family="inet6" sock_type="dgram" protocol=0 requested_mask="create" denied_mask="create"
+Dec 02 23:58:22 atlashost tridium-atlas-updatemgr.init[1206]: Generating /var/snap/tridium-atlas-updatemgr/296/update-meta/platform-hash (8de15c5fc6d39737b44665e94c55c1da8b3b95d67a6f1615c7356dfbe2274479d152d003a0324e1768f63e62ff7b2f5b197178a11e1049569a638b3c518e763c)
+Dec 02 23:58:22 atlashost tridium-atlas-updatemgr.init[1206]: versionmap.json found
+Dec 02 23:58:22 atlashost audit[2341]: AVC apparmor="DENIED" operation="open" profile="snap.network-manager.networkmanager" name="/proc/1/environ" pid=2341 comm="busctl" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:22 atlashost dbus-daemon[1018]: [system] Activating service name='io.netplan.Netplan' requested by ':1.10' (uid=0 pid=2341 comm="/usr/bin/busctl call --quiet --system io.netplan.N" label="snap.network-manager.networkmanager (enforce)") (using servicehelper)
+Dec 02 23:58:22 atlashost kernel: kauditd_printk_skb: 2 callbacks suppressed
+Dec 02 23:58:22 atlashost kernel: audit: type=1400 audit(1764719902.193:107): apparmor="DENIED" operation="open" profile="snap.network-manager.networkmanager" name="/proc/1/environ" pid=2341 comm="busctl" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:22 atlashost dbus-daemon[1018]: [system] Successfully activated service 'io.netplan.Netplan'
+Dec 02 23:58:22 atlashost tridium-niagara.niagarad-service[1225]: Waiting for system startup to complete
+Dec 02 23:58:22 atlashost tridium-atlas-updatemgr.init[1206]: Generating /var/snap/tridium-atlas-updatemgr/296/update-meta/platform-version (20.0)
+Dec 02 23:58:22 atlashost tridium-atlas-updatemgr.init[1206]: end of init.sh
+Dec 02 23:58:22 atlashost systemd[1]: snap.tridium-atlas-updatemgr.init.service: Succeeded.
+Dec 02 23:58:23 atlashost NetworkManager[1161]: <info>  [1764719903.0860] device (lo): carrier: link connected
+Dec 02 23:58:23 atlashost NetworkManager[1161]: <info>  [1764719903.0872] manager: (lo): new Generic device (/org/freedesktop/NetworkManager/Devices/1)
+Dec 02 23:58:23 atlashost NetworkManager[1161]: <info>  [1764719903.0898] device (en0): driver '(null)' does not support carrier detection.
+Dec 02 23:58:23 atlashost NetworkManager[1161]: <info>  [1764719903.0909] device (en0): driver 'imx-dwmac' does not support carrier detection.
+Dec 02 23:58:23 atlashost NetworkManager[1161]: <info>  [1764719903.0929] manager: (en0): new Ethernet device (/org/freedesktop/NetworkManager/Devices/2)
+Dec 02 23:58:23 atlashost NetworkManager[1161]: <info>  [1764719903.0971] device (en0): state change: unmanaged -> unavailable (reason 'managed', sys-iface-state: 'external')
+Dec 02 23:58:23 atlashost kernel: imx-dwmac 30bf0000.ethernet en0: PHY [stmmac-1:03] driver [Microchip KSZ9131 Gigabit PHY]
+Dec 02 23:58:23 atlashost kernel: imx-dwmac 30bf0000.ethernet en0: No Safety Features support found
+Dec 02 23:58:23 atlashost kernel: imx-dwmac 30bf0000.ethernet en0: IEEE 1588-2008 Advanced Timestamp supported
+Dec 02 23:58:23 atlashost kernel: imx-dwmac 30bf0000.ethernet en0: registered PTP clock
+Dec 02 23:58:23 atlashost kernel: imx-dwmac 30bf0000.ethernet en0: configuring for phy/rgmii-id link mode
+Dec 02 23:58:23 atlashost NetworkManager[1161]: <info>  [1764719903.1983] manager: (en1): new Ethernet device (/org/freedesktop/NetworkManager/Devices/3)
+Dec 02 23:58:23 atlashost NetworkManager[1161]: <info>  [1764719903.2029] device (en1): state change: unmanaged -> unavailable (reason 'managed', sys-iface-state: 'external')
+Dec 02 23:58:23 atlashost kernel: Microchip KSZ9131 Gigabit PHY 30be0000.ethernet-1:07: attached PHY driver [Microchip KSZ9131 Gigabit PHY] (mii_bus:phy_addr=30be0000.ethernet-1:07, irq=POLL)
+Dec 02 23:58:23 atlashost NetworkManager[1161]: <warn>  [1764719903.2884] Error: failed to open /run/network/ifstate
+Dec 02 23:58:23 atlashost tridium-niagara.niagarad-service[1225]: Waiting for system startup to complete
+Dec 02 23:58:24 atlashost tridium-niagara.niagarad-service[1225]: Waiting for system startup to complete
+Dec 02 23:58:24 atlashost audit[2383]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-protod.lonservice" name="/proc/1/environ" pid=2383 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:24 atlashost audit[2383]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-protod.lonservice" name="/proc/1/sched" pid=2383 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:24 atlashost audit[2383]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-protod.lonservice" name="/proc/1/environ" pid=2383 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:24 atlashost audit[2383]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-protod.lonservice" name="/proc/1/sched" pid=2383 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:24 atlashost kernel: audit: type=1400 audit(1764719904.445:108): apparmor="DENIED" operation="open" profile="snap.tridium-atlas-protod.lonservice" name="/proc/1/environ" pid=2383 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:24 atlashost kernel: audit: type=1400 audit(1764719904.445:109): apparmor="DENIED" operation="open" profile="snap.tridium-atlas-protod.lonservice" name="/proc/1/sched" pid=2383 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:24 atlashost kernel: audit: type=1400 audit(1764719904.445:110): apparmor="DENIED" operation="open" profile="snap.tridium-atlas-protod.lonservice" name="/proc/1/environ" pid=2383 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:24 atlashost kernel: audit: type=1400 audit(1764719904.445:111): apparmor="DENIED" operation="open" profile="snap.tridium-atlas-protod.lonservice" name="/proc/1/sched" pid=2383 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:24 atlashost audit[2387]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-protod.lonservice" name="/proc/1/environ" pid=2387 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:24 atlashost kernel: audit: type=1400 audit(1764719904.457:112): apparmor="DENIED" operation="open" profile="snap.tridium-atlas-protod.lonservice" name="/proc/1/environ" pid=2387 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:24 atlashost kernel: audit: type=1400 audit(1764719904.457:113): apparmor="DENIED" operation="open" profile="snap.tridium-atlas-protod.lonservice" name="/proc/1/sched" pid=2387 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:24 atlashost kernel: audit: type=1400 audit(1764719904.461:114): apparmor="DENIED" operation="open" profile="snap.tridium-atlas-protod.lonservice" name="/proc/1/environ" pid=2387 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:24 atlashost kernel: audit: type=1400 audit(1764719904.461:115): apparmor="DENIED" operation="open" profile="snap.tridium-atlas-protod.lonservice" name="/proc/1/sched" pid=2387 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:24 atlashost audit[2387]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-protod.lonservice" name="/proc/1/sched" pid=2387 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:24 atlashost audit[2387]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-protod.lonservice" name="/proc/1/environ" pid=2387 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:24 atlashost audit[2387]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-protod.lonservice" name="/proc/1/sched" pid=2387 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:24 atlashost tridium-atlas-system.startup[2121]: ##########################################
+Dec 02 23:58:24 atlashost tridium-atlas-system.startup[2121]: Checking for USB Tridium firmware updates  Tue Dec  2 23:58:24 UTC 2025
+Dec 02 23:58:24 atlashost tridium-atlas-system.startup[2121]: ##########################################
+Dec 02 23:58:24 atlashost tridium-atlas-system.startup[2121]: Cleanup LPC55 Scan
+Dec 02 23:58:24 atlashost audit[2399]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-protod.lonservice" name="/proc/1/environ" pid=2399 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:24 atlashost audit[2399]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-protod.lonservice" name="/proc/1/sched" pid=2399 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:24 atlashost audit[2399]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-protod.lonservice" name="/proc/1/environ" pid=2399 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:24 atlashost audit[2399]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-protod.lonservice" name="/proc/1/sched" pid=2399 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:24 atlashost kernel: audit: type=1400 audit(1764719904.493:116): apparmor="DENIED" operation="open" profile="snap.tridium-atlas-protod.lonservice" name="/proc/1/environ" pid=2399 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:24 atlashost tridium-atlas-system.startup[2121]: LPC55 Scan to Erase
+Dec 02 23:58:24 atlashost audit[2404]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-protod.lonservice" name="/proc/1/environ" pid=2404 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:24 atlashost audit[2404]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-protod.lonservice" name="/proc/1/sched" pid=2404 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:24 atlashost audit[2404]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-protod.lonservice" name="/proc/1/environ" pid=2404 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:24 atlashost audit[2404]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-protod.lonservice" name="/proc/1/sched" pid=2404 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:24 atlashost tridium-atlas-protod.lonservice[1170]: LON U60 devices are not connected
+Dec 02 23:58:24 atlashost systemd[1]: snap.tridium-atlas-protod.lonservice.service: Succeeded.
+Dec 02 23:58:24 atlashost audit[2412]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-system.startup" name="/proc/1/environ" pid=2412 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:24 atlashost audit[2416]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-system.startup" name="/proc/1/environ" pid=2416 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:24 atlashost audit[2420]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-system.startup" name="/proc/1/environ" pid=2420 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:24 atlashost audit[2424]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-system.startup" name="/proc/1/environ" pid=2424 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:24 atlashost tridium-atlas-system.startup[2121]: Info for device ttyACM0: Vendor 1fc9 Product 4852 Serial Number 47AA8C78C711C053BF01831FA5DD3631 Firmware TridiumLPC485-2_r01.bin
+Dec 02 23:58:24 atlashost tridium-atlas-system.startup[2121]: Main Firmware: TridiumLPC485-2_r01.bin
+Dec 02 23:58:24 atlashost audit[2446]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-system.startup" name="/proc/1/environ" pid=2446 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:24 atlashost audit[2450]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-system.startup" name="/proc/1/environ" pid=2450 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:24 atlashost audit[2454]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-system.startup" name="/proc/1/environ" pid=2454 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:24 atlashost audit[2458]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-system.startup" name="/proc/1/environ" pid=2458 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:24 atlashost tridium-atlas-system.startup[2121]: Info for device ttyACM1: Vendor 1fc9 Product 4852 Serial Number 47AA8C78C711C053BF01831FA5DD3631 Firmware TridiumLPC485-2_r01.bin
+Dec 02 23:58:24 atlashost tridium-atlas-system.startup[2121]: Main Firmware: TridiumLPC485-2_r01.bin
+Dec 02 23:58:24 atlashost tridium-atlas-system.startup[2121]: SAM4S Scan to Erase
+Dec 02 23:58:24 atlashost audit[2475]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-system.startup" name="/proc/1/environ" pid=2475 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:24 atlashost audit[2479]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-system.startup" name="/proc/1/environ" pid=2479 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:24 atlashost audit[2483]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-system.startup" name="/proc/1/environ" pid=2483 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:24 atlashost audit[2487]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-system.startup" name="/proc/1/environ" pid=2487 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:24 atlashost tridium-atlas-system.startup[2121]: Info for device ttyACM0: Vendor 1fc9 Product 4852 Serial Number 47AA8C78C711C053BF01831FA5DD3631 Firmware TridiumLPC485-2_r01.bin
+Dec 02 23:58:24 atlashost tridium-atlas-system.startup[2121]: Main Firmware: TridiumLPC485-2_r01.bin
+Dec 02 23:58:24 atlashost audit[2501]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-system.startup" name="/proc/1/environ" pid=2501 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:24 atlashost audit[2505]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-system.startup" name="/proc/1/environ" pid=2505 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:24 atlashost audit[2509]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-system.startup" name="/proc/1/environ" pid=2509 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:24 atlashost audit[2513]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-system.startup" name="/proc/1/environ" pid=2513 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:24 atlashost tridium-atlas-system.startup[2121]: Info for device ttyACM1: Vendor 1fc9 Product 4852 Serial Number 47AA8C78C711C053BF01831FA5DD3631 Firmware TridiumLPC485-2_r01.bin
+Dec 02 23:58:24 atlashost tridium-atlas-system.startup[2121]: Main Firmware: TridiumLPC485-2_r01.bin
+Dec 02 23:58:24 atlashost tridium-atlas-system.startup[2121]: ------------------------------------------
+Dec 02 23:58:24 atlashost tridium-atlas-system.startup[2121]: Scan To Program SAM4S
+Dec 02 23:58:24 atlashost audit[2530]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-system.startup" name="/proc/1/environ" pid=2530 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:24 atlashost audit[2534]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-system.startup" name="/proc/1/environ" pid=2534 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:24 atlashost audit[2538]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-system.startup" name="/proc/1/environ" pid=2538 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:24 atlashost audit[2542]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-system.startup" name="/proc/1/environ" pid=2542 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:24 atlashost tridium-atlas-system.startup[2121]: Info for device ttyACM0: Vendor 1fc9 Product 4852 Serial Number 47AA8C78C711C053BF01831FA5DD3631 Firmware TridiumLPC485-2_r01.bin
+Dec 02 23:58:24 atlashost audit[2546]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-system.startup" name="/proc/1/environ" pid=2546 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:25 atlashost audit[2550]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-system.startup" name="/proc/1/environ" pid=2550 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:25 atlashost audit[2554]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-system.startup" name="/proc/1/environ" pid=2554 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:25 atlashost audit[2559]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-atlas-system.startup" name="/proc/1/environ" pid=2559 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:25 atlashost tridium-atlas-system.startup[2121]: Info for device ttyACM1: Vendor 1fc9 Product 4852 Serial Number 47AA8C78C711C053BF01831FA5DD3631 Firmware TridiumLPC485-2_r01.bin
+Dec 02 23:58:25 atlashost tridium-atlas-system.startup[2121]: ############################################
+Dec 02 23:58:25 atlashost tridium-atlas-system.startup[2121]: Check for USB Tridium firmware updates done
+Dec 02 23:58:25 atlashost tridium-atlas-system.startup[2121]: ############################################
+Dec 02 23:58:25 atlashost kernel: chunkfs: loading out-of-tree module taints kernel.
+Dec 02 23:58:25 atlashost kernel: fschunk: sramspi MTD started. mtd size:524288
+Dec 02 23:58:25 atlashost kernel: chunkfs success
+Dec 02 23:58:25 atlashost tridium-atlas-system.startup[1985]: Loaded chunkfs kernel module
+Dec 02 23:58:25 atlashost tridium-atlas-system.startup[2598]: uSD card not inserted!
+Dec 02 23:58:25 atlashost tridium-atlas-system.startup[2598]: Error occurred while mounting SD, Error code: 255
+Dec 02 23:58:25 atlashost tridium-atlas-system.startup[2612]: Hostid-Generation-Service
+Dec 02 23:58:25 atlashost tridium-atlas-system.startup[2612]: SD is not inserted
+Dec 02 23:58:25 atlashost kernel: CPU3: shutdown
+Dec 02 23:58:25 atlashost kernel: psci: CPU3 killed (polled 0 ms)
+Dec 02 23:58:25 atlashost tridium-niagara.niagarad-service[1225]: Waiting for system startup to complete
+Dec 02 23:58:25 atlashost tridium-atlas-system.startup[2628]: OK
+Dec 02 23:58:25 atlashost systemd[1]: snap.tridium-atlas-system.startup.service: Succeeded.
+Dec 02 23:58:25 atlashost systemd[1]: Finished Service for snap application tridium-atlas-system.startup.
+Dec 02 23:58:25 atlashost systemd[1]: Started Service for snap application tridium-atlas-system.backup-timer.
+Dec 02 23:58:25 atlashost systemd[1]: Starting Service for snap application tridium-atlas-system.chronyd-service...
+Dec 02 23:58:25 atlashost systemd[1]: Started Service for snap application tridium-atlas-system.fpkeys-service.
+L
+Dec 02 23:58:25 atlashost systemd[1]: Started Service for snap application tridium-atlas-system.syssh-service.
+Dec 02 23:58:25 atlashost tridium-atlas-system.chronyd-service[2635]: ntp.conf not found. Exit
+Dec 02 23:58:25 atlashost systemd[1]: snap.tridium-atlas-system.chronyd-service.service: Succeeded.
+Dec 02 23:58:25 atlashost systemd[1]: Started Service for snap application tridium-atlas-system.chronyd-service.
+Dec 02 23:58:25 atlashost systemd[1]: Reached target Multi-User System.
+Dec 02 23:58:25 atlashost systemd[1]: Reached target Graphical Interface.
+Dec 02 23:58:25 atlashost systemd[1]: Starting Update UTMP about System Runlevel Changes...
+Dec 02 23:58:25 atlashost systemd[1]: systemd-update-utmp-runlevel.service: Succeeded.
+Dec 02 23:58:25 atlashost systemd[1]: Finished Update UTMP about System Runlevel Changes.
+Dec 02 23:58:25 atlashost systemd[1]: Startup finished in 9.608s (kernel) + 20.456s (userspace) = 30.064s.
+Dec 02 23:58:25 atlashost tridium-atlas-system.fpkeys-service[2642]: fpkeys-service: fp-keys are detected
+Dec 02 23:58:25 atlashost tridium-atlas-system.syssh-service[2647]: Wait for system installation completion
+Dec 02 23:58:26 atlashost tridium-niagara.niagarad-service[2740]: INFO: rtcinit complete, no adjustments required
+Dec 02 23:58:26 atlashost tridium-atlas-system.backup-timer[2634]: 2025/12/02 23:58:26 SD card not mounted
+Dec 02 23:58:26 atlashost systemd[1]: snap.tridium-atlas-system.backup-timer.service: Succeeded.
+Dec 02 23:58:27 atlashost audit[2885]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-niagara.niagarad-service" name="/proc/1/sched" pid=2885 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:27 atlashost audit[2885]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-niagara.niagarad-service" name="/proc/1/sched" pid=2885 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:27 atlashost audit[2889]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-niagara.niagarad-service" name="/proc/1/sched" pid=2889 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:27 atlashost audit[2889]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-niagara.niagarad-service" name="/proc/1/sched" pid=2889 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:27 atlashost audit[2894]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-niagara.niagarad-service" name="/proc/1/sched" pid=2894 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:27 atlashost audit[2894]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-niagara.niagarad-service" name="/proc/1/sched" pid=2894 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:27 atlashost audit[2899]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-niagara.niagarad-service" name="/proc/1/sched" pid=2899 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:27 atlashost audit[2899]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-niagara.niagarad-service" name="/proc/1/sched" pid=2899 comm="udevadm" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:27 atlashost tridium-niagara.niagarad-service[2903]: INFO [niagarad] entered niagarad with uid=0, euid=0, gid=0, egid=0
+Dec 02 23:58:27 atlashost kernel: imx219_vana: disabling
+Dec 02 23:58:27 atlashost kernel: imx219_vdig: disabling
+Dec 02 23:58:27 atlashost kernel: imx219_vddl: disabling
+Dec 02 23:58:27 atlashost tridium-atlas-system.syssh-service[2647]: System Seed loaded: true
+Dec 02 23:58:27 atlashost tridium-atlas-system.syssh-service[2647]: System seed loaded
+Dec 02 23:58:27 atlashost tridium-atlas-system.syssh-service[2915]: find: ‘/mnt/uSD/appliance*.tar’: No such file or directory
+Dec 02 23:58:27 atlashost tridium-atlas-system.syssh-service[2918]: No state available, Restore operation not initiated
+Dec 02 23:58:27 atlashost tridium-atlas-system.syssh-service[2647]: fd: 3
+Dec 02 23:58:28 atlashost tridium-atlas-system.syssh-service[2919]: 2025/12/02 23:58:28 stat /var/snap/tridium-atlas-system/725/remove-fac-user: no such file or directory
+Dec 02 23:58:29 atlashost NetworkManager[1161]: <info>  [1764719909.2819] manager: startup complete
+Dec 02 23:58:32 atlashost audit[2903]: AVC apparmor="DENIED" operation="open" profile="snap.tridium-niagara.niagarad-service" name="/sys/fs/cgroup/memory/system.slice/snap.tridium-niagara.niagarad-service.service/memory.use_hierarchy" pid=2903 comm="niagarad" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:32 atlashost kernel: kauditd_printk_skb: 39 callbacks suppressed
+Dec 02 23:58:32 atlashost kernel: audit: type=1400 audit(1764719912.797:156): apparmor="DENIED" operation="open" profile="snap.tridium-niagara.niagarad-service" name="/sys/fs/cgroup/memory/system.slice/snap.tridium-niagara.niagarad-service.service/memory.use_hierarchy" pid=2903 comm="niagarad" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+Dec 02 23:58:47 atlashost systemd[1]: systemd-timedated.service: Succeeded.
+Dec 02 23:58:50 atlashost systemd[1]: systemd-hostnamed.service: Succeeded.
+Dec 02 23:58:50 atlashost snapd[1090]: stateengine.go:149: state ensure error: persistent network error: Get "https://api.snapcraft.io/api/v1/snaps/sections": dial tcp: lookup api.snapcraft.io: Temporary failure in name resolution
+Dec 02 23:58:53 atlashost snapd[1090]: hotplug.go:200: hotplug device add event ignored, enable experimental.hotplug
+Dec 02 23:58:53 atlashost snapd[1090]: hotplug.go:200: hotplug device add event ignored, enable experimental.hotplug
+Dec 02 23:58:53 atlashost tridium-niagara.niagarad-service[2903]: INFO [23:58:53 02-Dec-25 UTC][crypto] loading module signature registry...
+Dec 02 23:58:53 atlashost tridium-niagara.niagarad-service[2903]: INFO [23:58:53 02-Dec-25 UTC][crypto] module signature registry up-to-date
+Dec 02 23:58:53 atlashost tridium-niagara.niagarad-service[2903]: INFO [23:58:53 02-Dec-25 UTC][crypto] module signature registry loading complete (44 ms)
+Dec 02 23:58:54 atlashost tridium-niagara.niagarad-service[2903]: INFO [23:58:54 02-Dec-25 UTC][niagarad] starting, niagara_user_home=/var/snap/tridium-niagara/common/niagara_user_home
+Dec 02 23:58:56 atlashost tridium-niagara.niagarad-service[2903]: WARNING [23:58:56 02-Dec-25 UTC][webserver] using default TLS server certificate 'default' is not recommended
+Dec 02 23:58:59 atlashost dbus-daemon[1018]: [system] Activating via systemd: service name='org.freedesktop.timedate1' unit='dbus-org.freedesktop.timedate1.service' requested by ':1.6' (uid=0 pid=1090 comm="/snap/snapd/21467/usr/lib/snapd/snapd " label="unconfined")
+Dec 02 23:58:59 atlashost systemd[1]: Starting Time & Date Service...
+Dec 02 23:59:00 atlashost dbus-daemon[1018]: [system] Successfully activated service 'org.freedesktop.timedate1'
+Dec 02 23:59:00 atlashost systemd[1]: Started Time & Date Service.
+Dec 02 23:59:00 atlashost tridium-niagara.niagarad-service[2903]: INFO [23:59:00 02-Dec-25 UTC][webserver] web server threads started [threadCount = 5]
+Dec 02 23:59:00 atlashost tridium-niagara.niagarad-service[2903]: INFO [23:59:00 02-Dec-25 UTC][stationRegistry] station registry starting
+Dec 02 23:59:00 atlashost tridium-niagara.niagarad-service[2903]: INFO [23:59:00 02-Dec-25 UTC][niagarad] startup complete (22040ms)
+Dec 02 23:59:02 atlashost tridium-atlas-system.hb-service[1192]: Changing from STATE_WAIT_FOR_NIAGARAD to STATE_WAIT_FOR_STATION
+Dec 02 23:59:30 atlashost systemd[1]: systemd-timedated.service: Succeeded.
+Dec 03 00:03:59 atlashost dbus-daemon[1018]: [system] Activating via systemd: service name='org.freedesktop.timedate1' unit='dbus-org.freedesktop.timedate1.service' requested by ':1.6' (uid=0 pid=1090 comm="/snap/snapd/21467/usr/lib/snapd/snapd " label="unconfined")
+Dec 03 00:03:59 atlashost systemd[1]: Starting Time & Date Service...
+Dec 03 00:04:00 atlashost dbus-daemon[1018]: [system] Successfully activated service 'org.freedesktop.timedate1'
+Dec 03 00:04:00 atlashost systemd[1]: Started Time & Date Service.
+Dec 03 00:04:30 atlashost systemd[1]: systemd-timedated.service: Succeeded.
+Dec 03 00:08:17 atlashost snapd[1090]: devicemgr.go:2499: no NTP sync after 10m0s, trying auto-refresh anyway
+Dec 03 00:08:17 atlashost snapd[1090]: autorefresh.go:538: refresh is managed via the snapd-control interface
+Dec 03 00:12:59 atlashost systemd[1]: Starting Cleanup of Temporary Directories...
+Dec 03 00:12:59 atlashost systemd[1]: systemd-tmpfiles-clean.service: Succeeded.
+Dec 03 00:12:59 atlashost systemd[1]: Finished Cleanup of Temporary Directories.
+Dec 03 00:33:17 atlashost usermgr[11586]: usermgr: root authenticated user admin1, rc=0
+Dec 03 00:33:17 atlashost tridium-atlas-system.syssh-service[2919]: 2025/12/03 00:33:17 AuthenticateUser admin1 true
+Dec 03 00:37:43 atlashost audit[12694]: AVC apparmor="DENIED" operation="file_lock" profile="snap.tridium-atlas-system.syssh-service" name="/run/utmp" pid=12694 comm="top" requested_mask="k" denied_mask="k" fsuid=0 ouid=0
+Dec 03 00:37:43 atlashost kernel: audit: type=1400 audit(1764722263.773:157): apparmor="DENIED" operation="file_lock" profile="snap.tridium-atlas-system.syssh-service" name="/run/utmp" pid=12694 comm="top" requested_mask="k" denied_mask="k" fsuid=0 ouid=0
+
+
+Press ENTER to continue 

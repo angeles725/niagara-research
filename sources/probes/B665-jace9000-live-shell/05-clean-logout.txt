@@ -1,0 +1,5 @@
+L
+Logging out current user 
+[2J [2H
+login : 
+login : 
