@@ -17,10 +17,10 @@
 
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 613
-gaps_closed: 7
+covered_blocks: 614
+gaps_closed: 8
 known_gaps: 8
-investigable_open: 1
+investigable_open: 0
 requires_execution_open: 0
 blocked_open: 0
 deferred_open: 1
@@ -31,8 +31,8 @@ block_scope: shared-global
 ## Coverage
 
 - **Covered blocks**: 0 in this focus (corpus-wide count synced by the tool; global prefix `niagara-mental-model-bloque`)
-- **Coverage metric**: 7 / 8 closed
-- **Last iteration**: 2026-08-29 — GQL-G5 closed (B617: per-module classloader isolation → bundling graphql-java is safe)
+- **Coverage metric**: 8 / 8 closed (all investigable; G9 synthesis at close)
+- **Last iteration**: 2026-08-29 — GQL-G7 closed (B618: BOX channel extension seam → subscription rides BOX WS, no separate endpoint)
 
 ## Remittances (already answered by an existing cited block — do NOT re-derive)
 
@@ -61,7 +61,7 @@ block_scope: shared-global
 | high | GQL-G4 — concrete servlet-handler call-site: run a BQL query + invoke a BComponent action / set a slot via the session Context, then serialize to JSON with `com.tridium.json.JSONWriter` | Java · bql-rt + javax/baja/sys/BComponent.java + com.tridium.json | ✅ B614 — every mutate/read API has a Context overload (thread `op`); null-context overload = footgun; BITable.cursor()→cell(); JSONWriter (B76); writable=priority-array (B536) |
 | medium | GQL-G5 — module classloader isolation: is each `-rt` JAR parent-last isolated (bundled graphql-java/Gson coexist) or a flat shared classpath (conflict risk)? | Java · organized/baja/baja/vineflower/com/tridium/sys/module/{ModuleClassLoader,ModuleExtClassLoader,AutoClassLoader,SyntheticModuleClassLoader}.java | ✅ B617 — one ModuleClassLoader per module; parent-first→own/ext→declared-deps; cross-module=module.xml-gated; standalone bundling graphql-java is isolated/safe (shade to avoid parent shadowing) |
 | medium | GQL-G6 — native `com.tridium.dashboard.ux` module: what it is (Hx Px-pane renderer? bajaux host?) and whether a GraphQL-backed dashboard module embeds alongside, replaces, or ignores it | Java · organized/dashboard/dashboard-ux/vineflower/com/tridium/dashboard/ux/{BDashboardCssResource,BDashboardJsBuild,BUxDashboardPane}.java | ✅ B615 — 3 singletons (BSingleton @AgentOn binds JS widget + JsBuild + CssResource); zero data backend; build a SEPARATE sibling module (chihuahua B163 model) |
-| medium | GQL-G7 — BOX server-side channel extension seam: can a module register a NEW BOX channel type for GraphQL subscriptions, or must it roll its own WebSocket (B59 `BReflowWebSocketAcceptor` precedent)? | Java · organized/box/box-rt/vineflower/com/tridium/box/{BBoxChannel,BBoxService,BComponentSpaceSessionHandler}.java | pending |
+| medium | GQL-G7 — BOX server-side channel extension seam: can a module register a NEW BOX channel type for GraphQL subscriptions, or must it roll its own WebSocket (B59 `BReflowWebSocketAcceptor` precedent)? | Java · organized/box/box-rt/vineflower/com/tridium/box/{BBoxChannel,BBoxService,BComponentSpaceSessionHandler}.java | ✅ B618 — OPEN seam: BBoxService auto-registers every registry-known BBoxChannel by name; custom BGraphqlSubscriptionChannel rides BOX WS, no separate endpoint (B59=alt) |
 | medium | GQL-G8 — graphql-java viability under the mandatory Java 8 bytecode constraint (B176): which release line is the last Java-8 build, and is a hand-rolled/alternative parser needed? | web (Maven Central release history) + corpus [B176] | ✅ B616 — N4=Java8 (class major 52 [CERT]); graphql-java v20 (Dec2022)=last Java-8, v21+ needs Java11; bundle ≤v20 (shade) or hand-roll; refutes G5-sweep Java-11 claim (§14) |
 | deferred | GQL-G9 — SYNTHESIS: reference architecture + build-vs-buy verdict (focus-closing block, written at STOP) | design synthesis over G1–G8 | pending (parked; never NEXT — §8b) |
 
@@ -77,6 +77,7 @@ block_scope: shared-global
 | 5 | 2026-08-29 | GQL-G6 native dashboard-ux module survey | B615 | inline (constraint: 3-file complete survey) | 0 |
 | 6 | 2026-08-29 | GQL-G8 Java-8 ceiling / graphql-java v20 | B616 | inline (web + local class-major measure) | 0 |
 | 7 | 2026-08-29 | GQL-G5 module classloader isolation | B617 | yes · sonnet (classloader sweep) + inline verify + §14 Java-ver correction | 0 |
+| 8 | 2026-08-29 | GQL-G7 BOX channel extension seam | B618 | inline (constraint: 2-file seam read) | 0 |
 
 ## Blocked gaps (each tagged with what it needs)
 
@@ -84,7 +85,7 @@ block_scope: shared-global
 
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 1   ← the STATIC loop STOPS when this hits 0
+- **Open gaps — read-only investigable**: 0   ← the STATIC loop STOPS when this hits 0
 - **Open gaps — requires-execution**: 0
 - **Open gaps — blocked**: 0
 - Consecutive iterations with empty backlog (secondary): 0/2
