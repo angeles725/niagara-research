@@ -15,9 +15,9 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 covered_blocks: 643
-gaps_closed: 4
+gaps_closed: 7
 known_gaps: 8
-investigable_open: 4
+investigable_open: 1
 requires_execution_open: 0
 blocked_open: 0
 deferred_open: 0
@@ -28,7 +28,7 @@ block_scope: shared-global
 ## Coverage
 
 - **Covered blocks**: 0 in this focus (corpus-wide count synced by the tool)
-- **Coverage metric**: 4 / 8 closed
+- **Coverage metric**: 7 / 8 closed
 - **Last iteration**: 2026-08-29 — bootstrap (source-tree orient)
 
 ## Remittances (already covered — cite, do NOT re-derive)
@@ -46,9 +46,9 @@ block_scope: shared-global
 | high | CS2 — the rt control/equipment model: `BChiUp`/`BChiCarcamo`/`BChiDatalogger`/`BPlanta` + Monitors + `ChiLinkHelper` — component design, protection slots, the writable/control logic, defensive behavior | Java · chihuahua-rt/src/.../components/*.java | ✅ B650 — monitor/dashboard + ONE computed output (effectiveSetpoint); Monitor=one-shot factory not poll; SW protections (applyProtections 10s+COV). SAFETY: readSlotVal collapses faulted sensor→0.0 → antifreeze(low-limit) fails SAFE (trips), overload(high-limit) fails to NON-trip (silently disabled if amp sensor faults) — recommend fault-alarm not 0.0. Permanent latches. STRONG defensive guards (null/NaN/epsilon/JSON/event-thread ADR-D7/steady-state). Stale slotomatic AWAITING REGEN on protXActive (B637). No System.out/TODO |
 | high | CS6 — reconcile the internal `audit-2026-05-06/` findings (veredicto/inconsistencias/pendientes/live_updates_faltantes) against current source — what was fixed, what remains | docs+source · chihuahua/audit-2026-05-06/*.md + source | ✅ B651 — internal audit (2-agent adversarial, CONDITIONAL PASS 14/14) is RIGOROUS + fixes HOLD in current source (P1 fault-discrim readNumericNullable confirmed). KEY: P1 fixed the DISPLAY path (ChiEquipmentReader null-aware); the PROTECTION path (readSlotVal 0.0-collapse, B650) is the complementary RESIDUAL → extend fault-discrim into applyProtections. Open non-blockers: renderShell focus loss, timestamp tick, chart perf |
 | high | CS1 — manifest/build/gradle vs the [B647] template: which recommended fixes are applied in source? (`<permissions>`, version, slotomatic markers, deps, part gradle) | source · build.gradle.kts + part .gradle.kts + module-include.xml + module-permissions.xml | ✅ B649 — §14 CORRECTION: 'over-permissioning' (B636#1/B640 P1) is UNTOUCHED Tridium scaffold — empty <niagara-permission-groups> (placeholders only, req-permission commented out), NO <java-permissions> → requests only base grant, NOT over-privileged (fleet-wide). Build else GOOD: real version 1.0→1.3 (best of fleet), plugin 7.3.40/4.13.2 SDK, slotomatic markers in 8 sources, correct multi-part. Real deviations: no palette (B636#4), dead jacoco/niagaraTest wiring (7.6.17) |
-| medium | CS4 — the ux data/query helpers: `ChiHistoryHelper`/`ChiAlarmHelper`/`ChiAlarmQueryHelper`/`ChiThresholdHelper`/`ChiScheduleHelper`/`ChiEquipmentReader`/`ChiJsonUtil` — BQL/history/alarm patterns + the N4.14 gotchas | Java · chihuahua-ux/src/.../*.java | pending |
-| medium | CS5 — the front-end architecture: the ES5 JS app (DashboardApp, stores/managers, AlarmLatchStore, CapabilityStore, Three.js/Chart.js), FRONTEND_ARCHITECTURE.md contract, cache-invalidation | JS · chihuahua-ux/src/rc/js/** + FRONTEND_ARCHITECTURE.md | pending |
-| low | CS7 — the wb Batch Link Editor: `BBatchLinkEditor` + PendingLink/LinkSlotName/Direction utils — the Workbench-view tooling | Java · chihuahua-wb/src/.../*.java | pending |
+| medium | CS4 — the ux data/query helpers: `ChiHistoryHelper`/`ChiAlarmHelper`/`ChiAlarmQueryHelper`/`ChiThresholdHelper`/`ChiScheduleHelper`/`ChiEquipmentReader`/`ChiJsonUtil` — BQL/history/alarm patterns + the N4.14 gotchas | Java · chihuahua-ux/src/.../*.java | ✅ B652 — INJECTION-SAFE + N4.14-gotcha-aware: history via History API not BBqlGrid (dodges B359 NPE), stride downsample (B369), alarm BQL from long epoch millis + fixed ackState + escaped ORD (no user-string), threshold writes allowlisted+value-guarded, ChiJsonUtil.escapeJson complete (ctrl+U2028/9). Clean (no System.out/TODO) |
+| medium | CS5 — the front-end architecture: the ES5 JS app (DashboardApp, stores/managers, AlarmLatchStore, CapabilityStore, Three.js/Chart.js), FRONTEND_ARCHITECTURE.md contract, cache-invalidation | JS · chihuahua-ux/src/rc/js/** + FRONTEND_ARCHITECTURE.md | ✅ B653 — strict-ES5 store/subscription SPA (window.MX60 IIFEs); live = BajaScript Fox subscriptions + 5s REST fallback (no SSE); optimistic-write+rollback; RBAC SERVER-AUTHORITATIVE (CapabilityStore DECORATIVE ADR D6, confirms B648); Three.js ES-module island + Chart.js UMD local-bundled. Production-quality |
+| low | CS7 — the wb Batch Link Editor: `BBatchLinkEditor` + PendingLink/LinkSlotName/Direction utils — the Workbench-view tooling | Java · chihuahua-wb/src/.../*.java | ✅ B654 — BBatchLinkEditor = proper BWbComponentView, @AgentOn baja:Component requiredPermissions=rwi; bulk-link workflow accumulate→dry-run checkLink→Save All per-space Transaction + unique slot names; DISTINCT from rt ChiLinkHelper (author vs backup/restore); pure-Java testable model. A productivity strength |
 | high | CS8 — SYNTHESIS: production-readiness verdict for chihuahua + the concrete fix list (from CS1-CS7 + [B647] remediation) — the deliverable | design synthesis over CS1-CS7 + [B647]/[B636] | pending |
 
 ## Iteration history
@@ -60,6 +60,9 @@ block_scope: shared-global
 | 2 | 2026-08-29 | CS1 build vs template + §14 over-perm=empty scaffold | B649 | no·inline (source read + verify) | 0 |
 | 3 | 2026-08-29 | CS2 rt control/protection (overload fail-to-danger finding) | B650 | yes·sonnet + inline safety-verify | 0 |
 | 4 | 2026-08-29 | CS6 reconcile internal audit-2026-05-06 (fixes hold; P1 display vs B650 protection) | B651 | no·inline (audit docs + source verify) | 0 |
+| 5 | 2026-08-29 | CS4 ux data/query helpers (injection-safe, N4.14-aware) | B652 | yes·sonnet (combined) + inline security-verify | 0 |
+| 6 | 2026-08-29 | CS5 frontend ES5 SPA (RBAC server-authoritative) | B653 | yes·sonnet (combined) + inline verify | 0 |
+| 7 | 2026-08-29 | CS7 wb BatchLinkEditor (proper WB view) | B654 | yes·sonnet (combined) + inline verify | 0 |
 
 ## Blocked gaps (each tagged with what it needs)
 
@@ -67,7 +70,7 @@ block_scope: shared-global
 
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 4   ← the STATIC loop STOPS when this hits 0
+- **Open gaps — read-only investigable**: 1   ← the STATIC loop STOPS when this hits 0
 - **Open gaps — requires-execution**: 0
 - **Open gaps — blocked**: 0
 - Consecutive iterations with empty backlog (secondary): 0/2

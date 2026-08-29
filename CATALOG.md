@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **647 blocks**
+Total: **650 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -653,3 +653,6 @@ Total: **647 blocks**
 | 649 | [niagara-mental-model-bloque649.md](niagara-mental-model-bloque649.md) | Niagara N4 — chihuahua-source (CS1): the build files vs the reference template — and a §14 correction, the "over-permissioning" is the UNTOUCHED Tridium scaffold (empty permission groups, no actual grants), not real over-privilege |
 | 650 | [niagara-mental-model-bloque650.md](niagara-mental-model-bloque650.md) | Niagara N4 — chihuahua-source (CS2): the rt model is a monitor/dashboard with ONE computed output (`effectiveSetpoint`) + software overload/antifreeze protections whose faulted-sensor behavior is directional — fail-SAFE for antifreeze (low-limit), fail-to-NON-trip for overload (high-limit) |
 | 651 | [niagara-mental-model-bloque651.md](niagara-mental-model-bloque651.md) | Niagara N4 — chihuahua-source (CS6): reconciling the internal 2026-05-06 audit — a thorough adversarial dual-auditor pass (CONDITIONAL PASS, 14/14) whose fixes hold in current source; its critical P1 fault-discrimination fix covers the DISPLAY path, leaving the PROTECTION path (B650) as the complementary residual |
+| 652 | [niagara-mental-model-bloque652.md](niagara-mental-model-bloque652.md) | Niagara N4 — chihuahua-source (CS4): the ux data/query helpers are injection-safe and N4.14-gotcha-aware — history via the History API (not BBqlGrid), alarm BQL built from `long` epoch millis (not user strings), allowlisted threshold writes, and a complete hand-rolled JSON escaper |
+| 653 | [niagara-mental-model-bloque653.md](niagara-mental-model-bloque653.md) | Niagara N4 — chihuahua-source (CS5): the frontend is a strict-ES5 store/subscription SPA (window.MX60 IIFEs) with BajaScript-Fox-subscription-primary + 5s-REST-fallback live data, optimistic-write-with-rollback stores, and a server-authoritative RBAC model (CapabilityStore is decorative) |
+| 654 | [niagara-mental-model-bloque654.md](niagara-mental-model-bloque654.md) | Niagara N4 — chihuahua-source (CS7): the wb `BBatchLinkEditor` is a proper Workbench authoring view (`BWbComponentView`, `@AgentOn baja:Component requiredPermissions="rwi"`) for bulk-creating links with per-space transactional commit — distinct from the rt-side `ChiLinkHelper` (backup/restore) |
