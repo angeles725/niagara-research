@@ -16,10 +16,10 @@
 
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 619
-gaps_closed: 4
+covered_blocks: 620
+gaps_closed: 5
 known_gaps: 7
-investigable_open: 3
+investigable_open: 2
 requires_execution_open: 1
 blocked_open: 1
 deferred_open: 2
@@ -30,8 +30,8 @@ block_scope: shared-global
 ## Coverage
 
 - **Covered blocks**: 0 in this focus (corpus-wide count synced by the tool; global prefix `niagara-mental-model-bloque`)
-- **Coverage metric**: 4 / 7 closed
-- **Last iteration**: 2026-08-29 — PO-G1 closed (B623: Fox multicast :1911 unauth discovery — host+platform disclosure)
+- **Coverage metric**: 5 / 7 closed
+- **Last iteration**: 2026-08-29 — PO-G5 closed (B624: OPC-UA HTTPS :52443 is a defined-but-UNWIRED type; only :52520 lives)
 
 ## Remittances (protocol internals already covered — cite, do NOT re-derive)
 
@@ -55,7 +55,7 @@ block_scope: shared-global
 | high | PO-G2 — SNMP :161 agent auth-gate + reach: `readWriteCommunity="public"` default → unauthenticated write; the full set of exported MIB objects/points writable and any per-export ACL | Java · organized/nSnmp/nSnmp-rt/.../BSnmpNetwork.java + BSnmpAgent.java | ✅ B621 — agent OFF by default; v1/v2c gate=community (default public on read AND write), no source filter default; v3=USM+VACM (B476); reach=BSnmpExportTable, SET no Niagara RBAC; closes B476-G2 |
 | high | PO-G4 — BACnet/SC HubFunction on `:443/hub`: admission model of the `/hub` WebSocket upgrade — Niagara session/RBAC vs TLS-cert-only at the Jetty layer (bypassing session); reach on the SC virtual network | Java · organized/bacnet/bacnet-rt/.../stack/link/sc/BHubFunction.java + BJettyScWebSocketAcceptor | ✅ B622 — /hub = WS servlet on :443 (needs httpsEnabled); SecurityCheckServlet requires authenticated BUser w/ BBacnetScAuthenticator bound to link layer (401 else); REFUTES TLS-cert-bypass; SC-peer IDENTITY gate not RBAC-role; reach=SC virtual net |
 | medium | PO-G1 — Fox multicast UDP :1911: what each announcement discloses (station name/IP/port/version), whether a passive subnet listener can enumerate all stations, and whether disabling `multicastEnabled` is a hardening step | Java · organized/fox/fox-rt/.../session/Fox.java + MulticastServer.java + sys/BFoxService.java | ✅ B623 — group 224.0.1.84/FF02::137:1911, multicastEnabled=true default TTL4; unauth rollcall→announce discloses hostName/hostAddress(v4+v6)/niagaraPlatformType; NOT station name/version/creds; disable via niagara.fox.multicastEnabled |
-| medium | PO-G5 — OPC-UA HTTPS endpoint :52443 (`BHttpsEndpoint`, enabled=true) auth model: does it share the :52520 user-auth (username/cert/anonymous) + Niagara RBAC, and how is it wired into `BOpcUaServer`? (B498 covered only :52520) | Java · organized/opcUaServer/opcUaServer-rt/.../BHttpsEndpoint.java + BOpcUaServer.java | pending |
+| medium | PO-G5 — OPC-UA HTTPS endpoint :52443 (`BHttpsEndpoint`, enabled=true) auth model: does it share the :52520 user-auth (username/cert/anonymous) + Niagara RBAC, and how is it wired into `BOpcUaServer`? (B498 covered only :52520) | ✅ B624 — BHttpsEndpoint is a registered TYPE (module.xml) but UNWIRED into BOpcUaServer (only opcTcpEndpoint:52520 is a frozen prop + registered); ZERO usages → no :52443 listener on default install; refutes sweep 'two endpoints' |
 | medium | PO-G6 — Central port config: `javax.baja.firewall.BServerPort` as the common listening-port type + the `com.tridium.firewall` layer (FirewallRulesPage/ConcurrentFirewallProcessor) — is there a station-wide port enumeration/filter, and is it a discovery surface? | Java · organized/baja/baja/.../javax/baja/firewall/BServerPort.java + com/tridium/firewall/{FirewallRulesPage,ConcurrentFirewallProcessor}.java | pending |
 | medium | PO-G7 — Platform daemon :3011/:5011 auth MODEL (code): characterize the credential/admission model statically from `BDaemonSurrogate`/`BDaemonSSLStatus` (consolidating B129/B460); the live wire digest is the requires-execution child below | Java · organized/platDaemon/platDaemon-rt/.../BDaemonSurrogate.java + BDaemonSSLStatus.java | pending |
 | deferred | PO-G7w — platform daemon on-the-wire auth handshake/digest (nonce-response? Fox-SCRAM reuse?) — the live frame B129 §129.6 deferred as "N6-wire" | live probe | requires-execution → §19 (not read-only; remittance [B129] N6-wire) |
@@ -70,6 +70,7 @@ block_scope: shared-global
 | 2 | 2026-08-29 | PO-G2 SNMP :161 agent auth-gate + reach | B621 | inline (constraint: 2-file config read) | 0 |
 | 3 | 2026-08-29 | PO-G4 BACnet/SC /hub admission model | B622 | inline (constraint: 2-file security seam) | 0 |
 | 4 | 2026-08-29 | PO-G1 Fox multicast :1911 discovery | B623 | inline (constraint: 3-file read) | 0 |
+| 5 | 2026-08-29 | PO-G5 OPC-UA :52443 proven-absent (unwired) | B624 | inline (RE-MEASURE negative) | 0 |
 
 ## Blocked gaps (each tagged with what it needs)
 
@@ -77,7 +78,7 @@ block_scope: shared-global
 
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 3   ← the STATIC loop STOPS when this hits 0
+- **Open gaps — read-only investigable**: 2   ← the STATIC loop STOPS when this hits 0
 - **Open gaps — requires-execution**: 1 (PO-G7w)
 - **Open gaps — blocked**: 0
 - Consecutive iterations with empty backlog (secondary): 0/2
