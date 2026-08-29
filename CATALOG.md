@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **643 blocks**
+Total: **644 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -649,3 +649,4 @@ Total: **643 blocks**
 | 645 | [niagara-mental-model-bloque645.md](niagara-mental-model-bloque645.md) | Niagara N4 — own-modules-audit (OMA3): `datacenter-ux`'s "220 classes" are 99% bundled Gson, NOT misplaced business logic — the real payload is an `rc/` 3D dashboard (Three.js + Chart.js) with hardcoded rack data and a stray `CASINO` asset; profile placement is correct (corrects the OMA1 "heavy ux" worry) |
 | 646 | [niagara-mental-model-bloque646.md](niagara-mental-model-bloque646.md) | Niagara N4 — own-modules-audit (OMA7): the six small SEJOFA dashboards are one repeatable TEMPLATE — `com.sejofa.<mod>.components` with a `BXxxDashboardService` + domain `Monitor`s (rt) and a pure-web `-ux` — cloned per client site, carrying only the systemic deviations |
 | 647 | [niagara-mental-model-bloque647.md](niagara-mental-model-bloque647.md) | Niagara N4 — own-modules-audit (OMA8, SYNTHESIS): the shop's module-building signature, the corrected build/version/signing knowledge, a prioritized remediation plan, and the fixed reference template |
+| 648 | [niagara-mental-model-bloque648.md](niagara-mental-model-bloque648.md) | Niagara N4 — chihuahua-source (CS3): the production module's write path DOES enforce authorization — `ChiRbacHelper.checkCanWrite` (BPermissions.OPERATOR_WRITE, fail-closed) is the first line of all 8 write handlers, with audit on every mutation — the correct inverse of mcpbridge's bypass |

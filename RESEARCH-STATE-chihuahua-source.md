@@ -15,9 +15,9 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 covered_blocks: 643
-gaps_closed: 0
+gaps_closed: 1
 known_gaps: 8
-investigable_open: 8
+investigable_open: 7
 requires_execution_open: 0
 blocked_open: 0
 deferred_open: 0
@@ -28,7 +28,7 @@ block_scope: shared-global
 ## Coverage
 
 - **Covered blocks**: 0 in this focus (corpus-wide count synced by the tool)
-- **Coverage metric**: 0 / 8 closed
+- **Coverage metric**: 1 / 8 closed
 - **Last iteration**: 2026-08-29 — bootstrap (source-tree orient)
 
 ## Remittances (already covered — cite, do NOT re-derive)
@@ -42,7 +42,7 @@ block_scope: shared-global
 
 | Priority | Gap | Artifact type / source | Status |
 |---|---|---|---|
-| high | CS3 — the ux servlet WRITE-AUTH path: does `BChiServlet`/`ChiServletDispatch` enforce RBAC via `ChiRbacHelper` + audit via `ChiAuditHelper` on every write (contrast mcpbridge [B643] bypass)? per-op permission + runAsUser + CSRF | Java · chihuahua-ux/src/.../BChiServlet.java + ChiServletDispatch.java + ChiRbacHelper.java + ChiAuditHelper.java | pending |
+| high | CS3 — the ux servlet WRITE-AUTH path: does `BChiServlet`/`ChiServletDispatch` enforce RBAC via `ChiRbacHelper` + audit via `ChiAuditHelper` on every write (contrast mcpbridge [B643] bypass)? per-op permission + runAsUser + CSRF | Java · chihuahua-ux/src/.../BChiServlet.java + ChiServletDispatch.java + ChiRbacHelper.java + ChiAuditHelper.java | ✅ B648 — AUTHZ ENFORCED CORRECTLY (inverse of mcpbridge): ChiRbacHelper.checkCanWrite = BPermissions.has(OPERATOR_WRITE) via BUserService (ADR D1/D2), 401 no-user/403 no-perm/fail-closed, FIRST line of all 8 write handlers before mutation; audit {ts,user,action,ord,old,new} JSON-lines ring ~500 on every write; dispatch pure+guards (traversal+XHR-CSRF). Caveats: global-not-category perm, set(null)=ambient ctx not runAsUser, plaintext audit, XHR-only CSRF — all documented in source |
 | high | CS2 — the rt control/equipment model: `BChiUp`/`BChiCarcamo`/`BChiDatalogger`/`BPlanta` + Monitors + `ChiLinkHelper` — component design, protection slots, the writable/control logic, defensive behavior | Java · chihuahua-rt/src/.../components/*.java | pending |
 | high | CS6 — reconcile the internal `audit-2026-05-06/` findings (veredicto/inconsistencias/pendientes/live_updates_faltantes) against current source — what was fixed, what remains | docs+source · chihuahua/audit-2026-05-06/*.md + source | pending |
 | high | CS1 — manifest/build/gradle vs the [B647] template: which recommended fixes are applied in source? (`<permissions>`, version, slotomatic markers, deps, part gradle) | source · build.gradle.kts + part .gradle.kts + module-include.xml + module-permissions.xml | pending |
@@ -56,6 +56,7 @@ block_scope: shared-global
 | # | Date | Gap closed | Block | Delegated? · model tier | New gaps uncovered |
 |---|---|---|---|---|---|
 | 0 | 2026-08-29 | (bootstrap) source-tree orient + backlog seeded | — | no·inline (fd/ls source tree) | 8 |
+| 1 | 2026-08-29 | CS3 servlet write-auth (RBAC enforced, mcpbridge inverse) | B648 | yes·sonnet + inline re-grep (found 8 not 6 sites) | 0 |
 
 ## Blocked gaps (each tagged with what it needs)
 
@@ -63,7 +64,7 @@ block_scope: shared-global
 
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 8   ← the STATIC loop STOPS when this hits 0
+- **Open gaps — read-only investigable**: 7   ← the STATIC loop STOPS when this hits 0
 - **Open gaps — requires-execution**: 0
 - **Open gaps — blocked**: 0
 - Consecutive iterations with empty backlog (secondary): 0/2
