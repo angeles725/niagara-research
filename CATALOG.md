@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **660 bloques**
+Total: **661 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -665,6 +665,7 @@ Total: **660 bloques**
 | 660 | [niagara-mental-model-bloque660.md](niagara-mental-model-bloque660.md) | B660 — JACE-9000 platform accounts over serial: every platform user has full equal privileges — there is no read-only or non-admin platform role, so serial-shell read-only-ness comes only from menu choice, never from a limited account (focus jace9000, J9K-6) |
 | 661 | [niagara-mental-model-bloque661.md](niagara-mental-model-bloque661.md) | B661 — JACE-9000 SSH access to the system shell: same menu-driven shell (not a raw OS prompt), platform login still required, and SSH/SFTP are disabled by default on TCP 22 with a standing "keep it off" caution (focus jace9000, J9K-7) |
 | 662 | [niagara-mental-model-bloque662.md](niagara-mental-model-bloque662.md) | B662 — JACE-9000 Host ID and the microSD card: two ID formats (ATLAS-SD-… vs ATLAS-…), a Tridium-secret CID validated at boot, license portability tied to the card, and a hard fail — a non-Tridium card means Niagara will not run (focus jace9000, J9K-11) |
+| 663 | [niagara-mental-model-bloque663.md](niagara-mental-model-bloque663.md) | B663 — JACE-9000 serial port map: COM1/COM2 are top-side RS-485 field-bus ports (screw terminals, 3-position bias/termination switch) — a separate thing from the front USB-C DEBUG console, even though both can run at 115200 (focus jace9000, J9K-12) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
