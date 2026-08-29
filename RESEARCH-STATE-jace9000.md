@@ -28,9 +28,9 @@ schema: research-state.v1
 method: dynamic-live
 block_scope: shared-global
 covered_blocks: 657
-gaps_closed: 7
+gaps_closed: 8
 known_gaps: 13
-investigable_open: 3
+investigable_open: 2
 requires_execution_open: 0
 blocked_open: 3
 deferred_open: 0
@@ -39,8 +39,8 @@ undocumented_findings: 0
 
 ## Coverage / open items
 
-Coverage: **7/13 gaps closed (J9K-0 B657; J9K-1 + J9K-8 via `[CERT-web]`; J9K-4 B658; J9K-5 B659;
-J9K-6 B660; J9K-7 B661); investigable_open=3, blocked-live=3**. The DOC-answerable read-only surface can be
+Coverage: **8/13 gaps closed (J9K-0 B657; J9K-1 + J9K-8 via `[CERT-web]`; J9K-4 B658; J9K-5 B659;
+J9K-6 B660; J9K-7 B661; J9K-11 B662); investigable_open=2, blocked-live=3**. The DOC-answerable read-only surface can be
 driven to close without the device; the 3 blocked gaps (J9K-2 diagnostic OUTPUTS, J9K-3 pre-login exposure,
 J9K-9 passphrase-on-serial) need the operator's live serial session (paste or usbipd bridge). LIVE this
 session (B657): console reachable, ATLAS System Shell, idle-timeout re-auth, System Diagnostic submenu
@@ -60,7 +60,7 @@ doc example (opt reached Network Config Utility, not Ping Host) → re-capture a
 | medium | J9K-8 SoC/CPU spec | **NXP i.MX8M Plus, quad-core (ARM Cortex-A53)** — Tridium datasheet/FAQ [CERT-web] (vs JACE-8000 TI AM335x Cortex-A8, B459); 2GB LPDDR4 / 8GB microSD | **covered B657** |
 | medium | J9K-9 System Passphrase prompt on serial login | does factory passphrase gate every serial login, or only install/copy? (B466 remittance) | pending · blocked-live |
 | high | J9K-10 live main-menu numbering & read-only map | LIVE (B657): the doc example's per-number map is FIRMWARE-DEPENDENT — the key doc'd as `3 Ping Host` reached the Network Config Utility (mutating) on this unit; `4 → System Diagnostic` matched. Re-capture THIS firmware's exact main menu (operator paste) to replace the doc example. Diagnostic submenu = confirmed all-read-only | pending · needs operator paste of main menu |
-| medium | J9K-11 microSD → Host ID dependency | Host ID = ATLAS-SD-… (with microSD) vs ATLAS-… (CPU ID only); licensing impact of removing the card | pending · investigable (doc) |
+| medium | J9K-11 microSD → Host ID dependency | ATLAS-SD-… (card-derived, Tridium-secret+CID validated at boot) vs ATLAS-… (CPU ID); card ties license to ID → PORTABLE between JACE-9000s; insert/remove CHANGES Host ID; non-Tridium card → Niagara won't run. Inverts B467 (J8 non-portable) | **covered B662** |
 | low | J9K-12 RS-485 field ports (COM1/COM2) vs DEBUG | confirm COM1/COM2 RS-485 field bus is entirely separate from the USB-C DEBUG console | pending · investigable (doc) |
 
 ## REMITTANCES (answered by the closed jace8000 corpus — re-confirm only J9 deltas)
@@ -83,6 +83,7 @@ doc example (opt reached Network Config Utility, not Ping Host) → re-capture a
 | B659 | J9K-5 | yes·sonnet (doc sweep) + inline verify | shell activation: normal login always live (press Enter); "special power-up mode" = commissioning/recovery, not daily login; 1 [INFER] flagged |
 | B660 | J9K-6 | no·inline (doc, sweep material) | platform accounts: all "full equal privileges", no non-admin/viewer role; read-only = menu choice not account; sharpens admin1 exposure |
 | B661 | J9K-7 | no·inline (doc, sweep material) | SSH = same menu shell (not raw OS), platform login required; SFTP/SSH off by default TCP 22 + keep-off caution; matches B468 |
+| B662 | J9K-11 | no·inline (doc, sweep material) | Host ID dual format ATLAS-SD-…/ATLAS-…; Tridium-secret+CID boot validation; card = portable license; non-Tridium card → Niagara down; inverts B467 |
 
 ## Next — LIVE-gated gaps (need the operator's serial session)
 
