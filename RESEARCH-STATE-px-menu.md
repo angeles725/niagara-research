@@ -7,11 +7,11 @@
 > Engram topic key: `research/niagara/px-menu/{gaps,progress}`.
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 271
-gaps_closed: 21
+covered_blocks: 605
+gaps_closed: 22
 known_gaps: 33
 investigable_open: 6
-requires_execution_open: 5
+requires_execution_open: 4
 blocked_open: 0
 <!-- /research-state.v1 -->
 
@@ -167,7 +167,7 @@ Aplica SECRETS DISCIPLINE (live-install): se cita estructura, nunca valores de c
 | ID | Gap | Clase |
 |---|---|---|
 | B289-G2 | ¿`Sys.getStationHome()` devuelve `<station>/shared/`, o el file space aplica una restricción encima? §289.3 fija el mapeo OBSERVADO, no su mecanismo. | STATIC |
-| B290-G1 | ¿Se puede alcanzar el servlet obix con el esquema DIGEST desde un cliente no-browser (implementando el handshake SCRAM), evitando una cuenta Basic? | DYNAMIC |
+| B290-G1 | **CERRADO [CERT-live] (B605, §12)**: SÍ — cliente no-browser con handshake SCRAM alcanza obix (200); Basic rechazado (401). Premisa corregida: API2.authenticationSchemeName=DigestScheme (=SCRAM), NO hay cuenta Basic que 'evitar' — SCRAM es la puerta. | CLOSED |
 | B290-G2 | La superficie de ESCRITURA de obix (`op name="save"`, puntos writable) no se ejerció — solo lecturas. Cae bajo la receta LIVE-WRITE de §12 y la etiqueta `⚠ CONFIG MUTATION`. | DYNAMIC |
 | B291-G1 | ¿`BWebBrowser` acepta un ord HTTP absoluto (`ip:host\|http:/file/...`) para saltear el envoltorio desde el widget? Variante escrita, no confirmada. | DYNAMIC |
 | B291-G2 | Comportamiento de un `.px` con `WebBrowser` entre perfiles: verificado bajo `view:hx:HxPxView`, NO bajo Px View de Workbench ni perfil mobile. La clase vive en `workbench-wb`. | DYNAMIC |
