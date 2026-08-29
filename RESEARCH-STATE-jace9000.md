@@ -27,7 +27,7 @@
 schema: research-state.v1
 method: dynamic-live
 block_scope: shared-global
-covered_blocks: 657
+covered_blocks: 664
 gaps_closed: 9
 known_gaps: 13
 investigable_open: 0
@@ -87,6 +87,7 @@ doc example (opt reached Network Config Utility, not Ping Host) → re-capture a
 | B661 | J9K-7 | no·inline (doc, sweep material) | SSH = same menu shell (not raw OS), platform login required; SFTP/SSH off by default TCP 22 + keep-off caution; matches B468 |
 | B662 | J9K-11 | no·inline (doc, sweep material) | Host ID dual format ATLAS-SD-…/ATLAS-…; Tridium-secret+CID boot validation; card = portable license; non-Tridium card → Niagara down; inverts B467 |
 | B663 | J9K-12 | no·inline (doc, sweep material) | serial port map: COM1/COM2 RS-485 field bus (bias/term switch table) vs USB-C DEBUG (shell only); COM5=DEBUG enum. investigable_open→0 → STOP |
+| B664 | synthesis | no·inline | focus capstone: mental model, 3-interface map, read-only runbook, security posture, J8↔J9 delta, 4 live-gated gaps. STOPPED |
 
 ## Next — LIVE-gated gaps (need the operator's serial session)
 
