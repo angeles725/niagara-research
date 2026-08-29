@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **657 bloques**
+Total: **658 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -662,6 +662,7 @@ Total: **657 bloques**
 | 657 | [niagara-mental-model-bloque657.md](niagara-mental-model-bloque657.md) | B657 — JACE-9000 serial DEBUG console: the USB-C "ATLAS System Shell" @115200 8N1, and how the JACE-9000 differs from the JACE-8000 (focus jace9000 bootstrap, J9K-0) |
 | 658 | [niagara-mental-model-bloque658.md](niagara-mental-model-bloque658.md) | B658 — JACE-9000 boot & recovery over the serial DEBUG console: a 2-option Boot menu, Platform Access Recovery (Tridium-signed, keeps data), the SHUT-DOWN-button factory wipe, and the passphrase-mismatch menu (focus jace9000, J9K-4) |
 | 659 | [niagara-mental-model-bloque659.md](niagara-mental-model-bloque659.md) | B659 — JACE-9000 shell activation: the DEBUG console is live in normal operation (just press Enter), and the "special power-up mode" language belongs to the two recovery boots, not day-to-day access (focus jace9000, J9K-5) |
+| 660 | [niagara-mental-model-bloque660.md](niagara-mental-model-bloque660.md) | B660 — JACE-9000 platform accounts over serial: every platform user has full equal privileges — there is no read-only or non-admin platform role, so serial-shell read-only-ness comes only from menu choice, never from a limited account (focus jace9000, J9K-6) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
