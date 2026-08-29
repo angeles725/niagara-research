@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **607 blocks**
+Total: **608 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -613,3 +613,4 @@ Total: **607 blocks**
 | 609 | [niagara-mental-model-bloque609.md](niagara-mental-model-bloque609.md) | W7-G1 code confirmed [CERT]: the `/schedule` and `/boxTable` handlers call `resp.sendError(404)` on `!target.canRead()` but DO NOT `return` — execution falls through to `target.get()` + `encodeSchedule`/`encodeTableData`, reading and writing the protected body; the sibling `encodeHistoryData` shows the CORRECT pattern (it `throw`s). Live leak-vs-no-leak verdict deferred: it fires only for a read-denied principal, which cannot be minted over the available surfaces |
 | 610 | [niagara-mental-model-bloque610.md](niagara-mental-model-bloque610.md) | ⚠ CONFIG MUTATION — DB-G3: BBogSpace is thread-safe under concurrent writes — 8-way and 20-way concurrent oBIX writes (500 total, up to 365 writes/s) all applied atomically with 0 errors, a same-point race resolved to ONE valid value (no torn writes), and distinct-point writes showed zero cross-contamination — validating B402's serialized-save model live; DB-G2 (BRdbmsWorker) has NO live surface (no RDBMS driver deployed) |
 | 611 | [niagara-mental-model-bloque611.md](niagara-mental-model-bloque611.md) | graphql-admin (GQL-G1): the session-user `Context` seam of a custom `BWebServlet` — where a GraphQL resolver gets its RBAC identity |
+| 612 | [niagara-mental-model-bloque612.md](niagara-mental-model-bloque612.md) | graphql-admin (GQL-G3): `OrdTarget.canRead()/canWrite()/canInvoke()` — the per-field RBAC primitive a resolver calls, and its fail-open default |
