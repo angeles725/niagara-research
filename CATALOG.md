@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **611 blocks**
+Total: **612 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -617,3 +617,4 @@ Total: **611 blocks**
 | 613 | [niagara-mental-model-bloque613.md](niagara-mental-model-bloque613.md) | graphql-admin (GQL-G2): the `@NiagaraRpc` Context-injection contract — using RPC methods as a GraphQL mutation back-end |
 | 614 | [niagara-mental-model-bloque614.md](niagara-mental-model-bloque614.md) | graphql-admin (GQL-G4): the concrete resolver call-site — read (BQL/slot), mutate (set/invoke/add), and serialize to JSON, all as the session Context |
 | 615 | [niagara-mental-model-bloque615.md](niagara-mental-model-bloque615.md) | graphql-admin (GQL-G6): the native `dashboard-ux` module is a thin JS-widget agent, not a data backend — a GraphQL dashboard module is a sibling, not an extension |
+| 616 | [niagara-mental-model-bloque616.md](niagara-mental-model-bloque616.md) | graphql-admin (GQL-G8): the Java-8 ceiling — a bundled GraphQL engine must be graphql-java ≤ v20 (or hand-rolled) |
