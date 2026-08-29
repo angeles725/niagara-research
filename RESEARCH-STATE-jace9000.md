@@ -28,9 +28,9 @@ schema: research-state.v1
 method: dynamic-live
 block_scope: shared-global
 covered_blocks: 657
-gaps_closed: 3
+gaps_closed: 4
 known_gaps: 13
-investigable_open: 7
+investigable_open: 6
 requires_execution_open: 0
 blocked_open: 3
 deferred_open: 0
@@ -39,8 +39,8 @@ undocumented_findings: 0
 
 ## Coverage / open items
 
-Coverage: **3/13 gaps closed (J9K-0 bootstrap B657; J9K-1 OS=Linux + J9K-8 SoC=i.MX8M Plus via `[CERT-web]`
-Tridium datasheet/FAQ); investigable_open=7, blocked-live=3**. The DOC-answerable read-only surface can be
+Coverage: **4/13 gaps closed (J9K-0 bootstrap B657; J9K-1 OS=Linux + J9K-8 SoC=i.MX8M Plus via `[CERT-web]`;
+J9K-4 boot/recovery surface B658); investigable_open=6, blocked-live=3**. The DOC-answerable read-only surface can be
 driven to close without the device; the 3 blocked gaps (J9K-2 diagnostic OUTPUTS, J9K-3 pre-login exposure,
 J9K-9 passphrase-on-serial) need the operator's live serial session (paste or usbipd bridge). LIVE this
 session (B657): console reachable, ATLAS System Shell, idle-timeout re-auth, System Diagnostic submenu
@@ -53,7 +53,7 @@ doc example (opt reached Network Config Utility, not Ping Host) → re-capture a
 | high | J9K-1 exact OS name/kernel | **Linux** (Tridium datasheet/FAQ [CERT-web]); ATLAS platform (BSystemPlatformServiceAtlas→Npsdk, not QNX); en0/en1 inet/inet6 live banner corroborates. Exact kernel version = live-only (opt-4 System Log / SSH uname) | **covered B657** (kernel ver = J9K-2) |
 | high | J9K-2 System Diagnostic Options (menu opt-4) surface | MENU enumerated live (B657, probes/04): 8 read-only opts — CPU Usage (Process/Thread), System Log (Current/All), Trace Route, ARP Table, Niagara Daemon Threads, USB/CDC Port Info. Per-option OUTPUT (actual CPU%/log/threads) still pending an operator paste | pending · blocked-live (content) |
 | medium | J9K-3 pre-login vs post-login banner | post-login banner fields doc'd (hostid, daemon port, en0 inet — B657); does ANYTHING surface pre-auth? | pending (doc partial; pre-login state blocked-live) |
-| high | J9K-4 boot-options menu (ESC at boot) | J9 = 2 options (1 Reset platform credentials / 2 Continue) vs J8's 8; Platform Access Recovery shows Host id + Tridium-issued Token — doc-answerable, live-confirmable | pending · investigable (doc) |
+| high | J9K-4 boot-options & recovery surface (ESC at boot) | 2-option Boot menu; Platform Access Recovery (Tridium-signed Reset Auth Key, 24h token, Host-id-bound, KEEPS data); SHUT-DOWN-button factory wipe (deletes all data); System Decrypt Failure menu (4 opts). None read-only. §14 contrast to B463 (J8=8 opts, same crypto model) | **covered B658** |
 | medium | J9K-5 DEBUG shell activation | is the ATLAS shell always live on the USB-C DEBUG port, or a "special power-up mode"? | pending · investigable (doc) |
 | medium | J9K-6 read-only / non-admin platform account over serial | shell login requires admin-level platform creds; can a lower-privilege account view without mutating? | pending · investigable (doc) |
 | medium | J9K-7 SSH as alternative shell path | SSH (if enabled) delivers the SAME platform-login system-shell menu; default-enabled state = live | pending · investigable (doc; default-state live) |
@@ -79,6 +79,7 @@ doc example (opt reached Network Config Utility, not Ping Host) → re-capture a
 | Block | Gap | Delegated? · tier | Notes |
 |---|---|---|---|
 | B657 | J9K-0 | yes·sonnet (doc audit sweep) + inline verify | bootstrap: ATLAS platform; USB-C DEBUG "ATLAS System Shell" @115200 8N1; menu + read-only safety map; §-remittances to jace8000 |
+| B658 | J9K-4 | no·inline (doc) | boot/recovery serial surface: 2-opt Boot menu, Platform Access Recovery (Tridium-signed, keeps data), SHUT-DOWN factory wipe, decrypt-failure menu; §14 contrast B463 |
 
 ## Next — LIVE-gated gaps (need the operator's serial session)
 
