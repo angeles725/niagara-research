@@ -1,0 +1,25 @@
+Platform daemon (:3011 plain / :5011 TLS) live probe — 2026-08-29, host 127.0.0.1 (PRUEBAS test station)
+READ-ONLY. §12 rung 0/1 (passive + read-only probe). NO credential value recorded (SECRETS DISCIPLINE).
+
+:3011 (plaintext) — HTTP/1.1
+  OPTIONS /  -> 403 Forbidden ; headers: x-frame-options: deny ; Connection: close ; Content-Length: 0
+  GET /      -> 403 Forbidden ; (same headers)
+  raw connect: server does NOT speak first (client-speaks-first, HTTP request expected)
+  => no WWW-Authenticate header on 403 => NO 401 challenge (credentials presented up-front). Confirms B460.
+
+:5011 (TLS) — openssl s_client
+  Protocol: TLSv1.3 ; Cipher: TLS_AES_256_GCM_SHA384 ; Verify: 18 (self-signed)
+  cert subject=CN=Niagara4, O=ForRecoveryPurposes, C=US (issuer same)
+  notBefore=Sep 17 18:24:46 2025 GMT ; notAfter=Sep 17 18:24:46 2026 GMT
+  SHA1 Fingerprint=1C:24:37:19:FF:C2:86:67:EA:5D:03:DC:F0:23:ED:B6:4E:93:34:FA
+  => default ForRecoveryPurposes cert. Confirms B156/B398/B460.
+
+Authenticated attempt (HTTP Basic over TLS :5011, station account API2, credential supplied out-of-band
+via a curl -K file in scratchpad, shredded after; value NOT recorded here):
+  GET /         -> 403 Forbidden (Strict-Transport-Security present)
+  GET /platform -> 403 Forbidden
+  => IDENTICAL 403 to the unauthenticated case. INCONCLUSIVE for auth: a blanket GET does not exercise the
+     daemon's DaemonMessage protocol (POST + Authorization header + message body). Per RE-MEASURE A DRAMATIC
+     POSITIVE, this 403 is a transport-level refusal of an unsupported request shape, NOT proof that the
+     station credential was rejected by the platform daemon. A definitive station-vs-platform acceptance test
+     needs a real DaemonMessage client (§19 requires-execution) or platform credentials.

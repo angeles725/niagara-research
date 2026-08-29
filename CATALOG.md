@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **623 blocks**
+Total: **624 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -629,3 +629,4 @@ Total: **623 blocks**
 | 625 | [niagara-mental-model-bloque625.md](niagara-mental-model-bloque625.md) | ports (PO-G6): `BServerPort` is the common listening-port type and it programs an on-device firewall (pf) — the central port plumbing |
 | 626 | [niagara-mental-model-bloque626.md](niagara-mental-model-bloque626.md) | ports (PO-G7): platform daemon :3011/:5011 auth model — platform-user username/password, TLS-mode enum, full-host reach |
 | 627 | [niagara-mental-model-bloque627.md](niagara-mental-model-bloque627.md) | ports (SYNTHESIS / PO-G8): the master per-port reference for a Niagara N4 install — purpose, auth gate, reachability |
+| 628 | [niagara-mental-model-bloque628.md](niagara-mental-model-bloque628.md) | ports (PO-G7w): the platform daemon credential frame is HTTP Basic/Digest(MD5) + a shared-secret-key init — resolved from code, transport confirmed live |

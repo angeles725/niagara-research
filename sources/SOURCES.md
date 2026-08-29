@@ -73,6 +73,7 @@ Decompiled Java sources live under `sources/decompiled/<jar-name>/`.
 | manuals/template-docs/GraphicsTabTemplates-9DC53E6E.html | doc oficial Tridium (docTemplates-doc) | organized/docTemplates/.../doc/GraphicsTabTemplates-9DC53E6E.html | 2026-07-06 | 3d7c77f6034c | B200 |
 | web-snapshots/B227-vue2-eol-ecosystem-20260712.md | web snapshot (Vue2 EOL + ecosystem) | https://blog.vuejs.org/posts/vue-2-eol | 2026-07-12 | 618a3efc481e | B227 |
 | web-snapshots/B616-graphql-java-java11-20260829.md | web snapshot (graphql-java Java 11 requirement; v20 last Java-8) | https://github.com/graphql-java/graphql-java/discussions/3052 | 2026-08-29 | 4493ac78d55d | B616 |
+| probes/B628-platform-daemon-auth/probe-2026-08-29.txt | live probe ([CERT-hw]) platform daemon :3011/:5011 (HTTP 403-no-401, TLS1.3 ForRecoveryPurposes) | 127.0.0.1 PRUEBAS test station (§12, read-only; no secrets) | 2026-08-29 | 74556853fdbc | B628 |
 | REFLOW-175-vs-177-DIFF.md | análisis forense diff 1.7.5↔1.7.7 (proyecto Prototipos) | /home/cristian/modules/Prototipos/modulos/REFLOW-175-vs-177-DIFF.md | 2026-07-12 | 41451664be69 | B230 |
 | manuals/docRelations-N4.14-guide.md | guía oficial Tridium Relations (17 HTML → texto, N4.14) | organized/docRelations/docRelations-doc/**/*.html | 2026-07-24 | 90e4df5c27fc | B262 |
 | manuals/docTagging-N4.14-guide.md | guía oficial Tridium Tagging (93 HTML → texto, N4.14) | organized/docTagging/docTagging-doc/**/*.html | 2026-07-24 | 2ae5a290fbca | B265, B269 |
