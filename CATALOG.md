@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **617 blocks**
+Total: **618 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -623,3 +623,4 @@ Total: **617 blocks**
 | 619 | [niagara-mental-model-bloque619.md](niagara-mental-model-bloque619.md) | graphql-admin (SYNTHESIS / GQL-G9): reference architecture and build-vs-buy verdict for a GraphQL admin layer over Niagara N4 |
 | 620 | [niagara-mental-model-bloque620.md](niagara-mental-model-bloque620.md) | ports (PO-G3): Modbus TCP Slave :502 — an unauthenticated read/write surface bounded only by the register map |
 | 621 | [niagara-mental-model-bloque621.md](niagara-mental-model-bloque621.md) | ports (PO-G2): SNMP agent :161/:162 — off by default, but community `public` on both read AND write when enabled |
+| 622 | [niagara-mental-model-bloque622.md](niagara-mental-model-bloque622.md) | ports (PO-G4): BACnet/SC hub `/hub` shares :443 but is gated by a dedicated Niagara auth scheme, not TLS-cert bypass |
