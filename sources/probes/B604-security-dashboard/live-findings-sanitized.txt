@@ -1,0 +1,25 @@
+SA-G2 live SecurityDashboard — endpoint GET /nss/station/data?ord=station:|slot:/Services/SecurityService
+station PRUEBAS · version 1 · 14 sections · 64 items
+severity distribution: OK 30 · Info 16 · Warning 14 · Alert 4
+SECRETS DISCIPLINE: only lexiconKey finding-types below; all arguments[].value redacted.
+
+== securityStatusAlert ==
+  baja:securityDashboard.autoLogoffDisabled.summary
+  baja:securityDashboard.authenticationScheme.withHttpEnabled.summary
+  web:securityDashboard.certHealth.missingKey
+  web:securityDashboard.hostHeader.validationOff.summary
+== securityStatusWarning ==
+  baja:securityDashboard.superUserWithDefaultName.summary
+  fox:securityDashboard.foxCertificateNearExpiry.summary
+  fox:securityDashboard.foxCertificateDefault.summary
+  fox:securityDashboard.foxCertificateGloballyEncrypted.summary
+  fox:securityDashboard.legacyClients.defaultYes.summary
+  web:securityDashboard.webForwarding.summary
+  program:securityDashboard.programObjects.signingNotRequired.summary
+  nss:securityDashboard.moduleSignatures.verificationMode
+  nss:securityDashboard.moduleSignatures.NOT_TIMESTAMPED
+  nss:securityDashboard.moduleSignatures.SIGNER_SELF_SIGNED
+  nss:securityDashboard.moduleSignatures.CERT_PATH_VALIDATION_FAILURE
+  platform:securityDashboard.systemPlatformService.certificateExpiry.summary.tlsEnabled.certNearExpiry
+  platform:securityDashboard.systemPlatformService.certificate.signature.tlsEnabled.default.summary
+  platform:securityDashboard.systemPlatformService.certificate.globallyEncrypted.summary

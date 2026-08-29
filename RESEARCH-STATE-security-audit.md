@@ -3,11 +3,11 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 401
-gaps_closed: 3
+covered_blocks: 604
+gaps_closed: 4
 known_gaps: 4
 investigable_open: 0
-requires_execution_open: 1
+requires_execution_open: 0
 blocked_open: 0
 deferred_open: 0
 undocumented_findings: 0
@@ -46,7 +46,7 @@ not just documentation.
 | — | **SA-G4** — threat-model narrative (attack trees) | investigable | **CLOSED B399** (4 attack trees T1-T4; B75 kill-chain shown live-present; mitigation map) |
 | — | **SA-G1** — automate SEC-15 (module.xml KeyRingPermission scan) | investigable | **CLOSED B400** (17 holders, 11 wildcard, ALL signed → PASS; SEC-15 = downstream amplifier of T1, FAIL gated on wildcard AND unsigned) |
 | — | **SA-G3** — log-IOC harvester [B112] | investigable | **CLOSED B401** (--scan-logs mode; live 103 logs = 0 IOCs clean; matcher sanity-verified) |
-| 4 | **SA-G2** — consume native SecurityDashboard JSON (BSecurityService.getStationDashboardData) as live source | requires-execution | open |
+| 4 | **SA-G2** — consume native SecurityDashboard JSON (BSecurityService.getStationDashboardData) as live source | **CLOSED [CERT-live] B604 (§12)** | GET /nss/station/data?ord=…SecurityService → 14 sections/64 items (OK30/Info16/Warn14/Alert4); confirms B398 |
 
 ## Iteration history
 
