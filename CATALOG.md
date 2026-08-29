@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **646 blocks**
+Total: **647 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -652,3 +652,4 @@ Total: **646 blocks**
 | 648 | [niagara-mental-model-bloque648.md](niagara-mental-model-bloque648.md) | Niagara N4 — chihuahua-source (CS3): the production module's write path DOES enforce authorization — `ChiRbacHelper.checkCanWrite` (BPermissions.OPERATOR_WRITE, fail-closed) is the first line of all 8 write handlers, with audit on every mutation — the correct inverse of mcpbridge's bypass |
 | 649 | [niagara-mental-model-bloque649.md](niagara-mental-model-bloque649.md) | Niagara N4 — chihuahua-source (CS1): the build files vs the reference template — and a §14 correction, the "over-permissioning" is the UNTOUCHED Tridium scaffold (empty permission groups, no actual grants), not real over-privilege |
 | 650 | [niagara-mental-model-bloque650.md](niagara-mental-model-bloque650.md) | Niagara N4 — chihuahua-source (CS2): the rt model is a monitor/dashboard with ONE computed output (`effectiveSetpoint`) + software overload/antifreeze protections whose faulted-sensor behavior is directional — fail-SAFE for antifreeze (low-limit), fail-to-NON-trip for overload (high-limit) |
+| 651 | [niagara-mental-model-bloque651.md](niagara-mental-model-bloque651.md) | Niagara N4 — chihuahua-source (CS6): reconciling the internal 2026-05-06 audit — a thorough adversarial dual-auditor pass (CONDITIONAL PASS, 14/14) whose fixes hold in current source; its critical P1 fault-discrimination fix covers the DISPLAY path, leaving the PROTECTION path (B650) as the complementary residual |
