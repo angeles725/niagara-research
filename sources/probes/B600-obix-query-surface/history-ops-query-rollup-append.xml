@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type='text/xsl' href='/obix/xsl'?>
+<obj href="https://localhost/obix/histories/PRUEBAS/Ramp/" is="obix:History" display="com.tridium.history.db.BLocalDbHistory" icon="/ord?module://icons/x16/history.png" xmlns="http://obix.org/ns/schema/1.0" xsi:schemaLocation="http://obix.org/ns/schema/1.0 /obix/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <int name="count" val="500"/>
+ <abstime name="start" val="2026-08-29T01:24:30.075-06:00" tz="America/Mexico_City"/>
+ <abstime name="end" val="2026-08-29T02:47:40.013-06:00" tz="America/Mexico_City"/>
+ <op name="query" href="~historyQuery/" in="/obix/def/obix:HistoryFilter" out="/obix/def/obix:HistoryQueryOut"/>
+ <op name="rollup" href="~historyRollup/" in="/obix/def/obix:HistoryRollupIn" out="/obix/def/obix:HistoryRollupOut"/>
+ <feed name="feed" href="~historyFeed/" of="/obix/def/obix:HistoryRecord" in="/obix/def/obix:HistoryFilter"/>
+ <op name="append" href="~historyAppend/" in="/obix/def/obix:HistoryAppendIn" out="/obix/def/obix:HistoryAppendOut"/>
+ <ref name="unboundedQuery" href="~historyQuery?limit=1000"/>
+ <ref name="today" href="~historyQuery?start=2026-08-29T00:00:00.000-06:00&amp;end=2026-08-29T02:47:45.109-06:00"/>
+ <ref name="last24Hours" href="~historyQuery?start=2026-08-28T02:47:45.109-06:00&amp;end=2026-08-29T02:47:45.109-06:00"/>
+ <ref name="yesterday" href="~historyQuery?start=2026-08-28T00:00:00.000-06:00&amp;end=2026-08-28T23:59:59.999-06:00"/>
+ <ref name="weekToDate" href="~historyQuery?start=2026-08-23T00:00:00.000-06:00&amp;end=2026-08-29T02:47:45.109-06:00"/>
+ <ref name="lastWeek" href="~historyQuery?start=2026-08-16T23:59:59.999-06:00&amp;end=2026-08-22T23:59:59.999-06:00"/>
+ <ref name="last7Days" href="~historyQuery?start=2026-08-22T02:47:45.109-06:00&amp;end=2026-08-29T02:47:45.109-06:00"/>
+ <ref name="monthToDate" href="~historyQuery?start=2026-08-01T00:00:00.000-06:00&amp;end=2026-08-29T02:47:45.109-06:00"/>
+ <ref name="lastMonth" href="~historyQuery?start=2026-07-01T00:00:00.000-06:00&amp;end=2026-07-31T23:59:59.999-06:00"/>
+ <ref name="yearToDate (limit=1000)" href="~historyQuery?start=2026-01-01T00:00:00.000-06:00&amp;end=2026-08-29T02:47:45.109-06:00&amp;limit=1000"/>
+ <ref name="lastYear (limit=1000)" href="~historyQuery?start=2025-01-01T00:00:00.000-06:00&amp;end=2025-12-31T23:59:59.999-06:00&amp;limit=1000"/>
+</obj>

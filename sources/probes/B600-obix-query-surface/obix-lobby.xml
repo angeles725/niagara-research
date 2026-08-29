@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type='text/xsl' href='/obix/xsl'?>
+<obj href="https://localhost/obix/" is="obix:Lobby" xmlns="http://obix.org/ns/schema/1.0" xsi:schemaLocation="http://obix.org/ns/schema/1.0 /obix/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <ref name="watchService" href="watchService/" is="obix:WatchService"/>
+ <ref name="config" href="/obix/config/" is="/obix/def/baja:Station" display="Station" displayName="Config" icon="/ord?module://icons/x16/navOnly/systemDbService.png"/>
+ <ref name="about" href="about/" is="obix:About"/>
+ <ref name="histories" href="histories/" display="com.tridium.history.db.BLocalHistoryDatabase" displayName="History" icon="/ord?module://icons/x16/historyDatabase.png"/>
+ <ref name="continuousControl" href="/obix/config/Drivers/ObixNetwork/exports" is="/obix/def/obixDriver:ObixExportFolder /obix/def/baja:Folder" display="Obix Export Folder" displayName="Exports" icon="/ord?module://icons/x16/folder.png"/>
+ <op name="batch" href="batch/" in="obix:BatchIn" out="obix:BatchOut"/>
+ <ref name="alarms" href="/obix/config/Services/AlarmService" is="/obix/def/alarm:AlarmService obix:AlarmSubject" display="Alarm Service" displayName="AlarmService" icon="/ord?module://icons/x16/navOnly/alarmService.png"/>
+</obj>

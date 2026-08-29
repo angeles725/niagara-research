@@ -33,3 +33,6 @@ credentials.*
 *.key
 *.p12
 *.jks
+organized/
+niagara-help/
+module-navigator/

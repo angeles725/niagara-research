@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type='text/xsl' href='/obix/xsl'?>
+<obj href="https://localhost/obix/histories/PRUEBAS/Ramp/~historyQuery/" is="obix:HistoryQueryOut" xmlns="http://obix.org/ns/schema/1.0" xsi:schemaLocation="http://obix.org/ns/schema/1.0 /obix/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <list name="data" of="#RecordDef obix:HistoryRecord">
+  <obj>
+   <abstime name="timestamp" val="2026-08-29T01:25:30.065-06:00" tz="America/Mexico_City"/>
+   <real name="value" val="79.7933349609375"/>
+  </obj>
+  <obj>
+   <abstime name="timestamp" val="2026-08-29T01:25:40.022-06:00" tz="America/Mexico_City"/>
+   <real name="value" val="7.186666488647461"/>
+  </obj>
+  <obj>
+   <abstime name="timestamp" val="2026-08-29T01:25:50.003-06:00" tz="America/Mexico_City"/>
+   <real name="value" val="59.58000183105469"/>
+  </obj>
+ </list>
+ <int name="count" val="3"/>
+ <abstime name="start" val="2026-08-29T01:25:30.065-06:00" tz="America/Mexico_City"/>
+ <abstime name="end" val="2026-08-29T01:25:50.003-06:00" tz="America/Mexico_City"/>
+ <obj href="#RecordDef" is="obix:HistoryRecord">
+  <abstime name="timestamp" tz="America/Mexico_City"/>
+  <real name="value" unit="obix:units/null"/>
+ </obj>
+</obj>

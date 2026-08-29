@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type='text/xsl' href='/obix/xsl'?>
+<obj is="obix:WatchOut" xmlns="http://obix.org/ns/schema/1.0" xsi:schemaLocation="http://obix.org/ns/schema/1.0 /obix/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <list name="values" of="obix:obj">
+  <real val="0.0" href="/obix/config/NumericDelay/out/" is="/obix/def/baja:StatusNumeric" display="0,0 {ok}" displayName="Out" icon="/ord?module://icons/x16/statusNumeric.png" unit="obix:units/null">
+  </real>
+ </list>
+</obj>

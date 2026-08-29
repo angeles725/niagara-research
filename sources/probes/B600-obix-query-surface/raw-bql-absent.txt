@@ -1,0 +1,5 @@
+raw-BQL servlet probes (2026-08-29, station DESKTOP-4AAQ77H):
+GET /bql/  -> 404
+GET /ord/  -> 400
+GET /spy/  -> 404
+=> no arbitrary-BQL-over-HTTP servlet mounted; query surface = oBIX-typed ops only

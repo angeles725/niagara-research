@@ -29,11 +29,11 @@
 schema: research-state.v1
 method: document-cycle-external
 block_scope: shared-global
-covered_blocks: 458
-gaps_closed: 0
+covered_blocks: 600
+gaps_closed: 1
 known_gaps: 4
-investigable_open: 4
-requires_execution_open: 4
+investigable_open: 3
+requires_execution_open: 3
 blocked_open: 0
 deferred_open: 0
 undocumented_findings: 0
@@ -41,7 +41,13 @@ undocumented_findings: 0
 
 ## Coverage / open items
 
-Outline cubierto 2/2 (login + extracción). Gaps abiertos: **B457-G1** (recetas BQL sobre oBIX autenticado),
-**B457-G2** (lifecycle `niagara_userid` + CSRF en writes), **B458-G1** (contrato del op `rollup` para
-downsample server-side), **B458-G2** (paths de write/commit oBIX — el método actual es solo lectura).
-Acción de seguridad (no-gap): rotar credenciales API2 expuestas.
+Outline cubierto 2/2 (login + extracción). Gaps:
+- **B457-G1** — **CERRADO [CERT-live] (B600, 2026-08-29, §12)**: la superficie de query autenticada es un set
+  FIJO de ops oBIX tipadas (History query/rollup/append · Watch add/pollChanges · Alarm query · navegación de
+  config/); **NO existe servlet de BQL-over-HTTP** (`/bql/`404, `/ord/`400, `/spy/`404). Recetas ejecutadas en
+  vivo (history query 3 recs, watch add NumericDelay/out=0.0).
+- **B457-G2** (lifecycle `niagara_userid` + CSRF en writes) — investigable (live session).
+- **B458-G1** (contrato del op `rollup` para downsample server-side) — investigable (live session).
+- **B458-G2** (paths de write/commit oBIX — solo lectura hoy) — **⚠ CONFIG MUTATION** (rung-2), requiere
+  autorización de escritura del operador.
+Acción de seguridad (no-gap): **ROTAR credenciales API2 expuestas en chat.**
