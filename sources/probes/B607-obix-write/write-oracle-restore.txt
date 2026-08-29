@@ -1,0 +1,8 @@
+BASELINE oracle out= ('27.0', '27,0 {ok} @ def')
+SET(12345) no-csrf -> HTTP 200 | resp is: /obix/def/control:NumericWritable /obix/def/control:NumericPoint obix:Point
+INDEPENDENT oracle after write out= ('12345.0', '12345,0 {ok} @ def')
+AUTO(relinquish) -> HTTP 200
+RESTORE oracle out= ('12345.0', '12345,0 {ok} @ def')
+before restore: ('12345.0', '12345,0 {ok} @ def')
+SET(27.0 restore) -> HTTP 200
+AFTER restore: ('27.0', '27,0 {ok} @ def')

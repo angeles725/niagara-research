@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **604 bloques**
+Total: **605 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -609,6 +609,7 @@ Total: **604 bloques**
 | 604 | [niagara-mental-model-bloque604.md](niagara-mental-model-bloque604.md) | Block 604 — SA-G2: the native Security Dashboard JSON is a live, consumable security-posture source at `GET /nss/station/data?ord=<dashboard-component>` — 14 module-contributed sections, 64 items (30 OK / 16 Info / 14 Warning / 4 Alert), and its live verdicts independently CONFIRM B398's static hardening findings from Niagara's own instrument |
 | 605 | [niagara-mental-model-bloque605.md](niagara-mental-model-bloque605.md) | Block 605 — px-menu B290-G1: the oBIX servlet IS reachable from a non-browser client that implements N4's SCRAM handshake (HTTP 200), while an HTTP Basic client is rejected (401) — because the account's scheme is `DigestScheme` (N4 "Digest" = SCRAM-SHA-256, not RFC 7616), the "bypass a Basic account" premise inverts: SCRAM is the ONLY non-browser path in |
 | 606 | [niagara-mental-model-bloque606.md](niagara-mental-model-bloque606.md) | Block 606 — protocols P4-dyn: the live Fox SCRAM handshake byte-trace on `foxs:4911` — method `n4digest`, keyExchange `null.1` (TLS-only, no in-band key exchange), SCRAM-SHA-256 with salt=16B and **iteration count `i=10000`** — which independently CONFIRMS B457's PBKDF2-10k on the Fox channel; frame flow hello→kerberos(off)→username→challenge→authMessage1/2→welcome |
+| 607 | [niagara-mental-model-bloque607.md](niagara-mental-model-bloque607.md) | Block 607 — ⚠ CONFIG MUTATION — B458-G2 / B290-G2: the oBIX write surface is live and effective (`set`/`override`/`auto`/`emergency*` ops on a writable point), a `set` persists to the fallback/default level confirmed by an independent read, and the write requires NO CSRF token — settling B602's open `[INFER]`: oBIX is NOT behind the `CsrfProtectedFilter` |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
