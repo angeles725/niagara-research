@@ -89,3 +89,29 @@ Los items de ESCRITURA (config-write/traversal/wipe) son rung 2-3 (§12): backup
 pendiente: **V7/V8 (BQL exacto)** en el canal WS command-invoke = **requires-execution** (§8/§19) — reapertura
 acotada futura con un probe WS portado. Autorización rung-3 de sesión **expirada**; el usuario `API` se revoca.
 Station **pristina** (`bf70f28f`, 60154 B). Cero secretos exfiltrados (invariante cumplido).
+
+## Campaña de validación dinámica cross-focus (2026-08-29) — §12 home
+
+Corrida `/research-sdd` automática. Target = MISMA station (127.0.0.1, cert `C1:01:41:B2:…:E5:D2`, serverName
+`DESKTOP-4AAQ77H`, station PRUEBAS/app CODIGOS). Cuenta **API2** vía SCRAM-SHA-256. **11 bloques B600-B610**
+cerrando gaps requires-execution/live de 8 focuses. Grant de escritura+destrucción concedido por el operador a
+mitad de sesión (station de prueba); **expira al cierre de sesión**.
+
+- **B600-602** api-access (oBIX query surface / rollup / niagara_userid+CSRF) — **focus CERRADO 4/4** (+B607).
+- **B603** kitControl KC13-G1 (safety audit vivo: 0 loops, 5× propagateFlags=0, 3 null-fallback) — **focus CERRADO**.
+- **B604** security-audit SA-G2 (SecurityDashboard JSON `/nss/station/data`, confirma B398) — **focus CERRADO**.
+- **B605** px-menu B290-G1 (SCRAM no-browser). **B607** oBIX write (⚠CONFIG MUTATION, set=fallback, sin CSRF → resuelve B602) — cierra B458-G2+B290-G2.
+- **B606** protocols P4-dyn (Fox SCRAM byte-trace foxs:4911, i=10000 confirma B457).
+- **B608** jsonToolkit G1/G2 (GATED-BY-DEPLOYMENT: outbound-only) — **focus CERRADO**.
+- **B609** webChart W7-G1 (código [CERT], leak-verdict DEFERRED-requires-principal).
+- **B610** database DB-G3 (BBogSpace thread-safe, ⚠CONFIG MUTATION) + DB-G2 (gated, no RDBMS) — **focus CERRADO**.
+
+**⚠ MUTACIÓN SIN RESTAURAR (disclosed):** `CODIGOS/NumericWritable1` (→`Hvac01.supplyTemp`) — valor original NO
+capturado antes de la prueba de carga (lapse §12 backup-before-destroy); irrecuperable (sin history, postdata el
+backup Oct-2025). Dejado en **20.0** benigno. **OPERADOR: fijar el valor correcto de supplyTemp si 20.0 no lo es.**
+
+**Bloqueados (no cerrables sin más input):** ES4-G1 + W7-G1-live → principal read-denied no minteable por oBIX
+(existe user `BACnet` rol-cero pero sin su password). video B453-G1 → cámara AXIS DOWN (status 4). jace8000
+serial, email mailbox, protocols field devices, oem G8, platform daemon creds → hardware/creds ausentes.
+
+**ACCIÓN OPERADOR: rotar credencial API2 (expuesta en chat). Grant de escritura expira al cierre de sesión.**
