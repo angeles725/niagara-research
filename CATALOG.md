@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **634 blocks**
+Total: **635 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -640,3 +640,4 @@ Total: **634 blocks**
 | 636 | [niagara-mental-model-bloque636.md](niagara-mental-model-bloque636.md) | Niagara N4 — module-anatomy (MA8, SYNTHESIS): the reference module skeleton + the `com.angeles.chihuahua` case study — how a well-built N4 module is shaped, and the concrete deviations to fix |
 | 637 | [niagara-mental-model-bloque637.md](niagara-mental-model-bloque637.md) | Niagara N4 — own-modules-audit (OMB1): the operator's REAL build workflow — three deploy modes (A/B/C), the Clean+Slotomatic+Build vs Clean+Build variant rule, and the verified verdict on tests (niagaraTest is dead by a plugin 7.6.17 bug; pure-JUnit logic tests DO work) |
 | 638 | [niagara-mental-model-bloque638.md](niagara-mental-model-bloque638.md) | Niagara N4 — own-modules-audit (OMB2): version-targeting is the `niagara_home` SDK PATH — the build compiles against whatever Niagara install that path points at (iSMA 4.13.2 SDK), deploys to a different station (Honeywell 4.14); switching 4.13/4.14/4.15 = repoint the path + match the plugin version (§14 reframes B636 dev#2) |
+| 639 | [niagara-mental-model-bloque639.md](niagara-mental-model-bloque639.md) | Niagara N4 — own-modules-audit (OMB3): signing is convention-driven (no `niagaraSigning{}` block) via the `angelessignerCA` alias in `niagara_user_home/security/keystore.jceks` — the active ANGELES chain replacing the legacy SEJOFA one — plus the `niagara-tools` deploy+KB repo |
