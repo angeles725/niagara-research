@@ -1,0 +1,3 @@
+JsonSchema instances found: ['/obix/config/', '/obix/config/JsonSchema/']
+jsonToolkit INBOUND handler instances: NONE
+queries under schema: Query(outbound JsonSchemaQuery) only

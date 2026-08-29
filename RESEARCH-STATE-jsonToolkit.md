@@ -20,11 +20,11 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 344
-gaps_closed: 14
+covered_blocks: 608
+gaps_closed: 16
 known_gaps: 14
 investigable_open: 0
-requires_execution_open: 2
+requires_execution_open: 0
 blocked_open: 0
 deferred_open: 0
 undocumented_findings: 0
@@ -84,8 +84,8 @@ program, query, schedule, serial.
 | medium | J12 util / engine-cycle queues — LicenseLimit, BEngineCycleMessageQueue backpressure (drop/block) | decompiled-java | closed (B346) |
 | low | J13 ux + wb layers — editores, BJsonToolkitRpcUtil (RPC), FormattedJsonParser (Gson) | decompiled-java + doc | closed (B347) |
 | low | J14 doc-synthesis — grounding en docJsonToolkit (115 archivos [CERT-doc]) + lo que la doc NO resuelve | external-doc | closed (B348) |
-| high | jsonToolkit-G1 export-marker registration ACL bypass — validar en vivo que un JSON entrante registra un ORD arbitrario (B341 §341.4) | live-station | requires-execution → §12 |
-| high | jsonToolkit-G2 alarm-ack attribution spoof — validar el record.setUser verbatim (B341 §341.3) | live-station | requires-execution → §12 |
+| high | jsonToolkit-G1 export-marker registration ACL bypass — **CERRADO [CERT-live] (B608, §12 GATED-BY-DEPLOYMENT)**: station JsonSchema es OUTBOUND-ONLY, 0 inbound handlers → defecto B341 §341.4 sin superficie viva. | live-station | CLOSED |
+| high | jsonToolkit-G2 alarm-ack attribution spoof — **CERRADO [CERT-live] (B608)**: idem, sin inbound handler; defecto B341 §341.3 sin superficie viva. | live-station | CLOSED |
 
 ## Iteration history
 
@@ -115,7 +115,7 @@ program, query, schedule, serial.
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
 - **Open gaps — read-only investigable**: 0 → STOP (gaps done)   ← el loop ESTÁTICO para cuando esto llega a 0
-- **Open gaps — requires-execution**: 2 (jsonToolkit-G1/G2 — live-station)
+- **Open gaps — requires-execution**: 0 (jsonToolkit-G1/G2 CERRADOS B608, GATED-BY-DEPLOYMENT). Focus fully closed.
 - **Open gaps — blocked**: 0
 - Consecutive iterations with empty backlog (secondary): 0/2
 - Budget cap: none
