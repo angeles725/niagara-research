@@ -20,13 +20,13 @@
 
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 643
+covered_blocks: 652
 gaps_closed: 8
 known_gaps: 8
 investigable_open: 0
-requires_execution_open: 1
+requires_execution_open: 0
 blocked_open: 0
-deferred_open: 1
+deferred_open: 0
 undocumented_findings: 0
 block_scope: shared-global
 <!-- /research-state.v1 -->
@@ -62,7 +62,7 @@ block_scope: shared-global
 | medium | OMA6 — `httpClientGAngeles` (the "correct" one: permGroups=0, vendorVersion 4.14.0.162, 87 types, tri-profile): why it is the best-built, likely a fork/rebrand of Tridium `httpClient` — the positive exemplar | direct-artifact · httpClientGAngeles-{rt,ux,wb}.jar | ✅ B641 — REFRAME: NOT own-built exemplar; it is Tridium's com.tridiumx.httpClient add-on repackaged (vendor SEJOFA, all classes com/tridiumx/httpClient/*) with SMA license gate 'neutralized' + re-signed. Clean manifest (0 perms, real vendorVersion 4.14) is INHERITED from Tridium, not authored. Licensing/compliance exposure (runs unlicensed, enabled by moduleVerificationMode=low). Copy the SHAPE not the provenance |
 | medium | OMA2 — the ANGELES-namespace modules (`angeles`, `demoangeles`, `interfaz1`): grade the operator's direct-namespace modules vs [B636]; interfaz1 has 0-type/0-class ux+wb shells | direct-artifact · angeles/demoangeles/interfaz1 jars | ✅ B642 — clean equipment+Monitor model (angeles com.sejofa.angeles HVAC: Chiller/CoolingTower/DieselGenerator/…+Monitor twins; demoangeles=demo; interfaz1 com.angeles Dashboard+NotifierHoneywell); namespace split com.sejofa vs com.angeles under one ANGELES vendor; interfaz1-ux=pure-web (legit), interfaz1-wb=genuinely empty (drop); systemic deviations only |
 | low | OMA7 — the small SEJOFA dashboards (`electri`, `sanluis`, `sejofadashboard`, `tr3z`, `multivistaspersonalizados`, `dashboardups`): grouped grade vs [B636]; several have empty ux shells | direct-artifact · 6 jars | ✅ B646 — ONE repeatable TEMPLATE cloned per site: BXxxDashboardService + domain Monitors (com.sejofa.<mod>.components) + pure-web -ux (9-26 rc/ assets, 0 Java, all six). sejofadashboard=richer base (BDashboardConfig+BSejoFaServlet). Same as chihuahua/angeles shape. Only systemic deviations (ver1.0, type=all) → fix TEMPLATE once + re-clone. No vendor forks, palettes shipped |
-| deferred | MCP-G2 — is a BMcpServlet instance actually MOUNTED/reachable in any running station? (config.bog / live check) — determines whether the B643 authz-bypass is live vs latent | requires-execution · config.bog / live station | requires-execution |
+| deferred | MCP-G2 — is a BMcpServlet instance actually MOUNTED/reachable in any running station? (config.bog / live check) — determines whether the B643 authz-bypass is live vs latent | requires-execution · config.bog / live station | ✅ B656 (§12 LIVE) — /mcp is MOUNTED (405 GET; 404 other names); POST tools/list as API2 → HTTP 200 + tools[create_component,set_property,…]. Servlet dispatches mutating tool surface to ANY authed user (getRemoteUser-only, no RBAC per B643). Bypass LIVE-REACHABLE on dev supervisor (not maquila prod). Read-only probe, no mutating tool. Rec: unmount/disable or add runAsUser RBAC; rotate API2 |
 | high | OMA8 — SYNTHESIS: the operator's module-building signature (recurring good + bad patterns across OMA1-OMA7), a consolidated prioritized remediation plan, and a corrected reference build template for the shop | design synthesis over OMA1-OMA7 + [B636] | ✅ B647 — shop signature (DashboardService+Monitor+pure-web-ux template, palettes, documented build; strengths+5 recurring template deviations) + corrected build knowledge (variants/version=SDK-path/signing angelessignerCA/tests dead by 7.6.17) + mcpbridge authz-bypass (latent/dev-only) + prioritized remediation (chihuahua first=prod) + FIXED reference build template. FOCUS CLOSED |
 
 ## Iteration history
@@ -81,6 +81,7 @@ block_scope: shared-global
 | 9 | 2026-08-29 | OMA3 datacenter-ux (Gson uber-jar, 3D rc/; 'heavy ux' refuted) | B645 | yes·sonnet (anomaly sweep) + inline verify | 0 |
 | 10 | 2026-08-29 | OMA7 six small SEJOFA dashboards = one template | B646 | no·inline (manifest scan + verify) | 0 |
 | 11 | 2026-08-29 | OMA8 SYNTHESIS + fixed template (FOCUS CLOSED) | B647 | no·inline (synthesis over B637-B646) | 0 |
+| 12 | 2026-08-29 | MCP-G2 §12 LIVE — /mcp mounted, tool surface reachable by any authed user | B656 | no·inline (§12 live read-only probe) | 0 |
 
 ## Blocked gaps (each tagged with what it needs)
 
@@ -89,7 +90,7 @@ block_scope: shared-global
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
 - **Open gaps — read-only investigable**: 0   ← the STATIC loop STOPS when this hits 0
-- **Open gaps — requires-execution**: 1 (MCP-G2)
+- **Open gaps — requires-execution**: 0 (MCP-G2 closed live by B656)
 - **Open gaps — blocked**: 0
 - **FOCUS STOPPED** 2026-08-29: investigable 8/8 + synthesis (OMB1-3, OMA1-8); MCP-G2 requires-execution deferred; §18 retro pending
 - Consecutive iterations with empty backlog (secondary): 0/2
