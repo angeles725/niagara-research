@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **632 blocks**
+Total: **633 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -638,3 +638,4 @@ Total: **632 blocks**
 | 634 | [niagara-mental-model-bloque634.md](niagara-mental-model-bloque634.md) | Niagara N4 — module-anatomy (MA6): the palette runtime reader — `module.palette` is discovered lazily from the module's `BZipSpace`, BOG-decoded into an ungated nav node (`BModulePaletteNode`), and cached per module |
 | 635 | [niagara-mental-model-bloque635.md](niagara-mental-model-bloque635.md) | Niagara N4 — module-anatomy (MA7): module `<permissions>` → Java security policy — two tracks (`<java-permissions>` enforced by the SecurityManager per-CodeSource, `<niagara-permission-groups>` granted by a DEFAULT grant-all store), atop an always-restricted base grant |
 | 636 | [niagara-mental-model-bloque636.md](niagara-mental-model-bloque636.md) | Niagara N4 — module-anatomy (MA8, SYNTHESIS): the reference module skeleton + the `com.angeles.chihuahua` case study — how a well-built N4 module is shaped, and the concrete deviations to fix |
+| 637 | [niagara-mental-model-bloque637.md](niagara-mental-model-bloque637.md) | Niagara N4 — own-modules-audit (OMB1): the operator's REAL build workflow — three deploy modes (A/B/C), the Clean+Slotomatic+Build vs Clean+Build variant rule, and the verified verdict on tests (niagaraTest is dead by a plugin 7.6.17 bug; pure-JUnit logic tests DO work) |
