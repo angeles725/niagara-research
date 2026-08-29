@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **637 blocks**
+Total: **639 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -643,3 +643,5 @@ Total: **637 blocks**
 | 639 | [niagara-mental-model-bloque639.md](niagara-mental-model-bloque639.md) | Niagara N4 — own-modules-audit (OMB3): signing is convention-driven (no `niagaraSigning{}` block) via the `angelessignerCA` alias in `niagara_user_home/security/keystore.jceks` — the active ANGELES chain replacing the legacy SEJOFA one — plus the `niagara-tools` deploy+KB repo |
 | 640 | [niagara-mental-model-bloque640.md](niagara-mental-model-bloque640.md) | Niagara N4 — own-modules-audit (OMA1): the systemic patterns across ALL the operator's modules — universal over-permissioning, frozen `vendorVersion 1.0`, one build host, a signer migration in progress, and several near-empty `-ux`/`-wb` shells |
 | 641 | [niagara-mental-model-bloque641.md](niagara-mental-model-bloque641.md) | Niagara N4 — own-modules-audit (OMA6): `httpClientGAngeles` is NOT an own-built exemplar — it is Tridium's `com.tridiumx.httpClient` add-on REPACKAGED under vendor SEJOFA with the SMA license gate "neutralized" and re-signed; its clean manifest is inherited, not authored |
+| 642 | [niagara-mental-model-bloque642.md](niagara-mental-model-bloque642.md) | Niagara N4 — own-modules-audit (OMA2): the ANGELES-namespace modules (`angeles`, `demoangeles`, `interfaz1`) — a clean equipment-component + Monitor pattern, split across two Java namespaces (`com.sejofa.*` vs `com.angeles.*`), carrying the systemic deviations plus one genuinely empty `-wb` part |
+| 643 | [niagara-mental-model-bloque643.md](niagara-mental-model-bloque643.md) | Niagara N4 — own-modules-audit (OMA5): `mcpbridge` is a Model Context Protocol server exposing the station to AI agents (list/read/set/create/link component tools) via `BMcpServlet` — auth-gated (401 if unauthenticated) but per-tool RBAC granularity is unverified; 95% of its bulk is bundled Gson |
