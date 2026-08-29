@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **624 blocks**
+Total: **625 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -630,3 +630,4 @@ Total: **624 blocks**
 | 626 | [niagara-mental-model-bloque626.md](niagara-mental-model-bloque626.md) | ports (PO-G7): platform daemon :3011/:5011 auth model — platform-user username/password, TLS-mode enum, full-host reach |
 | 627 | [niagara-mental-model-bloque627.md](niagara-mental-model-bloque627.md) | ports (SYNTHESIS / PO-G8): the master per-port reference for a Niagara N4 install — purpose, auth gate, reachability |
 | 628 | [niagara-mental-model-bloque628.md](niagara-mental-model-bloque628.md) | ports (PO-G7w): the platform daemon credential frame is HTTP Basic/Digest(MD5) + a shared-secret-key init — resolved from code, transport confirmed live |
+| 629 | [niagara-mental-model-bloque629.md](niagara-mental-model-bloque629.md) | Niagara N4 — module-anatomy (MA1): the module.xml manifest is parsed TWICE by two independent readers — install-side `ModuleManifest`/`BModulePart` and runtime-side `NModule` — with no converter between them |
