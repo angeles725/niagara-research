@@ -28,9 +28,9 @@ schema: research-state.v1
 method: dynamic-live
 block_scope: shared-global
 covered_blocks: 657
-gaps_closed: 6
+gaps_closed: 7
 known_gaps: 13
-investigable_open: 4
+investigable_open: 3
 requires_execution_open: 0
 blocked_open: 3
 deferred_open: 0
@@ -39,8 +39,8 @@ undocumented_findings: 0
 
 ## Coverage / open items
 
-Coverage: **6/13 gaps closed (J9K-0 B657; J9K-1 + J9K-8 via `[CERT-web]`; J9K-4 B658; J9K-5 B659;
-J9K-6 B660); investigable_open=4, blocked-live=3**. The DOC-answerable read-only surface can be
+Coverage: **7/13 gaps closed (J9K-0 B657; J9K-1 + J9K-8 via `[CERT-web]`; J9K-4 B658; J9K-5 B659;
+J9K-6 B660; J9K-7 B661); investigable_open=3, blocked-live=3**. The DOC-answerable read-only surface can be
 driven to close without the device; the 3 blocked gaps (J9K-2 diagnostic OUTPUTS, J9K-3 pre-login exposure,
 J9K-9 passphrase-on-serial) need the operator's live serial session (paste or usbipd bridge). LIVE this
 session (B657): console reachable, ATLAS System Shell, idle-timeout re-auth, System Diagnostic submenu
@@ -56,7 +56,7 @@ doc example (opt reached Network Config Utility, not Ping Host) → re-capture a
 | high | J9K-4 boot-options & recovery surface (ESC at boot) | 2-option Boot menu; Platform Access Recovery (Tridium-signed Reset Auth Key, 24h token, Host-id-bound, KEEPS data); SHUT-DOWN-button factory wipe (deletes all data); System Decrypt Failure menu (4 opts). None read-only. §14 contrast to B463 (J8=8 opts, same crypto model) | **covered B658** |
 | medium | J9K-5 DEBUG shell activation | normal serial login is always live (connect + press Enter, ConnectingToTheControllerDebugSyste:71); "special power-up mode" = WB-over-USB commissioning + the ESC/SHUTDOWN recovery boots, NOT day-to-day login (one [INFER] reconciliation → live-confirm) | **covered B659** |
 | medium | J9K-6 read-only / non-admin platform account over serial | NO non-admin/viewer platform role exists: all platform users have "full equal privileges" (Commissioning:52); platform daemon = highest-level access. Serial read-only-ness = menu choice, not a limited account. Station RBAC is a separate layer | **covered B660** |
-| medium | J9K-7 SSH as alternative shell path | SSH (if enabled) delivers the SAME platform-login system-shell menu; default-enabled state = live | pending · investigable (doc; default-state live) |
+| medium | J9K-7 SSH as alternative shell path | SSH delivers the SAME menu shell (not raw OS), platform login still required (AA1F5AC0:25-26); SFTP/SSH disabled by default, TCP 22, standing caution to keep off. Whether ON on THIS unit = live | **covered B661** |
 | medium | J9K-8 SoC/CPU spec | **NXP i.MX8M Plus, quad-core (ARM Cortex-A53)** — Tridium datasheet/FAQ [CERT-web] (vs JACE-8000 TI AM335x Cortex-A8, B459); 2GB LPDDR4 / 8GB microSD | **covered B657** |
 | medium | J9K-9 System Passphrase prompt on serial login | does factory passphrase gate every serial login, or only install/copy? (B466 remittance) | pending · blocked-live |
 | high | J9K-10 live main-menu numbering & read-only map | LIVE (B657): the doc example's per-number map is FIRMWARE-DEPENDENT — the key doc'd as `3 Ping Host` reached the Network Config Utility (mutating) on this unit; `4 → System Diagnostic` matched. Re-capture THIS firmware's exact main menu (operator paste) to replace the doc example. Diagnostic submenu = confirmed all-read-only | pending · needs operator paste of main menu |
@@ -82,6 +82,7 @@ doc example (opt reached Network Config Utility, not Ping Host) → re-capture a
 | B658 | J9K-4 | no·inline (doc) | boot/recovery serial surface: 2-opt Boot menu, Platform Access Recovery (Tridium-signed, keeps data), SHUT-DOWN factory wipe, decrypt-failure menu; §14 contrast B463 |
 | B659 | J9K-5 | yes·sonnet (doc sweep) + inline verify | shell activation: normal login always live (press Enter); "special power-up mode" = commissioning/recovery, not daily login; 1 [INFER] flagged |
 | B660 | J9K-6 | no·inline (doc, sweep material) | platform accounts: all "full equal privileges", no non-admin/viewer role; read-only = menu choice not account; sharpens admin1 exposure |
+| B661 | J9K-7 | no·inline (doc, sweep material) | SSH = same menu shell (not raw OS), platform login required; SFTP/SSH off by default TCP 22 + keep-off caution; matches B468 |
 
 ## Next — LIVE-gated gaps (need the operator's serial session)
 
