@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **639 blocks**
+Total: **641 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -645,3 +645,5 @@ Total: **639 blocks**
 | 641 | [niagara-mental-model-bloque641.md](niagara-mental-model-bloque641.md) | Niagara N4 — own-modules-audit (OMA6): `httpClientGAngeles` is NOT an own-built exemplar — it is Tridium's `com.tridiumx.httpClient` add-on REPACKAGED under vendor SEJOFA with the SMA license gate "neutralized" and re-signed; its clean manifest is inherited, not authored |
 | 642 | [niagara-mental-model-bloque642.md](niagara-mental-model-bloque642.md) | Niagara N4 — own-modules-audit (OMA2): the ANGELES-namespace modules (`angeles`, `demoangeles`, `interfaz1`) — a clean equipment-component + Monitor pattern, split across two Java namespaces (`com.sejofa.*` vs `com.angeles.*`), carrying the systemic deviations plus one genuinely empty `-wb` part |
 | 643 | [niagara-mental-model-bloque643.md](niagara-mental-model-bloque643.md) | Niagara N4 — own-modules-audit (OMA5): `mcpbridge` is a Model Context Protocol server exposing the station to AI agents (list/read/set/create/link component tools) via `BMcpServlet` — auth-gated (401 if unauthenticated) but per-tool RBAC granularity is unverified; 95% of its bulk is bundled Gson |
+| 644 | [niagara-mental-model-bloque644.md](niagara-mental-model-bloque644.md) | Niagara N4 — own-modules-audit (OMA4): `sdash` is the shop's most sophisticated dashboard (WebSocket sync, own ORD scheme, per-agent-permissioned command types) wrapped in a 2186-class uber-jar (96% Jackson + Apache Commons) still on the legacy SEJOFA_C signer |
+| 645 | [niagara-mental-model-bloque645.md](niagara-mental-model-bloque645.md) | Niagara N4 — own-modules-audit (OMA3): `datacenter-ux`'s "220 classes" are 99% bundled Gson, NOT misplaced business logic — the real payload is an `rc/` 3D dashboard (Three.js + Chart.js) with hardcoded rack data and a stray `CASINO` asset; profile placement is correct (corrects the OMA1 "heavy ux" worry) |
