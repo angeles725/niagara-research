@@ -29,11 +29,11 @@
 schema: research-state.v1
 method: document-cycle-external
 block_scope: shared-global
-covered_blocks: 600
-gaps_closed: 1
+covered_blocks: 601
+gaps_closed: 2
 known_gaps: 4
-investigable_open: 3
-requires_execution_open: 3
+investigable_open: 2
+requires_execution_open: 2
 blocked_open: 0
 deferred_open: 0
 undocumented_findings: 0
@@ -47,7 +47,7 @@ Outline cubierto 2/2 (login + extracción). Gaps:
   config/); **NO existe servlet de BQL-over-HTTP** (`/bql/`404, `/ord/`400, `/spy/`404). Recetas ejecutadas en
   vivo (history query 3 recs, watch add NumericDelay/out=0.0).
 - **B457-G2** (lifecycle `niagara_userid` + CSRF en writes) — investigable (live session).
-- **B458-G1** (contrato del op `rollup` para downsample server-side) — investigable (live session).
+- **B458-G1** — **CERRADO [CERT-live] (B601, §12)**: `rollup` = downsample server-side; input HistoryRollupIn (start/end + reltime interval), output buckets count/min/max/avg/sum densos (bucket vacío = count 0). min/max preservan picos (vs webChart average B369).
 - **B458-G2** (paths de write/commit oBIX — solo lectura hoy) — **⚠ CONFIG MUTATION** (rung-2), requiere
   autorización de escritura del operador.
 Acción de seguridad (no-gap): **ROTAR credenciales API2 expuestas en chat.**

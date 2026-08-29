@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type='text/xsl' href='/obix/xsl'?>
+<obj href="https://localhost/obix/histories/PRUEBAS/Ramp/~historyRollup/" is="obix:HistoryQueryOut" xmlns="http://obix.org/ns/schema/1.0" xsi:schemaLocation="http://obix.org/ns/schema/1.0 /obix/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <list name="data" of="obix:HistoryRollupRecord">
+  <obj>
+   <abstime name="start" val="2026-08-28T00:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-28T01:00:00.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="0"/>
+   <real name="min" val="0.0"/>
+   <real name="max" val="0.0"/>
+   <real name="avg" val="0.0"/>
+   <real name="sum" val="0.0"/>
+  </obj>
+  <obj>
+   <abstime name="start" val="2026-08-28T01:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-28T02:00:00.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="0"/>
+   <real name="min" val="0.0"/>
+   <real name="max" val="0.0"/>
+   <real name="avg" val="0.0"/>
+   <real name="sum" val="0.0"/>
+  </obj>
+  <obj>
+   <abstime name="start" val="2026-08-28T02:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-28T03:00:00.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="0"/>
+   <real name="min" val="0.0"/>
+   <real name="max" val="0.0"/>
+   <real name="avg" val="0.0"/>
+   <real name="sum" val="0.0"/>
+  </obj>
+  <obj>
+   <abstime name="start" val="2026-08-28T03:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-28T04:00:00.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="0"/>
+   <real name="min" val="0.0"/>
+   <real name="max" val="0.0"/>
+   <real name="avg" val="0.0"/>
+   <real name="sum" val="0.0"/>
+  </obj>
+  <obj>
+   <abstime name="start" val="2026-08-28T04:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-28T05:00:00.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="0"/>
+   <real name="min" val="0.0"/>
+   <real name="max" val="0.0"/>
+   <real name="avg" val="0.0"/>
+   <real name="sum" val="0.0"/>
+  </obj>
+  <obj>
+   <abstime name="start" val="2026-08-28T05:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-28T06:00:00.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="0"/>
+   <real name="min" val="0.0"/>
+   <real name="max" val="0.0"/>
+   <real name="avg" val="0.0"/>
+   <real name="sum" val="0.0"/>
+  </obj>
+  <obj>
+   <abstime name="start" val="2026-08-28T06:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-28T07:00:00.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="0"/>
+   <real name="min" val="0.0"/>
+   <real name="max" val="0.0"/>
+   <real name="avg" val="0.0"/>
+   <real name="sum" val="0.0"/>
+  </obj>
+  <obj>
+   <abstime name="start" val="2026-08-28T07:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-28T08:00:00.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="0"/>
+   <real name="min" val="0.0"/>
+   <real name="max" val="0.0"/>
+   <real name="avg" val="0.0"/>
+   <real name="sum" val="0.0"/>
+  </obj>
+  <obj>
+   <abstime name="start" val="2026-08-28T08:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-28T09:00:00.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="0"/>
+   <real name="min" val="0.0"/>
+   <real name="max" val="0.0"/>
+   <real name="avg" val="0.0"/>
+   <real name="sum" val="0.0"/>
+  </obj>
+  <obj>
+   <abstime name="start" val="2026-08-28T09:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-28T10:00:00.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="0"/>
+   <real name="min" val="0.0"/>
+   <real name="max" val="0.0"/>
+   <real name="avg" val="0.0"/>
+   <real name="sum" val="0.0"/>
+  </obj>
+  <obj>
+   <abstime name="start" val="2026-08-28T10:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-28T11:00:00.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="0"/>
+   <real name="min" val="0.0"/>
+   <real name="max" val="0.0"/>
+   <real name="avg" val="0.0"/>
+   <real name="sum" val="0.0"/>
+  </obj>
+  <obj>
+   <abstime name="start" val="2026-08-28T11:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-28T12:00:00.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="0"/>
+   <real name="min" val="0.0"/>
+   <real name="max" val="0.0"/>
+   <real name="avg" val="0.0"/>
+   <real name="sum" val="0.0"/>
+  </obj>
+  <obj>
+   <abstime name="start" val="2026-08-28T12:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-28T13:00:00.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="0"/>
+   <real name="min" val="0.0"/>
+   <real name="max" val="0.0"/>
+   <real name="avg" val="0.0"/>
+   <real name="sum" val="0.0"/>
+  </obj>
+  <obj>
+   <abstime name="start" val="2026-08-28T13:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-28T14:00:00.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="0"/>
+   <real name="min" val="0.0"/>
+   <real name="max" val="0.0"/>
+   <real name="avg" val="0.0"/>
+   <real name="sum" val="0.0"/>
+  </obj>
+  <obj>
+   <abstime name="start" val="2026-08-28T14:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-28T15:00:00.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="0"/>
+   <real name="min" val="0.0"/>
+   <real name="max" val="0.0"/>
+   <real name="avg" val="0.0"/>
+   <real name="sum" val="0.0"/>
+  </obj>
+  <obj>
+   <abstime name="start" val="2026-08-28T15:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-28T16:00:00.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="0"/>
+   <real name="min" val="0.0"/>
+   <real name="max" val="0.0"/>
+   <real name="avg" val="0.0"/>
+   <real name="sum" val="0.0"/>
+  </obj>
+  <obj>
+   <abstime name="start" val="2026-08-28T16:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-28T17:00:00.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="0"/>
+   <real name="min" val="0.0"/>
+   <real name="max" val="0.0"/>
+   <real name="avg" val="0.0"/>
+   <real name="sum" val="0.0"/>
+  </obj>
+  <obj>
+   <abstime name="start" val="2026-08-28T17:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-28T18:00:00.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="0"/>
+   <real name="min" val="0.0"/>
+   <real name="max" val="0.0"/>
+   <real name="avg" val="0.0"/>
+   <real name="sum" val="0.0"/>
+  </obj>
+  <obj>
+   <abstime name="start" val="2026-08-28T18:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-28T19:00:00.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="0"/>
+   <real name="min" val="0.0"/>
+   <real name="max" val="0.0"/>
+   <real name="avg" val="0.0"/>
+   <real name="sum" val="0.0"/>
+  </obj>
+  <obj>
+   <abstime name="start" val="2026-08-28T19:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-28T20:00:00.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="0"/>
+   <real name="min" val="0.0"/>
+   <real name="max" val="0.0"/>
+   <real name="avg" val="0.0"/>
+   <real name="sum" val="0.0"/>
+  </obj>
+  <obj>
+   <abstime name="start" val="2026-08-28T20:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-28T21:00:00.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="0"/>
+   <real name="min" val="0.0"/>
+   <real name="max" val="0.0"/>
+   <real name="avg" val="0.0"/>
+   <real name="sum" val="0.0"/>
+  </obj>
+  <obj>
+   <abstime name="start" val="2026-08-28T21:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-28T22:00:00.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="0"/>
+   <real name="min" val="0.0"/>
+   <real name="max" val="0.0"/>
+   <real name="avg" val="0.0"/>
+   <real name="sum" val="0.0"/>
+  </obj>
+  <obj>
+   <abstime name="start" val="2026-08-28T22:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-28T23:00:00.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="0"/>
+   <real name="min" val="0.0"/>
+   <real name="max" val="0.0"/>
+   <real name="avg" val="0.0"/>
+   <real name="sum" val="0.0"/>
+  </obj>
+  <obj>
+   <abstime name="start" val="2026-08-28T23:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-29T00:00:00.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="0"/>
+   <real name="min" val="0.0"/>
+   <real name="max" val="0.0"/>
+   <real name="avg" val="0.0"/>
+   <real name="sum" val="0.0"/>
+  </obj>
+  <obj>
+   <abstime name="start" val="2026-08-29T00:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-29T01:00:00.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="0"/>
+   <real name="min" val="0.0"/>
+   <real name="max" val="0.0"/>
+   <real name="avg" val="0.0"/>
+   <real name="sum" val="0.0"/>
+  </obj>
+  <obj>
+   <abstime name="start" val="2026-08-29T01:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-29T02:00:00.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="176"/>
+   <real name="min" val="0.20666666328907013"/>
+   <real name="max" val="99.7933349609375"/>
+   <real name="avg" val="50.97056831868196"/>
+   <real name="sum" val="8970.820024088025"/>
+  </obj>
+  <obj>
+   <abstime name="start" val="2026-08-29T02:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-29T03:00:00.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="324"/>
+   <real name="min" val="0.1066666692495346"/>
+   <real name="max" val="99.7933349609375"/>
+   <real name="avg" val="51.331790319793384"/>
+   <real name="sum" val="16631.500063613057"/>
+  </obj>
+  <obj>
+   <abstime name="start" val="2026-08-29T03:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-29T04:00:00.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="0"/>
+   <real name="min" val="0.0"/>
+   <real name="max" val="0.0"/>
+   <real name="avg" val="0.0"/>
+   <real name="sum" val="0.0"/>
+  </obj>
+  <obj>
+   <abstime name="start" val="2026-08-29T04:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-29T05:00:00.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="0"/>
+   <real name="min" val="0.0"/>
+   <real name="max" val="0.0"/>
+   <real name="avg" val="0.0"/>
+   <real name="sum" val="0.0"/>
+  </obj>
+  <obj>
+   <abstime name="start" val="2026-08-29T05:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-29T06:00:00.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="0"/>
+   <real name="min" val="0.0"/>
+   <real name="max" val="0.0"/>
+   <real name="avg" val="0.0"/>
+   <real name="sum" val="0.0"/>
+  </obj>
+  <obj>
+   <abstime name="start" val="2026-08-29T06:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-29T07:00:00.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="0"/>
+   <real name="min" val="0.0"/>
+   <real name="max" val="0.0"/>
+   <real name="avg" val="0.0"/>
+   <real name="sum" val="0.0"/>
+  </obj>
+  <obj>
+   <abstime name="start" val="2026-08-29T07:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-29T08:00:00.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="0"/>
+   <real name="min" val="0.0"/>
+   <real name="max" val="0.0"/>
+   <real name="avg" val="0.0"/>
+   <real name="sum" val="0.0"/>
+  </obj>
+  <obj>
+   <abstime name="start" val="2026-08-29T08:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-29T09:00:00.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="0"/>
+   <real name="min" val="0.0"/>
+   <real name="max" val="0.0"/>
+   <real name="avg" val="0.0"/>
+   <real name="sum" val="0.0"/>
+  </obj>
+  <obj>
+   <abstime name="start" val="2026-08-29T09:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-29T10:00:00.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="0"/>
+   <real name="min" val="0.0"/>
+   <real name="max" val="0.0"/>
+   <real name="avg" val="0.0"/>
+   <real name="sum" val="0.0"/>
+  </obj>
+  <obj>
+   <abstime name="start" val="2026-08-29T10:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-29T11:00:00.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="0"/>
+   <real name="min" val="0.0"/>
+   <real name="max" val="0.0"/>
+   <real name="avg" val="0.0"/>
+   <real name="sum" val="0.0"/>
+  </obj>
+  <obj>
+   <abstime name="start" val="2026-08-29T11:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-29T12:00:00.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="0"/>
+   <real name="min" val="0.0"/>
+   <real name="max" val="0.0"/>
+   <real name="avg" val="0.0"/>
+   <real name="sum" val="0.0"/>
+  </obj>
+  <obj>
+   <abstime name="start" val="2026-08-29T12:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-29T13:00:00.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="0"/>
+   <real name="min" val="0.0"/>
+   <real name="max" val="0.0"/>
+   <real name="avg" val="0.0"/>
+   <real name="sum" val="0.0"/>
+  </obj>
+  <obj>
+   <abstime name="start" val="2026-08-29T13:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-29T14:00:00.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="0"/>
+   <real name="min" val="0.0"/>
+   <real name="max" val="0.0"/>
+   <real name="avg" val="0.0"/>
+   <real name="sum" val="0.0"/>
+  </obj>
+  <obj>
+   <abstime name="start" val="2026-08-29T14:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-29T15:00:00.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="0"/>
+   <real name="min" val="0.0"/>
+   <real name="max" val="0.0"/>
+   <real name="avg" val="0.0"/>
+   <real name="sum" val="0.0"/>
+  </obj>
+  <obj>
+   <abstime name="start" val="2026-08-29T15:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-29T16:00:00.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="0"/>
+   <real name="min" val="0.0"/>
+   <real name="max" val="0.0"/>
+   <real name="avg" val="0.0"/>
+   <real name="sum" val="0.0"/>
+  </obj>
+  <obj>
+   <abstime name="start" val="2026-08-29T16:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-29T17:00:00.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="0"/>
+   <real name="min" val="0.0"/>
+   <real name="max" val="0.0"/>
+   <real name="avg" val="0.0"/>
+   <real name="sum" val="0.0"/>
+  </obj>
+  <obj>
+   <abstime name="start" val="2026-08-29T17:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-29T18:00:00.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="0"/>
+   <real name="min" val="0.0"/>
+   <real name="max" val="0.0"/>
+   <real name="avg" val="0.0"/>
+   <real name="sum" val="0.0"/>
+  </obj>
+  <obj>
+   <abstime name="start" val="2026-08-29T18:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-29T19:00:00.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="0"/>
+   <real name="min" val="0.0"/>
+   <real name="max" val="0.0"/>
+   <real name="avg" val="0.0"/>
+   <real name="sum" val="0.0"/>
+  </obj>
+  <obj>
+   <abstime name="start" val="2026-08-29T19:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-29T20:00:00.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="0"/>
+   <real name="min" val="0.0"/>
+   <real name="max" val="0.0"/>
+   <real name="avg" val="0.0"/>
+   <real name="sum" val="0.0"/>
+  </obj>
+  <obj>
+   <abstime name="start" val="2026-08-29T20:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-29T21:00:00.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="0"/>
+   <real name="min" val="0.0"/>
+   <real name="max" val="0.0"/>
+   <real name="avg" val="0.0"/>
+   <real name="sum" val="0.0"/>
+  </obj>
+  <obj>
+   <abstime name="start" val="2026-08-29T21:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-29T22:00:00.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="0"/>
+   <real name="min" val="0.0"/>
+   <real name="max" val="0.0"/>
+   <real name="avg" val="0.0"/>
+   <real name="sum" val="0.0"/>
+  </obj>
+  <obj>
+   <abstime name="start" val="2026-08-29T22:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-29T23:00:00.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="0"/>
+   <real name="min" val="0.0"/>
+   <real name="max" val="0.0"/>
+   <real name="avg" val="0.0"/>
+   <real name="sum" val="0.0"/>
+  </obj>
+  <obj>
+   <abstime name="start" val="2026-08-29T23:00:00.000-06:00" tz="America/Mexico_City"/>
+   <abstime name="end" val="2026-08-29T23:59:59.000-06:00" tz="America/Mexico_City"/>
+   <int name="count" val="0"/>
+   <real name="min" val="0.0"/>
+   <real name="max" val="0.0"/>
+   <real name="avg" val="0.0"/>
+   <real name="sum" val="0.0"/>
+  </obj>
+ </list>
+ <int name="count" val="48"/>
+ <abstime name="start" val="2026-08-28T00:00:00.000-06:00" tz="America/Mexico_City"/>
+ <abstime name="end" val="2026-08-29T23:59:59.000-06:00" tz="America/Mexico_City"/>
+</obj>
