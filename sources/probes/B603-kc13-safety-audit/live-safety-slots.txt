@@ -1,0 +1,38 @@
+
+# /obix/config/NumericDelay/ /obix/def/kitControl:NumericDelay
+    <str name="facets" val="units=u:null;;;;|precision=i:1|min=d:-inf|max=d:+inf" href="facets/" display="units=null,precision=1,min=-inf,max=+i
+    <real name="out" val="0.0" href="out/" is="/obix/def/baja:StatusNumeric" display="0,0 {ok}" displayName="Out" icon="/ord?module://icons/x16/
+
+# /obix/config/Drivers/CODIGOS/OneShot2/ /obix/def/kitControl:OneShot
+    <str name="facets" val="trueText=s:true|falseText=s:false" href="facets/" display="trueText=true,falseText=false" displayName="Facets" writa
+    <bool name="out" val="false" href="out/" is="/obix/def/baja:StatusBoolean" display="false {ok}" displayName="Out" icon="/ord?module://icons/
+
+# /obix/config/Drivers/CODIGOS/StringSelect/ /obix/def/kitControl:StringSelect
+    <str name="facets" val="" href="facets/" null="true" displayName="Facets" writable="true"/>
+    <str name="propagateFlags" val="40" href="propagateFlags/" null="true" display="{null}" displayName="Propagate Flags" writable="true">
+    <str name="out" val="" href="out/" is="/obix/def/baja:StatusString" null="true" display="- {null}" displayName="Out" icon="/ord?module://ico
+
+# /obix/config/Drivers/CODIGOS/GreaterThan1/ /obix/def/baja:Link
+    <str name="facets" val="trueText=s:true|falseText=s:false" href="facets/" display="trueText=true,falseText=false" displayName="Facets" writa
+    <bool name="out" val="true" status="unackedAlarm" href="out/" is="/obix/def/baja:StatusBoolean" display="true {alarm,unackedAlarm}" displayN
+    <str name="propagateFlags" val="0" href="propagateFlags/" display="{ok}" displayName="Propagate Flags" writable="true">
+
+# /obix/config/Drivers/CODIGOS/Add/ /obix/def/baja:ConversionLink
+    <str name="facets" val="units=u:null;;;;|precision=i:1|min=d:-inf|max=d:+inf" href="facets/" display="units=null,precision=1,min=-inf,max=+i
+    <real name="out" val="0.0" href="out/" is="/obix/def/baja:StatusNumeric" display="0,0 {ok}" displayName="Out" icon="/ord?module://icons/x16/
+    <str name="propagateFlags" val="0" href="propagateFlags/" display="{ok}" displayName="Propagate Flags" writable="true">
+
+# /obix/config/Drivers/CODIGOS/NumericWritable/ ?
+    <str name="facets" val="units=u:null;;;;|precision=i:1|min=d:-inf|max=d:+inf" href="facets/" display="units=null,precision=1,min=-inf,max=+i
+    <real name="out" val="22.0" href="out/" is="/obix/def/baja:StatusNumeric" display="22,0 {ok} @ def" displayName="Out" icon="/ord?module://ic
+    <real name="fallback" val="22.0" href="fallback/" is="/obix/def/baja:StatusNumeric" display="22,0 {ok}" displayName="Fallback" icon="/ord?mo
+
+# /obix/config/Drivers/CODIGOS/BooleanWritable/ ?
+    <str name="facets" val="trueText=s:true|falseText=s:false" href="facets/" display="trueText=true,falseText=false" displayName="Facets" writa
+    <bool name="out" val="false" href="out/" is="/obix/def/baja:StatusBoolean" display="false {ok} @ def" displayName="Out" icon="/ord?module://
+    <bool name="fallback" val="false" href="fallback/" is="/obix/def/baja:StatusBoolean" display="false {ok}" displayName="Fallback" icon="/ord?
+
+# /obix/config/Drivers/CODIGOS/FAN/ ?
+    <str name="facets" val="trueText=s:true|falseText=s:false" href="facets/" display="trueText=true,falseText=false" displayName="Facets" writa
+    <bool name="out" val="true" href="out/" is="/obix/def/baja:StatusBoolean" display="true {ok} @ def" displayName="Out" icon="/ord?module://ic
+    <bool name="fallback" val="true" href="fallback/" is="/obix/def/baja:StatusBoolean" display="true {ok}" displayName="Fallback" icon="/ord?mo

@@ -1,0 +1,10 @@
+KC13-G1 live station-wide safety-config audit — station DESKTOP-4AAQ77H, app Drivers/CODIGOS/ (2026-08-29)
+children scanned: 68  (refrigeration/HVAC plant: Temp/Hum/Compressor amps/Fan/Alarmas Planta)
+BLoopPoint (PID) count: 0  -> disableAction=hold / rampTime=0 exposures NOT PRESENT (no loops)
+propagateFlags distribution: {0: 5, 40: 1}
+  propagateFlags=0 (B543 unsafe default, input fault/down/stale does NOT propagate to out):
+    GreaterThan, LessThanEqual, And, Add, GreaterThan1  (GreaterThan1 currently {alarm,unackedAlarm})
+  propagateFlags=40 (partial whitelist): StringSelect
+writable points with NULL fallback (B543 unsafe: relinquish -> null, not a safe value):
+    Conteno_Alarmas_Planta_2, Conteno_Alarmas_Planta_4, BooleanWritable1
+writable points with SAFE non-null fallback (sample): NumericWritable=22.0, FAN=true, BooleanWritable=false

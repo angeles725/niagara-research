@@ -21,11 +21,11 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 18
-gaps_closed: 17
+covered_blocks: 19
+gaps_closed: 18
 known_gaps: 18
 investigable_open: 0
-requires_execution_open: 1
+requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
 
@@ -64,7 +64,7 @@ reference pages. All candidate dirs existence-verified 2026-08-28.
 | high | **KC14 additional clHVAC control sequences** (operator-requested 2026-08-28) — decompile HVAC sequences B540 left as covered-by-sample | `clHVACHeating`, `clHVACAirConditioning`, `clHVACChiller` | **COVERED → B551** (BCmBOA_StagedBoiler boiler cascade [add 100K/30s, remove 300s, max 3 stages, 100h rotation, 90°C high-limit, +modulation/pump-valve/VES-alarm vs chiller block]; BCmSPA_StatPressControl VAV duct static-pressure PID [setpoint 2500Pa, clamp 0-100%, MINIMUM-of-4 constraints, 10000Pa high-limit, fail-closed on sensor loss]; BCmCSA_CascContr room→SAT cascade [outer clamp 14-30°C, inner SAT clamp 6-35°C, output sequencing] w/ CmFrost_Protection = HARD interlock last override on all 5 outputs → REFINES B543 §543.6; BCmWBA_WetBulbTemp Twb=0.042611·RH+0.005·RH·Tdb+0.55·Tdb−4.57444; chiller demand chain LoadCalc→Seq→ChillerCmd. 76/83 still covered-by-sample) |
 | high | **KC16 JVM control-engine schedulers** (residue from B549; operator 'a fondo' 2026-08-28) — the two JVM roster/scan engines B549 named but never decompiled: clHVAC BControlProgramService + honeywell Sequenced Control Engine | `clHVAC-rt`, `ipcCommBus-rt` | **COVERED → B557** (Eagle BControlProgramService = Clock.schedulePeriodically(cycleTime) on ENGINE thread, flat functionList registration-order doExecute, 20ms cooperative yield per 100 blocks, overrun LOGGED not dropped, HIT-license. Honeywell BSequencedControlProgram + DEDICATED EngineThread [ipcCommBus, LOCATES the engine B542 couldn't find] paced to iterationInterval, recursive BApplicationFolder tree walk calling executeHoneywellComponent directly [not executeBlock action], skips override-locked, performanceMissCount+deviation metrics. Completes B549 four-ecosystem model; §14 back-pointer to B542) |
 | low | **KC13-G2 CmDamper_Control_Signal 999 handling** (resolves B543 §543.2 [INFER]) — does the damper block operate safely on an absent-sensor 999 setpoint | `clHVACAirConditioning-rt` | **COVERED → B550** (§14 refinement to B543: block GUARDS absent-sensor via input_69-selected branch, output clamped [0,100], fail-safe 0.0 on plant-disable, mode-gated. 999 does NOT propagate as garbage. Narrows B543 potential-gap #4 to 'guarded by convention'; generic gap #6 status-strip stands) |
-| deferred | **KC13-G1 station-wide safety-config audit** (requires-execution §12) — audit a LIVE station for loops on safety-relevant points that use `disableAction=hold`, unset `propagateFlags`, or `rampTime=0`; enumerate the actual unsafe-config exposure. Needs a live station + operator authorization | live station (§12 dynamic) | **requires-execution** |
+| ~~deferred~~ | **KC13-G1 station-wide safety-config audit** — **CERRADO [CERT-live] (B603, 2026-08-29 §12)**: station DESKTOP-4AAQ77H app CODIGOS (68 comp, refrig/HVAC). 0 BLoopPoint → disableAction=hold/rampTime=0 N/A. Exposición real: propagateFlags=0 en 5 bloques lógicos (GreaterThan/LessThanEqual/And/Add/GreaterThan1) + 3 writables con fallback NULL (Conteno_Alarmas_Planta_2/4, BooleanWritable1). | live station (§12 dynamic) | **CLOSED** |
 
 ### REMITTANCE (already covered — will NOT be opened)
 
@@ -92,7 +92,7 @@ reference pages. All candidate dirs existence-verified 2026-08-28.
 
 - **Open gaps — read-only investigable**: **0** — ALL investigable gaps closed (KC1-KC16 + KC13-G2). Focus RE-STOPPED (§8).
 - **Gaps closed**: 17 (KC1→B536 … KC15→B552, KC16→B557, KC13-G2→B550).
-- **requires-execution / blocked**: 1 (KC13-G1 station-wide safety-config audit, §12 dynamic — deferred, needs live station + operator auth).
+- **requires-execution / blocked**: 0 (KC13-G1 CLOSED live in B603, 2026-08-29). Focus fully closed (investigable=0, requires-execution=0).
 - **Coverage metric**: 13 / 13 investigable gaps closed (100%); 1 requires-execution deferred.
 - **DONE**: focus SYNTHESIS = [B549]; §18 retro done; KC13-G2 residue closed ([B550], §14 refines B543). Re-STOP investigable=0. Only KC13-G1 (requires-execution) remains — needs live station + operator auth.
 
