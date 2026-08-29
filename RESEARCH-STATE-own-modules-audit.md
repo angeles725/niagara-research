@@ -19,9 +19,9 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 covered_blocks: 632
-gaps_closed: 1
+gaps_closed: 2
 known_gaps: 11
-investigable_open: 10
+investigable_open: 9
 requires_execution_open: 0
 blocked_open: 0
 deferred_open: 0
@@ -32,7 +32,7 @@ block_scope: shared-global
 ## Coverage
 
 - **Covered blocks**: 0 in this focus (corpus-wide count synced by the tool; global prefix `niagara-mental-model-bloque`)
-- **Coverage metric**: 1 / 11 closed
+- **Coverage metric**: 2 / 11 closed
 - **Last iteration**: 2026-08-29 — bootstrap (direct-artifact manifest scan + backlog seeded)
 
 ## Remittances (already covered — cite, do NOT re-derive)
@@ -51,7 +51,7 @@ block_scope: shared-global
 | Priority | Gap | Artifact type / source | Status |
 |---|---|---|---|
 | high | OMB1 — the REAL build workflow + its VARIANTS (Clean+Slotomatic+Build vs Clean+Build): the gradle task sequences, WHEN Slotomatic is needed vs skippable, build-and-deploy.ps1/deploy.sh/inspect-*.ps1 roles, and the TESTS question (run-tests-wsl.sh + niagaraTest — did tests gate/slow the build? verify, don't assume) | real source · modulos_niagara_n4/.../chihuahua/{BUILD_WORKFLOW.md,build.gradle.kts,*.ps1,deploy.sh,run-tests-wsl.sh} | ✅ B637 — build modes A/B/C by changed profile (clean+jar, sign implicit no explicit sign/dist task); VARIANT rule: Clean+Slotomatic+Build iff @Niagara* annotation changed else Clean+Build (stale AUTO region if skipped when needed); TESTS VERIFIED: niagaraTest dead by plugin 7.6.17 moduleTestAnnotationProcessor bug (Total tests run:0) — operator right to drop station tests; BUT pure-JUnit type-(a) run-tests-wsl.sh 9 suites WORK, keep. Deploy=backup→copy to modules/ (ng-deploy.sh/build-and-deploy.ps1/deploy.sh --bump), bypasses install sig-gate |
-| high | OMB2 — VERSION-TARGETING via compilation PATHS: how niagara_home/niagara_user_home in gradle.properties + settings.gradle.kts resolution chain point the build at a specific Niagara SDK (iSMA 4.13.2 vs 4.14 vs 4.15); compile-vs-deploy version split (build on 4.13 SDK → deploy to 4.14 station); Java-8 constraint. Reframes [B636] dev#2 as deliberate | real source · gradle.properties + settings.gradle.kts + BUILD_WORKFLOW.md | pending |
+| high | OMB2 — VERSION-TARGETING via compilation PATHS: how niagara_home/niagara_user_home in gradle.properties + settings.gradle.kts resolution chain point the build at a specific Niagara SDK (iSMA 4.13.2 vs 4.14 vs 4.15); compile-vs-deploy version split (build on 4.13 SDK → deploy to 4.14 station); Java-8 constraint. Reframes [B636] dev#2 as deliberate | real source · gradle.properties + settings.gradle.kts + BUILD_WORKFLOW.md | ✅ B638 — version-targeting = niagara_home SDK PATH (4-level resolution chain); deps resolve via flatDir from niagara_home/bin/ext+modules → compile against iSMA 4.13.2 SDK, deploy to Honeywell 4.14 station (deliberate split, §14 reframes B636 dev#2); switch version = repoint niagara_home + match gradlePluginVersion (7.3.40; no profile system); 7.6.17 test-bug hazard on newer SDK; Java-8 hard floor |
 | high | OMB3 — SIGNING (active identity = ANGELES) + niagara-tools: the niagaraSigning gradle config (alias/keystore, ANGELES vs SEJOFA_C), how the signer is selected, and what the niagara-tools repo (scripts/docs/openspec) provides. SECRETS DISCIPLINE (structure not values) | real source · gradle files + .env.local (keys only) + niagara-tools/ | pending |
 | high | OMA1 — SYSTEMIC cross-module patterns: the deviations shared by ALL/most operator modules (universal `<niagara-permission-groups type=all>`; stuck at vendorVersion 1.0; single build host DESKTOP-4AAQ77H; signer split NIAGARA4 vs SEJOFA_C; near-empty ux/wb shells) — the headline block, graded vs [B636] | direct-artifact · all custom jars' module.xml | pending |
 | high | OMA5 — `mcpbridge-rt` (206 classes, 1 type, rt-ONLY): what it is (an MCP bridge?), what it bundles, why 206 classes for 1 Baja type, and its architecture vs the reference | direct-artifact + decompile · mcpbridge-rt.jar | pending |
@@ -68,6 +68,7 @@ block_scope: shared-global
 |---|---|---|---|---|---|
 | 0 | 2026-08-29 | (bootstrap) manifest scan + real-source pointer + operator corrections | — | no·inline (unzip scan + gradle.properties read) | 11 |
 | 1 | 2026-08-29 | OMB1 real build workflow + variants + tests verdict | B637 | yes · sonnet (source map) + inline verify | 0 |
+| 2 | 2026-08-29 | OMB2 version-targeting via niagara_home SDK path (§14 B636) | B638 | no·inline (source map + verify) | 0 |
 
 ## Blocked gaps (each tagged with what it needs)
 
@@ -75,7 +76,7 @@ block_scope: shared-global
 
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 10   ← the STATIC loop STOPS when this hits 0
+- **Open gaps — read-only investigable**: 9   ← the STATIC loop STOPS when this hits 0
 - **Open gaps — requires-execution**: 0
 - **Open gaps — blocked**: 0
 - Consecutive iterations with empty backlog (secondary): 0/2
