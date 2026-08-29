@@ -14,7 +14,7 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 377
+covered_blocks: 609
 gaps_closed: 9
 known_gaps: 9
 investigable_open: 0
@@ -67,7 +67,7 @@ Root: `/home/cristian/modules/Prototipos/modulos/organized/webChart/`. Distinct 
 | W7 | The **rt server layer** in depth — WebChartQueryServlet 3 routes (schedule/boxTable beyond [B199]'s data), `BWebChartQueryRpc` (RPC vs servlet), `WebChartFileServlet`, `WebChartUtil`, permission gate | B374 | closed (+ child W7-G1) |
 | W8 | The **`BIChartFactory` extension contract** — how a module registers a custom chart-type factory (agent on a type → JsInfo), the mechanism Analytics used [B366]; is charting license-gated? | B375 | closed |
 | W9 | The **`.chart` file + `BWebChartTimeRange(+Type)`** — the persisted chart-definition format (`BChartFile`) + the 12 time-range types (remittance [B45]/[B358]) | B376 | closed |
-| W7-G1 | **requires-execution** — does `/schedule` or `/boxTable`'s `sendError(404)`-without-`return` actually leak the response body to an unauthorized user? Container-commit-dependent ([B374] §374.2) | — | open (requires-execution) |
+| W7-G1 | **CODE CONFIRMED [CERT] (B609, §12)**: defect verbatim on /schedule+/boxTable (missing return + 2nd-order target.get()); sibling encodeHistoryData throws (correct). LIVE leak-verdict **DEFERRED-requires-principal** (read-denied session; BACnet=zero-role but password not held; oBIX has no add/setPassword). | B609 | partial (live deferred) |
 
 ## Backlog (investigable)
 
