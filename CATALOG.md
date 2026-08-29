@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **608 blocks**
+Total: **609 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -614,3 +614,4 @@ Total: **608 blocks**
 | 610 | [niagara-mental-model-bloque610.md](niagara-mental-model-bloque610.md) | ⚠ CONFIG MUTATION — DB-G3: BBogSpace is thread-safe under concurrent writes — 8-way and 20-way concurrent oBIX writes (500 total, up to 365 writes/s) all applied atomically with 0 errors, a same-point race resolved to ONE valid value (no torn writes), and distinct-point writes showed zero cross-contamination — validating B402's serialized-save model live; DB-G2 (BRdbmsWorker) has NO live surface (no RDBMS driver deployed) |
 | 611 | [niagara-mental-model-bloque611.md](niagara-mental-model-bloque611.md) | graphql-admin (GQL-G1): the session-user `Context` seam of a custom `BWebServlet` — where a GraphQL resolver gets its RBAC identity |
 | 612 | [niagara-mental-model-bloque612.md](niagara-mental-model-bloque612.md) | graphql-admin (GQL-G3): `OrdTarget.canRead()/canWrite()/canInvoke()` — the per-field RBAC primitive a resolver calls, and its fail-open default |
+| 613 | [niagara-mental-model-bloque613.md](niagara-mental-model-bloque613.md) | graphql-admin (GQL-G2): the `@NiagaraRpc` Context-injection contract — using RPC methods as a GraphQL mutation back-end |
