@@ -1,0 +1,4 @@
+4
+[31mTimed out waiting for input, please re-authenticate to continue 
+[0m 
+Press ENTER to continue 
