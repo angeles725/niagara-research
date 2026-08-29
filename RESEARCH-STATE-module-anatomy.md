@@ -17,10 +17,10 @@
 
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 628
-gaps_closed: 4
+covered_blocks: 629
+gaps_closed: 5
 known_gaps: 8
-investigable_open: 4
+investigable_open: 3
 requires_execution_open: 0
 blocked_open: 0
 deferred_open: 0
@@ -31,7 +31,7 @@ block_scope: shared-global
 ## Coverage
 
 - **Covered blocks**: 0 in this focus (corpus-wide count synced by the tool; global prefix `niagara-mental-model-bloque`)
-- **Coverage metric**: 4 / 8 closed
+- **Coverage metric**: 5 / 8 closed
 - **Last iteration**: 2026-08-29 — bootstrap (AUDIT-FIRST sweep + backlog seeded)
 
 ## Remittances (already covered — cite, do NOT re-derive)
@@ -60,7 +60,7 @@ block_scope: shared-global
 | high | MA2 — the module BOOT scan: how the `modules/` dir is enumerated (`BootEnv.findModuleFile(name,profile)`), filtered by RuntimeProfile, and dependency-ordered (`ModuleManager.resolve()`/`loadModuleParts`), with `ClassScanner.scan(InputStream)` reading class bytecode to populate the registry | Java · organized/baja/baja/.../sys/BootEnv.java + sys/module/ModuleManager.java + sys/registry/ClassScanner.java | ✅ B630 — modules/ enum by DefaultModulesFileManager; PROFILE from manifest `runtimeProfile` attr NOT filename (missing→ignored 'AX module?'); registry is PREBUILT binary (NRegistry.db reads .db file), ClassScanner is REBUILD-only (Builder), zero boot-time class scan; deps resolved recursive-DFS w/ pendingAdd visited-set, committed atomically; profile gate = Nre -rp: (rt always) |
 | high | MA3 — the TYPE-registration pipeline end-to-end: `@NiagaraType` → `NiagaraTypeProcessor` writes `<type>` in `module-include.xml` → boot `ClassScanner` populates `NModule.types[]` → runtime `NModule.loadType()` (`moduleName+':'+typeName`) / `BTypeSpec.getTypeInfo()` → `Registry.getType(spec)` | Java · organized/devkit/devkit-wb/.../annotation/processors/NiagaraTypeProcessor.java + baja/.../module/NModule.java + util/BTypeSpec.java + registry/Registry.java | ✅ B631 — CORRECTION: module-include.xml is READ (not written) by Slotomatic (Compiler.java reads `<types>`, writes only .java); NO JSR-269 APT in corpus (§14 refines B12). Registry=NTypeInfo (no Class); BTypeSpec.getTypeInfo=lookup vs getResolvedType=load; Class loaded ONCE at NModule.loadClass via ModuleClassLoader; NType ctor promotes String→Type |
 | medium | MA4 — the physical JAR layout SKELETON: the complete entry map of a real module jar (`META-INF/module.xml`, MANIFEST.MF+.SF+.RSA [remit mechanism], `.class` by package, `module.palette` root, `<mod>.lexicon` + `lexicon/<lang>/`, embedded `rc/` icons, `.bajadoc`) — assembled once as the reference skeleton; `BModule` wraps the jar as a `BZipSpace` | Java · organized/baja/baja/.../sys/BModule.java + a real jar (devkit-wb) | ✅ B632 — real signed jars: META-INF/{MANIFEST.MF,NIAGARA4.SF,NIAGARA4.RSA,module.xml} invariant + classes dual-namespace (javax.baja.*=API in <types>, com.tridium.*=impl); PROFILE payload: rt=module.palette+.lexicon root, wb=rc/ icons+css, ux=rc/*.js web-assets; signer alias uniformly NIAGARA4; locale lexicons NOT in jar (station file space) |
-| medium | MA5 — the daemon-side install command: how a module JAR moves from `!cleanDist`/registry to a station's `modules/` dir — `BModuleInstallable` (installable wrapper) → `BModuleInstallCommand` (platDaemon writes the jar) → restart handshake; continues [B569] past the supervisor transaction | Java · organized/platform/platform-rt/.../install/installable/BModuleInstallable.java + organized/platDaemon/platDaemon-rt/.../command/BModuleInstallCommand.java | pending |
+| medium | MA5 — the daemon-side install command: how a module JAR moves from `!cleanDist`/registry to a station's `modules/` dir — `BModuleInstallable` (installable wrapper) → `BModuleInstallCommand` (platDaemon writes the jar) → restart handshake; continues [B569] past the supervisor transaction | Java · organized/platform/platform-rt/.../install/installable/BModuleInstallable.java + organized/platDaemon/platDaemon-rt/.../command/BModuleInstallCommand.java | ✅ B633 — install = signature-gated (getSignatureStatus vs verificationMode; low→weak, B398/B519), STOP-all-stations, streaming FileTransfer POST to $NIAGARA_HOME/modules/<partName>.jar (overwrite-in-place, NO backup/atomic/rollback), restart async; user-home fallback if NIAGARA_HOME readonly; partName=filename |
 | low | MA6 — the palette runtime reader: how Workbench discovers/exposes `module.palette` from a `BModule` via `BModulePaletteNode` (the nav node over the module zip space) — the load side of [B12] §12.3.2's format | Java · organized/baja/baja/.../sys/module/BModulePaletteNode.java | pending |
 | low | MA7 — module `<permissions>` → Java security policy: how a module.xml `<permissions>` declaration ([B434]: devkit-wb has FilePermission/RuntimePermission) is wired into `NiagaraPermissionGroup`/`NiagaraPolicy`/`NiagaraPolicyUtil` for that module's classloader | Java · organized/baja/baja/.../sys/module/NModule.java (NiagaraPermissionGroup imports) + devguide-clean/security/security.txt | pending |
 | high | MA8 — SYNTHESIS + CHIHUAHUA CASE STUDY: the reference module skeleton (from MA1-MA7 + remittances) as a single "how to build/distribute a module" model, then the operator's `com.angeles.chihuahua` [B163-B177] measured against it — every deviation named as a concrete improvement (manifest completeness, profile split correctness, type/permission declarations, dist/versioning hygiene). The focus deliverable, written at STOP | design synthesis over MA1-MA7 + [B163]-[B177] | pending |
@@ -74,6 +74,7 @@ block_scope: shared-global
 | 2 | 2026-08-29 | MA2 module boot scan (dir→profile→resolve→registry) | B630 | yes · sonnet (6-class sweep) + inline verify | 0 |
 | 3 | 2026-08-29 | MA3 type-registration pipeline (§14 refines B12) | B631 | yes · sonnet (8-class sweep) + inline verify | 0 |
 | 4 | 2026-08-29 | MA4 physical jar layout skeleton (real signed jars) | B632 | no·inline (direct unzip of live install jars) | 0 |
+| 5 | 2026-08-29 | MA5 daemon install command (gate·stop·overwrite·restart) | B633 | yes · sonnet (6-class sweep) + inline verify | 0 |
 
 ## Blocked gaps (each tagged with what it needs)
 
@@ -81,7 +82,7 @@ block_scope: shared-global
 
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 4   ← the STATIC loop STOPS when this hits 0
+- **Open gaps — read-only investigable**: 3   ← the STATIC loop STOPS when this hits 0
 - **Open gaps — requires-execution**: 0
 - **Open gaps — blocked**: 0
 - Consecutive iterations with empty backlog (secondary): 0/2
