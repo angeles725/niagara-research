@@ -1,0 +1,4 @@
+login: True authenticated (scram-sha256)
+COOKIE JSESSIONID                             secure=True httponly=True samesite=Lax expires=None path=/
+COOKIE niagara_userid                         secure=True httponly=True samesite=Lax expires=1819529929 path=/
+WRITE w/o csrf -> 200 b'<err href="https://localhost/obix/config/NumericDelay/out/set/" is="obix:BadUriErr" display="/NumericDelay/out/set" xmln'

@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **599 bloques**
+Total: **600 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -604,6 +604,7 @@ Total: **599 bloques**
 | 599 | [niagara-mental-model-bloque599.md](niagara-mental-model-bloque599.md) | Block 599 — The two ends of the transfer engine: cross-station transfer (`RemoteIntraSpace` → `RemoteTransferSpace`, serialized by the Fox `TransferCodec`) and the Workbench consumer (`TransferUtil` wraps a `Mark`, runs the strategy, returns an undoable `CommandArtifact`) — closing the sys-transfer focus |
 | 600 | [niagara-mental-model-bloque600.md](niagara-mental-model-bloque600.md) | Block 600 — The authenticated oBIX query surface is a fixed set of TYPED oBIX ops, not arbitrary BQL: per-history `query`/`rollup`/`append`, the live-value `Watch` (add/pollChanges), and Alarm `query` — there is NO raw-BQL-over-HTTP servlet on this station |
 | 601 | [niagara-mental-model-bloque601.md](niagara-mental-model-bloque601.md) | Block 601 — The oBIX `rollup` op does server-side downsampling: a `HistoryRollupIn` (start/end + `reltime` interval) returns one dense bucket per interval carrying `count/min/max/avg/sum`, wrapped in `HistoryQueryOut` — validated live |
+| 602 | [niagara-mental-model-bloque602.md](niagara-mental-model-bloque602.md) | Block 602 — Session lifecycle & CSRF on writes: `niagara_userid` is a Secure+HttpOnly+SameSite=Lax cookie persisted ~365 days, `JSESSIONID` is session-scoped; state-changing writes are gated by a synchronizer token (`x-niagara-csrfToken` header must equal the session token → else 403), but only for the HTTP methods each filter is mapped to |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
