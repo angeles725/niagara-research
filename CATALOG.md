@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **645 blocks**
+Total: **646 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -651,3 +651,4 @@ Total: **645 blocks**
 | 647 | [niagara-mental-model-bloque647.md](niagara-mental-model-bloque647.md) | Niagara N4 — own-modules-audit (OMA8, SYNTHESIS): the shop's module-building signature, the corrected build/version/signing knowledge, a prioritized remediation plan, and the fixed reference template |
 | 648 | [niagara-mental-model-bloque648.md](niagara-mental-model-bloque648.md) | Niagara N4 — chihuahua-source (CS3): the production module's write path DOES enforce authorization — `ChiRbacHelper.checkCanWrite` (BPermissions.OPERATOR_WRITE, fail-closed) is the first line of all 8 write handlers, with audit on every mutation — the correct inverse of mcpbridge's bypass |
 | 649 | [niagara-mental-model-bloque649.md](niagara-mental-model-bloque649.md) | Niagara N4 — chihuahua-source (CS1): the build files vs the reference template — and a §14 correction, the "over-permissioning" is the UNTOUCHED Tridium scaffold (empty permission groups, no actual grants), not real over-privilege |
+| 650 | [niagara-mental-model-bloque650.md](niagara-mental-model-bloque650.md) | Niagara N4 — chihuahua-source (CS2): the rt model is a monitor/dashboard with ONE computed output (`effectiveSetpoint`) + software overload/antifreeze protections whose faulted-sensor behavior is directional — fail-SAFE for antifreeze (low-limit), fail-to-NON-trip for overload (high-limit) |
