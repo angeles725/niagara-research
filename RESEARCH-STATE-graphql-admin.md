@@ -17,10 +17,10 @@
 
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 610
-gaps_closed: 4
+covered_blocks: 611
+gaps_closed: 5
 known_gaps: 8
-investigable_open: 4
+investigable_open: 3
 requires_execution_open: 0
 blocked_open: 0
 deferred_open: 1
@@ -31,8 +31,8 @@ block_scope: shared-global
 ## Coverage
 
 - **Covered blocks**: 0 in this focus (corpus-wide count synced by the tool; global prefix `niagara-mental-model-bloque`)
-- **Coverage metric**: 4 / 8 closed
-- **Last iteration**: 2026-08-29 — GQL-G4 closed (B614: concrete resolver call-site — read/mutate via Context + JSON)
+- **Coverage metric**: 5 / 8 closed
+- **Last iteration**: 2026-08-29 — GQL-G6 closed (B615: native dashboard-ux is a thin JS-widget agent; build a sibling module)
 
 ## Remittances (already answered by an existing cited block — do NOT re-derive)
 
@@ -60,7 +60,7 @@ block_scope: shared-global
 | high | GQL-G3 — `OrdTarget.canRead()`/`canWrite()` per-resolver RBAC primitive (construction from an ORD, what the check evaluates: permission bit + category mask) | Java · organized/baja/baja/vineflower/javax/baja/naming/OrdTarget.java | ✅ B612 — OrdTarget IS a Context (user copied from cx); canRead/canWrite/canInvoke → BIProtected.canX(this); FAIL-OPEN if no protected ancestor |
 | high | GQL-G4 — concrete servlet-handler call-site: run a BQL query + invoke a BComponent action / set a slot via the session Context, then serialize to JSON with `com.tridium.json.JSONWriter` | Java · bql-rt + javax/baja/sys/BComponent.java + com.tridium.json | ✅ B614 — every mutate/read API has a Context overload (thread `op`); null-context overload = footgun; BITable.cursor()→cell(); JSONWriter (B76); writable=priority-array (B536) |
 | medium | GQL-G5 — module classloader isolation: is each `-rt` JAR parent-last isolated (bundled graphql-java/Gson coexist) or a flat shared classpath (conflict risk)? | Java · organized/baja/baja/vineflower/com/tridium/sys/module/{ModuleClassLoader,ModuleExtClassLoader,AutoClassLoader,SyntheticModuleClassLoader}.java | pending |
-| medium | GQL-G6 — native `com.tridium.dashboard.ux` module: what it is (Hx Px-pane renderer? bajaux host?) and whether a GraphQL-backed dashboard module embeds alongside, replaces, or ignores it | Java · organized/dashboard/dashboard-ux/vineflower/com/tridium/dashboard/ux/{BDashboardCssResource,BDashboardJsBuild,BUxDashboardPane}.java | pending |
+| medium | GQL-G6 — native `com.tridium.dashboard.ux` module: what it is (Hx Px-pane renderer? bajaux host?) and whether a GraphQL-backed dashboard module embeds alongside, replaces, or ignores it | Java · organized/dashboard/dashboard-ux/vineflower/com/tridium/dashboard/ux/{BDashboardCssResource,BDashboardJsBuild,BUxDashboardPane}.java | ✅ B615 — 3 singletons (BSingleton @AgentOn binds JS widget + JsBuild + CssResource); zero data backend; build a SEPARATE sibling module (chihuahua B163 model) |
 | medium | GQL-G7 — BOX server-side channel extension seam: can a module register a NEW BOX channel type for GraphQL subscriptions, or must it roll its own WebSocket (B59 `BReflowWebSocketAcceptor` precedent)? | Java · organized/box/box-rt/vineflower/com/tridium/box/{BBoxChannel,BBoxService,BComponentSpaceSessionHandler}.java | pending |
 | medium | GQL-G8 — graphql-java viability under the mandatory Java 8 bytecode constraint (B176): which release line is the last Java-8 build, and is a hand-rolled/alternative parser needed? | web (Maven Central release history) + corpus [B176] | pending |
 | deferred | GQL-G9 — SYNTHESIS: reference architecture + build-vs-buy verdict (focus-closing block, written at STOP) | design synthesis over G1–G8 | pending (parked; never NEXT — §8b) |
@@ -74,6 +74,7 @@ block_scope: shared-global
 | 2 | 2026-08-29 | GQL-G3 OrdTarget per-field RBAC + fail-open | B612 | inline (constraint: load-bearing security seam, 2 files) | 0 |
 | 3 | 2026-08-29 | GQL-G2 @NiagaraRpc Context injection contract | B613 | yes · sonnet (rpc sweep) + inline token-verify | 0 |
 | 4 | 2026-08-29 | GQL-G4 concrete resolver call-site (read/mutate/JSON) | B614 | inline (constraint: synthesis over remitted primitives) | 0 |
+| 5 | 2026-08-29 | GQL-G6 native dashboard-ux module survey | B615 | inline (constraint: 3-file complete survey) | 0 |
 
 ## Blocked gaps (each tagged with what it needs)
 
@@ -81,7 +82,7 @@ block_scope: shared-global
 
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 4   ← the STATIC loop STOPS when this hits 0
+- **Open gaps — read-only investigable**: 3   ← the STATIC loop STOPS when this hits 0
 - **Open gaps — requires-execution**: 0
 - **Open gaps — blocked**: 0
 - Consecutive iterations with empty backlog (secondary): 0/2

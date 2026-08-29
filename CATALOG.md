@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **610 blocks**
+Total: **611 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -616,3 +616,4 @@ Total: **610 blocks**
 | 612 | [niagara-mental-model-bloque612.md](niagara-mental-model-bloque612.md) | graphql-admin (GQL-G3): `OrdTarget.canRead()/canWrite()/canInvoke()` — the per-field RBAC primitive a resolver calls, and its fail-open default |
 | 613 | [niagara-mental-model-bloque613.md](niagara-mental-model-bloque613.md) | graphql-admin (GQL-G2): the `@NiagaraRpc` Context-injection contract — using RPC methods as a GraphQL mutation back-end |
 | 614 | [niagara-mental-model-bloque614.md](niagara-mental-model-bloque614.md) | graphql-admin (GQL-G4): the concrete resolver call-site — read (BQL/slot), mutate (set/invoke/add), and serialize to JSON, all as the session Context |
+| 615 | [niagara-mental-model-bloque615.md](niagara-mental-model-bloque615.md) | graphql-admin (GQL-G6): the native `dashboard-ux` module is a thin JS-widget agent, not a data backend — a GraphQL dashboard module is a sibling, not an extension |
