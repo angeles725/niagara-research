@@ -54,7 +54,7 @@ Source CONFIRMED reachable; bytecode intact (obfuscation is decompiler-output on
 | ES2 | Sign flow end-to-end (license→credential→reason→super-action→audit order) | B352 | closed |
 | ES3 | Dual-signature / remote transport (queue, email notify, persistence) | B353 | closed |
 | ES4 | Audit-trail protection + can BHistoryMaintenance purge it without a signature (§11.10(e))? | B351 | closed |
-| ES4-G1 | Live-permission: does a stock RBAC role grant invoke on BHistoryMaintenance to a non-super-user? (requires-execution) | — | blocked-on-live-server |
+| ES4-G1 | Live-permission: does a stock RBAC role grant invoke on BHistoryMaintenance to a non-super-user? | 2026-08-29 §12: **blocked-on-low-priv-principal** — code CERT (B351: no auth/sig/BReasons gate); live needs a read-denied principal, NOT mintable over oBIX (no add/setPassword op), operator lacks BACnet pw. BHistoryMaintenance also not on oBIX surface. | blocked-on-principal (code closed, live deferred) |
 | ES5 | Credential handling — CLOSED by B353 §353.3 (remittance): secondary path = Base64+LDAP/BPasswordCache identical to primary, + self-approval block + role enforcement | B353 | closed |
 | ES6 | ux/wb layers (web editors, Swing credential dialog, PX/Hx bindings) | B354 | closed |
 | ES7 | Mutable ESignAcknowledgement property vs baked lexicon — can it diverge? | B355 | closed |
