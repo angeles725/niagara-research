@@ -35,7 +35,7 @@ Five systemic patterns fall out.
 
 `[CERT]` — **every module except `httpClientGAngeles` declares `<niagara-permission-groups>` = 3** (`type="all"` + `workbench` + `station`); `sdash-rt` declares 4. Only `httpClientGAngeles` declares **0** (falls to the minimal base grant, [B635]). This is the chihuahua deviation ([B636] #1) replicated shop-wide — a template habit, not a per-module decision.
 
-As [B635] established, under the default `GrantAllPermissionGroupStore` this is granted anyway, so it is not an active escalation today; but it is maximal-intent everywhere, and would become real over-privilege the day a restrictive store is deployed. **`httpClientGAngeles` proves the correct pattern is achievable** in the shop's own toolchain — it declares none. Fix: default new modules to NO `<permissions>` (OMA8 template).
+As [B635] established, under the default `GrantAllPermissionGroupStore` this is granted anyway, so it is not an active escalation today; but it is maximal-intent everywhere, and would become real over-privilege the day a restrictive store is deployed. **§14 REFINED by [B649]**: source inspection of chihuahua shows the `type="all"` groups are the UNTOUCHED Tridium scaffold — EMPTY (placeholder comments, `<req-permission>` commented out), no `<java-permissions>` — so they request NOTHING beyond the base grant ([B635]); this pattern counted the empty group DECLARATIONS, not actual grants. Effective posture is minimal, not over-privileged; the fix is cosmetic cleanup, not a privilege reduction. (Applies fleet-wide — same scaffold.) **`httpClientGAngeles` proves the correct pattern is achievable** in the shop's own toolchain — it declares none. Fix: default new modules to NO `<permissions>` (OMA8 template).
 
 ---
 

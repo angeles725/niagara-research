@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **644 blocks**
+Total: **645 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -650,3 +650,4 @@ Total: **644 blocks**
 | 646 | [niagara-mental-model-bloque646.md](niagara-mental-model-bloque646.md) | Niagara N4 — own-modules-audit (OMA7): the six small SEJOFA dashboards are one repeatable TEMPLATE — `com.sejofa.<mod>.components` with a `BXxxDashboardService` + domain `Monitor`s (rt) and a pure-web `-ux` — cloned per client site, carrying only the systemic deviations |
 | 647 | [niagara-mental-model-bloque647.md](niagara-mental-model-bloque647.md) | Niagara N4 — own-modules-audit (OMA8, SYNTHESIS): the shop's module-building signature, the corrected build/version/signing knowledge, a prioritized remediation plan, and the fixed reference template |
 | 648 | [niagara-mental-model-bloque648.md](niagara-mental-model-bloque648.md) | Niagara N4 — chihuahua-source (CS3): the production module's write path DOES enforce authorization — `ChiRbacHelper.checkCanWrite` (BPermissions.OPERATOR_WRITE, fail-closed) is the first line of all 8 write handlers, with audit on every mutation — the correct inverse of mcpbridge's bypass |
+| 649 | [niagara-mental-model-bloque649.md](niagara-mental-model-bloque649.md) | Niagara N4 — chihuahua-source (CS1): the build files vs the reference template — and a §14 correction, the "over-permissioning" is the UNTOUCHED Tridium scaffold (empty permission groups, no actual grants), not real over-privilege |
