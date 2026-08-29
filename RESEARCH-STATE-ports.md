@@ -16,13 +16,13 @@
 
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 622
+covered_blocks: 623
 gaps_closed: 7
 known_gaps: 7
 investigable_open: 0
 requires_execution_open: 1
 blocked_open: 1
-deferred_open: 2
+deferred_open: 1
 undocumented_findings: 0
 block_scope: shared-global
 <!-- /research-state.v1 -->
@@ -31,7 +31,7 @@ block_scope: shared-global
 
 - **Covered blocks**: 0 in this focus (corpus-wide count synced by the tool; global prefix `niagara-mental-model-bloque`)
 - **Coverage metric**: 7 / 7 closed (investigable; PO-G8 synthesis at close; PO-G7w requires-execution)
-- **Last iteration**: 2026-08-29 — PO-G7 closed (B626: platform daemon platform-user username/password + BDaemonSSLStatus; full-host reach)
+- **Last iteration**: 2026-08-29 — FOCUS CLOSED: PO-G8 synthesis B627 (master per-port reference table)
 
 ## Remittances (protocol internals already covered — cite, do NOT re-derive)
 
@@ -59,7 +59,7 @@ block_scope: shared-global
 | medium | PO-G6 — Central port config: `javax.baja.firewall.BServerPort` as the common listening-port type + the `com.tridium.firewall` layer (FirewallRulesPage/ConcurrentFirewallProcessor) — is there a station-wide port enumeration/filter, and is it a discovery surface? | ✅ B625 — BServerPort = common port type (publicServerPort/bindingPort/loopback); programs a per-port RedirectRule into pluggable firewall (Pf on QNX JACE / Null on Win-Linux supervisor); getRuleList() enumerates all; NOT a remote discovery surface (Java API + authed WB page) |
 | medium | PO-G7 — Platform daemon :3011/:5011 auth MODEL (code): characterize the credential/admission model statically from `BDaemonSurrogate`/`BDaemonSSLStatus` (consolidating B129/B460); the live wire digest is the requires-execution child below | ✅ B626 — platform username+password (platform users, separate from station BUsers), presented up-front (no 401); BDaemonSurrogate over BDaemonSession; BDaemonSSLStatus=disabled/enabled/sslOnly/notLicensed; reach=full host admin |
 | deferred | PO-G7w — platform daemon on-the-wire auth handshake/digest (nonce-response? Fox-SCRAM reuse?) — the live frame B129 §129.6 deferred as "N6-wire" | live probe | requires-execution → §19 (not read-only; remittance [B129] N6-wire) |
-| deferred | PO-G8 — SYNTHESIS: the master per-port reference table (all ports, covered+new: purpose · service+config · auth gate · reachability) — the focus deliverable, written at STOP | design synthesis over PO-G1..G7 + remittances | pending (parked; never NEXT — §8b) |
+| deferred | PO-G8 — SYNTHESIS: the master per-port reference table (all ports, covered+new: purpose · service+config · auth gate · reachability) — the focus deliverable, written at STOP | design synthesis over PO-G1..G7 + remittances | ✅ B627 — master port table (14 rows) + 3 auth postures (RBAC / identity-only / unauth-by-design) + 6-item hardening summary |
 
 ## Iteration history
 
@@ -73,6 +73,7 @@ block_scope: shared-global
 | 5 | 2026-08-29 | PO-G5 OPC-UA :52443 proven-absent (unwired) | B624 | inline (RE-MEASURE negative) | 0 |
 | 6 | 2026-08-29 | PO-G6 BServerPort + firewall central port layer | B625 | inline (constraint: 2-file read) | 0 |
 | 7 | 2026-08-29 | PO-G7 platform daemon auth model | B626 | inline (constraint: 2-file + B129/B460 remittance) | 0 |
+| 8 | 2026-08-29 | PO-G8 synthesis (focus close) | B627 | inline (synthesis, no new source) | 0 |
 
 ## Blocked gaps (each tagged with what it needs)
 
