@@ -20,10 +20,10 @@
 
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 642
-gaps_closed: 6
-known_gaps: 12
-investigable_open: 1
+covered_blocks: 643
+gaps_closed: 8
+known_gaps: 8
+investigable_open: 0
 requires_execution_open: 1
 blocked_open: 0
 deferred_open: 1
@@ -34,7 +34,7 @@ block_scope: shared-global
 ## Coverage
 
 - **Covered blocks**: 0 in this focus (corpus-wide count synced by the tool; global prefix `niagara-mental-model-bloque`)
-- **Coverage metric**: 6 / 12 closed (+1 requires-execution MCP-G2)
+- **Coverage metric**: investigable 8/8 (OMB1-3,OMA1-7)+synthesis CLOSED; MCP-G2 requires-execution deferred
 - **Last iteration**: 2026-08-29 — bootstrap (direct-artifact manifest scan + backlog seeded)
 
 ## Remittances (already covered — cite, do NOT re-derive)
@@ -63,7 +63,7 @@ block_scope: shared-global
 | medium | OMA2 — the ANGELES-namespace modules (`angeles`, `demoangeles`, `interfaz1`): grade the operator's direct-namespace modules vs [B636]; interfaz1 has 0-type/0-class ux+wb shells | direct-artifact · angeles/demoangeles/interfaz1 jars | ✅ B642 — clean equipment+Monitor model (angeles com.sejofa.angeles HVAC: Chiller/CoolingTower/DieselGenerator/…+Monitor twins; demoangeles=demo; interfaz1 com.angeles Dashboard+NotifierHoneywell); namespace split com.sejofa vs com.angeles under one ANGELES vendor; interfaz1-ux=pure-web (legit), interfaz1-wb=genuinely empty (drop); systemic deviations only |
 | low | OMA7 — the small SEJOFA dashboards (`electri`, `sanluis`, `sejofadashboard`, `tr3z`, `multivistaspersonalizados`, `dashboardups`): grouped grade vs [B636]; several have empty ux shells | direct-artifact · 6 jars | ✅ B646 — ONE repeatable TEMPLATE cloned per site: BXxxDashboardService + domain Monitors (com.sejofa.<mod>.components) + pure-web -ux (9-26 rc/ assets, 0 Java, all six). sejofadashboard=richer base (BDashboardConfig+BSejoFaServlet). Same as chihuahua/angeles shape. Only systemic deviations (ver1.0, type=all) → fix TEMPLATE once + re-clone. No vendor forks, palettes shipped |
 | deferred | MCP-G2 — is a BMcpServlet instance actually MOUNTED/reachable in any running station? (config.bog / live check) — determines whether the B643 authz-bypass is live vs latent | requires-execution · config.bog / live station | requires-execution |
-| high | OMA8 — SYNTHESIS: the operator's module-building signature (recurring good + bad patterns across OMA1-OMA7), a consolidated prioritized remediation plan, and a corrected reference build template for the shop | design synthesis over OMA1-OMA7 + [B636] | pending |
+| high | OMA8 — SYNTHESIS: the operator's module-building signature (recurring good + bad patterns across OMA1-OMA7), a consolidated prioritized remediation plan, and a corrected reference build template for the shop | design synthesis over OMA1-OMA7 + [B636] | ✅ B647 — shop signature (DashboardService+Monitor+pure-web-ux template, palettes, documented build; strengths+5 recurring template deviations) + corrected build knowledge (variants/version=SDK-path/signing angelessignerCA/tests dead by 7.6.17) + mcpbridge authz-bypass (latent/dev-only) + prioritized remediation (chihuahua first=prod) + FIXED reference build template. FOCUS CLOSED |
 
 ## Iteration history
 
@@ -80,6 +80,7 @@ block_scope: shared-global
 | 8 | 2026-08-29 | OMA4 sdash uber-jar (WebSocket/sync/scheme; Jackson+Commons) | B644 | yes·sonnet (anomaly sweep) + inline verify | 0 |
 | 9 | 2026-08-29 | OMA3 datacenter-ux (Gson uber-jar, 3D rc/; 'heavy ux' refuted) | B645 | yes·sonnet (anomaly sweep) + inline verify | 0 |
 | 10 | 2026-08-29 | OMA7 six small SEJOFA dashboards = one template | B646 | no·inline (manifest scan + verify) | 0 |
+| 11 | 2026-08-29 | OMA8 SYNTHESIS + fixed template (FOCUS CLOSED) | B647 | no·inline (synthesis over B637-B646) | 0 |
 
 ## Blocked gaps (each tagged with what it needs)
 
@@ -87,9 +88,10 @@ block_scope: shared-global
 
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 5   ← the STATIC loop STOPS when this hits 0
+- **Open gaps — read-only investigable**: 0   ← the STATIC loop STOPS when this hits 0
 - **Open gaps — requires-execution**: 1 (MCP-G2)
 - **Open gaps — blocked**: 0
+- **FOCUS STOPPED** 2026-08-29: investigable 8/8 + synthesis (OMB1-3, OMA1-8); MCP-G2 requires-execution deferred; §18 retro pending
 - Consecutive iterations with empty backlog (secondary): 0/2
 - Budget cap: none
 
