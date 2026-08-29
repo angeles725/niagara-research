@@ -1,0 +1,64 @@
+[fox] TLS connected 127.0.0.1:4911
+  >> fox a 1 -1 fox hello
+  >> {
+  >> fox.version=s:1.0.2
+  >> id=i:0
+  >> n4Id=s:<STATION-ID-REDACTED>
+  >> hostName=s:research
+  >> hostAddress=s:127.0.0.1
+  >> app.name=s:FoxProbe
+  >> };;
+  << fox a 0 -1 fox hello
+  << {
+  << fox.version=s:1.0.2
+  << id=i:2
+  << n4Id=s:<STATION-ID-REDACTED>
+  << n4SuperId=s:<STATION-ID-REDACTED>
+  << hostName=s:DESKTOP-4AAQ77H
+  << hostAddress=s:127.0.0.1
+  << app.name=s:Station
+  << };;
+[fox] server hello: fox.version=('s', '1.0.2')
+  << fox a 1 -1 fox kerberos
+  << {
+  << useKerberos=z:f
+  << };;
+[fox] kerberos frame: kerberos useKerberos=('z', 'f')
+  >> fox a 2 -1 fox username
+  >> {
+  >> username=s:API2
+  >> kerbKey=z:f
+  >> };;
+  << fox a 2 -1 fox challenge
+  << {
+  << method=s:n4digest
+  << keyExchangeMethods=s:null.1
+  << };;
+[fox] challenge method=n4digest keyExchangeMethods=('s', 'null.1')
+  >> fox a 3 -1 fox clientKeyExchangeMethod
+  >> {
+  >> keyExchangeMethod=s:null.1
+  >> };;
+[fox] sent clientKeyExchangeMethod=null.1
+  >> fox a 4 -1 fox authMessage1
+  >> {
+  >> authInput=s:authInputScram
+  >> authHandshake1=s:n,,n=API2,r=<NONCE-REDACTED>
+  >> };;
+  << fox a 3 -1 fox authMessage1
+  << {
+  << authHandshake1=s:r=<NONCE-REDACTED>,s=<SALT-REDACTED>,i=10000
+  << };;
+  >> fox a 5 -1 fox authMessage2
+  >> {
+  >> authHandshake2=s:c=biws,r=<NONCE-REDACTED>,p=<CLIENTPROOF-REDACTED>
+  >> };;
+  << fox a 4 -1 fox authMessage2
+  << {
+  << authHandshake2=s:v=<SERVERSIG-REDACTED>
+  << };;
+  << fox a 5 -1 fox welcome
+  << {
+  << };;
+[fox] *** AUTHENTICATED (welcome) *** server-signature-verified=True
+FOX-LOGIN-OK

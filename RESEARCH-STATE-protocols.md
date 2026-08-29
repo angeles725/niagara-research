@@ -10,11 +10,11 @@
 > Mirrored in engram: `research/niagara/protocols-gaps`, `research/niagara/protocols-progress`.
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 266
-gaps_closed: 6
+covered_blocks: 606
+gaps_closed: 7
 known_gaps: 6
 investigable_open: 0
-requires_execution_open: 6
+requires_execution_open: 5
 blocked_open: 0
 <!-- /research-state.v1 -->
 
@@ -112,7 +112,7 @@ covered, packet encoding not). Fox and LON have partial wire coverage to deepen.
   5. **P2-ua-sec** — UA secure-channel crypto chunk content (sign/encrypt padding, token derivation) → requires-execution (live keys).
   6. **P2-ua-live** — live UA-TCP HEL/ACK handshake + session/subscription behavior → requires a live OPC-UA server.
   7. **P3-dyn** — BACnet segmentation window negotiation + SegmentACK/NAK retransmit timing → requires a live BACnet device.
-  8. **P4-dyn** — Fox handshake byte-trace (runtime salt/iter/nonce/clientProof + frame stream on 1911/4911) → requires-execution (running station + client).
+  8. **P4-dyn** — **CERRADO [CERT-live] (B606, §12)**: Fox SCRAM byte-trace en foxs:4911 (1911 cerrado). challenge method=n4digest, keyExchange=null.1 (TLS-only), SCRAM-SHA-256 salt16B **i=10000** (CONFIRMA B457 PBKDF2-10k en canal Fox). Frame flow hello→kerberos(off)→username→challenge→authMessage1/2→welcome. Platform 3011/5011 sigue blocked-on-platform-creds.
   9. **P5-phys** — TP/FT-10 78.125 kbaud differential-Manchester line code + L2 16-bit CRC + slot timing (native `ldv` below `driver.write`) → requires-execution / hardware (live FT-10 segment + protocol analyzer), candidate [CERT-hw].
   10. **P6-jace** — the actual Sox device wire + the optional N4 Sedona Driver (`sox-rt`) live on a JACE, not this Supervisor → requires a JACE install + live Sedona device.
 
