@@ -43,4 +43,27 @@
 
 ---
 
-*(codegen mechanics, authoring artifacts, the dev loop, and test/debug are added as WF2–WF5 close.)*
+---
+
+## 2. The codegen round-trip (`@NiagaraType` → runtime type)
+
+Five stages, from the annotation you write to a resolvable `moduleName:typeName`:
+
+1. **Input:** `@NiagaraType` on the class + `<type name= class=>` in `module-include.xml`. Slotomatic READS the
+   xml + your `@Niagara*` and WRITES the AUTO slot region into your `.java`.
+2. **RegistryDatabase:** the `<type>` becomes an `NTypeInfo` (name + class-name string, no Class yet).
+3. **NModule.types:** held as a className string, lazily.
+4. **Resolve:** `BTypeSpec.resolve("mod:Type")` → the `NTypeInfo`.
+5. **Load once:** `NModule.loadClass` loads the Class via `ModuleClassLoader`; `TYPE = Sys.loadType(...)`
+   self-registers `NType`. Types load lazily, once, on first resolve — not at boot. [B631]
+
+**The AUTO region** (between `/*+ BEGIN BAJA AUTO GENERATED +*/` markers) holds the slot constants, getters/
+setters, action stubs, and `TYPE`. It carries a hash — add a `@Niagara*` slot without re-running Slotomatic and
+the hash/constants go stale (compile errors / missing slots). **Never hand-edit inside the markers.** [B631, B650]
+
+**The guard:** `Cannot update <file>; it is not in module-include.xml` — a class not listed in `<type>` is dead
+bytecode (no slots, `resolve` never finds it, no error points at the omission). `module-include.xml` is the
+driving registry; it is an INPUT you author, not annotation-processor output. [B631]
+
+**Round-trip rule:** new type → add `<type>` + run `:slotomatic`; rename/remove → update `module-include.xml`
+too; a forgotten `<type>` fails silently.

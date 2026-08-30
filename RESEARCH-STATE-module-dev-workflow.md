@@ -11,10 +11,10 @@
 
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 707
-gaps_closed: 1
+covered_blocks: 708
+gaps_closed: 2
 known_gaps: 5
-investigable_open: 4
+investigable_open: 3
 requires_execution_open: 0
 blocked_open: 0
 deferred_open: 0
@@ -30,7 +30,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 ## Coverage
 
 - **Covered blocks**: 706 corpus-wide (this focus: B711-) (shared-global)
-- **Coverage metric**: 1 / 5 gaps closed (WF1 B711)
+- **Coverage metric**: 2 / 5 gaps closed (WF1-2)
 - **Deliverable**: `docs/module-dev-workflow.md` (a step-by-step runbook)
 
 ## Gap-backlog (prioritized)
@@ -38,7 +38,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 | Priority | Gap | Type | Status |
 |---|---|---|---|
 | high | WF1 the toolchain inventory + what each tool DOES (gradle-niagara plugins, Slotomatic, niagara-signing, the SDK/user-home layout, niagara-tools/ng-deploy.sh) | synthesis+runbook | closed (B711 — two homes, gradle-niagara plugins, Slotomatic=codegen not JSR-269, ng-deploy.sh, wizards; tool->job map; runbook §1) |
-| high | WF2 the codegen mechanics — @NiagaraType/@NiagaraProperty → Slotomatic → the AUTO region round-trip (how it works, inputs/outputs) | synthesis+code | pending |
+| high | WF2 the codegen mechanics — @NiagaraType/@NiagaraProperty → Slotomatic → the AUTO region round-trip (how it works, inputs/outputs) | synthesis+code | closed (B712 — 5-stage pipeline, AUTO region+hash, Compiler guard, module-include.xml=INPUT; runbook §2) |
 | medium | WF3 the authoring artifacts — module-include.xml, module.palette, module.xml manifest: how to author each, what goes where | synthesis+code | pending |
 | high | WF4 the end-to-end dev loop as a runbook — edit → slotomatic(if needed) → build → sign → deploy → verify → test/debug, with commands | runbook | pending |
 | medium | WF5 testing + debugging — run-tests-wsl.sh (pure-Java model testing), station debug, common errors + fixes; + the runbook deliverable docs/module-dev-workflow.md | synthesis+deliverable | pending |
@@ -58,6 +58,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 |---|---|---|---|---|---|
 | — | 2026-08-30 | (bootstrap) | — | no · inline | WF1–WF5 seeded |
 | 1 | 2026-08-30 | WF1 toolchain inventory | B711 | no · inline (B631/B637-639 in-hand) | 0 new |
+| 2 | 2026-08-30 | WF2 codegen round-trip | B712 | no · inline (B631 in-hand) | 0 new |
 
 ## Blocked gaps (each tagged with what it needs)
 
@@ -65,7 +66,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 4
+- **Open gaps — read-only investigable**: 3
 - **Open gaps — requires-execution**: 0
 - **Open gaps — blocked**: 0
 - Budget cap: none
