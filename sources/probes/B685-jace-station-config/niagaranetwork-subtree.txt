@@ -1,0 +1,40 @@
+# B686 evidence — JACE_UMBRELLA /Drivers/NiagaraNetwork subtree (structural, non-secret)
+# Source: config.bog file.xml (SD P2). cert alias name is non-secret; no credential values present.
+
+## remote-station node count (BNiagaraStation / nd:NiagaraStation):
+#   grep -c = 0  (0 = no supervisor listed, no subordinates managed)
+## exportTags count: 0
+
+## nd: node types present (station-side):
+      1 t="nd:BogProvider"
+      1 t="nd:CyclicThreadPoolWorker"
+      1 t="nd:LocalSysDefStation"
+      1 t="nd:NiagaraNetwork"
+      1 t="nd:NiagaraTuningPolicy"
+      1 t="nd:NiagaraTuningPolicyMap"
+      1 t="nd:NiagaraVirtualNetworkExt"
+      1 t="nd:PersistTask"
+      1 t="nd:ProviderStation"
+      4 t="nd:SysDefVersion"
+
+## NiagaraNetwork subtree headers (L802-870):
+802:  <!-- /Drivers/NiagaraNetwork -->
+803:  <p n="NiagaraNetwork" h="d1" m="nd=niagaraDriver" t="nd:NiagaraNetwork">
+810:   <p n="localStation" h="d4" t="nd:LocalSysDefStation">
+820:    <p n="stationVersion" t="nd:SysDefVersion" v="1787122149455;11"/>
+821:    <p n="networkVersion" t="nd:SysDefVersion" v="1787122149457;0"/>
+822:    <p n="persistTask" h="d5" t="nd:PersistTask">
+827:   <p n="sysDefProvider" h="d6" t="nd:BogProvider">
+828:    <!-- /Drivers/NiagaraNetwork/sysDefProvider/JACE_UMBRELLA -->
+829:    <p n="JACE_UMBRELLA" f="h" h="3a4ce" t="nd:ProviderStation">
+839:     <p n="stationVersion" t="nd:SysDefVersion" v="1787122149455;11"/>
+840:     <p n="networkVersion" t="nd:SysDefVersion" v="1787122149457;0"/>
+843:   <p n="tuningPolicies" h="d8" t="nd:NiagaraTuningPolicyMap">
+844:    <p n="defaultPolicy" h="d9" t="nd:NiagaraTuningPolicy">
+847:   <p n="historyPolicies" h="da" t="d:HistoryNetworkExt">
+855:   <p n="workers" h="dd" t="nd:CyclicThreadPoolWorker">
+858:   <p n="virtualPolicies" h="de" t="nd:NiagaraVirtualNetworkExt">
+864:   <!-- /Drivers/NiagaraNetwork/ProvisioningNwExt -->
+865:   <p n="ProvisioningNwExt" h="5c6c" m="pn=provisioningNiagara" t="pn:ProvisioningNiagaraNetworkExt">
+866:    <p n="licenses" h="5c6e" t="pn:SupervisorLicenses">
+868:    <p n="pollScheduler" h="5c6f" t="pn:StationPollScheduler">

@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **681 blocks**
+Total: **682 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -687,3 +687,4 @@ Total: **681 blocks**
 | 683 | [niagara-mental-model-bloque683.md](niagara-mental-model-bloque683.md) | B683 — JACE-8000 `libpower.so` (power/UPS monitoring) + `station` launcher: PowerdQnx exposes primary-power/UPS/battery state (`/dev/powerd/batteryState`), and the `station` binary launches `com.tridium.sys.station.Station` as the de-privileged `station` user (uid 300, `station_owners`), refusing root — same fail-closed pattern as `niagarad` ([Block 679]) (focus jace8000-qnx-native, QN7; §19 [CERT]) |
 | 684 | [niagara-mental-model-bloque684.md](niagara-mental-model-bloque684.md) | B684 — JACE-8000 security verdict (QN8 synthesis): strong at the BOOT/FIRMWARE and PROCESS layers (CertISW secure boot + ENCRYPTED firmware payload + ECC508 secure element + FIPS Mocana crypto + de-privileged daemons that refuse root), but the QNX6 DATA partition is NOT encrypted at rest — physical possession of the microSD yields the config.bog, keyrings, `/etc/shadow` and audit history in the clear, and the factory credential sits in plaintext — so PHYSICAL ACCESS is the weak link (focus jace8000-qnx-native, QN8; §18-adjacent synthesis) |
 | 685 | [niagara-mental-model-bloque685.md](niagara-mental-model-bloque685.md) | B685 — JACE_UMBRELLA deployed station skeleton + Services inventory (SC1): a 21-service field-controller station, hardened-by-template, read from the boot microSD |
+| 686 | [niagara-mental-model-bloque686.md](niagara-mental-model-bloque686.md) | B686 — JACE_UMBRELLA NiagaraNetwork (SC2): the field controller lists no supervisor and manages no subordinate — but that does NOT prove standalone (framework-semantic refine) |

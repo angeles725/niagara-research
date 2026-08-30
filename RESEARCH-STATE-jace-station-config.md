@@ -16,10 +16,10 @@
 
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 681
-gaps_closed: 1
+covered_blocks: 682
+gaps_closed: 2
 known_gaps: 8
-investigable_open: 7
+investigable_open: 6
 requires_execution_open: 0
 blocked_open: 0
 deferred_open: 0
@@ -35,7 +35,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 ## Coverage
 
 - **Covered blocks**: 684 corpus-wide (this focus: B685-) (shared-global)
-- **Coverage metric**: 1 / 8 gaps closed (SC1 closed B685)
+- **Coverage metric**: 2 / 8 gaps closed (SC1 B685, SC2 B686)
 - **Source (out of git)**: `config.bog` (7843 B ZIP → 51378 B file.xml) + `alarm.adb` + `registry.db` +
   history `.hdb` + `/opt/niagara/defaults/platform.bog`, all under `local-sd-image/` (gitignored,
   secret-bearing) — extracted READ-ONLY from SD P2 via `tools/qnx6read.py`.
@@ -50,7 +50,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 | Priority | Gap | Type | Status |
 |---|---|---|---|
 | high | SC1 station skeleton + Services inventory — the 21 deployed Services, station identity (FIPS off, keyring encoding), which are default vs configured | bog-xml disk | closed (B685 — 21 services, 16 configured/5 default; template-hardened, pure field-controller posture; §14 corrects "23"→21) |
-| high | SC2 NiagaraNetwork (nd) deployed config — is this JACE subordinate to the supervisor? upstream link, station connections, provisioning/exportTags, credential STRUCTURE | bog-xml disk | pending |
+| high | SC2 NiagaraNetwork (nd) deployed config — is this JACE subordinate to the supervisor? upstream link, station connections, provisioning/exportTags, credential STRUCTURE | bog-xml disk | closed (B686 — 0 remote BNiagaraStation; not a supervisor, lists no upstream; inbound-supervisor not determinable from JACE config; foxs:4911 TLS1.3 only door) |
 | high | SC3 NrioNetwork (nrio) deployed config — the physical field IO wired to this controller: NRIO modules, points, addresses, control vs monitor | bog-xml disk | pending |
 | medium | SC4 UserService/RoleService/CategoryService/AuthenticationService — the REAL deployed RBAC (users, roles, categories, auth schemes) — SECRETS: structure only | bog-xml disk | pending |
 | medium | SC5 AlarmService + AuditHistoryService + HistoryService + LoggingService deployed config — alarm classes, histories actually collected, audit/log config | bog-xml + hdb disk | pending |
@@ -80,6 +80,7 @@ extracted from SD P2 via qnx6read.py; SOURCE-BEFORE-AGENT passes for the whole b
 |---|---|---|---|---|---|
 | — | 2026-08-30 | (bootstrap — AUDIT-FIRST scan of config.bog tree) | — | no · inline (qnx6read.py extract + XML structure scan) | SC1–SC8 seeded |
 | 1 | 2026-08-30 | SC1 skeleton + 21 Services | B685 | yes · sonnet (config.bog structural sweep) + inline verify | 0 new (SC2/SC3/SC6 confirmed-ahead: localStation, io34 device, tagdict v1.5) |
+| 2 | 2026-08-30 | SC2 NiagaraNetwork | B686 | yes · sonnet (subtree sweep) + inline re-measure/REFINE | 0 new (inbound-supervisor confirm = existing J-series live wall) |
 
 ## Blocked gaps (each tagged with what it needs)
 
@@ -87,7 +88,7 @@ extracted from SD P2 via qnx6read.py; SOURCE-BEFORE-AGENT passes for the whole b
 
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 7
+- **Open gaps — read-only investigable**: 6
 - **Open gaps — requires-execution**: 0
 - **Open gaps — blocked**: 0
 - Budget cap: none
