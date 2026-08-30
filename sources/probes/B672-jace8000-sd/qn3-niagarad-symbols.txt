@@ -1,0 +1,10 @@
+QN3 niagarad (ARM ELF32, sha256 ecd2b73013f4d073a22fcd594f20bb44c7b64bb60c6dcda5ef0912a72f4eb609) — platform daemon launcher.
+NEEDED: [libnjre.so] [libc++.so.1] [libsocket.so.3] [libdsfspi.so] [libc.so.4] 
+QNX: branches/7.0.0/trunk (QNX 7.0.0)
+Java class launched: com/tridium/niagarad/NiagaraDaemon (via JavaLauncher::getInstance from libnjre)
+source: niagaradExeQnx.cpp
+Privilege drop strings (verbatim):
+niagarad_admin
+ERROR: setgid failed for %s group, exiting: %s
+ERROR: setuid failed for %s user, exiting: %s
+ERROR: root permissions gained, preventing startup
