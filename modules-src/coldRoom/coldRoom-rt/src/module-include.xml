@@ -1,0 +1,18 @@
+<!-- Module Include File — coldRoom-rt -->
+<!--
+  The <type> list Slot-o-Matic reads. One entry per exported BComponent/BFrozenEnum.
+  A class NOT listed here is dead bytecode: no slots generated, BTypeSpec.resolve()
+  never finds it, and there is NO build error pointing at the omission
+  (module-dev-workflow section 2). Keep this in sync with every @NiagaraType class.
+-->
+<types>
+
+  <type name="ColdRoom"           class="com.oem.coldRoom.BColdRoom"/>
+  <type name="EvaporatorUnit"     class="com.oem.coldRoom.BEvaporatorUnit"/>
+  <type name="DefrostController"  class="com.oem.coldRoom.BDefrostController"/>
+
+  <!-- Frozen enums -->
+  <type name="StagingMode"        class="com.oem.coldRoom.enums.BStagingMode"/>
+  <type name="DefrostMode"        class="com.oem.coldRoom.enums.BDefrostMode"/>
+
+</types>

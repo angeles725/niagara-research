@@ -1,0 +1,431 @@
+% =====================================================================
+%  Creación de un módulo Niagara N4 — Asistente de Workbench + configuración de IntelliJ IDEA
+%  Manual que documenta el flujo de trabajo del operador (ejemplo ColdRoomPan).
+%  Compilación: pdflatex main.tex  (ejecutar dos veces para el índice / las referencias)
+% =====================================================================
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=2.4cm]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+
+\graphicspath{{img/}}
+
+% --- paleta / caja de aviso ------------------------------------------
+\definecolor{niagaraRed}{RGB}{197,42,42}
+\definecolor{codeBg}{RGB}{245,245,245}
+\definecolor{noteBg}{RGB}{255,247,224}
+\definecolor{noteBorder}{RGB}{209,163,45}
+
+\lstset{
+  backgroundcolor=\color{codeBg},
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  frame=single,
+  rulecolor=\color{gray!40},
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+  xleftmargin=6pt,
+  framexleftmargin=6pt
+}
+
+% aviso "NOTA" simple
+\newcommand{\note}[1]{%
+  \par\vspace{4pt}%
+  \noindent\fcolorbox{noteBorder}{noteBg}{%
+    \parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{\small\textbf{Nota.}~#1}}%
+  \par\vspace{4pt}%
+}
+
+% ayudante de figura: \fig{archivo}{leyenda}{etiqueta}{fracción-de-ancho}
+\newcommand{\fig}[4]{%
+  \begin{figure}[H]\centering
+    \includegraphics[width=#4\linewidth]{#1}
+    \caption{#2}\label{#3}
+  \end{figure}}
+
+\captionsetup{font=small,labelfont=bf}
+
+\title{\textbf{Creación de un módulo Niagara N4}\\[2pt]
+\large Asistente \emph{New Module} de Workbench + configuración del proyecto en IntelliJ IDEA}
+\author{niagara-research — manual del flujo de trabajo del operador\\\small Ejemplo práctico: \texttt{ColdRoomPan} (módulo de control de cámara frigorífica)}
+\date{}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\bigskip
+\hrule
+\bigskip
+
+% =====================================================================
+\section{Alcance y requisitos previos}
+% =====================================================================
+Este manual documenta, paso a paso, cómo un operador crea el
+\textbf{esqueleto} vacío de un módulo Niagara~N4 con el asistente \emph{New Module}
+de Workbench, y luego abre y configura ese proyecto en \textbf{IntelliJ IDEA}
+para dejarlo listo para programar. Es la vía ``manual'' — el asistente genera
+un proyecto \texttt{gradle-niagara} estándar que después se edita en el IDE.
+
+El ejemplo práctico que se emplea a lo largo del documento es el módulo usado
+para la lógica de la cámara frigorífica:
+\texttt{ColdRoomPan} (símbolo \texttt{CRP}, proveedor \texttt{Angeles}).
+
+\paragraph{Requisitos previos.}
+\begin{itemize}[nosep]
+  \item Niagara Workbench (aquí: \emph{Optimizer Supervisor} N4.14.0.162).
+  \item IntelliJ IDEA (aquí: 2026.1.1).
+  \item Un \textbf{JDK~8} completo (aquí: Azul \emph{Zulu}~8) — las compilaciones de
+        Niagara requieren un JDK real, no solo un JRE.
+  \item Opcionalmente Node.js, únicamente si el módulo va a compilar partes de JavaScript (UX).
+\end{itemize}
+
+\note{Esto produce exactamente el tipo de proyecto \texttt{gradle-niagara} que
+describe el runbook \texttt{docs/module-dev-workflow.md} del repositorio; una vez
+que está abierto y configurado, se continúa con el ciclo
+\emph{editar\,$\rightarrow$\,build\,$\rightarrow$\,firmar\,$\rightarrow$\,desplegar\,$\rightarrow$\,probar}.}
+
+% =====================================================================
+\section{Parte A — Crear el módulo en Workbench}
+% =====================================================================
+
+\subsection{Abrir el asistente New Module}
+En Workbench, abra el menú \textbf{Tools} y elija \textbf{New Module}
+(Figura~\ref{fig:tools}).
+
+\fig{img04.png}{Workbench \texttt{Tools $\rightarrow$ New Module}.}{fig:tools}{0.72}
+
+\subsection{Paso 1 de 3 — metadatos del módulo y perfiles de runtime}
+El asistente se abre en el \emph{Step 1 of 3}. El primer campo es la ruta
+\textbf{Create Module under Directory} — la carpeta donde se generará el
+proyecto (Figura~\ref{fig:step1empty}). En este ejemplo:
+\path{C:/modulos_niagara_n4/Cliente/Leon-Guanjuato/Paccadia}.
+
+\fig{img05.png}{Step 1 of 3, vacío. La ruta del directorio se selecciona primero.}{fig:step1empty}{0.62}
+
+Complete los campos restantes (Figura~\ref{fig:step1all}):
+
+\begin{itemize}[nosep]
+  \item \textbf{Module Name} — \texttt{ColdRoomPan}. El nombre técnico del módulo.
+  \item \textbf{Preferred Symbol} — \texttt{CRP}. Prefijo/símbolo corto del módulo.
+  \item \textbf{Version} — \texttt{1.0}.
+  \item \textbf{Description} — \texttt{Logic Cold Room Panccadia}.
+  \item \textbf{Vendor} — \texttt{Angeles}.
+  \item \textbf{Runtime Profiles} — qué perfiles JAR incluye el módulo (véase más abajo).
+  \item \textbf{Create Palette} — cuando está marcado, genera un archivo de paleta para
+        que los componentes del módulo puedan arrastrarse desde la paleta de Workbench.
+\end{itemize}
+
+\fig{img06.png}{Step 1 completado, con los perfiles RUNTIME + UX + WB y
+\emph{Create Palette} marcado (primer intento).}{fig:step1all}{0.62}
+
+\paragraph{Runtime Profiles — qué significa cada uno.}
+\begin{description}[nosep,leftmargin=1.6cm,style=nextline]
+  \item[RUNTIME (rt)] Solo clases Java del runtime central, sin interfaz de usuario.
+  \item[UX] Interfaz de usuario ligera en HTML5 + JavaScript + CSS.
+  \item[WB] Clases de interfaz de usuario de Workbench (o del applet de Workbench).
+  \item[SE] Clases Java que usan la API completa de la plataforma Java~8 Standard Edition.
+\end{description}
+
+\note{La opción recomendada para este proyecto es \textbf{RUNTIME (rt) puro}.
+Los perfiles \emph{UX} y \emph{WB} solo son necesarios si desea una interfaz de
+navegador o una vista de Workbench dentro del módulo — no se requieren para la
+lógica de control. Empezar solo con RT mantiene el módulo pequeño y simple;
+UX/WB se pueden añadir después si realmente se quiere una interfaz de Workbench.}
+
+\subsection{Paso 2 de 3 — dependencias}
+Al hacer clic en \textbf{Next} se avanza al \emph{Step 2 of 3}, \textbf{Select
+Dependencies}. De forma predeterminada, el módulo depende de \texttt{nre} y \texttt{baja}
+(ambos Tridium~4.14), mostrados en la Figura~\ref{fig:step2}. Use \textbf{Add} para incorporar
+más módulos (p. ej. \texttt{control}, \texttt{kitControl}, \texttt{alarm},
+\texttt{history}, \texttt{schedule}) desde el selector de la Figura~\ref{fig:step2add}.
+
+\fig{img07.png}{Step 2 of 3 — dependencias predeterminadas \texttt{nre} y \texttt{baja}.}{fig:step2}{0.62}
+\fig{img08.png}{El selector \emph{Select Dependencies} (Add).}{fig:step2add}{0.7}
+
+\note{Las dependencias también se pueden añadir \emph{más adelante}, directamente en la
+configuración de compilación del módulo, así que no hay problema en dejar los valores
+predeterminados aquí y añadir lo que la lógica necesite durante el desarrollo.}
+
+\subsection{Paso 3 de 3 — paquetes}
+\textbf{Next} avanza al \emph{Step 3 of 3}, \textbf{Add Packages}. El asistente
+propone un paquete Java por cada perfil de runtime seleccionado
+(Figura~\ref{fig:step3all}): \texttt{com.angeles.ColdRoomPan} (rt),
+\texttt{com.angeles.ColdRoomPan.ui} (wb) y \texttt{com.angeles.ColdRoomPan.ux}
+(ux). El prefijo del paquete sigue al proveedor (\texttt{com.angeles}).
+
+\fig{img09.png}{Step 3 of 3 — un paquete por perfil (rt/wb/ux) en el
+primer intento.}{fig:step3all}{0.62}
+
+\subsection{Detalle a tener en cuenta: no se puede volver al Paso~1}
+Una vez que pulsa \textbf{Next} pasando el Paso~1, el botón \textbf{Back} ya no
+regresa al Paso~1. Para cambiar los perfiles de runtime (aquí: quitar UX/WB y conservar
+solo RT) debe \textbf{cancelar y volver a iniciar el asistente}.
+
+La segunda ejecución conserva únicamente \textbf{RUNTIME} más \emph{Create Palette}
+(Figura~\ref{fig:step1rt}), lo que produce un solo paquete
+\texttt{com.angeles.ColdRoomPan} con el perfil \texttt{rt}
+(Figura~\ref{fig:step3rt}).
+
+\fig{img10.png}{Segunda ejecución — Step 1 solo con RUNTIME + Create Palette.}{fig:step1rt}{0.62}
+\fig{img11.png}{Segunda ejecución — Step 3 con un único paquete \texttt{rt}.}{fig:step3rt}{0.62}
+
+\subsection{Finish — el proyecto generado}
+Al pulsar \textbf{Finish} se crea el proyecto. Al explorar la carpeta de destino en
+Workbench se muestra el esqueleto generado (Figura~\ref{fig:files}):
+
+\begin{itemize}[nosep]
+  \item \texttt{ColdRoomPan/} — el directorio de código fuente del módulo.
+  \item \texttt{gradle/} — los archivos de soporte del wrapper de Gradle.
+  \item \texttt{build.gradle.kts}, \texttt{settings.gradle.kts} — scripts de compilación de Gradle.
+  \item \texttt{gradle.properties} — configuración de compilación (rutas, JDK) — se edita más adelante.
+  \item \texttt{gradlew}, \texttt{gradlew.bat} — los lanzadores del wrapper de Gradle.
+\end{itemize}
+
+\fig{img12.png}{Los archivos del proyecto generado en el directorio de destino
+(\texttt{Paccadia}).}{fig:files}{0.95}
+
+En este punto el esqueleto existe; lo que queda es abrirlo en el IDE y
+apuntar la compilación a la instalación de Niagara y al JDK correctos.
+
+% =====================================================================
+\section{Parte B — Abrir el proyecto en IntelliJ IDEA}
+% =====================================================================
+
+\subsection{Iniciar IntelliJ IDEA}
+Abra IntelliJ IDEA (Figura~\ref{fig:ijsearch}).
+
+\fig{img13.png}{Inicio de IntelliJ IDEA 2026.1.1.}{fig:ijsearch}{0.7}
+
+\subsection{Abrir la carpeta del módulo}
+En la pantalla de bienvenida (Figuras~\ref{fig:ijwelcome} y~\ref{fig:ijopenbtn}) haga clic en
+\textbf{Open}, luego navegue hasta la carpeta del módulo \texttt{Paccadia} y selecciónela
+(Figura~\ref{fig:ijopen}) y pulse \textbf{Select Folder}.
+
+\fig{img14.png}{Pantalla de bienvenida de IntelliJ — proyectos recientes.}{fig:ijwelcome}{0.7}
+\fig{img15.png}{Pantalla de bienvenida — \emph{New Project / Open / Clone Repository}.}{fig:ijopenbtn}{0.7}
+\fig{img16.png}{\emph{Open File or Project} — seleccione la carpeta \texttt{Paccadia}.}{fig:ijopen}{0.8}
+\fig{img17.png}{Al hacer clic en \textbf{Open} para buscar el proyecto.}{fig:ijopen2}{0.7}
+
+\subsection{Confiar en el proyecto}
+IntelliJ pregunta si desea confiar en la carpeta (Figura~\ref{fig:trust}). Elija
+\textbf{Trust Project}. (El cuadro de diálogo opcionalmente añade las carpetas del IDE y del
+proyecto a la lista de exclusiones de Microsoft Defender para mejorar el rendimiento.)
+
+\fig{img19.png}{\emph{Trust and Open Project 'Paccadia'?} $\rightarrow$ Trust Project.}{fig:trust}{0.7}
+
+Tras confiar, IntelliJ comienza a importar el proyecto de Gradle
+(Figura~\ref{fig:import}); espere a que termine la importación.
+
+\fig{img18.png}{IntelliJ importando el proyecto de Gradle \texttt{Paccadia}.}{fig:import}{0.95}
+
+% =====================================================================
+\section{Parte C — Configurar el proyecto}
+% =====================================================================
+
+\subsection{Establecer el SDK y el nivel de lenguaje}
+Abra \textbf{File $\rightarrow$ Project Structure} (Figura~\ref{fig:psmenu}).
+
+\fig{img20.png}{\texttt{File $\rightarrow$ Project Structure}.}{fig:psmenu}{0.75}
+
+En \textbf{Project Settings $\rightarrow$ Project}
+(Figura~\ref{fig:psdialog}) establezca los dos valores que requiere Niagara~N4:
+\begin{itemize}[nosep]
+  \item \textbf{SDK}: \texttt{1.8} (aquí \texttt{1.8.0\_472}).
+  \item \textbf{Language level}: \texttt{8 - Lambdas, type annotations, etc.}
+\end{itemize}
+Aplique y espere un momento a que los cambios surtan efecto.
+
+\fig{img21.png}{Project Structure — SDK 1.8 y nivel de lenguaje 8.}{fig:psdialog}{0.8}
+
+\subsection{Editar \texttt{gradle.properties}}
+Abra \texttt{gradle.properties} (Figura~\ref{fig:gpbefore}). Este archivo indica a la
+compilación qué instalación de Niagara y qué JDK usar.
+
+\fig{img22.png}{\texttt{gradle.properties} antes de editar (líneas del JDK comentadas).}{fig:gpbefore}{0.95}
+
+Las claves relevantes, tal como se generan:
+\begin{lstlisting}
+# The path to the installation of Niagara you are building against
+niagara_home=C:\\Honeywell\\OptimizerSupervisor-N4.14.0.162
+
+# The path to niagara_user_home for the version you are building against
+niagara_user_home=C:\\Users\\equipo\\Niagara4.14\\OptimizerSupervisor
+
+# Uncomment and set to the path of your node install if building JavaScript
+#nodeHome=
+
+#org.gradle.java.installations.auto-detect=false
+#org.gradle.java.installations.auto-download=false
+#org.gradle.java.installations.paths=
+\end{lstlisting}
+
+Aplique las ediciones (descomente y establezca la cadena de herramientas del JDK, y Node si se usa):
+\begin{lstlisting}
+niagara_home=C:\\Honeywell\\OptimizerSupervisor-N4.14.0.162
+niagara_user_home=C:\\Users\\equipo\\Niagara4.14\\OptimizerSupervisor
+
+nodeHome=C:\\Program Files\\nodejs
+
+org.gradle.java.installations.auto-detect=false
+org.gradle.java.installations.auto-download=false
+org.gradle.java.installations.paths=C:\\Program Files\\Zulu\\zulu-8
+\end{lstlisting}
+
+\note{Fijar \texttt{org.gradle.java.installations.paths} al JDK Zulu~8 y
+desactivar \emph{auto-detect} / \emph{auto-download} garantiza que la compilación use
+la cadena de herramientas Java~8 correcta en lugar de la que Gradle pudiera elegir.}
+
+\subsection{Las dos ediciones dependientes de la versión}
+Cuando apunte a una versión \emph{diferente} de Niagara, cambian dos cosas:
+\begin{enumerate}[nosep]
+  \item \texttt{gradle.properties} — actualice \texttt{niagara\_home} (y
+        \texttt{niagara\_user\_home}) a la ruta de esa instalación de Niagara.
+  \item \texttt{settings.gradle.kts} — actualice la versión de Gradle a la que
+        compila esa versión de Niagara.
+\end{enumerate}
+
+\subsection{Resultado — entorno listo}
+Una vez que el proyecto de Gradle termina de importarse con el SDK y las rutas correctos, la
+ventana de herramientas de Gradle muestra el proyecto y su subproyecto \texttt{ColdRoomPan-rt}
+con sus tareas (Figura~\ref{fig:gradleloaded}). El entorno ya está listo para
+empezar a programar el módulo.
+
+\fig{img24.png}{Ventana de herramientas de Gradle — \texttt{ColdRoomPan} y
+\texttt{ColdRoomPan-rt} cargados.}{fig:gradleloaded}{0.85}
+
+% =====================================================================
+\section{Parte D — Programación: tareas de Gradle y archivos clave}
+% =====================================================================
+Una vez que el proyecto está abierto y configurado, se programa el módulo y se dirige la
+compilación desde la ventana de herramientas de \textbf{Gradle}. Recuerde que la
+\textbf{versión de Gradle depende de la versión de Niagara} (se establece en \texttt{settings.gradle.kts}).
+
+\subsection{Abrir la ventana de herramientas de Gradle (icono del elefante)}
+Abra el panel de Gradle desde el icono del elefante en el borde derecho
+(Figuras~\ref{fig:gradleopen} y~\ref{fig:gradleroot}). Lista el proyecto raíz
+\texttt{ColdRoomPan}, sus \textbf{Tasks} y el subproyecto \texttt{ColdRoomPan-rt}.
+
+\fig{img23.png}{Apertura de la ventana de herramientas de Gradle.}{fig:gradleopen}{0.72}
+\fig{img24.png}{Proyecto raíz de Gradle \texttt{ColdRoomPan} con sus \emph{Tasks}
+y la parte \texttt{ColdRoomPan-rt}.}{fig:gradleroot}{0.85}
+
+\subsection{Las tareas que importan: build, clean, slotomatic}
+Expanda \textbf{Tasks} (Figura~\ref{fig:tasks}). Importan dos grupos:
+\begin{itemize}[nosep]
+  \item \textbf{build} — \texttt{assemble}, \texttt{build},
+        \texttt{buildDependents}, \texttt{buildNeeded}, \texttt{classes},
+        \texttt{clean}, \texttt{jar}, \texttt{moduleTestClasses},
+        \texttt{moduleTestJar}, \texttt{testClasses}. Las dos que más se usan son
+        \texttt{build} y \texttt{clean}.
+  \item \textbf{niagara} — \texttt{migrateSlotomatic} y \texttt{slotomatic}.
+        \texttt{slotomatic} es la tarea de generación de código.
+\end{itemize}
+
+\fig{img25.png}{Tasks expandido: las tareas del engranaje \emph{build} y el
+grupo \emph{niagara} con \texttt{slotomatic}.}{fig:tasks}{0.62}
+
+\note{\textbf{Regla de Slotomatic} (documentada en \texttt{docs/module-dev-workflow.md}
+§1.3/§3 y \texttt{docs/module-best-practices.md} §5.2): ejecute \texttt{:slotomatic}
+\emph{solo} cuando cambie una anotación \texttt{@Niagara*}. Escribe la región de slots
+AUTO de la clase; \textbf{nunca} edite a mano dentro de los marcadores AUTO. Una región
+AUTO obsoleta provoca un fallo de compilación/ejecución. Ciclo típico:
+\emph{clean $\rightarrow$ slotomatic (solo al cambiar una anotación) $\rightarrow$ build}.}
+
+\subsection{Archivos clave del módulo a tener presentes}
+La parte \texttt{ColdRoomPan-rt} contiene los archivos descriptores de Niagara
+(Figura~\ref{fig:keyfiles}):
+\begin{description}[nosep,leftmargin=0.5cm,style=nextline]
+  \item[\texttt{module.palette}] BOG de componentes para arrastrar y soltar desde la
+    paleta de Workbench. Inclúyalo en cualquier módulo que exporte componentes reutilizables
+    (sin gate, lazy, tolerante a fallos). Documentado: \texttt{module-best-practices.md} [B634].
+  \item[\texttt{module-permissions.xml}] Un \emph{manifiesto de solicitud de
+    permisos del Java Security Manager}. Declara qué capacidades restringidas del
+    host necesita el \emph{código} del propio módulo — sockets de red, acceso a
+    archivos, bibliotecas nativas, autenticación, hora del sistema, backups,
+    keystore — para que el módulo pueda ejecutar operaciones protegidas sin un
+    \texttt{AccessControlException}. Raíz \texttt{<permissions>}, con bloques
+    \texttt{<niagara-permission-groups type="station|workbench|all">} que
+    contienen entradas \texttt{<req-permission>} / \texttt{<opt-permission>}
+    (\texttt{<name>}, \texttt{<purposeKey>}, \texttt{<parameters>} opcionales
+    como hosts/puertos). \textbf{No} controla cómo se ve el módulo y \textbf{no}
+    es RBAC por usuario. El devkit lo genera como una plantilla totalmente
+    comentada (sin permisos adicionales solicitados); el módulo \texttt{chihuahua}
+    incluye exactamente esa plantilla. Doc: devguide
+    \texttt{security/requestingPermissions.txt} §1, §2.1.1, §2.2; referencia de
+    build \texttt{build.txt:160}.
+  \item[\texttt{module.lexicon}] Cadenas de localización del módulo.
+  \item[\texttt{niagara-module.xml} / \texttt{module-include.xml}] La lista exportada
+    de \texttt{<type>} que lee Slotomatic.
+  \item[\texttt{ColdRoomPan-rt.gradle.kts}] El script de compilación de la parte:
+    \texttt{moduleManifest} (\texttt{moduleName}, \texttt{runtimeProfile=rt}),
+    \texttt{dependencies} (\texttt{nre(":nre")}, \texttt{api(":baja")},
+    \texttt{moduleTestImplementation(":test-wb")}), y la tarea \texttt{bajadoc}
+    (\texttt{includePackage("com.angeles.ColdRoomPan")}).
+\end{description}
+
+\fig{img26.png}{La parte \texttt{ColdRoomPan-rt}: \texttt{module.palette},
+\texttt{module-permissions.xml}, \texttt{module.lexicon},
+\texttt{niagara-module.xml}, y \texttt{ColdRoomPan-rt.gradle.kts}.}{fig:keyfiles}{0.95}
+
+\subsection{Material de referencia}
+\begin{itemize}[nosep]
+  \item Herramientas locales: \path{\\wsl.localhost\Ubuntu\home\cristian\modulos_niagara_n4\niagara-tools}
+  \item Ejemplo práctico real para estudiar la estructura completa de un módulo:
+        \path{\\wsl.localhost\Ubuntu\home\cristian\modulos_niagara_n4\Cliente\Honeywell\MX60\chihuahua}
+  \item Runbooks del repositorio que documentan esta parte:
+        \texttt{docs/module-dev-workflow.md} y \texttt{docs/module-best-practices.md}.
+\end{itemize}
+
+% =====================================================================
+\section{Resumen}
+% =====================================================================
+\begin{enumerate}[nosep]
+  \item Workbench: \texttt{Tools $\rightarrow$ New Module}.
+  \item Step~1: ruta + Module Name, Preferred Symbol, Version, Description,
+        Vendor; elija solo \textbf{RUNTIME}; marque \textbf{Create Palette}.
+        (Recuerde: no se puede volver al Step~1.)
+  \item Step~2: dependencias (predeterminadas \texttt{nre}, \texttt{baja}; añada más aquí
+        o más adelante).
+  \item Step~3: un paquete \texttt{rt} \texttt{com.<vendor>.<Module>}; Finish.
+  \item IntelliJ: \textbf{Open} la carpeta generada $\rightarrow$
+        \textbf{Trust Project} $\rightarrow$ espere la importación de Gradle.
+  \item \textbf{Project Structure}: SDK \texttt{1.8}, nivel de lenguaje \texttt{8}.
+  \item \texttt{gradle.properties}: establezca \texttt{niagara\_home},
+        \texttt{niagara\_user\_home}, \texttt{nodeHome} (si hace falta), y fije la
+        cadena de herramientas del JDK Zulu~8.
+  \item Por versión de Niagara: ajuste \texttt{niagara\_home} en
+        \texttt{gradle.properties} y la versión de Gradle en
+        \texttt{settings.gradle.kts}.
+\end{enumerate}
+
+\paragraph{Valores de ejemplo usados en este manual.}
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+\toprule
+Campo & Valor \\
+\midrule
+Module Name & \texttt{ColdRoomPan} \\
+Preferred Symbol & \texttt{CRP} \\
+Version & \texttt{1.0} \\
+Description & \texttt{Logic Cold Room Panccadia} \\
+Vendor & \texttt{Angeles} \\
+Package (rt) & \texttt{com.angeles.ColdRoomPan} \\
+Directory & \path{C:/modulos_niagara_n4/Cliente/Leon-Guanjuato/Paccadia} \\
+Niagara home & \path{C:/Honeywell/OptimizerSupervisor-N4.14.0.162} \\
+JDK & Zulu 8 (\path{C:/Program Files/Zulu/zulu-8}) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\end{document}
