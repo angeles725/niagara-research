@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **667 bloques**
+Total: **669 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -672,6 +672,8 @@ Total: **667 bloques**
 | 667 | [niagara-mental-model-bloque667.md](niagara-mental-model-bloque667.md) | B667 — Alarm dispatch threading: `sendAlarm` runs INLINE on the single shared `"Alarm:ServiceWorker"` thread, fed by an UNBOUNDED `CoalesceQueue` — so a blocking HTTP POST in a custom recipient stalls ALL alarm routing and risks OOM; `BRecoverableRecipient` decouples RETRIES only, never the first send (focus alarm-webhook, AW2; §14 confirms/refines B34 §34.1.3 + G1) |
 | 668 | [niagara-mental-model-bloque668.md](niagara-mental-model-bloque668.md) | B668 — The minimal `-rt` `module.xml` for a custom alarm recipient: `<dependency name="alarm-rt">` + one `<type class="…" name="…"/>` — and the correction that `routeAlarm` is NOT declared in `module.xml` (it is an INHERITED `@NiagaraAction` slot); the module DOES need its own file + socket/URL permissions (focus alarm-webhook, AW3) |
 | 669 | [niagara-mental-model-bloque669.md](niagara-mental-model-bloque669.md) | B669 — Storing the webhook token: a `@NiagaraProperty type="BPassword"` is directly reusable for an `Authorization: Bearer` header — declare it, read plaintext at send time via `AccessController.doPrivileged(pwd::getValue)`, exactly as `BBasicEmailClientAuthenticator` does for SMTP; the token MUST be a REVERSIBLE password, encrypted at rest by a module-specific key + the station keyring (`.km`/`.kr` DPAPI on Windows) (focus alarm-webhook, AW4; confirms B34 §34.6.5) |
+| 670 | [niagara-mental-model-bloque670.md](niagara-mental-model-bloque670.md) | B670 — `BAlarmRecord` field getters for the webhook `toJson`: exact signatures for uuid/timestamp/alarmClass/priority/sourceState/ackState/source — and the ONE correction, `getAckRequired()` NOT `isAckRequired()`; `getAlarmFacet(String)` returns `BObject` (null if absent), while `getFormattedAlarmDataValue(key,cx)` returns a String ("" if absent); keys enumerated via `getAlarmData().list()` (focus alarm-webhook, AW5; confirms/refines B34 §34.7) |
+| 671 | [niagara-mental-model-bloque671.md](niagara-mental-model-bloque671.md) | B671 — External oBIX alarm-ACK: an HTTP client POSTs to `/obix/alarm/<uuid>/ack` with a tiny `<obj><str name="ackUser" .../></obj>` (contract `obix:AckAlarmIn`, only field `ackUser`, NO `ackData`); the record UUID is the primary key (same uuid the webhook emits), reached read-level with BASIC auth — the ack invoke path has NO write gate, only force-clear needs admin-write (focus alarm-webhook, AW6; builds on B509/B600/B499) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

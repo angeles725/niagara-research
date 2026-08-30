@@ -1,4 +1,4 @@
-# RESEARCH-STATE — focus: alarm-webhook (STOPPED 4/4, investigable=0)
+# RESEARCH-STATE — focus: alarm-webhook (STOPPED 6/6, investigable=0 — reopened for AW5/AW6)
 
 > Multi-focus corpus (METHODOLOGY §16). Focus **BOOTSTRAPEADO 2026-08-30** a pedido de la sesión `Telegram`
 > (teammate), para cerrar 4 huecos a nivel bytecode antes de escribir un módulo `-rt` custom
@@ -17,9 +17,9 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 665
-gaps_closed: 4
-known_gaps: 5
+covered_blocks: 667
+gaps_closed: 6
+known_gaps: 7
 investigable_open: 0
 requires_execution_open: 1
 blocked_open: 0
@@ -30,13 +30,13 @@ undocumented_findings: 0
 focus: alarm-webhook
 status: stopped
 bootstrapped_on: 2026-08-30
-block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libre: B670 (focus CERRADO))
+block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libre: B672 (focus CERRADO))
 
 ## Coverage
 
-- **Covered blocks**: 665 corpus-wide (this focus: B666-B669) (shared-global)
-- **Coverage metric**: 4 / 4 investigable closed
-- **Last iteration**: 2026-08-30 — AW4 closed (B669)
+- **Covered blocks**: 667 corpus-wide (this focus: B666-B671) (shared-global)
+- **Coverage metric**: 6 / 6 investigable closed
+- **Last iteration**: 2026-08-30 — AW6 closed (B671). Focus reopened 2026-08-30 for a 2nd teammate request (AW5/AW6).
 
 ## Gap-backlog (prioritized)
 
@@ -46,6 +46,8 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 | high | AW2 threading — qué thread corre handleAlarm/sendAlarm, si la alarmQueue es unbounded (OOM), si BRecoverableRecipient desacopla el envío | decompiled-java | closed (B667) |
 | medium | AW3 module.xml mínimo -rt — dependency alarm + registro @NiagaraType del recipient + permisos | decompiled-java | closed (B668) |
 | medium | AW4 almacenamiento seguro del token — BPassword + keyring DPAPI (.km/.kr) aplicado a Authorization: Bearer | decompiled-java | closed (B669) |
+| high | AW5 getters exactos de BAlarmRecord para toJson — firmas de uuid/timestamp/alarmClass/priority/sourceState/ackState/ackRequired/source + getAlarmFacet + enumerar alarmData | decompiled-java | closed (B670) |
+| high | AW6 ACK externo vía oBIX — endpoint bajo /obix, contrato AckAlarmIn, referencia por uuid, shape del POST, auth/permisos, mapeo uuid | decompiled-java | closed (B671) |
 | medium | AW3-G1 protection-domain del disk-write persistente — ¿el módulo subclase necesita la FilePermission `${protected.station.home}/alarm`, o el write corre bajo el dominio de alarm-rt? | live-station | requires-execution → §12 (needs live station: set persistent=true, force failed send, watch for AccessControlException) |
 
 ### Remittance (ya cubiertos, no son gaps)
@@ -63,6 +65,9 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 | 2 | 2026-08-30 | AW2 threading / OOM | B667 | yes · Explore (backward call-graph trace) + driver re-verify | 0 |
 | 3 | 2026-08-30 | AW3 module.xml + registration | B668 | no · inline (2 real module.xml) | AW3-G1 (requires-execution) |
 | 4 | 2026-08-30 | AW4 BPassword bearer token | B669 | no · inline (BPassword + live SMTP reference) | 0 |
+| — | 2026-08-30 | (focus reopened — 2nd teammate request) | — | — | AW5, AW6 seeded |
+| 5 | 2026-08-30 | AW5 BAlarmRecord getters | B670 | no · inline (single doc-source class + BFacets) | 0 (1 correction: getAckRequired not isAckRequired) |
+| 6 | 2026-08-30 | AW6 oBIX external ack | B671 | yes · Explore (obixDriver ack path) + driver re-verify | 0 |
 
 ## Blocked gaps (each tagged with what it needs)
 
