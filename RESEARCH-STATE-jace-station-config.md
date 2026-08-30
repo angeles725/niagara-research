@@ -16,10 +16,10 @@
 
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 684
-gaps_closed: 4
+covered_blocks: 685
+gaps_closed: 5
 known_gaps: 9
-investigable_open: 4
+investigable_open: 3
 requires_execution_open: 1
 blocked_open: 0
 deferred_open: 0
@@ -35,7 +35,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 ## Coverage
 
 - **Covered blocks**: 684 corpus-wide (this focus: B685-) (shared-global)
-- **Coverage metric**: 4 / 9 gaps closed (SC1-SC4; SC4 uncovered child SC4-G1 requires-execution)
+- **Coverage metric**: 5 / 9 gaps closed (SC1-SC5; SC4-G1 requires-execution parked)
 - **Source (out of git)**: `config.bog` (7843 B ZIP → 51378 B file.xml) + `alarm.adb` + `registry.db` +
   history `.hdb` + `/opt/niagara/defaults/platform.bog`, all under `local-sd-image/` (gitignored,
   secret-bearing) — extracted READ-ONLY from SD P2 via `tools/qnx6read.py`.
@@ -53,7 +53,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 | high | SC2 NiagaraNetwork (nd) deployed config — is this JACE subordinate to the supervisor? upstream link, station connections, provisioning/exportTags, credential STRUCTURE | bog-xml disk | closed (B686 — 0 remote BNiagaraStation; not a supervisor, lists no upstream; inbound-supervisor not determinable from JACE config; foxs:4911 TLS1.3 only door) |
 | high | SC3 NrioNetwork (nrio) deployed config — the physical field IO wired to this controller: NRIO modules, points, addresses, control vs monitor | bog-xml disk | closed (B687 — 1 IO-34 (addr 1+2, FW2.2, DOWN); exactly 1 commissioned point: ro1 relay OUTPUT; minimally-commissioned seed station) |
 | medium | SC4 UserService/RoleService/CategoryService/AuthenticationService — the REAL deployed RBAC (users, roles, categories, auth schemes) — SECRETS: structure only | bog-xml disk | closed (B688 — 1 super-user admin, no policy overrides, legacy AX scheme on, dangling cat-3 ref w/ nil current impact) |
-| medium | SC5 AlarmService + AuditHistoryService + HistoryService + LoggingService deployed config — alarm classes, histories actually collected, audit/log config | bog-xml + hdb disk | pending |
+| medium | SC5 AlarmService + AuditHistoryService + HistoryService + LoggingService deployed config — alarm classes, histories actually collected, audit/log config | bog-xml + hdb disk | closed (B689 — alarms default+escalation disabled+0 recipients; 3 local audit trails; nothing archives off-box; confirms B684 weak-data-at-rest) |
 | medium | SC6 TagDictionaryService + HierarchyService deployed — the 144 td: references: which dictionaries, hierarchies, relations this station uses | bog-xml disk | pending |
 | medium | SC7 platform/orchestration services deployed — WebService/FoxService/BoxService/JobService/BatchJobService/ProgramService/TemplateService/ProvisioningNiagara + Program objects (freeform logic) | bog-xml disk | pending |
 | low | SC8 supporting stores + synthesis — registry.db + alarm.adb + platform.bog contents; SYNTHESIS: the field-controller profile vs the supervisor | disk + synthesis | pending |
@@ -84,6 +84,7 @@ extracted from SD P2 via qnx6read.py; SOURCE-BEFORE-AGENT passes for the whole b
 | 2 | 2026-08-30 | SC2 NiagaraNetwork | B686 | yes · sonnet (subtree sweep) + inline re-measure/REFINE | 0 new (inbound-supervisor confirm = existing J-series live wall) |
 | 3 | 2026-08-30 | SC3 NrioNetwork field IO | B687 | yes · sonnet (subtree sweep) + inline verify | 0 new (IO subtree fully read: 1 module, 1 point) |
 | 4 | 2026-08-30 | SC4 deployed RBAC | B688 | yes · sonnet (RBAC sweep) + inline framework-semantic REFINE | SC4-G1 (requires-execution: dangling category-index runtime behavior) |
+| 5 | 2026-08-30 | SC5 alarms/histories/audit | B689 | yes · sonnet (sweep) + inline verify | 0 new (egress-none confirmed 3 ways) |
 
 ## Blocked gaps (each tagged with what it needs)
 
@@ -91,7 +92,7 @@ extracted from SD P2 via qnx6read.py; SOURCE-BEFORE-AGENT passes for the whole b
 
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 4
+- **Open gaps — read-only investigable**: 3
 - **Open gaps — requires-execution**: 1 (SC4-G1)
 - **Open gaps — blocked**: 0
 - Budget cap: none

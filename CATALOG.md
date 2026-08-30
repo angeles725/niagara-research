@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **684 blocks**
+Total: **685 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -690,3 +690,4 @@ Total: **684 blocks**
 | 686 | [niagara-mental-model-bloque686.md](niagara-mental-model-bloque686.md) | B686 — JACE_UMBRELLA NiagaraNetwork (SC2): the field controller lists no supervisor and manages no subordinate — but that does NOT prove standalone (framework-semantic refine) |
 | 687 | [niagara-mental-model-bloque687.md](niagara-mental-model-bloque687.md) | B687 — JACE_UMBRELLA NrioNetwork (SC3): the field controller drives exactly ONE physical point (a relay output), on an IO-34 that was DOWN at last snapshot |
 | 688 | [niagara-mental-model-bloque688.md](niagara-mental-model-bloque688.md) | B688 — JACE_UMBRELLA deployed RBAC (SC4): one super-user admin, no policy overrides, legacy AX scheme on, and a dangling category-3 reference whose current impact is nil |
+| 689 | [niagara-mental-model-bloque689.md](niagara-mental-model-bloque689.md) | B689 — JACE_UMBRELLA alarms/histories/audit (SC5): records three local audit trails, escalation disabled, zero recipients, nothing leaves the box |

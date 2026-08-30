@@ -1,0 +1,37 @@
+# B689 evidence — JACE_UMBRELLA alarm/history/audit/logging deployed config (non-secret)
+# Source: config.bog file.xml (SD P2). Schema field names + TZ + ids are non-secret.
+
+## AlarmService (L7-18): escalation timer DISABLED, no recipients
+   <p n="escalationTimeTrigger" h="7" m="c=control" t="c:TimeTrigger">
+    <p n="triggerMode" t="c:IntervalTriggerMode" v="false;00:00:00.000;23:59:59.999;60000;7f"/>
+    <p n="lastTrigger" t="b:AbsTime" v="2026-08-19T03:03:40.682-06:00"/>
+    <p n="nextTrigger" t="b:AbsTime" v="2015-02-27T10:25:30.920-06:00"/>
+   </p>
+   <a n="escalateAlarms" f="haAL"/>
+  recipients grep -c 'Recipient' = 0
+
+## HistoryService archive (L228-233): EMPTY = no off-box push
+  <p n="HistoryService" h="52" m="h=history" t="h:HistoryService">
+   <p n="archiveHistoryProviders" h="8385" t="h:ArchiveHistoryProviders">
+   </p>
+   <p n="historyGroupings" h="53" t="h:HistoryGroupings">
+   </p>
+  </p>
+
+## History configs (Audit/Security/Log)
+237:    <p n="id" t="h:HistoryId" v="/JACE_UMBRELLA/AuditHistory"/>
+239:    <p n="timeZone" t="b:TimeZone" v="America/Mexico_City;-21600000;0;null;null"/>
+240:    <p n="recordType" t="b:TypeSpec" v="history:AuditRecord"/>
+244:   <p n="SecurityAuditHistorySource" f="1" h="8386" t="h:SecurityAuditHistorySource">
+246:     <p n="id" t="h:HistoryId" v="/JACE_UMBRELLA/SecurityHistory"/>
+248:     <p n="timeZone" t="b:TimeZone" v="America/Mexico_City;-21600000;0;null;null"/>
+249:     <p n="recordType" t="b:TypeSpec" v="history:SecurityAuditRecord"/>
+258:    <p n="id" t="h:HistoryId" v="/JACE_UMBRELLA/LogHistory"/>
+260:    <p n="timeZone" t="b:TimeZone" v="America/Mexico_City;-21600000;0;null;null"/>
+261:    <p n="recordType" t="b:TypeSpec" v="history:LogRecord"/>
+
+## LoggingService (L172): empty body
+  <p n="LoggingService" h="27" c="2" t="b:LoggingService">
+  </p>
+
+## provisioning-generated .hdb declared in any historyConfig? grep -c = 0  (0 = driver-generated, not declared)
