@@ -1,0 +1,10 @@
+d       1024 /.boot
+-        144 /fac.properties
+d       1024 /maint
+-    1374248 /maint/n4-titan-am335x-maint.signed
+-          9 /maint/n4-titan-am335x-maint.ver
+-      34152 /mlo
+-   27149316 /n4-titan-am335x.signed
+-   43313692 /n4clean.tar.gz
+-     268984 /u-boot.img
+-         78 /uEnv.txt

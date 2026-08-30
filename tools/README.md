@@ -35,3 +35,5 @@ is ALREADY installed + kit-wrapped. The following are NEW and belong to OTHER fo
 | angr / qiling / frida / btrace / x64dbg | symbolic exec / emulation / dynamic instrumentation | NG1-G1 dataflow (angr), §12 live-station dynamic phase (frida/btrace) | not installed (angr/frida heavy pip; note before use) |
 | Detect-It-Easy / pe-bear / cutter | packer/compiler ID + PE structure + Ghidra-GUI-lite | native triage (complements radare2/rabin2) | not yet acquired |
 | ILSpy / dnSpyEx | .NET decompilers | only if a .NET assembly appears (none found so far; ilspycmd is UNUSABLE per detect-tools) | not yet acquired |
+
+- `qnx6read.py` — read-only QNX6 (Power-Safe) filesystem reader (superblock + 2-level indirection + short/long dir names). Born in focus jace8000-sd (B674) to walk the JACE-8000 microSD QNX6 partitions from a raw image with no `qnx6` kernel driver / no sudo. Usage: `QNX6_IMG=/path/disk.img python3 tools/qnx6read.py P2`. Provenance: 2026-08-30.
