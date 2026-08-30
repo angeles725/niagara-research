@@ -16,10 +16,10 @@
 
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 693
-gaps_closed: 5
+covered_blocks: 694
+gaps_closed: 6
 known_gaps: 7
-investigable_open: 1
+investigable_open: 0
 requires_execution_open: 1
 blocked_open: 0
 deferred_open: 0
@@ -28,7 +28,7 @@ block_scope: shared-global
 <!-- /research-state.v1 -->
 
 focus: jace-data-at-rest
-status: active (bootstrapped 2026-08-30; backlog seeded from measured P2 security-file inventory)
+status: stopped (read-only-investigable exhausted 6/6; only DAR2-G1 requires-execution remains)
 bootstrapped_on: 2026-08-30
 block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libre: B693)
 
@@ -40,7 +40,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
   `/etc/shadow` (343B), `/etc/opasswd`, `/etc/oshadow`; keystores `keystore.jceks` (4476B), `cacerts.jceks`,
   `untrusted.jceks`, `signing/signers` (33021B), `exemptions.tes`; JRE crypto `java.security`, `cacerts.bcfks`
   (BC-FIPS), policy/{limited,unlimited}; vendor certs + licenses (Host ID `Qnx-TITAN-44A2-****-****-363E`).
-- **Coverage metric**: 5 / 7 gaps closed (DAR1-5; DAR2-G1 req-exec)
+- **Coverage metric**: 6 / 7 gaps closed (DAR1-6 investigable=0; DAR2-G1 requires-execution)
 
 ## Gap-backlog (prioritized)
 
@@ -52,7 +52,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 | medium | DAR4 station keystores (keystore.jceks 4476B, cacerts.jceks, untrusted.jceks, signing/signers) — what THIS unit holds (TLS default-cert private key? signing keys?), JCEKS format | keystore disk | closed (B696 — keystore.jceks=TLS keypair alias 'default'=factory ForRecoveryPurposes self-signed; cacerts/untrusted empty; signers=module store REMITTANCE B392) |
 | medium | DAR5 JRE crypto policy deployed (java.security, policy limited vs unlimited, cacerts.bcfks BC-FIPS) — the crypto configuration on this unit | jre-config disk | closed (B697 — standard non-FIPS Sun stack, unlimited default, weak TLS/algos disabled; FIPS shipped-not-engaged across every layer) |
 | medium | DAR2-G1 the actual decryption PoC (KeyRing unwrap w/ .km -> derive reversible key -> decrypt a config.bog BPassword field via Mocana AES-256-CBC) | requires-execution | requires-execution (implement Niagara keyring unwrap + Mocana AES-256-CBC) |
-| low | DAR6 SYNTHESIS — the recoverable-from-SD-alone verdict: exactly what SD possession yields vs what needs live hardware (extends B466/B684/B689) | synthesis | pending |
+| low | DAR6 SYNTHESIS — the recoverable-from-SD-alone verdict: exactly what SD possession yields vs what needs live hardware (extends B466/B684/B689) | synthesis | closed (B698 — physical SD = near-total data-at-rest compromise; only 1-way login hashes resist; hardware root-of-trust not in data path; custody is the control) |
 
 `tried:` (none blocked yet — all sources confirmed present on SD P2 and extractable via qnx6read.py; SOURCE-BEFORE-AGENT passes).
 
@@ -77,6 +77,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 | 3 | 2026-08-30 | DAR3 OS accounts (passwd/shadow) | B695 | no · inline (secrets-sensitive: skeleton only, hashes masked) | 0 new |
 | 4 | 2026-08-30 | DAR4 station keystores | B696 | no · inline (keystore magic/aliases, no private keys) | 0 new |
 | 5 | 2026-08-30 | DAR5 JRE crypto policy | B697 | no · inline (java.security config read) | 0 new |
+| 6 | 2026-08-30 | DAR6 SYNTHESIS (focus close) | B698 | no · inline (consolidation of DAR1-5 + B466/B684) | 0 new (focus STOP; DAR2-G1 stays req-exec) |
 
 ## Blocked gaps (each tagged with what it needs)
 
@@ -84,7 +85,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 1
+- **Open gaps — read-only investigable**: 0
 - **Open gaps — requires-execution**: 1 (DAR2-G1)
 - **Open gaps — blocked**: 0
 - Budget cap: none

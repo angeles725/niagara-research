@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **693 blocks**
+Total: **694 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -699,3 +699,4 @@ Total: **693 blocks**
 | 695 | [niagara-mental-model-bloque695.md](niagara-mental-model-bloque695.md) | B695 — JACE_UMBRELLA OS accounts (DAR3): 7 QNX accounts, only 2 can log in, both hashed with the same PBKDF2-HMAC-SHA256 primitive as the station — no password-aging policy |
 | 696 | [niagara-mental-model-bloque696.md](niagara-mental-model-bloque696.md) | B696 — JACE_UMBRELLA station keystores (DAR4): the TLS keypair is the factory ForRecoveryPurposes self-signed cert; the trust/untrusted stores are empty |
 | 697 | [niagara-mental-model-bloque697.md](niagara-mental-model-bloque697.md) | B697 — JACE_UMBRELLA JRE crypto policy (DAR5): standard non-FIPS OpenJDK stack, unlimited-strength by default, weak TLS/algorithms disabled — FIPS off across every layer |
+| 698 | [niagara-mental-model-bloque698.md](niagara-mental-model-bloque698.md) | B698 — What the SD yields (DAR6, focus synthesis): physical possession = near-total data-at-rest compromise, because the data-encryption key is a cleartext file on the same card the hardware root-of-trust protects |
