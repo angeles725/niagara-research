@@ -1,0 +1,19 @@
+# B697 evidence — JACE_UMBRELLA JRE crypto policy (config, non-secret)
+# Source: /opt/niagara/jre/lib/security/java.security (SD P2).
+## crypto.policy: (not set explicitly) -> JRE default = unlimited (JDK9+); both policy/{limited,unlimited} jars shipped
+## security providers (9, standard Sun stack, NO BC-FIPS forced):
+security.provider.1=sun.security.provider.Sun
+security.provider.2=sun.security.rsa.SunRsaSign
+security.provider.3=sun.security.ec.SunEC
+security.provider.4=com.sun.net.ssl.internal.ssl.Provider
+security.provider.5=com.sun.crypto.provider.SunJCE
+security.provider.6=sun.security.jgss.SunProvider
+security.provider.7=com.sun.security.sasl.Provider
+security.provider.8=org.jcp.xml.dsig.internal.dom.XMLDSigRI
+security.provider.9=sun.security.smartcardio.SunPCSC
+## keystore.type=jks ; keystore.type.compat=true
+## jdk.tls.disabledAlgorithms (L705):
+  jdk.tls.disabledAlgorithms=SSLv3, TLSv1, TLSv1.1, RC4, DES, MD5withRSA, \
+      DH keySize < 1024, EC keySize < 224, 3DES_EDE_CBC, anon, NULL, \
+      include jdk.disabled.namedCurves
+## cacerts.bcfks (BC-FIPS keystore) present on disk but not the active provider path -> FIPSEnabled=false (B685). REMITTANCE signing-pki B395.

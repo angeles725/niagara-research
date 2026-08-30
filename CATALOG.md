@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **692 blocks**
+Total: **693 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -698,3 +698,4 @@ Total: **692 blocks**
 | 694 | [niagara-mental-model-bloque694.md](niagara-mental-model-bloque694.md) | B694 — Does SD possession decrypt the station? (DAR2): the machine-key domain is anchored in an ON-DISK software keyring, not the ECC508 — so physical SD possession gives all key material offline (§14 refines B466's threat model) |
 | 695 | [niagara-mental-model-bloque695.md](niagara-mental-model-bloque695.md) | B695 — JACE_UMBRELLA OS accounts (DAR3): 7 QNX accounts, only 2 can log in, both hashed with the same PBKDF2-HMAC-SHA256 primitive as the station — no password-aging policy |
 | 696 | [niagara-mental-model-bloque696.md](niagara-mental-model-bloque696.md) | B696 — JACE_UMBRELLA station keystores (DAR4): the TLS keypair is the factory ForRecoveryPurposes self-signed cert; the trust/untrusted stores are empty |
+| 697 | [niagara-mental-model-bloque697.md](niagara-mental-model-bloque697.md) | B697 — JACE_UMBRELLA JRE crypto policy (DAR5): standard non-FIPS OpenJDK stack, unlimited-strength by default, weak TLS/algorithms disabled — FIPS off across every layer |
