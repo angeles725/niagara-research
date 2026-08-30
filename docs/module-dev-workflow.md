@@ -117,3 +117,34 @@ too; a forgotten `<type>` fails silently.
 3. Jar signs automatically — ensure the right keystore/alias is active; no manual sign step.
 4. Deploy via backup+verify (ng-deploy), not a bare copy.
 5. Build against the SDK home matching the target station version.
+
+---
+
+## 5. Testing & debugging
+
+### 5.1 Unit test the pure-Java model
+- Keep parse/compute/name-generation logic in **pure-Java helpers** (zero Niagara types) → unit-test in plain
+  JUnit in WSL (`run-tests-wsl.sh`). chihuahua-wb's `model/` package is the exemplar. [B637, B654]
+- Logic that touches `BComponent`/the station API needs a station — minimize it.
+
+### 5.2 Station debug
+- Read `LogHistory` (`logName/severity/message/exception`) — engine-thread exceptions are swallowed + logged,
+  not thrown, so check logs, not a crash. [B701, B650]
+- Type not found → class not in `module-include.xml`. Feature missing on headless → logic in `-wb`. Module won't
+  load → signing/verify mode. [B630, B639]
+
+### 5.3 Common error → fix
+
+| Symptom | Cause | Fix |
+|---|---|---|
+| compile error in slot constant | stale AUTO region | `:slotomatic` |
+| type not found / resolve fails | class not in `<type>` | add to module-include.xml |
+| feature missing on headless | logic in `-wb` | move to `-rt` |
+| module won't load | signing/verify | keystore alias + moduleVerificationMode |
+| slot change silent, no crash | exception swallowed on engine thread | read LogHistory |
+| jitter / slow station | blocking engine thread | dispatch off-thread |
+| read-only user can write | ungated write path | `BPermissions.has` + `runAsUser` |
+
+---
+
+*Companion: `module-best-practices.md` (the rules). This file (the process). Both trace every rule to a [Block N].*

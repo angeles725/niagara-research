@@ -11,10 +11,10 @@
 
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 710
-gaps_closed: 4
+covered_blocks: 711
+gaps_closed: 5
 known_gaps: 5
-investigable_open: 1
+investigable_open: 0
 requires_execution_open: 0
 blocked_open: 0
 deferred_open: 0
@@ -23,14 +23,14 @@ block_scope: shared-global
 <!-- /research-state.v1 -->
 
 focus: module-dev-workflow
-status: active (bootstrapped 2026-08-30)
+status: stopped (5/5 investigable; deliverable docs/module-dev-workflow.md)
 bootstrapped_on: 2026-08-30
 block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libre: B711)
 
 ## Coverage
 
 - **Covered blocks**: 706 corpus-wide (this focus: B711-) (shared-global)
-- **Coverage metric**: 4 / 5 gaps closed (WF1-4)
+- **Coverage metric**: 5 / 5 gaps closed (WF1-5 investigable=0); deliverable docs/module-dev-workflow.md complete
 - **Deliverable**: `docs/module-dev-workflow.md` (a step-by-step runbook)
 
 ## Gap-backlog (prioritized)
@@ -41,7 +41,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 | high | WF2 the codegen mechanics — @NiagaraType/@NiagaraProperty → Slotomatic → the AUTO region round-trip (how it works, inputs/outputs) | synthesis+code | closed (B712 — 5-stage pipeline, AUTO region+hash, Compiler guard, module-include.xml=INPUT; runbook §2) |
 | medium | WF3 the authoring artifacts — module-include.xml, module.palette, module.xml manifest: how to author each, what goes where | synthesis+code | closed (B713 — module.xml/module-include.xml/module.palette/lexicon author's file map; runbook §3) |
 | high | WF4 the end-to-end dev loop as a runbook — edit → slotomatic(if needed) → build → sign → deploy → verify → test/debug, with commands | runbook | closed (B714 — ordered loop + commands + failure/fix table + golden rules; runbook §4) |
-| medium | WF5 testing + debugging — run-tests-wsl.sh (pure-Java model testing), station debug, common errors + fixes; + the runbook deliverable docs/module-dev-workflow.md | synthesis+deliverable | pending |
+| medium | WF5 testing + debugging — run-tests-wsl.sh (pure-Java model testing), station debug, common errors + fixes; + the runbook deliverable docs/module-dev-workflow.md | synthesis+deliverable | closed (B715 — pure-Java WSL tests, station debug via LogHistory, common-error table; runbook §5 finalized; focus STOP) |
 
 `tried:` (none blocked — all source is existing corpus + the real build repo referenced by own-modules-audit).
 
@@ -61,6 +61,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 | 2 | 2026-08-30 | WF2 codegen round-trip | B712 | no · inline (B631 in-hand) | 0 new |
 | 3 | 2026-08-30 | WF3 authoring artifacts | B713 | no · inline | 0 new |
 | 4 | 2026-08-30 | WF4 dev loop runbook | B714 | no · inline | 0 new |
+| 5 | 2026-08-30 | WF5 test/debug + deliverable (focus close) | B715 | no · inline | 0 new (focus STOP) |
 
 ## Blocked gaps (each tagged with what it needs)
 
@@ -68,7 +69,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 1
+- **Open gaps — read-only investigable**: 0
 - **Open gaps — requires-execution**: 0
 - **Open gaps — blocked**: 0
 - Budget cap: none

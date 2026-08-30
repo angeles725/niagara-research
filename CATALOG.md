@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **710 blocks**
+Total: **711 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -716,3 +716,4 @@ Total: **710 blocks**
 | 712 | [niagara-mental-model-bloque712.md](niagara-mental-model-bloque712.md) | B712 — Module dev workflow, the codegen round-trip (WF2): how `@NiagaraType` becomes a runtime-resolvable type, stage by stage |
 | 713 | [niagara-mental-model-bloque713.md](niagara-mental-model-bloque713.md) | B713 — Module dev workflow, the authoring artifacts (WF3): module.xml, module-include.xml, module.palette, lexicon — what goes in each |
 | 714 | [niagara-mental-model-bloque714.md](niagara-mental-model-bloque714.md) | B714 — Module dev workflow, the dev loop (WF4): the edit → slotomatic → build → sign → deploy → verify loop, step by step |
+| 715 | [niagara-mental-model-bloque715.md](niagara-mental-model-bloque715.md) | B715 — Module dev workflow, testing & debugging + runbook finalization (WF5, focus close): pure-Java model tests in WSL, station-side debug, and the common errors |
