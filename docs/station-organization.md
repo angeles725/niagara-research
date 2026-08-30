@@ -48,10 +48,6 @@ these points (§2/§3). Then a device re-address changes only the proxyExt, not 
 
 ---
 
-*(equipment/logic layer, linking, navigation, and reuse are added as SO2–SO5 close.)*
-
----
-
 ## 2. The equipment / logic layer — where control logic goes
 
 **Logic lives in the station component space (`/Config` or `/Services`), NOT under `/Drivers`.** chihuahua puts
@@ -134,3 +130,29 @@ type → equip leaves." Permissions stay = component categories (RBAC preserved)
 ### 4.4 Your case
 Tag the TC500 zone + IO-R-34 equipment `equip` + `geoFloor`; keep `equipRef` on their points; build one "by floor
 → by equipment" hierarchy. Operators browse zones without moving any point or logic component.
+
+---
+
+## 5. Reuse
+
+- **Equipment templates** (`.ntpl`): model one equipment well (points+logic+links+tags), capture it as a template
+  with typed parameters, deploy N instances each re-bound to a different device's points. [B577-B583, B591]
+- **Provisioning**: push the structure/updates to a fleet of JACEs via `BBatchJob` over the `niagaraProv` channel
+  (template deploy is a provisioning step). [B567-B576]
+
+---
+
+## Summary — the recommended structure
+
+| Layer | Where | Rule |
+|---|---|---|
+| IO / points | `/Drivers/<Net>/<Device>/points/` | points-only, one per physical signal, from discovery/learn |
+| Equipment / logic | `/Config` or `/Services`, per-equipment, near its points | one component = one equipment, tagged `equip`, Philosophy B |
+| Links | between the two | BLink + priority array, handle/tag-stable |
+| Navigation | hierarchies over tags | tag once, navigate many; never duplicate the tree |
+| Reuse | templates + provisioning | build once, stamp/push to the fleet |
+
+**Do NOT:** logic in `/Drivers` or inside `points/`; a monolithic central `Logic` folder far from the points;
+duplicating the tree for an operator view; hardcoded ORDs that break on re-address.
+
+*Every rule traces to a [Block N] in the corpus.*

@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **715 blocks**
+Total: **716 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -721,3 +721,4 @@ Total: **715 blocks**
 | 717 | [niagara-mental-model-bloque717.md](niagara-mental-model-bloque717.md) | B717 — Station organization, the equipment/logic layer (SO2): where control logic lives, the three authoring methods, and the official "keep blocks near their points" guidance |
 | 718 | [niagara-mental-model-bloque718.md](niagara-mental-model-bloque718.md) | B718 — Station organization, linking points ↔ logic (SO3): how the equipment layer connects to the device points, the priority array, and keeping the link stable across re-addressing |
 | 719 | [niagara-mental-model-bloque719.md](niagara-mental-model-bloque719.md) | B719 — Station organization, navigation & grouping (SO4): tag once, navigate many ways — hierarchies + tags instead of duplicating the physical tree |
+| 720 | [niagara-mental-model-bloque720.md](niagara-mental-model-bloque720.md) | B720 — Station organization, reuse + synthesis (SO5, focus close): equipment templates, fleet provisioning, and the recommended-structure verdict |
