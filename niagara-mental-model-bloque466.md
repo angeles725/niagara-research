@@ -67,6 +67,12 @@ Sharper operator takeaways:
   secrets recoverable **iff you know the passphrase**. This is the route that actually gives usable secrets.
 - **Raw daemon-home copy** (any route that skips the platform tools): structure readable, secrets sealed with
   a **non-exportable machine key** → **secrets unrecoverable off-box**, period.
+  > **§14 REFINED by [Block 694] (focus jace-data-at-rest):** "non-exportable / unrecoverable off-box, period"
+  > holds for the NETWORK/platform-tool threat model tested here, but is **REFUTED for the PHYSICAL-SD threat
+  > model**. The machine key is `/etc/km/.km`, a **32-byte cleartext file on the boot microSD** ([Block 693]);
+  > the "hypothetical raw filesystem grab" flagged above is exactly the SD image, and it yields the key. The
+  > at-rest key path is a software keyring on removable storage, not the ECC508. Physical media possession
+  > bypasses "non-exportable" (which is a property of the TOOLS, not the storage).
 - **Windows-Explorer / plain `cp`**: explicitly warned to produce unreadable files — the encryption is not a
   wrapper you can strip by copying.
 
