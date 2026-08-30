@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **700 blocks**
+Total: **701 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -706,3 +706,4 @@ Total: **700 blocks**
 | 702 | [niagara-mental-model-bloque702.md](niagara-mental-model-bloque702.md) | B702 — JACE_UMBRELLA alarm.adb (HD4): the only alarms the station ever raised were NRIO ping-fail/success on the IO-34, routed to nobody |
 | 703 | [niagara-mental-model-bloque703.md](niagara-mental-model-bloque703.md) | B703 — provisioning .hdb + focus SYNTHESIS (HD5): the history stores independently confirm the seed-station and weak-data-at-rest theses — a bench unit's trace, cleartext and rewritable on the card |
 | 704 | [niagara-mental-model-bloque704.md](niagara-mental-model-bloque704.md) | B704 — DAR2-G1: the reversible-decrypt PoC design is confirmed (AES-256-GCM, keyring-aliased) — but this seed station's config.bog has ZERO reversible fields, so there is nothing to decrypt (§14 corrects B694's cipher) |
+| 705 | [niagara-mental-model-bloque705.md](niagara-mental-model-bloque705.md) | B705 — Module best practices, RT layer (MBP1): the clean-`-rt` patterns, the anti-patterns the audits found, and the concrete fixes — distilled from the reference modules |
