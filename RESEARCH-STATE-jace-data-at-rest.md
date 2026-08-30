@@ -16,10 +16,10 @@
 
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 690
-gaps_closed: 2
+covered_blocks: 691
+gaps_closed: 3
 known_gaps: 7
-investigable_open: 4
+investigable_open: 3
 requires_execution_open: 1
 blocked_open: 0
 deferred_open: 0
@@ -40,7 +40,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
   `/etc/shadow` (343B), `/etc/opasswd`, `/etc/oshadow`; keystores `keystore.jceks` (4476B), `cacerts.jceks`,
   `untrusted.jceks`, `signing/signers` (33021B), `exemptions.tes`; JRE crypto `java.security`, `cacerts.bcfks`
   (BC-FIPS), policy/{limited,unlimited}; vendor certs + licenses (Host ID `Qnx-TITAN-44A2-****-****-363E`).
-- **Coverage metric**: 2 / 7 gaps closed (DAR1 B693, DAR2 B694; DAR2-G1 req-exec)
+- **Coverage metric**: 3 / 7 gaps closed (DAR1-3; DAR2-G1 req-exec)
 
 ## Gap-backlog (prioritized)
 
@@ -48,7 +48,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 |---|---|---|---|
 | high | DAR1 the keyring trio (/home/niagara/security/.kr, /etc/km/.km, /.fskey/.key) — format, magic, size, what each holds, how they relate; the reversible-encoding key store | keyring binary disk | closed (B693 — .kr=serialized Java KeyRing, .km=32B cleartext master key, .fskey=156B fs key; .km-in-clear seeds DAR2) |
 | high | DAR2 THE question: can config.bog reversible/BPassword fields be decrypted from the SD ALONE, or is the effective key hardware-bound (ECC508/Host ID/TPM)? — bound it from disk+corpus | analysis + corpus | closed (B694 — verdict H1: software keyring on disk, .km cleartext, NOT ECC508; SD=all key material offline; §14 refines B466 threat model) |
-| high | DAR3 /etc/shadow + /etc/passwd — the QNX OS accounts, hash algorithms, account inventory (structure; hashes MASKED) | os-cred disk | pending |
+| high | DAR3 /etc/shadow + /etc/passwd — the QNX OS accounts, hash algorithms, account inventory (structure; hashes MASKED) | os-cred disk | closed (B695 — 7 accounts, 5 no-login; only admin+operator log in; PBKDF2-HMAC-SHA256 ~10k = same primitive as config.bog; no aging) |
 | medium | DAR4 station keystores (keystore.jceks 4476B, cacerts.jceks, untrusted.jceks, signing/signers) — what THIS unit holds (TLS default-cert private key? signing keys?), JCEKS format | keystore disk | pending |
 | medium | DAR5 JRE crypto policy deployed (java.security, policy limited vs unlimited, cacerts.bcfks BC-FIPS) — the crypto configuration on this unit | jre-config disk | pending |
 | medium | DAR2-G1 the actual decryption PoC (KeyRing unwrap w/ .km -> derive reversible key -> decrypt a config.bog BPassword field via Mocana AES-256-CBC) | requires-execution | requires-execution (implement Niagara keyring unwrap + Mocana AES-256-CBC) |
@@ -74,6 +74,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 | — | 2026-08-30 | (bootstrap — P2 security-file inventory) | — | no · inline (p2-tree scan + qnx6read source-confirm) | DAR1–DAR6 seeded |
 | 1 | 2026-08-30 | DAR1 keyring trio structure | B693 | no · inline (secrets-sensitive: magic/entropy only, no key bytes) | 0 new (.km-cleartext seeds DAR2) |
 | 2 | 2026-08-30 | DAR2 SD-alone-decrypt verdict | B694 | no · inline (analysis + §14 refine B466) | DAR2-G1 (requires-execution: decryption PoC) |
+| 3 | 2026-08-30 | DAR3 OS accounts (passwd/shadow) | B695 | no · inline (secrets-sensitive: skeleton only, hashes masked) | 0 new |
 
 ## Blocked gaps (each tagged with what it needs)
 
@@ -81,7 +82,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 4
+- **Open gaps — read-only investigable**: 3
 - **Open gaps — requires-execution**: 1 (DAR2-G1)
 - **Open gaps — blocked**: 0
 - Budget cap: none

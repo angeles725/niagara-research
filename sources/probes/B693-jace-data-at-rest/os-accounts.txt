@@ -1,0 +1,22 @@
+# B695 evidence — JACE_UMBRELLA /etc/passwd + /etc/shadow STRUCTURE (NO hashes; real-person username masked)
+# Source: SD P2 via qnx6read.py. SECRETS DISCIPLINE: hash values NEVER shown; only format skeleton + algo.
+
+## /etc/passwd — 7 accounts (uid/gid/shell):
+  root                     uid=0 gid=0 shell=(none)
+  sshd                     uid=50 gid=50 shell=(none)
+  daemon                   uid=100 gid=100 shell=(none)
+  niagarad                 uid=200 gid=200 shell=(none)
+  station                  uid=300 gid=300 shell=(none)
+  admin                    uid=401 gid=401 shell=/bin/sh
+  OPERATOR-uid400-MASKED   uid=400 gid=400 shell=/bin/sh
+  system accounts (no shell = no interactive login): root, sshd, daemon, niagarad(uid200), station(uid300)
+  interactive login (/bin/sh): admin(uid401), <operator>(uid400)
+
+## /etc/shadow — only the 2 login accounts carry a hash. FORMAT (content masked):
+  skeleton: @<version:1>,<iterations:5-digit>@<base64 salt>@<base64 hash 43ch+'='>=  (len 142)
+  => PBKDF2-HMAC-SHA256, ~10000 iterations, 32-byte (SHA-256) output
+  => SAME primitive as the config.bog admin encoder [pbkdf2-sha256.1] (B685), different serialization
+  aging: min=0 max=0 warn=0 (no password-aging/expiration policy); lastchg in SECONDS (QNX-specific)
+
+## cross-ref: hashcat -m 10900 (PBKDF2-HMAC-SHA256) vs these 2 + config admin = 0/3 recovered, rockyou EXHAUSTED (engram 2026-08-30)
+# secret-scan: this file contains ZERO hash/salt bytes by construction.

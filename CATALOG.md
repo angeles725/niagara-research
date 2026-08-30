@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **690 blocks**
+Total: **691 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -696,3 +696,4 @@ Total: **690 blocks**
 | 692 | [niagara-mental-model-bloque692.md](niagara-mental-model-bloque692.md) | B692 — JACE_UMBRELLA supporting stores + focus SYNTHESIS (SC8): a provisioning-template seed controller, profiled against the supervisor |
 | 693 | [niagara-mental-model-bloque693.md](niagara-mental-model-bloque693.md) | B693 — JACE_UMBRELLA keyring trio (DAR1): the reversible-encoding key store is a serialized Java KeyRing plus a 32-byte master key that sits in the clear on the card |
 | 694 | [niagara-mental-model-bloque694.md](niagara-mental-model-bloque694.md) | B694 — Does SD possession decrypt the station? (DAR2): the machine-key domain is anchored in an ON-DISK software keyring, not the ECC508 — so physical SD possession gives all key material offline (§14 refines B466's threat model) |
+| 695 | [niagara-mental-model-bloque695.md](niagara-mental-model-bloque695.md) | B695 — JACE_UMBRELLA OS accounts (DAR3): 7 QNX accounts, only 2 can log in, both hashed with the same PBKDF2-HMAC-SHA256 primitive as the station — no password-aging policy |
