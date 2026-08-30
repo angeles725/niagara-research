@@ -1,0 +1,18 @@
+P3 (QNX6, 256 MB, only 11 inodes) = a recovery / maintenance slot. Selected verbatim strings from
+its used region (SECRETS-masked):
+
+- "# Honeywell Webs Golden Image Version:4.9.1.30"        -> same OEM golden image as P1 fac.properties
+- "QNX v1.2b Boot Loader"                                  -> QNX bootloader present here
+- "Invalid OS Image" / "Missing OS Image" / "Unsupported Multi-Boot"  -> bootloader error strings
+- "n4-titan-am335x-maint.signed"                           -> a MAINTENANCE firmware image (distinct
+                                                              from the main n4-titan-am335x.signed)
+- "n4-titan-am335x.signed" , "u-boot.img"                  -> copies/refs of the boot chain
+- "uenvcmd=mmcinfo;fatload mmc 0 0x80FFFC00 n4-titan-am335x.signed;go 0x80FFFC00"  -> same boot cmd
+- "META-INF/NIAGARA1.RSA" , "META-INF/NIAGARA4.RSA" , "META-INF/NIAGARA4.SF"  -> JAR code-signing
+                                                              (the .signed images are signed archives)
+- "facUser=honeywell" , "facPw=***REDACTED***"            -> factory defaults present here too
+- "@WQNXs" , "~z#QNx" , "QNXv!X"                            -> QNX image/fs markers
+
+Interpretation [CERT-hw + INFER]: P3 is the factory recovery/maintenance partition holding a QNX
+bootloader + the maintenance and main signed firmware images + factory props — the on-card half of
+the JACE-8000 recovery story (cf. [Block 463] recovery mechanics). Full file extraction = SD-G1b.

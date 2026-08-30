@@ -1,4 +1,4 @@
-# RESEARCH-STATE — focus: jace8000-sd (bootstrapped 1/1 investigable; 3 child gaps requires-execution/blocked)
+# RESEARCH-STATE — focus: jace8000-sd (2 gaps closed incl. QNX partitions read via raw image; 3 child gaps requires-execution/blocked)
 
 > Multi-focus corpus (METHODOLOGY §16). Focus **BOOTSTRAPEADO 2026-08-30** a pedido del operador
 > ("puedes ver los archivos del microSD que se utiliza para el JACE-8000"), confirmado como focus nuevo.
@@ -12,9 +12,9 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 668
-gaps_closed: 1
-known_gaps: 4
+covered_blocks: 669
+gaps_closed: 2
+known_gaps: 5
 investigable_open: 0
 requires_execution_open: 2
 blocked_open: 1
@@ -29,16 +29,17 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 
 ## Coverage
 
-- **Covered blocks**: 668 corpus-wide (this focus: B672) (shared-global)
-- **Coverage metric**: 1 / 1 investigable closed (read-only reachable content of the card)
-- **Last iteration**: 2026-08-30 — SD1 closed (B672, bootstrap)
+- **Covered blocks**: 669 corpus-wide (this focus: B672-B673) (shared-global)
+- **Coverage metric**: 2 gaps closed (SD1 card anatomy, SD-G1 QNX partitions read)
+- **Last iteration**: 2026-08-30 — SD-G1 closed (B673, QNX6 P2/P3 read via raw image)
 
 ## Gap-backlog (prioritized)
 
 | Priority | Gap | Type | Status |
 |---|---|---|---|
 | high | SD1 what is on the boot microSD (partitions, boot chain, firmware, factory defaults) — read-only | live-hw physical | closed (B672) |
-| high | SD-G1 read the QNX partitions 2 & 3 (real filesystem: station, config.bog, keyring, logs) | requires raw imaging (dd/Win32 Disk Imager) + QNX6 Power-Safe reader | requires-execution |
+| high | SD-G1 read the QNX partitions 2 & 3 (identify FS + key contents) | live-hw raw image | closed (B673 — both QNX6; P2=live Niagara FS, P3=recovery slot) |
+| medium | SD-G1b full recursive file tree + per-file extraction of P2/P3 (complete /opt/niagara module list, station files, keyring .km/.kr, logs) | requires qnx6 mount (kernel with CONFIG_QNX6FS_FS or VM) OR a full QNX6 tree parser | requires-execution |
 | medium | SD-G2 n4-titan-am335x.signed internals (CertISW cert chain, payload layout, offline verify) | requires binary tooling (Ghidra/r2 + TI CertISW parser) | requires-execution |
 | medium | SD-G3 confirm boot chain end-to-end live (does go 0x80FFFC00 verify the CertISW cert before exec) | live serial + boot capture | blocked (needs serial console; cf. jace8000 J7-G1) |
 
@@ -58,6 +59,7 @@ attempted this session — requires-execution). SD-G3 — bounded by physical se
 |---|---|---|---|---|---|
 | — | 2026-08-30 | (bootstrap — physical read) | — | no · inline (PowerShell interop, read-only) | SD-G1, SD-G2, SD-G3 seeded |
 | 1 | 2026-08-30 | SD1 microSD contents | B672 | no · inline ([CERT-hw] physical inspection) | 3 child gaps (all non-read-only) |
+| 2 | 2026-08-30 | SD-G1 QNX partitions read | B673 | no · inline ([CERT-hw] raw image parse: QNX6 superblock + string/offset scan) | SD-G1b (full tree/extraction, requires-execution) |
 
 ## Blocked gaps (each tagged with what it needs)
 
@@ -67,8 +69,8 @@ attempted this session — requires-execution). SD-G3 — bounded by physical se
 
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 0 → STOP (all further work needs imaging/binary/serial tooling)
-- **Open gaps — requires-execution**: 2 (SD-G1, SD-G2)
+- **Open gaps — read-only investigable**: 0 → STOP (all further work needs qnx6-mount/binary/serial tooling)
+- **Open gaps — requires-execution**: 2 (SD-G1b full tree/extraction, SD-G2 CertISW internals)
 - **Open gaps — blocked**: 1 (SD-G3)
 - Budget cap: none
 

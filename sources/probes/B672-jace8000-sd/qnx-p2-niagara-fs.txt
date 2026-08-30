@@ -1,0 +1,21 @@
+P2 (QNX6) = the live Niagara filesystem. Evidence: raw string extraction from the used region
+(~offset 881 MB into the card; grep byte-offsets: /opt/niagara @923819226, /home/niagara @923848803,
+config.bog @923848848). Selected verbatim strings (a station-log region), SECRETS-masked:
+
+- "Niagara Runtime Environment: 4.14.0.162"      -> NRE version running on the JACE
+- "*** Station Started (49829ms) [165704ms ..."   -> station startup log
+- "Saving station... Saved /home/niagara/stations/JACE_UMBRELLA/config.bog (3792ms)"
+      -> station name JACE_UMBRELLA (matches the live Fox backup, B473) + config.bog path
+- "<file:/opt/niagara/modules/honeywellSylkDevice-rt.jar>"   -> modules dir /opt/niagara/modules/
+- "<p n=\"source\" m=\"b=baja\" t=\"b:OrdList\" v=\"station:|h:56\"/>"  -> .bog (baja XML) fragment
+- "channel 'niagaraProv'"      -> provisioning channel active
+- "Niagara tagdictionary is out ..."   -> tag dictionary subsystem
+
+grep counts over the whole image: /opt/niagara = 236, /home/niagara = 24, config.bog = 7 (all in P2).
+
+Filesystem layout confirmed [CERT-hw]:
+  /opt/niagara/            -> Niagara install (modules/*.jar, nre, etc.)
+  /home/niagara/stations/JACE_UMBRELLA/config.bog  -> the running station's database
+
+NOT yet enumerated: the full recursive file tree / per-file extraction (needs a QNX6 mount or a
+full QNX6 tree parser). This is child gap SD-G1b.

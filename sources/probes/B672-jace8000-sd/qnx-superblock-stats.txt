@@ -1,0 +1,17 @@
+QNX6 (Power-Safe) superblock stats — parsed read-only from jace-sd.img (raw image of the card).
+Magic 0x68191122 at partition-relative offset 0x2000. blocksize = 1024 B for both.
+
+P2 (partition 2, offset 135266304, 3.3 GB):
+  magic=0x68191122 blocksize=1024
+  num_blocks=3492848  free_blocks=3249356  used_blocks=243492  (~249.3 MB used)
+  num_inodes=109152   free_inodes=108453   used_inodes=699     (files+dirs)
+  => the live Niagara filesystem (/opt/niagara, /home/niagara).
+
+P3 (partition 3, offset 3711959040, 256 MB):
+  magic=0x68191122 blocksize=1024
+  num_blocks=262128   free_blocks=183082   used_blocks=79046   (~80.9 MB used)
+  num_inodes=32768    free_inodes=32757    used_inodes=11       (files+dirs)
+  => a small QNX6 recovery/maintenance slot (bootloader + signed firmware images).
+
+Method: Python struct-parse of the QNX6 superblock (no mount; WSL kernel lacks the qnx6 driver
+and no sudo). READ-ONLY over the image; the card was never written.

@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **670 bloques**
+Total: **671 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -675,6 +675,7 @@ Total: **670 bloques**
 | 670 | [niagara-mental-model-bloque670.md](niagara-mental-model-bloque670.md) | B670 — `BAlarmRecord` field getters for the webhook `toJson`: exact signatures for uuid/timestamp/alarmClass/priority/sourceState/ackState/source — and the ONE correction, `getAckRequired()` NOT `isAckRequired()`; `getAlarmFacet(String)` returns `BObject` (null if absent), while `getFormattedAlarmDataValue(key,cx)` returns a String ("" if absent); keys enumerated via `getAlarmData().list()` (focus alarm-webhook, AW5; confirms/refines B34 §34.7) |
 | 671 | [niagara-mental-model-bloque671.md](niagara-mental-model-bloque671.md) | B671 — External oBIX alarm-ACK: an HTTP client POSTs to `/obix/alarm/<uuid>/ack` with a tiny `<obj><str name="ackUser" .../></obj>` (contract `obix:AckAlarmIn`, only field `ackUser`, NO `ackData`); the record UUID is the primary key (same uuid the webhook emits), reached read-level with BASIC auth — the ack invoke path has NO write gate, only force-clear needs admin-write (focus alarm-webhook, AW6; builds on B509/B600/B499) |
 | 672 | [niagara-mental-model-bloque672.md](niagara-mental-model-bloque672.md) | B672 — JACE-8000 boot microSD (physical, read-only): a 4 GB card with THREE partitions — one FAT32 boot partition (mlo→u-boot→uEnv.txt→`n4-titan-am335x.signed`, a TI "CertISW" secure-boot image) that Windows reads, plus TWO QNX partitions it cannot; the FAT32 partition also carries the Honeywell WEBs golden-image factory defaults in plaintext (focus jace8000-sd bootstrap, SD1; §12/§14 confirms B459 AM335x) |
+| 673 | [niagara-mental-model-bloque673.md](niagara-mental-model-bloque673.md) | B673 — JACE-8000 microSD QNX partitions read (raw, no mount): both P2 and P3 are QNX6 Power-Safe filesystems (magic 0x68191122, 1 KB blocks) — P2 is the LIVE Niagara filesystem (NRE 4.14.0.162, station `JACE_UMBRELLA` at `/home/niagara/stations/`, modules at `/opt/niagara/modules/`, ~249 MB / 699 inodes) and P3 is a small QNX6 recovery/maintenance slot (QNX bootloader + `n4-titan-am335x-maint.signed` + factory props, 11 inodes) (focus jace8000-sd, SD-G1; §12 [CERT-hw]) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
