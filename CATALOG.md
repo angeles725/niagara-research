@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **688 blocks**
+Total: **689 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -694,3 +694,4 @@ Total: **688 blocks**
 | 690 | [niagara-mental-model-bloque690.md](niagara-mental-model-bloque690.md) | B690 — JACE_UMBRELLA tags + hierarchy (SC6): the biggest service in the config is 100% the stock Niagara v1.5 dictionary — zero applied tags, empty hierarchy |
 | 691 | [niagara-mental-model-bloque691.md](niagara-mental-model-bloque691.md) | B691 — JACE_UMBRELLA platform/orchestration services (SC7): zero executable Program logic, orchestration all default, three top-level containers, web locked to localhost |
 | 692 | [niagara-mental-model-bloque692.md](niagara-mental-model-bloque692.md) | B692 — JACE_UMBRELLA supporting stores + focus SYNTHESIS (SC8): a provisioning-template seed controller, profiled against the supervisor |
+| 693 | [niagara-mental-model-bloque693.md](niagara-mental-model-bloque693.md) | B693 — JACE_UMBRELLA keyring trio (DAR1): the reversible-encoding key store is a serialized Java KeyRing plus a 32-byte master key that sits in the clear on the card |

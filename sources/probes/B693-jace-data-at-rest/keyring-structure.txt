@@ -1,0 +1,17 @@
+# B693 evidence — JACE_UMBRELLA keyring trio STRUCTURE (NO key material; SECRETS DISCIPLINE MÁXIMA)
+# Source: SD P2 via qnx6read.py. Only format/size/entropy cited. Raw key bytes NEVER shown.
+
+## /home/niagara/security/.kr  (665 bytes)
+  file: Java serialization data, version 5  (public magic AC ED 00 05, then TC_BLOCKDATALONG 0x7A)
+  = the Niagara KeyRing persisted as a serialized Java object; body = high-entropy (236 distinct byte values/665) wrapped key entries [MASKED]
+
+## /etc/km/.km  (32 bytes)
+  file: data — 32 raw bytes, NO header/magic, NO wrapping structure
+  = a 256-bit key stored IN THE CLEAR on the card (no format framing). VALUE NOT SHOWN, not even a prefix.
+
+## /.fskey/.key  (156 bytes)
+  file: data — small structured blob (length/type header then key material) = filesystem key. VALUE MASKED.
+
+## Relationship (structural): .km = candidate key-encryption-key for the .kr KeyRing; .fskey = filesystem-layer key. Whether .km alone unwraps .kr off-hardware = DAR2.
+
+# secret-scan note: this file contains ZERO raw key/hash bytes by construction.
