@@ -77,3 +77,43 @@ too; a forgotten `<type>` fails silently.
 | `module.palette` | jar root | BOG of components for drag-and-drop (ungated, lazy, fault-tolerant) — ship for component modules | hand BOG [B634] |
 | `lexicon/*.lexicon` | jar | display/message strings by key (localizable) | hand [B702] |
 | `<Class>.java` AUTO region | src | slot constants/getters/TYPE — never hand-edit inside markers | Slotomatic [B631] |
+
+---
+
+## 4. The dev loop
+
+```
+# 1. EDIT .java  (+ add <type> to module-include.xml if it's a NEW type)
+#    (your code goes OUTSIDE the /*+ BEGIN BAJA AUTO GENERATED +*/ markers)
+
+# 2. SLOTOMATIC — only if a @Niagara* annotation changed:
+./gradlew :<part>:slotomatic
+
+# 3. BUILD + auto-sign (niagara-module + niagara-signing plugins):
+./gradlew :<part>:build
+
+# 4-5. DEPLOY + VERIFY (shop wrapper):
+./scripts/ng-deploy.sh        # backup -> gradlew(mode) -> copy jars -> verify types vs EXPECTED_*_TYPES
+```
+
+- WSL/NTFS: the signing store is on Windows → Robocopy WSL→Win→WSL bridge for slotomatic + jar. [B639]
+- Restart the station/module after deploy so the registry rebuilds and new types load.
+
+### 4.1 Where each step fails
+
+| Step | Failure | Symptom | Fix |
+|---|---|---|---|
+| slotomatic skipped | stale AUTO region | compile error / missing slot | run `:slotomatic` |
+| new type not in `<type>` | not registered | `resolve` fails, no build error | add `<type>` |
+| signing | wrong/absent key | unsigned/wrong signer | check keystore alias |
+| deploy | no restart | old type still loaded | restart station |
+| verify | types ≠ expected | ng-deploy exit 40/50 | reconcile module-include.xml |
+| profile | logic in `-wb` | invisible on headless | move to `-rt` |
+
+### 4.2 Golden rules
+
+1. Slotomatic only on annotation change; never hand-edit the AUTO region.
+2. New type ⇒ update `module-include.xml` in the same edit.
+3. Jar signs automatically — ensure the right keystore/alias is active; no manual sign step.
+4. Deploy via backup+verify (ng-deploy), not a bare copy.
+5. Build against the SDK home matching the target station version.
