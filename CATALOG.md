@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **679 bloques**
+Total: **680 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -684,6 +684,7 @@ Total: **679 bloques**
 | 679 | [niagara-mental-model-bloque679.md](niagara-mental-model-bloque679.md) | B679 — JACE-8000 `niagarad` platform daemon: a thin QNX-7.0 native launcher that starts the JVM running `com.tridium.niagarad.NiagaraDaemon`, and DROPS PRIVILEGES (`setgid`+`setuid` to the `niagarad` user, refuses to run as root) — the opposite of the Windows `plat.exe` that ran as LocalSystem ([Block 381]) (focus jace8000-qnx-native, QN3; §19 [CERT] + §14 vs B381) |
 | 680 | [niagara-mental-model-bloque680.md](niagara-mental-model-bloque680.md) | B680 — JACE-8000 native field-bus drivers: four `*PlatformServiceQnx` JNI shims — `libplatmstp` (BACnet MS/TP over RS-485, `sendFrame`/`setBaudRate`/`setMaxInfoFrames` via QNX `DCMD_MSTP_TX_FRAME`), `libplatnrio` (Niagara Remote IO: `discover`/`enablePolling`/`sendRequest`), `libplatccn` (a Carrier-CCN-style bus: `readTable`/`readVariable`/unsolicited msgs on `/dev/ccn%d`), and `libserial` (raw RS-232/485 port) — the native edge-I/O layer under the Java drivers (focus jace8000-qnx-native, QN4; §19 [CERT]) |
 | 681 | [niagara-mental-model-bloque681.md](niagara-mental-model-bloque681.md) | B681 — JACE-8000 `libcommon.so` (shared native runtime) + `libbacnet.so`: libcommon carries the hardware EngineWatchdog (shmem-based), the network config layer (NetCfgIoPkt: DHCP/IPv6) and i18n — and it links **OpenSSL `libcrypto.so.2`**, a SECOND crypto stack alongside the Mocana in `libdsfspi` ([Block 677]); libbacnet is the **BACnet/Ethernet** link adapter (`/dev/bn-%s`), complementing the MS/TP driver ([Block 680]) (focus jace8000-qnx-native, QN5; §19 [CERT]) |
+| 682 | [niagara-mental-model-bloque682.md](niagara-mental-model-bloque682.md) | B682 — How QNX is invoked on the JACE-8000, and why its OS image can't be unpacked offline: the boot chain ROM→MLO→U-Boot→`go 0x80FFFC00` executes the CertISW-wrapped `n4-titan-am335x.signed`, whose payload is OPAQUE — entropy ≈ 7.998 bits/byte, zero binwalk signatures ⇒ ENCRYPTED (not merely signed), so the QNX IFS/procnto image is not statically extractable from the SD; the running OS is QNX Neutrino 7.0.0 on ARM (focus jace8000-qnx-native, QN6; §19 [CERT] + blocked child) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

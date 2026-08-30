@@ -1,0 +1,15 @@
+QN6 — n4-titan-am335x.signed payload opacity (P3 factory copy, 27,149,316 B).
+Method: Shannon entropy per region + binwalk signature scan. READ-ONLY.
+
+Entropy (bits/byte):
+  header 0x0-0x400          : 5.158   (structured CertISW header)
+  0x400-0x1000             : 7.936   (signature/key material)
+  payload @ 1 MB           : 7.997   (opaque)
+  payload @ 13 MB          : 7.998   (opaque)
+
+binwalk: "Analyzed ... 0 files for 85 file signatures" -> NO embedded gzip/lzo/uImage/IFS/filesystem.
+
+Conclusion: payload is encrypted (or headerless max-compressed). The QNX IFS/procnto image is NOT
+statically extractable from the SD. Confidentiality, not just integrity (cf. B676 signing).
+Blocked child QN6-G1: IFS contents need the live device (serial: uname -a / pidin / /proc/boot) or the
+device-bound decryption key (ECC508 / machine-key domain, B678/B466).

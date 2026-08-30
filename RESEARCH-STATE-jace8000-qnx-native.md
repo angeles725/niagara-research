@@ -19,12 +19,12 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 677
-gaps_closed: 5
-known_gaps: 8
-investigable_open: 3
+covered_blocks: 678
+gaps_closed: 6
+known_gaps: 9
+investigable_open: 2
 requires_execution_open: 0
-blocked_open: 0
+blocked_open: 1
 deferred_open: 0
 undocumented_findings: 0
 <!-- /research-state.v1 -->
@@ -37,8 +37,8 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 ## Coverage
 
 - **Covered blocks**: 673 corpus-wide (this focus: B677) (shared-global)
-- **Coverage metric**: 5 / 8 investigable closed
-- **Last iteration**: 2026-08-30 — QN5 closed (B681, libcommon+libbacnet; OpenSSL 2nd crypto stack)
+- **Coverage metric**: 6 / 8 investigable closed
+- **Last iteration**: 2026-08-30 — QN6 closed (B682, QNX invocation chain; payload encrypted → IFS unpack blocked QN6-G1)
 
 ## Gap-backlog (prioritized)
 
@@ -49,7 +49,8 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 | high | QN3 niagarad — the platform daemon binary on QNX (:3011/:5011) (sibling of plat.exe B381) | decompiled-arm | closed (B679 — thin JVM launcher of NiagaraDaemon; drops privileges to niagarad user, refuses root; §14 vs B381 LocalSystem) |
 | medium | QN4 field-bus native drivers — libplatmstp (BACnet MS/TP), libplatnrio (Niagara Remote IO), libplatccn, libserial | decompiled-arm | closed (B680 — 4 *PlatformServiceQnx JNI drivers: MS/TP, NRIO, CCN/dev-ccn, serial) |
 | medium | QN5 libcommon.so + libbacnet.so — common native runtime + BACnet native | decompiled-arm | closed (B681 — EngineWatchdog+NetCfgIo+OpenSSL libcrypto 2nd stack; libbacnet=BACnet/Ethernet /dev/bn) |
-| medium | QN6 QNX-OS boot / IFS — unpack the QNX image from the .signed payload; init, Neutrino version, drivers ("cómo se llama a QNX") | binary-unpack | pending |
+| medium | QN6 QNX-OS boot / IFS — invocation chain + Neutrino version | binary-unpack | closed (B682 — chain ROM→MLO→u-boot→go→CertISW; QNX 7.0.0; payload ENCRYPTED, IFS not extractable offline) |
+| medium | QN6-G1 QNX IFS contents (procnto banner, startup script, driver list) | live-device or device-bound key | blocked (payload encrypted; needs live serial or ECC508 key) |
 | low | QN7 libpower.so + station binary — power/watchdog + station launcher specifics | decompiled-arm | pending |
 | high | QN8 SECURITY VERDICT — consolidate JACE-8000 posture (B460/461/466/468/672/674/676 + ARM crypto) | synthesis | pending |
 
@@ -70,16 +71,17 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 | 3 | 2026-08-30 | QN3 niagarad daemon | B679 | no · inline (readelf/nm/strings) | 0 |
 | 4 | 2026-08-30 | QN4 field-bus drivers | B680 | no · inline (readelf/nm/strings) | QN4-G1 (CCN=Carrier wire) |
 | 5 | 2026-08-30 | QN5 libcommon+libbacnet | B681 | no · inline (readelf/nm/strings) | QN5-G1 (OpenSSL version/TLS routing) |
+| 6 | 2026-08-30 | QN6 QNX invocation + payload opacity | B682 | no · inline (entropy + binwalk) | QN6-G1 (IFS contents, blocked-encrypted) |
 
 ## Blocked gaps (each tagged with what it needs)
 
-- none yet — all 8 are read-only static (binaries on disk, Ghidra/r2 available).
+- QN6-G1 — needs: the live JACE (serial `uname -a`/`pidin`/`/proc/boot`) or the device-bound payload key. tried: static entropy (~7.998) + binwalk (0 sigs) on the SD payload → encrypted/opaque, no offline unpack.
 
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 8 → loop runs
+- **Open gaps — read-only investigable**: 2 (QN7, QN8) → loop runs
 - **Open gaps — requires-execution**: 0
-- **Open gaps — blocked**: 0
+- **Open gaps — blocked**: 1 (QN6-G1 IFS contents, encrypted)
 - Budget cap: none (operator: open + continue automatically)
 
 ## Dismissed file types
