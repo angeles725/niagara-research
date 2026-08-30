@@ -590,7 +590,7 @@ protected abstract boolean sendAlarm(BAlarmRecord) throws Exception;
 
 Subclases deben implementar solo `sendAlarm` — retorna `true` si éxito, `false` para reenqueue.
 
-**Persistence path**: `${protected.station.home}/alarm/recipients/{recipientName}/` (inferido de permissions `alarm/-` en module.xml). Cada alarma pendiente = 1 archivo serialized. Al reiniciar station, `started()` → `dequeueDisk()` → reintenta en orden timestamp.
+**Persistence path**: ~~`${protected.station.home}/alarm/recipients/{recipientName}/`~~ (inferido de permissions `alarm/-` en module.xml). **§14 CORREGIDO por [Block 666] §666.2** (código leído): la ruta real es el ORD `file:^^alarm/<name>AlarmQueue` → `<stationHome>/alarm/<recipientName>AlarmQueue/` (sin segmento `recipients/`; basename `<name>AlarmQueue`, no el nombre pelado). El permiso `alarm/-` la cubre igual, por eso la inferencia acertó el árbol pero no la hoja. Cada alarma pendiente = 1 archivo `<uuid>.xml` vía `ValueDocEncoder.encodeDocument`. Al reiniciar station, `started()` → `dequeueDisk()` → reintenta en orden timestamp.
 
 **Gotcha G7**: `persistent=true` es **crítico** para email/SMS — sin ello, si la station reinicia con 100 emails pendientes, se pierden. Con `persistent=true`, al reiniciar se releen de `${protected.station.home}/alarm/recipients/` y se reenvían (pueden llegar delayed pero NO se pierden).
 
