@@ -34,7 +34,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 
 ## Coverage
 
-- **Covered blocks**: 684 corpus-wide (this focus: B685-) (shared-global)
+- **Covered blocks**: 688 corpus-wide (this focus: B685-B692) (shared-global)
 - **Coverage metric**: 8 / 9 gaps closed (SC1-SC8 investigable=0; SC4-G1 requires-execution parked)
 - **Source (out of git)**: `config.bog` (7843 B ZIP → 51378 B file.xml) + `alarm.adb` + `registry.db` +
   history `.hdb` + `/opt/niagara/defaults/platform.bog`, all under `local-sd-image/` (gitignored,
