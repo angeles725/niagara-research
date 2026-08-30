@@ -19,10 +19,10 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 678
-gaps_closed: 6
+covered_blocks: 679
+gaps_closed: 7
 known_gaps: 9
-investigable_open: 2
+investigable_open: 1
 requires_execution_open: 0
 blocked_open: 1
 deferred_open: 0
@@ -37,8 +37,8 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 ## Coverage
 
 - **Covered blocks**: 673 corpus-wide (this focus: B677) (shared-global)
-- **Coverage metric**: 6 / 8 investigable closed
-- **Last iteration**: 2026-08-30 — QN6 closed (B682, QNX invocation chain; payload encrypted → IFS unpack blocked QN6-G1)
+- **Coverage metric**: 7 / 8 investigable closed
+- **Last iteration**: 2026-08-30 — QN7 closed (B683, libpower + station launcher)
 
 ## Gap-backlog (prioritized)
 
@@ -51,7 +51,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 | medium | QN5 libcommon.so + libbacnet.so — common native runtime + BACnet native | decompiled-arm | closed (B681 — EngineWatchdog+NetCfgIo+OpenSSL libcrypto 2nd stack; libbacnet=BACnet/Ethernet /dev/bn) |
 | medium | QN6 QNX-OS boot / IFS — invocation chain + Neutrino version | binary-unpack | closed (B682 — chain ROM→MLO→u-boot→go→CertISW; QNX 7.0.0; payload ENCRYPTED, IFS not extractable offline) |
 | medium | QN6-G1 QNX IFS contents (procnto banner, startup script, driver list) | live-device or device-bound key | blocked (payload encrypted; needs live serial or ECC508 key) |
-| low | QN7 libpower.so + station binary — power/watchdog + station launcher specifics | decompiled-arm | pending |
+| low | QN7 libpower.so + station binary — power/UPS + station launcher | decompiled-arm | closed (B683 — PowerdQnx UPS/battery; station launches Station de-privileged uid300, refuses root) |
 | high | QN8 SECURITY VERDICT — consolidate JACE-8000 posture (B460/461/466/468/672/674/676 + ARM crypto) | synthesis | pending |
 
 ## Remittance (no son gaps — ya cubiertos)
@@ -72,6 +72,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 | 4 | 2026-08-30 | QN4 field-bus drivers | B680 | no · inline (readelf/nm/strings) | QN4-G1 (CCN=Carrier wire) |
 | 5 | 2026-08-30 | QN5 libcommon+libbacnet | B681 | no · inline (readelf/nm/strings) | QN5-G1 (OpenSSL version/TLS routing) |
 | 6 | 2026-08-30 | QN6 QNX invocation + payload opacity | B682 | no · inline (entropy + binwalk) | QN6-G1 (IFS contents, blocked-encrypted) |
+| 7 | 2026-08-30 | QN7 libpower + station | B683 | no · inline (readelf/nm/strings) | 0 |
 
 ## Blocked gaps (each tagged with what it needs)
 
@@ -79,7 +80,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 2 (QN7, QN8) → loop runs
+- **Open gaps — read-only investigable**: 1 (QN8 synthesis) → loop runs
 - **Open gaps — requires-execution**: 0
 - **Open gaps — blocked**: 1 (QN6-G1 IFS contents, encrypted)
 - Budget cap: none (operator: open + continue automatically)

@@ -1,0 +1,26 @@
+QN7 libpower.so + station (ARM ELF32).
+## libpower.so sha256 e454761dcb527f9a50e3240a8a3988fc51eaef8e41cf7c746c7529a6cfebac9c  NEEDED: [libc++.so.1] [libnre.so] [libc.so.4] 
+close0
+getBattery2TestTime0
+getBatteryCharge0
+getBatteryChargeTime0
+getBatteryState0
+getBatteryTestTime0
+isBattery2Good0
+isBatteryGood0
+isPrimaryPresent0
+isUpsBatteryGood0
+isUpsPowerPresent0
+open0
+testBattery0
+device: /dev/powerd/batteryState
+can't open /dev/powerd
+can't access /dev/powerd
+
+## station sha256 d5724fbaf99f82981c6d45a50208efb688926749ff8d5d775f20510c3af21861  NEEDED: [libdsfspi.so] [libnre.so] [libcommon.so] [libc++.so.1] [libsocket.so.3] [libc.so.4] 
+station_owners
+/home/niagara/stations
+ERROR: root permissions gained, preventing startup
+com/tridium/nre/bootstrap/Bootstrap
+com.tridium.sys.station.Station
+stationExeQnx.cpp
