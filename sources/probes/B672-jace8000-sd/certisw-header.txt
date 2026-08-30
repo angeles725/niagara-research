@@ -1,0 +1,16 @@
+SD-G2 — CertISW secure-boot header of n4-titan-am335x.signed (P3 copy, 27,149,316 B).
+First 8 bytes = ASCII "CertISW\0" = TI AM335x certified/secure-boot image wrapper.
+
+u32 fields after the magic (little-endian):
+  [0]=0x0 [1]=0x1 [2..9]=0x0 [10]=0x1
+  [11]=0x350        = 848        -> plausible certificate/header length (offset to payload)
+  [12]=0x19e40b4    = 27,148,020 -> plausible image/payload length (file is 27,149,316; delta ~ header+sig)
+  [13]=0x7ca18bd7   ]
+  [14]=0x84b8d7c5   ]-> signature/hash material (not decoded)
+  [15]=0x7340ed2c   ]
+
+Interpretation [CERT-hw for bytes; INFER for field roles]: a ~0x350-byte certificate header precedes the
+~27 MB payload, followed by signature material — the TI GP/HS secure-boot format that the ROM/SPL verifies
+before `go 0x80FFFC00` ([Block 672] uEnv.txt). NOT decoded: the X.509/ASN.1 certificate chain inside the
+header (residual SD-G2b — needs an ASN.1/TI-CertISW parser). The P1 deployed copy is a DIFFERENT size
+(40,264,708 B, [Block 672]) i.e. a different build than this P3 factory copy.

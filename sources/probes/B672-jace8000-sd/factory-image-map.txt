@@ -1,0 +1,22 @@
+SD-G2 — JACE-8000 factory image map (from P3 /n4clean.tar.gz, extracted read-only via tools/qnx6read.py).
+n4clean.tar.gz: gzip, 43,313,692 B, sha256 da028f39a7200184ed32dc598e38f717d4700e07ddb568f27f4783cab68a3604
+
+n4clean.tar.gz (26 entries) — the clean factory bootstrap:
+  opt/niagara/defaults/            bacnetObjectTypes.xml, colorCoding.properties, lonStandardConversion.xml,
+                                   migrator.properties, niagaraAxBacnetObjectTypes.xml, nre.properties,
+                                   system.properties, unitConversion.xml, unitDifferentialConversion.xml, units.xml
+  opt/niagara/lib/                 licenseAgreement.txt, readmeLicenses.txt
+  opt/niagara/security/certificates/Tridium.certificate      <-- ONLY Tridium (base anchor; NO Honeywell yet)
+  opt/niagara/security/policy/     java.policy, java.security, signing.properties
+  zip/jre.tar.gz                   nested JRE payload (90 entries)
+  zip/nre-core-update.tar.gz       nested, SIGNED update package (7 entries):
+       nre-core-update/META-INF/MANIFEST.MF
+       nre-core-update/META-INF/NIAGARA4.RSA   <-- JAR code-signing (Niagara4)
+       nre-core-update/META-INF/NIAGARA4.SF
+       nre-core-update/chk_niagara_natives      <-- manifest/checksum of native libs
+       nre-core-update/nrecore.tar.gz           <-- nested again: the actual NRE core payload
+
+Layering: n4clean.tar.gz -> zip/nre-core-update.tar.gz (signed NIAGARA4.RSA) -> nrecore.tar.gz.
+Observation: the clean image ships ONLY the Tridium base cert; Honeywell/CentraLine OEM certs + the .license
+files are added at commissioning (they ARE present on the deployed P2, [Block 674]) -> consistent with the
+trust-anchor domains of [Block 392].

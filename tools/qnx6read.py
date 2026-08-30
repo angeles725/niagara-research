@@ -117,6 +117,30 @@ class QNX6:
             out.append((name, de_ino))
         return out
 
+    def resolve(self, path):
+        """Resolve an absolute path to (inode_number, inode_dict). Returns None if not found."""
+        ino = 1
+        parts = [p for p in path.split('/') if p]
+        for part in parts:
+            found = None
+            for name, cino in self.listdir(ino):
+                if name == part:
+                    found = cino; break
+            if found is None:
+                return None
+            ino = found
+        return ino, self.inode(ino)
+
+    def extract(self, path, outpath):
+        r = self.resolve(path)
+        if r is None:
+            raise FileNotFoundError(path)
+        ino, i = r
+        data = self.read_inode_data(ino)
+        with open(outpath, 'wb') as o:
+            o.write(data)
+        return len(data)
+
     def walk(self, ino=1, path="", depth=0, maxdepth=40):
         if depth > maxdepth:
             return
@@ -136,13 +160,9 @@ if __name__ == "__main__":
     off = {"P2": 135266304, "P3": 3711959040}[part]
     fs = QNX6(IMGPATH, off)
     sys.stderr.write("%s OFF=%d blocksize=%d inodes=%d\n" % (part, fs.OFF, fs.blocksize, fs.num_inodes))
-    if len(sys.argv) > 2 and sys.argv[2] == "cat":
-        # extract a file by path to stdout (bytes) -- used for structure-only inspection
-        target = sys.argv[3]
-        for p, mode, size, isdir in fs.walk():
-            if p == target and not isdir:
-                # find inode again
-                pass
+    if len(sys.argv) > 2 and sys.argv[2] == "extract":
+        n = fs.extract(sys.argv[3], sys.argv[4])
+        sys.stderr.write("extracted %s -> %s (%d bytes)\n" % (sys.argv[3], sys.argv[4], n))
         sys.exit(0)
     ndir = nfile = 0
     for p, mode, size, isdir in fs.walk():
