@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **687 blocks**
+Total: **688 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -693,3 +693,4 @@ Total: **687 blocks**
 | 689 | [niagara-mental-model-bloque689.md](niagara-mental-model-bloque689.md) | B689 — JACE_UMBRELLA alarms/histories/audit (SC5): records three local audit trails, escalation disabled, zero recipients, nothing leaves the box |
 | 690 | [niagara-mental-model-bloque690.md](niagara-mental-model-bloque690.md) | B690 — JACE_UMBRELLA tags + hierarchy (SC6): the biggest service in the config is 100% the stock Niagara v1.5 dictionary — zero applied tags, empty hierarchy |
 | 691 | [niagara-mental-model-bloque691.md](niagara-mental-model-bloque691.md) | B691 — JACE_UMBRELLA platform/orchestration services (SC7): zero executable Program logic, orchestration all default, three top-level containers, web locked to localhost |
+| 692 | [niagara-mental-model-bloque692.md](niagara-mental-model-bloque692.md) | B692 — JACE_UMBRELLA supporting stores + focus SYNTHESIS (SC8): a provisioning-template seed controller, profiled against the supervisor |

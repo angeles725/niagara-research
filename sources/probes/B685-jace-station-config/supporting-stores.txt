@@ -1,0 +1,27 @@
+# B692 evidence — JACE_UMBRELLA supporting stores (structural, non-secret)
+# Source: SD P2 via qnx6read.py. platform.bog = plain XML (not zipped). registry.db/alarm.adb = binary.
+## platform.bog sha256:
+#   76bf03868a2d24cdf8aac82bb3b817ecdbc10eaa279f319b422b73630aaa86a2
+
+## platform.bog root:
+<bajaObjectGraph version="4.0" reversibleEncodingKeySource="none" FIPSEnabled="false" reversibleEncodingValidator="[null.1]=" >
+## platform services declared (PlatformServiceContainer defaults):
+n="CertManagerService"
+n="SystemService"
+t="plat:LicensePlatformService"
+t="plat:NtpPlatformServiceQnx"
+t="plat:SyslogPlatformService"
+t="plat:SystemPlatformServiceQnxTitan"
+t="plat:TcpIpPlatformService"
+t="platNrio:NrioPlatformServiceQnx"
+t="platbac:BacnetEthernetPlatformServiceQnx"
+t="platdr:DataRecoveryService"
+t="platlon:LonPlatformServiceQnx"
+t="platmstp:BacnetMstpPlatformServiceQnx"
+t="platserialqnx:SerialPortPlatformServiceQnx"
+
+## credential/port fields in platform.bog: grep -c = 0  (0 = defaults carry no secrets; encoding=none)
+
+## binary stores (not parsed here — REMITTANCE B674/database focus):
+#   registry.db  842911 B  (module registry, binary)
+#   alarm.adb     17408 B  (alarm database, binary)
