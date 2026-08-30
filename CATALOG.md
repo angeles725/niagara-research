@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **677 bloques**
+Total: **678 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -682,6 +682,7 @@ Total: **677 bloques**
 | 677 | [niagara-mental-model-bloque677.md](niagara-mental-model-bloque677.md) | B677 — JACE-8000 ARM crypto engine `libdsfspi.so`: the on-controller Niagara "DSF" JCE provider is a thin JNI facade (`com.tridium.dsf.provider.*`) over a STATICALLY-linked Mocana NanoCrypto (only `libc.so.4` needed) — AES-256-CBC cipher SPI, NIST CTR-DRBG/EC-DRBG SecureRandom, SHA-1/256, DSA/RSA keygen, SHA1WithDSA/SHAWithRSA — the ARM twin of the Windows `dsfspi.dll` ([Block 425]) (focus jace8000-qnx-native, QN1; §19 [CERT]) |
 | 678 | [niagara-mental-model-bloque678.md](niagara-mental-model-bloque678.md) | B678 — JACE-8000 native launcher chain: `nre` → `libnjre.so` (`JavaLauncherQnx`: `loadDLL`→`dlopen lib/arm/client/libjvm.so`→`createVM`) → the station JVM, and `libnre.so` = the REAL `NativePlatformProvider` (daemonize/addUser/changePassword/watchdog — live, not the Windows stubs of [Block 385]); the launcher `-D` set reveals an **ATECC508 HSM engine** and **802.1X** support (focus jace8000-qnx-native, QN2; §19 [CERT]) |
 | 679 | [niagara-mental-model-bloque679.md](niagara-mental-model-bloque679.md) | B679 — JACE-8000 `niagarad` platform daemon: a thin QNX-7.0 native launcher that starts the JVM running `com.tridium.niagarad.NiagaraDaemon`, and DROPS PRIVILEGES (`setgid`+`setuid` to the `niagarad` user, refuses to run as root) — the opposite of the Windows `plat.exe` that ran as LocalSystem ([Block 381]) (focus jace8000-qnx-native, QN3; §19 [CERT] + §14 vs B381) |
+| 680 | [niagara-mental-model-bloque680.md](niagara-mental-model-bloque680.md) | B680 — JACE-8000 native field-bus drivers: four `*PlatformServiceQnx` JNI shims — `libplatmstp` (BACnet MS/TP over RS-485, `sendFrame`/`setBaudRate`/`setMaxInfoFrames` via QNX `DCMD_MSTP_TX_FRAME`), `libplatnrio` (Niagara Remote IO: `discover`/`enablePolling`/`sendRequest`), `libplatccn` (a Carrier-CCN-style bus: `readTable`/`readVariable`/unsolicited msgs on `/dev/ccn%d`), and `libserial` (raw RS-232/485 port) — the native edge-I/O layer under the Java drivers (focus jace8000-qnx-native, QN4; §19 [CERT]) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

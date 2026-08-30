@@ -19,10 +19,10 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 675
-gaps_closed: 3
+covered_blocks: 676
+gaps_closed: 4
 known_gaps: 8
-investigable_open: 5
+investigable_open: 4
 requires_execution_open: 0
 blocked_open: 0
 deferred_open: 0
@@ -37,8 +37,8 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 ## Coverage
 
 - **Covered blocks**: 673 corpus-wide (this focus: B677) (shared-global)
-- **Coverage metric**: 3 / 8 investigable closed
-- **Last iteration**: 2026-08-30 — QN3 closed (B679, niagarad daemon)
+- **Coverage metric**: 4 / 8 investigable closed
+- **Last iteration**: 2026-08-30 — QN4 closed (B680, field-bus drivers)
 
 ## Gap-backlog (prioritized)
 
@@ -47,7 +47,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 | high | QN1 libdsfspi.so — ARM crypto SPI: keyring/machine-key, config.bog + .km/.kr en/decrypt at rest (sibling of B425 dsfspi.dll) | decompiled-arm | closed (B677 — Mocana NanoCrypto static, AES-256-CBC, NIST CTR-DRBG) |
 | high | QN2 nre + libnre.so + libnjre.so — native launcher chain on QNX: how the JVM/station is spawned (sibling of B124/B380) | decompiled-arm | closed (B678 — JavaLauncherQnx dlopen libjvm.so; libnre=live NativePlatformProvider; ATECC508 HSM + 802.1X) |
 | high | QN3 niagarad — the platform daemon binary on QNX (:3011/:5011) (sibling of plat.exe B381) | decompiled-arm | closed (B679 — thin JVM launcher of NiagaraDaemon; drops privileges to niagarad user, refuses root; §14 vs B381 LocalSystem) |
-| medium | QN4 field-bus native drivers — libplatmstp (BACnet MS/TP), libplatnrio (Niagara Remote IO), libplatccn, libserial | decompiled-arm | pending |
+| medium | QN4 field-bus native drivers — libplatmstp (BACnet MS/TP), libplatnrio (Niagara Remote IO), libplatccn, libserial | decompiled-arm | closed (B680 — 4 *PlatformServiceQnx JNI drivers: MS/TP, NRIO, CCN/dev-ccn, serial) |
 | medium | QN5 libcommon.so + libbacnet.so — common native runtime + BACnet native | decompiled-arm | pending |
 | medium | QN6 QNX-OS boot / IFS — unpack the QNX image from the .signed payload; init, Neutrino version, drivers ("cómo se llama a QNX") | binary-unpack | pending |
 | low | QN7 libpower.so + station binary — power/watchdog + station launcher specifics | decompiled-arm | pending |
@@ -68,6 +68,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 | 1 | 2026-08-30 | QN1 libdsfspi.so crypto | B677 | no · inline (symbol/string inventory readelf/nm) | QN1-G1 (HW-RNG runtime), QN1-G2 (KDF params) |
 | 2 | 2026-08-30 | QN2 launcher chain | B678 | no · inline (readelf/nm/strings) | QN2-G1 (ECC508 key-material extent) |
 | 3 | 2026-08-30 | QN3 niagarad daemon | B679 | no · inline (readelf/nm/strings) | 0 |
+| 4 | 2026-08-30 | QN4 field-bus drivers | B680 | no · inline (readelf/nm/strings) | QN4-G1 (CCN=Carrier wire, deeper) |
 
 ## Blocked gaps (each tagged with what it needs)
 
