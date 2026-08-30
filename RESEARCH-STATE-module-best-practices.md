@@ -25,14 +25,14 @@ block_scope: shared-global
 <!-- /research-state.v1 -->
 
 focus: module-best-practices
-status: active (bootstrapped 2026-08-30; backlog seeded from the closed module focuses)
+status: stopped (6/6 investigable; deliverable docs/module-best-practices.md)
 bootstrapped_on: 2026-08-30
 block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libre: B705)
 
 ## Coverage
 
 - **Covered blocks**: 700 corpus-wide (this focus: B705-) (shared-global)
-- **Coverage metric**: 5 / 6 gaps closed (MBP1-5)
+- **Coverage metric**: 6 / 6 gaps closed (MBP1-6 investigable=0); deliverable docs/module-best-practices.md complete
 - **Deliverable**: `docs/module-best-practices.md` (the human-readable guide, built as gaps close)
 
 ## Gap-backlog (prioritized)
@@ -44,7 +44,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 | high | MBP3 wb-layer best practices — Workbench Swing (managers/views/field editors), when wb is actually needed vs over-built | synthesis+code | closed (B707 — when-needed decision rule; Manager/View/FieldEditor patterns; chihuahua-wb exemplar; wb-invisible-to-daemon; guide §3) |
 | medium | MBP4 cross-cutting — RBAC write-gate pattern (chihuahua), permissions/over-permission anti-pattern (own-modules-audit), audit, error handling | synthesis+code | closed (B708 — permission model BPermissions+BCategoryService; audit framework+module; engine-thread error handling; signing; guide §4) |
 | medium | MBP5 build/packaging best practices — module.xml/module-include.xml, dependencies, signing, version-targeting; the optimal error-free build loop | synthesis+code | closed (B709 — gradle-niagara build, Slotomatic mode rule, convention signing angelessignerCA, version-targeting by SDK path, deploy loop; guide §5) |
-| low | MBP6 reference-exemplar catalog + improvement recommendations + the deliverable guide (docs/module-best-practices.md) | synthesis+deliverable | pending |
+| low | MBP6 reference-exemplar catalog + improvement recommendations + the deliverable guide (docs/module-best-practices.md) | synthesis+deliverable | closed (B710 — exemplar catalog + ranked roadmap; guide §6 finalized 6 sections; focus STOP) |
 
 `tried:` (none blocked — all source is existing corpus blocks + real jars in organized/; SOURCE-BEFORE-AGENT passes).
 
@@ -67,6 +67,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 | 3 | 2026-08-30 | MBP3 wb best practices | B707 | yes · sonnet (synthesis) | 0 new |
 | 4 | 2026-08-30 | MBP4 cross-cutting | B708 | no · inline (consolidation + targeted read) | 0 new |
 | 5 | 2026-08-30 | MBP5 build/packaging | B709 | no · inline (OMB1-3 targeted read) | 0 new |
+| 6 | 2026-08-30 | MBP6 exemplar catalog + guide (focus close) | B710 | no · inline (synthesis of MBP1-5) | 0 new (focus STOP) |
 
 ## Blocked gaps (each tagged with what it needs)
 
@@ -74,7 +75,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 1
+- **Open gaps — read-only investigable**: 0
 - **Open gaps — requires-execution**: 0
 - **Open gaps — blocked**: 0
 - Budget cap: none

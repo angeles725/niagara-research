@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **705 blocks**
+Total: **706 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -711,3 +711,4 @@ Total: **705 blocks**
 | 707 | [niagara-mental-model-bloque707.md](niagara-mental-model-bloque707.md) | B707 — Module best practices, WB layer (MBP3): when a `-wb` part is actually needed, the Manager/View/FieldEditor patterns, and why station logic must never live in `-wb` |
 | 708 | [niagara-mental-model-bloque708.md](niagara-mental-model-bloque708.md) | B708 — Module best practices, cross-cutting (MBP4): the permission model, the audit pattern, error-handling on the engine thread, and signing — the concerns that span rt/ux/wb |
 | 709 | [niagara-mental-model-bloque709.md](niagara-mental-model-bloque709.md) | B709 — Module best practices, build & packaging (MBP5): the gradle-niagara build, when to run Slotomatic, convention-driven signing, version-targeting, and the deploy loop |
+| 710 | [niagara-mental-model-bloque710.md](niagara-mental-model-bloque710.md) | B710 — Module best practices, exemplar catalog + improvement roadmap (MBP6, focus close): what to copy from each reference module, and the ranked fixes for the shop's fleet |

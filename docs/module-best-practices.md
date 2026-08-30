@@ -65,9 +65,6 @@ MUST live here, not in `-wb`.
 5. **(LOW, hygiene)** Standard template: no `<permissions>` block, per-agent `requiredPermissions`, per-release
    version bump. [B640, B647]
 
----
-
-*(ux, wb, cross-cutting, and build sections are added as MBP2–MBP6 close.)*
 
 ---
 
@@ -234,3 +231,35 @@ Concerns that span rt/ux/wb. All authorization is server-authoritative.
 - Profiles: station logic `-rt`, browser UI `-ux`, Swing `-wb` (`runtimeProfile` load-bearing).
 - Don't shade heavy libs per module; reference shared modules / jsonToolkit.
 - Ship a `module.palette` for component modules; no empty `<permissions>`; no empty jars.
+
+---
+
+## 6. Exemplar catalog + improvement roadmap
+
+### 6.1 Learn from each reference module
+
+| Module | Copy this | Watch out |
+|---|---|---|
+| `httpClientGAngeles` | the clean exemplar — no empty-permissions scaffold, minimal, correct vendor/signing | — |
+| `chihuahua` | server-authoritative RBAC gate, per-ORD locking + off-thread protection, pure-Java wb `model/`, Fox-sub+REST, real version history, wb-added-last | fault→0.0 protection defect (fix pending); stale Slotomatic on BChiUp |
+| `control` (core) | `BNumericWritable` slot flags/defaults; the `@NiagaraType` pipeline | — |
+| `sdash` | per-agent `requiredPermissions` | uber-jar (2186 classes, 96% bundled libs) |
+| `mcpbridge` | (servlet auth gate is correct) | userless static dispatch = RBAC bypass; own Gson |
+| `datacenter-ux` | — | hardcoded site data in jar; own Gson |
+| `interfaz1-wb` | — | empty jar — delete |
+| `nmodsreflow` | the thin `BReflow` shim | `@AgentOn requiredPermissions` used as security |
+
+### 6.2 Ranked improvement roadmap (fleet-wide)
+
+**Safety:** 1. chihuahua fault-status fix into `applyProtections()` — a faulted amp sensor disables overload protection. [B651, B655]
+**Security:** 2. mcpbridge per-user RBAC (`runAsUser`) + least-privilege role + audit, before station use. [B643]  ·  3. sign strictly; raise station off `moduleVerificationMode=low`. [B398, B639]
+**Build:** 4. Slotomatic before release; automate mode by `git diff`. [B637, B650]  ·  5. bump `vendorVersion` per release. [B640]
+**Packaging:** 6. extract shared `gson-rt`/`jackson-rt`. [B643, B644]  ·  7. drop `interfaz1-wb`. [B642]  ·  8. delete empty `<permissions>`; scope at `@AgentOn`. [B635]  ·  9. move `-ux` site data into `-rt`. [B645]
+**Defaults:** 10. template = rt+ux only, add `-wb` deliberately; `module.palette`; Fox-sub+REST; no `<permissions>`. [B647]
+
+### 6.3 Verdict
+
+The shop's modules are structurally sound with one production reference done well (chihuahua) and a small set of
+fixable deviations — mostly cosmetic, two that matter (the chihuahua fault-path safety defect and the mcpbridge
+RBAC bypass). None require rearchitecting. Highest-value actions: the fault-status fix (safety), then the
+mcpbridge RBAC fix (security).
