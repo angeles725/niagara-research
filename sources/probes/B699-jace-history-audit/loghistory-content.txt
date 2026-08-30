@@ -1,0 +1,6 @@
+# B701 evidence — LogHistory.hdb content (structural; values masked)
+## LogHistory.hdb (55260 B): record_type=history:LogRecord, schema=timestamp,logName,severity,message,exception
+## top log sources (logName, structural counts):
+  fox=37 (client sessions)  rioNetwork.discovery=30  sys.mixin=20  rioNetwork.unsolicited=12  web=10  backup=9  rioNetwork.wrIo=3
+## errors/exceptions: error=12  Exception=8  (incl. java.io.IOException on com.tridium.fox.sys.BFoxConnection / FoxMessage = dropped Fox connections)
+## interpretation: NRIO discovery/unsolicited/wrIo churn (45 combined) = driver retrying the DOWN IO-34 (corroborates B687 'device is down'); fox churn = Workbench/tool client sessions; a bench unit's log profile

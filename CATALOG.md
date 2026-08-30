@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **696 blocks**
+Total: **697 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -702,3 +702,4 @@ Total: **696 blocks**
 | 698 | [niagara-mental-model-bloque698.md](niagara-mental-model-bloque698.md) | B698 — What the SD yields (DAR6, focus synthesis): physical possession = near-total data-at-rest compromise, because the data-encryption key is a cleartext file on the same card the hardware root-of-trust protects |
 | 699 | [niagara-mental-model-bloque699.md](niagara-mental-model-bloque699.md) | B699 — Niagara .hdb format on the JACE-8000 SD + a read-only reader (HD1): history records are cleartext; AuditHistory holds the seed station's commissioning trail |
 | 700 | [niagara-mental-model-bloque700.md](niagara-mental-model-bloque700.md) | B700 — JACE_UMBRELLA SecurityHistory + AuditHistory content (HD2): ~58 login sessions and 30 config edits, almost all by admin — a low-use, single-operator trace with one recorded auth failure |
+| 701 | [niagara-mental-model-bloque701.md](niagara-mental-model-bloque701.md) | B701 — JACE_UMBRELLA LogHistory content (HD3): the log is Fox client sessions plus NRIO discovery churn against the down IO-34 — corroborating the module-down state from the config |
