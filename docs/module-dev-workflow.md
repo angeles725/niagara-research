@@ -43,8 +43,6 @@
 
 ---
 
----
-
 ## 2. The codegen round-trip (`@NiagaraType` → runtime type)
 
 Five stages, from the annotation you write to a resolvable `moduleName:typeName`:
@@ -67,3 +65,15 @@ driving registry; it is an INPUT you author, not annotation-processor output. [B
 
 **Round-trip rule:** new type → add `<type>` + run `:slotomatic`; rename/remove → update `module-include.xml`
 too; a forgotten `<type>` fails silently.
+
+---
+
+## 3. Authoring artifacts — which file, what goes in it
+
+| File | Where | What | Authored how |
+|---|---|---|---|
+| `META-INF/module.xml` | jar root | `runtimeProfile` (load-bearing), name, vendor, `vendorVersion`, `<dependency>`, `<permissions>` | via gradle (niagara-module) [B630, B635] |
+| `module-include.xml` | part root | one `<type name= class=>` per exported component (INPUT to Slotomatic) | wizard/hand [B631] |
+| `module.palette` | jar root | BOG of components for drag-and-drop (ungated, lazy, fault-tolerant) — ship for component modules | hand BOG [B634] |
+| `lexicon/*.lexicon` | jar | display/message strings by key (localizable) | hand [B702] |
+| `<Class>.java` AUTO region | src | slot constants/getters/TYPE — never hand-edit inside markers | Slotomatic [B631] |

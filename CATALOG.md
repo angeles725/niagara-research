@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **708 blocks**
+Total: **709 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -714,3 +714,4 @@ Total: **708 blocks**
 | 710 | [niagara-mental-model-bloque710.md](niagara-mental-model-bloque710.md) | B710 — Module best practices, exemplar catalog + improvement roadmap (MBP6, focus close): what to copy from each reference module, and the ranked fixes for the shop's fleet |
 | 711 | [niagara-mental-model-bloque711.md](niagara-mental-model-bloque711.md) | B711 — Module dev workflow, the toolchain (WF1): what each tool actually is and does — SDK homes, the gradle-niagara plugins, Slotomatic, niagara-signing, and ng-deploy.sh |
 | 712 | [niagara-mental-model-bloque712.md](niagara-mental-model-bloque712.md) | B712 — Module dev workflow, the codegen round-trip (WF2): how `@NiagaraType` becomes a runtime-resolvable type, stage by stage |
+| 713 | [niagara-mental-model-bloque713.md](niagara-mental-model-bloque713.md) | B713 — Module dev workflow, the authoring artifacts (WF3): module.xml, module-include.xml, module.palette, lexicon — what goes in each |
