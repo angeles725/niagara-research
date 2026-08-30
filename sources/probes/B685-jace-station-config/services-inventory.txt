@@ -1,0 +1,108 @@
+# B685 evidence — JACE_UMBRELLA config.bog structural extract (SECRETS REDACTED)
+# Source: /home/niagara/stations/JACE_UMBRELLA/config.bog (SD P2 QNX6, read-only via tools/qnx6read.py)
+# config.bog = ZIP(deflate) -> file.xml 51378 B. Passwords/IPs/keys MASKED. Structure only.
+# sha256(config.bog):
+#   b8bbea6e572c2b003c0dcf00076ed568a2956498471ce5cc3cd71875b1719498
+
+## Root + station identity (L2-5)
+<bajaObjectGraph version="4.0" reversibleEncodingKeySource="keyring" FIPSEnabled="false" >
+<p h="2" c="1" m="b=baja" t="b:Station">
+ <p n="stationName" v="JACE_UMBRELLA"/>
+ <p n="Services" h="3" t="b:ServiceContainer">
+
+## Service headers (direct children of /Services) + Drivers networks
+5: <p n="Services" h="3" t="b:ServiceContainer">
+6:  <!-- /Services/AlarmService -->
+20:  <!-- /Services/BackupService -->
+24:  <!-- /Services/CategoryService -->
+36:  <!-- /Services/JobService -->
+39:  <!-- /Services/SecurityService -->
+50:  <!-- /Services/RoleService -->
+58:  <!-- /Services/UserService -->
+153:  <!-- /Services/AuthenticationService -->
+171:  <!-- /Services/LoggingService -->
+174:  <!-- /Services/BoxService -->
+205:  <!-- /Services/FoxService -->
+224:  <!-- /Services/HierarchyService -->
+227:  <!-- /Services/HistoryService -->
+234:  <!-- /Services/AuditHistoryService -->
+255:  <!-- /Services/LogHistoryService -->
+265:  <!-- /Services/ProgramService -->
+268:  <!-- /Services/SearchService -->
+284:  <!-- /Services/TagDictionaryService -->
+731:  <!-- /Services/TemplateService -->
+734:  <!-- /Services/WebService -->
+793:  <!-- /Services/BatchJobService -->
+801: <p n="Drivers" h="d0" m="d=driver" t="d:DriverContainer">
+802:  <!-- /Drivers/NiagaraNetwork -->
+872:  <!-- /Drivers/NrioNetwork -->
+
+## Hardening posture (Fox/Web/Auth) — verbatim, non-secret
+156:    <!-- /Services/AuthenticationService/authenticationSchemes/DigestScheme -->
+157:    <p n="DigestScheme" h="23" t="b:DigestAuthenticationScheme">
+161:    <!-- /Services/AuthenticationService/authenticationSchemes/AXDigestScheme -->
+162:    <p n="AXDigestScheme" h="25" t="b:LegacyDigestAuthenticationScheme">
+168:    <p n="autoAttemptSingleSignOn" f="r"/>
+210:   <p n="foxEnabled" v="false"/>
+214:   <p n="foxsEnabled" v="true"/>
+215:   <p n="foxsOnly" v="true"/>
+216:   <p n="foxsMinProtocol" t="b:SslTlsEnum" v="tlsv1_3"/>
+744:   <p n="httpsOnly" v="true"/>
+745:   <p n="httpsMinProtocol" t="b:SslTlsEnum" v="tlsv1_3"/>
+748:   <p n="xFrameOptions" f="rh1"/>
+766:    <p n="contentSecurityPolicy" h="8390" t="w:CspHeaderProvider">
+775:    <p n="xFrameOptions" h="8392" t="w:XFrameOptionsHeaderProvider">
+776:     <p n="xFrameOptions" t="w:XFrameOptionsEnum" v="sameorigin"/>
+782:    <p n="validHostHeaders" v="localhost"/>
+
+## Credential fields — FORMAT ONLY (values masked)
+112:     <p n="password" t="b:Password" v="[pbkdf2-sha256.1]=<SALT:10000:SHA256-MASKED>"/>
+
+## Platform capability list (services NameList L819) — confirms platform-layer BACnet/MSTP/LON present, no station driver network
+jetty:JettyWebServer
+baja:CategoryService
+niagaraDriver:NiagaraNetwork
+web:WebService
+platNrio:NrioPlatformServiceQnx
+platSerialQnx:SerialPortPlatformServiceQnx
+baja:JobService
+history:HistoryService
+app:AppContainer
+platLon:LonPlatformServiceQnx
+platMstp:BacnetMstpPlatformServiceQnx
+box:BoxServlet
+history:LogHistoryService
+platform:SystemPlatformServiceQnxTitan
+platDataRecovery:DataRecoveryService
+web:ClientEnvServlet
+niagaraDriver:NiagaraVirtualNetworkExt
+platBacnet:BacnetEthernetPlatformServiceQnx
+batchJob:BatchJobService
+driver:DriverContainer
+backup:BackupService
+platCrypto:CertManagerService
+baja:LoggingService
+platform:NtpPlatformServiceQnx
+platform:SyslogPlatformService
+history:AuditHistoryService
+alarm:AlarmService
+nrio:NrioNetwork
+nss:SecurityService
+hierarchy:HierarchyService
+provisioningNiagara:ProvisioningNiagaraNetworkExt
+baja:AuthenticationService
+search:SearchService
+baja:UserService
+program:ProgramService
+fox:FoxService
+platform:StationOutputServlet
+box:BoxWebSocketAcceptor
+tagdictionary:TagDictionaryService
+box:BoxService
+platform:TcpIpPlatformService
+baja:RoleService
+platform:LicensePlatformService
+baja:ServiceContainer
+template:TemplateService
+web:UserDataConfig
+platform:PlatformServiceContainer"/>
