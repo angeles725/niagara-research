@@ -30,7 +30,7 @@ with disk evidence.
    IS the proof that this key path does not gate on the ECC508. [INFER, from the structural fact]
 2. The at-rest crypto engine is `libdsfspi.so` = **Mocana NanoCrypto AES-256-CBC**, a SOFTWARE JCE provider that
    consumes key material from the keyring ([Block 677] §677.5: "the engine under the keyring/at-rest material on
-   the card"). It is not an ECC508 driver. [CERT [Block 677]]
+   the card"). It is not an ECC508 driver. [CERT [Block 677]] **§14 (B704):** the reversible-FIELD encoder specifically uses **AES-256-GCM** (`BAbstractAes256PasswordEncoder`, consistent with [Block 393]); CBC is the DSF provider's general capability, not this path.
 3. The chain bottoms out entirely on the card: `.km` (master key, plaintext) → unwraps `.kr` (serialized Java
    KeyRing, [Block 693] §693.2) → the reversible-encoding key → decrypts config.bog fields. **And even if a QNX
    filesystem-encryption layer sits underneath, its key `.fskey/.key` is ALSO a plaintext file on the card**

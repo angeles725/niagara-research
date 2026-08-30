@@ -20,7 +20,7 @@ covered_blocks: 694
 gaps_closed: 6
 known_gaps: 7
 investigable_open: 0
-requires_execution_open: 1
+requires_execution_open: 0
 blocked_open: 0
 deferred_open: 0
 undocumented_findings: 0
@@ -51,7 +51,8 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 | high | DAR3 /etc/shadow + /etc/passwd — the QNX OS accounts, hash algorithms, account inventory (structure; hashes MASKED) | os-cred disk | closed (B695 — 7 accounts, 5 no-login; only admin+operator log in; PBKDF2-HMAC-SHA256 ~10k = same primitive as config.bog; no aging) |
 | medium | DAR4 station keystores (keystore.jceks 4476B, cacerts.jceks, untrusted.jceks, signing/signers) — what THIS unit holds (TLS default-cert private key? signing keys?), JCEKS format | keystore disk | closed (B696 — keystore.jceks=TLS keypair alias 'default'=factory ForRecoveryPurposes self-signed; cacerts/untrusted empty; signers=module store REMITTANCE B392) |
 | medium | DAR5 JRE crypto policy deployed (java.security, policy limited vs unlimited, cacerts.bcfks BC-FIPS) — the crypto configuration on this unit | jre-config disk | closed (B697 — standard non-FIPS Sun stack, unlimited default, weak TLS/algos disabled; FIPS shipped-not-engaged across every layer) |
-| medium | DAR2-G1 the actual decryption PoC (KeyRing unwrap w/ .km -> derive reversible key -> decrypt a config.bog BPassword field via Mocana AES-256-CBC) | requires-execution | requires-execution (implement Niagara keyring unwrap + Mocana AES-256-CBC) |
+| medium | DAR2-G1 the actual decryption PoC | requires-execution | closed (B704 — design confirmed AES-256-GCM keyring-aliased §14->B694; but config.bog has ZERO reversible fields => premise dissolves, nothing to decrypt on this seed station) |
+| deferred | DAR2-G2 working decryptor against a station WITH reversible secrets (needs nre-core KeyRing RE) | requires-execution | deferred (optional; no target on this unit) |
 | low | DAR6 SYNTHESIS — the recoverable-from-SD-alone verdict: exactly what SD possession yields vs what needs live hardware (extends B466/B684/B689) | synthesis | closed (B698 — physical SD = near-total data-at-rest compromise; only 1-way login hashes resist; hardware root-of-trust not in data path; custody is the control) |
 
 `tried:` (none blocked yet — all sources confirmed present on SD P2 and extractable via qnx6read.py; SOURCE-BEFORE-AGENT passes).
@@ -86,7 +87,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
 - **Open gaps — read-only investigable**: 0
-- **Open gaps — requires-execution**: 1 (DAR2-G1)
+- **Open gaps — requires-execution**: 0 (DAR2-G1 closed B704; DAR2-G2 deferred)
 - **Open gaps — blocked**: 0
 - Budget cap: none
 
