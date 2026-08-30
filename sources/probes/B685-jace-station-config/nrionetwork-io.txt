@@ -1,0 +1,30 @@
+# B687 evidence — JACE_UMBRELLA /Drivers/NrioNetwork (structural, non-secret; IPs/UIDs masked)
+# Source: config.bog file.xml (SD P2). Bus addresses (1,2) are RS-485 addresses, not secrets.
+
+## NrioNetwork transport (L873-894):
+873:  <p n="NrioNetwork" h="3a466" m="nrio=nrio" t="nrio:NrioNetwork">
+879:    <p n="pingFrequency" t="b:RelTime" v="30000"/>
+885:   <p n="dispatcher" h="3a46b" m="basic=basicDriver" t="basic:BasicWorker">
+887:   <p n="worker" h="3a46c" t="basic:BasicCoalescingWorker">
+889:   <p n="writeWorker" h="3a46d" t="basic:BasicCoalescingWorker">
+891:   <p n="pollScheduler" h="3a46e" t="basic:BasicPollScheduler">
+893:   <p n="portName" v="COM1"/>
+894:   <p n="outputFailsafeConfig" t="nrio:OutputFailsafeConfig">
+
+## Modules + health (masked UID/IP):
+904:   <p n="io34_1_2" h="3a4b6" t="nrio:Nrio34Module">
+907:     <p n="lastFailCause" v="nrioService reports device is down"/>
+918:    <p n="points" h="3a4b8" t="nrio:Nrio34PriSecPoints">
+931:    <p n="io34Sec" h="3a4ba" t="nrio:Nrio34SecModule">
+934:      <p n="lastFailCause" v="nrioService reports device is down"/>
+945:     <p n="points" h="3a4bc" t="nrio:Nrio34PriSecPoints">
+  (module bus addresses:)
+914:    <p n="address" v="1"/>
+941:     <p n="address" v="2"/>
+
+## Points (only ro1 configured):
+920:     <p n="ro1" h="3a4c1" t="c:BooleanWritable">
+921:      <p n="proxyExt" h="3a4c2" t="nrio:NrioRelayOutputProxyExt">
+924:      <p n="fallback" t="b:StatusBoolean"><p n="value" v="false"/></p>
+
+## baud present in BOG? grep -c baud = 0  (0 = not serialized; NRIO default applies)
