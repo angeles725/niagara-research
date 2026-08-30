@@ -1,0 +1,12 @@
+Get-Disk -Number 1 (USB "Mass Storage Device", MBR, 4,018,143,232 B):
+PartitionNumber DriveLetter Type          Size        Offset
+1               D           FAT32 XINT13   134217728   1048576
+2               (none)      Unknown        3576692736  135266304
+3               (none)      Unknown        268435456   3711959040
+
+Get-Volume D: → FileSystem=FAT32, DriveType=Removable, Health=Healthy,
+                Size=133,160,960 B, Free≈92,584,960 B.
+
+Partitions 2 & 3 = QNX filesystems (JACE-8000 is QNX/AM335x); Windows shows them as
+Unknown/RAW and assigns no drive letter. Reading them needs raw imaging (dd/Win32 Disk Imager)
++ a QNX6 Power-Safe filesystem reader — not available through Windows Explorer or drvfs.

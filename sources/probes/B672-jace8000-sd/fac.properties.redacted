@@ -1,0 +1,6 @@
+# Honeywell Webs Golden Image Version:4.9.1.30
+facUser=honeywell
+facPw=***REDACTED*** (known Honeywell WEBs golden-image factory default — SECRETS DISCIPLINE)
+facRoute=192.168.1.1
+facIP=192.168.1.140
+facNetmask=255.255.255.0

@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **669 bloques**
+Total: **670 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -674,6 +674,7 @@ Total: **669 bloques**
 | 669 | [niagara-mental-model-bloque669.md](niagara-mental-model-bloque669.md) | B669 — Storing the webhook token: a `@NiagaraProperty type="BPassword"` is directly reusable for an `Authorization: Bearer` header — declare it, read plaintext at send time via `AccessController.doPrivileged(pwd::getValue)`, exactly as `BBasicEmailClientAuthenticator` does for SMTP; the token MUST be a REVERSIBLE password, encrypted at rest by a module-specific key + the station keyring (`.km`/`.kr` DPAPI on Windows) (focus alarm-webhook, AW4; confirms B34 §34.6.5) |
 | 670 | [niagara-mental-model-bloque670.md](niagara-mental-model-bloque670.md) | B670 — `BAlarmRecord` field getters for the webhook `toJson`: exact signatures for uuid/timestamp/alarmClass/priority/sourceState/ackState/source — and the ONE correction, `getAckRequired()` NOT `isAckRequired()`; `getAlarmFacet(String)` returns `BObject` (null if absent), while `getFormattedAlarmDataValue(key,cx)` returns a String ("" if absent); keys enumerated via `getAlarmData().list()` (focus alarm-webhook, AW5; confirms/refines B34 §34.7) |
 | 671 | [niagara-mental-model-bloque671.md](niagara-mental-model-bloque671.md) | B671 — External oBIX alarm-ACK: an HTTP client POSTs to `/obix/alarm/<uuid>/ack` with a tiny `<obj><str name="ackUser" .../></obj>` (contract `obix:AckAlarmIn`, only field `ackUser`, NO `ackData`); the record UUID is the primary key (same uuid the webhook emits), reached read-level with BASIC auth — the ack invoke path has NO write gate, only force-clear needs admin-write (focus alarm-webhook, AW6; builds on B509/B600/B499) |
+| 672 | [niagara-mental-model-bloque672.md](niagara-mental-model-bloque672.md) | B672 — JACE-8000 boot microSD (physical, read-only): a 4 GB card with THREE partitions — one FAT32 boot partition (mlo→u-boot→uEnv.txt→`n4-titan-am335x.signed`, a TI "CertISW" secure-boot image) that Windows reads, plus TWO QNX partitions it cannot; the FAT32 partition also carries the Honeywell WEBs golden-image factory defaults in plaintext (focus jace8000-sd bootstrap, SD1; §12/§14 confirms B459 AM335x) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

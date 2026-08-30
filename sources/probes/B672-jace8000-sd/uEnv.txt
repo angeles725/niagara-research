@@ -1,0 +1,1 @@
+uenvcmd=mmcinfo;fatload mmc 0 0x80FFFC00 n4-titan-am335x.signed;go 0x80FFFC00

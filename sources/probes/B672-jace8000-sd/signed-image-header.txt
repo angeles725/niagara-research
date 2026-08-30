@@ -1,0 +1,8 @@
+n4-titan-am335x.signed — first 64 bytes (hex):
+4365727449535700 0000000001000000 0000000000000000 0000000000000000
+0000000000000000 0000000001000000 5003000 0b4606602 236ba304
+
+ASCII of leading magic: "CertISW\0"
+= TI AM335x secure-boot certified-image (GP/HS) wrapper header. The 40 MB payload is the
+signed Niagara 4 firmware for the "Titan" (JACE-8000) TI AM335x (Sitara, ARM Cortex-A8).
+sha256(full file) = 15B5EBA1134D7A8CD7305D187FF140379E1F6806B798262CB0B778076D96E201
