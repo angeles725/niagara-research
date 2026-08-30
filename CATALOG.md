@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **681 bloques**
+Total: **682 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -686,6 +686,7 @@ Total: **681 bloques**
 | 681 | [niagara-mental-model-bloque681.md](niagara-mental-model-bloque681.md) | B681 — JACE-8000 `libcommon.so` (shared native runtime) + `libbacnet.so`: libcommon carries the hardware EngineWatchdog (shmem-based), the network config layer (NetCfgIoPkt: DHCP/IPv6) and i18n — and it links **OpenSSL `libcrypto.so.2`**, a SECOND crypto stack alongside the Mocana in `libdsfspi` ([Block 677]); libbacnet is the **BACnet/Ethernet** link adapter (`/dev/bn-%s`), complementing the MS/TP driver ([Block 680]) (focus jace8000-qnx-native, QN5; §19 [CERT]) |
 | 682 | [niagara-mental-model-bloque682.md](niagara-mental-model-bloque682.md) | B682 — How QNX is invoked on the JACE-8000, and why its OS image can't be unpacked offline: the boot chain ROM→MLO→U-Boot→`go 0x80FFFC00` executes the CertISW-wrapped `n4-titan-am335x.signed`, whose payload is OPAQUE — entropy ≈ 7.998 bits/byte, zero binwalk signatures ⇒ ENCRYPTED (not merely signed), so the QNX IFS/procnto image is not statically extractable from the SD; the running OS is QNX Neutrino 7.0.0 on ARM (focus jace8000-qnx-native, QN6; §19 [CERT] + blocked child) |
 | 683 | [niagara-mental-model-bloque683.md](niagara-mental-model-bloque683.md) | B683 — JACE-8000 `libpower.so` (power/UPS monitoring) + `station` launcher: PowerdQnx exposes primary-power/UPS/battery state (`/dev/powerd/batteryState`), and the `station` binary launches `com.tridium.sys.station.Station` as the de-privileged `station` user (uid 300, `station_owners`), refusing root — same fail-closed pattern as `niagarad` ([Block 679]) (focus jace8000-qnx-native, QN7; §19 [CERT]) |
+| 684 | [niagara-mental-model-bloque684.md](niagara-mental-model-bloque684.md) | B684 — JACE-8000 security verdict (QN8 synthesis): strong at the BOOT/FIRMWARE and PROCESS layers (CertISW secure boot + ENCRYPTED firmware payload + ECC508 secure element + FIPS Mocana crypto + de-privileged daemons that refuse root), but the QNX6 DATA partition is NOT encrypted at rest — physical possession of the microSD yields the config.bog, keyrings, `/etc/shadow` and audit history in the clear, and the factory credential sits in plaintext — so PHYSICAL ACCESS is the weak link (focus jace8000-qnx-native, QN8; §18-adjacent synthesis) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
