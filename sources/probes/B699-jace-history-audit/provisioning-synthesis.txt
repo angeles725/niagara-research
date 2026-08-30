@@ -1,0 +1,10 @@
+# B703 evidence — provisioning .hdb + focus synthesis (structural)
+## 3 provisioning .hdb (same A106F11E format), record_type = batchJob:* (CONFIRMS B689 §689.3 [INFER]->[CERT]):
+  DeviceStepHistoryRecord (10-field: jobStartTime/stepType/stepState/deviceId/deviceType...)
+  NetworkStepHistoryRecord (11-field: networkType/networkOrd/devicesToProcess...)
+  DeviceNetworkJobHistoryRecord (9-field: jobType/jobState/prototypeOrd/submitUser/networkOrd...)
+  ALL ~244-byte record regions, ~0 real records = EMPTY -> no provisioning jobs ever ran (matches ProvisioningNwExt empty B686/B691)
+
+## FOCUS SYNTHESIS — operational trace of JACE_UMBRELLA:
+  Audit: 30 config edits (commissioning), admin | Security: 58 logins/1 fail, single-operator | Log: Fox sessions + NRIO discovery churn vs down IO-34 + transient IOExceptions | Alarm: 15 NRIO pingFail/Success routed nowhere | Provisioning: empty
+  => bench/commissioning unit; independently confirms seed-station (B692) + weak-data-at-rest (B698)

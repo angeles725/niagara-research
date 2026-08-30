@@ -12,10 +12,10 @@
 
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 698
-gaps_closed: 4
+covered_blocks: 699
+gaps_closed: 5
 known_gaps: 5
-investigable_open: 1
+investigable_open: 0
 requires_execution_open: 0
 blocked_open: 0
 deferred_open: 0
@@ -24,7 +24,7 @@ block_scope: shared-global
 <!-- /research-state.v1 -->
 
 focus: jace-history-audit
-status: active (bootstrapped 2026-08-30; backlog seeded from P2 history/alarm inventory)
+status: stopped (read-only-investigable exhausted 5/5; deliverable tools/hdbread.py)
 bootstrapped_on: 2026-08-30
 block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libre: B699)
 
@@ -34,7 +34,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 - **Source (out of git)**: `/home/niagara/stations/JACE_UMBRELLA/` — `alarm/alarm.adb` (17408B),
   `history/station/seg0/SecurityHistory.hdb` (18288B), `seg4/LogHistory.hdb` (55260B),
   `seg7/AuditHistory.hdb` (10072B), + 3 provisioning `.hdb` (DeviceStep/NetworkStep/DeviceNetworkJob, 1856B each).
-- **Coverage metric**: 4 / 5 gaps closed (HD1-4)
+- **Coverage metric**: 5 / 5 gaps closed (HD1-5 investigable=0)
 
 ## Gap-backlog (prioritized)
 
@@ -44,7 +44,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 | high | HD2 AuditHistory + SecurityHistory CONTENT — what config-audit + auth/security events were recorded (counts, time range, operation types; identities MASKED) | hdb content | closed (B700 — SecurityHistory 58 Login/59 Logout/28 Session/1 Fail admin-dominated; low-use single-operator trace) |
 | medium | HD3 LogHistory CONTENT (55KB, largest) — severity distribution, log sources, what the station logged | hdb content | closed (B701 — LogRecord 5-field; fox sessions + NRIO discovery churn vs down IO-34 (corroborates B687) + transient Fox IOExceptions; bench-unit log profile) |
 | medium | HD4 alarm.adb — the alarm-database format + what alarms actually fired on this unit | adb content | closed (B702 — alarm.adb magic 600DF00D v1; ~15 alarms ALL NRIO io34 pingFail/pingSuccess; io34_2_1=removed commissioning addr; 0 recipients=routed nowhere) |
-| low | HD5 the 3 provisioning .hdb + SYNTHESIS — DeviceStep/NetworkStep/DeviceNetworkJob records + the operational-trace verdict for a seed station | hdb + synthesis | pending |
+| low | HD5 the 3 provisioning .hdb + SYNTHESIS — DeviceStep/NetworkStep/DeviceNetworkJob records + the operational-trace verdict for a seed station | hdb + synthesis | closed (B703 — 3 empty batchJob:* stores (§14 confirms B689); SYNTHESIS: bench-unit trace confirms seed-station B692 + weak-data-at-rest B698; deliverable hdbread.py) |
 
 `tried:` (none blocked — all files present on SD P2 and extractable via qnx6read.py; SOURCE-BEFORE-AGENT passes; HD1 builds the reader).
 
@@ -64,6 +64,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 | 2 | 2026-08-30 | HD2 Security/Audit content | B700 | no · inline (hdbread --strings --mask) | 0 new |
 | 3 | 2026-08-30 | HD3 LogHistory content | B701 | no · inline (hdbread) | 0 new |
 | 4 | 2026-08-30 | HD4 alarm.adb | B702 | no · inline (adb strings, masked) | 0 new |
+| 5 | 2026-08-30 | HD5 provisioning .hdb + SYNTHESIS (focus close) | B703 | no · inline (§14 confirms B689) | 0 new (focus STOP) |
 
 ## Blocked gaps (each tagged with what it needs)
 
@@ -71,7 +72,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 1
+- **Open gaps — read-only investigable**: 0
 - **Open gaps — requires-execution**: 0
 - **Open gaps — blocked**: 0
 - Budget cap: none

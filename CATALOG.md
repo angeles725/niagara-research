@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **698 blocks**
+Total: **699 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -704,3 +704,4 @@ Total: **698 blocks**
 | 700 | [niagara-mental-model-bloque700.md](niagara-mental-model-bloque700.md) | B700 — JACE_UMBRELLA SecurityHistory + AuditHistory content (HD2): ~58 login sessions and 30 config edits, almost all by admin — a low-use, single-operator trace with one recorded auth failure |
 | 701 | [niagara-mental-model-bloque701.md](niagara-mental-model-bloque701.md) | B701 — JACE_UMBRELLA LogHistory content (HD3): the log is Fox client sessions plus NRIO discovery churn against the down IO-34 — corroborating the module-down state from the config |
 | 702 | [niagara-mental-model-bloque702.md](niagara-mental-model-bloque702.md) | B702 — JACE_UMBRELLA alarm.adb (HD4): the only alarms the station ever raised were NRIO ping-fail/success on the IO-34, routed to nobody |
+| 703 | [niagara-mental-model-bloque703.md](niagara-mental-model-bloque703.md) | B703 — provisioning .hdb + focus SYNTHESIS (HD5): the history stores independently confirm the seed-station and weak-data-at-rest theses — a bench unit's trace, cleartext and rewritable on the card |

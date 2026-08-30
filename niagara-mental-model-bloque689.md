@@ -41,7 +41,9 @@ no severity filter → captures all levels. These three map 1:1 to the on-disk f
 types in the config = **0**). [INFER] They are written automatically by the provisioning subsystem
 (`pn:ProvisioningNiagaraNetworkExt`, L865 — B686 §686.3) as job-tracking bookkeeping, not declared histories,
 and hold provisioning metadata, not operational/user data. (Provisioning history internals = REMITTANCE focus
-`provisioning` [Block 567].)
+`provisioning` [Block 567].) **§14 CONFIRMED by [Block 703] (HD5):** this [INFER] is now [CERT-hw] — the three
+files' `record_type` is `batchJob:DeviceStepHistoryRecord` / `NetworkStepHistoryRecord` /
+`DeviceNetworkJobHistoryRecord`, and their record regions are empty (no provisioning job ever ran).
 
 ## 689.4 — Nothing leaves the box
 
