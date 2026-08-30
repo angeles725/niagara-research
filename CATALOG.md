@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **703 blocks**
+Total: **704 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -709,3 +709,4 @@ Total: **703 blocks**
 | 705 | [niagara-mental-model-bloque705.md](niagara-mental-model-bloque705.md) | B705 — Module best practices, RT layer (MBP1): the clean-`-rt` patterns, the anti-patterns the audits found, and the concrete fixes — distilled from the reference modules |
 | 706 | [niagara-mental-model-bloque706.md](niagara-mental-model-bloque706.md) | B706 — Module best practices, UX layer (MBP2): the thin-Java-shim + JS pattern, why `requiredPermissions` is visibility-not-security, and the live-data patterns — distilled from the reference modules |
 | 707 | [niagara-mental-model-bloque707.md](niagara-mental-model-bloque707.md) | B707 — Module best practices, WB layer (MBP3): when a `-wb` part is actually needed, the Manager/View/FieldEditor patterns, and why station logic must never live in `-wb` |
+| 708 | [niagara-mental-model-bloque708.md](niagara-mental-model-bloque708.md) | B708 — Module best practices, cross-cutting (MBP4): the permission model, the audit pattern, error-handling on the engine thread, and signing — the concerns that span rt/ux/wb |

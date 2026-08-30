@@ -13,10 +13,10 @@
 
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 703
-gaps_closed: 3
+covered_blocks: 704
+gaps_closed: 4
 known_gaps: 6
-investigable_open: 3
+investigable_open: 2
 requires_execution_open: 0
 blocked_open: 0
 deferred_open: 0
@@ -32,7 +32,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 ## Coverage
 
 - **Covered blocks**: 700 corpus-wide (this focus: B705-) (shared-global)
-- **Coverage metric**: 3 / 6 gaps closed (MBP1-3)
+- **Coverage metric**: 4 / 6 gaps closed (MBP1-4)
 - **Deliverable**: `docs/module-best-practices.md` (the human-readable guide, built as gaps close)
 
 ## Gap-backlog (prioritized)
@@ -42,7 +42,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 | high | MBP1 rt-layer best practices — BComponent structure, @NiagaraProperty/Action/Topic slots, lifecycle, threading, type-registration; clean-rt patterns + anti-patterns | synthesis+code | closed (B705 — 8 patterns/7 anti-patterns/5 fixes; 2 code cites spot-checked; docs/module-best-practices.md rt section) |
 | high | MBP2 ux-layer best practices — bajaux, BSingleton+@AgentOn, the JS/web layer, module-side registration, front-end structure; patterns + anti-patterns | synthesis+code | closed (B706 — thin-shim+JS, requiredPermissions=visibility-not-security, server-RBAC, ES5-strict, Fox-sub+REST; guide §2) |
 | high | MBP3 wb-layer best practices — Workbench Swing (managers/views/field editors), when wb is actually needed vs over-built | synthesis+code | closed (B707 — when-needed decision rule; Manager/View/FieldEditor patterns; chihuahua-wb exemplar; wb-invisible-to-daemon; guide §3) |
-| medium | MBP4 cross-cutting — RBAC write-gate pattern (chihuahua), permissions/over-permission anti-pattern (own-modules-audit), audit, error handling | synthesis+code | pending |
+| medium | MBP4 cross-cutting — RBAC write-gate pattern (chihuahua), permissions/over-permission anti-pattern (own-modules-audit), audit, error handling | synthesis+code | closed (B708 — permission model BPermissions+BCategoryService; audit framework+module; engine-thread error handling; signing; guide §4) |
 | medium | MBP5 build/packaging best practices — module.xml/module-include.xml, dependencies, signing, version-targeting; the optimal error-free build loop | synthesis+code | pending |
 | low | MBP6 reference-exemplar catalog + improvement recommendations + the deliverable guide (docs/module-best-practices.md) | synthesis+deliverable | pending |
 
@@ -65,6 +65,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 | 1 | 2026-08-30 | MBP1 rt best practices | B705 | yes · sonnet (synthesis of module blocks + jars) + inline spot-check | 0 new |
 | 2 | 2026-08-30 | MBP2 ux best practices | B706 | yes · sonnet (synthesis) | 0 new |
 | 3 | 2026-08-30 | MBP3 wb best practices | B707 | yes · sonnet (synthesis) | 0 new |
+| 4 | 2026-08-30 | MBP4 cross-cutting | B708 | no · inline (consolidation + targeted read) | 0 new |
 
 ## Blocked gaps (each tagged with what it needs)
 
@@ -72,7 +73,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 3
+- **Open gaps — read-only investigable**: 2
 - **Open gaps — requires-execution**: 0
 - **Open gaps — blocked**: 0
 - Budget cap: none

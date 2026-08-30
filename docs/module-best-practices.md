@@ -155,3 +155,44 @@ not loaded. Any station-needed logic in `-wb` is broken on a JACE/supervisor. [B
 3. Copy chihuahua-wb's pure-Java `model/` pattern into new wb tools. [B654]
 4. Template default = rt + ux only; add `-wb` deliberately (chihuahua added wb last, at 1.3). [B647, B649]
 5. Keep authoring (wb) and runtime (rt) tools separate. [B654]
+
+---
+
+## 4. Cross-cutting — permissions, audit, errors, signing
+
+Concerns that span rt/ux/wb. All authorization is server-authoritative.
+
+### 4.1 Permission model
+
+- Check the **bit**: `BPermissions.has(OPERATOR_WRITE)` — never a role-NAME string. [B648]
+- **Categories** partition the space; `BCategoryService` = ORD-prefix inheritance over a 256-slot mask,
+  recomputed every 60s. A module RELIES on it — run mutations as the real `BUser` so `canWrite()` applies. [B561]
+- Client gating (`@AgentOn requiredPermissions`, hidden buttons) is convenience only (ADR D6).
+
+### 4.2 Audit
+
+- **Framework**: `AuditHistoryService` records slot changes (`timestamp/operation/target/slotName/old/new/user`)
+  automatically when you mutate through the slot API as the real user. [B689, B699]
+- **Module**: for servlet/REST writes, write your own `{ts,user,action,ord,old,new}` record. [B648]
+- Know the weakness: the audit trail is local-only, cleartext, not tamper-evident — an operational record, not a
+  security control against disk/SD access. [B689, B566, B698]
+
+### 4.3 Error handling
+
+- **Engine thread never throws.** `changed/started/stopped` → `catch(Throwable){ log; }` and swallow. [B650]
+- **Security decisions fail CLOSED.** [B648]
+- Don't `System.exit` from module code. Log actionable SEVERE/Exception (LogHistory captures them). [B701]
+
+### 4.4 Signing + module security
+
+- Sign your modules (RSA-2048; OEM re-signs even core). A production station should allow strict
+  `moduleVerificationMode` — so modules must be signed. [B392, B398]
+- Declare `<permissions>` only if used; delete the empty New-Module-Wizard scaffold (12/13 modules carry it). [B635, B649]
+
+### 4.5 Cross-cutting checklist
+
+1. Every write path: `BPermissions.has(…)`, fail-closed, running as the real `BUser`.
+2. Every mutation audited.
+3. No throw on the engine thread; heavy work off-thread.
+4. Signed; no empty `<permissions>`; permission scoping at `@AgentOn`.
+5. Never trust the browser for authorization.
