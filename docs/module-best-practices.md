@@ -196,3 +196,41 @@ Concerns that span rt/ux/wb. All authorization is server-authoritative.
 3. No throw on the engine thread; heavy work off-thread.
 4. Signed; no empty `<permissions>`; permission scoping at `@AgentOn`.
 5. Never trust the browser for authorization.
+
+---
+
+## 5. Build & packaging
+
+### 5.1 The build
+
+- Tridium **gradle-niagara** plugins per part; `com.tridium.niagara-signing` on root + each part. [B639]
+- `module-include.xml` declares exported types (one `<type>` per component); Slotomatic reads it. [B631, B636]
+
+### 5.2 When to run Slotomatic
+
+- **Mode A — Clean + Build**: no `@Niagara*` annotation changed.
+- **Mode B — Clean + Slotomatic + Build**: a `@Niagara*` slot/action was added or modified.
+- Run `:slotomatic` ONLY on annotation changes; a stale AUTO region = compile/runtime failure. Automate the
+  choice via `git diff` on `@Niagara*`. [B637, B650]
+
+### 5.3 Signing
+
+- Convention-driven: no explicit block; the niagara-signing plugin uses `niagara_user_home/security/keystore.jceks`.
+- One shop alias aligned with vendor identity (`angelessignerCA` / vendor `ANGELES`); don't mix chains. [B639, B638]
+
+### 5.4 Version-targeting + versioning
+
+- Build against the target station's version by pointing `niagara_home` at that SDK (4.13/4.14/4.15) — deliberate. [B638]
+- Bump `vendorVersion` per release (don't freeze at 1.0). [B640, B649]
+
+### 5.5 Deploy loop
+
+- `backup → ./gradlew (mode A/B/C) → copy jars to STATION_MODULES_DIR → verify emitted types vs EXPECTED_*_TYPES`
+  (scriptable phase exit codes). Type verification catches a silent registration failure. [B637]
+- Windows-side security store → Robocopy WSL→Win→WSL bridge for slotomatic + jar. [B639]
+
+### 5.6 Packaging rules
+
+- Profiles: station logic `-rt`, browser UI `-ux`, Swing `-wb` (`runtimeProfile` load-bearing).
+- Don't shade heavy libs per module; reference shared modules / jsonToolkit.
+- Ship a `module.palette` for component modules; no empty `<permissions>`; no empty jars.
