@@ -19,7 +19,7 @@ schema: research-state.v1
 covered_blocks: 684
 gaps_closed: 4
 known_gaps: 9
-investigable_open: 5
+investigable_open: 4
 requires_execution_open: 1
 blocked_open: 0
 deferred_open: 0
@@ -57,7 +57,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 | medium | SC6 TagDictionaryService + HierarchyService deployed — the 144 td: references: which dictionaries, hierarchies, relations this station uses | bog-xml disk | pending |
 | medium | SC7 platform/orchestration services deployed — WebService/FoxService/BoxService/JobService/BatchJobService/ProgramService/TemplateService/ProvisioningNiagara + Program objects (freeform logic) | bog-xml disk | pending |
 | low | SC8 supporting stores + synthesis — registry.db + alarm.adb + platform.bog contents; SYNTHESIS: the field-controller profile vs the supervisor | disk + synthesis | pending |
-| medium | SC4-G1 runtime access outcome (open vs denied) of an ORD mapped to an UNDEFINED category index | requires-execution (live probe w/ non-admin user, or code read of BCategoryService.getCategory) | pending |
+| medium | SC4-G1 runtime access outcome (open vs denied) of an ORD mapped to an UNDEFINED category index | requires-execution | requires-execution (live probe w/ non-admin user, or code read of BCategoryService.getCategory) |
 
 `tried:` (none blocked yet — all 8 gaps have confirmed on-disk source: config.bog + supporting stores
 extracted from SD P2 via qnx6read.py; SOURCE-BEFORE-AGENT passes for the whole backlog).
