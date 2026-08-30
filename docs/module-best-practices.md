@@ -106,3 +106,52 @@ The `-ux` jar is the browser-facing tier. Ideal shape: a thin Java shim + all UI
 3. **(MED, packaging)** Shared lib modules instead of per-dashboard shading. [B643, B644, B645]
 4. **(MED, config)** Move hardcoded `-ux` site data into `-rt`. [B645]
 5. **(LOW, default)** Fox-sub + REST-fallback live data as the template default. [B653]
+
+---
+
+## 3. WB layer (`-wb`) — Workbench Swing
+
+Only for engineer-facing Swing UI that runs inside Workbench. Never for station runtime logic.
+
+### 3.1 When is `-wb` needed?
+
+```
+Swing Manager for device/point children?   → YES  (BAbstractManager)
+Swing bulk-authoring / wizard tool?         → YES  (BWbComponentView)
+Custom field editor for your value type?    → YES  (BWbFieldEditor)
+Web dashboard (HTML/JS/CSS)?                 → NO   (pure -ux, rc/ assets)
+bajaux / HX widget?                          → NO   (pure -ux)
+Plain BComponent + palette entry?           → NO   (rt only)
+Station-side runtime logic?                 → NEVER (daemon won't load -wb)
+Standard property sheet covers your slots?  → NO -wb needed
+```
+
+**Foundational constraint:** `runtimeProfile="wb"` is invisible to a headless daemon (`-rp:rt,se`) — silently
+not loaded. Any station-needed logic in `-wb` is broken on a JACE/supervisor. [B630]
+
+### 3.2 Do (patterns)
+
+1. **Manager** = `BAbstractManager` (abstract) → concrete subclass with `@AgentOn`; `makeColumns()`→`MgrColumn[]`;
+   rows filtered by `hasOperatorRead()` automatically; discovery via `makeLearn()`→`BJob`. [B431]
+2. **View** = `BWbView`; menus/toolbar via `getViewMenus`/`getViewToolBar`; transfer via `BTransferWidget`. [B432]
+3. **Field editor** = `BWbFieldEditor`; `doLoadValue`/`doSaveValue`; register `@AgentOn(types="your:ValueType")`. [B430]
+4. **Commands + undo** = return a `CommandArtifact` → `UndoManager.addArtifact`; one-shots invoke imperatively. [B429, B432]
+5. **Pure-Java `model/` package** (zero Niagara types) for the tool's logic → unit-testable in WSL. [B654, B637]
+6. **One Transaction per component space** on bulk commit — never nested transactions. [B654]
+
+### 3.3 Don't (anti-patterns)
+
+- **Station/runtime logic in `-wb`** — invisible to daemon, silent failure. Highest severity. [B630]
+- **Over-building Swing when a `-ux` view suffices.**
+- **Duplicating rt logic in wb** — drift + headless breakage. [B654]
+- **Empty `-wb` jars** (interfaz1-wb: 0 classes, still costs boot load + signature verify). [B642]
+- **wb logic not pure-Java** — loses WSL testability. [B654]
+- **Nested transactions.** [B654]
+
+### 3.4 Priority wb fixes
+
+1. Drop `interfaz1-wb` (only empty wb jar). [B642]
+2. Scope permissions at `@AgentOn` (`requiredPermissions`), not module-level. [B644]
+3. Copy chihuahua-wb's pure-Java `model/` pattern into new wb tools. [B654]
+4. Template default = rt + ux only; add `-wb` deliberately (chihuahua added wb last, at 1.3). [B647, B649]
+5. Keep authoring (wb) and runtime (rt) tools separate. [B654]

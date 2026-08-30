@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **702 blocks**
+Total: **703 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -708,3 +708,4 @@ Total: **702 blocks**
 | 704 | [niagara-mental-model-bloque704.md](niagara-mental-model-bloque704.md) | B704 — DAR2-G1: the reversible-decrypt PoC design is confirmed (AES-256-GCM, keyring-aliased) — but this seed station's config.bog has ZERO reversible fields, so there is nothing to decrypt (§14 corrects B694's cipher) |
 | 705 | [niagara-mental-model-bloque705.md](niagara-mental-model-bloque705.md) | B705 — Module best practices, RT layer (MBP1): the clean-`-rt` patterns, the anti-patterns the audits found, and the concrete fixes — distilled from the reference modules |
 | 706 | [niagara-mental-model-bloque706.md](niagara-mental-model-bloque706.md) | B706 — Module best practices, UX layer (MBP2): the thin-Java-shim + JS pattern, why `requiredPermissions` is visibility-not-security, and the live-data patterns — distilled from the reference modules |
+| 707 | [niagara-mental-model-bloque707.md](niagara-mental-model-bloque707.md) | B707 — Module best practices, WB layer (MBP3): when a `-wb` part is actually needed, the Manager/View/FieldEditor patterns, and why station logic must never live in `-wb` |
