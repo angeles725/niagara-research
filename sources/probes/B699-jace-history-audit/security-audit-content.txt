@@ -1,0 +1,7 @@
+# B700 evidence — SecurityHistory + AuditHistory content (structural; identities masked)
+## SecurityHistory.hdb (18288 B): record_type=history:SecurityAuditRecord, schema=timestamp,operation,userName,message
+  operations: Login=58  Logout=59  Session=28  Fail=1  (admin-refs=118; personal logins masked by reader)
+  => ~58 login sessions over the unit's life, ~all by admin; ONE recorded auth failure
+## AuditHistory.hdb (10072 B): AuditRecord 7-field, 30 records (18 Added/5 Changed/7 Removed) = commissioning edits (B699)
+## time span: AbsTime is binary-encoded (not ASCII) -> not string-extractable; record counts are the metric
+# no secret values; usernames role-only (admin) or masked.

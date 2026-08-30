@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **695 blocks**
+Total: **696 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -701,3 +701,4 @@ Total: **695 blocks**
 | 697 | [niagara-mental-model-bloque697.md](niagara-mental-model-bloque697.md) | B697 — JACE_UMBRELLA JRE crypto policy (DAR5): standard non-FIPS OpenJDK stack, unlimited-strength by default, weak TLS/algorithms disabled — FIPS off across every layer |
 | 698 | [niagara-mental-model-bloque698.md](niagara-mental-model-bloque698.md) | B698 — What the SD yields (DAR6, focus synthesis): physical possession = near-total data-at-rest compromise, because the data-encryption key is a cleartext file on the same card the hardware root-of-trust protects |
 | 699 | [niagara-mental-model-bloque699.md](niagara-mental-model-bloque699.md) | B699 — Niagara .hdb format on the JACE-8000 SD + a read-only reader (HD1): history records are cleartext; AuditHistory holds the seed station's commissioning trail |
+| 700 | [niagara-mental-model-bloque700.md](niagara-mental-model-bloque700.md) | B700 — JACE_UMBRELLA SecurityHistory + AuditHistory content (HD2): ~58 login sessions and 30 config edits, almost all by admin — a low-use, single-operator trace with one recorded auth failure |

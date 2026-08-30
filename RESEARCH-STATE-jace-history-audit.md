@@ -12,10 +12,10 @@
 
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 695
-gaps_closed: 1
+covered_blocks: 696
+gaps_closed: 2
 known_gaps: 5
-investigable_open: 4
+investigable_open: 3
 requires_execution_open: 0
 blocked_open: 0
 deferred_open: 0
@@ -34,14 +34,14 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 - **Source (out of git)**: `/home/niagara/stations/JACE_UMBRELLA/` — `alarm/alarm.adb` (17408B),
   `history/station/seg0/SecurityHistory.hdb` (18288B), `seg4/LogHistory.hdb` (55260B),
   `seg7/AuditHistory.hdb` (10072B), + 3 provisioning `.hdb` (DeviceStep/NetworkStep/DeviceNetworkJob, 1856B each).
-- **Coverage metric**: 1 / 5 gaps closed (HD1 B699)
+- **Coverage metric**: 2 / 5 gaps closed (HD1-2)
 
 ## Gap-backlog (prioritized)
 
 | Priority | Gap | Type | Status |
 |---|---|---|---|
 | high | HD1 the .hdb on-disk record format on THIS unit + a lightweight reader (record framing, schema, timestamps) — REMITTANCE format model to `database`, NEW = parse these files | §19 build | closed (B699 — .hdb=magic A106F11E+len-prefixed HistoryConfig XML+cleartext records; built tools/hdbread.py; AuditHistory=30 recs commissioning trail) |
-| high | HD2 AuditHistory + SecurityHistory CONTENT — what config-audit + auth/security events were recorded (counts, time range, operation types; identities MASKED) | hdb content | pending |
+| high | HD2 AuditHistory + SecurityHistory CONTENT — what config-audit + auth/security events were recorded (counts, time range, operation types; identities MASKED) | hdb content | closed (B700 — SecurityHistory 58 Login/59 Logout/28 Session/1 Fail admin-dominated; low-use single-operator trace) |
 | medium | HD3 LogHistory CONTENT (55KB, largest) — severity distribution, log sources, what the station logged | hdb content | pending |
 | medium | HD4 alarm.adb — the alarm-database format + what alarms actually fired on this unit | adb content | pending |
 | low | HD5 the 3 provisioning .hdb + SYNTHESIS — DeviceStep/NetworkStep/DeviceNetworkJob records + the operational-trace verdict for a seed station | hdb + synthesis | pending |
@@ -61,6 +61,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 |---|---|---|---|---|---|
 | — | 2026-08-30 | (bootstrap — P2 history/alarm inventory) | — | no · inline | HD1–HD5 seeded |
 | 1 | 2026-08-30 | HD1 .hdb format + reader | B699 | no · inline (§19 built tools/hdbread.py) | 0 new |
+| 2 | 2026-08-30 | HD2 Security/Audit content | B700 | no · inline (hdbread --strings --mask) | 0 new |
 
 ## Blocked gaps (each tagged with what it needs)
 
@@ -68,7 +69,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 4
+- **Open gaps — read-only investigable**: 3
 - **Open gaps — requires-execution**: 0
 - **Open gaps — blocked**: 0
 - Budget cap: none
