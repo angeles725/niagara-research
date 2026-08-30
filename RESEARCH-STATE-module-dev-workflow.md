@@ -32,6 +32,10 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 - **Covered blocks**: 706 corpus-wide (this focus: B711-) (shared-global)
 - **Coverage metric**: 5 / 5 gaps closed (WF1-5 investigable=0); deliverable docs/module-dev-workflow.md complete
 - **Deliverable**: `docs/module-dev-workflow.md` (a step-by-step runbook)
+- **Addendum B721** (2026-08-30, post-close): `module-permissions.xml` — the file table only catalogued it; B721
+  closes it (Java Security Manager permission-request manifest; schema, permission-group catalog, chihuahua stub,
+  devkit/program writers, Security Dashboard). Cited from devguide `security/requestingPermissions.txt` + real
+  chihuahua file. Applied to `docs/manuals/new-module-creation/`. Does not change the 5/5 STOP.
 
 ## Gap-backlog (prioritized)
 
