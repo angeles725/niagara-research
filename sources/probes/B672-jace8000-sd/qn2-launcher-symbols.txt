@@ -1,0 +1,30 @@
+QN2 launcher chain — nre / libnjre.so / libnre.so (ARM ELF32). sha256:
+  nre a45933e63cdb5c1172fa334d1847181f4dee4fc54a3b9c6bbd6e9734ca3e5920
+  libnjre.so 9ecff615be400abb90c8b539dbf10d4348c0f98f4fb7db3f836f9c56e4ee6359
+  libnre.so 3f99b59ac999d40a0c548dc01c0b84c55bcf13de1fc88840085dcca7e4a7294c
+
+== nre NEEDED (QNX interp /usr/lib/ldqnx.so.2) ==
+[libdsfspi.so] [libnre.so] [libcommon.so] [libc++.so.1] [libsocket.so.3] [libc.so.4] 
+
+== libnjre.so JavaLauncherQnx methods ==
+JavaLauncherQnx10invokeJavaEPKc
+JavaLauncherQnx14buildVMOptionsEP
+JavaLauncherQnx4javaEPKciPPcb
+JavaLauncherQnx7cleanupEv
+JavaLauncherQnx7loadDLLEv
+JavaLauncherQnx8createVMEv
+JavaLauncherQnx9buildArgsEiPPc
+JavaLauncherQnx9initPathsEv
+JavaLauncherQnxC
+JavaLauncherQnxD
+
+== JVM dlopen target + notable -D platform properties ==
+-Dniagara.dhcpd.provider=dhcpd
+-Dniagara.filestore.shared.memory=/dev/shmem
+-Dniagara.home=%s
+-Dniagara.hsm.engine=com.tridium.hsm.provider.qnx.Ecc508QnxRmEngine
+-Dniagara.ieee8021x.supported=true
+lib/aarch32/client/libjvm.so
+lib/arm/client/libjvm.so
+
+== libnre.so NativePlatformProvider JNI (sample) ==

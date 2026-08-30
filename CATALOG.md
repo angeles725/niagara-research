@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **675 bloques**
+Total: **676 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -680,6 +680,7 @@ Total: **675 bloques**
 | 675 | [niagara-mental-model-bloque675.md](niagara-mental-model-bloque675.md) | B675 — JACE-8000 factory image + secure-boot wrapper: P3's `n4clean.tar.gz` is a LAYERED clean image (defaults + Tridium-only base cert + `signing.properties` → nested `jre.tar.gz` + a JAR-SIGNED `nre-core-update.tar.gz` → `nrecore.tar.gz`), and `n4-titan-am335x.signed` is a TI "CertISW" wrapper = ~0x350-byte cert header + ~27 MB payload + signature (focus jace8000-sd, SD-G2; §19 [CERT-hw]) |
 | 676 | [niagara-mental-model-bloque676.md](niagara-mental-model-bloque676.md) | B676 — JACE-8000 factory core signing + payload inventory: the `nrecore` payload is signed by Tridium's GENUINE public DigiCert code-signing cert (`CN=Tridium, Inc` → `DigiCert SHA2 Assured ID Code Signing CA` → `DigiCert Assured ID Root CA`, RSA-2048/SHA-256) — NOT the Honeywell PKI that re-signs deployed modules ([Block 392]); the NRE core = a BouncyCastle-FIPS + Jetty runtime (17 jars + 12 native `.so`); and the `CertISW` boot wrapper is TI GP-format (no X.509 chain) (focus jace8000-sd, SD-G2b; §19 [CERT-hw]) |
 | 677 | [niagara-mental-model-bloque677.md](niagara-mental-model-bloque677.md) | B677 — JACE-8000 ARM crypto engine `libdsfspi.so`: the on-controller Niagara "DSF" JCE provider is a thin JNI facade (`com.tridium.dsf.provider.*`) over a STATICALLY-linked Mocana NanoCrypto (only `libc.so.4` needed) — AES-256-CBC cipher SPI, NIST CTR-DRBG/EC-DRBG SecureRandom, SHA-1/256, DSA/RSA keygen, SHA1WithDSA/SHAWithRSA — the ARM twin of the Windows `dsfspi.dll` ([Block 425]) (focus jace8000-qnx-native, QN1; §19 [CERT]) |
+| 678 | [niagara-mental-model-bloque678.md](niagara-mental-model-bloque678.md) | B678 — JACE-8000 native launcher chain: `nre` → `libnjre.so` (`JavaLauncherQnx`: `loadDLL`→`dlopen lib/arm/client/libjvm.so`→`createVM`) → the station JVM, and `libnre.so` = the REAL `NativePlatformProvider` (daemonize/addUser/changePassword/watchdog — live, not the Windows stubs of [Block 385]); the launcher `-D` set reveals an **ATECC508 HSM engine** and **802.1X** support (focus jace8000-qnx-native, QN2; §19 [CERT]) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

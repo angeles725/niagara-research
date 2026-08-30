@@ -19,10 +19,10 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 673
-gaps_closed: 1
+covered_blocks: 674
+gaps_closed: 2
 known_gaps: 8
-investigable_open: 7
+investigable_open: 6
 requires_execution_open: 0
 blocked_open: 0
 deferred_open: 0
@@ -37,15 +37,15 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 ## Coverage
 
 - **Covered blocks**: 673 corpus-wide (this focus: B677) (shared-global)
-- **Coverage metric**: 1 / 8 investigable closed
-- **Last iteration**: 2026-08-30 — QN1 closed (B677, libdsfspi.so)
+- **Coverage metric**: 2 / 8 investigable closed
+- **Last iteration**: 2026-08-30 — QN2 closed (B678, launcher chain nre/libnjre/libnre)
 
 ## Gap-backlog (prioritized)
 
 | Priority | Gap | Type | Status |
 |---|---|---|---|
 | high | QN1 libdsfspi.so — ARM crypto SPI: keyring/machine-key, config.bog + .km/.kr en/decrypt at rest (sibling of B425 dsfspi.dll) | decompiled-arm | closed (B677 — Mocana NanoCrypto static, AES-256-CBC, NIST CTR-DRBG) |
-| high | QN2 nre + libnre.so + libnjre.so — native launcher chain on QNX: how the JVM/station is spawned (sibling of B124/B380) | decompiled-arm | pending |
+| high | QN2 nre + libnre.so + libnjre.so — native launcher chain on QNX: how the JVM/station is spawned (sibling of B124/B380) | decompiled-arm | closed (B678 — JavaLauncherQnx dlopen libjvm.so; libnre=live NativePlatformProvider; ATECC508 HSM + 802.1X) |
 | high | QN3 niagarad — the platform daemon binary on QNX (:3011/:5011) (sibling of plat.exe B381) | decompiled-arm | pending |
 | medium | QN4 field-bus native drivers — libplatmstp (BACnet MS/TP), libplatnrio (Niagara Remote IO), libplatccn, libserial | decompiled-arm | pending |
 | medium | QN5 libcommon.so + libbacnet.so — common native runtime + BACnet native | decompiled-arm | pending |
@@ -65,7 +65,8 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 | # | Date | Gap closed | Block | Delegated? · model tier | New gaps uncovered |
 |---|---|---|---|---|---|
 | — | 2026-08-30 | (bootstrap — AUDIT-FIRST profile of 13 ARM ELFs) | — | no · inline (readelf/tool gate) | 8 seeded |
-| 1 | 2026-08-30 | QN1 libdsfspi.so crypto | B677 | no · inline (symbol/string inventory readelf/nm) | QN1-G1 (HW-RNG runtime), QN1-G2 (KDF params) — decompile follow-ups |
+| 1 | 2026-08-30 | QN1 libdsfspi.so crypto | B677 | no · inline (symbol/string inventory readelf/nm) | QN1-G1 (HW-RNG runtime), QN1-G2 (KDF params) |
+| 2 | 2026-08-30 | QN2 launcher chain | B678 | no · inline (readelf/nm/strings) | QN2-G1 (ECC508 key-material extent — live/decompile) |
 
 ## Blocked gaps (each tagged with what it needs)
 
