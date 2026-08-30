@@ -37,3 +37,4 @@ is ALREADY installed + kit-wrapped. The following are NEW and belong to OTHER fo
 | ILSpy / dnSpyEx | .NET decompilers | only if a .NET assembly appears (none found so far; ilspycmd is UNUSABLE per detect-tools) | not yet acquired |
 
 - `qnx6read.py` — read-only QNX6 (Power-Safe) filesystem reader (superblock + 2-level indirection + short/long dir names). Born in focus jace8000-sd (B674) to walk the JACE-8000 microSD QNX6 partitions from a raw image with no `qnx6` kernel driver / no sudo. Usage: `QNX6_IMG=/path/disk.img python3 tools/qnx6read.py P2`. Provenance: 2026-08-30.
+| hdbread.py | tools/hdbread.py | created — read-only Niagara .hdb history reader (header+schema+cleartext record walk, --mask) for focus jace-history-audit B699 |

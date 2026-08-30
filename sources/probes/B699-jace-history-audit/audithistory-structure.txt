@@ -1,0 +1,9 @@
+# /tmp/claude-1000/-home-cristian-niagara-research/3c77f38e-85b8-4bcc-8068-dec21bdda7ed/scratchpad/AuditHistory.hdb
+magic=A106F11E version=2 config_len=1600 record_region=8460 bytes
+history_id=/JACE_UMBRELLA/AuditHistory
+record_type=history:AuditRecord
+schema (7 fields): timestamp, operation, target, slotName, oldValue, value, userName
+op Added    = 18
+op Changed  = 5
+op Removed  = 7
+op Renamed  = 0

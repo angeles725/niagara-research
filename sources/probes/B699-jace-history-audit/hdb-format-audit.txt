@@ -1,0 +1,20 @@
+# B699 evidence — Niagara .hdb on-disk format + AuditHistory content (JACE_UMBRELLA, structural)
+# Source: SD P2 via qnx6read.py + tools/hdbread.py. Records are CLEARTEXT (reversibleEncodingKeySource=none).
+# SECRETS DISCIPLINE: operation types/counts cited; specific values/identities masked.
+
+## .hdb format (this unit):
+  [0:4] magic A1 06 F1 1E | [4:8] version=2 (BE) | [8:12] config_xml_len (BE) | [12:12+len] HistoryConfig XML (schema) | [rest] cleartext records
+  root: reversibleEncodingKeySource=none FIPSEnabled=false -> records NOT encrypted
+
+## AuditHistory.hdb (10072 B):
+magic=A106F11E version=2 config_len=1600 record_region=8460 bytes
+history_id=/JACE_UMBRELLA/AuditHistory
+record_type=history:AuditRecord
+schema (7 fields): timestamp, operation, target, slotName, oldValue, value, userName
+op Added    = 18
+op Changed  = 5
+op Removed  = 7
+op Renamed  = 0
+
+## commissioning trail finding: portName audited as COM2 AND COM1 (4 portName edits); live config settled COM1 (B687)
+  => the audit trail captured the seed-station commissioning edits (Add/Change/Remove of Drivers/points)
