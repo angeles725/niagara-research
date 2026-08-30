@@ -1,0 +1,24 @@
+QN5 libcommon.so + libbacnet.so (ARM ELF32).
+## libcommon.so sha256 e6b356acfb7a2fffacaedbd8d7281dba61b62459559e785cddc11bd2d2285cdf
+NEEDED: [libsocket.so.3] [libc++.so.1] [libcrypto.so.2] [libc.so.4]   <-- note libcrypto.so.2 (OpenSSL)
+C++ subsystems (demangled hints):
+/sys/info/version
+/tmp/dhcp.conf
+11NetCfgIoPkt
+EngineWatchdog.cpp
+EngineWatchdogQnx.cpp
+MessageBundle.cpp
+NetCfgIoPkt.cpp
+_Z22dhcpMonitorThreadEntryPv
+_ZN11NetCfgIoPkt10canDisableEi
+_ZN11NetCfgIoPkt10canUseDhcpEi
+
+## libbacnet.so sha256 7b7313bd9233c7feab4f4c51249aafa96779068a1cca3b995bd37483499d4c7f
+NEEDED: [libc++.so.1] [libsocket.so.3] [libc.so.4] 
+platBacnet_BacnetEthernetAdapterQnx_bacnetClose0
+platBacnet_BacnetEthernetAdapterQnx_bacnetOpen0
+platBacnet_BacnetEthernetAdapterQnx_bacnetRead0
+platBacnet_BacnetEthernetAdapterQnx_bacnetWrite0
+platBacnet_BacnetEthernetAdapterQnx_getAddress0
+/dev/bn-%s
+BacnetEthernetAdapterQnx.cpp

@@ -19,10 +19,10 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 676
-gaps_closed: 4
+covered_blocks: 677
+gaps_closed: 5
 known_gaps: 8
-investigable_open: 4
+investigable_open: 3
 requires_execution_open: 0
 blocked_open: 0
 deferred_open: 0
@@ -37,8 +37,8 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 ## Coverage
 
 - **Covered blocks**: 673 corpus-wide (this focus: B677) (shared-global)
-- **Coverage metric**: 4 / 8 investigable closed
-- **Last iteration**: 2026-08-30 — QN4 closed (B680, field-bus drivers)
+- **Coverage metric**: 5 / 8 investigable closed
+- **Last iteration**: 2026-08-30 — QN5 closed (B681, libcommon+libbacnet; OpenSSL 2nd crypto stack)
 
 ## Gap-backlog (prioritized)
 
@@ -48,7 +48,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 | high | QN2 nre + libnre.so + libnjre.so — native launcher chain on QNX: how the JVM/station is spawned (sibling of B124/B380) | decompiled-arm | closed (B678 — JavaLauncherQnx dlopen libjvm.so; libnre=live NativePlatformProvider; ATECC508 HSM + 802.1X) |
 | high | QN3 niagarad — the platform daemon binary on QNX (:3011/:5011) (sibling of plat.exe B381) | decompiled-arm | closed (B679 — thin JVM launcher of NiagaraDaemon; drops privileges to niagarad user, refuses root; §14 vs B381 LocalSystem) |
 | medium | QN4 field-bus native drivers — libplatmstp (BACnet MS/TP), libplatnrio (Niagara Remote IO), libplatccn, libserial | decompiled-arm | closed (B680 — 4 *PlatformServiceQnx JNI drivers: MS/TP, NRIO, CCN/dev-ccn, serial) |
-| medium | QN5 libcommon.so + libbacnet.so — common native runtime + BACnet native | decompiled-arm | pending |
+| medium | QN5 libcommon.so + libbacnet.so — common native runtime + BACnet native | decompiled-arm | closed (B681 — EngineWatchdog+NetCfgIo+OpenSSL libcrypto 2nd stack; libbacnet=BACnet/Ethernet /dev/bn) |
 | medium | QN6 QNX-OS boot / IFS — unpack the QNX image from the .signed payload; init, Neutrino version, drivers ("cómo se llama a QNX") | binary-unpack | pending |
 | low | QN7 libpower.so + station binary — power/watchdog + station launcher specifics | decompiled-arm | pending |
 | high | QN8 SECURITY VERDICT — consolidate JACE-8000 posture (B460/461/466/468/672/674/676 + ARM crypto) | synthesis | pending |
@@ -68,7 +68,8 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 | 1 | 2026-08-30 | QN1 libdsfspi.so crypto | B677 | no · inline (symbol/string inventory readelf/nm) | QN1-G1 (HW-RNG runtime), QN1-G2 (KDF params) |
 | 2 | 2026-08-30 | QN2 launcher chain | B678 | no · inline (readelf/nm/strings) | QN2-G1 (ECC508 key-material extent) |
 | 3 | 2026-08-30 | QN3 niagarad daemon | B679 | no · inline (readelf/nm/strings) | 0 |
-| 4 | 2026-08-30 | QN4 field-bus drivers | B680 | no · inline (readelf/nm/strings) | QN4-G1 (CCN=Carrier wire, deeper) |
+| 4 | 2026-08-30 | QN4 field-bus drivers | B680 | no · inline (readelf/nm/strings) | QN4-G1 (CCN=Carrier wire) |
+| 5 | 2026-08-30 | QN5 libcommon+libbacnet | B681 | no · inline (readelf/nm/strings) | QN5-G1 (OpenSSL version/TLS routing) |
 
 ## Blocked gaps (each tagged with what it needs)
 

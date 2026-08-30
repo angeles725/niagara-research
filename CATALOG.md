@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **678 bloques**
+Total: **679 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -683,6 +683,7 @@ Total: **678 bloques**
 | 678 | [niagara-mental-model-bloque678.md](niagara-mental-model-bloque678.md) | B678 — JACE-8000 native launcher chain: `nre` → `libnjre.so` (`JavaLauncherQnx`: `loadDLL`→`dlopen lib/arm/client/libjvm.so`→`createVM`) → the station JVM, and `libnre.so` = the REAL `NativePlatformProvider` (daemonize/addUser/changePassword/watchdog — live, not the Windows stubs of [Block 385]); the launcher `-D` set reveals an **ATECC508 HSM engine** and **802.1X** support (focus jace8000-qnx-native, QN2; §19 [CERT]) |
 | 679 | [niagara-mental-model-bloque679.md](niagara-mental-model-bloque679.md) | B679 — JACE-8000 `niagarad` platform daemon: a thin QNX-7.0 native launcher that starts the JVM running `com.tridium.niagarad.NiagaraDaemon`, and DROPS PRIVILEGES (`setgid`+`setuid` to the `niagarad` user, refuses to run as root) — the opposite of the Windows `plat.exe` that ran as LocalSystem ([Block 381]) (focus jace8000-qnx-native, QN3; §19 [CERT] + §14 vs B381) |
 | 680 | [niagara-mental-model-bloque680.md](niagara-mental-model-bloque680.md) | B680 — JACE-8000 native field-bus drivers: four `*PlatformServiceQnx` JNI shims — `libplatmstp` (BACnet MS/TP over RS-485, `sendFrame`/`setBaudRate`/`setMaxInfoFrames` via QNX `DCMD_MSTP_TX_FRAME`), `libplatnrio` (Niagara Remote IO: `discover`/`enablePolling`/`sendRequest`), `libplatccn` (a Carrier-CCN-style bus: `readTable`/`readVariable`/unsolicited msgs on `/dev/ccn%d`), and `libserial` (raw RS-232/485 port) — the native edge-I/O layer under the Java drivers (focus jace8000-qnx-native, QN4; §19 [CERT]) |
+| 681 | [niagara-mental-model-bloque681.md](niagara-mental-model-bloque681.md) | B681 — JACE-8000 `libcommon.so` (shared native runtime) + `libbacnet.so`: libcommon carries the hardware EngineWatchdog (shmem-based), the network config layer (NetCfgIoPkt: DHCP/IPv6) and i18n — and it links **OpenSSL `libcrypto.so.2`**, a SECOND crypto stack alongside the Mocana in `libdsfspi` ([Block 677]); libbacnet is the **BACnet/Ethernet** link adapter (`/dev/bn-%s`), complementing the MS/TP driver ([Block 680]) (focus jace8000-qnx-native, QN5; §19 [CERT]) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
