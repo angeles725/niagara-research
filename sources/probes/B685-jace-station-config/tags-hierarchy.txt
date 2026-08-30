@@ -1,0 +1,22 @@
+# B690 evidence — JACE_UMBRELLA tags + hierarchy deployed (non-secret)
+# Source: config.bog file.xml (SD P2). Tag/relation/dictionary names are non-secret.
+
+## td: occurrence span (all inside TagDictionaryService):
+#   first=285  last=724  count=144
+#   TagDictionaryService block = L285-731
+
+## Dictionary: NiagaraTagDictionary v1.5 (stock)
+286:   <p n="neqlizeOptions" t="td:NeqlizeOptions">
+290:   <p n="Niagara" h="8389" t="td:NiagaraTagDictionary">
+291:    <p n="version" v="1.5"/>
+547:    <p n="tagRules" h="838d" t="td:TagRuleList">
+729:   <p n="schemaVersion" v="2"/>
+
+## tag definition names (25):
+alarmablePoint  bindHints  device  displayName  geoAddr  geoCity  geoCoord  geoCountry  geoCounty  geoPostalCode  geoState  geoStreet  hasPxView  input  name  network  node  output  point  schedule  station  targetSlotHint  template  vendor  version  
+## auto-tag rule names:
+
+## applied tags on components (n:tags / BasicTagList) count = 0  (0 = dictionary defined but unused)
+## HierarchyService body:
+  <p n="HierarchyService" h="51" t="hierarchy:HierarchyService">
+  </p>
