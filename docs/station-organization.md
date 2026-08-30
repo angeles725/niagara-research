@@ -80,3 +80,31 @@ tree, and not inside the raw `points/` container. [B538, B716]
 ### 2.4 Why separate
 Portability (re-address touches only the ProxyExt), legibility, RBAC (app layer gated independently), reuse
 (one type × N instances — 77 BChiUp). [B538, B648, B169]
+
+---
+
+## 3. Linking points ↔ logic
+
+The **BLink** is the bridge: it connects a source slot to a target slot; a change on the source fires the target.
+The equipment logic reads input points and writes output points purely through links — the logic never lives
+inside the points. [B6]
+
+### 3.1 The priority array (multi-source writes)
+A writable point has 16 priority levels (`in1..in16`) + `fallback`; the active = lowest non-null. Link your
+control logic at a documented level (e.g. program default), leave higher levels for overrides. BACnet maps the
+level to the object's command priority. [B6, B544, B716]
+
+### 3.2 Wiring the links
+- **BBatchLinkEditor** (Workbench, design-time): bulk-create links — dry-run `checkLink`, one Transaction per
+  space. Use this to wire equipment logic to points at commissioning. [B654]
+- **ChiLinkHelper** (runtime): backup/restore links **by handle** so they survive save/transfer/re-provision. [B650]
+
+### 3.3 Keep links stable across re-addressing
+Link by a stable handle (not a fragile path), and reference the target via `equip`/`equipRef` relations or a tag
+query where possible — so re-addressing the TC500 or IO-R-34 touches only the point's proxyExt, not the logic. [B538, B650, B169]
+
+### 3.4 End-to-end (TC500 / IO-R-34)
+1. **Points**: `/Drivers/BacnetNetwork/TC500/points/…`, `/Drivers/NrioNetwork/io34/points/…` (raw IO, discovery).
+2. **Logic**: a per-equipment component near the points, tagged `equip`.
+3. **Links**: BLinks connect logic ↔ points (read inputs, write outputs at a priority level), wired with the
+   batch editor, kept handle/tag-stable.
