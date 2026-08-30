@@ -49,3 +49,34 @@ these points (§2/§3). Then a device re-address changes only the proxyExt, not 
 ---
 
 *(equipment/logic layer, linking, navigation, and reuse are added as SO2–SO5 close.)*
+
+---
+
+## 2. The equipment / logic layer — where control logic goes
+
+**Logic lives in the station component space (`/Config` or `/Services`), NOT under `/Drivers`.** chihuahua puts
+its equipment tree under `/Services/ChiDashboardService`; v2 deliberately moved it out of `/Drivers`. [B169, B165]
+
+### 2.1 Three ways to author logic
+
+| Method | What | Use when |
+|---|---|---|
+| **kitControl on a Wire Sheet** | ~100+ prebuilt blocks wired with BLinks, no Java (or an `Expr` block for a simple value) | standard HVAC/control — the everyday default [B6, B538] |
+| **BProgram** | freeform Java-like, persisted in `.bog`, sandboxed | logic beyond the blocks (sequencing, custom math) [B541] |
+| **Custom module** | compiled `BComponent` with typed slots, deployed as a signed `-rt` jar | reusable equipment TYPES / OEM models (see the module guides) [B705-B715] |
+
+### 2.2 Group by equipment
+One component = one physical equipment, holding its logic + links to its points. Tag the equipment-folder
+component `equip` (Haystack/Niagara) so it becomes the boundary for semantic queries / `equipRef`. [B169, B264]
+
+### 2.3 Official placement: keep blocks NEAR their points (Philosophy B)
+Tridium recommends co-locating kitControl blocks **near the points they serve** (per equipment), NOT in a distant
+central `Logic` folder — a central folder "breeds off-view knobs and harder-to-follow logic." [B538 BP5]
+
+So the two layers are: (1) proxy points = the device's raw IO (points-only); (2) equipment logic = a
+per-equipment component/area **co-located with those points**, linking to them — not a monolithic central Logic
+tree, and not inside the raw `points/` container. [B538, B716]
+
+### 2.4 Why separate
+Portability (re-address touches only the ProxyExt), legibility, RBAC (app layer gated independently), reuse
+(one type × N instances — 77 BChiUp). [B538, B648, B169]

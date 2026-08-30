@@ -2,7 +2,7 @@
 
 # Block catalog — niagara-mental-model
 
-Total: **712 blocks**
+Total: **713 blocks**
 
 | Block | File | Title |
 |-------|------|-------|
@@ -718,3 +718,4 @@ Total: **712 blocks**
 | 714 | [niagara-mental-model-bloque714.md](niagara-mental-model-bloque714.md) | B714 — Module dev workflow, the dev loop (WF4): the edit → slotomatic → build → sign → deploy → verify loop, step by step |
 | 715 | [niagara-mental-model-bloque715.md](niagara-mental-model-bloque715.md) | B715 — Module dev workflow, testing & debugging + runbook finalization (WF5, focus close): pure-Java model tests in WSL, station-side debug, and the common errors |
 | 716 | [niagara-mental-model-bloque716.md](niagara-mental-model-bloque716.md) | B716 — Station organization, the driver/points layer (SO1): where field points live — `/Drivers/<Network>/<Device>/points/`, and the points-only principle |
+| 717 | [niagara-mental-model-bloque717.md](niagara-mental-model-bloque717.md) | B717 — Station organization, the equipment/logic layer (SO2): where control logic lives, the three authoring methods, and the official "keep blocks near their points" guidance |

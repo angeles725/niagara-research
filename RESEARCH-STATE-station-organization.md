@@ -12,10 +12,10 @@
 
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 712
-gaps_closed: 1
+covered_blocks: 713
+gaps_closed: 2
 known_gaps: 5
-investigable_open: 4
+investigable_open: 3
 requires_execution_open: 0
 blocked_open: 0
 deferred_open: 0
@@ -31,7 +31,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 ## Coverage
 
 - **Covered blocks**: 711 corpus-wide (this focus: B716-) (shared-global)
-- **Coverage metric**: 1 / 5 gaps closed (SO1 B716)
+- **Coverage metric**: 2 / 5 gaps closed (SO1-2)
 - **Deliverable**: `docs/station-organization.md` (how-to)
 
 ## Gap-backlog (prioritized)
@@ -39,7 +39,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 | Priority | Gap | Type | Status |
 |---|---|---|---|
 | high | SO1 the driver/points layer — where field points live (proxy points under their device, points-only), how the driver creates them (discovery/learn), TC500/BACnet vs IO-R-34/NRIO | synthesis+code | closed (B716 — /Drivers/Network/Device/points tree, proxy-point model, discovery/learn, TC500=BACnet IO-R-34=NRIO placement, points-only principle; how-to §1) |
-| high | SO2 the equipment/application layer — organizing control logic by EQUIPMENT (folders/components), kitControl wire-sheet vs Program vs custom module; kept SEPARATE from the driver points | synthesis+code | pending |
+| high | SO2 the equipment/application layer — organizing control logic by EQUIPMENT (folders/components), kitControl wire-sheet vs Program vs custom module; kept SEPARATE from the driver points | synthesis+code | closed (B717 — logic in /Config-or-/Services not /Drivers; 3 authoring methods; equip-tag grouping; official Philosophy B=blocks-near-points; how-to §2) |
 | high | SO3 linking points ↔ logic — Niagara links, priority-array on writable points, the ChiLinkHelper pattern, decoupling logic from device addressing | synthesis+code | pending |
 | medium | SO4 navigation & grouping — hierarchy + tags (Haystack/Niagara) so operator views group by equipment/location without duplicating the physical tree | synthesis+code | pending |
 | medium | SO5 reuse + synthesis — equipment templates (template subsystem) + provisioning for fleet + the recommended-structure verdict; deliverable docs/station-organization.md | synthesis+deliverable | pending |
@@ -50,7 +50,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 
 - Field-bus drivers (NRIO, BACnet, the driver/device/points model) → focus `framework-drivers` [Block 496]–[Block 506]; NRIO driver [Block 680]; the JACE's deployed NRIO points [Block 687].
 - NiagaraNetwork (supervisor↔subordinate, device proxy) → focus `niagara-network-supervisor` [Block 414]–[Block 420].
-- Control-logic LIBRARY internals (kitControl function blocks, control engine) → focus `kitControl` (PLANNED KC1-KC12, not done) — DEFERRED; this focus covers organization, not the block library.
+- Control-logic LIBRARY internals (kitControl function blocks) → focus `kitControl` [Block 537]/[Block 538]/[Block 545] (DONE 2026-08-28 — corrected from bootstrap's 'planned'); this focus covers ORGANIZATION, not the block library. BProgram → [Block 541].
 - Control model (`javax.baja.control`, writable points, priority array) → [Block 6]/[Block 429]; chihuahua equipment model + ChiLinkHelper → focus `chihuahua-source` [Block 648]–[Block 655].
 - Hierarchy engine → focus `hierarchy` [Block 584]–[Block 590]; tag subsystem → focus `tags` [Block 260]–[Block 270].
 - Equipment templates → focus `template` [Block 577]–[Block 583]; provisioning → focus `provisioning` [Block 567]–[Block 576].
@@ -61,6 +61,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 |---|---|---|---|---|---|
 | — | 2026-08-30 | (bootstrap) | — | no · inline | SO1–SO5 seeded |
 | 1 | 2026-08-30 | SO1 driver/points layer | B716 | yes · sonnet (synthesis of driver blocks) | 0 new |
+| 2 | 2026-08-30 | SO2 equipment/logic layer | B717 | yes · sonnet (synthesis) | 0 new (§14: kitControl is DONE not planned) |
 
 ## Blocked gaps (each tagged with what it needs)
 
@@ -68,7 +69,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 4
+- **Open gaps — read-only investigable**: 3
 - **Open gaps — requires-execution**: 0
 - **Open gaps — blocked**: 0
 - Budget cap: none
