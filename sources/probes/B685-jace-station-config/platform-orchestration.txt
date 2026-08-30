@@ -1,0 +1,35 @@
+# B691 evidence — JACE_UMBRELLA platform/orchestration services + top-level structure (non-secret)
+# Source: config.bog file.xml (SD P2). Ports/service types/thread counts non-secret; cert alias 'default' non-secret.
+
+## Program objects (executable logic): only the service shell, ZERO instances
+266:  <p n="ProgramService" h="58" c="2" m="p=program" t="p:ProgramService">
+  (p:Program instance count outside ProgramService = 0)
+
+## Top-level containers under b:Station (depth 1):
+5: <p n="Services" h="3" t="b:ServiceContainer">
+801: <p n="Drivers" h="d0" m="d=driver" t="d:DriverContainer">
+954: <p n="Apps" h="e1" m="app=app" t="app:AppContainer">
+  (no Logic/Files/wiresheet container at top level)
+
+## Job services:
+37:  <p n="JobService" h="c" t="b:JobService">
+794:  <p n="BatchJobService" h="5c6a" m="bjb=batchJob" t="bjb:BatchJobService">
+795:   <p n="jobQueue" h="5c6b" t="bjb:ThreadPoolJobQueue">
+796:    <p n="maxThreads" v="1"/>
+
+## Web/Fox key deployed (confirm B685): httpsOnly/foxsOnly TLS1.3, validHostHeaders localhost
+215:   <p n="foxsOnly" v="true"/>
+216:   <p n="foxsMinProtocol" t="b:SslTlsEnum" v="tlsv1_3"/>
+739:   <p n="httpEnabled" v="false"/>
+744:   <p n="httpsOnly" v="true"/>
+745:   <p n="httpsMinProtocol" t="b:SslTlsEnum" v="tlsv1_3"/>
+782:    <p n="validHostHeaders" v="localhost"/>
+
+## Template/Search/Apps state:
+269:  <p n="SearchService" h="59" m="s=search" t="s:SearchService">
+732:  <p n="TemplateService" h="b7" m="ntp=template" t="ntp:TemplateService">
+954: <p n="Apps" h="e1" m="app=app" t="app:AppContainer">
+## ntpl provisioning-template marker:
+958: <p n="ntpl$3afileName" f="rhm" t="b:String" v="NewJACEProvisioningStation.ntpl"/>
+960: <p n="ntpl$3atitle" f="rhm" t="b:String" v="NewJACEProvisioningStation"/>
+961: <p n="ntpl$3aversion" f="rhm" t="b:String" v="1.5"/>

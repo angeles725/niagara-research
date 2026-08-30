@@ -16,10 +16,10 @@
 
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 686
-gaps_closed: 6
+covered_blocks: 687
+gaps_closed: 7
 known_gaps: 9
-investigable_open: 2
+investigable_open: 1
 requires_execution_open: 1
 blocked_open: 0
 deferred_open: 0
@@ -35,7 +35,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 ## Coverage
 
 - **Covered blocks**: 684 corpus-wide (this focus: B685-) (shared-global)
-- **Coverage metric**: 6 / 9 gaps closed (SC1-SC6; SC4-G1 requires-execution parked)
+- **Coverage metric**: 7 / 9 gaps closed (SC1-SC7; SC4-G1 requires-execution parked)
 - **Source (out of git)**: `config.bog` (7843 B ZIP → 51378 B file.xml) + `alarm.adb` + `registry.db` +
   history `.hdb` + `/opt/niagara/defaults/platform.bog`, all under `local-sd-image/` (gitignored,
   secret-bearing) — extracted READ-ONLY from SD P2 via `tools/qnx6read.py`.
@@ -55,7 +55,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 | medium | SC4 UserService/RoleService/CategoryService/AuthenticationService — the REAL deployed RBAC (users, roles, categories, auth schemes) — SECRETS: structure only | bog-xml disk | closed (B688 — 1 super-user admin, no policy overrides, legacy AX scheme on, dangling cat-3 ref w/ nil current impact) |
 | medium | SC5 AlarmService + AuditHistoryService + HistoryService + LoggingService deployed config — alarm classes, histories actually collected, audit/log config | bog-xml + hdb disk | closed (B689 — alarms default+escalation disabled+0 recipients; 3 local audit trails; nothing archives off-box; confirms B684 weak-data-at-rest) |
 | medium | SC6 TagDictionaryService + HierarchyService deployed — the 144 td: references: which dictionaries, hierarchies, relations this station uses | bog-xml disk | closed (B690 — 100% stock Niagara v1.5 dict, 0 applied tags, empty hierarchy; 144 td: = measurement artifact of stock verbosity) |
-| medium | SC7 platform/orchestration services deployed — WebService/FoxService/BoxService/JobService/BatchJobService/ProgramService/TemplateService/ProvisioningNiagara + Program objects (freeform logic) | bog-xml disk | pending |
+| medium | SC7 platform/orchestration services deployed — WebService/FoxService/BoxService/JobService/BatchJobService/ProgramService/TemplateService/ProvisioningNiagara + Program objects (freeform logic) | bog-xml disk | closed (B691 — 0 Program/executable-logic objects; orchestration all default; 3 top-level containers, Apps empty; web validHostHeaders=localhost) |
 | low | SC8 supporting stores + synthesis — registry.db + alarm.adb + platform.bog contents; SYNTHESIS: the field-controller profile vs the supervisor | disk + synthesis | pending |
 | medium | SC4-G1 runtime access outcome (open vs denied) of an ORD mapped to an UNDEFINED category index | requires-execution | requires-execution (live probe w/ non-admin user, or code read of BCategoryService.getCategory) |
 
@@ -86,6 +86,7 @@ extracted from SD P2 via qnx6read.py; SOURCE-BEFORE-AGENT passes for the whole b
 | 4 | 2026-08-30 | SC4 deployed RBAC | B688 | yes · sonnet (RBAC sweep) + inline framework-semantic REFINE | SC4-G1 (requires-execution: dangling category-index runtime behavior) |
 | 5 | 2026-08-30 | SC5 alarms/histories/audit | B689 | yes · sonnet (sweep) + inline verify | 0 new (egress-none confirmed 3 ways) |
 | 6 | 2026-08-30 | SC6 tags + hierarchy | B690 | yes · sonnet (sweep) + inline verify | 0 new (stock dict, 0 applied tags) |
+| 7 | 2026-08-30 | SC7 platform/orchestration | B691 | yes · sonnet (sweep) + inline verify | 0 new (0 Program objects; 3 top-level containers) |
 
 ## Blocked gaps (each tagged with what it needs)
 
@@ -93,7 +94,7 @@ extracted from SD P2 via qnx6read.py; SOURCE-BEFORE-AGENT passes for the whole b
 
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 2
+- **Open gaps — read-only investigable**: 1
 - **Open gaps — requires-execution**: 1 (SC4-G1)
 - **Open gaps — blocked**: 0
 - Budget cap: none
