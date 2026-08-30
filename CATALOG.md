@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **663 bloques**
+Total: **667 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -668,6 +668,10 @@ Total: **663 bloques**
 | 663 | [niagara-mental-model-bloque663.md](niagara-mental-model-bloque663.md) | B663 — JACE-9000 serial port map: COM1/COM2 are top-side RS-485 field-bus ports (screw terminals, 3-position bias/termination switch) — a separate thing from the front USB-C DEBUG console, even though both can run at 115200 (focus jace9000, J9K-12) |
 | 664 | [niagara-mental-model-bloque664.md](niagara-mental-model-bloque664.md) | B664 — jace9000 focus synthesis: the read-only serial-console mental model of a JACE-9000 (ATLAS System Shell over USB-C DEBUG), consolidated — and the four live-gated gaps left for the operator (focus jace9000, synthesis / STOP) |
 | 665 | [niagara-mental-model-bloque665.md](niagara-mental-model-bloque665.md) | B665 — JACE-9000 live serial session (§12): the ATLAS shell runs on Ubuntu Core Linux 5.4 on an i.MX8M Plus, the serial login takes user+password only (no passphrase), the live main-menu numbering MATCHES the doc, and this unit runs with NO microSD — closing J9K-1/2/9/10 and correcting B657 (focus jace9000, J9K-2/J9K-9/J9K-10, §14→B657) |
+| 666 | [niagara-mental-model-bloque666.md](niagara-mental-model-bloque666.md) | B666 — `BRecoverableRecipient` anatomy for a CUSTOM alarm recipient: no constructor (lifecycle is `started()`/`stopped()`), a single lazy `RetryThread`, and a persistent queue of one `<uuid>.xml` value-document per pending alarm under `file:^^alarm/<name>AlarmQueue/` — the ONLY method a subclass overrides is `sendAlarm` (focus alarm-webhook, AW1; §14→B34 §34.6.4) |
+| 667 | [niagara-mental-model-bloque667.md](niagara-mental-model-bloque667.md) | B667 — Alarm dispatch threading: `sendAlarm` runs INLINE on the single shared `"Alarm:ServiceWorker"` thread, fed by an UNBOUNDED `CoalesceQueue` — so a blocking HTTP POST in a custom recipient stalls ALL alarm routing and risks OOM; `BRecoverableRecipient` decouples RETRIES only, never the first send (focus alarm-webhook, AW2; §14 confirms/refines B34 §34.1.3 + G1) |
+| 668 | [niagara-mental-model-bloque668.md](niagara-mental-model-bloque668.md) | B668 — The minimal `-rt` `module.xml` for a custom alarm recipient: `<dependency name="alarm-rt">` + one `<type class="…" name="…"/>` — and the correction that `routeAlarm` is NOT declared in `module.xml` (it is an INHERITED `@NiagaraAction` slot); the module DOES need its own file + socket/URL permissions (focus alarm-webhook, AW3) |
+| 669 | [niagara-mental-model-bloque669.md](niagara-mental-model-bloque669.md) | B669 — Storing the webhook token: a `@NiagaraProperty type="BPassword"` is directly reusable for an `Authorization: Bearer` header — declare it, read plaintext at send time via `AccessController.doPrivileged(pwd::getValue)`, exactly as `BBasicEmailClientAuthenticator` does for SMTP; the token MUST be a REVERSIBLE password, encrypted at rest by a module-specific key + the station keyring (`.km`/`.kr` DPAPI on Windows) (focus alarm-webhook, AW4; confirms B34 §34.6.5) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
