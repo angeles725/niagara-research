@@ -108,3 +108,29 @@ query where possible — so re-addressing the TC500 or IO-R-34 touches only the 
 2. **Logic**: a per-equipment component near the points, tagged `equip`.
 3. **Links**: BLinks connect logic ↔ points (read inputs, write outputs at a priority level), wired with the
    batch editor, kept handle/tag-stable.
+
+---
+
+## 4. Navigation & grouping — tag once, navigate many ways
+
+The physical tree is engineering-shaped. Operators want views by equipment/location. **Don't duplicate the tree
+into parallel folders** — tag once, build alternate views.
+
+### 4.1 Tags (semantic layer)
+Attach markers (`equip`, `point`, `hvac`) + value tags (`geoFloor`, `siteId`) + relations (`equipRef`,
+`childPoint`) to components, independent of tree position. [B260-B270, B264]
+
+### 4.2 Hierarchies (alternate nav trees)
+The `hierarchy` subsystem builds navigation trees from ordered level-defs (Group/Query/Relation) over the SAME
+components, WITHOUT moving them — on-demand, stateless, so it never drifts. E.g. "by building → by equipment
+type → equip leaves." Permissions stay = component categories (RBAC preserved). [B584-B590]
+
+### 4.3 The pattern
+1. Physical tree stays engineering-shaped (points under devices, logic per equipment).
+2. Tag each equipment `equip` + geo/role tags; wire `equipRef` point→equipment.
+3. Hierarchies give the operator views (by equipment/location/system) — no duplicate folders.
+4. PX/nav views bind to hierarchies or tag queries, not hardcoded ORDs (also keeps links stable, §3).
+
+### 4.4 Your case
+Tag the TC500 zone + IO-R-34 equipment `equip` + `geoFloor`; keep `equipRef` on their points; build one "by floor
+→ by equipment" hierarchy. Operators browse zones without moving any point or logic component.
