@@ -1,0 +1,6 @@
+# B702 evidence — alarm.adb format + content (structural, non-secret)
+## alarm.adb (17408 B): magic 60 0D F0 0D, version=1 (own alarm-DB format, distinct from .hdb A106F11E)
+## ~15 alarm records, ALL source=/Drivers/NrioNetwork/io34_* under defaultAlarmClass
+## msgText lexicon keys: driver:pingFail + driver:pingSuccess = NRIO module reachability transitions (down/up)
+## sourceNames: NrioNetwork io34_1_2, io34_1_2 Io34 Sec, NrioNetwork io34_2_1 (io34_2_1 = a different address not in live config B687 = commissioning-churn, matches HD1's 7 Removed)
+## no non-NRIO alarm sources; defaultAlarmClass has 0 recipients (B689) -> these alarms fired but were not routed anywhere
