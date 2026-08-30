@@ -1,0 +1,39 @@
+# B688 evidence — JACE_UMBRELLA deployed RBAC (structural, non-secret; password values MASKED)
+# Source: config.bog file.xml (SD P2). 'admin'/'defaultPrototype' = role/template accounts (not real persons).
+
+## CategoryService: ordMap + defined categories (L25-35)
+  <p n="CategoryService" h="9" c="2" t="b:CategoryService">
+   <p n="ordMap" t="b:OrdToCategoryMap" v="history:^securityhistory=2 | history:^audithistory=2 | history:^loghistory=2 | file:^nav=3 | file:^px=3 | file:^=2"/>
+   <!-- /Services/CategoryService/User -->
+   <p n="User" h="a" t="b:Category">
+    <p n="index" v="1"/>
+   </p>
+   <!-- /Services/CategoryService/Admin -->
+   <p n="Admin" h="b" t="b:Category">
+    <p n="index" v="2"/>
+   </p>
+  </p>
+
+## RoleService (L51-57)
+52:   <p n="admin" h="e" t="b:AdminRole">
+53:    <!-- /Services/RoleService/admin/hierarchy_RoleHierarchies -->
+54:    <p n="hierarchy_RoleHierarchies" h="f" m="hierarchy=hierarchy" t="hierarchy:RoleHierarchies">
+
+## UserService accounts (L59-153) — password values MASKED
+61:    <p n="defaultPrototype" h="17" t="b:User">
+62:     <p n="authenticator" h="18" t="b:PasswordAuthenticator">
+68:     <p n="roles" f="1"/>
+109:   <p n="admin" h="1c" t="b:User">
+111:    <p n="authenticator" h="3a23c" t="b:PasswordAuthenticator">
+117:    <p n="roles" v="admin"/>
+112:     <p n="password" t="b:Password" v="[pbkdf2-sha256.1]=<SALT:10000:SHA256-MASKED>"/>
+
+## AuthenticationService schemes (L154-169)
+157:    <p n="DigestScheme" h="23" t="b:DigestAuthenticationScheme">
+158:     <p n="globalPasswordConfiguration" h="24" t="b:GlobalPasswordConfiguration">
+162:    <p n="AXDigestScheme" h="25" t="b:LegacyDigestAuthenticationScheme">
+163:     <p n="globalPasswordConfiguration" h="26" t="b:GlobalPasswordConfiguration">
+167:   <p n="ssoConfiguration" h="167" t="b:SSOConfiguration">
+168:    <p n="autoAttemptSingleSignOn" f="r"/>
+
+## corpus semantics: B561 [CERT] BCategoryService.java:73,162 = DEFAULT_MASK make('1')=category0; UNMAPPED ord -> default category (does NOT cover mapped-to-undefined-index).
