@@ -1,0 +1,32 @@
+SD-G2b — factory payload signing chain + nrecore inventory + CertISW format finding.
+Source: P3 /n4clean.tar.gz -> zip/nre-core-update.tar.gz -> nrecore.tar.gz (extracted read-only). Public PKI info.
+
+=== nrecore.tar.gz (19,992,545 B, 57 entries) = the NRE core payload ===
+Native libs (QNX/ARM .so): libnre, libnjre, libdsfspi, libcommon, libbacnet, libplatccn, libplatform,
+                           libplatmstp, libplatnrio, libpower, libserial
+Binaries: niagarad, nre, station ; dir: ext/
+17 core jars:
+  bc-bcfkswrapprov-1.0.0.jar  bc-fips-1.0.2.jar  bcpkix-fips-1.0.3.jar  bcpkix-jdk15on-1.66.jar
+  bcprov-jdk15on-1.66.jar  bctls-fips-1.0.10.jar  bctls-jdk15on-1.66.jar  encoder-1.2.2.jar
+  hsm-2.0.1.jar  javax.servlet-api-3.1.0.jar  jetty-all-compact3-9.4.26.v20200117.jar  jettyWrapper.jar
+  niagarad.jar  nre.jar  runtime.jar  tridium-JavaMail-1.5.2.1.jar  tridium-activation-1.0.jar
+=> NRE core = BouncyCastle FIPS crypto stack + Jetty + nre/niagarad/runtime + activation. (FIPS ties B380.)
+
+=== META-INF/NIAGARA4.RSA (7692 B) = PKCS#7 code-signing block, cert chain ===
+leaf:   C=US, ST=Virginia, L=Richmond, O=Tridium, Inc, OU=Niagara Modules, CN=Tridium, Inc
+  issued by: C=US, O=DigiCert Inc, CN=DigiCert SHA2 Assured ID Code Signing CA
+inter:  CN=DigiCert SHA2 Assured ID Code Signing CA
+  issued by: CN=DigiCert Assured ID Root CA
+root:   CN=DigiCert Assured ID Root CA (self)
+Algorithm: sha256WithRSAEncryption, RSA 2048-bit.
+=> The FACTORY core payload is signed by Tridium's GENUINE public DigiCert code-signing certificate
+   (public CA chain), NOT the Honeywell Product PKI. Contrast: [Block 392] found Honeywell re-signing on the
+   OEM-DEPLOYED modules. So: factory base = Tridium/DigiCert; OEM deployment re-signs to Honeywell PKI.
+
+=== CertISW header of n4-titan-am335x.signed: TI GP-format, NOT X.509 ===
+No ASN.1 SEQUENCE (0x30 0x82) anywhere in the first 0x400 of the header; the region around the cert-length
+field (0x350) is high-entropy (e.g. 0x340..: b6fd95ca3e5b418a...) = a raw hash/signature, not a DER cert.
+Conclusion: the CertISW wrapper is a TI GP (general-purpose) image header with a raw hash/signature block, NOT
+an HS X.509 certificate chain. The decodable certificate chain for the payload is the JAR-level NIAGARA4.RSA
+above. (Full TI-GP header field decode = out of scope; the "is there an X.509 chain in the boot image" question
+is answered: no.)

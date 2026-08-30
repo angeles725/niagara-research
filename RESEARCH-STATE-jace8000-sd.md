@@ -12,11 +12,11 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 671
-gaps_closed: 4
+covered_blocks: 672
+gaps_closed: 5
 known_gaps: 6
 investigable_open: 0
-requires_execution_open: 1
+requires_execution_open: 0
 blocked_open: 1
 deferred_open: 0
 undocumented_findings: 0
@@ -29,9 +29,10 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 
 ## Coverage
 
-- **Covered blocks**: 671 corpus-wide (this focus: B672-B675) (shared-global)
-- **Coverage metric**: 4 gaps closed (SD1 anatomy, SD-G1 QNX identity, SD-G1b full tree, SD-G2 factory image + CertISW)
-- **Last iteration**: 2026-08-30 — SD-G2 closed (B675, n4clean.tar.gz unpacked + CertISW header)
+- **Covered blocks**: 672 corpus-wide (this focus: B672-B676) (shared-global)
+- **Coverage metric**: 5 gaps closed (SD1, SD-G1, SD-G1b, SD-G2, SD-G2b); only SD-G3 remains (blocked-on-hardware)
+- **Last iteration**: 2026-08-30 — SD-G2b closed (B676, factory signing chain Tridium/DigiCert + nrecore inventory)
+- **Preserved media (out of git)**: full 4 GB raw image + extracted payloads in `local-sd-image/` (gitignored; secret-bearing)
 
 ## Gap-backlog (prioritized)
 
@@ -41,7 +42,7 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 | high | SD-G1 read the QNX partitions 2 & 3 (identify FS + key contents) | live-hw raw image | closed (B673 — both QNX6; P2=live Niagara FS, P3=recovery slot) |
 | medium | SD-G1b full recursive file tree of P2/P3 (complete /opt/niagara module list, station files, keyring .km/.kr, logs) | qnx6 parser | closed (B674 — built tools/qnx6read.py; P2 98 dirs/599 files, P3 8 files) |
 | medium | SD-G2 n4clean.tar.gz unpack + CertISW image layout | §19 build | closed (B675 — layered signed tarballs; CertISW = cert header + payload + sig) |
-| low | SD-G2b decode the X.509/ASN.1 cert chain inside the CertISW header + unpack nrecore.tar.gz native/module inventory | requires binary tooling (ASN.1/TI CertISW parser) | requires-execution |
+| low | SD-G2b decode the payload cert chain + unpack nrecore.tar.gz native/module inventory | §19 build | closed (B676 — nrecore=BC-FIPS/Jetty core; NIAGARA4.RSA=Tridium/DigiCert RSA-2048; CertISW=TI GP-format, no X.509) |
 | medium | SD-G3 confirm boot chain end-to-end live (does go 0x80FFFC00 verify the CertISW cert before exec) | live serial + boot capture | blocked (needs serial console; cf. jace8000 J7-G1) |
 
 `tried:` SD-G1 — Windows/drvfs cannot read the QNX partitions (shown RAW/Unknown, no drive letter); ruled out
@@ -63,6 +64,7 @@ attempted this session — requires-execution). SD-G3 — bounded by physical se
 | 2 | 2026-08-30 | SD-G1 QNX partitions read | B673 | no · inline ([CERT-hw] raw image parse: QNX6 superblock + string/offset scan) | SD-G1b (full tree/extraction, requires-execution) |
 | 3 | 2026-08-30 | SD-G1b full QNX6 tree | B674 | no · inline (§19 built tools/qnx6read.py: QNX6 reader, indirection + long names) | 0 (per-file extraction now trivial; SD-G2 unpack still open) |
 | 4 | 2026-08-30 | SD-G2 factory image + CertISW | B675 | no · inline (§19 extended reader w/ extract; tar + struct parse) | SD-G2b (ASN.1 cert chain + nrecore inventory, requires-execution) |
+| 5 | 2026-08-30 | SD-G2b signing chain + nrecore | B676 | no · inline (§19 tar + openssl pkcs7 decode) | 0 (only SD-G3 blocked-on-hardware remains) |
 
 ## Blocked gaps (each tagged with what it needs)
 
@@ -73,8 +75,8 @@ attempted this session — requires-execution). SD-G3 — bounded by physical se
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
 - **Open gaps — read-only investigable**: 0 → STOP
-- **Open gaps — requires-execution**: 1 (SD-G2b ASN.1 cert chain + nrecore inventory)
-- **Open gaps — blocked**: 1 (SD-G3 live serial boot-verify)
+- **Open gaps — requires-execution**: 0 (SD-G2b closed B676)
+- **Open gaps — blocked**: 1 (SD-G3 live serial boot-verify — needs physical serial access to the unit)
 - Budget cap: none
 
 ## Dismissed file types

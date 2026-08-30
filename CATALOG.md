@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **673 bloques**
+Total: **674 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -678,6 +678,7 @@ Total: **673 bloques**
 | 673 | [niagara-mental-model-bloque673.md](niagara-mental-model-bloque673.md) | B673 — JACE-8000 microSD QNX partitions read (raw, no mount): both P2 and P3 are QNX6 Power-Safe filesystems (magic 0x68191122, 1 KB blocks) — P2 is the LIVE Niagara filesystem (NRE 4.14.0.162, station `JACE_UMBRELLA` at `/home/niagara/stations/`, modules at `/opt/niagara/modules/`, ~249 MB / 699 inodes) and P3 is a small QNX6 recovery/maintenance slot (QNX bootloader + `n4-titan-am335x-maint.signed` + factory props, 11 inodes) (focus jace8000-sd, SD-G1; §12 [CERT-hw]) |
 | 674 | [niagara-mental-model-bloque674.md](niagara-mental-model-bloque674.md) | B674 — JACE-8000 microSD QNX6 tree fully walked (custom read-only reader, no mount): P2 is the complete QNX Niagara root filesystem (98 dirs / 599 files — `/opt/niagara` install with 173 module JARs + 10 native `.so`, full JRE, the `JACE_UMBRELLA` station with `config.bog`/alarm.adb/histories, and the keyrings `/etc/km/.km` + `/home/niagara/security/.kr` + `/.fskey/.key`); P3 is the factory-recovery partition (`n4clean.tar.gz`, maint image, boot chain) — closing SD-G1b (focus jace8000-sd; §12/§19 [CERT-hw]) |
 | 675 | [niagara-mental-model-bloque675.md](niagara-mental-model-bloque675.md) | B675 — JACE-8000 factory image + secure-boot wrapper: P3's `n4clean.tar.gz` is a LAYERED clean image (defaults + Tridium-only base cert + `signing.properties` → nested `jre.tar.gz` + a JAR-SIGNED `nre-core-update.tar.gz` → `nrecore.tar.gz`), and `n4-titan-am335x.signed` is a TI "CertISW" wrapper = ~0x350-byte cert header + ~27 MB payload + signature (focus jace8000-sd, SD-G2; §19 [CERT-hw]) |
+| 676 | [niagara-mental-model-bloque676.md](niagara-mental-model-bloque676.md) | B676 — JACE-8000 factory core signing + payload inventory: the `nrecore` payload is signed by Tridium's GENUINE public DigiCert code-signing cert (`CN=Tridium, Inc` → `DigiCert SHA2 Assured ID Code Signing CA` → `DigiCert Assured ID Root CA`, RSA-2048/SHA-256) — NOT the Honeywell PKI that re-signs deployed modules ([Block 392]); the NRE core = a BouncyCastle-FIPS + Jetty runtime (17 jars + 12 native `.so`); and the `CertISW` boot wrapper is TI GP-format (no X.509 chain) (focus jace8000-sd, SD-G2b; §19 [CERT-hw]) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
