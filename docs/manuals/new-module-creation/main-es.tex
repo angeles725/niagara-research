@@ -388,6 +388,87 @@ La parte \texttt{ColdRoomPan-rt} contiene los archivos descriptores de Niagara
 \end{itemize}
 
 % =====================================================================
+\section{Parte E — Compilar desde WSL2 (línea de comandos)}
+% =====================================================================
+El proyecto se crea en Windows (el wizard), pero se puede desarrollar y compilar
+desde una consola WSL2 (Ubuntu) — el patrón que usa el módulo \texttt{chihuahua}.
+Esta sección documenta ese ciclo de compilación. Fuente de verdad: el
+\texttt{BUILD\_WORKFLOW.md} / \texttt{CLAUDE.md} del proyecto \texttt{chihuahua}.
+
+\subsection{Requisitos previos en WSL2}
+\begin{itemize}[nosep]
+  \item Un \textbf{JDK 8} instalado en WSL: \texttt{sudo apt-get install -y openjdk-8-jdk}
+        (queda en \path{/usr/lib/jvm/java-8-openjdk-amd64}).
+  \item El install de Niagara accesible desde WSL en
+        \path{/mnt/c/Honeywell/OptimizerSupervisor-N4.14.0.162}.
+\end{itemize}
+
+\subsection{Overrides \texttt{-P} obligatorios}
+\texttt{gradle.properties} apunta a rutas de Windows \texttt{C:\textbackslash} que no
+existen dentro de WSL, así que cada compilación en WSL debe sobrescribirlas por línea
+de comandos:
+\begin{lstlisting}
+-Pniagara_home=/mnt/c/Honeywell/OptimizerSupervisor-N4.14.0.162
+-Porg.gradle.java.installations.paths=/usr/lib/jvm/java-8-openjdk-amd64
+\end{lstlisting}
+
+\subsection{El ciclo de compilación (desde la raíz del proyecto)}
+\begin{lstlisting}
+# Clean + (regenerar region AUTO) + compilar el jar firmado
+./gradlew :ColdRoomPan-rt:clean :ColdRoomPan-rt:slotomatic :ColdRoomPan-rt:jar \
+  -Pniagara_home=/mnt/c/Honeywell/OptimizerSupervisor-N4.14.0.162 \
+  -Porg.gradle.java.installations.paths=/usr/lib/jvm/java-8-openjdk-amd64
+\end{lstlisting}
+\begin{itemize}[nosep]
+  \item \texttt{slotomatic} corre en WSL y regenera la región AUTO GENERATED a partir
+        de las anotaciones \texttt{@Niagara*}. Córrelo \emph{solo} cuando cambió una
+        anotación; si no, \texttt{clean + jar} basta. Los avisos ``Cannot transform
+        \dots\ no metadata'' sobre \texttt{srcTest/} son benignos.
+  \item El jar firmado lo produce el plugin \texttt{niagara-signing} y queda en
+        \path{$niagara_home/modules/ColdRoomPan-rt.jar}; cópialo a la carpeta
+        \texttt{modules} de la station destino para desplegarlo.
+  \item \textbf{Subir versión}: cuando agregas o cambias un slot \emph{frozen}
+        (\texttt{@NiagaraProperty} / \texttt{@NiagaraAction}), sube
+        \texttt{defaultModuleVersion} en el \texttt{build.gradle.kts} raíz
+        (el \texttt{deploy.sh --bump} de chihuahua), o el slot nuevo no aparecerá.
+\end{itemize}
+
+\subsection{Chequeo rápido de solo compilación}
+Antes de una compilación completa puedes validar que las fuentes compilan (útil
+mientras integras código):
+\begin{lstlisting}
+./gradlew :ColdRoomPan-rt:compileModuleTestJava \
+  -Pniagara_home=/mnt/c/Honeywell/OptimizerSupervisor-N4.14.0.162 \
+  -Porg.gradle.java.installations.paths=/usr/lib/jvm/java-8-openjdk-amd64
+\end{lstlisting}
+
+\note{Firma: el plugin \texttt{niagara-signing} firma el jar usando el almacén de
+certificados en \texttt{niagara\_user\_home}. Si la firma falla en WSL, sobrescribe también:
+\path{-Pniagara_user_home=/mnt/c/Users/equipo/Niagara4.14/OptimizerSupervisor}.
+Desplegar un módulo propio a un install OEM con lockdown (Honeywell) requiere un
+certificado en el que la station confíe (aquí: la identidad \texttt{ANGELES}).}
+
+\subsection{Pruebas}
+\textbf{No} condiciones la compilación a \texttt{gradle test} / \texttt{niagaraTest}: el
+plugin \texttt{com.tridium.niagara-module} 7.6.17 tiene un bug conocido
+(\texttt{moduleTestAnnotationProcessor} no genera metadata, así que los tests
+\texttt{@NiagaraType} se saltan en silencio, \texttt{Total tests run: 0}). Los archivos
+de test en \texttt{srcTest/} son esqueletos solo de documentación.
+
+\subsection{Pasos de activación (solo del operador)}
+La compilación/despliegue corre desde WSL, pero estos los hace el operador en la station:
+\begin{itemize}[nosep]
+  \item \textbf{Reiniciar la station} — para cambios en Java y slots frozen.
+  \item \textbf{Cerrar y reabrir Workbench} — si un slot/acción frozen todavía no
+        aparece tras reiniciar la station (el caché de tipos del cliente de Workbench
+        no se refresca al reiniciar la station).
+  \item \textbf{Smoke test} — verificar en la station en vivo.
+\end{itemize}
+
+\note{Detalle: \texttt{compileModuleTestJava} contamina \texttt{module-include.xml}
+con tipos de test — haz \texttt{git checkout} de ese archivo antes de commitear.}
+
+% =====================================================================
 \section{Resumen}
 % =====================================================================
 \begin{enumerate}[nosep]
