@@ -1,0 +1,887 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+\documentclass[
+  11pt,
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{longtable,booktabs,array}
+\usepackage{caption}
+\captionsetup[table]{skip=6pt}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+% fallback for those not using the hyperref driver hyperxmp:
+\makeatletter
+\@ifundefined{xmpquote}{\newcommand{\xmpquote}[1]{#1}}{}
+\makeatother
+\hypersetup{
+  colorlinks=true,
+  linkcolor={RoyalBlue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+{
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+\section{Manual de comisionamiento en campo -- Cuartos fríos (módulo
+ColdRoomPan)}\label{manual-de-comisionamiento-en-campo-cuartos-fruxedos-muxf3dulo-coldroompan}
+
+\begin{quote}
+Guía práctica para el técnico de controles que arma las estaciones
+Niagara reales. Documenta, cuarto por cuarto (Cuarto 1-4), cómo
+ensamblar los bloques del módulo \texttt{ColdRoomPan}, la numeración, la
+configuración y \textbf{todo cableado de entrada/salida}.
+
+\textbf{Documentos relacionados (no se duplican aquí):} - Diseño y
+comportamiento interno del módulo:
+\texttt{docs/cold-room-module-design.md}. - Cómo se construyó el módulo
+(desarrollo): \texttt{docs/how-to-create-coldroom-module.md}. - Flujo
+edición-\textgreater build-\textgreater firma-\textgreater despliegue:
+\texttt{docs/module-dev-workflow.md}.
+
+Este manual asume que el módulo firmado \texttt{coldRoomPan-rt.jar} ya
+está instalado en \texttt{!modules} de la estación y que los puntos
+físicos (proxy points) ya existen bajo su dispositivo en el árbol de
+drivers.
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{1. Introducción, convención de nombres y
+numeración}\label{introducciuxf3n-convenciuxf3n-de-nombres-y-numeraciuxf3n}
+
+\subsubsection{1.1 Los tres tipos del
+módulo}\label{los-tres-tipos-del-muxf3dulo}
+
+El módulo aporta tres tipos de componente (el nombre en Workbench, en
+español, va entre paréntesis):
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Tipo
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Nombre en Workbench
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Rol
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{ColdRoom} & \textbf{Cuarto frio} & Contenedor por cuarto. Maneja
+la lógica de enfriamiento. \\
+\texttt{EvaporatorUnit} & \textbf{Evaporadora} & Una por evaporadora
+física. Secuencia válvula-\textgreater evaporadora. \\
+\texttt{DefrostController} & \textbf{Control de deshielo} & Solo Cuarto
+3. Coordina el deshielo entre unidades. \\
+\end{longtable}
+}
+
+\subsubsection{1.2 Numeración}\label{numeraciuxf3n}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Un \texttt{ColdRoom} por cuarto}, nombrado
+  \texttt{ColdRoom\_1}, \texttt{ColdRoom\_2}, \texttt{ColdRoom\_3},
+  \texttt{ColdRoom\_4}.
+\item
+  \textbf{Dentro} de cada \texttt{ColdRoom}, las evaporadoras se nombran
+  \texttt{EvaporatorUnit\_1}, \texttt{EvaporatorUnit\_2}, \ldots{}
+  numeradas \textbf{por cuarto} (cada cuarto arranca en \texttt{\_1}).
+\item
+  \textbf{Cuarto 3} además lleva un \texttt{DefrostController\_1} dentro
+  del \texttt{ColdRoom\_3}.
+\end{itemize}
+
+\subsubsection{1.3 Modelo de CONTENCIÓN (leer antes de
+cablear)}\label{modelo-de-contenciuxf3n-leer-antes-de-cablear}
+
+Este es el punto clave del módulo y la fuente de errores más común:
+
+\begin{itemize}
+\tightlist
+\item
+  Las \textbf{evaporadoras} y el \textbf{control de deshielo} van
+  \textbf{DENTRO} del \texttt{ColdRoom}, como hijos (children) del
+  componente. No son bloques hermanos sueltos en \texttt{/Config}.
+\item
+  El \texttt{ColdRoom} \textbf{maneja internamente} a sus hijos: calcula
+  la demanda de frío por zona, aplica el escalonamiento y ordena a cada
+  \texttt{EvaporatorUnit} que arranque o pare.
+\item
+  Por lo tanto \textbf{NO se cablea bloque-contra-bloque}. No arrastres
+  un link desde el \texttt{ColdRoom} hacia la \texttt{EvaporatorUnit}:
+  esa relación ya existe por contención.
+\item
+  Tu único trabajo de cableado (BLink) es \textbf{enlazar los puntos
+  físicos} del árbol de drivers con los slots del bloque:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Entradas} (sensores) -\textgreater{} slots de entrada del
+    bloque (enlace simple, solo lectura).
+  \item
+    \textbf{Salidas} del bloque -\textgreater{} \textbf{writables}
+    físicos, escribiendo en el \textbf{nivel de prioridad \texttt{in8}}
+    (nivel del programa; deja los niveles superiores para overrides
+    manuales/emergencia).
+  \end{itemize}
+\end{itemize}
+
+\subsubsection{1.4 Esquema de nombres para los puntos físicos (proxy
+points)}\label{esquema-de-nombres-para-los-puntos-fuxedsicos-proxy-points}
+
+Usa un patrón consistente para poder ubicar cualquier punto de un
+vistazo. Convención sugerida:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Zonas (sensores de temperatura de zona):} \texttt{Zona1\_C1},
+  \texttt{Zona2\_C1} (zona N del cuarto N).
+\item
+  \textbf{Sensor de la evaporadora (temp de serpentín):}
+  \texttt{Coil\_C1E1} (coil, cuarto 1, evaporadora 1).
+\item
+  \textbf{Válvula (writable):} \texttt{Valv\_C1E1}.
+\item
+  \textbf{Evaporadora / ventilador (writable):} \texttt{Evap\_C1E1}.
+\item
+  \textbf{Resistencia de deshielo (writable, solo Cuarto 3):}
+  \texttt{Resist\_C3E1}.
+\item
+  \textbf{Sensor de temp de resistencia (solo Cuarto 3, opcional):}
+  \texttt{TempResist\_C3E1}.
+\end{itemize}
+
+\texttt{C} = cuarto, \texttt{E} = evaporadora. Así \texttt{Valv\_C3E2}
+es la válvula de la evaporadora 2 del cuarto 3.
+
+\subsubsection{1.5 Alarmas visuales (nota
+breve)}\label{alarmas-visuales-nota-breve}
+
+Las alarmas (temp evaporadora alta/baja, temp del cuarto alta,
+ventilador detenido) son \textbf{solo visuales}: no intervienen en la
+lógica de control. Se configuran como \textbf{extensiones de punto}
+(\texttt{BAlarmSourceExt}) sobre los puntos de temperatura físicos,
+\textbf{no} como slots de estos bloques. Los slots
+\texttt{Limite\ alarma\ alta\ del\ cuarto},
+\texttt{Limite\ alarma\ alta} y \texttt{Limite\ alarma\ baja} que verás
+en las tablas de configuración \textbf{solo guardan el umbral}; el ruteo
+y la notificación de la alarma viven en la extensión del punto. El
+armado completo de alarmas es un documento aparte (futuro); aquí solo se
+indica dónde se cargan esos límites.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{2. Pasos generales (aplican a todos los
+cuartos)}\label{pasos-generales-aplican-a-todos-los-cuartos}
+
+Sigue esta secuencia en cada cuarto; el detalle específico está en las
+secciones 3-6.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Crear el cuarto:} arrastra un \texttt{ColdRoom} (Cuarto frio)
+  desde la paleta del módulo a \texttt{/Config} (por ejemplo
+  \texttt{/Config/CuartosFrios/}). Renómbralo \texttt{ColdRoom\_N}.
+\item
+  \textbf{Agregar las evaporadoras DENTRO del cuarto:} arrastra una
+  \texttt{EvaporatorUnit} (Evaporadora) \textbf{sobre} el
+  \texttt{ColdRoom\_N} (queda como hijo). Renómbrala
+  \texttt{EvaporatorUnit\_1}. Repite \texttt{\_2}, \texttt{\_3} según el
+  número de evaporadoras del cuarto.
+\item
+  \textbf{(Solo Cuarto 3) Agregar el deshielo:} arrastra un
+  \texttt{DefrostController} (Control de deshielo) \textbf{dentro} del
+  \texttt{ColdRoom\_3}. Renómbralo \texttt{DefrostController\_1}.
+\item
+  \textbf{Fijar el modo de etapas} del cuarto
+  (\texttt{Modo\ de\ etapas}): \texttt{Por\ etapas} (Cuarto 1) o
+  \texttt{Simple} (Cuartos 2, 3, 4).
+\item
+  \textbf{Configurar consigna y diferenciales} del cuarto:
+  \texttt{Consigna}, \texttt{Diferencial\ arriba},
+  \texttt{Diferencial\ abajo}.
+\item
+  \textbf{Configurar cada evaporadora:} \texttt{Retardo\ de\ arranque}
+  (retardo válvula-\textgreater evaporadora) y \texttt{Tiene\ deshielo}
+  (Sí solo en Cuarto 3). Cargar los límites de alarma si corresponde.
+\item
+  \textbf{(Solo Cuarto 3) Configurar el deshielo:} \texttt{Modo},
+  \texttt{Intervalo}/\texttt{Entrada\ de\ horario}, \texttt{Duracion},
+  \texttt{Retardo\ de\ escalonamiento}, y opcionalmente
+  \texttt{Terminar\ por\ temp\ resistencia} +
+  \texttt{Umbral\ temp\ resistencia}.
+\item
+  \textbf{Enlazar los puntos físicos} a los slots del bloque (tablas de
+  ENTRADAS y SALIDAS de cada cuarto). Las salidas escriben en el nivel
+  de prioridad \texttt{in8} del writable.
+\end{enumerate}
+
+\begin{quote}
+\textbf{Consejo de cableado masivo:} en comisionamiento conviene usar el
+\texttt{BBatchLinkEditor} con \texttt{checkLink} (dry-run) para enlazar
+en lote y mantener los links estables por handle/tag, de modo que
+re-direccionar un dispositivo toque solo el proxyExt y no la lógica.
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{3. Cuarto 1 -- 3 evaporadoras, 2 zonas, sin
+deshielo}\label{cuarto-1-3-evaporadoras-2-zonas-sin-deshielo}
+
+\subsubsection{3.1 Equipo}\label{equipo}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{3 evaporadoras} (con 3 válvulas).
+\item
+  \textbf{2 zonas} (2 sensores de temperatura de zona), consigna única
+  compartida.
+\item
+  \textbf{Sin deshielo.}
+\end{itemize}
+
+\subsubsection{3.2 Estructura de bloques}\label{estructura-de-bloques}
+
+\begin{verbatim}
+/Config/CuartosFrios/
+|-- ColdRoom_1            (Cuarto frio)  -- Modo de etapas = Por etapas
+    |-- EvaporatorUnit_1  (Evaporadora)  -- sigue Zona 1
+    |-- EvaporatorUnit_2  (Evaporadora)  -- sigue Zona 1 O Zona 2
+    |-- EvaporatorUnit_3  (Evaporadora)  -- sigue Zona 2
+\end{verbatim}
+
+\subsubsection{3.3 Configuración}\label{configuraciuxf3n}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Bloque
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Slot
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Valor
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+ColdRoom\_1 & Modo de etapas & \textbf{Por etapas} \\
+ColdRoom\_1 & Consigna & consigna del cuarto (ej. -18 °C) \\
+ColdRoom\_1 & Diferencial arriba & según proyecto (ej. 1.0) \\
+ColdRoom\_1 & Diferencial abajo & según proyecto (ej. 1.0) \\
+ColdRoom\_1 & Limite alarma alta del cuarto & umbral de alarma de temp
+del cuarto (solo dato para la alarma visual) \\
+EvaporatorUnit\_1 & Retardo de arranque & \textbf{2 s} \\
+EvaporatorUnit\_1 & Tiene deshielo & \textbf{No} \\
+EvaporatorUnit\_2 & Retardo de arranque & \textbf{2 s} \\
+EvaporatorUnit\_2 & Tiene deshielo & \textbf{No} \\
+EvaporatorUnit\_3 & Retardo de arranque & \textbf{2 s} \\
+EvaporatorUnit\_3 & Tiene deshielo & \textbf{No} \\
+EvaporatorUnit\_1..3 & Limite alarma alta / Limite alarma baja &
+umbrales de alarma de temp de serpentín (solo dato) \\
+\end{longtable}
+}
+
+\begin{quote}
+\texttt{Salida\ resistencia} y \texttt{Temp\ resistencia} \textbf{no se
+usan} en este cuarto (no hay deshielo).
+\end{quote}
+
+\subsubsection{3.4 Tabla de ENTRADAS (sensor físico -\textgreater{} slot
+del bloque)}\label{tabla-de-entradas-sensor-fuxedsico---slot-del-bloque}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Punto físico & -\textgreater{} Slot destino \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{Zona1\_C1} & ColdRoom\_1 - \textbf{Zona 1} \\
+\texttt{Zona2\_C1} & ColdRoom\_1 - \textbf{Zona 2} \\
+\texttt{Coil\_C1E1} & EvaporatorUnit\_1 - \textbf{Temp evaporadora} \\
+\texttt{Coil\_C1E2} & EvaporatorUnit\_2 - \textbf{Temp evaporadora} \\
+\texttt{Coil\_C1E3} & EvaporatorUnit\_3 - \textbf{Temp evaporadora} \\
+\end{longtable}
+}
+
+\subsubsection{\texorpdfstring{3.5 Tabla de SALIDAS (slot del bloque
+-\textgreater{} writable físico, prioridad
+\texttt{in8})}{3.5 Tabla de SALIDAS (slot del bloque -\textgreater{} writable físico, prioridad in8)}}\label{tabla-de-salidas-slot-del-bloque---writable-fuxedsico-prioridad-in8}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Slot origen & -\textgreater{} Writable físico (nivel \texttt{in8}) \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+EvaporatorUnit\_1 - \textbf{Salida valvula} & \texttt{Valv\_C1E1} \\
+EvaporatorUnit\_1 - \textbf{Salida evaporadora} & \texttt{Evap\_C1E1} \\
+EvaporatorUnit\_2 - \textbf{Salida valvula} & \texttt{Valv\_C1E2} \\
+EvaporatorUnit\_2 - \textbf{Salida evaporadora} & \texttt{Evap\_C1E2} \\
+EvaporatorUnit\_3 - \textbf{Salida valvula} & \texttt{Valv\_C1E3} \\
+EvaporatorUnit\_3 - \textbf{Salida evaporadora} & \texttt{Evap\_C1E3} \\
+\end{longtable}
+}
+
+\subsubsection{3.6 Cómo se comporta}\label{cuxf3mo-se-comporta}
+
+Escalonamiento (\texttt{Modo\ de\ etapas\ =\ Por\ etapas}) con consigna
+compartida:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Evaporadora 1} sigue la demanda de \textbf{Zona 1}.
+\item
+  \textbf{Evaporadora 3} sigue la demanda de \textbf{Zona 2}.
+\item
+  \textbf{Evaporadora 2} arranca con \textbf{Zona 1 O Zona 2}
+  (cualquiera de las dos que pida frío).
+\end{itemize}
+
+En cada evaporadora, al pedir frío se \textbf{abre la válvula primero}
+y, tras el \texttt{Retardo\ de\ arranque} (2 s), \textbf{arranca la
+evaporadora}. Al parar, primero se detiene la evaporadora y luego cierra
+la válvula.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{4. Cuarto 2 -- 1 evaporadora, 1 zona, sin
+deshielo}\label{cuarto-2-1-evaporadora-1-zona-sin-deshielo}
+
+\subsubsection{4.1 Equipo}\label{equipo-1}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{1 evaporadora} (1 válvula).
+\item
+  \textbf{1 zona.}
+\item
+  \textbf{Sin deshielo.}
+\end{itemize}
+
+\subsubsection{4.2 Estructura de bloques}\label{estructura-de-bloques-1}
+
+\begin{verbatim}
+/Config/CuartosFrios/
+|-- ColdRoom_2            (Cuarto frio)  -- Modo de etapas = Simple
+    |-- EvaporatorUnit_1  (Evaporadora)
+\end{verbatim}
+
+\subsubsection{4.3 Configuración}\label{configuraciuxf3n-1}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Bloque
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Slot
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Valor
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+ColdRoom\_2 & Modo de etapas & \textbf{Simple} \\
+ColdRoom\_2 & Consigna & consigna del cuarto \\
+ColdRoom\_2 & Diferencial arriba & según proyecto \\
+ColdRoom\_2 & Diferencial abajo & según proyecto \\
+ColdRoom\_2 & Limite alarma alta del cuarto & umbral de alarma de temp
+del cuarto (solo dato) \\
+EvaporatorUnit\_1 & Retardo de arranque & según proyecto (ej. 2 s) \\
+EvaporatorUnit\_1 & Tiene deshielo & \textbf{No} \\
+EvaporatorUnit\_1 & Limite alarma alta / Limite alarma baja & umbrales
+de temp de serpentín (solo dato) \\
+\end{longtable}
+}
+
+\begin{quote}
+\textbf{Zona 2 no se usa} en este cuarto: deja el slot \texttt{Zona\ 2}
+sin enlazar. \texttt{Salida\ resistencia} y \texttt{Temp\ resistencia}
+\textbf{no se usan}.
+\end{quote}
+
+\subsubsection{4.4 Tabla de ENTRADAS}\label{tabla-de-entradas}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Punto físico & -\textgreater{} Slot destino \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{Zona1\_C2} & ColdRoom\_2 - \textbf{Zona 1} \\
+\texttt{Coil\_C2E1} & EvaporatorUnit\_1 - \textbf{Temp evaporadora} \\
+\end{longtable}
+}
+
+\subsubsection{\texorpdfstring{4.5 Tabla de SALIDAS (prioridad
+\texttt{in8})}{4.5 Tabla de SALIDAS (prioridad in8)}}\label{tabla-de-salidas-prioridad-in8}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Slot origen & -\textgreater{} Writable físico (nivel \texttt{in8}) \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+EvaporatorUnit\_1 - \textbf{Salida valvula} & \texttt{Valv\_C2E1} \\
+EvaporatorUnit\_1 - \textbf{Salida evaporadora} & \texttt{Evap\_C2E1} \\
+\end{longtable}
+}
+
+\subsubsection{4.6 Cómo se comporta}\label{cuxf3mo-se-comporta-1}
+
+Modo simple: cuando \textbf{Zona 1} pide frío, arranca la evaporadora
+(abre válvula, luego evaporadora tras el retardo). Sin escalonamiento ni
+segunda zona.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{5. Cuarto 3 -- 2 evaporadoras, 1 zona, CON
+deshielo}\label{cuarto-3-2-evaporadoras-1-zona-con-deshielo}
+
+\subsubsection{5.1 Equipo}\label{equipo-2}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{2 evaporadoras} (2 válvulas), ambas arrancan con la misma
+  zona.
+\item
+  \textbf{1 zona.}
+\item
+  \textbf{Con deshielo por resistencias} (una resistencia por
+  evaporadora), coordinado por el \texttt{DefrostController\_1}.
+\end{itemize}
+
+\subsubsection{5.2 Estructura de bloques}\label{estructura-de-bloques-2}
+
+\begin{verbatim}
+/Config/CuartosFrios/
+|-- ColdRoom_3               (Cuarto frio)  -- Modo de etapas = Simple
+    |-- EvaporatorUnit_1     (Evaporadora)  -- Tiene deshielo = Sí
+    |-- EvaporatorUnit_2     (Evaporadora)  -- Tiene deshielo = Sí
+    |-- DefrostController_1  (Control de deshielo)
+\end{verbatim}
+
+\subsubsection{5.3 Configuración}\label{configuraciuxf3n-2}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Bloque
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Slot
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Valor
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+ColdRoom\_3 & Modo de etapas & \textbf{Simple} \\
+ColdRoom\_3 & Consigna & consigna del cuarto \\
+ColdRoom\_3 & Diferencial arriba & según proyecto \\
+ColdRoom\_3 & Diferencial abajo & según proyecto \\
+ColdRoom\_3 & Limite alarma alta del cuarto & umbral de alarma de temp
+del cuarto (solo dato) \\
+EvaporatorUnit\_1 & Retardo de arranque & según proyecto \\
+EvaporatorUnit\_1 & \textbf{Tiene deshielo} & \textbf{Sí} \\
+EvaporatorUnit\_2 & Retardo de arranque & según proyecto \\
+EvaporatorUnit\_2 & \textbf{Tiene deshielo} & \textbf{Sí} \\
+EvaporatorUnit\_1..2 & Limite alarma alta / Limite alarma baja &
+umbrales de temp de serpentín (solo dato) \\
+\end{longtable}
+}
+
+Parámetros del deshielo (\texttt{DefrostController\_1}):
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Slot
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Valor
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Modo} & \texttt{Intervalo} u \texttt{Horario} (según
+proyecto) \\
+\textbf{Intervalo} & periodo entre deshielos (solo si Modo = Intervalo),
+ej. cada 6 h \\
+\textbf{Entrada de horario} & (solo si Modo = Horario) enlazar un
+\texttt{BooleanSchedule} -- ver 5.6 \\
+\textbf{Duracion} & duración máxima del deshielo \\
+\textbf{Retardo de escalonamiento} & \textbf{4 min} (evita que ambas
+unidades entren en deshielo a la vez) \\
+\textbf{Terminar por temp resistencia} & opcional: \texttt{Sí} para
+terminar también por temperatura \\
+\textbf{Umbral temp resistencia} & temperatura de fin de deshielo (si el
+anterior = Sí) \\
+\end{longtable}
+}
+
+\subsubsection{5.4 Tabla de ENTRADAS}\label{tabla-de-entradas-1}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Punto físico
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+-\textgreater{} Slot destino
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{Zona1\_C3} & ColdRoom\_3 - \textbf{Zona 1} \\
+\texttt{Coil\_C3E1} & EvaporatorUnit\_1 - \textbf{Temp evaporadora} \\
+\texttt{Coil\_C3E2} & EvaporatorUnit\_2 - \textbf{Temp evaporadora} \\
+\texttt{TempResist\_C3E1} & EvaporatorUnit\_1 - \textbf{Temp
+resistencia} (solo si se usa terminación por temp) \\
+\texttt{TempResist\_C3E2} & EvaporatorUnit\_2 - \textbf{Temp
+resistencia} (solo si se usa terminación por temp) \\
+\end{longtable}
+}
+
+\begin{quote}
+Los sensores de temp de resistencia solo son necesarios si
+\texttt{Terminar\ por\ temp\ resistencia\ =\ Sí}. Si el deshielo termina
+solo por \texttt{Duracion}, no hace falta enlazar
+\texttt{Temp\ resistencia}.
+\end{quote}
+
+\subsubsection{\texorpdfstring{5.5 Tabla de SALIDAS (prioridad
+\texttt{in8})}{5.5 Tabla de SALIDAS (prioridad in8)}}\label{tabla-de-salidas-prioridad-in8-1}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Slot origen & -\textgreater{} Writable físico (nivel \texttt{in8}) \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+EvaporatorUnit\_1 - \textbf{Salida valvula} & \texttt{Valv\_C3E1} \\
+EvaporatorUnit\_1 - \textbf{Salida evaporadora} & \texttt{Evap\_C3E1} \\
+EvaporatorUnit\_1 - \textbf{Salida resistencia} &
+\texttt{Resist\_C3E1} \\
+EvaporatorUnit\_2 - \textbf{Salida valvula} & \texttt{Valv\_C3E2} \\
+EvaporatorUnit\_2 - \textbf{Salida evaporadora} & \texttt{Evap\_C3E2} \\
+EvaporatorUnit\_2 - \textbf{Salida resistencia} &
+\texttt{Resist\_C3E2} \\
+\end{longtable}
+}
+
+\subsubsection{5.6 Si el Modo del deshielo es
+Horario}\label{si-el-modo-del-deshielo-es-horario}
+
+Crea un \texttt{BooleanSchedule} (WebScheduler nativo) en la estación
+con los horarios de deshielo del cuarto, y \textbf{enlázalo} al slot
+\texttt{Entrada\ de\ horario} del \texttt{DefrostController\_1}. El
+operador edita esos horarios desde la vista de agenda; no se tocan los
+bloques.
+
+\subsubsection{5.7 Cómo se comporta}\label{cuxf3mo-se-comporta-2}
+
+\begin{itemize}
+\tightlist
+\item
+  En operación normal, ambas evaporadoras siguen la demanda de
+  \textbf{Zona 1} (modo Simple).
+\item
+  El \texttt{DefrostController\_1} \textbf{coordina el deshielo}: cuando
+  toca deshelar (por Intervalo o por Horario), la secuencia por unidad
+  es \textbf{cerrar válvula -\textgreater{} parar evaporadora
+  -\textgreater{} energizar resistencia}. Termina por \texttt{Duracion}
+  o, si está activo, por
+  \texttt{Temp\ resistencia\ \textgreater{}=\ Umbral}.
+\item
+  \textbf{Interbloqueo:} nunca hay dos unidades en deshielo a la vez. Si
+  una unidad está deshelando y la otra ya toca, la segunda
+  \textbf{espera}; cuando la primera vuelve a operación normal, arranca
+  el \texttt{Retardo\ de\ escalonamiento} (4 min) y recién entonces la
+  segunda inicia su deshielo. La unidad que no está deshelando sigue
+  enfriando normalmente.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{6. Cuarto 4 -- 1 evaporadora, 1 zona, sin
+deshielo}\label{cuarto-4-1-evaporadora-1-zona-sin-deshielo}
+
+\subsubsection{6.1 Equipo}\label{equipo-3}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{1 evaporadora} (1 válvula).
+\item
+  \textbf{1 zona.}
+\item
+  \textbf{Sin deshielo.} Igual que el Cuarto 2 pero con un retardo
+  válvula-\textgreater evaporadora mayor.
+\end{itemize}
+
+\subsubsection{6.2 Estructura de bloques}\label{estructura-de-bloques-3}
+
+\begin{verbatim}
+/Config/CuartosFrios/
+|-- ColdRoom_4            (Cuarto frio)  -- Modo de etapas = Simple
+    |-- EvaporatorUnit_1  (Evaporadora)  -- Retardo de arranque = 5 s
+\end{verbatim}
+
+\subsubsection{6.3 Configuración}\label{configuraciuxf3n-3}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Bloque
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Slot
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Valor
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+ColdRoom\_4 & Modo de etapas & \textbf{Simple} \\
+ColdRoom\_4 & Consigna & consigna del cuarto \\
+ColdRoom\_4 & Diferencial arriba & según proyecto \\
+ColdRoom\_4 & Diferencial abajo & según proyecto \\
+ColdRoom\_4 & Limite alarma alta del cuarto & umbral de alarma de temp
+del cuarto (solo dato) \\
+EvaporatorUnit\_1 & \textbf{Retardo de arranque} & \textbf{5 s} \\
+EvaporatorUnit\_1 & Tiene deshielo & \textbf{No} \\
+EvaporatorUnit\_1 & Limite alarma alta / Limite alarma baja & umbrales
+de temp de serpentín (solo dato) \\
+\end{longtable}
+}
+
+\begin{quote}
+\texttt{Salida\ resistencia} y \texttt{Temp\ resistencia} \textbf{no se
+usan}. Zona 2 no se usa.
+\end{quote}
+
+\subsubsection{6.4 Tabla de ENTRADAS}\label{tabla-de-entradas-2}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Punto físico & -\textgreater{} Slot destino \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{Zona1\_C4} & ColdRoom\_4 - \textbf{Zona 1} \\
+\texttt{Coil\_C4E1} & EvaporatorUnit\_1 - \textbf{Temp evaporadora} \\
+\end{longtable}
+}
+
+\subsubsection{\texorpdfstring{6.5 Tabla de SALIDAS (prioridad
+\texttt{in8})}{6.5 Tabla de SALIDAS (prioridad in8)}}\label{tabla-de-salidas-prioridad-in8-2}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Slot origen & -\textgreater{} Writable físico (nivel \texttt{in8}) \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+EvaporatorUnit\_1 - \textbf{Salida valvula} & \texttt{Valv\_C4E1} \\
+EvaporatorUnit\_1 - \textbf{Salida evaporadora} & \texttt{Evap\_C4E1} \\
+\end{longtable}
+}
+
+\subsubsection{6.6 Cómo se comporta}\label{cuxf3mo-se-comporta-3}
+
+Modo simple con retardo mayor: cuando \textbf{Zona 1} pide frío,
+\textbf{abre la válvula} y \textbf{5 s después arranca la evaporadora}.
+Al parar, primero para la evaporadora y luego cierra la válvula.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{7. Lista de verificación de comisionamiento (por
+cuarto)}\label{lista-de-verificaciuxf3n-de-comisionamiento-por-cuarto}
+
+\begin{itemize}
+\tightlist
+\item[$\square$]
+  \texttt{ColdRoom\_N} creado en \texttt{/Config} y renombrado.
+\item[$\square$]
+  Evaporadoras arrastradas \textbf{dentro} del \texttt{ColdRoom\_N} y
+  numeradas \texttt{\_1..\_N}.
+\item[$\square$]
+  (Cuarto 3) \texttt{DefrostController\_1} dentro del
+  \texttt{ColdRoom\_3}.
+\item[$\square$]
+  \texttt{Modo\ de\ etapas} fijado (Cuarto 1 = Por etapas; 2/3/4 =
+  Simple).
+\item[$\square$]
+  \texttt{Consigna}, \texttt{Diferencial\ arriba},
+  \texttt{Diferencial\ abajo} cargados.
+\item[$\square$]
+  \texttt{Retardo\ de\ arranque} por evaporadora (Cuarto 1 = 2 s; Cuarto
+  4 = 5 s).
+\item[$\square$]
+  \texttt{Tiene\ deshielo} = Sí solo en las evaporadoras del Cuarto 3.
+\item[$\square$]
+  (Cuarto 3) parámetros de deshielo cargados;
+  \texttt{Retardo\ de\ escalonamiento} = 4 min.
+\item[$\square$]
+  Todas las ENTRADAS enlazadas (sensor -\textgreater{} slot).
+\item[$\square$]
+  Todas las SALIDAS enlazadas al writable en nivel \texttt{in8}.
+\item[$\square$]
+  (Cuarto 3, si aplica) \texttt{Entrada\ de\ horario} \textless-
+  \texttt{BooleanSchedule}.
+\item[$\square$]
+  Límites de alarma cargados donde corresponde (recordar: la alarma
+  visual se arma como extensión del punto, documento aparte).
+\item[$\square$]
+  Prueba funcional: forzar demanda de zona y verificar orden
+  válvula-\textgreater evaporadora y, en el Cuarto 3, la secuencia e
+  interbloqueo de deshielo.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{8. Resumen de I/O por
+cuarto}\label{resumen-de-io-por-cuarto}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Cuarto
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Entradas numéricas
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Salidas booleanas
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Deshielo
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1 & 2 zona + 3 serpentín = 5 & 3 válvula + 3 evaporadora = 6 & No \\
+2 & 1 zona + 1 serpentín = 2 & 1 válvula + 1 evaporadora = 2 & No \\
+3 & 1 zona + 2 serpentín (+ 2 temp resistencia*) & 2 válvula + 2
+evaporadora + 2 resistencia = 6 & Sí \\
+4 & 1 zona + 1 serpentín = 2 & 1 válvula + 1 evaporadora = 2 & No \\
+\end{longtable}
+}
+
+* Las 2 entradas de temp de resistencia del Cuarto 3 solo si se usa
+\texttt{Terminar\ por\ temp\ resistencia}.
+
+\end{document}
