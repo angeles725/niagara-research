@@ -96,7 +96,7 @@ too; a forgotten `<type>` fails silently.
 ./scripts/ng-deploy.sh        # backup -> gradlew(mode) -> copy jars -> verify types vs EXPECTED_*_TYPES
 ```
 
-- WSL/NTFS: the signing store is on Windows → Robocopy WSL→Win→WSL bridge for slotomatic + jar. [B639]
+- WSL/NTFS: the Windows-side **signing store** (`keystore.jceks`) is what the `ng-deploy.sh` proposal bridges with Robocopy WSL→Win→WSL. [B639] NOTE [B722]: **slotomatic itself runs in WSL** with the `-P` overrides — it does NOT need the bridge; chihuahua's `deploy.sh` builds AND signs in WSL, reaching the keystore via `/mnt/c`. The bridge is a signing-store concern of that one wrapper, not a slotomatic requirement.
 - Restart the station/module after deploy so the registry rebuilds and new types load.
 
 ### 4.1 Where each step fails

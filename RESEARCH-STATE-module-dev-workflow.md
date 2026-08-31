@@ -36,6 +36,15 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
   closes it (Java Security Manager permission-request manifest; schema, permission-group catalog, chihuahua stub,
   devkit/program writers, Security Dashboard). Cited from devguide `security/requestingPermissions.txt` + real
   chihuahua file. Applied to `docs/manuals/new-module-creation/`. Does not change the 5/5 STOP.
+- **Addendum B723** (2026-08-30, post-close): self-signed code-signing chain in Workbench GUI (CA→trust→
+  code-signing cert→CSR→Certificate Signer Tool→import), sign module (Jar Signer Tool or gradle niagaraSigning),
+  trust the CA on a JACE (import CA PUBLIC into the JACE Platform User Trust Store — private key never leaves),
+  and cross-version compat (module dep = minor `4.15`, runs on any 4.15.x: built .28, ran on .20 + .28).
+  [CERT-live] operator-verified 2026-08-30 + ddc-talk community guide [CERT-web] + [Block 18]. Does not change 5/5 STOP.
+- **Addendum B722** (2026-08-30, post-close): the real WSL2 build loop (clean/slotomatic/jar with `-P` overrides,
+  Java 8, build modes, `--bump`, operator activation, tests-are-docs) from chihuahua `BUILD_WORKFLOW.md`/`CLAUDE.md`;
+  §14 clarification that slotomatic runs in WSL (the Robocopy bridge is signing-store-only, not slotomatic) — doc
+  runbook line patched with a [B722] pointer. Does not change the 5/5 STOP.
 
 ## Gap-backlog (prioritized)
 

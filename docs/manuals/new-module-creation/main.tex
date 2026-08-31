@@ -386,6 +386,86 @@ The \texttt{ColdRoomPan-rt} part contains the Niagara descriptor files
 \end{itemize}
 
 % =====================================================================
+\section{Part E — Building from WSL2 (command line)}
+% =====================================================================
+The project is created on Windows (the wizard) but can be developed and built
+from a WSL2 (Ubuntu) shell — the pattern used for the \texttt{chihuahua} module.
+This section documents that build loop. Source of truth: the \texttt{chihuahua}
+project's \texttt{BUILD\_WORKFLOW.md} / \texttt{CLAUDE.md}.
+
+\subsection{Prerequisites in WSL2}
+\begin{itemize}[nosep]
+  \item A \textbf{JDK 8} installed in WSL: \texttt{sudo apt-get install -y openjdk-8-jdk}
+        (lands at \path{/usr/lib/jvm/java-8-openjdk-amd64}).
+  \item The Niagara install reachable from WSL at
+        \path{/mnt/c/Honeywell/OptimizerSupervisor-N4.14.0.162}.
+\end{itemize}
+
+\subsection{Mandatory \texttt{-P} overrides}
+\texttt{gradle.properties} points at Windows \texttt{C:\textbackslash} paths that
+do not exist inside WSL, so every WSL build must override them on the command line:
+\begin{lstlisting}
+-Pniagara_home=/mnt/c/Honeywell/OptimizerSupervisor-N4.14.0.162
+-Porg.gradle.java.installations.paths=/usr/lib/jvm/java-8-openjdk-amd64
+\end{lstlisting}
+
+\subsection{The build loop (from the project root)}
+\begin{lstlisting}
+# Clean + (regenerate AUTO region) + build the signed jar
+./gradlew :ColdRoomPan-rt:clean :ColdRoomPan-rt:slotomatic :ColdRoomPan-rt:jar \
+  -Pniagara_home=/mnt/c/Honeywell/OptimizerSupervisor-N4.14.0.162 \
+  -Porg.gradle.java.installations.paths=/usr/lib/jvm/java-8-openjdk-amd64
+\end{lstlisting}
+\begin{itemize}[nosep]
+  \item \texttt{slotomatic} runs in WSL and regenerates the AUTO GENERATED region
+        from the \texttt{@Niagara*} annotations. Run it \emph{only} when an
+        annotation changed; otherwise \texttt{clean + jar} is enough. ``Cannot
+        transform \dots\ no metadata'' warnings for \texttt{srcTest/} are benign.
+  \item The signed jar is produced by the \texttt{niagara-signing} plugin and lands
+        in \path{$niagara_home/modules/ColdRoomPan-rt.jar}; copy it to the target
+        station's \texttt{modules} directory to deploy.
+  \item \textbf{Version bump}: when you add or change a \emph{frozen} slot
+        (\texttt{@NiagaraProperty} / \texttt{@NiagaraAction}), bump
+        \texttt{defaultModuleVersion} in the root \texttt{build.gradle.kts}
+        (chihuahua's \texttt{deploy.sh --bump}), or the new slot will not appear.
+\end{itemize}
+
+\subsection{Quick compile-only check}
+Before a full build you can validate that the sources compile (useful while
+integrating code):
+\begin{lstlisting}
+./gradlew :ColdRoomPan-rt:compileModuleTestJava \
+  -Pniagara_home=/mnt/c/Honeywell/OptimizerSupervisor-N4.14.0.162 \
+  -Porg.gradle.java.installations.paths=/usr/lib/jvm/java-8-openjdk-amd64
+\end{lstlisting}
+
+\note{Signing: the \texttt{niagara-signing} plugin signs the jar using the
+certificate store in \texttt{niagara\_user\_home}. If signing fails under WSL, also
+override it: \path{-Pniagara_user_home=/mnt/c/Users/equipo/Niagara4.14/OptimizerSupervisor}.
+Deploying a custom module to a locked-down OEM (Honeywell) install requires a
+certificate the station trusts (here: the \texttt{ANGELES} identity).}
+
+\subsection{Tests}
+Do \textbf{not} gate the build on \texttt{gradle test} / \texttt{niagaraTest}: the
+\texttt{com.tridium.niagara-module} 7.6.17 plugin has a known bug
+(\texttt{moduleTestAnnotationProcessor} produces no metadata, so \texttt{@NiagaraType}
+tests are silently skipped, \texttt{Total tests run: 0}). Test files in
+\texttt{srcTest/} are documentation-only skeletons.
+
+\subsection{Operator-only activation steps}
+The build/deploy runs from WSL, but these are done by the operator on the station:
+\begin{itemize}[nosep]
+  \item \textbf{Restart the station} — for Java changes and frozen slots.
+  \item \textbf{Close and reopen Workbench} — if a frozen slot/action still does not
+        appear after the station restart (Workbench's client type cache does not
+        refresh on a station restart).
+  \item \textbf{Smoke test} — verify on the live station.
+\end{itemize}
+
+\note{Gotcha: \texttt{compileModuleTestJava} pollutes \texttt{module-include.xml}
+with test types — \texttt{git checkout} that file before committing.}
+
+% =====================================================================
 \section{Summary}
 % =====================================================================
 \begin{enumerate}[nosep]

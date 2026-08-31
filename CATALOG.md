@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **719 bloques**
+Total: **721 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -724,6 +724,8 @@ Total: **719 bloques**
 | 719 | [niagara-mental-model-bloque719.md](niagara-mental-model-bloque719.md) | B719 — Station organization, navigation & grouping (SO4): tag once, navigate many ways — hierarchies + tags instead of duplicating the physical tree |
 | 720 | [niagara-mental-model-bloque720.md](niagara-mental-model-bloque720.md) | B720 — Station organization, reuse + synthesis (SO5, focus close): equipment templates, fleet provisioning, and the recommended-structure verdict |
 | 721 | [niagara-mental-model-bloque721.md](niagara-mental-model-bloque721.md) | B721 — module-permissions.xml: the Java Security Manager permission-request manifest (module-dev-workflow addendum) |
+| 722 | [niagara-mental-model-bloque722.md](niagara-mental-model-bloque722.md) | B722 — The WSL2 module build loop for N4 (clean / slotomatic / jar) — the real chihuahua process (module-dev-workflow addendum) |
+| 723 | [niagara-mental-model-bloque723.md](niagara-mental-model-bloque723.md) | B723 — Self-signed code-signing chain in Workbench + trusting the CA on a JACE + cross-version module compatibility (module-dev-workflow addendum) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
