@@ -86,6 +86,10 @@ The `-ux` jar is the browser-facing tier. Ideal shape: a thin Java shim + all UI
    fallback → buffer/replay early updates. [B653]
 6. **Optimistic write + rollback + refresh.** [B653]
 7. **Typed BQL** from epoch millis / fixed enum tokens / ORD-escaped sources — never user strings. [B652]
+8. **CSRF guard ↔ request header are one unit.** If the servlet dispatch 302-redirects any `/api/*` request that
+   lacks `X-Requested-With: XMLHttpRequest` (the chihuahua CSRF guard), then EVERY frontend `fetch`/XHR — reads as
+   well as writes — must send that header. Put it in the shared `headers()`/XHR helper so a page can't forget it.
+   [B165, chihuahua; DashboardPan 2026-08-31]
 
 ### 2.2 Don't (anti-patterns)
 
@@ -95,6 +99,12 @@ The `-ux` jar is the browser-facing tier. Ideal shape: a thin Java shim + all UI
 - **Assuming ES6 in the dashboard main app** — the JxBrowser renderer targets ES5; main app is ES5 IIFE, modern
   only as importmap/UMD islands. [B653]
 - **Site data hardcoded in the `-ux` jar** (rack/location layout) — belongs in an `-rt` component tree. [B645]
+- **A frontend `fetch` that omits `X-Requested-With` behind an XHR-guarded servlet.** The guard 302-redirects the
+  read to the HTML page, `res.json()` throws, and the dashboard renders but shows every value as `--`. Symptom:
+  page loads, data does not. Diagnose with a console `fetch(url, {headers:{'X-Requested-With':'XMLHttpRequest'}})`
+  before touching the backend — if that returns JSON but the app shows `--`, the app was omitting the header.
+  (Real regression: DashboardPan `index.html` came from `mode:"obix"` where there was no guard; repointed to the
+  module's own servlet in `mode:"json"`, its `headers()` never gained the header while `config.html` had it.) [DashboardPan 2026-08-31]
 
 ### 2.3 Priority ux fixes
 

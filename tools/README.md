@@ -38,3 +38,36 @@ is ALREADY installed + kit-wrapped. The following are NEW and belong to OTHER fo
 
 - `qnx6read.py` — read-only QNX6 (Power-Safe) filesystem reader (superblock + 2-level indirection + short/long dir names). Born in focus jace8000-sd (B674) to walk the JACE-8000 microSD QNX6 partitions from a raw image with no `qnx6` kernel driver / no sudo. Usage: `QNX6_IMG=/path/disk.img python3 tools/qnx6read.py P2`. Provenance: 2026-08-30.
 | hdbread.py | tools/hdbread.py | created — read-only Niagara .hdb history reader (header+schema+cleartext record walk, --mask) for focus jace-history-audit B699 |
+| corpus-nav.py | tools/corpus-nav.py | created (2026-08-31) — corpus navigator over the mental-model blocks + docs/ + retros/. argparse, Python 3 stdlib only, deterministic. Builds an in-memory index at startup (globs block files, parses CATALOG.md for the N↔title map). Robust to the historical numbering gaps; `find` over the ~720 blocks runs in <0.2s. |
+
+## corpus-nav.py commands
+
+Read-only navigator for the knowledge corpus. Run `tools/corpus-nav.py <cmd> -h` for flags.
+
+| Command | What it does |
+|---|---|
+| `find <query>` | full-text, case-insensitive substring search; prints `B<N> · <title>` + matching `lineno: text`. Flags: `--in blocks\|docs\|retros\|all` (default `blocks`), `--limit` (max matching lines, default 50). |
+| `grep <regex>` | same output as `find` but the query is a `re` regex (case-insensitive). Same `--in` / `--limit` flags. |
+| `show <N>` | block B<N>'s title + a section outline (`##`/`###` headings) + its verbatim `## Connections` section. |
+| `list` | every block as `B<N> · <title>` (from CATALOG.md). `--focus <f>` filters to a focus. |
+| `by-marker <marker>` | blocks containing an evidence marker (`INFER`, `CERT`, `CERT-hw`, `CERT-live`, ...); prints `B<N> · count · title`. Handles combined tokens like `[CERT-doc/INFER]`. |
+| `by-focus <focus>` | blocks belonging to a focus. Heuristic: union of (1) blocks whose body carries a `Focus: **<focus>**` header tag and (2) block numbers cited in `RESEARCH-STATE-<focus>.md`. |
+| `connections <N>` | forward links (block refs inside B<N>'s `## Connections`) + reverse links (whole-corpus scan for blocks that reference B<N>). |
+| `stats` | totals: #blocks, #docs, #retros, #focuses, blocks-with-Connections, and evidence-marker occurrence counts. |
+
+Corpus-format notes handled: block references appear as `[Block N]` (dominant), `[Bloque N]`, `[BN]`, or bare `bloqueN`; the consolidated file is label `1-3` and the test-infra file is `TI`; `docs` scope is the 12 direct-child `*.md` guides (subdirs like `docs/JACE8000/` are excluded, matching CATALOG conventions).
+
+## dashboard-preview.py — local preview for a dashboard `-ux` module (design ↔ real, before compiling)
+
+Iterate on a servlet-based dashboard's HTML/CSS/JS **without** the gradle build + sign + deploy cycle. Serves
+the module's real `rc/` over `http://localhost` and mocks the servlet API, so you edit → refresh → see. Reusable
+across dashboard modules (point it at any `rc/`); reproduces the chihuahua-style **XHR guard** so front-end bugs
+(e.g. a fetch missing `X-Requested-With`) surface here before you compile.
+
+```
+python3 tools/dashboard-preview.py --rc <module>/src/rc --prefix /dashboardpan [--port 8080] [--mock mock.json]
+```
+Then open `http://localhost:<port><prefix>/`. The **`/hmi` route** (`http://localhost:<port>/hmi`) frames the dashboard inside a WEB-HMI10/CF **1280×800 panel bezel** (scaled to fit) — the HMI simulator, to see how it looks on the touch panel. `--mock <file.json>` is served for every `GET /api/*`; without it,
+`/api/*` returns `{}` (layout/palette still previewable, values show `--`). `POST /api/*` returns `{"ok":true}`
+and logs the body. Python 3 stdlib only. A module may ship its own thin wrapper for an **animated** mock — see the
+worked example `DashboardPan-ux/preview-server.py` (builds the `{v,st}` payload with jitter + status colors).

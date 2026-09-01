@@ -59,7 +59,19 @@ absolutas verificadas; NO re-decompilar ni re-descargar lo que ya está acá.
     /mnt/c/Honeywell/OptimizerSupervisor-N4.14.0.162/niagara-help/tools/niagara_help.py
 
 ────────────────────────────────────────────────────────────────────────
-4. RE toolbelt (kit research-sdd) — binarios nativos (.dll/.exe/.so)
+4. corpus-nav — navegación de NUESTROS bloques (FUENTE 1 del protocolo)
+────────────────────────────────────────────────────────────────────────
+  python3 /home/cristian/niagara-research/tools/corpus-nav.py <cmd>
+  Comandos: find <q> · grep <regex> · show <N> · list [--focus <f>] ·
+  by-marker <marcador> · by-focus <focus> · connections <N> · stats
+  Navega los 720+ bloques + docs/ + retros/. Reindexá en CADA corrida, así
+  toma bloques nuevos solo (sin mantenimiento). Búsqueda LÉXICA (por palabra
+  exacta); la SEMÁNTICA (por significado) aún NO existe — es la propuesta P1
+  de retros/2026-08-31-corpus-navigation-improvement-retro.md. Stdlib puro,
+  ~0.1-0.2s por búsqueda. Doc en tools/README.md.
+
+────────────────────────────────────────────────────────────────────────
+5. RE toolbelt (kit research-sdd) — binarios nativos (.dll/.exe/.so)
 ────────────────────────────────────────────────────────────────────────
   KIT=~/investigacion/sdd-investigacion/research-sdd
   $KIT/toolbelt/detect-tools.sh --require ghidra     (gate del entorno)
@@ -70,12 +82,25 @@ absolutas verificadas; NO re-decompilar ni re-descargar lo que ya está acá.
   gemelo — ver B424). Binarios N4 en /mnt/c/Honeywell/OptimizerSupervisor-N4.14.0.162/bin/.
 
 ────────────────────────────────────────────────────────────────────────
-5. Registro y catálogo (al cerrar)
+6. Registro y catálogo (al cerrar)
 ────────────────────────────────────────────────────────────────────────
   sources/SOURCES.md — todo artefacto externo que un bloque CITE se registra acá
   (ruta · tipo · origen · fecha · sha256 · bloques que lo citan). METHODOLOGY §5.
   python3 tools/gen-catalog.py — regenera CATALOG.md desde el H1 de cada bloque.
   CATALOG.md NO se edita a mano.
+
+────────────────────────────────────────────────────────────────────────
+7. dashboard-preview — iterar diseño de un módulo -ux ANTES de compilar
+────────────────────────────────────────────────────────────────────────
+  python3 /home/cristian/niagara-research/tools/dashboard-preview.py --rc <mod>/src/rc --prefix /dashboardpan
+  Ruta /hmi (http://localhost:<port>/hmi) = SIMULADOR HMI: el dashboard en un marco
+  de panel WEB-HMI10/CF 1280x800, escalado a la ventana — para ver cómo queda.
+  Sirve la carpeta rc/ real por http://localhost + mockea la API del servlet, para
+  editar HTML/CSS/JS → refrescar → ver, SIN build+firma+deploy. Reusable para
+  cualquier módulo dashboard. Reproduce la GUARDA XHR (atrapa el bug del header
+  X-Requested-With antes de compilar). --mock <file.json> para datos; sin él, /api/*
+  da {} (el diseño/paleta se ve igual). Ejemplo con mock animado: el propio módulo
+  puede traer un preview-server.py (ver DashboardPan-ux/preview-server.py).
 EOF
 
 if command -v jq >/dev/null 2>&1; then
