@@ -50,7 +50,96 @@ MIME = {
 }
 
 
-def make_handler(rc_dir, prefix, mock_obj):
+EDITOR_SNIPPET = """
+<style id="__ed_css">
+  #__ed{position:fixed;top:10px;left:10px;z-index:2147483647;width:300px;max-height:92vh;
+        overflow:auto;background:rgba(20,22,26,.94);color:#e6e9ee;font:12px system-ui,sans-serif;
+        border:1px solid #3a3f47;border-radius:10px;box-shadow:0 12px 40px -12px #000;padding:12px}
+  #__ed h4{margin:0 0 6px;font-size:12px;letter-spacing:.06em}
+  #__ed .hint{color:#9aa2ad;font-size:11px;line-height:1.5;margin-bottom:8px}
+  #__ed table{width:100%;border-collapse:collapse;font-size:11px}
+  #__ed th,#__ed td{padding:2px 3px;text-align:left;border-bottom:1px solid #2a2f37;white-space:nowrap}
+  #__ed th{color:#9aa2ad;font-weight:600}
+  #__ed td b{color:#7fd1a8}
+  #__ed .btns{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+  #__ed button{background:#2b303a;color:#e6e9ee;border:1px solid #3a3f47;border-radius:6px;
+               padding:6px 8px;font-size:11px;cursor:pointer}
+  #__ed button:hover{background:#353b46}
+  #__ed .warn{background:#3a2b2b;border-color:#5a3a3a}
+  #__ed textarea{width:100%;height:70px;margin-top:8px;background:#11141a;color:#cfe;border:1px solid #2a2f37;
+                 border-radius:6px;font:11px monospace;padding:6px;display:none}
+  #__ed .ok{color:#7fd1a8;font-size:11px;min-height:14px;margin-top:4px}
+</style>
+<script id="__ed_js">
+(function(){
+  if (window.__labelEditor) return; window.__labelEditor = true;
+  function ready(){
+    if (typeof ui==='undefined' || typeof SENSORS==='undefined'){ return setTimeout(ready,150); }
+    ui.editPuntos = true;
+    var box=document.createElement('div'); box.id='__ed';
+    box.innerHTML =
+      '<h4>EDITOR DE LABELS (solo preview)</h4>'+
+      '<div class="hint">Abr\\u00ed un cuarto (clic en la lista de la derecha). '+
+      'Arrastr\\u00e1 el <b>punto</b> (c\\u00edrculo) y la <b>etiqueta</b> para moverlos. '+
+      'Los valores se actualizan abajo. Copi\\u00e1 y pas\\u00e1melos, o los aplico yo.</div>'+
+      '<div id="__ed_room"></div>'+
+      '<table><thead><tr><th>tag</th><th>rx,ry</th><th>rlx,rly</th><th>side</th></tr></thead>'+
+      '<tbody id="__ed_body"></tbody></table>'+
+      '<div class="btns">'+
+      '<button id="__ed_copy">Copiar valores</button>'+
+      '<button id="__ed_all">Copiar TODO</button>'+
+      '<button id="__ed_reset" class="warn">Reset respaldo local</button>'+
+      '</div><div class="ok" id="__ed_ok"></div><textarea id="__ed_ta" readonly></textarea>';
+    document.body.appendChild(box);
+    var fc=document.getElementById('frameC'); if(fc) fc.classList.add('edit');
+
+    function rows(all){
+      return SENSORS.filter(function(s){ return all || s.cuarto===ui.cuarto; })
+        .map(function(s){
+          return s.tag+': rx:'+(+s.rx).toFixed(2)+', ry:'+(+s.ry).toFixed(2)+
+                 ', rlx:'+(+s.rlx).toFixed(2)+', rly:'+(+s.rly).toFixed(2)+', rside:"'+s.rside+'"';
+        }).join('\\n');
+    }
+    function render(){
+      var fc2=document.getElementById('frameC'); if(fc2) fc2.classList.add('edit');
+      if(ui) ui.editPuntos=true;
+      var r=document.getElementById('__ed_room');
+      var b=document.getElementById('__ed_body');
+      if(ui.cuarto==null){ r.textContent='Ning\\u00fan cuarto abierto.'; b.innerHTML=''; return; }
+      var nm=(typeof CUARTOS!=='undefined'&&CUARTOS.find)?(CUARTOS.find(function(c){return c.id===ui.cuarto;})||{}).nombre:'';
+      r.innerHTML='<b>'+(nm||('Cuarto '+ui.cuarto))+'</b>';
+      var html='';
+      SENSORS.filter(function(s){return s.cuarto===ui.cuarto;}).forEach(function(s){
+        html+='<tr><td>'+s.tag+'</td><td><b>'+(+s.rx).toFixed(2)+','+(+s.ry).toFixed(2)+
+              '</b></td><td>'+(+s.rlx).toFixed(2)+','+(+s.rly).toFixed(2)+'</td><td>'+s.rside+'</td></tr>';
+      });
+      b.innerHTML=html;
+    }
+    function copy(txt,msg){
+      var ok=document.getElementById('__ed_ok'); var ta=document.getElementById('__ed_ta');
+      ta.style.display='block'; ta.value=txt; ta.select();
+      try{ (navigator.clipboard&&navigator.clipboard.writeText)?navigator.clipboard.writeText(txt):document.execCommand('copy'); ok.textContent=msg+' (copiado)'; }
+      catch(e){ ok.textContent=msg+' (selecciona y Ctrl+C)'; }
+    }
+    document.getElementById('__ed_copy').onclick=function(){
+      if(ui.cuarto==null){ document.getElementById('__ed_ok').textContent='Abr\\u00ed un cuarto primero.'; return; }
+      copy(rows(false),'Cuarto '+ui.cuarto);
+    };
+    document.getElementById('__ed_all').onclick=function(){ copy(rows(true),'Todos los cuartos'); };
+    document.getElementById('__ed_reset').onclick=function(){
+      try{ localStorage.removeItem('panccadia.puntos.v11'); }catch(e){}
+      document.getElementById('__ed_ok').textContent='Respaldo local borrado. Recargando...';
+      setTimeout(function(){ location.reload(); },500);
+    };
+    setInterval(render,250); render();
+  }
+  ready();
+})();
+</script>
+"""
+
+
+def make_handler(rc_dir, prefix, mock_obj, editor=False):
     class Handler(BaseHTTPRequestHandler):
         def log_message(self, fmt, *args):
             sys.stderr.write("  %s\n" % (fmt % args))
@@ -91,8 +180,16 @@ def make_handler(rc_dir, prefix, mock_obj):
                 return
             with open(full, "rb") as f:
                 data = f.read()
+            ext = os.path.splitext(full)[1].lower()
+            if editor and ext == ".html":
+                txt = data.decode("utf-8", "replace")
+                snip = EDITOR_SNIPPET
+                low = txt.lower()
+                idx = low.rfind("</body>")
+                txt = (txt[:idx] + snip + txt[idx:]) if idx != -1 else (txt + snip)
+                data = txt.encode("utf-8")
             self.send_response(200)
-            self.send_header("Content-Type", MIME.get(os.path.splitext(full)[1].lower(), "application/octet-stream"))
+            self.send_header("Content-Type", MIME.get(ext, "application/octet-stream"))
             self.send_header("Content-Length", str(len(data)))
             self.send_header("Cache-Control", "no-store")  # always fresh while iterating
             self.end_headers()
@@ -156,6 +253,9 @@ def main():
     ap.add_argument("--prefix", default="/dashboardpan", help="servlet mount prefix (default /dashboardpan)")
     ap.add_argument("--port", type=int, default=8080, help="port (default 8080)")
     ap.add_argument("--mock", help="JSON file served for every GET /api/<name> (default: empty {})")
+    ap.add_argument("--editor", action="store_true",
+                    help="inject a preview-only label editor (drag points/labels, export rx/ry/rlx/rly/rside); "
+                         "never touches the module rc/")
     args = ap.parse_args()
 
     rc_dir = os.path.abspath(args.rc)
@@ -170,10 +270,12 @@ def main():
     else:
         sys.stderr.write("  (sin --mock: /api/* devuelve {} — el diseño/paleta se ve, los valores salen '--')\n")
 
-    srv = ThreadingHTTPServer(("127.0.0.1", args.port), make_handler(rc_dir, prefix, mock_obj))
+    srv = ThreadingHTTPServer(("127.0.0.1", args.port), make_handler(rc_dir, prefix, mock_obj, args.editor))
     print("dashboard-preview -> http://localhost:%d%s/" % (args.port, prefix))
     print("  serving: %s" % rc_dir)
     print("  mock:    %s" % (args.mock or "(vacio)"))
+    if args.editor:
+        print("  editor:  ON (editor de labels inyectado; NO toca el modulo)")
     print("  Ctrl+C para detener. Edita rc/ y refresca (sin recompilar).")
     try:
         srv.serve_forever()
