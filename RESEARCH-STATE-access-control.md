@@ -26,7 +26,7 @@ blocked_open: 0
 <!-- /research-state.v1 -->
 
 focus: access-control
-status: stopped (8/8, investigable=0; AC1→B558 … AC8→B566). B560 = cloudflared runbook (document-mode). §18 retro pending.. Note: B560 = cloudflared runbook (document-mode, not a gap).
+status: stopped (8/8, investigable=0; AC1→B558 … AC8→B566). Runbooks (document-mode, NOT gaps): B560 = cloudflared remote access; B726 = SSH -L jump-host variant (2026-09-02, [CERT-live] Pancaddia León — Fox no-IP-redirect proof + Platform-only backup/commission path). §18 retro pending.
 seeded_from: AUDIT-FIRST coverage sweep 2026-08-28 (delegated sonnet; pre-flight + AC1 verified inline)
 seeded_on: 2026-08-28
 gaps_total: 8 investigable (AC1–AC8)

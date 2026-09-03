@@ -133,6 +133,9 @@ facts corpus-cited; tunnel mechanics honestly marked as external product knowled
 
 ## Connections
 
+- **[Block 726]** — the **SSH `-L` variant** of this runbook (jump-host / high localhost ports), with the
+  Fox no-IP-redirect proof ([B134]§134.10) that makes the localhost tunnel provably safe, and an on-site
+  `[CERT-live]` confirmation of the Platform leg.
 - **[Block 460]/[Block 471]** — the live port/transport facts (Foxs :4911, platform :3011/:5011) this runbook rests on.
 - **[Block 474]** — TLS-1.3-only, why a terminating proxy must not sit inside the Foxs handshake.
 - **[Block 398]/[Block 490]** — hardening checklist; default cert + exposed-admin findings apply directly.

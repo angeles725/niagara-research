@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **722 bloques**
+Total: **724 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -727,6 +727,7 @@ Total: **722 bloques**
 | 722 | [niagara-mental-model-bloque722.md](niagara-mental-model-bloque722.md) | B722 — The WSL2 module build loop for N4 (clean / slotomatic / jar) — the real chihuahua process (module-dev-workflow addendum) |
 | 723 | [niagara-mental-model-bloque723.md](niagara-mental-model-bloque723.md) | B723 — Self-signed code-signing chain in Workbench + trusting the CA on a JACE + cross-version module compatibility (module-dev-workflow addendum) |
 | 724 | [niagara-mental-model-bloque724.md](niagara-mental-model-bloque724.md) | B724 — Niagara N4 — web-hmi (WH1): the Honeywell WEB-HMI touchscreen panel family — models, the WEB-HMI10/CF deploy target, the HTML5/Chromium-on-Linux display model, and the responsive/kiosk implications for a served dashboard |
+| 726 | [niagara-mental-model-bloque726.md](niagara-mental-model-bloque726.md) | Block 726 — Remote Workbench to a JACE behind a jump host over SSH port-forwarding: the localhost high-port pattern, why Fox does NOT break it (no IP redirect), and the Platform-only path for backups/commissioning |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
