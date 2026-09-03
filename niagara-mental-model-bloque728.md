@@ -13,7 +13,9 @@
 > - FUENTE 3 (code): `organized/baja/baja/vineflower/javax/baja/security/` + `.../authn/` scheme inventory;
 >   `javax/baja/user/BUser.java` (`getHomePage`, `authenticationSchemeName`); `javax/baja/authn/BSSOAuthenticationScheme.java`.
 > - FUENTE 2 (Tridium doc): `niagara-help/devguide-clean/security/headerAuthentication.txt` (HTTP Header Auth = SCRAM, N4 4.4+).
-> - FUENTE 1 (corpus): [B727], [B510], [B494], [B560], [B726]; concurrency cap cross-ref (Alerton Compass, engram #6855).
+> - FUENTE 1 (corpus): [B727], [B510], [B494], [B560], [B726].
+> - `[CERT-live]` (relayed): probe `sources/probes/2026-09-03-panccadia-loginless-dashboard-live.md` — end-to-end
+>   confirmation by a peer session at Pancaddia León (§728.5), credential value redacted.
 > READ-ONLY over the subject; no station mutated. Markers §3.
 
 ## §728.1 — What N4 does NOT give you (settle the wrong paths first) `[CERT]`/`[CERT-doc]`
@@ -60,10 +62,13 @@
 ### Cloudflare-tunnel shape (the field case)
 
 - `cloudflared` fronts `https://<jace-ip>/` and publishes it as the public hostname.
-- Inject the header at the edge: a **Cloudflare Worker** (or the origin config / a transform rule) adds the
-  `Authorization: Basic …` header to requests reaching the origin. `[INFER]` (exact edge feature is a Cloudflare
-  detail, not an N4 fact; the N4 requirement is only "the header must arrive").
+- Inject the header at the edge with a **Cloudflare Transform Rule** ("HTTP Request Header Modification") that adds
+  a static `Authorization: Basic …` header for the tunnel hostname — a Worker is only needed if you want logic. In
+  the confirmed field deploy (§728.5) the rule sat in zone ruleset `default`, phase `http_request_late_transform`,
+  matching `http.host eq <hostname>` `[CERT-live]`. The N4 requirement is only "the header must arrive".
 - The base64 credential lives in the edge config → it is a **secret** (base64 is reversible), scope it like one.
+- Access and the Basic injection are **different layers and coexist**: Access gates the human in front (its own
+  JWT), and the origin request additionally carries the injected `Authorization: Basic` for the station.
 
 ## §728.3 — The security envelope — MANDATORY, not optional `[CERT]`/`[INFER]`
 
@@ -72,7 +77,10 @@ The credential stops being the gate, so you must reinstate a gate elsewhere and 
 
 1. **Put Cloudflare Access (Zero Trust) in FRONT of the tunnel** `[INFER]` — an Access policy (email OTP, or a
    service token for machine viewers) restores a real gate so "no Niagara login" ≠ "open to the whole internet."
-   This is the single highest-value mitigation.
+   This is the single highest-value mitigation. **Field note (§728.5):** the confirmed Pancaddia deploy went
+   OPEN — no Access — by explicit user decision, replicating Mercato. That is a conscious deviation from this
+   step, not something this runbook endorses; on an open URL steps 2–3 (read-only user + restricted categories)
+   become the ONLY remaining gate and MUST be enforced.
 2. **Dedicated user is read-only** — a role with only read/invoke over the dashboard's scope; no admin, no config
    write, no station-level actions ([B11]/[B30] enforcement model).
 3. **Restrict the user's categories** — scope its category so even a poke at `/ord`, `/obix`, or another servlet
@@ -81,11 +89,35 @@ The credential stops being the gate, so you must reinstate a gate elsewhere and 
    block direct access to the LAN IP, or the tunnel is one door and the raw IP another.
 5. **HTTPS end-to-end + short session timeout** — Basic sends the credential every request; TLS is non-negotiable
    ([B727 §727.6]).
-6. **Concurrency cap awareness** — the license limits concurrent authenticated web sessions (Alerton Compass AX:
-   **18**, engram #6855, `[CERT-live]` on that install; N4 has its own license-gated cap). A single shared public
-   user exhausts it fast; size it, or the dashboard starts refusing sessions.
+6. **Concurrency cap awareness** `[INFER]` — the N4 license limits concurrent authenticated web sessions; a single
+   shared public user exhausts it fast, and past the cap the dashboard starts refusing sessions. (For scale of the
+   concern: an Alerton Compass AX install measured **18** concurrent web sessions — a DIFFERENT platform/product,
+   cited only as context, NOT an N4 number; confirm the actual N4 cap from the running install's license.)
 7. **Audit** — the dedicated user's actions land in the audit trail ([B564]); it does not distinguish the humans
    behind the shared credential, so Access (step 1) is what gives you per-person accountability.
+
+## §728.5 — Live confirmation (relayed `[CERT-live]`) — the Pancaddia deploy
+
+The full mechanism was verified end-to-end on live hardware (JACE-9000 "atlashost", N4 **4.15.3.28**). **Not run by
+the author of this block** — executed and reported by a peer session at the customer site (Pancaddia León),
+relayed 2026-09-03; preserved as `sources/probes/2026-09-03-panccadia-loginless-dashboard-live.md` (credential
+value redacted). `[CERT-live]`:
+
+- `GET /dashboardpan/` with `Authorization: Basic base64("API:<PASSWORD-REDACTED>")` → **HTTP 200** `text/html`;
+  the SAME request with NO auth → **HTTP 302** (login). Confirms both halves: injected header lands you in the
+  dashboard, absence of the header still gates (not anonymous).
+- The `API` user already carried `HTTPBasicScheme` (same scheme as the reference Mercato install).
+- Edge: Cloudflare **named tunnel** `panccadia-dashboard` (healthy, 4 conns), connector as a scheduled task on a
+  separate mini-PC; ingress `panccadia.angeles-group.org` → `https://192.168.200.137:443` `noTLSVerify`; a
+  **Transform Rule** (ruleset `default`, phase `http_request_late_transform`) injects the Basic header for
+  `http.host eq panccadia.angeles-group.org`; proxied CNAME to `cfargotunnel.com`.
+- Deployed **OPEN — no Cloudflare Access** — by explicit user decision, replicating Mercato (see §728.3 step 1 —
+  this is the recorded deviation).
+
+**Residual (honest):** an earlier `403` was on `/bajaux`, a path unrelated to the dashboard servlet — it does not
+apply to `/dashboardpan/`. Not itemized by the reporter: whether the `API` user is confirmed read-only with
+restricted categories — on the open pattern that is the ONLY remaining gate, so it is asserted-necessary but NOT
+verified on this install.
 
 ## §728.4 — Decision summary
 
@@ -110,13 +142,15 @@ The credential stops being the gate, so you must reinstate a gate elsewhere and 
 | 7 | Servlet receives an authenticated BUser; web tier does the credential check | `[CERT]` | [B509 §509.5] |
 | 8 | Whoever reaches the public URL is authenticated as the injected user → gate must move to the proxy + RBAC | `[CERT]`+`[INFER]` | mechanism consequence; [B11]/[B30]/[B561] |
 | 9 | Category restriction (cap 256) bounds what the shared user can see across servlets | `[CERT]` | [B561] |
-| 10 | License caps concurrent web sessions; one shared user hits it (Compass=18) | `[CERT-live]` (cross-ref) | engram #6855 (Alerton Compass install) |
+| 10 | N4 license limits concurrent web sessions; a shared public user exhausts it (Compass AX=18 is cross-platform context, NOT an N4 number) | `[INFER]` | N4 license-gated cap; AX Compass 18 is a different product, confirm from the running N4 license |
+| 11 | Full mechanism confirmed live: `GET /dashboardpan/` + injected Basic → 200; no auth → 302; Transform Rule (late_transform) injects the header; deployed OPEN by user choice | `[CERT-live]` (relayed) | peer session at Pancaddia León (JACE-9000, N4 4.15.3.28); probe `2026-09-03-panccadia-loginless-dashboard-live.md` |
 
-**Tally:** 10 claims — 5 `[CERT]`, 1 `[CERT-doc]`, 2 mixed with `[INFER]`, 1 `[CERT-live]` cross-ref, 0 unmarked.
-Cloudflare-edge specifics are marked `[INFER]` (out-of-N4-scope). Scope left OUT (§8): the exact Cloudflare Worker
-/ transform-rule syntax (vendor doc, not N4); Cloudflare Access policy authoring; whether a custom
-`BSSOAuthenticationScheme` subclass could delegate to Cloudflare Access as an IdP (a heavier alternative to Basic,
-not built here).
+**Tally:** 11 claims — 5 `[CERT]`, 1 `[CERT-doc]`, 2 mixed with `[INFER]`, 1 `[INFER]`, 1 `[CERT-live]` (relayed,
+attributed per §3 relayed-live discipline), 0 unmarked. No claim cites the engram mirror as evidence (the prior
+row-10 defect — citing `#6855` as `[CERT-live]` — is corrected; the mirror is background, not a source, §3).
+Cloudflare-edge specifics stay `[INFER]` where unconfirmed. Scope left OUT (§8): Cloudflare Access policy
+authoring; whether a custom `BSSOAuthenticationScheme` subclass could delegate to Cloudflare Access as an IdP
+(a heavier alternative to Basic, not built here).
 
 ## Connections
 
@@ -125,12 +159,14 @@ not built here).
 - **[B510]/[B494]** — the auth-scheme SPI and the OEM scheme survey (SAML/SSO/clientCert) ruled out in §728.1.
 - **[B509 §509.5]** — servlet receives an already-authenticated BUser; auth is the web tier's job.
 - **[B561]/[B11]/[B30]/[B564]** — the RBAC/category/audit machinery the mitigations lean on.
-- **engram #6855** — Alerton Compass concurrent-web-session cap (the constraint a shared public user hits).
+- **probe `2026-09-03-panccadia-loginless-dashboard-live.md`** — the relayed `[CERT-live]` end-to-end confirmation (§728.5).
 
 ## Gaps opened
 
 - **B728-G1** (medium) — the SSO alternative: a custom `BSSOAuthenticationScheme` that delegates to Cloudflare
   Access (or another IdP) as the login, giving per-person identity instead of one shared Basic credential. Not
   built; would remove the "everyone is the same user" weakness. Candidate for a real investigation block.
-- **B728-G2** (low) — exact Cloudflare edge mechanism to inject the header (Worker vs transform rule vs origin
-  config) and whether Access + injected Basic can coexist cleanly on one hostname. Vendor-side, verify live.
+- **B728-G2** (low) — RESOLVED for the inject mechanism by §728.5: a Cloudflare **Transform Rule** (phase
+  `http_request_late_transform`) adds the static Basic header — no Worker needed for a static value. Still open:
+  a live deploy where Access AND the Basic injection run together on one hostname (the confirmed deploy was OPEN,
+  no Access), to prove the two layers coexist in practice.
