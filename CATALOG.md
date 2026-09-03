@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **724 bloques**
+Total: **725 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -729,6 +729,7 @@ Total: **724 bloques**
 | 724 | [niagara-mental-model-bloque724.md](niagara-mental-model-bloque724.md) | B724 — Niagara N4 — web-hmi (WH1): the Honeywell WEB-HMI touchscreen panel family — models, the WEB-HMI10/CF deploy target, the HTML5/Chromium-on-Linux display model, and the responsive/kiosk implications for a served dashboard |
 | 725 | [niagara-mental-model-bloque725.md](niagara-mental-model-bloque725.md) | B725 — Niagara N4 — signing-pki (SP-OP1): obtaining a USABLE code-signing identity from a running install — the two signing worlds, the keystore.jceks / System-Passphrase barrier, the Workbench PEM-export AES-GCM gotcha, and the BouncyCastle→PKCS12 recovery |
 | 726 | [niagara-mental-model-bloque726.md](niagara-mental-model-bloque726.md) | Block 726 — Remote Workbench to a JACE behind a jump host over SSH port-forwarding: the localhost high-port pattern, why Fox does NOT break it (no IP redirect), and the Platform-only path for backups/commissioning |
+| 727 | [niagara-mental-model-bloque727.md](niagara-mental-model-bloque727.md) | Block 727 — `access-control` RUNBOOK: exposing an N4 station as an oBIX SERVER to an external oBIX client — the operator procedure (add `ObixNetwork` → enable the `Server` slot → bind a station user to `HTTPBasicScheme` → license `export`) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

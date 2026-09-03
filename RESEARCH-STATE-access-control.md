@@ -26,7 +26,7 @@ blocked_open: 0
 <!-- /research-state.v1 -->
 
 focus: access-control
-status: stopped (8/8, investigable=0; AC1→B558 … AC8→B566). Runbooks (document-mode, NOT gaps): B560 = cloudflared remote access; B726 = SSH -L jump-host variant (2026-09-02, [CERT-live] Pancaddia León — Fox no-IP-redirect proof + Platform-only backup/commission path). §18 retro pending.
+status: stopped (8/8, investigable=0; AC1→B558 … AC8→B566). Runbooks (document-mode, NOT gaps): B560 = cloudflared remote access; B726 = SSH -L jump-host variant (2026-09-02, [CERT-live] Pancaddia León — Fox no-IP-redirect proof + Platform-only backup/commission path); B727 = expose station AS oBIX server to an external client (2026-09-03, ObixNetwork + Server slot + per-user HTTPBasicScheme + license `export`; [CERT-doc]+[CERT], cites B499/B509/B600). §18 retro pending.
 seeded_from: AUDIT-FIRST coverage sweep 2026-08-28 (delegated sonnet; pre-flight + AC1 verified inline)
 seeded_on: 2026-08-28
 gaps_total: 8 investigable (AC1–AC8)
