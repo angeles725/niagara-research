@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **725 bloques**
+Total: **726 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -730,6 +730,7 @@ Total: **725 bloques**
 | 725 | [niagara-mental-model-bloque725.md](niagara-mental-model-bloque725.md) | B725 — Niagara N4 — signing-pki (SP-OP1): obtaining a USABLE code-signing identity from a running install — the two signing worlds, the keystore.jceks / System-Passphrase barrier, the Workbench PEM-export AES-GCM gotcha, and the BouncyCastle→PKCS12 recovery |
 | 726 | [niagara-mental-model-bloque726.md](niagara-mental-model-bloque726.md) | Block 726 — Remote Workbench to a JACE behind a jump host over SSH port-forwarding: the localhost high-port pattern, why Fox does NOT break it (no IP redirect), and the Platform-only path for backups/commissioning |
 | 727 | [niagara-mental-model-bloque727.md](niagara-mental-model-bloque727.md) | Block 727 — `access-control` RUNBOOK: exposing an N4 station as an oBIX SERVER to an external oBIX client — the operator procedure (add `ObixNetwork` → enable the `Server` slot → bind a station user to `HTTPBasicScheme` → license `export`) |
+| 728 | [niagara-mental-model-bloque728.md](niagara-mental-model-bloque728.md) | Block 728 — `access-control` RUNBOOK: login-less landing on an N4 web dashboard behind a public reverse proxy — the proxy injects `Authorization: Basic` for a dedicated `HTTPBasicScheme` user (there is NO native anonymous/auto-logon in N4), and how to keep "no login" from meaning "full control for anyone" |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
