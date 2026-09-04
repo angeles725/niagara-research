@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **748 bloques**
+Total: **751 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -753,6 +753,9 @@ Total: **748 bloques**
 | 748 | [niagara-mental-model-bloque748.md](niagara-mental-model-bloque748.md) | B748 · Making our refrigeration modules interactive and low-cognitive-load — a ranked, buildable playbook, plus the modern connection options (browser flow view, Node-RED bridge) |
 | 749 | [niagara-mental-model-bloque749.md](niagara-mental-model-bloque749.md) | B749 · How Honeywell organizes its N4 modules — the block-distribution taxonomy across ~30 modules (the 10 recurring patterns, code-grounded) |
 | 750 | [niagara-mental-model-bloque750.md](niagara-mental-model-bloque750.md) | B750 · Applying the Honeywell organization taxonomy to OUR modules — a concrete re-organization of ColdRoomPan / CompPan / DashboardPan |
+| 751 | [niagara-mental-model-bloque751.md](niagara-mental-model-bloque751.md) | B751 · How modules AUTHOR the Workbench (-wb) layer — the "how much wb is enough" ladder + the Manager/View/FieldEditor/Command recipes (code-grounded across Tridium + Honeywell) |
+| 752 | [niagara-mental-model-bloque752.md](niagara-mental-model-bloque752.md) | B752 · How modules AUTHOR the browser (-ux) layer — the three UI-serving recipes, the two bajaux data-channel dialects, PX authoring, and the RBAC contrast (code-grounded) |
+| 753 | [niagara-mental-model-bloque753.md](niagara-mental-model-bloque753.md) | B753 · WB + UX authoring playbook for OUR modules — what to build, what to skip, and the decisions for ColdRoomPan / CompPan / DashboardPan |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
