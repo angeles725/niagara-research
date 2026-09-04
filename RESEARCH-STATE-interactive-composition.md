@@ -16,9 +16,9 @@
 
 <!-- research-state.v1 -->
 schema: research-state.v1
-covered_blocks: 745
-gaps_closed: 4
-known_gaps: 4
+covered_blocks: 747
+gaps_closed: 10
+known_gaps: 10
 investigable_open: 0
 requires_execution_open: 0
 blocked_open: 0
@@ -28,15 +28,15 @@ block_scope: shared-global
 <!-- /research-state.v1 -->
 
 focus: interactive-composition
-status: stopped (4/4 investigable closed in one run; deliverable docs/interactive-composition.md pending optional write; next free block B749)
+status: stopped (10/10 investigable closed; Honeywell org taxonomy B749 + applied playbook B750; 4 requires-execution gaps open for prototyping; next free block B751)
 bootstrapped_on: 2026-09-03
-block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libre: B749)
+block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libre: B751)
 
 ## Coverage
 
-- **Covered blocks**: 745 corpus-wide (this focus: B747-B748) (shared-global)
-- **Coverage metric**: 4 / 4 gaps closed
-- **Deliverable**: `docs/interactive-composition.md` (optional human-readable guide — B747+B748 already carry the full content)
+- **Covered blocks**: 747 corpus-wide (this focus: B747-B750) (shared-global)
+- **Coverage metric**: 10 / 10 gaps closed
+- **Deliverable**: `docs/interactive-composition.md` (optional — B747-B750 carry the full content)
 
 ## Gap-backlog (prioritized)
 
@@ -46,6 +46,12 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 | high | IC2 — Ranked, buildable recommendations for OUR modules to be interactive + not-overwhelming: compose-into-children, SUMMARY pins, icons/glyphs, palette assembly templates, status line, units, tags — each tied to a code-grounded block | synthesis+deliverable | closed (B748 — 6-row ranked playbook by impact÷cost, sequenced into B742) |
 | medium | IC3 — Modern connections & methods: the browser-native flow view (bajaux vs Swing), Niagara↔Node-RED bridge (oBIX/MQTT/BACnet/REST), and where a low-code interactive layer fits WITHOUT replacing the control engine | synthesis+code | closed (B748 §748.4 — division of labor: Niagara=control engine of record, low-code=presentation over oBIX/MQTT/REST) |
 | low | IC4 — The three visual-programming engines already in this install compared (Niagara Wire Sheet · kitControl function blocks · Honeywell Spyder FB tool) — what each teaches about a good interactive block model | synthesis+code | closed (B747 §747.4 — kitControl live vs Spyder compile→download; the stage/commit lesson) |
+| high | IC5 — How the Honeywell PLANT CONTROLLER / IRM application stack organizes its blocks (containment tree, app vs driver pattern, domain extensions) | code | closed (sweep → B749: honPlantController service-tree, honIrmConfig BACnet device + BIrmProgram/BIrmFolder FB tree, honIrmControl 150 FB library, honIrmAppl palette functionBlockCount=1215) |
+| high | IC6 — How the Honeywell SPYDER / FUNCTION-BLOCK modules organize an FB application (app container, FB grouping, I/O vs SW-point vs FB, macros) | code | closed (sweep → B749 P1/P6: BApplicationLogic=BPointDeviceExt, BMacro=BPointFolder, flat dynamic FBs, Library/Palette reuse; categories = package taxonomy) |
+| high | IC7 — How the Honeywell DRIVER / DEVICE-MANAGER modules instantiate the Network→Device→Ext→Point tree and where they deviate | code | closed (sweep → B749 P2/P7: only honBACnetUtilities+honMqttDriver have the spine; config promoted to BBacnetDeviceParameters ext; managers hold no containers) |
+| medium | IC8 — How the Honeywell WALL-MODULE / SMART-SENSOR / SYLK device modules organize config vs state vs I/O, and the wizard-built trees | code | closed (sweep → B749 P3/P5/P10: honIOBase substrate, config-vs-state-vs-wiremap 3 planes, TB3026B/TC frozen templates) |
+| medium | IC9 — How the Honeywell VENOM APPS / GRAPHICS + alarm/tag/import modules organize apps, semantic models, and alarm trees | code | closed (sweep → B749 P6/P9: Venom apps palette-only BOG trees, honst:Application recursive, honImporter mirror tree, honTagDictionary semantic overlay) |
+| high | IC10 — SYNTHESIS: the Honeywell block-organization taxonomy (the recurring patterns across all families) + the distilled organization playbook for OUR modules | synthesis+deliverable | closed (B749 taxonomy = 10 patterns P1-P10; B750 applied to ColdRoomPan/CompPan/DashboardPan — 5 actionable gaps P2/P3/P4/P6/P9, deploy-safe sequence) |
 
 `tried:` (none blocked — all source is existing corpus blocks + real jars in organized/; SOURCE-BEFORE-AGENT passes).
 
@@ -74,6 +80,8 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 | — | 2026-09-03 | (bootstrap — from the wire-sheet + rt campaign) | — | no · inline | IC1–IC4 seeded |
 | 1 | 2026-09-03 | IC1 + IC4 | B747 | yes · Explore (wiresheet-wb code sweep, 28 tool calls) + inline synthesis | B747-G3 (BPalette widget not opened); closed B735-G1, B747-G1/G2 |
 | 2 | 2026-09-03 | IC2 + IC3 | B748 | no · inline (design synthesis over B747 + campaign) | B748-G1 (bajaux flow view PoC), B748-G2 (Node-RED↔Niagara MQTT/oBIX PoC) — both requires-execution |
+| 3 | 2026-09-03 | IC5-IC9 (Honeywell org census) | B749 | yes · 5× Explore parallel (Plant/IRM · Spyder/FB · drivers · wall/sensor · Venom) ~110 tool calls | B749-G1/G2 (Spyder internals, Application template semantics) |
+| 4 | 2026-09-03 | IC10 (applied playbook) | B750 | no · inline (synthesis of B749 × our audit) | B750-G1 (slotomatic refactor diff), B750-G2 (author palette templates + tag dict) — requires-execution |
 
 ## Blocked gaps (each tagged with what it needs)
 
@@ -81,8 +89,8 @@ block_prefix: niagara-mental-model-bloqueN.md (numeración global; próximo libr
 
 ## Stop control (primary = read-only-investigable exhaustion, METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: 0 (STOP — all four closed in one run)
-- **Open gaps — requires-execution**: 2 (B748-G1 bajaux flow view PoC; B748-G2 Node-RED↔Niagara PoC)
+- **Open gaps — read-only investigable**: 0 (STOP — all 10 closed: IC1-IC4 + IC5-IC10)
+- **Open gaps — requires-execution**: 4 (B748-G1 bajaux flow view; B748-G2 Node-RED↔Niagara PoC; B750-G1 slotomatic refactor diff; B750-G2 palette templates + tag dict authoring)
 - **Open gaps — blocked**: 0
 - Budget cap: none
 

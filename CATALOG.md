@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **746 bloques**
+Total: **748 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -751,6 +751,8 @@ Total: **746 bloques**
 | 746 | [niagara-mental-model-bloque746.md](niagara-mental-model-bloque746.md) | B746 · The module palette — authoring format (BOG XML), what ours exposes, and pre-configured assembly templates for commissioning |
 | 747 | [niagara-mental-model-bloque747.md](niagara-mental-model-bloque747.md) | B747 · Niagara's Wire Sheet IS a flow-programming surface — a feature-by-feature comparison with Node-RED, and the three visual-FB engines already in this install |
 | 748 | [niagara-mental-model-bloque748.md](niagara-mental-model-bloque748.md) | B748 · Making our refrigeration modules interactive and low-cognitive-load — a ranked, buildable playbook, plus the modern connection options (browser flow view, Node-RED bridge) |
+| 749 | [niagara-mental-model-bloque749.md](niagara-mental-model-bloque749.md) | B749 · How Honeywell organizes its N4 modules — the block-distribution taxonomy across ~30 modules (the 10 recurring patterns, code-grounded) |
+| 750 | [niagara-mental-model-bloque750.md](niagara-mental-model-bloque750.md) | B750 · Applying the Honeywell organization taxonomy to OUR modules — a concrete re-organization of ColdRoomPan / CompPan / DashboardPan |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
