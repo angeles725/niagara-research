@@ -39,3 +39,6 @@ module-navigator/
 
 # Full JACE-8000 microSD raw image + extracted payloads (secret-bearing: config.bog, keyrings, shadow, factory creds). Kept in-repo for local work, NEVER committed.
 local-sd-image/
+
+# Module backup tarballs (large, local-only — produced by ng-deploy backups)
+_backups/
