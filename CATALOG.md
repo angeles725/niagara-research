@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **726 bloques**
+Total: **744 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -731,6 +731,24 @@ Total: **726 bloques**
 | 726 | [niagara-mental-model-bloque726.md](niagara-mental-model-bloque726.md) | Block 726 — Remote Workbench to a JACE behind a jump host over SSH port-forwarding: the localhost high-port pattern, why Fox does NOT break it (no IP redirect), and the Platform-only path for backups/commissioning |
 | 727 | [niagara-mental-model-bloque727.md](niagara-mental-model-bloque727.md) | Block 727 — `access-control` RUNBOOK: exposing an N4 station as an oBIX SERVER to an external oBIX client — the operator procedure (add `ObixNetwork` → enable the `Server` slot → bind a station user to `HTTPBasicScheme` → license `export`) |
 | 728 | [niagara-mental-model-bloque728.md](niagara-mental-model-bloque728.md) | Block 728 — `access-control` RUNBOOK: login-less landing on an N4 web dashboard behind a public reverse proxy — the proxy injects `Authorization: Basic` for a dedicated `HTTPBasicScheme` user (there is NO native anonymous/auto-logon in N4), and how to keep "no login" from meaning "full control for anyone" |
+| 729 | [niagara-mental-model-bloque729.md](niagara-mental-model-bloque729.md) | B729 · Self-firing interval/periodic triggers in a BComponent — the `atSteadyState` + `started` + `clockChanged` lifecycle contract, and the `BDefrostController` interval-never-fires case |
+| 730 | [niagara-mental-model-bloque730.md](niagara-mental-model-bloque730.md) | B730 · Tridium `-rt` component-authoring idioms to adopt — execution/commit, `changed()` discipline, status/fault, timers, slot flags, actions, facets, and off-thread IO |
+| 731 | [niagara-mental-model-bloque731.md](niagara-mental-model-bloque731.md) | B731 · ColdRoomPan / CompPan / DashboardPan — rt hardening & feature backlog, audited against the corpus |
+| 732 | [niagara-mental-model-bloque732.md](niagara-mental-model-bloque732.md) | B732 · Authoring real Niagara alarms from a control module — `BAlarmSourceExt` is a point extension, the offnormal/fault algorithm family, and where our temp limits actually belong |
+| 733 | [niagara-mental-model-bloque733.md](niagara-mental-model-bloque733.md) | B733 · Modulating (0-10V) outputs and math/PID models in Niagara — the writable→AO chain, `kitControl.BLoopPoint`, the math block family, and where they'd fit our refrigeration modules |
+| 734 | [niagara-mental-model-bloque734.md](niagara-mental-model-bloque734.md) | B734 · Niagara point types — the 4×2 taxonomy, point vs writable (priority array), proxy vs local, point extensions, and how our custom-component design relates |
+| 735 | [niagara-mental-model-bloque735.md](niagara-mental-model-bloque735.md) | B735 · How Tridium declares slots, facets (units/precision/range), `proxyExt`, and WHY not every slot shows up at Link Mark (HIDDEN / SUMMARY / BIUnlinkable / checkLink) |
+| 736 | [niagara-mental-model-bloque736.md](niagara-mental-model-bloque736.md) | B736 · The `BStatus` bit model — the 8 status flags, `isValid`/`isOk`, immutable `make*` factories, propagation, and how our modules should set/consume them |
+| 737 | [niagara-mental-model-bloque737.md](niagara-mental-model-bloque737.md) | B737 · What runs and guards an RT module (engine thread + daemon/engine watchdog), and how Tridium COMPOSES components into children — the fix for our flat-slot sprawl |
+| 738 | [niagara-mental-model-bloque738.md](niagara-mental-model-bloque738.md) | B738 · Practical authoring how-to — adding a proxy ext, facets, `propagateFlags`, and an icon/SVG to a block |
+| 739 | [niagara-mental-model-bloque739.md](niagara-mental-model-bloque739.md) | B739 · Safe schema evolution — why retyping an existing slot breaks the `.bog` and won't boot, and the add-don't-retype rule ([CERT-live] outage) |
+| 740 | [niagara-mental-model-bloque740.md](niagara-mental-model-bloque740.md) | B740 · Frozen enums — how to author them, and why a shared enum linked across two custom modules breaks (`Missing class ColdRoomPan:HoaMode`, [CERT-live]) |
+| 741 | [niagara-mental-model-bloque741.md](niagara-mental-model-bloque741.md) | B741 · QA / test plan for our modules — the 4-layer assurance stack, what we already cover (63 pure tests), and the one dangerous gap (defrost logic is untested) |
+| 742 | [niagara-mental-model-bloque742.md](niagara-mental-model-bloque742.md) | B742 · ColdRoomPan / CompPan / DashboardPan — consolidated rt refactor & hardening plan (sequenced, deploy-safe) |
+| 743 | [niagara-mental-model-bloque743.md](niagara-mental-model-bloque743.md) | B743 · Testing timer-arming & lifecycle — why the math seam isn't enough, the scheduler-seam pattern, `BTestNgStation`, and the layered answer for WSL (closes B741-G2) |
+| 744 | [niagara-mental-model-bloque744.md](niagara-mental-model-bloque744.md) | B744 · Anatomy of a Niagara RT "block" (BComponent) — the consolidated pattern: what it is made of, its format and rules, what it shows, does, and can explore/discover |
+| 745 | [niagara-mental-model-bloque745.md](niagara-mental-model-bloque745.md) | B745 · Niagara units — `BUnit` / `UnitDatabase`, the `units` facet, and how to put °C / kPa / % on a numeric slot (authoring doc) |
+| 746 | [niagara-mental-model-bloque746.md](niagara-mental-model-bloque746.md) | B746 · The module palette — authoring format (BOG XML), what ours exposes, and pre-configured assembly templates for commissioning |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
