@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **751 bloques**
+Total: **758 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -756,6 +756,13 @@ Total: **751 bloques**
 | 751 | [niagara-mental-model-bloque751.md](niagara-mental-model-bloque751.md) | B751 · How modules AUTHOR the Workbench (-wb) layer — the "how much wb is enough" ladder + the Manager/View/FieldEditor/Command recipes (code-grounded across Tridium + Honeywell) |
 | 752 | [niagara-mental-model-bloque752.md](niagara-mental-model-bloque752.md) | B752 · How modules AUTHOR the browser (-ux) layer — the three UI-serving recipes, the two bajaux data-channel dialects, PX authoring, and the RBAC contrast (code-grounded) |
 | 753 | [niagara-mental-model-bloque753.md](niagara-mental-model-bloque753.md) | B753 · WB + UX authoring playbook for OUR modules — what to build, what to skip, and the decisions for ColdRoomPan / CompPan / DashboardPan |
+| 754 | [niagara-mental-model-bloque754.md](niagara-mental-model-bloque754.md) | B754 · Module versioning + upgrade safety — how a module carries a version, how the station enforces it at boot, and the exact saved-data survival matrix across a version bump (code-grounded) |
+| 755 | [niagara-mental-model-bloque755.md](niagara-mental-model-bloque755.md) | B755 · The bit models a module author actually works with — slot Flags, BStatus, BPermissions, and the BVersion relation bits (exact values, code-verified) |
+| 756 | [niagara-mental-model-bloque756.md](niagara-mental-model-bloque756.md) | B756 · The module build toolchain — vendorVersion, version-targeting to an SDK, the gradle-niagara plugin family, .jar vs .dist, and the signing chain (authoring recipe, code-grounded) |
+| 757 | [niagara-mental-model-bloque757.md](niagara-mental-model-bloque757.md) | B757 · Station integration — authoring a `BAbstractService` and controlling the nav tree (BINavNode), code-grounded |
+| 758 | [niagara-mental-model-bloque758.md](niagara-mental-model-bloque758.md) | B758 · Semantic tags/relations authoring + northbound data exposure (oBIX/Fox/BOX/REST) + BQL from code — the module recipes |
+| 759 | [niagara-mental-model-bloque759.md](niagara-mental-model-bloque759.md) | B759 · Lexicon / i18n + the -doc/help profile — display-name and help authoring for a module, code-grounded |
+| 760 | [niagara-mental-model-bloque760.md](niagara-mental-model-bloque760.md) | B760 · Consolidated actionable audit — ColdRoomPan / CompPan / DashboardPan against the whole authoring corpus (B729-B759), the sequenced punch-list |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
