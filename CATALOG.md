@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **744 bloques**
+Total: **746 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -749,6 +749,8 @@ Total: **744 bloques**
 | 744 | [niagara-mental-model-bloque744.md](niagara-mental-model-bloque744.md) | B744 · Anatomy of a Niagara RT "block" (BComponent) — the consolidated pattern: what it is made of, its format and rules, what it shows, does, and can explore/discover |
 | 745 | [niagara-mental-model-bloque745.md](niagara-mental-model-bloque745.md) | B745 · Niagara units — `BUnit` / `UnitDatabase`, the `units` facet, and how to put °C / kPa / % on a numeric slot (authoring doc) |
 | 746 | [niagara-mental-model-bloque746.md](niagara-mental-model-bloque746.md) | B746 · The module palette — authoring format (BOG XML), what ours exposes, and pre-configured assembly templates for commissioning |
+| 747 | [niagara-mental-model-bloque747.md](niagara-mental-model-bloque747.md) | B747 · Niagara's Wire Sheet IS a flow-programming surface — a feature-by-feature comparison with Node-RED, and the three visual-FB engines already in this install |
+| 748 | [niagara-mental-model-bloque748.md](niagara-mental-model-bloque748.md) | B748 · Making our refrigeration modules interactive and low-cognitive-load — a ranked, buildable playbook, plus the modern connection options (browser flow view, Node-RED bridge) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

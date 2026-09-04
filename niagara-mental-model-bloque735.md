@@ -104,6 +104,7 @@ Five layered filters decide what the link picker offers/accepts:
   **B734** (points/proxyExt), module-anatomy B629-639 (Slotomatic).
 
 ## Open gaps
-- **B735-G1**: the wire-sheet's exact pin-selection (does it show only SUMMARY, or SUMMARY+linked?) —
-  inferred here; a WB-side confirmation (wiresheet-wb) would make it [CERT].
+- **B735-G1**: CLOSED by **B747** — the wire sheet shows ONLY SUMMARY slots (`SlotBarGlyph.java:56
+  this.visible = Flags.isSummary(component, slot)`), and "pin a slot" (`PinSlotsCommand.java:38`) literally
+  sets the summary flag. So SUMMARY is the exact pin set; non-summary slots are never pin rows. [CERT]
 - **B735-G2**: `LinkCheck` result codes + `doCheckLink()` override patterns in real modules — deferred.
