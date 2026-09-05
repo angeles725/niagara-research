@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **802 bloques**
+Total: **803 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -807,6 +807,7 @@ Total: **802 bloques**
 | 811 | [niagara-mental-model-bloque811.md](niagara-mental-model-bloque811.md) | B811 · Station snapshot automation — how to copy a running station (bog, logs, logic, links) to inspect it, without mounting the filesystem `[CERT]` |
 | 812 | [niagara-mental-model-bloque812.md](niagara-mental-model-bloque812.md) | B812 · The heartbeat/liveness watchdog pattern — an author-built independent monitor that detects a STALLED producer (not a bad value) `[INFER, primitive-grounded]` |
 | 813 | [niagara-mental-model-bloque813.md](niagara-mental-model-bloque813.md) | B813 · UX servlet authoring conventions — registration/routing/lifecycle, the JSON+facet+CSRF contract, from Tridium's own BWebServlet vs our dashboards `[CERT]` |
+| 814 | [niagara-mental-model-bloque814.md](niagara-mental-model-bloque814.md) | B814 · Authoring a MODULE tag dictionary — ship a smart dictionary so your components are nav/search/hierarchy addressable `[CERT]` |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
