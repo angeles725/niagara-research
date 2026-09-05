@@ -16,8 +16,8 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 0
-gaps_closed: 0
+covered_blocks: 1
+gaps_closed: 1
 known_gaps: 3
 investigable_open: 1
 requires_execution_open: 0
@@ -25,7 +25,7 @@ blocked_open: 0
 <!-- /research-state.v1 -->
 
 focus: module-ux-testing-and-write-surface
-status: bootstrapping (0/3; investigable_open=1, synthesis pending evidence)
+status: active (1/3; UXT1→B762 CLOSED; UXT2 playbook next → B763)
 seeded_from: AUDIT-FIRST coverage check 2026-09-05 (corpus-nav: "test the servlet"/"pure router test"/"SPA unit test"/"ux test" = No matches → the -ux/-wb TESTING half is genuinely uncovered; the AUTHZ half is REMITTANCE)
 seeded_on: 2026-09-05
 gaps_total: 3 (UXT1 genuine · UXT2 playbook-synthesis · UXT3 bounded determination)
@@ -36,8 +36,8 @@ block_prefix: niagara-mental-model-bloqueN.md (shared global numbering)
 
 | Priority | Gap | Where | Status |
 |---|---|---|---|
-| high | **UXT1 — `-ux`/`-wb` OFF-STATION testing (the genuinely uncovered gap).** What of a `-ux` servlet is unit-testable in WSL without a station: the pure routing/dispatch seam separable from `BWebServlet` (request/response), a `DashboardReader`-style pure data-shaper, and the SPA JS as pure functions (`node --check` on extracted `<script>`, a headless node harness). Is there any off-station `-wb` test path, or is `-wb` strictly station/Workbench-only (`BTestNgStation`)? | test-wb (`javax/baja/test`), bajaux, our DashboardPan-ux / chihuahua-ux/-wb + corpus-nav confirms No-match | **OPEN — evidence sweep running → B762** |
-| high | **UXT2 — the `-ux` write-surface PLAYBOOK (synthesis, no new decompile).** Wire the COVERED authorization knowledge + the UXT1 test seams into one build-kit doctrine: how to build → test → secure a `-ux` servlet write endpoint for OUR modules (OPERATOR_WRITE fail-closed check + category/permission map + CSRF/X-Requested-With guard + the audit trail), and WHERE each piece is tested (pure router unit test off-station, live smoke on the JACE). | synthesis of REMITTANCE below + UXT1 | **OPEN (blocked on UXT1) → B763** |
+| high | **UXT1 — `-ux`/`-wb` OFF-STATION testing (the genuinely uncovered gap).** What of a `-ux` servlet is unit-testable in WSL without a station: the pure routing/dispatch seam separable from `BWebServlet` (request/response), a `DashboardReader`-style pure data-shaper, and the SPA JS as pure functions (`node --check` on extracted `<script>`, a headless node harness). Is there any off-station `-wb` test path, or is `-wb` strictly station/Workbench-only (`BTestNgStation`)? | test-wb (`javax/baja/test`), bajaux, our DashboardPan-ux / chihuahua-ux/-wb + corpus-nav confirms No-match | **COVERED → B762** (seam = thin Baja adapter over pure core: `-ux` `route()`→`RouteAction` [DashboardDispatch final class, 14 pure tests]; `-wb` `wb/model/` Baja-injected-as-`Predicate` [33 pure tests] = key discovery; JS SPA syntax-only [`node --check`, no `module.exports` seam]; WSL-vs-station boundary at `HttpURLConnection`/`BStation`. 8/8 [CERT] grep-verified) |
+| high | **UXT2 — the `-ux` write-surface PLAYBOOK (synthesis, no new decompile).** Wire the COVERED authorization knowledge + the UXT1 test seams into one build-kit doctrine: how to build → test → secure a `-ux` servlet write endpoint for OUR modules (OPERATOR_WRITE fail-closed check + category/permission map + CSRF/X-Requested-With guard + the audit trail), and WHERE each piece is tested (pure router unit test off-station, live smoke on the JACE). | synthesis of REMITTANCE below + UXT1 | **OPEN — UXT1 done, ready → B763** |
 | medium | **UXT3 — `-wb` off-station testability determination (bounded).** Confirm whether a `-wb` FieldEditor/Manager/View has ANY WSL-runnable pure seam, or is entirely station-bound; if station-bound, say so cleanly (the honest negative) so the kit's `-wb` doctrine (`types/wb-widgets.md`, rung-0 today) states it. | test-wb, bajaui, wb-ux-authoring B751 | **OPEN (bounded) → B764 if it earns a block, else folded into UXT1** |
 
 ### REMITTANCE (already covered — will NOT be re-derived, only CITED)
@@ -68,3 +68,4 @@ block_prefix: niagara-mental-model-bloqueN.md (shared global numbering)
 | Iter | Gap | Block | Delegated? · model tier | New gaps uncovered |
 |---|---|---|---|---|
 | seed | AUDIT-FIRST coverage check (corpus-nav testing terms → No-match; authz terms → covered) | — | inline (investigador1) | UXT1 (genuine), UXT2 (playbook), UXT3 (bounded) |
+| 1 | UXT1 `-ux`/`-wb` off-station testing seam taxonomy (route()→RouteAction; wb/model Predicate-injection; JS syntax-only residue; WSL-vs-station boundary) | B762 | yes · Explore sweep + inline grep-verify (8/8 [CERT]) | UXT1-G1 JS behavioral harness · G2 DashboardPan SPA monolith · G3 DashboardReader impurity · G4 -wb paint station-only (→UXT3) |

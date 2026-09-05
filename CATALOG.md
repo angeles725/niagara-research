@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **759 bloques**
+Total: **760 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -764,6 +764,7 @@ Total: **759 bloques**
 | 759 | [niagara-mental-model-bloque759.md](niagara-mental-model-bloque759.md) | B759 · Lexicon / i18n + the -doc/help profile — display-name and help authoring for a module, code-grounded |
 | 760 | [niagara-mental-model-bloque760.md](niagara-mental-model-bloque760.md) | B760 · Consolidated actionable audit — ColdRoomPan / CompPan / DashboardPan against the whole authoring corpus (B729-B759), the sequenced punch-list |
 | 761 | [niagara-mental-model-bloque761.md](niagara-mental-model-bloque761.md) | B761 · Connecting a Honeywell Spyder to a JACE-8000 and running discovery — the end-to-end field-integration workflow (BACnet MS/TP primary, LON legacy), a cross-cutting operational synthesis |
+| 762 | [niagara-mental-model-bloque762.md](niagara-mental-model-bloque762.md) | B762 · Off-station testing of the `-ux`/`-wb` web tier — the pure-seam taxonomy (`route()`→RouteAction, `wb/model/` lambda-injection, the JS residue) and the WSL-vs-station boundary |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
