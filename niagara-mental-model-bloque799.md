@@ -32,6 +32,9 @@ MinimalPan's `{setpoint:double OPERATOR, interval:baja:RelTime, tickExpired:acti
 
 All seven use B795's existing vocabulary — no new `change_kind` was invented; `unknown_kind` deliberately
 exercises the `UNKNOWN` fail-safe (a property↔action kind-swap the table has no specific row for).
+**Note:** B795 has since named this exact case `swap_slot_kind = OUTAGE` (commit `65090b812`, gap B795-G3,
+which cites this block). The verdict is unchanged (OUTAGE), so the `unknown_kind` fixture stays GREEN; PR5's
+parser MAY emit `swap_slot_kind` instead of `UNKNOWN` for a more precise operator message (same result).
 
 ## 799.2 — The slot-diff rules the parser must implement `[CERT-artifact, grounded in B795 §795.1]`
 
