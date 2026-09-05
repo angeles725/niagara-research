@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **783 bloques**
+Total: **785 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -788,6 +788,8 @@ Total: **783 bloques**
 | 792 | [niagara-mental-model-bloque792.md](niagara-mental-model-bloque792.md) | Block 792 — `palette-lexicon-agents` extractor + census: duplicate bare lexicon keys across Tridium exemplars (B759 hazard confirmed real) |
 | 793 | [niagara-mental-model-bloque793.md](niagara-mental-model-bloque793.md) | B793 · Building B790's minimal module: the skeleton is gate-green [CERT], and the 10 corrections the build forced |
 | 794 | [niagara-mental-model-bloque794.md](niagara-mental-model-bloque794.md) | B794 · `scaffold-module.sh`: the minimal-module generator round-trips gate-green [CERT] — the PR9 apply reference |
+| 795 | [niagara-mental-model-bloque795.md](niagara-mental-model-bloque795.md) | B795 · MM3 decision table — the slot-change survival matrix as a machine-readable classifier for schema-risk.sh (mechanizes B754) |
+| 796 | [niagara-mental-model-bloque796.md](niagara-mental-model-bloque796.md) | B796 · The `-ux` write-surface seam, captured as THE kit exemplar — DashboardPan-ux walked with file:line (document-mode §20) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
