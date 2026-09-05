@@ -70,6 +70,25 @@ Siblings `BSineWave`/`BRamp` share the idiom — a stable kitControl pattern. **
   watches a job heartbeat [INFER: a job-watchdog author would `schedulePeriodically` a poll of `BJob.getProgress()`/
   heartbeat age — no exemplar found, find-zero not proof of absence].
 
+## 775.6 — Timer self-heal: the `BTimeTrigger` exemplar (defense-in-depth layers 5, 6, and a partial 4) `[CERT]`
+For a timer-driven component, `javax.baja.control.trigger.BTimeTrigger` (control-rt) is Tridium's first-party
+self-heal pattern — cite it for the kit's "defense-in-depth for timer state machines" checklist:
+- **ONE idempotent re-arm entry (`init()`), called from every hook** (layer 5): `init()` stops any old scheduler,
+  rebuilds it from `triggerMode`, and recomputes `nextTrigger` (`BTimeTrigger.java:238-249`). It is invoked from
+  `started()` (:221, if atSteadyState), `atSteadyState()` (:213, if running), `changed(triggerMode)` (:284-290), and
+  `clockChanged()` (:294). `stopped()` cancels the scheduler (:229-233). This is the B729 arm-in-both rule generalized
+  to a single ensureArmed() entry.
+- **Self-heal on the classic dead-schedule cause — a clock jump (partial layer 4)**: `clockChanged(BRelTime) → init()`
+  (:294-296) re-arms the WHOLE schedule when the system clock shifts (the discontinuity that would otherwise strand a
+  pending ticket). `doCheckTime()` recomputes `nextTrigger` from `getNextTriggerTime(now, getLastTrigger())`
+  (:266-278) = catch-up relative to the last ACTUAL fire, not a naive reschedule.
+- **Expose the next fire (layer 6)**: `nextTrigger` is a `READONLY` property (:136), recomputed on every init/check;
+  `lastTrigger` READONLY (:108).
+- **What it is NOT (honest boundary)**: BTimeTrigger self-heals on EVENTS (clock change, lifecycle, config), not via an
+  INDEPENDENT periodic monitor that polls "is my ticket null / overdue beyond tolerance?" — that independent-tick form
+  (the lead's layer 4 proper) remains find-zero in the first-party corpus (MAE4-G1). So the kit cites BTimeTrigger for
+  layers 5/6 + clock-jump self-heal, and marks the independent dead-ticket monitor as author-design ([INFER]).
+
 ## Self-verify
 
 | # | Claim | Marker | Evidence |
@@ -81,9 +100,11 @@ Siblings `BSineWave`/`BRamp` share the idiom — a stable kitControl pattern. **
 | 5 | CORRECTION: no `javax.baja.sys.BTimer` — only `cl.hvac.BTimer` (a wiresheet block, not a scheduler) | [CERT] | find: no baja BTimer; clHVAC-rt/cl/hvac/BTimer.java |
 | 6 | Configurable-interval exemplar: `BRandom` — `BRelTime updateInterval` + `Clock.Ticket` + started/changed(re-arm)/stopped(cancel) | [CERT] | BRandom.java:43,48,52,98,103 |
 | 7 | Author `BAbstractMonitor` ≠ native `EngineWatchdog` (B124/B681) ≠ `BJob` heartbeat (B774) — three distinct layers | [CERT/INFER] | §775.5; B124/B681 native; B774 job |
+| 8 | `BTimeTrigger` self-heals via one idempotent `init()` from started/atSteadyState/changed/clockChanged + exposes nextTrigger; NO independent dead-ticket monitor (find-zero) | [CERT] | BTimeTrigger.java:213,221,238-249,266-278,284-296,136,108 |
 
-**Tally**: 6 [CERT], 1 [CERT/INFER]. No unmarked claims. Spine grep-verified inline this session; corrected the
-sweep's/​seed's "2s poll" and "BTimer scheduler" assumptions on verification.
+**Tally**: 7 [CERT], 1 [CERT/INFER]. No unmarked claims. Spine grep-verified inline this session; corrected the
+sweep's/​seed's "2s poll" and "BTimer scheduler" assumptions on verification; §775.6 cites grep-verified at the
+docSource BTimeTrigger.java.
 
 ## Connections
 - **B729** (arm in started()+atSteadyState()), **B730** (execute discipline) — §775.4 is the CONFIGURABLE-interval
@@ -93,7 +114,9 @@ sweep's/​seed's "2s poll" and "BTimer scheduler" assumptions on verification.
 ## Open gaps
 - **MAE4-G1** — no shipped `BAbstractMonitor` watches a `BJob` heartbeat or a remote-subject last-update age; a
   heartbeat-AGE watchdog is a design an author would build with `schedulePeriodically` but has no first-party exemplar
-  (find-zero). Bounded follow-up if a builder needs a liveness (not threshold) watchdog.
+  (find-zero). Bounded follow-up if a builder needs a liveness (not threshold) watchdog. **PARTIAL (§775.6)**:
+  `BTimeTrigger` self-heals its OWN schedule (clock-jump/lifecycle re-arm via `init()`), but an INDEPENDENT periodic
+  dead-ticket / heartbeat-age monitor is still find-zero — the independent-tick form stays author-design.
 
 > **Extended by [B801]**: the `Clock.schedule`/`schedulePeriodically` delay/period floor — a `<= 0` value throws
 > `IllegalArgumentException` (`EngineManager.java:327/346/366/388`); the "floor" mentioned in the TIMER rule below is

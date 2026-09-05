@@ -33,5 +33,6 @@ block_scope_note: B800=companero (console-log census); B801–B805 reserved for 
 
 ## Coverage / dedupe
 - C extends [B775] (timer authoring) + feeds [B787] (timer lint); the decode/delegation is REMITTANCE to Clock.java/EngineManager.java code.
+- ADDENDUM (lead directive, no new block): B775 §775.6 — the `BTimeTrigger` timer self-heal exemplar (one idempotent `init()` from all hooks + `clockChanged→init()` self-heal + exposed `nextTrigger`) for the kit's 8-layer timer defense-in-depth checklist; MAE4-G1 partially closed (independent dead-ticket monitor still find-zero). Kit cite `[ev: corpus B775]`.
 - A extends [B778] (custom service + server-side same-space Subscriber); the cross-module + distributed hop is the new residue.
 - 7 of 8 originally-briefed dimensions were already blocked (see campaign8-research-candidates.md); this focus pursues only the genuine gaps.
