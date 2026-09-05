@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **796 bloques**
+Total: **797 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -801,6 +801,7 @@ Total: **796 bloques**
 | 805 | [niagara-mental-model-bloque805.md](niagara-mental-model-bloque805.md) | B805 · RT control-logic exemplars — how Tridium implements PID / deadband / latch / protection, the control-physics WHY behind each line, a one-bit fault trace from point to console, and the honest verdict that Tridium ships NO ODE/matrix math `[CERT]` |
 | 806 | [niagara-mental-model-bloque806.md](niagara-mental-model-bloque806.md) | B806 · Resource budget for a JACE/station — what oversaturates it, and the viability of our module logic `[CERT]` |
 | 807 | [niagara-mental-model-bloque807.md](niagara-mental-model-bloque807.md) | B807 · The N4 build pipeline + module versioning — plugin-source-cited task matrix, the station-lock copy, and the reload code path `[CERT]` |
+| 809 | [niagara-mental-model-bloque809.md](niagara-mental-model-bloque809.md) | B809 · Tridium `-wb` authoring conventions — the 5 checks (off-UI-thread traversal, @AgentOn breadth, wb lexicon, load/save lifecycle, deps) + a "good -wb artifact" doctrine, Tridium exemplars vs chihuahua-wb `[CERT]` |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

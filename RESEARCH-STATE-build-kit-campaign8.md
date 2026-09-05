@@ -3,11 +3,11 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 5
-gaps_closed: 5
+covered_blocks: 6
+gaps_closed: 6
 known_gaps: 6
-investigable_open: 1
-requires_execution_open: 3
+investigable_open: 0
+requires_execution_open: 4
 blocked_open: 0
 <!-- /research-state.v1 -->
 
@@ -30,9 +30,9 @@ block_scope_note: B800=companero (console-log census); B801–B805 reserved for 
 | B — history-extension authoring (BHistoryExt family, HistoryService, config + rollover) | **B804** | CLOSED [CERT] | Verdict: a BHistoryExt IS a point extension (extends BPointExtension); two modes Interval (timed, 15min/1s-min) vs COV (change-of-value); BHistoryConfig sets capacity (500 default) + fullPolicy (roll/stop, config-defaults roll); ONE ext per logged slot (chihuahua BChiDatalogger rule). Consumer = chihuahua (ColdRoomPan/DashboardPan don't log history; chihuahua does). 1 bounded gap (B804-G1 time-based capacity). |
 
 | RT-EXEMPLARS — control-logic exemplars from Tridium's modules (PID/BLoopPoint, deadband/BTstat, latches, protections/BAlarmSourceExt, ODE-honest-check, structure/engine, niagaraTest, flowchart) for types/logic.md | **B805** | CLOSED [CERT] | lead reprioritization (user, RT-first). Excavador depth: line + control-physics WHY + one-bit fault trace. Honest negative: Tridium ships NO ODE/matrix (scalar Euler only) → our CompressorControl.step is beyond stock. 2 bounded gaps (B805-G1 offnormal debounce, B805-G2 staged-equipment). |
-| WB-EXEMPLARS — Tridium's own -wb modules as wb doctrine exemplars (nav off UI thread, @AgentOn breadth, wb lexicon, view load/save lifecycle, -wb deps) | B808+ | OPEN (investigable) — NEXT | lead directive; 5 WB checks + 10-line "good -wb artifact" doctrine for PR11 [ev: corpus B808]. AUDIT-FIRST vs types/wb-widgets.md, B780, B791. |
+| WB-EXEMPLARS — Tridium's own -wb modules as wb doctrine exemplars | **B809** | CLOSED [CERT] | 5 checks (THREAD1 off-UI-thread via BSimpleJob.JobThread; AGENT1 narrowest @AgentOn+requiredPermissions; WB-LEX1 wb lexicon; SCAFFOLD1 BWbEditor load/save + legitimate saveValue bypass; DEP1 companion-rt+workbench-wb+bajaui-wb) + hard/advisory + lintable/review split + 10-line doctrine. Tridium exemplars vs chihuahua-wb anti-patterns (all [CERT] in source). 1 requires-exec (B809-G2) + 1 bounded (B809-G1). |
 
-**5 LANES CLOSED** (C=B801, A=B802, STEP-UP=B803, B=B804, RT=B805) + timer-defense addendum (B775 §775.6) + consolidated fold retro (3d1011e33). NEXT = wb-exemplars (B808+). companero's resource-budget (B806/B807) + console census (B800) are separate campaign-8 lanes.
+**6 LANES CLOSED** (C=B801, A=B802, STEP-UP=B803, B=B804, RT=B805, WB=B809) + timer-defense (B775 §775.6) + consolidated fold retro (3d1011e33). companero's B800/B806/B807/B808 are separate campaign-8 lanes. Protection-latch seam scaffold = campaign-9 item (lead-flagged). Next free = B810.
 
 ## Open gaps (requires-execution)
 - **B801-G1 — CLOSED [CERT-live]**: the `<= 0` throw is reached at station runtime — PANCCADIA console shows it 5× from BDefrostController.armTrigger (console_backup_260903_1858.txt; B801 §801.4).
