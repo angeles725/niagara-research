@@ -3,20 +3,20 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 16
-gaps_closed: 16
-known_gaps: 16
+covered_blocks: 17
+gaps_closed: 17
+known_gaps: 17
 investigable_open: 0
-requires_execution_open: 5
+requires_execution_open: 6
 blocked_open: 0
 <!-- /research-state.v1 -->
 
 focus: build-kit-campaign8
-status: ALL 16 CLOSED (16/16). Campaign 8 (user reversed the C7 stop, 2026-09-05). Multi-session focus: investigador1 (Opus) + companero. Open items are requires-execution / bounded gaps only (see below); both consolidated §18 fold retros filed.
+status: ALL 17 CLOSED (17/17). Campaign 8 (user reversed the C7 stop, 2026-09-05). Multi-session focus: investigador1 (Opus) + companero. B816 (write-path/overlap testing) added on a later user mandate. Open items are requires-execution / bounded gaps only (see below); both consolidated §18 fold retros filed (mine extended to D12).
 seeded_from: lead directives 2026-09-05 + campaign8-research-candidates.md (AUDIT-FIRST ranking)
 seeded_on: 2026-09-05
-block_range: B800–B815 (shared-global numbering; B815 next-free = B816)
-owners: investigador1 = B801-B805, B809, B810 + B775 §775.6 addendum · companero = B800, B806-B808, B811-B815
+block_range: B800–B816 (shared-global numbering; next-free = B817)
+owners: investigador1 = B801-B805, B809, B810, B816 + B775 §775.6 addendum · companero = B800, B806-B808, B811-B815
 envelope_note: requires_execution_open counts the investigador1 lanes' station-required gaps (B802-G1, B803-G1, B803-G2, B809-G2, B810-G1); companero's B806-B815 track their own in-block gaps, not re-counted here.
 
 ## Coverage — all campaign-8 blocks (owner · topic · status)
@@ -40,6 +40,8 @@ envelope_note: requires_execution_open counts the investigador1 lanes' station-r
 | B814 | companero | Authoring a module tag dictionary — nav/search/hierarchy addressable components | CLOSED [CERT] |
 | B815 | companero | Station-level / component-lifecycle test authoring (cites B805 §805.8 BTest); §815.10 logs the read-the-client-tree lesson (first pass read a same-named research exemplar) | CLOSED [CERT] (correction 85664208f) |
 
+| B816 | investigador1 | Write-path & overlap testing — threading/link-override (dashboard write to a LINK-TARGET lands then is silently overwritten; set() serializes only the raw store); overlap cases incl. the live armTrigger Clock.schedule(0) crash; write-path test matrix + lints | CLOSED [CERT/live] |
+
 Addendum (no new block): **B775 §775.6** — the BTimeTrigger timer self-heal exemplar (investigador1), folded for the timer defense-in-depth checklist.
 
 ## Fold status
@@ -53,6 +55,7 @@ Addendum (no new block): **B775 §775.6** — the BTimeTrigger timer self-heal e
 - **B803-G1/G2** (open): SAML mid-session re-auth block; gauth TOTP-as-password.
 - **B809-G2** (open): chihuahua-wb EDT-freeze live confirm.
 - **B810-G1** (open): live confirm write-drop-on-DOWN + writeOnUp recovery (pairs with the PANCCADIA fallback gap, #49).
+- **B816-G1** (open): live confirm the servlet-set()↔engine-execute() callback interleave (per-slot store is [CERT] serialized; the callback interleave is [CERT] possible, effect on our slots wants a smoke test). CLIENT residue: fix armTrigger `Math.max(delayMs,1L)` + facet MIN≥1s; add matrix tests for the dashboard-writable slots.
 - Bounded (not requires-execution): B804-G1, B805-G1/G2, B809-G1, B810-G2.
 - companero's B806-B815 carry their own in-block gaps.
 
