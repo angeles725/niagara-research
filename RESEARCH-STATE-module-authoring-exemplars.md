@@ -26,17 +26,17 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 9
-gaps_closed: 9
+covered_blocks: 10
+gaps_closed: 10
 known_gaps: 16
-investigable_open: 6
+investigable_open: 5
 requires_execution_open: 1
 blocked_open: 0
 undocumented_findings: 0
 <!-- /research-state.v1 -->
 
 focus: module-authoring-exemplars
-status: active (9/14 gaps closed: MAE1→B772 + MAE7–MAE14→B778–B785; investigable_open=6 incl. MAE7-G1; +1 req-exec MAE1-G1) — MAE1 + MAE7–MAE14 done; MAE2–MAE6 (B773–B777) now investigador1 (absorbed after companero stalled on a permission prompt)
+status: active (10/14 gaps closed: MAE1→B772 + MAE2→B773 + MAE7–MAE14→B778–B785; investigable_open=5 incl. MAE7-G1; +1 req-exec MAE1-G1) — MAE3–MAE6 (B774–B777) remain, investigador1 (absorbed after companero stalled on a permission prompt)
 seeded_from: AUDIT-FIRST coverage sweep 2026-09-05 (4 parallel Explore shards over disjoint dimension sets D1+D8 / D2+D3+D11 / D4+D10+D12 / D5+D6+D7+D9; ≥2 distinct search terms per cell; driver-verified inline)
 seeded_on: 2026-09-05
 gaps_total: 14 investigable (MAE1–MAE14)
@@ -47,7 +47,7 @@ block_prefix: niagara-mental-model-bloqueN.md (shared global numbering)
 ## Coverage
 
 - **Covered blocks (this focus)**: 9 — B772 (MAE1) + B778–B785 (MAE7–MAE14).
-- **Coverage metric**: 9 / 15 investigable gaps closed (~60%). (MAE7-G1 investigable still open; MAE1-G1 req-exec deferred.)
+- **Coverage metric**: 10 / 15 investigable gaps closed (~67%). (MAE7-G1 investigable still open; MAE1-G1 req-exec deferred.)
 - **Last iteration**: 2026-09-05 — B778–B785 (MAE7–MAE14, investigador1 slice COMPLETE) + B772 (MAE1, companero; second-read PASS). NEXT: MAE2–MAE6 (B773–B777, investigador1).
 
 ## Gap-backlog (prioritized)
@@ -61,7 +61,7 @@ The kit-destination file is named in each row — that is the artifact the block
 | Priority | Gap | Where | Status |
 |---|---|---|---|
 | high | ~~**MAE1 D6 extension AUTHORING contract**~~ — **RENAMED (premise refuted)**: base class is `BPointExtension` (`javax.baja.control`), NOT `BAbstractPointExt` (absent); `onExtended`/`onRetracted` do not exist. Documented the real contract: only `onExecute` is abstract/mandatory; parent value observed via `out` in `onExecute`; multi-ext order = slot-declaration order, proxyExt always first. → kit `types/logic.md` | `control-rt`/`history-rt`/`alarm-rt` (docSource) | **CLOSED → B772** (child MAE1-G1 req-exec) |
-| high | **MAE2 D7 analytics algorithm-node + data-source AUTHORING** — how to build ONE custom `BAlgorithmBlock` (class to extend, input/output slots → DAG edges, registration with `BAnalyticService`) and how to plug a custom DATA SOURCE / rollup/filter into the pipeline. B66/B67 are read-only CATALOGS ("algorithm node"/"filter algorithm" = 0 authoring hits) → kit `types/logic.md` | `analytics` (`analytics-rt`, ~424 FQN) | pending → B773 |
+| high | **MAE2 D7 analytics algorithm-node + data-source AUTHORING** — how to build ONE custom `BAlgorithmBlock` (class to extend, input/output slots → DAG edges, registration with `BAnalyticService`) and how to plug a custom DATA SOURCE / rollup/filter into the pipeline. B66/B67 are read-only CATALOGS ("algorithm node"/"filter algorithm" = 0 authoring hits) → kit `types/logic.md` | `analytics` (`analytics-rt`, ~424 FQN) | **COVERED → B773** (node base = `BOutputBlock` [abstract getValue/getTrend], NOT BAlgorithmBlock [container] — BAnalyticAlgorithm absent; inputs = `BBlockPin` @NiagaraProperty + `BLink` DAG edges; `BFunctionBlock.apply()` single-input; filters/rollups/sources all = BOutputBlock subclasses; register by `module.xml <type>` NO @AgentOn; external feed = `AnalyticDataSource.Provider` duck-typed. 5/5 [CERT]. → `types/logic.md`) |
 | high | **MAE3 D11 background-work AUTHORING** — custom `BJobStep` recipe (`doRun(BBatchJobService, …)` template), the `BSimpleJob` vs `BJob`→`BJobService` SELECTION rule (missing from corpus), and submit/progress/heartbeat. B20/B511/B567 document Tridium internals but no author template ("BJob doRun" = 0) → kit `types/logic.md` | `batchJob-rt` (~95 FQN), `driver-rt` (discover job), `provisioningNiagara` | pending → B774 |
 | high | **MAE4 D2 watchdog/timer AUTHORING across exemplars** — the `BAbstractMonitor` subclass authoring contract (which methods to override, status slots, MonitorWorker 2s poll interaction), `BTimer` vs `Clock.Ticket` vs `Clock.schedulePeriodically` identity/selection, and a POSITIVE configurable-interval exemplar (BRelTime prop → schedulePeriodically). B729/B730 cover timer LIFECYCLE, not watchdog authoring → kit `types/logic.md` + `METHODOLOGY.md` note | `systemMonitor-rt` (~17 FQN, 10+ BAbstractMonitor), `analytics` pollers, `report` scheduler | pending → B775 |
 | high | **MAE5 D3 action-protection recipe** — the POSITIVE `@NiagaraAction(permissions=…)` gating recipe (operator vs admin without `doPrivileged`) AND the CORRECT-use `AccessController.doPrivileged` pattern (all corpus instances are the AP-27 anti-pattern; kit can only say "don't"). Ties B18/B48/B755 → kit `types/logic.md` | `electronicSignature`, `gauth-rt`, `net-rt` (InitPrivilegedAction) | pending → B776 |
@@ -135,7 +135,7 @@ are represented in the MAE1–MAE14 backlog.
 - **Open gaps — read-only investigable**: **13** (MAE2–MAE6, MAE8–MAE14, + MAE7-G1; all `pending`).
 - **Gaps closed**: 2 (MAE1 → B772; MAE7 → B778).
 - **requires-execution / blocked**: 1 req-exec (MAE1-G1) / 0 blocked.
-- **Coverage metric**: 9 / 15 investigable gaps closed (~60%).
+- **Coverage metric**: 10 / 15 investigable gaps closed (~67%).
 - **NEXT (my lane MAE1–MAE6)**: MAE2 (D7 analytics algorithm-node authoring) → B773. This focus is NOT
   stopped; the loop continues on the highest-priority pending gap in my lane.
 
@@ -152,4 +152,5 @@ are represented in the MAE1–MAE14 backlog.
 | 11 (investigador1) | MAE11 D10 query/search/index surfaces = ONE pattern (BQuery/NEQL payload + BIAgent provider via agent registry → BITable): BQueryEngine/BColumnsProvider/BISearchProvider/BSystemIndexer | B782 | yes · Explore sweep + inline grep-verify (5/6 [CERT], one spine per surface) | MAE11-G1 WB/UX config views not walked (→ wb-ux) |
 | 12 (investigador1) | MAE12 D11 template author-side (NEGATIVE): no type-registration SPI; TemplateType closed enum; a template = `.ntpl` ZIP (BNtplFile: bog+manifest) made by a job from a BTemplateConfig-marked subtree; NiagaraTemplate.createFrom().save() | B783 | yes · Explore sweep + inline grep-verify (4/5 [CERT]) | MAE12-G1 full template-manifest.xml schema not exhaustively walked |
 | 13 (investigador1) | MAE13 D1 real module.xml profile matrix + deps: parts -rt/-ux/-wb/-se, -doc=separate module; `<dependency>` 3-part Tridium floor (4.14.0) vs own 4-part build stamp (4.14.0.162); header roster | B784 | yes · Explore sweep + inline grep-verify (5/5 [CERT]) | MAE13-G1 `<installation>` native/nre/-rt-<os> block only sampled |
+| 2 (investigador1, absorbed) | MAE2 D7 analytics node authoring: base = BOutputBlock (abstract getValue/getTrend) not BAlgorithmBlock; inputs=BBlockPin+BLink DAG; BFunctionBlock.apply single-input; filters/rollups/sources all BOutputBlock subclasses; register by module.xml `<type>` (no @AgentOn); external feed = AnalyticDataSource.Provider | B773 | yes · Explore sweep + inline grep-verify (5/5 [CERT]; corrected seed candidate list) | MAE2-G1 Combiner/FunctionTrend not walked |
 | 14 (investigador1) | MAE14 D10 rdb dialect extension SPI: B<X>Database extends BRdbms/BEncryptableTransportRdbms + 3 abstract methods; getRdbmsContext→60-method RdbmsDialect SPI object; manifest `<type>` register; no central registry | B785 | yes · Explore sweep + inline grep-verify (6/6 [CERT]) | MAE14-G1 Oracle sequence path not walked. **investigador1 slice MAE7-14 COMPLETE (B778-B785); §18 slice-retro filed. Focus awaits companero's MAE1-6.** |

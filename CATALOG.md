@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **770 bloques**
+Total: **771 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -767,6 +767,7 @@ Total: **770 bloques**
 | 762 | [niagara-mental-model-bloque762.md](niagara-mental-model-bloque762.md) | B762 · Off-station testing of the `-ux`/`-wb` web tier — the pure-seam taxonomy (`route()`→RouteAction, `wb/model/` lambda-injection, the JS residue) and the WSL-vs-station boundary |
 | 763 | [niagara-mental-model-bloque763.md](niagara-mental-model-bloque763.md) | B763 · The `-ux` servlet write-surface — build + test + secure playbook (OPERATOR_WRITE fail-closed, the pure RBAC seam, hand-rolled CSRF, audit) and a U5 re-grading |
 | 772 | [niagara-mental-model-bloque772.md](niagara-mental-model-bloque772.md) | Block 772 — Authoring a Niagara point extension: the `BPointExtension` base-class contract (D6 / MAE1) |
+| 773 | [niagara-mental-model-bloque773.md](niagara-mental-model-bloque773.md) | B773 · Authoring an analytics compute node + data source — the `BOutputBlock` SPI (MAE2, D7) |
 | 778 | [niagara-mental-model-bloque778.md](niagara-mental-model-bloque778.md) | B778 · Authoring a custom SERVICE, a new ORD SCHEME, and a SERVER-SIDE subscription — the three module-author SPIs (MAE7, D4) |
 | 779 | [niagara-mental-model-bloque779.md](niagara-mental-model-bloque779.md) | B779 · Child-tree construction primitives — the container choice (frozen vs dynamic vs typed BFolder), `reorder`, and legality vetoes (MAE8, D5) |
 | 780 | [niagara-mental-model-bloque780.md](niagara-mental-model-bloque780.md) | B780 · Per-exemplar palette / lexicon / @AgentOn conventions — copy-ready authoring templates (MAE9, D8) |
