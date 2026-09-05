@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **763 bloques**
+Total: **764 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -768,6 +768,7 @@ Total: **763 bloques**
 | 763 | [niagara-mental-model-bloque763.md](niagara-mental-model-bloque763.md) | B763 · The `-ux` servlet write-surface — build + test + secure playbook (OPERATOR_WRITE fail-closed, the pure RBAC seam, hand-rolled CSRF, audit) and a U5 re-grading |
 | 778 | [niagara-mental-model-bloque778.md](niagara-mental-model-bloque778.md) | B778 · Authoring a custom SERVICE, a new ORD SCHEME, and a SERVER-SIDE subscription — the three module-author SPIs (MAE7, D4) |
 | 779 | [niagara-mental-model-bloque779.md](niagara-mental-model-bloque779.md) | B779 · Child-tree construction primitives — the container choice (frozen vs dynamic vs typed BFolder), `reorder`, and legality vetoes (MAE8, D5) |
+| 780 | [niagara-mental-model-bloque780.md](niagara-mental-model-bloque780.md) | B780 · Per-exemplar palette / lexicon / @AgentOn conventions — copy-ready authoring templates (MAE9, D8) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
