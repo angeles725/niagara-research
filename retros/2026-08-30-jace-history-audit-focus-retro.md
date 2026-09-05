@@ -1,5 +1,5 @@
 <!-- kit-retro -->
-<!-- review-status: applied 2026-09-05 · kit fe88d17 · PARTIAL — shipped: R2 (PROMPT-LOOP, PR #445); R1, R3 (§19) in PR #448 -->
+<!-- review-status: applied 2026-09-05 · kit 185ad74 · shipped: R2 (PROMPT-LOOP, PR #445 fe88d17), R1, R3 (§19 tool-vs-PoC + baked-in redaction, PR #448 185ad74) -->
 <!--
   focus: jace-history-audit
   blocks: B699–B703 (5 blocks)

@@ -1,5 +1,5 @@
 <!-- kit-retro -->
-<!-- review-status: applied 2026-09-05 · kit fe88d17 · PARTIAL — shipped: ΔA, ΔB (PROMPT-LOOP, PR #445); ΔC (§14 threat-model axis) in PR #448 -->
+<!-- review-status: applied 2026-09-05 · kit 185ad74 · shipped: ΔA, ΔB (PROMPT-LOOP, PR #445 fe88d17), ΔC (§14 threat-model axis, PR #448 185ad74) -->
 <!--
   focus: jace-data-at-rest
   blocks: B693–B698 (6 blocks)

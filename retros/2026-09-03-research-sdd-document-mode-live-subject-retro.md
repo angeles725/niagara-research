@@ -1,4 +1,4 @@
-<!-- review-status: applied 2026-09-05 · kit 272e1ad · shipped: #1 (§20 freeze the live subject), #2 (§7 unregistered-target fallback), PR #434; #3 (DYNAMIC-SETUP headless Chromium, PR #446 pending merge) -->
+<!-- review-status: applied 2026-09-05 · kit 7349004 · shipped: #1 (§20), #2 (§7), PR #434 272e1ad; #3 (DYNAMIC-SETUP headless Chromium, PR #446 7349004) -->
 <!-- Marker lifecycle: the maintainer flips 'pending' to 'applied <date> · kit <sha>' (or 'dismissed') once these deltas are reviewed in the kit; sweep-retros.sh reads this marker (METHODOLOGY §18). -->
 # Retro — niagara-research · tooling · 2026-09-03 · Research-SDD self-retrospective (3/3)
 
