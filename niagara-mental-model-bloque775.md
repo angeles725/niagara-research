@@ -95,6 +95,10 @@ sweep's/​seed's "2s poll" and "BTimer scheduler" assumptions on verification.
   heartbeat-AGE watchdog is a design an author would build with `schedulePeriodically` but has no first-party exemplar
   (find-zero). Bounded follow-up if a builder needs a liveness (not threshold) watchdog.
 
+> **Extended by [B801]**: the `Clock.schedule`/`schedulePeriodically` delay/period floor — a `<= 0` value throws
+> `IllegalArgumentException` (`EngineManager.java:327/346/366/388`); the "floor" mentioned in the TIMER rule below is
+> now pinned to code. Feeds a new non-positive-delay lint.
+
 ## Kit implication (→ `types/logic.md` + a `METHODOLOGY.md` note)
 - `types/logic.md`: add the watchdog/monitor recipe — subclass `BAbstractAlarmMonitor` (override `doRunCheck()`/domain
   `checkX()` + `getToNormal/OffnormalText`, maintain `status`/`lastAlarmTime`, edge-latch via `raiseAlarm(...)`); and
