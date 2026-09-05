@@ -150,6 +150,14 @@ an empty skeleton that should be removed or filled.
    - **L7** `<dependency>` versions are 3-part floors, not the 4-part self-stamp ([Block 784]).
    - **L8** signed-jar present (`NIAGARA4`/vendor `.SF`+`.RSA`) — already in `verify-module.sh` ([Block 807]).
    - **L9** no empty skeleton part (a declared `-wb`/`-ux` with 0 `.java` AND empty palette/lexicon) — DashboardPan-wb.
+   - **L10** no absolute HOST paths in a tracked `gradle.properties` — the client `ColdRoomPan`/`CompPan`
+     `gradle.properties` hardcode `niagara_home=C:\…`, `niagara_user_home=C:\…`, `nodeHome=C:\…`, which break any
+     non-Windows / different-host build (each surfaces as a `URISyntaxException: Illegal character … C:\…`); pass
+     these via `-P`/env or a per-developer untracked file instead. Evidence: [Block 815] §815.12 (executed).
+   - **L11** a module whose `srcTest` mixes pure-JUnit and Baja (`BTest`/`BTestNg`) tests declares BOTH
+     `moduleTestImplementation(":test-wb")` AND `moduleTestImplementation("junit:junit:…")` (or splits the source
+     sets) — else `moduleTestJar` cannot compile the tree. `ColdRoomPan-rt`/`CompPan-rt` declare only `:test-wb`.
+     Evidence: [Block 815] §815.12 (executed).
 3. **Ranked recommendations for our modules** (impact ÷ cost):
    R1 chihuahua — populate rt+ux `module.lexicon` (10 types unlocalized; highest operator-visible, cheap). 
    R2 DashboardPan-wb — delete the empty skeleton OR fill it + add its JUnit dep; add rt `BDashboardService` tests.
@@ -169,7 +177,7 @@ an empty skeleton that should be removed or filled.
 | 7 | Honeywell: com.honeywell.*, SERVER1.SF signing, own versioning, ZKM-obfuscated, in-jar branding | `[CERT]` | `honeywellBacnetSpyder/…/SERVER1.SF`+`DEOBFUSCATION-NOTE.md`; `galileoSupervisor-rt` | Y — read |
 | 8 | Binaries: native libs `nativeLib/<arch>/` DLLs, jar-in-jar `wbapplet.jar`; no module `.so` in corpus | `[CERT]` | `ffmpeg-wb`/`xprotect-wb/nativeLib`; `web-rt/wbapplet/wbapplet.jar` | Y — ls |
 | 9 | Our four: all `com.angeles.*` + one-type/file PASS; chihuahua isolates `wb/model` (6 pure); chihuahua rt+ux lexicons EMPTY; DashboardPan-wb 0 source | `[CERT]` | live trees, verified this session | Y — grep/ls |
-| 10 | The structure.md checklist L1-L9 lint candidates + ranked recommendations | `[INFER]` | §817.9, composes 1-9 | recipe |
+| 10 | The structure.md checklist L1-L11 lint candidates + ranked recommendations | `[INFER]` | §817.9, composes 1-9 | recipe |
 
 **Tally:** `[CERT]` ×9 · `[INFER]` ×1. Every load-bearing exemplar and every our-module claim grep/ls-verified this
 session; the negative "no in-jar tests" finding confirmed with a clean grep, not a tool-failure zero (§ evidence
@@ -181,7 +189,7 @@ discipline).
   [Block 805]/[Block 809]/[Block 813]/[Block 814] (rt/wb/ux/tags authoring), [Block 787]/[Block 788]/[Block 789]
   (the conformance audits folded here), [Block 815] (the lifecycle test that fills the "BComponent untested" gap),
   [Block 127] (native `nre` layer — where a real JACE `.so` lives, not a module jar).
-- **B817-G1** (requires-execution): implement the L1-L9 checks in `verify-module.sh` + emit-correct in
+- **B817-G1** (requires-execution): implement the L1-L11 checks in `verify-module.sh` + emit-correct in
   `scaffold-module.sh`, and run them RED→GREEN against our four trees (L4 must fire on chihuahua, L5+L9 on
   DashboardPan-wb) — the biting test the [Block 790] scaffold fixture needs.
 - **B817-G2**: confirm where Tridium's OWN module tests live (the out-of-band test jars absent from this corpus) — to

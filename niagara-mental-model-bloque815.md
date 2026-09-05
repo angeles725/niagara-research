@@ -259,5 +259,14 @@ install (`mirror-niagara-home.sh …OptimizerSupervisor-N4.14.0.162 ~/niagara-mi
   `URISyntaxException: Illegal character … C:\…`. This is the executed confirmation of [Block 807]/§815.7's
   "`niagaraTest` = 0 from WSL, native/JACE only": the blocker is the native `test.exe` runner (+ a dev license/
   station), reached only after the moduleTest jar built cleanly.
-- **Net:** the test COMPILES and PACKAGES in WSL (a real compile-gate for API drift); it EXECUTES only on a Windows
-  host / JACE. The RED→GREEN regression proof (B815-G1) awaits that host.
+- **Next executable step (C9, requires-execution — NOT run here):** WSL2 CAN launch a Windows `.exe` via interop
+  (confirmed available this session: `/mnt/c/Windows/System32/cmd.exe` runs). So the run half is reachable WITHOUT a
+  separate Windows session: invoke the native `test.exe` (`/mnt/c/Honeywell/OptimizerSupervisor-N4.14.0.162/bin/test.exe`
+  exists) against a **Windows-side COPY** of the install — never the live `OptimizerSupervisor` dir, and never the
+  Linux mirror (its `~/niagara-mirror-hon414` symlinks into `/mnt/c` are invisible to a Windows process). Point
+  `niagara_home` at that Windows copy (a real path like `C:\niagara-test-414`), drop the module jar +
+  `ColdRoomPan-rtTest.jar` into its `modules/`, and run `test.exe`; the remaining gate is a dev license/station. This
+  is the path to the RED→GREEN proof (B815-G1) — record only; do not run without a disposable Windows copy.
+- **Net:** the test COMPILES and PACKAGES in WSL (a real compile-gate for API drift); it EXECUTES only via the native
+  Windows `test.exe` (a Windows host, WSL interop against a Windows-side copy, or a JACE). The RED→GREEN regression
+  proof (B815-G1) awaits that runner.
