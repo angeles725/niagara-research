@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **805 bloques**
+Total: **806 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -810,6 +810,7 @@ Total: **805 bloques**
 | 814 | [niagara-mental-model-bloque814.md](niagara-mental-model-bloque814.md) | B814 · Authoring a MODULE tag dictionary — ship a smart dictionary so your components are nav/search/hierarchy addressable `[CERT]` |
 | 815 | [niagara-mental-model-bloque815.md](niagara-mental-model-bloque815.md) | B815 · Authoring a STATION-LEVEL / component-lifecycle test — mount the component, drive the interval, catch what lint and pure-JUnit cannot `[CERT]` |
 | 816 | [niagara-mental-model-bloque816.md](niagara-mental-model-bloque816.md) | B816 · Write-path & overlap testing — the threading/link-override mechanism (a dashboard write to a LINK-TARGET slot lands then is SILENTLY overwritten; servlet `set()` and the engine serialize only on the raw value store), our modules' overlap cases (incl. the live armTrigger `Clock.schedule(0)` crash), and a write-path test matrix `[CERT]` |
+| 817 | [niagara-mental-model-bloque817.md](niagara-mental-model-bloque817.md) | B817 · The module STRUCTURE STANDARD — how Tridium/Honeywell lay out an N4 module, and a conformance checklist our four modules can be linted against `[CERT]` |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
