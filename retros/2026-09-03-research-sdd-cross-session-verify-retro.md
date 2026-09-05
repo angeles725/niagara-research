@@ -1,4 +1,4 @@
-<!-- review-status: applied 2026-09-05 · kit dd552ea · shipped: #1 (§3 teammate claim carries no marker, PR #434), #2 (§6 giant single-line artifact recipe — merged with large-single-file #1) -->
+<!-- review-status: applied 2026-09-05 · kit e0b701a · shipped: #1 (§3 teammate claim carries no marker, PR #434), #2 (§6 giant single-line artifact recipe — merged with large-single-file #1) -->
 <!-- Marker lifecycle: the maintainer flips 'pending' to 'applied <date> · kit <sha>' (or 'dismissed') once these deltas are reviewed in the kit; sweep-retros.sh reads this marker (METHODOLOGY §18). -->
 # Retro — niagara-research · tooling · 2026-09-03 · Research-SDD self-retrospective (2/2)
 

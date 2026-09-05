@@ -1,4 +1,4 @@
-<!-- review-status: applied 2026-09-05 · kit dd552ea · shipped: #1 (§16 APPLIED/BUILD-ALONG focus), #2 + #5 (§18 triggers, PR #430), #3 (PROMPT-LOOP, PR #445); DEFERRED: #4 (§3 [CERT-live] vs [CERT-hw] boundary) -->
+<!-- review-status: applied 2026-09-05 · kit e0b701a · shipped: #1 (§16 APPLIED/BUILD-ALONG focus), #2 + #5 (§18 triggers, PR #430), #3 (PROMPT-LOOP, PR #445); DEFERRED: #4 (§3 [CERT-live] vs [CERT-hw] boundary) -->
 <!-- Marker lifecycle: the maintainer flips 'pending' above to 'applied <date> · kit <sha>' once this retro's proposed deltas are reviewed and applied (or 'dismissed') in the kit; sweep-retros.sh reads this marker to report which retros are still open (METHODOLOGY §18). -->
 <!-- kit-retro -->
 <!--

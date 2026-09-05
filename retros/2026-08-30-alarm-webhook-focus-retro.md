@@ -1,5 +1,5 @@
 <!-- kit-retro: alarm-webhook focus · 2026-08-30 · scope: §6 census-obligation + §16 multi-focus + §7 block_scope + peer-session topology -->
-<!-- review-status: applied 2026-09-05 · kit dd552ea · shipped: D1 (§6 census grammar), D2 (§16 peer-session topology), D3 (§7 covered_blocks under shared-global, PR #427) -->
+<!-- review-status: applied 2026-09-05 · kit e0b701a · shipped: D1 (§6 census grammar), D2 (§16 peer-session topology), D3 (§7 covered_blocks under shared-global, PR #427) -->
 
 # §18 Self-Retrospective — focus: alarm-webhook (2026-08-30)
 

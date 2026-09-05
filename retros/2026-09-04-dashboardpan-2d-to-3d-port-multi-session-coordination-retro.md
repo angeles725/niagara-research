@@ -1,4 +1,4 @@
-<!-- review-status: applied 2026-09-05 · kit dd552ea · shipped: #1 (§11 consumer-absence), #2 (§5 slot-vs-derived), #3 (§16 peer-owned dirty tree, PR #427), #4 (§3 teammate claim, PR #434), #5 (§5 control-write interlock) -->
+<!-- review-status: applied 2026-09-05 · kit e0b701a · shipped: #1 (§11 consumer-absence), #2 (§5 slot-vs-derived), #3 (§16 peer-owned dirty tree, PR #427), #4 (§3 teammate claim, PR #434), #5 (§5 control-write interlock) -->
 <!-- Marker lifecycle: the maintainer flips 'pending' to 'applied <date> · kit <sha>' (or 'dismissed') once these deltas are reviewed in the kit; sweep-retros.sh reads this marker (METHODOLOGY §18). -->
 # Retro — niagara-research · consulting · 2026-09-04 · DashboardPan 2D → 3D viewer port, multi-session coordination
 
