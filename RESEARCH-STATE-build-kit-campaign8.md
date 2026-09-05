@@ -7,7 +7,7 @@ covered_blocks: 1
 gaps_closed: 1
 known_gaps: 3
 investigable_open: 2
-requires_execution_open: 1
+requires_execution_open: 0
 blocked_open: 0
 <!-- /research-state.v1 -->
 
@@ -29,7 +29,7 @@ block_scope_note: B800=companero (console-log census); B801–B805 reserved for 
 | B — history-extension authoring (BHistoryExt family, HistoryService, config + rollover) with ColdRoomPan/DashboardPan as consumers | B803+ | OPEN (investigable) | MED candidate; not covered by B772-B791. |
 
 ## Open gaps (requires-execution)
-- **B801-G1**: confirm the `<= 0` throw is reached at station runtime (fires only for a running component) — live smoke-test on a seeded `BRelTime.make(0)` schedule. Static contract is [CERT].
+- **B801-G1 — CLOSED [CERT-live]**: the `<= 0` throw is reached at station runtime — PANCCADIA console shows it 5× from BDefrostController.armTrigger (console_backup_260903_1858.txt; B801 §801.4). No requires-execution gaps remain in this focus.
 
 ## Coverage / dedupe
 - C extends [B775] (timer authoring) + feeds [B787] (timer lint); the decode/delegation is REMITTANCE to Clock.java/EngineManager.java code.
