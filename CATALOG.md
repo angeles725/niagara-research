@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **782 bloques**
+Total: **783 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -787,6 +787,7 @@ Total: **782 bloques**
 | 791 | [niagara-mental-model-bloque791.md](niagara-mental-model-bloque791.md) | B791 · Web-tier exemplars — AUDIT-FIRST coverage map: the mechanism is fully covered (verdict THIN, 0 new blocks) + DashboardPan divergences |
 | 792 | [niagara-mental-model-bloque792.md](niagara-mental-model-bloque792.md) | Block 792 — `palette-lexicon-agents` extractor + census: duplicate bare lexicon keys across Tridium exemplars (B759 hazard confirmed real) |
 | 793 | [niagara-mental-model-bloque793.md](niagara-mental-model-bloque793.md) | B793 · Building B790's minimal module: the skeleton is gate-green [CERT], and the 10 corrections the build forced |
+| 794 | [niagara-mental-model-bloque794.md](niagara-mental-model-bloque794.md) | B794 · `scaffold-module.sh`: the minimal-module generator round-trips gate-green [CERT] — the PR9 apply reference |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
