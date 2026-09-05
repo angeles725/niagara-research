@@ -1,5 +1,5 @@
 <!-- kit-retro -->
-<!-- review-status: applied 2026-09-05 · kit f73f5d6 · shipped: SO1 (PROMPT-LOOP, PR #445 d9be953), SO2 (§16 focus status is a verifiable claim, PR #427) -->
+<!-- review-status: applied 2026-09-05 · kit fe88d17 · shipped: SO1 (PROMPT-LOOP, PR #445 fe88d17), SO2 (§16 focus status is a verifiable claim, PR #427 f73f5d6) -->
 <!--
   focus: station-organization
   blocks: B716–B720 (5 blocks)

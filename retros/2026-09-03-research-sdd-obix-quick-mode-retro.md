@@ -1,4 +1,4 @@
-<!-- review-status: applied 2026-09-05 · kit d9be953 · PARTIAL — shipped: #3; DEFERRED: #1, #2 -->
+<!-- review-status: applied 2026-09-05 · kit 272e1ad · shipped: #1 (§20 quick-mode terminal), #2 (§3 live cross-check), PR #434; #3 (PROMPT-LOOP quick-mode delegation, PR #445 fe88d17) -->
 <!-- Marker lifecycle: the maintainer flips 'pending' to 'applied <date> · kit <sha>' (or 'dismissed') once these deltas are reviewed in the kit; sweep-retros.sh reads this marker (METHODOLOGY §18). -->
 # Retro — niagara-research · tooling · 2026-09-03 · Research-SDD self-retrospective
 

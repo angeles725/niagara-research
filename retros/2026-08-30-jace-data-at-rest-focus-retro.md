@@ -1,5 +1,5 @@
 <!-- kit-retro -->
-<!-- review-status: applied 2026-09-05 · kit d9be953 · PARTIAL — shipped: ΔA, ΔB; DEFERRED: ΔC (targets METHODOLOGY.md) -->
+<!-- review-status: applied 2026-09-05 · kit fe88d17 · PARTIAL — shipped: ΔA, ΔB (PROMPT-LOOP, PR #445); ΔC (§14 threat-model axis) in PR #448 -->
 <!--
   focus: jace-data-at-rest
   blocks: B693–B698 (6 blocks)

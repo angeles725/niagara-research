@@ -1,4 +1,4 @@
-<!-- review-status: pending -->
+<!-- review-status: applied 2026-09-05 · kit 272e1ad · PARTIAL — shipped: #2, #3 (§20 quick-mode drift + client knowledge, PR #434); DEFERRED: #1 (§11 read the defining code before an enumeration claim) -->
 <!-- Marker lifecycle: the maintainer flips 'pending' to 'applied <date> · kit <sha>' (or 'dismissed') once these deltas are reviewed in the kit; sweep-retros.sh reads this marker (METHODOLOGY §18). -->
 # Retro — niagara-research · tooling · 2026-09-03 · Research-SDD self-retrospective
 

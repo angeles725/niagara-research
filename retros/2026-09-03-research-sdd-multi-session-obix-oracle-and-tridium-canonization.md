@@ -1,3 +1,4 @@
+<!-- review-status: pending -->
 # Self-retro §18 (mejora de /research-sdd) — diagnóstico multi-sesión · oBIX en vivo como oráculo · canonización contra la fuente Tridium · 2026-09-03
 
 Retrospectiva del proceso de investigación en la sesión larga del deshielo/timer de PANCCADIA (N4). No fue el loop clásico de bloques/gaps: fue un DIAGNÓSTICO en vivo de un sistema de producción, con investigación de código + fuente original + sistema vivo. PROPOSED deltas al kit research-sdd (propose-never-apply; el kit no se edita desde una corrida).

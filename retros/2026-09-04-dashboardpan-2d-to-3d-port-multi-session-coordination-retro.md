@@ -1,4 +1,4 @@
-<!-- review-status: applied 2026-09-05 · kit f73f5d6 · PARTIAL — shipped: #3 (§16 peer-owned dirty tree, PR #427); #4 in PR #434 (§3 teammate claim); DEFERRED: #1, #2, #5 (§11/§5) -->
+<!-- review-status: applied 2026-09-05 · kit 272e1ad · PARTIAL — shipped: #3 (§16 peer-owned dirty tree, PR #427), #4 (§3 teammate claim, PR #434); DEFERRED: #1, #2, #5 (§11/§5) -->
 <!-- Marker lifecycle: the maintainer flips 'pending' to 'applied <date> · kit <sha>' (or 'dismissed') once these deltas are reviewed in the kit; sweep-retros.sh reads this marker (METHODOLOGY §18). -->
 # Retro — niagara-research · consulting · 2026-09-04 · DashboardPan 2D → 3D viewer port, multi-session coordination
 

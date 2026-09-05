@@ -1,4 +1,4 @@
-<!-- review-status: applied 2026-09-05 · kit d9be953 · PARTIAL — shipped: #5; DEFERRED: #1–#4, #6–#7 -->
+<!-- review-status: applied 2026-09-05 · kit 272e1ad · PARTIAL — shipped: #4 (§3 numeric constants need a fresh grep, PR #434), #5 (PROMPT-LOOP peer catch, PR #445 fe88d17); DISMISSED: #2 ([CERT-a] for agent-gathered citations — §3 ruling, PR #434); DEFERRED: #1 (§8 saturation→application pivot), #3 (§6 obfuscated docSource is a wall), #6 (§19 scratchpad PoC), #7 -->
 <!-- Marker lifecycle: the maintainer flips 'pending' to 'applied <date> · kit <sha>' (or 'dismissed') once these deltas are reviewed in the kit; sweep-retros.sh reads this marker (METHODOLOGY §18). -->
 # Retro — niagara-research · tooling · 2026-09-03 · Research-SDD self-retrospective — RT authoring campaign (B729-B746)
 

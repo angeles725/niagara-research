@@ -1,4 +1,4 @@
-<!-- review-status: pending -->
+<!-- review-status: applied 2026-09-05 · kit 272e1ad · PARTIAL — shipped: #2 (§3 mtime stamp when no git, PR #434); DEFERRED: #1 (§6 giant single-line artifact recipe) -->
 <!-- Marker lifecycle: the maintainer flips 'pending' to 'applied <date> · kit <sha>' (or 'dismissed') once these deltas are reviewed in the kit; sweep-retros.sh reads this marker (METHODOLOGY §18). -->
 # Retro — niagara-research · tooling · 2026-09-01 · Research-SDD self-retrospective
 

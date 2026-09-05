@@ -1,3 +1,4 @@
+<!-- review-status: dismissed 2026-09-05 · no kit deltas (self-declared "adds no rule") -->
 # Retro (research-sdd) — the live oBIX oracle as a commissioning decision-maker: valve-governed suction killed Fase 3, and unreliable instrumentation killed pressure control
 
 - **Date**: 2026-09-04

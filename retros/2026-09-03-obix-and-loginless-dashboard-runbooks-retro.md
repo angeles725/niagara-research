@@ -1,4 +1,4 @@
-<!-- review-status: applied 2026-09-05 · kit d9be953 · PARTIAL — shipped: D2; DEFERRED: D1 -->
+<!-- review-status: applied 2026-09-05 · kit 272e1ad · shipped: D1 (§7 human-asserted memory is a claim, PR #434), D2 (PROMPT-LOOP SECRETS scope, PR #445 fe88d17) -->
 <!-- Marker lifecycle: the maintainer flips 'pending' to 'applied <date> · kit <sha>' (or 'dismissed') once these deltas are reviewed in the kit; sweep-retros.sh reads this marker (METHODOLOGY §18). -->
 # Retro — niagara-research · access-control (document-mode) · 2026-09-03 · Research-SDD self-retrospective
 

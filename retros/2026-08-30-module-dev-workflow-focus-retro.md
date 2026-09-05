@@ -1,5 +1,5 @@
 <!-- kit-retro -->
-<!-- review-status: applied 2026-09-05 · kit d9be953 -->
+<!-- review-status: applied 2026-09-05 · kit fe88d17 (PROMPT-LOOP, PR #445) -->
 <!--
   focus: module-dev-workflow
   blocks: B711–B715 (5 blocks)

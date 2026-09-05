@@ -1,5 +1,5 @@
 <!-- kit-retro: jace8000-sd focus · 2026-08-30 · scope: DYNAMIC-SETUP §1b (raw-image path) + METHODOLOGY §19/§21 (no-mount FS parser) + §3 [CERT-hw] + PROMPT-LOOP SECRETS DISCIPLINE -->
-<!-- review-status: applied 2026-09-05 · kit 7a2887c · PARTIAL — shipped: D1 (DYNAMIC-SETUP.md §1c, kit 7a2887c), D3 (PROMPT-LOOP.md, kit d9be953); DEFERRED: D2 (METHODOLOGY §21.2), D4 (METHODOLOGY §3) -->
+<!-- review-status: applied 2026-09-05 · kit 272e1ad · PARTIAL — shipped: D1 (DYNAMIC-SETUP §1c, PR #446 pending merge), D3 (PROMPT-LOOP, PR #445 fe88d17), D4 (§3 offline media is -hw, PR #434 272e1ad); D2 (§21.2) in PR #448 -->
 
 # §18 Self-Retrospective — focus: jace8000-sd (2026-08-30)
 
