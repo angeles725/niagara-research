@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **786 bloques**
+Total: **787 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -791,6 +791,7 @@ Total: **786 bloques**
 | 795 | [niagara-mental-model-bloque795.md](niagara-mental-model-bloque795.md) | B795 · MM3 decision table — the slot-change survival matrix as a machine-readable classifier for schema-risk.sh (mechanizes B754) |
 | 796 | [niagara-mental-model-bloque796.md](niagara-mental-model-bloque796.md) | B796 · The `-ux` write-surface seam, captured as THE kit exemplar — DashboardPan-ux walked with file:line (document-mode §20) |
 | 797 | [niagara-mental-model-bloque797.md](niagara-mental-model-bloque797.md) | B797 · `verify-module.sh --plano`: pinning the four-value agreement check (issue #47 spec) `[CERT]` |
+| 798 | [niagara-mental-model-bloque798.md](niagara-mental-model-bloque798.md) | B798 · Conformance baseline of the operator's modules at kit v0.17.0 (§20) `[CERT]` |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
