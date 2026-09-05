@@ -795,6 +795,7 @@ Total: **790 bloques**
 | 799 | [niagara-mental-model-bloque799.md](niagara-mental-model-bloque799.md) | B799 · `schema-risk.sh` two-snapshot fixtures + the slot-diff rules (PR5 / issue #46) `[CERT-artifact]` |
 | 800 | [niagara-mental-model-bloque800.md](niagara-mental-model-bloque800.md) | B800 · Console-log census: exceptions through the operator's OWN modules (triage-console.sh contract input) `[CERT]` |
 | 801 | [niagara-mental-model-bloque801.md](niagara-mental-model-bloque801.md) | B801 · The `Clock` timer delay/period floor — `schedule`/`schedulePeriodically` reject a non-positive value with `IllegalArgumentException` (extends B775) `[CERT]` |
+| 802 | [niagara-mental-model-bloque802.md](niagara-mental-model-bloque802.md) | B802 · Inter-module communication is module-AGNOSTIC within a station — links, service discovery, and subscription never check the module; the only real boundaries are the compile-time Type dependency and the fox: remote hop `[CERT]` |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
