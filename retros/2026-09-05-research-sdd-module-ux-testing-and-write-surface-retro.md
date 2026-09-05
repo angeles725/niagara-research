@@ -1,4 +1,4 @@
-<!-- review-status: pending -->
+<!-- review-status: applied 2026-09-05 · kit f589956 (niagara-tools PR #38) -->
 <!-- Marker lifecycle: the maintainer flips 'pending' to 'applied <date> · kit <sha>' (or 'dismissed') once these deltas are reviewed/folded into the build-n4-module kit; sweep-retros.sh reads this marker (METHODOLOGY §18). -->
 # Retro — niagara-research · research-sdd · 2026-09-05 · focus `module-ux-testing-and-write-surface` (B762–B763) — kit deltas for /build-n4-module
 

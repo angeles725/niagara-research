@@ -1,4 +1,4 @@
-<!-- review-status: pending -->
+<!-- review-status: applied 2026-09-05 · kit c4788a7 (niagara-tools PR #42) -->
 <!-- Marker lifecycle: maintainer flips 'pending' → 'applied <date> · kit <sha>' (or 'dismissed') once folded; sweep-retros.sh reads this (METHODOLOGY §18). -->
 # Retro — niagara-research · research-sdd · 2026-09-05 · thread `module-web-tier-exemplars` — AUDIT-FIRST verdict THIN (1 audit block, 0 investigation blocks)
 

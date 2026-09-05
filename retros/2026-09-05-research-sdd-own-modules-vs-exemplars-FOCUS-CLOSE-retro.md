@@ -1,4 +1,4 @@
-<!-- review-status: pending -->
+<!-- review-status: applied 2026-09-05 · kit c4788a7 (niagara-tools PR #42) -->
 <!-- Marker lifecycle: maintainer flips 'pending' → 'applied <date> · kit <sha>' (or 'dismissed') once folded; sweep-retros.sh reads this (METHODOLOGY §18). -->
 # Retro — niagara-research · research-sdd · 2026-09-05 · FOCUS CLOSE: `own-modules-vs-exemplars` (OMV1–OMV7) — conformance audit of our 3 modules vs the exemplar idioms
 

@@ -1,4 +1,4 @@
-<!-- review-status: pending -->
+<!-- review-status: applied 2026-09-05 · subsumed by FOCUS-CLOSE · kit c4788a7 -->
 <!-- Marker lifecycle: maintainer flips 'pending' → 'applied <date> · kit <sha>' (or 'dismissed') once folded; sweep-retros.sh reads this (METHODOLOGY §18). -->
 # Retro — niagara-research · research-sdd · 2026-09-05 · focus `module-authoring-exemplars`, slice MAE7–MAE14 (B778–B785) — kit deltas for /build-n4-module
 
