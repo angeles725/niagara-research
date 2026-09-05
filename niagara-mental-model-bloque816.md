@@ -1,4 +1,4 @@
-# B816 · Write-path & overlap testing — the threading/link-override mechanism (a dashboard write to a LINK-TARGET slot lands then is SILENTLY overwritten; servlet `set()` and the engine serialize only on the raw value store), our modules' overlap cases (incl. the live armTrigger `Clock.schedule(0)` crash), and a write-path test matrix `[CERT]`
+# B816 · Write-path & overlap testing — the threading/link-override mechanism (a dashboard write to a LINK-TARGET slot lands then is SILENTLY overwritten; servlet `set()` and the engine serialize only on the raw value store), our modules' overlap cases (incl. the armTrigger `Clock.schedule(0)` write-path class — now fixed at client c66e412), and a write-path test matrix `[CERT]`
 
 > **Scope**: the user wants tests that a change from the dashboard (or Workbench, or a link, or the engine) cannot
 > silently overlap/overwrite another writer and corrupt control. This block establishes, from first principles + code,
@@ -48,14 +48,17 @@ atomic only for its own value store. So "multi-slot atomic write" is ordering-pr
 rely on a Transaction to hide a half-written multi-slot state from the engine thread.
 
 ## 816.4 — Overlap cases in OUR modules (the test rows) `[CERT unless noted]`
-1. **HEADLINE — the live `armTrigger` `Clock.schedule(0)` crash [CERT-live via B801-G1]**: `BDefrostController.armTrigger`
-   computes `long d = Math.max(delayMs, 0L); intervalTicket = Clock.schedule(this, BRelTime.make(d), intervalExpired, null)`
-   (`BDefrostController.java:555-556`). The OVERDUE path (`elapsed >= intervalMs → delayMs = 0`) AND a **dashboard write of
-   `interval = 0`** (the slot's facet is `MIN = 0 s`, `:170`, so 0 is accepted) both yield `d = 0` → `Clock.schedule(0)` →
-   `IllegalArgumentException("time <= 0")` ([B801]). This is the SOURCE LINE of the B801-G1 PANCCADIA crash (thrown 5×,
-   `changed` + `atSteadyState` paths). `changed()` triggers it because `changed(interval) → armTrigger()`
-   (`BDefrostController.java:510-521`). **A dashboard change silently breaks the module** (the throw is caught/logged; the
-   interval timer is then NEVER armed → defrost stops). Fix = `Math.max(delayMs, 1L)` + facet `MIN ≥ 1 s` ([B801] §801.3).
+1. **HEADLINE — the `armTrigger` `Clock.schedule(0)` write-path class (now FIXED; cite the tree)** `[CERT vs the read tree; FIX at c66e412]`.
+   Read against the LOCAL checkout `4f5f1c7` (PRE-FIX): `BDefrostController.armTrigger` computed
+   `long d = Math.max(delayMs, 0L); Clock.schedule(this, BRelTime.make(d), intervalExpired, null)`
+   (`BDefrostController.java:555-556`). The OVERDUE path (`delayMs = 0`) AND a **dashboard write of `interval = 0`** (the
+   pre-fix facet was `MIN = 0 s`) both yielded `d = 0` → `Clock.schedule(0)` → `IllegalArgumentException("time <= 0")`
+   ([B801]) — the exact SOURCE of the B801-G1 PANCCADIA crash (5×, `changed` + `atSteadyState`), a dashboard change silently
+   breaking the module. **This is FIXED and merged in the CLIENT repo**: PR #1 (`1327c22`, v2.0.4 — `ColdRoomControl.
+   positiveDelayMs`/`intervalDelayMs` helpers floor ALL FOUR `Clock.schedule` sites; facets `MIN 0 s → 1 s` for
+   interval/duration/staggerDelay) + PR #2 (`c66e412`, v2.0.5). The dashboard-`interval=0` path is now closed TWICE (facet
+   MIN=1s + the `max(…,1)` floor). **Kept here as the write-path EXEMPLAR the lint catches — NOT an open defect.** (Lesson,
+   as B815: a client-tree finding must state the commit read; I read stale `4f5f1c7`, the shipped tree is `c66e412`.)
 2. **interval changed mid-defrost [CERT]**: `changed(interval)→armTrigger()` calls `cancelInterval()` ONLY
    (`:538`, cancels the interval ticket), NOT the running `durationTicket` — so a config change re-arms the next interval
    but the CURRENT defrost completes on its original `duration`. Safe, but a required test row (a write must not abort a
@@ -103,7 +106,7 @@ one row per **(writable slot × writer × timing) → expected invariant**:
 | 2 | `modified()` fires `knobs.propagate()` BEFORE `changed()`, both synchronous same-thread; changed() re-entrant (no guard) | [CERT] | ComponentSlotMap.java:705,708,711,774 |
 | 3 | A dashboard write to a LINK-TARGET slot LANDS then is overwritten next propagation; LINK_TARGET(32768) is advisory (set on activate, checked only at link-creation, NOT by set()/canWrite) | [CERT] | Flags.java:24; BLink.java:205; LinkCheck.java:92; BComponent.java:925-951; ComplexSlotMap set() (no LINK_TARGET check) |
 | 4 | Transaction queues + FIFO-commits per-slot-locked; NO cross-batch atomic visibility | [CERT] | ComplexSlotMap.java:638; SyncBuffer.java (commit/add) |
-| 5 | armTrigger `Math.max(delayMs,0)`→`Clock.schedule(0)` throws on overdue OR a dashboard `interval=0` (facet MIN=0s); source of the B801-G1 live crash | [CERT]+[CERT-live] | BDefrostController.java:170,510,538,555-556; B801 §801.4 (PANCCADIA 5×) |
+| 5 | armTrigger `Math.max(delayMs,0)`→`Clock.schedule(0)` throws on overdue OR a dashboard `interval=0` (pre-fix facet MIN=0s) — the B801-G1 crash source; read vs local `4f5f1c7` (pre-fix), FIXED+merged at `c66e412` (v2.0.5: floors all 4 sites, MIN 0s→1s) | [CERT vs 4f5f1c7]; fixed c66e412 | BDefrostController.java:510,538,555-556; B801 §801.4; client PR#1 1327c22 / PR#2 c66e412 |
 | 6 | interval-change mid-defrost cancels only the interval ticket (durationTicket runs on); setpoint-mid-cooling latch holds / invalid→fail-safe | [CERT] | BDefrostController.java:538,700-701; BColdRoom.java:435,443 |
 
 **Tally**: 5 [CERT] · 1 [CERT]+[CERT-live]. All framework + module cites grep-verified this session (a delegated map is a
@@ -118,7 +121,7 @@ the module overlap cases, and the test matrix.
   CSRF — the writers), **[B815]** (BTest station — the test shape + the no-deterministic-clock caveat), **[B762]/[B805]**
   (pure-seam testing), **[B729]/[B730]** (control timers — armTrigger/tickets), **[B776]** (OPERATOR flag — which slots a
   dashboard can write). Kit: `types/logic.md`/`logic-authoring.md` §"write-path & overlap" + the matrix + the lints;
-  CLIENT residue: fix `armTrigger` to `Math.max(delayMs,1L)` + facet MIN≥1s; add matrix tests for the 22 dashboard-writable slots.
+  CLIENT residue: `armTrigger` ALREADY FIXED (c66e412, v2.0.5 — floors + facet MIN≥1s, closed twice); the remaining residue is the write-path MATRIX TESTS for the 22 dashboard-writable slots (W1-W13 pure-seam tests IN PROGRESS per QA's list).
 
 ## Open gaps
 - **B816-G1** (requires-execution): reproduce the servlet-set()↔engine-execute() callback interleave on a live station

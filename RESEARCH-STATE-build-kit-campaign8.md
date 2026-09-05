@@ -40,7 +40,7 @@ envelope_note: requires_execution_open counts the investigador1 lanes' station-r
 | B814 | companero | Authoring a module tag dictionary — nav/search/hierarchy addressable components | CLOSED [CERT] |
 | B815 | companero | Station-level / component-lifecycle test authoring (cites B805 §805.8 BTest); §815.10 logs the read-the-client-tree lesson (first pass read a same-named research exemplar) | CLOSED [CERT] (correction 85664208f) |
 
-| B816 | investigador1 | Write-path & overlap testing — threading/link-override (dashboard write to a LINK-TARGET lands then is silently overwritten; set() serializes only the raw store); overlap cases incl. the live armTrigger Clock.schedule(0) crash; write-path test matrix + lints | CLOSED [CERT/live] |
+| B816 | investigador1 | Write-path & overlap testing — threading/link-override (dashboard write to a LINK-TARGET lands then is silently overwritten; set() serializes only the raw store); overlap cases incl. the armTrigger Clock.schedule(0) write-path class (read vs stale 4f5f1c7; FIXED at client c66e412 v2.0.5); write-path test matrix + lints | CLOSED [CERT] |
 
 Addendum (no new block): **B775 §775.6** — the BTimeTrigger timer self-heal exemplar (investigador1), folded for the timer defense-in-depth checklist.
 
