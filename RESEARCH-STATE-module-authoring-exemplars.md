@@ -36,7 +36,7 @@ undocumented_findings: 0
 <!-- /research-state.v1 -->
 
 focus: module-authoring-exemplars
-status: active (2/14 closed: B772 MAE1 + B778 MAE7; investigable_open=13; +1 req-exec) — lane MAE1–MAE6 (companero) · MAE7–MAE14 (investigador1)
+status: active (9/14 gaps closed: MAE1→B772 + MAE7–MAE14→B778–B785; investigable_open=6 incl. MAE7-G1; +1 req-exec MAE1-G1) — MAE1 + MAE7–MAE14 done; MAE2–MAE6 (B773–B777) now investigador1 (absorbed after companero stalled on a permission prompt)
 seeded_from: AUDIT-FIRST coverage sweep 2026-09-05 (4 parallel Explore shards over disjoint dimension sets D1+D8 / D2+D3+D11 / D4+D10+D12 / D5+D6+D7+D9; ≥2 distinct search terms per cell; driver-verified inline)
 seeded_on: 2026-09-05
 gaps_total: 14 investigable (MAE1–MAE14)
@@ -46,9 +46,9 @@ block_prefix: niagara-mental-model-bloqueN.md (shared global numbering)
 
 ## Coverage
 
-- **Covered blocks (this focus)**: 2 — B772 (MAE1), B778 (MAE7).
-- **Coverage metric**: 2 / 14 investigable gaps closed (~14%). (+2 child gaps: MAE1-G1 req-exec, MAE7-G1 investigable.)
-- **Last iteration**: 2026-09-05 — B772 (MAE1, D6 point-extension authoring; premise `BAbstractPointExt` refuted → renamed) + B778 (MAE7, D4 author-side SPIs — investigador1).
+- **Covered blocks (this focus)**: 9 — B772 (MAE1) + B778–B785 (MAE7–MAE14).
+- **Coverage metric**: 9 / 15 investigable gaps closed (~60%). (MAE7-G1 investigable still open; MAE1-G1 req-exec deferred.)
+- **Last iteration**: 2026-09-05 — B778–B785 (MAE7–MAE14, investigador1 slice COMPLETE) + B772 (MAE1, companero; second-read PASS). NEXT: MAE2–MAE6 (B773–B777, investigador1).
 
 ## Gap-backlog (prioritized)
 
@@ -135,7 +135,7 @@ are represented in the MAE1–MAE14 backlog.
 - **Open gaps — read-only investigable**: **13** (MAE2–MAE6, MAE8–MAE14, + MAE7-G1; all `pending`).
 - **Gaps closed**: 2 (MAE1 → B772; MAE7 → B778).
 - **requires-execution / blocked**: 1 req-exec (MAE1-G1) / 0 blocked.
-- **Coverage metric**: 2 / 14 investigable gaps closed (~14%).
+- **Coverage metric**: 9 / 15 investigable gaps closed (~60%).
 - **NEXT (my lane MAE1–MAE6)**: MAE2 (D7 analytics algorithm-node authoring) → B773. This focus is NOT
   stopped; the loop continues on the highest-priority pending gap in my lane.
 
