@@ -94,3 +94,33 @@ Also record `[nre] Booting` and `Out-of-date: Module changed "<mod>"` per file (
 - **B800-G1** (doctrine PoC, requires-execution): confirm on a live station that replacing chihuahua's
   `ScheduledExecutorService` with `Clock.schedulePeriodically` removes the stop-time `modifyThread` denial.
 - No numbering gap; `triage-console.sh` implements §800.5 (QA pre-staging its RED).
+
+## 800.8 — Addendum: a live schema-risk OUTAGE + REFLOW cert-chain (third attribution channel) `[CERT-live]`
+
+**(1) PANCCADIA station FAILED TO BOOT after a ColdRoomPan-rt reload** — `console_backup_260903_1704.txt`, all
+at `17:04:32 03-Sep-26`, right after the `17:04:09 Out-of-date: Module changed "ColdRoomPan-rt"` reload:
+- `WARNING [sys.xml] Cannot set property RoomPanel.setpoint: java.lang.ClassCastException: javax.baja.status.BStatusNumeric cannot be cast to javax.baja.sys.BDouble [943:40]`
+- `WARNING [sys.xml] Missing frozen property: differentialUp [944:35]` · `zoneHighLimit [945:35]` · `zoneLowLimit [946:34]` · `evapLowLimit [947:34]`
+- `WARNING [sys.xml] Missing slot StatusNumeric.startDelay [948:47]`
+- `SEVERE [sys] Cannot load station  java.lang.ClassCastException: javax.baja.sys.BRelTime cannot be cast to javax.baja.sys.BComplex`
+
+This is the **B795 schema-risk OUTAGE class observed LIVE** `[CERT-live]`: the reloaded module's slots no longer
+match the persisted `.bog` (a retype `BStatusNumeric`↔`BDouble` + a `BRelTime`↔`BComplex` mismatch + removed/renamed
+frozen props) → the station will not boot. **Closure evidence for B795-G1 (issue #50, station-required gap)** — the
+exact `retype`/`remove_slot`/schema-mismatch verdict [Block 799] fixtures model, now confirmed against a live station.
+
+**Third attribution channel (updates §800.5):** NONE of these lines carry a `com.angeles` frame OR our logger tag —
+they are `SEVERE [sys] Cannot load station` + `[sys.xml]` warnings that NAME our types/slots (`RoomPanel.setpoint`,
+`StatusNumeric.startDelay`, `differentialUp`…). So `triage-console.sh` needs a **THIRD attribution match**: a
+`Cannot load station` SEVERE and `[sys.xml]` `Cannot set property`/`Missing frozen property`/`Missing slot` warnings
+whose named type/slot belongs to one of our modules. Frame-only OR tag-only misses a total station outage.
+
+**(2) REFLOW (Spanish locale, Jun 6–Jul 2) — cert-chain trust gap** `[CERT-live]`:
+- `modifyThread` unschedule-controlTick ×**12** here (×**21** total with MX60's 9) — same chihuahua JDK-executor defect (§800.3).
+- `ADVERTENCIA [chihuahua] BChiDashboardService: cannot force-load ChiAlarmHelper …` ×**9** — a lazy class-load deferral.
+- `ADVERTENCIA [loader] Could not validate certificate path for entry com/angeles/chihuahua/components/BChiDashboardService.class in module chihuahua-rt: Could not validate cert chain` ×**7** for that exact class (25 `Could not validate cert` lines across chihuahua-rt entries in REFLOW). The chihuahua-rt jar is SIGNED but its signing cert is **not trusted by that station → it loads as UNSIGNED**.
+  - **KIT GAP (doctrine/tool candidate):** `verify-module.sh` checks `META-INF/NIAGARA4.SF` **presence** only — NOT
+    chain TRUST against the target station's trust store. A jar can pass the gate and still fail cert-chain
+    validation on the deploy target. Candidate: a `--target-trust <station>` check, or document that signature
+    presence ≠ trust. (Note: my verified count for the exact `BChiDashboardService.class` entry is 7, not the 11
+    quoted in the request — reporting what the grep returns.)
