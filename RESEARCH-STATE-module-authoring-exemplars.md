@@ -26,29 +26,29 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 8
-gaps_closed: 8
-known_gaps: 14
+covered_blocks: 9
+gaps_closed: 9
+known_gaps: 16
 investigable_open: 6
-requires_execution_open: 0
+requires_execution_open: 1
 blocked_open: 0
 undocumented_findings: 0
 <!-- /research-state.v1 -->
 
 focus: module-authoring-exemplars
-status: bootstrapping (0/14 seeded; investigable_open=14) — no block written this iteration
+status: active (2/14 closed: B772 MAE1 + B778 MAE7; investigable_open=13; +1 req-exec) — lane MAE1–MAE6 (companero) · MAE7–MAE14 (investigador1)
 seeded_from: AUDIT-FIRST coverage sweep 2026-09-05 (4 parallel Explore shards over disjoint dimension sets D1+D8 / D2+D3+D11 / D4+D10+D12 / D5+D6+D7+D9; ≥2 distinct search terms per cell; driver-verified inline)
 seeded_on: 2026-09-05
 gaps_total: 14 investigable (MAE1–MAE14)
-gaps_closed: 0
-blocks_written: none yet; reserved block range = B772–B791 (shared global numbering, holes tolerated)
+gaps_closed: 2 (MAE1 → B772; MAE7 → B778)
+blocks_written: B772 (MAE1), B778 (MAE7); reserved block range = B772–B791 (shared global numbering, holes tolerated)
 block_prefix: niagara-mental-model-bloqueN.md (shared global numbering)
 
 ## Coverage
 
-- **Covered blocks (this focus)**: 0 — bootstrap only; no block written, no block number consumed.
-- **Coverage metric**: 0 / 14 investigable gaps closed (0%).
-- **Last iteration**: 2026-09-05 — BOOTSTRAP (AUDIT-FIRST matrix + 14-gap backlog seeded).
+- **Covered blocks (this focus)**: 2 — B772 (MAE1), B778 (MAE7).
+- **Coverage metric**: 2 / 14 investigable gaps closed (~14%). (+2 child gaps: MAE1-G1 req-exec, MAE7-G1 investigable.)
+- **Last iteration**: 2026-09-05 — B772 (MAE1, D6 point-extension authoring; premise `BAbstractPointExt` refuted → renamed) + B778 (MAE7, D4 author-side SPIs — investigador1).
 
 ## Gap-backlog (prioritized)
 
@@ -60,7 +60,7 @@ The kit-destination file is named in each row — that is the artifact the block
 
 | Priority | Gap | Where | Status |
 |---|---|---|---|
-| high | **MAE1 D6 extension AUTHORING contract** — how to build a NEW `BAbstractPointExt` / `BPointExtension`: mandatory-vs-optional overrides (`onExtended`/`onRetracted`/`getParentPoint`/`changed`/`onExecute`), how an ext OBSERVES parent value changes, and multi-extension execution ORDER on one point. Corpus has concrete impls but never the abstract base contract (`BAbstractPointExt` = 0 hits) → kit `types/logic.md` | `control-rt` (writable exts), `history-rt` (BIntervalHistoryExt/BCovHistoryExt), `alarm-rt` (BAlarmSourceExt) | pending → B772 |
+| high | ~~**MAE1 D6 extension AUTHORING contract**~~ — **RENAMED (premise refuted)**: base class is `BPointExtension` (`javax.baja.control`), NOT `BAbstractPointExt` (absent); `onExtended`/`onRetracted` do not exist. Documented the real contract: only `onExecute` is abstract/mandatory; parent value observed via `out` in `onExecute`; multi-ext order = slot-declaration order, proxyExt always first. → kit `types/logic.md` | `control-rt`/`history-rt`/`alarm-rt` (docSource) | **CLOSED → B772** (child MAE1-G1 req-exec) |
 | high | **MAE2 D7 analytics algorithm-node + data-source AUTHORING** — how to build ONE custom `BAlgorithmBlock` (class to extend, input/output slots → DAG edges, registration with `BAnalyticService`) and how to plug a custom DATA SOURCE / rollup/filter into the pipeline. B66/B67 are read-only CATALOGS ("algorithm node"/"filter algorithm" = 0 authoring hits) → kit `types/logic.md` | `analytics` (`analytics-rt`, ~424 FQN) | pending → B773 |
 | high | **MAE3 D11 background-work AUTHORING** — custom `BJobStep` recipe (`doRun(BBatchJobService, …)` template), the `BSimpleJob` vs `BJob`→`BJobService` SELECTION rule (missing from corpus), and submit/progress/heartbeat. B20/B511/B567 document Tridium internals but no author template ("BJob doRun" = 0) → kit `types/logic.md` | `batchJob-rt` (~95 FQN), `driver-rt` (discover job), `provisioningNiagara` | pending → B774 |
 | high | **MAE4 D2 watchdog/timer AUTHORING across exemplars** — the `BAbstractMonitor` subclass authoring contract (which methods to override, status slots, MonitorWorker 2s poll interaction), `BTimer` vs `Clock.Ticket` vs `Clock.schedulePeriodically` identity/selection, and a POSITIVE configurable-interval exemplar (BRelTime prop → schedulePeriodically). B729/B730 cover timer LIFECYCLE, not watchdog authoring → kit `types/logic.md` + `METHODOLOGY.md` note | `systemMonitor-rt` (~17 FQN, 10+ BAbstractMonitor), `analytics` pollers, `report` scheduler | pending → B775 |
@@ -132,18 +132,19 @@ are represented in the MAE1–MAE14 backlog.
 
 ## Stop control (METHODOLOGY §8)
 
-- **Open gaps — read-only investigable**: **14** (MAE1–MAE14, all source-confirmed, all `pending`).
-- **Gaps closed**: 0 (bootstrap iteration wrote no block).
-- **requires-execution / blocked**: 0.
-- **Coverage metric**: 0 / 14 investigable gaps closed (0%).
-- **NEXT**: MAE1 (D6 extension authoring contract) → B772. This focus is NOT stopped; the loop continues on
-  the highest-priority pending gap.
+- **Open gaps — read-only investigable**: **13** (MAE2–MAE6, MAE8–MAE14, + MAE7-G1; all `pending`).
+- **Gaps closed**: 2 (MAE1 → B772; MAE7 → B778).
+- **requires-execution / blocked**: 1 req-exec (MAE1-G1) / 0 blocked.
+- **Coverage metric**: 2 / 14 investigable gaps closed (~14%).
+- **NEXT (my lane MAE1–MAE6)**: MAE2 (D7 analytics algorithm-node authoring) → B773. This focus is NOT
+  stopped; the loop continues on the highest-priority pending gap in my lane.
 
 ## Iteration history
 
 | Iter | Gap | Block | Delegated? · model tier | New gaps uncovered |
 |---|---|---|---|---|
 | seed | AUDIT-FIRST coverage sweep — 12 dimensions × ~37 exemplar modules, 4 parallel Explore shards (D1+D8 / D2+D3+D11 / D4+D10+D12 / D5+D6+D7+D9), ≥2 search terms per cell, driver-verified inline (`corpus-nav`, `module_nav`) | — | yes · sonnet ×4 (verified inline: opus driver) | MAE1–MAE14 seeded from the coverage matrix; `queryApi` recorded absent-input |
+| 1 | MAE1 D6 point-extension authoring contract (premise `BAbstractPointExt` refuted → base = `BPointExtension`) | B772 | yes · sonnet (3-source sweep) + inline driver token-verify | MAE1-G1 (requires-execution): build+station-test a minimal `BPointExtension` end-to-end |
 | 7 (investigador1) | MAE7 D4 author-side SPIs: custom service (BAbstractService+getServiceTypes reg-by-placement), new ORD scheme (BOrdScheme BSingleton, walks B408), server-side subscription (Subscriber.event, fills 0-hit gap) | B778 | yes · Explore sweep + inline grep-verify (7/7 [CERT]) | MAE7-G1 type-level BComponentSpace.subscribe(Type[],TypeSubscriber) not walked |
 | 8 (investigador1) | MAE8 D5 child-tree primitives: no BComponentList; frozen `@NiagaraProperty` / dynamic `add()` / typed `BFolder` by cardinality; `reorder(Property[])` refuted-as-unused; `isChildLegal`/`isParentLegal` instanceof vetoes | B779 | yes · Explore sweep + inline grep-verify (6/6 [CERT]; corrected sweep's BComponent line numbers) | MAE8-G1 reorderToTop/Bottom + reordered() callback not walked |
 | 9 (investigador1) | MAE9 D8 palette/lexicon/@AgentOn copy-ready conventions (bare-Type-minus-B palette names, prefixed flat lexicon = B759 avoidance w/ 0 dups, dual-surface @AgentOn Java+module.xml) + proposed extractor | B780 | yes · Explore sweep + inline grep-verify (5/6 [CERT]; corrected @AgentOn line numbers) | MAE9-G1 -se/-doc profile packaging → MAE13 |
