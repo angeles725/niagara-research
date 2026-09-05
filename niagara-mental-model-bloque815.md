@@ -226,9 +226,38 @@ client `origin/main`. Lesson: for the LIVE invariant, open the client tree, not 
   0-from-WSL), [Block 787] (the timer-cancel lint whose flag `stopped()` closed), [Block 762] (timer-cancel
   discipline), [Block 743] (pure-JUnit standalone), [Block 801] (Clock delay floor). Pairs with [Block 812]
   (author-built liveness watchdog — the runtime analogue of this test's stop-invariant).
-- **B815-G1** (build/PoC, requires-execution): add `testImplementation` on `test-wb` to `ColdRoomPan-rt`, author the
-  §815.6 two tests, run them via `niagaraTest` on a Windows dev host / JACE, and confirm BOTH GREEN on `origin/main`
-  (c66e412); then check out the pre-fix tree (4f5f1c7) and confirm test 1 (defrost-preserves-power-on) and test 2
-  (stop-cancels-all) both FAIL — proving the PR #1/#2 fixes are now regression-guarded by an executable test.
-- **B815-G2**: confirm the exact `Tridium:test-wb:<ver>` coordinate the local gradle-niagara install resolves
-  (§815.7 `[INFER]`), and whether the scaffold template can ship it by default.
+- **B815-G1** (build/PoC): **BUILD half CLOSED [CERT-live]** (§815.12, 2026-09-05). The RUN half stays
+  requires-execution: `niagaraTest` needs the native runner on a Windows dev host / JACE (blocked in WSL, §815.12).
+  The intended proof still open: run BOTH tests GREEN on the fixed tree, then on the pre-fix tree (4f5f1c7) confirm
+  both FAIL — regression-guarding PR #1/#2.
+- **B815-G2**: the `test-wb` moduleTest dep is now present on the client `ColdRoomPan-rt`; §815.12 found it is
+  NECESSARY-BUT-NOT-SUFFICIENT (junit was also missing). Coordinate still to confirm for the scaffold template.
+
+## 815.12 — EXECUTED evidence (§19 build-PoC, 2026-09-05) `[CERT-live]`
+Client repo `Leon-Guanjuato` worktree `poc/lifecycle-btest` off `origin/main` deed38c; commit **c271d36** (local,
+unpushed). Authored `BColdRoomLifecycleTest` (the §815.6 two-test shape, `extends BTestNg`) in
+`ColdRoomPan-rt/srcTest/test/com/angeles/ColdRoomPan/`. Built against a read-only mirror of the Honeywell 4.14
+install (`mirror-niagara-home.sh …OptimizerSupervisor-N4.14.0.162 ~/niagara-mirror-hon414`, 406 jars), JDK 8, plugin
+7.6.17 ([Block 807] task matrix).
+- **BUILD — GREEN `[CERT-live]`.** `./gradlew :ColdRoomPan-rt:moduleTestJar` → `BUILD SUCCESSFUL`:
+  `compileModuleTestJava` + `writeTestModuleXml` + `moduleTestJar` all ran; produced `ColdRoomPan-rtTest.jar`
+  (12 415 B). So the §815.6 station-test SHAPE compiles against the real Baja API. This CLOSES the build half of the
+  [Block 790]/§815 "scaffold is buildable" claim for a station-lifecycle test.
+- **Correction to §815.7 `[CERT-live]`.** The dep gap is NOT just `test-wb` (which `ColdRoomPan-rt` already declares,
+  `moduleTestImplementation(":test-wb")`). The FIRST build FAILED with 47 errors `cannot find symbol: class Test` in
+  the SIBLING pure-JUnit tests (`ColdRoomControlTest`/`…DelayTest`/`WritePathTest`, `import org.junit.Test`) —
+  because the module never declared junit as a moduleTest dep. The pure tests had only ever been run via
+  `run-pure-test.sh` (external cache junit, [Block 743]); `moduleTestJar` had never compiled the mixed `srcTest`.
+  Adding `moduleTestImplementation("junit:junit:4.13.2")` (from `mavenCentral`, root repos) made it GREEN. So a
+  module mixing pure-JUnit and Baja station tests in one `srcTest` needs BOTH `test-wb` AND `junit` on the moduleTest
+  classpath — or separate source sets. (`CompPan-rt` has the same single-`:test-wb` gap.)
+- **RUN — BLOCKED (the precise wall) `[CERT-live]`.** `./gradlew :ColdRoomPan-rt:niagaraTest` FAILED with:
+  `A problem occurred starting process 'command '/home/cristian/niagara-mirror-hon414/bin/test''`. `file bin/test.exe`
+  → `PE32+ executable (console) x86-64, for MS Windows`. The native test runner is a WINDOWS binary; WSL Linux cannot
+  launch it. En route, three hardcoded Windows paths in the client `gradle.properties` also had to be overridden
+  (`niagara_user_home`, `nodeHome`, and `niagara_home`→the Linux mirror) — each surfaced as a
+  `URISyntaxException: Illegal character … C:\…`. This is the executed confirmation of [Block 807]/§815.7's
+  "`niagaraTest` = 0 from WSL, native/JACE only": the blocker is the native `test.exe` runner (+ a dev license/
+  station), reached only after the moduleTest jar built cleanly.
+- **Net:** the test COMPILES and PACKAGES in WSL (a real compile-gate for API drift); it EXECUTES only on a Windows
+  host / JACE. The RED→GREEN regression proof (B815-G1) awaits that host.
