@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **772 bloques**
+Total: **773 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -769,6 +769,7 @@ Total: **772 bloques**
 | 772 | [niagara-mental-model-bloque772.md](niagara-mental-model-bloque772.md) | Block 772 — Authoring a Niagara point extension: the `BPointExtension` base-class contract (D6 / MAE1) |
 | 773 | [niagara-mental-model-bloque773.md](niagara-mental-model-bloque773.md) | B773 · Authoring an analytics compute node + data source — the `BOutputBlock` SPI (MAE2, D7) |
 | 774 | [niagara-mental-model-bloque774.md](niagara-mental-model-bloque774.md) | B774 · Authoring a background job — the `BSimpleJob`/`BJob`/`BJobStep` SPI and the selection rule (MAE3, D11) |
+| 775 | [niagara-mental-model-bloque775.md](niagara-mental-model-bloque775.md) | B775 · Authoring a watchdog/monitor + choosing a timer — `BAbstractMonitor`, `Clock.schedulePeriodically`, and two corrected assumptions (MAE4, D2) |
 | 778 | [niagara-mental-model-bloque778.md](niagara-mental-model-bloque778.md) | B778 · Authoring a custom SERVICE, a new ORD SCHEME, and a SERVER-SIDE subscription — the three module-author SPIs (MAE7, D4) |
 | 779 | [niagara-mental-model-bloque779.md](niagara-mental-model-bloque779.md) | B779 · Child-tree construction primitives — the container choice (frozen vs dynamic vs typed BFolder), `reorder`, and legality vetoes (MAE8, D5) |
 | 780 | [niagara-mental-model-bloque780.md](niagara-mental-model-bloque780.md) | B780 · Per-exemplar palette / lexicon / @AgentOn conventions — copy-ready authoring templates (MAE9, D8) |
