@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **777 bloques**
+Total: **778 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -782,6 +782,7 @@ Total: **777 bloques**
 | 785 | [niagara-mental-model-bloque785.md](niagara-mental-model-bloque785.md) | B785 · The rdb DIALECT EXTENSION SPI — add a 5th RDBMS without touching rdb-rt (MAE14, D10) |
 | 787 | [niagara-mental-model-bloque787.md](niagara-mental-model-bloque787.md) | B787 · Conformance audit — timer/watchdog: BEvaporatorUnit lacks a `stopped()` ticket-cancel (OMV2) |
 | 788 | [niagara-mental-model-bloque788.md](niagara-mental-model-bloque788.md) | B788 · Conformance audit — palette/lexicon: DashboardPan-wb empty-palette footgun, partial lexicons, and a corrected "CompPan lexicon empty" claim (OMV4) |
+| 789 | [niagara-mental-model-bloque789.md](niagara-mental-model-bloque789.md) | B789 · Conformance audit — children-legality + poll-vs-subscribe (OMV3/OMV5), background-work clean (OMV6) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

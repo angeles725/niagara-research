@@ -18,17 +18,17 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 2
-gaps_closed: 3
+covered_blocks: 3
+gaps_closed: 7
 known_gaps: 7
-investigable_open: 4
+investigable_open: 0
 requires_execution_open: 0
 blocked_open: 0
 undocumented_findings: 0
 <!-- /research-state.v1 -->
 
 focus: own-modules-vs-exemplars
-status: active (3/7 audited: OMV1 conforms/no-block; OMV2→B787; OMV4→B788) — angle: exemplar conformance 2026-09; investigador1 sole writer
+status: STOPPED (7/7 dimensions audited: OMV2→B787, OMV3+OMV5→B789, OMV4→B788; OMV1+OMV6 CONFORM/no-block; OMV7 covered by B763). 3 finding-blocks (B787-B789). §18 focus-close retro filed. investigador1 sole writer.
 seeded_from: the module-authoring-exemplars census (B772–B785) + B763 + B760 punch-list, one gap per dimension cluster
 seeded_on: 2026-09-05
 gaps_total: 7 (OMV1–OMV7, one per dimension; a block is written only where the audit FINDS something)
@@ -42,10 +42,10 @@ block_prefix: niagara-mental-model-bloqueN.md (shared global numbering)
 | high | **OMV1 actions/protection** — which write/state-changing `@NiagaraAction` lack `flags=Flags.OPERATOR` (admin-only by accident) or, worse, which config/dangerous actions ARE operator-invokable; any `doPrivileged` (AP-27) | B776 | ColdRoomPan/CompPan/DashboardPan-rt vs chihuahua | **CONFORMS — NO BLOCK** (audited, clean, no padding). All our `@NiagaraAction`s are `Flags.HIDDEN` engine callbacks (ColdRoomPan 8, CompPan 2); DashboardPan has ZERO actions (writes via the -ux servlet, B763); write surfaces = OPERATOR-flagged properties. No doPrivileged/AP-27 anywhere. chihuahua baseline: 3 actions all correctly admin. NEGATIVE biting-check finding for retro: a "non-HIDDEN @NiagaraAction lacking Flags.OPERATOR → FAIL" lint is TOO NOISY (would false-positive on every legit admin action incl. chihuahua's 3) — the write/command-vs-read distinction is not statically decidable; recommend an ADVISORY review-line only, not a hard fail. |
 | high | **OMV2 timers/watchdogs** — `Clock.schedule`/`schedulePeriodically` without a kept `Ticket` (can't cancel/re-arm); no re-arm on `changed`; a configurable interval not honored; any threshold monitor | B775, B729/B730 | all 3 rt vs chihuahua | **COVERED → B787** (1 real finding: `BEvaporatorUnit` [ColdRoomPan] keeps 4 delay tickets + cancels on re-arm but has NO `stopped()` override → not cancelled on stop [sev LOW-MED]; siblings BDefrostController/BCompressorControl both cancel in `stopped()`. BColdRoom/DashboardPan = no timers; no watchdog monitor. Biting-check: "Clock.Ticket owner without a stopped()-cancel" structural lint + cheap "discarded schedule return" grep. 5 [CERT]+1. Client punch-list: add stopped(){cancelTicket();super.stopped();}) |
 | high | **OMV4 palette/lexicon** — empty/scaffold palette, missing lexicon keys, DUP bare keys (no prefix); run `slot-coverage.sh` dup-keys once PR5b merges | B780, B759 | all 3 vs chihuahua | **COVERED → B788** (findings: DashboardPan-wb EMPTY scaffold palette [B5 footgun]; ColdRoomPan-rt lexicon partial [32 keys, fanMode/freeze* missing]; DashboardPan-rt lexicon ~25%; NO dup keys anywhere. CORRECTION: CompPan-rt lexicon is NOT empty [56 keys] — the build-kit T8 "empty lexicon" claim is FALSE. chihuahua ref = palette-complete, lexicons empty by design [servlet UI]. Biting checks: lexicon-dup-keys FAIL + empty-palette WARN + coverage-% WARN. 5 [CERT]+1) |
-| med | **OMV3 extensions/children** — container-by-cardinality misuse, missing legality vetoes, retype hazards | B772/B779 | all 3 rt | pending → B789 (if found) |
-| med | **OMV7 write-surface** — DashboardPan-ux servlet vs the B763 5 gates (OPERATOR_WRITE, CSRF, SERVICE_ORD pin, per-Ord lock/423, audit) | B763 | DashboardPan-ux (+chihuahua-ux ref) | pending → B790 (may cite B763 §763.6, mostly done) |
-| low | **OMV5 services/ORD/subscription** — service registration correctness; any polling that should be a server-side Subscriber | B778 | all 3 | pending → B791 (if found) |
-| low | **OMV6 background-work** — any long op on the engine thread that should be a BSimpleJob | B774 | all 3 | pending → B792 (if found) |
+| med | **OMV3 extensions/children** — container-by-cardinality misuse, missing legality vetoes, retype hazards | B772/B779 | all 3 rt | **COVERED → B789** (finding OMV3-1 LOW-MED: BColdRoom controls units BY CHILD ORDER + returns all children but has NO isChildLegal/isParentLegal → a 4th/foreign child mounts silently and gets driven. No BPointExtension [correct]; container-by-cardinality otherwise conforms; no retype hazard. Biting-check ADVISORY only.) |
+| med | **OMV7 write-surface** — DashboardPan-ux servlet vs the B763 5 gates (OPERATOR_WRITE, CSRF, SERVICE_ORD pin, per-Ord lock/423, audit) | B763 | DashboardPan-ux (+chihuahua-ux ref) | **COVERED by B763 §763.6 — NO NEW BLOCK** (already audited: DashboardPan enforces OPERATOR_WRITE fail-closed [BDashboardServlet.java:198] + SERVICE_ORD pin + CSRF; gaps = no per-Ord lock/423 + no pure RBAC test seam. Cite B763; no re-derivation.) |
+| low | **OMV5 services/ORD/subscription** — service registration correctness; any polling that should be a server-side Subscriber | B778 | all 3 | **COVERED → B789** (registration CLEAN; finding OMV5-1 LOW: BDefrostController polls resistanceTemp every 5s via a self-rescheduling ticket where a Subscriber fits [self-TODO]; CompPan tick is a legit heartbeat, not flagged. Biting-check ADVISORY only.) |
+| low | **OMV6 background-work** — any long op on the engine thread that should be a BSimpleJob | B774 | all 3 | **CONFORMS — NO BLOCK** (clean: no File I/O / network / Thread.sleep / big loop / BSimpleJob in any rt module; engine-thread work is short + try/catch-wrapped; audit ring O(≤500) on the servlet thread. Nothing warrants a BSimpleJob.) |
 
 ## Stop control (METHODOLOGY §8)
 - STOP when each dimension is audited; a block is written ONLY where a real finding exists (a clean dimension = a
@@ -60,3 +60,4 @@ block_prefix: niagara-mental-model-bloqueN.md (shared global numbering)
 | 1 | OMV1 actions/protection audit (vs B776) — ALL 3 modules CLEAN (HIDDEN callbacks only / zero actions; write via OPERATOR properties + -ux servlet); no doPrivileged. NO BLOCK (no-padding). Negative biting-check finding: no-OPERATOR→FAIL lint too noisy → advisory only | — (no block) | yes · Explore audit + inline grep-verify | none; retro carries the advisory-lint note |
 | 2 | OMV2 timers/watchdogs audit (vs B775/B729) — 1 finding: BEvaporatorUnit no stopped() ticket-cancel (siblings conform); rest clean. Biting-check: Clock.Ticket-owner-without-stopped-cancel | B787 | yes · Explore audit + inline grep-verify (5 [CERT]+1) | OMV2-G1 stopped-unit actuation is requires-execution |
 | 4 | OMV4 palette/lexicon audit (vs B780/B759/B5) — DashboardPan-wb empty-palette footgun; ColdRoomPan/DashboardPan-rt partial lexicons; NO dup keys; CORRECTION CompPan lexicon NOT empty (56 keys, kit T8 stale). Biting checks: dup-keys FAIL / empty-palette WARN / coverage-% WARN | B788 | yes · Explore audit + inline grep-verify (5 [CERT]+1) | OMV4-G1 visible-camelCase is requires-execution |
+| 3+5+6 | OMV3/5/6 combined audit — OMV3-1 (BColdRoom no isChildLegal, control-by-order) + OMV5-1 (BDefrostController polls resistanceTemp 5s, should subscribe; self-TODO); registration clean; OMV6 background-work CLEAN. Biting-checks ADVISORY (not statically lintable). OMV7=cite B763 §763.6 | B789 | yes · Explore audit + inline grep-verify (5 [CERT]+1) | OMV3-1/OMV5-1 real-world impact is requires-execution. FOCUS STOPPED 7/7. |
