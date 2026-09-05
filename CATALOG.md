@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **778 bloques**
+Total: **779 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -783,6 +783,7 @@ Total: **778 bloques**
 | 787 | [niagara-mental-model-bloque787.md](niagara-mental-model-bloque787.md) | B787 · Conformance audit — timer/watchdog: BEvaporatorUnit lacks a `stopped()` ticket-cancel (OMV2) |
 | 788 | [niagara-mental-model-bloque788.md](niagara-mental-model-bloque788.md) | B788 · Conformance audit — palette/lexicon: DashboardPan-wb empty-palette footgun, partial lexicons, and a corrected "CompPan lexicon empty" claim (OMV4) |
 | 789 | [niagara-mental-model-bloque789.md](niagara-mental-model-bloque789.md) | B789 · Conformance audit — children-legality + poll-vs-subscribe (OMV3/OMV5), background-work clean (OMV6) |
+| 790 | [niagara-mental-model-bloque790.md](niagara-mental-model-bloque790.md) | B790 · The minimal correct N4 module — the smallest exemplar-grounded skeleton (and the `scaffold-module.sh` fixture) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

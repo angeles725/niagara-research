@@ -18,7 +18,7 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 3
+covered_blocks: 4
 gaps_closed: 7
 known_gaps: 7
 investigable_open: 0
@@ -28,7 +28,7 @@ undocumented_findings: 0
 <!-- /research-state.v1 -->
 
 focus: own-modules-vs-exemplars
-status: STOPPED (7/7 dimensions audited: OMV2→B787, OMV3+OMV5→B789, OMV4→B788; OMV1+OMV6 CONFORM/no-block; OMV7 covered by B763). 3 finding-blocks (B787-B789). §18 focus-close retro filed. investigador1 sole writer.
+status: STOPPED (7/7 dimensions audited: OMV2→B787, OMV3+OMV5→B789, OMV4→B788; OMV1+OMV6 CONFORM/no-block; OMV7 covered by B763). 3 finding-blocks (B787-B789) + B790 SYNTHESIS addendum (minimal module template + scaffold-module.sh fixture spec, lead-requested). §18 focus-close retro filed. investigador1 sole writer.
 seeded_from: the module-authoring-exemplars census (B772–B785) + B763 + B760 punch-list, one gap per dimension cluster
 seeded_on: 2026-09-05
 gaps_total: 7 (OMV1–OMV7, one per dimension; a block is written only where the audit FINDS something)
@@ -60,4 +60,5 @@ block_prefix: niagara-mental-model-bloqueN.md (shared global numbering)
 | 1 | OMV1 actions/protection audit (vs B776) — ALL 3 modules CLEAN (HIDDEN callbacks only / zero actions; write via OPERATOR properties + -ux servlet); no doPrivileged. NO BLOCK (no-padding). Negative biting-check finding: no-OPERATOR→FAIL lint too noisy → advisory only | — (no block) | yes · Explore audit + inline grep-verify | none; retro carries the advisory-lint note |
 | 2 | OMV2 timers/watchdogs audit (vs B775/B729) — 1 finding: BEvaporatorUnit no stopped() ticket-cancel (siblings conform); rest clean. Biting-check: Clock.Ticket-owner-without-stopped-cancel | B787 | yes · Explore audit + inline grep-verify (5 [CERT]+1) | OMV2-G1 stopped-unit actuation is requires-execution |
 | 4 | OMV4 palette/lexicon audit (vs B780/B759/B5) — DashboardPan-wb empty-palette footgun; ColdRoomPan/DashboardPan-rt partial lexicons; NO dup keys; CORRECTION CompPan lexicon NOT empty (56 keys, kit T8 stale). Biting checks: dup-keys FAIL / empty-palette WARN / coverage-% WARN | B788 | yes · Explore audit + inline grep-verify (5 [CERT]+1) | OMV4-G1 visible-camelCase is requires-execution |
+| synth | B790 minimal module template (lead-requested synthesis of B784/B780/B776/B775/B18 exemplars) — smallest gate-green + biting-check-green skeleton; kit "minimal module" section + scaffold-module.sh fixture spec (resolves the D1 cut) | B790 | inline synthesis + exemplar grep-verify (7 [CERT]+1) | B790-G1 live boot is requires-execution |
 | 3+5+6 | OMV3/5/6 combined audit — OMV3-1 (BColdRoom no isChildLegal, control-by-order) + OMV5-1 (BDefrostController polls resistanceTemp 5s, should subscribe; self-TODO); registration clean; OMV6 background-work CLEAN. Biting-checks ADVISORY (not statically lintable). OMV7=cite B763 §763.6 | B789 | yes · Explore audit + inline grep-verify (5 [CERT]+1) | OMV3-1/OMV5-1 real-world impact is requires-execution. FOCUS STOPPED 7/7. |
