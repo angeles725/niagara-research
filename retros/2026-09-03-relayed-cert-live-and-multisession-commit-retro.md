@@ -1,4 +1,4 @@
-<!-- review-status: pending -->
+<!-- review-status: applied 2026-09-05 · kit f73f5d6 · PARTIAL — shipped: #2 (§16 global block-number allocation, PR #427); DEFERRED: #1, #3 (LOW, author invites dismissal) -->
 <!-- Marker lifecycle: the maintainer flips 'pending' to 'applied <date> · kit <sha>' (or 'dismissed') once these deltas are reviewed in the kit; sweep-retros.sh reads this marker (METHODOLOGY §18). -->
 # Retro — niagara-research · access-control (document-mode) · 2026-09-03 · Research-SDD self-retrospective
 
