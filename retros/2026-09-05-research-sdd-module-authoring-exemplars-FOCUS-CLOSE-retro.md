@@ -35,7 +35,7 @@
 ### → `METHODOLOGY.md` / `corpus-index.md`
 - B784 (MAE13): real module.xml profile matrix (`-rt`/`-ux`/`-wb`/`-se`, `-doc` = SEPARATE module) + `<dependency>` 3-part Tridium FLOOR (`4.14.0`) vs the module's own 4-part build stamp (`4.14.0.162`).
 - B775 (MAE4) note: correct the "MonitorWorker 2s poll" assumption (configurable `BIntervalTriggerMode`, 15-min default); distinguish native `EngineWatchdog` (B124/B681) from author-level `BAbstractMonitor`.
-- B777 (MAE6) note: security modules embed permissions INLINE in module.xml, not a `module-permissions.xml` (B721 correction).
+- B777 (MAE6) note: a security module's SOURCE `module-permissions.xml` (B636/B721) is INLINED by the gradle plugin into the built jar's `module.xml` `<permissions>` — source and artifact are both right; NOT a B721 correction (retracted per B777 §14 addendum, real-jar-verified 2026-09-05).
 
 ## Cross-cutting META-DELTAS (the highest-value synthesis)
 1. **ONE recurring Niagara extension idiom** (B778 + B782 + B785 + B777): *subclass a framework base + register a
@@ -52,7 +52,7 @@
 - B779: `BComponentList` does not exist (confirmed absent); `reorder(Property[])` IS used (audit's "0 hits" refuted).
 - B773: node base is `BOutputBlock`, not `BAlgorithmBlock` (seed candidate list corrected).
 - B775: NO 2s MonitorWorker poll (configurable 15-min trigger); NO `javax.baja.sys.BTimer` (only cl.hvac).
-- B777: security-module permissions are INLINE in module.xml, not a `module-permissions.xml` (B721 correction).
+- B777: a security module's SOURCE `module-permissions.xml` is INLINED by the plugin into the built jar's module.xml — source (B636/B721) and artifact (B777) both right; the "corrects B721" claim is RETRACTED (B777 §14 addendum).
 - Line-number drift in delegated sweeps corrected on verify in B779 (BComponent) and B780 (@AgentOn).
 
 ## Research-tools lane proposal (NOT a build-kit delta — routed here by the lead)

@@ -14,6 +14,26 @@
 
 ---
 
+## §14 ADDENDUM (2026-09-05) — B793 BUILT this template: GREEN, and forced 6 spec corrections `[CERT · B793 a7396ec06]`
+companero built the skeleton (B793) and re-verified the gate: **exit 0, ALL PASS** — bytecode major 52, signed
+`NIAGARA4.SF/RSA`, types resolve, baja 4.14, palette. So §790.2 row-8 "gate-green **by construction**" is now
+**proven live → [CERT]** (was [INFER]). BUT the build forced 6 GENUINE corrections — the template below does NOT build
+EXACTLY as first written; apply these (all [CERT] from B793 §793.3):
+1. **slotomatic markers**: the generated region needs the `//region /*+ … +*/ … //endregion` form, not a bare `/*+…+*/`.
+2. **lexicon SOURCE filename is `module.lexicon`** (the plugin RENAMES it to `<MOD>-rt.lexicon` IN THE JAR) — §790.1
+   named the jar entry as the source; author `module.lexicon`.
+3. **the source tree has `module-include.xml` (the `<type>` list); the plugin GENERATES `META-INF/module.xml`** — §790.1's
+   "author `<MOD>-rt/module.xml`" is wrong for the SOURCE; you author `module-include.xml`, the build emits module.xml.
+4. **`preferredSymbol` in a source file is IGNORED** — the plugin assigns the profile-dir name; a custom symbol needs a
+   manifest property the minimal skeleton lacks.
+5. **the profile gradle file is `<MOD>-rt.gradle.kts`** (the findProjects convention), NOT `build.gradle.kts`.
+6. **the developer HAND-WRITES `do<Action>()`** (Baja calls `do<Name>()`); §790.2 showed only the generated
+   `tickExpired()` wrapper — add `doTickExpired()`.
+(Gate-neutral/cosmetic per B793: baja 2-part vs 3-part dep, `b:Folder` vs `b:UnrestrictedFolder`, a preflight jdk8
+false-negative.) **B790-G1's BUILD half is now closed by B793**; only B793-G1 (deploy+boot on a live station) stays
+requires-execution. The §790.1 table / §790.2 skeleton below are the FIRST-DRAFT shape — read them WITH the 6
+corrections above.
+
 ## 790.1 — The minimal skeleton, file by file (each cited to its proof) `[CERT unless noted]`
 
 | File | Minimal content | Exemplar / proof |
@@ -85,8 +105,8 @@ GREEN state for those checks by construction.
   service/scheme/provider.
 
 ## Open gaps
-- **B790-G1** (requires-execution): actually run `scaffold-module.sh` (once written) + build+deploy the emitted
-  skeleton to a station to prove it boots — the read-only skeleton is gate-green by construction but unproven live.
+- **B790-G1** — BUILD half CLOSED by B793 (built GREEN + gate PASS 2026-09-05, a7396ec06). Only **B793-G1** (deploy +
+  boot on a live station) stays requires-execution.
 
 ## Kit implication (→ `types/logic.md` "minimal module" + a `toolbelt/scaffold-module.sh` spec)
 Add the §790.1 table + §790.2 skeleton as the "minimal module" copy-start (each element `[ev: corpus B<n>]`), and

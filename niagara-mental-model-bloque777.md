@@ -45,13 +45,28 @@ logic lives in the JAAS LoginModule, not the scheme**: `SAMLLoginModule extends 
 `GoogleAuthLoginModule`. **Author obligation (B510)**: subclass a `BAuthenticationScheme` family class, name the
 scheme, return a `Configuration` pointing at your `NiagaraLoginModule`, supply a default authenticator.
 
-## 777.4 — Permissions: INLINE in module.xml, NOT a separate `module-permissions.xml` (B721 correction) `[CERT]`
-saml-rt ships **NO separate `module-permissions.xml`** (find-zero; the only such files in the whole corpus are under
+## 777.4 — Permissions: the source `module-permissions.xml` is INLINED into the jar's module.xml by the plugin `[CERT]`
+
+> **§14 ADDENDUM (2026-09-05 — corrected after a real-jar + PR7 check, QA/lead-verified):** an earlier version of this
+> section claimed §777.4 "CORRECTS B721". That is an OVER-REACH, retracted. It is ONE source file and ONE
+> `<permissions>` ELEMENT with TWO kinds of CHILDREN — not two mechanisms:
+> - the wizard SOURCE `module-permissions.xml` (`wbutil-wb/rc/module-permissions.xml`) = a `<permissions>` element with
+>   `<niagara-permission-groups type="all|workbench|station">` + `<req-permission>` entries (the RBAC groups — B636/B721);
+> - the gradle plugin INLINES that element into the built jar's `META-INF/module.xml` (see the CompPan-rt jar
+>   module.xml lines 11-15 — inlined groups, NO separate file in the jar);
+> - a SECURITY module's inlined `<permissions>` ADDITIONALLY carries `<java-permissions type="station">` (SAMLPermission,
+>   KeyStorePermission, FilePermission — saml-rt).
+> So B777 = ARTIFACT level + the `<java-permissions>` child; B636/line 15 = SOURCE file + the `<niagara-permission-groups>`
+> child; B721 (source) was right. The real fact is the source→artifact INLINING of ONE element, not a correction of B721.
+> [ev: wbutil-wb/rc/module-permissions.xml (source wizard template); CompPan-rt jar module.xml:11-15 (inlined groups);
+> saml-rt jar (adds java-permissions); QA/lead-verified 2026-09-05]
+
+saml-rt's DECOMPILED JAR ships **NO separate `module-permissions.xml`** (find-zero; the only such files in the whole corpus are under
 `wbutil-wb/rc/`). A security module declares its Java permissions INLINE in module.xml under `<permissions>
 <java-permissions type="station">` (`module.xml:72-73`): a custom `com.tridium.security.SAMLPermission`
 (`addAuthnInfo`/`removeAuthnInfo`/`createAuthnRequest`, :76), `NiagaraBasicPermission "UNAUTHENTICATED_SERVLET"` /
 `"GET_AUTHENTICATED_USER"`, `KeyStorePermission "userKeyStore" read`, `NiagaraSocketPermission`. gauth-rt does the same.
-**Correction to B721**: for a security module, the permission grants are the inline `<permissions>` block in module.xml,
+**Source→artifact (NOT a correction of B721, per the §14 addendum)**: for a security module, the permission grants are — in the built JAR — the inline `<permissions>` block in module.xml (the plugin having inlined the source file),
 granting the exact JAAS/Niagara permissions the login flow needs (unauthenticated-servlet reach, keystore read, the
 custom scheme permission) — not a rc `module-permissions.xml`.
 
@@ -77,7 +92,7 @@ browser entry.
 | 2 | Service = `BSAMLIdPService extends BAbstractService`, registered via `getServiceTypes()→{TYPE}` | [CERT] | BSAMLIdPService.java:104-105,275 |
 | 3 | Scheme = `BSAMLAuthenticationScheme extends BSSOAuthenticationScheme`; `getSchemeName`/`getLoginConfiguration` | [CERT] | BSAMLAuthenticationScheme.java:78-79,200,226 |
 | 4 | Real auth is in a `NiagaraLoginModule` wired by `getLoginConfiguration()`; gauth is a second exemplar | [CERT] | SAMLLoginModule (extends NiagaraLoginModule); BGoogleAuthenticationScheme.java:30,40 |
-| 5 | Permissions are INLINE `<permissions><java-permissions type="station">` in module.xml — NO separate module-permissions.xml (B721 correction) | [CERT] | saml-rt module.xml:72-76; find module-permissions.xml = 0 |
+| 5 | In the built JAR, permissions are INLINE `<permissions><java-permissions type="station">` in module.xml — the plugin inlined the SOURCE `module-permissions.xml` (reconciles, does NOT correct, B721 — see §14 addendum) | [CERT] | saml-rt jar module.xml:72-76; find module-permissions.xml in jar = 0; DashboardPan-ux source has one |
 | 6 | Signed module: NIAGARA4.RSA + NIAGARA4.SF + sealed manifest (B18) | [CERT] | saml-rt/META-INF/NIAGARA4.{RSA,SF} |
 | 7 | Registration = `@AgentOn "baja:AuthenticationScheme"` + service placement /Services | [CERT] | gauth BGoogleAuthenticationScheme.java:28; saml rank mix-in |
 
@@ -85,7 +100,7 @@ browser entry.
 
 ## Connections
 - **B510** (BAuthenticationScheme — this walks a concrete subclass), **B563** (SecurityDashboard SPI — the dashboard
-  agent), **B721** (module-permissions.xml — §777.4 CORRECTS it for security modules: inline in module.xml),
+  agent), **B721/B636** (source `module-permissions.xml` — §777.4 RECONCILES with it: the plugin inlines the SOURCE file into the jar module.xml; source and artifact are both right, §14 addendum),
   **B18** (signing), **B757/B778** (service registration-by-placement). **B776** (action protection — the RBAC bits a
   scheme's users get). **access-control B558-B566** (the RBAC subsystem the scheme feeds).
 
@@ -99,5 +114,7 @@ Add `saml-rt` as the canonical "security-module authoring skeleton": module.xml 
 subclass (`getServiceTypes`, B757/B778) → a `BAuthenticationScheme` subclass whose real auth lives in a
 `NiagaraLoginModule` wired via `getLoginConfiguration()` (B510), optionally a `BISecurityDashboardProviderAgent`
 (B563) → jar-signing (NIAGARA4.RSA/SF, B18) is MANDATORY for the privileged grants → registration by
-`@AgentOn "baja:AuthenticationScheme"` + service placement under /Services. Record the B721 correction: security
-modules embed permissions inline in module.xml rather than shipping a `module-permissions.xml`.
+`@AgentOn "baja:AuthenticationScheme"` + service placement under /Services. Record the source→artifact relationship
+(NOT a B721 correction, §14 addendum): a security module's permissions live in a SOURCE `module-permissions.xml`
+(B636/B721) that the gradle plugin INLINES into the built jar's `module.xml` `<permissions>` — so a decompiled jar
+shows them inline with no separate file.
