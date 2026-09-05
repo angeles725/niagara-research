@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **780 bloques**
+Total: **781 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -785,6 +785,7 @@ Total: **780 bloques**
 | 789 | [niagara-mental-model-bloque789.md](niagara-mental-model-bloque789.md) | B789 · Conformance audit — children-legality + poll-vs-subscribe (OMV3/OMV5), background-work clean (OMV6) |
 | 790 | [niagara-mental-model-bloque790.md](niagara-mental-model-bloque790.md) | B790 · The minimal correct N4 module — the smallest exemplar-grounded skeleton (and the `scaffold-module.sh` fixture) |
 | 791 | [niagara-mental-model-bloque791.md](niagara-mental-model-bloque791.md) | B791 · Web-tier exemplars — AUDIT-FIRST coverage map: the mechanism is fully covered (verdict THIN, 0 new blocks) + DashboardPan divergences |
+| 792 | [niagara-mental-model-bloque792.md](niagara-mental-model-bloque792.md) | Block 792 — `palette-lexicon-agents` extractor + census: duplicate bare lexicon keys across Tridium exemplars (B759 hazard confirmed real) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
