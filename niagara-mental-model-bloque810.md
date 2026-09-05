@@ -59,10 +59,13 @@ ARRAY: effective output = the lowest-numbered `inN` whose status is non-null; if
 likewise bails: `if (!isOperational(state())) return;` (`:253`). **So when the device is DOWN/FAULT/DISABLED, the write is
 SILENTLY DROPPED — it is NOT queued.** The point's `out` keeps showing the last `readValue` with the DOWN bit merged (and
 STALE once `staleTime` elapses).
-**RECOVERY** `[CERT]`: only if the tuning policy's `writeOnUp` is true — `transition()` detects DOWN→UP
-(`isDownToUp`) and re-schedules a write `writeOnDelay` (~5 s) later (`:201-204`). **If `writeOnUp` is false, the field
-device keeps its pre-outage value AND our commanded `in8` is never re-sent — a silent, permanent divergence between what
-our control logic COMMANDED and what the actuator actually DID.** **WHY this is the dangerous one (physics/safety)**: our
+**RECOVERY** `[CERT]`: `transition()` detects DOWN→UP (`isDownToUp`) and re-schedules a write `writeOnDelay` (~5 s)
+later (`:201-204`) — but only if the tuning policy's `writeOnUp` is true. **`writeOnUp` DEFAULTS to true**
+(`BTuningPolicy.java:206`; siblings `writeOnStart:177`, `writeOnEnabled:235` also default true), so the DOWN→UP re-send is
+the DEFAULT — the device-DOWN case is self-correcting unless a policy explicitly disables it (confirmed live: PANCCADIA
+inherits the default, §810.8). **If a policy sets `writeOnUp=false`, the field device keeps its pre-outage value AND our
+commanded `in8` is never re-sent — a silent, permanent divergence between what our control logic COMMANDED and what the
+actuator actually DID.** (The commoner real-world hazard is NOT device-DOWN but a NULL command on stop/reload — §810.8.) **WHY this is the dangerous one (physics/safety)**: our
 `step()`/PID thinks the output was delivered (in8 is set, the point shows a value), but on a comm blip the actuator never
 moved and won't be corrected — a compressor left running, a valve left open, with no error unless we watch the point's
 DOWN/STALE bit. This is the actuator-level failure mode the kit must make impossible to author by accident.
@@ -91,12 +94,30 @@ when our rt logic drives a field point):
 5. Configure the **device-side relinquishDefault** to a safe value (all-inputs-null → RELEASE → the device falls to it).
 6. Give the network a `pingEnabled=true` monitor with a sane `pingFrequency` — no ping = no DOWN detection.
 **Lint candidates** (extends the [B788]/[B805] lintable/advisory split):
-- **HARD**: a writable proxy point on a tuning policy with `writeOnUp=false` (our command is lost on comm recovery);
-  a `BDeviceNetwork` with `pingEnabled=false`/`pingFrequency=0`; a `BDeviceNetwork` missing a `tuningPolicies` map.
-- **WARN**: a writable point whose `fallback` is left at `nullStatus`.
+- **HARD**: a writable proxy target driven by OUR output with a null `fallback` (on stop/reload the relay holds its last
+  state — resistance/compressor left ON; the top real-world hazard, proven live §810.8); a `BDeviceNetwork` with
+  `pingEnabled=false`/`pingFrequency=0`; a `BDeviceNetwork` missing a `tuningPolicies` map.
+- **WARN**: a tuning policy with `writeOnUp=false` (lower priority — it DEFAULTS true, so this only fires on an explicit override).
 - **REVIEW (not statically decidable)**: a driver `write()` doing synchronous device I/O on the engine thread; a
   `readSubscribed()` with no fallback poll if COV fails; a proxy/device mounted under the wrong parent (runtime
   `checkFatalFault` only).
+
+## 810.8 — Applied to the live PANCCADIA bog `[CERT-live]` (checklist validation)
+The §810.7 checklist run against the real PANCCADIA station (bog read by the lead this campaign):
+- **22 of our outputs** (`valveOut`/`evapOut`/`resistanceOut`/`condenserN`) BLink into `c:BooleanWritable` relay points
+  `ro1..ro10` on THREE `nrio:NrioNetwork` modules on COM1 (`pingFrequency` 30 s; `lastFailTime` 2026-09-03 15:56).
+  Bog handles: NrioNetwork `h=444f2`, `tuningPolicies h=444f5`, `defaultPolicy h=444f6`.
+- **writeOnUp = OK by default**: the network's `defaultPolicy` has no explicit children, so all 22 inherit the class
+  default `writeOnUp=true` (§810.4 / `BTuningPolicy.java:206`) — the DOWN→UP re-send IS in place; the device-DOWN case is
+  covered without config.
+- **THE REAL GAP [CERT-live]**: NONE of the 22 targets declares a `fallback` (left at null). So on a component STOP or a
+  module RELOAD — NOT a device outage — our BLink source goes null, all `inN` go null, and with `fallback` also null the
+  NRIO relay **HOLDS its last state** (resistance or compressor left ON). This is the checklist's "explicit SAFE fallback"
+  line proven live: `writeOnUp` protects the comm-loss path, but only a non-null safe `fallback` protects the
+  stop/reload/null-command path. Recorded as a PANCCADIA station-config change on issue #49.
+- **Sharpened kit rule**: the two paths are DISTINCT — comm-DOWN (writeOnUp, default-safe) vs command-NULL on stop/reload
+  (fallback, default-UNSAFE). The lint that bites is **"a writable proxy target driven by our output with a null
+  `fallback`"** (WARN→HARD for a relay driving heat/compression), not the writeOnUp one (already default-true).
 
 ## Self-verify
 
@@ -106,10 +127,11 @@ when our rt logic drives a field point):
 | 2 | BPingMonitor pings on schedule; pingFail sets down + updateStatus; DOWN propagates network→device→pointExt→proxy, setting BStatus.DOWN on the point | [CERT] | BPingMonitor.java:128; BPingHealth.java:293,305-311; BDevice.java:400; BPointDeviceExt.java:129; BProxyExt.java:475 |
 | 3 | Our outputs land at in8 (READONLY operator level); priority array = lowest non-null inN, else fallback | [CERT] | BBooleanWritable.java:490,726; BNumericWritable.java:443,679 |
 | 4 | Write to a DOWN/FAULT/DISABLED device is DROPPED not queued (Tuning.write !isOperational → return); UNOPERATIONAL=FATAL\|DOWN\|DISABLED\|STOP | [CERT] | Tuning.java:253,332-333 |
-| 5 | Recovery only via writeOnUp: DOWN→UP re-schedules a write after writeOnDelay; else the commanded value is never re-sent | [CERT] | Tuning.java:201-204 |
+| 5 | Recovery via writeOnUp (DOWN→UP re-schedules a write); writeOnUp/writeOnStart/writeOnEnabled DEFAULT true → DOWN case self-corrects by default | [CERT] | Tuning.java:201-204; BTuningPolicy.java:177,206,235 |
 | 6 | Minimal driver = BXxxNetwork/Device/PointDeviceExt/ProxyExt (+tuningPolicies) + wb managers + module.xml deps driver+control | [CERT] | BModbusTcpNetwork.java:25,43 |
+| 7 | PANCCADIA: 22 of our outputs drive c:BooleanWritable relays on 3 nrio nets; writeOnUp inherits default-true (OK); NONE declares a fallback → relay HOLDS on stop/reload (real gap, issue #49) | [CERT-live] | PANCCADIA bog §810.8 (NrioNetwork h=444f2, defaultPolicy h=444f6) |
 
-**Tally**: 6 [CERT]. All file:line grep-verified this session (12-cite driver map confirmed at the enclosing method).
+**Tally**: 6 [CERT] · 1 [CERT-live]. All decompiled file:line grep-verified this session (12-cite driver map confirmed at the enclosing method); the PANCCADIA numbers are the lead's live bog read.
 §810.7 checklist + lints + the WHY reasoning are [INFER] grounded in the [CERT] mechanism. Dedupe: the driver framework/
 protocol/wire/discovery are REMITTANCE ([B4]/[B15]/[B127]/[B496]-[B506]/[B761]); this block adds the AUTHOR-side hierarchy,
 the health→point propagation, the write-drop finding, and the output-linking safety.
