@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **787 bloques**
+Total: **788 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -792,6 +792,7 @@ Total: **787 bloques**
 | 796 | [niagara-mental-model-bloque796.md](niagara-mental-model-bloque796.md) | B796 · The `-ux` write-surface seam, captured as THE kit exemplar — DashboardPan-ux walked with file:line (document-mode §20) |
 | 797 | [niagara-mental-model-bloque797.md](niagara-mental-model-bloque797.md) | B797 · `verify-module.sh --plano`: pinning the four-value agreement check (issue #47 spec) `[CERT]` |
 | 798 | [niagara-mental-model-bloque798.md](niagara-mental-model-bloque798.md) | B798 · Conformance baseline of the operator's modules at kit v0.17.0 (§20) `[CERT]` |
+| 799 | [niagara-mental-model-bloque799.md](niagara-mental-model-bloque799.md) | B799 · `schema-risk.sh` two-snapshot fixtures + the slot-diff rules (PR5 / issue #46) `[CERT-artifact]` |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
