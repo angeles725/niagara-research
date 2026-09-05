@@ -4,15 +4,15 @@
 schema: research-state.v1
 block_scope: shared-global
 covered_blocks: 16
-gaps_closed: 15
+gaps_closed: 16
 known_gaps: 16
-investigable_open: 1
+investigable_open: 0
 requires_execution_open: 5
 blocked_open: 0
 <!-- /research-state.v1 -->
 
 focus: build-kit-campaign8
-status: ACTIVE (15/16 closed). Campaign 8 (user reversed the C7 stop, 2026-09-05). Multi-session focus: investigador1 (Opus) + companero. B815 landed but has a correction push pending from companero — row stays OPEN until his SHA.
+status: ALL 16 CLOSED (16/16). Campaign 8 (user reversed the C7 stop, 2026-09-05). Multi-session focus: investigador1 (Opus) + companero. Open items are requires-execution / bounded gaps only (see below); both consolidated §18 fold retros filed.
 seeded_from: lead directives 2026-09-05 + campaign8-research-candidates.md (AUDIT-FIRST ranking)
 seeded_on: 2026-09-05
 block_range: B800–B815 (shared-global numbering; B815 next-free = B816)
@@ -38,7 +38,7 @@ envelope_note: requires_execution_open counts the investigador1 lanes' station-r
 | B812 | companero | Heartbeat/liveness watchdog pattern — author-built independent monitor (builds on B775/B801/B805) | CLOSED [INFER/CERT] |
 | B813 | companero | UX servlet authoring conventions — registration/routing/lifecycle, JSON+facet+CSRF (cites B796/B803/B762/B763) | CLOSED [CERT] |
 | B814 | companero | Authoring a module tag dictionary — nav/search/hierarchy addressable components | CLOSED [CERT] |
-| B815 | companero | Station-level / component-lifecycle test authoring (cites B805 §805.8 BTest) | **OPEN — landed, companero correction SHA pending** |
+| B815 | companero | Station-level / component-lifecycle test authoring (cites B805 §805.8 BTest); §815.10 logs the read-the-client-tree lesson (first pass read a same-named research exemplar) | CLOSED [CERT] (correction 85664208f) |
 
 Addendum (no new block): **B775 §775.6** — the BTimeTrigger timer self-heal exemplar (investigador1), folded for the timer defense-in-depth checklist.
 
