@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **789 bloques**
+Total: **790 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -793,6 +793,7 @@ Total: **789 bloques**
 | 797 | [niagara-mental-model-bloque797.md](niagara-mental-model-bloque797.md) | B797 · `verify-module.sh --plano`: pinning the four-value agreement check (issue #47 spec) `[CERT]` |
 | 798 | [niagara-mental-model-bloque798.md](niagara-mental-model-bloque798.md) | B798 · Conformance baseline of the operator's modules at kit v0.17.0 (§20) `[CERT]` |
 | 799 | [niagara-mental-model-bloque799.md](niagara-mental-model-bloque799.md) | B799 · `schema-risk.sh` two-snapshot fixtures + the slot-diff rules (PR5 / issue #46) `[CERT-artifact]` |
+| 800 | [niagara-mental-model-bloque800.md](niagara-mental-model-bloque800.md) | B800 · Console-log census: exceptions through the operator's OWN modules (triage-console.sh contract input) `[CERT]` |
 | 801 | [niagara-mental-model-bloque801.md](niagara-mental-model-bloque801.md) | B801 · The `Clock` timer delay/period floor — `schedule`/`schedulePeriodically` reject a non-positive value with `IllegalArgumentException` (extends B775) `[CERT]` |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
