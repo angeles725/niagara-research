@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **792 bloques**
+Total: **793 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -797,6 +797,7 @@ Total: **792 bloques**
 | 801 | [niagara-mental-model-bloque801.md](niagara-mental-model-bloque801.md) | B801 · The `Clock` timer delay/period floor — `schedule`/`schedulePeriodically` reject a non-positive value with `IllegalArgumentException` (extends B775) `[CERT]` |
 | 802 | [niagara-mental-model-bloque802.md](niagara-mental-model-bloque802.md) | B802 · Inter-module communication is module-AGNOSTIC within a station — links, service discovery, and subscription never check the module; the only real boundaries are the compile-time Type dependency and the fox: remote hop `[CERT]` |
 | 803 | [niagara-mental-model-bloque803.md](niagara-mental-model-bloque803.md) | B803 · Step-up / re-authentication for a critical dashboard write — Niagara ships NO core step-up primitive; the clean `-ux` pattern re-verifies the session user through their auth scheme (and SAML users cannot be re-verified mid-session) `[CERT]` |
+| 804 | [niagara-mental-model-bloque804.md](niagara-mental-model-bloque804.md) | B804 · History-extension authoring — a `BHistoryExt` IS a point extension; pick Interval vs COV; `BHistoryConfig` sets capacity + rollover; ONE ext per logged slot `[CERT]` |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
