@@ -67,6 +67,16 @@ B790, owner investigador1); **T** = environment/tooling note (B790 not wrong).
 | 9 | T | (n/a) | `preflight.sh` reports `FAIL jdk8` for the WSL `openjdk-8` at `/usr/lib/jvm/java-8-openjdk-amd64` (no `release` file); `build.sh`'s `[ -d $J8 ]` passes, so it does not block — a preflight tooling gap |
 | 10 | — | INFER `Clock.schedulePeriodically(...)` | confirmed present in baja 4.14 (compiled) — INFER→CERT |
 
+**§14 addendum (2026-09-05) — C1 clarified.** C1 above ("slotomatic requires the `//region` form") describes the
+GENERATED region format and the failure mode when a MALFORMED or EMPTY marker is already present in the source —
+NOT a requirement that the pre-slotomatic SOURCE carry markers. The correct pre-slotomatic source is
+**annotations-only with NO `//region` block at all** (correction C3): an empty/partial marker makes slotomatic
+fail "Found multiple metadata blocks", whereas zero markers lets it generate the region cleanly. Proven by
+campaign-7 PR4's fixture `build-n4-module-kit/fixtures/MinimalPan` (annotations-only, no region) and an
+independent round-trip: `scaffold-module.sh VerifPan2` at niagara-tools **PR #55 (`c234bfd`)** built BUILD
+SUCCESSFUL → verify-module ALL PASS with no "multiple metadata blocks" error. So C1 governs the generated state;
+C3 governs the source.
+
 ## 793.4 — Kit implication → `types/logic.md` + `toolbelt/scaffold-module.sh` (PR9) `[CERT-grounded]`
 
 The built, gate-green `MinimalPan` IS the RED→GREEN fixture B790 named for `scaffold-module.sh` (PR9 candidate).
