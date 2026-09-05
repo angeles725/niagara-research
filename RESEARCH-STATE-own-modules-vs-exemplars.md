@@ -18,17 +18,17 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 0
-gaps_closed: 1
+covered_blocks: 1
+gaps_closed: 2
 known_gaps: 7
-investigable_open: 6
+investigable_open: 5
 requires_execution_open: 0
 blocked_open: 0
 undocumented_findings: 0
 <!-- /research-state.v1 -->
 
 focus: own-modules-vs-exemplars
-status: active (1/7 audited: OMV1 conforms/no-block) — angle: exemplar conformance 2026-09; investigador1 sole writer
+status: active (2/7 audited: OMV1 conforms/no-block; OMV2→B787 [1 finding]) — angle: exemplar conformance 2026-09; investigador1 sole writer
 seeded_from: the module-authoring-exemplars census (B772–B785) + B763 + B760 punch-list, one gap per dimension cluster
 seeded_on: 2026-09-05
 gaps_total: 7 (OMV1–OMV7, one per dimension; a block is written only where the audit FINDS something)
@@ -40,7 +40,7 @@ block_prefix: niagara-mental-model-bloqueN.md (shared global numbering)
 | Priority | Gap | Exemplar idiom | Subjects | Status |
 |---|---|---|---|---|
 | high | **OMV1 actions/protection** — which write/state-changing `@NiagaraAction` lack `flags=Flags.OPERATOR` (admin-only by accident) or, worse, which config/dangerous actions ARE operator-invokable; any `doPrivileged` (AP-27) | B776 | ColdRoomPan/CompPan/DashboardPan-rt vs chihuahua | **CONFORMS — NO BLOCK** (audited, clean, no padding). All our `@NiagaraAction`s are `Flags.HIDDEN` engine callbacks (ColdRoomPan 8, CompPan 2); DashboardPan has ZERO actions (writes via the -ux servlet, B763); write surfaces = OPERATOR-flagged properties. No doPrivileged/AP-27 anywhere. chihuahua baseline: 3 actions all correctly admin. NEGATIVE biting-check finding for retro: a "non-HIDDEN @NiagaraAction lacking Flags.OPERATOR → FAIL" lint is TOO NOISY (would false-positive on every legit admin action incl. chihuahua's 3) — the write/command-vs-read distinction is not statically decidable; recommend an ADVISORY review-line only, not a hard fail. |
-| high | **OMV2 timers/watchdogs** — `Clock.schedule`/`schedulePeriodically` without a kept `Ticket` (can't cancel/re-arm); no re-arm on `changed`; a configurable interval not honored; any threshold monitor | B775, B729/B730 | all 3 rt vs chihuahua | pending → B787 |
+| high | **OMV2 timers/watchdogs** — `Clock.schedule`/`schedulePeriodically` without a kept `Ticket` (can't cancel/re-arm); no re-arm on `changed`; a configurable interval not honored; any threshold monitor | B775, B729/B730 | all 3 rt vs chihuahua | **COVERED → B787** (1 real finding: `BEvaporatorUnit` [ColdRoomPan] keeps 4 delay tickets + cancels on re-arm but has NO `stopped()` override → not cancelled on stop [sev LOW-MED]; siblings BDefrostController/BCompressorControl both cancel in `stopped()`. BColdRoom/DashboardPan = no timers; no watchdog monitor. Biting-check: "Clock.Ticket owner without a stopped()-cancel" structural lint + cheap "discarded schedule return" grep. 5 [CERT]+1. Client punch-list: add stopped(){cancelTicket();super.stopped();}) |
 | high | **OMV4 palette/lexicon** — empty/scaffold palette, missing lexicon keys, DUP bare keys (no prefix); run `slot-coverage.sh` dup-keys once PR5b merges | B780, B759 | all 3 vs chihuahua | pending → B788 |
 | med | **OMV3 extensions/children** — container-by-cardinality misuse, missing legality vetoes, retype hazards | B772/B779 | all 3 rt | pending → B789 (if found) |
 | med | **OMV7 write-surface** — DashboardPan-ux servlet vs the B763 5 gates (OPERATOR_WRITE, CSRF, SERVICE_ORD pin, per-Ord lock/423, audit) | B763 | DashboardPan-ux (+chihuahua-ux ref) | pending → B790 (may cite B763 §763.6, mostly done) |
@@ -58,3 +58,4 @@ block_prefix: niagara-mental-model-bloqueN.md (shared global numbering)
 |---|---|---|---|---|
 | seed | idiom-conformance backlog from B772–B785 + B763 + B760 | — | inline (investigador1) | OMV1–OMV7 seeded, one per dimension |
 | 1 | OMV1 actions/protection audit (vs B776) — ALL 3 modules CLEAN (HIDDEN callbacks only / zero actions; write via OPERATOR properties + -ux servlet); no doPrivileged. NO BLOCK (no-padding). Negative biting-check finding: no-OPERATOR→FAIL lint too noisy → advisory only | — (no block) | yes · Explore audit + inline grep-verify | none; retro carries the advisory-lint note |
+| 2 | OMV2 timers/watchdogs audit (vs B775/B729) — 1 finding: BEvaporatorUnit no stopped() ticket-cancel (siblings conform); rest clean. Biting-check: Clock.Ticket-owner-without-stopped-cancel | B787 | yes · Explore audit + inline grep-verify (5 [CERT]+1) | OMV2-G1 stopped-unit actuation is requires-execution |

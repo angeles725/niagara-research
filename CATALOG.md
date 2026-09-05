@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **775 bloques**
+Total: **776 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -780,6 +780,7 @@ Total: **775 bloques**
 | 783 | [niagara-mental-model-bloque783.md](niagara-mental-model-bloque783.md) | B783 · Template author-side — there is no type-registration SPI; a "template type" is an `.ntpl` artifact produced by a job (MAE12, D11) |
 | 784 | [niagara-mental-model-bloque784.md](niagara-mental-model-bloque784.md) | B784 · Real module.xml profile matrix + dependency version conventions (MAE13, D1) |
 | 785 | [niagara-mental-model-bloque785.md](niagara-mental-model-bloque785.md) | B785 · The rdb DIALECT EXTENSION SPI — add a 5th RDBMS without touching rdb-rt (MAE14, D10) |
+| 787 | [niagara-mental-model-bloque787.md](niagara-mental-model-bloque787.md) | B787 · Conformance audit — timer/watchdog: BEvaporatorUnit lacks a `stopped()` ticket-cancel (OMV2) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
