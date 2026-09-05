@@ -1,0 +1,35 @@
+<!-- review-status: pending -->
+<!-- Marker lifecycle: maintainer flips 'pending' → 'applied <date> · kit <sha>' (or 'dismissed') once folded; sweep-retros.sh reads this (METHODOLOGY §18). -->
+# Retro — niagara-research · research-sdd · 2026-09-05 · CONSOLIDATED campaign-8 kit deltas for /build-n4-module (B775 §775.6, B800, B801, B802, B803, B804)
+
+> **Consolidated §18 close** for campaign 8 (user reversed the C7 stop). Covers the investigador1 lanes
+> (C=B801, A=B802, STEP-UP=B803, B=B804, timer-defense B775 §775.6) + the companero console-census block (B800).
+> One row per PROPOSED kit delta with its target file/section + `[ev: corpus B<n>]` citation token, so the
+> wave-1 doctrine fold and the wave-2 doc PRs are mechanical. READ-ONLY on the build kit — PROPOSES only; I do
+> NOT edit `$KIT`. Every cite grep-verified at the enclosing method (three Explore mappers, all verified).
+
+## Proposed kit deltas (fold list)
+
+| # | Proposed delta (one line) | Target (file · §) | Evidence (block · key cite) | Citation token | Priority |
+|---|---|---|---|---|---|
+| D1 | Timer defense-in-depth: cite `BTimeTrigger` for layers 5 (one idempotent `init()` from started/atSteadyState/changed/clockChanged) + 6 (expose `nextTrigger`) + a PARTIAL 4 (clockChanged→init self-heal on clock jump); mark the INDEPENDENT periodic dead-ticket monitor as author-design [INFER] (find-zero) | `types/logic.md` §Safety-fail-modes-&-timers | B775 §775.6 · BTimeTrigger.java:238-249,294,136 | `[ev: corpus B775]` | HIGH |
+| D2 | Non-positive-delay LINT: hard-FAIL a compile-time-constant `<= 0` `BRelTime` handed to `Clock.schedule`/`schedulePeriodically` (the engine throws `IllegalArgumentException` at runtime; proven live 5×) | `toolbelt/lint-timers.sh` + `types/logic.md` timer § | B801 · EngineManager.java:327/366 + [CERT-live] PANCCADIA console 5× | `[ev: corpus B801]` | HIGH |
+| D3 | Inter-module comms rule: within a station it's MODULE-AGNOSTIC — link by ORD, discover a service by `Type` (+ a `module.xml <dependency>`), subscribe by component; the only real boundaries are the compile-time Type dep and the `fox:` remote hop. Anti-pattern: a bespoke inter-module bus | `types/logic-authoring.md` §"talking to another module" (new) | B802 · BLink.java:179; ServiceManager.java:40,92; Subscriber.java:172; BFoxScheme.java:45,60 | `[ev: corpus B802]` | MED |
+| D4 | "Critical-write with step-up auth" design sketch: server-side criticality list → TLS SPA modal → verify the SESSION user only via their auth scheme → fresh short-TTL token bound to (session+user+target ORD) → server enforce + RBAC + CSRF + audit. HARD: SAML users cannot be re-verified mid-session (SSO/IdP-redirect) | `types/dashboard.md` §"critical-write with step-up auth" (new) | B803 §803.6 · Helper.java:1308; BUser.java:580; BSAMLAuthenticationScheme.java:117 | `[ev: corpus B803]` | HIGH |
+| D5 | CSRF correction: a mutating endpoint should verify the REAL Niagara CSRF token (`x-niagara-csrfToken` header / `csrfToken` param, double-submit vs session), not rely on the `X-Requested-With` heuristic alone — updates [B763] DWS1 gate 2 | `types/dashboard.md` §write-surface (DWS1 gate 2) | B803 §803.5 · CsrfUtil.java:13-14,48 | `[ev: corpus B803]` | MED |
+| D6 | History-extension authoring: a `BHistoryExt` IS a point extension; pick Interval (timed, ≥1s) vs COV (change-of-value); `BHistoryConfig` sets `capacity` (bound it) + `fullPolicy` (`roll`=circular / `stop`=halt; config-defaults to `roll`); ONE ext per logged slot | `types/logic-authoring.md` §"logging a point to history" (new) | B804 · BHistoryExt.java:116; BHistoryConfig.java:93-94; BChiDatalogger.java:59-64 | `[ev: corpus B804]` | MED |
+| D7 | `triage-console.sh` contract: TRIPLE attribution (a `com.angeles.*` frame OR our logger tag `[coldRoomPan|dashboardpan|chihuahua]` OR a `SEVERE [sys] Cannot load station` / `[sys.xml]` warning NAMING one of our types/slots) + locale/encoding robustness (parse EN `INFO|WARNING|SEVERE` AND ES `INFORMACIÓN|ADVERTENCIA|GRAVE`; read latin-1/bytes — the MX console is mojibake) | `toolbelt/triage-console.sh` (new) + `METHODOLOGY.md` | B800 §800.5/§800.8 · [CERT-live] PANCCADIA/REFLOW | `[ev: corpus B800]` | MED |
+| D8 | `verify-module.sh` cert-chain-TRUST check: `META-INF/NIAGARA4.SF` presence ≠ trusted — a signed jar whose signing cert is not trusted by the station loads as UNSIGNED (REFLOW: 25 `Could not validate cert` on chihuahua-rt) | `toolbelt/verify-module.sh` | B800 §800.8 · [CERT-live] REFLOW cert-chain | `[ev: corpus B800]` | MED |
+
+## Cross-cutting META-deltas
+1. **B795-G1 CLOSED [CERT-live]** (issue #50, station-required): B800 §800.8 captured a live PANCCADIA boot FAILURE after a ColdRoomPan-rt reload — `ClassCastException BStatusNumeric↔BDouble` + `BRelTime↔BComplex` + missing frozen props → `SEVERE [sys] Cannot load station`. This is exactly the [B795]/[B799] schema-risk **OUTAGE** class, now live-confirmed — the `schema-risk.sh` motivating case is proven, not hypothetical.
+2. **Decompiled line numbers are BUILD-SPECIFIC** (B801 §801.4): the live Linux-snap PANCCADIA station reports `EngineManager.java:497`/`Clock.java:173` while the decompiled Windows install (`organized/`, 4.14.0.162) reads `:327`/`:72` — same check. A cite must name the build. (Methodology note for `METHODOLOGY.md`.)
+3. **`[ev: corpus B<n>]` is the only credited token** — each delta above carries its standalone token so `sweep-fold-audit.sh --strict` credits it after the fold (the code-folded ones, D2/D7/D8, need a "folded as code:" prose line per the C6 research-fold lesson).
+
+## Still requires-execution (do NOT fold as closed)
+- B802-G1 (fox connect-time auth / session liveness), B803-G1 (SAML mid-session re-auth block), B803-G2 (gauth TOTP-as-password), B804-G1 (BCapacity time-based + supervisor archive). All bounded/station-required; the in-scope contracts are [CERT].
+
+## What went well (keep)
+- Three delegated Explore mappers (inter-module comms, step-up auth, + the timer exemplar search) were each grep-verified at the enclosing method before any cite shipped as [CERT] — a delegated map's file:line is a hypothesis until read (register guard corrected :93→:92, SAML class :21→:117, doSubscribe :172).
+- Two live-console [CERT-live] closures (B801-G1 + B795-G1) turned "requires-execution" gaps into confirmed facts, and surfaced a real cert-chain-trust kit gap (D8) the decompile alone could not.
+- No-padding held: step-up (3 sub-areas) landed in ONE block; the timer self-heal went as a §-addendum to B775, not a new block; honest boundaries stated (no independent dead-ticket monitor exists; SAML can't re-auth).
