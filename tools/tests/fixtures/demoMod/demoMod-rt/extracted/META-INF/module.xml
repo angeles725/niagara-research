@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="demoMod" vendor="Demo" vendorVersion="1.0">
+  <types>
+    <type name="BWidgetView" class="com.demo.BWidgetView">
+      <agent>
+        <on type="demoMod:BWidget"/>
+      </agent>
+    </type>
+  </types>
+</module>

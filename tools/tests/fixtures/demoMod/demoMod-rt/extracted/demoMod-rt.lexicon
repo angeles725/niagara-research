@@ -1,0 +1,4 @@
+# demo lexicon fixture — foo.bar is deliberately duplicated (B759 hazard)
+foo.bar=First value
+baz=Only value
+foo.bar=Second value silently overrides the first

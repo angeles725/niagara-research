@@ -114,6 +114,10 @@ query, rdbHsqlDb, net, silk, systemMonitor, systemIndex. Full per-module numbers
    module_nav commands, so the new `palette-lexicon-agents` command was NOT registered there — left as a
    retro note for explorador's team (research-sdd kit lane) to decide whether to start listing module_nav
    commands in the registry.
+3. **Durability port**: the extractor is also available as a TRACKED, stdlib-only standalone at
+   `tools/palette-lexicon-agents.py` (with `tools/tests/test_palette_lexicon_agents.py` + `tools/README.md`
+   entry) so it survives beyond this machine, unlike the gitignored `module-navigator` copy. `--all` runs the
+   corpus-wide census (57 / 662 modules carry duplicate bare keys corpus-wide; 10 / 37 within the exemplar set).
 
 ## 792.8 — Connections
 - [Block 759] lexicon bare-key hazard (this block confirms it empirically across 10 modules).

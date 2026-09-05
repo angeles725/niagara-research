@@ -71,3 +71,22 @@ Then open `http://localhost:<port><prefix>/`. The **`/hmi` route** (`http://loca
 `/api/*` returns `{}` (layout/palette still previewable, values show `--`). `POST /api/*` returns `{"ok":true}`
 and logs the body. Python 3 stdlib only. A module may ship its own thin wrapper for an **animated** mock — see the
 worked example `DashboardPan-ux/preview-server.py` (builds the `{v,st}` payload with jitter + status colors).
+
+## palette-lexicon-agents.py — palette / lexicon / agent census for N4 modules
+
+Read-only census of a module's authoring surfaces from the extracted corpus
+(`organized/<module>/<artifact>/extracted/`): the `module.palette` `<p n= t= m=>` entries, the
+`<artifact>.lexicon` keys **with a duplicate-bare-key report** (the B759 silent-override hazard — a key
+defined twice, later value wins), and the `<agent>` registrations in `META-INF/module.xml`. Tracked,
+stdlib-only port of the (gitignored) `module-navigator` command of the same name — see block **B792** for the
+37-module census (10 modules carry duplicate bare keys; worst `schedule-rt summary` ×3).
+
+```
+python3 tools/palette-lexicon-agents.py <module> [--base-dir organized] [--json]
+python3 tools/palette-lexicon-agents.py --all    [--base-dir organized] [--json]   # corpus census + dup roll-up
+```
+
+`--base-dir` defaults to `../organized` next to the script. `--all` prints a `module | palette | lexKeys |
+dupKeys | agents` table plus every `(module, artifact:key) ×count` duplicate. Pure helpers
+`parse_palette` / `find_duplicate_keys` / `parse_agents` are unit-tested by `tools/tests/test_palette_lexicon_agents.py`
+(one biting test — fails if duplicate detection is removed).
