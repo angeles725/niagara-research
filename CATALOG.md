@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **800 bloques**
+Total: **801 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -804,6 +804,7 @@ Total: **800 bloques**
 | 808 | [niagara-mental-model-bloque808.md](niagara-mental-model-bloque808.md) | B808 · Who watches the logic — feedback surfaces, traced from the ColdRoomPan BEvaporatorUnit fault to the operator `[CERT]` |
 | 809 | [niagara-mental-model-bloque809.md](niagara-mental-model-bloque809.md) | B809 · Tridium `-wb` authoring conventions — the 5 checks (off-UI-thread traversal, @AgentOn breadth, wb lexicon, load/save lifecycle, deps) + a "good -wb artifact" doctrine, Tridium exemplars vs chihuahua-wb `[CERT]` |
 | 810 | [niagara-mental-model-bloque810.md](niagara-mental-model-bloque810.md) | B810 · Driver-module authoring — the BNetwork→BDevice→BPointDeviceExt→BProxyExt hierarchy, BPingMonitor as the device-health "quién vigila", and the critical finding that a write to a DOWN device is SILENTLY DROPPED (our in8 command is lost unless writeOnUp) `[CERT]` |
+| 811 | [niagara-mental-model-bloque811.md](niagara-mental-model-bloque811.md) | B811 · Station snapshot automation — how to copy a running station (bog, logs, logic, links) to inspect it, without mounting the filesystem `[CERT]` |
 | 812 | [niagara-mental-model-bloque812.md](niagara-mental-model-bloque812.md) | B812 · The heartbeat/liveness watchdog pattern — an author-built independent monitor that detects a STALLED producer (not a bad value) `[INFER, primitive-grounded]` |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
