@@ -1,5 +1,5 @@
 <!-- kit-retro: jace8000-qnx-native focus · 2026-08-30 · scope: METHODOLOGY §5 (symbol-bearing native RE vs twin-binary offset check) + §21.2 native chain + §16 (sibling/twin focus) + §6 (entropy+binwalk encrypted discriminator) -->
-<!-- review-status: pending -->
+<!-- review-status: applied 2026-09-05 · kit dd552ea · shipped: D1 (§21 native chain + §5 exempt), D2 (§16 sibling/twin focus), D4 (§6 firmware discriminator) -->
 
 # §18 Self-Retrospective — focus: jace8000-qnx-native (2026-08-30)
 
