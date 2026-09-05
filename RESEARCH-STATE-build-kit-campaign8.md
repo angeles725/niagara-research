@@ -3,11 +3,11 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 6
-gaps_closed: 6
-known_gaps: 6
+covered_blocks: 7
+gaps_closed: 7
+known_gaps: 7
 investigable_open: 0
-requires_execution_open: 4
+requires_execution_open: 5
 blocked_open: 0
 <!-- /research-state.v1 -->
 
@@ -32,7 +32,9 @@ block_scope_note: B800=companero (console-log census); B801–B805 reserved for 
 | RT-EXEMPLARS — control-logic exemplars from Tridium's modules (PID/BLoopPoint, deadband/BTstat, latches, protections/BAlarmSourceExt, ODE-honest-check, structure/engine, niagaraTest, flowchart) for types/logic.md | **B805** | CLOSED [CERT] | lead reprioritization (user, RT-first). Excavador depth: line + control-physics WHY + one-bit fault trace. Honest negative: Tridium ships NO ODE/matrix (scalar Euler only) → our CompressorControl.step is beyond stock. 2 bounded gaps (B805-G1 offnormal debounce, B805-G2 staged-equipment). |
 | WB-EXEMPLARS — Tridium's own -wb modules as wb doctrine exemplars | **B809** | CLOSED [CERT] | 5 checks (THREAD1 off-UI-thread via BSimpleJob.JobThread; AGENT1 narrowest @AgentOn+requiredPermissions; WB-LEX1 wb lexicon; SCAFFOLD1 BWbEditor load/save + legitimate saveValue bypass; DEP1 companion-rt+workbench-wb+bajaui-wb) + hard/advisory + lintable/review split + 10-line doctrine. Tridium exemplars vs chihuahua-wb anti-patterns (all [CERT] in source). 1 requires-exec (B809-G2) + 1 bounded (B809-G1). |
 
-**6 LANES CLOSED** (C=B801, A=B802, STEP-UP=B803, B=B804, RT=B805, WB=B809) + timer-defense (B775 §775.6) + consolidated fold retro (3d1011e33). companero's B800/B806/B807/B808 are separate campaign-8 lanes. Protection-latch seam scaffold = campaign-9 item (lead-flagged). Next free = B810.
+| DRIVER — driver-module authoring (BNetwork→BDevice→BPointDeviceExt→BProxyExt hierarchy, BPingMonitor who-watches, write path + priority array + DOWN behavior, minimal driver, lints) | **B810** | CLOSED [CERT] | lead lane. CRITICAL finding: a write to a DOWN device is SILENTLY DROPPED (Tuning.write !isOperational), recovered only via writeOnUp — our BStatusBoolean outputs at in8 are lost on comm loss unless writeOnUp=true. Excavador depth + proxy-linking checklist + writeOnUp/fallback lints. 1 requires-exec (B810-G1) + 1 bounded (B810-G2). |
+
+**7 LANES CLOSED** (C=B801, A=B802, STEP-UP=B803, B=B804, RT=B805, WB=B809, DRIVER=B810) + timer-defense (B775 §775.6) + consolidated fold retro D1-D11 (3d1011e33+). companero's B800/B806/B807/B808/B811/B812 are separate campaign-8 lanes. Protection-latch seam scaffold = campaign-9 item. Next free = B813.
 
 ## Open gaps (requires-execution)
 - **B801-G1 — CLOSED [CERT-live]**: the `<= 0` throw is reached at station runtime — PANCCADIA console shows it 5× from BDefrostController.armTrigger (console_backup_260903_1858.txt; B801 §801.4).
