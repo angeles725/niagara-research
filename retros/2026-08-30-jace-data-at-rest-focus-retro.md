@@ -1,4 +1,5 @@
 <!-- kit-retro -->
+<!-- review-status: applied 2026-09-05 · kit d9be953 · PARTIAL — shipped: ΔA, ΔB; DEFERRED: ΔC (targets METHODOLOGY.md) -->
 <!--
   focus: jace-data-at-rest
   blocks: B693–B698 (6 blocks)

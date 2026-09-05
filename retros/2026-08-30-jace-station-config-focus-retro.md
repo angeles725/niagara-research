@@ -1,4 +1,5 @@
 <!-- kit-retro -->
+<!-- review-status: applied 2026-09-05 · kit d9be953 -->
 <!--
   focus: jace-station-config
   blocks: B685–B692 (8 blocks)

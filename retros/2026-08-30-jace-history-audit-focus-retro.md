@@ -1,4 +1,5 @@
 <!-- kit-retro -->
+<!-- review-status: applied 2026-09-05 · kit d9be953 · PARTIAL — shipped: R2; DEFERRED: R1, R3 -->
 <!--
   focus: jace-history-audit
   blocks: B699–B703 (5 blocks)

@@ -1,4 +1,5 @@
 <!-- kit-retro -->
+<!-- review-status: applied 2026-09-05 · kit d9be953 · PARTIAL — shipped: SO1; DEFERRED: SO2 -->
 <!--
   focus: station-organization
   blocks: B716–B720 (5 blocks)

@@ -1,5 +1,5 @@
 <!-- kit-retro: jace8000-sd focus · 2026-08-30 · scope: DYNAMIC-SETUP §1b (raw-image path) + METHODOLOGY §19/§21 (no-mount FS parser) + §3 [CERT-hw] + PROMPT-LOOP SECRETS DISCIPLINE -->
-<!-- review-status: pending -->
+<!-- review-status: applied 2026-09-05 · kit d9be953 · PARTIAL — shipped: D3 (PROMPT-LOOP.md); DEFERRED: D1, D2, D4 -->
 
 # §18 Self-Retrospective — focus: jace8000-sd (2026-08-30)
 
