@@ -26,9 +26,9 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 14
-gaps_closed: 14
-known_gaps: 16
+covered_blocks: 15
+gaps_closed: 15
+known_gaps: 17
 investigable_open: 1
 requires_execution_open: 1
 blocked_open: 0
@@ -36,7 +36,7 @@ undocumented_findings: 0
 <!-- /research-state.v1 -->
 
 focus: module-authoring-exemplars
-status: STOPPED (14/14 primary MAE gaps closed: MAE1-MAE6→B772-B777 + MAE7–MAE14→B778–B785; investigable_open=1 [MAE7-G1 child]; +1 req-exec MAE1-G1). Both slices complete (companero MAE1 + investigador1 MAE2-MAE14). §18 focus-close retro filed. (absorbed after companero stalled on a permission prompt)
+status: STOPPED (14/14 primary MAE gaps closed: MAE1-MAE6→B772-B777 + MAE7–MAE14→B778–B785; investigable_open=1 [MAE7-G1 child]; +1 req-exec MAE1-G1). Both slices complete (companero MAE1 + investigador1 MAE2-MAE14). §18 focus-close retro filed. **+ POST-CLOSE ADDITION 2026-09-05: B817 (companero) = the D1 module STRUCTURE STANDARD + conformance checklist (deepens MAE13/D1; envelope 15/15).**
 seeded_from: AUDIT-FIRST coverage sweep 2026-09-05 (4 parallel Explore shards over disjoint dimension sets D1+D8 / D2+D3+D11 / D4+D10+D12 / D5+D6+D7+D9; ≥2 distinct search terms per cell; driver-verified inline)
 seeded_on: 2026-09-05
 gaps_total: 14 investigable (MAE1–MAE14)
@@ -158,3 +158,4 @@ are represented in the MAE1–MAE14 backlog.
 | 3 (investigador1, absorbed) | MAE3 D11 job authoring: BSimpleJob.run (async, thread+success/fail/cancel free) vs raw BJob.doRun/doCancel (own threading); progress/heartbeat/log; BJobService.submit→ORD handle (poll, no join); multi-step BJobStep/BDeviceJobStep.doRun under BBatchJob | B774 | yes · Explore sweep + inline grep-verify (5/5 [CERT]) | MAE3-G1 BBatchJob dispatcher internals not walked |
 | 2 (investigador1, absorbed) | MAE2 D7 analytics node authoring: base = BOutputBlock (abstract getValue/getTrend) not BAlgorithmBlock; inputs=BBlockPin+BLink DAG; BFunctionBlock.apply single-input; filters/rollups/sources all BOutputBlock subclasses; register by module.xml `<type>` (no @AgentOn); external feed = AnalyticDataSource.Provider | B773 | yes · Explore sweep + inline grep-verify (5/5 [CERT]; corrected seed candidate list) | MAE2-G1 Combiner/FunctionTrend not walked |
 | 14 (investigador1) | MAE14 D10 rdb dialect extension SPI: B<X>Database extends BRdbms/BEncryptableTransportRdbms + 3 abstract methods; getRdbmsContext→60-method RdbmsDialect SPI object; manifest `<type>` register; no central registry | B785 | yes · Explore sweep + inline grep-verify (6/6 [CERT]) | MAE14-G1 Oracle sequence path not walked. **investigador1 slice MAE7-14 COMPLETE (B778-B785); §18 slice-retro filed. Focus awaits companero's MAE1-6.** |
+| 15 (companero, post-close) | D1 module STRUCTURE STANDARD — how Tridium/Honeywell lay out an N4 module + a conformance checklist our four modules can be linted against (deepens MAE13/D1 beyond the profile matrix) | B817 | yes · companero (landed e4ec4e0d4) | kit delta: module-structure conformance checklist → METHODOLOGY / a toolbelt lint |
