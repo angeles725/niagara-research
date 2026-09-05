@@ -79,6 +79,13 @@ extensions run sequentially over the shared `out` working value.
 | The proxy extension is always first | `organized/docSource/docSource-doc/vineflower/control-rt/javax/baja/control/ext/BAbstractProxyExt.java:56` (verbatim: "The ProxyExt is always the first extension executed.") |
 | Order is user-reorderable on the Property Sheet (proxyExt frozen first) | REMITTANCE [Block 734] §734.1 (slot-order execution) |
 
+**Addendum (cite strengthening, 2026-09-05):** the "order they are declared" guarantee is stated verbatim in
+the framework javadoc, and the actual dispatch call is one line: `BControlPoint.java:382-384` javadoc *"The
+method calls onExecute() on every extension in the order they are declared."* → `:387` `SlotCursor` walk →
+`:391` `instanceof BPointExtension` → `:396` `ext.onExecute(out, cx)` (wrapped in a per-extension try/catch,
+`:398-401`, so one failing extension is logged and does not abort the chain). This is the exact execution loop
+(distinct from `getExtensions()` at `:342`, an array-fill that does NOT call `onExecute`). `[CERT]`
+
 ## 772.5 — Concrete exemplar confirmation `[CERT]`
 
 Two shipped abstract subclasses show the contract in practice (only `onExecute` is mandatory; the rest are
