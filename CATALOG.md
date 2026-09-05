@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **793 bloques**
+Total: **794 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -798,6 +798,7 @@ Total: **793 bloques**
 | 802 | [niagara-mental-model-bloque802.md](niagara-mental-model-bloque802.md) | B802 · Inter-module communication is module-AGNOSTIC within a station — links, service discovery, and subscription never check the module; the only real boundaries are the compile-time Type dependency and the fox: remote hop `[CERT]` |
 | 803 | [niagara-mental-model-bloque803.md](niagara-mental-model-bloque803.md) | B803 · Step-up / re-authentication for a critical dashboard write — Niagara ships NO core step-up primitive; the clean `-ux` pattern re-verifies the session user through their auth scheme (and SAML users cannot be re-verified mid-session) `[CERT]` |
 | 804 | [niagara-mental-model-bloque804.md](niagara-mental-model-bloque804.md) | B804 · History-extension authoring — a `BHistoryExt` IS a point extension; pick Interval vs COV; `BHistoryConfig` sets capacity + rollover; ONE ext per logged slot `[CERT]` |
+| 806 | [niagara-mental-model-bloque806.md](niagara-mental-model-bloque806.md) | B806 · Resource budget for a JACE/station — what oversaturates it, and the viability of our module logic `[CERT]` |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
