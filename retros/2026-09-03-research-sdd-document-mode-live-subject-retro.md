@@ -1,4 +1,4 @@
-<!-- review-status: pending -->
+<!-- review-status: applied 2026-09-05 · kit 7a2887c · PARTIAL — shipped: #3 (DYNAMIC-SETUP.md headless-Chromium QA); DEFERRED: #1 (METHODOLOGY §20), #2 (METHODOLOGY §7) -->
 <!-- Marker lifecycle: the maintainer flips 'pending' to 'applied <date> · kit <sha>' (or 'dismissed') once these deltas are reviewed in the kit; sweep-retros.sh reads this marker (METHODOLOGY §18). -->
 # Retro — niagara-research · tooling · 2026-09-03 · Research-SDD self-retrospective (3/3)
 
