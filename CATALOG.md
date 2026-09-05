@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **779 bloques**
+Total: **780 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -784,6 +784,7 @@ Total: **779 bloques**
 | 788 | [niagara-mental-model-bloque788.md](niagara-mental-model-bloque788.md) | B788 · Conformance audit — palette/lexicon: DashboardPan-wb empty-palette footgun, partial lexicons, and a corrected "CompPan lexicon empty" claim (OMV4) |
 | 789 | [niagara-mental-model-bloque789.md](niagara-mental-model-bloque789.md) | B789 · Conformance audit — children-legality + poll-vs-subscribe (OMV3/OMV5), background-work clean (OMV6) |
 | 790 | [niagara-mental-model-bloque790.md](niagara-mental-model-bloque790.md) | B790 · The minimal correct N4 module — the smallest exemplar-grounded skeleton (and the `scaffold-module.sh` fixture) |
+| 791 | [niagara-mental-model-bloque791.md](niagara-mental-model-bloque791.md) | B791 · Web-tier exemplars — AUDIT-FIRST coverage map: the mechanism is fully covered (verdict THIN, 0 new blocks) + DashboardPan divergences |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
