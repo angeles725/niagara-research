@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **768 bloques**
+Total: **769 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -773,6 +773,7 @@ Total: **768 bloques**
 | 782 | [niagara-mental-model-bloque782.md](niagara-mental-model-bloque782.md) | B782 · Building a query / search / index surface — one uniform pattern (BQuery payload + a BIAgent provider → BITable) (MAE11, D10) |
 | 783 | [niagara-mental-model-bloque783.md](niagara-mental-model-bloque783.md) | B783 · Template author-side — there is no type-registration SPI; a "template type" is an `.ntpl` artifact produced by a job (MAE12, D11) |
 | 784 | [niagara-mental-model-bloque784.md](niagara-mental-model-bloque784.md) | B784 · Real module.xml profile matrix + dependency version conventions (MAE13, D1) |
+| 785 | [niagara-mental-model-bloque785.md](niagara-mental-model-bloque785.md) | B785 · The rdb DIALECT EXTENSION SPI — add a 5th RDBMS without touching rdb-rt (MAE14, D10) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

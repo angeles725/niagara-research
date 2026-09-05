@@ -26,10 +26,10 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 7
-gaps_closed: 7
+covered_blocks: 8
+gaps_closed: 8
 known_gaps: 14
-investigable_open: 7
+investigable_open: 6
 requires_execution_open: 0
 blocked_open: 0
 undocumented_findings: 0
@@ -73,7 +73,7 @@ The kit-destination file is named in each row — that is the artifact the block
 | medium | **MAE11 D10 query-surface / index-registration modules (GAP — entirely uncovered)** — `query` / `queryTable` / `search` / `systemIndex` / `niagaraSystemIndex` as exemplars of a parameterized-query and station-wide-index-registration surface (all = 0 dedicated blocks). Teaches "how to build a query/index-surface module" → kit `types/logic.md` | `query-rt`, `queryTable-wb`, `search`, `systemIndex`/`niagaraSystemIndex` | **COVERED → B782** (ONE uniform pattern for all 4: typed `BQuery`/NEQL payload + a `BIAgent` provider [BQueryEngine execute / BColumnsProvider shape / BISearchProvider search / BSystemIndexer+BIIndexQueryProvider index] discovered by the agent registry → a `BITable` cursor. 5 [CERT]+1. → `types/logic.md`) |
 | low | **MAE12 D11 template AUTHOR-side API** — `BTemplateService` registration (how a module author registers a NEW template type) + custom `.ntpl` schema authoring. B573 covers only the deploy/consume side; the "make your own template type" side is absent → kit `types/logic.md` | `template-rt` (~163 FQN) | **COVERED → B783** (NEGATIVE: no author type-registration SPI — TemplateType is a closed enum; a "template type" is an `.ntpl` ZIP [BNtplFile = .bog + template-manifest.xml] produced by a make-job from a component subtree marked with a `BTemplateConfig` + `BConfigBinding`/tagged slots. Kit: emit no BTemplate subclass scaffold. 4 [CERT]+1. → `types/logic.md`) |
 | low | **MAE13 D1 profile matrix + real dependency declarations** — per-exemplar profile matrix (which Tridium modules carry `-se`/`-doc` and what goes in them) + REAL `<dependency>` version-range values from actual `module.xml` (fox/tunnel/alarm). Refines the module.xml template beyond the generic mechanism (B12/B629–B636/B754) → kit `METHODOLOGY.md` / `corpus-index.md` | `fox`, `tunnel`, `alarm`, `bajaui` (META-INF/module.xml) | **COVERED → B784** (profile matrix: fox rt/ux, tunnel rt-only, alarm rt/ux/wb/**se**, bajaui ux/wb; `-se`=server profile, `-doc`=SEPARATE module not a part; `<dependency>` = 3-part Tridium FLOOR `4.14.0` vs own 4-part build stamp `4.14.0.162`; header roster + `bajaVersion="0"` const. 5/5 [CERT]. → `METHODOLOGY.md`/`corpus-index.md`) |
-| low | **MAE14 D10 rdb dialect EXTENSION SPI** — how to extend `rdb-rt` with a new dialect (`BEncryptableTransportRdbms` / `B<X>Database` subclass). The database focus (B403/B407/B409) covers the 4 built-in dialects as READ; the author-side "add a fifth" SPI is a clean bounded exemplar → kit `types/logic.md` | `rdb-rt`, `rdbMySQL`/`rdbOracle`/`rdbSqlServer`/`rdbHsqlDb` | pending → B785 |
+| low | **MAE14 D10 rdb dialect EXTENSION SPI** — how to extend `rdb-rt` with a new dialect (`BEncryptableTransportRdbms` / `B<X>Database` subclass). The database focus (B403/B407/B409) covers the 4 built-in dialects as READ; the author-side "add a fifth" SPI is a clean bounded exemplar → kit `types/logic.md` | `rdb-rt`, `rdbMySQL`/`rdbOracle`/`rdbSqlServer`/`rdbHsqlDb` | **COVERED → B785** (dialect extension SPI: `B<X>Database extends BRdbms`/`BEncryptableTransportRdbms` + 3 abstract methods [getLicenseFeature/getConnection/getRdbmsContext]; getRdbmsContext→a 60-method `RdbmsDialect` SPI object [type map/quoting/identity]; TLS truststore hooks [B114]; register via manifest `<type>`. No central registry — subclass+SPI-object+register. 6/6 [CERT]. → `types/logic.md`) |
 
 ## Coverage matrix (AUDIT-FIRST, 2026-09-05) — 12 dimensions, rolled verdict + residue
 
@@ -151,3 +151,4 @@ are represented in the MAE1–MAE14 backlog.
 | 11 (investigador1) | MAE11 D10 query/search/index surfaces = ONE pattern (BQuery/NEQL payload + BIAgent provider via agent registry → BITable): BQueryEngine/BColumnsProvider/BISearchProvider/BSystemIndexer | B782 | yes · Explore sweep + inline grep-verify (5/6 [CERT], one spine per surface) | MAE11-G1 WB/UX config views not walked (→ wb-ux) |
 | 12 (investigador1) | MAE12 D11 template author-side (NEGATIVE): no type-registration SPI; TemplateType closed enum; a template = `.ntpl` ZIP (BNtplFile: bog+manifest) made by a job from a BTemplateConfig-marked subtree; NiagaraTemplate.createFrom().save() | B783 | yes · Explore sweep + inline grep-verify (4/5 [CERT]) | MAE12-G1 full template-manifest.xml schema not exhaustively walked |
 | 13 (investigador1) | MAE13 D1 real module.xml profile matrix + deps: parts -rt/-ux/-wb/-se, -doc=separate module; `<dependency>` 3-part Tridium floor (4.14.0) vs own 4-part build stamp (4.14.0.162); header roster | B784 | yes · Explore sweep + inline grep-verify (5/5 [CERT]) | MAE13-G1 `<installation>` native/nre/-rt-<os> block only sampled |
+| 14 (investigador1) | MAE14 D10 rdb dialect extension SPI: B<X>Database extends BRdbms/BEncryptableTransportRdbms + 3 abstract methods; getRdbmsContext→60-method RdbmsDialect SPI object; manifest `<type>` register; no central registry | B785 | yes · Explore sweep + inline grep-verify (6/6 [CERT]) | MAE14-G1 Oracle sequence path not walked. **investigador1 slice MAE7-14 COMPLETE (B778-B785); §18 slice-retro filed. Focus awaits companero's MAE1-6.** |
