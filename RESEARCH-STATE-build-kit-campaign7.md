@@ -5,9 +5,9 @@ schema: research-state.v1
 block_scope: shared-global
 covered_blocks: 2
 gaps_closed: 2
-known_gaps: 5
+known_gaps: 6
 investigable_open: 0
-requires_execution_open: 3
+requires_execution_open: 4
 blocked_open: 0
 <!-- /research-state.v1 -->
 
@@ -37,3 +37,5 @@ block_prefix: niagara-mental-model-bloqueN.md (shared global numbering)
 - **B795-G2**: `package_move` with an unchanged registered type name — is it truly SAFE? Needs a built before/after pair.
 - **B796-G1**: gate 4 (per-Ord lock + HTTP 423) unimplemented in DashboardPan-ux; exemplar becomes 5/5 after issue #49 lands.
   (Shares the same station backlog as B793-G1 / the requires-execution issue #50.)
+- **B795-G3**: `swap_slot_kind` (name reused for a different slot kind, property→action) precise verdict — OUTAGE vs LOSSY.
+  Surfaced by companero's B799 `unknown_kind` fixture (55d0519d2); added as an explicit OUTAGE-fail-safe row, station-verify pending.

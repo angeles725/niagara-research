@@ -60,6 +60,7 @@ describes), a false OUTAGE only over-warns.
 | remove_ext | LOSSY | [INFER] = remove_slot_complex fail-safe | complex ext shunts to dynamic (SAFE-ish); if the ext TYPE is also removed → class_rename→OUTAGE |
 | class_rename (type id changes) | OUTAGE | fail-safe of B754 §754.6 r12/r13 | child-ref alone = `TypeNotFound` warn-skip (LOSSY); owning/superclass/enum class = classloader fatal (OUTAGE, B740); can't tell → OUTAGE |
 | package_move | OUTAGE | [INFER] grounded in r12/B631 | if the REGISTERED type name is unchanged it may be SAFE, but the classifier cannot verify the classloader → OUTAGE |
+| swap_slot_kind (a name reused for a different slot KIND, e.g. property↔action) | OUTAGE | [INFER] fail-safe; B795-G3 | old `.bog` stores name X as a property; new module makes X an action → `set()` on a non-property slot is decode-path-ambiguous (may throw unwrapped) → conservative OUTAGE. Surfaced by B799's `unknown_kind` fixture (55d0519d2) |
 | *(unknown change_kind)* | OUTAGE | §795.2 fail-safe | documented default |
 
 ## 795.4 — Embeddable classifier table (CSV — schema-risk.sh reads this verbatim) `[CERT/INFER as §795.3]`
@@ -86,6 +87,7 @@ add_ext,SAFE,INFER-add_slot,complex-child-default
 remove_ext,LOSSY,INFER-remove_slot_complex,dynamic-shunt-or-type-removed
 class_rename,OUTAGE,B754-754.6-r12r13-failsafe,child-ref-LOSSY-else-classloader-OUTAGE
 package_move,OUTAGE,INFER-r12-B631,classloader-unverifiable
+swap_slot_kind,OUTAGE,INFER-795.2-failsafe,name-reused-diff-slot-kind
 UNKNOWN,OUTAGE,B795-795.2-failsafe,default-fail-safe
 ```
 
@@ -127,3 +129,6 @@ B739/B740; the two [INFER] rows (ext, package_move) are flagged as such in the t
   seeded `.bog` (the matrix predicts LOSSY; not station-verified). Feeds the same station backlog as B793-G1.
 - **B795-G2**: `package_move` when the registered type name is unchanged — is it truly SAFE? Needs a built
   before/after pair (an implementation probe), so the table keeps the OUTAGE fail-safe until proven.
+- **B795-G3**: `swap_slot_kind` (a name reused for a different slot kind, e.g. property→action) — which decode
+  path fires (unwrapped throw = OUTAGE vs `warningAndSkip` = LOSSY)? Surfaced by B799's `unknown_kind` fixture;
+  station-verify the precise verdict, until then the table keeps the OUTAGE fail-safe.
