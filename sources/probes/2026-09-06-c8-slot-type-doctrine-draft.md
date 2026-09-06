@@ -18,8 +18,8 @@ TYPE decides whether the write is even possible and whether it lands safely. Pic
 | Value class | Recommended slot | Flags | How it is written externally | Audit path | Anti-pattern |
 |---|---|---|---|---|---|
 | numeric setpoint / config | plain `double` (if oBIX writes it) — or `BStatusNumeric` ONLY when the status must display | `SUMMARY\|OPERATOR` | `double`: oBIX bare `<real val="..">`. `BStatusNumeric`: the WRAPPED body `<obj is="…:StatusNumeric"><real name="value" val=".."/></obj>` (LIVE-verified) — NEVER attr-only `<obj … val>` (200 but writes 0.0); OR the servlet `POST /api/setpoint`; OR an OPERATOR action | servlet `auditLog` / write-server audit / a Niagara event when via an action | a bare `BStatusNumeric` written by external clients → the silent-zero footgun `[ev: retro obix-statusnumeric-wrapped-put]` |
-| timing / delay | `BRelTime` | `SUMMARY\|OPERATOR` | oBIX `<reltime val="PT..S"/>` | as above | a `double` seconds field that skips the reltime unit |
-| switch / on-off | `boolean` | `SUMMARY\|OPERATOR` | oBIX `<bool val="true">` | as above | a `BStatusBoolean` (complex) written bare → "Cannot translate" |
+| timing / delay | `BRelTime` | `SUMMARY\|OPERATOR` | oBIX `<reltime val="PT..S"/>` | as above | a `double` seconds field that skips the reltime unit `[ev: corpus B823]` |
+| switch / on-off | `boolean` | `SUMMARY\|OPERATOR` | oBIX `<bool val="true">` | as above | a `BStatusBoolean` (complex) written bare → "Cannot translate" `[ev: corpus B823]` |
 | mode / HOA | today `double` 0/1/2 written as `<real>`; an ENUM needs a **range facet** for oBIX to decode | `SUMMARY\|OPERATOR` | `<real val="2"/>` (double) or `<enum val="off"/>` WITH a `range` facet (ObixDecoder enum branch reads `cx.getFacets().get("range")`) | as above | a bare enum with NO range facet → oBIX cannot decode it |
 | button / command | an OPERATOR `@NiagaraAction` | `Flags.OPERATOR` | oBIX `<op>` — POST → `BComponent.invoke` under `OPERATOR_INVOKE`, arg from `<real>`/`<bool>` `[ev: corpus B822]` | the Niagara invoke event (attributed) | a `HIDDEN` action (0 oBIX exposure) or a boolean "pulse" slot |
 
@@ -32,7 +32,7 @@ the write target. `[ev: corpus B823]` `[ev: retro obix-statusnumeric-wrapped-put
 
 **Propagates through links? (live-verified):** a wrapped struct-child write to a linked `BStatusNumeric` SOURCE (the
 façade `Cuarto1/setpoint`) DOES propagate to the control TARGET (`Programacion/ColdRoom_1/setpoint`) — but the client
-must **read-back AFTER a settle** (a first read before the link executes is a false negative; two contradictory live
+must **read the CONTROL slot after ~1 s** (the dashboard lags one poll, ~6 s; a first read before the link executes is a false negative; two contradictory live
 reports arose this way). The propagation-timing mechanism (struct-child mutation vs slot replacement) is pending
 [Block 825]. So an external write must land on the slot the control READS, or on an action — writing a display-only
 mirror that has NO link to the control would set the display without moving the plant. `[ev: corpus B823]` `[ev: retro obix-statusnumeric-wrapped-put]`

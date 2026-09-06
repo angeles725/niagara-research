@@ -22,7 +22,7 @@ Whether the server accepted it was left `[INFER]` — a decode-level possibility
 ## What the LIVE PROBE showed (Cristian-authorized, read-only first, Cuarto 1) `[CERT-live]`
 Full verbatim record: `sources/probes/2026-09-06-viewer-obix-setpoint-live-record.md` (SOURCES.md registered).
 The wrapped body WRITES and REACHES CONTROL: `<obj is="/obix/def/baja:StatusNumeric"><real name="value" val="2.5"/></obj>`
-→ `200 OK`, value `2.5 {ok}`, held 80+ s, and it PROPAGATED through the live panel→control link to
+→ `200 OK`, value `2.5 {ok}`, persisted (PUT 132 ms warm; propagation < 1 s), and it PROPAGATED through the live panel→control link to
 `Programacion/ColdRoom_1/setpoint` (both `2.5`, Supabase `latest` `2.5`). Three things the code alone did not give:
 1. **`writable` absent ≠ read-only.** The GET never advertised `writable="true"`, yet the wrapped PUT wrote. The
    `writable` attribute governs CONFORMANT clients, not what a hand-crafted PUT can do. (Refines [B509]'s reading.)
@@ -30,7 +30,7 @@ The wrapped body WRITES and REACHES CONTROL: `<obj is="/obix/def/baja:StatusNume
    ATTRIBUTE on the obj, no `value` CHILD) returns `200 OK` but writes `0.0` — the missing child defaults the property.
    A write that looks successful and sets the setpoint to zero. Only the exact `value`-child body is safe.
 3. **The link propagation takes a SETTLE.** A first control read moments after the PUT showed `3.0` (link not yet
-   executed) → a premature "did not propagate" report that a re-read after a settle corrected to `2.5`. The
+   executed) → a premature "did not propagate" report that a re-read after ~1 s corrected to `2.5`. The
    propagation-timing mechanism (struct-child mutation vs slot replacement) is **pending [B825]**.
 
 ## Proven Lessons
@@ -45,7 +45,7 @@ The wrapped body WRITES and REACHES CONTROL: `<obj is="/obix/def/baja:StatusNume
 3. **A single early read is NOT evidence of no-effect — re-read after a settle before concluding.** This session
    produced TWO contradictory live reports within minutes: "the write moved only the display mirror, control stayed
    3.0" then, on a clean re-test, "it propagated, both 2.5". The first read was taken before the panel→control link
-   executed. For any write whose effect crosses a link/propagation, the read-back must wait a settle; a premature read
+   executed. For any write whose effect crosses a link/propagation, the read-back must wait the settle (~1 s control-side; the dashboard poll lags ~6 s); a premature read
    is a false negative that nearly shipped a wrong conclusion. (Pairs with lesson 1 — the live probe closes it, but
    only a CORRECTLY-TIMED live probe.)
 4. **Read-only-first + one test room + explicit user authorization** is the right shape for a live protocol probe —

@@ -29,8 +29,9 @@
 > **LIVE UPDATE (2026-09-06, Cristian-authorized read-only-first probe on Cuarto 1, viewer session) `[CERT-live]`**
 > (full verbatim record: `sources/probes/2026-09-06-viewer-obix-setpoint-live-record.md`, SOURCES.md registered)**:**
 > the escape hatch of §823.2 below is **CONFIRMED** — the exact working body is
-> **`<obj is="/obix/def/baja:StatusNumeric"><real name="value" val="2.5"/></obj>` → `200 OK`, value `2.5 {ok}`, HELD
-> 80+ s** (not a display mirror). The GET is
+> **`<obj is="/obix/def/baja:StatusNumeric"><real name="value" val="2.5"/></obj>` → `200 OK`, value `2.5 {ok}`,
+> persisted** (not a display mirror). **Measured latency (record §7):** PUT `132 ms` warm; control-side propagation
+> `< 1 s` (the panel→control link fires ~20–30 ms after the PUT returns); dashboard/DB `~6 s` (the poller cycle). The GET is
 > `<real val="3.0" is="/obix/def/baja:StatusNumeric" display="3.00 °C {ok}" unit="obix:units/celsius"/>` — **NO
 > `writable="true"`, no `<op>`**, yet the wrapped PUT still writes. So **"writable attribute absent ≠ read-only"** — a
 > hand-crafted wrapped PUT bypasses the never-advertised `writable` (this CORRECTS §823.2's "no client will attempt"
@@ -46,12 +47,12 @@
 > **It PROPAGATES to control:** the wrapped PUT on `Cuarto1/setpoint` (the RoomPanel façade) followed through the live
 > panel→control link to `Programacion/ColdRoom_1/setpoint` — both `2.5`, Supabase `latest` `2.5`. `[CERT-live, two
 > probes]` **Read-timing caveat:** a FIRST read taken moments after the PUT showed the control still at `3.0` (link
-> not yet executed) → a premature "no-effect" conclusion that a re-read after a settle corrected. So a read-back MUST
-> wait a settle before concluding effect (the propagation-timing mechanism — struct-child mutation vs slot replacement
-> — is **pending [Block 825]**).
+> not yet executed) → a premature "no-effect" conclusion that a re-read after ~1 s corrected. So the client must
+> **read the CONTROL slot after ~1 s** (the dashboard/DB lags one poll, ~6 s) before concluding effect (the
+> propagation-timing mechanism — struct-child mutation vs slot replacement — is **pending [Block 825]**).
 > **The silent-zero HAZARD:** the attr-only `<obj … val="2.5"/>` returns `200` but writes `0.0` (the `value` child is
 > missing so the property defaults) — a write that LOOKS successful and sets the setpoint to ZERO. The body must carry
-> the `value` child exactly, and the client must read-back-after-settle. Channel 1 is a VIABLE no-code path but
+> the `value` child exactly, and the client must read the control slot back after ~1 s. Channel 1 is a VIABLE no-code path but
 > UNFORGIVING; see the trade-off in §823.7.
 > **Note (plain doubles ARE directly writable):** on the same component, `differentialUp/Down`, `roomHighAlarmLimit`,
 > `coolOnSensorFault` carry `writable="true"` in the GET (they are plain `double`/`boolean`, not complex) — so a bare
@@ -74,8 +75,8 @@ The code path below explains WHY (a decode-level trace, `[CERT]` static). The se
   enters the `name=="obj"` branch (`ObixDecoder.java:200-216`), finds the `value` property, and `setFromVal` does
   `((BStatusNumeric)cpx).setValue(BDouble.decode(sval))` (`:569`, `null` flag `:594`) → reaches `parent.set()`.
   Whether the server ACCEPTS it is then a Baja slot-flag/permission question, not an oBIX-translate one — but since
-  `writable` is never advertised and `setpoint` is a plain (non-writable-point) property, this is NON-STANDARD and
-  UNVERIFIED; only a controlled live PUT on a test room settles it. `[INFER, decode-grounded]`
+  `writable` is never advertised and `setpoint` is a plain (non-writable-point) property, this was NON-STANDARD and
+  once unverified — **now CONFIRMED live** (the exact wrapped body writes + propagates, §823.2 top). `[INFER→CERT-live]`
 
 ## 823.3 — Channel 2: no existing action reaches the setpoint `[CERT]`
 An oBIX/fox INVOKE of a public action IS possible (`ObixEncoder.encodeOp:477`, `serviceInvoke:494` →
@@ -164,13 +165,13 @@ unlikely — but unproven. IF a `BNumericWritable` were linked into `setpoint`, 
 | Rank | Path | Code change | Audit | Body forgiving? | Risk |
 |---|---|---|---|---|---|
 | 1a | servlet `POST /api/setpoint` (channel 3) | NONE | `auditLog` (module ring) | yes (JSON `{ord,value}`; 400 on invalid) | low — already in daily use |
-| 1b | oBIX wrapped-`obj` PUT (channel 1, LIVE-CONFIRMED, propagates to control) | NONE | none native (write-server Supabase only) | **NO — attr-only silently writes 0.0; read-back after a settle** | med — unforgiving body + read-timing |
+| 1b | oBIX wrapped-`obj` PUT (channel 1, LIVE-CONFIRMED, propagates to control) | NONE | none native (write-server Supabase only) | **NO — attr-only silently writes 0.0; control-slot read-back after ~1 s (dashboard lags one poll ~6 s)** | med — unforgiving body + read-timing |
 | 2 | additive `setpointCmd` slot ([Block 822]) | small, schema-SAFE | write-server + a Niagara-side event via an OPERATOR action | yes | low — needs a build + schema-risk SAFE |
 | 3 | fox/BajaScript client (channel 4/5) | none, but heavy infra | — | — | infra + session complexity |
 | — | oBIX BARE PUT / retype `setpoint` | — | — | — | RULED OUT (bare = "Cannot translate"; retype = [B800] §800.8 OUTAGE) |
 Trade-off (both 1a and 1b are viable no-code paths that reach control; the user picks, not picked here): **1b (oBIX
 wrapped)** is UNIFORM with the rest of the write-server (one oBIX transport) and audited by the write-server's own
-Supabase trail, but the body is unforgiving (attr-only silently zeroes) and needs a read-back after a settle; **1a
+Supabase trail, but the body is unforgiving (attr-only silently zeroes) and needs a control-slot read-back after ~1 s; **1a
 (servlet)** rides the module's HTTP servlet but is body-forgiving with the PR#7 400 validation and writes the module's
 own `auditLog`. **2 (additive `applySetpoint` action, [Block 822])** stays the cleaner LONG-TERM answer (an oBIX `<op>`
 with a native, attributed Niagara invoke event). `[CERT-live]`
@@ -181,7 +182,7 @@ with a native, attributed Niagara invoke event). `[CERT-live]`
 | 1 | oBIX server write = serviceWrite; non-BIObixWritable → decode → parent.set | `[CERT]` | `ObixUtils.java:532-566,544,558` | Y — mapper+spot |
 | 2 | BStatusNumeric not BIObixWritable (zero implementors); bare `<real>` → "Cannot translate" | `[CERT]` | `BIObixWritable.java:9-13`; `ObixDecoder.java:197,346` | Y |
 | 3 | writable advertised only for BSimple under canWrite | `[CERT]` | `ObixUtils.java:241-243`; `BStatusValueAgent:51-53`; `BControlPointAgent:60` | Y |
-| 4 | `<obj is="…:StatusNumeric"><real name="value" val/></obj>` WRITES it live (200, 2.5{ok}, 80+s) + propagates to control after a settle; attr-only silently writes 0.0; writable-absent≠read-only | `[CERT-live]` | `sources/probes/2026-09-06-viewer-obix-setpoint-live-record.md`; `ObixDecoder.java:200-216,569,594` | Y — live |
+| 4 | `<obj is="…:StatusNumeric"><real name="value" val/></obj>` WRITES it live (200, 2.5{ok}, 80+s) + propagates to control within ~1 s (dashboard lags ~6 s); attr-only silently writes 0.0; writable-absent≠read-only | `[CERT-live]` | `sources/probes/2026-09-06-viewer-obix-setpoint-live-record.md`; `ObixDecoder.java:200-216,569,594` | Y — live |
 | 5 | No non-HIDDEN action reaches setpoint | `[CERT]` | `BRoomPanel`/`BDashboardService`/`BColdRoom` (0 actions); `BEvaporatorUnit.java:200-216` HIDDEN | Y — sweep |
 | 6 | Servlet `POST /dashboardpan/api/setpoint`, guards XHR(302)/auth(401)/OPERATOR_WRITE(403)/invalid-num(400), no CSRF | `[CERT]` | `fbe9009` `BDashboardServlet.java:81-84,195,274-283`; `DashboardDispatch.java:122-126`; `DashboardRbacHelper.java:17-20,36,55` | Y |
 | 7 | Write = coerce→`parent.set(prop,new BStatusNumeric(v),null)`; audited to auditLog, not AuditHistory | `[CERT]` | `fbe9009` `BDashboardServlet.java:291,357,312`; `BDashboardService.java:68-72,256` | Y |
