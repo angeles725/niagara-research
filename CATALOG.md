@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **817 bloques**
+Total: **818 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -822,6 +822,7 @@ Total: **817 bloques**
 | 826 | [niagara-mental-model-bloque826.md](niagara-mental-model-bloque826.md) | B826 · Is a `/setpoint/value` CHILD ORD routable over oBIX? — closes [B825]-G2 by read-only reasoning: the `BStatusValue` agent COLLAPSES the struct to a leaf `<real>` so the child is NEVER advertised, but the config-space resolver builds a `station:\|slot:…/setpoint/value` ORD by VERBATIM path translation, so a hand-crafted child PUT is resolvable — a simpler (bare-`<real>`, no silent-zero) write than the wrapped-`<obj>` — now LIVE-CONFIRMED END-TO-END: the child is served + `writable="true"` (GET, B826-G1) and a bare-`<real>` PUT to it writes AND propagates to control in ~1.5 s (B826-G2), so it is the PREFERRED write form; the wrapped-`<obj>`-to-parent-slot is the proven fallback `[CERT code + CERT-live end-to-end]` |
 | 827 | [niagara-mental-model-bloque827.md](niagara-mental-model-bloque827.md) | B827 · Raising an OPERATOR ALARM for a protection trip in an -rt module — the concrete fix for [B821]'s zero-alarm finding (seed S18): `BAlarmSourceExt` needs a `BControlPoint` parent, so a custom `BComponent` uses EITHER a child point + the ext (declarative) OR `BIAlarmSource` + `AlarmSupport.newOffnormalAlarm` (programmatic); both route a `BAlarmRecord sourceState=offnormal` that the console and DashboardPan's `bql` query show; adding it is schema-SAFE `[CERT]` |
 | 828 | [niagara-mental-model-bloque828.md](niagara-mental-model-bloque828.md) | B828 · HOA modes as a real `BFrozenEnum` over oBIX (for future modules) — a `@NiagaraEnum(@Range …)` `BHoaMode` renders `<enum val="hand" display="…" range="…"/>` and decodes `<enum val="hand"/>` WITHOUT an explicit range facet (a frozen enum carries its range intrinsically — the encoder/decoder fall back to the value's `getRange()`); today's `double` 0/1/2 is an opaque `<real>`; the switch is a LOSSY retype so new modules only `[CERT]` |
+| 829 | [niagara-mental-model-bloque829.md](niagara-mental-model-bloque829.md) | B829 · One audit trail for PANCCADIA — what Niagara's config-audit records for each write path, settled by CODE: a slot `set()` fires an `AuditEvent` ONLY inside `if (context != null && context.getUser() != null)`, so the DashboardPan servlet's NULL-Context set is NOT audited (suppressed, not just unattributed); an oBIX PUT IS audited to the oBIX login user; both need an installed `AuditHistoryService` — so the write-server's Supabase `audit` (real operator email) is the single source of truth `[CERT]` |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
