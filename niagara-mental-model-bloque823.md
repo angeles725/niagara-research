@@ -26,7 +26,8 @@
 | 7 | schedule/ext-driven | GAP | only if already in the bog; none verified |
 
 ## 823.2 — Channel 1: closed to STANDARD clients, but a WRAPPED PUT works — LIVE-CONFIRMED `[CERT-live]`
-> **LIVE UPDATE (2026-09-06, Cristian-authorized read-only-first probe on Cuarto 1, viewer session) `[CERT-live]`:**
+> **LIVE UPDATE (2026-09-06, Cristian-authorized read-only-first probe on Cuarto 1, viewer session) `[CERT-live]`**
+> (full verbatim record: `sources/probes/2026-09-06-viewer-obix-setpoint-live-record.md`, SOURCES.md registered)**:**
 > the escape hatch of §823.2 below is **CONFIRMED** — the exact working body is
 > **`<obj is="/obix/def/baja:StatusNumeric"><real name="value" val="2.5"/></obj>` → `200 OK`, value `2.5 {ok}`, HELD
 > 80+ s** (not a display mirror). The GET is
@@ -180,7 +181,7 @@ with a native, attributed Niagara invoke event). `[CERT-live]`
 | 1 | oBIX server write = serviceWrite; non-BIObixWritable → decode → parent.set | `[CERT]` | `ObixUtils.java:532-566,544,558` | Y — mapper+spot |
 | 2 | BStatusNumeric not BIObixWritable (zero implementors); bare `<real>` → "Cannot translate" | `[CERT]` | `BIObixWritable.java:9-13`; `ObixDecoder.java:197,346` | Y |
 | 3 | writable advertised only for BSimple under canWrite | `[CERT]` | `ObixUtils.java:241-243`; `BStatusValueAgent:51-53`; `BControlPointAgent:60` | Y |
-| 4 | `<obj is="…:StatusNumeric"><real name="value" val/></obj>` WRITES it live (200, 2.5{ok}, 80+s); attr-only silently writes 0.0; writable-absent≠read-only | `[CERT-live]` | §823.2 probe 2026-09-06; `ObixDecoder.java:200-216,569,594` | Y — live |
+| 4 | `<obj is="…:StatusNumeric"><real name="value" val/></obj>` WRITES it live (200, 2.5{ok}, 80+s) + propagates to control after a settle; attr-only silently writes 0.0; writable-absent≠read-only | `[CERT-live]` | `sources/probes/2026-09-06-viewer-obix-setpoint-live-record.md`; `ObixDecoder.java:200-216,569,594` | Y — live |
 | 5 | No non-HIDDEN action reaches setpoint | `[CERT]` | `BRoomPanel`/`BDashboardService`/`BColdRoom` (0 actions); `BEvaporatorUnit.java:200-216` HIDDEN | Y — sweep |
 | 6 | Servlet `POST /dashboardpan/api/setpoint`, guards XHR(302)/auth(401)/OPERATOR_WRITE(403)/invalid-num(400), no CSRF | `[CERT]` | `fbe9009` `BDashboardServlet.java:81-84,195,274-283`; `DashboardDispatch.java:122-126`; `DashboardRbacHelper.java:17-20,36,55` | Y |
 | 7 | Write = coerce→`parent.set(prop,new BStatusNumeric(v),null)`; audited to auditLog, not AuditHistory | `[CERT]` | `fbe9009` `BDashboardServlet.java:291,357,312`; `BDashboardService.java:68-72,256` | Y |

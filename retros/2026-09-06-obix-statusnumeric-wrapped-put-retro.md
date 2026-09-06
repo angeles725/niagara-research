@@ -20,6 +20,7 @@ is advertised only for a `BSimple` (`ObixUtils.encode:241-243`), so no standard 
 Whether the server accepted it was left `[INFER]` — a decode-level possibility, not a proven write.
 
 ## What the LIVE PROBE showed (Cristian-authorized, read-only first, Cuarto 1) `[CERT-live]`
+Full verbatim record: `sources/probes/2026-09-06-viewer-obix-setpoint-live-record.md` (SOURCES.md registered).
 The wrapped body WRITES and REACHES CONTROL: `<obj is="/obix/def/baja:StatusNumeric"><real name="value" val="2.5"/></obj>`
 → `200 OK`, value `2.5 {ok}`, held 80+ s, and it PROPAGATED through the live panel→control link to
 `Programacion/ColdRoom_1/setpoint` (both `2.5`, Supabase `latest` `2.5`). Three things the code alone did not give:

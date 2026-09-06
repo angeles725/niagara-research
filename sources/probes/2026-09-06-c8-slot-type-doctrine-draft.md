@@ -2,7 +2,8 @@
 
 > For the apply worker (lands via wave-2 **PR15** — added as a PR15 block in the PR13/14/15 draft so it applies THIS
 > campaign). Target: `types/logic-authoring.md` NEW `##` section "Slot types for externally written values" + ONE
-> line in `types/dashboard.md`. Grounded in the LIVE oBIX probe (B823 §823.2, 2026-09-06 `[CERT-live]`), B822 (the
+> line in `types/dashboard.md`. Grounded in the LIVE oBIX probe (B823 §823.2, 2026-09-06 `[CERT-live]`; verbatim
+> record `sources/probes/2026-09-06-viewer-obix-setpoint-live-record.md`), B822 (the
 > OPERATOR-action path), B816 (write overlap). The enforcing lint is C9 seed **S19** (`ext-writable-shape`).
 >
 > **Grep-before (K6):** `grep -niE 'slot type.*external|externally written|wrapped.obj|silent.zero' types/logic-authoring.md`

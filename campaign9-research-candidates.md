@@ -189,6 +189,13 @@ C9 research/build core = **#1 protection-latch fixture** (built below) + **#2 wr
   `BAlarmSourceExt`, → WARN). Requires execution: PARTIAL (station smoke) — **B821-G2** is the live alarm-console
   confirm. RED: a critical trip raises a `BAlarmRecord`/`BAlarmSourceExt` reaching the alarm DB, not just a SUMMARY
   slot; the lint FAILs a trip with no alarm surface. `[ev: corpus B821 §821.4]` `[ev: corpus B821 §821.6]`
+- **S19 · `ext-writable-shape` lint (KIT, value MED).** Gap: a slot that EXTERNAL clients write must be a SIMPLE value
+  or have a writing ACTION — a bare complex `OPERATOR` property (`BStatusNumeric`/`BStatusBoolean`/`BStatusEnum`)
+  either rejects the oBIX write ("Cannot translate") or, via the wrapped-`obj` shorthand, SILENTLY writes a default
+  (the live silent-zero, B823 §823.2). Evidence: B823; retro `obix-statusnumeric-wrapped-put`; the slot-type doctrine
+  (PR15). Requires execution: NO (static lint). RED: a fixture with a bare `Flags.OPERATOR` `BStatusNumeric` and no
+  writing action → **WARN** `ext-writable-shape`; a plain `double`/`boolean` OR a complex-with-`@NiagaraAction` → clean.
+  `[ev: corpus B823]` `[ev: retro obix-statusnumeric-wrapped-put]`
 
 **Ties to the already-drafted C8 doc PRs:** S5→PR19 (0590c2b7f), S6→PR18 (f7a4521ee); the orchestration/retro loop
 (PR16 110f583ad / PR17 d5f979f88) frames how every S-seed closes: research block → spec → RED → apply → retro → fold.

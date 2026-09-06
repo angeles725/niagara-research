@@ -62,6 +62,15 @@ Order of checks: triage-console [ev: corpus B800] → bog-audit [ev: corpus B795
   matrix row the coverage lint MUST demand. Live bug fixed on fix/resistance-off-lockout (commit 20f74f8, v2.0.6).  [ev: corpus B805, B810, B816]
 ```
 
+**PR15 (added) — Slot types for externally written values → `types/logic-authoring.md` NEW §"Slot types for externally
+written values" + one line in `types/dashboard.md`.** Full apply-ready body (the value-class→slot table + the rule +
+the propagation/silent-zero facts, all `[ev: corpus B823]`/`[ev: corpus B822]`/`[ev: retro obix-statusnumeric-wrapped-put]`/`[ev: corpus B816]`):
+`sources/probes/2026-09-06-c8-slot-type-doctrine-draft.md`. Grounded LIVE (B823 §823.2; record
+`sources/probes/2026-09-06-viewer-obix-setpoint-live-record.md`). Headline rule to paste:
+```
+- A slot EXTERNAL clients write is either a SIMPLE value or has an ACTION — never a bare complex property. A bare BStatusNumeric/BStatusBoolean/BStatusEnum either rejects the oBIX write ("Cannot translate") or, via the wrapped-obj shorthand, SILENTLY writes a default (the live silent-zero: a setpoint set to 0.0 on a 200 OK). The enforcing lint is C9 seed S19 (ext-writable-shape). [ev: corpus B823] [ev: retro obix-statusnumeric-wrapped-put]
+```
+
 ---
 
 ## Notes for the fidelity reader (companero)
