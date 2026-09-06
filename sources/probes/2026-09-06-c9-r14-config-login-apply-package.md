@@ -101,7 +101,11 @@ session id) — the mirrored row is `{ ts, user, target, old_value, new_value, s
 (D7 :64). After R14, the **identity** of a surface-B row = the `user` column = the AuditEvent's user (the SECOND operator,
 now that the write runs with that `BUser` Context); **`config_session` STAYS NULL** — the station username must NOT be
 written into it. Pre-R14 rows keep the kiosk user in `user` (what AuditHistory recorded then), never faked. MIR5 stands as
-written in D7a; R14 changes what `user` contains, not the column contract. `[ev: design D7 :39, :64, :72-73]` `[ev: proposal :131]`
+written in D7a; R14 changes what `user` contains, not the column contract. **Why NULL is the only honest value (2nd-read
+grounding):** the framework builds the record as `new AuditEvent(op, path, slotName, oldValue, value, user.getUsername())`
+(`ComplexSlotMap.java:1687`) — there is NO session field anywhere in it, so a mirror fed from `/PANCCADIA/AuditHistory`
+has nothing to put in `config_session`, and a fabricated value would be worse than NULL (D7a's own rule).
+`[ev: design D7 :39, :64, :72-73]` `[ev: proposal :131]` `[ev: ComplexSlotMap.java:1687 (B830 §830.4)]`
 
 ## 6. Gates
 `schema-risk.sh` → **SAFE** (no slot touched); `vendorVersion` 2.2.0 (with PR6). `lint-servlet.sh` → clean/WARN-only (auth
@@ -115,6 +119,9 @@ unchanged. Retro slug `campaign9-config-login`; record OBSERVED CL1/CL3 flips + 
 - **B830-G3:** gauth two-factor users take CL6's 401 path; TOTP re-check out of scope.
 - **B830-G2:** exact station auto-logoff resolution — only bounds the module TTL choice. The TTL value is a PRODUCT call: a very short idle (≤ 90 s) is aggressive for a multi-room setpoint session; sliding renewal on every write mitigates it — pick with Cristian.
 - A GET `/api/config/session` for the chip (additive; the RED does not pin it).
+- **Future, explicitly OUT of C9:** the only way surface B could ever carry a session id is the module's OWN
+  fire-and-forget audit record (`svc.appendAudit(...)`, `BDashboardServlet.java:312`), which the module controls and could
+  extend with the `ConfigSession` id, joined by the mirror on `(ts, user, target)`. Named here so nobody fakes it in C9.
 
 ## Self-verify
 | # | Claim | Marker | Evidence |
