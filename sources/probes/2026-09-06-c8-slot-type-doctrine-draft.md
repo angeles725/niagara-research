@@ -30,6 +30,13 @@ translate") or, via the wrapped-`obj` shorthand, silently writes a DEFAULT (the 
 writes it, or accept the exact wrapped-`obj` contract in the client — never leave a bare complex OPERATOR property as
 the write target. `[ev: corpus B823]` `[ev: retro obix-statusnumeric-wrapped-put]`
 
+**Cleaner alternative `[INFER]`, pending a GET (B826-G1):** the child ORD `…/setpoint/value` is NOT advertised (the
+agent collapses the struct to a leaf `<real>`) but IS structurally resolvable (`BStationLobbyAgent.decodeSlotPath`);
+IF the façade serves it, a bare `<real>` to `/setpoint/value` would be a `BSimple` write — SIMPLER, with NO silent-zero
+risk — and still propagates via the nested-child bubbling path. It stays `[INFER]` until one read-only GET confirms the
+child ORD is served; until then the wrapped-`obj`-to-slot form (B825, live-proven) remains the RECOMMENDED write.
+`[ev: corpus B826]`
+
 **Propagates through links? YES, synchronously (mechanism settled by [Block 825]):** an external write that lands as a
 TOP-SLOT REPLACEMENT (an oBIX wrapped `<obj>` PUT, the servlet, or fox — all decode into a detached copy then
 `parent.set(slot, copy)`, `ObixUtils.java:543/:558`) fires the slot's outgoing links SYNCHRONOUSLY on the writing
