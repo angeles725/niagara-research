@@ -34,9 +34,11 @@ diff (before/after counts identical on the shared golden tree EXCEPT the one-lin
 **C11-T2-no-hardcode**. **Lib contract:** `tests/lib/client-root.bash` owns a single `CLIENT_READ_ROOT` default, exported as
 `C9_CLIENT_ROOT`, `C9_CLIENT_REPO` AND `C8_CLIENT_REPO`; an env override of any wins; ONE place to retarget.
 **Tree decision (lead): ONE default = `main-ff1b659` for all 10; NO second default in the lib.** The three live-checkout
-reads (`c8-close`, `lint-delays`, `rc-scan` on `…/Leon-Guanjuato`) are a client-reads-rule VIOLATION today, not a feature to
-preserve — retargeting them to the frozen `ff1b659` worktree is the fix; QA re-measures those three smokes on `ff1b659` and
-pins the new numbers.
+reads (`c8-close`, `lint-delays`, `rc-scan` on `…/Cliente/Leon-Guanjuato`) are a client-reads-rule VIOLATION today: that
+working copy is at **`4f5f1c7` with 4 uncommitted files** (VERIFIED read-only — the exact stale tree the C9 stale-checkout
+lesson warns against, several campaigns behind `ff1b659`), so those three smokes read an outdated tree right now.
+Retargeting them to the frozen `ff1b659` worktree is the fix; QA re-measures `c8-close`/`lint-delays`/`rc-scan` on `ff1b659`
+and pins the new numbers. Never write to that checkout.
 
 **Where:** NEW `tests/lib/client-root.bash` exporting ONE blessed-worktree default and unifying the TWO var names
 (`C9_CLIENT_ROOT` and `C9_CLIENT_REPO` both hold the same `…/Leon-Guanjuato-worktrees/main-ff1b659` value today):
