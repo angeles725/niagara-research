@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **808 bloques**
+Total: **809 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -813,6 +813,7 @@ Total: **808 bloques**
 | 817 | [niagara-mental-model-bloque817.md](niagara-mental-model-bloque817.md) | B817 · The module STRUCTURE STANDARD — how Tridium/Honeywell lay out an N4 module, and a conformance checklist our four modules can be linted against `[CERT]` |
 | 818 | [niagara-mental-model-bloque818.md](niagara-mental-model-bloque818.md) | B818 · Forensics: `Missing class for "ColdRoomPan:HoaMode"` was a DANGLING module-include.xml registration (a dead `<type>` for a class never built), not a bog retype — the runtime triage string for the kit's existing build-time check `[CERT]` |
 | 819 | [niagara-mental-model-bloque819.md](niagara-mental-model-bloque819.md) | B819 · Zero-demand / idle-state doctrine for staged processes — demand decides WHETHER, a process variable only modulates HOW MUCH; NaN never counts as demand; every staged process has an explicit idle state (answers "why can't the compressors turn off?") `[CERT]` |
+| 820 | [niagara-mental-model-bloque820.md](niagara-mental-model-bloque820.md) | B820 · The "demand-in-scope" static check — the one NEW write-path lint from B819 §819.5: a stage/on-off decision that reads a PROCESS VARIABLE with NO demand input reachable is flaggable; where it is statically decidable (WARN) vs human-review (advisory); proven PASS on `CompressorControl.step`, FAIL on a demand-removed mutant `[CERT]` |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

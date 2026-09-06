@@ -3,19 +3,19 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 19
-gaps_closed: 19
-known_gaps: 19
+covered_blocks: 20
+gaps_closed: 20
+known_gaps: 20
 investigable_open: 0
 requires_execution_open: 6
 blocked_open: 0
 <!-- /research-state.v1 -->
 
 focus: build-kit-campaign8
-status: ALL 19 CLOSED (19/19). Campaign 8→9 transition (user reversed the C7 stop, 2026-09-05). Multi-session focus: investigador1 (Opus) + companero. B816 (write-path/overlap), B818 (HoaMode forensic), B819 (zero-demand/idle doctrine) added on later user mandates. Open items are requires-execution / bounded gaps only (see below); both consolidated §18 fold retros filed (mine extended to D12).
+status: ALL 20 CLOSED (20/20). Campaign 8→9 transition (user reversed the C7 stop, 2026-09-05). Multi-session focus: investigador1 (Opus) + companero. B816 (write-path/overlap), B818 (HoaMode forensic), B819 (zero-demand/idle doctrine), B820 (demand-in-scope static check) added on later user mandates. Open items are requires-execution / bounded gaps only (see below); both consolidated §18 fold retros filed (mine extended to D12).
 seeded_from: lead directives 2026-09-05 + campaign8-research-candidates.md (AUDIT-FIRST ranking)
 seeded_on: 2026-09-05
-block_range: B800–B816 + B818 + B819 (B817 = module-authoring-exemplars focus; shared-global numbering)
+block_range: B800–B816 + B818 + B819 + B820 (B817 = module-authoring-exemplars focus; shared-global numbering)
 owners: investigador1 = B801-B805, B809, B810, B816 + B775 §775.6 addendum · companero = B800, B806-B808, B811-B815
 envelope_note: requires_execution_open counts the investigador1 lanes' station-required gaps (B802-G1, B803-G1, B803-G2, B809-G2, B810-G1); companero's B806-B815 track their own in-block gaps, not re-counted here.
 
@@ -45,6 +45,8 @@ envelope_note: requires_execution_open counts the investigador1 lanes' station-r
 | B818 | investigador1 | Forensics: `Missing class for "ColdRoomPan:HoaMode"` = a DANGLING module-include.xml registration (dead `<type>`, class never built; fixed 85e4395), NOT a bog retype; the runtime triage string for the kit's existing verify-module `types` check | CLOSED [CERT/live] |
 
 | B819 | investigador1 | Zero-demand / idle-state doctrine ("why can't the compressors turn off?") — demand is a first-class GATE (a process variable only modulates); NaN never counts as demand; CompressorControl's demand gate is CORRECT (live symptom = wiring); 2 residues (NaN setpoint, no why-running surface); kitControl exemplars (BLoopPoint strongest) | CLOSED [CERT] |
+
+| B820 | investigador1 | The "demand-in-scope" static check (concretizes B819 §819.5 lint candidate) — a control/staging method reading a PROCESS VARIABLE with NO demand-shaped input in scope → WARN (advisory, not hard FAIL); absence-decidable(WARN) vs is-it-really-demand(advisory, B819-G1); PASS on CompressorControl.step (demandCount gate), FAIL on demand-removed mutant; folds into PR19 lint-write-path.sh as an advisory sub-check | CLOSED [CERT/INFER] |
 
 Addendum (no new block): **B775 §775.6** — the BTimeTrigger timer self-heal exemplar (investigador1), folded for the timer defense-in-depth checklist.
 
