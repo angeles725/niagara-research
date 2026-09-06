@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **811 bloques**
+Total: **812 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -816,6 +816,7 @@ Total: **811 bloques**
 | 820 | [niagara-mental-model-bloque820.md](niagara-mental-model-bloque820.md) | B820 · The "demand-in-scope" static check — the one NEW write-path lint from B819 §819.5: a stage/on-off decision that reads a PROCESS VARIABLE with NO demand input reachable is flaggable; where it is statically decidable (WARN) vs human-review (advisory); proven PASS on `CompressorControl.step`, FAIL on a demand-removed mutant `[CERT]` |
 | 821 | [niagara-mental-model-bloque821.md](niagara-mental-model-bloque821.md) | B821 · Protection anatomy of our RT modules — every protection trip as (WHAT fires · WHO fires · WHO watches), one-bit-traced at `fbe9009`; the RT control logic raises ZERO alarm-console events (every surface is a plain SUMMARY slot, never a `BAlarmRecord`); + the two author-built classes Tridium ships NO primitive for (set-dominant SR latch, independent heartbeat) `[CERT]` |
 | 822 | [niagara-mental-model-bloque822.md](niagara-mental-model-bloque822.md) | B822 · Making the room setpoint remotely settable — the ADDITIVE-code options (a `setpointCmd` writable-double slot, or an `applySetpoint(BDouble)` OPERATOR action) vs the OUTAGE of retyping `BRoomPanel.setpoint`; a generic `@NiagaraAction` IS oBIX-invokable (`<op>` → `BComponent.invoke` with `OPERATOR_INVOKE`); schema risk graded SAFE(add) vs LOSSY/OUTAGE(retype) `[CERT]` |
+| 823 | [niagara-mental-model-bloque823.md](niagara-mental-model-bloque823.md) | B823 · Can the EXISTING `BRoomPanel.setpoint` be written from the mini-PC with NO module change? — every no-code write channel enumerated, one-bit-traced `[CERT]` |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
