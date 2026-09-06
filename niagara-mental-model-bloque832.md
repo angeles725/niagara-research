@@ -127,3 +127,16 @@ Tally: 5 [CERT] · 1 [INFER] · 0 unmarked.
   side-effect). Belongs in the T1 golden set alongside §5.4.
 - **B832-G2**: D3 (silent-protection Case-B raw-line `//`-only strip) is a latent bug — not shown to flip a real client
   pin yet; needs a `/* ( */`-before-brace fixture to confirm it can mis-name a method before the shared fragment lands.
+- **B832-G3** (C11 PR1 aftermath, QA-found + investigador1-reproduced @ merged kit `127f25a`): the shipped I2 Case-B
+  `@`-stop is not merely redundant — it is a latent FALSE NEGATIVE. A method whose signature spans lines with a
+  **parameter annotation** on the continuation (`void m(\n  @Ann x)\n{`) has a brace-only `{` whose backward scan hits the
+  `@Ann x)` line first → the `@`-stop breaks → the method is MISSED. REPRODUCED on lint-timers: a field-flag+`Clock.schedule`
+  inside such a method gives **0 companion-flag WITH the `@`-stop (FN), 1 WITHOUT**. Absent from the ff1b659 client corpus
+  (0 such shapes in 42 `.java`), so C11 ships it as defensive, but C12 should replace the blanket `@`-stop with a rule that
+  distinguishes a class/field-level annotation from a parameter-annotation continuation. `[ev: reproduced @ 127f25a; PR1 read ad2121b69]`
+- **B832-G4** (same origin): I3 (Case-A keyword exclusion) is NOT fully dead under the `!in_m` gate — it is reachable via a
+  control construct inside a **non-entered instance/static initializer**: the initializer `{` opens depth ≥ 2 but is never
+  named a method (no identifier), so a `for`/`if` inside it is a live `!in_m` candidate open that I3 rejects. REPRODUCED:
+  a `for` inside an instance initializer flips **0 (WITH I3) → 1 (drop I3)** on lint-timers. Absent from the client corpus,
+  so defensive for C11; a C12 pin would use this initializer shape. Corrects the PR1 "redundant like the PR4 absolutise"
+  framing to: **defensive on the corpus, but with a reachable shape** (unlike the provably-inert absolutise). `[ev: reproduced @ 127f25a; PR1 read ad2121b69]`
