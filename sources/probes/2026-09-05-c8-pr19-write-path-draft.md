@@ -1,8 +1,10 @@
 # C8 PR19 — write-path doctrine (`feat/c8-write-path`) apply-ready draft
 
 > For the PR19 apply worker: paste the READY blocks at the named anchors. Doctrine + matrix from B816 §816.6;
-> matrix column shape is the client repo `angeles725/niagara-panccadia-leon` `docs/write-path-matrix.md` @ deed38c
-> (13 pure-seam rows W1–W13). Every new line is tagged `[ev: corpus B816]`. **Grep-before-fold (K6):**
+> matrix TEMPLATE = B816 §816.6's `(slot · writer · timing · invariant)` UNIONed with the client matrix's `test`
+> column. The client repo `angeles725/niagara-panccadia-leon` `docs/write-path-matrix.md` @ deed38c is already this
+> exact 5-column union (verified this session: header `| Writable Slot | Writer | Timing | Invariant | Test |`, 13
+> pure-seam rows W1–W13). Every new line is tagged `[ev: corpus B816]`. **Grep-before-fold (K6):**
 > `grep -niE 'write.path|overlap|LINK.TARGET|ephemeral' types/logic.md types/logic-authoring.md` → 0 hits — both
 > sections are NEW.
 
@@ -23,18 +25,20 @@ Place after `## Minimal module (copy-start)` (the last section). The authoring/t
 
 ```
 ## Write-path test matrix `[ev: corpus B816]`
-Every writable slot a dashboard/operator can hit gets a ROW: (writable slot × writer × timing) → the invariant it must hold, and the TEST that proves it. This is the template `lint-write-path.sh` enforces (columns FIXED — slot · writer · timing · invariant · test):
+Every writable slot a dashboard/operator can hit gets a ROW: (writable slot × writer × timing) → the invariant it must hold, and the TEST that proves it. The template is 5 columns — slot · writer · timing · invariant · test. `lint-write-path.sh` parses only the 4 STRUCTURAL columns (slot · writer · timing · test, and that the Test cell names a test present in `srcTest/`); **`Invariant` is a human-facing column the lint does NOT parse** (a lint cannot decide a semantic invariant).
 
 | Writable slot | Writer | Timing | Invariant | Test |
 |---|---|---|---|---|
-| `setpoint` | Dashboard / Workbench | mid-cycle (latched) | cv in new band → HOLD, no chatter; crosses → flip exactly once | `w1_setpointChangeWhileLatched` |
+| `setpoint` | Dashboard / Workbench | mid-cycle (latched) | cv in new band → HOLD, no chatter; crosses → flip exactly once; INVALID status → fail-safe HOLD | `w1_setpointChangeWhileLatched` |
 | `hoaMode` | Dashboard operator | mid-cycle | HAND→ON, OFF→OFF, AUTO→autoValue | `w3_hoaFlipMidCycle` |
 | `defrostInterval` | Workbench | mid-cycle, shortened → overdue | new interval < elapsed → `1L`, never `Clock.schedule(0)` | `w6_intervalWriteMidCycleOverdue` |
-| a LINK-TARGET slot | Dashboard | any | write is EPHEMERAL (overwritten next propagation) — UI must not imply it stuck | (row required; assert overwrite) |
-| `resistanceMode` (HOA) | Dashboard operator | mid-defrost | OFF LOCKS OUT the heater even during the defrost sequence (OFF > sequence > HAND > AUTO); re-applies after exitDefrost | (client PR #4) |
+| a LINK-TARGET slot | Dashboard | any | write is EPHEMERAL (overwritten next propagation) — UI must not imply it stuck | `TODO(test)` — placeholder, NOT a real test cell |
+| `resistanceMode` (HOA) | Dashboard operator | mid-defrost | OFF LOCKS OUT the heater even during the defrost sequence (OFF > sequence > HAND > AUTO); re-applies after exitDefrost | `❌ C9` — client PR #4, test pending |
+
+(All matrix rows above and the legend below are credited to `[ev: corpus B816]` — the section header token covers the table; a markdown row cannot carry its own token cell.)
 
 **`lint-write-path.sh` (columns it requires):** slot name · writer · timing · **test name that EXISTS in `srcTest/`**. It bites when:
-- **HARD** — an `OPERATOR`-writable slot a dashboard writes to has NO matrix row, OR its row's Test column names a test absent from `srcTest/`; also a `Clock.schedule`/`schedulePeriodically` reachable with a computed `≤ 0` delay (the armTrigger class — cross-ref lint-delays / B801). `[ev: corpus B816]`
+- **HARD** — an `OPERATOR`-writable slot a dashboard writes to has NO matrix row, OR its row's Test column names a test absent from `srcTest/`. (The `Clock.schedule`/`schedulePeriodically` `≤ 0` delay class is OWNED by `lint-delays.sh` (PR1, B820 §820.1c) — `lint-write-path.sh` does NOT re-implement the ≤0 scan; it cross-references it so the two never double-bite the same site.) `[ev: corpus B816]`
 - **WARN** — a dashboard write path targeting a LINK-TARGET slot (silently overridden — a footgun). `[ev: corpus B816]`
 - **REVIEW** — a `changed()` that re-enters `set()`/`schedule()` on the same component (re-entrancy); reliance on a Transaction for cross-thread atomicity (there is none). `[ev: corpus B816]`
 Coverage legend for the row's Test cell: a real `srcTest/` test name (lint checks it exists), `🔶` an earlier-campaign test, or `❌ C9` for an invariant that needs the rt-lifecycle seam (issue #815 — changed()-ordering, minOff/minOn, seedRestart). `[ev: corpus B816]`
