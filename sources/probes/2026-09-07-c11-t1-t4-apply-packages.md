@@ -33,13 +33,10 @@ diff (before/after counts identical on the shared golden tree EXCEPT the one-lin
 `tests/*.bats` outside `tests/lib/client-root.bash` — **10 offenders on dab0807 → 0**. Two pins: **C11-T2-lib-exists** and
 **C11-T2-no-hardcode**. **Lib contract:** `tests/lib/client-root.bash` owns a single `CLIENT_READ_ROOT` default, exported as
 `C9_CLIENT_ROOT`, `C9_CLIENT_REPO` AND `C8_CLIENT_REPO`; an env override of any wins; ONE place to retarget.
-**FLAG for the lead/QA (behavioral, verify at apply):** the 7 blessed-worktree defaults point at `main-ff1b659` (a frozen
-SHA worktree); the 3 tail offenders read the LIVE main checkout `…/Leon-Guanjuato` (currently `00e7118`, post-PR6) — a
-DIFFERENT tree than ff1b659. Unifying all 10 under one default RETARGETS the 3 tail reads from the live checkout to the
-blessed worktree. That is the CORRECT fix per the client-reads rule (never read the live checkout), but c8-close /
-lint-delays / rc-scan smokes may need re-measuring against the blessed tree — confirm the target (ff1b659 frozen vs a
-`main-00e7118` blessed worktree) before flipping. If the 3 must keep reading a post-PR6 tree, the lib needs a second
-default (a `main-00e7118` worktree), not one.
+**Tree decision (lead): ONE default = `main-ff1b659` for all 10; NO second default in the lib.** The three live-checkout
+reads (`c8-close`, `lint-delays`, `rc-scan` on `…/Leon-Guanjuato`) are a client-reads-rule VIOLATION today, not a feature to
+preserve — retargeting them to the frozen `ff1b659` worktree is the fix; QA re-measures those three smokes on `ff1b659` and
+pins the new numbers.
 
 **Where:** NEW `tests/lib/client-root.bash` exporting ONE blessed-worktree default and unifying the TWO var names
 (`C9_CLIENT_ROOT` and `C9_CLIENT_REPO` both hold the same `…/Leon-Guanjuato-worktrees/main-ff1b659` value today):
