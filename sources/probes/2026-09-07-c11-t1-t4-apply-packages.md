@@ -29,13 +29,16 @@ B832-G2/D3 in this lane: `lint-silent-protection` Case-B scans the RAW line with
 diff (before/after counts identical on the shared golden tree EXCEPT the one-liner, which flips 0→1 for timers/silent).
 
 ## T2 — `tests/lib/client-root.bash` (centralise the C9_CLIENT_ROOT default)
-**Where:** NEW `tests/lib/client-root.bash` exporting the one default:
-`: "${C9_CLIENT_ROOT:=/home/cristian/modulos_niagara_n4/Cliente/Leon-Guanjuato-worktrees/main-ff1b659}"` (keep the var NAME —
-downstream smokes read it; only the default source moves). Each bats `load lib/client-root` (bats `load` sources a helper).
-**Exact lines to replace @ dab0807 (the `ROOT="${C9_CLIENT_ROOT:-…}"` default assignment):**
-`tests/ext-writable-shape.bats:26` · `tests/lint-silent-protection.bats:30` · `tests/lint-timers.bats:418` ·
-`tests/lint-write-path.bats:338` · `tests/demand-in-scope.bats:27` — EXACTLY these **5** carry the `C9_CLIENT_ROOT:-…/main-ff1b659` default at dab0807 (VERIFIED; `c9-close.bats`/`c10-close.bats` do NOT reference `C9_CLIENT_ROOT`). Motivating incident: PR7 `b6b65a2` hand-retargeted 3 of these a109249→ff1b659 at the C10 close — the exact churn T2 removes. After: each bats keeps
-its own `ROOT="$C9_CLIENT_ROOT"` (or drops the local default entirely) and `load`s the helper; a moved read tree edits ONE file.
+**Where:** NEW `tests/lib/client-root.bash` exporting ONE blessed-worktree default and unifying the TWO var names
+(`C9_CLIENT_ROOT` and `C9_CLIENT_REPO` both hold the same `…/Leon-Guanjuato-worktrees/main-ff1b659` value today):
+`: "${CLIENT_READ_ROOT:=…/main-ff1b659}"; C9_CLIENT_ROOT="$CLIENT_READ_ROOT"; C9_CLIENT_REPO="$CLIENT_READ_ROOT"` (keep both
+downstream names; only the source of the default moves). Each bats `load lib/client-root`.
+**Scope @ dab0807 (VERIFIED — 7 blessed-worktree defaults, NOT 5; my ROOT-only grep first missed the 2 REPO holders):**
+- 5 via `C9_CLIENT_ROOT:-…/main-ff1b659`: `ext-writable-shape.bats:26` · `demand-in-scope.bats:27` · `lint-silent-protection.bats:30` · `lint-timers.bats:418` · `lint-write-path.bats:338`
+- 2 via `C9_CLIENT_REPO:-…/main-ff1b659`: `c9-close.bats:108` · `c10-close.bats:90` (same default value, different var name)
+Motivating incident: PR7 `b6b65a2` hand-retargeted 3 of the ROOT holders a109249→ff1b659 at the C10 close — the exact churn T2 removes.
+**+3 live-main-checkout tail (worse — the LIVE `…/Leon-Guanjuato` working copy, not a blessed SHA worktree — what the client-reads rule warns against):**
+`c8-close.bats:107` (`C8_CLIENT_REPO:-…/Leon-Guanjuato`, has an override) · `lint-delays.bats:53` (`$HOME/…/Leon-Guanjuato/…/ColdRoomPan-rt/src`, NO override) · `rc-scan.bats:75` (`…/DashboardPan-ux`, NO override). CONVERT the 2 override-less to the helper (they cannot be redirected at all today); flag/convert c8-close's `C8_CLIENT_REPO`. After: a moved read tree edits ONE file.
 **Pin (`tests/client-root.bats`):** the default resolves from the helper; an override via the env var still wins.
 
 ## T3 — concept-row-drift (the inverse of the S25 STALE pass)
@@ -66,6 +69,6 @@ the one-liner or the extraction silently inherits a copy's behaviour (B832). T4 
 | # | Claim | Marker | Evidence |
 |---|---|---|---|
 | 1 | ext-writable peak (:132-176), timers net (:202), silent net (:326) | [CERT] | git show @ dab0807 |
-| 2 | EXACTLY 5 bats carry the C9_CLIENT_ROOT default (all main-ff1b659); c9-close/c10-close do NOT reference it; PR7 b6b65a2 retargeted 3 | [CERT] | grep C9_CLIENT_ROOT(:-|:=) @ dab0807 = 5 |
+| 2 | 7 blessed-worktree defaults (5 C9_CLIENT_ROOT + 2 C9_CLIENT_REPO @ c9-close:108/c10-close:90) + 3 live-checkout (c8-close:107, lint-delays:53, rc-scan:75; 2 override-less) | [CERT] | grep C9_CLIENT_(ROOT\|REPO) + Leon-Guanjuato non-worktree @ dab0807 |
 | 3 | lint-write-path STALE machinery (STALE :35, harvest :144-149) — T3 is its inverse | [CERT] | git show @ dab0807 |
 | 4 | one-liner FN reproduced; peak-depth is the standard | [CERT, reproduced] | B832; my run (0 vs 1 companion-flag) |
