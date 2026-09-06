@@ -194,6 +194,23 @@ C9 research/build core = **#1 protection-latch fixture** (built below) + **#2 wr
   `BAlarmSourceExt`, → WARN). Requires execution: PARTIAL (station smoke) — **B821-G2** is the live alarm-console
   confirm. RED: a critical trip raises a `BAlarmRecord`/`BAlarmSourceExt` reaching the alarm DB, not just a SUMMARY
   slot; the lint FAILs a trip with no alarm surface. `[ev: corpus B821 §821.4]` `[ev: corpus B821 §821.6]`
+  **THE FIX IS NOW SPEC'D — B827 (`ff0ce3f5b`) `[CERT]`:** `BAlarmSourceExt` needs a `BControlPoint` parent, so a
+  custom `BComponent` raises the alarm one of TWO legal ways: **(A) declarative** — add a child point (`BBooleanPoint`
+  / `BNumericPoint`) to the component, drive it from the trip, attach a `BAlarmSourceExt` with a pluggable
+  `offnormalAlgorithm` (`BBooleanChangeOfStateAlgorithm` for CR-3 freeze, `BOutOfRangeAlgorithm` for CP-1 low-suction);
+  cost = one child point per trip. **(B) programmatic** — the component implements `BIAlarmSource` (its `ackAlarm`
+  declared as a `@NiagaraAction`), builds `AlarmSupport(this, "defaultAlarmClass")` in `started()`, and on the
+  OFFNORMAL edge calls `support.newOffnormalAlarm(alarmData)`; ONE source per component fires MANY trips (scales for
+  CompPan's ~5). Both route a `BAlarmRecord` whose **`sourceState = offnormal`** — exactly what the DashboardPan alarm
+  `bql` (`where sourceState='offnormal' or 'fault'`, `BDashboardServlet.java:502`) already selects, so the console AND
+  the dashboard surface it with ack/unack/history. low/high is a key in `alarmData`, NOT a `sourceState` value, so the
+  offnormal query still catches an out-of-range trip. **Adding it is schema-SAFE** (additive child point / additive
+  action + transient `AlarmSupport`; no retype/remove — B795). Copy-ready **CP-1** (low-suction numeric) + **CR-3**
+  (freeze boolean) sketches are the RED shape (B827 §827.3/§827.4/§827.6). Open gaps: **B827-G1** (bounded — the
+  offnormal EDGE detection: Pattern B must fire `newOffnormalAlarm` only on the normal→offnormal transition with a
+  `toNormal` on recovery + `started()` re-seed, a `wasOffnormal[]` per-trip state) and **B827-G2** (requires-execution —
+  confirm on a live station that a routed `defaultAlarmClass` alarm reaches the REFLOW/PANCCADIA console + the
+  DashboardPan panel end-to-end, = the B821-G2 tier-1 live confirm). `[ev: corpus B827]`
 - **S19 · `ext-writable-shape` lint (KIT, value MED).** Gap: a slot that EXTERNAL clients write must be a SIMPLE value
   or have a writing ACTION — a bare complex `OPERATOR` property (`BStatusNumeric`/`BStatusBoolean`/`BStatusEnum`)
   either rejects the oBIX write ("Cannot translate") or, via the wrapped-`obj` shorthand, SILENTLY writes a default

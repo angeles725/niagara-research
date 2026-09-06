@@ -130,8 +130,46 @@ For EACH of the 6 retros:
 - folded as code: toolbelt/report-module.sh --console-dir (aggregates lint-delays + schema-risk + triage-console into one per-module punch-list; v0.19.0). [ev: retro campaign8-report-integration]
 ```
 
-## Apply checklist — the FULL campaign-8 set (8 retros)
-Flip all 8 INDEX rows `pending → folded`. MANDATORY token lines FIRST (else `sweep-fold-audit --strict` fails):
-**§3 lint-timers-ext** and **§7 campaign8-doctrine-fold** (both 0-token). The other 6 are token-credited already
-(§1/§4/§5/§6/§8 via BUILD-LOOP/SKILL; §2 triage-console at METHODOLOGY:96). Then set `retro_pending: false` in the kit
-self-envelope + sweep (pending=0, fold-audit clean).
+## 9. campaign8-station-snapshot  (PR9, slug: `campaign8-station-snapshot`)
+- **Grep-before (K6):** `grep -rn 'ev: retro campaign8-station-snapshot' <kit>` (excl retros/) → **3 hits**
+  (`BUILD-LOOP.md:61` post-deploy snapshot line, `skill/SKILL.md:68` toolbelt list, `toolbelt/station-snapshot.sh:25`
+  header). Already CREDITED via K19 routing → safe to flip. No `METHODOLOGY.md` folded-as-code line yet.
+- **Deltas** (INDEX row: 4): new `toolbelt/station-snapshot.sh`; K19 routing into BUILD-LOOP §Post-deploy (before the
+  triage-console line) + SKILL toolbelt list. Design deviations (K13, RED wins): `manifest.json` not `.txt`; FLAT output
+  not a nested dir. Doctrine the retro's table proposes: (a) the **NTFS/0777-mount guard** — no output file is executable
+  even when the source is +x (SN5), and `cp -p` preserves the original Windows mtimes, so callers must NOT depend on
+  output-file mtime for ordering; (b) the manifest is the LAST file written, making it the reliable `find -newer`
+  source-write marker; (c) the snapshot is a baseline for `schema-risk.sh` + `bog-audit.sh` after the deploy.
+- **FOLD (recommended — one `METHODOLOGY.md` §Conformance folded-as-code line, after :96):**
+```
+- folded as code: toolbelt/station-snapshot.sh (pre/post-deploy audit-surface snapshot — copies config.bog + console*.txt, records history/alarm db pointers by path+size not the db files, manifest.json with per-file sha256; source never opened for write; the NTFS/0777 guard strips +x from outputs and cp -p keeps the Windows mtimes, so output-file mtime is NOT an ordering signal; the manifest is the last file written = the find-newer "after" marker). [ev: retro campaign8-station-snapshot]
+```
+
+## 10. campaign8-bog-audit  (PR10, slug: `campaign8-bog-audit`)
+- **Grep-before (K6):** `grep -rn 'ev: retro campaign8-bog-audit' <kit>` (excl retros/) → **3 hits** (`BUILD-LOOP.md:63`
+  audit line, `skill/SKILL.md:68` toolbelt list, `toolbelt/bog-audit.sh:3` header). Already CREDITED via K19 → safe to
+  flip. No `METHODOLOGY.md` folded-as-code line yet.
+- **Deltas** (INDEX row: 6): new `toolbelt/bog-audit.sh` (CHECK1-CHECK12, embedded python3 D10 grammar engine).
+  Design/doctrine the retro's table proposes: **CHECK11 proxy-link-safety is FAIL** (not WARN — an own-module output
+  linked to a Boolean/NumericWritable with no explicit fallback holds last state on stop/reload; PANCCADIA: 17 FAIL);
+  **CHECK12 dashboard-write-to-link-target is advisory WARN**; the **inherited-frozen-slot rule (BA12)** — a bog frozen
+  slot (no `t=`) absent from OUR source but on a class extending a FRAMEWORK superclass is CHECK5 **WARN "possibly
+  inherited"**, not a ghost FAIL (e.g. `servletName` from `BWebServlet`); the D10 grammar tracks value slots on the
+  DIRECT parent component only (compound-property sub-slots like `StatusNumeric.value` are ignored to avoid false CHECK5)
+  and skips platform-managed `wsAnnotation` READONLY slots.
+- **FOLD (recommended — one `METHODOLOGY.md` §Conformance line + one doctrine line):**
+```
+- folded as code: toolbelt/bog-audit.sh (station config.bog auditor CHECK1-CHECK12; CHECK11 proxy-link-safety = FAIL, CHECK12 dashboard-write-to-link-target = advisory WARN; --source-dir adds the source-coupled CHECK2-7). [ev: retro campaign8-bog-audit]
+- A bog FROZEN slot (no t=) absent from our @NiagaraProperty set but on a class extending a framework superclass is CHECK5 WARN "possibly inherited" — NOT a ghost FAIL (e.g. servletName from BWebServlet); a DYNAMIC slot (t= present) or a frozen slot on a BComponent-extending class stays FAIL. [ev: retro campaign8-bog-audit]
+```
+
+---
+
+## Apply checklist — the FULL campaign-8 set (10 retros)
+Flip all 10 INDEX rows `pending → folded`. MANDATORY token lines FIRST (else `sweep-fold-audit --strict` fails):
+**§3 lint-timers-ext** and **§7 campaign8-doctrine-fold** (both 0-token). The other 8 are token-credited already
+(§1/§4/§5/§6/§8 via BUILD-LOOP/SKILL; §2 triage-console at METHODOLOGY:96; **§9 station-snapshot** 3 tokens + **§10
+bog-audit** 3 tokens, both via K19 routing). The §9/§10 folded-as-code lines are recommended-but-preferred (the
+"folded as code: <script> [ev: retro <token>]" convention, METHODOLOGY:94 rule) — neither blocks the strict audit since
+both are already token-credited. **PR11/PR12 will add two more retros** (12 total at campaign close). Then set
+`retro_pending: false` in the kit self-envelope + sweep (pending=0, fold-audit clean).
