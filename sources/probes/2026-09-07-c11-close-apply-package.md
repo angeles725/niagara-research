@@ -11,9 +11,17 @@ Three merged retros, all INDEX `pending`:
 | `campaign11-shared-method-boundary` | **1** (folded by PR1) | flip INDEX → folded |
 | `campaign11-concept-row-drift` (NOTE: `-concept-row-drift`, not `-concept-drift`) | **1** (folded by PR2) | flip INDEX → folded |
 | `campaign11-client-root` | **0** — NOT folded | **ADD a fold line before flipping** (else `sweep-fold-audit --strict` FAILs): METHODOLOGY new **K26** "single-source the client read tree" `[ev: retro campaign11-client-root]`; then flip |
-| `campaign11-lint-guard-pins` (PR4, pending) | — | create via `new-retro.sh`; fold into BUILD-LOOP §5 (`lint-guard-pins.sh` pre-gate) + K24(7) cross-ref |
+| `campaign11-lint-guard-pins` (PR4, pending) | — | create via `new-retro.sh`; fold into BUILD-LOOP §5 (`lint-guard-pins.sh` pre-gate). **PR5 (close) MUST add the K24(7) guard-pin GRAMMAR sub-bullet** (it was removed from PR4): under METHODOLOGY K24(7): *"every `toolbelt/lint-*.sh` declares ≥1 header line `# Mutation: <fixture-id> -- <what it flips>` (ASCII `--`), each id an existing `@test`; `lint-guard-pins.sh` enforces it; 'clean' = MATCH count == lint count, never 0 found"* `[ev: retro campaign11-lint-guard-pins]` |
 | `campaign11-close-process-meta-lessons` | — | create; §2 below |
 Fold-audit gate: after all flips, `sweep-fold-audit.sh --strict INDEX kit-root` → 0 uncited (client-root's new K26 line + the guard-pins line make it pass).
+
+### Additional doctrine folds this close carries
+- **K24(7) guard-pin grammar (PR5, from PR4's dropped sub-bullet)** — see the `campaign11-lint-guard-pins` row above; the
+  grammar line goes under METHODOLOGY K24(7) with `[ev: retro campaign11-lint-guard-pins]`.
+- **lint-timers exit contract** — `lint-timers.sh` uses **0 no FAIL / 1 any FAIL / 2 usage / 3 env** (usage is exit **2**, not
+  the generic 3). Fold a one-line note where METHODOLOGY **K20** (`:86`) gives the generic usage→3 example: "the disjoint-range
+  rule permits a script to split usage(2) from env(3) — `lint-timers.sh` does" `[ev: retro campaign11-lint-guard-pins]`. (K20's
+  0/1/2 vs 3/4 framing already allows this; the note prevents a future author from "fixing" lint-timers to exit 3.)
 
 ## 2. close-process meta-lessons (`campaign11-close-process-meta-lessons`) — from what APPLY taught
 1. **I2/I3 are DEFENSIVE, not inert** — the Case-B `@`-line stop (I2) and the keyword exclusion (I3) have REACHABLE-BUT-ABSENT shapes (B832-G3/G4): the client tree happens not to contain an `if(…){` on the same line as a method open today, but the shape is reachable, so the guard earns its fixture (G-samemethod). Reclassify from "inert" to "defensive with a reachable shape".
