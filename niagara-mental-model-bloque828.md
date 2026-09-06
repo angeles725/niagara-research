@@ -81,6 +81,18 @@ Per [B795], a retype is never SAFE. **So `BHoaMode` is for NEW modules (or a del
 in-place change to the shipped ColdRoomPan/CompPan** — those keep the `double` 0/1/2 (the [B823] doctrine's "today `double`"
 row). A future module authors HOA as `BHoaMode` from the start and gets the self-describing oBIX enum for free. `[CERT-doc]`
 
+## 828.7 — CROSS-MODULE CARVE-OUT: a value LINKED across custom modules stays a `double`, even in a new module `[CERT — reconciles the existing doctrine]`
+`BHoaMode` is safe ONLY for an INTERNAL / single-module HOA slot. A discrete value **LINKED across two custom modules**
+(e.g. a façade `DashboardPan` HOA driving a control `ColdRoomPan` HOA) must stay a **plain `double` 0/1/2** — a shared
+frozen-enum requires the IDENTICAL `@NiagaraType` on BOTH ends, which forces module-B-rt to depend on module-A-rt (the
+custom-module dependency DSL is non-trivial; `compileOnly(files(...))` does not reach the plugin classpath), and a stale
+cross-module enum reference surfaces LIVE as a `Missing class` boot error. This is not hypothetical: **the client's deleted
+`BHoaMode` surfaced on the JACE as `Missing class ColdRoomPan:HoaMode`** (the `types/logic.md` §Linking rule + bitácora
+5cuartos §5). So: `BFrozenEnum` HOA for an internal slot (self-describes over oBIX §828.3); `double` 0/1/2 for a
+cross-module LINK. Our client HOA IS the cross-module case (DashboardPan façade ↔ ColdRoomPan control), so it stays
+`double` regardless of §828.6 — the enum form applies to a NEW module whose HOA is NOT linked to another custom module.
+`[CERT — the existing §Linking doctrine + the live Missing-class crash]`
+
 ## Self-verify
 | # | Claim | Marker | Evidence |
 |---|---|---|---|
