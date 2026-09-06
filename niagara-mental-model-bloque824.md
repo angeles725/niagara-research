@@ -58,7 +58,7 @@ Three controls make the check flag the genuinely-silent trips and leave the surf
   `CompressorControl.step()`:
   - **CP-2 high-discharge = CLEAN**: the trip sets a NAMED field `this.dischargeHigh` (`CompressorControl.java:82,140`),
     and the adapter writes it to a SUMMARY slot `getDischargeHighAlarm().setValue(ctl.dischargeHigh)`
-    (`BCompressorControl.java:1539` slot / execute write). Field→slot follows → surfaced. `[CERT]`
+    (`BCompressorControl.java:361` slot decl / `:1994` execute write (re-anchored a109249; was :1539 = the generated getter)). Field→slot follows → surfaced. `[CERT]`
   - **CP-1 low-suction = FLAG**: the shed is INLINE — `if (suctionValid && c.suctionLowLimit>0d && suction<c.suctionLowLimit)
     target = Math.min(target, onCount-1);` (`CompressorControl.java:215`) — NO named field, and `suctionLowAlarm` is
     **ABSENT** from the whole module (`grep suctionLowAlarm CompPan-rt/src` → 0). Nothing to follow → silent → WARN.
@@ -106,7 +106,7 @@ absence (WARN) + the honest advisory seam (name allowlist + is-it-the-reason = r
 | 1 | The check keys on a [B821] trip (output-force / stage-shed) with no status/reason/alarm surface on its path | `[INFER]+[CERT shape]` | [B821] §821.2/§821.4; the §824.2 grammar |
 | 2 | Absence-of-surface is decidable → WARN; is-a-present-slot-the-reason is advisory (never hard FAIL) | `[INFER]` | [B820] §820.3, [B819-G1] data-flow gap |
 | 3 | CP-1 low-suction FLAGS: inline `Math.min(target,onCount-1)` on `suction<suctionLowLimit`, no named field, `suctionLowAlarm` absent | `[CERT]` | `CompressorControl.java:215`; grep `suctionLowAlarm` CompPan-rt → 0 |
-| 4 | CP-2 high-discharge CLEAN: named field `dischargeHigh` → `getDischargeHighAlarm()` SUMMARY slot (the field→slot follow) | `[CERT]` | `CompressorControl.java:82,140`; `BCompressorControl.java:1539` |
+| 4 | CP-2 high-discharge CLEAN: named field `dischargeHigh` → `getDischargeHighAlarm()` SUMMARY slot (the field→slot follow) | `[CERT]` | `CompressorControl.java:82,140`; `BCompressorControl.java:361` (decl), `:1994` (execute write) — re-anchored a109249 |
 | 5 | CR-3 freeze FLAGS: `freezeTripped` is a PRIVATE field feeding `valveInhibited`, no slot/alarm | `[CERT]` | `BEvaporatorUnit.java:1287,1106` |
 | 6 | defrost-skip CLEAN: `getDefrostSkipped().setValue`+`setLastSkipReason` (SUMMARY) on the skip path | `[CERT]` | `BDefrostController.java:63,746,747` |
 | 7 | Effect-slot exemption: the forced output (valveOut/condenserN) does not count as its own surface | `[CERT]` | the output slots are SUMMARY effects ([B821] §821.4 tier-3) |
