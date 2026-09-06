@@ -6,9 +6,12 @@ Author: companero (Fable), 2026-09-06. Cut against kit `df8c7ec`/`cb79676` and c
 
 ## S24 — make the structural WiringTests resolve src from ANY cwd
 **Current behaviour (VERIFIED):** the tests read the module SOURCE by a cwd-relative path.
-- `run-pure-test.sh` (`toolbelt/run-pure-test.sh`) takes the module dir as `$1` (`rt=$1` :27) and compiles with
-  `-sourcepath "$rt/src:$testroot"` (:58-59); it runs `java` in the CALLER's cwd — it never `cd`s into `$rt`. So the JVM
-  cwd = wherever the caller stood.
+- `run-pure-test.sh` (`toolbelt/run-pure-test.sh`) takes the module dir as `$1` (`rt=$1` :27). The COMPILE
+  (`javac -sourcepath "$rt/src:$testroot"` :58-60) is NOT the cwd-sensitive part — `-sourcepath` resolves fine (and stays
+  fine once `rt` is absolutised), so `javac` need not move. The cwd-sensitivity is at RUNTIME: the java step runs in the
+  CALLER's cwd (the script never `cd`s), and the WiringTests read `Paths.get("src/…")` THEN. (investigador1's validator
+  read `2026-09-07-c10-design-validator-read.md` §Claim 3: `-sourcepath` is NOT broken by a java-only subshell — a relative
+  `rt` reproduced OK(37); so the fix is the java-step cwd, and the design's "-sourcepath breaks" rationale is inaccurate.)
 - `FreezeAlarmWiringTest.java` (`srcTest/test/com/angeles/ColdRoomPan/`): `SRC = Paths.get("src/com/angeles/ColdRoomPan/BEvaporatorUnit.java")`
   (:48, RELATIVE), `GROUP_BUILD = Paths.get("../../build.gradle.kts")` (:49), and `read()` (:54-60) tries
   `{ p, here.resolve(p), here.resolve("ColdRoomPan-rt").resolve(p) }` where `here = Paths.get("").toAbsolutePath()` (:56).
@@ -106,7 +109,7 @@ untracked. **Chore, no RED.** `[ev: git ls-files @ ff1b659 — 43 class + 8 tmp 
 ## Self-verify
 | # | Claim | Marker | Evidence |
 |---|---|---|---|
-| 1 | run-pure-test.sh doesn't cd into $rt; WiringTests read cwd-relative src | [CERT] | run-pure-test.sh:27,:58-59; WiringTest:48-56 @ ff1b659 |
+| 1 | the RUNTIME test read (not -sourcepath/javac) is cwd-sensitive; java-only subshell cd is the fix (-sourcepath not broken) | [CERT] | run-pure-test.sh:27,:58-62; WiringTest:48-56 @ ff1b659; investigador1 validator §Claim 3 (relative rt OK 37) |
 | 2 | lint-write-path is already a hard FAIL (exit 1) lint; --strict must reconcile semantics | [CERT] | lint-write-path.sh:25,:33 |
 | 3 | 43 class + 8 tmp churn tracked; 4 jars + 4 module.xml to keep | [CERT] | git ls-files @ ff1b659 |
 | 4 | the diff-based proof shows no deploy artifact lost | [CERT] | git rm --cached scoped to tmp+classes only |
