@@ -44,14 +44,23 @@ client PRs `schema-risk.sh` verdict is in the PR body and reads SAFE; (U6) versi
 | 3.4 | PR3 acceptance beyond the pin: exact WARN count + subjects + absence on ALL FOUR client module roots recorded in the retro (lesson 11) | PR body |
 | 3.5 | Cross-lane: after PR8 lands, CR-3 becomes surfaced → the smoke expectation flips; whichever merges second updates the pin (D9) | note in both PRs |
 
-## PR4/PR5 — S12-A write-server (tunnel; RED `qa/c9-s12-write-server` e7e6615 S12A-1..9, already rebased on 9acb47c; +S12A-8 failed-write audit row, +S12A-9 spool replay idempotency) — D6/D7
+## PR4 — S12-A write-server config login + audited write (tunnel; RED `qa/c9-s12-write-server` e7e6615, cases S12A-1/2/3/5/7 for PR4) — D6/D7
 | # | Invariant | How to decide |
 |---|---|---|
 | 4.1 | `buildServer(cfg, deps)` returns the handler without binding; `main()` binds behind the import.meta guard; `deps = {supabase, station, clock, spool}` injectable | read the export; node:test opens no socket |
 | 4.2 | `POST /config/login` mints a **server-held** token bound to `(email, purpose)` with absolute TTL + sliding inactivity; `/config/logout` deletes; `/write` + `/alarms/ack` 401 without/expired; `/equipment` + `GET /alarms` ungated; ORD allowlist server-held → 403 before the station is touched; **no user+password store anywhere** | grep `password` writes = 0 persisted; read the token map |
 | 4.3 | Per write: GET old → PUT/POST station → capture `result` → insert exactly ONE `change_log` row; `old_value` from the pre-write GET never the body; on insert failure the write still returns the station outcome + JSON-lines spool, drained on next success (S12A-6) | read the handler order |
 | 4.4 | Schema migration additive-only: ADD `ts, config_session, result, surface, client_ip` beside the 9 existing columns; no DROP/retype; the 9acb47c insert still passes | read the migration |
-| 4.5 | Setpoint body = child leaf `${ord}/value` bare `<real>` (S12A-7, B826 preferred form) | grep |
+| 4.5 | Setpoint body = child leaf `${ord}/value` bare `<real>` (S12A-7, B826 preferred form) — **PR4 must NOT change** the child /setpoint/value PUT shape | grep the PUT line unchanged vs 9acb47c |
+
+## PR5 — S12-A audit schema + failure spool (tunnel; same RED e7e6615, cases S12A-8 failed-write row + S12A-9 spool replay) — D7
+| # | Invariant | How to decide |
+|---|---|---|
+| 5.1 | **change_log migration is ADDITIVE-ONLY**: `ts, config_session, result, surface, client_ip` ADDED beside the 9acb47c columns (`user_email, user_id, room, slot, label, old_value, new_value, area, ok`); no DROP, no retype, no NOT-NULL added to an existing column; the 9acb47c insert path still compiles and passes | read `sql/…-*.sql`; grep `drop|alter .* type|not null` in the migration = 0 on existing cols |
+| 5.2 | **A FAILED station write is audited EXACTLY ONCE** (S12A-8): oBIX 500 → write-server 502, `rows.length == 1`, `rows[0].ok == false`, `rows[0].result == 502` (the failing status, not a success code), `rows[0].room` set. Mutation = "audit only on 2xx" → S12A-8 sees 0 rows | run S12A-8; read the audit call — it must run on BOTH the success and failure branches |
+| 5.3 | **Audit-append failure NEVER fails the write**: with the change_log insert forced to throw, `/write` still returns the station outcome; the row is appended to the JSON-lines **failure spool** (not a parallel primary trail) | run; read the try/catch around the insert |
+| 5.4 | **replaySpool drains ONCE and dedupes** (S12A-9): a spooled entry is inserted on the next successful insert and a second replay does NOT double it (dedupe on the 5-tuple). Mutation = "do not drain / no dedupe after replay" → S12A-9's second replay inserts a duplicate | run S12A-9; read `replaySpool` |
+| 5.5 | `old_value` from the pre-write GET, never the request body; `result` carries the station status on every row | read the handler order (GET old → PUT → capture result → insert) |
 
 ## PR6 — S12-B servlet guards + real Context (client DashboardPan-ux; RED 4c18837, 7 pins) — D8/D8a/D8b
 | # | Invariant | How to decide |
@@ -74,13 +83,17 @@ client PRs `schema-risk.sh` verdict is in the PR body and reads SAFE; (U6) versi
 | 14.7 | Dispatch: `POST /api/config/login` + `/api/config/logout` singletons `ConfigLogin`/`ConfigLogout` beside `SetpointWrite` (`:59-63`), inside the XHR-guarded `/api/*` POST branch (`:117-132`) | read `DashboardDispatch` |
 | 14.8 | MIR5 consequence: identity → the `user` column; `config_session` stays NULL for surface B (AuditEvent has no session field, `ComplexSlotMap.java:1687`) | R7 pin text |
 
-## PR7 — R7 AuditHistory→`change_log` mirror (tunnel; REDs MIR1-MIR5 to author) — D7a
+## PR7 — R7 AuditHistory→`change_log` mirror (tunnel; RED `qa/c9-s12-audit-mirror` 0a14df8, MIR1-MIR5) — D7a
+Export contract (RED :5-12): `export async function runMirror(cfg, deps) → { read, inserted, skipped }`; `deps.readAuditHistory() → Array<{ts,user,target,old,new}>`; `deps.changeLog = { rows, insert(row), has(key) }` where `has` is the dedupe lookup on `(ts,user,target,old,new)`; inserted row = `{ ts, user, target, old_value, new_value, surface:'servlet', config_session:null }`.
 | # | Invariant | How to decide |
 |---|---|---|
-| 7.1 | Flag-gated **OFF by default**; reads `/PANCCADIA/AuditHistory`; inserts `surface='servlet'`, `config_session=NULL` | read the flag + insert |
-| 7.2 | Idempotence key `(ts, user, target, old, new)` as a **unique index**; fixture replayed twice → same row count (MIR idempotence pin) | read migration; run |
-| 7.3 | Station gains no outbound dependency; servlet holds no Supabase credential | grep the client diff = 0 tunnel refs |
-| 7.4 | Live enablement = B829-live / B830-G1 gate, never a PR gate | PR body |
+| 7.1 | **MIR1 flag-gated OFF by default**: `cfg.MIRROR_ENABLED` absent/false → the job reads NOTHING and inserts NOTHING (`read==0`). Mutation = "ignore the flag / always run" → rows inserted with the flag off | run MIR1; the flag check gates BEFORE `readAuditHistory` |
+| 7.2 | **MIR2 idempotent replay**: replaying the same fixture twice leaves the row count unchanged. Mutation = drop the dedupe check → second replay doubles | run MIR2 |
+| 7.3 | **MIR3 dedupe on the FULL 5-tuple** `(ts, user, target, old, new)` via `changeLog.has(key)` before insert — two distinct records sharing a `ts` stay distinct; every replayed record is `skipped`. Mutation = dedupe on `ts` only → collapse/leak | run MIR3; read the key builder (all five fields) |
+| 7.4 | **MIR4 surface column**: every inserted row carries `surface == 'servlet'`. Mutation = omit/mislabel surface | run MIR4 |
+| 7.5 | **MIR5 config_session IS NULL** — the mirror never fabricates a session from the user (the AuditEvent has no session field, B830 §830.4). Mutation = fabricate from user → non-null | run MIR5 |
+| 7.6 | Live enablement (MIRROR_ENABLED on against the real `/PANCCADIA/AuditHistory`) = the B829-live / B830-G1 gate, never a PR gate; the DB unique index `(ts,user_email,target,old_value,new_value) where surface='servlet'` is the durable dedupe (R5 additive migration) | PR body + migration |
+| 7.7 | Station gains no outbound dependency; the servlet holds no Supabase credential — the mirror is a mini-PC job reading the trail Niagara already wrote | grep the client PR diff = 0 tunnel/supabase refs |
 
 ## PR8 — R8 CR-3 alarm, Pattern A (client ColdRoomPan-rt; RED 70a357b CRA1s/2s/3s/4/5/6) — D9
 | # | Invariant | How to decide |
