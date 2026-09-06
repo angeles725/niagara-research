@@ -44,7 +44,15 @@ Notes for the apply worker:
 - The stub is deliberately LIGHTER than a hand-written campaign-8 retro (which uses `## Context` + `## Proven
   Lessons` / `### Delta N`); it carries the same gate-critical parts (marker, delta table with tokens, INDEX row).
   A run may expand `## Lessons` into `## Proven Lessons` with `### Δn` blocks — same tokens, richer prose.
-- `slug` is kebab-case, unique in `retros/`; `new-retro.sh` refuses to overwrite an existing file.
+- `slug` is kebab-case, unique in `retros/`, and **≥ 6 chars** (a shorter slug is silently DROPPED by
+  `sweep-fold-audit.sh`'s 6-char token floor, so its fold would never be harvested — see §2 [GATE]); `new-retro.sh`
+  refuses to overwrite an existing file.
+- **[GATE] ATOMIC triple write:** `new-retro.sh` writes the stub file, appends the INDEX row, AND sets the
+  `BUILD-STATE.md` flag as ONE unit — all three land or NONE do (write to temp + `mv`, or roll back on any failure).
+  A partial run must never leave a stub with no INDEX row (or vice-versa). Gates wave3 D13 / task 16.2 / SC12 / RL2.
+- **[GATE] IDEMPOTENT INDEX guard:** before appending, grep `retros/INDEX.md` for the slug's row; if present, the
+  INDEX append is a NO-OP (re-running `new-retro.sh` for the same slug never duplicates the row). Same for the
+  BUILD-STATE flag (setting `retro_pending: true` twice is a no-op).
 
 ## 2. INDEX.md row + BUILD-STATE.md envelope
 - **INDEX.md** — columns are FIXED (copy verbatim from `retros/INDEX.md`): `| Retro file | Module | Date |
@@ -116,7 +124,9 @@ Fold from the research-sdd retro `retros/2026-09-05-research-sdd-retro-automatio
 
 ---
 ## Apply-worker checklist
-- Emit the §1 stub VERBATIM (marker first line; delta-count = table rows = INDEX `deltas`).
+- Emit the §1 stub VERBATIM (marker first line; delta-count = table rows = INDEX `deltas`); slug ≥ 6 chars.
+- **ATOMIC + IDEMPOTENT [GATE]:** the stub + INDEX row + `retro_pending` flag land together or not at all; a repeat
+  run for the same slug is a no-op on INDEX and the flag. (wave3 D13 / task 16.2 / SC12 / test RL2.)
 - INDEX columns copied EXACTLY from `retros/INDEX.md`; `new-retro.sh` appends, never rewrites existing rows (K12).
 - The scripts land named in BOTH `BUILD-LOOP.md` and `skill/SKILL.md` or `kit-links.bats` L4/L5 go RED (K19).
 - PR16 is itself a kit change → its own close: `new-retro.sh kit c8-pr16-retro-loop` + `retro_pending` in the kit
