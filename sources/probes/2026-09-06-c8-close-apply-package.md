@@ -53,15 +53,14 @@ Paste each from the close-fold drafts verbatim (target `METHODOLOGY.md` §Confor
 - **Genuinely token-credited (non-blocking — skip only if the close PR is kept minimal):** §9 station-snapshot, §10
   bog-audit, §11 wb-audit, §12 lint-servlet, §16 retro-loop, §17 orchestration (+ its L7/L8 numbering doctrine line),
   §18 structure. Each has ≥1 core token TODAY (verified at `6742c76`: §18=4).
-- **⚠ MERGE-DEPENDENT — §19 write-path and §20 station-logic are 0-token in the kit core UNTIL their PRs merge**
-  (verified at `6742c76`: both 0; `lint-write-path.sh` absent). Their `[ev: retro campaign8-write-path]` /
-  `[ev: retro campaign8-station-logic]` tokens ride into `BUILD-LOOP.md`/`skill/SKILL.md` via the K19 routing lines that
-  land WITH PR19/PR20. Since the close PR is the LAST one (after both merge), they will be credited by then — BUT do NOT
-  assume it. **GATE (required):** on the post-PR20 main, re-run `grep -rn 'ev: retro campaign8-write-path' <kit-root>`
-  and the same for `campaign8-station-logic` (excl retros/); **if either is still 0, PROMOTE that retro's fold line to
-  Step A tier (land it BEFORE its INDEX flip)** — otherwise `sweep-fold-audit --strict` FAILs on a folded row with no
-  core token. (Alternative if PR19/PR20 slip past the close: flip only the present rows and defer the §19/§20 flips to
-  their own merge PRs.)
+- **§19 write-path and §20 station-logic — NOW MERGED + CREDITED** (update 2026-09-06): PR16–PR20 all landed on main
+  `17af2ed`; re-grep confirms `campaign8-write-path` = 4 and `campaign8-station-logic` = **2** core tokens (station-logic
+  dropped from 3 at `5e21f0e` because the QA fix round tightened it — CHECK16 now both directions, CHECK14 catches
+  TRANSIENT outputs, the presence-only pins replaced by count+subject+absence per close-retro lesson 11(a)). Both are
+  ≥1 → CREDITED; their recommended fold lines are non-blocking. **The earlier merge-dependency GATE is now SATISFIED**,
+  but keep it as a discipline: re-run `grep -rn 'ev: retro campaign8-{write-path,station-logic}' <kit-root>` (excl
+  retros/) at apply and, if a fold/rebase ever drops a count to 0, PROMOTE that retro's fold line to Step A before its
+  INDEX flip (else `sweep-fold-audit --strict` fails on a folded row with no core token).
 
 ### Step C — INDEX.md review-status flips (all 20 rows `pending → folded`)
 
@@ -86,13 +85,13 @@ A.1–A.5 first, else the fold-audit fails on those five rows.
 | 2026-09-05-campaign8-rt-doctrine.md           | kit | … | folded | 4  |   ← needs A.5 first (promotion)
 | 2026-09-06-campaign8-retro-loop.md            | kit | … | folded | 5  |
 | 2026-09-06-campaign8-orchestration.md         | kit | … | folded | 3  |
-| 2026-09-06-campaign8-structure.md             | kit | … | folded | 3  |   ← RE-CHECK (token-credited, 4)
-| 2026-09-06-campaign8-write-path.md            | kit | … | folded | 5  |   ← RE-CHECK + Step-B GATE (0-token until PR19 merges)
-| 2026-09-06-campaign8-station-logic.md         | kit | … | folded | 4  |   ← RE-CHECK + Step-B GATE (0-token until PR20 merges)
+| 2026-09-06-campaign8-structure.md             | kit | … | folded | 3  |   ← MERGED, token-credited (4)
+| 2026-09-06-campaign8-write-path.md            | kit | … | folded | 5  |   ← MERGED, token-credited (4)
+| 2026-09-06-campaign8-station-logic.md         | kit | … | folded | 4  |   ← MERGED, token-credited (2 — fix round tightened it)
 ```
-> **Do not flip the §19/§20 rows until their tokens are on main** (Step B GATE). A folded row with no core token fails
-> `sweep-fold-audit --strict`. Either their PR-merge routing lines are present (credited), or their fold line was
-> promoted to Step A first.
+> **Update 2026-09-06:** all 20 rows' PRs are merged on main `17af2ed`; §19/§20 are now token-credited (Step B GATE
+> satisfied). Re-confirm the exact row texts + delta counts at apply — the merged §18/§20 retros evolved from their
+> branch tips (station-logic's mutation table is now SL13–SL19 with CHECK16 both-directions).
 
 ### Step D — the CHANGELOG v0.19.0 extension
 
@@ -159,10 +158,11 @@ NO AI-attribution trailer (K11 / CONTRIBUTING.md).
 | # | Claim | Marker | Evidence |
 |---|---|---|---|
 | 1 | 5 retros are 0-token → mandatory lines A.1–A.5 must precede the INDEX flip | [CERT] | grep-before at cc428e5/branch tips (fold-drafts §3/§7/§13/§14/§15) |
-| 2 | 13 of the other 15 are token-credited (≥1 in-kit); §19 write-path + §20 station-logic are 0-token until PR19/PR20 merge their K19 routing lines → Step B GATE | [CERT] | git grep per slug at 6742c76 (§18=4; §19=0, §20=0, lint-write-path.sh absent) |
-| 3 | §18/§19/§20 re-check — §19/§20 fix rounds in progress; §20 pins presence-only | [INFER] | lead-reported; close-retro lesson 11 |
+| 2 | All 15 non-mandatory retros are token-credited (≥1 in-kit); §19/§20 now merged too (Step B GATE satisfied) | [CERT] | git grep per slug at main 17af2ed (§18=4, §19=4, §20=2; all PR16-20 merged) |
+| 3 | PR16–PR20 ALL MERGED on main 17af2ed; §18/§19/§20 credited (4/4/2); §20 pins tightened post-lesson-11(a) | [CERT] | git grep at 17af2ed; final station-logic retro (SL13–SL19, CHECK16 both-directions) |
 | 4 | close = v0.19.0 tag, no bump | [CERT] | tasks.md C.3/C.5; VERSION=0.19.0 |
 | 5 | close retro must be folded in the same PR to reach pending=0 | [CERT] | retro-enforcement gate (BUILD-STATE retro_pending) |
 
-**Open at apply:** the §19/§20 merged retro deltas + token counts (fix rounds), the exact INDEX row texts as branches
-merge, and the PR18–PR20 CHANGELOG real counts. Everything else is settled.
+**Open at apply (now small):** re-confirm the exact INDEX row texts + delta counts against main at close time (the merged
+§18/§20 retros evolved from their branch tips), and the PR16–PR20 CHANGELOG real bats/smoke counts. Everything else is
+settled — all 20 PRs are on main; only the close PR itself (folds + flips + tag) remains.

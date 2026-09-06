@@ -273,7 +273,7 @@ For EACH of the 6 retros:
 
 ---
 
-## 18. campaign8-structure  (PR18 #82, slug: `campaign8-structure`)  ← RE-CHECK AT APPLY (branch tip `6742c76`)
+## 18. campaign8-structure  (PR18 #82, slug: `campaign8-structure`)  ← MERGED (main `17af2ed`, 4 tokens)
 - **Grep-before (K6):** at `6742c76` (`feat/c8-structure`), `grep -rn 'ev: retro campaign8-structure' <kit-root>`
   (excl retros/) → **4 hits** (`BUILD-LOOP.md`, `skill/SKILL.md`, `toolbelt/lint-structure.sh`). CREDITED. Re-grep at
   apply — the branch may move before merge.
@@ -289,7 +289,7 @@ For EACH of the 6 retros:
 - folded as code: toolbelt/lint-structure.sh (L1-L11 module-structure lint over a module root, iterating profiles by direct-child *-(rt|ux|wb|se|doc)/build-script discovery — NOT by module-include.xml, so an emptiest artifact is still visited; L10 walks parents to the .git sentinel; row FAIL|WARN lint-structure <path> L<n>: <reason>, exits 0/1/3). [ev: retro campaign8-structure]
 ```
 
-## 19. campaign8-write-path  (PR19, slug: `campaign8-write-path`)  ← RE-CHECK AT APPLY (fix round in progress, tip `b044cfb`)
+## 19. campaign8-write-path  (PR19, slug: `campaign8-write-path`)  ← MERGED (main `17af2ed`, 4 tokens)
 - **Grep-before (K6):** at `b044cfb` (`feat/c8-write-path`), → **4 hits** (`BUILD-LOOP.md`, `skill/SKILL.md`,
   `toolbelt/lint-write-path.sh`). CREDITED. **The fix round is in progress — re-grep + re-read the deltas at apply.**
 - **Deltas** (INDEX row: 5): Δ1 `toolbelt/lint-write-path.sh` (OPERATOR-slot × `docs/write-path-matrix.md` coverage lint;
@@ -302,12 +302,13 @@ For EACH of the 6 retros:
 - folded as code: toolbelt/lint-write-path.sh (every Flags.OPERATOR @NiagaraProperty MUST have a docs/write-path-matrix.md row: slot·writer·timing·existing src/test; walk-up matrix resolution + --matrix override; --bog adds bog-derived slots; a MISSING matrix is ERROR exit 3, never a silent pass). [ev: retro campaign8-write-path] [ev: corpus B816]
 ```
 
-## 20. campaign8-station-logic  (PR20, slug: `campaign8-station-logic`)  ← RE-CHECK AT APPLY (fix round in progress; the `5e21f0e` pins are presence-only, close-retro lesson 11(a))
-- **Grep-before (K6):** at `5e21f0e` (`feat/c8-station-logic`), → **3 hits** (`BUILD-LOOP.md`, `skill/SKILL.md`,
-  `toolbelt/bog-audit.sh`). CREDITED. **STRONG re-check: this is the retro behind close-retro lesson 11(a).** At
-  `5e21f0e` the QA smoke pins asserted PRESENCE only and passed while the real bog produced CHECK14 ×47 / CHECK19 ×16 /
-  CHECK18-at-panel / CHECK13 ×3 (MX60); QA is re-issuing tightened count+subject+absence pins RED-first
-  (`qa/c8-station-logic`), so the numbers AND possibly the check semantics WILL move. Re-read the merged retro entirely.
+## 20. campaign8-station-logic  (PR20, slug: `campaign8-station-logic`)  ← MERGED (main `17af2ed`, 2 tokens); fix round landed
+- **Grep-before (K6):** **MERGED on main `17af2ed` → 2 core tokens** (`BUILD-LOOP.md`, `skill/SKILL.md`; the count
+  dropped from 3 at `5e21f0e` as the fix round consolidated). CREDITED. This is the retro behind close-retro lesson
+  11(a): at `5e21f0e` the QA smoke pins asserted PRESENCE only and passed while the real bog produced CHECK14 ×47 /
+  CHECK19 ×16 / CHECK18-at-panel / CHECK13 ×3 (MX60); the merged version tightened them to count+subject+absence and
+  the mutation table is now SL13–SL19 with **CHECK16 implemented BOTH directions** and CHECK14 catching TRANSIENT
+  outputs (D5). The recommended fold line below is finalized against the merged semantics.
 - **Deltas** (INDEX row: 4): `toolbelt/bog-audit.sh` CHECK13–CHECK19 — CHECK13 relay-double-source (FAIL), CHECK14
   own-output-unlinked (WARN, suppressed when `hasDefrost=false`), CHECK15 sensor-crossed-by-name (WARN), CHECK16
   hasDefrost↔DefrostController sibling (FAIL — D1: the vice-versa direction deferred, BA5 conflict), CHECK17
@@ -315,7 +316,7 @@ For EACH of the 6 retros:
   self-closing-tag parse bug, D3 the relay clean-fixture design, D4 an f-string `!r` syntax fix.
 - **FOLD (recommended — one `METHODOLOGY.md` §Conformance folded-as-code line, FINALIZE at apply):**
 ```
-- folded as code: toolbelt/bog-audit.sh CHECK13-CHECK19 (station-logic wiring: relay-double-source, own-output-unlinked, sensor-crossed-by-name, hasDefrost↔DefrostController sibling, roomN-index-mismatch, HOA-tile≠freeze-tile, control-writes-setpoint). [ev: retro campaign8-station-logic]
+- folded as code: toolbelt/bog-audit.sh CHECK13-CHECK19 (station-logic wiring: CHECK13 relay-double-source FAIL, CHECK14 own-output-unlinked WARN (incl TRANSIENT outputs), CHECK15 sensor-crossed-by-name WARN, CHECK16 hasDefrost↔DefrostController sibling FAIL both directions, CHECK17 roomN-index-mismatch FAIL, CHECK18 evaporator-unit tile-number consistency FAIL, CHECK19 panel-writes-state-into-control WARN). [ev: retro campaign8-station-logic]
 ```
 
 ---
@@ -328,7 +329,8 @@ package). **MANDATORY token lines FIRST** (else `sweep-fold-audit --strict` fail
 §2 triage-console at METHODOLOGY:96; **§9** 3, **§10** 3, **§11** 4, **§12** 3 in-kit/4 repo-wide, **§16** 8, **§17** 1,
 **§18 structure** 4, **§19 write-path** 4, **§20 station-logic** 3 — all via K19 routing). Their folded-as-code lines
 (§9-§12, §16-§20) are recommended-but-preferred (the "folded as code: <script> [ev: retro <token>]" convention,
-METHODOLOGY:94) — none blocks the strict audit since all are token-credited. **§18/§19/§20 RE-CHECK at apply**
-(§19/§20 fix rounds in progress; §20's `5e21f0e` pins are presence-only, close-retro lesson 11(a) — its counts WILL
-move). Then set `retro_pending: false` in the kit self-envelope (section-scoped) + sweep (pending=0, fold-audit clean).
-**The exact ordered edit list for the ONE close PR is `2026-09-06-c8-close-apply-package.md`.**
+METHODOLOGY:94) — none blocks the strict audit since all are token-credited. **UPDATE 2026-09-06: PR16–PR20 ALL MERGED
+on main `17af2ed`** (§18=4, §19=4, §20=2 tokens; §20's fix round landed — CHECK16 both-directions, pins tightened per
+lesson 11(a)). Re-confirm exact INDEX row texts + counts against main at close. Then set `retro_pending: false` in the
+kit self-envelope (section-scoped) + sweep (pending=0, fold-audit clean). **The exact ordered edit list for the ONE
+close PR is `2026-09-06-c8-close-apply-package.md`.**
