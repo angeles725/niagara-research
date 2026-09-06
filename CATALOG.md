@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **821 bloques**
+Total: **822 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -826,6 +826,7 @@ Total: **821 bloques**
 | 830 | [niagara-mental-model-bloque830.md](niagara-mental-model-bloque830.md) | B830 — Servlet-side re-authentication of a second operator: the legal `BUserService`/`BPasswordCache` call path, the Context that attributes the write, and what a `null` Context really bypasses |
 | 831 | [niagara-mental-model-bloque831.md](niagara-mental-model-bloque831.md) | B831 — Three lint-precision refinements for C10: companion-flag (S21), per-slot writing-action (S22), and alarm-surface recognition (S23) — from coarse class/whole-file heuristics to per-slot/per-method body matching |
 | 832 | [niagara-mental-model-bloque832.md](niagara-mental-model-bloque832.md) | B832 — The three C10 method-boundary parser copies diverge: net-depth vs peak-depth is a real one-liner false-negative (T1 shared-fragment evidence) |
+| 833 | [niagara-mental-model-bloque833.md](niagara-mental-model-bloque833.md) | B833 — C12 T1 deep-dive: name initializer blocks `<init>` (S2/B832-G4) and make the Case-B `@`-stop paren-aware (S1/B832-G3) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
