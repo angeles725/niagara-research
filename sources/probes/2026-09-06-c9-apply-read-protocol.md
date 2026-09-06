@@ -99,7 +99,7 @@ client PRs `schema-risk.sh` verdict is in the PR body and reads SAFE; (U6) versi
 | 9.4 | Additive-only vs the BCompressorControl a109249 slot set (CPB6); `schema-risk.sh` SAFE; Compresores **2.2.0** (after PR1's 2.1.0) | run; grep |
 | 9.5 | CPB5 (`sourceState` on the routed record) declared harness-only — not reported green from WSL | PR body |
 
-## PR10 — S19 `lint-ext-writable-shape.sh` (kit; RED `qa/c9-ext-writable-shape` 269be48 EW1-EW11 — EW11 = no-sources exit 3 (K20); EW10 = exact a109249 contract via `C9_CLIENT_ROOT`; four-root exact counts are PR10 ACCEPTANCE, not a bats pin)
+## PR10 — S19 `lint-ext-writable-shape.sh` (kit; RED `qa/c9-ext-writable-shape` 269be48 EW1-EW11 — EW11 = no-sources exit 3 (K20); EW10 = exact a109249 contract via `C9_CLIENT_ROOT`; EW10 IS the exact four-root bats contract at 269be48)
 | # | Invariant | How to decide |
 |---|---|---|
 | 10.1 | Bare complex `OPERATOR` property (`BStatusNumeric/Boolean/Enum`) with no writing `@NiagaraAction` → WARN naming the child `…/value` leaf; plain double/boolean/reltime clean; complex-with-action clean; SUMMARY-only ignored (EW4); `--strict` → 1; no arg → 3; D9b prune | run EW1-EW9 |
