@@ -136,9 +136,9 @@ Improve the kit and the modules as an "Excavador Técnico" (R&D engineer + syste
 ## Critical-write step-up auth `[ev: corpus B803]`
 - Niagara ships NO core credential step-up — `Flags.CONFIRM_REQUIRED` is a UX-only confirm; the `electronicSignature` module is the only true sign-before-invoke. Step-up is MODULE-level code. `[ev: corpus B803]`
 - A mutating `-ux` endpoint whose target is a CRITICAL control adds, ON TOP of the B763 five gates: (1) a SERVER-SIDE criticality allowlist of target ORDs/actions that REQUIRE step-up (never client-decided); (2) re-verify the session user through their auth scheme SERVER-SIDE; (3) issue a fresh short-TTL step-up TOKEN (2–5 min) bound to `(sessionId + user + target ORD + purpose)`, checked server-side on the write — NEVER client-only. `[ev: corpus B803]`
-- SAML/SSO caveat: a SAML user CANNOT be re-verified mid-session (browser→IdP redirect, no in-request re-verify) — either reject with "re-login required" or trust the session + a short TTL. `[ev: corpus B803]`
+- SAML/SSO caveat: a SAML user likely cannot be re-verified mid-session `[INFER]` — SSO is a browser→IdP redirect with no in-request re-verify (B803 §803.4 marks the runtime block INFER; **B803-G1** confirms it live) — so either reject with "re-login required" or trust the session + a short TTL. `[ev: corpus B803]`
 - CSRF: verify the REAL token `x-niagara-csrfToken` (`CsrfUtil.CSRF_TOKEN_HTTP_HEADER`; double-submit against the session token), not `X-Requested-With` alone. `[ev: corpus B803]`
-- The per-Ord write lock / HTTP 423 for a critical write is tracked as the client gate-4 gap (issue #49, `dashboard.md:48`). `[ev: corpus B803]`
+- The per-Ord write lock / HTTP 423 for a critical write is tracked as the client gate-4 gap (issue #49, `dashboard.md:48`). `[ev: corpus B763]`
 - OPEN (requires-execution): **B803-G1** (confirm the live SAML mid-session re-auth block on a station) and **B803-G2** (whether gauth's `BPasswordCache.validate` accepts a TOTP token mid-session). `[ev: corpus B803]`
 ```
 - **READY (REFINE gate (2) at `dashboard.md:29`, append):** `— a CRITICAL-write endpoint should ALSO verify the real x-niagara-csrfToken token (CsrfUtil double-submit), not rely on X-Requested-With alone. [ev: corpus B803]`
