@@ -92,3 +92,19 @@ Pull niagara-research and read your section. Peer messages in English (Cristian'
 - Defrost trial link-list correction (companero): a BooleanWritable priority array is highest-non-null-wins, NOT an
   OR — each unit needs a `kitControl:Or` (evapOut→inA, resistanceOut→inB, out→fanRelay.in2) + DefrostController
   sibling per room; apply ColdRoom_2 first. Station-only; waits for Cristian's green light.
+
+## Update 3 — RED ledger (QA) and new slice R14
+- S7 `qa/c9-demand-in-scope` d0f5942 (setup path → toolbelt/lint-demand-scope.sh; WARN-only; CLI `[--strict] <src-dir>`).
+- S18-lint `qa/c9-silent-protection` e38e503 (LSP = toolbelt/lint-silent-protection.sh).
+- R1 S20 `qa/c9-comppan-rotation` cf28572 (17 pins ROT1-ROT16 + ROT7b; contract Cfg.rotationIntervalMs,
+  Cfg.rotationMode, ROTATION_MAKE_BEFORE_BREAK, ctl.swaps; rotation needs its OWN arm timestamp).
+- R8 `qa/c9-alarm-cr3` 70a357b (structural; CRA1/2/3 live routing HARNESS-ONLY on the Windows niagaraTest).
+- R9 `qa/c9-alarm-cp1` 8b43488 (pure `CompressorControl.AlarmEdge` seam + wiring; CPB5 HARNESS-ONLY).
+- S12-A `qa/c9-s12-write-server` 55d6797 on tunnel 9acb47c (change_log sink re-pins).
+- c9-close `qa/c9-close-checklist` 30e22f9 (SC-13 reads `defaultModuleVersion()` from the GROUP build.gradle.kts —
+  Compresores / Dashboard / Paccadia — the real version key).
+- NEW R14 (user decision 2026-09-06): in-module config login for the HMI panel (shared kiosk login stays; second
+  login re-authenticates a STATION user; server-held session TTL + /config/logout; writes run with that user's
+  Context → real-operator attribution in AuditHistory and change_log). Research B830 (investigador1) decides the
+  legal Niagara API; companero: R14 apply-package + dashboard-preview mock after B830; QA: R14 RED after R7.
+- investigador1 push landed: niagara-research 2e967850b (evidence map, S20 design evidence, S12 audit-sink brief).
