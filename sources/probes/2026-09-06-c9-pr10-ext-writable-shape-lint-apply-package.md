@@ -1,15 +1,22 @@
 # C9 PR10 / R10 — S19 `ext-writable-shape` lint: apply package (kit)
 
-Author: companero (Fable), 2026-09-06. Contract VERBATIM from QA's RED `qa/c9-ext-writable-shape` **`3726722`**
-(`tests/ext-writable-shape.bats`, EW1–EW10). Rule = B823 §823.2 + the slot-type doctrine (folded at C8 PR15,
+Author: companero (Fable), 2026-09-06 (rev 2: RED re-issued by QA — tip **`717d585`** = 3726722 + 269be48 (EW10 exact a109249
+contract) + 717d585 (`C9_CLIENT_ROOT`); pins EW1–EW10 unchanged). Contract VERBATIM from QA's RED `qa/c9-ext-writable-shape`
+**`717d585`** (`tests/ext-writable-shape.bats`). Rule = B823 §823.2 + the slot-type doctrine (folded at C8 PR15,
 `types/logic-authoring.md:62-70`); skeleton = `lint-delays.sh` (src-dir), exactly like S7/S18. The rule already has a working
 reference implementation in `tools/module-find.py ext-writable` (niagara-research) — the kit lint is its bash/awk twin with
 the RED's stricter "matching action" test. `[ev: RED 3726722 tests/ext-writable-shape.bats]` `[ev: corpus B823 §823.2]` `[ev: kit types/logic-authoring.md:62-70]`
 
-## 0. ONE decision for the lead (the S7 naming conflict, again)
-| RED (3726722) | Proposal (:158 file table) / lead's message | Recommendation |
-|---|---|---|
-| `setup(): EW="$KIT/toolbelt/ext-writable-shape.sh"` (bats :3); SURFACE line :14 `ext-writable-shape.sh` | `toolbelt/lint-ext-writable-shape.sh` | Same resolution as S7 (d0f5942): **QA re-issues the RED's `EW=` path to `lint-ext-writable-shape.sh`** (kit `lint-*.sh` convention); the ROW token `ext-writable-shape` (EW1 asserts it in OUTPUT) stays; the bats filename may stay `tests/ext-writable-shape.bats`. No other pin depends on the script filename. |
+## 0. D-a CLOSED by the re-issue (269be48): the script is `toolbelt/lint-ext-writable-shape.sh`
+`setup(): EW="$KIT/toolbelt/lint-ext-writable-shape.sh"` (bats :24); the "RED today" line (:18) names the same file. Row token
+`ext-writable-shape` unchanged. The proposal's file table and this package now agree — no decision left.
+EW10 (717d585, RP1): the real-tree file is read from the BLESSED read tree, never the local working copy:
+`ROOT="${C9_CLIENT_ROOT:-/home/cristian/modulos_niagara_n4/Cliente/Leon-Guanjuato-worktrees/main-a109249}"`,
+`CLIENT="$ROOT/Dashboard/DashboardPan/DashboardPan-rt/src/com/angeles/DashboardPan/BRoomPanel.java"`, SKIP if absent.
+Caveat for the apply worker: 269be48's message says "exact a109249 contract (1 WARN BRoomPanel.setpoint on DashboardPan-rt,
+0 on the other three roots)", but the bats BODY of EW10 (`:152-158`) still asserts only `WARN` + `setpoint` on the ONE copied
+file — the four-root exact counts are PR10 ACCEPTANCE (§4), not a bats pin. Run them and record them; do not report them as
+"pinned by the RED".
 
 ## 1. The contract (verbatim)
 - **CLI:** `[lint-]ext-writable-shape.sh [--strict] <java-src-dir>` — one src dir, recursive (EW10 copies ONE real file into a flat dir).
@@ -28,7 +35,7 @@ the RED's stricter "matching action" test. `[ev: RED 3726722 tests/ext-writable-
 | EW7 | EW1 shape | plain exit 0; `--strict` exit 1 |
 | EW8 | clean `differentialUp` in `src/` + a `setpoint` StatusNumeric under `src/.deploy-baseline/` | no WARN, no `Stale` |
 | EW9 | no argument | exit 3 |
-| EW10 | the REAL `DashboardPan-rt/…/BRoomPanel.java` copied alone (skip if absent) | WARN naming `setpoint` (the live regression: `BRoomPanel.setpoint` is `BStatusNumeric` `SUMMARY\|OPERATOR` with no action, `:124-130` @ a109249) |
+| EW10 | the REAL `BRoomPanel.java` from `$C9_CLIENT_ROOT` (default: the blessed `main-a109249` worktree) copied alone into a flat dir (skip if absent) | WARN naming `setpoint` (the live regression: `BRoomPanel.setpoint` is `BStatusNumeric` `SUMMARY\|OPERATOR` with no action, `:124-130` @ a109249) |
 | mutation (K13) | drop the `BStatusX` recognizer (treat complex as plain) | EW1/EW6 stop WARNing |
 
 ## 2. The rule as implementable passes (per `*.java`, paren-balanced `@NiagaraProperty`/`@NiagaraAction` join — C8 D9b)
@@ -68,7 +75,7 @@ per-file awk: paren-balanced annotation join → properties + actions → rule �
 ## Self-verify
 | # | Claim | Marker | Evidence |
 |---|---|---|---|
-| 1 | RED invokes `ext-writable-shape.sh`; proposal names `lint-ext-writable-shape.sh` | [CERT] | bats setup :3 @ 3726722; proposal :158 |
+| 1 | RED (717d585) invokes `lint-ext-writable-shape.sh`; EW10 root = `C9_CLIENT_ROOT` default blessed a109249 worktree; four-root counts NOT in the bats body | [CERT] | bats :18, :24, :26-27, :152-158 @ 717d585; `git diff 3726722 717d585` |
 | 2 | EW1–EW10 fixtures/expectations, row grammar, exits, D9b | [CERT] | bats :14-16, :31-156 |
 | 3 | EW3 = `set<Slot>` matching action is the only positive pin | [CERT] | bats :62 |
 | 4 | real BRoomPanel.setpoint shape | [CERT] | BRoomPanel.java:124-130 @ a109249 |
