@@ -15,7 +15,7 @@ State to Cristian as gates; the KIT lanes (T1-T4) need none.
 ## 1. Ranked backlog (value × tractability)
 | # | Item | Class | Value | Tract. | Requires-exec | RED to author |
 |---|---|---|---|---|---|---|
-| T1 | **Shared method-boundary parser** — extract the section-D parser now DUPLICATED in three toolbelt scripts (lint-timers.sh, lint-ext-writable-shape.sh, lint-silent-protection.sh) into ONE sourced awk fragment | KIT | High (three copies drift independently; a parser fix must reach all three) | Med (a `toolbelt/lib/method-boundary.awk` or a sourced sh fragment + a golden-set bats all three agree on) | WSL | tests/method-boundary.bats — one golden Java tree, all three lints' parse agree; a divergence in any copy FAILs |
+| T1 | **Shared method-boundary parser** — extract the section-D parser now DUPLICATED in three toolbelt scripts into ONE sourced awk fragment. **The three copies are NOT behaviorally equivalent today (B832, reproduced):** lint-timers.sh:202 and lint-silent-protection.sh:326 gate the method-open on NET brace change (a one-liner `void arm(){ flag=true; Clock.schedule(...); }` has net change 0 → method NEVER detected → silent FALSE-NEGATIVE), while lint-ext-writable-shape.sh:139-147 uses PEAK depth (`max_d`) and catches it. | KIT | **High** (a live silent FN in two of three lints, not just drift risk) | Med (`toolbelt/lib/method-boundary.awk` sourced by all three + a golden-set bats) | WSL | tests/method-boundary.bats — golden tree ALL three agree on; **MUST include a one-liner-method fixture** (the ONLY case the copies disagree on today) |
 | T2 | **`C9_CLIENT_ROOT` retarget hygiene** — 6 bats hardcode the default (`main-a109249`/`c10-ff1b659`); centralise to ONE sourced `tests/lib/client-root.bash` so a client-tree move touches one place | KIT/test | Med (a moved worktree breaks 6 smokes silently) | High (one shared default + sed the 6 files) | WSL | tests/client-root.bats — the default resolves from one source |
 | T3 | **concept-row-drift lint** — a `[concept]` matrix row whose slot name LATER appears in source is a STALE MARKER (the exemption outlived its reason); flag it | KIT | Med (keeps the `[concept]` exemption honest — else a real slot hides behind a stale marker) | High (inverse of the S25 STALE pass: name ∈ source AND row has `[concept]` → WARN) | WSL | lint-write-path.bats — a `[concept]` row for a now-real slot → WARN stale-marker |
 | T4 | **unpinned-guard meta-check** — a lint header's named OBSERVED mutation must map to a bats fixture (C10 lesson 7); a guard no fixture exercises is unpinnable | KIT/process | Med (three C10 guards were unpinned) | Med (a check that scans a lint's header mutations against its bats) | WSL | a meta-bats over the toolbelt |
@@ -34,11 +34,15 @@ State to Cristian as gates; the KIT lanes (T1-T4) need none.
   answer + a harness session. P3/P4/P5 gated on Cristian's three station answers.
 
 ## 3. Risks
-- **Parser extraction (T1) is a refactor across three shipped lints** — a golden-set bats MUST pin the parse BEFORE the
-  extraction, else a subtle awk change silently shifts one lint's counts. State the known limitation in the fragment's
-  header: **the Case-B backward scan stops at any line starting with `@`** — so a SINGLE-LINE annotation with a constructor
-  default never misparses, but a MULTI-LINE one relies on the depth guard; keep the `brace_depth >= 2` guard + the `@`-line
-  stop as the two documented invariants.
+- **Parser extraction (T1) is a refactor across three shipped lints that are NOT equivalent (B832 593019540, reproduced by me):**
+  a golden-set bats MUST pin the parse BEFORE the extraction. **Decision: the fragment adopts PEAK depth (`max_d`) — net is
+  simply wrong** (it drops one-liner methods; REPRODUCED: lint-timers gives 0 companion-flag on a one-liner `arm()`, 1 on the
+  identical multi-line body). Invariants the fragment MUST carry: (1) `brace_depth >= 2` guard; (2) the Case-B backward scan
+  stops at any line starting with `@` (the boundary that makes the single-vs-multi-line BMisparse pin bite); (3) BOTH
+  keyword-exclusion lists, byte-identical across all three copies; (4) peak-depth (`max_d`) method-open; (5) a one-line
+  getter/setter skip. Golden fixtures: BMisparse multi-line · `anyNoHardware` same-method local · CP-1 adapter · **PLUS the
+  one-liner** (B832 §5.4). Two second-order gaps to close in the same lane: **B832-G1** (getter/setter-skip pin) and
+  **B832-G2 / D3** (lint-silent-protection Case-B scans the RAW line with a `//`-only strip, missing `/* */` — a latent bug).
 - **P2 attribution-vs-RBAC** is a product decision, not tooling — resolve it with Cristian before authoring the RED (the two
   designs share almost no code).
 - **Harness dependency** — P2/P3/P4 alarm/adapter/login behaviour is station-only; REDs stay structural + SKIP until the
@@ -58,7 +62,7 @@ land it before any further lint touches method boundaries.
 ## Self-verify
 | # | Claim | Marker | Evidence |
 |---|---|---|---|
-| 1 | three parser copies live (lint-timers/ext-writable/silent-protection) | [CERT] | grep 'parse method boundaries'/brace_depth @ 2f3300f (16/8/9 markers) |
+| 1 | three parser copies NOT equivalent: net-depth timers/silent drop one-liners, peak-depth ext-writable catches | [CERT, reproduced] | B832 593019540; my run: lint-timers 0 companion-flag on one-liner arm(), 1 on multi-line; ext-writable :139-147 max_d |
 | 2 | C9_CLIENT_ROOT hardcoded in 6 bats | [CERT] | grep @ kit main |
 | 3 | `[concept]` per-row exemption shipped (S25) — T3 is its inverse | [CERT] | lint-write-path.sh:424-438 |
 | 4 | Case-B `@`-line stop + depth-guard limitation | [CERT] | C10 lesson 7 / design validator |
