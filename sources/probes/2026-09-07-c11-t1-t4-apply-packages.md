@@ -5,23 +5,26 @@ Author: companero (Fable), 2026-09-06. Cut against kit main **`dab0807`** (v0.21
 `[ev: B832 593019540]`
 
 ## T1 — shared method-boundary parser (fix the one-liner false-negative, then de-duplicate)
-**Where it lives:** `toolbelt/lib/method-boundary.sh` — a sourced SHELL fragment exporting the parser as an awk-function
-string (the kit's existing embed-awk-in-a-shell-var idiom), e.g. `MB_PARSER_AWK='function mb_open(...) { … }'`. Each lint
-`. "$TOOLBELT/lib/method-boundary.sh"` then splices `$MB_PARSER_AWK` ahead of its own main awk. (An `awk -f lib.awk -f -`
-split is the alternative; the shell-var embed matches how the lints already carry awk.)
+**Where it lives (design 8da696c D1b/D1c):** `toolbelt/lib/method-boundary.sh` defines ONE shell variable **`MB_AWK`** whose
+value is awk **FUNCTION DEFINITIONS ONLY** (no `BEGIN`/`END`/pattern rules — legal to splice into all three consumption
+mechanisms: lint-timers's inline `_cf=$(awk '…')` :141, ext-writable's `out=$(awk -v FILE='…')` :61, silent-protection's).
+Located via **`${BASH_SOURCE[0]%/*}`, NOT `$KIT`** (D1c — binds the fragment to the running script; the line added to each of
+the three: `. "$(cd "${BASH_SOURCE[0]%/*}" && pwd)/lib/method-boundary.sh"`). The design REJECTED my earlier "splice a string
+ahead of main" framing in favour of a function-only library (`MB_AWK`).
 **Standard = PEAK depth (B832, reproduced):** the fragment adopts `max_d` (peak depth during the line), NOT net brace change.
 Reproduced: a one-liner `void arm(){ armed=true; Clock.schedule(...); }` → lint-timers 0 companion-flag; the identical
 multi-line body → 1 (FAIL). Net-depth silently drops one-liner methods.
 **Cut lines @ dab0807 (each copy → the shared fragment):**
 | Copy | Current block | Behaviour | Action |
 |---|---|---|---|
-| `lint-ext-writable-shape.sh:132-176` | `max_d` peak (`:142/:147/:176`, comment :145-146) | CORRECT | this is the CANONICAL source for the fragment |
-| `lint-timers.sh:188-202` | NET (`brace_depth > old_d && brace_depth >= 2` :202; header :190-193 only notes the annotation-line net-0 case, not the one-liner-METHOD net-0 case) | one-liner FN | replace with the fragment |
-| `lint-silent-protection.sh:302-364` | NET (`brace_depth > old_depth && brace_depth >= 2` :326; `m_depth_at_open` :359) | one-liner FN | replace with the fragment |
-**Invariants the fragment MUST carry (B832):** (1) `brace_depth >= 2` guard; (2) Case-B backward scan stops at any line
-starting with `@` (the boundary that makes the single-vs-multi-line BMisparse pin bite); (3) BOTH keyword-exclusion lists,
-byte-identical; (4) peak-depth (`max_d`) method-open; (5) a one-line getter/setter skip (B832-G1).
-**Golden-set bats — QA RED `qa/c11-golden-parser` `ed2088f` (7 cases, one cross-lint contract for the shared parser):** one Java tree the fragment parses; assert all three lints agree. Fixtures
+| `lint-ext-writable-shape.sh:137-178` (42-line boundary core; PEAK `:147`, `m_dep=max_d` :176) | CORRECT (PEAK) | the CANONICAL peak-depth source for `MB_AWK`; its close test `:179-184` (6 lines) → the new `for(k…) if(mn[k] in do_methods) _scan_writes` (7 lines) — a **−42/+9** diff (D1f) |
+| `lint-timers.sh:188-235` (48 lines; `:202` is the NET gate WITHIN the block, not the block) | NET | one-liner FN | replace the boundary core with `MB_AWK`; keep Phase-1 fields :163-186, Phase-3 companion pairing :237-254 (reads meth_start/meth_end — already the fragment output shape), exit map **0/1/2-usage/3-env** :44/:58/:63 |
+| `lint-silent-protection.sh:302-364` (NET `:326`; `m_depth_at_open` :359) | one-liner FN | replace the boundary core with `MB_AWK` |
+**Five invariants (design D1h — each owes an OBSERVED mutation + a NAMED fixture, K24(7)):** I1 `brace_depth >= 2` guard; I2
+Case-B `@`-line stop (BMisparse pin); I3 Case-A keyword exclusion `if|for|while|switch|catch|try|else|do|new` → fixture
+**G-samemethod** (`qa/c11-golden-parser` ed2088f — an `if(…){` must not be named a method); I4 peak-depth (`max_d`); I5 one-line
+getter/setter skip (B832-G1). Each invariant's mutation names its golden fixture — no unpinned guard (K24(7)/close lesson 7).
+**Golden-set bats (design D1i) — `tests/golden-parser.bats`, cherry-picked from `qa/c11-golden-parser` `ed2088f` (7 cases, each `@test` runs all THREE lints on one `tests/fixtures/golden-parser/<case>/` tree), NEVER re-authored (K13); the one-liner FN case is `qa/c11-parser-oneliner` `d88af78`.** Plus the 3×3 real-tree baselines (D1j, before/after on ff1b659 — identity expected except the one-liner). Size ceiling **700** (D1k; authored ≈353; if the measured `git diff --stat` exceeds 700 the lead re-requests the exception). Fixtures
 MUST include: BMisparse multi-line · `anyNoHardware` same-method local · CP-1 adapter · **the one-liner method** (§5.4 — the
 ONLY case the three copies disagree on today, so without it the fragment silently inherits the author's copy). Also close
 B832-G2/D3 in this lane: `lint-silent-protection` Case-B scans the RAW line with a `//`-only strip — add `/* */` stripping.
