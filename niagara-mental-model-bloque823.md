@@ -172,16 +172,19 @@ unlikely — but unproven. IF a `BNumericWritable` were linked into `setpoint`, 
 | Rank | Path | Code change | Audit | Body forgiving? | Risk |
 |---|---|---|---|---|---|
 | 1a | servlet `POST /api/setpoint` (channel 3) | NONE | `auditLog` (module ring) | yes (JSON `{ord,value}`; 400 on invalid) | low — already in daily use |
-| 1b | oBIX wrapped-`obj` PUT (channel 1, LIVE-CONFIRMED, propagates to control) | NONE | none native (write-server Supabase only) | **NO — attr-only silently writes 0.0; control-slot read-back after ~1 s (dashboard lags one poll ~6 s)** | med — unforgiving body + read-timing |
+| 1c | oBIX child-leaf PUT — bare `<real val="N"/>` to `…/setpoint/value` (channel 1, LIVE-CONFIRMED end-to-end, propagates ~1.5 s) `[CERT-live]` B826-G2 | NONE | none native (write-server Supabase only) | yes — simple `BSimple` decode, NO silent-zero | low-med — PREFERRED oBIX form; served + `writable="true"` (B826-G1) |
+| 1b | oBIX wrapped-`obj` PUT to the parent SLOT (channel 1, proven FALLBACK, propagates to control) | NONE | none native (write-server Supabase only) | **NO — attr-only silently writes 0.0; control-slot read-back after ~1 s (dashboard lags one poll ~6 s)** | med — unforgiving body + read-timing |
 | 2 | additive `setpointCmd` slot ([Block 822]) | small, schema-SAFE | write-server + a Niagara-side event via an OPERATOR action | yes | low — needs a build + schema-risk SAFE |
 | 3 | fox/BajaScript client (channel 4/5) | none, but heavy infra | — | — | infra + session complexity |
 | — | oBIX BARE PUT / retype `setpoint` | — | — | — | RULED OUT (bare = "Cannot translate"; retype = [B800] §800.8 OUTAGE) |
-Trade-off (both 1a and 1b are viable no-code paths that reach control; the user picks, not picked here): **1b (oBIX
-wrapped)** is UNIFORM with the rest of the write-server (one oBIX transport) and audited by the write-server's own
-Supabase trail, but the body is unforgiving (attr-only silently zeroes) and needs a control-slot read-back after ~1 s; **1a
-(servlet)** rides the module's HTTP servlet but is body-forgiving with the PR#7 400 validation and writes the module's
-own `auditLog`. **2 (additive `applySetpoint` action, [Block 822])** stays the cleaner LONG-TERM answer (an oBIX `<op>`
-with a native, attributed Niagara invoke event). `[CERT-live]`
+Trade-off (all of 1a/1c/1b are viable no-code paths that reach control; the user picks, not picked here): among the oBIX
+forms, **1c (child-leaf bare `<real>` to `…/setpoint/value`)** is now the PREFERRED transport — a simple `BSimple` write
+with NO silent-zero hazard, served + `writable="true"` and proven to propagate ~1.5 s (B826-G1/G2, records §8/§9); **1b
+(wrapped-`obj` to the parent slot)** stays the proven FALLBACK but its body is unforgiving (attr-only silently zeroes) and
+needs a control-slot read-back after ~1 s. Both are UNIFORM with the write-server's oBIX transport and audited by its
+Supabase trail. **1a (servlet)** rides the module's HTTP servlet, is body-forgiving with the PR#7 400 validation, and
+writes the module's own `auditLog`. **2 (additive `applySetpoint` action, [Block 822])** stays the cleaner LONG-TERM
+answer (an oBIX `<op>` with a native, attributed Niagara invoke event). `[CERT-live]`
 
 ## 823.8 — Self-verify
 | # | Claim | Marker | Citation | Verified |
@@ -203,7 +206,12 @@ read — named in §823.6. Nothing invented; every load-bearing cite spot-verifi
   [Block 816] (the servlet write path / threading), [Block 813]/[Block 763] (DWS1 servlet gates), [Block 800] §800.8
   (the retype OUTAGE that rules out re-typing), [Block 509] (oBIX/box transport).
 - **B823-G1** — the oBIX GET-encoding + escape-hatch half is **CLOSED live** (§823.2, 2026-09-06): the wrapped PUT
-  writes. Still OPEN (read-only): Workbench-inspect whether `Cuarto*/setpoint` is a link target (channel 6, so a write
-  actually STICKS vs is overwritten by a link — [Block 816] §816.2).
+  writes; the child-leaf bare-`<real>` PUT is now the preferred form (§823.7 row 1c, B826-G1/G2). The channel-6
+  link-target question is **CLOSED by a real bog read** `[CERT]` (`tools/bog-nav.py` on PANCCADIA `config.bog`,
+  2026-09-05): `Services/DashboardService/Cuarto1/setpoint` is a link **SOURCE** — it feeds
+  `Programacion/ColdRoom_1.setpoint` (`sourceSlotName=setpoint → targetSlotName=setpoint`) — and is **NOT** a link
+  target itself (its `fed-by` set holds zoneTemp/evapTemp/coolingSince, never `setpoint`). So an external write to
+  `Cuarto1/setpoint` STICKS and propagates DOWN into the logic; it is not overwritten by an inbound link ([Block 816]
+  §816.2). The RoomPanel facade is the write point; the ColdRoom is downstream.
 - **B823-G2** (requires-execution, authorized write on a TEST room only): confirm the servlet `POST` lands 200 + one
   `auditLog` line — the channel-3 proof — and, if pursued, the escape-hatch `<obj>` PUT verdict.

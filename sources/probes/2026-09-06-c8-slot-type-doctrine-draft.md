@@ -30,12 +30,15 @@ translate") or, via the wrapped-`obj` shorthand, silently writes a DEFAULT (the 
 writes it, or accept the exact wrapped-`obj` contract in the client — never leave a bare complex OPERATOR property as
 the write target. `[ev: corpus B823]` `[ev: retro obix-statusnumeric-wrapped-put]`
 
-**Cleaner alternative `[INFER]`, pending a GET (B826-G1):** the child ORD `…/setpoint/value` is NOT advertised (the
-agent collapses the struct to a leaf `<real>`) but IS structurally resolvable (`BStationLobbyAgent.decodeSlotPath`);
-IF the façade serves it, a bare `<real>` to `/setpoint/value` would be a `BSimple` write — SIMPLER, with NO silent-zero
-risk — and still propagates via the nested-child bubbling path. It stays `[INFER]` until one read-only GET confirms the
-child ORD is served; until then the wrapped-`obj`-to-slot form (B825, live-proven) remains the RECOMMENDED write.
-`[ev: corpus B826]`
+**Cleaner alternative — now PREFERRED `[CERT-live]` (B826-G1/G2 CLOSED):** the child ORD `…/setpoint/value` is NOT
+advertised (the agent collapses the struct to a leaf `<real>`) but IS structurally resolvable
+(`BStationLobbyAgent.decodeSlotPath`) — and the façade DOES serve it: a GET returns `200 <real … writable="true"/>` on
+BOTH the RoomPanel and the ColdRoom (B826-G1, record §8 `b4e6d8a4f`), and a bare `<real val="N"/>` PUT to it writes AND
+propagates to control in ~1.5 s (B826-G2, record §9 `f99f2e45b`), via the nested-child bubbling path (B825 §825.3, now
+live-proven end-to-end). So the child bare-`<real>` is a `BSimple` write with NO silent-zero hazard, and is the
+PREFERRED external write for a `BStatusNumeric`; the wrapped-`obj`-to-parent-slot form (B825) is the proven FALLBACK.
+Rule: **a complex property is writable externally through its child leaf ORD (bare `<real>`); the parent slot needs the
+wrapped `<obj>` and carries the silent-zero hazard.** `[ev: corpus B826]` `[ev: corpus B825]`
 
 **Propagates through links? YES, synchronously (mechanism settled by [Block 825]):** an external write that lands as a
 TOP-SLOT REPLACEMENT (an oBIX wrapped `<obj>` PUT, the servlet, or fox — all decode into a detached copy then

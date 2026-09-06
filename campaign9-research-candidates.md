@@ -116,6 +116,11 @@ C9 research/build core = **#1 protection-latch fixture** (built below) + **#2 wr
   audit is the SOURCE OF TRUTH; writes are TRANSIENT (lost on station restart); public signup disabled + email
   allowlist. Requires execution: PARTIAL — write-server tests + pure `DashboardDispatch` router tests run off-station;
   the live oBIX-PUT + Supabase audit + AuditHistory smoke needs the mini-PC + station.
+  **oBIX body form (settled):** the write-server should target the CHILD leaf ORD `${ord}/value` with a bare
+  `<real val="N"/>` — a simple `BSimple` write with NO silent-zero hazard, served + `writable="true"` and proven to
+  propagate ~1.5 s (B826-G1/G2, records §8/§9). The write-server's NUM builder already emits a bare `<real>` (record
+  §4), so this needs no new wrapped-`obj` body type. The wrapped-`obj`-to-parent-slot (B825) stays the fallback only.
+  `[ev: corpus B826]` `[ev: corpus B825]`
   **RED shapes — (A) write-server:** write WITHOUT a config token → 403; step-up with WRONG password → 401; valid →
   200 + exactly ONE audit row `{email, ord, old, new}`; `/config/logout` → next write 403; token of user A after
   logout → 403; audit APPEND FAILURE → the write still lands + an error/alarm row. **(B) `DashboardDispatchTest`:**
