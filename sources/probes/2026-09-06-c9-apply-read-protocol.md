@@ -4,7 +4,7 @@ Author: investigador1, 2026-09-06. Purpose: make every apply-time read **execute
 runs this checklist against the GREEN diff (tip vs its parent) and reports drift as file:line pairs. Invariants are the
 design D-ids at niagara-tools `d2857d1` and the RED contracts at their current tips; anchors at client **a109249**
 (read from the worktree `Leon-Guanjuato-worktrees/main-a109249`, never the stale checkout). Every check names the
-grep/read that decides it. `[ev: design d2857d1]` `[ev: REDs cf28572 / d0f5942 / e38e503 / 3726722 / 4c18837 / cc1c948 / 70a357b / 8b43488 / e7e6615 / 0a14df8]`
+grep/read that decides it. `[ev: design d2857d1]` `[ev: REDs cf28572 / d0f5942 / e38e503 / 269be48 / 4c18837 / cc1c948 / 70a357b / 8b43488 / e7e6615 / 0a14df8]`
 
 **Universal (every PR):** (U1) parent of the tip == the blessed base (client a109249 / kit main / tunnel 9acb47c after
 the RK3 rebase); (U2) the RED's test files are byte-identical to the RED tip (`git diff <red-tip> <pr-tip> -- <test paths>`
@@ -99,11 +99,11 @@ client PRs `schema-risk.sh` verdict is in the PR body and reads SAFE; (U6) versi
 | 9.4 | Additive-only vs the BCompressorControl a109249 slot set (CPB6); `schema-risk.sh` SAFE; Compresores **2.2.0** (after PR1's 2.1.0) | run; grep |
 | 9.5 | CPB5 (`sourceState` on the routed record) declared harness-only — not reported green from WSL | PR body |
 
-## PR10 — S19 `lint-ext-writable-shape.sh` (kit; RED 3726722 EW1-EW10)
+## PR10 — S19 `lint-ext-writable-shape.sh` (kit; RED `qa/c9-ext-writable-shape` 269be48 EW1-EW11 — EW11 = no-sources exit 3 (K20); EW10 = exact a109249 contract via `C9_CLIENT_ROOT`; four-root exact counts are PR10 ACCEPTANCE, not a bats pin)
 | # | Invariant | How to decide |
 |---|---|---|
 | 10.1 | Bare complex `OPERATOR` property (`BStatusNumeric/Boolean/Enum`) with no writing `@NiagaraAction` → WARN naming the child `…/value` leaf; plain double/boolean/reltime clean; complex-with-action clean; SUMMARY-only ignored (EW4); `--strict` → 1; no arg → 3; D9b prune | run EW1-EW9 |
-| 10.2 | EW10 real `BRoomPanel.setpoint` WARNs (SKIP if the client tree is absent — a SKIP is not a PASS) | run against the worktree |
+| 10.2 | EW10 exact contract on the `C9_CLIENT_ROOT` worktree: exactly 1 WARN `BRoomPanel.setpoint` on DashboardPan-rt, 0 on ColdRoomPan-rt / CompPan-rt / DashboardPan-ux (SKIP if the root is absent — a SKIP is not a PASS); EW11 empty/no-Java dir → exit 3 + ERROR row | run against the worktree |
 | 10.3 | K19 routing + `kit-links.bats` | run |
 
 ## PR11 — R11 write-path matrix rows (client docs; RED `qa/c8-write-path` 5e357d1) — D11

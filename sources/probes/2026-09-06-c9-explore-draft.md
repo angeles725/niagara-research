@@ -111,7 +111,7 @@ not just fixture-green. S12-B (client repo, local) is likewise VERIFIED [CERT] â
 
 | Seed | Branch | Tip | Repo | Pins | Seam it needs | Token |
 |---|---|---|---|---|---|---|
-| S19 | qa/c9-ext-writable-shape | `3726722` | niagara-tools (origin) | EW1-EW10 (EW10 = real BRoomPanel.setpoint WARN) | none (static lint) | `[CERT]` |
+| S19 | qa/c9-ext-writable-shape | `269be48` (re-issued from 3726722) | niagara-tools (origin) | EW1-EW11 (EW10 = exact a109249 contract: 1 WARN BRoomPanel.setpoint on DashboardPan-rt, 0 elsewhere; EW11 = K20 exit 3) | none (static lint) | `[CERT]` |
 | S18-lint | qa/c9-silent-protection | `e38e503` | niagara-tools (origin) | SP1-SP8 + SP-smoke (mutation pin SP8; smoke flags CP-1/CR-3, not CP-2) | none (static lint) | `[CERT]` |
 | S7 | qa/c9-demand-in-scope | `2916954` | niagara-tools (origin) | DS1-DS7 + DS-smoke (mutant pin DS2; smoke on real CompressorControl.step) | none (standalone script) | `[CERT]` |
 | S12-A | qa/c9-s12-write-server | `e7e6615` (was 24adcba; rebased on 9acb47c) | pancaddia-leon-tunnel (local clone `/home/cristian/tunnel/clientes/Leon-Guanajuato/Pancaddia`) | S12A-1..9 (node:test); `buildServer` absent = true RED | buildServer seam | `[CERT]` |
