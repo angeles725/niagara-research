@@ -18,6 +18,15 @@ Clone: `/home/cristian/tunnel/clientes/Leon-Guanajuato/Pancaddia` (Guanajuato WI
 - **D-2 (settled by the RED):** `surface` value for the write-server rows is **`'write-server'`** (S12A-4), not the proposal's
   `'A'`. Migration default = `'write-server'`; the surface-B mirror literal is **`'servlet'`** (design D7 :39/:64 — not `'dashboardpan'`).
 
+## 0b. Migration F1 proof = a VERIFY-TIME gate, not an apply blocker (lead, 2026-09-06)
+The apply worker proceeds on the `node --test` contract only (S12A-4/6/8/9 with the injected fake sink — no database). The
+SQL migration F1 (`sql/2026-09-06-change-log-extended.sql`, §F1) ships in the PR as the file plus a review-time syntax +
+idempotency dry-run (read it, confirm every statement is `add column if not exists` / `create index if not exists`, and that
+a second apply is a no-op). The LIVE apply/rollback proof against a throwaway Postgres 15 (the three routes in the W2 command
+list — Docker Desktop WSL integration / `brew install postgresql@15` / `supabase start`; Cristian is picking one) is a
+VERIFY-TIME gate on the PR5 branch, recorded in its PR description — it does NOT block the apply. Production apply stays a
+separate human step (Supabase SQL editor), never a PR gate.
+
 ## 1. The contract (verbatim from the RED)
 | Piece | Pin | Exact expectation |
 |---|---|---|
