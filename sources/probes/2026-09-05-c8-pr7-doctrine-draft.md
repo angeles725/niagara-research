@@ -17,7 +17,7 @@
   independent monitor, is the only genuinely new author-design element; it is B812, marked INFER.)
 - **READY (one bullet):**
 ```
-- **The 8 timer defense-in-depth layers (index — most already below; each stated once):** (1) anchor a free-running interval to a persistent `BAbsTime`, not `atSteadyState` [see "Anchor a free-running interval…"]; (2) arm in BOTH `started()`+`atSteadyState()` `[ev: corpus B729]`; (3) floor every delay `> 0` before `Clock.schedule`/`schedulePeriodically` [see "Guard any Clock.schedule…", `ev: corpus B801`]; (4) an INDEPENDENT liveness monitor on the producer's `lastTick` (stall > 3× period → fault + alarm) — the layer Tridium does NOT ship, author design `[ev: corpus B812]` (INFER); (5) ONE shared cancel path at both command edges + mode enter/exit, not only `stopped()` [see "Cancel EVERY actuation ticket…"]; (6) cancel every ticket in `stopped()` `[ev: corpus B775]`; (7) a manual run-now action + surfaced/safe-defaulted preconditions + a seeded first fire [see "A time-gated auto control needs THREE things…"]; (8) exemplar to copy — the `BAbstractAlarmMonitor`/`BTimeTrigger` self-heal `[ev: corpus B775 §775.6]`.
+- **The 8 timer defense-in-depth layers (index — most already below; each stated once):** (1) anchor a free-running interval to a persistent `BAbsTime`, not `atSteadyState` [see "Anchor a free-running interval…"]; (2) arm in BOTH `started()`+`atSteadyState()` `[ev: corpus B729]`; (3) floor every delay `> 0` before `Clock.schedule`/`schedulePeriodically` [see "Guard any Clock.schedule…"] `[ev: corpus B801]`; (4) an INDEPENDENT liveness monitor on the producer's `lastTick` (stall > 3× period → fault + alarm) — the layer Tridium does NOT ship, author design `[ev: corpus B812]` (INFER); (5) ONE shared cancel path at both command edges + mode enter/exit, not only `stopped()` [see "Cancel EVERY actuation ticket…"]; (6) cancel every ticket in `stopped()` `[ev: corpus B775]`; (7) a manual run-now action + surfaced/safe-defaulted preconditions + a seeded first fire [see "A time-gated auto control needs THREE things…"]; (8) exemplar to copy — the `BAbstractAlarmMonitor`/`BTimeTrigger` self-heal `[ev: corpus B775 §775.6]`.
 ```
 
 ## D2 — Non-positive Clock delay = a lintable hard-fail
@@ -34,7 +34,8 @@
 
 ## D3 — Inter-module communication (B802)
 - **Target:** `types/logic-authoring.md`, NEW `##` subsection immediately AFTER `## Author-side SPIs` (its last
-  bullet is the B773 analytics EXCEPTION, line ~93).
+  bullet is the B773 analytics EXCEPTION). NB post-split `## Author-side SPIs` is a short section at
+  `logic-authoring.md:4–11` (next heading `## Authoring a point extension` at `:12`); the grep-before (0 hits) holds.
 - **Grep-before (K6):** `grep -niE 'inter.module|cross.module|fox:|another station|module-agnostic' types/logic-authoring.md`
   → 0 hits (only same-space `Sys.getService`, B778). New content; extends B778.
 - **READY (new subsection):**
@@ -44,8 +45,9 @@
 ```
 
 ## D8 — signed ≠ trusted (cert-chain)
-- **Target:** `build-verify.md`, under `## Verify` — as a note beside the `# signed` check (line ~86, the
-  `grep NIAGARA4.SF` presence check).
+- **Target:** `build-verify.md`, `## Verify` — add as a PROSE bullet under the `## Verify` heading, NOT inside the
+  by-hand bash fence where the `# signed` (`grep NIAGARA4.SF`) presence check lives (~build-verify.md:86). The note is
+  doctrine, so it goes in prose next to the fence, not as a shell comment inside it.
 - **Grep-before (K6):** `grep -niE 'signed.*(≠|!=|not).*trust|cert.chain|presence only' build-verify.md` → 0 hits.
   Absent. Evidence: B800 §800.8(2) — REFLOW logged `Could not validate cert chain` ×7 for `BChiDashboardService.class`;
   the chihuahua-rt jar is SIGNED but its cert is NOT trusted by that station → it loads as UNSIGNED.
@@ -90,13 +92,13 @@ COUNT before deploying an rt module to a JACE (full budget table + cited limits:
 - engine-thread cost = Σ(periodic callbacks × frequency); each `execute()`/tick must run ≪ 20 ms.
 - every `Clock.Ticket` cancelled in `stopped()`; every delay floored `> 0` (see §Conformance / `lint-delays.sh`).
 - no `java.util.concurrent` executor (use `Clock`); no large PERSISTED `String` slot rewritten per action (mark `Flags.TRANSIENT`).
-- globalCapacity budget: proxy points < 500 · histories < 125 (incl Audit + Log) · links < 400 · devices < 25 — **> 110 % = the station will NOT boot**.
+- globalCapacity budget: proxy points < 500 · histories < 125 (incl Audit + Log) · links < 400 · devices < 25 — **> 110 % = the station will NOT boot** (`[CERT-doc]`: Tridium's documented boot semantic, `docPlatform.txt:2458-2459`; the JACE-8000/9000 kRU cap stays OPEN, B806 §806.11).
 - guard servlet / linked writes with `isRunning()`; poll with backoff. `[ev: corpus B806 §806.9]`
 ```
 
 ## U — Working profile: Excavador Técnico
-- **Target A:** `skill/SKILL.md`, NEW `##` section after the intro line ("Thin launcher…", line 143), before
-  `## Resolve the kit`. **Target B:** `METHODOLOGY.md` — a ONE-LINE pointer near the top (after line 1
+- **Target A:** `skill/SKILL.md`, NEW `##` section after the intro line ("Thin launcher…", line 10), before
+  `## Resolve the kit` (line 12) — it becomes the first `##` section (SKILL.md is ~60 lines). **Target B:** `METHODOLOGY.md` — a ONE-LINE pointer near the top (after line 1
   `# Common checklist…`), NOT a second copy (K6: full text lives in SKILL.md).
 - **Grep-before (K6):** `grep -niE 'Excavador|working profile|first.principle|mindset' skill/SKILL.md METHODOLOGY.md`
   → 0 hits. New in both.
@@ -106,19 +108,20 @@ COUNT before deploying an rt module to a JACE (full budget table + cited limits:
 
 Improve the kit and the modules as an "Excavador Técnico" (R&D engineer + system architect + deep-tech investigator + full-stack systems engineer), each stance bound to a kit mechanism:
 - **first-principles** (dismantle to physics / binary, rebuild) → why `lint-delays.sh` exists: `Math.max(x,0L)` "fixed" the defrost timer but Niagara rejects a delay `≤ 0`, so the bug lived — root-cause to the framework rule, not the symptom. `[ev: corpus B801]`
-- **obsessive rigor** (stop only when you know WHY it worked and how it cannot fail) → every check must BITE, mutation-proven on a real module (K2).
-- **systems thinking** (one bit in a protection latch moves the whole industrial process) → trace each finding to its process consequence.
+- **obsessive rigor** — do NOT stop when it works; stop only when you know exactly WHY it worked AND how to make sure it never fails → every check must BITE, mutation-proven on a real module (K2). `[ev: retro campaign7-plano]`
+- **systems thinking** (one bit in a protection latch moves the whole industrial process) → trace each finding to its process consequence. `[ev: corpus B805]`
 - **only what RAN** — report a build/test result, never "should work" (B815: build GREEN, run blocked — both recorded). `[ev: corpus B815 §815.12]`
 ```
 - **READY B (METHODOLOGY.md pointer):**
 ```
-> **Working profile:** do kit/module work as an *Excavador Técnico* — first-principles, every check bites, only what ran. Full text: `skill/SKILL.md` § Working profile. `[ev: corpus B801/B815]`
+> **Working profile:** do kit/module work as an *Excavador Técnico* — first-principles, every check bites, only what ran. Full text: `skill/SKILL.md` § Working profile. `[ev: corpus B801]` `[ev: corpus B815]`
 ```
 
 ## #49 — client-guidance pointer
 - **Status:** ALREADY FOLDED — `types/dashboard.md:48` (gate-4 REQUIRED-but-absent → issue #49) and
   `METHODOLOGY.md:56` (the "a 4/5 exemplar that names its gap beats an unqualified 5/5" rule cites #49).
-- **Grep-before (K6):** `grep -rniE '#49' <kit>` → 2 hits (both above). **Per K6, do NOT re-add.** If C9 intends a
+- **Grep-before (K6):** `grep -rniE '#49' <kit>` → 6 hits (the 2 canonical doc-folds `METHODOLOGY.md:56` +
+  `types/dashboard.md:48`, plus 4 retro mentions). **Per K6, do NOT re-add.** If C9 intends a
   DISTINCT new client-guidance target (a separate doc/section), the apply worker must specify that target; otherwise
   **SKIP** this delta — the pointer already exists.
 
