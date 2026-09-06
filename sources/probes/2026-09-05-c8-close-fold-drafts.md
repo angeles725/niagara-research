@@ -15,8 +15,9 @@
 ---
 
 ## 1. campaign8-lint-delays  (slug: `campaign8-lint-delays`)
-- **Grep-before (K6):** `grep -rn 'ev: retro campaign8-lint-delays' <kit> --include='*.md'` (excl retros/) → **2 hits**
-  (`BUILD-LOOP.md` §5, `skill/SKILL.md` step 5). Already CREDITED. No `METHODOLOGY.md` folded-as-code line yet.
+- **Grep-before (K6):** `grep -rn 'ev: retro campaign8-lint-delays' <kit> --include='*.md'` (excl retros/) → **~3 hits**
+  (`BUILD-LOOP.md` §5, `skill/SKILL.md` step 5, + PR7-branch — RE-RUN at apply). Already CREDITED. No `METHODOLOGY.md`
+  folded-as-code line yet.
 - **Deltas** (from the retro): D2b cross-file static-`long` helper resolution one level; D9b `.deploy-baseline` dot-dir
   prune; D2c same-method positivity-guard recognition; Delta 3 = a PROCESS lesson (a worker going silent mid-apply
   must leave the worktree resumable) — already covered by the multi-session/worktree discipline (`METHODOLOGY.md`
@@ -27,8 +28,9 @@
 ```
 
 ## 2. campaign8-triage-console  (slug: `campaign8-triage-console`)
-- **Grep-before (K6):** `grep -n 'folded as code.*triage-console' METHODOLOGY.md` → **1 hit (line 93)**, with
-  `[ev: corpus B800] [ev: retro campaign8-triage-console]`. **FULLY FOLDED — do NOT re-add.**
+- **Grep-before (K6):** `grep -n 'folded as code.*triage-console' METHODOLOGY.md` → **1 hit** (line 93 on main; **:96
+  on the PR7/doctrine-fold branch**), with `[ev: corpus B800] [ev: retro campaign8-triage-console]`; the token is
+  credited ~6× across the corpus. **FULLY FOLDED — do NOT re-add.**
 - **FOLD:** none. Flip INDEX only. (PR7 task 7.5 separately adds the CONTRACT prose line in §Conformance beside
   line 93 — lead-confirmed ADD; that is the PR7 worker's job, not this close fold.)
 
@@ -57,11 +59,18 @@
 ```
 
 ## 5. campaign8-slot-per-slot  (slug: `campaign8-slot-per-slot`)
-- **Grep-before (K6):** `grep -rn 'ev: retro campaign8-slot-per-slot' <kit>` (excl retros/) → **2 hits** (`BUILD-LOOP.md`,
-  `skill/SKILL.md`). The retro's own Proposed-deltas table records "Already updated: per-slot mode listed beside parse
-  mode in `BUILD-LOOP.md` §5". **Already folded** (per-slot is a MODE of `slot-coverage.sh`, whose folded-as-code line
-  is `METHODOLOGY.md:88`). 
-- **FOLD:** none new required. Flip INDEX. Optional: extend the existing line 88 fold to name the per-slot mode:
+- **Grep-before (K6):** `grep -rn 'ev: retro campaign8-slot-per-slot' <kit>` (excl retros/) → **~4 hits**
+  (`BUILD-LOOP.md`, `skill/SKILL.md`, + PR7-branch tokens — RE-RUN at apply). The retro's Proposed-deltas table records
+  "Already updated: per-slot mode listed beside parse mode in `BUILD-LOOP.md` §5". The per-slot MODE is folded (a mode
+  of `slot-coverage.sh`, folded-as-code at `METHODOLOGY.md:88`).
+- **FOLD — one dropped delta to RESTORE (do NOT defer):** the retro's Proposed-deltas row (1) `D6a-behaviour-doc` is
+  neither folded nor pointed, and `types/logic-authoring.md` has ZERO stale/known-keys/@Range content (grep-before →
+  0 hits). Add ONE doc line in the lexicon/authoring section of `types/logic-authoring.md` (near the `## Minimal
+  module` / lexicon guidance):
+```
+- **STALE lexicon detection — the known-keys set:** a lexicon key is STALE only if it is NOT in `{ all @NiagaraProperty slot names } ∪ { declared type display names (module-include.xml <type name>) } ∪ { @Range enum tags }` — READONLY/SUMMARY slots and type/enum keys are LIVE Niagara translations, not dead. Track fixes off the MISSING list (an OPERATOR slot with no key), not STALE. `[ev: retro campaign8-slot-per-slot]`
+```
+- **Optional:** extend the line-88 fold to name the per-slot mode:
 ```
 - folded as code: toolbelt/slot-coverage.sh --strict per-slot mode (per-slot lexicon coverage beside the type-set parse mode; dup-bare-keys). [ev: retro campaign8-slot-per-slot]
 ```
