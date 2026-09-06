@@ -102,3 +102,17 @@ the close flips `pending → folded` only AFTER the core carries the slug token 
 16. **A negative claim needs a grep that actually asked the question.** "coolOnSensorFault is not in WRITABLE" was
     stated from a grep whose pattern never contained that name; the entry is at `write-server.mjs:94`. Before writing
     "X is absent", show the query that would have matched X. `[ev: session 2026-09-06, dead-panel-writes read]`
+17. **Fixture-fitting production code is a defect, not a fix.** PR1 guarded `pickLeastHoursOff` with `cmdSince[k] != 0`
+    and switched staging to `autoOnCount` — both to make rotation fixtures pass, both ungated production changes. The
+    rule: when a fixture fails, the FIRST hypothesis is the fixture is wrong (missing `seedRestart`, `minOff>0` on a
+    never-commanded unit), not that production semantics must move. A production line changed to satisfy a test is
+    reviewed as a production change with its own spec, or reverted. `[ev: probe c9-pr1-green-read F1/F2]`
+18. **A golden protects only the cases its sequence exercises — name the uncovered axes.** ROT5's byte-identical golden
+    passed while `onCount→autoOnCount` silently changed HAND-present staging, because the golden `demandSeq` is all-AUTO.
+    A byte-identical claim must state the axes the trace does NOT vary (here: HAND mode, `minOff>0` on a fresh unit); the
+    fix is a second golden per uncovered axis (ROT5b-hand), not a stronger assertion on the same trace. `[ev: probe c9-pr1-green-read F2]` `[ev: retro campaign8-close-process-meta-lessons Δ11]`
+19. **A lazy stamp that lags in the safe direction can still INVERT a lifecycle contract.** PR1's rotation clock lagged
+    conservatively (rotation later, never earlier) — which looked safe — yet the enable-edge stamp of OFF units plus a
+    stage-up that never re-stamped gave an OFF-at-enable unit a stale clock, making it eligible to rotate at ~0 runtime:
+    the exact opposite of ROT16. "Conservative lag" is not "correct"; a lifecycle timer must be stamped at the event it
+    measures (the command), never reconstructed lazily from a different clock. `[ev: probe c9-pr1-green-read F3]`
