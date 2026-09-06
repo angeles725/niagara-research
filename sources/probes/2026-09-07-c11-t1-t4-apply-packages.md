@@ -21,7 +21,7 @@ multi-line body → 1 (FAIL). Net-depth silently drops one-liner methods.
 **Invariants the fragment MUST carry (B832):** (1) `brace_depth >= 2` guard; (2) Case-B backward scan stops at any line
 starting with `@` (the boundary that makes the single-vs-multi-line BMisparse pin bite); (3) BOTH keyword-exclusion lists,
 byte-identical; (4) peak-depth (`max_d`) method-open; (5) a one-line getter/setter skip (B832-G1).
-**Golden-set bats (`tests/method-boundary.bats`):** one Java tree the fragment parses; assert all three lints agree. Fixtures
+**Golden-set bats — QA RED `qa/c11-golden-parser` `ed2088f` (7 cases, one cross-lint contract for the shared parser):** one Java tree the fragment parses; assert all three lints agree. Fixtures
 MUST include: BMisparse multi-line · `anyNoHardware` same-method local · CP-1 adapter · **the one-liner method** (§5.4 — the
 ONLY case the three copies disagree on today, so without it the fragment silently inherits the author's copy). Also close
 B832-G2/D3 in this lane: `lint-silent-protection` Case-B scans the RAW line with a `//`-only strip — add `/* */` stripping.
@@ -29,7 +29,7 @@ B832-G2/D3 in this lane: `lint-silent-protection` Case-B scans the RAW line with
 diff (before/after counts identical on the shared golden tree EXCEPT the one-liner, which flips 0→1 for timers/silent).
 
 ## T2 — `tests/lib/client-root.bash` (centralise the C9_CLIENT_ROOT default)
-**QA RED = `qa/c11-client-root` `011d127`, WIDENED by the lead** to flag ANY absolute `Leon-Guanjuato` literal in
+**QA RED = `qa/c11-client-root` `54078f6` (path-based, WIDENED from 011d127)** to flag ANY absolute `Leon-Guanjuato` literal in
 `tests/*.bats` outside `tests/lib/client-root.bash` — **10 offenders on dab0807 → 0**. Two pins: **C11-T2-lib-exists** and
 **C11-T2-no-hardcode**. **Lib contract:** `tests/lib/client-root.bash` owns a single `CLIENT_READ_ROOT` default, exported as
 `C9_CLIENT_ROOT`, `C9_CLIENT_REPO` AND `C8_CLIENT_REPO`; an env override of any wins; ONE place to retarget.
@@ -39,6 +39,18 @@ working copy is at **`4f5f1c7` with 4 uncommitted files** (VERIFIED read-only �
 lesson warns against, several campaigns behind `ff1b659`), so those three smokes read an outdated tree right now.
 Retargeting them to the frozen `ff1b659` worktree is the fix; QA re-measures `c8-close`/`lint-delays`/`rc-scan` on `ff1b659`
 and pins the new numbers. Never write to that checkout.
+
+**QA re-measure on ff1b659 (`54078f6`) — the retarget CHANGES two pins (VERIFIED by me):** `lint-delays` LD5 and `c8-close`
+SC1-smoke asserted `exit 1 + FAIL BDefrostController` — that is true ONLY on the stale `4f5f1c7` checkout (the defrost
+time≤0 bug, `BDefrostController.java:556/566/620/664`, fixed post-C9). On `ff1b659` **`lint-delays` is CLEAN (exit 0)**
+(reproduced: PASS rows on `BEvaporatorUnit` only). So T2 flips LD5 to **exit 0**, and `lint-delays` MUST gain a SYNTHETIC
+fixture that pins the delay-floor RULE (a crafted zero-floor source), because the real tree no longer exhibits it. `RC8`
+(`rc-scan.bats` :701 host literal) is 1 FAIL on BOTH trees — no delta, no change.
+
+**C11 close-lesson seed:** *a real-tree smoke that asserts a FAIL pins a BUG, not a RULE, and rots silently when the bug is
+fixed; synthetic fixtures pin RULES, real-tree smokes pin the CURRENT STATE.* (LD5/SC1-smoke pinned the defrost time≤0 bug on
+4f5f1c7 and would have silently passed-by-failing once the tree moved to a fixed one.) Fold into the C11 close-process
+meta-lessons.
 
 **Where:** NEW `tests/lib/client-root.bash` exporting ONE blessed-worktree default and unifying the TWO var names
 (`C9_CLIENT_ROOT` and `C9_CLIENT_REPO` both hold the same `…/Leon-Guanjuato-worktrees/main-ff1b659` value today):
