@@ -76,8 +76,9 @@ config with no outgoing link. Class C = labels.
 Row count: ColdRoomPan-rt 6 · CompPan-rt 15 (+2) · DashboardPan-rt 41 (26 A + 8 B + 7 C) = **62 + 2** ✓.
 
 ## Notes for the apply
-- Class B rows carry a real finding (four OPERATOR facade slots with no consumer at a109249). The matrix row makes the
-  lint pass; the DECISION (wire or demote) is a separate client issue — open it, do not fold it into PR11.
+- Class B rows carry a real finding, CORRECTED by `2026-09-06-c9-issue-dead-panel-writes.md` (real bog read): `comp1Mode`/
+  `comp2Mode`/`fanMode` are Cuarto5-only and ARE linked there (class A for Cuarto5); the dead writes are `Cuarto3.intercambiadorMode`
+  and `coolOnSensorFault` (all five rooms). The matrix row makes the lint pass; the DECISION (wire or demote) is the client issue.
 - Class A "Test" = a structural pin: a JUnit or bats test that runs `bog-nav links --from CuartoN --slot <x> --csv` against
   the committed `config.bog` and asserts the target path; that is what makes 🔶 honest (the logic invariant is tested in
   the logic module; the LINK is what the facade owns).
