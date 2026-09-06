@@ -1,0 +1,84 @@
+# Retro — bog-nav.py + module-find.py: what STRUCTURE-aware tools find that grep cannot
+
+Date: 2026-09-05
+Author: companero (Opus 4.8)
+Scope: two READ-ONLY toolbelt tools for the niagara-research team — `tools/bog-nav.py`
+(station `config.bog` navigator) and `tools/module-find.py` (module Java-source finder).
+Both REUSE the grammar + handle-graph / source-scan engine from
+`build-n4-module-kit/toolbelt/bog-audit.sh` (kit main 3f666a0) rather than reparsing.
+Proven on PANCCADIA `config.bog` and the client tree
+(`~/modulos_niagara_n4/Cliente/Leon-Guanjuato`, HEAD 4f5f1c7; client main baseline a109249).
+
+## Why these exist
+
+The four session tools (corpus-nav, module-navigator, niagara-help, hdbread) navigate the
+CORPUS and the decompiled framework. Neither answers questions about a LIVE STATION's saved
+graph or a specific client MODULE's slot/action surface. A `config.bog` is a ZIP whose
+`file.xml` is a BOG-XML tree; the killer feature grep lacks is that a link stores its source
+as an opaque handle (`sourceOrd='h:44d51'`) on the TARGET component — there is no textual path
+to grep for. And a module's slots are declared in multi-line annotations whose paren-balanced
+tail (the `flags=`/`type=`/MIN facet) wraps across lines a line-oriented grep splits.
+
+## What the tools found that grep missed — five concrete wins
+
+1. **Handle → path link resolution.** `bog-nav links --from Cuarto1 --slot setpoint` returns
+   `Services/DashboardService/Cuarto1.setpoint --> Programacion/ColdRoom_1.setpoint`. grep on
+   the bog sees only `<p n="sourceOrd" v="h:44d51"/>` and `<p n="targetSlotName" v="setpoint"/>`
+   on two unrelated lines in a component 4000 lines away from `Cuarto1`; it cannot join them.
+   `bog-nav handle 44d51` prints the full fed-by/feeds graph of a component in one call.
+
+2. **The setpoint dataflow direction was the opposite of the naive read.** The RoomPanel
+   (dashboard facade `Cuarto1`) is the SOURCE; `ColdRoom_1` (the logic) is the TARGET. The
+   operator's setpoint edit lands on the facade and PROPAGATES down the link into the logic —
+   confirming the B816 link-target write-path model against a real station, not a diagram.
+
+3. **Externally-written complex slots carry SUMMARY, never OPERATOR.** `module-find slots
+   --flags o | grep COMPLEX` is EMPTY across ColdRoomPan-rt and DashboardPan-rt; every
+   `BStatusNumeric`/`BStatusBoolean` is `Flags.SUMMARY` (or TRANSIENT). A true-empty result,
+   verified by dumping all complex slots. This matters for the S19 ext-writable-shape lint:
+   the doctrine "a slot external clients write is simple or has an action" holds here via the
+   oBIX child-leaf path (B826-G2 [CERT-live]), NOT via an OPERATOR flag.
+
+4. **The type-string form differs from doctrine assumption.** The client writes
+   `type = "BStatusNumeric"` (Java-class form), not `"baja:StatusNumeric"` (module-name form).
+   My first complex-detection regex (`baja:Status\w+$`, lifted straight from a corpus block)
+   silently matched NOTHING. The tool's own selftest did not catch it — the REAL tree did.
+   Fix: `(?:baja:|B)?Status\w+$`. Lesson: a doctrine regex validated only on canonical
+   examples must be re-proven on the client's actual annotation style.
+
+5. **The servlet setpoint writer is DYNAMIC, not static.** `module-find writers setpoint`
+   finds no `setSetpoint(`/`.set("setpoint",` — the servlet does `parent.set(prop, toSet, null)`
+   where `prop` is resolved from the request ORD at runtime (BDashboardServlet:274). A grep for
+   `setpoint` in the servlet finds comments and the handler name but never the write. The tool
+   now reports the dynamic writer explicitly: "slot chosen at runtime — any slot could be the
+   target" — which is the security-relevant truth (the RBAC/validation guard, not a slot
+   allow-list, is what bounds it; ties to PR#7's 400 numeric-validation guard).
+
+## Lessons (fold-worthy)
+
+- **Reuse paid off, but the engine's assumptions are corpus-shaped.** The bog grammar (TAG_RE,
+  the `ga()` single-then-double-quote reader, the link_buf handle capture) transplanted with
+  zero changes and parsed a 400 KB real bog correctly. But two value-judgement regexes (complex
+  type form, MIN facet form) were tuned to canonical corpus examples and needed the client tree
+  to expose the gap. A self-test built from a synthetic tree can only prove the shapes you
+  already thought of — PROVE ON THE REAL TREE is not optional.
+- **A true-empty is a finding, not a null result.** "No OPERATOR complex slot" and "no static
+  setpoint writer" are both substantive answers about how this system is built; the tool must
+  distinguish them from "query broke" (both print an explicit line, never silence).
+- **The complex-slot write doctrine is now closed [CERT-live].** Both tools encode the final
+  B826-G1/G2 result (child-leaf bare `<real>` preferred, parent wrapped-obj = silent-zero
+  fallback) in the `writable` classifier note. Fold pending into B823 §823.7 / B825 §825.3 /
+  the S12 write-server plan (peers investigador + investigador1, records b4e6d8a4f / f99f2e45b,
+  pushes 3e8dc8b45).
+
+## Acceptance proven
+
+| Question | Tool + command | Result |
+|---|---|---|
+| Which link feeds ColdRoom_1.setpoint? | `bog-nav links --from Cuarto1 --slot setpoint` | `Cuarto1.setpoint --> Programacion/ColdRoom_1.setpoint` |
+| servletName inherited from BWebServlet? | `module-find … extends --of BDashboardServlet` | `BDashboardServlet -> BWebServlet` |
+| Every OPERATOR complex slot? | `module-find … slots --flags o \| grep COMPLEX` | empty (all complex slots are SUMMARY/TRANSIENT) — a finding |
+| Who writes setpoint? | `module-find … writers setpoint` | no static writer; dynamic `parent.set(prop,…)` runtime write |
+
+Both tools: python3 stdlib only, read-only, `--json`, and a `selftest` subcommand
+(11 checks / 11 checks) that needs no external file.

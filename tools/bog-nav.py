@@ -1,0 +1,590 @@
+#!/usr/bin/env python3
+"""bog-nav: read-only navigator for a Niagara N4 station config.bog (or a bare file.xml).
+
+WHY: the four session research tools (corpus-nav, module-navigator, niagara-help, hdbread)
+navigate the CORPUS; this one navigates a live STATION's saved graph. A config.bog is a ZIP
+whose file.xml is a BOG-XML tree of <p> component nodes (h='handle', t='pfx:Type') plus
+<p t='b:Link'> link records that live on the TARGET component and point back at a source via
+sourceOrd='h:xxxx'. Grep cannot resolve h:xxxx -> a component path, cannot walk the tree, and
+cannot answer "which link feeds Cuarto1.setpoint?". This does.
+
+Grammar + handle-graph parser REUSED from build-n4-module-kit/toolbelt/bog-audit.sh
+(kit main 3f666a0): TAG_RE, ga(), the Comp class, prefix_map/handle_map/handle_count,
+the link_list (container_h/src_h/src_slot/tgt_slot), stack, nearest_comp(). This tool adds
+parent/child tracking for tree walks and the query subcommands; it never writes.
+
+Subcommands:
+  tree [--type PFX:Type] [--depth N]      component tree (optionally filtered by type)
+  slot <path|h:handle> [slotName]         a component's value slots + child components
+  links [--to P] [--from P] [--slot NAME] links, sourceOrd h:xxxx resolved to a path
+  handle <h:xxxx>                         the component at a handle + its links
+  writable [--module PFX]                 classify direct value slots by external writability
+  grep <regex>                            regex over component paths, types, and slot names
+  diff <bogB>                             component/slot/link delta vs another bog
+
+Read-only. Prints rows; pass --json for machine output. stdlib only. Python3 guard -> exit 3.
+"""
+import sys, os, re, json, zipfile, argparse
+from collections import defaultdict
+
+# --- grammar (verbatim from bog-audit.sh D10 engine) ---
+TAG_RE = re.compile(r'<(/?)([A-Za-z]\w*)\b([^>]*?)(/?)>')
+
+def ga(text, name):
+    """Get attribute value: single-quoted first, then double-quoted (bog mixes both)."""
+    m = re.search(rf"\b{re.escape(name)}='([^']*)'", text)
+    if m:
+        return m.group(1)
+    m = re.search(rf'\b{re.escape(name)}="([^"]*)"', text)
+    return m.group(1) if m else None
+
+
+class Comp:
+    __slots__ = ('name', 'handle', 'type_', 'pfx', 'module', 'path',
+                 'slots', 'actions', 'has_fallback', 'is_writable',
+                 'parent_h', 'children')
+
+    def __init__(self, name, handle, type_, pfx, module, path, parent_h):
+        self.name = name
+        self.handle = handle
+        self.type_ = type_
+        self.pfx = pfx
+        self.module = module
+        self.path = path
+        self.slots = {}          # slot_name -> {type, value, flags}
+        self.actions = {}        # action_name -> flags_str
+        self.has_fallback = False
+        self.parent_h = parent_h
+        self.children = []       # child handles, in document order
+        _ts = type_.split(':')[-1] if ':' in type_ else type_
+        self.is_writable = bool(re.match(r'(Boolean|Numeric|Float|Integer)Writable$', _ts))
+
+    def simple_type(self):
+        return self.type_.split(':')[-1] if ':' in self.type_ else self.type_
+
+
+class Bog:
+    """Parsed BOG graph: handle_map, link_list, prefix_map, roots."""
+    def __init__(self, path, lines=None):
+        self.src_path = path
+        self.prefix_map = {}
+        self.handle_map = {}
+        self.handle_count = {}
+        self.link_list = []
+        self.roots = []          # top-level component handles
+        self._parse(lines if lines is not None else _read_bog_xml(path))
+
+    def _parse(self, text_lines):
+        prefix_map = self.prefix_map
+        handle_map = self.handle_map
+        handle_count = self.handle_count
+        link_list = self.link_list
+        stack = []
+        in_link = False
+        link_buf = {}
+
+        def nearest_comp():
+            for fr in reversed(stack):
+                if fr['type'] == 'comp':
+                    return fr['comp']
+            return None
+
+        _PLATFORM_SLOTS = frozenset({'wsAnnotation', 'value', 'status', 'displayName'})
+
+        for raw in text_lines:
+            line = raw.rstrip()
+            if not line.strip():
+                continue
+            for m in TAG_RE.finditer(line):
+                is_closing = bool(m.group(1))
+                tag_name = m.group(2)
+                is_self_cls = bool(m.group(4)) or m.group(0).endswith('/>')
+                full = m.group(0)
+
+                if is_closing:
+                    if tag_name in ('p', 'a') and stack:
+                        popped = stack.pop()
+                        if popped['type'] == 'link':
+                            link_list.append(dict(link_buf))
+                            in_link = False
+                            link_buf = {}
+                    continue
+
+                if tag_name == 'a':  # action element
+                    n = ga(full, 'n') or ''
+                    f_ = ga(full, 'f') or ''
+                    comp = nearest_comp()
+                    if comp:
+                        comp.actions[n] = f_
+                    continue
+
+                if tag_name != 'p':
+                    continue
+
+                n = ga(full, 'n') or ''
+                h = ga(full, 'h')
+                t = ga(full, 't') or ''
+                v = ga(full, 'v')
+                m_attr = ga(full, 'm') or ''
+                f_attr = ga(full, 'f') or ''
+
+                if m_attr:
+                    for part in m_attr.split():
+                        if '=' in part:
+                            pk, mv = part.split('=', 1)
+                            prefix_map[pk] = mv
+
+                if in_link:
+                    if is_self_cls:
+                        if n == 'sourceOrd' and v and v.startswith('h:'):
+                            link_buf['src_h'] = v[2:]
+                        elif n == 'sourceOrd' and v:
+                            link_buf['src_ord'] = v
+                        elif n == 'sourceSlotName' and v:
+                            link_buf['src_slot'] = v
+                        elif n == 'targetSlotName' and v:
+                            link_buf['tgt_slot'] = v
+                    elif h is None:
+                        parent = stack[-1] if stack else {}
+                        stack.append({'type': 'other', 'handle': None,
+                                      'path': parent.get('path', ''), 'comp': None})
+                    continue
+
+                if t == 'b:Link' and not is_self_cls:
+                    comp = nearest_comp()
+                    in_link = True
+                    link_buf = {
+                        'container_h': comp.handle if comp else None,
+                        'container_path': comp.path if comp else '',
+                        'link_name': n,
+                        'src_h': None, 'src_ord': None,
+                        'src_slot': None, 'tgt_slot': None,
+                    }
+                    parent = stack[-1] if stack else {}
+                    stack.append({'type': 'link', 'handle': None,
+                                  'path': parent.get('path', ''), 'comp': None})
+                    continue
+
+                if h is not None and not is_self_cls:
+                    pfx = t.split(':')[0] if ':' in t else ''
+                    module = prefix_map.get(pfx, '')
+                    parent = stack[-1] if stack else None
+                    parent_path = parent['path'] if parent else ''
+                    parent_comp = nearest_comp()
+                    parent_h = parent_comp.handle if parent_comp else None
+                    path = (parent_path + '/' + n).lstrip('/')
+
+                    handle_count[h] = handle_count.get(h, 0) + 1
+                    comp = Comp(n, h, t, pfx, module, path, parent_h)
+                    handle_map[h] = comp
+                    if parent_h is None:
+                        self.roots.append(h)
+                    elif parent_h in handle_map:
+                        handle_map[parent_h].children.append(h)
+                    stack.append({'type': 'comp', 'handle': h, 'path': path, 'comp': comp})
+                    continue
+
+                if n == 'fallback':
+                    comp = nearest_comp()
+                    if comp:
+                        comp.has_fallback = True
+                    if not is_self_cls:
+                        parent = stack[-1] if stack else {}
+                        stack.append({'type': 'other', 'handle': None,
+                                      'path': parent.get('path', '') + '/fallback',
+                                      'comp': None})
+                    continue
+
+                if is_self_cls and (v is not None or f_attr):
+                    _parent = stack[-1] if stack else None
+                    if _parent and _parent['type'] == 'comp' and n not in _PLATFORM_SLOTS:
+                        _parent['comp'].slots[n] = {'type': t, 'value': v, 'flags': f_attr}
+                    continue
+
+                # composite property (non-self-closing, no handle): e.g. setpoint StatusNumeric.
+                # Record it as a value slot on the nearest comp so `slot`/`writable` see it,
+                # then push an 'other' frame so its <value> child is skipped.
+                if not is_self_cls and h is None:
+                    _parent = stack[-1] if stack else None
+                    if _parent and _parent['type'] == 'comp' and n not in _PLATFORM_SLOTS:
+                        _parent['comp'].slots[n] = {'type': t, 'value': None, 'flags': f_attr}
+                    parent = stack[-1] if stack else {}
+                    ppath = parent.get('path', '')
+                    stack.append({'type': 'other', 'handle': None,
+                                  'path': (ppath + '/' + n).lstrip('/') if n else ppath,
+                                  'comp': None})
+
+    # ---- resolution helpers ----
+    def resolve(self, ref):
+        """path or h:handle -> Comp (or None)."""
+        if ref.startswith('h:'):
+            return self.handle_map.get(ref[2:])
+        ref = ref.strip('/')
+        for c in self.handle_map.values():
+            if c.path == ref:
+                return c
+        # tolerate a leaf-name match if unambiguous
+        hits = [c for c in self.handle_map.values() if c.path.endswith('/' + ref) or c.name == ref]
+        return hits[0] if len(hits) == 1 else None
+
+    def link_row(self, lk):
+        src = self.handle_map.get(lk.get('src_h'))
+        src_path = src.path if src else (lk.get('src_ord') or ('h:' + lk['src_h'] if lk.get('src_h') else '?'))
+        return {
+            'link': lk.get('link_name'),
+            'source': f"{src_path}.{lk.get('src_slot')}",
+            'target': f"{lk.get('container_path')}.{lk.get('tgt_slot')}",
+            'src_resolved': src is not None,
+        }
+
+
+def _read_bog_xml(path):
+    """Yield file.xml lines from a .bog (ZIP) or a bare .xml. Exit 3 on failure."""
+    if not os.path.exists(path):
+        sys.stderr.write(f'bog-nav: no such file: {path}\n')
+        sys.exit(3)
+    try:
+        if zipfile.is_zipfile(path):
+            with zipfile.ZipFile(path) as z:
+                name = 'file.xml' if 'file.xml' in z.namelist() else next(
+                    (n for n in z.namelist() if n.endswith('file.xml')), None)
+                if not name:
+                    sys.stderr.write(f'bog-nav: no file.xml inside {path}\n')
+                    sys.exit(3)
+                data = z.read(name).decode('utf-8', errors='replace')
+        else:
+            data = open(path, encoding='utf-8', errors='replace').read()
+    except Exception as exc:
+        sys.stderr.write(f'bog-nav: cannot read {path}: {exc}\n')
+        sys.exit(3)
+    return data.splitlines()
+
+
+# ---- external-writability classifier (viewer record aa7054702 / B823 / B825) ----
+_SIMPLE_WRITABLE = re.compile(r'(Boolean|Numeric|Float|Integer|Double|String|Enum|RelTime|AbsTime)$')
+
+def writability(slot_type, slot_name):
+    """Classify a direct value slot's external write shape. See B823 §823.2, viewer record.
+    Returns (klass, note)."""
+    t = slot_type.split(':')[-1] if slot_type and ':' in slot_type else (slot_type or '')
+    if t.startswith('Status'):
+        # a complex property: writable via its child leaf (bare <real>), or the wrapped-obj
+        # parent PUT (silent-zero hazard). [CERT-live] B826-G2 / viewer record.
+        return ('complex', 'child-leaf ORD bare <real> preferred; parent wrapped-obj = silent-zero hazard')
+    if not t:
+        return ('bare', 'no type attr (untyped value/mode slot)')
+    if _SIMPLE_WRITABLE.search(t):
+        return ('simple', 'plain simple value; carries writable="true" externally')
+    return ('other', t)
+
+
+# ================================================================
+# subcommands
+# ================================================================
+def cmd_tree(bog, args):
+    want_type = args.type
+    rows = []
+
+    def walk(h, depth):
+        c = bog.handle_map[h]
+        if args.depth is None or depth <= args.depth:
+            if not want_type or c.type_ == want_type or c.simple_type() == want_type.split(':')[-1]:
+                rows.append({'depth': depth, 'handle': h, 'name': c.name,
+                             'type': c.type_, 'path': c.path})
+        if args.depth is None or depth < args.depth:
+            for ch in c.children:
+                walk(ch, depth + 1)
+        elif want_type:
+            for ch in c.children:  # keep descending to find deeper matches when filtering
+                walk(ch, depth + 1)
+
+    for r in bog.roots:
+        walk(r, 0)
+    if args.json:
+        print(json.dumps(rows, indent=2))
+        return
+    for r in rows:
+        indent = '  ' * r['depth']
+        print(f"h:{r['handle']:<8} {indent}{r['name']}  <{r['type']}>")
+
+
+def cmd_slot(bog, args):
+    c = bog.resolve(args.ref)
+    if not c:
+        sys.stderr.write(f'bog-nav: cannot resolve {args.ref}\n')
+        sys.exit(1)
+    if args.slotname:
+        s = c.slots.get(args.slotname)
+        out = {'path': c.path, 'slot': args.slotname, **(s or {})}
+        if args.json:
+            print(json.dumps(out, indent=2))
+        elif s:
+            k, note = writability(s.get('type'), args.slotname)
+            print(f"{c.path}.{args.slotname}  type={s.get('type') or '(untyped)'}  "
+                  f"value={s.get('value')}  flags={s.get('flags')}  write={k} [{note}]")
+        else:
+            print(f"{c.path}: no direct slot '{args.slotname}' "
+                  f"(children: {', '.join(bog.handle_map[ch].name for ch in c.children) or 'none'})")
+        return
+    out = {'path': c.path, 'handle': c.handle, 'type': c.type_,
+           'slots': c.slots, 'actions': c.actions,
+           'children': [{'name': bog.handle_map[ch].name, 'handle': ch,
+                         'type': bog.handle_map[ch].type_} for ch in c.children]}
+    if args.json:
+        print(json.dumps(out, indent=2))
+        return
+    print(f"{c.path}  h:{c.handle}  <{c.type_}>")
+    for sn, s in c.slots.items():
+        k, _ = writability(s.get('type'), sn)
+        print(f"  slot  {sn} = {s.get('value')}  <{s.get('type') or 'untyped'}>  f={s.get('flags')}  [{k}]")
+    for an, f in c.actions.items():
+        print(f"  action  {an}  f={f}")
+    for ch in c.children:
+        cc = bog.handle_map[ch]
+        print(f"  child  {cc.name}  h:{ch}  <{cc.type_}>")
+
+
+def cmd_links(bog, args):
+    rows = []
+    for lk in bog.link_list:
+        row = bog.link_row(lk)
+        if args.to and not _match_path(lk.get('container_path'), lk.get('tgt_slot'), args.to):
+            continue
+        if args.slot and lk.get('tgt_slot') != args.slot and lk.get('src_slot') != args.slot:
+            continue
+        if args.from_:
+            src = bog.handle_map.get(lk.get('src_h'))
+            if not src or not (_match_path(src.path, lk.get('src_slot'), args.from_)):
+                continue
+        rows.append(row)
+    if args.json:
+        print(json.dumps(rows, indent=2))
+        return
+    for r in rows:
+        flag = '' if r['src_resolved'] else '  [orphan sourceOrd]'
+        print(f"{r['source']}  -->  {r['target']}{flag}")
+    if not rows:
+        print('(no matching links)')
+
+
+def _match_path(path, slot, needle):
+    needle = needle.strip('/')
+    if path == needle or (path or '').endswith('/' + needle):
+        return True
+    full = f"{path}.{slot}"
+    return needle in full
+
+
+def cmd_handle(bog, args):
+    h = args.handle[2:] if args.handle.startswith('h:') else args.handle
+    c = bog.handle_map.get(h)
+    if not c:
+        print(f'h:{h}: no such handle'
+              + (f" (appears {bog.handle_count.get(h)}x)" if h in bog.handle_count else ''))
+        sys.exit(1)
+    fed_by = [bog.link_row(lk) for lk in bog.link_list if lk.get('container_h') == h]
+    feeds = [bog.link_row(lk) for lk in bog.link_list if lk.get('src_h') == h]
+    if args.json:
+        print(json.dumps({'path': c.path, 'type': c.type_,
+                          'fed_by': fed_by, 'feeds': feeds}, indent=2))
+        return
+    print(f"h:{h}  {c.path}  <{c.type_}>  parent=h:{c.parent_h}")
+    for r in fed_by:
+        print(f"  fed-by   {r['source']}  -->  {r['target']}")
+    for r in feeds:
+        print(f"  feeds    {r['source']}  -->  {r['target']}")
+
+
+def cmd_writable(bog, args):
+    rows = []
+    for c in bog.handle_map.values():
+        if args.module and c.pfx != args.module and c.module != args.module:
+            continue
+        for sn, s in c.slots.items():
+            k, note = writability(s.get('type'), sn)
+            if args.klass and k != args.klass:
+                continue
+            rows.append({'path': c.path, 'slot': sn, 'type': s.get('type'),
+                         'class': k, 'note': note})
+    if args.json:
+        print(json.dumps(rows, indent=2))
+        return
+    for r in rows:
+        print(f"{r['class']:<8} {r['path']}.{r['slot']}  <{r['type'] or 'untyped'}>  {r['note']}")
+    if not rows:
+        print('(no slots matched)')
+
+
+def cmd_grep(bog, args):
+    rx = re.compile(args.regex, re.I)
+    rows = []
+    for c in bog.handle_map.values():
+        if rx.search(c.path) or rx.search(c.type_):
+            rows.append({'kind': 'comp', 'path': c.path, 'type': c.type_, 'handle': c.handle})
+        for sn in c.slots:
+            if rx.search(sn):
+                rows.append({'kind': 'slot', 'path': f'{c.path}.{sn}',
+                             'type': c.slots[sn].get('type'), 'handle': c.handle})
+    if args.json:
+        print(json.dumps(rows, indent=2))
+        return
+    for r in rows:
+        print(f"{r['kind']:<5} h:{r['handle']:<8} {r['path']}  <{r['type'] or ''}>")
+    if not rows:
+        print('(no matches)')
+
+
+def cmd_diff(bog, args):
+    other = Bog(args.bogB)
+    a_paths = {c.path: c for c in bog.handle_map.values()}
+    b_paths = {c.path: c for c in other.handle_map.values()}
+    added = sorted(set(b_paths) - set(a_paths))
+    removed = sorted(set(a_paths) - set(b_paths))
+    changed = []
+    for p in sorted(set(a_paths) & set(b_paths)):
+        sa, sb = a_paths[p].slots, b_paths[p].slots
+        for sn in sorted(set(sa) | set(sb)):
+            va = (sa.get(sn) or {}).get('value')
+            vb = (sb.get(sn) or {}).get('value')
+            if va != vb:
+                changed.append({'path': f'{p}.{sn}', 'a': va, 'b': vb})
+    if args.json:
+        print(json.dumps({'added': added, 'removed': removed, 'changed': changed}, indent=2))
+        return
+    for p in added:
+        print(f"+ {p}  <{b_paths[p].type_}>")
+    for p in removed:
+        print(f"- {p}  <{a_paths[p].type_}>")
+    for r in changed:
+        print(f"~ {r['path']}  {r['a']} -> {r['b']}")
+    if not (added or removed or changed):
+        print('(identical component/slot sets)')
+
+
+# synthetic bog exercising: component tree, composite property (setpoint StatusNumeric),
+# simple slot, module prefix, and a cross-component link resolved by handle.
+_SELFTEST_XML = """<?xml version='1.0' encoding='UTF-8'?>
+<bajaObjectGraph version='4.0'>
+ <p n='Station' h='1' t='b:Station' m='b=baja CRP=ColdRoomPan DPCD=DashboardPan'>
+  <p n='Panel' h='10' t='DPCD:RoomPanel'>
+   <p n='setpoint' t='b:StatusNumeric'>
+    <p n="value" v="3.0"/>
+   </p>
+   <p n="differentialUp" v="1.5"/>
+   <p n='Link' t='b:Link'>
+    <p n="sourceOrd" v="h:10"/>
+    <p n="sourceSlotName" v="setpoint"/>
+    <p n="targetSlotName" v="setpoint"/>
+   </p>
+  </p>
+  <p n='Logic' h='20' t='CRP:ColdRoom'>
+   <p n='setpoint' t='b:StatusNumeric'>
+    <p n="value" v="3.0"/>
+   </p>
+   <p n='Link' t='b:Link'>
+    <p n="sourceOrd" v="h:10"/>
+    <p n="sourceSlotName" v="setpoint"/>
+    <p n="targetSlotName" v="setpoint"/>
+   </p>
+  </p>
+ </p>
+</bajaObjectGraph>""".splitlines()
+
+
+def cmd_selftest(bog_ignored, args):
+    b = Bog('<selftest>', lines=_SELFTEST_XML)
+    fails = []
+
+    def check(cond, label):
+        (print(f'  ok   {label}') if cond else fails.append(label))
+        if not cond:
+            print(f'  FAIL {label}')
+
+    check(set(b.handle_map) == {'1', '10', '20'}, 'three handled components parsed')
+    check(b.handle_map['10'].path == 'Station/Panel', 'path built from tree (Station/Panel)')
+    check(b.handle_map['20'].parent_h == '1', 'parent handle tracked')
+    check('setpoint' in b.handle_map['10'].slots, 'composite property recorded as slot')
+    check(b.handle_map['10'].slots['setpoint']['type'] == 'b:StatusNumeric', 'composite slot type')
+    check(b.handle_map['10'].slots['differentialUp']['value'] == '1.5', 'simple slot value')
+    check(b.prefix_map.get('CRP') == 'ColdRoomPan', 'module prefix decl parsed')
+    # link resolution: Panel.setpoint feeds Logic.setpoint
+    logic_links = [b.link_row(lk) for lk in b.link_list if lk.get('container_h') == '20']
+    check(len(logic_links) == 1 and logic_links[0]['source'] == 'Station/Panel.setpoint'
+          and logic_links[0]['target'] == 'Station/Logic.setpoint'
+          and logic_links[0]['src_resolved'],
+          'cross-component link sourceOrd h:10 resolved to a path')
+    k, _ = writability('b:StatusNumeric', 'setpoint')
+    check(k == 'complex', 'StatusNumeric classified as complex (child-leaf write)')
+    k2, _ = writability('b:Double', 'differentialUp')
+    check(k2 == 'simple', 'plain b:Double classified simple')
+    k3, _ = writability('', 'someMode')
+    check(k3 == 'bare', 'untyped value slot classified bare')
+    if fails:
+        print(f'\nSELFTEST FAILED: {len(fails)} check(s)')
+        sys.exit(1)
+    print('\nSELFTEST OK')
+
+
+def build_parser():
+    p = argparse.ArgumentParser(prog='bog-nav.py', description=__doc__,
+                                formatter_class=argparse.RawDescriptionHelpFormatter)
+    p.add_argument('bog', nargs='?', help='config.bog (ZIP) or a bare file.xml (omit for selftest)')
+    p.add_argument('--json', action='store_true', help='machine output')
+    sub = p.add_subparsers(dest='cmd', required=True)
+
+    t = sub.add_parser('tree', help='component tree')
+    t.add_argument('--type', help='filter by PFX:Type (or bare Type)')
+    t.add_argument('--depth', type=int, help='max depth')
+    t.set_defaults(func=cmd_tree)
+
+    s = sub.add_parser('slot', help='a component\'s slots + children')
+    s.add_argument('ref', help='path or h:handle')
+    s.add_argument('slotname', nargs='?', help='a specific slot')
+    s.set_defaults(func=cmd_slot)
+
+    l = sub.add_parser('links', help='links, sourceOrd resolved to paths')
+    l.add_argument('--to', help='target path/component')
+    l.add_argument('--from', dest='from_', help='source path/component')
+    l.add_argument('--slot', help='link touches this slot name (src or tgt)')
+    l.set_defaults(func=cmd_links)
+
+    h = sub.add_parser('handle', help='component at a handle + its links')
+    h.add_argument('handle', help='h:xxxx or xxxx')
+    h.set_defaults(func=cmd_handle)
+
+    w = sub.add_parser('writable', help='classify direct value slots by external write shape')
+    w.add_argument('--module', help='filter by module prefix or name')
+    w.add_argument('--klass', choices=['simple', 'complex', 'bare', 'other'],
+                   help='only this write class')
+    w.set_defaults(func=cmd_writable)
+
+    g = sub.add_parser('grep', help='regex over component paths, types, slot names')
+    g.add_argument('regex')
+    g.set_defaults(func=cmd_grep)
+
+    d = sub.add_parser('diff', help='delta vs another bog')
+    d.add_argument('bogB', help='the other config.bog|file.xml')
+    d.set_defaults(func=cmd_diff)
+
+    st = sub.add_parser('selftest', help='run in-memory parser/query assertions (no file needed)')
+    st.set_defaults(func=cmd_selftest)
+    return p
+
+
+def main(argv=None):
+    args = build_parser().parse_args(argv)
+    if args.cmd == 'selftest':
+        args.func(None, args)
+        return
+    if not args.bog:
+        sys.stderr.write('bog-nav: a config.bog|file.xml is required for this command\n')
+        sys.exit(2)
+    bog = Bog(args.bog)
+    args.func(bog, args)
+
+
+if __name__ == '__main__':
+    if sys.version_info[0] < 3:
+        sys.stderr.write('bog-nav: requires python3\n')
+        sys.exit(3)
+    main()
