@@ -165,11 +165,79 @@ For EACH of the 6 retros:
 
 ---
 
-## Apply checklist — the FULL campaign-8 set (10 retros)
-Flip all 10 INDEX rows `pending → folded`. MANDATORY token lines FIRST (else `sweep-fold-audit --strict` fails):
-**§3 lint-timers-ext** and **§7 campaign8-doctrine-fold** (both 0-token). The other 8 are token-credited already
-(§1/§4/§5/§6/§8 via BUILD-LOOP/SKILL; §2 triage-console at METHODOLOGY:96; **§9 station-snapshot** 3 tokens + **§10
-bog-audit** 3 tokens, both via K19 routing). The §9/§10 folded-as-code lines are recommended-but-preferred (the
-"folded as code: <script> [ev: retro <token>]" convention, METHODOLOGY:94 rule) — neither blocks the strict audit since
-both are already token-credited. **PR11/PR12 will add two more retros** (12 total at campaign close). Then set
-`retro_pending: false` in the kit self-envelope + sweep (pending=0, fold-audit clean).
+## 11. campaign8-wb-audit  (PR11, slug: `campaign8-wb-audit`)
+- **Grep-before (K6):** `grep -rn 'ev: retro campaign8-wb-audit' <kit>` (excl retros/) → **4 hits**
+  (`toolbelt/lint-wb-threading.sh` header, `BUILD-LOOP.md:70` pre-gate line, `skill/SKILL.md`, + the DWB1 doctrine).
+  Already CREDITED → safe to flip. Re-run at apply.
+- **Deltas** (INDEX row: 5): new `toolbelt/lint-wb-threading.sh`; `slot-coverage.sh` WB-LEX1 (missing-lexicon exit-1
+  path); `verify-module.sh` WB-SCAFFOLD1 + WB-DEP1 (`check_wb_scaffold` + `check_phantom_dep`); `types/wb-widgets.md`
+  DWB1 10-rule doctrine + chihuahua-wb tree; K19 routing. THREAD1/AGENT1 are WARN-only (K13, RED wins). Nothing dropped
+  (slot-per-slot D6a): the doctrine delta is pointed even though the script deltas are the load-bearing ones.
+- **FOLD (recommended — one `METHODOLOGY.md` §Conformance folded-as-code line):**
+```
+- folded as code: toolbelt/lint-wb-threading.sh (two heuristic WARNs over a -wb src tree — ui-thread-traversal: a doInvoke body that calls getNavChildren/getNavNodes/BqlQuery WITHOUT invokeLater/BJobService/JobThread; + an agent-breadth heuristic; WARN-only, exit 1 only under --strict). [ev: retro campaign8-wb-audit]
+```
+
+## 12. campaign8-lint-servlet  (PR12, slug: `campaign8-lint-servlet`)
+- **Grep-before (K6):** `grep -rn 'ev: retro campaign8-lint-servlet' <kit>` (excl retros/) → **3 hits** (`BUILD-LOOP.md`
+  §5 pre-gate line, `skill/SKILL.md`, `toolbelt/lint-servlet.sh` header). Already CREDITED → safe to flip. Re-run at
+  apply. NOTE the merge-order caveat (close-retro lesson 10): PR12 branched the same `3f666a0` as PR11 and needed a
+  rebase + re-bless; the attempt-12 ledger evidence revision is `main-at-1f5201e`.
+- **Deltas** (INDEX row: 5): new `toolbelt/lint-servlet.sh` (six checks: auth-gate, input-400, unbounded-set,
+  cache-nofinger, log-in-handler, csrf-xrw-only); `tests/fixtures/lint-servlet/CsrfXrwOnly.java`; LSV4 pin; K19 routing.
+  Design deviations (K13): a dedicated `lint-servlet.sh`, NOT an `rc-scan --servlet` flag; csrf is WARN not FAIL (B813);
+  the input-400 prediction was wrong (corrected against DashboardPan-ux post-PR#7 `parseFiniteDouble→400`).
+- **FOLD (recommended — one `METHODOLOGY.md` §Conformance folded-as-code line):**
+```
+- folded as code: toolbelt/lint-servlet.sh (BWebServlet security lint over a -ux src, following callees ~depth-3: auth-gate, input-400 (a numeric parse not inside a try/catch that returns 400), unbounded-set, cache-nofinger, log-in-handler, and csrf-xrw-only = an X-Requested-With guard with NO CsrfUtil/csrfToken → WARN, B813; exit 0 clean/WARN-only, 1 any FAIL). [ev: retro campaign8-lint-servlet]
+```
+
+## 13. campaign8-post-deploy-checklist  (PR13, slug: `campaign8-post-deploy-checklist`)  ← 0-token, MANDATORY line
+- **Grep-before (K6):** `grep -rn 'ev: retro campaign8-post-deploy-checklist' <kit>` (excl retros/) → **0 hits**. The
+  deltas are doc-applied but carry no retro slug → `sweep-fold-audit --strict` needs ONE token before the INDEX flip.
+- **Deltas** (INDEX row: 2): `BUILD-LOOP.md §6.a` — ordered post-deploy verification subsection (steps 1–4 + the CHECK11
+  proxy-link-safety gate); `tests/kit-links.bats L7` — hard pin for the five §6.a step scripts.
+- **FOLD (MANDATORY — add the token to the `BUILD-LOOP.md` §6.a subsection line, or one `METHODOLOGY.md` §Conformance line):**
+```
+- folded as code: BUILD-LOOP.md §6.a post-deploy verification (ordered steps 1–4: pre-snapshot → hot-reload → console triage → schema-risk/bog-audit re-run, gated on CHECK11; the five step scripts hard-pinned in tests/kit-links.bats L7). [ev: retro campaign8-post-deploy-checklist]
+```
+
+## 14. campaign8-build-pipeline  (PR14, slug: `campaign8-build-pipeline`)  ← 0-token, MANDATORY line
+- **Grep-before (K6):** `grep -rn 'ev: retro campaign8-build-pipeline' <kit>` (excl retros/) → **0 hits**. §4.a/§4.b
+  carry `[ev: corpus B807]`/`[ev: corpus B795]` but NOT the retro slug → MANDATORY token before the flip.
+- **Deltas** (INDEX row: 3): `BUILD-LOOP.md §4.a` — Gradle `niagara-module` task matrix (what each task does + the safe
+  `clean slotomatic jar` combo); `BUILD-LOOP.md §4.b` — `vendorVersion`/`bajaVersion` version-bump checklist + reload
+  consequence; `tests/build-sh.bats BS-lock + BS-lock-hint` — exit-31 station-lock + `mirror-niagara-home.sh` hint
+  regression pins.
+- **FOLD (MANDATORY — one `METHODOLOGY.md` §Conformance line):**
+```
+- folded as code: BUILD-LOOP.md §4.a Gradle task matrix + §4.b vendorVersion/bajaVersion version-bump checklist (with the exit-31 station-lock BS-lock/BS-lock-hint regression pins in tests/build-sh.bats). [ev: corpus B807] [ev: corpus B795] [ev: retro campaign8-build-pipeline]
+```
+
+## 15. campaign8-rt-doctrine  (PR15, slug: `campaign8-rt-doctrine`)  ← PROMOTION retro (like §7), MANDATORY token
+- **Grep-before (K6):** `grep -rn 'ev: retro campaign8-rt-doctrine' <kit>` (excl retros/) → **0 hits**. A PURE PROMOTION:
+  its Δ1–Δ4 are ALL applied across `types/logic.md` (§RT-control-logic), `types/logic-authoring.md` (§history-ext +
+  §"Slot types for externally written values"), `types/dashboard.md` (pointer) — but each folded line carries
+  `[ev: corpus B<n>]`, not the retro slug, so the retro's own token is absent. Per BUILD-LOOP §7 exit (c) the INDEX
+  flip is the promotion anchor, but `sweep-fold-audit --strict` still needs ONE `[ev: retro campaign8-rt-doctrine]`.
+- **Deltas** (INDEX row: 4): Δ1 `types/logic.md` §RT-control-logic (9 entries, B805+B808); Δ2 `types/logic-authoring.md`
+  §history-ext (5 bullets, B804); Δ3 `types/logic-authoring.md` §"Slot types for externally written values" (the
+  value-class→slot table + prose, B823/B822/B825/B826/B828/B816 — the doctrine this session helped ground); Δ4
+  `types/dashboard.md` pointer.
+- **FOLD (MANDATORY — one promotion-attribution line in `METHODOLOGY.md` §Kit maintenance, mirroring §7):**
+```
+- The campaign-8 RT-control doctrine (§RT-control-logic, history-ext authoring, and the "Slot types for externally written values" table — B805/B808/B804/B823/B822/B825/B826/B828/B816) was PROMOTED into the types/ core in PR15 (doc-only). [ev: retro campaign8-rt-doctrine]
+```
+
+---
+
+## Apply checklist — the FULL campaign-8 set (15 retros)
+Flip all 15 INDEX rows `pending → folded`. **MANDATORY token lines FIRST** (else `sweep-fold-audit --strict` fails) —
+the five 0-token retros: **§3 lint-timers-ext**, **§7 campaign8-doctrine-fold**, **§13 post-deploy-checklist**,
+**§14 build-pipeline**, and **§15 campaign8-rt-doctrine** (PROMOTION). The other 10 are token-credited already
+(§1/§4/§5/§6/§8 via BUILD-LOOP/SKILL; §2 triage-console at METHODOLOGY:96; **§9 station-snapshot** 3, **§10 bog-audit** 3,
+**§11 wb-audit** 4, **§12 lint-servlet** 3 — all via K19 routing). Their folded-as-code lines (§9/§10/§11/§12) are
+recommended-but-preferred (the "folded as code: <script> [ev: retro <token>]" convention, METHODOLOGY:94) — none blocks
+the strict audit since all are already token-credited. **PR16–PR20 will add five more retros** (retro-loop,
+orchestration, structure, write-path, station-logic → 20 total at campaign close). Then set `retro_pending: false` in
+the kit self-envelope + sweep (pending=0, fold-audit clean).
