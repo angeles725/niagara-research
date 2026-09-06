@@ -25,23 +25,35 @@ Author: companero (Fable), 2026-09-06. Cut against kit `df8c7ec`/`cb79676` and c
 **RED/pin:** a bats case that runs `run-pure-test.sh <rt> <fqcn>` FROM A DIFFERENT cwd (e.g. `/tmp`) and asserts GREEN —
 today it fails to locate src; after the fix it passes. `[ev: run-pure-test.sh:27,:58-59; WiringTest:48-56 @ ff1b659]`
 
-## S25 — `lint-write-path.sh --strict`
-**Current (`toolbelt/lint-write-path.sh`):** `Usage: lint-write-path.sh <module-root> [--bog <config.bog>] [--matrix <path>]`;
-`FAILED=0` (:33); usage guard exit 3 (:38-42); arg loop (:48+) handles `--bog`/`--matrix`; exits **0 all covered · 1 any
-uncovered · 3 usage/env** (:25). NOTE: lint-write-path ALREADY exits 1 on any uncovered slot (it is a FAIL lint, not
-WARN-only) — so `--strict` here means the OPPOSITE of the WARN lints: today an uncovered slot is already exit 1. The design
-assumed a `--strict` toggle; reconcile the semantics:
-- If the intent is "WARN by default, FAIL under --strict" (match `lint-ext-writable-shape`): change the DEFAULT to emit
-  `WARN` rows and exit 0, and `--strict` restores the current exit-1-on-uncovered. Insertion: add `STRICT=0` beside
-  `FAILED=0` (:33); parse `--strict) STRICT=1; shift ;;` in the arg loop (:48, same shape as lint-ext-writable-shape:38);
-  at the end, `exit $(( STRICT==1 ? (FAILED?1:0) : 0 ))` and print rows as `WARN` unless `--strict`.
-- If the intent is only to KEEP exit-1 but allow a non-strict advisory pass, add `--strict` as the exit-1 gate and make the
-  default exit 0 with WARN rows. Either way the exit contract stays **0 / 1 / 3** and MUST mirror `lint-ext-writable-shape`
-  (0 clean-or-WARN · 1 under --strict · 3 usage) for consistency (the C9 design assumed this).
-**Decision for QA/lead:** confirm which semantics (lint-write-path is currently a hard FAIL lint; the other C9 lints are
-WARN-only+--strict). Recommend aligning to WARN-only+--strict so `report-module.sh` treats all lints uniformly.
-**bats pin:** `--strict` on an uncovered tree → exit 1; without `--strict` → exit 0 with WARN rows; usage → exit 3;
-covered tree → exit 0 both ways. `[ev: lint-write-path.sh:25,:33,:38-48; lint-ext-writable-shape.sh:35-45]`
+## S25 — `lint-write-path.sh`: NEW advisory class STALE (lead's decided contract — supersedes my WARN-only recommendation)
+**Decision (lead):** do NOT weaken the shipped hard gate — a worker forgetting `--strict` must never silently ship an
+uncovered OPERATOR slot. So the FAIL direction is UNCHANGED (uncovered source slot with no matrix row → exit 1). ADD a new
+ADVISORY class **STALE**: a matrix data row whose slot name matches NO `@NiagaraProperty` / `--bog` link-traced slot in
+source. Default: STALE rows print but exit stays **0** (advisory). `--strict` promotes STALE to **exit 1**. Exit **3**
+(usage/env/missing-matrix) unchanged. So: uncovered → 1 always; STALE → 0 advisory / 1 under --strict; usage → 3.
+**Code seams (`toolbelt/lint-write-path.sh` @ cb79676):**
+- `:161` `_matrix_slots=$(awk -F'|' …` — the matrix-slot extractor (R19.3: first cell is a backtick-wrapped identifier).
+  The STALE pass reuses THIS set as its left side.
+- `:310` `_AWK_SCANNER='…` — the per-profile source scan that yields the source OPERATOR slots (and, with `--bog`, the
+  link-traced extras merged into the required set). The STALE pass's right side = the UNION of source `@NiagaraProperty`
+  names (all flags, not only OPERATOR — a covered slot can be SUMMARY) + the `--bog` slots, collected here.
+- `:374` `printf 'FAIL  lint-write-path … no matrix row'` + `:376` `FAILED=1`; `:383` `exit "$FAILED"`.
+**Insertion:** after both sets exist (matrix slots from :161, source+bog slots from the :310 scan), add a STALE pass:
+`for m in $_matrix_slots; do case " $source_and_bog_slots " in *" $m "*) : ;; *) printf 'write-path  STALE  %s  no source slot with that name\n' "$m"; STALE=1 ;; esac; done`.
+Add `STALE=0` beside `FAILED=0` (:33); parse `--strict) STRICT=1; shift ;;` in the arg loop (:48, mirror lint-ext-writable-shape:38);
+change `:383` to `exit $(( FAILED ? 1 : (STRICT && STALE ? 1 : 0) ))`. FAIL always wins (uncovered is still a hard 1).
+**Row grammar:** `write-path  STALE  <slot>  no source slot with that name` (per lead).
+**Real-tree ACTUAL @ ff1b659 (measured, R19.3 backtick-inner extractor vs all source `@NiagaraProperty` names):** NOT 0 — it
+is **3**: `freezeEnabled` (:36), `hoaMode` (:31), `inhibit` (:33). **All three are LEGITIMATE conceptual/scenario rows, not
+renamed-stale rows:** `freezeEnabled` is a mode, `hoaMode` is the abstract HOA command concept (the real slots are
+`evapNValveMode`/`fanMode`…), `inhibit` is an Engine-link defrost signal (`| Engine link |`). So the literal STALE rule
+FLAGS 3 intentional rows. **Decision needed (flag to QA/lead):** either (a) exempt rows whose first-cell identifier is
+followed by a parenthetical concept marker or an `| Engine link` / non-`@NiagaraProperty` writer (so conceptual rows are not
+STALE), or (b) accept the 3 and require the matrix to mark them (e.g. a trailing `(concept)`), or (c) confirm `inhibit` is a
+`--bog` link-traced slot (it may be covered under `--bog`, dropping the count to 2). Expected-0 does NOT hold on the real
+tree; report the 3 and the characterization, do not force 0.
+**bats pin:** a matrix with one row for a slot absent from source → STALE row printed, exit 0; same under `--strict` → exit 1;
+an uncovered source slot → exit 1 both ways (unchanged); usage → exit 3.
 
 ## S26 — client `.gitignore` for gradle build caches (keep the deploy jars)
 **Tracked under `**/build/` @ ff1b659 (exact, `git ls-files`):**
