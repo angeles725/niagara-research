@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **812 bloques**
+Total: **813 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -817,6 +817,7 @@ Total: **812 bloques**
 | 821 | [niagara-mental-model-bloque821.md](niagara-mental-model-bloque821.md) | B821 · Protection anatomy of our RT modules — every protection trip as (WHAT fires · WHO fires · WHO watches), one-bit-traced at `fbe9009`; the RT control logic raises ZERO alarm-console events (every surface is a plain SUMMARY slot, never a `BAlarmRecord`); + the two author-built classes Tridium ships NO primitive for (set-dominant SR latch, independent heartbeat) `[CERT]` |
 | 822 | [niagara-mental-model-bloque822.md](niagara-mental-model-bloque822.md) | B822 · Making the room setpoint remotely settable — the ADDITIVE-code options (a `setpointCmd` writable-double slot, or an `applySetpoint(BDouble)` OPERATOR action) vs the OUTAGE of retyping `BRoomPanel.setpoint`; a generic `@NiagaraAction` IS oBIX-invokable (`<op>` → `BComponent.invoke` with `OPERATOR_INVOKE`); schema risk graded SAFE(add) vs LOSSY/OUTAGE(retype) `[CERT]` |
 | 823 | [niagara-mental-model-bloque823.md](niagara-mental-model-bloque823.md) | B823 · Can the EXISTING `BRoomPanel.setpoint` be written from the mini-PC with NO module change? — every no-code write channel enumerated, one-bit-traced `[CERT]` |
+| 824 | [niagara-mental-model-bloque824.md](niagara-mental-model-bloque824.md) | B824 · The "silent-protection" lint — a static check that flags a protection TRIP (an output forced OFF / a stage shed-or-held, per B821's 22-trip taxonomy) that reaches NO operator surface; absence-of-surface is decidable (WARN), is-the-slot-the-reason is advisory; proven FLAG on CP-1 low-suction + CR-3 freeze-reason, CLEAN on PR#5 defrostSkipped/lastSkipReason, at client `fbe9009` `[CERT for the shapes; INFER for the check]` |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
