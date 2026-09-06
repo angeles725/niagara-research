@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **816 bloques**
+Total: **817 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -821,6 +821,7 @@ Total: **816 bloques**
 | 825 | [niagara-mental-model-bloque825.md](niagara-mental-model-bloque825.md) | B825 · Why an oBIX wrapped-`<obj>` PUT of a `BStatusNumeric` façade slot PROPAGATES to the linked control point — and why the read can lag: the write is a TOP-SLOT REPLACEMENT (decode into a detached copy → `parent.set(slot, copy)`), NOT an in-place child mutation; knob/link propagation is SYNCHRONOUS on the writing thread (<1 ms), so the tens-of-seconds "lag" is entirely the READER's poll cycle `[CERT + CERT-live]` |
 | 826 | [niagara-mental-model-bloque826.md](niagara-mental-model-bloque826.md) | B826 · Is a `/setpoint/value` CHILD ORD routable over oBIX? — closes [B825]-G2 by read-only reasoning: the `BStatusValue` agent COLLAPSES the struct to a leaf `<real>` so the child is NEVER advertised, but the config-space resolver builds a `station:\|slot:…/setpoint/value` ORD by VERBATIM path translation, so a hand-crafted child PUT is resolvable — a simpler (bare-`<real>`, no silent-zero) write than the wrapped-`<obj>` — now LIVE-CONFIRMED END-TO-END: the child is served + `writable="true"` (GET, B826-G1) and a bare-`<real>` PUT to it writes AND propagates to control in ~1.5 s (B826-G2), so it is the PREFERRED write form; the wrapped-`<obj>`-to-parent-slot is the proven fallback `[CERT code + CERT-live end-to-end]` |
 | 827 | [niagara-mental-model-bloque827.md](niagara-mental-model-bloque827.md) | B827 · Raising an OPERATOR ALARM for a protection trip in an -rt module — the concrete fix for [B821]'s zero-alarm finding (seed S18): `BAlarmSourceExt` needs a `BControlPoint` parent, so a custom `BComponent` uses EITHER a child point + the ext (declarative) OR `BIAlarmSource` + `AlarmSupport.newOffnormalAlarm` (programmatic); both route a `BAlarmRecord sourceState=offnormal` that the console and DashboardPan's `bql` query show; adding it is schema-SAFE `[CERT]` |
+| 828 | [niagara-mental-model-bloque828.md](niagara-mental-model-bloque828.md) | B828 · HOA modes as a real `BFrozenEnum` over oBIX (for future modules) — a `@NiagaraEnum(@Range …)` `BHoaMode` renders `<enum val="hand" display="…" range="…"/>` and decodes `<enum val="hand"/>` WITHOUT an explicit range facet (a frozen enum carries its range intrinsically — the encoder/decoder fall back to the value's `getRange()`); today's `double` 0/1/2 is an opaque `<real>`; the switch is a LOSSY retype so new modules only `[CERT]` |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
