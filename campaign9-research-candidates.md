@@ -232,6 +232,33 @@ C9 research/build core = **#1 protection-latch fixture** (built below) + **#2 wr
   (PR15). Requires execution: NO (static lint). RED: a fixture with a bare `Flags.OPERATOR` `BStatusNumeric` and no
   writing action → **WARN** `ext-writable-shape`; a plain `double`/`boolean` OR a complex-with-`@NiagaraAction` → clean.
   `[ev: corpus B823]` `[ev: retro obix-statusnumeric-wrapped-put]`
+- **S20 · Time-slice compressor rotation — CLIENT module change, CompPan-rt (value HIGH, user-explicit 2026-09-06).**
+  Gap (verified `CompressorControl.java @ a109249`): rotation happens ONLY at stage events — stage UP picks the available
+  compressor with the LEAST hours (`pickLeastHoursOff`, `:226`), stage DOWN drops the running one with the MOST hours
+  (`pickMostHoursOn`, `:238`); §Rotation `:31-36`. So under STEADY demand (`onCount == target`, no stage event) the same
+  compressors run for as long as demand holds — no wear equalization until demand changes. The client wants a
+  **TIME-SLICE rotation**: a running compressor swaps out after a configurable CONTINUOUS run (e.g. 3 h) for the idle
+  available compressor with the least hours. **Design (additive, pure-core):** two new `@NiagaraProperty` on
+  `BCompressorControl` — `rotationInterval` (`BRelTime`, `SUMMARY|OPERATOR`, **0 = disabled = today's behaviour
+  byte-identical**) and `rotationMode` (an enum — **make-before-break** default: start the incoming compressor first,
+  then after `stageDelay` stop the outgoing; **break-before-make** the alternative). Logic lives in
+  `CompressorControl.step` AFTER the target computation, gated by the SAME rules as staging: `minOn`/`minOff`,
+  `stageDelay`, HOA **OFF excluded**, **HAND untouched**, **never a stage-up on `dischargeHigh`**, **never below the LP
+  floor**, and **no swap when only one compressor is available**. The rotation clock is per-compressor from `cmdSince[]`
+  (already tracked, `:71`); `condenserNHours` keep integrating on the COMMANDED state (`:44`), so a swap does not distort
+  the hours ledger. **RED shape:** pure `CompressorControlTest` cases (swap after interval; NO swap below interval; no
+  swap while the idle candidate is inside `minOff`; make-before-break ordering — incoming ON, then outgoing OFF one
+  `stageDelay` later; disabled at 0 keeps today's behaviour BYTE-IDENTICAL). **Schema-risk SAFE** pin (two additive
+  slots, no retype/remove — B795). Dashboard exposure of `rotationInterval` per the slot-type doctrine (a `BRelTime` is
+  written by the write-server as `<reltime val="PT3H"/>` — a simple value, no complex-write hazard). Requires execution:
+  build + pure tests off-station; live confirm on PANCCADIA. `[ev: client CompressorControl.java @ a109249 §Rotation :31-36, :226, :238, :44, :71]` `[ev: corpus B822 (additive-code)]` `[ev: corpus B823 (slot-type doctrine)]` `[ev: corpus B795 (schema-risk)]`
+  - **User FASE 1/2/3 explanation — ANSWERED this cycle** (recorded per the user's ask): the CompPan control is staged
+    (`CompressorControl.java` javadoc @ a109249). **FASE 1** (shipped) = demand-count staging (rooms' `room1..4Calling` →
+    `demandCount`) + amperage proof-of-run (running/fault/stuck by measured amps, VISUAL-only, never controls staging) +
+    real run-hours lead/lag rotation persisted in `condenserNHours`; suction/discharge pressures wired as SAFETY LIMITS
+    only. **FASE 2** = the pressure MODULATOR (suction-band control on the same slots, pure-logic, no re-slot).
+    **FASE 3** = floating suction (`floatingSuction`/`coilTD`/`localAtmPsi`; `SSTreq = setpoint − coilTD`; León ~1,800 m →
+    ~11.82 psia). S20's time-slice rotation is an additive FASE-1 refinement (rotation cadence), independent of 2/3.
 
 **Ties to the already-drafted C8 doc PRs:** S5→PR19 (0590c2b7f), S6→PR18 (f7a4521ee); the orchestration/retro loop
 (PR16 110f583ad / PR17 d5f979f88) frames how every S-seed closes: research block → spec → RED → apply → retro → fold.
