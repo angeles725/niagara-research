@@ -61,7 +61,7 @@ conventional commits, NEVER Co-Authored-By / AI attribution; Spanish = neutral/i
 | Client — ColdRoomPan | 2.0.7 | `[client]` |
 | Client — DashboardPan | 2.0.3 | `[client]` |
 | Client — CompPan | 2.1.1 | `[client]` |
-| **DEPLOYED on PANCCADIA (RAR module.xml)** | ColdRoomPan-rt **2.0.3**, CompPan-rt **2.0.1**, DashboardPan-rt/ux **2.0** — repo a109249 never deployed; pending deploy = client PR #9 | `[CERT — RAR read a34f9bdd2]` |
+| **DEPLOYED on PANCCADIA (RAR module.xml)** | ColdRoomPan-rt **2.0.3**, CompPan-rt **2.0.1**, DashboardPan-rt/ux **2.0** — repo a109249 never deployed; pending deploy = client PR #9 | `[CERT — RAR read a34f9bdd2 (lead module.xml echo w/ sha256; sizes cross-checked here; DashboardPan-ux read here)]` |
 | Tunnel (poller + write-server) | e4b42b0; write-server v3.3 ships the child-ORD `${ord}/value` bare-`<real>` setpoint path | `[tunnel]` `[ev: corpus B826]` |
 | Station (PANCCADIA) | `AuditHistoryService` INSTALLED (`/PANCCADIA/AuditHistory`, bog read `[CERT]`, B829-G1 CLOSED); the 22 relays still null-fallback (S15 STATION fix open) | `[ev: corpus B829]` `[ev: corpus B810 §810.8]` |
 
