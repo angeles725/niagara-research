@@ -37,12 +37,18 @@ Real-tree root (717d585, RP1): `ROOT="${C9_CLIENT_ROOT:-/home/cristian/modulos_n
 1. Collect properties: `name`, `type`, `flags`. **Complex** = type matches `(baja:|B)?Status(Numeric|Boolean|Enum)`
    (both the module-name and the Java-class forms — the client writes `"BStatusNumeric"`). **OPERATOR** = flags contain `OPERATOR`.
 2. Collect actions in the SAME file (same type): `@NiagaraAction(name="X" …)`.
-3. Flag a property iff complex AND OPERATOR AND no action **matches** it. Matching (EW3 is the only positive pin): an action
-   named `set<Slot>` (case-insensitive on the first letter) — implement as `set` + capitalized slot name; **also accept** an
-   action whose name contains the slot name or an action taking a `parameterType` and declared OPERATOR on a type with
-   exactly one complex OPERATOR slot? — NO: keep it to `set<Slot>` (+ optionally `apply<Slot>`/`<slot>Cmd` from B822's
-   additive-action doctrine); document the accepted names in the script header so a reviewer knows the seam. SUMMARY-only
-   complex → never flagged (EW4).
+3. Flag a property iff complex AND OPERATOR AND the class exposes **NO `@NiagaraAction` at all**. **CORRECTION (2026-09-06,
+   from investigador1's faultReset finding + the EW10 exact contract):** the shipped rule is a CLASS-LEVEL "any action"
+   exemption, NOT a per-slot `set<Slot>` match. Proof from the RED at 269be48: EW3 clean (class has `setSetpoint`), EW6 WARN
+   (class has NO action), and EW10 pins **CompPan-rt = 0** even though `BCompressorControl.faultReset` (complex OPERATOR
+   `BStatusBoolean`, :375) has NO `setFaultReset` — it is exempted only by the unrelated HIDDEN `powerOnExpired`/`tick`
+   actions (:411-413). A `set<Slot>` rule would WARN faultReset → EW10 would expect 1, not 0. So implement: complex OPERATOR
+   slot + the enclosing class declares **≥1 `@NiagaraAction` (hidden counts)** → EXEMPT; else → WARN. SUMMARY-only complex →
+   never flagged (EW4). This matches `module-find ext-writable` (`ok(has-action) … class exposes an action`).
+   **Known imprecision (C10, filed cluster with S21 / niagara-tools #89):** "any action on the class" is a coarse heuristic —
+   it false-NEGATIVEs `faultReset` (a hidden unrelated action shouldn't exempt an operator write). The C10 precision follow
+   is a per-slot action-body match (does an action actually WRITE this slot?), the same coarse-heuristic family as the
+   lint-timers companion-flag FP. C9 ships the loose rule as the RED pins it (K13); the refinement is C10, doc-note only.
 4. Emit one WARN per flagged slot: `WARN  ext-writable-shape  <file>:<line-of-@NiagaraProperty>  <slot>: OPERATOR <type> with no writing action — external oBIX write must use the child leaf …/<slot>/value (bare <real>, B826) or add an OPERATOR action (B822)`; `FAILED=1` only under `--strict`.
 Cross-check at GREEN: `python3 tools/module-find.py <src> ext-writable` (niagara-research) must flag the same slots on the
 four client roots (module-find's rule is "any action on the class" — looser than EW3's `set<Slot>`; expect the kit lint to
@@ -71,6 +77,6 @@ per-file awk: paren-balanced annotation join → properties + actions → rule �
 |---|---|---|---|
 | 1 | RED tip 269be48; script `lint-ext-writable-shape.sh`; EW10 exact four-root counts; EW11 exit 3 | [CERT] | `git log origin/qa/c9-ext-writable-shape`; bats setup :24/:27, EW10/EW11 bodies @ 269be48 (read 2026-09-06) |
 | 2 | EW1–EW10 fixtures/expectations, row grammar, exits, D9b | [CERT] | bats :14-16, :31-156 |
-| 3 | EW3 = `set<Slot>` matching action is the only positive pin | [CERT] | bats :62 |
+| 3 | exemption = class exposes ANY @NiagaraAction (incl. hidden); NOT set<Slot> — proven by EW10 CompPan-rt=0 with faultReset exempt via hidden powerOnExpired | [CERT] | EW3/EW6 fixtures + EW10 @ 269be48; BCompressorControl.java:375,:411-413 @ a109249 |
 | 4 | real BRoomPanel.setpoint shape | [CERT] | BRoomPanel.java:124-130 @ a109249 |
 | 5 | four-root counts 1/0/0/0 | [CERT, pinned] | EW10 @ 269be48 (matches the module-find ext-writable measurement) |
