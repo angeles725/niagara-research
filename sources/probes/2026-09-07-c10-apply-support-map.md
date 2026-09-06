@@ -11,8 +11,8 @@ on `origin/qa/c10-*` (tips below). Execute-only for the apply workers. No Co-Aut
 | P2 | S23 silent-protection surfaces | `feat/c10-silent-protection-surfaces` | kit (main) | `qa/c10-silent-protection-surfaces` **f981754** | `niagara-tools-worktrees/c10-silent-protection-surfaces` | CompPan-rt/src → **0** (CP-1 recognised via Pattern B); ColdRoomPan-rt 0; DashboardPan 0 |
 | P3 | S22 ext-writable per-slot | `feat/c10-ext-writable-per-slot` | kit (main) | `qa/c10-ext-writable-per-slot` **954ebd7** | `niagara-tools-worktrees/c10-ext-writable-per-slot` | CompPan-rt gains `faultReset` (**1** WARN); DashboardPan-rt 1 (`setpoint`); ColdRoomPan-rt/DashboardPan-ux 0 |
 | P4 | S24 cwd-independent tests | `feat/c10-structural-cwd` | kit (main) | `qa/c10-structural-cwd` **a792d7a** | `niagara-tools-worktrees/c10-structural-cwd` | run-pure-test.sh from `/tmp` → the two WiringTests GREEN |
-| P5 | S25 lint-write-path STALE | `feat/c10-write-path-strict` | kit (main) | `qa/c10-write-path-strict` **a56a72e** | `niagara-tools-worktrees/c10-lints` (exists @ a56a72e) or a fresh one | matrix-root STALE = **5** before PR6 marker, **0** after; uncovered FAIL unchanged |
-| P6 | S26 client gitignore | `chore/c10-gitignore` | client (ff1b659) | none (chore) — also carries the 5 `[concept]` matrix marks | `Leon-Guanjuato-worktrees/c10-gitignore` | STALE flips 5→0 on the client tree; keep-set proof (§PR6) |
+| P5 | S25 lint-write-path STALE | `feat/c10-write-path-strict` | kit (main) | `qa/c10-write-path-strict` **a56a72e** | `niagara-tools-worktrees/c10-lints` (exists @ a56a72e) or a fresh one | matrix-root STALE = **5** before PR6 marker, **0** after; uncovered FAIL unchanged; row grammar STATUS-first `STALE  lint-write-path  <matrix>:<line>  slot <name>: …` |
+| P6 | S26 client gitignore | `chore/c10-gitignore` | client (ff1b659) | none (chore) — also carries the 5 `[concept]` matrix marks | `Leon-Guanjuato-worktrees/c10-gitignore` | **merge AFTER P5** (needs the STALE pass on main); STALE flips 5→0 on the client tree; keep-set proof (§PR6) |
 | PC | close | `chore/c10-close` | kit (main) | `qa/c10-close-checklist` **41bca42** | `niagara-tools-worktrees/c10-close` | c10-close.bats green; sweep-fold-audit --strict 0 uncited |
 Kit worktrees dir exists (`/home/cristian/modulos_niagara_n4/niagara-tools-worktrees/`); client dir exists
 (`/home/cristian/modulos_niagara_n4/Cliente/Leon-Guanjuato-worktrees/`, holds `c10-ff1b659` read-only + `main-a109249`).
@@ -94,7 +94,7 @@ git -C "$W" status --porcelain | grep -c '^D ' # == 51 (43 .class + 8 tmp), 0 of
 :52  | `hoaMode` [concept] + `setpoint` (two writes) | …
 ```
 (:40 `setpoint`+hoaMode UNtouched — its backtick-inner is `setpoint`, a real slot.)
-Then: `lint-write-path.sh <root>` STALE = 0 on the client tree; commit both (.gitignore untrack + matrix marks) as the
+**PR6 merges AFTER PR5** (its STALE 5→0 flip needs the STALE pass on kit main). Then: `lint-write-path.sh <root>` STALE = 0 on the client tree; commit both (.gitignore untrack + matrix marks) as the
 chore. No jar, no version bump. `[ev: git ls-files @ ff1b659 — 43 .class + 8 tmp; 4 jars + 4 module.xml keep]`
 
 ## Self-verify

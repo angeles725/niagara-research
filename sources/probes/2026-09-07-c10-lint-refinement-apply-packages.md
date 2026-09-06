@@ -14,6 +14,13 @@ WARN/FAIL-preserving for the true defect and only removes the false positive/neg
 meant to "find a method body that contains both Clock.schedule and an `= true` assignment" but (a) it scans FORWARD from the
 assignment line brace-balancing the NEXT block, not the ENCLOSING method — so a schedule later in the file can be pulled in;
 and (b) it never checks whether the identifier is a class FIELD vs a method LOCAL. The FAIL row is emitted at **:212**.
+**Design (kit e359fd8 design.md) — port the parser, do not hand-roll:** the ROOT cause is the candidate regex at
+`lint-timers.sh:147` (`match(line, /[a-zA-Z_][a-zA-Z0-9_]*[[:space:]]*\(/)`) which treats `@NiagaraProperty(` as a method
+signature. The fix PORTS the section-D method-boundary parser from `lint-silent-protection.sh:250-306` (net-brace-change > 0
+method detection) into lint-timers, with a `brace_depth >= 2` guard (a method body is depth ≥ 2: class = 1, method open = 2)
+and **FIELD = a depth-1 declaration** (class scope). PR ORDER: this slice (S21) lands the shared parser shape FIRST; S22/S23
+reuse it. So both guards below are realised THROUGH that ported parser, not a bespoke scan.
+
 **Refinement (both guards; either alone kills this case):**
 1. Only consider a flag that is a **class FIELD** — its declaration is at class scope (`^\s*(private|protected|public|static|final|volatile|transient|\s)*\b(boolean|int)\b\s+<name>\s*[;=]` OUTSIDE any method body), NOT a `type name = …;` inside a method. Collect field names in a class-scope pass (reuse the property/field collector idiom already in the script).
 2. Pair the flag with a Clock.schedule* only when the schedule is in the **same ENCLOSING method body** as the assignment — anchor the body scan at the method the assignment sits IN (brace-count the method opening `{` back from the signature), not forward from the assignment.

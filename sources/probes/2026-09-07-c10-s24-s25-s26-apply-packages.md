@@ -15,10 +15,12 @@ Author: companero (Fable), 2026-09-06. Cut against kit `df8c7ec`/`cb79676` and c
   It resolves ONLY if the JVM cwd is the module-rt-dir or its parent — brittle.
 - `CompressorAlarmWiringTest.java`: same shape (`SRC` :26, `GROUP_BUILD` :27, `code()`/`read()` :31-33).
 **Fix — two options:**
-1. **Runner-side (RECOMMENDED, no test edits):** in `run-pure-test.sh`, run the final `java` with working directory `$rt`
-   (a subshell, `$tmp`/`$JU`/`$HC` are already absolute): `( cd "$rt" && java -cp "$tmp:$JU:$HC" org.junit.runner.JUnitCore "$testfqcn" )`.
-   From `$rt` (e.g. `…/CompPan-rt`), `Paths.get("src/…")` and `../../build.gradle.kts` both resolve for EVERY cwd-relative
-   test, with no client-source churn. This is the minimal, kit-only fix.
+1. **Runner-side (design kit e359fd8 — TWO edits, no test edits):** (a) normalise `$rt` to an absolute path right after the
+   `-d "$rt"` guard (~:30): `rt=$(cd "$rt" && pwd)` — so a relative `$1` survives the later cd; (b) run the final `java`
+   (`:62`) with working directory `$rt` in a subshell (`$tmp`/`$JU`/`$HC` are already absolute):
+   `( cd "$rt" && java -cp "$tmp:$JU:$HC" org.junit.runner.JUnitCore "$testfqcn" )`. From `$rt`, `Paths.get("src/…")` and
+   `../../build.gradle.kts` both resolve for EVERY cwd-relative test, no client-source churn. (Pending investigador1's
+   verification per the design.)
 2. **Test-side (robust, but edits every WiringTest):** resolve `SRC`/`GROUP_BUILD` against `System.getProperty("module.rt.dir")`,
    and have `run-pure-test.sh` pass `-Dmodule.rt.dir="$rt"`. Belt-and-braces for a test ever run outside the runner.
 **Recommend option 1** (kit change only); note option 2 as the follow if a test must run standalone.
@@ -54,7 +56,7 @@ Deterministic harvest (uncovered FAIL stays per-module; only STALE's covered set
 **Insertion:** `STALE=0` beside `FAILED=0` (:33); `--strict) STRICT=1; shift ;;` in the arg loop (:48). The STALE row pass
 (pseudocode): `awk` over the matrix emitting, per data row lacking `[concept]`, the backtick-inner name; for each such name
 `case " $prop_and_action_names $_bog_extra " in *" $name "*) : ;; *) printf 'write-path  STALE  %s  no source slot with that name\n' "$name"; STALE=1 ;; esac`. Exit: `exit $(( FAILED ? 1 : (STRICT && STALE ? 1 : 0) ))` — FAIL always wins.
-**Row grammar:** `write-path  STALE  <slot>  no source slot with that name`. **Exemption:** literal `[concept]` in the row.
+**Row grammar (design e359fd8): STATUS-first with the matrix line** — `STALE  lint-write-path  <matrix-path>:<line>  slot <name>: no source slot with that name`. **Exemption:** literal `[concept]` in the row.
 **Real-tree ACTUAL @ ff1b659 (PER-ROW, R19.3 extractor, covered = all property+action names ∪ --bog):** STALE = **5 rows** —
 `:31 hoaMode`, `:32 hoaMode`, `:33 inhibit`, `:36 freezeEnabled`, `:52 hoaMode`. (`inhibit` VERIFIED not a `--bog` slot:
 `bog-nav links --slot inhibit`/`--slot-any` on the PANCCADIA config.bog → no links.) `:40 setpoint`+hoaMode is NOT STALE
