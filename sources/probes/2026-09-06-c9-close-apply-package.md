@@ -9,7 +9,16 @@ Author: companero (Fable), 2026-09-06. Template = `2026-09-06-c8-close-apply-pac
   every retro created by the campaign's kit PRs exists under `retros/` with its `campaign9-*` slug.
 - Branch `chore/c9-close` from kit `origin/main` (fresh fetch — the C8 lesson: a stale checkout produced a false close terrain).
 
-## B. CHANGELOG — `## [v0.20.0] - <date>` inserted ABOVE `[v0.19.0]` (CONTRIBUTING §5: VERSION + CHANGELOG in the same commit)
+## A2. REFRESH 2026-09-06 — fold from the LIVE `[Unreleased]`, not from scratch
+State on niagara-tools main (VERSION `0.19.0`): `CHANGELOG.md` already has an **`## [Unreleased]`** section with
+`### Added — Campaign 9 Wave 1: kit lints (PR2, PR3)` (lint-demand-scope, lint-silent-protection), and
+`retros/2026-09-06-campaign9-demand-scope.md` + `retros/2026-09-06-campaign9-silent-protection.md` already exist on main.
+So the close (PR13) does NOT write those rows again: it RENAMES `## [Unreleased]` → `## [v0.20.0] - <date>`, keeps the two
+Wave-1 rows in place, and APPENDS the remaining merged PRs (PR6/PR6b, PR7, PR8, PR9, PR10, PR11, PR12) under the same
+`### Added`/`### Changed`. VERSION `0.19.0` → `0.20.0`. The retro list below drops demand-scope/silent-protection from
+"create" to "already on main — verify only".
+
+## B. CHANGELOG — RENAME `## [Unreleased]` → `## [v0.20.0] - <date>` (it already holds the PR2/PR3 rows); VERSION 0.19.0 → 0.20.0 in the SAME commit (CONTRIBUTING §5)
 ```markdown
 ## [v0.20.0] - 2026-09-<dd>
 
@@ -42,6 +51,7 @@ patterns A/B doctrine, and the unified write audit (write-server + servlet → o
 | `campaign9-silent-protection` | PR3 | four-root count+subject+absence table; R3↔R8 coupling (CR-3 WARN closes when PR8 lands) |
 | `campaign9-ext-writable-shape` | PR10 | the same naming conflict (D-a) + `set<Slot>` matching-action seam; module-find cross-check |
 | `campaign9-doctrine-fold` | PR12 | which folds landed where (anchors), dangling-token ordering lesson |
+| `campaign9-wave-lessons` (Wave 1/2 apply) | PR13 | the apply-time lessons named by the lead: **fixture-fitting production code** (a lint GREEN on bats fixtures over-flagged the real tree 113→2 — presence pin required); **golden axes** (a golden file must pin the axes it claims); **lazy stamp** (a deploy-version token stamped lazily read stale); **TTL never compared** (config token TTL scaffolded but never enforced — PF2); **presence pins ×2** (K22 recurred in both W1 lints); **no-source exit 3** (K20: empty/missing input must exit 3, not silent 0); **npm test glob** (`node --test test/` needs the dir + a package.json test script); **argv-safe isMain** (`import.meta.url===pathToFileURL(process.argv[1]).href` so main() never runs on import) |
 | `campaign9-close-process-meta-lessons` | PR13 | (1) **line numbers vs content**: S20 rev 1 copied anchor line numbers from design prose while the content was verified — anchors are counted at the tip with `git show`/`grep -n`, never copied; (2) **stale checkout**: the local client clone at 4f5f1c7 produced a false "matrix absent" and D1 drift — read the tip through a worktree; (3) silent `git push \| tail` failure → verify `origin/main == HEAD` after every push; (4) two sessions sharing a name → address peers with `[ref]`; (5) PATH mangled inside bash loops → `export PATH=/usr/bin:/bin:$PATH` first; (6) RED-vs-proposal script-name conflicts are lead decisions, resolved by QA re-issue, row token unchanged; (7) **a negative claim needs a grep that asked the question** ("coolOnSensorFault is HMI-only" came from a pattern that never searched for it — write-server.mjs:94 had it); (8) **read the code before naming a tool's defect** (bog-nav `--slot` was called "substring" from its symptoms; bog-nav.py:447 compared exactly — the cause was either-end matching, fixed endpoint-aware in 5bb1c223e); (10) **cite a RED by the branch TIP, read on origin** — PR10 rev 2 quoted EW10's body at 717d585 (a mid-chain commit named in a message) and declared the four-root counts "not pinned"; the tip 269be48 pinned them exactly. Before quoting any pin: `git log --oneline origin/<qa-branch> | head -1`, then read the body AT THAT SHA. Third member of the "wrong revision" family this campaign (line numbers from prose; stale checkout; non-tip commit); (9) **the deployed station bog lives on the Windows side** (`/mnt/c/Users/equipo/Niagara4.14/OptimizerSupervisor/stations/PANCCADIA/config.bog`) — two sessions searched WSL and one called it artifact absence |
 Each retro: H1, context, what happened, lesson, promotion line (`Promotes: <doctrine anchor>` or `none`), `[ev:]` tokens.
 

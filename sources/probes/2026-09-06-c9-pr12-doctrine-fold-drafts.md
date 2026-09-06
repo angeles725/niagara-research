@@ -6,6 +6,13 @@ the R15.2 health line at `:95`; `types/logic-authoring.md:62-70` ALREADY carries
 `BUILD-LOOP.md:68 ## 5. Verify gate` has no K22 cross-reference; no `change_log`/unified-write-audit line exists anywhere in
 the kit. `[ev: kit main grep 2026-09-06]`
 
+## REFRESH 2026-09-06 — token-resolution state
+`retros/2026-09-06-campaign9-demand-scope.md` and `…-silent-protection.md` are ALREADY on niagara-tools main, so
+`[ev: retro campaign9-demand-scope]` / `[ev: retro campaign9-silent-protection]` resolve today — Fold 3's demand/silent
+references are safe to land now. `campaign9-ext-writable-shape`, `campaign9-doctrine-fold`, `campaign9-wave-lessons`, and
+`campaign9-close-process-meta-lessons` are created by their own PRs (PR10/PR12/PR13), so keep the ordering rule: land PR12
+AFTER those retros exist, or `sweep-fold-audit --strict` fails on the dangling token.
+
 ## Fold 1 — NEW `## Protection anatomy [ev: corpus B821][ev: corpus B827]` in `types/logic.md`, after `## RT control logic` (:87-95)
 Insert as a new H2 immediately after the RT-control-logic block (keep :95's health line where it is; this section is what it points to).
 ```markdown
