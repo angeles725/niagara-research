@@ -82,21 +82,40 @@ C9 research/build core = **#1 protection-latch fixture** (built below) + **#2 wr
   where the floor helper lives in a dependency module; the lint must resolve it (or WARN, not false-FAIL).
 
 ## CLIENT — our module source
-- **S12 · DashboardPan-ux internal CONFIGURATION LOGIN + step-up write audit `[TOP-RANKED — user-explicit 2026-09-05]`.**
-  Gap / spec as the user stated it: (1) general station login as today; (2) INSIDE the dashboard a SECOND login
-  (button) that unlocks configuration writes (setpoints, buttons, HOA); (3) every change recorded in a JSON audit
-  (what changed, old→new, who, when); (4) an explicit LOGOUT button so a config session cannot be reused by someone
-  else — record the config user on EVERY write; add an inactivity timeout as a safety net `[INFER]`; (5) applies to
-  ANY write (button press, setpoint change). Evidence: B803 §803.3 (server-side re-verify via `BUserService.getUser`
-  + `BPasswordCache.validate`; LDAP via `scheme.login`; **SAML cannot** re-verify mid-session, `[INFER]`/B803-G1),
-  §803.5 (`x-niagara-csrfToken`), §803.6 (short-TTL token bound to `session+user+ORD+purpose`, server-side
-  criticality allowlist, audit every step-up); B816 (write path); B804 (`AuditHistoryService` as the second,
-  Niagara-native record). Requires execution: PARTIAL — pure `DashboardDispatch` router tests run in WSL; the live
-  RBAC/CSRF + AuditHistoryService smoke needs a station. **RED shape — `DashboardDispatchTest`:** write WITHOUT
-  step-up → 401/403 JSON; login with WRONG password → 401 + NO token; write WITH a valid token → 200 + exactly ONE
-  audit line (user/ts/ord/old→new); logout → token invalid; token of user A used AFTER logout → rejected; audit-file
-  append FAILURE → the write still lands + an alarm row (audit-failure never fails the write, per DWS1 gate 5).
-  `[ev: corpus B803]` `[ev: corpus B816]` `[ev: corpus B804]` `[ev: corpus B813]`
+- **S12 · Config-mode step-up login + write audit — TWO surfaces `[TOP-RANKED — user-explicit 2026-09-05]`.**
+  **REAL access model (corrected per the viewer's account, verified this session against the code):** the browser
+  NEVER talks to the station. READ path = `poller.mjs` (site mini-PC) oBIX Batch every 5 s with a READ-ONLY station
+  user → Supabase `latest`/`history`/`events`/`alarms` (`tunnel …/pipeline/poller.mjs:2-5,44` @ 8d738a2). WRITE path
+  = 3D viewer → `POST https://api-panccadia…/write {ord,value}` with a Supabase-Auth JWT (app user, ES256, JWKS,
+  email allowlist) → `write-server.mjs` (mini-PC `127.0.0.1:18080` behind cloudflared) → oBIX PUT of an
+  OPERATOR-writable façade slot with ONE write-capable station user (`write-server.mjs:6,42,51,157,235` @ 8d738a2;
+  viewer `panccadia-3d-viewer/index.html` @ dbbbc5c). Writable set = HOA modes + intercambiador (TRANSIENT+OPERATOR,
+  LOST on station restart, `:87`); `setpoint` is READONLY in the façade (oBIX "Cannot translate") so the 2D writes it
+  via the module SERVLET, not write-server (`:74-75`); alarm ack carries `ackUser` (`:246`).
+  **The gap:** NO who-changed-what record today — `write-server` verifies the operator (`verifyJwt` → `by:user.email`,
+  `:237`) then DISCARDS it; Supabase `events` are poller-detected with no actor; Niagara AuditHistory sees only the
+  single oBIX write user. **Rewrite as two surfaces, same audit schema so the trails merge:**
+  - **(A) PRIMARY — viewer + write-server (mini-PC):** a "modo configuración" step-up = re-auth of the Supabase user
+    → a short-TTL CONFIG TOKEN bound to `user + purpose`, held server-side IN write-server; every `/write` and
+    `/alarms/ack` requires it; explicit `/config/logout` REVOKES it; inactivity expiry `[INFER]`. Audit = JSON-lines
+    on the mini-PC AND a Supabase `audit` table `{ts, operator email, ord, old (oBIX GET before the PUT), new,
+    result, client ip, config-session id}`, viewable/filterable from the viewer. `[ev: viewer message; tunnel write-server.mjs @ 8d738a2]`
+  - **(B) SECONDARY — DashboardPan-ux on the HMI panel via the station servlet (per B803):** station-user re-auth,
+    same audit schema so (A) and (B) merge into one trail. `[ev: corpus B803 §803.3/5/6]`
+  Grounding: B803 §803.3 (server-side re-verify via `BUserService.getUser` + `BPasswordCache.validate`; LDAP via
+  `scheme.login`; SAML likely cannot re-verify mid-session `[INFER]`/B803-G1), §803.5 (`x-niagara-csrfToken` for
+  surface B), §803.6 (short-TTL token bound to session+user+ORD+purpose, server-side allowlist, audit every step-up);
+  B816 (write path); B804 (`AuditHistoryService` as a Niagara-native second record for surface B).
+  **Caveats:** the SINGLE station write user means Niagara AuditHistory CANNOT attribute operators — the write-server
+  audit is the SOURCE OF TRUTH; writes are TRANSIENT (lost on station restart); public signup disabled + email
+  allowlist. Requires execution: PARTIAL — write-server tests + pure `DashboardDispatch` router tests run off-station;
+  the live oBIX-PUT + Supabase audit + AuditHistory smoke needs the mini-PC + station.
+  **RED shapes — (A) write-server:** write WITHOUT a config token → 403; step-up with WRONG password → 401; valid →
+  200 + exactly ONE audit row `{email, ord, old, new}`; `/config/logout` → next write 403; token of user A after
+  logout → 403; audit APPEND FAILURE → the write still lands + an error/alarm row. **(B) `DashboardDispatchTest`:**
+  the same six cases against the servlet (no-step-up→401/403, wrong-pw→401+no-token, valid→200+one audit line,
+  logout→invalid, A-after-logout→rejected, audit-fail→write-lands+alarm; audit-failure never fails the write, DWS1
+  gate 5). `[ev: corpus B803]` `[ev: corpus B816]` `[ev: corpus B804]` `[ev: corpus B813]`
 - **S13 · Health surface in ColdRoomPan/CompPan.** Gap: a LOGIC fault reaches only the engine console, not the
   operator. Evidence: B808 / B805 §805.4. Requires execution: PARTIAL (station smoke for the alarm). RED: a test that
   a faulted component sets a fault-status slot AND raises a `BAlarmRecord`.
