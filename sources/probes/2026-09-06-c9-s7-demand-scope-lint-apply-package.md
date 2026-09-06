@@ -1,17 +1,17 @@
 # C9 S7 — `lint-demand-scope.sh` (demand-in-scope lint, B820): apply package for PR2 / R2
 
-Author: companero (Fable), 2026-09-06. Contract extracted from the QA RED `qa/c9-demand-in-scope` **`2916954`**
+Author: companero (Fable), 2026-09-06. Contract extracted from the QA RED `qa/c9-demand-in-scope` **`2916954` → re-issued `d0f5942`** (QA aligned the setup path to `lint-demand-scope.sh`; row token `demand-in-scope` unchanged; file still `tests/demand-in-scope.bats`)
 (`tests/demand-in-scope.bats`, DS1–DS7 + DS-smoke); rule from B820 §820.2–§820.4; skeleton = `lint-delays.sh` (the
 src-dir single-profile shape the RED itself cites). Real-tree anchors re-read at client `a109249`. Neither script name
-exists on niagara-tools main today (RED state confirmed). `[ev: qa/c9-demand-in-scope 2916954 tests/demand-in-scope.bats]`
+exists on niagara-tools main today (RED state confirmed). `[ev: qa/c9-demand-in-scope d0f5942 (was 2916954) tests/demand-in-scope.bats]`
 `[ev: corpus B820 §820.2-820.4]` `[ev: kit toolbelt/lint-delays.sh]`
 
 ## 0. TWO DECISIONS FOR THE LEAD before apply (both are RED-vs-proposal conflicts; K13 says the RED wins, but the
 ## proposal/spec text must then be corrected, and one needs a QA re-issue)
 | # | Conflict | RED (2916954) | Proposal (ba3432c) | Recommendation |
 |---|---|---|---|---|
-| D-a | **script filename** | `setup(): DIS="$KIT/toolbelt/demand-in-scope.sh"` | R2 row :34, capability :75, file table :158 all say `toolbelt/lint-demand-scope.sh` | Keep the kit's `lint-*.sh` convention (every C8 lint: lint-delays/-timers/-servlet/-structure/-write-path/-wb-threading) → **rename the RED's `DIS=` path to `lint-demand-scope.sh` in a QA re-issue**. The ROW token `demand-in-scope` (DS2 asserts `*"demand-in-scope"*` in OUTPUT) is the lint-name column, not the filename — it stays. No other pin depends on the filename. |
-| D-b | **severity** | WARN-ONLY: DS2 asserts `WARN` + `status 0`; DS5 = `--strict` → 1; bats header "WARN-only (--strict -> FAIL)"; B820 §820.3 "never a hard FAIL" | capability :75 says "**FAIL** a step/staging body that computes a target with no zero-demand short-circuit; rows `FAIL\|WARN`" | RED + B820 are right (a pure-modulator block fed by an upstream demand gate would false-positive on FAIL). **Correct the proposal/spec capability text to WARN-only, `--strict` promotes to exit 1.** No RED change. |
+| D-a | **script filename** — **RESOLVED both sides** (2nd read, investigador1) | RED re-issued `d0f5942`: bats :25 `DIS="$KIT/toolbelt/lint-demand-scope.sh"` | proposal already `lint-demand-scope.sh` | Script = `toolbelt/lint-demand-scope.sh`; row token `demand-in-scope` (DS2) unchanged. Nothing left to decide. |
+| D-b | **severity** — **RESOLVED** (proposal/spec corrected in niagara-tools d9855f8) | WARN-ONLY: DS2 asserts `WARN` + `status 0`; DS5 = `--strict` → 1; bats header "WARN-only (--strict -> FAIL)"; B820 §820.3 "never a hard FAIL" | capability :75 says "**FAIL** a step/staging body that computes a target with no zero-demand short-circuit; rows `FAIL\|WARN`" | RED + B820 are right (a pure-modulator block fed by an upstream demand gate would false-positive on FAIL). **Correct the proposal/spec capability text to WARN-only, `--strict` promotes to exit 1.** No RED change. |
 `[ev: proposal.md :34, :75, :158]` `[ev: bats DS2/DS5]` `[ev: corpus B820 §820.3]`
 
 ## 1. The contract (verbatim from the RED)

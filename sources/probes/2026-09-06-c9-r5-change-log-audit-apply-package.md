@@ -16,7 +16,7 @@ Clone: `/home/cristian/tunnel/clientes/Leon-Guanajuato/Pancaddia` (Guanajuato WI
   **per-user Supabase re-auth (email+password)**. The RED wins for apply (K13); the plan wording should be reconciled by the lead
   (a single config password is not a "user+password store" — SC-4 still holds — but it is a weaker identity proof than re-auth).
 - **D-2 (settled by the RED):** `surface` value for the write-server rows is **`'write-server'`** (S12A-4), not the proposal's
-  `'A'`. Migration default = `'write-server'`; R7's surface-B mirror picks its own literal (recommend `'dashboardpan'`).
+  `'A'`. Migration default = `'write-server'`; the surface-B mirror literal is **`'servlet'`** (design D7 :39/:64 — not `'dashboardpan'`).
 
 ## 1. The contract (verbatim from the RED)
 | Piece | Pin | Exact expectation |
@@ -121,7 +121,7 @@ every test fails on `process.exit(2)` from `loadConfig()` (the RED's own "for th
 - `lint`: no kit lint applies to the tunnel (Node); run `node --test test/` (7/7 → 9/9 with S12A-8/9) + `node --check`.
 - **change_log consumers:** the viewer's audit view reads the new columns (`surface`, `config_session`, `result`, `client_ip`);
   pre-R5 rows have them NULL/`'write-server'` (default) — never backfilled/faked. The R7 mirror writes the same columns
-  with its own `surface` literal and `config_session` = station username (MIR5).
+  with `surface: 'servlet'` and `config_session: null` (D7 MIR5 — the identity is the `user` column, never the session column).
 - **Retention:** `pancaddia_retention()` already deletes `change_log` past 90 days — the spool is not retained (drained by F4).
 
 ## Self-verify

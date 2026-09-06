@@ -1,6 +1,6 @@
 # C9 R14 / D8b — in-module config login for the HMI panel: apply package (client DashboardPan-ux, on top of PR6)
 
-Author: companero (Fable), 2026-09-06 (rev 2 — matched VERBATIM to QA's RED `qa/c9-s12-config-login` **`cc1c948`**:
+Author: companero (Fable), 2026-09-06 (rev 3 — investigador1 2nd-read fixes applied: MIR5 wording, guard-3 on the config-session user per lead d2857d1, /alarms/ack settled, CLW3/CLW4 regex constraints, anchors; rev 2 matched VERBATIM to QA's RED `qa/c9-s12-config-login` **`cc1c948`**:
 `ConfigLoginGuardTest.java` CL1–CL11 + `ConfigLoginWiringTest.java` CLW1–CLW5 + SC13). Product decision (Cristian): ONE
 shared kiosk login stays; a SECOND identifying login INSIDE DashboardPan before any write; writes run with THAT user's
 Context so AuditHistory (and the R7 `change_log` mirror) name the real operator; NO credential storage. Legal Niagara API =
@@ -16,6 +16,8 @@ Servlet anchors re-read at client **`a109249`**. `[ev: client qa/c9-s12-config-l
 | D-3 | **Session stores the USERNAME, never the `BUser`**; the servlet re-resolves the `BUser` on every write (CL9 pins the stored user is the re-authenticated one, not the kiosk user). |
 | D-4 | **Audit failure never fails the write; a permission failure does** — `statusForWrite(permissionDenied, auditFailed)` (CL10/CL11). |
 | D-5 | `Dashboard/build.gradle.kts:33` → `defaultModuleVersion("2.2.0")` (SC13). PR6 sets the same value → fragment-merge, no second bump. |
+| D-6 | **guard 3 evaluates the CONFIG-SESSION user, not the kiosk user** (lead decision niagara-tools `d2857d1`; the kiosk may be viewer-only; CL10 authoritative). Write-path order becomes **1 XHR-302 → 2 kiosk-auth-401 → 6 session-403 → 3 OPERATOR_WRITE(config user)-403 → 4 value-400 → 5 ORD-400**. |
+| D-7 | **`/alarms/ack` IS gated by `requireSession`** (lead decision; additive, QA adds a pin at GREEN-verify). Settled — no longer open. |
 
 ## 1. The legal call path (B830 §830.2 — cite in code; CLW2 greps the tokens in the servlet source)
 | Step | Call | Cite | Rule |
@@ -67,8 +69,8 @@ silence past TTL expires it). `logout` → `revoke` → next `requireSession` 40
 | F3 | NEW `…/DashboardConfigAuth.java` — the thin Baja adapter | `UserLookup.find(name)`: unescape (`DashboardRbacHelper.unescapeUsername :68-70`) → `svc.getUser` → wrap the `BUser` in a `UserHandle` whose `canLogin()` = `svc.canLogin(u)`, `isPasswordCache()` = `u.getAuthenticator() instanceof BPasswordCache`, `validate(pw)` = `((BPasswordCache) u.getAuthenticator()).validate(pw)`, `authenticateOk/Failed()` = `u.authenticateOk(svc)/authenticateFailed(svc)`; `resolveOperator(username) → BUser` for write time (re-resolve per request, D-3). Fail-closed on exceptions (the `resolveOperatorWrite :76-100` pattern); never log the password. CLW2 greps these tokens in the servlet tree. |
 | F4 | `DashboardDispatch.java` | POST `/api/*` branch (`:116-135`, after the `SetpointWrite` match): `"/api/config/login" → RouteAction.ConfigLogin.INSTANCE`, `"/api/config/logout" → RouteAction.ConfigLogout.INSTANCE`; two nested singletons beside `SetpointWrite` (`:59-63`) named EXACTLY `ConfigLogin` / `ConfigLogout` (CLW1 regex `class\s+ConfigLogin\b`). The existing XHR guard wraps them (non-XHR → 302). |
 | F5 | `BDashboardServlet.java` `doPost` (`:132-160`) | dispatch `ConfigLogin → handleConfigLogin(req,resp)`, `ConfigLogout → handleConfigLogout`. Login: parse `{username,password}`, `guard.login(req.getSession().getId(), …)` → 200 `{ok,user,ttl}` or 401 `{"error":"auth"}`; logout → `guard.logout(sid)` → 200. |
-| F6 | `BDashboardServlet.java` `handleSetpointWrite` (`:195`) | (a) FIRST on the write path: `int st = guard.requireSession(sid); if (st != OK) → 403 {"error": guard.reason(st)}` (CLW5: the source must contain `config_login_required` + `requireSession(`); (b) after PR6's guards/coercion: `BUser op = configAuth.resolveOperator(sessions.userFor(sid));` and **replace `parent.set(prop, toSet, null)` (`:291`) with `parent.set(prop, toSet, op)`** — the literal `parent.set(prop, toSet, null)` must be GONE (CLW3); (c) wrap the set: `try { parent.set(prop, toSet, op); } catch (PermissionException e) { resp.setStatus(HttpServletResponse.SC_FORBIDDEN); … }` — a `catch (PermissionException …)` whose body reaches `SC_FORBIDDEN` (CLW4 regex; do NOT let a catch-all `Exception` swallow it first); (d) the module audit `svc.appendAudit(…)` at `:312` names `op.getUsername()`; keep it fire-and-forget (CL11: audit failure never fails the write — map through `statusForWrite(false, auditFailed)`). `coerceValue :357`, `parseDouble :403-407`, the numeric guard `:274-288` unchanged (PR6). |
-| F7 | `src/rc/index.html` | the modal from the mock: wrap the two write call sites `fetch("/dashboardpan/api/setpoint", …)` at **`:1335`** and **`:1929`** — on `403 config_login_required` open the modal, HOLD the write, `POST /api/config/login {username,password}`, on 200 re-issue; `Cancelar` drops it; chip with countdown from the login `ttl` + `Salir` → `POST /api/config/logout`. Reuse `.card/.ch/.acts` (`:388-401`) + `:root` vars (`:11-23`); targets ≥ 44 px. Do NOT ship the mock's change_log strip. |
+| F6 | `BDashboardServlet.java` `handleSetpointWrite` (`:195`) | (a) FIRST on the write path (after the kiosk 401): `int st = guard.requireSession(sid); if (st != OK) → 403 {"error": guard.reason(st)}` (CLW5: the source must contain `config_login_required` + `requireSession(`); then **guard 3 (`OPERATOR_WRITE`) is evaluated for the CONFIG-SESSION user** — `DashboardRbacHelper.checkCanWrite` (`:33`) / `resolveOperatorWrite` (`:76-100`) take `sessions.userFor(sid)`, not `req.getRemoteUser()` (D-6, lead d2857d1); (b) after PR6's guards/coercion: `BUser op = configAuth.resolveOperator(sessions.userFor(sid));` and **replace `parent.set(prop, toSet, null)` (`:291`) with `parent.set(prop, toSet, op)`** — the literal `parent.set(prop, toSet, null)` must be GONE, and the CLW3 regex is `parent\.set\(\s*prop\s*,\s*toSet\s*,\s*[A-Za-z_][A-Za-z0-9_]*\s*\)`: **the third argument must be a BARE IDENTIFIER** (`op` passes; `(Context) op` or an inline `configAuth.resolveOperator(...)` FAILS) — resolve into a local first; (c) wrap the set: `try { parent.set(prop, toSet, op); } catch (PermissionException e) { resp.setStatus(HttpServletResponse.SC_FORBIDDEN); … }` — a `catch (PermissionException …)` whose body reaches `SC_FORBIDDEN` — the CLW4 regex is `catch\s*\(\s*PermissionException[^)]*\)[^}]*SC_FORBIDDEN` (DOTALL): **`SC_FORBIDDEN` must appear in the catch body BEFORE any `}`**, so keep that body FLAT (no nested `if {}` / lambda before `setStatus`), and a catch-all `Exception` must not precede it (a catch-all alone also fails `contains("PermissionException")`); (d) the module audit `svc.appendAudit(…)` at `:312` names `op.getUsername()`; keep it fire-and-forget (CL11: audit failure never fails the write — map through `statusForWrite(false, auditFailed)`). `coerceValue :357`, `parseDouble :403-407`, the numeric guard `:274-288` unchanged (PR6). |
+| F7 | `src/rc/index.html` | the modal from the mock: wrap the two write call sites `fetch("/dashboardpan/api/setpoint", …)` at **`:1335`** and **`:1929`** — on `403 config_login_required` open the modal, HOLD the write, `POST /api/config/login {username,password}`, on 200 re-issue; `Cancelar` drops it; chip with countdown from the login `ttl` + `Salir` → `POST /api/config/logout`. Reuse `.card/.ch/.acts` (`:392-398`) + `:root` vars (from `:9`); targets ≥ 44 px. Do NOT ship the mock's change_log strip. |
 | F8 | `Dashboard/build.gradle.kts:33` | `defaultModuleVersion("2.2.0")` (SC13; fragment-merge with PR6, same value) |
 | F9 | tests | the RED's two files land as-is (`ConfigLoginGuardTest`, `ConfigLoginWiringTest`); GREEN = F1–F8. No extra fixtures. |
 
@@ -93,10 +95,13 @@ silence past TTL expires it). `logout` → `revoke` → next `requireSession` 40
 | CLW5 | `config_login_required` present + `requireSession(` / `ConfigLoginGuard` on the write path |
 | SC13 | `Dashboard/build.gradle.kts` `defaultModuleVersion("2.2.0")` |
 
-## 5. change_log / R7 consequence — MIR5 re-pin
-Surface-B rows mirrored from AuditHistory now carry **`config_session` = the second operator's station username** (proposal
-:131: NULL only for pre-R14 writes). R7's MIR5 must assert post-R14 rows have `config_session` == the AuditEvent user, and
-pre-R14 rows stay NULL (never faked). The S12 plan Part 3 already records this. `[ev: proposal :131]` `[ev: S12 plan a6268a67b]`
+## 5. change_log / R7 consequence — MIR5 (re-worded per D7 + investigador1)
+D7 defines `config_session` as an **opaque session id** and pins it **NULL for surface B** (AuditHistory carries no
+session id) — the mirrored row is `{ ts, user, target, old_value, new_value, surface: 'servlet', config_session: null }`
+(D7 :64). After R14, the **identity** of a surface-B row = the `user` column = the AuditEvent's user (the SECOND operator,
+now that the write runs with that `BUser` Context); **`config_session` STAYS NULL** — the station username must NOT be
+written into it. Pre-R14 rows keep the kiosk user in `user` (what AuditHistory recorded then), never faked. MIR5 stands as
+written in D7a; R14 changes what `user` contains, not the column contract. `[ev: design D7 :39, :64, :72-73]` `[ev: proposal :131]`
 
 ## 6. Gates
 `schema-risk.sh` → **SAFE** (no slot touched); `vendorVersion` 2.2.0 (with PR6). `lint-servlet.sh` → clean/WARN-only (auth
@@ -108,8 +113,7 @@ unchanged. Retro slug `campaign9-config-login`; record OBSERVED CL1/CL3 flips + 
 - **B830-G1 (requires execution):** live panel — config login + write shows the second operator in `/PANCCADIA/AuditHistory`
   while `WebOp.getUser()` stays the kiosk user.
 - **B830-G3:** gauth two-factor users take CL6's 401 path; TOTP re-check out of scope.
-- **B830-G2:** exact station auto-logoff resolution — only bounds the module TTL choice (recommend ≤ 90 s idle, well under the 2-min MIN).
-- Whether `/alarms/ack` is also gated by `requireSession` (S12 gates it on surface A; recommend yes — additive, not pinned).
+- **B830-G2:** exact station auto-logoff resolution — only bounds the module TTL choice. The TTL value is a PRODUCT call: a very short idle (≤ 90 s) is aggressive for a multi-room setpoint session; sliding renewal on every write mitigates it — pick with Cristian.
 - A GET `/api/config/session` for the chip (additive; the RED does not pin it).
 
 ## Self-verify
@@ -120,4 +124,5 @@ unchanged. Retro slug `campaign9-config-login`; record OBSERVED CL1/CL3 flips + 
 | 3 | legal call path + lockout caller-invoked + BUser is a Context | [CERT] | B830 §830.2 table |
 | 4 | servlet/dispatch/RBAC/gradle anchors | [CERT] | read @ a109249 this session |
 | 5 | CL6 = 401 (not B830's 400) | [CERT] | RED CL6 + lead decision |
-| 6 | TTL numbers, `/alarms/ack` gating, `/session` GET | [INFER] | recommendations |
+| 6 | TTL value, `/session` GET | [INFER] | recommendations / product call |
+| 7 | anchors + CLW3/CLW4 regexes + login order re-verified by investigador1 at the a109249 worktree; guard-3 config-user order = lead d2857d1 | [CERT] | 2nd read 2026-09-06 |
