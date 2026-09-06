@@ -34,8 +34,7 @@ diff (before/after counts identical on the shared golden tree EXCEPT the one-lin
 downstream smokes read it; only the default source moves). Each bats `load lib/client-root` (bats `load` sources a helper).
 **Exact lines to replace @ dab0807 (the `ROOT="${C9_CLIENT_ROOT:-…}"` default assignment):**
 `tests/ext-writable-shape.bats:26` · `tests/lint-silent-protection.bats:30` · `tests/lint-timers.bats:418` ·
-`tests/lint-write-path.bats:338` · `tests/demand-in-scope.bats:27` (five carry the `C9_CLIENT_ROOT:-` default;
-`tests/c9-close.bats` references `C9_CLIENT_ROOT` but not as a default assignment — confirm at apply). After: each bats keeps
+`tests/lint-write-path.bats:338` · `tests/demand-in-scope.bats:27` — EXACTLY these **5** carry the `C9_CLIENT_ROOT:-…/main-ff1b659` default at dab0807 (VERIFIED; `c9-close.bats`/`c10-close.bats` do NOT reference `C9_CLIENT_ROOT`). Motivating incident: PR7 `b6b65a2` hand-retargeted 3 of these a109249→ff1b659 at the C10 close — the exact churn T2 removes. After: each bats keeps
 its own `ROOT="$C9_CLIENT_ROOT"` (or drops the local default entirely) and `load`s the helper; a moved read tree edits ONE file.
 **Pin (`tests/client-root.bats`):** the default resolves from the helper; an override via the env var still wins.
 
@@ -43,8 +42,7 @@ its own `ROOT="$C9_CLIENT_ROOT"` (or drops the local default entirely) and `load
 **Rule:** a `[concept]` matrix row whose backtick-inner slot name IS in the covered set (source `@NiagaraProperty`/
 `@NiagaraAction` ∪ `--bog`) is a STALE MARKER — the exemption outlived its reason (the slot became real). Flag it.
 **Seam (`lint-write-path.sh` @ dab0807):** the STALE machinery is already there — `STALE=0` :35, the matrix-root covered-set
-harvest :144-149, and the per-row STALE pass. T3 is the INVERSE branch in the SAME per-row loop: for a row that DOES carry
-`[concept]`, if its slot name ∈ the covered set → emit the stale-marker row (today `[concept]` rows are simply skipped).
+harvest :144-149, and the per-row STALE pass at **:422-458** (`case "$_row" in *'[concept]'*) continue` skips marked rows :441; covered check `case "$_covered_flat" in *" $_name "*) continue` :450). T3 is the INVERSE branch in the SAME per-row loop: for a row that DOES carry `[concept]`, if its slot name ∈ the covered set → emit the stale-marker row (today `[concept]` rows are simply `continue`d).
 **Row grammar (STATUS-first, matching S25):** `STALE-MARKER  lint-write-path  <matrix>:<line>  slot <name>: [concept] on a slot now present in source — remove the marker`.
 **Exit contract:** advisory like STALE — default exit 0, `--strict` promotes to 1 (reuse the `STALE` flag or add `SMARK`);
 exit 3 usage unchanged; the hard uncovered-FAIL is untouched.
@@ -68,6 +66,6 @@ the one-liner or the extraction silently inherits a copy's behaviour (B832). T4 
 | # | Claim | Marker | Evidence |
 |---|---|---|---|
 | 1 | ext-writable peak (:132-176), timers net (:202), silent net (:326) | [CERT] | git show @ dab0807 |
-| 2 | 5 bats carry the C9_CLIENT_ROOT default (lines above); c9-close references it otherwise | [CERT] | grep tests/*.bats @ dab0807 |
+| 2 | EXACTLY 5 bats carry the C9_CLIENT_ROOT default (all main-ff1b659); c9-close/c10-close do NOT reference it; PR7 b6b65a2 retargeted 3 | [CERT] | grep C9_CLIENT_ROOT(:-|:=) @ dab0807 = 5 |
 | 3 | lint-write-path STALE machinery (STALE :35, harvest :144-149) — T3 is its inverse | [CERT] | git show @ dab0807 |
 | 4 | one-liner FN reproduced; peak-depth is the standard | [CERT, reproduced] | B832; my run (0 vs 1 companion-flag) |
