@@ -28,6 +28,12 @@ and (b) it never checks whether the identifier is a class FIELD vs a method LOCA
 **Code anchors (`toolbelt/lint-ext-writable-shape.sh`):** the exemption is the class-level `has_action` flag set at
 **:82-91** (any `@NiagaraAction` on the class, hidden included — comment :70-73 states the coarse "developer thought about
 the action model" rationale). The rule fires WARN only when `has_action == 0`.
+**Corrections (lead, B831-G1):** the S22 RED pins the subject by NAME — `faultReset`, count EXACTLY 1 — and the lint
+anchors the `@NiagaraProperty(` OPEN line (`BCompressorControl.java:381` @ ff1b659, `name = "faultReset"` :382), NOT the
+generated `public static final Property faultReset` at :1612. The action-body follow maps `@NiagaraAction(name = "x")` →
+`doX()` and scans THAT method body for a write of the slot (e.g. `name="powerOnExpired"` → `doPowerOnExpired()` :1978).
+`faultReset` has no `@NiagaraAction` whose `do*` body writes it → it WARNs (correct).
+
 **Refinement:** replace class-level `has_action` with a **per-slot writing-action** check — a complex OPERATOR slot `X` is
 exempt only when the class declares an `@NiagaraAction` whose METHOD BODY writes `X` (`set<X>(…)`, `setX(`, or
 `.set(<Xprop>,`), reusing S18/`lint-silent-protection`'s slot→writer body-follow (`SURF_WRITE` idiom, silent-protection
