@@ -58,7 +58,8 @@ Deterministic harvest (uncovered FAIL stays per-module; only STALE's covered set
 - `:374` FAIL emit; `:383` `exit "$FAILED"`.
 **Insertion:** `STALE=0` beside `FAILED=0` (:33); `--strict) STRICT=1; shift ;;` in the arg loop (:48). The STALE row pass
 (pseudocode): `awk` over the matrix emitting, per data row lacking `[concept]`, the backtick-inner name; for each such name
-`case " $prop_and_action_names $_bog_extra " in *" $name "*) : ;; *) printf 'write-path  STALE  %s  no source slot with that name\n' "$name"; STALE=1 ;; esac`. Exit: `exit $(( FAILED ? 1 : (STRICT && STALE ? 1 : 0) ))` — FAIL always wins.
+the row pass carries the matrix LINE NUMBER (`NR`) per data row so the STATUS-first row can name `<matrix>:<line>`:
+`case " $prop_and_action_names $_bog_extra " in *" $name "*) : ;; *) printf 'STALE  lint-write-path  %s:%s  slot %s: no source slot with that name\n' "$MATRIX" "$lineno" "$name"; STALE=1 ;; esac`. Exit: `exit $(( FAILED ? 1 : (STRICT && STALE ? 1 : 0) ))` — FAIL always wins.
 **Row grammar (design e359fd8): STATUS-first with the matrix line** — `STALE  lint-write-path  <matrix-path>:<line>  slot <name>: no source slot with that name`. **Exemption:** literal `[concept]` in the row.
 **Real-tree ACTUAL @ ff1b659 (PER-ROW, R19.3 extractor, covered = all property+action names ∪ --bog):** STALE = **5 rows** —
 `:31 hoaMode`, `:32 hoaMode`, `:33 inhibit`, `:36 freezeEnabled`, `:52 hoaMode`. (`inhibit` VERIFIED not a `--bog` slot:
