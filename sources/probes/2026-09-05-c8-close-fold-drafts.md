@@ -175,13 +175,16 @@ For EACH of the 6 retros:
   (slot-per-slot D6a): the doctrine delta is pointed even though the script deltas are the load-bearing ones.
 - **FOLD (recommended — one `METHODOLOGY.md` §Conformance folded-as-code line):**
 ```
-- folded as code: toolbelt/lint-wb-threading.sh (two heuristic WARNs over a -wb src tree — ui-thread-traversal: a doInvoke body that calls getNavChildren/getNavNodes/BqlQuery WITHOUT invokeLater/BJobService/JobThread; + an agent-breadth heuristic; WARN-only, exit 1 only under --strict). [ev: retro campaign8-wb-audit]
+- folded as code: toolbelt/lint-wb-threading.sh (two heuristic WARNs over a -wb src tree — ui-thread-traversal: a doInvoke body OR any same-class private/protected method reachable within 3 call levels (the callee chain, brace-counted + cycle-safe) that calls getNavChildren/getNavNodes/BqlQuery WITHOUT invokeLater/BJobService/JobThread anywhere on the expanded chain; + an agent-breadth heuristic; WARN-only, exit 1 only under --strict). [ev: retro campaign8-wb-audit]
 ```
 
 ## 12. campaign8-lint-servlet  (PR12, slug: `campaign8-lint-servlet`)
-- **Grep-before (K6):** `grep -rn 'ev: retro campaign8-lint-servlet' <kit>` (excl retros/) → **3 hits** (`BUILD-LOOP.md`
-  §5 pre-gate line, `skill/SKILL.md`, `toolbelt/lint-servlet.sh` header). Already CREDITED → safe to flip. Re-run at
-  apply. NOTE the merge-order caveat (close-retro lesson 10): PR12 branched the same `3f666a0` as PR11 and needed a
+- **Grep-before (K6):** `grep -rn 'ev: retro campaign8-lint-servlet' <kit-root>` (excl retros/) → **3 hits in the KIT
+  corpus** (`BUILD-LOOP.md` §5 pre-gate line, `skill/SKILL.md`, `toolbelt/lint-servlet.sh` header) — that is the scope
+  `sweep-fold-audit.sh --strict INDEX.md <kit-root>` actually scans. Repo-wide the count is **4**: a 4th literal token
+  mention lives in `openspec/changes/build-n4-module-campaign8/tasks.md:12.5`, which the fold-audit does NOT scan
+  (2nd-read by investigador1, cc428e5). ≥1 either way → Already CREDITED → safe to flip. Re-run at apply (the count
+  drifts as later folds land). NOTE the merge-order caveat (close-retro lesson 10): PR12 branched the same `3f666a0` as PR11 and needed a
   rebase + re-bless; the attempt-12 ledger evidence revision is `main-at-1f5201e`.
 - **Deltas** (INDEX row: 5): new `toolbelt/lint-servlet.sh` (six checks: auth-gate, input-400, unbounded-set,
   cache-nofinger, log-in-handler, csrf-xrw-only); `tests/fixtures/lint-servlet/CsrfXrwOnly.java`; LSV4 pin; K19 routing.
@@ -236,7 +239,7 @@ Flip all 15 INDEX rows `pending → folded`. **MANDATORY token lines FIRST** (el
 the five 0-token retros: **§3 lint-timers-ext**, **§7 campaign8-doctrine-fold**, **§13 post-deploy-checklist**,
 **§14 build-pipeline**, and **§15 campaign8-rt-doctrine** (PROMOTION). The other 10 are token-credited already
 (§1/§4/§5/§6/§8 via BUILD-LOOP/SKILL; §2 triage-console at METHODOLOGY:96; **§9 station-snapshot** 3, **§10 bog-audit** 3,
-**§11 wb-audit** 4, **§12 lint-servlet** 3 — all via K19 routing). Their folded-as-code lines (§9/§10/§11/§12) are
+**§11 wb-audit** 4, **§12 lint-servlet** 3 in-kit (4 repo-wide incl tasks.md) — all via K19 routing). Their folded-as-code lines (§9/§10/§11/§12) are
 recommended-but-preferred (the "folded as code: <script> [ev: retro <token>]" convention, METHODOLOGY:94) — none blocks
 the strict audit since all are already token-credited. **PR16–PR20 will add five more retros** (retro-loop,
 orchestration, structure, write-path, station-logic → 20 total at campaign close). Then set `retro_pending: false` in
