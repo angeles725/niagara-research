@@ -82,3 +82,15 @@ rooms read RoomPanel == ColdRoom (3 / 3 / -13 / 3 / 20), consistent with the lin
 Net: two independent PROVEN write forms for the room setpoint — the child bare `<real>` (preferred: simple decode, no
 silent-zero hazard) and the wrapped obj on the parent (fallback). The write-server adopts the child form
 (`PUT <real>` to `${ord}/value` under FACADE_PATH). State restored to 3.0.
+
+## 10) Shipped: write-server child-PUT path + viewer v3.3 (viewer session, pancaddia-leon-tunnel e4b42b0)
+- write-server.mjs: `setpoint` added to WRITABLE as `NUM` (bare `<real val="N"/>` builder, ~:78/:110-114); in the `/write`
+  handler the PUT path for the setpoint slot is redirected to the child: `putOrd = ord + '/value'` (~:229-238), so a
+  viewer `POST /write {ord:"Cuarto1/setpoint", value}` becomes `PUT /config/Services/DashboardService/Cuarto1/setpoint/value`
+  with `<real val="…"/>`. Success check unchanged (`2xx && !/<err/`). The wrapped-obj parent form is documented as the
+  alternate proven form, not shipped. Old "read-only / not in map" comment corrected.
+- Viewer: the Config `setpoint` field dropped `readonly:true` (build v3.3). All five rooms drive-tested (write + restore)
+  before enabling; deployed to the mini-PC task PancaddiaWrite, health 200.
+- Consequence for C9 S12 (still open): setpoint changes from the viewer are now possible for any authenticated Supabase
+  operator with NO step-up and NO who/when audit (write-server still discards the operator identity); the audit + config
+  login remain the top C9 item.
