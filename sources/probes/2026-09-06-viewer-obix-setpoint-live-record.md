@@ -94,3 +94,8 @@ silent-zero hazard) and the wrapped obj on the parent (fallback). The write-serv
 - Consequence for C9 S12 (still open): setpoint changes from the viewer are now possible for any authenticated Supabase
   operator with NO step-up and NO who/when audit (write-server still discards the operator identity); the audit + config
   login remain the top C9 item.
+
+## 11) End-to-end confirmed by the operator UI
+Cristian logged into the dashboard with a real operator account, changed a room setpoint, verified it applied on the
+control side and restored it: viewer → `/write` (JWT) → write-server → bare `<real>` PUT to `…/setpoint/value` → ColdRoom
+control. Nothing pending on the write path; the audit/config-login (C9 S12) remains the open item.
