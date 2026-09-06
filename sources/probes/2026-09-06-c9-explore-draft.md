@@ -99,25 +99,27 @@ to repo · S18 protection trips never reach console (CROSS-CUTTING; B827 spec'd)
 | B828 | `e1d58acc7` (§828.7 `c1cdef272`) | HOA frozen enum — `BFrozenEnum` carries range intrinsically; §828.7 carve-out: cross-module-LINKED HOA stays double | `[CERT]` |
 | B829 | `d26305d21` (G1 CLOSED `7218fdad7`) | audit trail — servlet null-Context set NOT audited (`:662` gate); oBIX PUT audited to oBIX login user (`:558`); write-server Supabase = single source of truth; AuditHistoryService installed | `[CERT]` |
 
-### 3.3 QA RED branches (by branch + tip — verified this session)
+### 3.3 QA RED branches (by branch + tip)
 
-The C8 QA branch tips (`git rev-parse`, verified 2026-09-06):
+**The five C9 REDs (lead-reported 2026-09-06; local branches, not yet on origin at draft time):**
+
+| Seed | Branch | Tip | Repo | Pins | Seam it needs | Token |
+|---|---|---|---|---|---|---|
+| S19 | qa/c9-ext-writable-shape | `3726722` | niagara-tools | EW1-EW10 | none (static lint) | `[INFER — lead-reported, local]` |
+| S18-lint | qa/c9-silent-protection | `e38e503` | niagara-tools | SP1-SP8 + smoke | none (static lint) | `[INFER — lead-reported, local]` |
+| S7 | qa/c9-demand-in-scope | `2916954` | niagara-tools | DS1-DS7 + smoke | none (standalone script) | `[INFER — lead-reported, local]` |
+| S12-A | qa/c9-s12-write-server | `24adcba` | pancaddia-leon-tunnel (base e4b42b0) | node:test | buildServer seam | `[INFER — lead-reported, local]` |
+| S12-B | qa/c9-s12-servlet | `4c18837` | niagara-panccadia-leon (rebased a109249) | guard-4 = regression pin | `DashboardWriteGuards.evaluate` seam | `[INFER — lead-reported, local]` |
+
+**The two C8 QA REDs that map to standing C9 seeds** (`git rev-parse`, verified 2026-09-06):
 
 | Branch | Tip | C9-seed mapping | Token |
 |---|---|---|---|
-| qa/c8-write-path | `5e357d1` | **S5** — write-path coverage lint RED | `[CERT]` |
+| qa/c8-write-path | `5e357d1` | **S5** — write-path coverage lint RED (W-matrix; extends to W14-W22) | `[CERT]` |
 | qa/c8-structure | `c32cb5a` | **S6** — structure lint L1-L11 RED (L4/L7/L9/L10/L11 fixtures all FAIL) | `[CERT]` |
-| qa/c8-lint-delays | `cdf41f6` | C8 (feeds S11 cross-module extension) | `[CERT]` |
-| qa/c8-lint-servlet | `e3f4959` | C8 (servlet six-check lint; grounds S12 surface B) | `[CERT]` |
-| qa/c8-lint-timers-ext | `619c033` | C8 (companion/executor/isRunning) | `[CERT]` |
-| qa/c8-facets-lint | `fb22507` | C8 | `[CERT]` |
-| qa/c8-bog-audit | `3ef7a6b` | C8 (grounds S16 CHECK12) | `[CERT]` |
-| qa/c8-triage-console | `d2f7c5b` | C8 | `[CERT]` |
 
-**Honest gap:** only **S5** (`5e357d1`) and **S6** (`c32cb5a`) are C9-seed REDs with authored branches. The other C9
-seeds that need a biting test — **S7** (demand-in-scope, B820), **S18-lint** (silent-protection, B824), **S19**
-(ext-writable-shape, B823) — have design blocks but **RED not yet authored**. S12's REDs (write-server + DashboardDispatch)
-are **RED not yet authored**; the S12 plan below names their six-case shapes. `[ev: corpus campaign9-research-candidates.md]`
+Once QA pushes the three kit branches (S7/S18-lint/S19) to origin they become `[CERT]`-verifiable from this machine;
+the two client REDs (S12-A/S12-B) live in the tunnel + client repos. `[ev: lead cross-session 2026-09-06]`
 
 ### 3.4 Plans & live records
 
@@ -134,11 +136,11 @@ are **RED not yet authored**; the S12 plan below names their six-case shapes. `[
 
 | Rank | Slice | Class | Value | Dependency / seam needed | RED status | Token |
 |---|---|---|---|---|---|---|
-| 1 | **S12-A** config step-up + audit — viewer + write-server (mini-PC) | CLIENT/tunnel | HIGH | write-server seam (config-token store, `/config/logout`); off-station testable | RED not yet authored (six-case shape in plan) | `[ev: corpus S12]` `[ev: corpus B829]` |
-| 2 | **S12-B** config step-up + audit — DashboardPan servlet (HMI) | CLIENT | HIGH | `DashboardWriteGuards` seam + B829-G2 real-Context change | RED not yet authored (`DashboardDispatchTest` six-case) | `[ev: corpus S12]` `[ev: corpus B829]` |
-| 3 | **S7** demand-in-scope lint | KIT | HIGH | none (static); fixture defined in B820 | RED not yet authored | `[ev: corpus B820]` |
-| 4 | **S18-lint** silent-protection lint | KIT | HIGH | none (static); effect-slot exemption + adapter-follow + allowlist from B824 | RED not yet authored | `[ev: corpus B824]` |
-| 5 | **S19** ext-writable-shape lint | KIT | MED | none (static) | RED not yet authored | `[ev: corpus B823]` |
+| 1 | **S12-A** config step-up + audit — viewer + write-server (mini-PC) | CLIENT/tunnel | HIGH | write-server `buildServer` seam (config-token store, `/config/logout`); off-station testable | RED `qa/c9-s12-write-server` `24adcba` (node:test) | `[ev: corpus S12]` `[ev: corpus B829]` |
+| 2 | **S12-B** config step-up + audit — DashboardPan servlet (HMI) | CLIENT | HIGH | `DashboardWriteGuards.evaluate` seam + B829-G2 real-Context change | RED `qa/c9-s12-servlet` `4c18837` (guard-4 = regression pin) | `[ev: corpus S12]` `[ev: corpus B829]` |
+| 3 | **S7** demand-in-scope lint | KIT | HIGH | none (standalone script); fixture defined in B820 | RED `qa/c9-demand-in-scope` `2916954` (DS1-DS7 + smoke) | `[ev: corpus B820]` |
+| 4 | **S18-lint** silent-protection lint | KIT | HIGH | none (static); effect-slot exemption + adapter-follow + allowlist from B824 | RED `qa/c9-silent-protection` `e38e503` (SP1-SP8 + smoke) | `[ev: corpus B824]` |
+| 5 | **S19** ext-writable-shape lint | KIT | MED | none (static) | RED `qa/c9-ext-writable-shape` `3726722` (EW1-EW10) | `[ev: corpus B823]` |
 | 6 | **S18/S13** alarm PoC — `BAlarmSourceExt` on CR-3 freeze + CP-1 low-suction | CLIENT | HIGH | B827 patterns A/B; schema-SAFE (additive) | RED not yet authored (B827 §827.3/§827.4/§827.6 sketches) | `[ev: corpus B827]` |
 | 7 | **S5-cont** write-path matrix W14-W22 | KIT | HIGH | S5 lint already RED (`5e357d1`); needs the writable set | matrix rows to author | `[ev: corpus S5]` `[ev: corpus B816 §816.6]` |
 | 8 | **airDefrost flag** (rooms 1/2/4) | CLIENT or STATION | MED | path not chosen (module flag vs station config) | RED not yet authored | `[ev: corpus S16]` |
