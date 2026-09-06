@@ -48,6 +48,31 @@ freezeDiffRestart double · powerOnDelay BRelTime` (`module-find slots` @ a10924
 `private boolean freezeTripped` `:1287`; group gradle `:33` = `2.0.7`. `[ev: client @ a109249]`
 
 ---
+## PR9 REFRESH 2026-09-06 — anchors re-cut against PR1's REAL tree (e5bee1c)
+PR1 (rotation) grew `BCompressorControl` and `CompressorControl`; every PR9 insertion point below is RE-ANCHORED at PR1's
+tip `Cliente/Leon-Guanjuato-worktrees/pr1-s20` (e5bee1c). **Compresores `build.gradle.kts:33` = `2.1.0` now** → PR9 sets it
+to `2.2.0` (fragment-merge on that one line; PR1 already moved 2.0.3→2.1.0). The RED `8b43488` references only
+`CompressorControl.AlarmEdge` (+ `CompressorControl.AlarmEdge.FIRE/CLEAR/NONE`, `new CompressorControl.AlarmEdge(1)`, the
+`LOW_SUCTION` trip index) and greps `class\s+BCompressorControl\s+extends\s+BComponent\s+implements\s+[^{]*BIAlarmSource`
+— PR1 renamed NEITHER class nor package, so the RED still resolves and stays RED only because `AlarmEdge` is absent. `[ev: pr1-s20 @ e5bee1c, 2026-09-06]`
+
+| Insertion | Anchor @ a109249 (old) | Anchor @ PR1 tip e5bee1c (USE THIS) |
+|---|---|---|
+| `BCompressorControl` class decl | :414 | **:433** (`public class BCompressorControl`) |
+| `started()` | :1777 | **:1845** — `super.started()` :1847; the `if (!Sys.atSteadyState()) return;` guard at :1854; `ctl.seedRestart(Clock.millis()); execute();` at :1857 |
+| `stopped()` | :1806 | **:1874** — `super.stopped()` :1883 |
+| `execute()` | :1891 | **:1960** — Cfg map incl. `cfg.suctionLowLimit = getSuctionLowLimit()` :1973; `double suction = CompressorControl.selectSuction(...)` :2039; `boolean suctionValid = !Double.isNaN(suction)` :2040; `ctl.step(...)` :2042; condenser out writes :2044-2046; execute ends before :2082 |
+| CP-1 LP shed (the condition the edge watches) | :215 | **CompressorControl :234** (`target = Math.min(target, onCount - 1)`; lpFloor also at :295/:333/:366) — the same predicate `suctionValid && cfg.suctionLowLimit > 0d && suction < cfg.suctionLowLimit` |
+| `CompressorControl` class / Cfg | (pkg-visible) | `final class CompressorControl` :50; `MODE_*` :56-58; `static final class Cfg` :94 (`suctionLowLimit`, `minOffMs`) — `AlarmEdge` is added as a `static final class` INSIDE this final class (legal) |
+
+**Placement (re-anchored):**
+- `AlarmEdge` (B-F1): new `static final class AlarmEdge` inside `CompressorControl` (CC:50), beside `Cfg` (CC:94); trip index constant `static final int LOW_SUCTION = 0` (the RED's name) beside `MODE_*` (CC:56).
+- `implements BIAlarmSource` (B-F2/CPB-W1): edit the class decl at BCC:**433** — `public class BCompressorControl extends BComponent implements BIAlarmSource` (the regex needs `extends BComponent implements … BIAlarmSource` on that line).
+- `AlarmSupport` field + `alarm = new AlarmSupport(this, "defaultAlarmClass")` (B-F4/F5, CPB-W2): in `started()` at BCC:**1848**, right AFTER `super.started()` and BEFORE the `!Sys.atSteadyState()` early-return, so a commissioning mount still creates it (W2 greps `new AlarmSupport(` within 2000 chars of `started()`). `stopped()` BCC:**1883** after `super.stopped()`: `alarm = null`.
+- `alarmEdge.reseed(new boolean[]{ lpConditionNow() })` (B-F5/CPB-W4): also in `started()` at BCC:**1848** (a small `lpConditionNow()` helper reading the same suction slots as execute()) — reseed from the CURRENT LP condition so a restart during an active low-suction never re-fires.
+- the FIRE/CLEAR decision (B-F6/CPB-W3): in `execute()` right AFTER `ctl.step(...)` at BCC:**2042**, using `suction`/`suctionValid` already computed at :2039-2040: `boolean now = suctionValid && cfg.suctionLowLimit > 0d && suction < cfg.suctionLowLimit; boolean recovered = suctionValid && suction >= cfg.suctionLowLimit + LP_DEADBAND_PSI; int d = alarmEdge.decide(CompressorControl.LOW_SUCTION, now, recovered); if (d == CompressorControl.AlarmEdge.FIRE) alarm.newOffnormalAlarm(lowSuctionData(suction)); else if (d == CompressorControl.AlarmEdge.CLEAR) alarm.toNormal(BFacets.DEFAULT, null);` — `newOffnormalAlarm` sits INSIDE the `== AlarmEdge.FIRE` branch (CPB-W3 regex).
+- `ackAlarm` action (B-F3, CPB-W1 support): the visible `@NiagaraAction ackAlarm` delegating to `alarm.ackAlarm` goes in the action block (the RED wants a VISIBLE action per B827 §827.4, NOT hidden — investigador1's PR12 fix).
+
 ## PR9 — Pattern B, `BCompressorControl` + pure `CompressorControl.AlarmEdge` (CompPan-rt), RED `8b43488`
 ### B.1 Contract (verbatim — the pure class, `CompressorAlarmEdgeTest` :16-25)
 ```java
