@@ -1,0 +1,55 @@
+# C8 slot-type doctrine — which slot type for an EXTERNALLY-written value (apply-ready)
+
+> For the apply worker (lands via wave-2 **PR15** — added as a PR15 block in the PR13/14/15 draft so it applies THIS
+> campaign). Target: `types/logic-authoring.md` NEW `##` section "Slot types for externally written values" + ONE
+> line in `types/dashboard.md`. Grounded in the LIVE oBIX probe (B823 §823.2, 2026-09-06 `[CERT-live]`), B822 (the
+> OPERATOR-action path), B816 (write overlap). The enforcing lint is C9 seed **S19** (`ext-writable-shape`).
+>
+> **Grep-before (K6):** `grep -niE 'slot type.*external|externally written|wrapped.obj|silent.zero' types/logic-authoring.md`
+> → 0 hits — NEW section.
+
+=== BEGIN types/logic-authoring.md §"Slot types for externally written values" ===
+
+## Slot types for externally written values `[ev: corpus B823]`
+When a value is written by an EXTERNAL client (oBIX/write-server, the -ux servlet, a fox/BajaScript client), the slot
+TYPE decides whether the write is even possible and whether it lands safely. Pick by value class:
+
+| Value class | Recommended slot | Flags | How it is written externally | Audit path | Anti-pattern |
+|---|---|---|---|---|---|
+| numeric setpoint / config | plain `double` (if oBIX writes it) — or `BStatusNumeric` ONLY when the status must display | `SUMMARY\|OPERATOR` | `double`: oBIX bare `<real val="..">`. `BStatusNumeric`: the WRAPPED body `<obj is="…:StatusNumeric"><real name="value" val=".."/></obj>` (LIVE-verified) — NEVER attr-only `<obj … val>` (200 but writes 0.0); OR the servlet `POST /api/setpoint`; OR an OPERATOR action | servlet `auditLog` / write-server audit / a Niagara event when via an action | a bare `BStatusNumeric` written by external clients → the silent-zero footgun `[ev: retro obix-statusnumeric-wrapped-put]` |
+| timing / delay | `BRelTime` | `SUMMARY\|OPERATOR` | oBIX `<reltime val="PT..S"/>` | as above | a `double` seconds field that skips the reltime unit |
+| switch / on-off | `boolean` | `SUMMARY\|OPERATOR` | oBIX `<bool val="true">` | as above | a `BStatusBoolean` (complex) written bare → "Cannot translate" |
+| mode / HOA | today `double` 0/1/2 written as `<real>`; an ENUM needs a **range facet** for oBIX to decode | `SUMMARY\|OPERATOR` | `<real val="2"/>` (double) or `<enum val="off"/>` WITH a `range` facet (ObixDecoder enum branch reads `cx.getFacets().get("range")`) | as above | a bare enum with NO range facet → oBIX cannot decode it |
+| button / command | an OPERATOR `@NiagaraAction` | `Flags.OPERATOR` | oBIX `<op>` — POST → `BComponent.invoke` under `OPERATOR_INVOKE`, arg from `<real>`/`<bool>` `[ev: corpus B822]` | the Niagara invoke event (attributed) | a `HIDDEN` action (0 oBIX exposure) or a boolean "pulse" slot |
+
+**The rule:** a slot that EXTERNAL clients write is **either a SIMPLE value or has an ACTION — never a bare complex
+property.** A bare complex (`BStatusNumeric`/`BStatusBoolean`/`BStatusEnum`) either rejects the write ("Cannot
+translate") or, via the wrapped-`obj` shorthand, silently writes a DEFAULT (the live silent-zero: a setpoint set to
+0.0 on a 200 OK). If the status MUST be displayed (so the slot has to be complex), expose an `OPERATOR` action that
+writes it, or accept the exact wrapped-`obj` contract in the client — never leave a bare complex OPERATOR property as
+the write target. `[ev: corpus B823]` `[ev: retro obix-statusnumeric-wrapped-put]`
+
+**Propagates through links? (live-verified):** a wrapped struct-child write to a linked `BStatusNumeric` SOURCE (the
+façade `Cuarto1/setpoint`) DOES propagate to the control TARGET (`Programacion/ColdRoom_1/setpoint`) — but the client
+must **read-back AFTER a settle** (a first read before the link executes is a false negative; two contradictory live
+reports arose this way). The propagation-timing mechanism (struct-child mutation vs slot replacement) is pending
+[Block 825]. So an external write must land on the slot the control READS, or on an action — writing a display-only
+mirror that has NO link to the control would set the display without moving the plant. `[ev: corpus B823]` `[ev: retro obix-statusnumeric-wrapped-put]`
+
+**Overlap caveat:** if the written slot is a link TARGET (driven BY a link, not a source), the external write is
+EPHEMERAL — the next propagation overwrites it (B816 §816.2). Confirm write-source vs write-target before relying on
+the write sticking. `[ev: corpus B816]`
+
+=== END types/logic-authoring.md section ===
+
+=== BEGIN types/dashboard.md one-line (add under the write-surface / servlet section) ===
+- **A dashboard-written value's slot type is load-bearing:** a `double`/`BRelTime`/`boolean` is oBIX-writable directly; a `BStatusNumeric` needs the wrapped `<obj><real name="value">` body (never attr-only → silent 0.0) or the servlet/action path — see `types/logic-authoring.md` §"Slot types for externally written values". `[ev: corpus B823]` `[ev: retro obix-statusnumeric-wrapped-put]`
+=== END types/dashboard.md line ===
+
+## Apply notes
+- Place the section VERBATIM; every row keeps its `[ev:]` token(s). Route it: name the new section in the
+  `types/logic-authoring.md` audience header if it lists sub-topics.
+- The enforcing lint is NOT built here — it is C9 seed **S19** (`ext-writable-shape`: WARN on an `OPERATOR` complex
+  property with no writing action). This draft is doctrine only.
+- The `obix-statusnumeric-wrapped-put` retro (`retros/2026-09-06-…`) is this doctrine's source; its token credits the
+  fold.

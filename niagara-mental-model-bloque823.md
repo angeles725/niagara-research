@@ -17,7 +17,7 @@
 ## 823.1 — The seven channels, at a glance `[CERT unless noted]`
 | # | Channel | Works today, no module change? | Why |
 |---|---|---|---|
-| 1 | oBIX PUT of `setpoint` | **NO** (escape hatch unverified) | JACE never advertises it writable; bare-value PUT rejected |
+| 1 | oBIX PUT of `setpoint` | **YES** with the exact wrapped body (LIVE-CONFIRMED) | bare/standard PUT rejected; `<obj is="…:StatusNumeric"><real name="value" val/></obj>` writes — but attr-only silently writes 0.0 |
 | 2 | oBIX/fox INVOKE of an existing action → `setSetpoint` | **NO** | no non-HIDDEN action reaches the setpoint |
 | 3 | **DashboardPan-ux servlet `POST /dashboardpan/api/setpoint`** | **YES** | the HMI writes setpoints through it TODAY |
 | 4 | fox / `station:\|slot:` set (Node or Java/nre client) | heavyweight, not clean | needs a full Baja fox client + login |
@@ -25,8 +25,39 @@
 | 6 | write an upstream Writable point linked into `setpoint` | GAP | no bog available; design is direct-write, not link-in |
 | 7 | schedule/ext-driven | GAP | only if already in the bog; none verified |
 
-## 823.2 — Channel 1: oBIX PUT is effectively CLOSED `[CERT]` (mapper-forwarded, spot-verified)
-The server write path: `BObixServer.service` POST/PUT switch → `ObixUtils.serviceWrite` (`ObixUtils.java:532-566`):
+## 823.2 — Channel 1: closed to STANDARD clients, but a WRAPPED PUT works — LIVE-CONFIRMED `[CERT-live]`
+> **LIVE UPDATE (2026-09-06, Cristian-authorized read-only-first probe on Cuarto 1, viewer session) `[CERT-live]`:**
+> the escape hatch of §823.2 below is **CONFIRMED** — the exact working body is
+> **`<obj is="/obix/def/baja:StatusNumeric"><real name="value" val="2.5"/></obj>` → `200 OK`, value `2.5 {ok}`, HELD
+> 80+ s** (not a display mirror). The GET is
+> `<real val="3.0" is="/obix/def/baja:StatusNumeric" display="3.00 °C {ok}" unit="obix:units/celsius"/>` — **NO
+> `writable="true"`, no `<op>`**, yet the wrapped PUT still writes. So **"writable attribute absent ≠ read-only"** — a
+> hand-crafted wrapped PUT bypasses the never-advertised `writable` (this CORRECTS §823.2's "no client will attempt"
+> to "no CONFORMANT client will; a hand-crafted one succeeds", and refines [Block 509]'s reading that absent-`writable`
+> means unwritable). The six probed forms, verbatim:
+> | PUT body | Result |
+> |---|---|
+> | bare `<real val="2.5"/>` (±`is`/`unit`) | `<err display="Cannot translate…">` |
+> | `<obj is="…:StatusNumeric"><real val="2.5"/></obj>` (child has no `name`) | `Missing attr 'name'` |
+> | `<obj is="…:StatusNumeric" val="2.5"/>` (attr on obj, NO value child) | **`200 OK` but SILENTLY WROTE `0.0`** ⚠ |
+> | `<real name="value" val="2.5"/>` (name on a bare simple) | `Cannot translate` |
+> | **`<obj is="/obix/def/baja:StatusNumeric"><real name="value" val="2.5"/></obj>`** | **`200 OK`, `2.5 {ok}`, holds** ✅ |
+> **It PROPAGATES to control:** the wrapped PUT on `Cuarto1/setpoint` (the RoomPanel façade) followed through the live
+> panel→control link to `Programacion/ColdRoom_1/setpoint` — both `2.5`, Supabase `latest` `2.5`. `[CERT-live, two
+> probes]` **Read-timing caveat:** a FIRST read taken moments after the PUT showed the control still at `3.0` (link
+> not yet executed) → a premature "no-effect" conclusion that a re-read after a settle corrected. So a read-back MUST
+> wait a settle before concluding effect (the propagation-timing mechanism — struct-child mutation vs slot replacement
+> — is **pending [Block 825]**).
+> **The silent-zero HAZARD:** the attr-only `<obj … val="2.5"/>` returns `200` but writes `0.0` (the `value` child is
+> missing so the property defaults) — a write that LOOKS successful and sets the setpoint to ZERO. The body must carry
+> the `value` child exactly, and the client must read-back-after-settle. Channel 1 is a VIABLE no-code path but
+> UNFORGIVING; see the trade-off in §823.7.
+> **Note (plain doubles ARE directly writable):** on the same component, `differentialUp/Down`, `roomHighAlarmLimit`,
+> `coolOnSensorFault` carry `writable="true"` in the GET (they are plain `double`/`boolean`, not complex) — so a bare
+> `<real>`/`<bool>` PUT writes them normally. Only the complex `BStatusNumeric setpoint` needs the wrapped body. `[CERT-live]`
+
+The code path below explains WHY (a decode-level trace, `[CERT]` static). The server write path:
+`BObixServer.service` POST/PUT switch → `ObixUtils.serviceWrite` (`ObixUtils.java:532-566`):
 `if (tgt instanceof BIObixWritable) tgt.write(dec)` ELSE `dec.decode(tgt.asValue().newCopy(true))` (`:544`) then
 `parent.set(pary[idx], val, user)` (`:558`). Three independent blockers:
 - **`BStatusNumeric` is NOT `BIObixWritable`** — a corpus grep finds ZERO implementors of the interface
@@ -121,18 +152,27 @@ unlikely — but unproven. IF a `BNumericWritable` were linked into `setpoint`, 
   the write-server calls `POST /dashboardpan/api/setpoint` with the station write user + `X-Requested-With`; it is
   audited to `auditLog` today. oBIX cannot write a `BStatusNumeric` config slot by any standard client (§823.2). The
   clean minimal-CODE alternative is [Block 822]'s additive `setpointCmd`.
-- **`types/dashboard.md` doctrine:** a `BStatusNumeric` (or any `BComplex`) slot is NOT oBIX-writable — oBIX advertises
-  `writable` only for a `BSimple` under `canWrite`; to write a complex value remotely, use the module's own
-  servlet write path, an additive simple `*Cmd` slot, or a proper writable-point. Cross-ref [Block 822].
-- **Recommendation (ranked):**
+- **`types/dashboard.md` doctrine:** a `BStatusNumeric` (or any `BComplex`) slot is not writable by a CONFORMANT oBIX
+  client (`writable` advertised only for a `BSimple` under `canWrite`) — but a hand-crafted wrapped-`obj` PUT DOES
+  write it (§823.2 live). To write a complex value remotely, prefer the module's own servlet path or an additive
+  simple `*Cmd` slot / OPERATOR action; use the wrapped-`obj` oBIX PUT only with the exact `value`-child body (the
+  attr-only form silently writes 0.0). Cross-ref [Block 822] and the slot-type doctrine (§"Slot types for externally
+  written values").
+- **Recommendation (ranked — the two viable no-/low-code paths; the user picks the trade-off):**
 
-| Rank | Path | Code change | Audit | Risk |
-|---|---|---|---|---|
-| 1 | servlet `POST /api/setpoint` (channel 3) | NONE | `auditLog` (module ring) | low — already in daily use |
-| 2 | additive `setpointCmd` slot ([Block 822]) | small, schema-SAFE | via write-server + AuditHistory | low — needs a build + schema-risk SAFE |
-| 3 | oBIX `<obj>` escape-hatch PUT (channel 1) | NONE | none native | UNVERIFIED — live test only |
-| 4 | fox/BajaScript client (channel 4/5) | none, but heavy infra | — | infra + session complexity |
-| — | oBIX bare PUT / retype | — | — | RULED OUT (§823.2 / [B800] §800.8 OUTAGE) |
+| Rank | Path | Code change | Audit | Body forgiving? | Risk |
+|---|---|---|---|---|---|
+| 1a | servlet `POST /api/setpoint` (channel 3) | NONE | `auditLog` (module ring) | yes (JSON `{ord,value}`; 400 on invalid) | low — already in daily use |
+| 1b | oBIX wrapped-`obj` PUT (channel 1, LIVE-CONFIRMED, propagates to control) | NONE | none native (write-server Supabase only) | **NO — attr-only silently writes 0.0; read-back after a settle** | med — unforgiving body + read-timing |
+| 2 | additive `setpointCmd` slot ([Block 822]) | small, schema-SAFE | write-server + a Niagara-side event via an OPERATOR action | yes | low — needs a build + schema-risk SAFE |
+| 3 | fox/BajaScript client (channel 4/5) | none, but heavy infra | — | — | infra + session complexity |
+| — | oBIX BARE PUT / retype `setpoint` | — | — | — | RULED OUT (bare = "Cannot translate"; retype = [B800] §800.8 OUTAGE) |
+Trade-off (both 1a and 1b are viable no-code paths that reach control; the user picks, not picked here): **1b (oBIX
+wrapped)** is UNIFORM with the rest of the write-server (one oBIX transport) and audited by the write-server's own
+Supabase trail, but the body is unforgiving (attr-only silently zeroes) and needs a read-back after a settle; **1a
+(servlet)** rides the module's HTTP servlet but is body-forgiving with the PR#7 400 validation and writes the module's
+own `auditLog`. **2 (additive `applySetpoint` action, [Block 822])** stays the cleaner LONG-TERM answer (an oBIX `<op>`
+with a native, attributed Niagara invoke event). `[CERT-live]`
 
 ## 823.8 — Self-verify
 | # | Claim | Marker | Citation | Verified |
@@ -140,7 +180,7 @@ unlikely — but unproven. IF a `BNumericWritable` were linked into `setpoint`, 
 | 1 | oBIX server write = serviceWrite; non-BIObixWritable → decode → parent.set | `[CERT]` | `ObixUtils.java:532-566,544,558` | Y — mapper+spot |
 | 2 | BStatusNumeric not BIObixWritable (zero implementors); bare `<real>` → "Cannot translate" | `[CERT]` | `BIObixWritable.java:9-13`; `ObixDecoder.java:197,346` | Y |
 | 3 | writable advertised only for BSimple under canWrite | `[CERT]` | `ObixUtils.java:241-243`; `BStatusValueAgent:51-53`; `BControlPointAgent:60` | Y |
-| 4 | `<obj><real name="value">` reaches setFromVal→setValue (escape hatch, unverified server-accept) | `[INFER]` | `ObixDecoder.java:200-216,569,594` | decode-grounded |
+| 4 | `<obj is="…:StatusNumeric"><real name="value" val/></obj>` WRITES it live (200, 2.5{ok}, 80+s); attr-only silently writes 0.0; writable-absent≠read-only | `[CERT-live]` | §823.2 probe 2026-09-06; `ObixDecoder.java:200-216,569,594` | Y — live |
 | 5 | No non-HIDDEN action reaches setpoint | `[CERT]` | `BRoomPanel`/`BDashboardService`/`BColdRoom` (0 actions); `BEvaporatorUnit.java:200-216` HIDDEN | Y — sweep |
 | 6 | Servlet `POST /dashboardpan/api/setpoint`, guards XHR(302)/auth(401)/OPERATOR_WRITE(403)/invalid-num(400), no CSRF | `[CERT]` | `fbe9009` `BDashboardServlet.java:81-84,195,274-283`; `DashboardDispatch.java:122-126`; `DashboardRbacHelper.java:17-20,36,55` | Y |
 | 7 | Write = coerce→`parent.set(prop,new BStatusNumeric(v),null)`; audited to auditLog, not AuditHistory | `[CERT]` | `fbe9009` `BDashboardServlet.java:291,357,312`; `BDashboardService.java:68-72,256` | Y |
@@ -153,7 +193,8 @@ read — named in §823.6. Nothing invented; every load-bearing cite spot-verifi
 - REMITTANCE: [Block 822] (additive `setpointCmd`/`applySetpoint` + schema-risk — the code-change half; cross-cited),
   [Block 816] (the servlet write path / threading), [Block 813]/[Block 763] (DWS1 servlet gates), [Block 800] §800.8
   (the retype OUTAGE that rules out re-typing), [Block 509] (oBIX/box transport).
-- **B823-G1** (requires-execution, read-only): GET the PANCCADIA bog / Workbench-inspect whether `Cuarto*/setpoint` is
-  a link target (channel 6) and capture the oBIX GET encoding of a `BStatusNumeric` (to settle the §823.2 escape hatch).
+- **B823-G1** — the oBIX GET-encoding + escape-hatch half is **CLOSED live** (§823.2, 2026-09-06): the wrapped PUT
+  writes. Still OPEN (read-only): Workbench-inspect whether `Cuarto*/setpoint` is a link target (channel 6, so a write
+  actually STICKS vs is overwritten by a link — [Block 816] §816.2).
 - **B823-G2** (requires-execution, authorized write on a TEST room only): confirm the servlet `POST` lands 200 + one
   `auditLog` line — the channel-3 proof — and, if pursued, the escape-hatch `<obj>` PUT verdict.
