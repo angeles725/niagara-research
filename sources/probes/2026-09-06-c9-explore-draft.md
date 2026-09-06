@@ -101,15 +101,19 @@ to repo · S18 protection trips never reach console (CROSS-CUTTING; B827 spec'd)
 
 ### 3.3 QA RED branches (by branch + tip)
 
-**The five C9 REDs (lead-reported 2026-09-06; local branches, not yet on origin at draft time):**
+**The five C9 REDs.** The three kit branches are on `origin` and VERIFIED this session — tips match the lead's report,
+pin counts confirmed, and each is a **true test-first RED**: the lint script is ABSENT on the branch while the bats
+file is present, so the suite FAILs until C9-apply builds the lint. Two carry explicit mutation-bite pins (SP8
+`mutation_removing_reason_slot_makes_flag_appear`, DS2 `fail_demand_removed_mutant`) plus real-tree smokes — they bite,
+not just fixture-green. The two client REDs remain lead-reported (tunnel + client repos, not verified from this machine).
 
 | Seed | Branch | Tip | Repo | Pins | Seam it needs | Token |
 |---|---|---|---|---|---|---|
-| S19 | qa/c9-ext-writable-shape | `3726722` | niagara-tools | EW1-EW10 | none (static lint) | `[INFER — lead-reported, local]` |
-| S18-lint | qa/c9-silent-protection | `e38e503` | niagara-tools | SP1-SP8 + smoke | none (static lint) | `[INFER — lead-reported, local]` |
-| S7 | qa/c9-demand-in-scope | `2916954` | niagara-tools | DS1-DS7 + smoke | none (standalone script) | `[INFER — lead-reported, local]` |
-| S12-A | qa/c9-s12-write-server | `24adcba` | pancaddia-leon-tunnel (base e4b42b0) | node:test | buildServer seam | `[INFER — lead-reported, local]` |
-| S12-B | qa/c9-s12-servlet | `4c18837` | niagara-panccadia-leon (rebased a109249) | guard-4 = regression pin | `DashboardWriteGuards.evaluate` seam | `[INFER — lead-reported, local]` |
+| S19 | qa/c9-ext-writable-shape | `3726722` | niagara-tools (origin) | EW1-EW10 (EW10 = real BRoomPanel.setpoint WARN) | none (static lint) | `[CERT]` |
+| S18-lint | qa/c9-silent-protection | `e38e503` | niagara-tools (origin) | SP1-SP8 + SP-smoke (mutation pin SP8; smoke flags CP-1/CR-3, not CP-2) | none (static lint) | `[CERT]` |
+| S7 | qa/c9-demand-in-scope | `2916954` | niagara-tools (origin) | DS1-DS7 + DS-smoke (mutant pin DS2; smoke on real CompressorControl.step) | none (standalone script) | `[CERT]` |
+| S12-A | qa/c9-s12-write-server | `24adcba` | pancaddia-leon-tunnel (base e4b42b0) | node:test | buildServer seam | `[INFER — lead-reported]` |
+| S12-B | qa/c9-s12-servlet | `4c18837` | niagara-panccadia-leon (rebased a109249) | guard-4 = regression pin | `DashboardWriteGuards.evaluate` seam | `[INFER — lead-reported]` |
 
 **The two C8 QA REDs that map to standing C9 seeds** (`git rev-parse`, verified 2026-09-06):
 
@@ -118,8 +122,7 @@ to repo · S18 protection trips never reach console (CROSS-CUTTING; B827 spec'd)
 | qa/c8-write-path | `5e357d1` | **S5** — write-path coverage lint RED (W-matrix; extends to W14-W22) | `[CERT]` |
 | qa/c8-structure | `c32cb5a` | **S6** — structure lint L1-L11 RED (L4/L7/L9/L10/L11 fixtures all FAIL) | `[CERT]` |
 
-Once QA pushes the three kit branches (S7/S18-lint/S19) to origin they become `[CERT]`-verifiable from this machine;
-the two client REDs (S12-A/S12-B) live in the tunnel + client repos. `[ev: lead cross-session 2026-09-06]`
+`[ev: git ls-remote origin qa/c9-* 2026-09-06]` `[ev: lead cross-session 2026-09-06]`
 
 ### 3.4 Plans & live records
 
