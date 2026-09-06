@@ -43,8 +43,10 @@ and pins the new numbers. Never write to that checkout.
 **QA re-measure on ff1b659 (`54078f6`) — the retarget CHANGES two pins (VERIFIED by me):** `lint-delays` LD5 and `c8-close`
 SC1-smoke asserted `exit 1 + FAIL BDefrostController` — that is true ONLY on the stale `4f5f1c7` checkout (the defrost
 time≤0 bug, `BDefrostController.java:556/566/620/664`, fixed post-C9). On `ff1b659` **`lint-delays` is CLEAN (exit 0)**
-(reproduced: PASS rows on `BEvaporatorUnit` only). So T2 flips LD5 to **exit 0**, and `lint-delays` MUST gain a SYNTHETIC
-fixture that pins the delay-floor RULE (a crafted zero-floor source), because the real tree no longer exhibits it. `RC8`
+(reproduced: PASS rows on `BEvaporatorUnit` only). So **LD5 (the only real-tree smoke) flips to exit 0**; NO new fixture is
+needed — the delay-floor RULE is already pinned by the SYNTHETIC cases **LD1** (`Math.max(delayMs,0L)` floor → FAIL, the
+BDefrostController shape, :28), **LD3** (`BRelTime.make(0)` → FAIL, :40) and **LD6** (`schedulePeriodically` no >0 floor →
+FAIL, :64). `RC8`
 (`rc-scan.bats` :701 host literal) is 1 FAIL on BOTH trees — no delta, no change.
 
 **C11 close-lesson seed:** *a real-tree smoke that asserts a FAIL pins a BUG, not a RULE, and rots silently when the bug is
