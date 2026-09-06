@@ -27,10 +27,25 @@ short-TTL token bound to user+purpose, held server-side, never client-decided):
   require it. `[INFER, mirrors B803 gate-0.5 "critical write adds step-up on top of the read path"]`
 - **Server-side allowlist** — the write-server holds the set of ORDs it will write (the five `CuartoN/setpoint`); a write
   to any other ORD is rejected server-side (never client-decided). `[INFER, B803 §803.6 pt1]`
-- **Audit — two rows per write**: (a) local **JSON-lines** file (append-only, the write-server's own trail); (b) a Supabase
-  **`audit`** table row: `{ts, email, ord, old, new, result, ip, config_session}` where **`old` = a GET of the slot BEFORE
-  the write** (read-modify-write, so the audit records the true prior value), `result` = the station's HTTP status, `email`
-  = the Supabase config-session identity (the REAL operator — see the attribution caveat in Part 2). `[INFER — design]`
+- **Audit — ONE canonical sink: `public.change_log` (FOLDED from tunnel main `9acb47c`, decided in C9 proposal §5 / R5).**
+  The write-server ALREADY inserts a best-effort `change_log` row per successful `/write` (`write-server.mjs:154-168`
+  `auditChange()`; row built at `:273-282`): `{user_email (lower), user_id (JWT sub), room ('Cuarto'+N), slot, label (≤120),
+  old_value, new_value, area ('control' if /Mode$/ else 'config'), ok:true}` — POSTed to `/rest/v1/change_log` with the
+  service key, `Prefer: return=minimal`; **an audit failure never blocks or fails the write** (`:167-168` warn-only; the
+  whole call is skipped when `SUPABASE_SERVICE_KEY` is absent, `:155`). `old_value` is ALREADY a pre-write GET of the same
+  ORD (`:266-268`, `obixReadVal`), and `new_value` is read back from the PUT body in the SAME oBIX format, so "de → a" is
+  consistent. Schema (`sql/2026-09-06-change-log-audit.sql`): `id, ts default now(), user_email NOT NULL, user_id uuid,
+  room, slot NOT NULL, label, old_value, new_value, area default 'config', ok default true`; RLS read for anon+authenticated,
+  inserts via service_role; indexes `ts desc`, `room`; 90-day retention. `[ev: tunnel write-server.mjs @ 9acb47c :154-168, :266-282]` `[ev: tunnel sql/2026-09-06-change-log-audit.sql @ 9acb47c]`
+  **What is still missing at `9acb47c` (the R5 delta, ADDITIVE-ONLY migration — no column drop/retype):** JWT-bearer only
+  (no step-up, no logout); a row ONLY on success (a rejected/failed write leaves no trace); no `config_session`, no
+  `result` (the station's HTTP status), no `surface` (A viewer/write-server vs B HMI servlet), no `client_ip`. R5 extends
+  `change_log` with **`config_session text`, `result int`, `surface text default 'A'`, `client_ip inet`** (`ts` already
+  exists), writes a row on EVERY attempt (`ok=false` + `result` on failure), and pins **exactly ONE row per successful
+  write** and **audit-append failure never fails the write (200 + an error row + a spool entry)**. `[ev: proposal §5 / R5]`
+  **JSON-lines is DEMOTED to a failure SPOOL only** (append-only local file written when the `change_log` insert fails,
+  replayed later) — it is no longer a second trail; "unified" means ONE queryable table. `[ev: proposal §5]`
+  `email`/`config_session` = the Supabase step-up identity (the REAL operator — see the attribution caveat in Part 2). `[INFER — design for the R5 delta; CERT for the 9acb47c baseline]`
 
 ## Part 2 — The setpoint path (phase 1 = channel 3 servlet; phase 2 = additive action) `[CERT for the contract]`
 **Phase 1 — write-server → the module's own servlet ([B823] channel 3, the one no-code path that works today):**
@@ -50,8 +65,8 @@ Content-Type: application/json
   4. **Invalid value → 400** `SC_BAD_REQUEST` — the PR#7 numeric-validation guard "reject missing/empty/NaN before coercion" at `BDashboardServlet.java:274-283` (plus the ORD-resolve/traversal 400s at `:216,225,234,256,265`).
 - **The write:** `coerceValue(current, value)` (`BDashboardServlet.java:357`, `new BStatusNumeric(parseDouble)`) → `parent.set(prop, toSet, null)` (`:291`) — reaches the same slot as `setSetpoint`, via a **null-Context** servlet write. `[CERT]`
 - **Response:** `200` `{"ok":true}` on success; the 3xx/4xx above otherwise. `[CERT]`
-- **Audit lands in BOTH trails:** (a) the module's `auditLog` ring — `svc.appendAudit(JsonUtil.buildAuditEntry(...))` (`BDashboardServlet.java:312`; ring 500, `BDashboardService.java:68-72,256`), `{ts,user,action:"setpoint",ord,oldValue,newValue}`; **and** (b) the write-server's Supabase `audit` (Part 1). `[CERT for (a)]`
-- **Single-station-user attribution caveat — now `[CERT]`, settled by CODE in B829 (`d26305d21`):** the servlet write uses `parent.set(prop, toSet, null)` (null Context). The framework builds a config `AuditEvent` ONLY inside `if (context != null && context.getUser() != null)` (`ComplexSlotMap.set:662`) and dispatches it only if `Nre.auditor != null` (`:1685`, set by `BAuditHistoryService`). So the servlet's null-Context write is **NOT audited at all — the event is SUPPRESSED, not merely unattributed**, and this holds *even with* an `AuditHistoryService` installed (it is not a station-config unknown any more). The oBIX PUT (Part 1) IS audited but to the SHARED oBIX login user (`ObixUtils:558`); only a fox/Workbench edit carries the real user. So no Niagara trail attributes the real remote operator — **the real operator identity lives ONLY in the write-server's Supabase `audit.email`** (the config-session), and Niagara AuditHistory is the out-of-band cross-check for direct Workbench edits. That is WHY Part 1's audit is authoritative, not the module ring. `[ev: corpus B829]`
+- **Audit lands in BOTH trails:** (a) the module's `auditLog` ring — `svc.appendAudit(JsonUtil.buildAuditEntry(...))` (`BDashboardServlet.java:312`; ring 500, `BDashboardService.java:68-72,256`), `{ts,user,action:"setpoint",ord,oldValue,newValue}`; **and** (b) the write-server's Supabase `change_log` (Part 1, the canonical sink). `[CERT for (a)]`
+- **Single-station-user attribution caveat — now `[CERT]`, settled by CODE in B829 (`d26305d21`):** the servlet write uses `parent.set(prop, toSet, null)` (null Context). The framework builds a config `AuditEvent` ONLY inside `if (context != null && context.getUser() != null)` (`ComplexSlotMap.set:662`) and dispatches it only if `Nre.auditor != null` (`:1685`, set by `BAuditHistoryService`). So the servlet's null-Context write is **NOT audited at all — the event is SUPPRESSED, not merely unattributed**, and this holds *even with* an `AuditHistoryService` installed (it is not a station-config unknown any more). The oBIX PUT (Part 1) IS audited but to the SHARED oBIX login user (`ObixUtils:558`); only a fox/Workbench edit carries the real user. So no Niagara trail attributes the real remote operator — **the real operator identity lives ONLY in the write-server's Supabase `change_log.user_email` + `config_session`** (the step-up session), and Niagara AuditHistory is the out-of-band cross-check for direct Workbench edits. That is WHY Part 1's audit is authoritative, not the module ring. `[ev: corpus B829]`
   - **B829-G1 — CLOSED by a bog read `[CERT]`:** an `AuditHistoryService` IS installed on PANCCADIA — `tools/bog-nav.py <config.bog> find --type h:AuditHistoryService` → `Services/AuditHistoryService` (id `/PANCCADIA/AuditHistory`, recordType `history:AuditRecord`). So `Nre.auditor` is set; the servlet suppression is purely the null-Context gate, nothing missing. `[ev: corpus B829]`
   - **B829-G2 — the surface-B fix (small, schema-neutral):** pass a REAL user Context from the servlet — `parent.set(prop, toSet, cx)` with the authenticated request user instead of `null` — and the servlet write becomes Niagara-audited to that operator (a second, native trail alongside the Supabase one). Client work item for surface B. `[ev: corpus B829]`
 
@@ -65,6 +80,14 @@ an oBIX-native write + a Niagara-side audit event): add `@NiagaraAction(flags=Fl
 The HMI's own critical writes (operator at the panel) get [B803] step-up in a later phase: a re-auth modal → the real
 `x-niagara-csrfToken` double-submit ([B803] §803.5 — the servlet has **NO** CSRF token today, Part 6) + a server-side
 step-up token for critical ORDs. Not in scope for the write-server work; recorded so the two surfaces converge. `[INFER]`
+- **R7 — surface B writes the SAME `change_log` schema, flag-gated.** Once B829-G2 lands (the servlet passes a real user
+  Context, so Niagara AuditHistory records the HMI write), a reconciliation job mirrors the `AuditHistory` record into
+  `change_log` with `surface='B'` — behind a feature flag, unit-tested against a RECORDED AuditHistory fixture (never a
+  live station in CI). Same columns, same `old→new` format, so the viewer's audit view is ONE query over both surfaces.
+  `[ev: proposal §5 / R7]` `[ev: corpus B829]`
+- **S12-B (HMI step-up) reuses the schema verbatim** — `config_session` = the station step-up session id, `surface='B'`.
+  `[ev: proposal §5]`
+
 
 ## Part 4 — RED shapes per component `[INFER — test design]`
 - **write-server unit tests** (Node): `/config/login` mints a token; `/write` and `/alarms/ack` WITHOUT a token → 401;
