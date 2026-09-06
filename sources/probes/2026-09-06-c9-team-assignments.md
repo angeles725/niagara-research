@@ -73,3 +73,22 @@ Pull niagara-research and read your section. Peer messages in English (Cristian'
   ROT5 disabled-at-0-golden (byte-identical step command trace over a recorded demand sequence) ·
   ROT6 no-swap-one-available · ROT7 hoa-off-excluded-hand-untouched · ROT8 no-swap-on-dischargeHigh · ROT9 lp-floor ·
   ROT10 hours-ledger-unaffected; one named mutation per pin, flip OBSERVED.
+
+## Update 2 — paths, R11 measured, visibility decision
+- READ TREE for every client cite: `/home/cristian/modulos_niagara_n4/Cliente/Leon-Guanjuato-worktrees/main-a109249`
+  (git worktree at a109249). The local checkout `Cliente/Leon-Guanjuato` is STALE at 4f5f1c7 and misled the C9 design
+  once (anchors :216/:218/:233 were 4f5f1c7's; at a109249 they are :217/:219/:246-248; pickLeastHoursOff :352,
+  pickMostHoursOn :365; BEvaporatorUnit freezeTripped :1287, valveInhibited :1102 — B824 was right).
+- Tunnel clone (local, read-only): `/home/cristian/tunnel/clientes/Leon-Guanajuato/Pancaddia` ("Guanajuato" WITH the a).
+- R11 measured at a109249 (companero 19e756062): the matrix EXISTS at `<client-root>/docs/write-path-matrix.md`
+  (20 rows); R11 = EXTEND it; SC-9 pin = lint exit 1→0. OPERATOR slots 76 (CRP-rt 10, DashboardPan-rt 46, CompPan-rt 20);
+  UNCOVERED 62 (CRP-rt 6, CompPan-rt 15, DashboardPan-rt 41) + 2 S20 slots.
+- QA deliverables: R1 RED `qa/c9-comppan-rotation` 5955a89 (ROT1-ROT10; contract Cfg.rotationIntervalMs,
+  Cfg.rotationMode, ROTATION_MAKE_BEFORE_BREAK, ctl.swaps; golden embedded); S12-A re-pin 55d6797 on 9acb47c;
+  `qa/c9-close-checklist` fbd420e (C9_CLOSE_COMMIT param). Requested additions: N=3 wrong-unit-shed case, E1-E4
+  swap-window pins, no-swap-on-first-step-after-re-enable, ROT7 HAND-in-minOff trap.
+- Visibility: Cristian decided (2026-09-06) that niagara-research and niagara-tools STAY PUBLIC. Pushes resumed.
+  Content rule: no credentials, no station passwords, no personal data.
+- Defrost trial link-list correction (companero): a BooleanWritable priority array is highest-non-null-wins, NOT an
+  OR — each unit needs a `kitControl:Or` (evapOut→inA, resistanceOut→inB, out→fanRelay.in2) + DefrostController
+  sibling per room; apply ColdRoom_2 first. Station-only; waits for Cristian's green light.
