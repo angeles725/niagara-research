@@ -138,3 +138,12 @@ C9 research/build core = **#1 protection-latch fixture** (built below) + **#2 wr
 
 **Ties to the already-drafted C8 doc PRs:** S5→PR19 (0590c2b7f), S6→PR18 (f7a4521ee); the orchestration/retro loop
 (PR16 110f583ad / PR17 d5f979f88) frames how every S-seed closes: research block → spec → RED → apply → retro → fold.
+
+**Delivered research blocks (C9):**
+- **B821 · Protection anatomy** — the RT deep-dive the user asked for (protections: what fires · who fires · who
+  watches; heartbeat; latch). AUDIT-first at client `fbe9009`: 22 protections classified on three axes; cross-cutting
+  finding = the RT modules raise ZERO alarm-console events (every surface is a plain SUMMARY slot); honest silent list
+  (CR-3/CR-10/CR-11, CP-1/CP-4/CP-5/CP-6). GROUNDS **S13** (health surface = the tier-1 `BAlarmSourceExt` fix),
+  **S2** (protection-latch = latched first-out surface), **S3** (heartbeat = independent monitor). Kit: `types/logic.md`
+  §"Protection anatomy" + a silent-protection lint candidate (sibling of B820). Gaps B821-G1 (lint shape) / B821-G2
+  (live alarm-console confirm).
