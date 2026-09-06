@@ -34,7 +34,7 @@ Order of checks: triage-console → bog-audit → report-module.                
 - Build-task matrix: what each `niagara-module` gradle task DOES, cited to the plugin source (B807 §matrix). [ev: corpus B807]
 - Version-bump checklist: bump `vendorVersion` on EVERY schema change; the reload path re-decodes config.bog
   against the installed module, so a retype/remove is a schema-risk OUTAGE (run schema-risk.sh).            [ev: corpus B807, B795]
-- Exit-31 mirror recipe: mirror niagara-home with the source cite for the station LOCK (B807 §station-lock).  [ev: corpus B807]
+- Exit-31 mirror recipe: `build.sh` exit 31 = ":clean blocked by a station lock on modules/<jar>" (`toolbelt/build.sh:15,:82-88`); the fix is `mirror-niagara-home.sh` (writable modules/). Cite build.sh directly + B807 §station-lock.  [ev: corpus B807]
 - Delete a @NiagaraType and its module-include.xml <type> line in the SAME change (dangling = live "Missing class"). [ev: corpus B818]
 - Structure lints L1–L11 (package/one-type-per-file/model-seam/lexicon/palette/module-include/dep-floor + L10/L11). [ev: corpus B817]
 ```
@@ -58,7 +58,7 @@ Order of checks: triage-console → bog-audit → report-module.                
   safety interlocks; AUTO is the computed value. Maps to Niagara's priority array (BBooleanWritable: emergency/manual
   levels in1–in2 vs automation in8–in16 + relinquish) — our plain-double HOA emulates priority 1–2 for OFF. Test:
   a pure `resistanceCommand(inDefrost, mode, auto)` (mutation: swap OFF/defrost order) + a "HOA × mid-cycle" write-path
-  matrix row the coverage lint MUST demand. Live bug fixed on fix/resistance-off-lockout (v2.0.6).            [ev: corpus B805, B810, B816]
+  matrix row the coverage lint MUST demand. Live bug fixed on fix/resistance-off-lockout (commit 20f74f8, v2.0.6).  [ev: corpus B805, B810, B816]
 ```
 
 ---
