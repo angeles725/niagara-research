@@ -107,14 +107,14 @@ pin counts confirmed, and each is a **true test-first RED**: the lint script is 
 file is present, so the suite FAILs until C9-apply builds the lint. Two carry explicit mutation-bite pins (SP8
 `mutation_removing_reason_slot_makes_flag_appear`, DS2 `fail_demand_removed_mutant`) plus real-tree smokes — they bite,
 not just fixture-green. S12-B (client repo, local) is likewise VERIFIED [CERT] — a compile-RED on the
-`DashboardWriteGuards.evaluate` seam. Only S12-A remains lead-reported: the tunnel repo is not clonable from this machine.
+`DashboardWriteGuards.evaluate` seam. S12-A is now VERIFIED too on the local tunnel clone (tip e7e6615, rebased on 9acb47c): all five C9 REDs are [CERT].
 
 | Seed | Branch | Tip | Repo | Pins | Seam it needs | Token |
 |---|---|---|---|---|---|---|
 | S19 | qa/c9-ext-writable-shape | `3726722` | niagara-tools (origin) | EW1-EW10 (EW10 = real BRoomPanel.setpoint WARN) | none (static lint) | `[CERT]` |
 | S18-lint | qa/c9-silent-protection | `e38e503` | niagara-tools (origin) | SP1-SP8 + SP-smoke (mutation pin SP8; smoke flags CP-1/CR-3, not CP-2) | none (static lint) | `[CERT]` |
 | S7 | qa/c9-demand-in-scope | `2916954` | niagara-tools (origin) | DS1-DS7 + DS-smoke (mutant pin DS2; smoke on real CompressorControl.step) | none (standalone script) | `[CERT]` |
-| S12-A | qa/c9-s12-write-server | `24adcba` | pancaddia-leon-tunnel (base e4b42b0) | node:test | buildServer seam | `[INFER — lead-reported]` (tunnel repo not clonable here) |
+| S12-A | qa/c9-s12-write-server | `e7e6615` (was 24adcba; rebased on 9acb47c) | pancaddia-leon-tunnel (local clone `/home/cristian/tunnel/clientes/Leon-Guanajuato/Pancaddia`) | S12A-1..9 (node:test); `buildServer` absent = true RED | buildServer seam | `[CERT]` |
 | S12-B | qa/c9-s12-servlet | `4c18837` | niagara-panccadia-leon (rebased a109249, origin) | guard1-5 + guard4b + success/one-audit-entry (7); guard4 = no-silent-zero regression pin | `DashboardWriteGuards.evaluate` seam | `[CERT]` |
 
 **The two C8 QA REDs that map to standing C9 seeds** (`git rev-parse`, verified 2026-09-06):

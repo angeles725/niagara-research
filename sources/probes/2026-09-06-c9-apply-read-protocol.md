@@ -4,7 +4,7 @@ Author: investigador1, 2026-09-06. Purpose: make every apply-time read **execute
 runs this checklist against the GREEN diff (tip vs its parent) and reports drift as file:line pairs. Invariants are the
 design D-ids at niagara-tools `d2857d1` and the RED contracts at their current tips; anchors at client **a109249**
 (read from the worktree `Leon-Guanjuato-worktrees/main-a109249`, never the stale checkout). Every check names the
-grep/read that decides it. `[ev: design d2857d1]` `[ev: REDs cf28572 / d0f5942 / e38e503 / 3726722 / 4c18837 / cc1c948 / 70a357b / 8b43488 / 24adcba]`
+grep/read that decides it. `[ev: design d2857d1]` `[ev: REDs cf28572 / d0f5942 / e38e503 / 3726722 / 4c18837 / cc1c948 / 70a357b / 8b43488 / e7e6615 / 0a14df8]`
 
 **Universal (every PR):** (U1) parent of the tip == the blessed base (client a109249 / kit main / tunnel 9acb47c after
 the RK3 rebase); (U2) the RED's test files are byte-identical to the RED tip (`git diff <red-tip> <pr-tip> -- <test paths>`
@@ -44,7 +44,7 @@ client PRs `schema-risk.sh` verdict is in the PR body and reads SAFE; (U6) versi
 | 3.4 | PR3 acceptance beyond the pin: exact WARN count + subjects + absence on ALL FOUR client module roots recorded in the retro (lesson 11) | PR body |
 | 3.5 | Cross-lane: after PR8 lands, CR-3 becomes surfaced → the smoke expectation flips; whichever merges second updates the pin (D9) | note in both PRs |
 
-## PR4/PR5 — S12-A write-server (tunnel; RED 24adcba S12A-1..7, rebased onto 9acb47c) — D6/D7
+## PR4/PR5 — S12-A write-server (tunnel; RED `qa/c9-s12-write-server` e7e6615 S12A-1..9, already rebased on 9acb47c; +S12A-8 failed-write audit row, +S12A-9 spool replay idempotency) — D6/D7
 | # | Invariant | How to decide |
 |---|---|---|
 | 4.1 | `buildServer(cfg, deps)` returns the handler without binding; `main()` binds behind the import.meta guard; `deps = {supabase, station, clock, spool}` injectable | read the export; node:test opens no socket |

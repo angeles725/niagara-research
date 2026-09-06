@@ -11,7 +11,7 @@ Insert as a new H2 immediately after the RT-control-logic block (keep :95's heal
 ```markdown
 ## Protection anatomy [ev: corpus B821][ev: corpus B827]
 
-A protection is a latch (`freezeTripped`, `suctionShed`) that OVERRIDES the normal command path. It has four tiers, and each
+A protection is a latch (`freezeTripped`; or the CP-1 LP-floor shed, which is inline with NO named field — the silent case B824 flags) that OVERRIDES the normal command path. It has four tiers, and each
 tier that exists must be VISIBLE — a protection that silently holds an output is indistinguishable from a broken relay
 (`lint-silent-protection.sh`, [ev: retro campaign9-silent-protection]):
 
@@ -23,10 +23,10 @@ tier that exists must be VISIBLE — a protection that silently holds an output 
    - **Pattern A — child point + `BAlarmSourceExt`** (when the latch can be expressed as a boolean point): declare a frozen
      child `BBooleanPoint` on the unit, hang a `BAlarmSourceExt` with `BBooleanChangeOfStateAlgorithm(alarmValue=true)` on
      it, and write the point's `out` from the latch in the recompute. The ext owns the edge (raises on false→true, clears on
-     true→false) — the module keeps NO alarm state. Legality: the ext's grandparent must be a `BControlPoint`
-     (`BAlarmSourceExt.isGrandparentLegal`), so it cannot sit on the unit itself. [ev: corpus B827 §827.3]
+     true→false) — the module keeps NO alarm state. Legality: the ext's PARENT must be a `BControlPoint` (`BPointExtension.isParentLegal` :64-66, narrowed by `BAlarmSourceExt.isParentLegal` :1073-1078) and the ALGORITHM's grandparent must be a `BBooleanPoint`
+     (`BBooleanChangeOfStateAlgorithm.isGrandparentLegal` :86-89), so the ext cannot sit on the unit itself. [ev: corpus B827 §827.3]
    - **Pattern B — `BIAlarmSource` + transient `AlarmSupport`** (when the source is not a point, or several trips share one
-     source): the component implements `BIAlarmSource` (hidden `ackAlarm` action delegating to `support.ackAlarm`), creates
+     source): the component implements `BIAlarmSource` (a VISIBLE `@NiagaraAction BBoolean ackAlarm(BAlarmRecord)` whose `doAckAlarm` delegates to `support.ackAlarm` — never hidden: the console must invoke it and hidden actions are not invocable [ev: retro hidden-actions-not-invocable-and-runtime-anchor-verification]), creates
      `new AlarmSupport(this, alarmClass)` in `started()`, and calls `newOffnormalAlarm(alarmData)` / `toNormal(...)` ONLY on
      the edge computed by a pure edge machine (`AlarmEdge.decide(trip, nowOffnormal, recoveredPastDeadband) → FIRE|CLEAR|NONE`)
      that is re-seeded from the CURRENT condition in `started()` (a restart never re-fires). [ev: corpus B827 §827.4 §827.6]
@@ -35,7 +35,7 @@ tier that exists must be VISIBLE — a protection that silently holds an output 
    dashboard's alarm strip selects `sourceState = 'offnormal' or 'fault'`. The live routing is HARNESS-ONLY (station);
    WSL tests pin the structure (child declared, ext + algorithm present, drive line in the recompute; `implements
    BIAlarmSource`, `new AlarmSupport(` in `started()`, `newOffnormalAlarm` inside the FIRE branch) and the pure edge machine.
-   [ev: retro campaign9-alarm-cr3][ev: retro campaign9-alarm-cp1]
+   [ev: RED qa/c9-alarm-cr3 70a357b][ev: RED qa/c9-alarm-cp1 8b43488][ev: corpus B827 §827.3 §827.4]
 ```
 
 ## Fold 2 — slot-type doctrine: VERIFY ONLY (already at `types/logic-authoring.md:62-70`, C8 PR15)

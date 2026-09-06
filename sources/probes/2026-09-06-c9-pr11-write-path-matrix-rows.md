@@ -47,7 +47,7 @@ done   # all three must print exit=0 after the rows land (today: 1/1/1 — R11 m
 | `suctionLowLimit` (double) | WB · HMI | `execute()` — CP-1 shed `CompressorControl.java:215` + PR9 alarm edge | `> 0` enables the shed; `0` disables (no alarm) | ✅ `CompressorControlTest.cp1*` + PR9 `CompressorAlarmEdgeTest` |
 | `suctionMismatchTol` (double) | WB | `execute()` sensor-mismatch check | `>= 0`; `0` disables | ❌ add `suctionMismatchTolZeroDisables` |
 | `rotationMode` (int enum: 0 make-before-break / 1 break-before-make) — **PR1/S20** | WB · HMI | `execute()` at the swap decision (`pickLeastHoursOffAuto`) | ∈ {0,1}; E1–E4 rules (S20 rev 2) | ✅ `CompressorRotationTest` (17, PR1) |
-| the second S20 config slot (rotation interval — take the exact name from S20 rev 2 §slots) — **PR1/S20** | WB · HMI | `execute()` | `>= 0`; `0` = rotation off | ✅ `CompressorRotationTest` |
+| `rotationInterval` (BRelTime, MIN 0 / MAX 24 h, `SUMMARY|OPERATOR`; `0` = rotation DISABLED — the byte-identical sentinel, ROT5) — **PR1/S20** | WB · HMI | `execute()` | `>= 0`; `0` = rotation off | ✅ `CompressorRotationTest` |
 
 ## DashboardPan-rt (41) — module `DashboardPan`, class `BRoomPanel` (facade; the ROOM panel is the link SOURCE)
 Class A = facade pass-through (a link carries the value into the logic module; the invariant lives THERE). Class B = local

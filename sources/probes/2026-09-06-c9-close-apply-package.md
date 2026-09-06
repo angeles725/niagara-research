@@ -17,7 +17,7 @@ Campaign 9 — "close the silent seams": demand-scope lint, silent-protection li
 patterns A/B doctrine, and the unified write audit (write-server + servlet → one change_log).
 
 ### Added
-- `toolbelt/lint-demand-in-scope.sh` — <n> pins (PR2, #<pr>) [retro campaign9-demand-scope]
+- `toolbelt/lint-demand-scope.sh` — <n> pins (PR2, #<pr>) [retro campaign9-demand-scope]
 - `toolbelt/lint-silent-protection.sh` — <n> pins + four-root smoke (PR3, #<pr>) [retro campaign9-silent-protection]
 - `toolbelt/lint-ext-writable-shape.sh` — EW1–EW10 + four-root smoke (PR10, #<pr>) [retro campaign9-ext-writable-shape]
 - `types/logic.md §Protection anatomy` — tiers + alarm patterns A/B (PR12, #<pr>)
@@ -69,7 +69,7 @@ bats tests/                                # whole suite incl. kit-links (lint n
 ```
 chore(c9-close): v0.20.0 — CHANGELOG, VERSION, 5 retros folded, BUILD-STATE flip, K23
 
-Retro: campaign9-demand-scope campaign9-silent-protection campaign9-ext-writable-shape campaign9-doctrine-fold campaign9-close-process-meta-lessons
+Retro: promotion (folds campaign9-demand-scope campaign9-silent-protection campaign9-ext-writable-shape campaign9-doctrine-fold campaign9-close-process-meta-lessons)
 ```
 
 ## H. Post-merge

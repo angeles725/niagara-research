@@ -55,7 +55,12 @@ names on ONE live query before wiring the mapper (B829-live / B830-G1 gate)**; k
 | F5 | `package.json` | `"test": "node --test test/"` already covers `audit-mirror.test.mjs` (5 more pins → 14/14 with S12-A's 9). |
 | F6 | kit doc (the "+ kit doc" half of PR7) | one line in `types/dashboard.md` (or BUILD-LOOP §6): "the DashboardPan write trail is unified in `public.change_log`: write-server rows `surface='write-server'` with `config_session`; servlet rows mirrored from AuditHistory `surface='servlet'`, `config_session` NULL, deduped on `(ts,user,target,old,new)`; mirror flag-gated OFF; audit-append never fails the write" `[ev: proposal §5] [ev: corpus B829]` — see the PR12 doctrine draft for the exact line. |
 
-## 4. Column mapping caveat (flag for the lead, small)
+## 4. Column mapping — SETTLED by the lead (2026-09-06): station username → `change_log.user_email`
+The mirror writes the AuditRecord `userName` into `change_log.user_email` (the IDENTITY column: an email for
+`surface='write-server'` rows, a station username for `surface='servlet'` rows). No schema change. Document it in the
+kit doc line (§3 F6) and in the R7 retro. The original options are kept below for the record.
+
+### 4a. Original caveat (record only)
 `change_log.user_email` is `text not null` (9acb47c schema); the mirror's `user` is a station username (`userName`), not an
 email. Options: (a) write it into `user_email` as the identity column (simplest; rename the column semantics in docs);
 (b) add `user_name text` additively and leave `user_email` NULL-able for servlet rows (needs `alter column drop not null`
@@ -74,4 +79,17 @@ user` → MIR5 flips.
 | 2 | flag-off = never read; 5-tuple key; `'servlet'`; `config_session` null | [CERT] | MIR1/MIR3/MIR4/MIR5 + D7a table |
 | 3 | AuditRecord field names | [CERT] | B829 :68-70 (`BAuditRecord.fromEvent`) |
 | 4 | oBIX historyQuery shape / exact column names | [CERT-doc / INFER] | oBIX spec; confirm on one live query |
-| 5 | `user_email` vs station username | [CERT, decision pending] | sql/2026-09-06-change-log-audit.sql @ 9acb47c |
+| 5 | `user_email` carries the station username (settled) | [CERT] | sql/2026-09-06-change-log-audit.sql @ 9acb47c |
+
+## Second-read notes (investigador1, 2026-09-06)
+- **Composite `target + '/' + slotName` is right** — the `AuditEvent` carries `targetPath.getBody()` for `slot:` ORDs and
+  the slot name separately (`ComplexSlotMap.java:1687-1689`, B829 §829.4), so the composite is the full slot path
+  (`/Services/DashboardService/Cuarto1/setpoint` for a servlet write). Keep it raw in `target` AND derive the
+  façade-relative `room`/`slot` columns (strip the `/Services/DashboardService/` prefix, split the last segment) so a
+  surface-B row is queryable beside the surface-A row for the same slot (`Cuarto1/setpoint`). `[ev: corpus B829 §829.4]` `[ev: S12 plan FACADE_PATH]`
+- **Identity column — recommend option (a)**: treat `user_email text not null` as the IDENTITY column and write the station
+  `userName` into it for `surface='servlet'` rows, documenting the semantic. Option (b) (`alter column drop not null` +
+  a new `user_name`) is a column ALTERATION, outside the additive-only rule (D7); (a) needs no migration and matches D7's
+  "identity column" and the R14 rev-3 wording. `config_session` stays NULL for mirrored rows (no session field in the
+  AuditEvent). `[ev: design D7/D7a]` `[ev: corpus B830 §830.4]`
+- The `[INFER: exact HistoryQueryOut column names]` stays open until the B829-live/B830-G1 query (live-gate plan R1).

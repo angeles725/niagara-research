@@ -3,7 +3,7 @@
 Author: companero (Fable), 2026-09-06. Branches from proposal f610d21 §4 (PR1–PR13); R14 has no PR row there (see the flag).
 Bases: kit = `niagara-tools` `origin/main` (fresh fetch at branch time); client = `a109249`; tunnel = `9acb47c`.
 Worktree convention: sibling `<repo>-worktrees/<name>` (CodeGraph rule: never under /tmp). Existing today: client
-`Leon-Guanjuato-worktrees/{c9-a109249,c9-alarm-cp1,c9-alarm-cr3,c9-config-login,c9-rotation,c9-s12-servlet,lifecycle-btest}`;
+TWO roots, both registered to `Cliente/Leon-Guanjuato` (`git worktree list` 2026-09-06): `modulos_niagara_n4/Leon-Guanjuato-worktrees/{c9-a109249,c9-alarm-cp1,c9-alarm-cr3,c9-config-login,c9-rotation,c9-s12-servlet,lifecycle-btest}` AND `Cliente/Leon-Guanjuato-worktrees/{main-a109249 (the lead's read tree, a109249), pr1-s20 (feat/c9-comppan-rotation @ cbab006 — the W1 PR1 apply tree)}`; the `Cliente/Leon-Guanjuato` checkout itself is STALE at 4f5f1c7 — never read from it;
 kit `niagara-tools-worktrees/` (exists, EMPTY); tunnel has NO worktrees dir yet → create
 `/home/cristian/tunnel/clientes/Leon-Guanajuato/Pancaddia-worktrees/`. `[ev: ls 2026-09-06]`
 
