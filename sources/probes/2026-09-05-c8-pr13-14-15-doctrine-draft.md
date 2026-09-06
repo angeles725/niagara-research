@@ -14,15 +14,16 @@ with `[ev: corpus B<n>]` tokens · ≤15 lines per block. Source §s cited so th
 ```
 Within ≤5 min of a hot module reload (Out-of-date: Module changed):
 1. PRE: BackupService "Backup Station" → .dist; sha256 config.bog → pre.hash.                 [ev: corpus B811]
-2. Snapshot the running station WITHOUT mounting the FS (fox:|file backup / station-load.sh).  [ev: corpus B811]
+2. Snapshot the running station WITHOUT mounting the FS — fox:|file backup (exists today); `station-load.sh` is a C9 requires-execution design, PENDING (companero 2309d87cd).  [ev: corpus B811]
 3. Fetch latest console_backup_*.txt (parse latin-1); scan "Cannot load station" /
    "Missing frozen property" / "ClassCastException" / "Missing class for \"<own-prefix>:\"".   [ev: corpus B800, B818]
 4. sha256 config.bog again → diff vs pre.hash; any retype/slot-remove → schema-risk.sh (OUTAGE gate). [ev: corpus B795]
 5. Proxy-link safety: every OUR-output→writable-proxy has a SAFE non-null fallback + writeOnUp
-   (a null fallback HOLDS the relay on stop/reload — resistance/compressor left ON).            [ev: corpus B810]
+   (writeOnUp defaults true so a device-DOWN self-corrects; but a null fallback = the relay HOLDS its last state on a
+   stop/reload/null command — resistance/compressor left ON, B810 §810.8).                       [ev: corpus B810]
 6. Health surface: the logic component exposes a fault-status slot + alarm ext + heartbeat lastTick
    (a LOGIC fault must reach the operator, not only the engine console).                        [ev: corpus B808, B812]
-Order of checks: triage-console → bog-audit → report-module.                                    [ev: corpus B800, B816]
+Order of checks: triage-console [ev: corpus B800] → bog-audit [ev: corpus B795] → report-module [ev: retro campaign7-report-module].
 ```
 
 ## PR14 — Build pipeline + module versioning → `BUILD-LOOP.md` (build-task matrix) + `METHODOLOGY.md`
@@ -67,6 +68,6 @@ Order of checks: triage-console → bog-audit → report-module.                
 - B811 §811.5 and B808 §808.4 are quoted near-verbatim; B807's task-matrix + station-lock cites are `extern`-decompiled
   plugin lines (verify-block cannot resolve them — driver-token-verified in B807). B817 §817.9 lists L1–L7 explicitly;
   confirm L8–L11 exist in the block tail before folding the "L1–L11" range.
-- The HOA-precedence block is NEW doctrine (lead directive today); its own evidence lands in a B805 §805.11 addendum +
-  a B816 write-path matrix row (being written) — cite those once pushed, not this draft.
+- The HOA-precedence doctrine's evidence is now on origin/main: B805 §805.11 (priority-array + the live bug) + the
+  B816 §816.6 write-path matrix HOA row. Cite those blocks (line 61's `[ev: corpus B805]` is valid).
 - Every line carries a standalone `[ev: corpus B<n>]` token so `sweep-fold-audit.sh --strict` credits it after the fold.
