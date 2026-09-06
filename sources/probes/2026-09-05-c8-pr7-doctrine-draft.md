@@ -125,6 +125,37 @@ Improve the kit and the modules as an "Excavador Técnico" (R&D engineer + syste
   DISTINCT new client-guidance target (a separate doc/section), the apply worker must specify that target; otherwise
   **SKIP** this delta — the pointer already exists.
 
+## 7.4 — Critical-write step-up auth (B803)
+- **Target:** `types/dashboard.md`, NEW `##` section near the DWS1 gates (after `## ux — servlet + SPA`), PLUS a
+  one-line REFINE into the existing DWS1 gate (2) at `dashboard.md:29`.
+- **Grep-before (K6):** `grep -niE 'step.up|re.auth|x-niagara-csrfToken|CsrfUtil' types/dashboard.md` → 0 hits. The
+  step-up section is NEW; the CSRF-token point REFINES gate (2) (which today names only `X-Requested-With`,
+  `dashboard.md:29/:46`). `#49` is ALREADY present (`dashboard.md:48` gate-4/423) — pointer only.
+- **READY (new section):**
+```
+## Critical-write step-up auth `[ev: corpus B803]`
+- Niagara ships NO core credential step-up — `Flags.CONFIRM_REQUIRED` is a UX-only confirm; the `electronicSignature` module is the only true sign-before-invoke. Step-up is MODULE-level code. `[ev: corpus B803]`
+- A mutating `-ux` endpoint whose target is a CRITICAL control adds, ON TOP of the B763 five gates: (1) a SERVER-SIDE criticality allowlist of target ORDs/actions that REQUIRE step-up (never client-decided); (2) re-verify the session user through their auth scheme SERVER-SIDE; (3) issue a fresh short-TTL step-up TOKEN (2–5 min) bound to `(sessionId + user + target ORD + purpose)`, checked server-side on the write — NEVER client-only. `[ev: corpus B803]`
+- SAML/SSO caveat: a SAML user CANNOT be re-verified mid-session (browser→IdP redirect, no in-request re-verify) — either reject with "re-login required" or trust the session + a short TTL. `[ev: corpus B803]`
+- CSRF: verify the REAL token `x-niagara-csrfToken` (`CsrfUtil.CSRF_TOKEN_HTTP_HEADER`; double-submit against the session token), not `X-Requested-With` alone. `[ev: corpus B803]`
+- The per-Ord write lock / HTTP 423 for a critical write is tracked as the client gate-4 gap (issue #49, `dashboard.md:48`). `[ev: corpus B803]`
+- OPEN (requires-execution): **B803-G1** (confirm the live SAML mid-session re-auth block on a station) and **B803-G2** (whether gauth's `BPasswordCache.validate` accepts a TOTP token mid-session). `[ev: corpus B803]`
+```
+- **READY (REFINE gate (2) at `dashboard.md:29`, append):** `— a CRITICAL-write endpoint should ALSO verify the real x-niagara-csrfToken token (CsrfUtil double-submit), not rely on X-Requested-With alone. [ev: corpus B803]`
+
+## 7.5 — triage-console attribution + locale contract (B800)
+- **Target:** `toolbelt/triage-console.sh` header + `METHODOLOGY.md` §Conformance.
+- **Grep-before (K6) — MOSTLY ALREADY FOLDED, do NOT re-add:** the contract is already implemented and cited.
+  `triage-console.sh` header states the three channels **C1** (own frame `<PKG>.`), **C2** (own logger WARNING/SEVERE
+  + own-tag), **C3** (bog-drift: `[sys]` fatal / `[sys.xml]` slot-drift / `[sys.registry] Missing class "<prefix>:`);
+  `is_level` parses EN (`INFO/WARNING/SEVERE`) + ES (`INFORMACI…/ADVERTENCIA/GRAVE`) at `:90-94`; `norm_level` maps
+  ES→EN at `:98-100`; the scan runs `LC_ALL=C awk` at `:298` (byte-safe over mojibake). The **folded-as-code** line is
+  already at `METHODOLOGY.md:93`. So the tool + the fold pointer already carry this — **SKIP re-adding**.
+- **ADDABLE (only if §Conformance wants the CONTRACT as explicit prose beside the fold pointer):** ONE line —
+```
+- triage-console.sh attribution contract = **C1** own frame · **C2** own tag · **C3** bog-drift (`Missing class "<prefix>:` / `Cannot load station` / `Missing frozen property`); locale = `LC_ALL=C`, byte-safe (`grep -a`/awk), EN + ES level names (mojibake-safe latin-1). PR7 states this CONTRACT; PR13 states the operator STEPS (non-duplicative). `[ev: corpus B800]` `[ev: retro campaign8-triage-console]`
+```
+
 ---
 
 ## Apply-worker checklist
