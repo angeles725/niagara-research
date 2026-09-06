@@ -13,7 +13,7 @@ toSet)` (`BDashboardServlet.java`), `WB` = Workbench property sheet, `oBIX` = ex
 
 ## SC-9 check (exit 1 → 0)
 ```bash
-export PATH=/usr/bin:/bin:$PATH; KIT=~/prototipos/niagara-tools   # kit root (build-n4-module)
+export PATH=/usr/bin:/bin:$PATH; KIT=/home/cristian/modulos_niagara_n4/niagara-tools   # kit root (build-n4-module)
 cd <client-root>   # the a109249 worktree
 for r in ColdRoomPan-rt CompPan-rt DashboardPan-rt; do
   "$KIT/toolbelt/lint-write-path.sh" --matrix docs/write-path-matrix.md "$r/src"; echo "$r exit=$?"
