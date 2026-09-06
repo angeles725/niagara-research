@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **810 bloques**
+Total: **811 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -815,6 +815,7 @@ Total: **810 bloques**
 | 819 | [niagara-mental-model-bloque819.md](niagara-mental-model-bloque819.md) | B819 · Zero-demand / idle-state doctrine for staged processes — demand decides WHETHER, a process variable only modulates HOW MUCH; NaN never counts as demand; every staged process has an explicit idle state (answers "why can't the compressors turn off?") `[CERT]` |
 | 820 | [niagara-mental-model-bloque820.md](niagara-mental-model-bloque820.md) | B820 · The "demand-in-scope" static check — the one NEW write-path lint from B819 §819.5: a stage/on-off decision that reads a PROCESS VARIABLE with NO demand input reachable is flaggable; where it is statically decidable (WARN) vs human-review (advisory); proven PASS on `CompressorControl.step`, FAIL on a demand-removed mutant `[CERT]` |
 | 821 | [niagara-mental-model-bloque821.md](niagara-mental-model-bloque821.md) | B821 · Protection anatomy of our RT modules — every protection trip as (WHAT fires · WHO fires · WHO watches), one-bit-traced at `fbe9009`; the RT control logic raises ZERO alarm-console events (every surface is a plain SUMMARY slot, never a `BAlarmRecord`); + the two author-built classes Tridium ships NO primitive for (set-dominant SR latch, independent heartbeat) `[CERT]` |
+| 822 | [niagara-mental-model-bloque822.md](niagara-mental-model-bloque822.md) | B822 · Making the room setpoint remotely settable — the ADDITIVE-code options (a `setpointCmd` writable-double slot, or an `applySetpoint(BDouble)` OPERATOR action) vs the OUTAGE of retyping `BRoomPanel.setpoint`; a generic `@NiagaraAction` IS oBIX-invokable (`<op>` → `BComponent.invoke` with `OPERATOR_INVOKE`); schema risk graded SAFE(add) vs LOSSY/OUTAGE(retype) `[CERT]` |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
