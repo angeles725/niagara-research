@@ -57,3 +57,19 @@ Pull niagara-research and read your section. Peer messages in English (Cristian'
 4. Drafting checklist additions from the C8 close: `toolbelt/facets-lint.sh` does not exist (facets =
    `verify-module.sh --src facets-req`); `wave3.md` is an openspec file, not a kit doc (kit-links L1 scans bare
    `X.md` tokens in root kit docs). Keep improving bog-nav/module-find as needs appear.
+
+## Update — C9 proposal landed (niagara-tools ba3432c, `openspec/changes/build-n4-module-campaign9/proposal.md`)
+- 13 chained PRs R1-R13 in the three fixed waves; kit target v0.20.0; CompPan-rt 2.0.3→2.1.0 (R1 S20)→2.2.0 (R9),
+  ColdRoomPan-rt 2.0.7→2.1.0 (R8), DashboardPan 2.1.1→2.2.0 (R6). Spec + design running in parallel now.
+- Audit sink DECIDED (proposal §5): ONE canonical sink = the existing Supabase `public.change_log`, extended in place
+  with `ts`, `config_session`, `result`, `surface`, `client_ip`; JSON-lines file demoted to a local failure spool.
+  S12-A (R4/R5) adds `/config/login` step-up + `/config/logout` + `buildServer(cfg,deps)` on top, rebased on 9acb47c.
+  Surface B (R6) keeps the native AuditEvent (real-Context set) and reaches change_log via a flag-gated mirror (R7,
+  OFF by default, dedupe key ts+user+target+old+new). `config_session` is NULL for surface-B rows in C9.
+- REDs still to author (critical path — QA): R1 S20 rotation, R8 alarm Pattern A (CR-3 freeze), R9 alarm Pattern B
+  (CP-1 low suction), R7 mirror unit tests; S12-A re-pin S12A-4/S12A-6 against the change_log insert.
+- QA pin contract for R1 (spec will carry the same names): ROT1 swap-after-interval · ROT2 no-swap-below-interval ·
+  ROT3 no-swap-while-minOff · ROT4 make-before-break-order (incoming ON → stageDelay → outgoing OFF) ·
+  ROT5 disabled-at-0-golden (byte-identical step command trace over a recorded demand sequence) ·
+  ROT6 no-swap-one-available · ROT7 hoa-off-excluded-hand-untouched · ROT8 no-swap-on-dischargeHigh · ROT9 lp-floor ·
+  ROT10 hours-ledger-unaffected; one named mutation per pin, flip OBSERVED.
