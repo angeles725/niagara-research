@@ -3,19 +3,19 @@
 <!-- research-state.v1 -->
 schema: research-state.v1
 block_scope: shared-global
-covered_blocks: 18
-gaps_closed: 18
-known_gaps: 18
+covered_blocks: 19
+gaps_closed: 19
+known_gaps: 19
 investigable_open: 0
 requires_execution_open: 6
 blocked_open: 0
 <!-- /research-state.v1 -->
 
 focus: build-kit-campaign8
-status: ALL 18 CLOSED (18/18). Campaign 8→9 transition (user reversed the C7 stop, 2026-09-05). Multi-session focus: investigador1 (Opus) + companero. B816 (write-path/overlap) + B818 (HoaMode forensic) added on later user mandates. Open items are requires-execution / bounded gaps only (see below); both consolidated §18 fold retros filed (mine extended to D12).
+status: ALL 19 CLOSED (19/19). Campaign 8→9 transition (user reversed the C7 stop, 2026-09-05). Multi-session focus: investigador1 (Opus) + companero. B816 (write-path/overlap), B818 (HoaMode forensic), B819 (zero-demand/idle doctrine) added on later user mandates. Open items are requires-execution / bounded gaps only (see below); both consolidated §18 fold retros filed (mine extended to D12).
 seeded_from: lead directives 2026-09-05 + campaign8-research-candidates.md (AUDIT-FIRST ranking)
 seeded_on: 2026-09-05
-block_range: B800–B816 + B818 (B817 = module-authoring-exemplars focus; shared-global numbering)
+block_range: B800–B816 + B818 + B819 (B817 = module-authoring-exemplars focus; shared-global numbering)
 owners: investigador1 = B801-B805, B809, B810, B816 + B775 §775.6 addendum · companero = B800, B806-B808, B811-B815
 envelope_note: requires_execution_open counts the investigador1 lanes' station-required gaps (B802-G1, B803-G1, B803-G2, B809-G2, B810-G1); companero's B806-B815 track their own in-block gaps, not re-counted here.
 
@@ -43,6 +43,8 @@ envelope_note: requires_execution_open counts the investigador1 lanes' station-r
 | B816 | investigador1 | Write-path & overlap testing — threading/link-override (dashboard write to a LINK-TARGET lands then is silently overwritten; set() serializes only the raw store); overlap cases incl. the armTrigger Clock.schedule(0) write-path class (read vs stale 4f5f1c7; FIXED at client c66e412 v2.0.5); write-path test matrix + lints | CLOSED [CERT] |
 
 | B818 | investigador1 | Forensics: `Missing class for "ColdRoomPan:HoaMode"` = a DANGLING module-include.xml registration (dead `<type>`, class never built; fixed 85e4395), NOT a bog retype; the runtime triage string for the kit's existing verify-module `types` check | CLOSED [CERT/live] |
+
+| B819 | investigador1 | Zero-demand / idle-state doctrine ("why can't the compressors turn off?") — demand is a first-class GATE (a process variable only modulates); NaN never counts as demand; CompressorControl's demand gate is CORRECT (live symptom = wiring); 2 residues (NaN setpoint, no why-running surface); kitControl exemplars (BLoopPoint strongest) | CLOSED [CERT] |
 
 Addendum (no new block): **B775 §775.6** — the BTimeTrigger timer self-heal exemplar (investigador1), folded for the timer defense-in-depth checklist.
 
