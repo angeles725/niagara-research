@@ -80,6 +80,12 @@ Unit fixture for `mapRecord`: the three `<obj>` records above → the §1 array 
 email — that is the ONLY value that differs from the RED FIXTURE, and it is the correct real shape). Assert
 `map(records).map(r => [r.target, r.old, r.new])` equals the three expected triples and `ts` = `1725580800000 / …860000`.
 
+## 3b. The durable dedupe half (cross-ref, not restated here)
+`runMirror`'s in-memory `changeLog.has(key)` (the 5-tuple `(ts,user,target,old,new)`, MIR2/MIR3) is backed by a DB unique
+index so a concurrent or restarted mirror cannot double-insert: `change_log_dedupe_idx` on `(ts, user_email, target,
+old_value, new_value) where surface = 'servlet'` — defined in the PR7 mirror package F4 (`2026-09-06-c9-pr7-audit-mirror-apply-package.md`)
+and shipped by R5's additive migration. An insert that collides on it is a `skipped`, not an error. `[ev: investigador1 — R5 additive migration]`
+
 ## 4. Recording a REAL fixture (when the station is reachable — B829-live gate, not a PR gate)
 ```bash
 # read-only; needs the oBIX user creds from config.env and network to the JACE
