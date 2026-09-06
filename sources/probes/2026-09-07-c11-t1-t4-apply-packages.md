@@ -29,24 +29,27 @@ B832-G2/D3 in this lane: `lint-silent-protection` Case-B scans the RAW line with
 diff (before/after counts identical on the shared golden tree EXCEPT the one-liner, which flips 0→1 for timers/silent).
 
 ## T2 — `tests/lib/client-root.bash` (centralise the C9_CLIENT_ROOT default)
-**QA RED = `qa/c11-client-root` `011d127`** (`tests/client-root-single-source.bats`), two pins: **C11-T2-lib-exists**
-(`tests/lib/client-root.bash` exists) and **C11-T2-no-hardcode** (0 offenders). The RED's offender PATTERN is
-`C9_CLIENT_(ROOT|REPO):-[^}]*Leon-Guanjuato` — so it counts EXACTLY the **7** `C9_CLIENT_ROOT`/`C9_CLIENT_REPO` defaults; the
-+3 live-checkout tail below (`C8_CLIENT_REPO` + the two override-less bare paths) is OUTSIDE this pattern, so it is a
-follow, NOT required to make 011d127 GREEN. **Lib contract:** `client-root.bash` owns BOTH variables — a single
-`CLIENT_READ_ROOT` default, exported as `C9_CLIENT_ROOT` AND `C9_CLIENT_REPO`; an env override of any of the three wins;
-ONE place to retarget when the blessed worktree moves.
+**QA RED = `qa/c11-client-root` `011d127`, WIDENED by the lead** to flag ANY absolute `Leon-Guanjuato` literal in
+`tests/*.bats` outside `tests/lib/client-root.bash` — **10 offenders on dab0807 → 0**. Two pins: **C11-T2-lib-exists** and
+**C11-T2-no-hardcode**. **Lib contract:** `tests/lib/client-root.bash` owns a single `CLIENT_READ_ROOT` default, exported as
+`C9_CLIENT_ROOT`, `C9_CLIENT_REPO` AND `C8_CLIENT_REPO`; an env override of any wins; ONE place to retarget.
+**FLAG for the lead/QA (behavioral, verify at apply):** the 7 blessed-worktree defaults point at `main-ff1b659` (a frozen
+SHA worktree); the 3 tail offenders read the LIVE main checkout `…/Leon-Guanjuato` (currently `00e7118`, post-PR6) — a
+DIFFERENT tree than ff1b659. Unifying all 10 under one default RETARGETS the 3 tail reads from the live checkout to the
+blessed worktree. That is the CORRECT fix per the client-reads rule (never read the live checkout), but c8-close /
+lint-delays / rc-scan smokes may need re-measuring against the blessed tree — confirm the target (ff1b659 frozen vs a
+`main-00e7118` blessed worktree) before flipping. If the 3 must keep reading a post-PR6 tree, the lib needs a second
+default (a `main-00e7118` worktree), not one.
 
 **Where:** NEW `tests/lib/client-root.bash` exporting ONE blessed-worktree default and unifying the TWO var names
 (`C9_CLIENT_ROOT` and `C9_CLIENT_REPO` both hold the same `…/Leon-Guanjuato-worktrees/main-ff1b659` value today):
 `: "${CLIENT_READ_ROOT:=…/main-ff1b659}"; C9_CLIENT_ROOT="$CLIENT_READ_ROOT"; C9_CLIENT_REPO="$CLIENT_READ_ROOT"` (keep both
 downstream names; only the source of the default moves). Each bats `load lib/client-root`.
-**Scope @ dab0807 (VERIFIED — 7 blessed-worktree defaults, NOT 5; my ROOT-only grep first missed the 2 REPO holders):**
-- 5 via `C9_CLIENT_ROOT:-…/main-ff1b659`: `ext-writable-shape.bats:26` · `demand-in-scope.bats:27` · `lint-silent-protection.bats:30` · `lint-timers.bats:418` · `lint-write-path.bats:338`
-- 2 via `C9_CLIENT_REPO:-…/main-ff1b659`: `c9-close.bats:108` · `c10-close.bats:90` (same default value, different var name)
-Motivating incident: PR7 `b6b65a2` hand-retargeted 3 of the ROOT holders a109249→ff1b659 at the C10 close — the exact churn T2 removes.
-**+3 live-main-checkout tail (worse — the LIVE `…/Leon-Guanjuato` working copy, not a blessed SHA worktree — what the client-reads rule warns against):**
-`c8-close.bats:107` (`C8_CLIENT_REPO:-…/Leon-Guanjuato`, has an override) · `lint-delays.bats:53` (`$HOME/…/Leon-Guanjuato/…/ColdRoomPan-rt/src`, NO override) · `rc-scan.bats:75` (`…/DashboardPan-ux`, NO override). CONVERT the 2 override-less to the helper (they cannot be redirected at all today); flag/convert c8-close's `C8_CLIENT_REPO`. These 3 are BEYOND the 011d127 pattern (C8 var name / no `C9_CLIENT_*` default) — a follow (widen the RED pattern or convert proactively). After: a moved read tree edits ONE file.
+**Scope @ dab0807 (VERIFIED — 10 offenders, one per file):**
+- 5 blessed via `C9_CLIENT_ROOT:-…/main-ff1b659`: `ext-writable-shape.bats:26` · `demand-in-scope.bats:27` · `lint-silent-protection.bats:30` · `lint-timers.bats:418` · `lint-write-path.bats:338`
+- 2 blessed via `C9_CLIENT_REPO:-…/main-ff1b659`: `c9-close.bats:108` · `c10-close.bats:90`
+- 3 LIVE-checkout: `c8-close.bats:107` (`C8_CLIENT_REPO:-…/Leon-Guanjuato`, has an override) · `lint-delays.bats:53` (`$HOME/…/Leon-Guanjuato/…/ColdRoomPan-rt/src`, NO override) · `rc-scan.bats:75` (`…/DashboardPan-ux`, NO override — add the env-override form)
+Motivating incident: PR7 `b6b65a2` hand-retargeted 3 of the ROOT holders a109249→ff1b659 at the C10 close — the churn T2 removes. All 10 `load lib/client-root`; `lint-delays:53`/`rc-scan:75` gain the env-override form they lack today. After: a moved read tree edits ONE file.
 **Pin (`tests/client-root.bats`):** the default resolves from the helper; an override via the env var still wins.
 
 ## T3 — concept-row-drift (the inverse of the S25 STALE pass)
@@ -77,6 +80,6 @@ the one-liner or the extraction silently inherits a copy's behaviour (B832). T4 
 | # | Claim | Marker | Evidence |
 |---|---|---|---|
 | 1 | ext-writable peak (:132-176), timers net (:202), silent net (:326) | [CERT] | git show @ dab0807 |
-| 2 | RED 011d127 PAT `C9_CLIENT_(ROOT\|REPO):-…Leon-Guanjuato` counts the 7; lib owns both vars; +3 tail (c8-close:107, lint-delays:53, rc-scan:75) is outside the PAT = follow | [CERT] | client-root-single-source.bats:15,22-25 @ 011d127 |
+| 2 | RED widened to any absolute Leon-Guanjuato in tests/*.bats = 10 offenders (7 blessed + 3 live-checkout); lib owns C9_CLIENT_ROOT+REPO+C8_CLIENT_REPO; 3 tail retarget live→blessed (verify smokes) | [CERT] | grep Leon-Guanjuato tests/*.bats @ dab0807 = 10 |
 | 3 | lint-write-path STALE machinery (STALE :35, harvest :144-149) — T3 is its inverse | [CERT] | git show @ dab0807 |
 | 4 | one-liner FN reproduced; peak-depth is the standard | [CERT, reproduced] | B832; my run (0 vs 1 companion-flag) |
