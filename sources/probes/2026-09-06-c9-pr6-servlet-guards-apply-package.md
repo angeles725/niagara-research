@@ -42,7 +42,7 @@ strings — `oldVal` may be `null` in the pure path.
 | F3 | `parent.set(prop, toSet, null)` `:291` | → `BUser op = DashboardRbacHelper.resolveUser(kioskName)` (new small helper next to `resolveOperatorWrite` `:76-100`, returning the `BUser` from `BUserService.getUser`) then `try { parent.set(prop, toSet, op); } catch (javax.baja.security.PermissionException e) { resp.setStatus(HttpServletResponse.SC_FORBIDDEN); out.print("{\"error\":\"forbidden\"}"); out.flush(); return; }` — `BUser implements Context` (`BUser.java:300-303`, R14 package row 6); precedent cast in this codebase: `user.getPermissions((javax.baja.sys.Context) user)` `DashboardRbacHelper.java:97`. Keep the catch body FLAT with `SC_FORBIDDEN` before any `}` (R14's CLW4 regex will read this same code later). |
 | F4 | `:293-317` audit | `auditUser` = `op.getUsername()` (falls back to the unescaped remote user); unchanged fire-and-forget; this is the module's JSON-lines audit, DISTINCT from the framework `AuditHistory` record that §3 now produces — both name the same user. |
 | F5 | `Dashboard/build.gradle.kts:33` | `defaultModuleVersion("2.1.1")` → `("2.2.0")` (SC13; PR6b/R14 sets the same value → fragment-merge, no second bump). NOTE: the proposal table says "2.0.3 → 2.2.0"; the GROUP file at a109249 reads **2.1.1** (module-version key memory: group `build.gradle.kts`, not the module `.kts`). |
-| F6 | tests | the RED lands as-is. GREEN run (WSL): `KIT/toolbelt/run-pure-test.sh Dashboard/DashboardPan/DashboardPan-ux com.angeles.DashboardPan.ux DashboardWriteGuards DashboardWriteGuardsTest` (see the W2 command list). `DashboardDispatchTest` (existing) unchanged. Live guards 1/2/3 + the AuditHistory record: station smoke only (B829-live gate), never reported green from WSL. |
+| F6 | tests | the RED lands as-is. GREEN run (WSL): `KIT/toolbelt/run-pure-test.sh Dashboard/DashboardPan/DashboardPan-ux com.angeles.DashboardPan.ux.DashboardWriteGuardsTest` (see the W2 command list). `DashboardDispatchTest` (existing) unchanged. Live guards 1/2/3 + the AuditHistory record: station smoke only (B829-live gate), never reported green from WSL. |
 
 ## 3. Which Context PR6 passes, and how PR6b swaps it (B829-G2)
 | | PR6 (this PR) | PR6b / R14 (on top) |
@@ -72,5 +72,5 @@ user-named rows (PR6 makes that true for the kiosk user; R14 for the real operat
 | 2 | anchors :195 :198 :222-238 :243-268 :271 :274-288 :290 :291 :293-317 :403-407 | [CERT] | sed @ a109249 worktree (2026-09-06) |
 | 3 | group gradle :33 = 2.1.1 today | [CERT] | `Dashboard/build.gradle.kts:33` @ a109249 (proposal's 2.0.3 is stale) |
 | 4 | BUser is a Context; audit gate needs a user; PermissionException path | [CERT] | B829 §829.4, B830 §830.2; R14 package rows 6/33 |
-| 5 | `JsonUtil.parseFiniteDouble` is Baja-free | [INFER] | confirm at apply (else inline) |
-| 6 | run-pure-test.sh args order | [CERT] | build-verify.md:108 |
+| 5 | `JsonUtil.parseFiniteDouble` is Baja-free | [CERT] | `JsonUtil.java` @a109249 imports only `java.util.Locale`/`OptionalDouble` (:6-7), 0 `javax.baja` refs; `parseFiniteDouble(String) → OptionalDouble` :155 (investigador1 second read) |
+| 6 | run-pure-test.sh args = TWO: `<module-rt-dir> <pkg.TestClass>` | [CERT] | `toolbelt/run-pure-test.sh:11-13`, `:26` (`[ $# -eq 2 ] \|\| die 2`) — corrected from a 4-arg form (investigador1 second read) |

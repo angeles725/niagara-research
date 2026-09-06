@@ -11,7 +11,7 @@ export PATH=/usr/bin:/bin:$PATH
 T=/home/cristian/tunnel/clientes/Leon-Guanajuato/Pancaddia
 mkdir -p "$T/../Pancaddia-worktrees"                                   # sibling dir does not exist yet
 git -C "$T" fetch -q origin
-# one worktree per PR, base 9acb47c (the proposal base; main is 872c64c = 9acb47c + docs — confirm with `git -C "$T" log --oneline 9acb47c..main`)
+# one worktree per PR, base 9acb47c (the proposal base; main is 872c64c = 9acb47c + ONE SQL migration, NOT docs: `instalacion/pipeline/sql/2026-09-06-revoke-sessions-on-password-change.sql` (+31, a trigger on `auth.users` revoking all Supabase sessions on password change) — verified `git log --oneline 9acb47c..origin/main` 2026-09-06; PR4 note: write-server config tokens are server-held and NOT revoked by that trigger — drop them for the email on password change or rely on the short TTL)
 git -C "$T" worktree add -b feat/c9-s12-config-login ../Pancaddia-worktrees/c9-s12-config-login 9acb47c
 git -C "$T" worktree add -b feat/c9-s12-audit-schema ../Pancaddia-worktrees/c9-s12-audit-schema 9acb47c
 git -C "$T" worktree add -b feat/c9-s12-audit-mirror ../Pancaddia-worktrees/c9-s12-audit-mirror 9acb47c
@@ -88,15 +88,15 @@ W="$C/../Leon-Guanjuato-worktrees/pr6-servlet-guards"
 git -C "$W" checkout 4c18837 -- Dashboard/DashboardPan/DashboardPan-ux/srcTest/test/com/angeles/DashboardPan/ux/DashboardWriteGuardsTest.java
 # PR6b / R14: branch from PR6's tip once PR6 is pushed (NOT from a109249)
 git -C "$C" worktree add -b feat/c9-s12-hmi-config-login ../Leon-Guanjuato-worktrees/pr6b-hmi-config-login feat/c9-s12-servlet-guards
-git -C "$C/../Leon-Guanjuato-worktrees/pr6b-hmi-config-login" checkout cc1c948 -- Dashboard/DashboardPan/DashboardPan-ux/srcTest/test/com/angeles/DashboardPan/ux/ConfigLoginWiringTest.java   # confirm the RED file list with `git diff --name-only a109249 cc1c948`
+git -C "$C/../Leon-Guanjuato-worktrees/pr6b-hmi-config-login" checkout cc1c948 -- Dashboard/DashboardPan/DashboardPan-ux/srcTest/test/com/angeles/DashboardPan/ux/ConfigLoginWiringTest.java Dashboard/DashboardPan/DashboardPan-ux/srcTest/test/com/angeles/DashboardPan/ux/ConfigLoginGuardTest.java   # BOTH RED files at cc1c948 (verified git diff --name-only a109249..cc1c948)   # confirm the RED file list with `git diff --name-only a109249 cc1c948`
 ```
 ### Pure JUnit in WSL (the ONLY executable coverage here; `niagaraTest` discovers 0 tests from WSL)
 ```bash
 cd "$W"
 # fetch the junit/hamcrest jars into ~/.gradle once (any gradle build does it): cd Dashboard && ./gradlew :DashboardPan-ux:compileJava
-"$KIT/toolbelt/run-pure-test.sh" Dashboard/DashboardPan/DashboardPan-ux com.angeles.DashboardPan.ux DashboardWriteGuards DashboardWriteGuardsTest
+"$KIT/toolbelt/run-pure-test.sh" Dashboard/DashboardPan/DashboardPan-ux com.angeles.DashboardPan.ux.DashboardWriteGuardsTest
 #   exit 0 = green; exit 3 = jar cache empty (run one gradle build first). RED today: "cannot find symbol DashboardWriteGuards".
-"$KIT/toolbelt/run-pure-test.sh" Dashboard/DashboardPan/DashboardPan-ux com.angeles.DashboardPan.ux DashboardDispatch DashboardDispatchTest   # existing, must stay green
+"$KIT/toolbelt/run-pure-test.sh" Dashboard/DashboardPan/DashboardPan-ux com.angeles.DashboardPan.ux.DashboardDispatchTest   # existing, must stay green
 # PR6b: ConfigLoginWiringTest is STRUCTURAL (reads the source) — same runner, PureClass = the wiring class it names (see R14 package §2)
 ```
 ### Build + gates (gradle root = `Dashboard/`, where `gradlew` lives)
@@ -119,6 +119,6 @@ Order: PR6 green → push → PR6b worktree from its tip → R14 green (CLW1-5 +
 | 2 | RED file names | [CERT] | `git diff --name-only 9acb47c e7e6615 / 0a14df8`; `a109249 4c18837` |
 | 3 | today's config keys | [CERT] | loadConfig @ 9acb47c :24-58 |
 | 4 | new keys (names) | [CERT for CONFIG_PASSWORD/AUDIT_SPOOL/MIRROR_ENABLED, INFER for CONFIG_TTL_MS/MIRROR_STATE names] | R5/PR7 packages |
-| 5 | run-pure-test.sh args, niagaraTest 0 tests from WSL, gradle root rule | [CERT] | build-verify.md:108, BUILD-LOOP.md:58,:80 |
+| 5 | run-pure-test.sh args = TWO (`<module-rt-dir> <pkg.TestClass>`), niagaraTest 0 tests from WSL, gradle root rule | [CERT] | `toolbelt/run-pure-test.sh:11-13,:26` (corrected from 4 args), BUILD-LOOP.md:58,:80 |
 | 6 | Docker/psql flow | [INFER, standard] | Supabase = Postgres 15; verify docker is installed on the apply machine |
 | 7 | group gradle :33 = 2.1.1 | [CERT] | a109249 worktree |
