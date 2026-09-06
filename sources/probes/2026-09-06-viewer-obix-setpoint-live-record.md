@@ -60,3 +60,15 @@ temp files left on the mini-PC.
   control write).
 - Doctrine for the C9 audit read-back: a ~1 s settle before reading the control side is enough; the slow leg is only the
   DB/dashboard. Final state restored to 3.0 (latest = 3, verified).
+
+## 8) The child ORD `…/setpoint/value` IS served and advertised writable (GET only, no PUT) — closes B826-G1
+- GET `/obix/config/Services/DashboardService/Cuarto1/setpoint/value` → 200
+  `<real val="3.0" display="3.00 °C" displayName="Setpoint" unit="obix:units/celsius" writable="true"/>`
+- GET `/obix/config/Programacion/ColdRoom_1/setpoint/value` → 200 `<real val="3.0" display="3.00" displayName="Consigna" writable="true"/>`
+So the encoder collapses the StatusNumeric parent to a leaf and never advertises the child, but the slot-path decoder
+resolves `…/setpoint/value` verbatim and serves it as a `writable="true"` BDouble leaf on both the RoomPanel and the
+ColdRoom (B826). Implication [INFER until a PUT is authorized]: a bare `<real val="N"/>` PUT to `…/setpoint/value` would be
+the clean write form (no wrapped obj, no `name="value"`, no silent-zero hazard, which was specific to the parent
+StatusNumeric); propagation through the link would then rely on nested-child bubbling (B825 §825.3), to be confirmed by
+one authorized PUT + control-side read-back before any write-server change targets the child. No PUT was made. All five
+rooms read RoomPanel == ColdRoom (3 / 3 / -13 / 3 / 20), consistent with the link present on every room.
