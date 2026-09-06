@@ -49,22 +49,37 @@ doing nothing). Consumers: `DashboardReader.java:105,130,133` (export only, no l
 - `coolOnSensorFault` is a protection policy (cool on sensor fault to protect product). The logic module has its own
   `coolOnSensorFault` slot (ColdRoomPan-rt) which is what actually runs; today it can only be changed from Workbench.
 
-## Two exits (pick one per slot; both are station-side or facade-side, no logic change)
-1. **Wire the links station-side** (config.bog edit in Workbench, no code): `Cuarto3.intercambiadorMode → <the
-   intercambiador's mode slot in Programacion/ColdRoom_3>` and `CuartoN.coolOnSensorFault → Programacion/ColdRoom_N.coolOnSensorFault`
-   (N = 1..5). Then `bog-nav links --from CuartoN --slot coolOnSensorFault` must resolve for every room; add that as the
-   PR11 structural pin (class A row). Requires: confirm the intercambiador mode slot exists on ColdRoom_3 (I did not find
-   its target; it may be a relay/HOA on the IO tree — `bog-nav hoa --module` at apply).
-2. **Demote the slots** (code, DashboardPan-rt + -ux): drop `OPERATOR` (or remove the HMI control) for
-   `intercambiadorMode` and `coolOnSensorFault` on the facade so the HMI cannot offer a write that goes nowhere. This is a
-   schema-risk SAFE flag change (B795) but removes a feature the HMI already shows — only acceptable if the feature is
-   not wanted.
-Recommendation: exit 1 for `coolOnSensorFault` (the link was always intended — the source comment says so); for
-`intercambiadorMode`, ask Cristian whether Cuarto 3's intercambiador is meant to be HMI-controlled (exit 1) or
-display-only (exit 2, keep `intercambiadorState`).
+## Both surfaces write them dead (second read by investigador1, verified)
+The tunnel write-server (`instalacion/pipeline/write-server.mjs` @ 9acb47c) lists BOTH slots in `WRITABLE`
+(`intercambiadorMode: AUTOOFF` `:93`, `coolOnSensorFault: BOOL` `:94`) and PUTs them to `${FACADE_PATH}/CuartoN/<slot>` (`:269`).
+So a viewer write is accepted, audited to `change_log`, and — with no link on the facade — changes nothing; for
+`intercambiadorMode` (TRANSIENT) it is also lost on restart. Same dead-write class from surface A.
+
+## The intercambiador has NO station-side control to link to (closed by investigador1 from the same bog)
+`Programacion/ColdRoom_3` (`CRP:ColdRoom`) contains only `EvaporatorUnit_1`, `EvaporatorUnit_2`, `DefrostController`;
+a whole-bog grep for `intercamb|exchanger` finds nothing but the unrelated `hx` web module; the client source at a109249
+(ColdRoomPan-rt, CompPan-rt) has 0 files mentioning it. The facade javadoc says the link was meant to be made by the
+integrator ("El integrador linkea este mode al control del intercambiador en la station", `BRoomPanel.java:261`) to a
+control that was never created; `intercambiadorState` (`:280`, `BStatusBoolean`) is unlinked too, so the HMI LED
+(`index.html:1445-1446`) always shows the default.
+
+## Exits
+**`coolOnSensorFault` (all five rooms)** — the logic slot exists (`Programacion/ColdRoom_N.coolOnSensorFault`); the link was
+always intended. Exit: **wire it station-side** (Workbench, no code): `CuartoN.coolOnSensorFault → Programacion/ColdRoom_N.coolOnSensorFault`,
+N = 1..5; goes on the station-change list with the defrost trial. Structural pin afterwards: `bog-nav links --from CuartoN
+--slot coolOnSensorFault` resolves for every room (PR11 row → class A).
+**`Cuarto3.intercambiadorMode`** — a "wire it" exit does not exist by itself: there is nothing to link to. The real exits:
+1a. **Create the station-side control first** (a writable relay/proxy point for Cuarto 3's intercambiador, like the 22
+    relays — a STATION + WIRING question), then link `Cuarto3.intercambiadorMode` (and `intercambiadorState` back) to it.
+    Precondition, for Cristian: **is the intercambiador physically on any Niagara output at PANCCADIA?**
+2.  **Display-only / drop the control**: remove the HMI HOA row (`index.html:1445`) and the `WRITABLE` entry (`write-server.mjs:93`),
+    or drop `OPERATOR` from the facade slot (schema-risk SAFE flag change, B795). Keep `intercambiadorState` only if a
+    real state source will feed it; otherwise remove the LED too (today it lies by showing the default).
+Recommendation: ask Cristian the physical question before choosing; if the answer is "no output", exit 2.
 
 ## Acceptance
-- bog-nav: `links --from CuartoN --slot coolOnSensorFault` resolves for N=1..5; `links --from Cuarto3 --slot intercambiadorMode` resolves (exit 1) — or the HMI no longer renders the control and `module-find slots --flags o` no longer lists it (exit 2).
+- bog-nav: `links --from CuartoN --slot coolOnSensorFault` resolves for N=1..5.
+- intercambiador: `links --from Cuarto3 --slot intercambiadorMode` resolves to a real control (exit 1a) — or the HMI row, the write-server `WRITABLE` entry and the OPERATOR flag are gone and `intercambiadorState` has a source or is removed (exit 2).
 - `bog-audit.sh` CHECK7 (dangling) stays 0; write-path matrix rows for both slots updated from ❌ to the chosen exit.
 
 ## Not in scope
@@ -79,4 +94,5 @@ list is corrected by this file (8 B rows → 2 dead + 3 Cuarto5-wired + 3 local 
 | 3 | HMI renders intercambiador (Cuarto3) and coolOnSensorFault (all rooms) | [CERT] | index.html:1445, :1740 |
 | 4 | slot flags / TRANSIENT | [CERT] | BRoomPanel.java:148-154, :257-262 @ a109249 |
 | 5 | bog-nav `--slot` matched either link end (NOT substring — my first diagnosis was wrong) | [CERT, tool caveat] | bog-nav.py:447 compared names exactly; the hits were target-end `…fanMode`; fixed: endpoint-aware `--slot` + `--slot-any` |
-| 6 | intercambiador target slot on ColdRoom_3 | [UNVERIFIED] | find at apply |
+| 6 | no intercambiador control exists in the station or the logic source | [CERT] | investigador1 second read: bog tree of ColdRoom_3, whole-bog grep, client grep @ a109249; BRoomPanel.java:261 javadoc |
+| 7 | both slots are in the write-server WRITABLE map | [CERT] | write-server.mjs:93-94, :269 @ 9acb47c (coolOnSensorFault included — corrects the second read's "HMI-only") |
