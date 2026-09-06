@@ -108,14 +108,28 @@ C9 research/build core = **#1 protection-latch fixture** (built below) + **#2 wr
     result, client ip, config-session id}`, viewable/filterable from the viewer. `[ev: viewer message; tunnel write-server.mjs @ 8d738a2]`
   - **(B) SECONDARY — DashboardPan-ux on the HMI panel via the station servlet (per B803):** station-user re-auth,
     same audit schema so (A) and (B) merge into one trail. `[ev: corpus B803 §803.3/5/6]`
+    Two B829-driven client items for surface B: **(B-1)** pass a REAL user Context from the servlet —
+    `parent.set(prop, toSet, cx)` with the request user instead of `null` — so the servlet write becomes
+    Niagara-audited (the `AuditEvent` gate `ComplexSlotMap.set:662` needs `context.getUser() != null`); small,
+    schema-neutral change (**B829-G2**). **(B-2)** confirm an `AuditHistoryService` is installed so `Nre.auditor != null`
+    (`:1685`) actually dispatches the event — **B829-G1 is CLOSED by a bog read `[CERT]`**: `tools/bog-nav.py find
+    --type h:AuditHistoryService` on PANCCADIA `config.bog` returns `Services/AuditHistoryService` (id
+    `/PANCCADIA/AuditHistory`), so the service IS present and the servlet suppression is purely the null-Context gate,
+    not a missing service. `[ev: corpus B829]`
   Grounding: B803 §803.3 (server-side re-verify via `BUserService.getUser` + `BPasswordCache.validate`; LDAP via
   `scheme.login`; SAML likely cannot re-verify mid-session `[INFER]`/B803-G1), §803.5 (`x-niagara-csrfToken` for
   surface B), §803.6 (short-TTL token bound to session+user+ORD+purpose, server-side allowlist, audit every step-up);
   B816 (write path); B804 (`AuditHistoryService` as a Niagara-native second record for surface B).
-  **Caveats:** the SINGLE station write user means Niagara AuditHistory CANNOT attribute operators — the write-server
-  audit is the SOURCE OF TRUTH; writes are TRANSIENT (lost on station restart); public signup disabled + email
-  allowlist. Requires execution: PARTIAL — write-server tests + pure `DashboardDispatch` router tests run off-station;
-  the live oBIX-PUT + Supabase audit + AuditHistory smoke needs the mini-PC + station.
+  **Caveats:** the write-server Supabase `audit` (config-session email) is the SINGLE SOURCE OF TRUTH for operator
+  identity — now on a `[CERT]` footing, settled by CODE in **B829 (`d26305d21`)**: the framework gates the audit event
+  at `ComplexSlotMap.set:662` `if (context != null && context.getUser() != null)`, so surface B's servlet
+  `parent.set(prop, val, null)` (NULL Context) is NOT audited at all — the `AuditEvent` is SUPPRESSED, not merely
+  unattributed, regardless of an installed `AuditHistoryService`; surface A's oBIX PUT DOES pass `ot.getUser()`
+  (`ObixUtils:558`) so it IS audited, but to the SHARED station login user, never the real operator. Either way Niagara
+  cannot attribute the operator, so the write-server trail is the only identity record. Writes are TRANSIENT (lost on
+  station restart); public signup disabled + email allowlist. Requires execution: PARTIAL — write-server tests + pure
+  `DashboardDispatch` router tests run off-station; the live oBIX-PUT + Supabase audit + AuditHistory smoke needs the
+  mini-PC + station. `[ev: corpus B829]`
   **oBIX body form (settled):** the write-server should target the CHILD leaf ORD `${ord}/value` with a bare
   `<real val="N"/>` — a simple `BSimple` write with NO silent-zero hazard, served + `writable="true"` and proven to
   propagate ~1.5 s (B826-G1/G2, records §8/§9). The write-server's NUM builder already emits a bare `<real>` (record
