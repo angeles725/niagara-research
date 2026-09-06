@@ -234,13 +234,53 @@ For EACH of the 6 retros:
 
 ---
 
-## Apply checklist — the FULL campaign-8 set (15 retros)
-Flip all 15 INDEX rows `pending → folded`. **MANDATORY token lines FIRST** (else `sweep-fold-audit --strict` fails) —
-the five 0-token retros: **§3 lint-timers-ext**, **§7 campaign8-doctrine-fold**, **§13 post-deploy-checklist**,
-**§14 build-pipeline**, and **§15 campaign8-rt-doctrine** (PROMOTION). The other 10 are token-credited already
-(§1/§4/§5/§6/§8 via BUILD-LOOP/SKILL; §2 triage-console at METHODOLOGY:96; **§9 station-snapshot** 3, **§10 bog-audit** 3,
-**§11 wb-audit** 4, **§12 lint-servlet** 3 in-kit (4 repo-wide incl tasks.md) — all via K19 routing). Their folded-as-code lines (§9/§10/§11/§12) are
+## 16. campaign8-retro-loop  (PR16, slug: `campaign8-retro-loop`)
+- **Grep-before (K6):** `grep -rn 'ev: retro campaign8-retro-loop' <kit-root>` (excl retros/) → **8 hits across 5 files**
+  (`toolbelt/new-retro.sh`, `toolbelt/kit-ticket.sh`, `BUILD-LOOP.md §7`, `skill/SKILL.md` step 7, `ORCHESTRATION.md §8`)
+  at `633f2bb`. Well CREDITED → safe to flip. Re-run at apply.
+- **Deltas** (INDEX row: 5): Δ1 `toolbelt/new-retro.sh` (atomic triple write — retro stub + one `INDEX.md` row +
+  `BUILD-STATE` `retro_pending` flip, idempotent); Δ2 `toolbelt/kit-ticket.sh` (gh issue create from a retro; gh
+  absent/unauth → SKIP + fallback file, never fails a run — RL4); Δ3 `BUILD-LOOP.md §7` retro gate; Δ4 `skill/SKILL.md`
+  step 7 close-of-run; Δ5 the **section-scoped envelope flip** — a live defect the lead surfaced: `new-retro.sh`'s `sed`
+  was flipping ALL `retro_pending: false → true` (falsely marking every module section); fixed to an awk section-scoped
+  flip (RL7 pin: kit=true, siblings=false). Plus two review-found guards: **RL8 the 6-char slug floor** (the case pattern
+  enforced only 5 chars, but `sweep-fold-audit.sh` DROPS tokens < 6 chars as unfoldable → a 5-char slug's token is never
+  credited; fixed to six bracket classes) and **RL9 the secondary INDEX guard** (retro file ABSENT + INDEX row PRESENT →
+  SKIP + 1 row, no duplicate — defense-in-depth behind the primary file-exists exit-3).
+- **FOLD (recommended — one `METHODOLOGY.md` §Conformance folded-as-code line):**
+```
+- folded as code: toolbelt/new-retro.sh (atomic triple write — retro stub + one INDEX row + a BUILD-STATE retro_pending flip AWK-SCOPED to the named module section so it never marks siblings; idempotent; a 6-char slug FLOOR because sweep-fold-audit drops tokens < 6 chars) + toolbelt/kit-ticket.sh (gh issue-create from a retro; gh absent/unauth → SKIP + fallback file, never fails a run). [ev: retro campaign8-retro-loop]
+```
+
+## 17. campaign8-orchestration  (PR17, slug: `campaign8-orchestration`, doc-only)
+- **Grep-before (K6):** `grep -rn 'ev: retro campaign8-orchestration' <kit-root>` (excl retros/) → **1 hit**
+  (`skill/SKILL.md`) at `633f2bb` (the token was added in the `633f2bb` "cite the landed retro slug" commit). ≥1 →
+  CREDITED, so the fold line below is recommended-but-preferred, NOT a mandatory 0-token line. Re-run at apply.
+- **Deltas** (INDEX row: 3): `build-n4-module-kit/ORCHESTRATION.md` created (8-section session contract: roles, model
+  table, delegation triggers, escalation gate, artifact store, evidence discipline, retro/ticket loop, recovery);
+  `skill/SKILL.md` steps 1b (explore shard, audit-first >3 files, sonnet), 1c (design shard for schema/new-slot, opus),
+  5b (peer QA RED-by-branch session before every code PR, K13); `tests/kit-links.bats L8` (every ORCHESTRATION-named
+  script exists at `toolbelt/<script>.sh`). Δ2 records the temporary `toolbelt/` prefix-drop on the PR16 script refs to
+  avoid an L1 failure before PR16 merged — RESTORED at `633f2bb` (nothing to carry).
+- **Numbering lesson (fold-worthy doctrine line):** `wave3.md` called this an "L7 extension", but L7 already existed
+  (PR13 §6.a step scripts), so the new assertion is **L8**. The correct check before naming a `kit-links.bats` pin is
+  `grep -c '"L[0-9]' tests/kit-links.bats` (the current max L-number), NOT the wave spec's label.
+- **FOLD (recommended — one `METHODOLOGY.md` §Conformance line + the numbering doctrine line):**
+```
+- folded as code: ORCHESTRATION.md (8-section session contract — roles, model table, delegation/escalation, artifact store, evidence discipline, retro/ticket loop, recovery) + skill/SKILL.md steps 1b/1c/5b + tests/kit-links.bats L8 (every ORCHESTRATION-named script resolves to toolbelt/<script>.sh). [ev: retro campaign8-orchestration]
+- Before naming a new kit-links.bats structural pin, confirm the current max L-number with `grep -c '"L[0-9]' tests/kit-links.bats` — not the wave spec's label (wave3.md said "extend L7" but L7 already existed from PR13 §6.a, so the assertion is L8). [ev: retro campaign8-orchestration]
+```
+
+---
+
+## Apply checklist — the FULL campaign-8 set (17 retros so far → 20 at close)
+Flip all 17 INDEX rows `pending → folded` (as they merge). **MANDATORY token lines FIRST** (else
+`sweep-fold-audit --strict` fails) — the five 0-token retros: **§3 lint-timers-ext**, **§7 campaign8-doctrine-fold**,
+**§13 post-deploy-checklist**, **§14 build-pipeline**, and **§15 campaign8-rt-doctrine** (PROMOTION). The other 12 are
+token-credited already (§1/§4/§5/§6/§8 via BUILD-LOOP/SKILL; §2 triage-console at METHODOLOGY:96; **§9 station-snapshot**
+3, **§10 bog-audit** 3, **§11 wb-audit** 4, **§12 lint-servlet** 3 in-kit (4 repo-wide incl tasks.md), **§16 retro-loop**
+8, **§17 orchestration** 1 — all via K19 routing). Their folded-as-code lines (§9/§10/§11/§12/§16/§17) are
 recommended-but-preferred (the "folded as code: <script> [ev: retro <token>]" convention, METHODOLOGY:94) — none blocks
-the strict audit since all are already token-credited. **PR16–PR20 will add five more retros** (retro-loop,
-orchestration, structure, write-path, station-logic → 20 total at campaign close). Then set `retro_pending: false` in
-the kit self-envelope + sweep (pending=0, fold-audit clean).
+the strict audit since all are already token-credited. **PR18–PR20 will add the final three retros** (structure,
+write-path, station-logic → 20 total at campaign close). Then set `retro_pending: false` in the kit self-envelope +
+sweep (pending=0, fold-audit clean).
