@@ -55,18 +55,24 @@ So there is nothing to invoke. `[CERT]`
 
 ## 823.4 — Channel 3: the DashboardPan-ux servlet — the ONE channel that works today `[CERT]`
 The HMI panel already writes setpoints through the module's own servlet; the write-server can call the same endpoint.
+**Cites at client `fbe9009` — the DEPLOYED DashboardPan-ux 2.1.1 servlet the write-server actually hits** (main is
+`a109249`, a doc-only commit on top; PR#7 shifted these lines +52/-3 vs the earlier `deed38c` tree):
 - **Endpoint:** `POST /dashboardpan/api/setpoint` (servlet name `"dashboardpan"`, `BDashboardServlet.java:81-84`;
-  route `DashboardDispatch.java:129`). Body `{"ord":"Cuarto1/setpoint","value":4.0}` (`BDashboardServlet.java:187-193`).
+  `handleSetpointWrite`:195, called :147). Body `{"ord":"Cuarto1/setpoint","value":4.0}` parsed in
+  `handleSetpointWrite` (~:195-215).
 - **Guards, in order:** (1) `X-Requested-With: XMLHttpRequest` — missing → **302** redirect home, not 4xx
   (`DashboardDispatch.java:122-126`); (2) authenticated station session `req.getRemoteUser()` — missing → **401**
   (`DashboardRbacHelper.java:36`); (3) `OPERATOR_WRITE` permission bit from `BPermissions` (by bit, not role name),
-  FAIL-CLOSED — lacking it → **403** (`DashboardRbacHelper.java:17-20,55`). **There is NO `x-niagara-csrfToken`
-  check** anywhere in the -ux tree (grep → 0). Path-traversal on `ord` → 400. `[CERT]`
+  FAIL-CLOSED — lacking it → **403** (`DashboardRbacHelper.java:17-20,55`); (4) **invalid numeric/time value
+  (missing/empty/NaN/Infinity/non-numeric) → 400** `SC_BAD_REQUEST` BEFORE coercion — the PR#7 guard
+  (`BDashboardServlet.java:274-283`, `JsonUtil.parseFiniteDouble(value).isPresent()`; earlier 400s at
+  :216/:225/:234/:256/:265) — so a NaN/empty value returns 400, never a silent `0` write; (5) path-traversal on `ord`
+  → 400. **There is NO `x-niagara-csrfToken` check** anywhere in the -ux tree (grep → 0). `[CERT]`
 - **The write:** `parent.get(prop)` → `coerceValue` (`new BStatusNumeric(parseDouble(rawValue))`,
-  `BDashboardServlet.java:344-347`) → `parent.set(prop, toSet, null)` (`:271-274`). Reaches the same slot as
-  `setSetpoint`, via the null-Context servlet write. `[CERT]`
+  `BDashboardServlet.java:357`) → `parent.set(prop, toSet, null)` (`:291`). Reaches the same slot as `setSetpoint`,
+  via the null-Context servlet write. `[CERT]`
 - **Audit:** every success appends one JSON-lines record to `BDashboardService.auditLog`
-  (`svc.appendAudit(JsonUtil.buildAuditEntry(…))`, `BDashboardServlet.java:295`; ring-buffered 500,
+  (`svc.appendAudit(JsonUtil.buildAuditEntry(…))`, `BDashboardServlet.java:312`; ring-buffered 500,
   `BDashboardService.java:68-72,256`) — `{ts,user,action:"setpoint",ord,oldValue,newValue}`. **NOT** written to
   Niagara's own AuditHistory (null Context = no standard Baja operator-write event) — the module ring is the record. `[CERT]`
 - **Exact request the write-server (Node) sends:**
@@ -133,8 +139,8 @@ unlikely — but unproven. IF a `BNumericWritable` were linked into `setpoint`, 
 | 3 | writable advertised only for BSimple under canWrite | `[CERT]` | `ObixUtils.java:241-243`; `BStatusValueAgent:51-53`; `BControlPointAgent:60` | Y |
 | 4 | `<obj><real name="value">` reaches setFromVal→setValue (escape hatch, unverified server-accept) | `[INFER]` | `ObixDecoder.java:200-216,569,594` | decode-grounded |
 | 5 | No non-HIDDEN action reaches setpoint | `[CERT]` | `BRoomPanel`/`BDashboardService`/`BColdRoom` (0 actions); `BEvaporatorUnit.java:200-216` HIDDEN | Y — sweep |
-| 6 | Servlet `POST /dashboardpan/api/setpoint`, guards XHR(302)/auth(401)/OPERATOR_WRITE(403), no CSRF | `[CERT]` | `BDashboardServlet.java:81-84,187-193`; `DashboardDispatch.java:122-126`; `DashboardRbacHelper.java:17-20,36,55` | Y |
-| 7 | Write = coerce→`parent.set(prop,new BStatusNumeric(v),null)`; audited to auditLog, not AuditHistory | `[CERT]` | `BDashboardServlet.java:271-274,344-347,295`; `BDashboardService.java:68-72,256` | Y |
+| 6 | Servlet `POST /dashboardpan/api/setpoint`, guards XHR(302)/auth(401)/OPERATOR_WRITE(403)/invalid-num(400), no CSRF | `[CERT]` | `fbe9009` `BDashboardServlet.java:81-84,195,274-283`; `DashboardDispatch.java:122-126`; `DashboardRbacHelper.java:17-20,36,55` | Y |
+| 7 | Write = coerce→`parent.set(prop,new BStatusNumeric(v),null)`; audited to auditLog, not AuditHistory | `[CERT]` | `fbe9009` `BDashboardServlet.java:291,357,312`; `BDashboardService.java:68-72,256` | Y |
 | 8 | Haystack absent; BACnet in install; no bog to confirm link/export | `[CERT/GAP]` | install `modules/`; `find … *.bog` → 0 | Y |
 
 **Tally:** `[CERT]` ×7 · `[INFER]` ×1 (the escape hatch). Two GAPs (channel 6 link, BACnet export) need a live bog
