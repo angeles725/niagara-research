@@ -32,9 +32,9 @@ CONFIG-LOGIN FLOW MOCK (--config-login): previews the C9 R14 "second login insid
 dashboard before any write" UX on the REAL rc/ with zero module edits. Injects a native-
 looking modal + a session chip + a change_log strip into the served HTML and adds STATEFUL
 endpoints that mirror the R14 servlet contract:
-  POST <prefix>/config/login   {user,pass} -> 200 {ok,user,ttl} + cookie | 401 {error:"auth"}
-  POST <prefix>/config/logout  -> 200, session cleared
-  GET  <prefix>/config/session -> {active,user,remaining}
+  POST <prefix>/api/config/login   {user,pass} -> 200 {ok,user,ttl} + cookie | 401 {error:"auth"}
+  POST <prefix>/api/config/logout  -> 200, session cleared
+  GET  <prefix>/api/config/session -> {active,user,remaining}
   POST <prefix>/api/*          -> 403 {error:"config_login_required"} without a live session;
                                   with one: 200 + a change_log row (surface "B", config_session)
   GET  <prefix>/__mock/change_log -> the rows (what the R7 mirror would write)
@@ -209,7 +209,7 @@ CONFIG_LOGIN_SNIPPET = r"""
   var rawFetch=window.fetch.bind(window);
   function fmt(s){s=Math.max(0,s|0);return (s/60|0)+":"+("0"+(s%60)).slice(-2)}
   function paint(){ $("__chip").classList.toggle("on",!!sess.active); if(sess.active){$("__chip_u").textContent=sess.user;$("__chip_t").textContent=fmt(sess.remaining);} }
-  function refresh(){ return rawFetch(P+"/config/session",{headers:xhr()}).then(function(r){return r.json()}).then(function(j){sess=j;paint();$("__cl_ttl").textContent=fmt(j.ttl||0);return j}).catch(function(){}) }
+  function refresh(){ return rawFetch(P+"/api/config/session",{headers:xhr()}).then(function(r){return r.json()}).then(function(j){sess=j;paint();$("__cl_ttl").textContent=fmt(j.ttl||0);return j}).catch(function(){}) }
   function loop(){ clearInterval(tick); tick=setInterval(function(){ if(sess.active){sess.remaining--; if(sess.remaining<=0){sess.active=false;refresh();} paint();} },1000) }
   function open(){ $("__cl_err").classList.remove("on"); $("__cl_p").value=""; $("__cl").classList.add("open"); setTimeout(function(){($("__cl_u").value?$("__cl_p"):$("__cl_u")).focus()},50) }
   function close(){ $("__cl").classList.remove("open") }
@@ -223,14 +223,14 @@ CONFIG_LOGIN_SNIPPET = r"""
   $("__cl_cancel").onclick=function(){ close(); if(pending){ var p=pending; pending=null; p.res(new Response(JSON.stringify({ok:false,error:"config_login_cancelled"}),{status:403,headers:{"Content-Type":"application/json"}})); } };
   $("__cl_ok").onclick=function(){
     var u=$("__cl_u").value.trim(), pw=$("__cl_p").value;
-    rawFetch(P+"/config/login",{method:"POST",headers:xhr(),body:JSON.stringify({user:u,pass:pw})}).then(function(r){
+    rawFetch(P+"/api/config/login",{method:"POST",headers:xhr(),body:JSON.stringify({user:u,pass:pw})}).then(function(r){
       if(r.status!==200){ $("__cl_err").classList.add("on"); $("__cl_p").value=""; $("__cl_p").focus(); return; }
       return r.json().then(function(j){ sess={active:true,user:j.user,remaining:j.ttl,ttl:j.ttl}; paint(); loop(); close();
         if(pending){ var p=pending; pending=null; rawFetch(p.url,p.init).then(function(rr){ logRefresh(); refresh(); p.res(rr); },p.rej); } });
     });
   };
   $("__cl_p").addEventListener("keydown",function(e){ if(e.key==="Enter") $("__cl_ok").click(); });
-  $("__chip_out").onclick=function(){ rawFetch(P+"/config/logout",{method:"POST",headers:xhr()}).then(function(){ sess={active:false,user:null,remaining:0}; paint(); }) };
+  $("__chip_out").onclick=function(){ rawFetch(P+"/api/config/logout",{method:"POST",headers:xhr()}).then(function(){ sess={active:false,user:null,remaining:0}; paint(); }) };
   $("__log_h").onclick=function(){ $("__log").classList.toggle("min") };
   function logRefresh(){ rawFetch(P+"/__mock/change_log",{headers:xhr()}).then(function(r){return r.json()}).then(function(rows){
     $("__log_n").textContent=rows.length; var b=$("__log_b"); b.innerHTML="";
@@ -360,11 +360,11 @@ def make_handler(rc_dir, prefix, mock_obj, editor=False, config_login=None):
             if p == "/hmi":
                 self._hmi()
                 return
-            if config_login and p in ("/config/session", "/__mock/change_log"):
+            if config_login and p in ("/api/config/session", "/__mock/change_log"):
                 if not self._has_xhr():
                     self._redirect((prefix or "") + "/index.html")
                     return
-                if p == "/config/session":
+                if p == "/api/config/session":
                     act = self._sess_active()
                     self._json({"active": act, "user": SESS["user"] if act else None,
                                 "remaining": int(max(0, SESS["expires"] - time.time())) if act else 0,
@@ -388,11 +388,11 @@ def make_handler(rc_dir, prefix, mock_obj, editor=False, config_login=None):
             length = int(self.headers.get("Content-Length", 0) or 0)
             body = self.rfile.read(length).decode("utf-8", "replace") if length else ""
             sys.stderr.write("  [POST %s] %s\n" % (p, body))
-            if config_login and p in ("/config/login", "/config/logout"):
+            if config_login and p in ("/api/config/login", "/api/config/logout"):
                 if not self._has_xhr():
                     self._redirect((prefix or "") + "/index.html")
                     return
-                if p == "/config/logout":
+                if p == "/api/config/logout":
                     SESS.update(token=None, user=None, expires=0.0)
                     self._json_cookie({"ok": True}, "dp_config_session=; Path=%s/; Max-Age=0; SameSite=Lax" % (prefix or ""))
                     return

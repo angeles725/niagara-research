@@ -103,7 +103,7 @@ absolutas verificadas; NO re-decompilar ni re-descargar lo que ya está acá.
   puede traer un preview-server.py (ver DashboardPan-ux/preview-server.py).
   --config-login (C9 R14): previsualiza el "segundo login dentro del dashboard antes de
   escribir" sobre el rc/ REAL sin tocar el módulo — inyecta un modal nativo + chip de
-  sesión + tira change_log y mockea /config/login|logout|session con estado (401/200+
+  sesión + tira change_log y mockea /api/config/login|logout (+ /api/config/session solo-mock) con estado (401/200+
   cookie, TTL deslizante --config-ttl, clave demo --config-password). Escribir sin
   sesión → 403 + modal; con sesión → 200 + fila change_log (superficie B).
 

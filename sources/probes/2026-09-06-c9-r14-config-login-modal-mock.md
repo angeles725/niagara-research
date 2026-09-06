@@ -1,11 +1,13 @@
 # C9 R14 — the "second login inside DashboardPan before any write" UX, as a runnable mock (see it before code)
 
 Author: companero (Fable), 2026-09-06. Product decision from Cristian (via the lead): the HMI panel keeps ONE shared
-kiosk login, but a SECOND login INSIDE DashboardPan is required before any write — SPA modal → `/dashboardpan/config/login`
+kiosk login, but a SECOND login INSIDE DashboardPan is required before any write — SPA modal → `/dashboardpan/api/config/login`
 → servlet re-auth against the STATION user DB → server-held config session with TTL + `/config/logout` → writes run
 with that user's Context so Niagara AuditHistory attributes the real operator; NO credential storage in the module
 (R14 / design D8b). investigador1 is researching the legal Niagara API (B830); the R14 apply-package follows B830.
 This mock exists so the UX can be judged NOW, on the real dashboard, with zero module edits. `[ev: lead relay of Cristian's decision, 2026-09-06]` `[ev: corpus B829 (null-Context write is audit-suppressed → the real-Context write is the fix)]`
+
+> **rev 2 (2026-09-06):** endpoints re-pathed to `/api/config/login|logout` to match QA's RED `qa/c9-s12-config-login` cc1c948 (CLW1) — under the existing `/api/*` dispatch branch, XHR guard for free. `/api/config/session` stays mock-only (the RED pins no session GET; the real chip derives its countdown from the login `ttl`).
 
 ## 1. Run it (30 seconds)
 ```
@@ -34,9 +36,9 @@ existing `.card/.ch/.acts` dialog geometry, so it reads as native, not bolted on
 ## 3. What is MOCKED vs what the real R14 does (the contract the mock demonstrates)
 | Piece | Mock (`--config-login`) | Real R14 (D8b) |
 |---|---|---|
-| `POST <prefix>/config/login {user,pass}` | any user + demo password → `200 {ok,user,ttl}` + cookie `dp_config_session`; else `401 {error:"auth"}` | servlet re-auths against the station user DB (B830 names the legal API); mints a server-held config session bound to user+purpose, short TTL; opaque handle only |
-| `POST <prefix>/config/logout` | clears the one session, expires the cookie, `200` | revokes the session immediately |
-| `GET <prefix>/config/session` | `{active,user,remaining,ttl}` | same shape (drives the chip) |
+| `POST <prefix>/api/config/login {user,pass}` | any user + demo password → `200 {ok,user,ttl}` + cookie `dp_config_session`; else `401 {error:"auth"}` | servlet re-auths against the station user DB (B830 names the legal API); mints a server-held config session bound to user+purpose, short TTL; opaque handle only |
+| `POST <prefix>/api/config/logout` | clears the one session, expires the cookie, `200` | revokes the session immediately |
+| `GET <prefix>/api/config/session` (mock-only; the RED pins no session GET) | `{active,user,remaining,ttl}` | same shape (drives the chip) |
 | `POST <prefix>/api/setpoint` (any `/api/*` POST) | no live session → `403 {error:"config_login_required"}`; with one → `200`, TTL extended, a `change_log` row appended | `DashboardWriteGuards` guard6 (config session required) → the write runs `parent.set(prop, toSet, cx)` with the SESSION USER's Context → AuditHistory attributes the real operator (B829-G2); the R7 mirror writes the same row to `public.change_log` with `surface='B'`, `config_session` = station username/session |
 | `GET <prefix>/__mock/change_log` | the rows `{ts,user_email,config_session,room,slot,old_value,new_value,area,surface:"B",result,ok}` | the S12 canonical `change_log` schema (9acb47c + R5 additive columns) |
 | XHR guard | kept: any `/api/*` or `/config/*` call without `X-Requested-With` → 302 (as the real dispatch) | unchanged |
@@ -48,13 +50,13 @@ decide per-browser vs per-panel; the mock makes the simplest choice visible.
 ```
 1)  GET /                              → HTML carries the injected modal (2 marks)
 2)  POST /api/setpoint  (no session)   → 403 {"ok": false, "error": "config_login_required"}
-3)  POST /config/login  (wrong pass)   → 401
-4)  POST /config/login  (pass 1234)    → 200 {"ok": true, "user": "cristian", "ttl": 90} + Set-Cookie dp_config_session
+3)  POST /api/config/login  (wrong pass)   → 401
+4)  POST /api/config/login  (pass 1234)    → 200 {"ok": true, "user": "cristian", "ttl": 90} + Set-Cookie dp_config_session
 5)  POST /api/setpoint  (with cookie)  → 200 {"ok": true}
 6)  GET  /__mock/change_log            → [{"ts":"04:07:40","user_email":"cristian","config_session":"a05c482c","room":"Cuarto1",
                                           "slot":"setpoint","old_value":null,"new_value":2.5,"area":"config","surface":"B","result":200,"ok":true}]
-7)  GET  /config/session               → {"active": true, "user": "cristian", "remaining": 89, "ttl": 90}
-8)  POST /config/logout                → 200 {"ok": true}
+7)  GET  /api/config/session           → {"active": true, "user": "cristian", "remaining": 89, "ttl": 90}
+8)  POST /api/config/logout            → 200 {"ok": true}
 9)  POST /api/setpoint  (after logout) → 403
 10) POST /api/setpoint  (no XHR header)→ 302   (the dispatch guard still bites)
 ```
