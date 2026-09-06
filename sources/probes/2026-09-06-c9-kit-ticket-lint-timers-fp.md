@@ -5,7 +5,10 @@ defect, not a client bug) as (1) a kit ticket and (2) a C9 research-candidate se
 (2.45.0), so `kit-ticket.sh` would OPEN a real GitHub issue — leave the filing to the lead/Cristian (same as every issue
 draft). No code lands in C9 for this. `[ev: lint-timers.sh header lines 14-15]` `[ev: BDefrostController.java @ a109249]`
 
-## 1. Kit ticket (ready to file)
+## 1. Kit ticket — FILED as niagara-tools #89 (lead, 2026-09-06)
+Filed by the lead on the kit repo with the body below + the seed note. Reference `#89` in PR12/PR13 close notes.
+
+### 1a. Kit ticket (as filed)
 **Title:** `lint-timers companion-flag false positive: pairs a method-LOCAL boolean with a Clock.schedule in a different method`
 
 **Body:**
