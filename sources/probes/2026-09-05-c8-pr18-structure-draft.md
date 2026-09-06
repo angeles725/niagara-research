@@ -17,7 +17,7 @@ in how Tridium/Honeywell lay out their own modules and an audit of our four. `[e
 ## Layout — one `moduleName`, per-profile parts `[ev: corpus B817]`
 - A module splits into per-`runtimeProfile` artifacts `<module>-{rt,ux,wb,se}`: `-rt` server runtime, `-ux` browser
   (BajaScript), `-wb` Workbench (Swing), `-se` server-only. The `-rt` part lists its siblings in `<moduleParts>`.
-- `-doc` is a SEPARATE `runtimeProfile="doc"` module (empty `<types/>`), NEVER a part of a code module.
+- `-doc` is a SEPARATE `runtimeProfile="doc"` module (with an empty `<types/>`, per B784 §784.1), NEVER a part of a code module.
 - Author-side source tree: `<MOD>-rt.gradle.kts` + `module-include.xml` + `module.lexicon` + `module.palette` +
   `src/com/<vendor>/<MOD>/…` (+ `srcTest/` for tests, `rc/` for `-ux`). `[ev: corpus B817]`
 
@@ -47,11 +47,13 @@ Row format: `FAIL|WARN  lint-structure  <path>  L<n>: <reason>`. Exit **0** clea
 | L7 | every `<dependency>` `vendorVersion` is a 3-part floor (`4.14.0`), not 2-part or the 4-part self-stamp | FAIL | mutation `:baja:4.14` (2-part) → **L7 FAIL** |
 | L8 | signed jar present (`NIAGARA4`/vendor `.SF`+`.RSA`) | FAIL | shared with `verify-module.sh` |
 | L9 | no empty skeleton part — a declared `-wb`/`-ux` with 0 `.java` AND empty palette/lexicon | FAIL | DashboardPan-wb (0 source, empty palette) → **L9 FAIL** |
-| L10 | no absolute HOST paths in a tracked `gradle.properties` (`C:\…` `niagara_home`/`user_home`/`nodeHome`) | FAIL | client `ColdRoomPan`/`CompPan` `gradle.properties` hardcode `C:\Honeywell\…` → **L10 FAIL** (`.deploy-baseline/` pruned) |
-| L11 | a `srcTest` mixing pure-JUnit + Baja (`BTest`/`BTestNg`) declares BOTH `moduleTestImplementation(":test-wb")` AND `…("junit:junit:…")` (or splits source sets) | FAIL | ColdRoomPan-rt/CompPan-rt declare only `:test-wb` → **L11 FAIL** |
+| L10 | no absolute HOST paths in a tracked `gradle.properties` (`C:\…` `niagara_home`/`user_home`/`nodeHome`) | FAIL | client `ColdRoomPan`/`CompPan` `gradle.properties` hardcode `C:\Honeywell\…` (Leon-Guanjuato tree **@ deed38c**, read this session) → **L10 FAIL** (`.deploy-baseline/` pruned) |
+| L11 | a `srcTest` mixing pure-JUnit + Baja (`BTest`/`BTestNg`) declares BOTH `moduleTestImplementation(":test-wb")` AND `…("junit:junit:…")` (or splits source sets) | FAIL | ColdRoomPan-rt/CompPan-rt declare only `:test-wb` (Leon-Guanjuato **@ deed38c**) → **L11 FAIL** |
 
-`[ev: corpus B817]` for every row (B817 carries the deeper cites: L4/L5 ← B788, L6 ← B790 §14, L7 ← B784,
-L8 ← B807, L10/L11 ← B815 §815.12).
+`[ev: corpus B817]` for every row. Deeper cites B817 carries: lexicon/palette STANDARD ← B780/B759 (§817.4), the
+empty-lexicon/empty-palette AUDIT that fires L4/L5 ← B788; L6 ← B790 §14; L7 ← B784; L8 ← B807; L10/L11 ← B815 §815.12
+(the Leon-Guanjuato client tree @ deed38c). NB B817 §817.8 itself says only "live client trees … verified this
+session" — pinning @ deed38c here is a reproducibility upgrade, not a claim B817 made.
 
 ## PASS state + scaffold `[ev: corpus B817]`
 `scaffold-module.sh <MOD>` output passes L1–L11 at exit 0 — the skeleton is the GREEN fixture. A mutation that
