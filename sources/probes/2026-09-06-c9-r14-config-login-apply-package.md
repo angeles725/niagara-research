@@ -61,6 +61,19 @@ final class ConfigLoginGuard {                                       // (UserLoo
 silence past TTL expires it). `logout` → `revoke` → next `requireSession` 403 (CL7). `statusForWrite(true, *)` = 403;
 `statusForWrite(false, true)` = 200 (CL10/CL11). Pure Java, injected `Clock` (the RED's `FakeClock`).
 
+## 2c. REFRESH 2026-09-06 — re-anchored to PR6's REAL code (client PR #10, tip 4d07cad)
+PR6 landed with `DashboardWriteGuards.evaluate(...)` as the PRIMARY guard path AND pre-wired the R14 seam. At
+`Leon-Guanjuato-worktrees/pr6-servlet-guards` @ 4d07cad, `BDashboardServlet.handleSetpointWrite` (**:196**):
+- `:216` `boolean xhr = "XMLHttpRequest".equals(req.getHeader("X-Requested-With"))`; `:217` remoteUser; `:218` `kioskName = DashboardRbacHelper.unescapeUsername(remoteUser)`; `:219` `boolean opWrite = DashboardRbacHelper.resolveOperatorWrite(kioskName)`.
+- `:227` `int st = DashboardWriteGuards.evaluate(xhr, kioskName, opWrite, relOrd, value, sink)` — the FIRST guard call; guards 1(xhr-302)/2(kiosk-401)/3(opWrite-403)/**6(stub)**/4(value-400)/5(ord-400) run INSIDE it (PR6's own comment reserves the `6(stub)` slot for R14). The value/ord guards are no longer a separate `:274-288` block — they moved into `evaluate`.
+- `:299` `BValue toSet = coerceValue(current, value)`; `:306` `javax.baja.user.BUser op = DashboardRbacHelper.resolveUser(kioskName)`; `:309` `parent.set(prop, toSet, op)`; `:311` `catch (PermissionException pe)` → `SC_FORBIDDEN` at `:314` (flat body). **CLW3 (bare identifier `op` as the 3rd arg) and CLW4 (`catch(PermissionException…)…SC_FORBIDDEN`) are ALREADY satisfied by PR6.** `resolveOperatorWrite`/`resolveUser` are package-private static in `DashboardRbacHelper` (`resolveUser` :83, `resolveOperatorWrite` :105). `Dashboard/build.gradle.kts:33` is ALREADY `2.2.0` (PR6) → R14 fragment-merges the same value, NO second bump.
+
+**So R14's servlet diff shrinks to three edits (the class/adapter files F1–F5 are unchanged):**
+1. **Guard 6 + config-session user:** read `sid = req.getHeader("x-config-token")`; BEFORE `:219`, `int ss = configGuard.requireSession(sid); if (ss != OK) { resp.setStatus(403); out.print("{\"error\":\"config_login_required\"}"); return; }` (CLW5: `config_login_required` + `requireSession(` on the write path); then change `:219` to resolve opWrite for the CONFIG-SESSION user — `boolean opWrite = DashboardRbacHelper.resolveOperatorWrite(sessions.userFor(sid))` (D-6, guard 3 judges the second operator, not the kiosk). Order becomes 1→2→6→3→4→5.
+2. **Operator swap (CLW3 stays green):** change ONLY the RHS of `:306` — `javax.baja.user.BUser op = configAuth.resolveOperator(sessions.userFor(sid));` — keep the local `op`, so `:309` `parent.set(prop, toSet, op)` is unchanged and CLW3's bare-identifier regex still passes. The kiosk `WebOp` (the servlet's own request user) is untouched; `op` is only the set-Context.
+3. **Audit user:** `:335-337` names `kioskName` today → name `op.getUsername()` (the re-authed operator); keep it fire-and-forget (CL11).
+`catch (PermissionException)` (F6c) and the numeric/ord guards (now inside evaluate) need NO R14 change.
+
 ## 3. File-level diff plan (DashboardPan-ux @ a109249 + PR6)
 | # | File | Edit |
 |---|---|---|
