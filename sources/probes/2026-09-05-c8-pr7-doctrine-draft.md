@@ -151,7 +151,8 @@ Improve the kit and the modules as an "Excavador Técnico" (R&D engineer + syste
   `is_level` parses EN (`INFO/WARNING/SEVERE`) + ES (`INFORMACI…/ADVERTENCIA/GRAVE`) at `:90-94`; `norm_level` maps
   ES→EN at `:98-100`; the scan runs `LC_ALL=C awk` at `:298` (byte-safe over mojibake). The **folded-as-code** line is
   already at `METHODOLOGY.md:93`. So the tool + the fold pointer already carry this — **SKIP re-adding**.
-- **ADDABLE (only if §Conformance wants the CONTRACT as explicit prose beside the fold pointer):** ONE line —
+- **ADD (lead-confirmed 2026-09-05):** DO include this ONE prose line in `METHODOLOGY.md` §Conformance beside the
+  fold pointer (line ~93) — do NOT skip it. The worker cites it `[ev: corpus B800]`:
 ```
 - triage-console.sh attribution contract = **C1** own frame · **C2** own tag · **C3** bog-drift (`Missing class "<prefix>:` / `Cannot load station` / `Missing frozen property`); locale = `LC_ALL=C`, byte-safe (`grep -a`/awk), EN + ES level names (mojibake-safe latin-1). PR7 states this CONTRACT; PR13 states the operator STEPS (non-duplicative). `[ev: corpus B800]` `[ev: retro campaign8-triage-console]`
 ```
