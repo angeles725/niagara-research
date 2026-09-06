@@ -72,3 +72,13 @@ the clean write form (no wrapped obj, no `name="value"`, no silent-zero hazard, 
 StatusNumeric); propagation through the link would then rely on nested-child bubbling (B825 §825.3), to be confirmed by
 one authorized PUT + control-side read-back before any write-server change targets the child. No PUT was made. All five
 rooms read RoomPanel == ColdRoom (3 / 3 / -13 / 3 / 20), consistent with the link present on every room.
+
+## 9) Child form CONFIRMED live (Cristian-authorized, Cuarto1, change + restore) — closes B826-G2
+- PUT bare `<real val="2.5"/>` (no wrapper) to `/obix/config/Services/DashboardService/Cuarto1/setpoint/value` → 200,
+  body `<real val="2.5" href=".../setpoint/value/">` (echoes the new value, no `<err>`, no silent zero).
+- After ~1.5 s: GET `ColdRoom_1/setpoint` = 2.5 and RoomPanel `setpoint` = 2.5 → propagates through the panel→control
+  link (the nested-child bubbling path, B825 §825.3, works live).
+- Restore: PUT `<real val="3.0"/>` to the child → 200; final GET ColdRoom = 3.0, RoomPanel = 3.0.
+Net: two independent PROVEN write forms for the room setpoint — the child bare `<real>` (preferred: simple decode, no
+silent-zero hazard) and the wrapped obj on the parent (fallback). The write-server adopts the child form
+(`PUT <real>` to `${ord}/value` under FACADE_PATH). State restored to 3.0.
