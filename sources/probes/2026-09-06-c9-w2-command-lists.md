@@ -46,6 +46,22 @@ WRITE_PORT ALLOWED_ORIGIN(S) ALLOWED_EMAILS JWKS_URL/SUPABASE_JWKS_URL JWT_ISS/S
 | `MIRROR_STATE` | PR7 | high-water file for the mirror (last ts), e.g. `/var/lib/pancaddia/mirror-state.json` |
 Tests never read `config.env`: they pass `cfg` objects (`WRITE_PORT:0`, temp `AUDIT_SPOOL`, etc.).
 
+### PR5 PRE-STAGE — where the SQL actually gets exercised (environment reality on THIS machine, 2026-09-06)
+**S12A-8 and S12A-9 need NO database.** They are `node --test` cases with an INJECTED `deps.changeLog` (a fake sink) — the
+`{status:500}→502 + one ok:false row` and the `replaySpool` drain/dedupe are pure JS. Run them with the §"Run the tests"
+block above; no Postgres involved. The Postgres pre-stage exists ONLY to prove the **SQL migration F1** (`add column if not
+exists …`) applies cleanly, is idempotent, and rolls back — a schema check, not a test dependency.
+
+**This WSL distro has neither Docker nor a Postgres server** (`docker` → "could not be found in this WSL 2 distro";
+`postgres` server binary absent; only the libpq CLIENT `psql`/`pg_ctl` from linuxbrew is present, which cannot start a
+server). So the migration cannot be exercised live HERE as-is. Three ways to get a throwaway Postgres 15, pick one:
+- (a) **Docker Desktop WSL integration** (turn it on in Docker Desktop → Settings → Resources → WSL Integration), then the
+  `docker run` block below works verbatim.
+- (b) **`brew install postgresql@15`** (linuxbrew already has the client) → a local server binary; `initdb` a temp datadir,
+  `pg_ctl -D <tmp> -o "-p 55432" start`, then the same `psql` lines against `127.0.0.1:55432`.
+- (c) **`supabase start`** if the Supabase CLI is installed — a local Postgres 15 + the project's migrations dir.
+Whichever runs it records the result in the PR5 branch's PR description; it is NOT a CI gate.
+
 ### SQL migrations — apply / rollback WITHOUT touching production Supabase
 Files: existing `sql/2026-09-06-change-log-audit.sql` (creates `public.change_log`); NEW PR5 `sql/2026-09-06-change-log-extended.sql`
 (additive: `+config_session, +result, +surface, +client_ip`); NEW PR7 `sql/2026-09-06-change-log-mirror-index.sql` (partial unique
@@ -54,7 +70,10 @@ index on the 5-tuple where `surface='servlet'`). All must be `add column if not 
 # local Postgres in Docker (no Supabase involved); Supabase's Postgres is 15 — match it
 docker run -d --name c9pg -e POSTGRES_PASSWORD=pg -p 55432:5432 postgres:15
 export PGURL=postgresql://postgres:pg@127.0.0.1:55432/postgres
-psql "$PGURL" -v ON_ERROR_STOP=1 -f sql/2026-09-06-change-log-audit.sql            # baseline
+# baseline schema is committed at tunnel 9acb47c: sql/2026-09-06-change-log-audit.sql — creates public.change_log with
+# (id, ts, user_email NOT NULL, user_id uuid, room, slot NOT NULL, label, old_value, new_value, area default 'config', ok default true),
+# RLS + read policy + ts/room indexes + the 90-day retention function. Apply it first:
+psql "$PGURL" -v ON_ERROR_STOP=1 -f sql/2026-09-06-change-log-audit.sql            # baseline (verified shape @ 9acb47c)
 psql "$PGURL" -v ON_ERROR_STOP=1 -f sql/2026-09-06-change-log-extended.sql         # PR5
 psql "$PGURL" -v ON_ERROR_STOP=1 -f sql/2026-09-06-change-log-extended.sql         # idempotency: must succeed a 2nd time
 psql "$PGURL" -c '\d public.change_log'                                             # columns present
