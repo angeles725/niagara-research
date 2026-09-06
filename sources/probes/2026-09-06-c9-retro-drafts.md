@@ -13,6 +13,12 @@ the close flips `pending → folded` only AFTER the core carries the slug token 
 - Δ2 **WARN-only is a decision, not a default** — B820's "statically-decidable absence" → advisory; `--strict` is the
   promotion. Record the DS2 OBSERVED flip + the four-root counts (lesson 11). `[ev: corpus B820]`
 - Δ3 (fill at close) real-tree counts per root; the `step` absence pin.
+- Δ4 **Fixture-GREEN over-flags the real tree** (W1 fact: 113 findings on the client roots → 2 after the fix). Fixtures prove
+  the rule FIRES; only a real-tree PRESENCE pin (exact count + exact subjects + one ABSENCE) proves it fires on the right
+  things. K22 / C8 lesson 11 recurred in W1 — second campaign in a row. `[ev: W1 apply, PR2/PR3 smoke]` `[ev: retro campaign8-close-process-meta-lessons Δ11]`
+- Δ5 **K20 — an empty or missing input is NOT a clean run.** A no-source directory returned exit 0 until a lead-gate pin
+  forced usage exit 3. Every lint's bats carries the "no sources / bad dir → exit 3" pin BEFORE the real-tree smoke.
+  `[ev: W1 apply]` `[ev: corpus B820 §820.3]`
 
 ## campaign9-silent-protection (PR3)
 - Δ1 **A cross-file follow needs a dir-wide index pass** — a per-file lint cannot see the adapter's `getXAlarm().setValue`
@@ -23,6 +29,12 @@ the close flips `pending → folded` only AFTER the core carries the slug token 
   pin update. `[ev: design D9]`
 - Δ4 **Line numbers drift, content does not**: B824's `:1539` was the generated getter; the write is `:1994` at
   a109249 — cite the DECL and the WRITE, re-anchor per tip. `[ev: corpus B824 §824.4(b)]`
+- Δ5 **Fixture-GREEN over-flags the real tree** (W1 fact: 113 findings on the client roots → 2 after the fix). Fixtures prove
+  the rule FIRES; only a real-tree PRESENCE pin (exact count + exact subjects + one ABSENCE) proves it fires on the right
+  things. K22 / C8 lesson 11 recurred in W1 — second campaign in a row. `[ev: W1 apply, PR2/PR3 smoke]` `[ev: retro campaign8-close-process-meta-lessons Δ11]`
+- Δ6 **K20 — an empty or missing input is NOT a clean run.** A no-source directory returned exit 0 until a lead-gate pin
+  forced usage exit 3. Every lint's bats carries the "no sources / bad dir → exit 3" pin BEFORE the real-tree smoke.
+  `[ev: W1 apply]` `[ev: corpus B820 §820.3]`
 
 ## campaign9-ext-writable-shape (PR10)
 - Δ1 **The lint names the fix, not just the smell** — WARN text carries the child `…/value` leaf (the B826 preferred
@@ -83,3 +95,10 @@ the close flips `pending → folded` only AFTER the core carries the slug token 
     and was never deployed: the "silent zero" IS live on the panel (2.0 has no numeric guard) and the defrost `time<=0`
     bug IS live (2.0.3 `:555`), although both read as fixed in the repo. Rule: a claim "X is fixed" names the version
     where it is fixed AND the version that RUNS; the deploy chain is a precondition of every live gate. `[ev: a34f9bdd2]` `[ev: client PR #9 runbook]`
+15. **Resume from the uncommitted tree, never from the package.** A worker was cut by a session limit with 111 lines
+    of the core already in the worktree; the resume rule is: READ the uncommitted tree first and continue from it.
+    Restarting from the apply-package re-derives and drifts — the tree is the state, the package was only the plan.
+    `[ev: W1 apply, PR1 worker resume]`
+16. **A negative claim needs a grep that actually asked the question.** "coolOnSensorFault is not in WRITABLE" was
+    stated from a grep whose pattern never contained that name; the entry is at `write-server.mjs:94`. Before writing
+    "X is absent", show the query that would have matched X. `[ev: session 2026-09-06, dead-panel-writes read]`
