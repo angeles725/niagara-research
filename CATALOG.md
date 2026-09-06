@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **820 bloques**
+Total: **821 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -825,6 +825,7 @@ Total: **820 bloques**
 | 829 | [niagara-mental-model-bloque829.md](niagara-mental-model-bloque829.md) | B829 · One audit trail for PANCCADIA — what Niagara's config-audit records for each write path, settled by CODE: a slot `set()` fires an `AuditEvent` ONLY inside `if (context != null && context.getUser() != null)`, so the DashboardPan servlet's NULL-Context set is NOT audited (suppressed, not just unattributed); an oBIX PUT IS audited to the oBIX login user; both need an installed `AuditHistoryService` — so the write-server's Supabase `audit` (real operator email) is the single source of truth `[CERT]` |
 | 830 | [niagara-mental-model-bloque830.md](niagara-mental-model-bloque830.md) | B830 — Servlet-side re-authentication of a second operator: the legal `BUserService`/`BPasswordCache` call path, the Context that attributes the write, and what a `null` Context really bypasses |
 | 831 | [niagara-mental-model-bloque831.md](niagara-mental-model-bloque831.md) | B831 — Three lint-precision refinements for C10: companion-flag (S21), per-slot writing-action (S22), and alarm-surface recognition (S23) — from coarse class/whole-file heuristics to per-slot/per-method body matching |
+| 832 | [niagara-mental-model-bloque832.md](niagara-mental-model-bloque832.md) | B832 — The three C10 method-boundary parser copies diverge: net-depth vs peak-depth is a real one-liner false-negative (T1 shared-fragment evidence) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
