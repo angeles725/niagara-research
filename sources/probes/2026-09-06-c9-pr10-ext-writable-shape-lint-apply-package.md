@@ -1,22 +1,16 @@
 # C9 PR10 / R10 — S19 `ext-writable-shape` lint: apply package (kit)
 
-Author: companero (Fable), 2026-09-06 (rev 2: RED re-issued by QA — tip **`717d585`** = 3726722 + 269be48 (EW10 exact a109249
-contract) + 717d585 (`C9_CLIENT_ROOT`); pins EW1–EW10 unchanged). Contract VERBATIM from QA's RED `qa/c9-ext-writable-shape`
-**`717d585`** (`tests/ext-writable-shape.bats`). Rule = B823 §823.2 + the slot-type doctrine (folded at C8 PR15,
+Author: companero (Fable), 2026-09-06 (rev 3 — RED tip is **`269be48`**; chain 3726722 → 28feb42 (script path) → 717d585
+(`C9_CLIENT_ROOT`) → 3387c58 (EW11, K20 exit 3) → 269be48 (EW10 EXACT four-root contract). Rev 2 wrongly cited 717d585 as the
+tip and called the four-root counts "acceptance, not pinned" — they ARE pinned at 269be48; retracted.) Contract VERBATIM from
+QA's RED `qa/c9-ext-writable-shape` **`269be48`** (`tests/ext-writable-shape.bats`, EW1–EW11). Rule = B823 §823.2 + the slot-type doctrine (folded at C8 PR15,
 `types/logic-authoring.md:62-70`); skeleton = `lint-delays.sh` (src-dir), exactly like S7/S18. The rule already has a working
 reference implementation in `tools/module-find.py ext-writable` (niagara-research) — the kit lint is its bash/awk twin with
 the RED's stricter "matching action" test. `[ev: RED 3726722 tests/ext-writable-shape.bats]` `[ev: corpus B823 §823.2]` `[ev: kit types/logic-authoring.md:62-70]`
 
-## 0. D-a CLOSED by the re-issue (269be48): the script is `toolbelt/lint-ext-writable-shape.sh`
-`setup(): EW="$KIT/toolbelt/lint-ext-writable-shape.sh"` (bats :24); the "RED today" line (:18) names the same file. Row token
-`ext-writable-shape` unchanged. The proposal's file table and this package now agree — no decision left.
-EW10 (717d585, RP1): the real-tree file is read from the BLESSED read tree, never the local working copy:
-`ROOT="${C9_CLIENT_ROOT:-/home/cristian/modulos_niagara_n4/Cliente/Leon-Guanjuato-worktrees/main-a109249}"`,
-`CLIENT="$ROOT/Dashboard/DashboardPan/DashboardPan-rt/src/com/angeles/DashboardPan/BRoomPanel.java"`, SKIP if absent.
-Caveat for the apply worker: 269be48's message says "exact a109249 contract (1 WARN BRoomPanel.setpoint on DashboardPan-rt,
-0 on the other three roots)", but the bats BODY of EW10 (`:152-158`) still asserts only `WARN` + `setpoint` on the ONE copied
-file — the four-root exact counts are PR10 ACCEPTANCE (§4), not a bats pin. Run them and record them; do not report them as
-"pinned by the RED".
+## 0. D-a CLOSED (28feb42): the script is `toolbelt/lint-ext-writable-shape.sh` (bats :24); row token `ext-writable-shape` unchanged
+Real-tree root (717d585, RP1): `ROOT="${C9_CLIENT_ROOT:-/home/cristian/modulos_niagara_n4/Cliente/Leon-Guanjuato-worktrees/main-a109249}"`
+— the blessed read tree, never the local working copy. EW10 SKIPs unless `$ROOT/Dashboard`, `$ROOT/Compresores`, `$ROOT/Paccadia` all exist.
 
 ## 1. The contract (verbatim)
 - **CLI:** `[lint-]ext-writable-shape.sh [--strict] <java-src-dir>` — one src dir, recursive (EW10 copies ONE real file into a flat dir).
@@ -35,7 +29,8 @@ file — the four-root exact counts are PR10 ACCEPTANCE (§4), not a bats pin. R
 | EW7 | EW1 shape | plain exit 0; `--strict` exit 1 |
 | EW8 | clean `differentialUp` in `src/` + a `setpoint` StatusNumeric under `src/.deploy-baseline/` | no WARN, no `Stale` |
 | EW9 | no argument | exit 3 |
-| EW10 | the REAL `BRoomPanel.java` from `$C9_CLIENT_ROOT` (default: the blessed `main-a109249` worktree) copied alone into a flat dir (skip if absent) | WARN naming `setpoint` (the live regression: `BRoomPanel.setpoint` is `BStatusNumeric` `SUMMARY\|OPERATOR` with no action, `:124-130` @ a109249) |
+| EW10 (269be48) | **EXACT four-root contract at `$ROOT`**: `run $EW $ROOT/Dashboard/DashboardPan/DashboardPan-rt/src` → exit 0, `grep -c '^WARN'` == **1**, output contains `BRoomPanel` and `setpoint`; then for `Compresores/CompPan/CompPan-rt`, `Paccadia/ColdRoomPan/ColdRoomPan-rt`, `Dashboard/DashboardPan/DashboardPan-ux`: exit 0 and `grep -c '^WARN'` == **0** (CompPan-rt's `faultReset` has an action → clean) | the live regression `BRoomPanel.setpoint` (`BStatusNumeric` `SUMMARY\|OPERATOR`, no action, `:124-130`) is the ONLY hit on the four roots; rows must start with `WARN` at column 1 |
+| EW11 (3387c58) | an EMPTY dir, and a dir with only a non-Java file | exit **3** + a row containing `ERROR` and `ext-writable-shape`, and NO `WARN` — never a silent 0 (K20) |
 | mutation (K13) | drop the `BStatusX` recognizer (treat complex as plain) | EW1/EW6 stop WARNing |
 
 ## 2. The rule as implementable passes (per `*.java`, paren-balanced `@NiagaraProperty`/`@NiagaraAction` join — C8 D9b)
@@ -58,13 +53,12 @@ flag ≥ module-find's set). `[ev: tools/module-find.py ext-writable (7fa61cb53 
 per-file awk: paren-balanced annotation join → properties + actions → rule → rows; `WARNED` flag; exit 1 only with `--strict`.
 `shellcheck` 0; VCS-free (kit-links L2).
 
-## 4. Real-tree smoke — RED pin + PR10 acceptance (lesson 11: count + subject + absence)
-- RED (EW10): `BRoomPanel.java` alone → ≥1 WARN whose subject is `setpoint`.
-- PR10 acceptance (proposal PR10 row): all four client module roots at `a109249` with exact counts + subjects + absence.
-  Expected from the C8 measurement (`module-find slot-types`/`ext-writable`): **DashboardPan-rt: `BRoomPanel.setpoint` = 1
-  WARN** (the only OPERATOR complex property with no action); ColdRoomPan-rt: 0 (its `BStatusNumeric`/`BStatusBoolean` are
-  SUMMARY/TRANSIENT, none OPERATOR); CompPan-rt: 0 (same); DashboardPan-ux: 0 OPERATOR slots. Absence pins: no WARN on any
-  `SUMMARY`-only `zoneTemp*`/`evapTemp*`/`*State` slot. Re-measure at GREEN; do not predict beyond these.
+## 4. Real-tree smoke — PINNED by the RED (EW10 @ 269be48 = count + subject + absence on the four roots)
+- DashboardPan-rt exactly 1 WARN (`BRoomPanel.setpoint`); CompPan-rt 0 (`faultReset` has an action); ColdRoomPan-rt 0;
+  DashboardPan-ux 0 — all with exit 0. This IS the K22 smoke; nothing extra to run for acceptance beyond `bats tests/ext-writable-shape.bats`
+  with the blessed worktree present (or `C9_CLIENT_ROOT` set). K20 is pinned by EW11 (exit 3 + ERROR on no sources).
+- Implementation consequence: the WARN row must start at column 1 with `WARN` (the pin counts `^WARN`), and the ERROR row for
+  no-sources must contain `ERROR` + `ext-writable-shape` and exit 3 BEFORE any scan.
   `[ev: 2026-09-06-c9-r11-write-path-matrix-measurement.md (OPERATOR counts 10/46/20/0)]` `[ev: retro 2026-09-05 bog-nav/module-find §3 corrected]`
 
 ## 5. K19 routing + retro
@@ -75,8 +69,8 @@ per-file awk: paren-balanced annotation join → properties + actions → rule �
 ## Self-verify
 | # | Claim | Marker | Evidence |
 |---|---|---|---|
-| 1 | RED (717d585) invokes `lint-ext-writable-shape.sh`; EW10 root = `C9_CLIENT_ROOT` default blessed a109249 worktree; four-root counts NOT in the bats body | [CERT] | bats :18, :24, :26-27, :152-158 @ 717d585; `git diff 3726722 717d585` |
+| 1 | RED tip 269be48; script `lint-ext-writable-shape.sh`; EW10 exact four-root counts; EW11 exit 3 | [CERT] | `git log origin/qa/c9-ext-writable-shape`; bats setup :24/:27, EW10/EW11 bodies @ 269be48 (read 2026-09-06) |
 | 2 | EW1–EW10 fixtures/expectations, row grammar, exits, D9b | [CERT] | bats :14-16, :31-156 |
 | 3 | EW3 = `set<Slot>` matching action is the only positive pin | [CERT] | bats :62 |
 | 4 | real BRoomPanel.setpoint shape | [CERT] | BRoomPanel.java:124-130 @ a109249 |
-| 5 | four-root expected counts (1/0/0/0) | [INFER, measured proxy] | module-find ext-writable; confirm with the kit lint at GREEN |
+| 5 | four-root counts 1/0/0/0 | [CERT, pinned] | EW10 @ 269be48 (matches the module-find ext-writable measurement) |
