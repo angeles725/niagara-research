@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **813 bloques**
+Total: **814 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -818,6 +818,7 @@ Total: **813 bloques**
 | 822 | [niagara-mental-model-bloque822.md](niagara-mental-model-bloque822.md) | B822 · Making the room setpoint remotely settable — the ADDITIVE-code options (a `setpointCmd` writable-double slot, or an `applySetpoint(BDouble)` OPERATOR action) vs the OUTAGE of retyping `BRoomPanel.setpoint`; a generic `@NiagaraAction` IS oBIX-invokable (`<op>` → `BComponent.invoke` with `OPERATOR_INVOKE`); schema risk graded SAFE(add) vs LOSSY/OUTAGE(retype) `[CERT]` |
 | 823 | [niagara-mental-model-bloque823.md](niagara-mental-model-bloque823.md) | B823 · Can the EXISTING `BRoomPanel.setpoint` be written from the mini-PC with NO module change? — every no-code write channel enumerated, one-bit-traced `[CERT]` |
 | 824 | [niagara-mental-model-bloque824.md](niagara-mental-model-bloque824.md) | B824 · The "silent-protection" lint — a static check that flags a protection TRIP (an output forced OFF / a stage shed-or-held, per B821's 22-trip taxonomy) that reaches NO operator surface; absence-of-surface is decidable (WARN), is-the-slot-the-reason is advisory; proven FLAG on CP-1 low-suction + CR-3 freeze-reason, CLEAN on PR#5 defrostSkipped/lastSkipReason, at client `fbe9009` `[CERT for the shapes; INFER for the check]` |
+| 825 | [niagara-mental-model-bloque825.md](niagara-mental-model-bloque825.md) | B825 · Why an oBIX wrapped-`<obj>` PUT of a `BStatusNumeric` façade slot PROPAGATES to the linked control point — and why the read can lag: the write is a TOP-SLOT REPLACEMENT (decode into a detached copy → `parent.set(slot, copy)`), NOT an in-place child mutation; knob/link propagation is SYNCHRONOUS on the writing thread (<1 ms), so the tens-of-seconds "lag" is entirely the READER's poll cycle `[CERT + CERT-live]` |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
