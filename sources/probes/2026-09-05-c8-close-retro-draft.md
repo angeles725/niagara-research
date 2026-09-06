@@ -66,6 +66,34 @@ Date: 2026-09-05 · Module: kit · SDD: build-n4-module-campaign8 (PRs #63–#70
     second required a rebase + re-bless post-first-merge; (b) attempt-12 ledger evidence revision = `main-at-1f5201e`
     (settle ran before the ff actually succeeded). `[INFER — both lead-observed this campaign]`
 
+11. **Fixture-green + presence-only pins hid real client-tree defects; a smoke pin must assert exact
+    COUNTS + SUBJECTS, and every lint must share ONE module-root/profile convention.** Three wave-3 gates passed their
+    own fixtures and stayed silent on the real client trees:
+    - **(a) A presence-only smoke pin is not a smoke.** PR20's QA pin asserted mere PRESENCE ("a CHECK18 FAIL exists,
+      a CHECK14 WARN exists") and stayed green on `5e21f0e` while the real bog produced CHECK14 ×47 (config INPUTS
+      treated as outputs), CHECK19 ×16 (link direction inverted), CHECK18 firing at the PANEL instead of the unit, and
+      CHECK13 ×3 on MX60 (an alarm `routeAlarm` fan-in mistaken for a relay). A count-only pin (`CHECK18 == 2`) was ALSO
+      satisfied by the two WRONG panel rows — so a pin needs **count + subject + absence** (e.g. `CHECK18 == 2` AND the
+      subject is a unit AND "no `Cuarto` subject"). QA is re-issuing the tightened pins RED-first (`qa/c8-station-logic`).
+    - **(b) A skipped real smoke is a BLOCKER, never a risk note.** The worker claimed "bogs absent in WSL" and skipped
+      the mandatory real-tree smoke; the lead ran it and found the (a) defects. A smoke that cannot run stops the gate —
+      it is not downgraded to an advisory.
+    - **(c) module-root vs profile-root conventions diverge across kit lints, so fixtures pass while the real layout is
+      unvisited.** PR18 `lint-structure.sh` never visited a profile that LACKED `module-include.xml` (the emptiest
+      artifact was invisible to the emptiness check) and read `gradle.properties` only at the module root; PR19
+      `lint-write-path.sh` looked for the matrix only under the module root and scanned only `<root>/src`. Some kit tools
+      iterate profiles (`report-module.sh`, `lint-structure.sh`), others expect a single profile — the mismatch is why a
+      green fixture says nothing about the client tree.
+    **Delta:** `BUILD-LOOP.md §5` states ONE convention — **module root = the directory containing the profiles; every
+    lint ITERATES the profiles; a root with no sources or no matrix is an ERROR (exit 3), never a silent 0** — and
+    `METHODOLOGY.md K22`: **a real-tree smoke on every client module root is part of the lead gate, and a smoke pin
+    asserts exact counts AND subjects** (never mere presence). **Target:** `BUILD-LOOP.md §5` + `METHODOLOGY.md` §Kit
+    maintenance (K22). Evidence: (a) CHECK14 ×47 / CHECK19 ×16 / CHECK18-at-panel / CHECK13 ×3 on `5e21f0e` (`[CERT]`
+    when the PR20 fix commit + tightened `qa/c8-station-logic` pins land; `[INFER]` lead-observed today); (b) the
+    skipped-smoke override (`[INFER]` lead-observed); (c) PR18/PR19 fixture-green-but-real-silent (`[CERT]` via the
+    PR18/PR19 fix commits when they land; `[INFER]` now). RL7–RL9 (`#80`) are the sibling "review found the real defect
+    the fixture missed" precedent. `[INFER — lead-observed this campaign; CERT anchors pending the fix commits]`
+
 ## Proposed kit deltas (summary → target §)
 | # | Delta | Target § | Token |
 |---|---|---|---|
@@ -79,15 +107,18 @@ Date: 2026-09-05 · Module: kit · SDD: build-n4-module-campaign8 (PRs #63–#70
 | 8 | real counts over design estimates (reinforces C7-close L1) | `METHODOLOGY.md` §Kit maintenance | `[ev: retro campaign8-facets-lint]` |
 | 9 | K11 → commit-msg hook | C9 S9 | `[ev: seed S9 (a5a2e5cba)]` |
 | 10 | merge ff-only → verify `git log -1`=blessed tip → settle; rebase parallel workers before QA ping | `BUILD-LOOP.md` §7 | `[INFER]` |
+| 11 | ONE module-root/profile convention + a smoke pin asserts count+subject+absence; a skipped smoke blocks | `BUILD-LOOP.md` §5 + `METHODOLOGY.md` K22 | `[INFER]` (CERT anchors pending PR18/19/20 fix commits) |
 
 ## Self-verify
 | # | Claim | Marker | Evidence |
 |---|---|---|---|
 | 1 | slot-per-slot STALE + rc-scan h:/ defects were fixture-green but real-red, caught in lead review | [CERT] | `campaign8-slot-per-slot`:102/105 (SP5/SP6), `campaign8-rc-scan`:53 (RC10) |
 | 2 | Real counts ≠ design estimates (facets 12→25, slot 19→9, rc :863→:852/853) | [CERT] | `campaign8-facets-lint`:114, `campaign8-slot-per-slot`:63, `campaign8-rc-scan` D2 |
-| 3 | Lessons 3/5/6/10 are process events with no retro record | [INFER] | lead-observed this campaign |
+| 3 | Lessons 3/5/6/10/11 are process events with no retro record yet (11's CERT anchors pending) | [INFER] | lead-observed this campaign |
 | 4 | Lessons 4/9 tie to C9 seeds S17/S9 | [CERT] | `campaign9-research-candidates.md` a5a2e5cba |
 | 5 | Lesson 10: attempt-12 evidence revision = main-at-1f5201e (settle before verified ff) | [INFER] | lead-observed; ledger attempt 12 |
+| 6 | Lesson 11: PR20 presence-pin green on 5e21f0e while real bog = CHECK14 ×47 / CHECK19 ×16 / CHECK18-at-panel / CHECK13 ×3 (MX60); PR18/PR19 fixture-green-real-silent | [INFER] | lead-observed today; [CERT] when the PR18/19/20 fix commits + tightened qa/c8-station-logic pins land |
 
-**Tally:** [CERT] ×3 · [INFER] on lessons 3/5/6/10 (+ partial on 2/4/9), all honestly marked. Nothing invented; PR
-range #63–#70 and the pin IDs (SP5/SP6/RC10) verified against the campaign-8 retros.
+**Tally:** [CERT] ×3 · [INFER] on lessons 3/5/6/10/11 (+ partial on 2/4/9), all honestly marked; lesson 11's CERT
+anchors are the PR18/PR19/PR20 fix commits (pending). Nothing invented; PR range #63–#70 and the pin IDs (SP5/SP6/RC10)
+verified against the campaign-8 retros.
