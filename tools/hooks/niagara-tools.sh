@@ -101,6 +101,43 @@ absolutas verificadas; NO re-decompilar ni re-descargar lo que ya está acá.
   X-Requested-With antes de compilar). --mock <file.json> para datos; sin él, /api/*
   da {} (el diseño/paleta se ve igual). Ejemplo con mock animado: el propio módulo
   puede traer un preview-server.py (ver DashboardPan-ux/preview-server.py).
+
+────────────────────────────────────────────────────────────────────────
+8. bog-nav — navegar el config.bog de una ESTACIÓN (grafo guardado)
+────────────────────────────────────────────────────────────────────────
+  python3 /home/cristian/niagara-research/tools/bog-nav.py <config.bog|file.xml> <cmd>
+  SOLO LECTURA. Un config.bog es un ZIP cuyo file.xml es el árbol BOG-XML de
+  componentes (<p h='handle' t='pfx:Type'>) + links que viven en el componente
+  DESTINO y apuntan al origen por sourceOrd='h:xxxx'. Reutiliza el motor de
+  gramática + grafo de handles de bog-audit.sh del kit (main 3f666a0).
+  Comandos: tree [--type PFX:Type] · slot <path|h:handle> [slot] [--src <root>] ·
+   links [--to P] [--from P] [--slot N] · handle <h:xxxx> · writable [--module PFX]
+   [--klass] [--src] · grep <regex> · diff <bogB> · selftest.  --json en todos.
+  Contesta (probado en PANCCADIA config.bog):
+   · ¿qué link alimenta Cuarto1.setpoint? → resuelve h:xxxx a RUTA
+     (Cuarto1.setpoint → Programacion/ColdRoom_1.setpoint) — grep NO puede.
+   · Cuarto1.setpoint es ORIGEN, no destino → la escritura externa PEGA y propaga.
+   · writable clasifica cada slot por forma de escritura externa (StatusNumeric =
+     complejo, hijo `…/value` bare <real> PREFERIDO por B826/B825; simple; bare).
+   · --src rellena el tipo de un slot "frozen" que el bog guarda sin t= (double).
+
+────────────────────────────────────────────────────────────────────────
+9. module-find — buscar en el CÓDIGO Java de un módulo
+────────────────────────────────────────────────────────────────────────
+  python3 /home/cristian/niagara-research/tools/module-find.py <src-root> <cmd>
+  SOLO LECTURA, poda dot-dirs. Une los @NiagaraProperty/@NiagaraAction multilínea
+  por BALANCE DE PARÉNTESIS (un grep parte en el salto de línea y pierde la cola
+  flags=/type=). Reutiliza el motor de escaneo de fuente de bog-audit.sh.
+  Comandos: slots [--type T] [--flags o/s/h/r/t] [--name RE] · actions [--name] ·
+   writers <slot> · extends [--of CLASS] · ords [--name] · grep <regex> · selftest.
+   --json en todos.
+  Contesta (probado en cliente Leon-Guanjuato):
+   · ¿el nombre del servlet lo hereda de BWebServlet? extends --of BDashboardServlet
+     → BDashboardServlet -> BWebServlet.
+   · slots --flags OPERATOR --type BStatusNumeric → BRoomPanel.setpoint (el caso
+     que la lint S19 debe marcar: propiedad compleja OPERATOR sin acción).
+   · writers <slot> distingue escritor ESTÁTICO (setX(/.set("slot",) del DINÁMICO
+     (obj.set(prop,…) resuelto en runtime — así escribe el servlet el setpoint).
 EOF
 
 if command -v jq >/dev/null 2>&1; then

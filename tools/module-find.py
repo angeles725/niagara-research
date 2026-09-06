@@ -99,7 +99,11 @@ class Module:
                 if not nm:
                     continue
                 tm = re.search(r'type\s*=\s*"([^"]+)"', buf)
-                fm = re.search(r'flags\s*=\s*(Flags\.[A-Za-z_|]+|[A-Za-z_][A-Za-z0-9_.|]*)', buf)
+                # Capture the WHOLE flags expression up to the next annotation-arg comma or the
+                # close paren — `flags = Flags.SUMMARY | Flags.OPERATOR,` must not truncate at the
+                # first token (the ` | ` spaces defeat a single-token char class).
+                fm = re.search(r'flags\s*=\s*([^,)]+)', buf)
+                flags_str = re.sub(r'\s+', ' ', fm.group(1).strip()) if fm else ''
                 min_val = None
                 mm = re.search(r'BFacets\.MIN[^,)]*,\s*BDouble\.make\(\s*(-?[0-9.]+)[dDfFlL]?\s*\)', buf)
                 if mm:
@@ -108,7 +112,7 @@ class Module:
                 self.src_slots[cls][nm.group(1)] = {
                     'type': tm.group(1) if tm else '',
                     'min': min_val,
-                    'flags': fm.group(1) if fm else '',
+                    'flags': flags_str,
                 }
             elif '@NiagaraAction' in buf:
                 nm = re.search(r'name\s*=\s*"([^"]+)"', buf)
@@ -267,7 +271,7 @@ public class BColdRoom extends BComponent {
   @NiagaraProperty(
     name = "setpoint",
     type = "baja:StatusNumeric",
-    flags = Flags.OPERATOR | Flags.SUMMARY,
+    flags = Flags.SUMMARY | Flags.OPERATOR,
     facets = @Facet("BFacets.make(BFacets.MIN, BDouble.make(-40.0))")
   )
   @NiagaraProperty(name = "hidden1", type = "baja:Double", flags = Flags.HIDDEN)
@@ -306,8 +310,11 @@ def cmd_selftest(mod_ignored, args):
         check('BNoise' not in m.src_extends, 'dot-dir (.git) pruned')
         check(m.src_slots['BColdRoom']['setpoint']['type'] == 'baja:StatusNumeric',
               'multi-line @NiagaraProperty joined by paren balance')
-        check('OPERATOR' in m.src_slots['BColdRoom']['setpoint']['flags'],
-              'flags captured across the line break')
+        sp_flags = m.src_slots['BColdRoom']['setpoint']['flags']
+        check('SUMMARY' in sp_flags and 'OPERATOR' in sp_flags,
+              'multi-token flags "SUMMARY | OPERATOR" captured WHOLE (not truncated at |)')
+        check(_flags_have(sp_flags, ['o']) and _flags_have(sp_flags, ['s']),
+              '--flags OPERATOR matches a SUMMARY|OPERATOR slot')
         check(m.src_slots['BColdRoom']['setpoint']['min'] == -40.0, 'MIN facet parsed')
         check(_COMPLEX_TYPE.search(m.src_slots['BColdRoom']['setpoint']['type']) is not None,
               'StatusNumeric detected as complex')

@@ -199,20 +199,33 @@ class Bog:
                     _parent = stack[-1] if stack else None
                     if _parent and _parent['type'] == 'comp' and n not in _PLATFORM_SLOTS:
                         _parent['comp'].slots[n] = {'type': t, 'value': v, 'flags': f_attr}
+                    elif (_parent and _parent['type'] == 'other'
+                          and _parent.get('slot_owner') is not None and n in ('value', 'status')):
+                        # nested struct child of a composite property (StatusNumeric.value):
+                        # surface it on the owning slot — this is the shape a child-ORD write targets.
+                        slot = _parent['slot_owner'].slots.get(_parent['slot_name'])
+                        if slot is not None and v is not None:
+                            slot['child'] = slot.get('child') or {}
+                            slot['child'][n] = v
+                            if n == 'value':
+                                slot['value'] = v
                     continue
 
                 # composite property (non-self-closing, no handle): e.g. setpoint StatusNumeric.
-                # Record it as a value slot on the nearest comp so `slot`/`writable` see it,
-                # then push an 'other' frame so its <value> child is skipped.
+                # Record it as a value slot on the nearest comp so `slot`/`writable` see it, then
+                # push an 'other' frame TAGGED with the owner so its nested <value>/<status> child
+                # is captured (not dropped) by the branch above.
                 if not is_self_cls and h is None:
                     _parent = stack[-1] if stack else None
+                    owner = None
                     if _parent and _parent['type'] == 'comp' and n not in _PLATFORM_SLOTS:
                         _parent['comp'].slots[n] = {'type': t, 'value': None, 'flags': f_attr}
+                        owner = _parent['comp']
                     parent = stack[-1] if stack else {}
                     ppath = parent.get('path', '')
                     stack.append({'type': 'other', 'handle': None,
                                   'path': (ppath + '/' + n).lstrip('/') if n else ppath,
-                                  'comp': None})
+                                  'comp': None, 'slot_owner': owner, 'slot_name': n})
 
     # ---- resolution helpers ----
     def resolve(self, ref):
@@ -261,7 +274,50 @@ def _read_bog_xml(path):
 
 
 # ---- external-writability classifier (viewer record aa7054702 / B823 / B825) ----
-_SIMPLE_WRITABLE = re.compile(r'(Boolean|Numeric|Float|Integer|Double|String|Enum|RelTime|AbsTime)$')
+# B-class/module simple form (…Numeric, b:Double) OR a whole-string Java primitive (double,int).
+# The primitives are anchored ^…$ so a type like NumericPoint / constraint never false-matches.
+_SIMPLE_WRITABLE = re.compile(
+    r'(Boolean|Numeric|Float|Integer|Double|String|Enum|RelTime|AbsTime)$'
+    r'|^(?:double|boolean|float|int|long|short|byte|char)$')
+
+def source_types(root):
+    """Best-effort {slotName: type} from a module Java source tree — for enriching bog value
+    slots the bog stores WITHOUT a t= attr (frozen simples: type lives in @NiagaraProperty)."""
+    m = {}
+    if not root or not os.path.isdir(root):
+        return m
+    for cur, dirs, files in os.walk(root):
+        dirs[:] = [d for d in dirs if not d.startswith('.')]
+        for fn in files:
+            if not fn.endswith('.java'):
+                continue
+            try:
+                lines = open(os.path.join(cur, fn), encoding='utf-8', errors='replace').read().split('\n')
+            except Exception:
+                continue
+            i = 0
+            while i < len(lines):
+                if '@NiagaraProperty' not in lines[i]:
+                    i += 1; continue
+                buf = lines[i]; depth = lines[i].count('(') - lines[i].count(')'); j = i + 1
+                while depth > 0 and j < len(lines):
+                    buf += ' ' + lines[j]; depth += lines[j].count('(') - lines[j].count(')'); j += 1
+                i = j
+                nm = re.search(r'name\s*=\s*"([^"]+)"', buf)
+                tm = re.search(r'type\s*=\s*"([^"]+)"', buf)
+                if nm and tm and nm.group(1) not in m:
+                    m[nm.group(1)] = tm.group(1)
+    return m
+
+
+def type_display(slot_type, slot_name, src_types):
+    """Display string for a slot type, filling a bog-absent type from source when available."""
+    if slot_type:
+        return slot_type
+    if src_types and slot_name in src_types:
+        return f'{src_types[slot_name]} (from source)'
+    return 'frozen simple (type in source)'
+
 
 def writability(slot_type, slot_name):
     """Classify a direct value slot's external write shape. See B823 §823.2, viewer record.
@@ -309,6 +365,7 @@ def cmd_tree(bog, args):
 
 
 def cmd_slot(bog, args):
+    src_types = source_types(getattr(args, 'src', None))
     c = bog.resolve(args.ref)
     if not c:
         sys.stderr.write(f'bog-nav: cannot resolve {args.ref}\n')
@@ -319,9 +376,12 @@ def cmd_slot(bog, args):
         if args.json:
             print(json.dumps(out, indent=2))
         elif s:
-            k, note = writability(s.get('type'), args.slotname)
-            print(f"{c.path}.{args.slotname}  type={s.get('type') or '(untyped)'}  "
-                  f"value={s.get('value')}  flags={s.get('flags')}  write={k} [{note}]")
+            eff = s.get('type') or (src_types.get(args.slotname, '') if src_types else '')
+            k, note = writability(eff, args.slotname)
+            child = ('  child={' + ', '.join(f'{kk}={vv}' for kk, vv in s['child'].items()) + '}'
+                     ) if s.get('child') else ''
+            print(f"{c.path}.{args.slotname}  type={type_display(s.get('type'), args.slotname, src_types)}  "
+                  f"value={s.get('value')}{child}  flags={s.get('flags')}  write={k} [{note}]")
         else:
             print(f"{c.path}: no direct slot '{args.slotname}' "
                   f"(children: {', '.join(bog.handle_map[ch].name for ch in c.children) or 'none'})")
@@ -335,8 +395,12 @@ def cmd_slot(bog, args):
         return
     print(f"{c.path}  h:{c.handle}  <{c.type_}>")
     for sn, s in c.slots.items():
-        k, _ = writability(s.get('type'), sn)
-        print(f"  slot  {sn} = {s.get('value')}  <{s.get('type') or 'untyped'}>  f={s.get('flags')}  [{k}]")
+        eff = s.get('type') or (src_types.get(sn, '') if src_types else '')
+        k, _ = writability(eff, sn)
+        child = ('  child={' + ', '.join(f'{kk}={vv}' for kk, vv in s['child'].items()) + '}'
+                 ) if s.get('child') else ''
+        print(f"  slot  {sn} = {s.get('value')}{child}  "
+              f"<{type_display(s.get('type'), sn, src_types)}>  f={s.get('flags')}  [{k}]")
     for an, f in c.actions.items():
         print(f"  action  {an}  f={f}")
     for ch in c.children:
@@ -396,21 +460,25 @@ def cmd_handle(bog, args):
 
 
 def cmd_writable(bog, args):
+    src_types = source_types(getattr(args, 'src', None))
     rows = []
     for c in bog.handle_map.values():
         if args.module and c.pfx != args.module and c.module != args.module:
             continue
         for sn, s in c.slots.items():
-            k, note = writability(s.get('type'), sn)
+            eff = s.get('type') or (src_types.get(sn, '') if src_types else '')
+            k, note = writability(eff, sn)
             if args.klass and k != args.klass:
                 continue
-            rows.append({'path': c.path, 'slot': sn, 'type': s.get('type'),
-                         'class': k, 'note': note})
+            rows.append({'path': c.path, 'slot': sn,
+                         'type': type_display(s.get('type'), sn, src_types),
+                         'value': s.get('value'), 'class': k, 'note': note})
     if args.json:
         print(json.dumps(rows, indent=2))
         return
     for r in rows:
-        print(f"{r['class']:<8} {r['path']}.{r['slot']}  <{r['type'] or 'untyped'}>  {r['note']}")
+        val = f"={r['value']}" if r['value'] is not None else ''
+        print(f"{r['class']:<8} {r['path']}.{r['slot']}{val}  <{r['type']}>  {r['note']}")
     if not rows:
         print('(no slots matched)')
 
@@ -505,6 +573,14 @@ def cmd_selftest(bog_ignored, args):
     check(b.handle_map['20'].parent_h == '1', 'parent handle tracked')
     check('setpoint' in b.handle_map['10'].slots, 'composite property recorded as slot')
     check(b.handle_map['10'].slots['setpoint']['type'] == 'b:StatusNumeric', 'composite slot type')
+    check(b.handle_map['10'].slots['setpoint'].get('value') == '3.0',
+          'nested StatusNumeric.value child surfaced on the slot (not None)')
+    check((b.handle_map['10'].slots['setpoint'].get('child') or {}).get('value') == '3.0',
+          'nested child dict captured (the child-ORD write target)')
+    check(type_display('', 'differentialUp', {'differentialUp': 'double'}) == 'double (from source)',
+          '--src fills a bog-absent type from source')
+    check(type_display('', 'x', {}) == 'frozen simple (type in source)',
+          'bog-absent type without --src labelled frozen simple (not untyped)')
     check(b.handle_map['10'].slots['differentialUp']['value'] == '1.5', 'simple slot value')
     check(b.prefix_map.get('CRP') == 'ColdRoomPan', 'module prefix decl parsed')
     # link resolution: Panel.setpoint feeds Logic.setpoint
@@ -517,6 +593,8 @@ def cmd_selftest(bog_ignored, args):
     check(k == 'complex', 'StatusNumeric classified as complex (child-leaf write)')
     k2, _ = writability('b:Double', 'differentialUp')
     check(k2 == 'simple', 'plain b:Double classified simple')
+    check(writability('double', 'x')[0] == 'simple', 'lowercase Java primitive double classified simple')
+    check(writability('NumericPoint', 'x')[0] == 'other', 'NumericPoint not false-matched as simple')
     k3, _ = writability('', 'someMode')
     check(k3 == 'bare', 'untyped value slot classified bare')
     if fails:
@@ -540,6 +618,7 @@ def build_parser():
     s = sub.add_parser('slot', help='a component\'s slots + children')
     s.add_argument('ref', help='path or h:handle')
     s.add_argument('slotname', nargs='?', help='a specific slot')
+    s.add_argument('--src', help='module src root: fill a bog-absent type from @NiagaraProperty')
     s.set_defaults(func=cmd_slot)
 
     l = sub.add_parser('links', help='links, sourceOrd resolved to paths')
@@ -556,6 +635,7 @@ def build_parser():
     w.add_argument('--module', help='filter by module prefix or name')
     w.add_argument('--klass', choices=['simple', 'complex', 'bare', 'other'],
                    help='only this write class')
+    w.add_argument('--src', help='module src root: fill a bog-absent type from @NiagaraProperty')
     w.set_defaults(func=cmd_writable)
 
     g = sub.add_parser('grep', help='regex over component paths, types, slot names')
