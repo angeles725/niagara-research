@@ -43,12 +43,18 @@ C9 research/build core = **#1 protection-latch fixture** (built below) + **#2 wr
   `bin/test.exe`; WSL interop can run it against a Windows-side COPY of the install). RED: `BColdRoomLifecycleTest`
   GREEN on the fixed tree, FAIL on pre-fix `4f5f1c7`; plus a `run-station-test.sh` that drives `test.exe` via interop.
 - **S2 · Protection-latch seam scaffold.** Gap: Tridium ships NO SR latch (set-dominant, first-out capture, trip
-  reason, explicit operator reset). Evidence: B805 §805.3 gap; PoC **e31bd60a1** (§19, tests GREEN). Requires
-  execution: NO (pure-Java + JUnit). RED: a JUnit a naive latch fails — set-dominant, first-out, reset-guard.
+  reason, explicit operator reset) — and B821 §821.5 confirms NONE of our current 22 trips latch a first-out cause.
+  Evidence: B805 §805.3 gap; B821 §821.5; PoC **e31bd60a1** (§19, tests GREEN). Requires execution: NO (pure-Java +
+  JUnit). RED: a JUnit a naive latch fails — set-dominant, first-out, reset-guard. Baja wrapper: `step()` from
+  `execute()`/`changed()`, a step-up-gateable reset ACTION (B803), and first-out → a **`BAlarmSourceExt`** (the
+  tier-1 surface our modules lack, S13). `[ev: corpus B821 §821.5]`
 - **S3 · Heartbeat/liveness monitor seam + "owns-tickets-but-no-`lastTick`" lint.** Gap: no independent monitor for
-  a STALLED producer (Tridium ships none). Evidence: B812 / B775 §775.6; PoC **fc9caa1ff** (§19, tests GREEN).
-  Requires execution: NO. RED: JUnit on stall-detection (age > factor×period) + a lint that FAILs a component with a
-  `Clock.Ticket` field but no `lastTick`.
+  a STALLED producer (Tridium ships none) — B821 §821.5 frames it as "who watches the watcher": our modules have
+  CR-11 self-guards but NO independent monitor that a whole control loop has stalled. Evidence: B812 / B775 §775.6;
+  B821 §821.5; PoC **fc9caa1ff** (§19, tests GREEN). Requires execution: NO. RED: JUnit on stall-detection
+  (`age > factor×period`, strict; backward clock jump = fresh tick, fail-safe alive) + a lint that FAILs a component
+  with a `Clock.Ticket` field but no `lastTick`; Baja wrapper raises a `BAlarmRecord` on STALLED, clears on RECOVERED.
+  `[ev: corpus B821 §821.5]`
 - **S4 · HOA-precedence seam (OFF-lockout dominates the sequence).** Gap: OFF must lock out the actuator even during
   a sequence that "owns" the output (defrost); plain-double HOA leaks. Evidence: B805 §805.11 (`[CERT` bug + `INFER`
   rule); PoC **5a9020fd6**; client fix **20f74f8** (v2.0.6). Requires execution: NO (pure `resistanceCommand` seam).
@@ -116,9 +122,20 @@ C9 research/build core = **#1 protection-latch fixture** (built below) + **#2 wr
   the same six cases against the servlet (no-step-up→401/403, wrong-pw→401+no-token, valid→200+one audit line,
   logout→invalid, A-after-logout→rejected, audit-fail→write-lands+alarm; audit-failure never fails the write, DWS1
   gate 5). `[ev: corpus B803]` `[ev: corpus B816]` `[ev: corpus B804]` `[ev: corpus B813]`
-- **S13 · Health surface in ColdRoomPan/CompPan.** Gap: a LOGIC fault reaches only the engine console, not the
-  operator. Evidence: B808 / B805 §805.4. Requires execution: PARTIAL (station smoke for the alarm). RED: a test that
-  a faulted component sets a fault-status slot AND raises a `BAlarmRecord`.
+- **S13 · Health surface — raise the RT protection tier from 2 to 1 (alarm console).** Gap (B821 §821.4, verified
+  `fbe9009`): our RT protection surfacing TOPS OUT at tier 2 (a plain `SUMMARY` slot only someone at Workbench/SPA
+  sees); tier 1 (the alarm console) is ENTIRELY unused — a clean grep of `ColdRoomPan-rt/src` + `CompPan-rt/src` for
+  `BAlarmSourceExt|BAlarmRecord|BAlarmService` returns **ZERO**. So no freeze trip, stuck contactor, or failed
+  compressor start ever reaches the operator's alarm queue. The **concrete silent slots to add** (B821 §821.6):
+  CR-3 freeze-reason (`freezeTripped` is a private field, `BEvaporatorUnit.java:1287`), **CP-1 low-suction — the
+  asymmetry tell**: `dischargeHighAlarm` exists but there is NO symmetric `suctionLowAlarm`, and the low-suction
+  (vacuum) trip is the more damaging of the pair; CP-4/CP-5/CP-6 anti-cycle (minOff/minOn/stageDelay in private
+  arrays); CR-10/CR-11; the HOA TRANSIENT restart-revert (HAND silently lost on restart). Evidence: B821 §821.4/§821.6;
+  B808 (a LOGIC fault must reach the operator) / B805 §805.4. Requires execution: PARTIAL (station smoke for the
+  alarm). RED: a faulted component sets a fault-status slot AND raises a `BAlarmRecord`/`BAlarmSourceExt` (tier 1),
+  reaching the alarm queue — not just a SUMMARY slot. Highest-value protection improvement across all three modules.
+  (S13 is the concrete per-module discharge of the cross-cutting finding **S18**.)
+  `[ev: corpus B821 §821.4]` `[ev: corpus B821 §821.6]` `[ev: corpus B808]`
 - **S14 · Tag dictionary `angeles`.** Gap: components addressable only by ORD, not by tag/nav/search. Evidence: B814.
   **Requires execution: YES** — B814-G1 (a NEQL query on a live station). RED: build a `BSmartTagDictionary` + one
   `BTagRule`; a NEQL query (`n:equip and angeles:coldRoom`) returns the components with NO per-instance tag.
@@ -135,6 +152,18 @@ C9 research/build core = **#1 protection-latch fixture** (built below) + **#2 wr
 - **S17 · Persist drafts to the repo, not `/tmp` scratchpad.** Gap: the `/tmp` scratchpad was WIPED mid-campaign
   today, losing audit notes. `[INFER — observed this session; no block]`. Requires execution: NO. Rule: draft
   artifacts (PR bodies, audit notes) land in `sources/probes/`, never only in `/tmp`.
+
+## CROSS-CUTTING FINDING
+- **S18 · Protection trips NEVER reach the alarm console (KIT + CLIENT, value HIGH).** Finding (B821, `f960f2997`,
+  verified `fbe9009`): our RT control modules raise ZERO alarm-console events — a clean grep of `ColdRoomPan-rt/src`
+  + `CompPan-rt/src` for `BAlarmSourceExt|BAlarmRecord|BAlarmService` returns **ZERO**. Every protection surface
+  tops out at a plain `SUMMARY` slot (`dischargeHighAlarm`, `stuckAlarm`, `condenserNFault`, `freezeTripped`-is-a-
+  private-field), so no trip reaches the operator's alarm queue (only someone actively at Workbench/SPA sees it).
+  B821 §821.4 = the four surface tiers (ours top out at tier 2; tier 1 unused); §821.6 = the silent list. **Fix:** a
+  `BAlarmSourceExt` on the critical trips → pushes to the alarm queue with ack/unack/history. This is the CROSS-CUTTING
+  design gap; **S13 is its concrete per-module discharge** (which slots to add). Requires execution: PARTIAL (station
+  smoke). RED: a critical trip raises a `BAlarmRecord`/`BAlarmSourceExt` reaching the alarm DB, not just a SUMMARY
+  slot. `[ev: corpus B821 §821.4]` `[ev: corpus B821 §821.6]`
 
 **Ties to the already-drafted C8 doc PRs:** S5→PR19 (0590c2b7f), S6→PR18 (f7a4521ee); the orchestration/retro loop
 (PR16 110f583ad / PR17 d5f979f88) frames how every S-seed closes: research block → spec → RED → apply → retro → fold.
