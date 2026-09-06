@@ -273,14 +273,62 @@ For EACH of the 6 retros:
 
 ---
 
-## Apply checklist — the FULL campaign-8 set (17 retros so far → 20 at close)
-Flip all 17 INDEX rows `pending → folded` (as they merge). **MANDATORY token lines FIRST** (else
-`sweep-fold-audit --strict` fails) — the five 0-token retros: **§3 lint-timers-ext**, **§7 campaign8-doctrine-fold**,
-**§13 post-deploy-checklist**, **§14 build-pipeline**, and **§15 campaign8-rt-doctrine** (PROMOTION). The other 12 are
-token-credited already (§1/§4/§5/§6/§8 via BUILD-LOOP/SKILL; §2 triage-console at METHODOLOGY:96; **§9 station-snapshot**
-3, **§10 bog-audit** 3, **§11 wb-audit** 4, **§12 lint-servlet** 3 in-kit (4 repo-wide incl tasks.md), **§16 retro-loop**
-8, **§17 orchestration** 1 — all via K19 routing). Their folded-as-code lines (§9/§10/§11/§12/§16/§17) are
-recommended-but-preferred (the "folded as code: <script> [ev: retro <token>]" convention, METHODOLOGY:94) — none blocks
-the strict audit since all are already token-credited. **PR18–PR20 will add the final three retros** (structure,
-write-path, station-logic → 20 total at campaign close). Then set `retro_pending: false` in the kit self-envelope +
-sweep (pending=0, fold-audit clean).
+## 18. campaign8-structure  (PR18 #82, slug: `campaign8-structure`)  ← RE-CHECK AT APPLY (branch tip `6742c76`)
+- **Grep-before (K6):** at `6742c76` (`feat/c8-structure`), `grep -rn 'ev: retro campaign8-structure' <kit-root>`
+  (excl retros/) → **4 hits** (`BUILD-LOOP.md`, `skill/SKILL.md`, `toolbelt/lint-structure.sh`). CREDITED. Re-grep at
+  apply — the branch may move before merge.
+- **Deltas** (INDEX row: 3): Δ1 `lint-structure.sh` profile discovery + L10 upward walk — **this closes lesson-11(c) for
+  lint-structure IN-PR** (lead review): discovery changed from discover-by-`module-include.xml` (which made a profile
+  lacking that file invisible) to direct-child dirs matching `*-(rt|ux|wb|se|doc)` / containing a build script; a profile
+  without `module-include.xml` fires L6 and still runs L9; L10 walks parent dirs up to the `.git` sentinel (catches
+  `Dashboard/gradle.properties` kept above the module); new pins LS9-real + LS10-real; real smokes all correct. Δ2 L2
+  Javadoc anchor (`^[[:space:]]*@NiagaraType` — a `* @NiagaraType` Javadoc line is not an annotation). Δ3 L5/L9 empty
+  palette = `<p n=` (named component) not `<p ` (any tag).
+- **FOLD (recommended — one `METHODOLOGY.md` §Conformance folded-as-code line):**
+```
+- folded as code: toolbelt/lint-structure.sh (L1-L11 module-structure lint over a module root, iterating profiles by direct-child *-(rt|ux|wb|se|doc)/build-script discovery — NOT by module-include.xml, so an emptiest artifact is still visited; L10 walks parents to the .git sentinel; row FAIL|WARN lint-structure <path> L<n>: <reason>, exits 0/1/3). [ev: retro campaign8-structure]
+```
+
+## 19. campaign8-write-path  (PR19, slug: `campaign8-write-path`)  ← RE-CHECK AT APPLY (fix round in progress, tip `b044cfb`)
+- **Grep-before (K6):** at `b044cfb` (`feat/c8-write-path`), → **4 hits** (`BUILD-LOOP.md`, `skill/SKILL.md`,
+  `toolbelt/lint-write-path.sh`). CREDITED. **The fix round is in progress — re-grep + re-read the deltas at apply.**
+- **Deltas** (INDEX row: 5): Δ1 `toolbelt/lint-write-path.sh` (OPERATOR-slot × `docs/write-path-matrix.md` coverage lint;
+  walk-up matrix resolution + `--matrix` override; **ERROR exit 3 when the matrix is absent — closes lesson-11(c) for
+  write-path** (no silent 0); `--bog` link tracing adds bog-derived slots; WP7 no-matrix→exit-3 + WP8 matrix-2-levels-up
+  pins). Δ2 `types/logic.md` §Write-path & overlap `[ev: corpus B816]`. Δ3 `types/logic-authoring.md` §Write-path test
+  matrix `[ev: corpus B816]`. Δ4 `tests/bog-audit.bats` CHECK12-pin (idempotent guard). Δ5 K19 routing.
+- **FOLD (recommended — one `METHODOLOGY.md` §Conformance folded-as-code line):**
+```
+- folded as code: toolbelt/lint-write-path.sh (every Flags.OPERATOR @NiagaraProperty MUST have a docs/write-path-matrix.md row: slot·writer·timing·existing src/test; walk-up matrix resolution + --matrix override; --bog adds bog-derived slots; a MISSING matrix is ERROR exit 3, never a silent pass). [ev: retro campaign8-write-path] [ev: corpus B816]
+```
+
+## 20. campaign8-station-logic  (PR20, slug: `campaign8-station-logic`)  ← RE-CHECK AT APPLY (fix round in progress; the `5e21f0e` pins are presence-only, close-retro lesson 11(a))
+- **Grep-before (K6):** at `5e21f0e` (`feat/c8-station-logic`), → **3 hits** (`BUILD-LOOP.md`, `skill/SKILL.md`,
+  `toolbelt/bog-audit.sh`). CREDITED. **STRONG re-check: this is the retro behind close-retro lesson 11(a).** At
+  `5e21f0e` the QA smoke pins asserted PRESENCE only and passed while the real bog produced CHECK14 ×47 / CHECK19 ×16 /
+  CHECK18-at-panel / CHECK13 ×3 (MX60); QA is re-issuing tightened count+subject+absence pins RED-first
+  (`qa/c8-station-logic`), so the numbers AND possibly the check semantics WILL move. Re-read the merged retro entirely.
+- **Deltas** (INDEX row: 4): `toolbelt/bog-audit.sh` CHECK13–CHECK19 — CHECK13 relay-double-source (FAIL), CHECK14
+  own-output-unlinked (WARN, suppressed when `hasDefrost=false`), CHECK15 sensor-crossed-by-name (WARN), CHECK16
+  hasDefrost↔DefrostController sibling (FAIL — D1: the vice-versa direction deferred, BA5 conflict), CHECK17
+  roomN-index-mismatch (FAIL), CHECK18 HOA-tile≠freeze-tile (FAIL), CHECK19 control-writes-setpoint (WARN). D2 a
+  self-closing-tag parse bug, D3 the relay clean-fixture design, D4 an f-string `!r` syntax fix.
+- **FOLD (recommended — one `METHODOLOGY.md` §Conformance folded-as-code line, FINALIZE at apply):**
+```
+- folded as code: toolbelt/bog-audit.sh CHECK13-CHECK19 (station-logic wiring: relay-double-source, own-output-unlinked, sensor-crossed-by-name, hasDefrost↔DefrostController sibling, roomN-index-mismatch, HOA-tile≠freeze-tile, control-writes-setpoint). [ev: retro campaign8-station-logic]
+```
+
+---
+
+## Apply checklist — the FULL campaign-8 set (20 retros at close)
+Flip all 20 INDEX rows `pending → folded` at the close (plus the close-retro's own new row = 21st, see the apply
+package). **MANDATORY token lines FIRST** (else `sweep-fold-audit --strict` fails) — the five 0-token retros:
+**§3 lint-timers-ext**, **§7 campaign8-doctrine-fold**, **§13 post-deploy-checklist**, **§14 build-pipeline**, and
+**§15 campaign8-rt-doctrine** (PROMOTION). The other 15 are token-credited already (§1/§4/§5/§6/§8 via BUILD-LOOP/SKILL;
+§2 triage-console at METHODOLOGY:96; **§9** 3, **§10** 3, **§11** 4, **§12** 3 in-kit/4 repo-wide, **§16** 8, **§17** 1,
+**§18 structure** 4, **§19 write-path** 4, **§20 station-logic** 3 — all via K19 routing). Their folded-as-code lines
+(§9-§12, §16-§20) are recommended-but-preferred (the "folded as code: <script> [ev: retro <token>]" convention,
+METHODOLOGY:94) — none blocks the strict audit since all are token-credited. **§18/§19/§20 RE-CHECK at apply**
+(§19/§20 fix rounds in progress; §20's `5e21f0e` pins are presence-only, close-retro lesson 11(a) — its counts WILL
+move). Then set `retro_pending: false` in the kit self-envelope (section-scoped) + sweep (pending=0, fold-audit clean).
+**The exact ordered edit list for the ONE close PR is `2026-09-06-c8-close-apply-package.md`.**
