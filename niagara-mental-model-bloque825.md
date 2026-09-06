@@ -53,7 +53,10 @@ source→target propagation runs INLINE on the oBIX HTTP thread, before `service
 holds `ComplexSlotMap.parent` + `propertyInParent` (set at `ComplexSlotMap.java:1518-1519` when the value is stored), and
 `ComplexSlotMap.modified()` bubbles up — `if(parent!=null) parent.modified(propertyInParent,…)` (`ComplexSlotMap.java:1468`
 decompiled) → `ComponentSlotMap.modified(setpointProp)` → the same `knobs.propagate()`. So a TRUE in-place child change
-would ALSO propagate — but the oBIX PUT doesn't take that path (§825.2). Either way the link fires. `[CERT]`
+would ALSO propagate — but the wrapped-`<obj>` PUT to the parent slot doesn't take that path (§825.2). Either way the
+link fires. `[CERT]` **This bubbling path is now proven LIVE end-to-end: a bare `<real>` PUT to the child ORD
+`…/setpoint/value` writes and propagates to control in ~1.5 s ([B826]-G2, `[CERT-live]`) — so the child bare-`<real>` is
+the PREFERRED external write form ([B826]), the wrapped-`<obj>`-to-slot the fallback.**
 
 ## 825.4 — The timing: propagation synchronous, lag is the READER's poll cycle `[CERT + CERT-live]`
 - **Propagation**: synchronous, <1 ms (§825.3). Measured end-to-end (viewer record §7, monotonic clock, LAN): oBIX PUT
@@ -96,7 +99,7 @@ source propagation ([B816] §816.2). Write the SOURCE (the façade), not the tar
 | 1 | The wrapped oBIX PUT propagates to the linked control point (both 2.5, then 3.0) | `[CERT-live]` | viewer record §1; ColdRoom_1 `Link2` source=Cuarto1 setpoint→setpoint |
 | 2 | oBIX write = decode into a DETACHED copy (`newCopy(true)`) then TOP-SLOT `parent.set(slot, copy, user)` — not an in-place child mutation | `[CERT]` | `ObixUtils.java:543,544,558`; the inner `cpx.set` (`ObixDecoder.java:200-216`) is on the copy |
 | 3 | The top-slot set fires `knobs.propagate()` which calls `link.propagate` SYNCHRONOUSLY (no queue/engine deferral) | `[CERT]` | `ComponentSlotMap.java:711`; `SlotKnobs.java:31-46`; `BLink.java:719` |
-| 4 | A true nested-child write would also propagate (parent bubbling) | `[CERT]` | `ComplexSlotMap.java:1468,1518-1519` → `ComponentSlotMap.modified` |
+| 4 | A true nested-child write also propagates (parent bubbling) — proven LIVE via a `…/setpoint/value` bare-`<real>` PUT | `[CERT]`+`[CERT-live]` | `ComplexSlotMap.java:1468,1518-1519`; [B826]-G2 (record §9 `f99f2e45b`) |
 | 5 | Propagation <1 ms; measured control-side <1 s (155-665 ms); Supabase leg ~6 s | `[CERT + CERT-live]` | §825.3 synchronous path; viewer record §7 (monotonic) |
 | 6 | The lag is reader-side: oBIX poll (slowRate 30 s) / NiagaraDriver ServerWorker 1 s + min/maxSendTime | `[CERT for the throttles; INFER for this reader's rate]` | `BPollScheduler.java`; `ServerWorker.java:19`, `ServerEntry.java:126-138` |
 | 7 | attr-only `<obj … val>` writes 0.0 (silent-zero); the write is on the SOURCE side so it sticks | `[CERT-live]`+`[CERT]` | viewer §2; [B816] §816.2 (source vs LINK_TARGET) |
@@ -120,6 +123,7 @@ the corrected channel-1 doctrine.
 - **B825-G1** (bounded, requires-execution): confirm the specific reader's poll/subscription rate on PANCCADIA (is the
   write-server's control-side read an oBIX poll at `slowRate`, a Fox subscription, or a direct GET?) — this fixes the
   exact settle margin beyond the measured <1 s. Pairs with the viewer's live session.
-- **B825-G2** (bounded): whether a `…/setpoint/value` DIRECT child-path oBIX write (vs the wrapped whole-slot PUT) is even
-  routable by `BObixServer`'s URI resolver — the §825.3 bubbling path predicts it would propagate, but the server may not
-  expose a child ORD; untested.
+- **B825-G2** — CLOSED by [B826] `[CERT-live]`: the `…/setpoint/value` child ORD IS routable (served + `writable="true"`,
+  GET record §8) and a bare-`<real>` PUT to it writes AND propagates to control (~1.5 s, PUT record §9) — the §825.3
+  bubbling path proven live end-to-end. The child bare-`<real>` is the PREFERRED external write form; the wrapped-`<obj>`
+  the fallback.
