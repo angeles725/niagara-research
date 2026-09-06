@@ -444,7 +444,7 @@ def cmd_links(bog, args):
         row = bog.link_row(lk)
         if args.to and not _match_path(lk.get('container_path'), lk.get('tgt_slot'), args.to):
             continue
-        if args.slot and lk.get('tgt_slot') != args.slot and lk.get('src_slot') != args.slot:
+        if not _slot_filter(lk, args):
             continue
         if args.from_:
             src = bog.handle_map.get(lk.get('src_h'))
@@ -466,6 +466,23 @@ def cmd_links(bog, args):
                        + ('  [orphan sourceOrd]' if not r['src_resolved'] else '')
                        + ('  [DANGLING tgt]' if r.get('dangling') else '')),
             empty='(no matching links)')
+
+
+def _slot_filter(lk, args):
+    """--slot semantics (endpoint-aware since 2026-09-06): with --from it names the SOURCE
+    slot, with --to the TARGET slot, with neither (or with --slot-any) it matches either end.
+    Rationale: `links --from Cuarto1 --slot fanMode` used to return Cuarto1.evap3FanMode -->
+    EvaporatorUnit_1.fanMode because the TARGET end is named fanMode -- exact, but the wrong
+    endpoint for the question "does Cuarto1.fanMode link out?"."""
+    slot = getattr(args, 'slot', None)
+    if not slot:
+        return True
+    src_ok = lk.get('src_slot') == slot
+    tgt_ok = lk.get('tgt_slot') == slot
+    from_, to = getattr(args, 'from_', None), getattr(args, 'to', None)
+    if getattr(args, 'slot_any', False) or not (from_ or to) or (from_ and to):
+        return src_ok or tgt_ok
+    return src_ok if from_ else tgt_ok
 
 
 def _match_path(path, slot, needle):
@@ -590,6 +607,11 @@ _SELFTEST_XML = """<?xml version='1.0' encoding='UTF-8'?>
     <p n="sourceSlotName" v="setpoint"/>
     <p n="targetSlotName" v="setpoint"/>
    </p>
+   <p n='Link1' t='b:Link'>
+    <p n="sourceOrd" v="h:10"/>
+    <p n="sourceSlotName" v="evap1FanMode"/>
+    <p n="targetSlotName" v="fanMode"/>
+   </p>
   </p>
   <p n='Drivers' h='40' t='c:BooleanWritable'>
    <p n='ro1' h='41' t='c:BooleanWritable'>
@@ -640,11 +662,24 @@ def cmd_selftest(bog_ignored, args):
     check(b.handle_map['10'].slots['differentialUp']['value'] == '1.5', 'simple slot value')
     check(b.prefix_map.get('CRP') == 'ColdRoomPan', 'module prefix decl parsed')
     # link resolution: Panel.setpoint feeds Logic.setpoint
-    logic_links = [b.link_row(lk) for lk in b.link_list if lk.get('container_h') == '20']
+    logic_links = [b.link_row(lk) for lk in b.link_list if lk.get('container_h') == '20' and lk.get('tgt_slot') == 'setpoint']
     check(len(logic_links) == 1 and logic_links[0]['source'] == 'Station/Panel.setpoint'
           and logic_links[0]['target'] == 'Station/Logic.setpoint'
           and logic_links[0]['src_resolved'],
           'cross-component link sourceOrd h:10 resolved to a path')
+    # --slot is endpoint-aware: Panel.evap1FanMode --> Logic.fanMode must NOT answer
+    # "does Panel.fanMode link out?" (--from Panel --slot fanMode), but must answer
+    # --from Panel --slot evap1FanMode, --to Logic --slot fanMode, and --slot fanMode alone.
+    from types import SimpleNamespace as _NS
+    fan = [lk for lk in b.link_list if lk.get('tgt_slot') == 'fanMode']
+    check(len(fan) == 1 and not _slot_filter(fan[0], _NS(slot='fanMode', from_='Panel', to=None)),
+          '--from X --slot S filters the SOURCE slot (target named S is not a hit)')
+    check(_slot_filter(fan[0], _NS(slot='evap1FanMode', from_='Panel', to=None))
+          and _slot_filter(fan[0], _NS(slot='fanMode', from_=None, to='Logic'))
+          and _slot_filter(fan[0], _NS(slot='fanMode', from_=None, to=None)),
+          '--slot matches the source end with --from, the target end with --to, either end alone')
+    check(_slot_filter(fan[0], _NS(slot='fanMode', from_='Panel', to=None, slot_any=True)),
+          '--slot-any restores either-end matching')
     k, _ = writability('b:StatusNumeric', 'setpoint')
     check(k == 'complex', 'StatusNumeric classified as complex (child-leaf write)')
     k2, _ = writability('b:Double', 'differentialUp')
@@ -829,7 +864,8 @@ def build_parser():
     l = sub.add_parser('links', parents=[common], help='links, sourceOrd resolved to paths')
     l.add_argument('--to', help='target path/component')
     l.add_argument('--from', dest='from_', help='source path/component')
-    l.add_argument('--slot', help='link touches this slot name (src or tgt)')
+    l.add_argument('--slot', help='exact slot name on the --from source end / the --to target end (either end when neither is given)')
+    l.add_argument('--slot-any', dest='slot_any', action='store_true', help='--slot matches either end regardless of --from/--to (pre-2026-09-06 behaviour)')
     l.add_argument('--dangling', action='store_true', help='only links whose tgt slot is absent from source (needs --src)')
     l.add_argument('--src', help='module src root: resolve --dangling (CHECK7)')
     l.set_defaults(func=cmd_links)

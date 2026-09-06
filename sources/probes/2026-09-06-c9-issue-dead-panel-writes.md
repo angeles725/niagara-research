@@ -21,7 +21,7 @@ The three other slots I first flagged (`comp1Mode`, `comp2Mode`, `fanMode`) are 
 (`DashboardReader.java:128-130`, HMI rows only for Cuarto5 at `index.html:1411-1413`) and ARE linked there. On Cuarto1-4
 they exist as facade slots but the HMI never renders them, so no operator can write them; only Workbench/oBIX could.
 
-## Evidence (bog-nav, exact-name matches; `--slot` filters by substring, so `fanMode` rows were checked in `--csv` by exact key)
+## Evidence (bog-nav; `--slot` matched EITHER link end at the time, so `--slot fanMode` also listed links whose TARGET is `…/EvaporatorUnit_N.fanMode` — the `fanMode` rows were therefore checked in `--csv` by the exact `Room.slot,` key; bog-nav is now endpoint-aware)
 ```
 $ python3 tools/bog-nav.py "$BOG" find --type dashboardPan:RoomPanel --csv
 44d51,Services/DashboardService/Cuarto1,DPCD:RoomPanel   … Cuarto2 44d60 · Cuarto3 44d6f · Cuarto4 44d7e · Cuarto5 44d8d
@@ -78,5 +78,5 @@ list is corrected by this file (8 B rows → 2 dead + 3 Cuarto5-wired + 3 local 
 | 2 | Cuarto5 fan/comp1/comp2 linked; Cuarto1-4 never render them | [CERT] | bog-nav --csv exact keys; index.html:1411-1413; DashboardReader.java:128-130 |
 | 3 | HMI renders intercambiador (Cuarto3) and coolOnSensorFault (all rooms) | [CERT] | index.html:1445, :1740 |
 | 4 | slot flags / TRANSIENT | [CERT] | BRoomPanel.java:148-154, :257-262 @ a109249 |
-| 5 | bog-nav `--slot` is a substring filter | [CERT, tool caveat] | `--slot fanMode` returned evapNFanMode rows; fix = exact match option (tool follow-up) |
+| 5 | bog-nav `--slot` matched either link end (NOT substring — my first diagnosis was wrong) | [CERT, tool caveat] | bog-nav.py:447 compared names exactly; the hits were target-end `…fanMode`; fixed: endpoint-aware `--slot` + `--slot-any` |
 | 6 | intercambiador target slot on ColdRoom_3 | [UNVERIFIED] | find at apply |
