@@ -54,6 +54,18 @@ Date: 2026-09-05 · Module: kit · SDD: build-n4-module-campaign8 (PRs #63–#70
    advisory grep to a machine-enforced `commit-msg` hook (C9 seed S9). **Target:** C9 S9 (`toolbelt` + `.githooks`);
    `METHODOLOGY.md` K11 gains a pointer once S9 ships. `[ev: seed S9 (a5a2e5cba)]` [INFER — recurrence is lead/companero-observed]
 
+10. **Parallel workers off the same base can't both fast-forward, and a ledger settle must follow a
+    VERIFIED merge — not a reported one.** Two workers branched from the same main (PR11, PR12 both from `3f666a0`):
+    after the first merges, the second no longer fast-forwards and needs a rebase onto the new tip + a QA re-bless of
+    that rebased tip before its own ff-merge. Separately, the lead settled the ledger for attempt 12 while the ff-merge
+    had actually ABORTED — the command chain reported the settle, but the merge did not land, so the evidence revision
+    recorded for attempt 12 is `main-at-1f5201e`, not the merged tip. **Delta:** BUILD-LOOP §7 lead checklist order =
+    merge ff-only → verify `git log -1` equals the blessed tip → THEN settle the ledger (never settle on a reported-but-
+    unverified merge); and for parallel workers, rebase before the QA ping so the blessed tip is the one that merges.
+    **Target:** `BUILD-LOOP.md` §7 (lead merge/settle checklist). Evidence: (a) PR11/PR12 both branched `3f666a0`, the
+    second required a rebase + re-bless post-first-merge; (b) attempt-12 ledger evidence revision = `main-at-1f5201e`
+    (settle ran before the ff actually succeeded). `[INFER — both lead-observed this campaign]`
+
 ## Proposed kit deltas (summary → target §)
 | # | Delta | Target § | Token |
 |---|---|---|---|
@@ -66,14 +78,16 @@ Date: 2026-09-05 · Module: kit · SDD: build-n4-module-campaign8 (PRs #63–#70
 | 7 | mutation tables record OBSERVED flips | `METHODOLOGY.md` §Kit maintenance | `[ev: retro campaign8-lint-timers-ext]` |
 | 8 | real counts over design estimates (reinforces C7-close L1) | `METHODOLOGY.md` §Kit maintenance | `[ev: retro campaign8-facets-lint]` |
 | 9 | K11 → commit-msg hook | C9 S9 | `[ev: seed S9 (a5a2e5cba)]` |
+| 10 | merge ff-only → verify `git log -1`=blessed tip → settle; rebase parallel workers before QA ping | `BUILD-LOOP.md` §7 | `[INFER]` |
 
 ## Self-verify
 | # | Claim | Marker | Evidence |
 |---|---|---|---|
 | 1 | slot-per-slot STALE + rc-scan h:/ defects were fixture-green but real-red, caught in lead review | [CERT] | `campaign8-slot-per-slot`:102/105 (SP5/SP6), `campaign8-rc-scan`:53 (RC10) |
 | 2 | Real counts ≠ design estimates (facets 12→25, slot 19→9, rc :863→:852/853) | [CERT] | `campaign8-facets-lint`:114, `campaign8-slot-per-slot`:63, `campaign8-rc-scan` D2 |
-| 3 | Lessons 3/5/6 are process events with no retro record | [INFER] | lead-observed this campaign |
+| 3 | Lessons 3/5/6/10 are process events with no retro record | [INFER] | lead-observed this campaign |
 | 4 | Lessons 4/9 tie to C9 seeds S17/S9 | [CERT] | `campaign9-research-candidates.md` a5a2e5cba |
+| 5 | Lesson 10: attempt-12 evidence revision = main-at-1f5201e (settle before verified ff) | [INFER] | lead-observed; ledger attempt 12 |
 
-**Tally:** [CERT] ×3 · [INFER] on lessons 3/5/6 (+ partial on 2/4/9), all honestly marked. Nothing invented; PR
+**Tally:** [CERT] ×3 · [INFER] on lessons 3/5/6/10 (+ partial on 2/4/9), all honestly marked. Nothing invented; PR
 range #63–#70 and the pin IDs (SP5/SP6/RC10) verified against the campaign-8 retros.
