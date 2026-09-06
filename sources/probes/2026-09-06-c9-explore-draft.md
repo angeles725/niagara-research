@@ -145,7 +145,7 @@ not just fixture-green. S12-B (client repo, local) is likewise VERIFIED [CERT] �
 | 2 | **S12-B** config step-up + audit — DashboardPan servlet (HMI) | CLIENT | HIGH | `DashboardWriteGuards.evaluate` seam + B829-G2 real-Context change | RED `qa/c9-s12-servlet` `4c18837` (guard-4 = regression pin) | `[ev: corpus S12]` `[ev: corpus B829]` |
 | 3 | **S7** demand-in-scope lint | KIT | HIGH | none (standalone script); fixture defined in B820 | RED `qa/c9-demand-in-scope` `2916954` (DS1-DS7 + smoke) | `[ev: corpus B820]` |
 | 4 | **S18-lint** silent-protection lint | KIT | HIGH | none (static); effect-slot exemption + adapter-follow + allowlist from B824 | RED `qa/c9-silent-protection` `e38e503` (SP1-SP8 + smoke) | `[ev: corpus B824]` |
-| 5 | **S19** ext-writable-shape lint | KIT | MED | none (static) | RED `qa/c9-ext-writable-shape` `3726722` (EW1-EW10) | `[ev: corpus B823]` |
+| 5 | **S19** ext-writable-shape lint | KIT | MED | none (static) | RED `qa/c9-ext-writable-shape` `269be48` (EW1-EW11; re-issued from 3726722) | `[ev: corpus B823]` |
 | 6 | **S18/S13** alarm PoC — `BAlarmSourceExt` on CR-3 freeze + CP-1 low-suction | CLIENT | HIGH | B827 patterns A/B; schema-SAFE (additive) | RED not yet authored (B827 §827.3/§827.4/§827.6 sketches) | `[ev: corpus B827]` |
 | 7 | **S5-cont** write-path matrix W14-W22 | KIT | HIGH | S5 lint already RED (`5e357d1`); needs the writable set | matrix rows to author | `[ev: corpus S5]` `[ev: corpus B816 §816.6]` |
 | 8 | **airDefrost flag** (rooms 1/2/4) | CLIENT or STATION | MED | path not chosen (module flag vs station config) | RED not yet authored | `[ev: corpus S16]` |
