@@ -73,8 +73,11 @@ The HMI panel already writes setpoints through the module's own servlet; the wri
   via the null-Context servlet write. `[CERT]`
 - **Audit:** every success appends one JSON-lines record to `BDashboardService.auditLog`
   (`svc.appendAudit(JsonUtil.buildAuditEntry(…))`, `BDashboardServlet.java:312`; ring-buffered 500,
-  `BDashboardService.java:68-72,256`) — `{ts,user,action:"setpoint",ord,oldValue,newValue}`. **NOT** written to
-  Niagara's own AuditHistory (null Context = no standard Baja operator-write event) — the module ring is the record. `[CERT]`
+  `BDashboardService.java:68-72,256`) — `{ts,user,action:"setpoint",ord,oldValue,newValue}`. Almost certainly **NOT**
+  written to Niagara's own AuditHistory: the module has ZERO `AuditHistory`/`BAuditHistoryService` wiring (grep of
+  `DashboardPan-rt/src` → 0) and the `set(...)` carries a null Context (no user attribution) → no operator-attributed
+  Baja audit event. Whether a STATION-level `AuditHistoryService` fires on that slot at all is a station-config question
+  not settleable from the module source (B823-G1). So the module ring is the de-facto record. `[INFER — grounded]`
 - **Exact request the write-server (Node) sends:**
   ```
   POST /dashboardpan/api/setpoint HTTP/1.1

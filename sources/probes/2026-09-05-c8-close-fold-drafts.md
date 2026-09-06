@@ -103,5 +103,35 @@ For EACH of the 6 retros:
    `toolbelt/sweep-fold-audit.sh --strict INDEX.md <kit-root>` (every folded row has a token). Close is done when
    pending = 0 and the fold audit is clean.
 
-**PENDING (add when they land on main):** the PR7 doctrine-fold retro and the PR8 retro — draft their folds the same
-way (grep-before, token, folded-as-code line) once their retros are committed. This draft covers the 6 that exist now.
+---
+
+## 7. campaign8-doctrine-fold  (PR7, slug: `campaign8-doctrine-fold`)  ← PROMOTION retro, MANDATORY token
+- **Grep-before (K6):** `grep -rn 'ev: retro campaign8-doctrine-fold' <kit>` (excl retros/) → **0 hits**. The retro is
+  a PURE PROMOTION: its Δ1–Δ10 are ALL already applied across 7 files (`types/logic.md` §Safety timers + lint-delays
+  pointer, `types/logic-authoring.md` §Inter-module comms, `types/dashboard.md` DWS1-gate-2 CsrfUtil + §Critical-write
+  step-up, `METHODOLOGY.md` §Conformance triage-console + non-positive-delay + Excavador/K21/load-budget,
+  `toolbelt/verify-module.sh` cert-chain caveat, `BUILD-LOOP.md` §6 schema-risk gate, `skill/SKILL.md`) — but each
+  folded line carries `[ev: corpus B<n>]`, NOT the retro slug, so the retro's own token is absent. Per BUILD-LOOP §7
+  exit (c) the INDEX flip is the promotion anchor, but `sweep-fold-audit --strict` still needs ONE `[ev: retro
+  campaign8-doctrine-fold]` token on the folded row.
+- **FOLD (MANDATORY — one promotion-attribution line in `METHODOLOGY.md` §Kit maintenance):**
+```
+- The campaign-8 R7.1–R7.10 corpus doctrine (8-layer timer index, non-positive-delay floor, inter-module comms, critical-write step-up, cert-chain trust, mandatory schema-risk gate, Excavador Técnico profile, K21, station load budget) was PROMOTED into the core in PR7 (doc-only). [ev: retro campaign8-doctrine-fold]
+```
+
+## 8. campaign8-report-integration  (PR8, slug: `campaign8-report-integration`)
+- **Grep-before (K6):** `grep -rn 'ev: retro campaign8-report-integration' <kit>` (excl retros/) → **2 hits**
+  (`BUILD-LOOP.md`, `skill/SKILL.md`). Already CREDITED → safe to flip. (`report-module.sh` itself was folded in
+  campaign-7; this retro is the campaign-8 INTEGRATION + v0.19.0.)
+- **Deltas:** `report-module.sh` extended to compose `lint-delays` (step 5) + `schema-risk` (step 6) + `triage-console`
+  (step 7) with a `--console-dir` flag; `schema-risk.sh` dot-dir prune fix (`-mindepth 1`); VERSION → 0.19.0.
+- **FOLD (recommended — one `METHODOLOGY.md` §Conformance folded-as-code line):**
+```
+- folded as code: toolbelt/report-module.sh --console-dir (aggregates lint-delays + schema-risk + triage-console into one per-module punch-list; v0.19.0). [ev: retro campaign8-report-integration]
+```
+
+## Apply checklist — the FULL campaign-8 set (8 retros)
+Flip all 8 INDEX rows `pending → folded`. MANDATORY token lines FIRST (else `sweep-fold-audit --strict` fails):
+**§3 lint-timers-ext** and **§7 campaign8-doctrine-fold** (both 0-token). The other 6 are token-credited already
+(§1/§4/§5/§6/§8 via BUILD-LOOP/SKILL; §2 triage-console at METHODOLOGY:96). Then set `retro_pending: false` in the kit
+self-envelope + sweep (pending=0, fold-audit clean).
