@@ -32,12 +32,19 @@ today it fails to locate src; after the fix it passes. `[ev: run-pure-test.sh:27
 literal token **`[concept]`**. Per-row (not per-name): a name-level exemption would let one marked `hoaMode` row silently
 exempt two unmarked `hoaMode` rows — the cross-row implicit exemption we ruled out. Default: STALE prints, exit **0**;
 `--strict` promotes to exit **1**; exit **3** unchanged.
-**Covered side — IMPORTANT, do NOT reuse the `:310` scanner:** the `:310` `_AWK_SCANNER` emits **OPERATOR `@NiagaraProperty`
-only** (`if (prop_name != "" && prop_op) print prop_name`, :338). STALE's covered side must be BROADER: harvest ALL
-`@NiagaraProperty` names (any flag — a covered slot may be SUMMARY) AND ALL `@NiagaraAction` names (a matrix row can document
-an action-invoked scenario). If STALE reused the OPERATOR-only `:310` output, the two legitimate action rows
-`intervalExpired` (:64, `@NiagaraAction` @ BDefrostController.java:148) and `forceDefrost` (:65, `@NiagaraAction` :152)
-would FALSE-flag → count 7 instead of 5. So add a small source-name harvest: `grep -hoE '@Niagara(Property|Action)[^)]*name[[:space:]]*=[[:space:]]*"[A-Za-z][A-Za-z0-9_]*"'` → the name set (any flag, property OR action).
+**Covered side — MATRIX-ROOT harvest (lead's rule), NOT the `:310` per-module scanner:** the covered set is harvested from
+EVERY Java source under the MATRIX ROOT (the dir holding `docs/write-path-matrix.md`, which the lint already walks up to —
+resolution loop `:98` `_candidate="$_dir/docs/write-path-matrix.md"`, `:114` `_parent=$(dirname "$_dir")`; the matrix root is
+the parent of `docs/`), ALL modules, with `build/` and dot-dirs pruned, ∪ `--bog` extras. Do NOT reuse the `:310`
+`_AWK_SCANNER` — it emits OPERATOR `@NiagaraProperty` only (`if (prop_name != "" && prop_op) print`, :338), per-module, so it
+would (a) drop non-OPERATOR/SUMMARY slots and (b) drop every `@NiagaraAction`. The harvest must catch BOTH `@NiagaraProperty`
+and `@NiagaraAction`, any flag, and (critically) MULTI-LINE annotations where `name = "X"` sits on its own line — so match
+the `name = "X"` field line, NOT a single-line `@Niagara…name=` regex (that misses the multi-line majority; a single-line
+regex gave a false 56-name set / 72 STALE — corrected). Two matrix rows document action-invoked scenarios and MUST stay
+covered: `:64 intervalExpired` and `:65 forceDefrost` are `@NiagaraAction` (BDefrostController.java:148/:152); with the
+`name=`-field harvest they are covered (STALE 5); with the OPERATOR-only `:310` output they would false-flag (STALE 7).
+Deterministic harvest (uncovered FAIL stays per-module; only STALE's covered set is matrix-root-wide):
+`find "$MATRIX_ROOT" -type d \( -name '.*' -o -name build \) -prune -o -name '*.java' -print | xargs grep -hoE 'name[[:space:]]*=[[:space:]]*"[A-Za-z][A-Za-z0-9_]*"' | sed -E 's/.*"([^"]+)".*/\1/' | sort -u` ∪ `_bog_extra`.
 **Code seams (`toolbelt/lint-write-path.sh` @ cb79676):**
 - `:161-173` `_matrix_slots=$(awk … | sort -u)` — currently NAME-LEVEL. For PER-ROW STALE, do NOT reuse this sort-u set;
   add a ROW pass over the matrix that, per data row, extracts the backtick-inner slot AND checks for `[concept]` in the row
