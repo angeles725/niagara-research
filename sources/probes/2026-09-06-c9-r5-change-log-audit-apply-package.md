@@ -1,9 +1,9 @@
 # C9 R5 — `change_log` additive migration + `buildServer(cfg, deps)` seam + failure spool: apply package (tunnel)
 
-Author: companero (Fable), 2026-09-06. Contract VERBATIM from QA's RED `qa/c9-s12-write-server` **`55d6797`** (on tunnel
-main **`9acb47c`**; `instalacion/pipeline/test/write-server.config-login.test.mjs`, S12A-1..S12A-7, `node --test`, no npm
-deps). Baseline read at `9acb47c`: `write-server.mjs` (309 lines), `sql/2026-09-06-change-log-audit.sql`, `package.json`.
-Clone: `/home/cristian/tunnel/clientes/Leon-Guanajuato/Pancaddia` (Guanajuato WITH the `a`). `[ev: tunnel 55d6797 test file]`
+Author: companero (Fable), 2026-09-06 — **rev 2**: RED tip **`55d6797` → `e7e6615`** (QA appended S12A-8 + S12A-9; **9 pins**).
+Contract VERBATIM from QA's RED `qa/c9-s12-write-server` **`e7e6615`** (on tunnel main **`9acb47c`**;
+`instalacion/pipeline/test/write-server.config-login.test.mjs`, S12A-1..S12A-9, `node --test`, no npm deps). Baseline read at `9acb47c`: `write-server.mjs` (309 lines), `sql/2026-09-06-change-log-audit.sql`, `package.json`.
+Clone: `/home/cristian/tunnel/clientes/Leon-Guanajuato/Pancaddia` (Guanajuato WITH the `a`). `[ev: tunnel e7e6615 test file]`
 `[ev: tunnel write-server.mjs @ 9acb47c]` `[ev: proposal §5 / R5]` `[ev: S12 plan Part 1 (a6268a67b)]`
 
 ## 0. Scope, dependency, and one delta for the lead
@@ -32,7 +32,9 @@ Clone: `/home/cristian/tunnel/clientes/Leon-Guanajuato/Pancaddia` (Guanajuato WI
 | S12A-5 | `:138-146` | after `/config/logout` (+ token) the next `/write` with that token → **403**; a stale token → 403 |
 | S12A-6 | `:148-160` | `deps.changeLog` THROWS → `/write` still **200**; the spool (`cfg.AUDIT_SPOOL`, JSON-lines) has **exactly one** row, with `room==='Cuarto1'` and (`'error' in row \|\| 'result' in row`) |
 | S12A-7 | `:162-171` | the oBIX call for setpoint is a `PUT` whose path ends `/setpoint/value`, body matches `/^<real\b[^>]*\bval=/` and contains no `<obj` — **already true at 9acb47c** (`putOrd = \`${ord}/value\`` for setpoint; `obixBody(NUM)` → `<real val="…"/>`) |
-| Named mutations (K13) | header `:30` | spool on success too → S12A-4's zero-spool flips; swallow the insert error without spooling → S12A-6 flips |
+| **S12A-8** | new @ e7e6615 | `deps.obix` returns `{status: 500}` (JACE unreachable) → `/write` answers **502** (the existing `r.status >= 500 → 502` mapping) AND `deps.changeLog` is called **exactly once** with `ok === false`, **`result === 502`** (the write-server's answer status, NOT the oBIX 500), `room === 'Cuarto1'` — a failed write is audited too |
+| **S12A-9** | new @ e7e6615 | `export async function replaySpool(cfg, deps)` — with `cfg = { AUDIT_SPOOL }` and `deps = { changeLog }` only: first call → `{ replayed: 1 }`, the sink received the spooled row, the spool file is EMPTY afterwards; second call → `{ replayed: 0 }` and the sink count is unchanged (idempotent — nothing re-inserted) |
+| Named mutations (K13) | header `:30` + e7e6615 | spool on success too → S12A-4's zero-spool flips; swallow the insert error without spooling → S12A-6 flips; **audit only on 2xx → S12A-8 sees 0 rows; do not drain (or no dedupe) after replay → S12A-9's second replay inserts a duplicate** |
 
 ## 2. File-level diff plan (all under `instalacion/pipeline/`)
 
@@ -86,16 +88,36 @@ return send(res, 200, { ok: true, ord, value, by: user.email || user.sub }, cfg)
 ```
 Rules the pins fix: exactly ONE `sink(row)` call per successful write (S12A-4); NOTHING is spooled when the sink succeeds
 (S12A-4 zero-spool); on sink failure exactly ONE spool line carrying the row + `error` (S12A-6); the spool file is
-`cfg.AUDIT_SPOOL` (default `join(HERE, 'audit-spool.jsonl')` when absent). **Proposal intent beyond the RED (not yet pinned):**
-also write a row on a FAILED station write (`ok:false, result: r.status`) — add it, and ask QA to pin it (S12A-8).
+`cfg.AUDIT_SPOOL` (default `join(HERE, 'audit-spool.jsonl')` when absent). **Failed station write (S12A-8, now PINNED):** build the SAME row on the non-2xx branch with `ok: false` and `result` = the
+status the write-server is about to ANSWER (`502` for `r.status === 0 || r.status >= 500`, `403` for the permission case, else
+`400`) — i.e. compute the response status first, then `await sinkWithSpool(row)`, then `send(res, status, …)`. Exactly ONE
+sink call per attempt, success or failure. Factor `sinkWithSpool(row)` (the try/catch + `appendFileSync` above) so both
+branches share it.
 
 ### F3 — `package.json` — add the runner
 `"scripts": { …, "test": "node --test test/" }` (the RED header: `node --test`, no npm deps). No new dependencies.
 
-### F4 — spool replay (small, additive; not pinned by 55d6797)
-A `scripts/replay-audit-spool.mjs` (or a `--replay-spool` flag) that reads `cfg.AUDIT_SPOOL`, re-POSTs each line to
-`change_log`, and truncates on success — so a Supabase outage never loses rows. Recommend as part of R5 with its own pin
-(S12A-9: replay drains the spool exactly once, idempotent on re-run).
+### F4 — `replaySpool(cfg, deps)` (S12A-9, PINNED at e7e6615)
+```js
+export async function replaySpool(cfg, deps = {}) {
+  const sink = deps.changeLog ?? ((row) => auditChange(cfg, row));
+  const path = cfg.AUDIT_SPOOL ?? join(HERE, 'audit-spool.jsonl');
+  if (!existsSync(path)) return { replayed: 0, remaining: 0 };
+  const lines = readFileSync(path, 'utf8').split(/\n/).filter(Boolean);
+  const kept = []; let replayed = 0;
+  for (const line of lines) {
+    const { error, ...row } = JSON.parse(line);              // strip the spool-only error field before re-inserting
+    try { const r = await sink(row); if (r && r.ok === false) throw new Error('rejected'); replayed++; }
+    catch (e) { kept.push(JSON.stringify({ ...row, error: String(e.message || e) })); }
+  }
+  writeFileSync(path, kept.length ? kept.join('\n') + '\n' : '');   // DRAIN: only un-replayable rows stay
+  return { replayed, remaining: kept.length };
+}
+```
+Rules the pin fixes: drains **exactly once** — the file is rewritten with only the rows that failed again, so a second call
+returns `replayed: 0` and inserts nothing (S12A-9); returns `{ replayed, remaining }`; `cfg` may carry ONLY `AUDIT_SPOOL`
+(no `loadConfig()` inside); the spool-only `error` field is stripped before the re-insert. Wire it as a CLI entry
+(`node write-server.mjs --replay-spool` under the same `import.meta` guard) or a cron on the mini-PC.
 
 ## 3. Skeleton of the refactor (what `buildServer` looks like)
 ```js
@@ -115,10 +137,11 @@ so the handler must call `obixFn(method, path, body)` with the SAME three args t
 ## 4. Mutation proof to record (K13, in the R5 retro)
 (a) spool on success too → S12A-4 `auditRows(spoolPath).length == 0` flips; (b) swallow the sink error without spooling →
 S12A-6 `spooled.length == 1` flips; (c) return `<obj …/>` for setpoint → S12A-7 flips; (d) drop the `import.meta` guard →
-every test fails on `process.exit(2)` from `loadConfig()` (the RED's own "for the right reason" note).
+every test fails on `process.exit(2)` from `loadConfig()`; **(e) audit only on 2xx → S12A-8 sees 0 rows; (f) skip the
+drain (or re-insert without dedupe) after replay → S12A-9's second call inserts a duplicate.**
 
 ## 5. Gates / consequences
-- `lint`: no kit lint applies to the tunnel (Node); run `node --test test/` (7/7 → 9/9 with S12A-8/9) + `node --check`.
+- `lint`: no kit lint applies to the tunnel (Node); run `node --test test/` (**9/9**) + `node --check`.
 - **change_log consumers:** the viewer's audit view reads the new columns (`surface`, `config_session`, `result`, `client_ip`);
   pre-R5 rows have them NULL/`'write-server'` (default) — never backfilled/faked. The R7 mirror writes the same columns
   with `surface: 'servlet'` and `config_session: null` (D7 MIR5 — the identity is the `user` column, never the session column).
@@ -132,4 +155,4 @@ every test fails on `process.exit(2)` from `loadConfig()` (the RED's own "for th
 | 3 | baseline handler anchors (`:17-18, :24-58, :132-168, :186-207, :231-309`), `ip` at `:243`, child-`/value` + bare `<real>` already true | [CERT] | write-server.mjs @ 9acb47c |
 | 4 | existing schema (11 cols) + RLS/retention cover the table | [CERT] | sql/2026-09-06-change-log-audit.sql @ 9acb47c |
 | 5 | login = shared CONFIG_PASSWORD bound to JWT email (R4 shape) vs the plan's Supabase re-auth | [CERT for the RED; flagged D-1] | test `:65-70, :88-92` vs S12 plan Part 1 |
-| 6 | failed-write row, spool replay | [INFER, proposal intent] | ask QA for S12A-8/9 |
+| 6 | failed-write row (ok:false, result=502) and replaySpool drain-once idempotency | [CERT] | S12A-8/S12A-9 @ e7e6615 |
