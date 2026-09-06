@@ -108,3 +108,16 @@ Pull niagara-research and read your section. Peer messages in English (Cristian'
   Context → real-operator attribution in AuditHistory and change_log). Research B830 (investigador1) decides the
   legal Niagara API; companero: R14 apply-package + dashboard-preview mock after B830; QA: R14 RED after R7.
 - investigador1 push landed: niagara-research 2e967850b (evidence map, S20 design evidence, S12 audit-sink brief).
+
+## Update 4 — DEPLOYED BASELINE (Cristian, 2026-09-06) + W1 apply started
+- What RUNS on the PANCCADIA station today (RARs `Cliente/Leon-Guanjuato/{Compresores,Leon-Guanjuato}.rar`, jar
+  module.xml read): ColdRoomPan-rt **2.0.3**, CompPan-rt **2.0.1**, DashboardPan-rt/ux **2.0**. The repo tip a109249
+  is AHEAD (ColdRoomPan 2.0.7, CompPan 2.0.3, DashboardPan 2.1.1): the station still carries the defrost time<=0 bug
+  (`Math.max(delayMs, 0L)` at 2.0.3 :555), lacks the resistance lockout / mid-cycle reactivity, and DashboardPan 2.0
+  has NO numeric guard (a non-numeric setpoint body writes 0.0 with HTTP 200 — live hazard). Every claim "fixed at
+  a109249" must say "not yet deployed". The live-gate plan precondition P1 (PRs deployed) therefore includes the
+  pending 2.0.7/2.0.3/2.1.1 deploy (client PR #9 runbook) before any C9 client jar.
+- Ledger: C9 wave-1 attempt acquired (proceed). Apply workers launched: PR1 S20 (client worktree
+  `Leon-Guanjuato-worktrees/pr1-s20`, branch feat/c9-comppan-rotation), PR2 lint-demand-scope (`niagara-tools-worktrees/c9-pr2`),
+  PR3 lint-silent-protection (`c9-pr3`). QA verifies follow on the GREEN tips.
+- investigador1 terrain: apply-read protocol, retro drafts (13 lesson candidates), live-gate plan — fad04deb7.
