@@ -49,3 +49,14 @@ is optional/cleaner, not required for propagation.
 ## 6) Final state
 Restored to the original 3.0: RoomPanel 3.0, ColdRoom_1 3.0, latest 3.0; the room controls to 3.0. No lasting change, no
 temp files left on the mini-PC.
+
+## 7) Timed latency (measured on the mini-PC, LAN to the JACE, monotonic clock, no tunnel skew)
+- oBIX PUT round-trip: 638 ms first call (cold TLS handshake), 132 ms warm.
+- Propagation RoomPanel → ColdRoom_1 control: near-instant — the control side reflected the new value within 665 ms total
+  on the 2.5 write and 155 ms total on the 3.0 restore, i.e. the link fires ~20-30 ms after the PUT completes, same
+  engine cycle. The earlier "read too soon" miss was an isolated first-hit warm-up fluke; measured tightly it propagates
+  in < 1 s every time, both directions.
+- Dashboard / Supabase `latest`: ~6 s, bounded by the poller's 5 s poll + changed-rows write (poller artifact, not the
+  control write).
+- Doctrine for the C9 audit read-back: a ~1 s settle before reading the control side is enough; the slow leg is only the
+  DB/dashboard. Final state restored to 3.0 (latest = 3, verified).
