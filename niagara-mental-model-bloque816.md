@@ -89,7 +89,7 @@ one row per **(writable slot × writer × timing) → expected invariant**:
 | e.g. `interval` | dashboard | idle / mid-defrost / overdue | armed with `d ≥ 1` (never `Clock.schedule(0)`); running defrost unaffected |
 | `setpoint` | dashboard | mid-cooling | hysteresis latch holds; invalid status → fail-safe hold |
 | a LINK-TARGET slot | dashboard | any | write is EPHEMERAL (overwritten next propagation) — UI must not imply it stuck |
-| `resistanceMode` (HOA) | dashboard | mid-defrost | HOA re-applies after exitDefrost |
+| `resistanceMode` (HOA) | dashboard | mid-defrost | OFF LOCKS OUT the heater even DURING the defrost sequence (OFF > sequence > HAND > AUTO); re-applies after exitDefrost — [B805 §805.11], live bug fix/resistance-off-lockout |
 
 **Lints** (extend the [B788]/[B805]/[B810] split):
 - **HARD**: an `OPERATOR`-writable slot that a dashboard writes to with NO matrix row / test; a `Clock.schedule`/

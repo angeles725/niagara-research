@@ -136,6 +136,25 @@ PROPOSED `types/logic.md` §"control-logic patterns" — copy-ready shapes, each
 - **Model math**: a physics `step()` model is legitimate and beyond stock kitControl (no ODE block exists) — keep it pure.
 - Adopt the §805.9 flowchart template for every documented control component.
 
+## 805.11 — HOA / output precedence: OFF is a LOCKOUT that dominates the sequence `[CERT for the primitive + the bug; INFER for the rule]`
+For an actuator that can HURT (heat, compression), the command precedence is **OFF > sequence > HAND > AUTO**: an
+operator **OFF is a LOCKOUT** that dominates EVERY automation — including a sequence that "owns" the output (defrost,
+staging) — HAND is dominated only by safety interlocks, AUTO is the computed value. **Niagara models this in the priority
+array**: `BBooleanWritable`/`BNumericWritable` reserve `in1` = EMERGENCY (persisted, `BBooleanWritable.java:40`) and
+`in8` = MANUAL/operator (persisted, `:104`) ABOVE the automation levels `in9..in16` and `fallback` — so an emergency/
+manual command at level 1-2 overrides any automation that writes at 8-16 (via the priority resolve, [B810] §810.4). A
+proper HOA OFF therefore belongs at an EMERGENCY level, never at or below the sequence's level.
+**Live bug (proves the rule) [CERT]**: ColdRoomPan's HOA is a plain `double` (`0=auto/1=hand/2=off`,
+`BEvaporatorUnit.java:132-133`, `resistanceMode:149`) NOT a priority array, and every output-drive method is guarded
+`if (inDefrost) return;` (`:879,928,939,947`) — the defrost controller then drives `resistanceOut` DIRECTLY during
+defrost, so **HOA OFF is applied only OUTSIDE defrost and the heater energizes with OFF selected**. The plain-double
+HOA is EMULATING priority 1-2 for OFF but the emulation leaks: OFF must be checked on the defrost path too, not
+short-circuited by `inDefrost`. (Fixed on `fix/resistance-off-lockout`, v2.0.6.) → kit doctrine `types/logic.md`:
+encode the precedence, and if you emulate a priority array with a plain mode slot, OFF must dominate the sequence path.
+**Test shape**: a pure `resistanceCommand(inDefrost, mode, auto)` returning the actuator command (mutation: swap the
+OFF/defrost order → OFF stops dominating) + a "HOA × mid-cycle" write-path matrix row ([B816] §816.6) the coverage
+lint MUST demand. [ev: corpus B805, B810, B816]
+
 ## Self-verify
 
 | # | Claim | Marker | Evidence |
