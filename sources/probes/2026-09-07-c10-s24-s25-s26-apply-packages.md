@@ -25,46 +25,47 @@ Author: companero (Fable), 2026-09-06. Cut against kit `df8c7ec`/`cb79676` and c
 **RED/pin:** a bats case that runs `run-pure-test.sh <rt> <fqcn>` FROM A DIFFERENT cwd (e.g. `/tmp`) and asserts GREEN —
 today it fails to locate src; after the fix it passes. `[ev: run-pure-test.sh:27,:58-59; WiringTest:48-56 @ ff1b659]`
 
-## S25 — `lint-write-path.sh`: NEW advisory class STALE with a `[concept]` exemption (lead's decided contract)
-**Decision (lead):** FAIL direction UNCHANGED (uncovered source OPERATOR slot with no matrix row → exit 1, always — a
-shipped hard gate must not silently pass). ADD an advisory **STALE**: a matrix data row whose backtick-inner slot name
-matches NO source `@NiagaraProperty` and NO `--bog` link-traced slot. A row is EXEMPT only when it carries the LITERAL token
-**`[concept]`** anywhere in the row — nothing implicit (no parenthetical heuristics, no "Engine link" string match; an
-implicit exemption is a comment-satisfiable pin by another name). Default: STALE prints, exit **0**. `--strict` promotes
-STALE to exit **1**. Exit **3** unchanged.
+## S25 — `lint-write-path.sh`: NEW advisory class STALE, PER-ROW, with a `[concept]` exemption (lead's decided contract)
+**Decision (lead):** FAIL direction UNCHANGED (uncovered source OPERATOR slot with no matrix row → exit 1, always). ADD a
+**PER-ROW** advisory **STALE**: emit ONE STALE line per matrix DATA ROW whose backtick-inner slot name is NOT in
+(source `@NiagaraProperty` names ∪ source `@NiagaraAction` names ∪ `--bog` extras) AND which does not itself carry the
+literal token **`[concept]`**. Per-row (not per-name): a name-level exemption would let one marked `hoaMode` row silently
+exempt two unmarked `hoaMode` rows — the cross-row implicit exemption we ruled out. Default: STALE prints, exit **0**;
+`--strict` promotes to exit **1**; exit **3** unchanged.
+**Covered side — IMPORTANT, do NOT reuse the `:310` scanner:** the `:310` `_AWK_SCANNER` emits **OPERATOR `@NiagaraProperty`
+only** (`if (prop_name != "" && prop_op) print prop_name`, :338). STALE's covered side must be BROADER: harvest ALL
+`@NiagaraProperty` names (any flag — a covered slot may be SUMMARY) AND ALL `@NiagaraAction` names (a matrix row can document
+an action-invoked scenario). If STALE reused the OPERATOR-only `:310` output, the two legitimate action rows
+`intervalExpired` (:64, `@NiagaraAction` @ BDefrostController.java:148) and `forceDefrost` (:65, `@NiagaraAction` :152)
+would FALSE-flag → count 7 instead of 5. So add a small source-name harvest: `grep -hoE '@Niagara(Property|Action)[^)]*name[[:space:]]*=[[:space:]]*"[A-Za-z][A-Za-z0-9_]*"'` → the name set (any flag, property OR action).
 **Code seams (`toolbelt/lint-write-path.sh` @ cb79676):**
-- `:161-173` `_matrix_slots=$(awk … | sort -u)` — the matrix-slot extractor. It is a DE-DUPED NAME SET (`sort -u` :173),
-  so STALE is NAME-LEVEL. Add a sibling extractor `_concept_slots` over the SAME awk but gated on the row containing
-  `[concept]`: `if (index($0, "[concept]") == 0) { …emit the backtick-inner name… }` for `_matrix_slots` (the STALE
-  candidates now EXCLUDE marked rows at extraction), OR keep `_matrix_slots` whole and build `_concept_slots` from rows
-  WITH the token and subtract. Either way a name is a STALE candidate only if NO row bearing it carries `[concept]`.
-- `:174-` `_bog_extra` (the `--bog` link-traced slot set). STALE's "covered" side = source `@NiagaraProperty` names ∪ `_bog_extra`.
-- `:310` `_AWK_SCANNER` — the per-profile source scan; collect ALL `@NiagaraProperty` names here (not only OPERATOR — a
-  covered/real slot may be SUMMARY) as the STALE right side.
+- `:161-173` `_matrix_slots=$(awk … | sort -u)` — currently NAME-LEVEL. For PER-ROW STALE, do NOT reuse this sort-u set;
+  add a ROW pass over the matrix that, per data row, extracts the backtick-inner slot AND checks for `[concept]` in the row
+  (`index($0,"[concept]")`), skipping marked rows BEFORE any de-dup. The `[concept]` filter is per-row, ahead of `sort -u`.
+- covered side = the broader property+action harvest above ∪ `_bog_extra` (`:174`).
 - `:374` FAIL emit; `:383` `exit "$FAILED"`.
-**Insertion:** `STALE=0` beside `FAILED=0` (:33); parse `--strict) STRICT=1; shift ;;` in the arg loop (:48). After both
-sets exist: `for m in $_matrix_slots; do case " $src_names $_bog_extra $_concept_slots " in *" $m "*) : ;; *) printf 'write-path  STALE  %s  no source slot with that name\n' "$m"; STALE=1 ;; esac; done`. Exit:
-`exit $(( FAILED ? 1 : (STRICT && STALE ? 1 : 0) ))` — FAIL always wins.
-**Row grammar:** `write-path  STALE  <slot>  no source slot with that name`. **Exemption token:** literal `[concept]` in the row.
-**Real-tree ACTUAL @ ff1b659 (measured):** STALE = **3** — `freezeEnabled`, `hoaMode`, `inhibit`. `inhibit` is NOT a
-`--bog` slot (VERIFIED: `bog-nav links --slot inhibit` and `--slot-any` on the PANCCADIA config.bog → no matching links;
-`lint-write-path --bog` traces none), so it stays STALE → the count is 3, not 2. All three are conceptual/scenario rows.
+**Insertion:** `STALE=0` beside `FAILED=0` (:33); `--strict) STRICT=1; shift ;;` in the arg loop (:48). The STALE row pass
+(pseudocode): `awk` over the matrix emitting, per data row lacking `[concept]`, the backtick-inner name; for each such name
+`case " $prop_and_action_names $_bog_extra " in *" $name "*) : ;; *) printf 'write-path  STALE  %s  no source slot with that name\n' "$name"; STALE=1 ;; esac`. Exit: `exit $(( FAILED ? 1 : (STRICT && STALE ? 1 : 0) ))` — FAIL always wins.
+**Row grammar:** `write-path  STALE  <slot>  no source slot with that name`. **Exemption:** literal `[concept]` in the row.
+**Real-tree ACTUAL @ ff1b659 (PER-ROW, R19.3 extractor, covered = all property+action names ∪ --bog):** STALE = **5 rows** —
+`:31 hoaMode`, `:32 hoaMode`, `:33 inhibit`, `:36 freezeEnabled`, `:52 hoaMode`. (`inhibit` VERIFIED not a `--bog` slot:
+`bog-nav links --slot inhibit`/`--slot-any` on the PANCCADIA config.bog → no links.) `:40 setpoint`+hoaMode is NOT STALE
+(first backtick-inner is `setpoint`, a real slot). The action rows `:64 intervalExpired` / `:65 forceDefrost` are NOT STALE
+because the covered side includes `@NiagaraAction` names.
 
 ## S25-PR6 — matrix `[concept]` marker edit (docs-only chore, rides in client PR6; no jar, no version bump)
-`_matrix_slots` is name-level, so ONE marked row per conceptual NAME clears it (its name enters `_concept_slots`; the other
-rows sharing that name — hoaMode also at :32 and :52 — are then covered). Edit exactly THREE rows at
-`<client-root>/docs/write-path-matrix.md` @ ff1b659 (append ` [concept]` inside the first cell, after the slot):
+Per-row → mark ALL FIVE STALE rows at `<client-root>/docs/write-path-matrix.md` @ ff1b659 (append ` [concept]` inside the
+first cell). `:40` untouched (its slot is `setpoint`).
 ```
 :31  | `hoaMode` [concept] | Dashboard operator | mid-cycle | HAND → immediate ON; OFF → immediate OFF; AUTO → autoValue | ✅ `w3_hoaFlipMidCycle` |
+:32  | `hoaMode` [concept] + inhibit active | Dashboard operator | mid-defrost | inhibit forces OFF in ANY mode (HAND and AUTO) | ✅ `w4_inhibitBlocksAutoComputedOn` |
 :33  | `inhibit` [concept] (defrost signal) | Engine link | mid-cycle | AUTO-computed ON → closed while inhibit active | ✅ `w4_inhibitBlocksAutoComputedOn` |
 :36  | `freezeEnabled` [concept] | Workbench | any | disabled mode clears any persisted latch | ✅ `w5_freezeStatLatchSurvivesSpWrite` |
+:52  | `hoaMode` [concept] + `setpoint` (two writes) | Dashboard (one engine frame) | mid-cycle | changed() ordering race — which write's value is seen first | ❌ C10 |
 ```
-(Do NOT mark :40 `setpoint`+hoaMode — its backtick-inner is `setpoint`, a real slot, not STALE. :32 and :52 need no edit —
-their name `hoaMode` is already exempt via :31. If QA prefers strict PER-ROW emit instead of name-level, mark :32 and :52
-too — flag that choice; name-level is the minimal set and matches `:161`'s `sort -u`.)
-**OBSERVED-flip pins (the real-tree acceptance):** at ff1b659 BEFORE the marker edit, `lint-write-path` STALE = **3**
-(freezeEnabled, hoaMode, inhibit); AFTER the PR6 edit, STALE = **0**. `--strict` before → exit 1; after → exit 0. FAIL
-(uncovered) count unchanged by this edit.
+**OBSERVED-flip pins (real-tree acceptance):** at ff1b659 BEFORE the marker edit, `lint-write-path` STALE = **5**; AFTER the
+PR6 edit, STALE = **0**; `--strict` before → exit 1, after → exit 0; FAIL (uncovered) count unchanged.
 
 ## S26 — client `.gitignore` for gradle build caches (keep the deploy jars)
 **Tracked under `**/build/` @ ff1b659 (exact, `git ls-files`):**
