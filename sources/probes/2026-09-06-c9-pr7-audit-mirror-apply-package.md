@@ -67,6 +67,12 @@ email. Options: (a) write it into `user_email` as the identity column (simplest;
 — NOT additive-only). Recommend **(a)** for C9 (no schema change) with the doc line stating "identity column, email OR
 station username by surface". The RED is agnostic (it checks the row key `user` handed to `insert`, not the DB column).
 
+## 4b. TOCTOU note (investigador1 second read)
+Without the optional `change_log_dedupe_idx` (F4), `has(key)` → `insert(row)` is not atomic: two CONCURRENT mirror runs could
+both miss and both insert. Fine for the C9 shape — the mirror is a SINGLE-INSTANCE cron job, flag-gated OFF by default — but
+the durable fix is the partial unique index (F4), which turns a lost race into an insert-conflict `skipped`. Apply the index
+when the mirror is enabled live.
+
 ## 5. Mutation proof to record (K13)
 (1) run with the flag off → MIR1 reads>0 flips; (2) delete the `has` check → MIR2 second pass inserts 3 (flips); (3) key
 on `ts` only → MIR3 `keys.length` drops to 2 (flips); (4) `surface: 'write-server'` → MIR4 flips; (5) `config_session:

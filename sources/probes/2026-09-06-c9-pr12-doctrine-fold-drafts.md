@@ -67,7 +67,7 @@ servlet) keeps ONE canonical table (`public.change_log`): write-server rows carr
 `ComplexSlotMap.set`) and MIRRORED into the same table with `surface='servlet'`, `config_session` NULL (the framework record
 has no session field), deduplicated on the full `(ts, user, target, old, new)` tuple, behind a flag that is OFF by default.
 Audit-append never fails the write (spool + replay); enabling the mirror live is a station gate, not a PR gate.
-[ev: corpus B829][ev: corpus B830 §830.4][ev: retro campaign9-s12-write-audit]
+[ev: corpus B829][ev: corpus B830 §830.4]
 ```
 
 ## Apply notes

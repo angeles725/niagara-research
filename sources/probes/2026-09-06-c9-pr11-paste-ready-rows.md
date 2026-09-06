@@ -10,6 +10,10 @@ Facade link targets from `bog-nav` on the PANCCADIA `config.bog` (see `2026-09-0
 per-slot derivation and `2026-09-06-c9-issue-dead-panel-writes.md` for the class-B dead writes).
 `[ev: lint-write-path @ e5bee1c, 2026-09-06]` `[ev: bog-nav @ PANCCADIA config.bog]`
 
+**Forward note (investigador1):** confirm `rotationInterval`/`rotationMode` are still at `docs/write-path-matrix.md:95-96`
+on the FINAL reworked PR1 tip before pasting (PR1 is still re-greening — the line numbers or the exact two rows could move;
+re-run the SC-9 loop, which is line-agnostic, as the real check).
+
 ## SC-9 check (exit 1 → 0, run after pasting)
 ```bash
 export PATH=/usr/bin:/bin:$PATH
