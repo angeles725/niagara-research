@@ -60,7 +60,12 @@ object. So the kit must STATE the doctrine, not assume the framework enforces it
 3. **NaN/invalid never counts as demand OR as a setpoint** — guard with `BStatus.isValid()` / `Double.isFinite` before
    using a value ([BSequenceLinear:198]); the fallback must be EXPLICIT and VISIBLE, not a silent hold.
 4. **A "why running" surface**: a slot/tile that names the active demand source(s) + the governing limit, so an
-   operator sees why the process is on.
+   operator sees why the process is on. It must ALSO expose HELD demand that isn't a live call — a **fault-HELD** call
+   (a faulted sensor holding the last demand under a `coolOnFault?true:prev` posture) and a **deadband-HELD** state
+   (a room within the hysteresis band still counted) — otherwise the process runs on invisible demand. Concretely (the
+   CompPan/ColdRoomPan residue): a per-room `sensorFault` + `callingReason`/`inDeadband` slot, so "running: rooms 1,3
+   calling; room 2 HELD (sensor fault); suction 18 vs sp 20" is legible. A held demand that no one can see is the
+   silent-runaway failure mode this doctrine exists to prevent.
 5. **The operator's zero-demand OVERRIDE (HOA OFF lockout) and the automatic path reach the SAME idle state** — OFF
    dominates ([B805] §805.11); an OFF and a no-demand both end all-off.
 6. **Both directions are gated** — reaching idle respects minOn (don't short-cycle on the way down), and leaving idle
