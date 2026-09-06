@@ -40,7 +40,7 @@ endpoints that mirror the R14 servlet contract:
   GET  <prefix>/__mock/change_log -> the rows (what the R7 mirror would write)
 The SPA's own fetch() to /api/* is intercepted: no session -> the modal opens, the write is
 held, and re-issued after login. Demo password: --config-password (default 1234); session
-TTL: --config-ttl seconds (default 120, sliding on each write; logout ends it at once).
+TTL: --config-ttl seconds (default 300 = the HMI product default, sliding on each write; logout ends it at once).
 
 USAGE:
   python3 tools/dashboard-preview.py --rc <module>/src/rc --prefix /dashboardpan
@@ -445,7 +445,7 @@ def main():
                     help="preview the R14 'second login before any write' flow: injects a native modal + session chip + "
                          "change_log strip and adds stateful /config/login|logout|session mock endpoints; writes need a session")
     ap.add_argument("--config-password", default="1234", help="demo password accepted by the mock login (default 1234)")
-    ap.add_argument("--config-ttl", type=int, default=120, help="mock config-session TTL in seconds, sliding (default 120)")
+    ap.add_argument("--config-ttl", type=int, default=300, help="mock config-session TTL in seconds, sliding (default 300 = the HMI product default, lead 2026-09-06)")
     ap.add_argument("--editor", action="store_true",
                     help="inject a preview-only label editor (drag points/labels, export rx/ry/rlx/rly/rside); "
                          "never touches the module rc/")

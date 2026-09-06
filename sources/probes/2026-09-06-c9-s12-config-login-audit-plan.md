@@ -17,11 +17,14 @@ decision not yet in code; **PENDING viewer** = a façade-export fact the viewer 
 ## Part 1 — Surface A: write-server (mini-PC) changes `[INFER — design; grounded in B803]`
 The write-server gains a **config-session step-up** modeled on [B803] §803.6 (server-side allowlist + a fresh
 short-TTL token bound to user+purpose, held server-side, never client-decided):
-- **`POST /config/login`** — re-authenticate the operator against Supabase (email+password over TLS). On success mint a
-  **config token**: random, server-held (in the write-server process / a store), TTL 2–5 min, bound to `(email + purpose="config-write")`.
-  Return an opaque handle (httpOnly cookie or bearer). Base64/JSON is transport, not security — **TLS mandatory** ([B803] §803.2). `[INFER, B803 §803.6]`
+- **`POST /config/login`** — **SETTLED by Cristian (2026-09-06, proposal f610d21): the RED's shape stands** — the viewer's
+  already-JWT-authenticated operator proves knowledge of ONE shared config password (`cfg.CONFIG_PASSWORD`, from `config.env`,
+  never a per-user store); on success mint a **config token**: random, server-held, bound to the JWT identity (`email`/`sub`),
+  returned in the body and carried on writes as the **`x-config-token` header**; TTL **10 min sliding** by default (lead call,
+  per cfg, Cristian can change). Per-user Supabase re-auth (email+password) and a configurator role list are **C10 seeds**,
+  not C9. TLS mandatory ([B803] §803.2). `[ev: RED 55d6797 S12A-2/3, harness :65-70, :88-92]` `[ev: proposal f610d21]`
 - **`POST /config/logout`** — invalidate the config token immediately.
-- **Inactivity expiry** — the token also expires after N min of no mutating call (sliding window). `[INFER]`
+- **Inactivity expiry** — the token expires after the sliding window of no mutating call (default 10 min, lead call). `[ev: proposal f610d21]`
 - **Token REQUIRED on the mutating endpoints** — `/write` (the setpoint path, Part 2) and `/alarms/ack`. A missing/expired
   token → 401 from the write-server, before it ever calls the station. Read endpoints (`/equipment`, `/alarms` GET) do NOT
   require it. `[INFER, mirrors B803 gate-0.5 "critical write adds step-up on top of the read path"]`

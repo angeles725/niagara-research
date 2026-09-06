@@ -13,7 +13,7 @@ This mock exists so the UX can be judged NOW, on the real dashboard, with zero m
 ```
 # the real SPA, read at the client tip (never the stale local checkout)
 git -C ~/modulos_niagara_n4/Cliente/Leon-Guanjuato show a109249:Dashboard/DashboardPan/DashboardPan-ux/src/rc/index.html > /tmp/rc/index.html
-python3 tools/dashboard-preview.py --rc /tmp/rc --prefix /dashboardpan --config-login --config-ttl 120
+python3 tools/dashboard-preview.py --rc /tmp/rc --prefix /dashboardpan --config-login --config-ttl 300
 # open http://localhost:8080/dashboardpan/      (or /hmi for the 1280x800 WEB-HMI10 bezel)
 ```
 Demo credentials: ANY username + password `1234` (`--config-password` to change). The real R14 servlet will check the

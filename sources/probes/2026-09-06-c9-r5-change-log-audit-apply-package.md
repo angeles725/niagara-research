@@ -11,7 +11,7 @@ Clone: `/home/cristian/tunnel/clientes/Leon-Guanajuato/Pancaddia` (Guanajuato WI
   `buildServer(cfg, deps)` testability seam + guarded auto-run, the extended row per write, and the JSON-lines FAILURE
   SPOOL. The login/token pins (S12A-1/2/3/5) are **R4's contract** (RED 24adcba, base e4b42b0) and live in the SAME test
   file — the seam is shared, so whichever PR lands first carries `buildServer`; R5 assumes R4's login shape as pinned.
-- **D-1 (flag, not decided here):** the RED's step-up is `POST /config/login {password}` checked against **one shared
+- **D-1 — SETTLED by Cristian (proposal f610d21): the RED's shape stands; per-user re-auth + a configurator role list are C10 seeds.** The RED's step-up is `POST /config/login {password}` checked against **one shared
   `cfg.CONFIG_PASSWORD`**, bound to the viewer's JWT `email` (`deps.verifyToken`). The S12 plan Part 1 / proposal :80 describe a
   **per-user Supabase re-auth (email+password)**. The RED wins for apply (K13); the plan wording should be reconciled by the lead
   (a single config password is not a "user+password store" — SC-4 still holds — but it is a weaker identity proof than re-auth).

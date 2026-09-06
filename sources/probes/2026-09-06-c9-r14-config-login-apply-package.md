@@ -117,7 +117,7 @@ unchanged. Retro slug `campaign9-config-login`; record OBSERVED CL1/CL3 flips + 
 - **B830-G1 (requires execution):** live panel — config login + write shows the second operator in `/PANCCADIA/AuditHistory`
   while `WebOp.getUser()` stays the kiosk user.
 - **B830-G3:** gauth two-factor users take CL6's 401 path; TOTP re-check out of scope.
-- **B830-G2:** exact station auto-logoff resolution — only bounds the module TTL choice. The TTL value is a PRODUCT call: a very short idle (≤ 90 s) is aggressive for a multi-room setpoint session; sliding renewal on every write mitigates it — pick with Cristian.
+- **B830-G2:** exact station auto-logoff resolution — only bounds the module TTL choice. **TTL DEFAULT SET (lead call, Cristian can change): HMI panel config session = 5 min, sliding** (viewer/write-server = 10 min sliding per cfg). 5 min sits above the station auto-logoff MIN of 2 min only as an outer bound — the module session is renewed on every write and revoked on Salir, so it never outlives the kiosk session. `ConfigSession(clock, 300_000L)`.
 - A GET `/api/config/session` for the chip (additive; the RED does not pin it).
 - **Future, explicitly OUT of C9:** the only way surface B could ever carry a session id is the module's OWN
   fire-and-forget audit record (`svc.appendAudit(...)`, `BDashboardServlet.java:312`), which the module controls and could
@@ -131,5 +131,5 @@ unchanged. Retro slug `campaign9-config-login`; record OBSERVED CL1/CL3 flips + 
 | 3 | legal call path + lockout caller-invoked + BUser is a Context | [CERT] | B830 §830.2 table |
 | 4 | servlet/dispatch/RBAC/gradle anchors | [CERT] | read @ a109249 this session |
 | 5 | CL6 = 401 (not B830's 400) | [CERT] | RED CL6 + lead decision |
-| 6 | TTL value, `/session` GET | [INFER] | recommendations / product call |
+| 6 | TTL 5 min sliding (HMI) / 10 min (viewer) — lead defaults; `/session` GET | [CERT-decision / INFER] | lead 2026-09-06; recommendation |
 | 7 | anchors + CLW3/CLW4 regexes + login order re-verified by investigador1 at the a109249 worktree; guard-3 config-user order = lead d2857d1 | [CERT] | 2nd read 2026-09-06 |
