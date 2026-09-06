@@ -110,15 +110,20 @@ absolutas verificadas; NO re-decompilar ni re-descargar lo que ya está acá.
   componentes (<p h='handle' t='pfx:Type'>) + links que viven en el componente
   DESTINO y apuntan al origen por sourceOrd='h:xxxx'. Reutiliza el motor de
   gramática + grafo de handles de bog-audit.sh del kit (main 3f666a0).
-  Comandos: tree [--type PFX:Type] · slot <path|h:handle> [slot] [--src <root>] ·
-   links [--to P] [--from P] [--slot N] · handle <h:xxxx> · writable [--module PFX]
-   [--klass] [--src] · grep <regex> · diff <bogB> · selftest.  --json en todos.
+  Comandos: tree · slot <path|h:handle> [slot] [--src] · links [--to][--from][--slot]
+   [--dangling --src] · handle <h:xxxx> · path <h:xxxx> · find --type PFX:Type ·
+   writable [--module][--klass][--src] · relays [--module] · hoa [--module][--all] ·
+   tiles · grep · diff <bogB> · selftest.  --json Y --csv en TODOS.  Lee .bog y .dist
+   (backup de estación con config.bog anidado).
   Contesta (probado en PANCCADIA config.bog):
    · ¿qué link alimenta Cuarto1.setpoint? → resuelve h:xxxx a RUTA
      (Cuarto1.setpoint → Programacion/ColdRoom_1.setpoint) — grep NO puede.
    · Cuarto1.setpoint es ORIGEN, no destino → la escritura externa PEGA y propaga.
-   · writable clasifica cada slot por forma de escritura externa (StatusNumeric =
-     complejo, hijo `…/value` bare <real> PREFERIDO por B826/B825; simple; bare).
+   · relays (CHECK11): 22 salidas propias → proxy writable, 17 SIN fallback (B810).
+   · hoa (CHECK8): 19 slots mode/HOA en auto, 0 override de priority-array.
+   · tiles (CHECK18): Cuarto1 tiene las unidades 1/3 CRUZADAS (tile≠unidad física).
+   · writable clasifica por forma de escritura externa (StatusNumeric = complejo,
+     hijo `…/value` bare <real> PREFERIDO por B826/B825; simple; bare).
    · --src rellena el tipo de un slot "frozen" que el bog guarda sin t= (double).
 
 ────────────────────────────────────────────────────────────────────────
@@ -128,14 +133,18 @@ absolutas verificadas; NO re-decompilar ni re-descargar lo que ya está acá.
   SOLO LECTURA, poda dot-dirs. Une los @NiagaraProperty/@NiagaraAction multilínea
   por BALANCE DE PARÉNTESIS (un grep parte en el salto de línea y pierde la cola
   flags=/type=). Reutiliza el motor de escaneo de fuente de bog-audit.sh.
-  Comandos: slots [--type T] [--flags o/s/h/r/t] [--name RE] · actions [--name] ·
-   writers <slot> · extends [--of CLASS] · ords [--name] · grep <regex> · selftest.
-   --json en todos.
+  Comandos: slots [--type][--flags o/s/h/r/t][--name] · actions [--name] ·
+   writers <slot> · extends [--of CLASS] · ords [--name] · slot-types · ext-writable ·
+   compare <root> <srcB> · callers <method> · grep · selftest.  --json Y --csv en TODOS.
   Contesta (probado en cliente Leon-Guanjuato):
    · ¿el nombre del servlet lo hereda de BWebServlet? extends --of BDashboardServlet
      → BDashboardServlet -> BWebServlet.
    · slots --flags OPERATOR --type BStatusNumeric → BRoomPanel.setpoint (el caso
      que la lint S19 debe marcar: propiedad compleja OPERATOR sin acción).
+   · ext-writable = preview de la lint S19 (compleja OPERATOR sin acción → WARN +
+     nota del hijo `…/value`); slot-types = tabla resumen por tipo Java.
+   · compare <root> <srcB> = diff de esquema entre dos versiones (4f5f1c7→a109249:
+     defrostSkipped/lastSkipReason/forceDefrost AÑADIDOS, 0 riesgo de esquema).
    · writers <slot> distingue escritor ESTÁTICO (setX(/.set("slot",) del DINÁMICO
      (obj.set(prop,…) resuelto en runtime — así escribe el servlet el setpoint).
 EOF

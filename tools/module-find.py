@@ -24,10 +24,27 @@ Subcommands:
 
 Read-only. Prints rows; --json for machine output. Prunes dot-dirs. stdlib only; py3 -> exit 3.
 """
-import sys, os, re, json, argparse
+import sys, os, re, json, csv, argparse
 from collections import defaultdict
 
 _FLAG_MAP = {'HIDDEN': 'h', 'OPERATOR': 'o', 'READONLY': 'r', 'SUMMARY': 's', 'TRANSIENT': 't'}
+
+
+def _render(rows, args, line_fn, empty='(none)', cols=None):
+    """Shared output: --json (list of dicts), --csv (header + rows), else line_fn per row."""
+    if getattr(args, 'json', False):
+        print(json.dumps(rows, indent=2)); return
+    if getattr(args, 'csv', False):
+        if rows:
+            keys = cols or list(rows[0].keys())
+            w = csv.writer(sys.stdout); w.writerow(keys)
+            for r in rows:
+                w.writerow([r.get(k, '') for k in keys])
+        return
+    if not rows:
+        print(empty); return
+    for r in rows:
+        print(line_fn(r))
 
 
 class Module:
@@ -262,6 +279,112 @@ def cmd_grep(mod, args):
         print('(no matches)')
 
 
+def cmd_slot_types(mod, args):
+    """Per Java-type summary: count, how many OPERATOR, complex vs simple, TRANSIENT — the input
+    table for the slot-type doctrine and the S19 lint."""
+    agg = defaultdict(lambda: {'count': 0, 'operator': 0, 'complex': 0, 'transient': 0})
+    for cls in mod.src_slots:
+        for slot, s in mod.src_slots[cls].items():
+            t = s['type'] or '(none)'
+            a = agg[t]
+            a['count'] += 1
+            if 'OPERATOR' in (s['flags'] or '').upper():
+                a['operator'] += 1
+            if _COMPLEX_TYPE.search(t):
+                a['complex'] += 1
+            if 'TRANSIENT' in (s['flags'] or '').upper():
+                a['transient'] += 1
+    rows = [{'type': t, 'count': v['count'], 'operator': v['operator'],
+             'shape': 'complex' if _COMPLEX_TYPE.search(t) else 'simple',
+             'transient': v['transient']}
+            for t, v in sorted(agg.items(), key=lambda kv: -kv[1]['count'])]
+    _render(rows, args,
+            lambda r: f"{r['count']:>3}x  {r['type']:<20} {r['shape']:<8} OPERATOR={r['operator']} TRANSIENT={r['transient']}",
+            empty='(no @NiagaraProperty)')
+
+
+def cmd_ext_writable(mod, args):
+    """S19 ext-writable-shape lint preview: an OPERATOR-visible COMPLEX property (Status*) with NO
+    @NiagaraAction on its class is a WARN — an external client must write it as a bare complex,
+    which either rejects or silently zeroes (B823). The clean form is the oBIX child-leaf bare
+    <real> (B826-G2 [CERT-live]) or an additive OPERATOR action (B822)."""
+    rows = []
+    for cls in sorted(mod.src_slots):
+        has_action = bool(mod.src_actions.get(cls))
+        for slot, s in mod.src_slots[cls].items():
+            if not _COMPLEX_TYPE.search(s['type'] or ''):
+                continue
+            if 'OPERATOR' not in (s['flags'] or '').upper():
+                continue
+            verdict = 'WARN' if not has_action else 'ok(has-action)'
+            rows.append({'class': cls, 'slot': slot, 'type': s['type'],
+                         'verdict': verdict,
+                         'note': ('external write must use the oBIX child-leaf bare <real> '
+                                  '(…/value, B826-G2) or add an OPERATOR action (B822)')
+                                 if verdict == 'WARN' else 'class exposes an action'})
+    _render(rows, args,
+            lambda r: f"{r['verdict']:<14} {r['class']}.{r['slot']}  <{r['type']}>  {r['note']}",
+            empty='(no OPERATOR complex properties)')
+    if not (getattr(args, 'json', False) or getattr(args, 'csv', False)):
+        warns = sum(1 for r in rows if r['verdict'] == 'WARN')
+        print(f"# {len(rows)} OPERATOR complex properties; {warns} WARN (S19)")
+
+
+def cmd_compare(mod, args):
+    """Annotation-level schema diff between two module source versions: added/removed/retyped/
+    reflagged slots and actions — the schema-risk companion (does a bump retype/remove a slot?).
+    A = the <root> positional (older), B = the compare <srcB> positional (newer)."""
+    a = mod  # Module(<root>) = srcA
+    b = Module(args.srcB)
+    rows = []
+    all_cls = sorted(set(a.src_slots) | set(b.src_slots) | set(a.src_actions) | set(b.src_actions))
+    for cls in all_cls:
+        sa, sb = a.src_slots.get(cls, {}), b.src_slots.get(cls, {})
+        for slot in sorted(set(sa) | set(sb)):
+            if slot not in sa:
+                rows.append({'change': 'slot-added', 'ref': f'{cls}.{slot}', 'detail': sb[slot]['type']})
+            elif slot not in sb:
+                rows.append({'change': 'slot-removed', 'ref': f'{cls}.{slot}', 'detail': sa[slot]['type']})
+            else:
+                if sa[slot]['type'] != sb[slot]['type']:
+                    rows.append({'change': 'slot-retyped', 'ref': f'{cls}.{slot}',
+                                 'detail': f"{sa[slot]['type']} -> {sb[slot]['type']}"})
+                if (sa[slot]['flags'] or '') != (sb[slot]['flags'] or ''):
+                    rows.append({'change': 'slot-reflagged', 'ref': f'{cls}.{slot}',
+                                 'detail': f"{sa[slot]['flags']} -> {sb[slot]['flags']}"})
+        aa, ab = a.src_actions.get(cls, {}), b.src_actions.get(cls, {})
+        for act in sorted(set(aa) | set(ab)):
+            if act not in aa:
+                rows.append({'change': 'action-added', 'ref': f'{cls}.{act}()', 'detail': ''})
+            elif act not in ab:
+                rows.append({'change': 'action-removed', 'ref': f'{cls}.{act}()', 'detail': ''})
+    _render(rows, args, lambda r: f"{r['change']:<15} {r['ref']}  {r['detail']}",
+            empty='(no schema changes)')
+    if not (getattr(args, 'json', False) or getattr(args, 'csv', False)):
+        risky = sum(1 for r in rows if r['change'] in ('slot-removed', 'slot-retyped'))
+        print(f"# {len(rows)} changes; {risky} schema-RISK (removed/retyped — run schema-risk.sh, B795)")
+
+
+def cmd_callers(mod, args):
+    """Who calls a method across the tree (setSetpoint / forceDefrost / …)."""
+    rx = re.compile(r'\b' + re.escape(args.method) + r'\s*\(')
+    rows = []
+    for cur, dirs, files in os.walk(mod.root):
+        dirs[:] = [d for d in dirs if not d.startswith('.')]
+        for fn in sorted(files):
+            if not fn.endswith('.java'):
+                continue
+            path = os.path.join(cur, fn)
+            try:
+                for i, line in enumerate(open(path, encoding='utf-8', errors='replace'), 1):
+                    if rx.search(line):
+                        rows.append({'class': fn[:-5], 'line': i, 'text': line.strip()[:90]})
+            except Exception:
+                continue
+    _render(rows, args, lambda r: f"{r['class']}:{r['line']}  {r['text']}",
+            empty=f'(no callers of {args.method})')
+
+
 # in-memory selftest module: exercises multi-line annotation join, flags filter,
 # extends chain, and the .set()/setX writer scan.
 _SELFTEST_FILES = {
@@ -286,6 +409,14 @@ package com.x;
 public class BDashboardServlet extends BWebServlet {
   public String getServletName() { return "dashboardpan"; }
   void handleSetpointWrite() { parent.set(prop, toSet, null); }
+}
+''',
+    # OPERATOR complex slot with NO action on the class -> the S19 WARN case.
+    'BRoomPanel': '''
+package com.x;
+public class BRoomPanel extends BComponent {
+  @NiagaraProperty(name = "setpoint", type = "BStatusNumeric", flags = Flags.SUMMARY | Flags.OPERATOR)
+  @NiagaraProperty(name = "differentialUp", type = "double", flags = Flags.SUMMARY)
 }
 ''',
 }
@@ -328,45 +459,100 @@ def cmd_selftest(mod_ignored, args):
               'dynamic .set(prop,..) writer detected (runtime-resolved slot)')
         check(('BColdRoom', 'slot:/Programacion/ColdRoom_1') in m.ords, 'ORD literal captured')
 
+        # new-command pins — run each end-to-end and assert the fact it must report
+        import io, contextlib
+
+        def run(fn, **kw):
+            ns = argparse.Namespace(json=False, csv=False, module=None, **kw)
+            buf = io.StringIO()
+            with contextlib.redirect_stdout(buf):
+                fn(m, ns)
+            return buf.getvalue()
+
+        out_st = run(cmd_slot_types)
+        check('StatusNumeric' in out_st and 'complex' in out_st, 'slot-types: aggregates StatusNumeric as complex')
+        out_ew = run(cmd_ext_writable)
+        check('WARN' in out_ew and 'BRoomPanel.setpoint' in out_ew,
+              'ext-writable: flags BRoomPanel.setpoint (OPERATOR complex, no action) as S19 WARN')
+        check('BColdRoom.setpoint' in out_ew and 'ok(has-action)' in out_ew,
+              'ext-writable: BColdRoom.setpoint is ok (class has applySetpoint action)')
+        out_cl = run(cmd_callers, method='setSetpoint')
+        check('BColdRoom' in out_cl, 'callers: finds setSetpoint call site')
+
+    # compare across two synthetic versions (slot added in B)
+    with tempfile.TemporaryDirectory() as da, tempfile.TemporaryDirectory() as db:
+        open(os.path.join(da, 'BX.java'), 'w').write(
+            'class BX extends BComponent {\n@NiagaraProperty(name="a", type="double")\n}')
+        open(os.path.join(db, 'BX.java'), 'w').write(
+            'class BX extends BComponent {\n@NiagaraProperty(name="a", type="int")\n'
+            '@NiagaraProperty(name="defrostSkipped", type="boolean")\n}')
+        ns = argparse.Namespace(json=False, csv=False, srcB=db)
+        buf = io.StringIO()
+        with contextlib.redirect_stdout(buf):
+            cmd_compare(Module(da), ns)
+        out_cmp = buf.getvalue()
+        check('slot-added' in out_cmp and 'defrostSkipped' in out_cmp, 'compare: detects an added slot')
+        check('slot-retyped' in out_cmp and 'double -> int' in out_cmp, 'compare: detects a retype (schema-risk)')
+
     if fails:
         print(f'\nSELFTEST FAILED: {len(fails)} check(s)'); sys.exit(1)
     print('\nSELFTEST OK')
 
 
 def build_parser():
+    common = argparse.ArgumentParser(add_help=False)
+    common.add_argument('--json', action='store_true', help='machine JSON output')
+    common.add_argument('--csv', action='store_true', help='CSV output (header + rows)')
+
     p = argparse.ArgumentParser(prog='module-find.py', description=__doc__,
-                                formatter_class=argparse.RawDescriptionHelpFormatter)
+                                formatter_class=argparse.RawDescriptionHelpFormatter,
+                                parents=[common])
     p.add_argument('root', nargs='?', help='module src root (omit for selftest)')
-    p.add_argument('--json', action='store_true')
     sub = p.add_subparsers(dest='cmd', required=True)
 
-    s = sub.add_parser('slots', help='@NiagaraProperty declarations')
+    s = sub.add_parser('slots', parents=[common], help='@NiagaraProperty declarations')
     s.add_argument('--type', help='substring of the slot type')
     s.add_argument('--flags', help='require these flags (o/s/h/r/t or OPERATOR..)')
     s.add_argument('--name', help='regex on slot name')
     s.set_defaults(func=cmd_slots)
 
-    a = sub.add_parser('actions', help='@NiagaraAction declarations')
+    a = sub.add_parser('actions', parents=[common], help='@NiagaraAction declarations')
     a.add_argument('--name', help='regex on action name')
     a.set_defaults(func=cmd_actions)
 
-    w = sub.add_parser('writers', help='who writes a slot')
+    w = sub.add_parser('writers', parents=[common], help='who writes a slot')
     w.add_argument('slot')
     w.set_defaults(func=cmd_writers)
 
-    e = sub.add_parser('extends', help='class -> superclass map')
+    e = sub.add_parser('extends', parents=[common], help='class -> superclass map')
     e.add_argument('--of', help='resolve the full chain of one class')
     e.set_defaults(func=cmd_extends)
 
-    o = sub.add_parser('ords', help='ORD-shaped string literals')
+    o = sub.add_parser('ords', parents=[common], help='ORD-shaped string literals')
     o.add_argument('--name', help='regex on the ORD')
     o.set_defaults(func=cmd_ords)
 
-    g = sub.add_parser('grep', help='regex over class/slot/action names')
+    g = sub.add_parser('grep', parents=[common], help='regex over class/slot/action names')
     g.add_argument('regex')
     g.set_defaults(func=cmd_grep)
 
-    st = sub.add_parser('selftest', help='in-memory assertions (no tree needed)')
+    stp = sub.add_parser('slot-types', parents=[common], help='per-type summary (count/OPERATOR/complex/TRANSIENT)')
+    stp.add_argument('--module', help='(reserved) filter marker')
+    stp.set_defaults(func=cmd_slot_types)
+
+    ew = sub.add_parser('ext-writable', parents=[common], help='S19 lint preview: OPERATOR complex property without action')
+    ew.set_defaults(func=cmd_ext_writable)
+
+    cmp_ = sub.add_parser('compare', parents=[common],
+                          help='schema diff <root>(A,older) vs <srcB>(newer)')
+    cmp_.add_argument('srcB', help='source root B (newer) — <root> is A (older)')
+    cmp_.set_defaults(func=cmd_compare)
+
+    cal = sub.add_parser('callers', parents=[common], help='who calls a method across the tree')
+    cal.add_argument('method', help='method name, e.g. setSetpoint / forceDefrost')
+    cal.set_defaults(func=cmd_callers)
+
+    st = sub.add_parser('selftest', parents=[common], help='in-memory assertions (no tree needed)')
     st.set_defaults(func=cmd_selftest)
     return p
 
