@@ -30,12 +30,15 @@ translate") or, via the wrapped-`obj` shorthand, silently writes a DEFAULT (the 
 writes it, or accept the exact wrapped-`obj` contract in the client — never leave a bare complex OPERATOR property as
 the write target. `[ev: corpus B823]` `[ev: retro obix-statusnumeric-wrapped-put]`
 
-**Propagates through links? (live-verified):** a wrapped struct-child write to a linked `BStatusNumeric` SOURCE (the
-façade `Cuarto1/setpoint`) DOES propagate to the control TARGET (`Programacion/ColdRoom_1/setpoint`) — but the client
-must **read the CONTROL slot after ~1 s** (the dashboard lags one poll, ~6 s; a first read before the link executes is a false negative; two contradictory live
-reports arose this way). The propagation-timing mechanism (struct-child mutation vs slot replacement) is pending
-[Block 825]. So an external write must land on the slot the control READS, or on an action — writing a display-only
-mirror that has NO link to the control would set the display without moving the plant. `[ev: corpus B823]` `[ev: retro obix-statusnumeric-wrapped-put]`
+**Propagates through links? YES, synchronously (mechanism settled by [Block 825]):** an external write that lands as a
+TOP-SLOT REPLACEMENT (an oBIX wrapped `<obj>` PUT, the servlet, or fox — all decode into a detached copy then
+`parent.set(slot, copy)`, `ObixUtils.java:543/:558`) fires the slot's outgoing links SYNCHRONOUSLY on the writing
+thread (`SlotKnobs.propagate:31-46`, <1 ms). So a write to the façade SOURCE (`Cuarto1/setpoint`) propagates to the
+control TARGET (`ColdRoom_1/setpoint`) in <1 ms — the read-back "settle" is the READER's poll cadence (~1 s a
+control-slot poll / ~6 s the dashboard poller), NOT a propagation delay. Rule: an external write must land on the slot
+the control READS (or its link SOURCE), or on an action — a write to a display-only mirror with no link, or to the
+link-TARGET side (which the next source propagation overwrites, B816 §816.2), does not move the plant.
+`[ev: corpus B823]` `[ev: corpus B825]` `[ev: retro obix-statusnumeric-wrapped-put]`
 
 **Overlap caveat:** if the written slot is a link TARGET (driven BY a link, not a source), the external write is
 EPHEMERAL — the next propagation overwrites it (B816 §816.2). Confirm write-source vs write-target before relying on

@@ -30,8 +30,11 @@
 > (full verbatim record: `sources/probes/2026-09-06-viewer-obix-setpoint-live-record.md`, SOURCES.md registered)**:**
 > the escape hatch of §823.2 below is **CONFIRMED** — the exact working body is
 > **`<obj is="/obix/def/baja:StatusNumeric"><real name="value" val="2.5"/></obj>` → `200 OK`, value `2.5 {ok}`,
-> persisted** (not a display mirror). **Measured latency (record §7):** PUT `132 ms` warm; control-side propagation
-> `< 1 s` (the panel→control link fires ~20–30 ms after the PUT returns); dashboard/DB `~6 s` (the poller cycle). The GET is
+> persisted** (not a display mirror). **Mechanism ([Block 825]):** the write is a TOP-SLOT REPLACEMENT (decode into a
+> detached `newCopy` → `parent.set(slot, copy)`, `ObixUtils.java:543/:558`) — identical to the servlet — so the slot's
+> outgoing link fires SYNCHRONOUSLY on the writing thread (`SlotKnobs.propagate:31-46`, <1 ms). **Measured (record §7):**
+> PUT `132 ms` warm; control side reflected within `<1 s` (same engine cycle). The `~6 s` dashboard lag is the READER's
+> poll cadence (the poller's 5 s cycle), NOT propagation. The GET is
 > `<real val="3.0" is="/obix/def/baja:StatusNumeric" display="3.00 °C {ok}" unit="obix:units/celsius"/>` — **NO
 > `writable="true"`, no `<op>`**, yet the wrapped PUT still writes. So **"writable attribute absent ≠ read-only"** — a
 > hand-crafted wrapped PUT bypasses the never-advertised `writable` (this CORRECTS §823.2's "no client will attempt"
@@ -46,10 +49,14 @@
 > | **`<obj is="/obix/def/baja:StatusNumeric"><real name="value" val="2.5"/></obj>`** | **`200 OK`, `2.5 {ok}`, holds** ✅ |
 > **It PROPAGATES to control:** the wrapped PUT on `Cuarto1/setpoint` (the RoomPanel façade) followed through the live
 > panel→control link to `Programacion/ColdRoom_1/setpoint` — both `2.5`, Supabase `latest` `2.5`. `[CERT-live, two
-> probes]` **Read-timing caveat:** a FIRST read taken moments after the PUT showed the control still at `3.0` (link
-> not yet executed) → a premature "no-effect" conclusion that a re-read after ~1 s corrected. So the client must
-> **read the CONTROL slot after ~1 s** (the dashboard/DB lags one poll, ~6 s) before concluding effect (the
-> propagation-timing mechanism — struct-child mutation vs slot replacement — is **pending [Block 825]**).
+> probes]` **Read-timing caveat (READER discipline, NOT a propagation lag — [Block 825]):** the control slot updates
+> synchronously in <1 ms, but a POLLED reader sees the old value until its next poll. A FIRST read taken moments after
+> the PUT showed `3.0` because the reader had not re-polled — a false negative; re-reading after ~1 s (control) / ~6 s
+> (dashboard/DB poller) shows the propagated `2.5`. So read-back after the READER's poll cadence — the propagation
+> itself is already done.
+> **Link source vs target ([Block 816] §816.2):** the probe wrote the SOURCE side (`Cuarto1/setpoint`, which DRIVES
+> the link) → it propagates and STICKS. A write to the link-TARGET side (`ColdRoom_1/setpoint`, flags `sL`) would be
+> EPHEMERAL — overwritten on the next source propagation. Write the façade SOURCE, not the control target.
 > **The silent-zero HAZARD:** the attr-only `<obj … val="2.5"/>` returns `200` but writes `0.0` (the `value` child is
 > missing so the property defaults) — a write that LOOKS successful and sets the setpoint to ZERO. The body must carry
 > the `value` child exactly, and the client must read the control slot back after ~1 s. Channel 1 is a VIABLE no-code path but

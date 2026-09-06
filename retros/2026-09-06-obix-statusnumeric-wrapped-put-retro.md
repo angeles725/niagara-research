@@ -29,9 +29,11 @@ The wrapped body WRITES and REACHES CONTROL: `<obj is="/obix/def/baja:StatusNume
 2. **The attr-only `<obj>` is a SILENT-ZERO footgun.** `<obj is="…:StatusNumeric" val="2.5"/>` (the value as an
    ATTRIBUTE on the obj, no `value` CHILD) returns `200 OK` but writes `0.0` — the missing child defaults the property.
    A write that looks successful and sets the setpoint to zero. Only the exact `value`-child body is safe.
-3. **The link propagation takes a SETTLE.** A first control read moments after the PUT showed `3.0` (link not yet
-   executed) → a premature "did not propagate" report that a re-read after ~1 s corrected to `2.5`. The
-   propagation-timing mechanism (struct-child mutation vs slot replacement) is **pending [B825]**.
+3. **It propagates — SYNCHRONOUSLY; the "settle" is the READER's poll, not a propagation delay.** [B825] settled the
+   mechanism: the oBIX write is a TOP-SLOT REPLACEMENT (decode into a detached `newCopy` → `parent.set(slot, copy)`,
+   `ObixUtils.java:543/:558`), identical to the servlet, so the slot's link fires synchronously on the writing thread
+   (`SlotKnobs.propagate:31-46`, <1 ms). The control slot was live in <1 ms; the first read showed `3.0` only because
+   the READER had not re-polled. NOT an in-place child mutation, and NOT a deferred propagation.
 
 ## Proven Lessons
 1. **A decoder-path finding is a HYPOTHESIS until the live probe.** "The decoder can set it" (`setFromVal`) was
@@ -45,9 +47,10 @@ The wrapped body WRITES and REACHES CONTROL: `<obj is="/obix/def/baja:StatusNume
 3. **A single early read is NOT evidence of no-effect — re-read after a settle before concluding.** This session
    produced TWO contradictory live reports within minutes: "the write moved only the display mirror, control stayed
    3.0" then, on a clean re-test, "it propagated, both 2.5". The first read was taken before the panel→control link
-   executed. For any write whose effect crosses a link/propagation, the read-back must wait the settle (~1 s control-side; the dashboard poll lags ~6 s); a premature read
-   is a false negative that nearly shipped a wrong conclusion. (Pairs with lesson 1 — the live probe closes it, but
-   only a CORRECTLY-TIMED live probe.)
+   executed. The mechanism ([B825]) is that the write + link propagation are SYNCHRONOUS (<1 ms) — so the settle to wait
+   is the READER's poll cadence (~1 s a control-slot poll / ~6 s the dashboard poller), NOT a propagation delay; a read
+   sooner than the reader's poll period is a false negative that nearly shipped a wrong conclusion. (Pairs with lesson 1
+   — the live probe closes it, but only a CORRECTLY-TIMED live probe.)
 4. **Read-only-first + one test room + explicit user authorization** is the right shape for a live protocol probe —
    the GET and the six PUT forms were exercised before anything load-bearing, and only after Cristian authorized it.
 
