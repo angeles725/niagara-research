@@ -50,7 +50,9 @@ must be `@AuditableSpace` — `BComponentSpace` is (`:77`), so the station space
 **The two attribution facts that decide the design**: (a) the servlet write leaves NO Niagara audit record at all (the
 [S12] `[INFER]` is now `[CERT]` — suppressed, not merely unattributed); (b) the fox/oBIX writes ARE audited but to the
 STATION/oBIX login user, which — for the write-server — is the ONE shared write user, not the real operator. So **no
-Niagara-side trail carries the REAL operator identity for a remote write.** `[CERT]`
+Niagara-side trail carries the REAL operator identity for a remote write.** `[CERT]` (On PANCCADIA the "if installed"
+qualifier IS satisfied — an `AuditHistoryService` is present at `/PANCCADIA/AuditHistory`, B829-G1 CLOSED — so the
+oBIX/fox writes genuinely persist there and the servlet gap is PURELY the null-Context code gate, not a config gap.)
 
 ## 829.3 — What settles the [S12] [INFER] `[CERT]`
 [S12] Part 2 marked "null-Context → no Baja AuditHistory event" as `[INFER-grounded]` (module has no wiring; station-level
@@ -113,9 +115,11 @@ per-write-path audit matrix, the S12 settle, and the unified-trail design.
   the source of truth.
 
 ## Open gaps
-- **B829-G1** (requires-execution): confirm on PANCCADIA whether an `AuditHistoryService` is installed+started (so the
-  oBIX/fox writes actually persist to `station:/AuditHistory`), and read one AuditRecord to confirm the userName for an
-  oBIX write = the write user. Pairs with [B825]-G1 / the live probe.
+- **B829-G1** — the service-installed half is CLOSED `[CERT]` (companero's `bog-nav.py … find --type h:AuditHistoryService`
+  → `Services/AuditHistoryService`, id `/PANCCADIA/AuditHistory`, recordType `history:AuditRecord`): the `AuditHistoryService`
+  IS installed on PANCCADIA, so `Nre.auditor` is set and the oBIX/fox writes DO persist to `/PANCCADIA/AuditHistory` — the
+  servlet suppression is therefore PURELY the null-Context gate (§829.1), NOT a missing service. Residual (requires-execution):
+  read one AuditRecord to confirm an oBIX write's `userName` = the (shared) write user.
 - **B829-G2** (bounded): whether passing a real user Context from the servlet (instead of `null`) is feasible — the servlet
   authenticates `req.getRemoteUser()`; resolving it to a `BUser` and passing it as the `set()` Context would make the
   servlet write Niagara-audited (a design change to evaluate vs the [B816] overlap discipline).
