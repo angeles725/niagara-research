@@ -139,6 +139,11 @@ C9 research/build core = **#1 protection-latch fixture** (built below) + **#2 wr
   NEEDED is under research:** B822 (investigador1) = additive alternatives + retype schema-risk; **companero's no-code
   block** (next § after B822) = can a plain-double oBIX PUT reach `setpoint` with NO module change at all. Pending
   evidence: B822, the no-code block, + a read-only oBIX GET on that ORD from the mini-PC if Cristian authorizes.
+  **Requires-execution live tests (authorized, TEST room only):** **B822-G1** — a live smoke that
+  `POST /obix/config/…/applySetpoint` with `<real val=".."/>` INVOKES and that the oBIX login user's `OPERATOR_INVOKE`
+  gates it (evidence B822 `9d1a336b1`); **B823-G1** — read-only bog/GET to settle the link-target + the oBIX
+  `BStatusNumeric` GET encoding; **B823-G2** — the servlet `POST /dashboardpan/api/setpoint` proof (200 + one auditLog
+  line). Pair all three in one read-only-first live session. `[ev: corpus B822]` `[ev: corpus B823]`
 - **S13 · Health surface — raise the RT protection tier from 2 to 1 (alarm console).** Gap (B821 §821.4, verified
   `fbe9009`): our RT protection surfacing TOPS OUT at tier 2 (a plain `SUMMARY` slot only someone at Workbench/SPA
   sees); tier 1 (the alarm console) is ENTIRELY unused — a clean grep of `ColdRoomPan-rt/src` + `CompPan-rt/src` for

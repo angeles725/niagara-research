@@ -31,7 +31,7 @@ Date: 2026-09-05 · Module: kit · SDD: build-n4-module-campaign8 (PRs #63–#70
 4. **The `/tmp` session scratchpad was WIPED mid-campaign, losing audit notes.** Every draft now goes to a repo path
    (`sources/probes/`) — this is WHY `sources/probes/` exists as the draft sink now. **Delta:** draft artifacts (PR
    bodies, audit notes, fold drafts) land in a repo, never only in `/tmp`. **Target:** `METHODOLOGY.md` §Multi-session
-   / a process rule; ties to C9 seed S17. `[ev: corpus S17 (C9 seed a5a2e5cba)]` [INFER — the wipe is lead/companero-observed this session]
+   / a process rule; ties to C9 seed S17. `[ev: seed S17 (a5a2e5cba)]` [INFER — the wipe is lead/companero-observed this session]
 5. **A GitHub outage hit mid-merge.** Recovery: fast-forward from the remote-TRACKING ref (`origin/main`) and push
    later when the remote returned — never block the chain on the outage. **Delta:** a resilience note in the deploy/
    merge flow — ff from the tracking ref, defer the push. **Target:** `BUILD-LOOP.md` §6/§7 note. `[INFER — lead-observed]`
@@ -52,7 +52,7 @@ Date: 2026-09-05 · Module: kit · SDD: build-n4-module-campaign8 (PRs #63–#70
 9. **AI-attribution trailers keep reappearing in commits.** K11 (grep for `co-authored|generated with|claude`) is
    advisory only; the durable fix is a `commit-msg` git hook that REJECTS them. **Delta:** promote K11 from an
    advisory grep to a machine-enforced `commit-msg` hook (C9 seed S9). **Target:** C9 S9 (`toolbelt` + `.githooks`);
-   `METHODOLOGY.md` K11 gains a pointer once S9 ships. `[ev: corpus S9 (C9 seed a5a2e5cba)]` [INFER — recurrence is lead/companero-observed]
+   `METHODOLOGY.md` K11 gains a pointer once S9 ships. `[ev: seed S9 (a5a2e5cba)]` [INFER — recurrence is lead/companero-observed]
 
 ## Proposed kit deltas (summary → target §)
 | # | Delta | Target § | Token |
@@ -60,12 +60,12 @@ Date: 2026-09-05 · Module: kit · SDD: build-n4-module-campaign8 (PRs #63–#70
 | 1 | real-module smoke on all 4 modules + mktemp-pre-fix RED pin per lead-found defect | `BUILD-LOOP.md` §5/§7 | `[ev: retro campaign8-slot-per-slot]` `[ev: retro campaign8-rc-scan]` |
 | 2 | four-file fragment-merge protocol | `METHODOLOGY.md` §Multi-session (K12) | `[ev: retro campaign8-slot-per-slot]` |
 | 3 | ledger-budget reset per PR | ORCHESTRATION.md (PR17) | `[INFER]` |
-| 4 | drafts to a repo not /tmp | §Multi-session / S17 | `[ev: corpus S17]` |
+| 4 | drafts to a repo not /tmp | §Multi-session / S17 | `[ev: seed S17 (a5a2e5cba)]` |
 | 5 | ff from tracking ref on remote outage | `BUILD-LOOP.md` §6/§7 | `[INFER]` |
 | 6 | inspect worker via git not TaskOutput | ORCHESTRATION.md | `[INFER]` |
 | 7 | mutation tables record OBSERVED flips | `METHODOLOGY.md` §Kit maintenance | `[ev: retro campaign8-lint-timers-ext]` |
 | 8 | real counts over design estimates (reinforces C7-close L1) | `METHODOLOGY.md` §Kit maintenance | `[ev: retro campaign8-facets-lint]` |
-| 9 | K11 → commit-msg hook | C9 S9 | `[ev: corpus S9]` |
+| 9 | K11 → commit-msg hook | C9 S9 | `[ev: seed S9 (a5a2e5cba)]` |
 
 ## Self-verify
 | # | Claim | Marker | Evidence |
