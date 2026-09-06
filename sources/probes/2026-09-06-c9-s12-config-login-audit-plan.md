@@ -38,20 +38,20 @@ Exact request/response contract, re-anchored at `a109249`(=`fbe9009`):
 ```
 POST /dashboardpan/api/setpoint HTTP/1.1        # servlet name "dashboardpan" (BDashboardServlet.java:81-84)
 Authorization: Basic <base64(writeUser:pass)>   # or Cookie: JSESSIONID=<niagara web login>
-X-Requested-With: XMLHttpRequest                # REQUIRED — else 302 Redirect (DashboardDispatch.java:27-28,34)
+X-Requested-With: XMLHttpRequest                # REQUIRED — else 302 Redirect (executable guard DashboardDispatch.java:121-126)
 Content-Type: application/json
 
-{"ord":"Cuarto1/setpoint","value":4.0}          # route: POST /api/setpoint -> SetpointWrite (DashboardDispatch.java:24)
+{"ord":"Cuarto1/setpoint","value":4.0}          # route: POST /api/setpoint -> SetpointWrite (DashboardDispatch.java:59-60)
 ```
 - **Guards, in order (all [CERT] at `a109249`):**
-  1. **X-Requested-With missing → 302** redirect home (NOT 4xx) — `DashboardDispatch.java:27-28`.
+  1. **X-Requested-With missing → 302** redirect home (NOT 4xx) — the executable `/api/` XHR guard → `Redirect(REDIRECT_HOME)` at `DashboardDispatch.java:121-126` (the `SetpointWrite` route is `:59-60`; earlier line refs were the class javadoc, not code).
   2. **No authenticated station user → 401** `SC_UNAUTHORIZED` — `DashboardRbacHelper.java:36,41` (`req.getRemoteUser()`).
   3. **User lacks `OPERATOR_WRITE` bit → 403** `SC_FORBIDDEN`, **FAIL-CLOSED** (any exception denies) — `DashboardRbacHelper.java:19,55-56`. Checks the permission BIT, not a role name; username is SlotPath-escaped (`Cristian Angeles`→`Cristian$20Angeles`, `:49`).
   4. **Invalid value → 400** `SC_BAD_REQUEST` — the PR#7 numeric-validation guard "reject missing/empty/NaN before coercion" at `BDashboardServlet.java:274-283` (plus the ORD-resolve/traversal 400s at `:216,225,234,256,265`).
 - **The write:** `coerceValue(current, value)` (`BDashboardServlet.java:357`, `new BStatusNumeric(parseDouble)`) → `parent.set(prop, toSet, null)` (`:291`) — reaches the same slot as `setSetpoint`, via a **null-Context** servlet write. `[CERT]`
 - **Response:** `200` `{"ok":true}` on success; the 3xx/4xx above otherwise. `[CERT]`
 - **Audit lands in BOTH trails:** (a) the module's `auditLog` ring — `svc.appendAudit(JsonUtil.buildAuditEntry(...))` (`BDashboardServlet.java:312`; ring 500, `BDashboardService.java:68-72,256`), `{ts,user,action:"setpoint",ord,oldValue,newValue}`; **and** (b) the write-server's Supabase `audit` (Part 1). `[CERT for (a)]`
-- **Single-station-user attribution caveat `[CERT]`:** the servlet write uses `parent.set(..., null)` (null Context) → **no Baja AuditHistory operator-write event**, and the station side sees only the ONE shared write user. So Niagara cannot attribute the change to a person — **the real operator identity lives ONLY in the write-server's Supabase `audit.email`** (the config-session). This is WHY Part 1's audit is authoritative, not the module ring. `[CERT — B823 §823.4]`
+- **Single-station-user attribution caveat `[INFER-grounded]`:** the servlet write uses `parent.set(..., null)` (null Context → carries no user), and DashboardPan-rt has NO AuditHistory wiring (`grep AuditHistory|BAuditHistoryService DashboardPan-rt/src` → 0, `[CERT]`), so the MODULE raises no operator-write event. Whether a STATION-level `AuditHistoryService` fires on that slot is a station-config question not verifiable from module source (`[INFER]`). Either way the station sees only the ONE shared write user, so it cannot attribute the change to a PERSON — **the real operator identity lives ONLY in the write-server's Supabase `audit.email`** (the config-session). That is WHY Part 1's audit is authoritative, not the module ring. `[CERT for the module absence; INFER for station-level; B823 §823.4]`
 
 **Phase 2 — the additive `applySetpoint(BDouble)` action ([B822]), ONLY if the servlet path is rejected** (e.g. they want
 an oBIX-native write + a Niagara-side audit event): add `@NiagaraAction(flags=Flags.OPERATOR) applySetpoint(BDouble)` on
