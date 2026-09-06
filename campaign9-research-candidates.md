@@ -122,6 +122,23 @@ C9 research/build core = **#1 protection-latch fixture** (built below) + **#2 wr
   the same six cases against the servlet (no-step-up→401/403, wrong-pw→401+no-token, valid→200+one audit line,
   logout→invalid, A-after-logout→rejected, audit-fail→write-lands+alarm; audit-failure never fails the write, DWS1
   gate 5). `[ev: corpus B803]` `[ev: corpus B816]` `[ev: corpus B804]` `[ev: corpus B813]`
+  **Write-path detail (viewer-confirmed, verified `write-server.mjs`):** every write lands on
+  `${FACADE_PATH}/CuartoN/<slot>` = `/config/Services/DashboardService/CuartoN/<slot>` (`FACADE_PATH`:41, ord regex
+  `^Cuarto([1-5])/(.+)$`:229, PUT:235) — NEVER `ColdRoom_N`/`CompressorControl`. Body per family (`obixBody`:95-120):
+  NUM/HOA/AUTOOFF → `<real>` (HOA `0=Auto 1=On 2=Off` as a double), BOOL → `<bool>`, reltime → `<reltime val="PT..S"/>`;
+  the `WRITABLE` map (:77-88) lists the writable slots and **does NOT include `setpoint`**.
+  **The setpoint refusal — root cause (verified):** `BRoomPanel.setpoint` ALREADY carries `Flags.SUMMARY|Flags.OPERATOR`
+  and is a `BStatusNumeric` COMPLEX (`BRoomPanel.java:125-128` annotation / `:654` generated, client `deed38c`; lead
+  cited a109249) — a bare `<real>` PUT to a complex sink → oBIX "Cannot translate"; an earlier RETYPE attempt crashed
+  the station on bog load (B800 §800.8). **Decision recorded with the user:** an ADDITIVE `setpointCmd` (plain `double`,
+  `SUMMARY|OPERATOR`) on `BRoomPanel`; `changed(setpointCmd)` → `setSetpoint(new BStatusNumeric(v))`; init from
+  `setpoint` at start; LINKS UNTOUCHED; `schema-risk.sh` must read SAFE against the real bog before deploy; write-server
+  adds `setpointCmd` to `WRITABLE` as NUM; the viewer drops the readonly and writes `setpointCmd` while DISPLAYING
+  `setpoint`. RED (additive path): a pure panel-core test (`cmd → setpoint value + status ok`), `DashboardDispatchTest`
+  servlet path, a `schema-risk` SAFE pin, a write-server unit test for the new key. **Whether the additive slot is even
+  NEEDED is under research:** B822 (investigador1) = additive alternatives + retype schema-risk; **companero's no-code
+  block** (next § after B822) = can a plain-double oBIX PUT reach `setpoint` with NO module change at all. Pending
+  evidence: B822, the no-code block, + a read-only oBIX GET on that ORD from the mini-PC if Cristian authorizes.
 - **S13 · Health surface — raise the RT protection tier from 2 to 1 (alarm console).** Gap (B821 §821.4, verified
   `fbe9009`): our RT protection surfacing TOPS OUT at tier 2 (a plain `SUMMARY` slot only someone at Workbench/SPA
   sees); tier 1 (the alarm console) is ENTIRELY unused — a clean grep of `ColdRoomPan-rt/src` + `CompPan-rt/src` for
@@ -161,9 +178,12 @@ C9 research/build core = **#1 protection-latch fixture** (built below) + **#2 wr
   private-field), so no trip reaches the operator's alarm queue (only someone actively at Workbench/SPA sees it).
   B821 §821.4 = the four surface tiers (ours top out at tier 2; tier 1 unused); §821.6 = the silent list. **Fix:** a
   `BAlarmSourceExt` on the critical trips → pushes to the alarm queue with ack/unack/history. This is the CROSS-CUTTING
-  design gap; **S13 is its concrete per-module discharge** (which slots to add). Requires execution: PARTIAL (station
-  smoke). RED: a critical trip raises a `BAlarmRecord`/`BAlarmSourceExt` reaching the alarm DB, not just a SUMMARY
-  slot. `[ev: corpus B821 §821.4]` `[ev: corpus B821 §821.6]`
+  design gap; **S13 is its concrete per-module discharge** (which slots to add). **Kit doctrine target:**
+  `types/logic.md` §"Protection anatomy" (the four surface tiers) + a SILENT-PROTECTION lint candidate (a sibling of
+  B820's demand-in-scope check: a protection trip whose only surface is a private field / bare SUMMARY slot, with no
+  `BAlarmSourceExt`, → WARN). Requires execution: PARTIAL (station smoke) — **B821-G2** is the live alarm-console
+  confirm. RED: a critical trip raises a `BAlarmRecord`/`BAlarmSourceExt` reaching the alarm DB, not just a SUMMARY
+  slot; the lint FAILs a trip with no alarm surface. `[ev: corpus B821 §821.4]` `[ev: corpus B821 §821.6]`
 
 **Ties to the already-drafted C8 doc PRs:** S5→PR19 (0590c2b7f), S6→PR18 (f7a4521ee); the orchestration/retro loop
 (PR16 110f583ad / PR17 d5f979f88) frames how every S-seed closes: research block → spec → RED → apply → retro → fold.
