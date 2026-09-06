@@ -101,6 +101,11 @@ absolutas verificadas; NO re-decompilar ni re-descargar lo que ya está acá.
   X-Requested-With antes de compilar). --mock <file.json> para datos; sin él, /api/*
   da {} (el diseño/paleta se ve igual). Ejemplo con mock animado: el propio módulo
   puede traer un preview-server.py (ver DashboardPan-ux/preview-server.py).
+  --config-login (C9 R14): previsualiza el "segundo login dentro del dashboard antes de
+  escribir" sobre el rc/ REAL sin tocar el módulo — inyecta un modal nativo + chip de
+  sesión + tira change_log y mockea /config/login|logout|session con estado (401/200+
+  cookie, TTL deslizante --config-ttl, clave demo --config-password). Escribir sin
+  sesión → 403 + modal; con sesión → 200 + fila change_log (superficie B).
 
 ────────────────────────────────────────────────────────────────────────
 8. bog-nav — navegar el config.bog de una ESTACIÓN (grafo guardado)

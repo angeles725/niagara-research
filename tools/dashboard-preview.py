@@ -28,6 +28,20 @@ For an ANIMATED mock (jittered values, status colors), a module may ship its own
 thin wrapper (see the DashboardPan-ux/preview-server.py worked example, which builds
 the {v,st} payload in code). This generic tool keeps to static/empty by design.
 
+CONFIG-LOGIN FLOW MOCK (--config-login): previews the C9 R14 "second login inside the
+dashboard before any write" UX on the REAL rc/ with zero module edits. Injects a native-
+looking modal + a session chip + a change_log strip into the served HTML and adds STATEFUL
+endpoints that mirror the R14 servlet contract:
+  POST <prefix>/config/login   {user,pass} -> 200 {ok,user,ttl} + cookie | 401 {error:"auth"}
+  POST <prefix>/config/logout  -> 200, session cleared
+  GET  <prefix>/config/session -> {active,user,remaining}
+  POST <prefix>/api/*          -> 403 {error:"config_login_required"} without a live session;
+                                  with one: 200 + a change_log row (surface "B", config_session)
+  GET  <prefix>/__mock/change_log -> the rows (what the R7 mirror would write)
+The SPA's own fetch() to /api/* is intercepted: no session -> the modal opens, the write is
+held, and re-issued after login. Demo password: --config-password (default 1234); session
+TTL: --config-ttl seconds (default 120, sliding on each write; logout ends it at once).
+
 USAGE:
   python3 tools/dashboard-preview.py --rc <module>/src/rc --prefix /dashboardpan
   python3 tools/dashboard-preview.py --rc ./src/rc --prefix /mymod --port 9000 --mock mock.json
@@ -38,7 +52,9 @@ Requires only Python 3 stdlib. Ctrl+C to stop.
 import argparse
 import json
 import os
+import secrets
 import sys
+import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 MIME = {
@@ -138,9 +154,126 @@ EDITOR_SNIPPET = """
 </script>
 """
 
+CONFIG_LOGIN_SNIPPET = r"""
+<style id="__cl_css">
+  #__cl{position:fixed;inset:0;z-index:2147483000;display:none;align-items:center;justify-content:center;
+        background:rgba(27,28,23,.55)}
+  #__cl.open{display:flex}
+  #__cl .card{width:min(440px,92vw);background:var(--surface,#fff);border:1px solid var(--line,#e2ded3);
+        box-shadow:0 30px 90px rgba(27,28,23,.35);font-family:inherit;color:var(--ink,#1b1c17)}
+  #__cl .ch{padding:13px 20px;border-bottom:1px solid var(--line-2,#eeebe3);font-family:var(--display,inherit);font-size:16px}
+  #__cl .body{padding:16px 20px 18px}
+  #__cl p{margin:0 0 11px;font-size:11px;line-height:1.8;color:var(--muted,#8b8a7c)}
+  #__cl label{display:block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted,#8b8a7c);margin:8px 0 4px}
+  #__cl input{width:100%;box-sizing:border-box;min-height:44px;font-size:15px;padding:8px 12px;background:var(--surface-2,#faf9f5);
+        border:1px solid var(--line,#e2ded3);color:var(--ink,#1b1c17)}
+  #__cl .acts{display:flex;gap:8px;margin-top:14px;align-items:center;justify-content:flex-end}
+  #__cl button{min-height:44px;min-width:110px;padding:8px 16px;font-size:13px;letter-spacing:.06em;cursor:pointer;
+        border:1px solid var(--line,#e2ded3);background:var(--surface-2,#faf9f5);color:var(--ink,#1b1c17)}
+  #__cl button.pri{background:var(--sage,#6c715d);border-color:var(--sage-d,#545948);color:#fff}
+  #__cl .err{display:none;color:var(--alarm,#b23f2f);font-size:11px;margin-top:8px}
+  #__cl .err.on{display:block}
+  #__chip{position:fixed;top:10px;right:12px;z-index:2147482999;display:none;align-items:center;gap:10px;
+        background:var(--surface,#fff);border:1px solid var(--line,#e2ded3);padding:6px 10px 6px 12px;font-size:11px;
+        letter-spacing:.06em;color:var(--ink,#1b1c17);box-shadow:0 8px 24px rgba(27,28,23,.18)}
+  #__chip.on{display:flex}
+  #__chip b{color:var(--sage-d,#545948)}
+  #__chip button{min-height:34px;padding:4px 10px;font-size:11px;cursor:pointer;border:1px solid var(--line,#e2ded3);
+        background:var(--surface-2,#faf9f5);color:var(--ink,#1b1c17)}
+  #__log{position:fixed;right:12px;bottom:12px;z-index:2147482998;width:min(520px,94vw);background:var(--surface,#fff);
+        border:1px solid var(--line,#e2ded3);box-shadow:0 8px 24px rgba(27,28,23,.18);font-size:11px;color:var(--ink,#1b1c17)}
+  #__log .h{padding:6px 10px;border-bottom:1px solid var(--line-2,#eeebe3);letter-spacing:.12em;text-transform:uppercase;
+        color:var(--muted,#8b8a7c);font-size:10px;cursor:pointer;display:flex;justify-content:space-between}
+  #__log table{width:100%;border-collapse:collapse;font-family:var(--mono,monospace);font-size:10px}
+  #__log td{padding:3px 8px;border-bottom:1px solid var(--line-2,#eeebe3);white-space:nowrap}
+  #__log.min table{display:none}
+</style>
+<div id="__cl" role="dialog" aria-modal="true"><div class="card">
+  <div class="ch">Confirmar identidad para escribir</div>
+  <div class="body">
+    <p>Esta pantalla usa una sesi&oacute;n compartida del panel. Para <b>cambiar un valor</b> se pide tu usuario de la
+       estaci&oacute;n: el cambio queda registrado a tu nombre. La sesi&oacute;n de configuraci&oacute;n dura
+       <b><span id="__cl_ttl">--</span></b> y se cierra al pulsar <b>Salir</b>.</p>
+    <label for="__cl_u">Usuario (estaci&oacute;n)</label><input id="__cl_u" autocomplete="username" autocapitalize="off">
+    <label for="__cl_p">Contrase&ntilde;a</label><input id="__cl_p" type="password" autocomplete="current-password">
+    <div class="err" id="__cl_err">Credenciales inv&aacute;lidas. Int&eacute;ntalo de nuevo.</div>
+    <div class="acts"><button type="button" id="__cl_cancel">Cancelar</button><button type="button" class="pri" id="__cl_ok">Entrar</button></div>
+  </div></div></div>
+<div id="__chip"><span>&#128274; <b id="__chip_u"></b> &middot; <span id="__chip_t">--:--</span></span><button type="button" id="__chip_out">Salir</button></div>
+<div id="__log" class="min"><div class="h" id="__log_h"><span>Registro de cambios (mock change_log, superficie B)</span><span id="__log_n">0</span></div><table><tbody id="__log_b"></tbody></table></div>
+<script id="__cl_js">
+(function(){
+  var P="__PREFIX__", sess={active:false,user:null,remaining:0}, pending=null, tick=null;
+  var $=function(i){return document.getElementById(i)};
+  function xhr(){return {"X-Requested-With":"XMLHttpRequest","Content-Type":"application/json"}}
+  var rawFetch=window.fetch.bind(window);
+  function fmt(s){s=Math.max(0,s|0);return (s/60|0)+":"+("0"+(s%60)).slice(-2)}
+  function paint(){ $("__chip").classList.toggle("on",!!sess.active); if(sess.active){$("__chip_u").textContent=sess.user;$("__chip_t").textContent=fmt(sess.remaining);} }
+  function refresh(){ return rawFetch(P+"/config/session",{headers:xhr()}).then(function(r){return r.json()}).then(function(j){sess=j;paint();$("__cl_ttl").textContent=fmt(j.ttl||0);return j}).catch(function(){}) }
+  function loop(){ clearInterval(tick); tick=setInterval(function(){ if(sess.active){sess.remaining--; if(sess.remaining<=0){sess.active=false;refresh();} paint();} },1000) }
+  function open(){ $("__cl_err").classList.remove("on"); $("__cl_p").value=""; $("__cl").classList.add("open"); setTimeout(function(){($("__cl_u").value?$("__cl_p"):$("__cl_u")).focus()},50) }
+  function close(){ $("__cl").classList.remove("open") }
+  function isWrite(url,init){ try{ var u=new URL(url,location.href); return (init&&String(init.method||"GET").toUpperCase()==="POST") && u.pathname.indexOf(P+"/api/")===0; }catch(e){return false} }
+  window.fetch=function(url,init){
+    if(!isWrite(url,init)) return rawFetch(url,init);
+    if(sess.active) return rawFetch(url,init).then(function(r){ if(r.status===403){ return hold(url,init); } logRefresh(); return r; });
+    return hold(url,init);
+  };
+  function hold(url,init){ return new Promise(function(res,rej){ pending={url:url,init:init,res:res,rej:rej}; open(); }) }
+  $("__cl_cancel").onclick=function(){ close(); if(pending){ var p=pending; pending=null; p.res(new Response(JSON.stringify({ok:false,error:"config_login_cancelled"}),{status:403,headers:{"Content-Type":"application/json"}})); } };
+  $("__cl_ok").onclick=function(){
+    var u=$("__cl_u").value.trim(), pw=$("__cl_p").value;
+    rawFetch(P+"/config/login",{method:"POST",headers:xhr(),body:JSON.stringify({user:u,pass:pw})}).then(function(r){
+      if(r.status!==200){ $("__cl_err").classList.add("on"); $("__cl_p").value=""; $("__cl_p").focus(); return; }
+      return r.json().then(function(j){ sess={active:true,user:j.user,remaining:j.ttl,ttl:j.ttl}; paint(); loop(); close();
+        if(pending){ var p=pending; pending=null; rawFetch(p.url,p.init).then(function(rr){ logRefresh(); refresh(); p.res(rr); },p.rej); } });
+    });
+  };
+  $("__cl_p").addEventListener("keydown",function(e){ if(e.key==="Enter") $("__cl_ok").click(); });
+  $("__chip_out").onclick=function(){ rawFetch(P+"/config/logout",{method:"POST",headers:xhr()}).then(function(){ sess={active:false,user:null,remaining:0}; paint(); }) };
+  $("__log_h").onclick=function(){ $("__log").classList.toggle("min") };
+  function logRefresh(){ rawFetch(P+"/__mock/change_log",{headers:xhr()}).then(function(r){return r.json()}).then(function(rows){
+    $("__log_n").textContent=rows.length; var b=$("__log_b"); b.innerHTML="";
+    rows.slice(-6).reverse().forEach(function(x){ var tr=document.createElement("tr");
+      tr.innerHTML="<td>"+x.ts+"</td><td>"+x.user_email+"</td><td>"+(x.room||"")+"/"+x.slot+"</td><td>"+x.old_value+" &rarr; "+x.new_value+"</td><td>"+x.surface+"</td>"; b.appendChild(tr); });
+    if(rows.length) $("__log").classList.remove("min");
+  }).catch(function(){}) }
+  refresh().then(loop); logRefresh();
+})();
+</script>
+"""
 
-def make_handler(rc_dir, prefix, mock_obj, editor=False):
+
+def make_handler(rc_dir, prefix, mock_obj, editor=False, config_login=None):
+    # --config-login state: ONE shared kiosk panel -> one config session at a time (R14/D8b).
+    SESS = {"token": None, "user": None, "expires": 0.0}
+    CHANGE_LOG = []
+
     class Handler(BaseHTTPRequestHandler):
+        def _cookie_token(self):
+            c = self.headers.get("Cookie", "") or ""
+            for part in c.split(";"):
+                k, _, v = part.strip().partition("=")
+                if k == "dp_config_session":
+                    return v
+            return None
+
+        def _sess_active(self):
+            return bool(SESS["token"]) and time.time() < SESS["expires"] and self._cookie_token() == SESS["token"]
+
+        def _sess_touch(self):
+            SESS["expires"] = time.time() + float(config_login["ttl"])
+
+        def _json_cookie(self, obj, cookie, code=200):
+            body = json.dumps(obj).encode("utf-8")
+            self.send_response(code)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Content-Length", str(len(body)))
+            self.send_header("Cache-Control", "no-store")
+            self.send_header("Set-Cookie", cookie)
+            self.end_headers()
+            self.wfile.write(body)
+
         def log_message(self, fmt, *args):
             sys.stderr.write("  %s\n" % (fmt % args))
 
@@ -181,9 +314,10 @@ def make_handler(rc_dir, prefix, mock_obj, editor=False):
             with open(full, "rb") as f:
                 data = f.read()
             ext = os.path.splitext(full)[1].lower()
-            if editor and ext == ".html":
+            if (editor or config_login) and ext == ".html":
                 txt = data.decode("utf-8", "replace")
-                snip = EDITOR_SNIPPET
+                snip = (EDITOR_SNIPPET if editor else "") + \
+                       (CONFIG_LOGIN_SNIPPET.replace("__PREFIX__", prefix or "") if config_login else "")
                 low = txt.lower()
                 idx = low.rfind("</body>")
                 txt = (txt[:idx] + snip + txt[idx:]) if idx != -1 else (txt + snip)
@@ -226,6 +360,18 @@ def make_handler(rc_dir, prefix, mock_obj, editor=False):
             if p == "/hmi":
                 self._hmi()
                 return
+            if config_login and p in ("/config/session", "/__mock/change_log"):
+                if not self._has_xhr():
+                    self._redirect((prefix or "") + "/index.html")
+                    return
+                if p == "/config/session":
+                    act = self._sess_active()
+                    self._json({"active": act, "user": SESS["user"] if act else None,
+                                "remaining": int(max(0, SESS["expires"] - time.time())) if act else 0,
+                                "ttl": int(config_login["ttl"])})
+                else:
+                    self._json(CHANGE_LOG)
+                return
             if p.startswith("/api/"):
                 if not self._has_xhr():
                     self._redirect((prefix or "") + "/index.html")
@@ -242,6 +388,48 @@ def make_handler(rc_dir, prefix, mock_obj, editor=False):
             length = int(self.headers.get("Content-Length", 0) or 0)
             body = self.rfile.read(length).decode("utf-8", "replace") if length else ""
             sys.stderr.write("  [POST %s] %s\n" % (p, body))
+            if config_login and p in ("/config/login", "/config/logout"):
+                if not self._has_xhr():
+                    self._redirect((prefix or "") + "/index.html")
+                    return
+                if p == "/config/logout":
+                    SESS.update(token=None, user=None, expires=0.0)
+                    self._json_cookie({"ok": True}, "dp_config_session=; Path=%s/; Max-Age=0; SameSite=Lax" % (prefix or ""))
+                    return
+                try:
+                    req = json.loads(body or "{}")
+                except ValueError:
+                    req = {}
+                user = str(req.get("user", "")).strip()
+                # the real R14 servlet re-auths against the STATION user DB; the mock accepts one demo password
+                if not user or str(req.get("pass", "")) != config_login["password"]:
+                    self._json({"ok": False, "error": "auth"}, 401)
+                    return
+                SESS.update(token=secrets.token_hex(16), user=user)
+                self._sess_touch()
+                self._json_cookie({"ok": True, "user": user, "ttl": int(config_login["ttl"])},
+                                  "dp_config_session=%s; Path=%s/; SameSite=Lax" % (SESS["token"], prefix or ""))
+                return
+            if config_login and p.startswith("/api/"):
+                if not self._sess_active():
+                    self._json({"ok": False, "error": "config_login_required"}, 403)
+                    return
+                self._sess_touch()   # sliding TTL: every write extends the session
+                try:
+                    req = json.loads(body or "{}")
+                except ValueError:
+                    req = {}
+                ord_ = str(req.get("ord", ""))
+                room, _, slot = ord_.partition("/")
+                old = None
+                try:   # best-effort "old" from the GET mock, mirroring the real pre-write GET
+                    old = mock_obj.get(ord_, mock_obj.get(slot, {})).get("v") if isinstance(mock_obj, dict) else None
+                except Exception:
+                    old = None
+                CHANGE_LOG.append({"ts": time.strftime("%H:%M:%S"), "user_email": SESS["user"],
+                                   "config_session": SESS["token"][:8], "room": room or None, "slot": slot or ord_,
+                                   "old_value": old, "new_value": req.get("value"), "area": "control" if slot.endswith("Mode") else "config",
+                                   "surface": "B", "result": 200, "ok": True})
             self._json({"ok": True})
 
     return Handler
@@ -253,6 +441,11 @@ def main():
     ap.add_argument("--prefix", default="/dashboardpan", help="servlet mount prefix (default /dashboardpan)")
     ap.add_argument("--port", type=int, default=8080, help="port (default 8080)")
     ap.add_argument("--mock", help="JSON file served for every GET /api/<name> (default: empty {})")
+    ap.add_argument("--config-login", action="store_true",
+                    help="preview the R14 'second login before any write' flow: injects a native modal + session chip + "
+                         "change_log strip and adds stateful /config/login|logout|session mock endpoints; writes need a session")
+    ap.add_argument("--config-password", default="1234", help="demo password accepted by the mock login (default 1234)")
+    ap.add_argument("--config-ttl", type=int, default=120, help="mock config-session TTL in seconds, sliding (default 120)")
     ap.add_argument("--editor", action="store_true",
                     help="inject a preview-only label editor (drag points/labels, export rx/ry/rlx/rly/rside); "
                          "never touches the module rc/")
@@ -270,12 +463,17 @@ def main():
     else:
         sys.stderr.write("  (sin --mock: /api/* devuelve {} — el diseño/paleta se ve, los valores salen '--')\n")
 
-    srv = ThreadingHTTPServer(("127.0.0.1", args.port), make_handler(rc_dir, prefix, mock_obj, args.editor))
+    config_login = {"password": args.config_password, "ttl": args.config_ttl} if args.config_login else None
+    srv = ThreadingHTTPServer(("127.0.0.1", args.port),
+                              make_handler(rc_dir, prefix, mock_obj, args.editor, config_login))
     print("dashboard-preview -> http://localhost:%d%s/" % (args.port, prefix))
     print("  serving: %s" % rc_dir)
     print("  mock:    %s" % (args.mock or "(vacio)"))
     if args.editor:
         print("  editor:  ON (editor de labels inyectado; NO toca el modulo)")
+    if config_login:
+        print("  config-login: ON — cualquier usuario + contrasena '%s', sesion %ds (deslizante); "
+              "escribir sin sesion -> 403 + modal; Salir cierra la sesion" % (config_login["password"], config_login["ttl"]))
     print("  Ctrl+C para detener. Edita rc/ y refresca (sin recompilar).")
     try:
         srv.serve_forever()
