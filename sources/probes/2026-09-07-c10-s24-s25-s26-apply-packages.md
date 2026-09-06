@@ -18,17 +18,19 @@ Author: companero (Fable), 2026-09-06. Cut against kit `df8c7ec`/`cb79676` and c
   It resolves ONLY if the JVM cwd is the module-rt-dir or its parent — brittle.
 - `CompressorAlarmWiringTest.java`: same shape (`SRC` :26, `GROUP_BUILD` :27, `code()`/`read()` :31-33).
 **Fix — two options:**
-1. **Runner-side (design kit e359fd8 — TWO edits, no test edits):** (a) normalise `$rt` to an absolute path right after the
-   `-d "$rt"` guard (~:30): `rt=$(cd "$rt" && pwd)` — so a relative `$1` survives the later cd; (b) run the final `java`
-   (`:62`) with working directory `$rt` in a subshell (`$tmp`/`$JU`/`$HC` are already absolute):
+1. **Runner-side — ONE edit (kit tasks 896846176, revised from the design's two):** run the final `java` (`:62`) with working
+   directory `$rt` in a subshell (`$tmp`/`$JU`/`$HC` are already absolute):
    `( cd "$rt" && java -cp "$tmp:$JU:$HC" org.junit.runner.JUnitCore "$testfqcn" )`. From `$rt`, `Paths.get("src/…")` and
-   `../../build.gradle.kts` both resolve for EVERY cwd-relative test, no client-source churn. (Pending investigador1's
-   verification per the design.)
+   `../../build.gradle.kts` resolve for every cwd-relative test, no client-source churn. The design's second edit
+   (`rt=$(cd "$rt" && pwd)` after :30) is DROPPED as inert and unpinnable: the S24 RED `a792d7a` passes an ABSOLUTE `$RT` in
+   both tests, so no RED can bite a relative-rt case, and `javac`/`-sourcepath` are not cwd-sensitive anyway (investigador1's
+   validator, relative rt reproduced OK(37)). ONE edit, ONE mutation.
 2. **Test-side (robust, but edits every WiringTest):** resolve `SRC`/`GROUP_BUILD` against `System.getProperty("module.rt.dir")`,
    and have `run-pure-test.sh` pass `-Dmodule.rt.dir="$rt"`. Belt-and-braces for a test ever run outside the runner.
 **Recommend option 1** (kit change only); note option 2 as the follow if a test must run standalone.
-**RED/pin:** a bats case that runs `run-pure-test.sh <rt> <fqcn>` FROM A DIFFERENT cwd (e.g. `/tmp`) and asserts GREEN —
-today it fails to locate src; after the fix it passes. `[ev: run-pure-test.sh:27,:58-59; WiringTest:48-56 @ ff1b659]`
+**RED/pin (a792d7a):** run `run-pure-test.sh <absolute rt> <fqcn>` FROM A DIFFERENT cwd (e.g. `/tmp`) → the two WiringTests
+must be GREEN (the src read resolves via the java-step cd). **One mutation:** remove the `cd "$rt"` from the java subshell →
+the cwd-relative `Paths.get("src/…")` read fails and the wiring tests go RED. `[ev: run-pure-test.sh:27,:58-59; WiringTest:48-56 @ ff1b659]`
 
 ## S25 — `lint-write-path.sh`: NEW advisory class STALE, PER-ROW, with a `[concept]` exemption (lead's decided contract)
 **Decision (lead):** FAIL direction UNCHANGED (uncovered source OPERATOR slot with no matrix row → exit 1, always). ADD a
