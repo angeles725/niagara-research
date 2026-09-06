@@ -78,3 +78,8 @@ the close flips `pending → folded` only AFTER the core carries the slug token 
     `AuditEvent` has no session field, `ComplexSlotMap.java:1687`); the operator goes in the identity column. `[ev: design D7/D7a]`
 13. **Second-read cadence works when the reader holds the source** — design → second read → 14 edits → validator PASS
     in one loop; the reads that caught defects were the ones that re-ran the grep at the tip. `[ev: niagara-tools d2857d1, fb9f0d4]`
+14. **Repo-fixed ≠ deployed — every fix claim carries the DEPLOYED version.** The station runs ColdRoomPan-rt 2.0.3 /
+    CompPan-rt 2.0.1 / DashboardPan 2.0 (RAR `module.xml` read, a34f9bdd2) while the repo tip a109249 is 2.0.7/2.0.3/2.1.1
+    and was never deployed: the "silent zero" IS live on the panel (2.0 has no numeric guard) and the defrost `time<=0`
+    bug IS live (2.0.3 `:555`), although both read as fixed in the repo. Rule: a claim "X is fixed" names the version
+    where it is fixed AND the version that RUNS; the deploy chain is a precondition of every live gate. `[ev: a34f9bdd2]` `[ev: client PR #9 runbook]`

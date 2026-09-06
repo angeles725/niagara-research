@@ -11,6 +11,7 @@ must be observed · what closes. Nothing here runs without Cristian's explicit g
 ## Preconditions (before the session — no station contact)
 | # | Check | Evidence |
 |---|---|---|
+| P0 | **Deploy chain first.** The station RUNS ColdRoomPan-rt **2.0.3**, CompPan-rt **2.0.1**, DashboardPan-rt/ux **2.0** (station RAR `module.xml` read, niagara-research a34f9bdd2; DashboardPan-ux 2.0 re-confirmed by this author from the RAR) — repo a109249 (2.0.7/2.0.3/2.1.1) was NEVER deployed. The pending 2.0.7/2.0.3/2.1.1 deploy (client PR #9 runbook, `schema-risk.sh` SAFE) lands BEFORE any C9 jar; the live session runs on that chain, not on the C9 tips alone. Today the DEPLOYED DashboardPan 2.0 has NO numeric guard (the silent zero IS live) and ColdRoomPan 2.0.3 carries the defrost `time<=0` bug — both fixed in the repo only. `[CERT — RAR read a34f9bdd2]` `[ev: client PR #9]` |
 | P1 | The PRs under test are DEPLOYED on the station: PR6 + R14 (servlet real Context + config login) for B830-G1; PR8 or PR9 (one alarm pattern) for B827-G2; B822-G1 needs `applySetpoint` action deployed (phase-2 item — **skip if not deployed**, informational only per proposal §10) | deploy runbook + `schema-risk.sh` SAFE on each |
 | P2 | `AuditHistoryService` present at `/PANCCADIA/AuditHistory` (B829-G1 CLOSED by bog read) — re-confirm on the live tree (READ) | `bog-nav.py find --type h:AuditHistoryService` on the latest backup |
 | P3 | Operator accounts: the kiosk account (viewer-only after R14, or whatever it is today) + ONE named test operator with `OPERATOR_WRITE` on the TEST room, password scheme (`BPasswordAuthenticator`) — B830 §830.6: LDAP/SAML/gauth users cannot take the config-login path | UserService read in Workbench (READ) |
@@ -43,4 +44,4 @@ must be observed · what closes. Nothing here runs without Cristian's explicit g
 
 ## What this session cannot close (named)
 - **B830-G2** (exact `getLogoffPeriod` chain) — code read, not live. **B830-G3** (gauth TOTP) — out of scope.
-- **B828-G2** (frozen enum on a NEW non-linked deploy) — informational; observed for free if PR1 is deployed (`rotationMode` renders in Workbench with its range) — add as R6 if so.
+- **B828-G2** (frozen enum on a NEW non-linked deploy) — informational; observed for free ONLY if the deploy chain (P0 → PR1) has landed — `rotationMode` renders in Workbench with its range; add as R6 if so.
