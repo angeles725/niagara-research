@@ -1,5 +1,7 @@
 # B829 · One audit trail for PANCCADIA — what Niagara's config-audit records for each write path, settled by CODE: a slot `set()` fires an `AuditEvent` ONLY inside `if (context != null && context.getUser() != null)`, so the DashboardPan servlet's NULL-Context set is NOT audited (suppressed, not just unattributed); an oBIX PUT IS audited to the oBIX login user; both need an installed `AuditHistoryService` — so the write-server's Supabase `audit` (real operator email) is the single source of truth `[CERT]`
 
+> **Extended by B830 §830.4 (2026-09-06):** the same `ComplexSlotMap.set:662` `if` also wraps `user.checkWrite(...)` (`:655-672`) — a null Context bypasses Niagara's permission enforcement too, not only the audit. B830 also CONFIRMS B803 §803.3's `BPasswordCache` cast and gives the legal servlet re-auth path.
+
 > **Scope**: the operator's question "who set Cuarto3 to X at HH:MM" needs ONE answer, but a setpoint can be written four
 > ways (Workbench fox, the DashboardPan servlet, an oBIX PUT, the write-server) into THREE different trails (Niagara
 > AuditHistory, the module `auditLog`, the write-server Supabase). This block settles by CODE what each path actually

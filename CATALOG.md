@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **818 bloques**
+Total: **819 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -823,6 +823,7 @@ Total: **818 bloques**
 | 827 | [niagara-mental-model-bloque827.md](niagara-mental-model-bloque827.md) | B827 · Raising an OPERATOR ALARM for a protection trip in an -rt module — the concrete fix for [B821]'s zero-alarm finding (seed S18): `BAlarmSourceExt` needs a `BControlPoint` parent, so a custom `BComponent` uses EITHER a child point + the ext (declarative) OR `BIAlarmSource` + `AlarmSupport.newOffnormalAlarm` (programmatic); both route a `BAlarmRecord sourceState=offnormal` that the console and DashboardPan's `bql` query show; adding it is schema-SAFE `[CERT]` |
 | 828 | [niagara-mental-model-bloque828.md](niagara-mental-model-bloque828.md) | B828 · HOA modes as a real `BFrozenEnum` over oBIX (for future modules) — a `@NiagaraEnum(@Range …)` `BHoaMode` renders `<enum val="hand" display="…" range="…"/>` and decodes `<enum val="hand"/>` WITHOUT an explicit range facet (a frozen enum carries its range intrinsically — the encoder/decoder fall back to the value's `getRange()`); today's `double` 0/1/2 is an opaque `<real>`; the switch is a LOSSY retype so new modules only `[CERT]` |
 | 829 | [niagara-mental-model-bloque829.md](niagara-mental-model-bloque829.md) | B829 · One audit trail for PANCCADIA — what Niagara's config-audit records for each write path, settled by CODE: a slot `set()` fires an `AuditEvent` ONLY inside `if (context != null && context.getUser() != null)`, so the DashboardPan servlet's NULL-Context set is NOT audited (suppressed, not just unattributed); an oBIX PUT IS audited to the oBIX login user; both need an installed `AuditHistoryService` — so the write-server's Supabase `audit` (real operator email) is the single source of truth `[CERT]` |
+| 830 | [niagara-mental-model-bloque830.md](niagara-mental-model-bloque830.md) | B830 — Servlet-side re-authentication of a second operator: the legal `BUserService`/`BPasswordCache` call path, the Context that attributes the write, and what a `null` Context really bypasses |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
