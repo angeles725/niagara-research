@@ -271,3 +271,5 @@ C9 research/build core = **#1 protection-latch fixture** (built below) + **#2 wr
   **S2** (protection-latch = latched first-out surface), **S3** (heartbeat = independent monitor). Kit: `types/logic.md`
   §"Protection anatomy" + a silent-protection lint candidate (sibling of B820). Gaps B821-G1 (lint shape) / B821-G2
   (live alarm-console confirm).
+
+| S21 | lint-timers companion-flag false positive (require class-FIELD + same-method schedule) | KIT | Low-noise: unblocks a clean report-module on ColdRoomPan-rt; removes a spurious FAIL | High (bats + awk scope fix) | C10 | Evidence BDefrostController.java :718 local vs :808/:810/:850; not a client bug; kit ticket drafted 2026-09-06 (probe 3bfa5743f) |
