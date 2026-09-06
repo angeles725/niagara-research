@@ -82,11 +82,21 @@ C9 research/build core = **#1 protection-latch fixture** (built below) + **#2 wr
   where the floor helper lives in a dependency module; the lint must resolve it (or WARN, not false-FAIL).
 
 ## CLIENT — our module source
-- **S12 · DashboardPan servlet hardening + step-up auth.** Gap: server-side facet enforcement,
-  `x-niagara-csrfToken` (not just `X-Requested-With`), parse-error→400, per-ORD write lock, step-up re-auth on a
-  critical write. Evidence: B813; B803 §803.5 (Niagara ships no step-up). Requires execution: PARTIAL — pure
-  `DashboardDispatch` router tests (WSL) + a live RBAC/CSRF smoke (station). RED: a pure test for the CSRF-header
-  contract + a step-up-required test on a critical write path.
+- **S12 · DashboardPan-ux internal CONFIGURATION LOGIN + step-up write audit `[TOP-RANKED — user-explicit 2026-09-05]`.**
+  Gap / spec as the user stated it: (1) general station login as today; (2) INSIDE the dashboard a SECOND login
+  (button) that unlocks configuration writes (setpoints, buttons, HOA); (3) every change recorded in a JSON audit
+  (what changed, old→new, who, when); (4) an explicit LOGOUT button so a config session cannot be reused by someone
+  else — record the config user on EVERY write; add an inactivity timeout as a safety net `[INFER]`; (5) applies to
+  ANY write (button press, setpoint change). Evidence: B803 §803.3 (server-side re-verify via `BUserService.getUser`
+  + `BPasswordCache.validate`; LDAP via `scheme.login`; **SAML cannot** re-verify mid-session, `[INFER]`/B803-G1),
+  §803.5 (`x-niagara-csrfToken`), §803.6 (short-TTL token bound to `session+user+ORD+purpose`, server-side
+  criticality allowlist, audit every step-up); B816 (write path); B804 (`AuditHistoryService` as the second,
+  Niagara-native record). Requires execution: PARTIAL — pure `DashboardDispatch` router tests run in WSL; the live
+  RBAC/CSRF + AuditHistoryService smoke needs a station. **RED shape — `DashboardDispatchTest`:** write WITHOUT
+  step-up → 401/403 JSON; login with WRONG password → 401 + NO token; write WITH a valid token → 200 + exactly ONE
+  audit line (user/ts/ord/old→new); logout → token invalid; token of user A used AFTER logout → rejected; audit-file
+  append FAILURE → the write still lands + an alarm row (audit-failure never fails the write, per DWS1 gate 5).
+  `[ev: corpus B803]` `[ev: corpus B816]` `[ev: corpus B804]` `[ev: corpus B813]`
 - **S13 · Health surface in ColdRoomPan/CompPan.** Gap: a LOGIC fault reaches only the engine console, not the
   operator. Evidence: B808 / B805 §805.4. Requires execution: PARTIAL (station smoke for the alarm). RED: a test that
   a faulted component sets a fault-status slot AND raises a `BAlarmRecord`.
