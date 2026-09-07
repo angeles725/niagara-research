@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+  <title>Login</title>
+  <!-- Import the Niagara login system first, this is required by the Domo JavaScript API -->
+  <script type="text/javascript" src="login/core/auth.min.js"></script>
+  <!-- Import the Domo JavaScript API -->
+  <script type="text/javascript" src="login?domo.js"></script>
+</head>
+<body>
+  <form method="POST" action="j_security_check">
+     {{#if hasPasswordReset}}
+      <p>{{passwordResetObj.resetMessage}}</p>
+      <div id="reset-failure" class="failure {{#if hasPasswordResetError}}visible{{/if}}">Reset Failed</div>
+      
+      <input type="password" id="new-password" autocapitalize="none" placeholder="New Password" autocomplete="off" oninput="$domo.checkPassword()" />
+      <input type="password" id="confirm-password" autocapitalize="none" placeholder="Confirm Password" autocomplete="off" oninput="$domo.checkMatchPassword()" />
+      <input type="hidden" id="resetToken" name="resetToken" value=""/>
+      
+      <div class="match-error">Password and Confirm Password must match</div>
+      
+      <div id="password-container" class="failure {{#if passwordResetObj}}visible{{/if}}">
+        {{passwordResetObj.strength}}
+        <ul>
+          <li id="password-length">{{passwordResetObj.length}}</li>
+          <li id="password-lower">{{passwordResetObj.lower}}</li>
+          <li id="password-upper">{{passwordResetObj.upper}}</li>
+          <li id="password-digits">{{passwordResetObj.digits}}</li>
+          <li id="password-special">{{passwordResetObj.special}}</li>
+          {{#if passwordResetObj.maxNum}}
+            <li id="password-max-length">{{passwordResetObj.max}}</li>
+          {{/if}}
+        </ul>
+      </div>
+      <div class="submit">
+        <button id="login-submit" type="submit" onclick="return $domo.resetPass({ redirect: { success: true, fail: false } })">Change Password</button>
+      </div>
+    {{/if}}
+    {{#unless hasPasswordReset}}
+      <!-- Initial username value handled by Domo by default, use the forgetUserId slot to turn it off -->
+      <input name="j_username" id="username" />
+      <input name="j_password" id="password" type="password" />
+      <!-- Run the $domo.login function when the form is submitted -->
+      <input type="submit" onclick="return $domo.login()" />
+    {{/unless}}
+  </form>
+  <!-- Show an error message for failed login attempts -->
+  {{#if hasError }}
+    <div class="failure">
+      Login Failed!<br><br>
+    </div>
+  {{/if}}
+  <!-- Show EULA links unless the hideEula slot exists on the WebService -->
+  {{#unless hideEula}}
+    <div class="eula">
+      Use of this software is subject to the
+      <a href="/login/eula" target="_blank">End User License Agreement</a>
+      and other
+      <a href="/login/thirdPartyLicenses" target="_blank">Third Party Licenses</a>
+    </div>
+  {{/unless}}
+</body>
+</html>

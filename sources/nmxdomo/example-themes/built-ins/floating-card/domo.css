@@ -1,0 +1,242 @@
+body {
+  font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+
+.background {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.content-container {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+
+.author-container {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  font-size: 10px;
+  text-align: right;
+  color: rgba(255, 255, 255, 0.8);
+  text-shadow: 1px 1px rgba(78, 84, 99, 0.7);
+  display: none;
+  z-index: 10;
+}
+
+.author-container a {
+  transition: color 0.5s ease;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.author-container a:hover {
+  text-decoration: underline;
+}
+
+.author-line {
+  white-space: nowrap;
+}
+
+.author-unsplash {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.author-unsplash a {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.main-content {
+  margin-top: 15vh;
+  margin-bottom: 5vh;
+}
+
+.card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
+  font-size: 14px;
+  color: #4E5463;
+  border: 1px solid #F9F9FA;
+  padding: 15px 35px;
+  --animate-delay: 0.75s;
+  width: 400px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.form > .logo {
+  margin: 2rem;
+  height: 100px;
+  background-size: contain;
+  background-position: center;
+  background-image: url("/login/logo");
+  background-repeat: no-repeat;
+}
+
+.form h2 {
+  margin-bottom: 10px;
+}
+
+.form input[type=text],
+.form input[type=password] {
+  font-size: 14px;
+  border: 1px solid #e9eaec;
+  transition: border 0.6s ease;
+  padding: 12px;
+  min-height: 36px;
+  outline: none;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+
+.form input[type=text]:hover,
+.form input[type=text]:focus,
+.form input[type=password]:hover,
+.form input[type=password]:focus {
+  border: 1px solid #2D8CF0;
+  outline: none;
+}
+
+.form .submit {
+  text-align: right;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 120px;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.form .field-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  animation: fadeIn;
+  animation-duration: .3s;
+  animation-fill-mode: forwards;
+}
+
+.form .field-wrap.hide {
+  animation: fadeOut;
+  animation-duration: .3s;
+  animation-fill-mode: forwards;
+}
+
+.form .field-wrap.hidden {
+  display: none;
+}
+
+.form button[type=submit] {
+  -webkit-appearance: none;
+  border: none;
+  background-color: #2d8cf0;
+  font-size: 14px;
+  font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  padding: 10px 18px;
+  color: #ffffff;
+  outline: none;
+  transition: opacity 0.5s ease;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.form button[type=submit]:hover,
+.form button[type=submit]:focus {
+  /* background-color: #57a3f3; */
+  opacity: 0.8;
+  outline: none;
+}
+
+.failure {
+  display: none;
+  margin-bottom: 0.8rem;
+  color: #ed4014;
+}
+
+.failure.visible {
+  display: block;
+}
+
+#password-container.success {
+  color: #19be6b;
+}
+
+.match-error {
+  color: #ed4014;
+  display: none;
+  margin-bottom: 10px;
+}
+
+.match-error.visible {
+  display: block;
+}
+
+.match-error.success {
+  color: #19be6b;
+}
+
+.failure li {
+  color: #ed4014;
+}
+
+.failure li.success {
+  color: #19be6b;
+}
+
+.eula {
+  margin-top: 0.8rem;
+  padding-top: 0.9rem;
+  font-size: 12px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+  text-shadow: 1px 1px 3px rgba(78, 84, 99, 1);
+}
+
+.eula a {
+  color: #515a6e;
+  text-decoration: none;
+  transition: color 0.5s ease;
+  color: rgba(255, 255, 255, 0.9);
+}
+.eula a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 575px) {
+  .main-content {
+    margin-top: 3rem;
+  }
+  .card {
+    min-width: unset;
+  }
+}

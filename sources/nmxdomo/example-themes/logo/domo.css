@@ -1,0 +1,134 @@
+body {
+  font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+
+.content {
+  margin-top: 100px;
+  padding: 40px;
+}
+
+.logo {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.logo img {
+  max-width: 200px;
+}
+
+.logo h2 {
+  font-size: 18px;
+}
+
+form {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+}
+
+form > input {
+  margin-bottom: 1rem;
+  font-size: 14px;
+}
+
+.submit-container {
+  text-align: right;
+}
+
+.failure {
+  color: rgb(237, 64, 20);
+  margin-bottom: 0.8rem;
+}
+
+.eula {
+  margin-top: 1rem;
+  font-size: 12px;
+  text-align: center;
+  color: rgba(81, 90, 110, 0.6)
+}
+
+.eula a {
+  color: rgb(81, 90, 110);
+  text-decoration: none;
+  transition: color 0.5s ease;
+}
+
+.eula a:hover {
+  text-decoration: underline;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 120px;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.form .field-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  animation: fadeIn;
+  animation-duration: .3s;
+  animation-fill-mode: forwards;
+}
+
+.form .field-wrap.hide {
+  animation: fadeOut;
+  animation-duration: .3s;
+  animation-fill-mode: forwards;
+}
+
+.form .field-wrap.hidden {
+  display: none;
+}
+
+#password-container.success {
+  color: #19be6b;
+}
+
+.match-error {
+  color: #ed4014;
+  display: none;
+  margin-bottom: 10px;
+}
+
+.match-error.visible {
+  display: block;
+}
+
+.match-error.success {
+  color: #19be6b;
+}
+
+.failure {
+  display: none;
+  margin-bottom: 0.8rem;
+  color: #ed4014;
+}
+
+.failure.visible {
+  display: block;
+}
+
+.failure li {
+  color: #ed4014;
+}
+
+.failure li.success {
+  color: #19be6b;
+}
+
+.form input[type=text],
+.form input[type=password] {
+  margin-bottom: 10px;
+}

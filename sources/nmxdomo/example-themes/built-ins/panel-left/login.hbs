@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+  <title>{{title}} - Login</title>
+  <meta name="viewport" content="initial-scale=1.0">
+  <script type="text/javascript" src="/login/core/auth.min.js"></script>
+  <script type="text/javascript" src="/login?domo.js"></script>
+  <script type="text/javascript" src="/login?unsplash.js"></script>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="stylesheet" href="/login/panel-left/domo.css" />
+  <script type="text/javascript">
+    function loginFailed() {
+      $domo.display('.failure', 'block');
+    }
+  </script>
+</head>
+<body>
+  <div class="panel {{#if transparent }}transparent{{/if}}">
+    <div class="content-container animate__animated animate__fadeIn animate__delay-1s">
+      <div class="main-content">
+        <div class="card">
+          <form method="POST" action="j_security_check" onsubmit="return $domo.login({ redirect: { success: true, fail: false }, fail: loginFailed })">
+            <div class="form">
+              
+              {{#if hasLogo}}
+                <div class="logo"></div>
+              {{/if}}
+
+              {{#unless hasLogo}}
+                <h2>{{title}}</h2>
+              {{/unless}}
+
+              {{#unless hasPasswordReset}}
+                <div class="failure {{#if hasError}}visible{{/if}}">Login Failed</div>
+                <div class="input-container">
+                  <div id="username-wrap" class="field-wrap">
+                    <input type="text" autocapitalize="none" name="j_username" id="username" placeholder="Username" />
+                  </div>
+                  <div id="password-wrap" class="field-wrap">
+                    <input type="password" autocapitalize="none" name="j_password" id="password" placeholder="Password" autocomplete="off" />
+                  </div>
+                  <div id="token-wrap" class="field-wrap hide hidden">
+                    <input type="text" name="j_token" id="token" placeholder="Authenticator code" autocomplete="off" />
+                  </div>
+                </div>
+                <div class="submit">
+                  <button type="submit" value="Login" onclick="return $domo.submit({ event: event })">Login</button>
+                </div>
+              {{/unless}}
+
+              {{#if hasPasswordReset}}
+                <p>{{passwordResetObj.resetMessage}}</p>
+                <div id="reset-failure" class="failure {{#if hasPasswordResetError}}visible{{/if}}">Reset Failed</div>
+                <input type="password" id="new-password" autocapitalize="none" placeholder="New Password" autocomplete="off" oninput="$domo.checkPassword(event)" />
+                <input type="password" id="confirm-password" autocapitalize="none" placeholder="Confirm Password" autocomplete="off" oninput="$domo.checkMatchPassword(event)" />
+                <input type="hidden" id="resetToken" name="resetToken" value=""/>
+                <div class="match-error">Password and Confirm Password must match</div>
+                <div id="password-container" class="failure {{#if passwordResetObj}}visible{{/if}}">
+                  {{passwordResetObj.strength}}
+                  <ul>
+                    {{#eq passwordResetObj.lengthNum '0'}}{{else}}<li id="password-length">{{passwordResetObj.length}}</li>{{/eq}}
+                    {{#eq passwordResetObj.lowerNum '0'}}{{else}}<li id="password-lower">{{passwordResetObj.lower}}</li>{{/eq}}
+                    {{#eq passwordResetObj.upperNum '0'}}{{else}}<li  id="password-upper">{{passwordResetObj.upper}}</li>{{/eq}}
+                    {{#eq passwordResetObj.digitsNum '0'}}{{else}}<li id="password-digits">{{passwordResetObj.digits}}</li>{{/eq}}
+                    {{#eq passwordResetObj.specialNum '0'}}{{else}}<li id="password-special">{{passwordResetObj.special}}</li>{{/eq}}
+                    {{#if passwordResetObj.maxNum}}
+                      {{#eq passwordResetObj.maxNum '0'}}{{else}}<li id="password-max-length">{{passwordResetObj.max}}</li>{{/eq}}
+                    {{/if}}
+                  </ul>
+                </div>
+                <div class="submit">
+                  <button id="login-submit" type="submit" onclick="return $domo.resetPass({ redirect: { success: true, fail: false } })">Change Password</button>
+                </div>
+              {{/if}}
+            </div>
+          </form>
+        </div>
+        {{#unless hideEula}}
+          <div class="eula">
+            Use of this software is subject to the
+            <a href="/login/eula" target="_blank">End User License Agreement</a>
+            and other
+            <a href="/login/thirdPartyLicenses" target="_blank">Third Party Licenses</a>
+          </div>
+        {{/unless}}
+      </div>
+    </div>
+    <div class="background-container">
+      <div class="background animate__animated animate__delay-1s animate__fadeIn" />
+      {{#unless hasBackground}}
+        {{#unless noUnsplash }}
+          <div class="author-container">
+            <span class="author-line">Photo by <a href="#" class="author-link" target="_blank"><span class="author-name" /></a></span>
+            <span class="author-unsplash">via <a href="https://unsplash.com" target="_blank">Unsplash</a></span>
+          </div>
+        {{/unless}}
+      {{/unless}}
+    </div>
+  </div>
+</body>
+<style>
+  .form input[type=submit] {
+    background-color: {{primaryColor}};
+  }
+  .form input[type=text]:hover,
+  .form input[type=text]:focus,
+  .form input[type=password]:hover,
+  .form input[type=password]:focus {
+    border: 1px solid {{primaryColor}};
+  }
+</style>
+{{#if hasPageBackground}}
+  <style>
+    body {
+      background-color: {{pageBackground}};
+    }
+  </style>
+{{/if}}
+{{#if hasBackground}}
+  <style>
+    .background {
+      background-image: url('/login?image=background');
+    }
+  </style>
+{{/if}}
+{{#unless hasBackground}}
+  {{#if noUnsplash }}
+    {{#if hasGradient }}
+      <style>
+        .background {
+          background: linear-gradient(90deg, {{backgroundColor}} 0%, rgba(255,255,255,0) 100%);
+        }
+      </style>
+    {{/if}}
+    {{#unless hasGradient }}
+      <style>
+        .background {
+          background-color: {{backgroundColor}};
+        }
+      </style>
+    {{/unless}}
+  {{/if}}
+  {{#unless noUnsplash }}
+    <script type="text/javascript">
+      var config = {
+        image: '.background',
+        author: '.author-name',
+        authorLink: '.author-link',
+      };
+      var options = {
+        term: '{{unsplashSearch}}',
+        orientation: 'portrait',
+        content_filter: 'high',
+        featured: true,
+      };
+      var callback = function(image) {
+        if (image && image.user) {
+          window.$domo.display('.author-container', 'block');
+        }
+      };
+      window.$domo.unsplash(config, options, callback, { gradient: {{hasGradient}}, color: '{{backgroundColor}}' });
+    </script>
+  {{/unless}}
+{{/unless}}
+</html>

@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **822 bloques**
+Total: **826 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -827,6 +827,10 @@ Total: **822 bloques**
 | 831 | [niagara-mental-model-bloque831.md](niagara-mental-model-bloque831.md) | B831 — Three lint-precision refinements for C10: companion-flag (S21), per-slot writing-action (S22), and alarm-surface recognition (S23) — from coarse class/whole-file heuristics to per-slot/per-method body matching |
 | 832 | [niagara-mental-model-bloque832.md](niagara-mental-model-bloque832.md) | B832 — The three C10 method-boundary parser copies diverge: net-depth vs peak-depth is a real one-liner false-negative (T1 shared-fragment evidence) |
 | 833 | [niagara-mental-model-bloque833.md](niagara-mental-model-bloque833.md) | B833 — C12 T1 deep-dive: name initializer blocks `<init>` (S2/B832-G4) and make the Case-B `@`-stop paren-aware (S1/B832-G3) |
+| 834 | [niagara-mental-model-bloque834.md](niagara-mental-model-bloque834.md) | Block 834 — How to build a custom Niagara login screen: the four paths, the native `BLoginTemplate` hook, and NiagaraMods Domo (`nmxdomo`) |
+| 835 | [niagara-mental-model-bloque835.md](niagara-mental-model-bloque835.md) | Block 835 — Commissioning a Honeywell BACnet MS/TP Spyder (Model 5/7, WEB-RxxN) on a JACE-8000: electrical wiring + Niagara N4 workflow |
+| 836 | [niagara-mental-model-bloque836.md](niagara-mental-model-bloque836.md) | Block 836 — Spyder Tool function-block reference: the wiresheet building blocks for a Spyder control application (B835-G3) |
+| 837 | [niagara-mental-model-bloque837.md](niagara-mental-model-bloque837.md) | Block 837 — The LON / Classic Spyder path on a JACE-8000: FTT-10 wiring + LonWorks commissioning, and how it differs from BACnet MS/TP (B835-G2) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

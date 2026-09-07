@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+
+<head>
+  <title>Login</title>
+  <!-- Import the Niagara login system first, this is required by the Domo JavaScript API -->
+  <script type="text/javascript" src="login/core/auth.min.js"></script>
+  <!-- Import the Domo JavaScript API -->
+  <script type="text/javascript" src="login?domo.js"></script>
+  <!-- Import the Domo Unsplash Plugin -->
+  <script type="text/javascript" src="/login?unsplash.js"></script>
+
+  <!-- Import CSS File from Station File System - ord: file:^domo/domo.css -->
+  <link rel="stylesheet" href="/login?domo/domo.css" />
+  <script type="text/javascript">
+    function loginFailed(url, error) {
+      $domo.display('.failure', 'block');
+    }
+  </script>
+</head>
+
+<body>
+  <div class="content">
+    <form method="POST" action="j_security_check" onsubmit="return $domo.login({ redirect: { success: true, fail: false }, fail: loginFailed })">
+      <!-- Display a logo image if one is set in the WebService slot -->
+      <div class="logo">
+        {{#if hasLogo}}
+          <!-- Use the standard URL for the logo image provided by the -->
+          <!-- WebService when a File Ord is in the logo slot -->
+          <img src="/login/logo">
+        {{/if}}
+        <!-- Display the title if no logo is specified -->
+        {{#unless hasLogo}}
+          <h2>{{title}}</h2>
+        {{/unless}}
+      </div>
+      <div class="form">
+        <!-- If we don't have a password reset, show the login form -->
+        {{#unless hasPasswordReset}}
+          <!-- Show an error message for failed login attempts -->
+          <div class="failure {{#if hasError}}visible{{/if}}">Login Failed</div>
+          <!-- Initial username value handled by Domo by default, use the forgetUserId slot to turn it off -->
+          <div class="input-container">
+            <div id="username-wrap" class="field-wrap">
+              <input name="j_username" id="username" placeholder="Username" type="text" />
+            </div>
+            <div id="password-wrap" class="field-wrap">
+              <input name="j_password" id="password" placeholder="Password" type="password" />
+            </div>
+            <div id="token-wrap" class="field-wrap hide hidden">
+              <input type="text" name="j_token" id="token" placeholder="Authenticator code" autocomplete="off" />
+            </div>
+            <!-- Run the $domo.login function when the form is submitted -->
+            <div class="submit-container">
+              <button type="submit" onclick="return $domo.submit({ event: event })">Login</button>
+            </div>
+          </div>
+        {{/unless}}
+        <!-- If we have a password reset, show the password reset form with the password strength -->
+        {{#if hasPasswordReset}}
+          <p>{{passwordResetObj.resetMessage}}</p>
+          <div id="reset-failure" class="failure {{#if hasPasswordResetError}}visible{{/if}}">Reset Failed</div>
+          <div class="failure {{#if passwordResetObj}}visible{{/if}}">
+            {{passwordResetObj.strength}}
+            <ul>
+              {{#eq passwordResetObj.lengthNum '0'}}{{else}}<li id="password-length">{{passwordResetObj.length}}</li>{{/eq}}
+              {{#eq passwordResetObj.lowerNum '0'}}{{else}}<li id="password-lower">{{passwordResetObj.lower}}</li>{{/eq}}
+              {{#eq passwordResetObj.upperNum '0'}}{{else}}<li  id="password-upper">{{passwordResetObj.upper}}</li>{{/eq}}
+              {{#eq passwordResetObj.digitsNum '0'}}{{else}}<li id="password-digits">{{passwordResetObj.digits}}</li>{{/eq}}
+              {{#eq passwordResetObj.specialNum '0'}}{{else}}<li id="password-special">{{passwordResetObj.special}}</li>{{/eq}}
+              {{#if passwordResetObj.maxNum}}
+                {{#eq passwordResetObj.maxNum '0'}}{{else}}<li id="password-max-length">{{passwordResetObj.max}}</li>{{/eq}}
+              {{/if}}
+            </ul>
+          </div>
+          <input type="password" id="new-password" autocapitalize="none" placeholder="New Password" autocomplete="off" oninput="$domo.checkPassword()" />
+          <input type="password" id="confirm-password" autocapitalize="none" placeholder="Confirm Password" autocomplete="off" oninput="$domo.checkMatchPassword()" />
+          <input type="hidden" id="resetToken" name="resetToken" value=""/>
+          <div class="match-error">Password and Confirm Password must match</div>
+          <div class="submit-container">
+            <button id="login-submit" type="submit" onclick="return $domo.resetPass({ redirect: { success: true, fail: false } })">Change Password</button>
+          </div>
+        {{/if}}
+      </div>
+    </form>
+  </div>
+  {{#unless hideEula}}
+    <div class="eula">
+      Use of this software is subject to the<br>
+      <a href="/login/eula" target="_blank">End User License Agreement</a>
+      and other
+      <a href="/login/thirdPartyLicenses" target="_blank">Third Party Licenses</a>
+    </div>
+  {{/unless}}
+</body>
+</html>

@@ -1,0 +1,179 @@
+body {
+  font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+
+.background {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.author-container {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  font-size: 10px;
+  text-align: right;
+  color: rgba(255, 255, 255, 0.8);
+  text-shadow: 1px 1px rgba(78, 84, 99, 0.7);
+  display: none;
+  z-index: 10;
+}
+
+.author-container a {
+  transition: color 0.5s ease;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.author-container a:hover {
+  text-decoration: underline;
+}
+
+.container {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.content {
+  margin-top: 100px;
+  padding: 40px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+form {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  padding: 40px 30px;
+}
+
+form > input {
+  margin-bottom: 1rem;
+  font-size: 14px;
+}
+
+.submit-container {
+  text-align: right;
+}
+
+.failure {
+  color: #ed4014;
+  margin-bottom: 0.8rem;
+}
+
+.eula {
+  margin-top: 1rem;
+  font-size: 12px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+  text-shadow: 1px 1px 3px rgba(78, 84, 99, 1);
+}
+
+.eula a {
+  color: #515a6e;
+  text-decoration: none;
+  transition: color 0.5s ease;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.eula a:hover {
+  text-decoration: underline;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 120px;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.form .field-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  animation: fadeIn;
+  animation-duration: .3s;
+  animation-fill-mode: forwards;
+}
+
+.form .field-wrap.hide {
+  animation: fadeOut;
+  animation-duration: .3s;
+  animation-fill-mode: forwards;
+}
+
+.form .field-wrap.hidden {
+  display: none;
+}
+
+#password-container.success {
+  color: #19be6b;
+}
+
+.match-error {
+  color: #ed4014;
+  display: none;
+  margin-bottom: 10px;
+}
+
+.match-error.visible {
+  display: block;
+}
+
+.match-error.success {
+  color: #19be6b;
+}
+
+.failure {
+  display: none;
+  margin-bottom: 0.8rem;
+  color: #ed4014;
+}
+
+.failure.visible {
+  display: block;
+}
+
+.failure li {
+  color: #ed4014;
+}
+
+.failure li.success {
+  color: #19be6b;
+}
+
+.form input[type=text],
+.form input[type=password] {
+  margin-bottom: 10px;
+}
