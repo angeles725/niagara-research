@@ -93,3 +93,26 @@ python3 tools/palette-lexicon-agents.py --all    [--base-dir organized] [--json]
 dupKeys | agents` table plus every `(module, artifact:key) ×count` duplicate. Pure helpers
 `parse_palette` / `find_duplicate_keys` / `parse_agents` are unit-tested by `tools/tests/test_palette_lexicon_agents.py`
 (one biting test — fails if duplicate detection is removed).
+
+## station-modules.py — resolve a station's module deps against a local install
+
+Read-only (unless `--fix`). Answers "why won't this copied station open in my Workbench" — the
+`CannotLoadBogException` / `ModuleNotFoundException` / `Cannot resolve dependency X-rt for X-wb` class.
+A station's `config.bog` references component TYPES that live in module PARTS (`<module>-rt/-wb/-ux`); to
+decode the bog every referenced part **and its declared dependencies** must be present in the install's
+`modules/`. A partial install (e.g. `dashboard-wb` present, `dashboard-rt` missing) throws exactly that
+error. See block **B849** (offline-open workflow) — this tool is the module-parity half of it.
+
+```
+python3 tools/station-modules.py check  <config.bog|.dist|file.xml> [--install ROOT] [--fix] [--json]
+python3 tools/station-modules.py doctor [--install ROOT] [--fix] [--json]
+```
+
+- `check` — station-driven: the 23-ish modules the bog references, which parts are installed per module
+  (`parts:[rt,ux,wb]`), and any missing part with the reason (`provides dashboard:DashboardService`).
+- `doctor` — install integrity: scans every installed part's `module.xml` `<dependencies>` and reports any
+  unresolved dependency (the "wb without rt" class) regardless of a station.
+- For each missing part it locates a version-matched staged jar under `<install>/sw/**` and prints the exact
+  `cp` fix; `--fix` copies it into `modules/` (verifies the jar's REAL manifest `vendorVersion` — never a
+  bare `sw/1.0/` stub — and warns on a version mismatch). `--install` autodetects the OptimizerSupervisor
+  root if omitted. After copying, RESTART Workbench and reopen the bog.

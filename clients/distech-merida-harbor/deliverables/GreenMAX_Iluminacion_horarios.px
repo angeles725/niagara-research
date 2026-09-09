@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Niagara Presentation XML -->
+<px version="1.0" media="workbench:WbPxMedia">
+<import>
+  <module name="baja"/>
+  <module name="bajaui"/>
+  <module name="gx"/>
+  <module name="kitPx"/>
+</import>
+<content>
+<ScrollPane>
+
+  <CanvasPane name="content" viewSize="1370.0,780.0">
+
+    <Label layout="490.0,110.0,400.0,40.0" text="GreenMAX" font="bold 28.0pt Arial"/>
+
+    <Picture layout="20.0,20.0,100.0,80.0" image="file:^Imagenes/The Harbor/Logos/TH-211.png" scale="fitRatio"/>
+
+    <Picture layout="100.0,30.0,140.0,30.0" image="file:^Imagenes/The Harbor/Logos/THarbor.png" scale="fitRatio"/>
+
+    <Picture layout="0.0,0.0,40.0,40.0" image="file:^Imagenes/The Harbor/Icons/Back icon.png" scale="fitRatio"/>
+
+    <BackButton layout="0.0,0.0,50.0,40.0" image="module://kitPx/icons/NULL.png" foreground="black" buttonStyle="none" textOverride="  ">
+      <WsAnnotation name="wsAnnotation" value="26,26,8"/>
+    </BackButton>
+
+    <Picture layout="610.0,310.0,120.0,40.0" image="file:^Imagenes/The Harbor/Buttons/BotonNormal.png" scale="fitWidth"/>
+
+    <Picture layout="610.0,360.0,120.0,40.0" image="file:^Imagenes/The Harbor/Buttons/BotonNormal.png" scale="fitWidth"/>
+
+    <ImageButton layout="610.0,360.0,120.0,30.0" text="GreenMAX 8" font="bold 12.0pt Arial" buttonStyle="none">
+      <WsAnnotation name="wsAnnotation" value="6,6,8"/>
+      <ValueBinding hyperlink="station:|slot:/Drivers/NiagaraNetwork/HM_Central/points/GM08ilum"/>
+    </ImageButton>
+
+    <ImageButton layout="610.0,310.0,120.0,30.0" text="GreenMAX 7" font="bold 12.0pt Arial" buttonStyle="none">
+      <WsAnnotation name="wsAnnotation" value="6,6,8"/>
+      <ValueBinding hyperlink="station:|slot:/Drivers/NiagaraNetwork/HM_Central/points/GM07ilum"/>
+    </ImageButton>
+
+    <Picture layout="550.0,30.0,270.0,80.0" image="file:^Imagenes/The Harbor/Logos/Leviton logo.png" scale="fitRatio"/>
+
+    <Label layout="490.0,150.0,400.0,30.0" text="ILUMINACI&#xd3;N" font="bold 18.0pt Arial"/>
+
+    <Label layout="180.0,260.0,180.0,30.0" text="S&#xf3;tano 2" font="bold 18.0pt Arial"/>
+
+    <Label layout="380.0,260.0,180.0,30.0" text="S&#xf3;tano 1" font="bold 18.0pt Arial"/>
+
+    <Label layout="780.0,260.0,180.0,30.0" text="Nivel 1" font="bold 18.0pt Arial"/>
+
+    <Label layout="980.0,260.0,180.0,30.0" text="Nivel 2" font="bold 18.0pt Arial"/>
+
+    <Label layout="580.0,260.0,180.0,30.0" text="Planta Baja" font="bold 18.0pt Arial"/>
+
+    <Picture layout="810.0,310.0,120.0,40.0" image="file:^Imagenes/The Harbor/Buttons/BotonNormal.png" scale="fitWidth"/>
+
+    <Picture layout="810.0,410.0,120.0,40.0" image="file:^Imagenes/The Harbor/Buttons/BotonNormal.png" scale="fitWidth"/>
+
+    <ImageButton layout="810.0,410.0,120.0,30.0" text="GreenMAX 14" font="bold 12.0pt Arial" buttonStyle="none">
+      <WsAnnotation name="wsAnnotation" value="6,6,8"/>
+      <ValueBinding hyperlink="station:|slot:/Drivers/NiagaraNetwork/HM_Central/points/GM14ilum"/>
+    </ImageButton>
+
+    <ImageButton layout="810.0,310.0,120.0,30.0" text="GreenMAX 12" font="bold 12.0pt Arial" buttonStyle="none">
+      <WsAnnotation name="wsAnnotation" value="6,6,8"/>
+      <ValueBinding hyperlink="station:|slot:/Drivers/NiagaraNetwork/HM_Central/points/GM012ilum"/>
+    </ImageButton>
+
+    <Picture layout="810.0,460.0,120.0,40.0" image="file:^Imagenes/The Harbor/Buttons/BotonNormal.png" scale="fitWidth"/>
+
+    <ImageButton layout="810.0,460.0,120.0,30.0" text="GreenMAX 15" font="bold 12.0pt Arial" buttonStyle="none">
+      <WsAnnotation name="wsAnnotation" value="6,6,8"/>
+      <ValueBinding hyperlink="station:|slot:/Drivers/NiagaraNetwork/HM_Central/points/GM15ilum"/>
+    </ImageButton>
+
+    <Picture layout="610.0,410.0,120.0,40.0" image="file:^Imagenes/The Harbor/Buttons/BotonNormal.png" scale="fitWidth"/>
+
+    <Picture layout="610.0,460.0,120.0,40.0" image="file:^Imagenes/The Harbor/Buttons/BotonNormal.png" scale="fitWidth"/>
+
+    <ImageButton layout="610.0,460.0,120.0,30.0" text="GreenMAX 10" font="bold 12.0pt Arial" buttonStyle="none">
+      <WsAnnotation name="wsAnnotation" value="6,6,8"/>
+      <ValueBinding hyperlink="station:|slot:/Drivers/NiagaraNetwork/HM_Central/points/GM010ilum"/>
+    </ImageButton>
+
+    <ImageButton enabled="false" layout="610.0,410.0,120.0,30.0" text="GreenMAX 9" font="bold 12.0pt Arial" buttonStyle="none">
+      <WsAnnotation name="wsAnnotation" value="6,6,8"/>
+      <ValueBinding hyperlink="station:|slot:/Drivers/NiagaraNetwork/HM_Central/points/GM09ilum"/>
+    </ImageButton>
+
+    <Picture layout="610.0,510.0,120.0,40.0" image="file:^Imagenes/The Harbor/Buttons/BotonNormal.png" scale="fitWidth"/>
+
+    <ImageButton layout="610.0,510.0,120.0,30.0" text="GreenMAX 11" font="bold 12.0pt Arial" buttonStyle="none">
+      <WsAnnotation name="wsAnnotation" value="6,6,8"/>
+      <ValueBinding hyperlink="station:|slot:/Drivers/NiagaraNetwork/HM_Central/points/GM011ilum"/>
+    </ImageButton>
+
+    <Picture layout="210.0,310.0,120.0,40.0" image="file:^Imagenes/The Harbor/Buttons/BotonNormal.png" scale="fitWidth"/>
+
+    <Picture layout="420.0,310.0,120.0,40.0" image="file:^Imagenes/The Harbor/Buttons/BotonNormal.png" scale="fitWidth"/>
+
+    <ImageButton layout="420.0,310.0,120.0,30.0" text="GreenMAX 2" font="bold 12.0pt Arial" buttonStyle="none">
+      <WsAnnotation name="wsAnnotation" value="6,6,8"/>
+      <ValueBinding hyperlink="station:|slot:/Drivers/NiagaraNetwork/HM_Central/points/GM02ilum"/>
+    </ImageButton>
+
+    <ImageButton layout="210.0,310.0,120.0,30.0" text="GreenMAX 1" font="bold 12.0pt Arial" buttonStyle="none">
+      <WsAnnotation name="wsAnnotation" value="6,6,8"/>
+      <ValueBinding hyperlink="station:|slot:/Drivers/NiagaraNetwork/HM_Central/points/GM01ilum"/>
+    </ImageButton>
+
+    <Picture layout="210.0,360.0,120.0,40.0" image="file:^Imagenes/The Harbor/Buttons/BotonNormal.png" scale="fitWidth"/>
+
+    <ImageButton layout="210.0,360.0,120.0,30.0" text="GreenMAX 3" font="bold 12.0pt Arial" buttonStyle="none">
+      <WsAnnotation name="wsAnnotation" value="6,6,8"/>
+      <ValueBinding hyperlink="station:|slot:/Drivers/NiagaraNetwork/HM_Central/points/GM03ilum"/>
+    </ImageButton>
+
+    <Picture layout="420.0,360.0,120.0,40.0" image="file:^Imagenes/The Harbor/Buttons/BotonNormal.png" scale="fitWidth"/>
+
+    <Picture layout="210.0,410.0,120.0,40.0" image="file:^Imagenes/The Harbor/Buttons/BotonNormal.png" scale="fitWidth"/>
+
+    <ImageButton layout="210.0,410.0,120.0,30.0" text="GreenMAX 5" font="bold 12.0pt Arial" buttonStyle="none">
+      <WsAnnotation name="wsAnnotation" value="6,6,8"/>
+      <ValueBinding hyperlink="station:|slot:/Drivers/NiagaraNetwork/HM_Central/points/GM05ilum"/>
+    </ImageButton>
+
+    <ImageButton layout="420.0,360.0,120.0,30.0" text="GreenMAX 4" font="bold 12.0pt Arial" buttonStyle="none">
+      <WsAnnotation name="wsAnnotation" value="6,6,8"/>
+      <ValueBinding hyperlink="station:|slot:/Drivers/NiagaraNetwork/HM_Central/points/GM04ilum"/>
+    </ImageButton>
+
+    <Picture layout="420.0,410.0,120.0,40.0" image="file:^Imagenes/The Harbor/Buttons/BotonNormal.png" scale="fitWidth"/>
+
+    <ImageButton layout="420.0,410.0,120.0,30.0" text="GreenMAX 6" font="bold 12.0pt Arial" buttonStyle="none">
+      <WsAnnotation name="wsAnnotation" value="6,6,8"/>
+      <ValueBinding hyperlink="station:|slot:/Drivers/NiagaraNetwork/HM_Central/points/GM06ilum"/>
+    </ImageButton>
+
+    <Picture layout="1010.0,310.0,120.0,40.0" image="file:^Imagenes/The Harbor/Buttons/BotonNormal.png" scale="fitWidth"/>
+
+    <ImageButton layout="1010.0,310.0,120.0,30.0" text="GreenMAX 16" font="bold 12.0pt Arial" buttonStyle="none">
+      <WsAnnotation name="wsAnnotation" value="6,6,8"/>
+      <ValueBinding hyperlink="station:|slot:/Drivers/NiagaraNetwork/HM_Central/points/GM16ilum"/>
+    </ImageButton>
+
+    <Picture layout="1230.0,10.0,130.0,60.0" image="file:^Imagenes/The Harbor/Logos/tecnologos.png" scale="fitRatio">
+      <ValueBinding hyperlink="http://www.tecnobuildings.com" summary="" popupEnabled="false"/>
+    </Picture>
+
+    <Picture layout="810.0,360.0,120.0,40.0" image="file:^Imagenes/The Harbor/Buttons/BotonNormal.png" scale="fitWidth"/>
+
+    <ImageButton layout="810.0,360.0,120.0,30.0" text="GreenMAX 13" font="bold 12.0pt Arial" buttonStyle="none">
+      <WsAnnotation name="wsAnnotation" value="6,6,8"/>
+      <ValueBinding hyperlink="station:|slot:/Drivers/NiagaraNetwork/HM_Central/points/GM13ilum"/>
+    </ImageButton>
+
+    <!-- ===================== HORARIOS MAESTROS (solo visual, sin bindings) ===================== -->
+
+    <Label layout="180.0,580.0,400.0,30.0" text="Horarios maestros" font="bold 18.0pt Arial"/>
+
+    <!-- Horario A -->
+    <Label layout="180.0,616.0,200.0,22.0" text="A &#183; &#xc1;reas comunes" font="bold 11.0pt Arial"/>
+    <ImageButton layout="180.0,644.0,54.0,26.0" text="Auto" font="bold 10.0pt Arial" styleClasses="toolbar" buttonStyle="toolBar"/>
+    <ImageButton layout="238.0,644.0,74.0,26.0" text="Override" font="bold 10.0pt Arial" styleClasses="toolbar" buttonStyle="toolBar"/>
+    <ImageButton layout="316.0,644.0,44.0,26.0" text="Off" font="bold 10.0pt Arial" styleClasses="toolbar" buttonStyle="toolBar"/>
+    <ImageButton layout="180.0,676.0,180.0,26.0" text="Editar programa" font="10.0pt Arial" styleClasses="toolbar" buttonStyle="toolBar"/>
+
+    <!-- Horario B -->
+    <Label layout="380.0,616.0,200.0,22.0" text="B &#183; Fachada y jardines" font="bold 11.0pt Arial"/>
+    <ImageButton layout="380.0,644.0,54.0,26.0" text="Auto" font="bold 10.0pt Arial" styleClasses="toolbar" buttonStyle="toolBar"/>
+    <ImageButton layout="438.0,644.0,74.0,26.0" text="Override" font="bold 10.0pt Arial" styleClasses="toolbar" buttonStyle="toolBar"/>
+    <ImageButton layout="516.0,644.0,44.0,26.0" text="Off" font="bold 10.0pt Arial" styleClasses="toolbar" buttonStyle="toolBar"/>
+    <ImageButton layout="380.0,676.0,180.0,26.0" text="Editar programa" font="10.0pt Arial" styleClasses="toolbar" buttonStyle="toolBar"/>
+
+    <!-- Horario C -->
+    <Label layout="580.0,616.0,200.0,22.0" text="C &#183; Estacionamiento" font="bold 11.0pt Arial"/>
+    <ImageButton layout="580.0,644.0,54.0,26.0" text="Auto" font="bold 10.0pt Arial" styleClasses="toolbar" buttonStyle="toolBar"/>
+    <ImageButton layout="638.0,644.0,74.0,26.0" text="Override" font="bold 10.0pt Arial" styleClasses="toolbar" buttonStyle="toolBar"/>
+    <ImageButton layout="716.0,644.0,44.0,26.0" text="Off" font="bold 10.0pt Arial" styleClasses="toolbar" buttonStyle="toolBar"/>
+    <ImageButton layout="580.0,676.0,180.0,26.0" text="Editar programa" font="10.0pt Arial" styleClasses="toolbar" buttonStyle="toolBar"/>
+
+    <!-- Horario D -->
+    <Label layout="780.0,616.0,200.0,22.0" text="D &#183; Plaza y andadores" font="bold 11.0pt Arial"/>
+    <ImageButton layout="780.0,644.0,54.0,26.0" text="Auto" font="bold 10.0pt Arial" styleClasses="toolbar" buttonStyle="toolBar"/>
+    <ImageButton layout="838.0,644.0,74.0,26.0" text="Override" font="bold 10.0pt Arial" styleClasses="toolbar" buttonStyle="toolBar"/>
+    <ImageButton layout="916.0,644.0,44.0,26.0" text="Off" font="bold 10.0pt Arial" styleClasses="toolbar" buttonStyle="toolBar"/>
+    <ImageButton layout="780.0,676.0,180.0,26.0" text="Editar programa" font="10.0pt Arial" styleClasses="toolbar" buttonStyle="toolBar"/>
+
+    <!-- Horario E -->
+    <Label layout="980.0,616.0,200.0,22.0" text="E &#183; Eventos" font="bold 11.0pt Arial"/>
+    <ImageButton layout="980.0,644.0,54.0,26.0" text="Auto" font="bold 10.0pt Arial" styleClasses="toolbar" buttonStyle="toolBar"/>
+    <ImageButton layout="1038.0,644.0,74.0,26.0" text="Override" font="bold 10.0pt Arial" styleClasses="toolbar" buttonStyle="toolBar"/>
+    <ImageButton layout="1116.0,644.0,44.0,26.0" text="Off" font="bold 10.0pt Arial" styleClasses="toolbar" buttonStyle="toolBar"/>
+    <ImageButton layout="980.0,676.0,180.0,26.0" text="Editar programa" font="10.0pt Arial" styleClasses="toolbar" buttonStyle="toolBar"/>
+
+  </CanvasPane>
+
+</ScrollPane>
+</content>
+</px>
