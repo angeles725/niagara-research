@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **826 bloques**
+Total: **839 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -831,6 +831,19 @@ Total: **826 bloques**
 | 835 | [niagara-mental-model-bloque835.md](niagara-mental-model-bloque835.md) | Block 835 — Commissioning a Honeywell BACnet MS/TP Spyder (Model 5/7, WEB-RxxN) on a JACE-8000: electrical wiring + Niagara N4 workflow |
 | 836 | [niagara-mental-model-bloque836.md](niagara-mental-model-bloque836.md) | Block 836 — Spyder Tool function-block reference: the wiresheet building blocks for a Spyder control application (B835-G3) |
 | 837 | [niagara-mental-model-bloque837.md](niagara-mental-model-bloque837.md) | Block 837 — The LON / Classic Spyder path on a JACE-8000: FTT-10 wiring + LonWorks commissioning, and how it differs from BACnet MS/TP (B835-G2) |
+| 838 | [niagara-mental-model-bloque838.md](niagara-mental-model-bloque838.md) | Block 838 — Backing up, restoring, and licensing a live JACE-8000 (QNX TITAN): the operator procedure |
+| 839 | [niagara-mental-model-bloque839.md](niagara-mental-model-bloque839.md) | Block 839 — Spyder model-family decode (Spyder II / Enhanced / Micro / Bacnet) and JACE bus routing — CAUTION: the family NAME does not reliably imply the bus; the terminal label does |
+| 840 | [niagara-mental-model-bloque840.md](niagara-mental-model-bloque840.md) | Block 840 — Operator field-wiring runbook: connecting a BACnet MS/TP Spyder to a JACE-8000 (terminal map, shield/`S`, bias switch decision) — the panel-level how-to distilled from B835/B839 |
+| 841 | [niagara-mental-model-bloque841.md](niagara-mental-model-bloque841.md) | Block 841 — HARBOR (HM_BMS + HM_Central): the GreenMAX lighting station and its current per-circuit schedule chain |
+| 842 | [niagara-mental-model-bloque842.md](niagara-mental-model-bloque842.md) | Block 842 — HARBOR lighting redesign: the unified control model (4 master schedules + per-panel/per-circuit selector + HOA override) |
+| 843 | [niagara-mental-model-bloque843.md](niagara-mental-model-bloque843.md) | Block 843 — HARBOR lighting redesign Route A: a custom N4 module (reusable schedule-selector component) |
+| 844 | [niagara-mental-model-bloque844.md](niagara-mental-model-bloque844.md) | Block 844 — HARBOR lighting redesign Route B: kitControl-only (no custom module) |
+| 845 | [niagara-mental-model-bloque845.md](niagara-mental-model-bloque845.md) | Block 845 — HARBOR lighting dashboard: HTML+CSS+JS feasibility and options (Px vs web module vs oBIX) |
+| 846 | [niagara-mental-model-bloque846.md](niagara-mental-model-bloque846.md) | Block 846 — HARBOR lighting points matrix: extraction, the two panel generations, and the write-priority correction |
+| 847 | [niagara-mental-model-bloque847.md](niagara-mental-model-bloque847.md) | Block 847 — HARBOR lighting Route B wiresheet: the kitControl 1-circuit template (verified BBooleanSelect) |
+| 848 | [niagara-mental-model-bloque848.md](niagara-mental-model-bloque848.md) | Block 848 — HARBOR engagement: what the job is, who does what, and how it is executed |
+| 849 | [niagara-mental-model-bloque849.md](niagara-mental-model-bloque849.md) | Block 849 — Opening & running a copied station offline: the four walls (passphrase, modules, clean-folder, password-encoder) |
+| 850 | [niagara-mental-model-bloque850.md](niagara-mental-model-bloque850.md) | Block 850 — "The license update broke comms": a JACE-8000 outage that was really a hung I/O subsystem (fix = cold power-cycle) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
