@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **840 bloques**
+Total: **842 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -845,6 +845,8 @@ Total: **840 bloques**
 | 849 | [niagara-mental-model-bloque849.md](niagara-mental-model-bloque849.md) | Block 849 — Opening & running a copied station offline: the four walls (passphrase, modules, clean-folder, password-encoder) |
 | 850 | [niagara-mental-model-bloque850.md](niagara-mental-model-bloque850.md) | Block 850 — "The license update broke comms": a JACE-8000 outage that was really a hung I/O subsystem (fix = cold power-cycle) |
 | 851 | [niagara-mental-model-bloque851.md](niagara-mental-model-bloque851.md) | Block 851 — HARBOR GreenMAX lighting: the VERIFIED control chain + live Route B pilot on GM02 (corrects B841/B846/B847) |
+| 852 | [niagara-mental-model-bloque852.md](niagara-mental-model-bloque852.md) | Block 852 — HARBOR GreenMAX lighting UI (Px) rework: existing structure, approved design, point spec, and preview method (advances B851-G2) |
+| 853 | [niagara-mental-model-bloque853.md](niagara-mental-model-bloque853.md) | Block 853 — HARBOR GreenMAX Px in the BROWSER: the Hx web profile (EC-Net 4.3.58.18 ≈ N4.4) — ActionBinding/set limits, Paste Special, and the working stock-Px HOA/selector recipe |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

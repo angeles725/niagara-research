@@ -22,16 +22,18 @@
 > - **B847** — Route B wiresheet: the verified `kitControl:BBooleanSelect` 1-circuit template (2-stage mux → existing `HorR{k}.in10`), no module.
 > - **B848** — engagement context (DOCUMENT §20): what/who/how — SEJOFA vs client responsibilities, remote execution, the 13-account access model.
 > - **B851** — the VERIFIED control chain + LIVE Route B pilot on GM02 circuit 1 (build + cutover, no flicker). Closes the gate (Numeric→Enum direct), corrects the model to HOA-per-horario + 5 masters, and confirms B841's supervisor-side thesis. Also fixes `bog-nav --to/--from` handle matching.
+> - **B852** — the UI (Px) rework: existing screen structure, client-approved design (menu 5 horarios with Auto/ON/OFF + green/red LED; tablero interruptor = LED + horario selector, manual widgets removed), backing-point spec, and the `px-render.py` preview method. Advances B851-G2.
+> - **B853** — Px in the BROWSER (Hx profile, EC-Net 4.3.58.18): `set(value)` fails in Hx (works in WB) → HOA must be BooleanWritable (active/inactive/auto, empty Override); numeric entry via `/set` dialog; Paste Special "Keep all links"; import needs; the working GM02+menu recipe. Deployment reality behind B851/B852. Status/handoff in `clients/distech-merida-harbor/docs/greenmax-redesign-status.md`.
 
 <!-- research-state.v1 -->
 schema: research-state.v1
 method: normal-cycle
 block_scope: shared-global
-covered_blocks: 841,842,843,844,845,846,847,848,851
+covered_blocks: 841,842,843,844,845,846,847,848,851,852,853
 gaps_closed: 5
-known_gaps: 26
-investigable_open: 15
-requires_execution_open: 6
+known_gaps: 32
+investigable_open: 18
+requires_execution_open: 9
 blocked_open: 0
 deferred_open: 0
 undocumented_findings: 0
@@ -51,7 +53,15 @@ decisions) and Workbench-side execution proof.
 
 **NEW (requires execution):**
 - **B851-G1** — replicate GM02 circuits 2–20 and TIME them to firm the per-panel / per-campaign estimate.
-- **B851-G2** — the Px/UI rework: per-circuit horario selector → `SelR{k}`; per-horario Auto/ON/OFF + editable name → `Hor{n}_Mode` / `Horario{n}_Nombre`; across 13 panel screens + the menu.
+- **B851-G2** — the Px/UI rework: per-circuit horario selector → `SelR{k}`; per-horario Auto/ON/OFF + editable name → `Hor{n}_Mode` / `Horario{n}_Nombre`; across 13 panel screens + the menu. **Design specified in B852**; apply live still open.
+- **B852-G1** — confirm the exact write action/priority for `Hor{n}_Mode/set` and `SelR{k}` from the buttons/selector, live in Workbench (as the pilot gate was confirmed). **RESOLVED in the browser by B853** (Hx needs no-arg actions / `/set` dialog).
+
+**REGISTERED for a future session (do NOT investigate now):**
+- **B853-G1** (req-exec) — confirm the final GM02 works end-to-end in the browser (menu no-popup, selector Set dialog, LEDs).
+- **B853-G2** (investigable) — cleaner selector: `EnumWritable SelR{k}` with horario-name range + a bound dropdown; verify the Hx dropdown-write path.
+- **B853-G3** (req-exec) — passthrough cleanup: re-point circuits to `Hor{n}_Eff` and remove the redundant `Hor{n}_HOA` BooleanSelect + `Hor{n}_Mode`.
+- **B853-G4** (investigable) — Hx vs bajaux web-profile behavior differences across N4 versions (client 4.3 vs corpus 4.14) as a reference of stock-Px binding support per browser engine.
+- **B853-G5** (investigable) — custom GreenMAX dashboard module (JS+servlet, DashboardPan pattern) cost/feasibility if the client wants numeric writes without the Set dialog.
 
 **Investigable (need client info or bog re-inspection):**
 - **B846-G2** — client cuadro de cargas to fill the 26 undescribed circuits (GM05×13, GM16×6, GM01×5) and validate the 323 in-station descriptions.
