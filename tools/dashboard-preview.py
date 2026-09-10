@@ -173,14 +173,14 @@ CONFIG_LOGIN_SNIPPET = r"""
   #__cl button.pri{background:var(--sage,#6c715d);border-color:var(--sage-d,#545948);color:#fff}
   #__cl .err{display:none;color:var(--alarm,#b23f2f);font-size:11px;margin-top:8px}
   #__cl .err.on{display:block}
-  #__chip{position:fixed;top:10px;right:12px;z-index:2147482999;display:none;align-items:center;gap:10px;
+  #__chip{position:fixed;top:64px;right:12px;z-index:2147482999;display:none;align-items:center;gap:10px;
         background:var(--surface,#fff);border:1px solid var(--line,#e2ded3);padding:6px 10px 6px 12px;font-size:11px;
         letter-spacing:.06em;color:var(--ink,#1b1c17);box-shadow:0 8px 24px rgba(27,28,23,.18)}
   #__chip.on{display:flex}
   #__chip b{color:var(--sage-d,#545948)}
   #__chip button{min-height:34px;padding:4px 10px;font-size:11px;cursor:pointer;border:1px solid var(--line,#e2ded3);
         background:var(--surface-2,#faf9f5);color:var(--ink,#1b1c17)}
-  #__log{position:fixed;right:12px;bottom:12px;z-index:2147482998;width:min(520px,94vw);background:var(--surface,#fff);
+  #__log{display:none!important;position:fixed;right:12px;bottom:12px;z-index:2147482998;width:min(520px,94vw);background:var(--surface,#fff);
         border:1px solid var(--line,#e2ded3);box-shadow:0 8px 24px rgba(27,28,23,.18);font-size:11px;color:var(--ink,#1b1c17)}
   #__log .h{padding:6px 10px;border-bottom:1px solid var(--line-2,#eeebe3);letter-spacing:.12em;text-transform:uppercase;
         color:var(--muted,#8b8a7c);font-size:10px;cursor:pointer;display:flex;justify-content:space-between}
