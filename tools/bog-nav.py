@@ -442,13 +442,14 @@ def cmd_links(bog, args):
     rows = []
     for lk in bog.link_list:
         row = bog.link_row(lk)
-        if args.to and not _match_path(lk.get('container_path'), lk.get('tgt_slot'), args.to):
+        if args.to and not _match_ref(lk.get('container_h'), lk.get('container_path'), lk.get('tgt_slot'), args.to):
             continue
         if not _slot_filter(lk, args):
             continue
         if args.from_:
             src = bog.handle_map.get(lk.get('src_h'))
-            if not src or not (_match_path(src.path, lk.get('src_slot'), args.from_)):
+            src_path = src.path if src else ''
+            if not _match_ref(lk.get('src_h'), src_path, lk.get('src_slot'), args.from_):
                 continue
         # CHECK7: a link whose targetSlotName is not any source slot name (needs --src).
         # Restricted to OWN-module target containers (bog-audit CHECK7) — a kitControl/driver
@@ -491,6 +492,17 @@ def _match_path(path, slot, needle):
         return True
     full = f"{path}.{slot}"
     return needle in full
+
+
+def _match_ref(comp_h, path, slot, needle):
+    """Match a --to/--from needle against ONE link endpoint.
+    A handle needle (h:xxxx) matches that endpoint component's handle EXACTLY;
+    any other needle falls back to path/slot matching (_match_path). Without this,
+    `links --to h:1d204` / `--from h:5b006` compared the handle string against paths
+    and silently returned nothing (false negative) even when the link existed."""
+    if needle.startswith('h:'):
+        return comp_h == needle[2:]
+    return _match_path(path, slot, needle)
 
 
 def cmd_handle(bog, args):
@@ -667,6 +679,14 @@ def cmd_selftest(bog_ignored, args):
           and logic_links[0]['target'] == 'Station/Logic.setpoint'
           and logic_links[0]['src_resolved'],
           'cross-component link sourceOrd h:10 resolved to a path')
+    # regression: --to/--from accept an h:handle, not only a path (false-negative fixed 2026-09-10)
+    check(_match_ref('20', 'Station/Logic', 'setpoint', 'h:20')
+          and not _match_ref('20', 'Station/Logic', 'setpoint', 'h:99')
+          and _match_ref('10', 'Station/Panel', 'setpoint', 'h:10'),
+          '--to/--from match an endpoint by h:handle exactly')
+    check(_match_ref('20', 'Station/Logic', 'setpoint', 'Logic')
+          and _match_ref('10', 'Station/Panel', 'setpoint', 'Panel'),
+          '--to/--from still match by path when the needle is not a handle')
     # --slot is endpoint-aware: Panel.evap1FanMode --> Logic.fanMode must NOT answer
     # "does Panel.fanMode link out?" (--from Panel --slot fanMode), but must answer
     # --from Panel --slot evap1FanMode, --to Logic --slot fanMode, and --slot fanMode alone.
