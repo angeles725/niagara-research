@@ -45,11 +45,13 @@ a separate module → **do not mix the BACnet and LON modules.**
   **24 Vdc** ≥ **1 A (24 W)**. 2-position removable power plug. (model 12977 DIN-rail unit.) (§Power, lines 21–31)
 - **Onboard RS-485:** two ports on 3-position plugs — **COM1 = port A**, **COM2 = port B**; up to 115,200 baud (§lines 271–276).
 - **More RS-485:** add **NPB-8000-2X-485** dual-RS-485 option modules (2 ports each), up to 2 → **max 6 RS-485 ports** (§lines 87–88). `[CERT-doc]` NPB-8000-2X-485_InstallSheet.
-- **Bias/termination switch** (3-position, one per RS-485 port) (§lines 288–293):
-  - **BIA** (default, middle) = 2.7 kΩ bias, **no** termination → use for a JACE **in the middle** of the bus.
-  - **END** = 562 Ω bias **+ termination resistor** → use when the JACE is at a **physical end** of the bus.
-  - MID = high-impedance bias, no termination.
-- **Shield:** connect the cable shield to **earth ground at ONE end only** (§line 285) — avoids a ground loop.
+- **Bias/termination switch** (3-position, one per RS-485 port) — exact resistor values `[CERT-doc]` (§lines 288–307):
+  - **BIA** (default, middle) = **2.7 kΩ** bias, **no** termination → JACE needs to bias the trunk **but is not at the end** ("often best if the RS485 trunk needs biasing, but when the controller is not installed at the end of the trunk").
+  - **END** = **562 Ω** bias **+ 150 Ω** termination resistor → JACE **is at a physical end** of a trunk "that is not already biased".
+  - **MID** = **47.5 kΩ** bias (near-zero), **no** termination → JACE **in the middle of an already-biased** trunk (so it does not over-bias).
+  - Note: the JACE END termination is **150 Ω** (its internal value); the *far/other* physical end is terminated with the standard cable **120 Ω** (§4). The switch may be changed while running.
+- **RS-485 port = 3 positions `− / + / S`** where **`S` = shield** (not signal ground): wire "minus to minus, plus to plus, **shield to shield**" (§lines 305–309). Cable = shielded twisted-pair **18–22 AWG**.
+- **Shield:** carry the shield continuously on the `S` terminals, and connect the shield wire to **earth ground at ONE end only, "for example at the controller"** (§lines 285/308–309) — avoids a ground loop. The shield is **not** left floating; it lands on `S`.
 
 ## 3. Electrical — Spyder side (WEB-RS5N/RL6N) `[CERT-doc]` (31-00281)
 

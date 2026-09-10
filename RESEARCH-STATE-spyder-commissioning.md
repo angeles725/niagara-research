@@ -1,12 +1,12 @@
 # RESEARCH-STATE — focus: spyder-commissioning
 
 <!-- research-state.v1
-blocks_in_focus: 3
+blocks_in_focus: 5
 first_block: 835
-last_block: 837
-open_gaps: 3
+last_block: 840
+open_gaps: 5
 next_gap: B835-G4
-coverage: BACnet MS/TP (B835) + function blocks (B836) + LON path (B837) done; remaining = G4 live-probe (hardware) + child gaps B836-G1/B837-G1
+coverage: BACnet MS/TP (B835) + function blocks (B836) + LON path (B837) + model-family→bus routing (B839, terminal label authoritative [CERT-hw]) + operator field-wiring runbook (B840) done; remaining = G4 live-probe (hardware) + child gaps B836-G1/B837-G1/B839-G1/B839-G2
 -->
 
 ## Scope
@@ -35,9 +35,25 @@ Download → license). Born from an operator how-to request; the corpus had only
 | B835-G3 | Spyder Tool function-block reference | **CLOSED → B836** (categories fbs.*, key blocks, gotchas, spyderApps Ver28) |
 | **B835-G4** | Live commissioning probe on the operator's JACE (authorized) — real values [CERT-live] | **OPEN — needs hardware** (cannot do without the JACE + authorization) |
 | B836-G1 / B837-G1 | Per-block property tables / FTT-10 termination (Echelon guide) | open (residual) |
+| B839 | "Spyder Sylk Enhanced" = LON family (PVL/PUL…ES); model-number 3rd letter L=LON/B=BACnet routes JACE wiring B837 vs B835 | **DONE** — corrects a session MS/TP assumption ([CERT-doc] LonAlarmsView L174-181) |
+| B839-G1 | Verbatim Honeywell datasheet model-number key (promote §2 decode [INFER]→[CERT-doc]) | open (residual, low pri) |
+| B839-G2 | Does "Spyder Enhanced" have both LON and BACnet SKUs? Live unit named "Sylk Enhanced" had BAC+/BAC-/SHIELD (MS/TP) — help lists Enhanced only under LON | **OPEN** — opened by live contradiction ([CERT-hw]); resolve vs current Honeywell ordering guide |
 
 ## Iteration history
 
+- 2026-09-08 — B840 (document mode). Consolidated the session's operator field-wiring how-to into a
+  panel-level runbook: terminal map (BAC+/BAC-/SHIELD → JACE −/+/S), shield-to-shield + earth-at-one-end,
+  bias-switch decision (BIA 2.7kΩ/END 562Ω+150Ω/MID 47.5kΩ + which case), and the 2-node JACE↔Spyder case
+  (JACE END + Spyder 120Ω). Also ENRICHED B835 §2 with the verbatim bias values + the `S`=shield rule (were
+  incomplete). Cites B835/B839/JACE wiring guide; no re-derivation.
+
+- 2026-09-08 — B839 + [CERT-hw] correction. Operator said the unit is a "Spyder Sylk Enhanced." Triaged the
+  family name against niagara-help: `honeywellLonSpyder-LonAlarmsView` lists Spyder Enhanced under the LON
+  driver, so B839 first concluded Enhanced→LON. THEN the operator read the physical terminals:
+  BAC+(7)/BAC-(8)/SHIELD(9) = BACnet MS/TP (RS-485). Live evidence > doc: corrected B839 (§5 + [CERT-hw]
+  claim 9 + banner) — the family NAME is not a reliable bus proxy; the terminal label decides (BAC+/BAC- or
+  C1+/C1- ⇒ B835 MS/TP; 2-pin no-polarity FTT-10 ⇒ B837 LON). Opened B839-G2 (does Enhanced have both SKUs?).
+  Net answer to operator: wire BAC+/BAC-/SHIELD as RS-485 MS/TP to the JACE (B835 path).
 - 2026-09-06 — B835 bootstrap. Operator asked how to commission a Spyder on a JACE-8000 + electrical
   connection. Confirmed target = BACnet MS/TP Model 5/6/7. Delegated a 3-source gather; **verified every
   load-bearing electrical fact verbatim** against the real Honeywell docs (a first sub-agent report had
