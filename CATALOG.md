@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **839 bloques**
+Total: **840 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -844,6 +844,7 @@ Total: **839 bloques**
 | 848 | [niagara-mental-model-bloque848.md](niagara-mental-model-bloque848.md) | Block 848 — HARBOR engagement: what the job is, who does what, and how it is executed |
 | 849 | [niagara-mental-model-bloque849.md](niagara-mental-model-bloque849.md) | Block 849 — Opening & running a copied station offline: the four walls (passphrase, modules, clean-folder, password-encoder) |
 | 850 | [niagara-mental-model-bloque850.md](niagara-mental-model-bloque850.md) | Block 850 — "The license update broke comms": a JACE-8000 outage that was really a hung I/O subsystem (fix = cold power-cycle) |
+| 851 | [niagara-mental-model-bloque851.md](niagara-mental-model-bloque851.md) | Block 851 — HARBOR GreenMAX lighting: the VERIFIED control chain + live Route B pilot on GM02 (corrects B841/B846/B847) |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots
