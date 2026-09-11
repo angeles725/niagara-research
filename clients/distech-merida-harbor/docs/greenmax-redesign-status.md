@@ -56,7 +56,10 @@ Detalle completo y evidencia en **B853**.
 3. **Cuadro de cargas** — 19 circuitos sin descripción (GM05×13, GM16×6).
 4. **Replicar a los otros 12 paneles** (GM03–GM16, menos los caídos GM01/GM03/GM09) — control + Px por panel.
    Para cada panel: los `Hor{n}_Eff` son compartidos (una vez); por panel van `SelR{k}` + `SchedMux{k}` + el Px.
-5. **Nombres de horario** — crear los `Horario{n}_Nombre` (StringWritable) si se quieren nombres.
+5. **Nombres de horario** — diseño resuelto en `greenmax-horario-names-spec.md`: 5 `Horario{n}_Nombre`
+   (StringWritable, compartidos) editables desde el menú vía diálogo Set (texto, Hx-safe), y por circuito
+   un `NameMux{k}` (BStringSelect, `select ← SelR{k}`) para que el tablero muestre el NOMBRE del horario
+   elegido. Falta APLICARLO en Workbench (empezar por GM02) y validar en el navegador.
 6. **Decomisionar** los ~349 schedules viejos (`R{k}`) tras validar; conservar los 5 masters.
 7. **Comercial** — confirmar la extensión vs la cotización de 2 estados de SEJOFA.
 
