@@ -2,7 +2,7 @@
 
 # Catálogo de bloques
 
-Total: **842 bloques**
+Total: **855 bloques**
 
 | Bloque | Archivo | Título |
 |--------|---------|--------|
@@ -847,6 +847,19 @@ Total: **842 bloques**
 | 851 | [niagara-mental-model-bloque851.md](niagara-mental-model-bloque851.md) | Block 851 — HARBOR GreenMAX lighting: the VERIFIED control chain + live Route B pilot on GM02 (corrects B841/B846/B847) |
 | 852 | [niagara-mental-model-bloque852.md](niagara-mental-model-bloque852.md) | Block 852 — HARBOR GreenMAX lighting UI (Px) rework: existing structure, approved design, point spec, and preview method (advances B851-G2) |
 | 853 | [niagara-mental-model-bloque853.md](niagara-mental-model-bloque853.md) | Block 853 — HARBOR GreenMAX Px in the BROWSER: the Hx web profile (EC-Net 4.3.58.18 ≈ N4.4) — ActionBinding/set limits, Paste Special, and the working stock-Px HOA/selector recipe |
+| 854 | [niagara-mental-model-bloque854.md](niagara-mental-model-bloque854.md) | B854 — HARBOR HM_BMS Supervisor: control-folder and device-naming architecture |
+| 855 | [niagara-mental-model-bloque855.md](niagara-mental-model-bloque855.md) | Block 855 — Route A custom module: slot facets, scale instantiation, and upgrade recompile plan (closes B843-G1/G2/G3) |
+| 856 | [niagara-mental-model-bloque856.md](niagara-mental-model-bloque856.md) | Block 856 — Hx vs bajaux/ux Px Rendering Engine Reference: module structure, version gates, and widget behavior per engine |
+| 857 | [niagara-mental-model-bloque857.md](niagara-mental-model-bloque857.md) | Block 857 — GreenMAX custom dashboard module: BWebServlet + rc/ SPA cost/feasibility on EC-Net 4.3 (closes B853-G5) |
+| 858 | [niagara-mental-model-bloque858.md](niagara-mental-model-bloque858.md) | Block 858 — Hx Image Rendering: `file:^` Asset Lifecycle, `buttonStyle="toolBar"` Highlight Mechanism, and the Selected-Mode Highlight Recipe |
+| 859 | [niagara-mental-model-bloque859.md](niagara-mental-model-bloque859.md) | Block 859 — HARBOR GreenMAX bog-emitter feasibility: handle mechanics, link grammar, and programmatic control-graph generation (closes B853-G9) |
+| 860 | [niagara-mental-model-bloque860.md](niagara-mental-model-bloque860.md) | B860 — HARBOR HM_Central JACE: HorGMnn seam anatomy, command-writable naming survey, and GM01 normalization plan |
+| 861 | [niagara-mental-model-bloque861.md](niagara-mental-model-bloque861.md) | Block 861 — B853-G2: EnumWritable SelR{k} — component model, BEnumRange static range, and the Hx dropdown-write path |
+| 862 | [niagara-mental-model-bloque862.md](niagara-mental-model-bloque862.md) | Block 862 — `BDomoLoginTemplate` internals (G1) and `BDefaultLoginTemplate` + `LoginState` (G4): decompile evidence |
+| 863 | [niagara-mental-model-bloque863.md](niagara-mental-model-bloque863.md) | Block 863 — Native Path B build recipe: minimal `BLoginTemplate` module (B834-G2) |
+| 864 | [niagara-mental-model-bloque864.md](niagara-mental-model-bloque864.md) | Block 864 — Spyder model-number decode (B839-G1) and Enhanced LON-only confirmation (B839-G2): web-evidence discovery from official Honeywell datasheets |
+| 865 | [niagara-mental-model-bloque865.md](niagara-mental-model-bloque865.md) | Block 865 — Spyder residuals: function-block property tables (B836-G1) + FTT-10 free-topology termination rules (B837-G1) |
+| 866 | [niagara-mental-model-bloque866.md](niagara-mental-model-bloque866.md) | Block 866 — B854-G2 and B856-G1 residual closures: GreenMAX11 TabAL9 stub verdict + kitPx-ux first-ship wall |
 | TI | [niagara-mental-model-bloque-test-infrastructure.md](niagara-mental-model-bloque-test-infrastructure.md) | Infraestructura de Tests Niagara N4: Auditoría Empírica |
 
 ## Snapshots

@@ -83,6 +83,12 @@ full servlet (`[CERT]`):
 `[INFER]` Domo's `BDomoLoginTemplate` implements these interfaces — that is how it drives password-reset
 and 2FA flows and serves theme files — but this is not yet decompiled (gap **B834-G1**).
 
+> **⚠ CORRECTION (B862):** The decompile shows this inference is wrong. `BDomoLoginTemplate` is a plain
+> class (not a `BLoginTemplate` subclass) and the three thin subclasses do NOT implement `ILoginTemplateEx`
+> or `IStateLoginTemplate`. Password reset and 2FA are driven via session attributes and request parameters.
+> Claim 14 is **confirmed** (server-side `file:^domo/` read is the correct mechanism) but the interface
+> claim is retracted. See **B862** for full decompile evidence.
+
 ## 3. The four paths to a custom login
 
 | # | Path | Code? | Flexibility | Where it lives |
