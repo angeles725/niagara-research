@@ -1,5 +1,6 @@
 <!-- review-status: pending -->
 <!-- Marker lifecycle: maintainer flips 'pending' → 'applied <date> · kit <sha>' (or 'dismissed') once folded; sweep-retros.sh reads this (METHODOLOGY §18). -->
+<!-- fold note (2026-09-12): build-n4-module deltas A1/A2/C folded into the kit at PR #106 (kit a7d6f26); stays pending because B1/B2 target the research-sdd kit (a separate pipeline) and remain unfolded. -->
 # Retro — niagara-research · companero session · 2026-09-05 · B792 (palette-lexicon-agents tool + census) + B793 (§19 build/PoC) — kit deltas
 
 > §18 self-retro for the `companero` session, the INCREMENTAL work AFTER the focus-close retro

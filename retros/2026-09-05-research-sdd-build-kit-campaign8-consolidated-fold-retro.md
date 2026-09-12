@@ -1,4 +1,4 @@
-<!-- review-status: pending -->
+<!-- review-status: applied 2026-09-12 · kit a7d6f26 -->
 <!-- Marker lifecycle: maintainer flips 'pending' → 'applied <date> · kit <sha>' (or 'dismissed') once folded; sweep-retros.sh reads this (METHODOLOGY §18). -->
 # Retro — niagara-research · research-sdd · 2026-09-05 · CONSOLIDATED campaign-8 kit deltas for /build-n4-module (B775 §775.6, B800, B801, B802, B803, B804, B805, B809, B810, B816)
 

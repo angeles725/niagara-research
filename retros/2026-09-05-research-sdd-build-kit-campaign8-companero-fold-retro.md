@@ -1,4 +1,4 @@
-<!-- review-status: pending -->
+<!-- review-status: applied 2026-09-12 · kit a7d6f26 -->
 # Retro — research-sdd FOLD LIST · companero campaign-8 blocks (B806–B815 + §800.3 Clock doctrine) · 2026-09-05
 
 > §18 consolidated FOLD retro: one row per kit delta, target file/§ + `[ev: corpus B<n>]`, so the campaign-8
