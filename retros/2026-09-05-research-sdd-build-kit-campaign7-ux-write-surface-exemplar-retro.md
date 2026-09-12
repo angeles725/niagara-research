@@ -1,4 +1,4 @@
-<!-- review-status: pending -->
+<!-- review-status: applied 2026-09-12 · kit a7d6f26 -->
 <!-- Marker lifecycle: maintainer flips 'pending' → 'applied <date> · kit <sha>' (or 'dismissed') once folded; sweep-retros.sh reads this (METHODOLOGY §18). -->
 # Retro — niagara-research · research-sdd · 2026-09-05 · Campaign-7 research (2/2): the `-ux` write-surface EXEMPLAR (B796) — kit delta for types/dashboard.md
 
